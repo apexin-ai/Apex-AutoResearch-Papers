@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "681b88225acd65b725fc",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose c5 gini process gone",
+  "task_key": "worker_diagnose_c5_gini_process_gone_20260516T035154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_c5_gini_process_gone_20260516T035154_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "e58d332091f26e96a6f996a1873fcf5de5f4bf32a0e224f7a4e889ddf2a2e334"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## c5_per_phase_gini DS 状态报告\n\n**进程状态**：已正常退出。GPU 0 空闲（0MiB）。结果文件 `results_c5_gini_ds.json` 写入于 11:49，366KB。\n\n**完成度**：30/30 problems，全部完成。\n\n### DS Per-Phase Gini Delta 数据\n\n| Sparsity | Method | Global Δ | Low Δ | Mid Δ | High Δ |\n|----------|--------|----------|-------|-------|--------|\n| 15% | importance | -0.0301 | -0.0163 | -0.0073 | -0.0152 |\n| 15% | random | -0.0309 | -0.0102 | -0.0006 | -0.0062 |\n| 20% | importance | -0.0404 | -0.0209 | -0.0092 | -0.0200 |\n| 20% | random | -0.0403 | -0.0120 | -0.0007 | -0.0085 |\n| 25% | importance | -0.0647 | -0.0313 | -0.0133 | -0.0267 |\n| 25% | random | -0.0620 | -0.0150 | -0.0096 | -0.0112 |\n| 30% | importance | -0.0806 | -0.0373 | -0.0183 | -0.0314 |\n| 30% | random | -0.0732 | -0.0183 | -0.0093 | -0.0138 |\n\n**关键观察**：\n- Importance pruning 在所有 sparsity level 的 low/high phase delta 均大于 random，说明 importance-based 剪枝在 low-sparsity 和 high-sparsity phase 产生更大的 Gini 变化\n- Mid-sparsity phase delta 在两种方法间差距最小（random 在 15%/20% 几乎为 0）\n- 随 sparsity 增加，所有 delta 单调增大（绝对值）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-c5-gini-process-gone.md"
+}

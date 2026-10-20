@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be337a869c0a2f15a222",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_14_1778903101.md",
+  "task_key": "loop_14_1778903101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778903101.md",
+    "occurrence": 1,
+    "bytes": 3700,
+    "sha256": "33c8eb8871248ea8afbd93dbe6d55a52707f96edb62853755ae3a862cdf27d20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T03:36:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有** westd-22162:cuda:0~3，禁止用其他设备\n- DS accuracy 数据**禁止**作为 primary evidence——D086 已降为定性观察，论文中必须标注 \"lower bound under token budget constraint\"\n- QW 权威 accuracy 值用**原版 combined**（非 b2_fix）：dense=0.40, s015=0.36, s020=0.35, s025=0.33, s030=0.19\n- GSM8K 聚合必须用 **median + Wilcoxon + bootstrap(median)**，禁止 mean（D080v3）\n- G× 值已修正为 **21-64×**（旧值 58-241× 已作废，D082）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：`/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`（DS）+ Qwen2.5-7B-Instruct\n- 分析输出：`/root/autodl-tmp/pacs/analysis_output/`\n- 活跃进程：acc_ds_s030_8k_v2 (PID 288901, cuda:2, tmux 管理, cron 监控中)\n- W&B：项目配置中（通过 load_project_config 获取 entity/project）\n\n### 3. 📊 当前状态\n**刚做完**：处理 acc_ds_s015_8k_v2 完成回调——accuracy=0.48 (24/50)，已更新 registry (DONE/success)、memory.md、向 Director 汇报。\n\n**RUNNING 实验**：\n- `acc_ds_s030_8k_v2`：DS s030 8k accuracy eval，cuda:2，进度 26/50，running_accuracy≈0.08，预计 ~70min 完成\n\n**活跃 Worker（4 个）**：\n- `analysis:round10_data_compilation` — Round 10 数据编译\n- `ops:registry_cleanup_c10_c7` — registry 清理\n- `knowledge:experiment_plan_yaml` — experiment plan 更新\n- `analysis:acc_ds_s015_8k_v2` — 详细分析（可能在取 truncation rate 等）\n\n**空闲 GPU**：cuda:0, cuda:1, cuda:3（当前无排队实验）\n\n### 4. 📋 待办\n- acc_ds_s030_8k_v2 cron 回调 → 分析结果（预计 accuracy≈0.08）→ DS 8k dose curve 全部完成 → 更新 memory.md dose curve 表 → 向 Director 汇报最终 5-point curve\n- s030 完成后 → 3 GPU 全空，向 Director 请示：进入 paper 整合 / 还有其他实验？\n- 4 个 Worker 回调 → 检查产出，整合到 registry/report\n- ROADMAP 剩余任务（全 CPU）：registry batch1 v2 rescore 修正、QW accuracy dose curve 完整性确认、r9c2-spike 系列清理、consistency check → Round 10 审稿\n- Director 决策 → 论文整合阶段：DS accuracy 写入 Appendix（定性 + truncation caveat），QW accuracy 写入 Section 4.2\n\n### 5. 🎯 战略上下文\n- **核心发现**：compound sparsity interaction 是 sparsity 固有属性（importance + random 均显著），severity 随 sparsity 单调递增。这是对 spark-aaai2026 的直接推广。\n- **截稿 2026-05-25（9天）**，项目在 R9→Round 10 过渡期，实验基本完成，进入 paper 整合阶段\n- **DS vs QW 的 accuracy 故事**：QW 是 clean evidence（truncation 低），DS 被 truncation 严重混淆。s015_8k_v2=0.48 证实 dense→s015 是渐进式下降（非断崖），断崖在 s020→s025\n- **易踩坑**：(1) DS s015 的 truncation rate 尚未从 output file 提取，memory.md 表中标\"待补\" (2) s015/s030/dense 的 QW batch1 尚未走 v2 rescore，不要假设与 s020 一样无变化 (3) Bonferroni 修正后 DS rand s025/s030 不再显著（p≈0.07），paper 中不能 claim \"all conditions significant\"\n- **决策链**：D080(GSM8K median fix) → D082(G× 修正 21-64×) → D083(nanmedian+Wilcoxon) → D084(R9 action matrix) → D085(R9 C1+C2 PASS) → D086(DS accuracy 降为定性) → D087(QW n=100 完成) → D088(DS 8k v2 验证性重跑)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778903101.md"
+}

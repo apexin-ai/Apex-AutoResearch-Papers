@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60bcbf2a6cd8c7f6644f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops gpu saturation fix",
+  "task_key": "worker_ops_gpu_saturation_fix_20260516T031832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_saturation_fix_20260516T031832_result.json",
+    "occurrence": 1,
+    "bytes": 1312,
+    "sha256": "0613074589fbc6a7c12cb5a447b69099a251ff7cf4ec7714e428d5dcdf1b32cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 诊断报告\n\n### 各 GPU 状态\n\n| GPU | 显存占用 | 利用率 | 进程 | 说明 |\n|-----|---------|--------|------|------|\n| **0** | 39.6GB / 96GB | 74-75% | PID 307021: `analysis_c5_gini.py` (24GB, 运行 3h+)<br>PID 308765: `think_phase_kappa_math500.py` (15.5GB) | **两个进程共享 GPU 0** |\n| **1** | 3MB / 96GB | 0% | 无 | **完全空闲，可立即使用** |\n| **2** | 21.3GB / 96GB | 78% | PID 310131: c8 Llama dry-run profiling (21GB) | 活跃运行中 |\n| **3** | 3MB / 96GB | 0% | 无 | **完全空闲，可立即使用** |\n\n### c4_v2 进程 (PID 308759 → 308765)\n\n- PID 308759 是 bash wrapper，**仍然存活**，它 spawn 了实际 python 进程 PID 308765\n- PID 308765 运行 `think_phase_kappa_math500.py`，**在 GPU 0 上**（不是单独占 GPU），占用 15.5GB 显存\n- 进度：**30/50 (DeepSeek 模型)**，已运行约 18 分钟，每题约 30-60 秒\n- 注意：大量 `No </think> found` 警告，很多样本 kappa 被跳过\n- 预计还需约 10-15 分钟完成 DeepSeek 部分（之后可能还有其他模型）\n\n### 结论\n\n- **GPU 1、GPU 3 完全空闲**，可立即调度新任务\n- c4_v2 和 c5_gini 挤在 GPU 0 上，但显存总占用 39.6GB / 96GB，暂时够用\n- c8 dry-run 在 GPU 2 上独占运行，利用率 78%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-saturation-fix.md"
+}

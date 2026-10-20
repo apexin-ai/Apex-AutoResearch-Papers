@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a06453f2e3a2a32515f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "prep paper update plan",
+  "task_key": "worker_prep_paper_update_plan_20260514T220436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_paper_update_plan_20260514T220436_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "80a9492c636977a44214e4e8960da09d617e5491cb49dd2f5c9bd0dca7affd57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计划已写入并注册。核心内容：\n\n**覆盖范围**: §1-§8 + Abstract + Appendix，共识别 ~77 处数值替换、10 处 D059 违规修复、4 张图重绘、8 张表更新。\n\n**关键决策点**:\n- **Qwen s015 CI**: 若排除零→onset 改为 `s ≥ 0.15`；若仍跨零→保持 `s ≥ 0.20` + 触发 5 处 caveat\n- **C8**: 仅 results.tex:79 一处需从 `replicates` 改为 `is directionally consistent`；LLaMA/DS 倍数需用 n=500 DS Δ 重算\n- **C5b**: discussion.tex 和 conclusion.tex 均过于乐观（未提 pilot 失败），需插入 oracle 18% < 30% gate 结果 + heuristic > oracle 悖论\n- **Table 3 重构**: imp-vs-rand d_z 列违反 D059，需改为 within-imp d_z 或 Wilcoxon p + median_diff\n\n本计划与已有 `n500_paper_patch_plan.md`（逐行替换清单）互补使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-paper-update-plan.md"
+}

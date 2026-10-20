@@ -1,0 +1,15 @@
+{
+  "exp_id": "v6_random_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:54:17.188Z",
+    "updated_at": "2026-05-14T04:54:36.841Z",
+    "hypothesis": "v6 代码 random masking s=0.15, cuda:0. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s015 形成对照。"
+  },
+  "timestamp": "2026-05-14T04:54:36.971195+00:00",
+  "trigger": "update_registry"
+}

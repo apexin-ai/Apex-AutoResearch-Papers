@@ -1,0 +1,33 @@
+{
+  "exp_id": "c2_qw_n500_r3",
+  "project": "phase-gated-compound-sparse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:26:53.700Z",
+    "updated_at": "2026-05-15T05:26:53.015Z",
+    "hypothesis": "C2 Qwen n=500 continuation (cron false positive on c2_qw_n500). s015 完成, s020-s030 remaining. 与 DeepSeek 对称验证 compound sparsity severity.",
+    "parent": "c2_qw_n500",
+    "spec": {
+      "command": "run_profiling.py via screen c2_qw_gpu2/gpu3 (auto-continuation from c2_qw_n500)",
+      "server": "westd-22162",
+      "gpu": "cuda:2,cuda:3",
+      "pid": "159269,159794",
+      "data_path": "/root/autodl-tmp/pacs/data/MATH-500/",
+      "data_count": 500,
+      "model_name": "Qwen",
+      "seed": 42,
+      "checkpoint_source": "N/A (profiling, not training)",
+      "eval_data": "MATH-500 n=500",
+      "note": "s015 done (500/500 both imp+rand), s020 running (PID 159269 gpu2 imp, 159794 gpu3 rand). Screen: c2_qw_gpu2, c2_qw_gpu3. s025+s030 pending auto-advance."
+    },
+    "notes": "[2026-05-15 08:55 UTC+8] s015 DONE, s020 DONE, s025 RUNNING (imp 362/500, rand 337/500), s030 PENDING. Rate: ~0.41 min/prob. ETA s025 done ~10:02, all 8 conditions done ~13:27 UTC+8.",
+    "reproduce": {
+      "finished_at": "2026-05-15T05:26:52.529Z"
+    }
+  },
+  "timestamp": "2026-05-15T05:26:53.220088+00:00",
+  "trigger": "update_registry"
+}

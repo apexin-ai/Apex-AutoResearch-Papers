@@ -1,0 +1,625 @@
+{
+  "schema_version": "1.0",
+  "id": "516f8a1dc698c01772ca",
+  "project": "phase-gated-compound-sparse",
+  "kind": "conversation",
+  "title": "registry aggregate unification",
+  "task_key": "worker_registry_aggregate_unification_20260514T082600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_registry_aggregate_unification_20260514T082600.jsonl",
+    "occurrence": 1,
+    "bytes": 51950,
+    "sha256": "783bbcb441b3ed5c7d1b3cba3e2af42fd9b61ae1b2432ae9400b4b6f5c9a0390"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T08:28:44.821260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T08:28:44.822276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T08:28:44.822565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "phase-gated-compound-sparse",
+              "fields": "['metrics', 'interaction_index']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T08:28:44.823871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"bf16_qw_rand_s025\\\": {}, \\\"bf16_qw_rand_s020\\\": {}, \\\"bf16_qw_rand_s015\\\": {}, \\\"bf16_random_s030\\\": {}, \\\"bf16_random_s025\\\": {}, \\\"bf16_random_s020\\\": {}, \\\"bf16_random_s015\\\": {}, \\\"bf16_qwen_importance_s030\\\": {}, \\\"bf16_qwen_importance_s025\\\": {}, \\\"bf16_qwen_importance_s020\\\": {}, \\\"bf16_qwen_importance_s015\\\": {}, \\\"bf16_qw_imp_s025\\\": {\\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": -0.030717, \\\"median\\\": 0.003422, \\\"ci\\\": [-0.073785, 0.011205], \\\"median_ci\\\": [0.001096, 0.006511], \\\"winsorized_mean\\\": -0.020519, \\\"skewness\\\": 1.0674}, \\\"mid\\\": {\\\"mean\\\": 0.580245, \\\"median\\\": 0.114084, \\\"ci\\\": [0.156382, 1.126673], \\\"median_ci\\\": [-0.002931, 0.399003], \\\"winsorized_mean\\\": 0.501226, \\\"skewness\\\": 2.6316}, \\\"low\\\": {\\\"mean\\\": 4.214054, \\\"median\\\": 1.271154, \\\"ci\\\": [2.533572, 6.55223], \\\"median_ci\\\": [0.99459, 1.488139], \\\"winsorized_mean\\\": 2.625351, \\\"skewness\\\": 11.3872}}, \\\"perplexity\\\": {\\\"high\\\": {\\\"dense\\\": 1.0738, \\\"attn\\\": 1.2307, \\\"kv\\\": 1.4169, \\\"both\\\": 1.538}, \\\"mid\\\": {\\\"dense\\\": 1.1327, \\\"attn\\\": 1.2742, \\\"kv\\\": 4.5488, \\\"both\\\": 5.3554}, \\\"low\\\": {\\\"dense\\\": 1.1518, \\\"attn\\\": 1.6154, \\\"kv\\\": 11.6996, \\\"both\\\": 16.9642}}, \\\"phase_stats\\\": {\\\"high\\\": {\\\"n_tokens\\\": 16289, \\\"n_segments\\\": 295}, \\\"mid\\\": {\\\"n_tokens\\\": 4372, \\\"n_segments\\\": 26}, \\\"low\\\": {\\\"n_tokens\\\": 32227, \\\"n_segments\\\": 276}}, \\\"n_problems\\\": 50, \\\"pass_fail\\\": {\\\"ci_overlap\\\": true, \\\"sign_reversal\\\": false, \\\"overall\\\": \\\"PASS\\\"}}}, \\\"bf16_qw_imp_s020\\\": {\\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": -0.070879, \\\"median\\\": -0.000116, \\\"ci\\\": [-0.107706, -0.036041], \\\"median_ci\\\": [-0.005438, 0.001293], \\\"winsorized_mean\\\": -0.058822, \\\"skewness\\\": -1.7201}, \\\"mid\\\": {\\\"mean\\\": -0.004413, \\\"median\\\": 0.001802, \\\"ci\\\": [-0.142454, 0.161648], \\\"median_ci\\\": [-0.077255, 0.040929], \\\"winsorized_mean\\\": -0.022536, \\\"skewness\\\": 0.6488}, \\\"low\\\": {\\\"mean\\\": 1.342859, \\\"median\\\": 0.234863, \\\"ci\\\"\n…[truncated 26148 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T08:28:44.824382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_importance_s015",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': -0.150213, 'median': 0.005752, 'ci': [-0.294614, -0.055385], 'winsorized_mean': -0.062378, 'skewness': -14.9912}, 'mid': {'mean': 0.447301, 'median': 0.080738, 'ci': [0.267993, 0.668749], 'winsorized_mean': 0.324751, 'skewness': 4.7221}, 'low': {'mean': 2.405837, 'median': 0.398291, 'ci': [1.478784, 3.667675], 'winsorized_mean': 1.278857, 'skewness': 9.5402}}, 'per_problem_ii_stats': {'high': {'n': 49, 'min': -0.188061, 'max': 0.335853, 'mean': -0.013405, 'median': 0.00012, 'std': 0.078483}, 'mid': {'n': 40, 'min': -0.169092, 'max': 3.88198, 'mean': 0.308621, 'median': 0.107114, 'std': 0.690186}, 'low': {'n': 50, 'min': -0.872983, 'max': 9.10289, 'mean': 0.725504, 'median': 0.315517, 'std': 1.731056}}, 'gradient_paired_aggregate_legacy': 69.24, 'median_difference': 0.3925, 'n_problems': 50, 'pass_fail': {'ci_overlap': True, 'sign_reversal': True, 'overall': 'PASS'}, 'phase_stats': {'high': {'n_tokens': 21086, 'n_segments': 387}, 'mid': {'n_tokens': 13306, 'n_segments': 191}, 'low': {'n_tokens': 27748, 'n_segments': 397}}, 'perplexity': {'high': {'dense': 1.1689, 'attn': 1.4861, 'kv': 1.4481, 'both': 1.5911}, 'mid': {'dense': 1.2269, 'attn': 1.5137, 'kv': 2.5971, 'both': 3.4541}, 'low': {'dense': 1.2286, 'attn': 1.6147, 'kv': 8.9201, 'both': 12.5084}}}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:28:44.824941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_importance_s015\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:13.858Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:27:08.836Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.15。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-14T05:49:55.770Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:15:15.053Z\\\", \\\"training_hours\\\": 0.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"79406\\\", \\\"log_path\\\": \\\"/root/runs/phase-gated-compound-sparse/bf16_importance_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:49:58.070Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf1\n…[truncated 2443 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T08:28:44.825272+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_importance_s020",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': 0.1289, 'median': 0.0145, 'ci': [-0.1975, 0.6647], 'winsorized_mean': -0.0297, 'skewness': 16.67}, 'mid': {'mean': 1.2604, 'median': 0.2027, 'ci': [0.7466, 1.8962], 'winsorized_mean': 0.766, 'skewness': 7.05}, 'low': {'mean': 6.0288, 'median': 1.4963, 'ci': [4.4671, 7.9237], 'winsorized_mean': 4.3426, 'skewness': 6.01}}, 'per_problem_ii_stats': {'high': {'n': 49, 'min': -0.1884, 'max': 0.4196, 'mean': 0.0025, 'median': 0.0036, 'std': 0.0966}, 'mid': {'n': 40, 'min': -0.0519, 'max': 8.6969, 'mean': 0.6795, 'median': 0.1977, 'std': 1.4998}, 'low': {'n': 50, 'min': -1.6151, 'max': 22.6875, 'mean': 2.2301, 'median': 1.128, 'std': 4.3758}}, 'gradient_paired_aggregate_legacy': 5.9, 'median_difference': 1.4818, 'n_problems': 50, 'pass_fail': {'ci_overlap': True, 'sign_reversal': False, 'overall': 'PASS'}, 'phase_stats': {'high': {'n_tokens': 21086, 'n_segments': 387}, 'mid': {'n_tokens': 13306, 'n_segments': 191}, 'low': {'n_tokens': 27748, 'n_segments': 397}}, 'perplexity': {'high': {'dense': 1.1689, 'attn': 1.5233, 'kv': 1.6191, 'both': 2.1047}, 'mid': {'dense': 1.2269, 'attn': 1.5375, 'kv': 3.5164, 'both': 5.4246}, 'low': {'dense': 1.2286, 'attn': 1.6486, 'kv': 15.7987, 'both': 23.74}}}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T08:28:44.825728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_importance_s020\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:14.819Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:27:17.252Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.20。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020 --sparsity_levels 0.20 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"79812\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s020.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:51:09.305Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"Registry fix: actually running on cuda:0 sharing with bf16_importance_s030\\\", \\\"wall_clock_seconds\\\": 4491.6, \\\"gpu_hours\\\": 1.25}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T06:36:14.442Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T06:36:16.633802+00:00\\\"}]}, \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": 0.1289, \\\"median\\\": 0.0145, \\\"ci\\\": [-0.1975, 0.6647], \\\"winsorized_mean\\\": -0.0297, \\\"skewness\\\": 16.67}, \\\"mid\\\": {\\\"mean\\\": 1.2604, \\\"median\\\": 0.2027, \\\"ci\\\": [0.7466, 1.8962], \\\"winsorized_mean\\\": 0.766, \\\"skewness\\\": 7.05}, \\\"low\\\": {\\\"mean\\\": 6.0288, \\\"median\\\": 1.4963, \\\"ci\\\": [4.4671, 7.9237], \\\"winsorized_mean\\\": 4.3426, \n…[truncated 1642 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T08:28:44.826034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_importance_s025",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': 0.302756, 'median': 0.032363, 'ci': [0.083714, 0.543977], 'winsorized_mean': 0.200962, 'skewness': 4.8826}, 'mid': {'mean': 5.729665, 'median': 1.118069, 'ci': [3.455574, 8.471799], 'winsorized_mean': 4.189902, 'skewness': 8.2799}, 'low': {'mean': 25.852951, 'median': 7.195958, 'ci': [19.077082, 33.497293], 'winsorized_mean': 19.319103, 'skewness': 7.3986}}, 'per_problem_ii_stats': {'high': {'n': 49, 'min': -0.316321, 'max': 4.003714, 'mean': 0.133714, 'median': 0.009873, 'std': 0.595358}, 'mid': {'n': 40, 'min': -0.024794, 'max': 18.720486, 'mean': 2.537744, 'median': 1.05707, 'std': 3.962575}, 'low': {'n': 50, 'min': -1.854733, 'max': 75.467653, 'mean': 11.28281, 'median': 3.954593, 'std': 16.620011}}, 'gradient_paired_aggregate_legacy': 222.35, 'median_difference': 7.1636, 'n_problems': 50, 'pass_fail': {'ci_overlap': True, 'sign_reversal': False, 'overall': 'PASS'}, 'phase_stats': {'high': {'n_tokens': 21086, 'n_segments': 387}, 'mid': {'n_tokens': 13306, 'n_segments': 191}, 'low': {'n_tokens': 27748, 'n_segments': 397}}, 'perplexity': {'high': {'dense': 1.1689, 'attn': 1.6511, 'kv': 1.8628, 'both': 2.7026}, 'mid': {'dense': 1.2269, 'attn': 1.7039, 'kv': 5.6205, 'both': 13.3436}, 'low': {'dense': 1.2286, 'attn': 1.8366, 'kv': 31.756, 'both': 63.668}}}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T08:28:44.826479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_importance_s025\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:15.339Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:27:26.916Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.25。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T05:53:50.305Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025 --sparsity_levels 0.25 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:18:14.664Z\\\", \\\"training_hours\\\": 0.41}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025 --sparsity_levels 0.25 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"80207\\\", \\\"log_path\\\": \\\"/root/runs/phase-gated-compound-sparse/bf16_importance_s025.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:53:52.164Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf1\n…[truncated 2442 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T08:28:44.826780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_importance_s030",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': 0.5547, 'median': 0.0534, 'ci': [0.2773, 0.9198], 'winsorized_mean': 0.3367, 'skewness': 10.62}, 'mid': {'mean': 11.3, 'median': 2.2833, 'ci': [6.865, 17.2633], 'winsorized_mean': 8.1752, 'skewness': 9.19}, 'low': {'mean': 57.7946, 'median': 14.6395, 'ci': [41.4416, 77.0467], 'winsorized_mean': 39.3143, 'skewness': 8.31}}, 'per_problem_ii_stats': {'high': {'n': 49, 'min': -0.5095, 'max': 4.4457, 'mean': 0.1976, 'median': 0.0343, 'std': 0.6793}, 'mid': {'n': 40, 'min': -0.1989, 'max': 34.0258, 'mean': 5.2585, 'median': 1.5173, 'std': 7.9382}, 'low': {'n': 50, 'min': -7.3027, 'max': 126.7985, 'mean': 22.6601, 'median': 9.9731, 'std': 28.4096}}, 'gradient_paired_aggregate_legacy': 57.24, 'median_difference': 14.5861, 'n_problems': 50, 'pass_fail': {'ci_overlap': True, 'sign_reversal': False, 'overall': 'PASS'}, 'phase_stats': {'high': {'n_tokens': 21086, 'n_segments': 387}, 'mid': {'n_tokens': 13306, 'n_segments': 191}, 'low': {'n_tokens': 27748, 'n_segments': 397}}, 'perplexity': {'high': {'dense': 1.1689, 'attn': 1.7123, 'kv': 2.0544, 'both': 3.2372}, 'mid': {'dense': 1.2269, 'attn': 1.7894, 'kv': 9.4821, 'both': 24.2847}, 'low': {'dense': 1.2286, 'attn': 1.9347, 'kv': 51.6485, 'both': 122.61}}}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T08:28:44.827307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_importance_s030\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:16.014Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:27:35.159Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.30。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T05:54:32.900Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:39:03.399Z\\\", \\\"training_hours\\\": 0.74}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"80495\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:54:34.301Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds\n…[truncated 2181 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T08:28:44.827627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_qw_imp_s015",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': -0.082758, 'median': 0.000864, 'ci': [-0.117242, -0.052902], 'median_ci': [-0.000527, 0.001986], 'winsorized_mean': -0.058659, 'skewness': -4.5327}, 'mid': {'mean': -0.011963, 'median': -0.010624, 'ci': [-0.077076, 0.053275], 'median_ci': [-0.056075, 0.020825], 'winsorized_mean': -0.014765, 'skewness': -0.1202}, 'low': {'mean': 0.034392, 'median': 0.039429, 'ci': [-0.157736, 0.255236], 'median_ci': [0.005149, 0.07937], 'winsorized_mean': -0.027059, 'skewness': 4.7585}}, 'perplexity': {'high': {'dense': 1.0738, 'attn': 1.1991, 'kv': 1.2763, 'both': 1.3067}, 'mid': {'dense': 1.1327, 'attn': 1.2436, 'kv': 2.1066, 'both': 2.1968}, 'low': {'dense': 1.1518, 'attn': 1.5613, 'kv': 5.0456, 'both': 5.4409}}, 'phase_stats': {'high': {'n_tokens': 16289, 'n_segments': 295}, 'mid': {'n_tokens': 4372, 'n_segments': 26}, 'low': {'n_tokens': 32227, 'n_segments': 276}}, 'n_problems': 50, 'pass_fail': {'ci_overlap': True, 'sign_reversal': False, 'overall': 'PASS'}, 'median_difference': 0.0386}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T08:28:44.828047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_qw_imp_s015\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-14T05:39:31.289Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:27:43.412Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct importance masking s=0.15, bf16 dtype. Cross-model replication。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-14T07:01:46.764Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T07:01:57.332Z\\\", \\\"training_hours\\\": 0.0}, \\\"failure_reason\\\": \\\"\\\", \\\"completed_at\\\": \\\"2026-05-14T07:01:59.250Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T07:02:01.732372+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Qwen2.5-7B-Instruct checkpoint not found on server, 待下载后重跑\\\"}}, \\\"notes\\\": \\\"Qwen2.5-7B importance s=0.15, PASS. Median II gradient: high≈0.001 → mid≈-0.011 → low≈0.039. PPL(both): high=1.31 → mid=2.20 → low=5.44. CI non-overlapping (high vs low). 弱 gradient，与 DeepSeek 在 s=0.15 趋势一致。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path checkpoints/Qwen2.5-7B-Instruct --sparsity_levels 0.15 --masking_method importance --max_problems 50\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_nam\n…[truncated 1450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T08:28:44.828331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_qw_imp_s020",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': -0.070879, 'median': -0.000116, 'ci': [-0.107706, -0.036041], 'median_ci': [-0.005438, 0.001293], 'winsorized_mean': -0.058822, 'skewness': -1.7201}, 'mid': {'mean': -0.004413, 'median': 0.001802, 'ci': [-0.142454, 0.161648], 'median_ci': [-0.077255, 0.040929], 'winsorized_mean': -0.022536, 'skewness': 0.6488}, 'low': {'mean': 1.342859, 'median': 0.234863, 'ci': [0.470641, 2.368544], 'median_ci': [0.150775, 0.355732], 'winsorized_mean': 0.559664, 'skewness': 7.685}}, 'perplexity': {'high': {'dense': 1.0738, 'attn': 1.2127, 'kv': 1.3121, 'both': 1.3709}, 'mid': {'dense': 1.1327, 'attn': 1.2481, 'kv': 3.3204, 'both': 3.4314}, 'low': {'dense': 1.1518, 'attn': 1.5729, 'kv': 7.2877, 'both': 9.204}}, 'phase_stats': {'high': {'n_tokens': 16289, 'n_segments': 295}, 'mid': {'n_tokens': 4372, 'n_segments': 26}, 'low': {'n_tokens': 32227, 'n_segments': 276}}, 'n_problems': 50, 'pass_fail': {'ci_overlap': True, 'sign_reversal': False, 'overall': 'PASS'}, 'median_difference': 0.235}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T08:28:44.828743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_qw_imp_s020\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-14T05:39:31.824Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:27:50.472Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct importance masking s=0.20, bf16 dtype. Cross-model replication。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-14T07:01:50.969Z\\\", \\\"finished_at\\\": \\\"2026-05-14T07:02:06.576Z\\\", \\\"training_hours\\\": 0.0}, \\\"failure_reason\\\": \\\"\\\", \\\"completed_at\\\": \\\"2026-05-14T07:02:11.652Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T07:02:16.508561+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Qwen2.5-7B-Instruct checkpoint not found on server, 待下载后重跑\\\"}}, \\\"notes\\\": \\\"Qwen2.5-7B importance s=0.20, PASS. Median II gradient: high≈-0.000 → mid≈0.002 → low≈0.235. PPL(both): high=1.37 → mid=3.43 → low=9.20. CI non-overlapping (low vs mid). Low phase II 明显抬升，PPL gradient 加剧。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path checkpoints/Qwen2.5-7B-Instruct --sparsity_levels 0.20 --masking_method importance --max_problems 50\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s020\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_qw_imp_s020.log\\\", \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": -0.070879, \\\"median\\\": -0.000116, \\\"ci\\\": [-0.107706, -0.036041], \\\"median_ci\\\": [-0.005438, 0.001293], \\\"winsorized_mean\\\": -0.058822, \\\"skewness\\\": -1.7201}, \\\"mid\\\": {\\\"mean\\\": -0.004413, \\\"median\\\": 0.001802, \\\"ci\\\": [-0.142454, 0.161648], \\\"media\n…[truncated 904 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T08:28:44.829025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_qw_imp_s025",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': -0.030717, 'median': 0.003422, 'ci': [-0.073785, 0.011205], 'median_ci': [0.001096, 0.006511], 'winsorized_mean': -0.020519, 'skewness': 1.0674}, 'mid': {'mean': 0.580245, 'median': 0.114084, 'ci': [0.156382, 1.126673], 'median_ci': [-0.002931, 0.399003], 'winsorized_mean': 0.501226, 'skewness': 2.6316}, 'low': {'mean': 4.214054, 'median': 1.271154, 'ci': [2.533572, 6.55223], 'median_ci': [0.99459, 1.488139], 'winsorized_mean': 2.625351, 'skewness': 11.3872}}, 'perplexity': {'high': {'dense': 1.0738, 'attn': 1.2307, 'kv': 1.4169, 'both': 1.538}, 'mid': {'dense': 1.1327, 'attn': 1.2742, 'kv': 4.5488, 'both': 5.3554}, 'low': {'dense': 1.1518, 'attn': 1.6154, 'kv': 11.6996, 'both': 16.9642}}, 'phase_stats': {'high': {'n_tokens': 16289, 'n_segments': 295}, 'mid': {'n_tokens': 4372, 'n_segments': 26}, 'low': {'n_tokens': 32227, 'n_segments': 276}}, 'n_problems': 50, 'pass_fail': {'ci_overlap': True, 'sign_reversal': False, 'overall': 'PASS'}, 'median_difference': 1.2677}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T08:28:44.829400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_qw_imp_s025\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-14T05:39:32.680Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:27:57.797Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct importance masking s=0.25, bf16 dtype. Cross-model replication。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T07:01:54.691Z\\\", \\\"finished_at\\\": \\\"2026-05-14T07:02:51.598Z\\\", \\\"training_hours\\\": 0.02}, \\\"failure_reason\\\": \\\"\\\", \\\"completed_at\\\": \\\"2026-05-14T07:02:55.553Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T07:02:58.934095+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"Qwen2.5-7B-Instruct checkpoint not found on server, 待下载后重跑\\\"}}, \\\"notes\\\": \\\"Qwen2.5-7B importance s=0.25, PASS. Median II gradient: high≈0.003 → mid≈0.114 → low≈1.271. PPL(both): high=1.54 → mid=5.36 → low=16.96. CI non-overlapping (low vs mid). 强 gradient，mid phase 开始显著。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path checkpoints/Qwen2.5-7B-Instruct --sparsity_levels 0.25 --masking_method importance --max_problems 50\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s025\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_qw_imp_s025.log\\\", \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": -0.030717, \\\"median\\\": 0.003422, \\\"ci\\\": [-0.073785, 0.011205], \\\"median_ci\\\": [0.001096, 0.006511], \\\"winsorized_mean\\\": -0.020519, \\\"skewness\\\": 1.0674}, \\\"mid\\\": {\\\"mean\\\": 0.580245, \\\"median\\\": 0.114084, \\\"ci\\\": [0.156382, 1.126673], \\\"median_ci\\\": [-0.0\n…[truncated 893 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T08:28:44.829695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_qw_imp_s030",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': 0.058026, 'median': 0.009502, 'ci': [-0.018689, 0.153658], 'median_ci': [0.004245, 0.015015], 'winsorized_mean': 0.027511, 'skewness': 10.8491}, 'mid': {'mean': 1.88021, 'median': 0.688477, 'ci': [0.72845, 3.451003], 'median_ci': [0.055655, 1.86959], 'winsorized_mean': 1.505014, 'skewness': 3.2879}, 'low': {'mean': 8.377272, 'median': 2.952595, 'ci': [5.068739, 11.647498], 'median_ci': [2.429743, 3.966346], 'winsorized_mean': 6.743336, 'skewness': 3.8444}}, 'perplexity': {'high': {'dense': 1.0738, 'attn': 1.2499, 'kv': 1.6183, 'both': 1.8617}, 'mid': {'dense': 1.1327, 'attn': 1.3014, 'kv': 7.18, 'both': 9.4756}, 'low': {'dense': 1.1518, 'attn': 1.6415, 'kv': 25.4582, 'both': 35.3232}}, 'phase_stats': {'high': {'n_tokens': 16289, 'n_segments': 295}, 'mid': {'n_tokens': 4372, 'n_segments': 26}, 'low': {'n_tokens': 32227, 'n_segments': 276}}, 'n_problems': 50, 'pass_fail': {'ci_overlap': True, 'sign_reversal': False, 'overall': 'PASS'}, 'median_difference': 2.9431}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T08:28:44.830062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_qw_imp_s030\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:33.640Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:28:05.348Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct importance masking s=0.30, bf16 dtype. Cross-model replication。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path checkpoints/Qwen2.5-7B-Instruct --sparsity_levels 0.30 --masking_method importance --max_problems 50\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s030\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_qw_imp_s030.log\\\", \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": 0.058026, \\\"median\\\": 0.009502, \\\"ci\\\": [-0.018689, 0.153658], \\\"median_ci\\\": [0.004245, 0.015015], \\\"winsorized_mean\\\": 0.027511, \\\"skewness\\\": 10.8491}, \\\"mid\\\": {\\\"mean\\\": 1.88021, \\\"median\\\": 0.688477, \\\"ci\\\": [0.72845, 3.451003], \\\"median_ci\\\": [0.055655, 1.86959], \\\"winsorized_mean\\\": 1.505014, \\\"skewness\\\": 3.2879}, \\\"low\\\": {\\\"mean\\\": 8.377272, \\\"median\\\": 2.952595, \\\"ci\\\": [5.068739, 11.647498], \\\"median_ci\\\": [2.429743, 3.966346], \\\"winsorized_mean\\\": 6.743336, \\\"skewness\\\": 3.8444}}, \\\"perplexity\\\": {\\\"high\\\": {\\\"dense\\\": 1.0738, \\\"attn\\\": 1.2499, \\\"kv\\\": 1.6183, \\\"both\\\": 1.8617}, \\\"mid\\\": {\\\"dense\\\": 1.1327, \\\"attn\\\": 1.3014, \\\"kv\\\": 7.18, \\\"both\\\": 9.4756}, \\\"low\\\": {\\\"dense\\\": 1.1518, \\\"attn\\\": 1.6415, \\\"kv\\\": 25.4582, \\\"both\\\": 35.3232}}, \\\"phase_stats\\\": {\\\"high\\\": {\\\"n_tokens\\\": 16289, \\\"n_segments\\\": 295}, \\\"mid\\\": {\\\"n_tokens\\\": 4372, \\\"n_segments\\\": 26}, \\\"low\\\": {\\\"n_tokens\\\": 32227, \\\"n_segments\\\": 276}}, \\\"n_problems\\\": 50, \\\"pass_fail\\\": {\\\"ci_overlap\\\": true, \\\"sign_reversal\\\": false, \\\"overall\\\": \\\"PASS\\\"}, \\\"median_d\n…[truncated 351 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T08:28:44.830347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_ds_rand_s015",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': 0.2208, 'median': 0.0931, 'ci': [-1.0091, 1.5243], 'median_ci': [0.0024, 0.1515], 'winsorized_mean': 0.3161, 'skewness': -5.4}, 'mid': {'mean': -3.3604, 'median': 0.0967, 'ci': [-8.4057, 0.3697], 'median_ci': [0.0219, 0.197], 'winsorized_mean': -0.6366, 'skewness': -10.56}, 'low': {'mean': -1.8952, 'median': 0.1026, 'ci': [-4.9698, 0.2741], 'median_ci': [0.044, 0.1755], 'winsorized_mean': 0.0521, 'skewness': -11.57}}, 'perplexity': {'high': {'dense': 1.1687, 'attn': 3.5947, 'kv': 2.9239, 'both': 5.7569}, 'mid': {'dense': 1.2269, 'attn': 297.7957, 'kv': 2.915, 'both': 11.3156}, 'low': {'dense': 1.2284, 'attn': 11.3419, 'kv': 3.6161, 'both': 6.2886}}, 'phase_stats': {'high': {'n_tokens': 21086, 'n_segments': 387}, 'mid': {'n_tokens': 13306, 'n_segments': 191}, 'low': {'n_tokens': 27748, 'n_segments': 397}}, 'n_problems': 50, 'pass_fail': {'ci_overlap': False, 'sign_reversal': False, 'overall': 'FAIL'}, 'median_difference': 0.0095}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T08:28:44.830851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_ds_rand_s015\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:27.662Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:28:13.247Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.15, bf16 dtype. Importance 配对对照组。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-14T06:19:57.374Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:45:07.175Z\\\", \\\"training_hours\\\": 0.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"83111\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:19:58.801Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2759.4, \\\"gpu_hours\\\": 0.77}, \\\"pid\\\": \\\"83111\\\", \\\n…[truncated 1755 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T08:28:44.831138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_ds_rand_s020",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': 1.1216, 'median': 0.2918, 'ci': [0.0796, 2.5834], 'median_ci': [0.1598, 0.4581], 'winsorized_mean': 1.7664, 'skewness': 9.59}, 'mid': {'mean': -1.5827, 'median': 0.3504, 'ci': [-6.0963, 1.5735], 'median_ci': [0.1993, 0.5226], 'winsorized_mean': 0.5839, 'skewness': -12.31}, 'low': {'mean': -0.4116, 'median': 0.2763, 'ci': [-2.6034, 1.209], 'median_ci': [0.2194, 0.5487], 'winsorized_mean': 0.9942, 'skewness': -10.07}}, 'perplexity': {'high': {'dense': 1.1687, 'attn': 3.1905, 'kv': 3.8002, 'both': 8.8129}, 'mid': {'dense': 1.2269, 'attn': 67.8504, 'kv': 3.788, 'both': 11.4974}, 'low': {'dense': 1.2284, 'attn': 8.592, 'kv': 5.0078, 'both': 9.2001}}, 'phase_stats': {'high': {'n_tokens': 21086, 'n_segments': 387}, 'mid': {'n_tokens': 13306, 'n_segments': 191}, 'low': {'n_tokens': 27748, 'n_segments': 397}}, 'n_problems': 50, 'pass_fail': {'ci_overlap': False, 'sign_reversal': False, 'overall': 'FAIL'}, 'median_difference': -0.0155}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T08:28:44.831553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_ds_rand_s020\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:28.504Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:28:20.286Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.20, bf16 dtype. Importance 配对对照组。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-14T06:20:01.277Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:45:12.076Z\\\", \\\"training_hours\\\": 0.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"83260\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s020.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:20:02.850Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2756.1, \\\"gpu_hours\\\": 0.77}, \\\"pid\\\": \\\"83260\\\", \\\n…[truncated 1733 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T08:28:44.831842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_ds_rand_s025",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': 3.59, 'median': 0.8182, 'ci': [1.4021, 6.2327], 'median_ci': [0.5075, 1.7217], 'winsorized_mean': 6.3965, 'skewness': -7.57}, 'mid': {'mean': -1.8455, 'median': 0.9324, 'ci': [-10.3663, 4.9342], 'median_ci': [0.7331, 1.7003], 'winsorized_mean': 3.1014, 'skewness': -12.76}, 'low': {'mean': 0.7212, 'median': 1.3627, 'ci': [-4.2068, 4.5006], 'median_ci': [1.0869, 2.6866], 'winsorized_mean': 4.1866, 'skewness': -15.85}}, 'perplexity': {'high': {'dense': 1.1687, 'attn': 7.237, 'kv': 4.9751, 'both': 17.7423}, 'mid': {'dense': 1.2269, 'attn': 868.3199, 'kv': 5.1165, 'both': 29.4661}, 'low': {'dense': 1.2284, 'attn': 24.3571, 'kv': 6.7993, 'both': 17.9694}}, 'phase_stats': {'high': {'n_tokens': 21086, 'n_segments': 387}, 'mid': {'n_tokens': 13306, 'n_segments': 191}, 'low': {'n_tokens': 27748, 'n_segments': 397}}, 'n_problems': 50, 'pass_fail': {'ci_overlap': False, 'sign_reversal': False, 'overall': 'FAIL'}, 'median_difference': 0.5445}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T08:28:44.832216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_ds_rand_s025\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:29.444Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:28:29.208Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.25, bf16 dtype. Importance 配对对照组。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T06:20:05.413Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:45:19.317Z\\\", \\\"training_hours\\\": 0.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"83421\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s025.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:20:06.948Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2752.7, \\\"gpu_hours\\\": 0.76}, \\\"pid\\\": \\\"83421\\\", \\\n…[truncated 1777 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T08:28:44.832521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "bf16_ds_rand_s030",
+              "field": "metrics",
+              "value": "{'interaction_index': {'high': {'mean': 7.5555, 'median': 2.5031, 'ci': [4.4087, 11.6199], 'median_ci': [1.3292, 4.1205], 'winsorized_mean': None, 'skewness': None}, 'mid': {'mean': 6.2518, 'median': 2.5918, 'ci': [2.1767, 10.4757], 'median_ci': [1.8397, 3.7888], 'winsorized_mean': None, 'skewness': None}, 'low': {'mean': 6.8323, 'median': 4.0414, 'ci': [3.2428, 10.6996], 'median_ci': [2.2686, 6.3579], 'winsorized_mean': None, 'skewness': None}}, 'perplexity': {'high': {'dense': 1.1687, 'attn': 16.7892, 'kv': 8.8073, 'both': 40.7553}, 'mid': {'dense': 1.2269, 'attn': 2461.9219, 'kv': 8.6662, 'both': 62.4422}, 'low': {'dense': 1.2284, 'attn': 55.2916, 'kv': 11.5789, 'both': 37.6009}}, 'phase_stats': {'high': {'n_tokens': 21086, 'n_segments': 387}, 'mid': {'n_tokens': 13306, 'n_segments': 191}, 'low': {'n_tokens': 27748, 'n_segments': 397}}, 'n_problems': 50, 'pass_fail': {'ci_overlap': False, 'sign_reversal': False, 'overall': 'FAIL'}, 'median_difference': 1.5383}",
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T08:28:44.833045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_ds_rand_s030\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:30.356Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:28:34.749Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.30, bf16 dtype. Importance 配对对照组。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": null, \\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\", \\\"server\\\": \\\"westd-22162\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s030.log\\\", \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": 7.5555, \\\"median\\\": 2.5031, \\\"ci\\\": [4.4087, 11.6199], \\\"median_ci\\\": [1.3292, 4.1205], \\\"winsorized_mean\\\": null, \\\"skewness\\\": null}, \\\"mid\\\": {\\\"mean\\\": 6.2518, \\\"median\\\": 2.5918, \\\"ci\\\": [2.1767, 10.4757], \\\"median_ci\\\": [1.8397, 3.7888], \\\"winsorized_mean\\\": null, \\\"skewness\\\": null}, \\\"low\\\": {\\\"mean\\\": 6.8323, \\\"median\\\": 4.0414, \\\"ci\\\": [3.2428, 10.6996], \\\"median_ci\\\": [2.2686, 6.3579], \\\"winsorized_mean\\\": null, \\\"skewness\\\": null}}, \\\"perplexity\\\": {\\\"high\\\": {\\\"dense\\\": 1.1687, \\\"attn\\\": 16.7892, \\\"kv\\\": 8.8073, \\\"both\\\": 40.7553}, \\\"mid\\\": {\\\"dense\\\": 1.2269, \\\"attn\\\": 2461.9219, \\\"kv\\\": 8.6662, \\\"both\\\": 62.4422}, \\\"low\\\": {\\\"dense\\\": 1.2284, \\\"attn\\\": 55.2916, \\\"kv\\\": 11.5789, \\\"both\\\": 37.6009}}, \\\"phase_stats\\\": {\\\"high\\\": {\\\"n_tokens\\\": 21086, \\\"n_segments\\\": 387}, \\\"mid\\\": {\\\"n_tokens\\\": 13306, \\\"n\n…[truncated 549 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T08:28:44.833361+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 12 个实验更新成功。汇总：\n\n| exp_id | median_difference |\n|--------|-------------------|\n| **DeepSeek importance** | |\n| bf16_importance_s015 | 0.3925 |\n| bf16_importance_s020 | 1.4818 |\n| bf16_importance_s025 | 7.1636 |\n| bf16_importance_s030 | 14.5861 |\n| **Qwen importance** | |\n| bf16_qw_imp_s015 | 0.0386 |\n| bf16_qw_imp_s020 | 0.2350 |\n| bf16_qw_imp_s025 | 1.2677 |\n| bf16_qw_imp_s030 | 2.9431 |\n| **DeepSeek random** | |\n| bf16_ds_rand_s015 | 0.0095 |\n| bf16_ds_rand_s020 | -0.0155 |\n| bf16_ds_rand_s025 | 0.5445 |\n| bf16_ds_rand_s030 | 1.5383 |\n\n4 个 DeepSeek importance 实验的旧 `gradient_paired_aggregate` 已保留为 `gradient_paired_aggregate_legacy`，原字段已移除。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_registry_aggregate_unification_20260514T082600"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/registry-aggregate-unification.md"
+}

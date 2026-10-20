@@ -1,0 +1,7 @@
+PDF: /root/autodl-tmp/pacs/figures/cohens_d_6point.pdf
+PNG: /root/autodl-tmp/pacs/figures/cohens_d_6point.png
+Server: westd-22162
+
+Cohen's d values:
+DeepSeek: s010=0.376, s015=0.607, s020=0.725, s025=0.953, s030=1.126, s035=0.815
+Qwen: s010=-0.049, s015=0.371, s020=0.722, s025=1.233, s030=1.439, s035=1.102

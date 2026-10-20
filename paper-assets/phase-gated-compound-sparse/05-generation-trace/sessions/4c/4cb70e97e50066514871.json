@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cb70e97e50066514871",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops c10 progress check",
+  "task_key": "worker_ops_c10_progress_check_20260516T055720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c10_progress_check_20260516T055720_result.json",
+    "occurrence": 1,
+    "bytes": 1801,
+    "sha256": "676958b37a4ef84b1bf463d740a6f0d67f67b00a3faa3afafffbdd46f23148ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n## c10_lang_s020_s025 (PID 312143)\n\n- **状态**: 存活，已运行 **2h18m**\n- **命令**: `python scripts/c10_gen_s020_s025.py --gpu cuda:0 --num-problems 50`\n- **模型**: DeepSeek-R1-Distill-Qwen-7B，2 个条件 (importance_s020, importance_s025)\n- **进度**: 无法精确判断——stdout 输出到 pipe，不写中间文件，结果只在全部完成后一次性保存到 `results_c10_lang_s020_s025.json`（该文件尚不存在）\n- **预估**: 每个 problem 约 2-3 min（含 importance collection + 2 条件生成），50 problems ≈ 100-150 min。已运行 138 min，**应接近完成或还剩 ~10-15 min**\n- `/tmp/c10_lang.log` 是上一轮运行的日志（最后修改 10:54），非本次\n\n## GPU 0 — c8_llama_importance_s025 (PID 315052)\n\n- **状态**: 存活，已运行 **1h52m**\n- **进度**: **83/250 problems** (33%)，最新日志时间 13:56\n- **速率**: 83 problems / 112 min ≈ 1.35 min/problem\n- **预计剩余**: (250-83) × 1.35 ≈ **225 min ≈ 3.75 hours**\n- `profiling_output_c8_llama_importance_s025/profiling_results.json` 是 **sentinel 占位文件**（非真实数据）\n- `profiling_output_c8_llama_importance_s030/profiling_results.json` 也是 **sentinel 占位文件**\n\n## chain/guardian 进程\n\n- `/tmp` 下无 chain_s030 或 guardian 文件\n- 无法通过 ssh_read_only 做 `ps aux | grep`，但 sentinel 文件存在说明 chain 机制曾被设置\n\n## GPU 利用率\n\n| GPU | Util | 显存使用 |\n|-----|------|---------|\n| 0 | 79% | 73,273 / 97,887 MiB |\n| 1 | 71% | 15,499 / 97,887 MiB |\n| 2 | 100% | 91,117 / 97,887 MiB |\n| 3 | 100% | 91,117 / 97,887 MiB |\n\n**结论**: c10 接近完成（< 15 min），GPU 0 的 c8_llama_s025 还需 ~4 小时。GPU 2/3 满载（跑其他任务）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c10-progress-check.md"
+}

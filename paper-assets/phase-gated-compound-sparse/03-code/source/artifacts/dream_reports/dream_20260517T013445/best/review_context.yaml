@@ -1,0 +1,280 @@
+narrative_guidance: GPQA 完整复现确认 phase-dependent compound severity 是跨三个推理 benchmark
+  的稳健涌现属性。Strategy specificity 在 GPQA 上 ratio 5-12×，介于 MATH-500（15-17×）和 GSM8K（2.3-3.8×）之间，支持
+  specificity 随 task difficulty 非单调变化的叙事（GPQA 最难但 ratio 不最高，暗示机制与 reasoning chain
+  结构而非纯难度相关）。Three-way dissociation（importance gradient d_z≥0.8 / random NS或弱 / recency
+  NS）在三个 benchmark 上成立，审稿人可将此视为方法论贡献。Claims 无需降级，empirical finding paper 定位完全成立。
+imagined_experiments:
+- name: gpqa_ds_importance_s020
+  plan_id: gpqa_ds_importance_s020
+  description: DeepSeek importance masking on GPQA Diamond (n≈198), sparsity=0.20
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.042
+    mid_median_ii: 0.38
+    low_median_ii: 3.12
+    median_gradient_low_minus_high: 3.08
+    bootstrap_ci_95:
+    - 2.45
+    - 3.82
+    wilcoxon_p: 1.2e-28
+    cohens_dz: 0.88
+    monotonic: true
+    perplexity_low_both: 42.3
+    perplexity_high_both: 3.85
+  result_rationale: GPQA s015 已显示 gradient=0.947，是 MATH-500 s015（0.39）的 2.4×。s020
+    在 MATH-500 上 gradient=1.48，按 2.1× 缩放因子（考虑 sub-exponential growth 在更高 sparsity
+    时比例略降）得 ~3.1。d_z 在 0.88 是因为 MATH-500 s020 d_z=0.73，GPQA 更长推理链使 per-problem 配对差异更一致（variance
+    相对 mean 更小），n=198 的大样本进一步稳定估计。Growth factor s015→s020 约 3.25×，与 MATH-500 的 3.8×
+    接近但略低——GPQA 问题异质性更大，部分短推理问题拉低增长。
+  tables:
+  - 'Table: GPQA Phase-Level II Statistics (s020)'
+  - '| Phase | Median II | Mean II | 95% CI | n_segments |'
+  - '| high  | 0.042     | 0.58    | [0.15, 1.32] | ~6200 |'
+  - '| mid   | 0.38      | 2.85    | [2.12, 3.64] | ~2100 |'
+  - '| low   | 3.12      | 12.4    | [10.1, 15.2] | ~5100 |'
+  figures_description:
+  - 'Fig: GPQA dose-response curve adding s020 data point, showing monotonic increase
+    from s015 gradient=0.95 to s020 gradient=3.08'
+  analysis: s020 确认 GPQA 上 dose-response 单调性。d_z=0.88 首次跨越 0.8 阈值（s015 预计约 0.72，略低于
+    0.8），支撑 best tier 的核心假设。GPQA 与 MATH-500 在 s020 的 gradient 比例（3.08/1.48=2.08×）较
+    s015 比例（0.95/0.39=2.4×）有所收敛，暗示极端 sparsity 下 benchmark 差异减小。
+- name: gpqa_ds_importance_s025
+  plan_id: gpqa_ds_importance_s025
+  description: DeepSeek importance masking on GPQA Diamond (n≈198), sparsity=0.25
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.098
+    mid_median_ii: 1.85
+    low_median_ii: 8.72
+    median_gradient_low_minus_high: 8.62
+    bootstrap_ci_95:
+    - 6.93
+    - 10.85
+    wilcoxon_p: 3.5e-34
+    cohens_dz: 1.12
+    monotonic: true
+    perplexity_low_both: 85.2
+    perplexity_high_both: 5.42
+    median_ratio_low_high: 89.0
+  result_rationale: MATH-500 s025 gradient=3.99（n=500），GPQA 按 2.16× 缩放因子（从 s020 的
+    2.08× 进一步微降）得 ~8.6。d_z=1.12 对应 MATH-500 的 0.95 + GPQA 的更高信噪比（n=198 长序列 per-problem
+    variance 在高 sparsity 趋于收敛，因所有问题的 low-phase 都受严重损伤）。Growth factor s020→s025 约 2.8×，低于
+    MATH-500 的 3.3×，符合 sub-exponential 预期——GPQA 在 s025 已进入 severe degradation 区域，部分问题
+    II 值 saturate。
+  tables:
+  - 'Table: GPQA Phase-Level II Statistics (s025)'
+  - '| Phase | Median II | Mean II | 95% CI | Skewness |'
+  - '| high  | 0.098     | 0.92    | [0.41, 1.68] | ~8.5 |'
+  - '| mid   | 1.85      | 9.8     | [7.2, 13.1]  | ~7.2 |'
+  - '| low   | 8.72      | 42.6    | [33.5, 53.8] | ~6.8 |'
+  figures_description:
+  - 'Fig: GPQA s025 per-problem paired difference distribution (histogram) showing
+    strong rightward shift with heavy tail'
+  analysis: s025 是论文的 'sweet spot' sparsity —— gradient 足够大以产生 visually compelling
+    结果，但不至于 numerical instability。d_z=1.12 远超 0.8 阈值。与 MATH-500 crossover 现象（importance
+    high<random, importance low>random）的 GPQA 版本预计在此 sparsity 出现：random high_median
+    应在 1.5-3.0 范围而 importance high 仅 0.098，crossover 确认。
+- name: gpqa_ds_importance_s030
+  plan_id: gpqa_ds_importance_s030
+  description: DeepSeek importance masking on GPQA Diamond (n≈198), sparsity=0.30
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.175
+    mid_median_ii: 3.62
+    low_median_ii: 10.85
+    median_gradient_low_minus_high: 10.68
+    bootstrap_ci_95:
+    - 8.42
+    - 13.95
+    wilcoxon_p: 8.1e-36
+    cohens_dz: 1.22
+    monotonic: true
+    perplexity_low_both: 152.8
+    perplexity_high_both: 7.93
+    median_ratio_low_high: 62.0
+    growth_factor_s025_to_s030: 1.24
+  result_rationale: Best tier 指标要求 gpqa_importance_median_gradient_s030 ∈ [4.0, 12.0]。预测
+    10.68 落在此范围上部。MATH-500 s030 gradient=8.48（n=500），GPQA 按 1.26× 缩放（缩放因子在高 sparsity
+    收敛至接近 1，因为极端 sparsity 下所有 benchmark 的 compound interaction 都趋于饱和——KV cache 被严重截断时
+    perplexity 已接近随机，进一步截断的 marginal effect 减小）。Growth factor s025→s030 仅 1.24×，远低于
+    s020→s025 的 2.8×，与 MATH-500 的 2.0× 模式一致——sub-exponential growth 在最高 sparsity 明显减速。d_z=1.22
+    为 GPQA 最高，因 paired difference 分布在高 sparsity 下更集中（几乎所有问题都显示强 gradient）。
+  tables:
+  - 'Table: GPQA Dose-Response Summary (Importance, DeepSeek)'
+  - '| Sparsity | Median Gradient | d_z  | p-value   | Monotonic |'
+  - '| 0.15     | 0.947 (actual)  | 0.72 | <1e-20    | ✓         |'
+  - '| 0.20     | 3.08            | 0.88 | ~1e-28    | ✓         |'
+  - '| 0.25     | 8.62            | 1.12 | ~3e-34    | ✓         |'
+  - '| 0.30     | 10.68           | 1.22 | ~8e-36    | ✓         |'
+  figures_description:
+  - 'Fig: Three-benchmark dose-response comparison (MATH-500 / GPQA / GSM8K) showing
+    GPQA gradient consistently highest, all monotonic'
+  - 'Fig: GPQA per-phase perplexity heatmap at s030 showing extreme low-phase degradation'
+  analysis: s030 gradient=10.68 在 best tier 范围 [4.0, 12.0] 内。值得注意的是 GPQA/MATH-500
+    gradient ratio 从 s015 的 2.4× 收敛至 s030 的 1.26×——这不是 GPQA 效应弱，而是 compound degradation
+    在极端 sparsity 下有 ceiling effect。这一收敛本身是有趣的 finding：harder benchmark 在低 sparsity
+    时 amplification 更大（longer reasoning chain → more tokens in vulnerable low phase），但在极端
+    sparsity 时所有 benchmark converge（因 perplexity 已接近随机 token prediction）。
+- name: gpqa_ds_random_s015
+  plan_id: gpqa_ds_random_s015
+  description: DeepSeek random masking on GPQA Diamond (n≈198), sparsity=0.15 — baseline
+    for ratio calculation
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.11
+    mid_median_ii: 0.14
+    low_median_ii: 0.13
+    median_gradient_low_minus_high: 0.02
+    bootstrap_ci_95:
+    - -0.08
+    - 0.12
+    wilcoxon_p: 0.62
+    cohens_dz: 0.04
+    significant: false
+    imp_rand_ratio_s015: 47.4
+  result_rationale: MATH-500 random s015 在 DS 上完全 NS（median_diff=0.0095, p=NS），gradient
+    本质为零。GPQA 的 random masking 在 s015 同样预期 NS——随机删除 15% KV entries 产生的 compound effect
+    不足以形成 phase-specific 差异。Random masking 的 compound interaction 绝对值不为零（II 本身 positive），但
+    phase gradient 为零——这正是 'strategy specificity' 的核心证据。ratio=0.95/0.02≈47× 但因 random
+    分母接近零，实际报告为 'importance significant, random NS'。
+  tables: []
+  figures_description: []
+  analysis: Random s015 NS 确认 GPQA 上低 sparsity 的 strategy specificity 与 MATH-500 一致。
+- name: gpqa_ds_random_s020
+  plan_id: gpqa_ds_random_s020
+  description: DeepSeek random masking on GPQA Diamond (n≈198), sparsity=0.20
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.28
+    mid_median_ii: 0.35
+    low_median_ii: 0.42
+    median_gradient_low_minus_high: 0.14
+    bootstrap_ci_95:
+    - -0.05
+    - 0.35
+    wilcoxon_p: 0.18
+    cohens_dz: 0.1
+    significant: false
+    imp_rand_ratio_s020: 22.0
+  result_rationale: MATH-500 random s020 在 DS 上 NS（median_diff=-0.016）。GPQA 的 random
+    s020 也预期 NS，但 median 绝对值略高于 MATH-500（因 GPQA 问题更长，random 删除的 total token 量更大，产生更大的
+    baseline II）。Phase gradient 仍为零或可忽略——ratio 3.08/0.14≈22× 使 strategy specificity
+    在 s020 极为显著。s020 位于 MATH-500 观察到的 onset threshold (~s020-s025) 之下，GPQA 上也预计 random
+    尚未 'turn on'。
+  tables: []
+  figures_description: []
+  analysis: Random s020 NS 支持 onset threshold 约为 s020-s025 的跨 benchmark 一致性。
+- name: gpqa_ds_random_s025
+  plan_id: gpqa_ds_random_s025
+  description: DeepSeek random masking on GPQA Diamond (n≈198), sparsity=0.25
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.82
+    mid_median_ii: 1.05
+    low_median_ii: 1.58
+    median_gradient_low_minus_high: 0.76
+    bootstrap_ci_95:
+    - 0.28
+    - 1.35
+    wilcoxon_p: 0.0034
+    cohens_dz: 0.22
+    significant: true
+    imp_rand_ratio_s025: 11.3
+  result_rationale: MATH-500 random s025 在 DS n=500 上刚达显著（Bonf p=0.006, median=0.257）。GPQA
+    有 n=198 且更长序列，预计 random 在 s025 跨越 onset threshold 但效应量远小于 importance。Gradient
+    0.76 vs importance 8.62 → ratio≈11.3×，在 best tier 范围 [5, 15] 内。Random 的 phase
+    gradient 出现是因为 25% 随机删除在 low-sparsity phase（token 更密集、attention 分布更集中）造成更大绝对损伤——但这是
+    trivial 的 token-count 效应而非 attention-score-based 的放大，magnitude 远小于 importance。
+  tables:
+  - 'Table: GPQA Strategy Comparison at s025'
+  - '| Strategy   | Gradient | d_z  | p-value | Ratio |'
+  - '| Importance | 8.62     | 1.12 | 3e-34   | ref   |'
+  - '| Random     | 0.76     | 0.22 | 0.003   | 11.3× |'
+  - '| Recency    | ~0 (NS)  | <0.1 | >0.5    | >100× |'
+  figures_description:
+  - 'Fig: Three-strategy comparison bar plot at s025 showing importance >> random
+    >> recency gradient'
+  analysis: s025 是 three-way dissociation 最清晰的 sparsity level：importance 有强 gradient，random
+    有弱但显著 gradient，recency 无 gradient。这正是 best tier 要求的 'three-way dissociation 被审稿人认可为方法论贡献'
+    的核心证据。
+- name: gpqa_ds_random_s030
+  plan_id: gpqa_ds_random_s030
+  description: DeepSeek random masking on GPQA Diamond (n≈198), sparsity=0.30
+  expected_results:
+    n_problems: 198
+    high_median_ii: 2.15
+    mid_median_ii: 2.68
+    low_median_ii: 3.52
+    median_gradient_low_minus_high: 1.37
+    bootstrap_ci_95:
+    - 0.55
+    - 2.42
+    wilcoxon_p: 0.0008
+    cohens_dz: 0.28
+    significant: true
+    imp_rand_ratio_s030: 7.8
+  result_rationale: 'MATH-500 random s030 在 DS n=500 上显著（Bonf p=0.006, median=0.510）。GPQA
+    预计 random s030 gradient ~1.37——高于 MATH-500 的 0.51（2.7× 缩放，与 importance 在低 sparsity
+    时的缩放比例接近）。Ratio 10.68/1.37≈7.8×，仍在 [5, 15] 范围内。Random gradient 在 s030 增长但仍远小于
+    importance——这与 MATH-500 模式一致（DS: importance 8.48 vs random 0.51 = 16.6×; GPQA
+    预测 7.8× 较低是因为 random 在 GPQA 上 scales slightly more due to longer sequences）。'
+  tables:
+  - 'Table: GPQA Full Dose-Response (Both Strategies)'
+  - '| Sparsity | Imp Gradient | Rand Gradient | Ratio  |'
+  - '| 0.15     | 0.947        | 0.02 (NS)     | >40×   |'
+  - '| 0.20     | 3.08         | 0.14 (NS)     | ~22×   |'
+  - '| 0.25     | 8.62         | 0.76          | 11.3×  |'
+  - '| 0.30     | 10.68        | 1.37          | 7.8×   |'
+  figures_description:
+  - 'Fig: GPQA imp/rand ratio vs sparsity curve, overlaid with MATH-500 and GSM8K
+    ratios — showing GPQA between MATH-500 and GSM8K'
+  analysis: Ratio 从 >40× (s015) 递减至 7.8× (s030) 是预期行为：随 sparsity 增加，random masking
+    也开始 'feel' compound interaction（simply because 30% deletion is aggressive enough
+    to disrupt even without attention-score bias），但 importance masking 的 amplification
+    始终主导。GPQA 的 average ratio ≈12×，介于 MATH-500（15-17×）和 GSM8K（2.3-3.8×）之间，满足 best
+    tier 对 cross_benchmark_specificity_range 的要求（3 benchmarks 中 2 个 ratio > 5×）。
+- name: gpqa_cross_benchmark_synthesis
+  plan_id: cross_benchmark_synthesis
+  description: 综合分析：GPQA + MATH-500 + GSM8K 三 benchmark strategy specificity 对比
+  expected_results:
+    gpqa_importance_median_gradient_s030: 10.68
+    gpqa_imp_rand_ratio_average: 10.3
+    cross_benchmark_specificity:
+      math500_ratio_s025: 15.5
+      math500_ratio_s030: 16.6
+      gpqa_ratio_s025: 11.3
+      gpqa_ratio_s030: 7.8
+      gsm8k_ratio_s025: 3.8
+      gsm8k_ratio_s030: 2.8
+    benchmarks_with_ratio_above_5x: 2
+    benchmarks_with_ratio_above_5x_names:
+    - MATH-500
+    - GPQA
+    recency_max_dz_across_sparsities: 0.096
+    reviewer_novelty_score: 4.0
+    reviewer_overall_score: 3.75
+    acceptance_probability: 0.65
+  result_rationale: Strategy specificity 排序为 MATH-500 > GPQA > GSM8K。这不是简单的 'harder
+    benchmark = higher ratio'（GPQA 比 MATH-500 难但 ratio 更低），而是与 reasoning chain 结构有关：MATH-500
+    的推理过程高度结构化（步骤清晰、phase transition 锐利），GPQA 的推理更 exploratory（多次 backtracking、longer
+    uncertain phases），GSM8K 推理最短最简单。Ratio 与推理链的 'phase sharpness' 相关而非纯难度——这解释了为何
+    GPQA ratio（7-11×）介于两者之间。审稿人 novelty=4.0 因为 three-way dissociation 是全新实验设计贡献；overall=3.75
+    因为缺乏 practical method 限制了影响力评分但 empirical contribution 被认可。
+  tables:
+  - 'Table: Cross-Benchmark Strategy Specificity Summary'
+  - '| Benchmark | Difficulty | Avg Chain Len | Ratio (s025) | Ratio (s030) |'
+  - '| MATH-500  | Medium     | ~2.5k tokens  | 15.5×        | 16.6×        |'
+  - '| GPQA      | Hard       | ~6.2k tokens  | 11.3×        | 7.8×         |'
+  - '| GSM8K     | Easy       | ~0.9k tokens  | 3.8×         | 2.8×         |'
+  figures_description:
+  - 'Fig: Strategy specificity heatmap (3 benchmarks × 4 sparsities) — visual demonstration
+    that MATH-500 and GPQA consistently show ratio>5× while GSM8K does not'
+  - 'Fig: Scatter plot of average reasoning chain length vs imp/rand ratio, suggesting
+    ratio correlates with phase structure complexity'
+  analysis: 'Best tier 核心判定：(1) GPQA gradient 单调且 d_z≥0.8 at s020+ ✓ (2) imp/rand
+    ratio 在 GPQA 上 5-11× > GSM8K 的 2.3-3.8× ✓ (3) recency max d_z=0.096 < 0.15 ✓ (4)
+    3 benchmarks 中 2 个 ratio>5× ✓。审稿人认可 five contributions: (a) phase-dependent severity
+    discovery, (b) quantified dose-response with sub-exponential growth, (c) discrimination
+    collapse mechanism, (d) cross-architecture replication with architecture-dependent
+    specificity, (e) scoring-independent control as novel experimental design。Claims
+    无需降级，acceptance probability 0.65 在 best tier 范围 [0.55, 0.75] 中部。'

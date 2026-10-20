@@ -1,0 +1,15 @@
+{
+  "exp_id": "bf16_importance_s025",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:33:15.339Z",
+    "updated_at": "2026-05-14T05:34:13.706Z",
+    "hypothesis": "bf16 重跑 DeepSeek importance masking s=0.25。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。"
+  },
+  "timestamp": "2026-05-14T05:34:13.822887+00:00",
+  "trigger": "update_registry"
+}

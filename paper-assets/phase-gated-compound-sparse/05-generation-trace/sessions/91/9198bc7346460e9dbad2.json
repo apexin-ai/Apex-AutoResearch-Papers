@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9198bc7346460e9dbad2",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_7_1778786617.md",
+  "task_key": "loop_7_1778786617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778786617.md",
+    "occurrence": 1,
+    "bytes": 4421,
+    "sha256": "b3f8be6dcd3fb091ae3c8101527e21a4dbd7a63d3a2be0b80a5cd007f201f902"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T19:23:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅** westd-22162 cuda:0/1/2/3（config gpu_constraint 硬编码）。不可用其他服务器或 GPU 编号\n- 论文所有数字必须基于 **bf16** per-problem paired 统计量（fp16 旧数据已弃用）。主指标 **median + median bootstrap CI (B=10000)**，禁止引用 mean（n=500 暴露 mean 被 outlier 摧毁，见 memory.md D054）\n- d_z 报告规则（D059）：within-importance 场景保留 d_z，涉及 random 的比较 **不报** d_z\n- C8 (LLaMA) 禁用 \"confirms\"，只能用 \"suggests\"/\"provides partial support\"（D060）\n- Framing 硬约束（D015）：MUST \"emergent phase-strategy interaction\"；MUST NOT \"importance is broken\"；MUST NOT claim super-additivity without qualifier\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162，账户 root\n- **工作目录**: `/root/autodl-tmp/pacs`\n- **Python**: 未明确确认路径（可能 conda base 或系统 python3，需 Worker SSH 探查验证）\n- **GPU**: RTX 6000 Pro ×4 (cuda:0~3)\n- **模型路径 / 数据路径**: 在 `/root/autodl-tmp/pacs` 下，具体子目录需 Worker 确认\n- **活跃进程**: c2_n500_deepseek — 两个 screen/shell: `run_c2_n500_gpu0.sh` (cuda:0) + `run_c2_n500_gpu1.sh` (cuda:1)，cron 识别 pid=c2_n500_gpu0 仍存活\n- **Cron**: c2_n500_deepseek 有活跃 cron 在监控；c2_qw_n500 cron 已 auto-resolve 为 DONE(failed)\n- **Worker**: `worker_code_analysis_pipeline_p1p2` 正在运行（代码分析 pipeline）\n\n### 3. 📊 当前状态\n- **c2_qw_n500 刚 FAILED**：reconcile_crons 检测到进程 dead 5× 无 sentinel/W&B，auto-resolved 为 DONE(failed)。这意味着 **cuda:2+3 现在空闲，违反 L1#5**。需要立即诊断 c2_qw_n500 失败原因并重启\n- **c2_n500_deepseek RUNNING**：cuda:0+1 正常运行中，cron 确认进程存活。ROADMAP 预估 ETA ~2026-05-15 15-17h UTC（DeepSeek s020 进行中）\n- **c5b_pilot DONE(negative)**：oracle recovery 18% < 30% gate，已产 framing 提案，Director 决定降为 §8 Future Work\n- **c3_llama DONE(success)**：LLaMA 跨架构验证完成，C8 partially_confirmed\n- **论文 §1-§8 全部写完**，PDF 可编译，等 n=500 数据更新\n- **1 Worker 在跑**：code analysis pipeline（p1p2）\n- **总计**：82 实验，36 success / 10 negative / 14 failed / 21 killed\n\n### 4. 📋 待办（条件触发式）\n- **立即**：c2_qw_n500 failed → spawn Worker SSH 诊断日志（screen 是否还在、错误是什么）→ 修复 → 在 cuda:2+3 重启。cuda:2+3 空着每分钟都是浪费，距截稿 11 天\n- c2_n500_deepseek cron 回调（DONE）→ spawn Worker 跑分析 pipeline（median II + bootstrap CI + d_z within-importance only）\n- c2_qw_n500 重启后完成 → 同上分析 pipeline\n- 两个 n=500 分析都完成 → spawn Paper Writer Worker 统一更新论文（n=500 tables/figures + c5b §8 + C8 限定语 + Qwen caveat）\n- Qwen n=500 结果出来 → 若 s015 CI 仍跨零，叙事改为 \"compound effect emerges above threshold sparsity (~s020)\"（已预注册）\n- 论文更新完成 → 提交 Group C full review\n- worker_code_analysis_pipeline_p1p2 完成 → 处理产出\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25（11 天）**，目标 EMNLP 2026 ARR\n- **核心结论链**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DeepSeek 0.32→9.94, Qwen 0.048→2.619），random masking 7/8 FAIL。这是 strategy × phase 交互的涌现属性\n- **n=500 是关键决定性实验（C7）**：n=50 时 Qwen mid-phase 58% null rate + imp vs rand paired 全不显著。n=500 要么确认 dose-response，要么触发 Qwen caveat 叙事调整\n- **最容易判断错的事**：(1) c2_qw_n500 的 registry 状态可能还显示 RUNNING（reconcile 和 registry read 并行执行，可能有竞态），但实际已 auto-resolved 为 failed，以 reconcile 结果为准。(2) 不要把 DeepSeek 的强效应量直接推广到 Qwen/LLaMA——Qwen magnitude ~1/4, LLaMA 交互更弱。(3) mean 指标已废弃，任何分析脚本如果输出 mean 相关数字都不可引用\n- **容易踩的坑**：c5b_pilot 类无 sentinel/W&B 的实验会被 cron 误判 failed（经验教训：profiling 类实验需加 sentinel file）；screen/tmux 启动的进程 cron 通过 pid 文件追踪，如果 pid 文件丢失也会误判\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778786617.md"
+}

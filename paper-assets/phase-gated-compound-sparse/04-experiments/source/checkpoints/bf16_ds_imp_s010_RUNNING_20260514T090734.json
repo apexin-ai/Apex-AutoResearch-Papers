@@ -1,0 +1,27 @@
+{
+  "exp_id": "bf16_ds_imp_s010",
+  "project": "phase-gated-compound-sparse",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:05:11.694Z",
+    "updated_at": "2026-05-14T09:07:34.675Z",
+    "spec": {
+      "hypothesis": "Extended sparsity range: DeepSeek importance s=0.10, 扩展 dose-response 到 [0.10, 0.35]，加固 C2 单调递增 claim",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "server": "westd-22162",
+      "parent": "bf16_importance_s015",
+      "claims": [
+        "C2"
+      ],
+      "command": "python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s010 --sparsity_levels 0.10 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T09:07:34.876193+00:00",
+  "trigger": "update_registry"
+}

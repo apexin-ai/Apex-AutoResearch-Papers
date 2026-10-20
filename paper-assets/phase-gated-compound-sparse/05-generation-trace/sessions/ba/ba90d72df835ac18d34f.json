@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba90d72df835ac18d34f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code c10 s020 s025 gpu1",
+  "task_key": "worker_code_c10_s020_s025_gpu1_20260516T033637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c10_s020_s025_gpu1_20260516T033637_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "62a5dabd84bba31e7392ee1a90e31be18793dbb3b115b9afaeb74d96daba7729"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1: 32GB, 94% — 仍在生成。Problem 6 s020 也是长序列。这个任务预估 4-5 小时。\n\n任务在 tmux session `c10-lang-s020-s025` 中稳定运行，我暂停主动轮询。\n\n**当前状态总结**：\n- 任务：c10 Language Switching 补数据（s020/s025，GPU 1）\n- 进度：6/50 题已开始，5 题已完成所有条件\n- 已观察到的模式：s025 truncated 生成 200-310s/题，s020 部分也触发长生成\n- 预计总耗时：3-5 小时\n- tmux session：`c10-lang-s020-s025`\n- 输出路径：`/root/autodl-tmp/pacs/results_c10_lang_s020_s025.json`\n- 日志：`/root/autodl-tmp/pacs/logs/c10_s020_s025.log`\n\n到目前为止的语言切换情况（s025）：2/5 CN（Problem 2, 3），3/5 EN — switch rate ~40%，与 s030 的 40% 接近。s020 暂时只有 Problem 2 为 CN（1/5 = 20%），介于 s015(4%) 和 s030(40%) 之间，符合预期。\n\n需要我做什么时可以继续查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c10-s020-s025-gpu1.md"
+}

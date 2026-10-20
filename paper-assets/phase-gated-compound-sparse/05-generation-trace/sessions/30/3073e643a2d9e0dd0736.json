@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3073e643a2d9e0dd0736",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "monitor all exp progress v2",
+  "task_key": "worker_monitor_all-exp-progress-v2_20260514T145126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_all-exp-progress-v2_20260514T145126_result.json",
+    "occurrence": 1,
+    "bytes": 2581,
+    "sha256": "4de928fa3d4d71d6675015708c23f09c48aa63f2d513f7abd639efd3d96be091"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报 (2026-05-14 22:52 CST)\n\n### GPU 状态\n\n| GPU | VRAM Used | Util | 占用 |\n|-----|-----------|------|------|\n| 0 | 23.7/97.9 GB (24%) | 95% | c2_n500 DS imp |\n| 1 | 24.2/97.9 GB (25%) | 98% | c2_n500 DS rand |\n| 2 | 48.1/97.9 GB (49%) | 90% | c2_qw imp + c3_llama imp |\n| 3 | 50.9/97.9 GB (52%) | 97% | c2_qw rand + c3_llama rand |\n\n---\n\n### 1. c2_n500_deepseek (GPU 0+1, tmux: c2_n500_gpu0)\n\n| 进程 | PID | 状态 | 当前进度 | 条件 | 速率 |\n|------|-----|------|----------|------|------|\n| GPU 0 imp | 130124 | **alive** | **118/500** on imp_s015 | 1/4 | ~1.65 prob/min |\n| GPU 1 rand | 130263 | **alive** | **140/500** on rand_s015 | 1/4 | ~1.96 prob/min |\n\n- 启动时间：21:41 CST\n- 队列：s015 → s020 → s025 → s030（每 GPU 4 个条件，顺序执行）\n- **预计完成**：\n  - GPU 0 (imp 全部)：~May 15 17:50 CST\n  - GPU 1 (rand 全部)：~May 15 14:40 CST\n\n---\n\n### 2. c2_qw_n500 (GPU 2+3, SCREEN: c2_qw_gpu2/gpu3)\n\n| 进程 | PID | 状态 | 当前进度 | 条件 | 速率 |\n|------|-----|------|----------|------|------|\n| GPU 2 imp | 131864 | **alive** | **109/500** on imp_s015 | 1/4 | ~1.84 prob/min |\n| GPU 3 rand | 132002 | **alive** | **115/500** on rand_s015 | 1/4 | ~1.95 prob/min |\n\n- 启动时间：21:52 CST\n- **重复进程 132389/132392：已清理，不存在**\n- 队列：s015 → s020 → s025 → s030\n- **预计完成**：\n  - GPU 2 (imp 全部)：~May 15 16:00 CST\n  - GPU 3 (rand 全部)：~May 15 15:00 CST\n\n---\n\n### 3. c3_llama (GPU 2+3 共享, PID 138393)\n\n| 进程 | PID | 状态 | 当前进度 | 条件 | 速率 |\n|------|-----|------|----------|------|------|\n| GPU 2 imp | 138408 | **alive** | **12/50** on importance_s015 | 1/4 | ~1.83 prob/min |\n| GPU 3 rand | 138410 | **alive** | **13/50** on random_s015 | 1/4 | ~1.62 prob/min |\n\n- 启动时间：22:44 CST\n- n=50（不是500），8 条件并行 2 路\n- **预计完成**：\n  - GPU 2 (imp 4 条件)：~May 15 00:35 CST\n  - GPU 3 (rand 4 条件)：~May 15 00:48 CST\n\n---\n\n### 异常检查\n\n- **重复进程**：132389/132392 已清理 ✓\n- **OOM 风险**：GPU 2+3 共享两组实验，VRAM 48-51/98 GB，余量充足，无 OOM ✓\n- **日志错误**：所有日志无 ERROR/Exception ✓\n- **输出目录**：当前运行的 output 目录为空（profiling_results.json 在跑完 500/50 题后才写入）✓\n\n### 总结\n\n6 个进程全部存活，无异常。c3_llama 最先完成（今晚 ~01:00），c2 系列预计明天下午 14:40-17:50 全部跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-all-exp-progress-v2.md"
+}

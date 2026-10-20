@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b1468f7f7a1e7db0bc3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis c4 think validation math500",
+  "task_key": "worker_analysis_c4_think_validation_math500_20260516T024906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4_think_validation_math500_20260516T024906_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "c318534dbab75646168d31a91616bf0c1440d6eedcdb3d7a1f79e1428cc8ebf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，结果汇总：\n\n**DS (DeepSeek-R1-Distill-Qwen-7B) — GSM8K, n=48:**\n| 指标 | 值 | 阈值 | 通过 |\n|---|---|---|---|\n| Cohen's κ (adaptive) | **0.880** | ≥ 0.8 | ✓ |\n| thinking_in_low | **0.816** | ≥ 0.5 | ✓ |\n| answer_in_high | **0.655** | ≥ 0.5 | ✓ |\n\n补充指标：per-problem κ mean=0.847±0.091，75% problems κ≥0.8，100% κ≥0.6。\n\n**DS MATH-500 (间接，n=50):** 100% 的问题 low-sparsity phase 在 high-sparsity phase 之前（temporal ordering=0.576），与 think→answer 结构一致。MATH-500 无法做直接 κ 验证——n500 profiling 未保存 generation text。\n\n**QW (Qwen2.5-7B-Instruct):** 确认无 `<think>` 标记，50/50 样本均为纯文本 CoT。QW MATH-500 仍有 98% 正向 temporal ordering (0.479)，说明 phase 结构不依赖 `<think>` tag。\n\n**结论:** 所有 success criteria 满足。PPL-based phase segmentation 与显式 CoT 边界高度一致 (κ=0.88)。Registry `c4_think_validation_math500` 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c4-think-validation-math500.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "v6_importance_s030",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:47:20.641Z",
+    "updated_at": "2026-05-14T03:47:20.642Z"
+  },
+  "timestamp": "2026-05-14T03:47:20.704047+00:00",
+  "trigger": "update_registry"
+}

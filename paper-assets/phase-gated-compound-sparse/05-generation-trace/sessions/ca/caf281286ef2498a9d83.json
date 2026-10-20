@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caf281286ef2498a9d83",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis recency s025",
+  "task_key": "worker_analysis_recency_s025_20260517T005601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_recency_s025_20260517T005601_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "fadebeb8e8054dbfb79d86b120cc486d52e46bfdfd56cfdc1acf724352131f51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE/success。\n\n## 结果总结\n\n**recency_s025** 对照实验结论：**SUCCESS（nuanced）**\n\n关键发现：\n- recency s=0.25 确实有显著 phase gradient（p=0.009），但方向与 importance-based **完全相反**\n- **Importance**: high_sparsity phases 受损更重（dz=-0.78）\n- **Recency**: low_sparsity phases 受损更重（dz=+0.22，效应量小 3.5 倍）\n\n这比 recency_s015 的 NS 结果（p=0.77）提供了更强的证据：不仅梯度方向相反，而且机制不同。Recency 损伤集中注意力阶段（那里模型依赖被驱逐的旧 token），importance 损伤稀疏注意力阶段（那里剩余注意力已经很薄）。PACS 现象确认是 attention-score-specific 的，不是 positional artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-recency-s025.md"
+}

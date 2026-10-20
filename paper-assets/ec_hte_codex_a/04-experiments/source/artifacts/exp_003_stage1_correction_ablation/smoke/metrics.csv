@@ -1,0 +1,17 @@
+condition_id,budget_label,expert_budget,n,k,misclassification_heterogeneity,cate_heterogeneity,correlation_direction,replication,method,gate_rmse,pehe,mean_subgroup_cate_bias
+budget=low|B=100|N=2000|k=3|mis=high|cate=high|corr=positive,low,100,2000,3,high,high,positive,0,global,0.1053309626637385,0.1062859304129817,0.10217172924179718
+budget=low|B=100|N=2000|k=3|mis=high|cate=high|corr=positive,low,100,2000,3,high,high,positive,0,arm_specific,0.10328388807704494,0.10468148076566856,0.10037915720658297
+budget=low|B=100|N=2000|k=3|mis=high|cate=high|corr=positive,low,100,2000,3,high,high,positive,0,per_subgroup_independent,0.09037722545174419,0.08020389436685882,0.07284524925418798
+budget=low|B=100|N=2000|k=3|mis=high|cate=high|corr=positive,low,100,2000,3,high,high,positive,0,partial_pooling,0.10155853547742008,0.09593982621705117,0.09003817621144557
+budget=low|B=100|N=2000|k=3|mis=high|cate=high|corr=positive,low,100,2000,3,high,high,positive,1,global,0.08919882937947314,0.06717062037070054,0.0524286681360453
+budget=low|B=100|N=2000|k=3|mis=high|cate=high|corr=positive,low,100,2000,3,high,high,positive,1,arm_specific,0.07367775363540126,0.05601492854560326,0.05051190697269073
+budget=low|B=100|N=2000|k=3|mis=high|cate=high|corr=positive,low,100,2000,3,high,high,positive,1,per_subgroup_independent,0.13902889012935984,0.1117492953491406,0.11925289674902073
+budget=low|B=100|N=2000|k=3|mis=high|cate=high|corr=positive,low,100,2000,3,high,high,positive,1,partial_pooling,0.12415487229558476,0.09586088277747684,0.0950118639280676
+budget=mid|B=500|N=2000|k=3|mis=high|cate=high|corr=positive,mid,500,2000,3,high,high,positive,0,global,0.18167036581202245,0.16060456167549478,0.152242128548963
+budget=mid|B=500|N=2000|k=3|mis=high|cate=high|corr=positive,mid,500,2000,3,high,high,positive,0,arm_specific,0.18120050965096055,0.1605104305445753,0.15227661943458976
+budget=mid|B=500|N=2000|k=3|mis=high|cate=high|corr=positive,mid,500,2000,3,high,high,positive,0,per_subgroup_independent,0.17398598889364048,0.1538760234539334,0.16520939835855972
+budget=mid|B=500|N=2000|k=3|mis=high|cate=high|corr=positive,mid,500,2000,3,high,high,positive,0,partial_pooling,0.16319863932610476,0.14617177417111912,0.1566252535923779
+budget=mid|B=500|N=2000|k=3|mis=high|cate=high|corr=positive,mid,500,2000,3,high,high,positive,1,global,0.06691258613049891,0.06020742635301558,0.06338828060120681
+budget=mid|B=500|N=2000|k=3|mis=high|cate=high|corr=positive,mid,500,2000,3,high,high,positive,1,arm_specific,0.07026549978208732,0.06200201362290588,0.06560870955061374
+budget=mid|B=500|N=2000|k=3|mis=high|cate=high|corr=positive,mid,500,2000,3,high,high,positive,1,per_subgroup_independent,0.04435004023096843,0.03832103232883114,0.03920526107238939
+budget=mid|B=500|N=2000|k=3|mis=high|cate=high|corr=positive,mid,500,2000,3,high,high,positive,1,partial_pooling,0.035093815875093075,0.031188916888182667,0.0335490588376711

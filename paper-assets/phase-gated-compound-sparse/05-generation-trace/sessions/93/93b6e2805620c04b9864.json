@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93b6e2805620c04b9864",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper tex consistency fixes",
+  "task_key": "worker_paper_tex_consistency_fixes_20260516T224936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_tex_consistency_fixes_20260516T224936_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "a5dc44ddc2aaed9d47a8e7fec66be916becbd98ae6a166ac2b68a832b3c52090"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，共 5 处：\n\n| # | 文件 | 修改 | 原因 |\n|---|------|------|------|\n| 1a | `results.tex:88` | `$2.7$--$20{\\times}$` → `$2.7$--$3.5{\\times}$` | Qwen-specific，数据验证 0.39/1.07=2.7×, 0.91/3.16=3.5× |\n| 1b | `appendix_disc_analysis.tex:53` | `$2.7$--$20{\\times}$` → `$2.7$--$17{\\times}$` | \"both models\" 语境，与 conclusion.tex 一致（DeepSeek 15–17×, Qwen 2.7–3.5×） |\n| 2 | `conclusion.tex:4` | `$n{=}500$` → `$n{=}496$` | 与 results.tex table caption 一致 |\n| 3a | `discussion.tex:8` | `GSM8K (${\\sim}3{\\times}$)` → `GSM8K (${\\sim}2{\\times}$ point-estimate ratio; random non-significant at $n{=}50$)` | 实际点估计 1.6–2.6×，且 random 全部 NS |\n| 3b | `results.tex:129` | `ratio ${\\sim}3{\\times}$` → `ratio ${\\sim}2{\\times}$ from point estimates` | 同上，保持一致 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-tex-consistency-fixes.md"
+}

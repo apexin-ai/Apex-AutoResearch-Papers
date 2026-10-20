@@ -1,0 +1,225 @@
+narrative_guidance: 原始 framing 完全成立。Recency control 在 s025/s030 均确认 null phase gradient，完成
+  triple dissociation 的全 sparsity range 验证，排除所有 circularity/confound 质疑。GPQA cross-benchmark
+  展示 importance gradient 单调递增且 strategy specificity ratio ≥ 3×，进一步强化 phase-modulated
+  compound severity 的跨 benchmark 泛化。Paper 三支柱叙事（empirical discovery + novel experimental
+  design + mechanistic explanation）全部站稳，claims 无需降级。
+imagined_experiments:
+- name: recency_s025
+  plan_id: C11_recency_s025
+  description: Recency-based eviction (scoring-independent control) at sparsity=0.25,
+    n=100, DeepSeek-R1-Distill-Qwen-7B. 验证 recency eviction 在中等 sparsity 下仍无 phase
+    gradient。
+  expected_results:
+    n_problems: 100
+    model: DeepSeek-R1-Distill-Qwen-7B
+    masking_method: recency
+    sparsity: 0.25
+    phase_gradient_median_diff: 0.018
+    phase_gradient_cohens_dz: 0.11
+    phase_gradient_p_value: 0.42
+    significant: false
+    low_phase_ii_median: 0.87
+    high_phase_ii_median: 0.82
+    low_high_ratio: 1.06
+    low_high_ratio_ci:
+    - -0.08
+    - 2.21
+    comparison_importance_s025_median_diff: 3.99
+    comparison_importance_s025_dz: 0.95
+    comparison_random_s025_median_diff: 0.26
+    comparison_random_s025_dz: 0.12
+    triple_dissociation: importance SIGNIFICANT (d_z=0.95), recency NS (d_z=0.11),
+      random NS (d_z=0.12)
+    imp_vs_recency_ratio: 36×
+  result_rationale: Recency eviction 按 token 到达顺序驱逐最旧 token，完全不涉及 attention score
+    计算。因此 head pruning 导致的 score discrimination collapse 对 recency 无影响——pruning 后
+    recency 仍按同一确定性规则驱逐，不存在 importance score 退化为伪随机的路径。在 s025 下虽然 absolute perplexity
+    升高（因更多有效 token 被移除），但 low-phase 和 high-phase 受到的 compound interaction 增量近似相等，因为
+    recency 对两个 phase 的 eviction pattern 与 attention distribution 无关。d_z 略高于 s015
+    的 0.083 是因为更高 sparsity 下 noise floor 略增，但仍远低于 0.2 阈值且统计不显著。
+  tables:
+  - 'Table: Triple dissociation at s025 — Importance d_z=0.95 (p<1e-50), Recency d_z=0.11
+    (p=0.42, NS), Random d_z=0.12 (p=0.38, NS)'
+  figures_description:
+  - 'Fig: Paired median difference distribution (bootstrap B=10000) for three strategies
+    at s025, showing importance distribution far from zero while recency and random
+    center on zero'
+  analysis: s025 recency null 结果与 s015 一致，排除了 'recency 可能在高 sparsity 下出现 phase gradient'
+    的替代假设。Triple dissociation 在 s025 完整复现：attention-score-based eviction (importance)
+    产生强 phase gradient，而 scoring-independent (recency) 和 structure-independent (random)
+    均为 null。这确认 phase-dependent severity 是 attention score pathway 的特有效应。
+- name: recency_s030
+  plan_id: C11_recency_s030
+  description: Recency-based eviction at sparsity=0.30, n=100. 最高 sparsity 下确认 recency
+    null gradient，完成全 sparsity range triple dissociation。
+  expected_results:
+    n_problems: 100
+    model: DeepSeek-R1-Distill-Qwen-7B
+    masking_method: recency
+    sparsity: 0.3
+    phase_gradient_median_diff: 0.041
+    phase_gradient_cohens_dz: 0.15
+    phase_gradient_p_value: 0.28
+    significant: false
+    low_phase_ii_median: 1.52
+    high_phase_ii_median: 1.38
+    low_high_ratio: 1.1
+    low_high_ratio_ci:
+    - -0.15
+    - 3.34
+    comparison_importance_s030_median_diff: 8.48
+    comparison_importance_s030_dz: 1.13
+    comparison_random_s030_median_diff: 0.51
+    comparison_random_s030_dz: 0.18
+    triple_dissociation: importance SIGNIFICANT (d_z=1.13), recency NS (d_z=0.15),
+      random borderline (d_z=0.18 NS)
+    imp_vs_recency_ratio: 207×
+  result_rationale: s030 是测试的最高 sparsity，此时 30% head 被 pruned + 30% KV 被 evicted。Recency
+    eviction 的 compound interaction 绝对值升高（因为移除更多 token 导致 perplexity 整体恶化），但 phase
+    gradient 仍为 null——原因不变：recency 驱逐决策与 attention score distribution 完全解耦，head pruning
+    不改变 recency 的 eviction 目标选择。d_z=0.15 接近但仍在 0.2 阈值内，反映高 sparsity 下更大的 measurement
+    noise（fewer effective tokens per segment, higher variance）。重要的是，importance 在同一
+    sparsity 下 d_z=1.13 是 recency 的 7.5×，定量确认效应来源是 scoring mechanism 而非 token removal
+    本身。
+  tables:
+  - 'Table: Full sparsity range triple dissociation summary — s015/s025/s030 × importance/recency/random,
+    9 cells, only 3 importance cells significant'
+  figures_description:
+  - 'Fig: d_z vs sparsity for three strategies, showing importance monotonically increasing
+    (0.57→0.95→1.13) while recency stays flat near zero (0.08→0.11→0.15) and random
+    stays flat (−0.05→0.12→0.18)'
+  analysis: s030 是 recency control 的最严格测试——如果 phase gradient 是 segmentation artifact
+    或 trivial token-removal 效应，在最高 sparsity 下应该最容易显现。但 d_z 仍仅 0.15（negligible），而 importance
+    已达 1.13（large）。这构成决定性证据：phase-dependent compound severity 完全归因于 attention-score-based
+    eviction 的 discrimination collapse pathway，recency control 作为 methodological innovation
+    成功排除了所有已知 confound。
+- name: gpqa_ds_importance_s020
+  plan_id: GPQA_cross_benchmark_s020
+  description: DeepSeek GPQA-Diamond importance masking at s020, n=198. 验证 GPQA 上
+    phase gradient 从 s015 单调递增。
+  expected_results:
+    n_problems: 198
+    interaction_index_high_median: 0.038
+    interaction_index_mid_median: 0.31
+    interaction_index_low_median: 2.85
+    median_difference: 2.81
+    median_difference_ci:
+    - 2.45
+    - 3.28
+    wilcoxon_p: <1e-30
+    cohens_dz: 0.92
+    gradient_direction: low > mid > high (monotonic)
+    median_ratio_low_high: 75.0
+    pass_fail: PASS
+    perplexity_high_both: 2.95
+    perplexity_mid_both: 8.6
+    perplexity_low_both: 42.3
+  result_rationale: GPQA-Diamond 的推理链比 MATH-500 更长（n_tokens ~1.2M vs ~62K for 50 problems），且更依赖
+    multi-hop 推理，导致 low-sparsity phase（深度推理阶段）对 attention pattern 精度更敏感。在 MATH-500
+    上 DS s015→s020 median_diff 从 0.39 升至 1.21（3.1×），GPQA s015 的 low_median 已为 0.96。按照相似的增长模式但考虑
+    GPQA 问题更高的认知复杂度（多步推理更易受 compound interaction 影响），s020 low_median 预计达 2.85（~3.0×
+    from s015）。GPQA 的 phase gradient 更强是因为 long-chain reasoning 在 low-sparsity phase
+    集中了更多依赖 precise attention routing 的 computation。
+  tables:
+  - 'Table: GPQA DS importance dose-response: s015 median_low=0.96, s020=2.85, s025=8.1
+    (monotonic)'
+  figures_description:
+  - 'Fig: GPQA vs MATH-500 dose-response curve comparison, showing parallel monotonic
+    increase with GPQA absolute values reflecting longer reasoning chains'
+  analysis: s020 结果确认 GPQA 上 importance phase gradient 的单调递增延续。绝对值比 MATH-500 同条件更大（2.85
+    vs 1.21），反映 GPQA 问题的推理链更长、更依赖 attention routing 精度。增长倍率 ~3.0× 与 MATH-500 一致（3.1×），表明
+    dose-response 动力学跨 benchmark 稳健。
+- name: gpqa_ds_importance_s025
+  plan_id: GPQA_cross_benchmark_s025
+  description: DeepSeek GPQA-Diamond importance masking at s025, n=198. 完成 GPQA 三点
+    dose-response 并计算 strategy specificity ratio。
+  expected_results:
+    n_problems: 198
+    interaction_index_high_median: 0.095
+    interaction_index_mid_median: 0.98
+    interaction_index_low_median: 8.12
+    median_difference: 8.03
+    median_difference_ci:
+    - 6.85
+    - 9.42
+    wilcoxon_p: <1e-40
+    cohens_dz: 1.08
+    gradient_direction: low > mid > high (monotonic)
+    median_ratio_low_high: 85.5
+    pass_fail: PASS
+    dose_response_monotonic: true
+    dose_response_s015_s020_s025:
+    - 0.96
+    - 2.85
+    - 8.12
+    growth_factors:
+    - 2.97
+    - 2.85
+    gpqa_strategy_specificity_ratio: 4.2
+    perplexity_high_both: 4.8
+    perplexity_mid_both: 18.5
+    perplexity_low_both: 95.6
+  result_rationale: s025 在 MATH-500 上 DS median_diff=3.99（s020 的 3.3×），GPQA 按相似倍率从
+    s020 的 2.85 增长至 ~8.1。Strategy specificity ratio（importance/random gradient）在 GPQA
+    上预计为 4.2×——高于 GSM8K 的 2.3-3.8× 但低于 MATH-500 的 15-17×。原因：GPQA 推理链长度和复杂度介于 GSM8K（短链算术）和
+    MATH-500（中等链证明）之间的某种模式——GPQA 的 multi-hop retrieval-heavy reasoning 使 random eviction
+    也产生一定 phase sensitivity（因长上下文中 random 移除的绝对信息量更大），但 importance 的 discrimination
+    collapse 效应仍主导。Ratio ≥ 3× 满足 best tier 标准。
+  tables:
+  - 'Table: Cross-benchmark strategy specificity comparison — MATH-500: 15-17×, GPQA:
+    4.2×, GSM8K: 2.3-3.8×'
+  - 'Table: GPQA full dose-response: s015=0.96, s020=2.85, s025=8.12 (Spearman ρ=1.0)'
+  figures_description:
+  - 'Fig: Three-benchmark dose-response overlay (MATH-500, GPQA, GSM8K) normalized
+    by task reasoning-chain length, showing universal monotonic increase with task-dependent
+    scaling'
+  - 'Fig: Strategy specificity ratio vs task complexity, showing gradient from GSM8K
+    (low, short chains) through GPQA (medium, multi-hop) to MATH-500 (high, proof-style)'
+  analysis: GPQA s025 完成了第三个 benchmark 的 dose-response 确认。Strategy specificity ratio
+    4.2× 处于 best tier 范围 [3.0, 10.0] 内，且提供了一个关键的 intermediate data point：specificity
+    ratio 与 task-level reasoning demands 正相关。这支持了 Discussion 中 'strategy specificity
+    是 task 推理结构的函数' 的解释——GSM8K 的短算术链让 random 也能产生 phase effect（ratio 低），MATH-500 的结构化证明最依赖
+    precise attention routing（ratio 高），GPQA 居中。Phase gradient 本身（单调递增）跨所有三个 benchmark
+    完全一致，确认这是 robust empirical finding。
+- name: reviewer_evaluation
+  plan_id: reviewer_scoring
+  description: 模拟 EMNLP reviewer 评分，基于完整实验证据链评估 paper 的 empirical finding + experimental
+    design novelty + mechanistic explanation 三支柱。
+  expected_results:
+    reviewer_avg_score: 3.7
+    reviewer_novelty_score: 3.8
+    reviewer_1:
+      overall: 3.5
+      novelty: 4.0
+      soundness: 3.5
+      comment: The triple dissociation using recency control is a genuinely novel
+        experimental design. Architecture-dependent specificity is interesting rather
+        than limiting.
+    reviewer_2:
+      overall: 4.0
+      novelty: 3.5
+      soundness: 4.0
+      comment: 'Thorough empirical work with strong statistical methodology. Cross-benchmark
+        validation convincing. Minor concern: 7B scale only.'
+    reviewer_3:
+      overall: 3.5
+      novelty: 4.0
+      soundness: 3.5
+      comment: Experimental design contribution (recency control) is the strongest
+        novelty. Discrimination collapse explanation adequate but would benefit from
+        causal intervention in future work.
+  result_rationale: Best tier 假设 reviewer 认可三个层面：(1) Empirical finding — 三模型两架构三 benchmark
+    泛化，n=500 高功效，全方向一致，reviewer 无法质疑数据质量；(2) Experimental design — recency control
+    作为 scoring-independent methodological control 无文献先例（H2O/StreamingLLM 仅用 recency
+    作 performance baseline），triple dissociation 全 sparsity range 成立，这是 reviewer 最容易认可的创新点；(3)
+    Mechanism — discrimination collapse 通过 Gini/CV 跨模型一致下降得到支持，reviewer 接受 'sufficient
+    mechanistic explanation without requiring causal intervention' 是合理的，因为 empirical
+    finding paper 不需要 intervention 实验。3.7 均分反映：一位 reviewer 给 4.0（被数据量和实验设计说服），两位给
+    3.5（对 scale limitation 和 causal gap 有保留但不构成 reject 理由）。
+  tables: []
+  figures_description: []
+  analysis: Reviewer 共识：(a) recency control 的 experimental design novelty 被明确认可，(b)
+    architecture-dependent specificity 被接受为 interesting finding 而非 weakness（因为论文诚实声明且提供了
+    quantitative characterization），(c) discrimination collapse 作为 mechanistic explanation
+    被视为 sufficient（不要求 causal intervention），(d) 7B scale limitation 被 acknowledged
+    但不构成 rejection 理由因为有三模型两架构三 benchmark 覆盖。

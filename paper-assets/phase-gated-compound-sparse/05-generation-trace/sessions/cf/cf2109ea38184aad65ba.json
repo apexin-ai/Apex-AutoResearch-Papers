@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf2109ea38184aad65ba",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "collect final matrix harvest",
+  "task_key": "worker_collect_final-matrix-harvest_20260514T025046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_final-matrix-harvest_20260514T025046_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "97b646c0223b9968bf55a68d8f9e559b598da940cc43ff1c686857c09887209f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已记录数据如下（等待 random 完成期间做记录）：\n\n**已收集的 Importance (v5) 数据：**\n\n| | s=0.15 | s=0.20 | s=0.25 | s=0.30 |\n|---|---|---|---|---|\n| **low II mean** | 8.786 | 31.894 | 96.715 | 1926.227 |\n| **low II median** | 2.627 | 9.563 | 30.903 | 44.632 |\n| **mid II mean** | 1.274 | 3.515 | 9.306 | 168.531 |\n| **mid II median** | 0.696 | 1.548 | 4.522 | 7.467 |\n| **high II mean** | 0.306 | 0.504 | 0.851 | 1.183 |\n| **high II median** | 0.205 | 0.333 | 0.584 | 0.596 |\n\n**v4_random_r2（仅有 mean，无 median）：**\n\n| | s=0.15 | s=0.20 | s=0.25 | s=0.30 |\n|---|---|---|---|---|\n| **low mean** | 1.147 | 0.792 | 2.452 | 17.371 |\n| **mid mean** | 1.969 | 0.643 | 19.244 | 5.858 |\n| **high mean** | 2.361 | 0.818 | 1.655 | 9.548 |\n\n等待 v5_random_s015 和 v5_random_s025 完成以获取 median 数据..."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-final-matrix-harvest.md"
+}

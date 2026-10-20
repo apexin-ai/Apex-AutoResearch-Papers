@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69040f482d2daeb6b446",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis rebootstrap importance b10000",
+  "task_key": "worker_analysis_rebootstrap_importance_b10000_20260514T090502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rebootstrap_importance_b10000_20260514T090502_result.json",
+    "occurrence": 1,
+    "bytes": 1538,
+    "sha256": "c0df82c53afec19e0655584601e04acf07626eafa02639ff0466f69fd478326e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### Part A: 检查结果\n- 8 个 importance 实验目录全部存在（`profiling_output_bf16_ds_imp_s015~s030` + `bf16_qw_imp_s015~s030`）\n- 每个 `profiling_results.json` 都有 per-problem raw data（`ii_high`, `ii_low`）\n- 原始 `n_bootstrap = 1000`\n\n### Part B: Re-bootstrap B=10000 结果\n\n| 实验 | median_diff | perm_p | Cohen's d | 95% CI | wilcox_p |\n|---|---|---|---|---|---|\n| ds_imp_s015 | 0.3236 | 0.0000 | 0.607 | [0.199, 0.472] | 0.000 |\n| ds_imp_s020 | 1.1520 | 0.0000 | 0.725 | [0.655, 1.256] | 0.000 |\n| ds_imp_s025 | 3.9686 | 0.0000 | 0.953 | [2.829, 5.292] | 0.000 |\n| ds_imp_s030 | 9.9436 | 0.0000 | 1.126 | [8.392, 16.653] | 0.000 |\n| qw_imp_s015 | 0.0476 | 0.0001 | 0.371 | [-0.005, 0.110] | 0.030 |\n| qw_imp_s020 | 0.2075 | 0.0000 | 0.722 | [0.067, 0.402] | 0.000 |\n| qw_imp_s025 | 1.1087 | 0.0000 | 1.233 | [0.609, 1.469] | 0.000 |\n| qw_imp_s030 | 2.6194 | 0.0000 | 1.439 | [1.722, 3.651] | 0.000 |\n\n注意：这些 median_diff 是 **per-problem 配对** 统计量（`np.median(ii_low) - np.median(ii_high)`，仅含 high/low 均非 None 的 problem），与原 registry 中基于 segment-level aggregate 的值略有差异。\n\n`qw_imp_s015` 的 bootstrap CI 边缘包含 0（[-0.005, 0.110]），但 permutation p=0.0001 仍显著。\n\n### Part C: cross_model_analysis.json\n- `random_median_diffs.qwen.s030`: 4.24103 → 2.418272 ✓\n\nRegistry 已更新，artifact 已注册。脚本存放在 `analysis/rebootstrap_importance_b10000.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rebootstrap-importance-b10000.md"
+}

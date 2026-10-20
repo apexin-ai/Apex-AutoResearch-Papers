@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26f87c5f6fa5a3259ded",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "verify all 4gpu running",
+  "task_key": "worker_verify_all-4gpu-running_20260514T022000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_all-4gpu-running_20260514T022000_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "2894494c56ea7b1cddbb1260a9841a93ca9dcc4c3c0ba296c36a92502e9c13a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行。\n\n## 状态汇总\n\n| GPU | 实验 | PID | Memory | Util | 进度 | Masking |\n|-----|------|-----|--------|------|------|---------|\n| cuda:0 | mvp_v5_fixed_s020_r2 | 51024 | 30829 MiB | 74% | **16/50** | importance |\n| cuda:1 | mvp_v5_fixed_s030_r2 | 51161 | 30829 MiB | 78% | **16/50** | importance |\n| cuda:2 | mvp_v5_random_s015 | 51961 | 18971 MiB | 88% | **3/50** | random |\n| cuda:3 | mvp_v5_random_s025 | 52103 | 18971 MiB | 96% | **3/50** | random |\n\n## 关键确认\n\n- **NaN skip 生效**: importance 实验日志中有 `Skipped 1 NaN attention layers: [27]`，layer 27 被正确跳过\n- **4 个 tmux session 均存在**: mvp_v5_fixed_s020_r2, mvp_v5_fixed_s030_r2, mvp_v5_random_s015, mvp_v5_random_s025\n- **无异常**: 所有实验正常推进，phase boundary 检测正常工作\n- importance 实验启动更早 (10:12)，random 实验稍晚 (10:19)，进度差符合预期"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-all-4gpu-running.md"
+}

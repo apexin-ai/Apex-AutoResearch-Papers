@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "668cf186803bddb59135",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "writing related work update",
+  "task_key": "worker_writing_related-work-update_20260514T145115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work-update_20260514T145115_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "9f01a09816aaf15b6e8e01f09095636a9bc1283dead65ecda49f0385b83ddc7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "RC5 和 RC6 已更新，4 篇论文的区分论述已插入：\n\n**RC5** 新增逐篇区分：\n- **ThinKV**: 单轴 phase-aware KV 压缩 → 我们是双轴 compound interaction 随 phase 变化，ThinKV 是分析维度的子集\n- **Physics of KV Cache Compression**: 机制层面最接近，但维度正交——他们是单轴压缩率 critical threshold，我们是 compound interaction 被 reasoning phase 调制\n- **HIES**: score collapse 为我们的 discrimination collapse 提供独立 supporting evidence（单轴对应）\n- **R-KV**: task-specific optimization vs 我们的 mechanistic analysis，目标不同\n\n**RC6** 新增整体定位区分：\n- Physics of KV 的 \"phase\" 是 compression-rate phase vs 我们的 reasoning phase，语义不同\n- ThinKV/R-KV 都是单轴 phase-aware，无法观察到 compound interaction 的涌现现象\n- HIES 的 collapse 佐证我们的机制，但未研究 compound setting 的放大效应\n- Related Work §2 定位总结：六篇工作各归其位，我们 = compound × phase × strategy 三维交互"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work-update.md"
+}

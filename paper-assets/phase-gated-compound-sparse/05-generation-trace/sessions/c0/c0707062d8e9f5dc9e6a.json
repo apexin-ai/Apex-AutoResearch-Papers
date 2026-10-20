@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "c0707062d8e9f5dc9e6a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper visual review final pdf",
+  "task_key": "worker_paper_visual_review_final_pdf_20260514T115858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_visual_review_final_pdf_20260514T115858_result.json",
+    "occurrence": 1,
+    "bytes": 2098291,
+    "sha256": "bb05e3c30bb08923bb98373ac2009bd29bff79a3d0c0856db262a892ea2e1d5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2098311,
+                "serialized_sha256": "445e3aaed95ae1a37a86811182cfca224b74e2087b14eab6b2931c1ebc643ae5",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-visual-review-final-pdf.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c563ce84988973f5f96",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "research phase adaptive compression lit",
+  "task_key": "worker_research_phase-adaptive-compression-lit_20260514T022741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_phase-adaptive-compression-lit_20260514T022741_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "fbd25d86c57205669ea66694ed8e273d460604151072bf7a448a450eea7699ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。产出：\n\n1. **`artifacts/literature_scan_phase_adaptive.md`** — 完整调研报告，覆盖 5 个方向共 ~30 篇论文，含 novelty assessment\n2. **`literature_map.yaml`** — 追加 15 条新文献条目\n\n**核心结论**：\n- 没有论文报告过类似的 compound sparsity × phase 维度的 magnitude crossover 现象\n- 最接近的工作：DefensiveKV（importance 脆弱性，但统计而非 phase 分解）、RaaS（milestone tokens 单轴）、phase transition theory（单轴阈值）\n- 900× phase gradient asymmetry 和 phase-gated strategy switching（非 budget tuning）在 compound context 下是独有发现\n- 主要竞品威胁：ThinKV（单轴 phase）、GRASPrune（compound 但静态）、DefensiveKV（importance 非稳态但无 compound 分析）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-phase-adaptive-compression-lit.md"
+}

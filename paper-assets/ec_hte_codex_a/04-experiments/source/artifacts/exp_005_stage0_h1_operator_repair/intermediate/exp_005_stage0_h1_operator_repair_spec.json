@@ -1,0 +1,185 @@
+{
+  "exp_id": "exp_005_stage0_h1_operator_repair",
+  "status_target": "PREPARING",
+  "proposal_date": "2026-05-31",
+  "parent": "exp_002_gpu_dgp_grid",
+  "hypothesis": "A repaired Stage0 H1 grid that uses a posterior-normalized P(G|Z) correction operator aligned to the estimand subgroup prior, explicitly varies subgroup-prior imbalance, and evaluates signed plus magnitude diagnostics will recover positive-vs-negative mechanism separation only when the original exp001-style prior-weighted posterior distortion is present.",
+  "do_not_execute": true,
+  "guards": {
+    "no_formal_experiment": true,
+    "no_submit_training_job": true,
+    "no_tmux": true,
+    "no_nohup": true,
+    "no_gpu_occupation": true,
+    "do_not_modify_findings_md": true,
+    "stage1_formal_blocked_by_c002": true,
+    "literature_memo_advisory_only_by_c003": true
+  },
+  "plan_id": "plan_005_stage0_h1_operator_repair",
+  "claim": "C_H1_GLOBAL_CORRECTION_WORSE",
+  "seed": 20260605,
+  "bootstrap_seed": 20260606,
+  "minimum_replications_per_observed_condition": 200,
+  "replications_per_observed_condition": 200,
+  "bootstrap_iterations": 1000,
+  "axes": {
+    "n_values": [2000, 5000, 10000],
+    "subgroup_counts": [3, 6],
+    "expert_budgets": [100, 500, 1000, 2000],
+    "misclassification_heterogeneity": ["low", "high"],
+    "cate_heterogeneity": ["low", "high"],
+    "correlation_directions": ["positive", "negative"],
+    "subgroup_prior_axis": ["uniform", "moderate_imbalance", "exp001_like_imbalance"],
+    "operator_families": [
+      "uncorrected",
+      "posterior_global_prior_weighted",
+      "transition_transpose_inverse_negative_control",
+      "estimated_posterior_global_prior_weighted",
+      "stratified_posterior_oracle"
+    ],
+    "diagnostic_families": [
+      "signed_bias_alignment_score",
+      "bias_alignment_magnitude_score",
+      "signed_x_magnitude_decomposition"
+    ]
+  },
+  "condition_counting": {
+    "matched_condition_pairs_definition": "Condition identities before expanding correlation_direction.",
+    "observed_directional_conditions_definition": "Condition rows after expanding correlation_direction in {positive, negative}.",
+    "base_matched_condition_pairs_without_prior_axis": 96,
+    "base_observed_directional_conditions_without_prior_axis": 192,
+    "matched_condition_pairs": 288,
+    "observed_directional_conditions": 576,
+    "planned_replications": 115200,
+    "required_condition_fields": [
+      "condition_pair_id",
+      "directional_condition_id",
+      "correlation_direction",
+      "subgroup_prior_axis",
+      "subgroup_priors",
+      "operator_family",
+      "diagnostic_family"
+    ]
+  },
+  "h1_subhypotheses": {
+    "H1a": {
+      "description": "posterior-normalized operator P(G|Z) aligns correction algebra with the estimand subgroup-prior weighting",
+      "primary_metric_keys": [
+        "h1a.posterior_global_minus_uncorrected_gate_rmse",
+        "h1a.posterior_global_worse_rate",
+        "h1a.posterior_minus_transition_inverse_gate_rmse",
+        "h1a.posterior_operator_alignment_error",
+        "h1a.estimated_posterior_minus_oracle_posterior_gate_rmse"
+      ]
+    },
+    "H1b": {
+      "description": "subgroup-prior imbalance is required to recover exp001-style worst-case prior leverage",
+      "primary_metric_keys": [
+        "h1b.prior_imbalance_interaction_positive_minus_negative_rate_diff",
+        "h1b.uniform_prior_positive_minus_negative_rate_diff",
+        "h1b.imbalanced_prior_positive_minus_negative_rate_diff",
+        "h1b.posterior_distortion_norm_by_prior_axis",
+        "h1b.prior_weighted_bias_delta"
+      ]
+    },
+    "H1c": {
+      "description": "signed or signed+magnitude diagnostics are required because magnitude-only bias_bound_score confounds positive and negative controls",
+      "primary_metric_keys": [
+        "h1c.signed_bias_alignment_vs_global_worse_spearman",
+        "h1c.signed_bias_alignment_auc",
+        "h1c.magnitude_bias_alignment_vs_global_worse_spearman",
+        "h1c.signed_minus_magnitude_rank_delta",
+        "h1c.positive_negative_signed_score_separation"
+      ]
+    }
+  },
+  "success_rules": {
+    "H1a": "posterior_minus_transition_inverse_gate_rmse < 0 with bootstrap 95% CI upper bound < 0; posterior_operator_alignment_error passes numerical tolerance; oracle and estimated inputs reported separately",
+    "H1b": "imbalanced_prior_positive_minus_negative_rate_diff exceeds uniform_prior_positive_minus_negative_rate_diff with bootstrap 95% CI lower bound > 0",
+    "H1c": "signed_bias_alignment_vs_global_worse_spearman >= 0.50 with bootstrap 95% CI lower bound > 0 and positive_negative_signed_score_separation CI lower bound > 0",
+    "overall": "H1a, H1b, and H1c all pass; repaired posterior-global positive-vs-negative worse-rate difference >= 20 percentage points in imbalanced-prior axes with bootstrap 95% CI lower bound > 0"
+  },
+  "negative_rules": {
+    "H1a": "posterior correction does not beat transition_transpose_inverse or operator alignment checks fail",
+    "H1b": "prior imbalance does not increase positive-vs-negative separation versus uniform prior",
+    "H1c": "signed diagnostic does not rank global-worse conditions in expected direction or CI includes nonpositive rank/separation",
+    "overall": "any H1a/H1b/H1c negative keeps Stage1 blocked unless Director explicitly waives C002"
+  },
+  "stop_conditions": [
+    "Director approval absent",
+    "registry status would move beyond PREPARING",
+    "command would launch submit_training_job, tmux, nohup, or GPU allocation",
+    "condition_pair_id or directional_condition_id missing from output contract",
+    "operator identity test fails",
+    "replications or bootstrap iterations below formal minimum"
+  ],
+  "commands_not_executed": {
+    "formal": "cd /home/root/ec_hte && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python repro/exp_005_stage0_h1_operator_repair/run_operator_repair_grid.py --config configs/exp_005_stage0_h1_operator_repair.json --output-dir artifacts/exp_005_stage0_h1_operator_repair/formal --device cuda",
+    "cpu_smoke": "cd /home/root/ec_hte && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python repro/exp_005_stage0_h1_operator_repair/run_operator_repair_grid.py --config configs/exp_005_stage0_h1_operator_repair.json --output-dir artifacts/exp_005_stage0_h1_operator_repair/smoke --device cpu --limit-condition-pairs 4 --replications-per-condition 2 --smoke"
+  },
+  "provenance": {
+    "server": "seetacloud-38274",
+    "account": "root",
+    "project_root": "/home/root/ec_hte",
+    "data_path": "synthetic DGP generated in-run; outputs under /home/root/ec_hte/artifacts/exp_005_stage0_h1_operator_repair/formal",
+    "output_path": "/home/root/ec_hte/artifacts/exp_005_stage0_h1_operator_repair/formal",
+    "log_path": "/home/root/ec_hte/artifacts/exp_005_stage0_h1_operator_repair/logs/exp_005_stage0_h1_operator_repair_<timestamp>.log",
+    "checkpoint_path": "/home/root/ec_hte/artifacts/exp_005_stage0_h1_operator_repair/checkpoints/no_model_checkpoint_required.txt",
+    "model_name": "synthetic_stage0_operator_repair_no_trained_model",
+    "expected_runtime": "proposal estimate <= 4 GPU-hours on seetacloud-38274/root/cuda:0; CPU smoke < 2 minutes",
+    "disk_estimate": "proposal estimate < 750 MB JSON/JSONL/CSV; no model checkpoint or external dataset"
+  },
+  "matrix_target_mapping": [
+    {
+      "target_id": "C_H1_GLOBAL_CORRECTION_WORSE",
+      "row": "exp_005_stage0_h1_operator_repair",
+      "col": "posterior_operator_vs_transition_inverse",
+      "metric_key": "h1a.posterior_minus_transition_inverse_gate_rmse",
+      "exp_id": "exp_005_stage0_h1_operator_repair",
+      "source": "artifacts/exp_005_stage0_h1_operator_repair/formal/condition_metrics.jsonl",
+      "initial_status": "planned"
+    },
+    {
+      "target_id": "C_H1_GLOBAL_CORRECTION_WORSE",
+      "row": "exp_005_stage0_h1_operator_repair",
+      "col": "prior_imbalance_mechanism",
+      "metric_key": "h1b.prior_imbalance_interaction_positive_minus_negative_rate_diff",
+      "exp_id": "exp_005_stage0_h1_operator_repair",
+      "source": "artifacts/exp_005_stage0_h1_operator_repair/formal/summary.json",
+      "initial_status": "planned"
+    },
+    {
+      "target_id": "T_STAGE0_DGP_GRID",
+      "row": "operator_repair_grid_all_conditions",
+      "col": "signed_bias_alignment_rank_corr",
+      "metric_key": "h1c.signed_bias_alignment_vs_global_worse_spearman",
+      "exp_id": "exp_005_stage0_h1_operator_repair",
+      "source": "artifacts/exp_005_stage0_h1_operator_repair/formal/condition_metrics.jsonl",
+      "initial_status": "planned"
+    },
+    {
+      "target_id": "T_STAGE0_DGP_GRID",
+      "row": "operator_repair_grid_all_conditions",
+      "col": "magnitude_diagnostic_control",
+      "metric_key": "h1c.magnitude_bias_alignment_vs_global_worse_spearman",
+      "exp_id": "exp_005_stage0_h1_operator_repair",
+      "source": "artifacts/exp_005_stage0_h1_operator_repair/formal/condition_metrics.jsonl",
+      "initial_status": "planned"
+    },
+    {
+      "target_id": "T_STAGE0_DGP_GRID",
+      "row": "operator_repair_grid_all_conditions",
+      "col": "oracle_estimated_gap_repaired_operator",
+      "metric_key": "h1a.estimated_posterior_minus_oracle_posterior_gate_rmse",
+      "exp_id": "exp_005_stage0_h1_operator_repair",
+      "source": "artifacts/exp_005_stage0_h1_operator_repair/formal/summary.json",
+      "initial_status": "planned"
+    }
+  ],
+  "findings_boundary": {
+    "exp_001_bias_bound_mvp": "single-DGP worst-case evidence only",
+    "exp_002_gpu_dgp_grid": "grid-level negative for previous operational criterion",
+    "exp_005_stage0_h1_operator_repair": "no empirical support before formal Director-approved run",
+    "findings_md": "do not modify"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fa700008bc8d11cbeef",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "reviewer / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_7.md",
+    "occurrence": 1,
+    "bytes": 3965,
+    "sha256": "1cae5d933f2e14ce38e8ec8ff25043b4b34da07b578b2916d72599501d5627c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-15T01:54:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- c2_n500_deepseek 只能用 cuda:0, cuda:1；c2_qw_n500_r3 只能用 cuda:2, cuda:3——上次审查已确认合规，但 screen 自动推进会换 PID，不能仅凭 PID 不变判断无越界\n- profiling 实验无 W&B / sentinel，cron 会误判为 failed（已发生 3 次 false positive on c2_qw_n500）——看到 cron 标记 failed 时必须 SSH 核实进程是否真死\n- registry PID 字段会过时（screen auto-advance），不要用 registry PID 做存活判断，必须 `nvidia-smi --query-compute-apps` 拿实时 PID 再 `ps -p` 验证\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162 (root)，4× NVIDIA RTX PRO 6000 Blackwell (98GB each)\n- 工作目录：`/root/autodl-tmp/pacs/`\n- 模型：DeepSeek `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`，Qwen `/root/autodl-tmp/models/Qwen2.5-7B-Instruct`，LLaMA 路径待确认\n- 数据：`/root/autodl-tmp/pacs/data/math500.json` (n=500)\n- 输出命名：`profiling_output_n500_bf16_{ds,qw}_{imp,rand}_s{015,020,025,030}/`\n- 日志：`/root/autodl-tmp/pacs/logs/n500_{ds,qw}_{imp,rand}_s{015,020,025,030}.log`\n- 无 W&B（profiling 实验），无 conda（直接 python）\n\n### 3. 📊 当前状态\n**我刚做完的**：审查 worker_check_c2_n500_progress 和 worker_monitor_n500_progress_refresh 的结果，以及 worker_check_analysis_pipeline_readiness。三次审查结论均为 PASS，已通过 reviewer_post_to_director 发送。\n\n**RUNNING 实验**（截至我最后一次日志检查 ~09:52 UTC+8）：\n- **c2_n500_deepseek** (GPU0+1)：s015✅ s020✅ s025 进行中 (ds_imp 338/500, ds_rand 384/500), s030 PENDING。ETA 全部完成 ~15:30 UTC+8\n- **c2_qw_n500_r3** (GPU2+3)：s015✅ s020✅ s025 即将完成 (qw_imp 499/500, qw_rand 480/500), s030 PENDING。ETA 全部完成 ~13:27 UTC+8\n\n**已完成确认**：s015+s020 共 8 个条件均 500/500 落盘完整。\n\n**注意**：Registry notes 仍停留在 08:55 UTC+8 数据，Worker 未更新 registry（但实际进度正常推进）。\n\n### 4. 📋 待办\n- Qwen s025 完成（~10:00 UTC+8）→ 确认 profiling_results.json 落盘 500/500 → s030 自动启动 → 验证新 PID 在 GPU2/3 上\n- Qwen s030 完成（~13:27 UTC+8）→ c2_qw_n500_r3 全部 8 conditions 完成 → 审查 Agent 的 conclusion + metrics 是否准确\n- DeepSeek 全部完成（~15:30 UTC+8）→ c2_n500_deepseek 8 conditions 完成 → 同上审查\n- 两个实验都完成后 → Agent 大概率跑 n=500 统计分析（paired test, Bonferroni, dose-response）→ 重点审查：CI 是否跨零、claim 强度是否匹配 evidence、与 n=50 结论是否一致/矛盾\n- 若 Agent 提交 framing 调整提案（特别是 s015 CI 结果）→ 必须 Read negative-framing-review skill 做四维度审查\n\n### 5. 🎯 战略上下文\n- **核心问题**：C2 claim（compound sparsity severity 随 sparsity 单调递增）在 n=50 时部分 CI 跨零（特别是 s015）。n=500 实验就是为了提升统计功效，验证这些结论是否稳健\n- **预注册条件**：若 Qwen s015 在 n=500 后 CI 仍跨零，叙事改为 \"compound effect emerges above a threshold sparsity level (~s020)\"——这是合理的 framing 调整还是 rationalization 需要严格审查\n- **已确认的正面结果**：c3_llama（跨架构复现 LLaMA 成功）、n=500 s015 paired gradient Bonferroni p<0.0001（resolving D058）\n- **已确认的负面结果**：c5b_pilot gate FAIL（oracle recovery 18% < 30% threshold），降为 future work\n- **易错点**：\n  1. 不要因为 cron false positive 就信任所有\"进程还活着\"的判断——必须独立 SSH 核实\n  2. Registry notes 更新滞后是常态，审查时以日志实时进度为准\n  3. n=50 → n=500 如果结论翻转（原来显著现在不显著，或反过来），这是重要发现不是 bug——但 Agent 可能试图 rationalize 掉不利结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-3.md"
+}

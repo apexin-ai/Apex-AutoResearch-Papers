@@ -1,0 +1,14 @@
+{
+  "exp_id": "acc_ds_s030_8k_v2",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:35:02.560Z",
+    "updated_at": "2026-05-15T21:51:49.596Z"
+  },
+  "timestamp": "2026-05-15T21:51:49.808728+00:00",
+  "trigger": "update_registry"
+}

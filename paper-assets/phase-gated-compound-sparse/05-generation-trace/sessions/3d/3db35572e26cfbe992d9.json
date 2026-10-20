@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "id": "3db35572e26cfbe992d9",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper visual review final pdf",
+  "task_key": "worker_paper_visual_review_final_pdf_20260514T115858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_visual_review_final_pdf_20260514T115858.log",
+    "occurrence": 1,
+    "bytes": 15271289,
+    "sha256": "f8a19dcd407fb2e79e2eee58417ebf86d69c4585ee2a4052cd53c18df8c787df"
+  },
+  "statistics": {
+    "messages": 135,
+    "user_turns": 4,
+    "tool_calls": 42,
+    "roles": {
+      "log": 1,
+      "system": 26,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 42,
+      "tool_result": 42,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "3db35572e26cfbe992d9-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "3db35572e26cfbe992d9-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "3db35572e26cfbe992d9-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "3db35572e26cfbe992d9-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "3db35572e26cfbe992d9-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "3db35572e26cfbe992d9-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "3db35572e26cfbe992d9-part-0003.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-visual-review-final-pdf.md"
+}

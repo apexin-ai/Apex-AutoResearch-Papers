@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0242cbad242c5cf81ee5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis seg spot check v2",
+  "task_key": "worker_analysis_seg_spot_check_v2_20260515T101806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seg_spot_check_v2_20260515T101806_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "7ea24513982b4c39adcbf0ba0274c53f928eaadcd8d5c6eb1ffab1a3bfd426ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**全部 12 个 conditions（4 sparsity × 3 segmentations）均在 Bonferroni 校正后显著**（p < 1e-10）。\n\n| Segmentation | s015 D | s020 D | s025 D | s030 D |\n|---|---|---|---|---|\n| tercile (n=500) | +0.391 | +1.215 | +3.986 | +8.481 |\n| quartile (n=50) | +0.491 | +1.388 | +4.322 | +12.930 |\n| quintile (n=50) | +0.505 | +1.197 | +4.960 | +11.548 |\n\n方向一致，dose-response 保持，效应不依赖于 tercile 分割方式。文件已写入：\n- 本地 CSV: `artifacts/n500_analysis/segmentation_sensitivity.csv`\n- 本地 MD: `artifacts/n500_analysis/segmentation_sensitivity.md`\n- 服务器: `/root/autodl-tmp/pacs/analysis_output/segmentation_sensitivity.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seg-spot-check-v2.md"
+}

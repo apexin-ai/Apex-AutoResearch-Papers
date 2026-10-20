@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e9d43cd90d06eb3dc0a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code qwen profiling prep",
+  "task_key": "worker_code_qwen-profiling-prep_20260514T000438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen-profiling-prep_20260514T000438_result.json",
+    "occurrence": 1,
+    "bytes": 2076,
+    "sha256": "e8d98a2f8a4835d922853eb1cad15fa3018af38aed525aa425524f55e58c4213"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 完整跑通。输出格式与原版一致，可直接被 `analyze_v4_comparison.py` 读取。\n\n## 总结\n\n### 代码改动点\n1. **新文件**: `/root/autodl-tmp/pacs/run_profiling_qwen.py` — 独立脚本（无需 `python -m`）\n2. **与原版差异**:\n   - 独立运行，`sys.path` 自动处理包导入\n   - 默认 model_path 指向 Qwen2.5-7B（`/root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B`）\n   - 新增 `--device` 参数（CPU dry-run 用）和 `--max_problems` 参数\n   - 其他所有逻辑（II 公式、masking、quantile 分段、输出格式）**完全一致**\n\n### Qwen2.5-7B 模型\n已在服务器上，4 个 safetensors shard，完整可用。\n\n### 已知限制\n- **Phase segmentation 与 reasoning 模型的区别**：原代码本身就用 quantile-based 分段（不依赖 `<think>` tag），所以 Qwen2.5-7B base 模型直接适用。但 base 模型的 attention sparsity 分布可能更均匀，phase 间差异可能不如 reasoning 模型明显。\n- **生成长度**：base 模型可能生成较短的 math 解答（sparsity trace 短），如果每题 token 太少会影响 phase segmentation 质量。`max_new_tokens=2048` 足够大。\n\n### Dry-run 验证\n```\nCUDA_VISIBLE_DEVICES=\"\" python run_profiling_qwen.py --device cpu --max_problems 1 --max_new_tokens 30\n```\n成功通过，JSON 输出格式与 DeepSeek 版本完全兼容。\n\n### 预估运行时间\n单卡 RTX 6000 Pro 96GB 跑 50 题（importance masking, 3 sparsity levels）：\n- 每题：生成 ~1-2k tokens + 1 次 dense forward w/ attention + 3 levels × 3 phases × 3 sparse forward = ~30s-60s\n- 总计：**约 25-50 分钟**（与 DeepSeek 版本相近，模型参数量相同）\n\n### GPU 运行命令\n```bash\n# importance masking (3 levels 一次跑完)\npython run_profiling_qwen.py --sparsity_levels 0.1,0.2,0.3 --output_dir ./profiling_output_qwen_imp\n\n# random masking baseline\npython run_profiling_qwen.py --masking_method random --sparsity_levels 0.1,0.2,0.3 --output_dir ./profiling_output_qwen_rand\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-profiling-prep.md"
+}

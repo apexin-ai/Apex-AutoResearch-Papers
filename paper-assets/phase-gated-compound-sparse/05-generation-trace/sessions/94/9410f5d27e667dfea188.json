@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9410f5d27e667dfea188",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778797914.md",
+  "task_key": "loop_8_1778797914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778797914.md",
+    "occurrence": 1,
+    "bytes": 4607,
+    "sha256": "c46f40245901686f3ccbb4bdaa734aab7a5bc95d49045df982dd28ab9433ecf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T22:28:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-22162 cuda:0/1/2/3**，四张 RTX 6000 Pro，不可用其他设备\n- 论文指标**只用 median + median bootstrap CI**，严禁引用 mean（D054：random pruning 14.2% outlier 导致 mean 爆炸到 -185k）\n- d_z 效应量**只报 within-importance**（不同 sparsity 间），涉及 imp vs rand 比较的 d_z 不报（D059）\n- LLaMA 跨架构结论只能 frame 为 \"qualitative pattern\"，不做定量跨架构比较（效应量差 ~40×）\n- **W3 CRITICAL**：conclusion.tex L11 和 appendix_disc_analysis.tex L33-35 仍写 \"cross-architecture validation is future work\"，但 c3_llama 数据已存在——必须在论文更新时**最优先修复**，否则 integrity 问题\n- c2_qw_n500 被 cron 5 次误判 failed（PID 跨 condition 切换）。已修复为 shell PID + sentinel `/tmp/agent-ml-exit/{exp_id}.exit`。不要回滚这个机制\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，account=root，工作目录 `/root/autodl-tmp/pacs`\n- Python：conda 环境（aml-train 镜像），`/root/miniconda3/bin/python`\n- 数据集：`/root/autodl-tmp/pacs/data/math500.json`（MATH-500，n=500）\n- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen（路径在服务器 pacs 目录下）\n- 活跃进程：\n  - **c2_n500_deepseek**：tmux `c2_n500_gpu0` + `c2_n500_gpu1`，cuda:0+1，cron PID=c2_n500_gpu0\n  - **c2_qw_n500_r3**：screen `c2_qw_gpu2` + `c2_qw_gpu3`，cuda:2+3，cron PID=131858（shell PID）+ sentinel 机制\n- Cron：3 个活跃（c2_n500_deepseek, c2_qw_n500, c2_qw_n500_r3），reconcile 确认均 still running\n\n### 3. 📊 当前状态\n**刚做完**：session-start 初始化，reconcile crons 确认 3 个实验仍在跑。\n\n**RUNNING 实验（2 个，占满 4 GPU）**：\n| exp_id | GPU | 进度 | ETA |\n|--------|-----|------|-----|\n| c2_n500_deepseek | cuda:0+1 | s015 ✅, s020 ~55% | ~2026-05-15 16:00 UTC+8 |\n| c2_qw_n500_r3 | cuda:2+3 | s015 ✅, s020 ~47% | ~2026-05-15 15:00 UTC+8 |\n\n每个实验跑 8 conditions（imp/rand × s015/s020/s025/s030），当前均在 s020。\n\n**等待中**：无 Worker 回调待处理，无 Director 决策待回复。论文全文（§1-§8）已完成 n=50 版本，等 n=500 数据更新。\n\n### 4. 📋 待办（条件触发式）\n- **c2_n500_deepseek cron 回调（~May 15 16:00 UTC+8）** → spawn Worker 跑分析 pipeline（median II + bootstrap CI B=10000 + d_z within-importance only）→ 更新 registry metrics\n- **c2_qw_n500_r3 cron 回调（~May 15 15:00 UTC+8）** → 同上 Qwen 分析 pipeline\n- **两个分析都完成后** → spawn Paper Worker 统一更新论文：\n  1. 替换所有 n=50 表格/数字为 n=500\n  2. 修复 W3（conclusion.tex + appendix 的 LLaMA future work 矛盾）\n  3. 修复 W2（§5.5 LLaMA selective reporting：每个 sparsity 同时报 CI + Bonferroni Wilcoxon）\n  4. 修复 W4（bootstrap B 值声明不一致）\n  5. 修复 W5（Qwen mid-phase null rate 披露）\n  6. 加 C5b → §8 Future Work\n  7. 加 C8 partially_confirmed 限定语\n  8. **先同步本地 tex 到远程再编译**（W1）\n- **论文更新完成后** → 提交 Group C full review\n- **如果 Qwen n=500 imp-vs-rand 仍不显著** → 论文加 Qwen caveat（\"compound effect for Qwen emerges above threshold sparsity ~s020\"）\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25 EMNLP ARR**，距今 11 天。n=500 实验是最后一批数据实验，完成后全力冲论文定稿\n- 核心发现：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（DeepSeek 强，Qwen 弱但 n=500 后显著，LLaMA qualitative consistent）。Random pruning 不显示此 pattern（但有 phase gradient，D060）\n- **D058 是关键转折**：n=50 时 Qwen paired gradient 全部不显著，n=500 s015 已翻转为显著（p<0.0001）。这验证了 n=500 的必要性，也意味着论文可以 claim Qwen 结果（之前不能）\n- **易错点**：\n  - 不要把 c2_qw_n500（failed，cron 误报）和 c2_qw_n500_r3（实际在跑的 continuation）搞混。r3 是正确的\n  - 分析时必须用 median 管线，不要碰 mean。profiling_results.json 已含 median 字段\n  - W1：远程 tex 是旧版，编译前必须先推送本地最新版本\n  - 82 个实验中大量 killed/failed 是历史遗留（mvp 系列、bf16 系列），不需要管\n- 决策链：D053→D054（median 切换）→D058（Qwen 显著性）→D059（d_z 分场景）→D060（C8 降级）→D061（n=500 paired gradient）→D062（cron sentinel 修复）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778797914.md"
+}

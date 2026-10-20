@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f181e66e50c290783cc",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "prep analysis pipeline verify",
+  "task_key": "worker_prep_analysis_pipeline_verify_20260515T025618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_analysis_pipeline_verify_20260515T025618_result.json",
+    "occurrence": 1,
+    "bytes": 2019,
+    "sha256": "db4be86eb0ca3bf3e91b25a9636a644b19fd90be63b97e7efd25cc6b918fe32d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### 可运行性：✅ 通过\n- dry-run (`--dry-run --csv --latex`) 端到端成功，JSON/CSV/LaTeX 全部正常输出\n- 依赖就绪：scipy 1.17.1, numpy 2.2.6（脚本只用这两个）\n\n### 输入数据路径匹配\n\n脚本期望 16 个目录：`profiling_output_n500_bf16_{ds,qw}_{imp,rand}_s{015,020,025,030}/profiling_results.json`\n\n| 条件 | 目录存在 | 数据文件 |\n|------|---------|---------|\n| Qwen imp s015-s030 | ✅ 全部 | ❌ 空（实验在跑） |\n| Qwen rand s015-s030 | ✅ 全部 | ❌ 空 |\n| DeepSeek imp s015-s025 | ✅ | ❌ 空 |\n| **DeepSeek imp s030** | **❌ 目录不存在** | — |\n| DeepSeek rand s015-s030 | ✅ 全部 | ❌ 空 |\n\n**问题：`profiling_output_n500_bf16_ds_imp_s030` 目录缺失。** 脚本会将 ds_imp_s030 报为 \"missing data\"，导致 DeepSeek 的 s025_vs_s030、s015_vs_s030 d_z 对比缺失。脚本不会崩溃（graceful error handling），但 DeepSeek 分析不完整。\n\n### 统计方法合规性：✅ 符合 D054/D059\n\n| 规范要求 | 脚本实现 | 状态 |\n|---------|---------|------|\n| 主指标 median（非 mean） | `np.median(diffs)` + `bootstrap_median_ci(B=10000)` | ✅ |\n| Wilcoxon signed-rank | `scipy.stats.wilcoxon` 全部 paired 检验 | ✅ |\n| d_z 仅 within-importance | `within_dz_importance` 用 d_z；rand/imp-vs-rand 仅报 median_diff | ✅ |\n| `np.mean` 使用 | 仅在 `paired_cohens_dz`（line 101），d_z 定义本身就是 mean/SD | ✅ 合规 |\n| Bonferroni | 全局收集所有 p 值统一校正 | ✅ |\n\n### 输出\n\n- JSON → `analysis_output/n500_unified.json`\n- CSV → `analysis_output/n500_unified.csv`（`--csv`）\n- LaTeX → stdout（`--latex`）\n\n### 待解决\n\n**唯一问题：确认 DeepSeek n=500 importance s030 实验是否已启动。** 缺少该目录意味着要么实验未启动，要么输出目录名不同。其余 15/16 条件的目录已就绪，等实验写入 `profiling_results.json` 即可运行全量分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-analysis-pipeline-verify-copy-2.md"
+}

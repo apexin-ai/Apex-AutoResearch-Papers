@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "135a858a2f3be2d83668",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_7_1778786423.md",
+  "task_key": "loop_7_1778786423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778786423.md",
+    "occurrence": 1,
+    "bytes": 5012,
+    "sha256": "4e35f51f6fcd9217ea79f714091055403b3e297613274cc19c80ebe01369495f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T18:59:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-22162 的 cuda:0/1/2/3，绝不碰其他设备号\n- 所有指标必须用 **median + median bootstrap CI**（D054）。Mean 被 outlier 摧毁（rand s015 mean 从 -1.9 暴跌到 -185,738），论文/汇报中引用 mean = CRITICAL\n- Random masking 的 imp-vs-rand 对比：**只报 within-importance phase gradient**（d_z within-importance），涉及 random 的比较只报方向不报效应量（D059）\n- LLaMA 跨架构结果只 claim \"qualitative direction consistent\"，**不做定量跨架构比较**（效应量差 ~40×）\n- Framing 硬约束 D015：MUST \"emergent phase-strategy interaction\"；MUST NOT \"importance is broken\"；MUST NOT claim importance super-additivity without qualifier（random 也是 super-additive，区分信号是 phase-dependent gradient）\n- C5b 已 gate_failed → §8 Future Work，**不再跑 mitigation 实验**除非 Director 明确指示\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活命令**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**：DeepSeek `/root/autodl-tmp/.hf_cache/`（HF cache），Qwen 同上，LLaMA-8B 同上\n- **数据集**：`/root/autodl-tmp/pacs/data/math500.json`（n=500）\n- **W&B**：profiling 实验无 W&B（直接写 JSON），cron 用 sentinel 检测完成\n- **活跃进程**：\n  - c2_n500_deepseek: tmux `c2_n500_gpu0` + `c2_n500_gpu1`，PID 130124 (gpu0) + 130263 (gpu1)，cuda:0+1\n  - c2_qw_n500: screen sessions，PID 131864 (gpu2) + 132002 (gpu3)，cuda:2+3\n- **活跃 Cron**：c2_n500_deepseek + c2_qw_n500（reconcile 确认两者 still running）\n- **活跃 Worker**：\n  - `worker_code_paper_c3_llama_update_20260514T185051`（更新论文 C8/LLaMA 内容）\n  - `worker_research_reference_audit_20260514T185731`（引用审计）\n\n### 3. 📊 当前状态\n**刚做完**：c3_llama 分析（D060: C8 partially_confirmed），c5b_pilot 关闭（D056/D057: gate_failed → future work），c2_n500 两组实验提交并运行中。\n\n**Registry**：82 实验，36 success / 10 negative / 14 failed / 21 killed / 2 RUNNING。无 PREPARING/PENDING/QUEUED/ALLOCATED。\n\n**RUNNING 实验进度**（截至 ~02:01 UTC 2026-05-15）：\n- c2_n500_deepseek：imp_s015 94%, rand_s015 99%。第一对 condition 即将完成，每对后续 ~4.5h。**全 8 condition ETA ~2026-05-15 16:10 UTC**\n- c2_qw_n500：imp_s015 71%, rand_s015 75%。Qwen 比 DeepSeek 慢 ~25%。**全 8 condition ETA ~2026-05-15 21:08 UTC**\n\n**等待中**：\n- 2 个 Worker 回调（paper C8 update + reference audit）\n- 2 个 Cron 回调（c2_n500_deepseek + c2_qw_n500 完成时触发）\n- Director 无未决决策\n\n### 4. 📋 待办（条件触发式）\n- Worker `paper_c3_llama_update` 完成 → 审阅产出，确认 C8 限定语已正确写入论文\n- Worker `reference_audit` 完成 → 审阅产出，处理发现的引用问题\n- c2_n500_deepseek cron 回调 → spawn Worker 跑分析 pipeline（median II + bootstrap CI + d_z within-importance only），更新 registry metrics\n- c2_qw_n500 cron 回调 → 同上分析 pipeline\n- **两组 n=500 分析全部完成后**：\n  - 若 Qwen s015 n=500 CI 仍跨零 → 叙事改为 \"compound effect emerges above threshold sparsity (~s020)\"（预注册）\n  - 若 Qwen s015 CI 不跨零 → 保持现有 claim\n  - spawn Worker 统一更新论文：n=500 tables/figures + C5b §8 future work + C8 限定语 + Qwen caveat（如适用）\n  - 提交 Group C full review\n\n### 5. 🎯 战略上下文\n**截稿 2026-05-25（距今 11 天）**，EMNLP 2026 ARR。论文 §1-§8 + Abstract 全部完成（基于 bf16 n=50 数据），PDF 可编译。当前冲刺目标是用 n=500 数据替换论文中的 n=50 数据，提升统计功效。\n\n**核心结论链**：C1(strategy-dependent) + C2(phase-modulated) + C3(crossover) + C5(cross-model ρ=1.0) + C6(sub-exponential) + S3→C(onset threshold) + S7→C(dose-response) 全部 confirmed。C4(mechanism) partially_confirmed（discrimination collapse 跨模型一致，entropy 仅 DeepSeek）。C8(LLaMA cross-arch) partially_confirmed（qualitative only）。C5b(mitigation) future_work。\n\n**最容易判断错的事**：\n- Qwen s015 是项目最大风险点：n=50 时 d=0.28 CI含0，n=500 结果决定叙事走向。不要提前假设结果\n- c2_n500 是 profiling 实验（无 W&B/sentinel），输出只在 condition 完成时写 JSON。Cron 可能误判为 failed（c5b_pilot 已踩过 3 次）——看到 \"process dead\" 先 SSH 验证再下结论\n- 不要混淆 median_diff（逐 problem 配对差的中位数）和 median difference（两组中位数之差）——论文定义是前者\n- Random masking 14.2% problem 产生灾难性 outlier（ppl 爆炸到百万级），这是 importance-based 必要性的证据，不是 bug\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778786423.md"
+}

@@ -1,0 +1,86 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{spark2024}
+\citation{adakv2024}
+\citation{spark2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(1) Phase gradient universality.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) Architecture-dependent strategy modulation.}{1}{section*.2}\protected@file@percent }
+\citation{h2o2023}
+\citation{streamingllm2024}
+\citation{adakv2024}
+\citation{thinkv2025}
+\citation{rkv2025}
+\citation{spark2024}
+\citation{hies2025}
+\citation{physicskv2026}
+\citation{lethe2026}
+\@writefile{toc}{\contentsline {paragraph}{(3) Discrimination collapse mechanism.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single-axis KV cache compression.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compound compression.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Importance score dynamics.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase transitions in compression.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adaptive eviction.}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Per-Problem Paired Interaction Index}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Phase Segmentation}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Statistical Framework}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Models and Benchmarks}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Phase Gradient Universality}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:phase-gradient}{{4.1}{3}{Phase Gradient Universality}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces MATH-500 importance phase gradient ($n = 500$). All conditions Bonferroni $p < 0.005$. Spearman $\rho = 1.0$ for both models.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:math500}{{1}{4}{MATH-500 importance phase gradient ($n = 500$). All conditions Bonferroni $p < 0.005$. Spearman $\rho = 1.0$ for both models}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces LLaMA cross-architecture validation ($n = 244$ valid problems). Importance phase gradient $d_z \approx 1.0$ at all sparsity levels, all Bonferroni-significant.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:llama}{{2}{4}{LLaMA cross-architecture validation ($n = 244$ valid problems). Importance phase gradient $d_z \approx 1.0$ at all sparsity levels, all Bonferroni-significant}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{MATH-500 results ($n = 500$, Qwen2 models).}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture replication (LLaMA, $n = 250$).}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-benchmark replication (GSM8K).}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Summary.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Architecture-Dependent Strategy Modulation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:strategy}{{4.2}{4}{Architecture-Dependent Strategy Modulation}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Qwen2 architecture: strong strategy specificity.}{4}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Strategy specificity (importance/random gradient ratio) by architecture. Sig.\ column: number of sparsity levels where imp--rand difference is Bonferroni-significant.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:strategy}{{3}{5}{Strategy specificity (importance/random gradient ratio) by architecture. Sig.\ column: number of sparsity levels where imp--rand difference is Bonferroni-significant}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LLaMA importance vs.\ random phase gradient comparison ($n = 244$). Strategy modulation is negligible at lower sparsity levels.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:impvsrand}{{4}{5}{LLaMA importance vs.\ random phase gradient comparison ($n = 244$). Strategy modulation is negligible at lower sparsity levels}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLaMA architecture: attenuated strategy specificity.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Sparsity Threshold and Dose-Response}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:threshold}{{4.3}{5}{Sparsity Threshold and Dose-Response}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Discrimination Collapse Mechanism}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:mechanism}{{4.4}{5}{Discrimination Collapse Mechanism}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-benchmark comparison. Phase gradient strength correlates with reasoning chain length. GPQA shows no significant phase gradient (0/10 conditions, non-monotonic dose-response with direction reversals).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:crossbench}{{5}{6}{Cross-benchmark comparison. Phase gradient strength correlates with reasoning chain length. GPQA shows no significant phase gradient (0/10 conditions, non-monotonic dose-response with direction reversals)}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Empirical evidence.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Benchmark Scope Boundary}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:scope}{{4.5}{6}{Cross-Benchmark Scope Boundary}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for system design.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architecture dependence of strategy modulation.}{6}{section*.18}\protected@file@percent }
+\citation{hies2025}
+\bibcite{spark2024}{1}
+\bibcite{adakv2024}{2}
+\@writefile{toc}{\contentsline {paragraph}{Relationship to prior findings.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pilot mitigation study.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Task scope.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Strategy-specificity boundary.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mechanism completeness.}{7}{section*.25}\protected@file@percent }
+\bibcite{h2o2023}{3}
+\bibcite{streamingllm2024}{4}
+\bibcite{thinkv2025}{5}
+\bibcite{rkv2025}{6}
+\bibcite{hies2025}{7}
+\bibcite{physicskv2026}{8}
+\bibcite{lethe2026}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {A}GPQA Detailed Results}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:gpqa}{{A}{8}{GPQA Detailed Results}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces GPQA Diamond phase gradient results. No condition reaches significance. Non-monotonic dose-response with direction reversals (DS s020, QW s025) indicates absence of phase gradient structure in non-mathematical reasoning.}}{8}{table.6}\protected@file@percent }
+\newlabel{tab:gpqa}{{6}{8}{GPQA Diamond phase gradient results. No condition reaches significance. Non-monotonic dose-response with direction reversals (DS s020, QW s025) indicates absence of phase gradient structure in non-mathematical reasoning}{table.6}{}}
+\gdef \@abspage@last{8}

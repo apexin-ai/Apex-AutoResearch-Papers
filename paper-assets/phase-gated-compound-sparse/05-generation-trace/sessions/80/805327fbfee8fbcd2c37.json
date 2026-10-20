@@ -1,0 +1,405 @@
+{
+  "schema_version": "1.0",
+  "id": "805327fbfee8fbcd2c37",
+  "project": "phase-gated-compound-sparse",
+  "kind": "conversation",
+  "title": "writing related work snapkv nacl",
+  "task_key": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_related-work-snapkv-nacl_20260514T055834.jsonl",
+    "occurrence": 1,
+    "bytes": 18475,
+    "sha256": "57e98ead2229c2901fd0f0545dcb87cb9a18a4277f514150e678727d9cfdc4cf"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T06:00:12.072567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T06:00:12.074028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{Compound and Joint Compression}\n5\t\n6\tCombining multiple compression axes produces non-additive errors.\n7\t\\cite{spark-aaai2026} report super-additive degradation when combining channel pruning with token eviction, with up to 65\\% quality loss exceeding individual component effects---the first explicit measurement of this phenomenon in KV cache sparsity.\n8\t\\cite{slim-icml2025} formalize compound error for quantization and sparsity, deriving an invertible saliency function for low-rank compensation and confirming that aggregated error is strictly non-additive.\n9\t\\cite{unicomp-2026} evaluate compound compression across 40+ benchmarks, revealing that reasoning and multilingual capabilities degrade disproportionately relative to factual recall.\n10\tThe order of compression stages is itself consequential: \\cite{compression-ordering-2025} show that early quantization causes irreversible information loss, making P$\\to$KD$\\to$Q strictly preferable.\n11\tAt a more fundamental level, \\cite{phase-transition-compression-2026} characterize independent phase transition points per compression dimension, implying that the joint safe region is the intersection---not the union---of per-dimension safe zones.\n12\tOn the structural side, GRASPrune~\\cite{graspune-acl2026} learns global budget-constrained gates to jointly prune FFN channels and attention heads, but treats the pruning decision as static across generation.\n13\tThese works share a common assumption: compound interaction is either uniform across the generation process or varies only by task.\n14\tNone examines how the interaction shifts across reasoning phases within a single generation.\n15\t\n16\t\\subsection{KV Cache Eviction}\n17\t\n18\tMost eviction methods rely on importance scoring, yet accumulating evidence questions its reliability.\n19\tAda-KV~\\cite{adakv-neurips2025} introduce per-head adaptive budget allocation, outperforming uniform distribution but assuming stable impo\n…[truncated 3018 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T06:00:12.074374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T06:00:12.074632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T06:00:12.074866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "SnapKV KV cache compression eviction paper 2024"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T06:00:12.075082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "NACL KV cache eviction paper 2024 LLM"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T06:00:12.075354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"SnapKV KV cache compression eviction paper 2024\"\n\nLinks: [{\"title\":\"SnapKV: LLM Knows What You Are Looking for before Generation Yuhong Li1∗\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/28ab418242603e0f7323e54185d19bde-Paper-Conference.pdf\"},{\"title\":\"SnapKV: LLM Knows What You are Looking for Before Generation Yuhong Li1∗\",\"url\":\"https://arxiv.org/pdf/2404.14469\"},{\"title\":\"SnapKV : LLM Knows What You are Looking for Before Generation\",\"url\":\"https://arxiv.org/html/2404.14469v1\"},{\"title\":\"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget ...\",\"url\":\"https://arxiv.org/pdf/2407.11550\"},{\"title\":\"SnapKV: LLM Knows What You are Looking for Before Generation | OpenReview\",\"url\":\"https://openreview.net/forum?id=poE54GOq2l\"},{\"title\":\"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost\",\"url\":\"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/\"},{\"title\":\"Preprint THE PITFALLS OF KV CACHE COMPRESSION\",\"url\":\"https://arxiv.org/pdf/2510.00231\"},{\"title\":\"KV Cache Compression, But What Must We Give in Return ...\",\"url\":\"https://aclanthology.org/2024.findings-emnlp.266.pdf\"},{\"title\":\"Published as preprint paper G-KV: DECODING-TIME KV CACHE EVICTION WITH\",\"url\":\"https://arxiv.org/pdf/2512.00504\"},{\"title\":\"Paper page - SnapKV: LLM Knows What You are Looking for Before Generation\",\"url\":\"https://huggingface.co/papers/2404.14469\"}]\n\nBased on the search results, I found comprehensive information about the SnapKV paper on KV cache compression and eviction from 2024.\n\n## SnapKV: LLM Knows What You are Looking for Before Generation\n\nSnapKV is an innovative and fine-tuning-free approach that efficiently minimizes KV cache size while still delivering comparable performance in real-world applications.\n\n### Key\n…[truncated 1341 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T06:00:12.078893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"NACL KV cache eviction paper 2024 LLM\"\n\nLinks: [{\"title\":\"NACL: A General and Effective KV Cache Eviction Framework for LLM at Inference Time - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.acl-long.428/\"},{\"title\":\"NACL: A General and Effective KV Cache Eviction ...\",\"url\":\"https://aclanthology.org/2024.acl-long.428.pdf\"},{\"title\":\"[2408.03675] NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\",\"url\":\"https://arxiv.org/abs/2408.03675\"},{\"title\":\"NaCl: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\",\"url\":\"https://arxiv.org/html/2408.03675v1\"},{\"title\":\"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/nacl-general-effective-kv-cache-eviction-framework\"},{\"title\":\"NACL: A General and Effective KV Cache Eviction ...\",\"url\":\"https://www.emergentmind.com/papers/2408.03675\"},{\"title\":\"Paper page - NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\",\"url\":\"https://huggingface.co/papers/2408.03675\"},{\"title\":\"NACL: A Robust KV Cache Eviction Framework for Efficient Long-Text Processing in LLMs - MarkTechPost\",\"url\":\"https://www.marktechpost.com/2024/08/12/nacl-a-robust-kv-cache-eviction-framework-for-efficient-long-text-processing-in-llms/\"},{\"title\":\"NACL: A General and Effective KV Cache Eviction Framework for LLM at Inference Time | Request PDF\",\"url\":\"https://www.researchgate.net/publication/384207931_NACL_A_General_and_Effective_KV_Cache_Eviction_Framework_for_LLM_at_Inference_Time\"},{\"title\":\"(PDF) NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\",\"url\":\"https://www.researchgate.net/publication/382943980_NACL_A_General_and_Effective_KV_Cache_Eviction_Framework_for_LLMs_at_Inference_Time\"}]\n\nBased on the search results, here's what I found about the NACL KV cache eviction paper:\n\n## NACL: \n…[truncated 1295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "WebSearch",
+            "elapsed_ms": 3
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T06:00:12.079226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "SnapKV paper authors full list Yuhong Li NeurIPS 2024"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T06:00:12.079537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"SnapKV paper authors full list Yuhong Li NeurIPS 2024\"\n\nLinks: [{\"title\":\"SnapKV: LLM Knows What You Are Looking for before Generation Yuhong Li1∗\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/28ab418242603e0f7323e54185d19bde-Paper-Conference.pdf\"},{\"title\":\"SnapKV: LLM Knows What You are Looking for Before Generation\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/28ab418242603e0f7323e54185d19bde-Abstract-Conference.html\"},{\"title\":\"NeurIPS Poster SnapKV: LLM Knows What You are Looking for Before Generation\",\"url\":\"https://neurips.cc/virtual/2024/poster/93531\"},{\"title\":\"SnapKV: LLM Knows What You are Looking for Before Generation [Quick Review]\",\"url\":\"https://liner.com/review/snapkv-llm-knows-what-you-are-looking-for-before-generation\"},{\"title\":\"[PDF] SnapKV: LLM Knows What You are Looking for Before Generation | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/SnapKV:-LLM-Knows-What-You-are-Looking-for-Before-Li-Huang/1784c987e681d60c634765fe64c8d9c26f73d5ff\"},{\"title\":\"NeurIPS 2024 Accepted Paper List - Paper Copilot\",\"url\":\"https://papercopilot.com/paper-list/neurips-paper-list/neurips-2024-paper-list/\"},{\"title\":\"NeurIPS 2024 Accepted Paper List: Datasets & Benchmarks Track - Paper Copilot\",\"url\":\"https://papercopilot.com/paper-list/neurips-paper-list/neurips-2024-paper-list-datasets-benchmarks-track/\"},{\"title\":\"Paper Digest: NeurIPS 2024 Papers & Highlights – Resources | Paper Digest\",\"url\":\"https://resources.paperdigest.org/2024/10/neurips-2024-highlights/\"},{\"title\":\"Yuhong Li\",\"url\":\"https://scholar.google.com/citations?user=Qh-6mV8AAAAJ&hl=en\"},{\"title\":\"NeurIPS 2025 Accepted Paper List - Paper Copilot\",\"url\":\"https://papercopilot.com/paper-list/neurips-paper-list/neurips-2025-paper-list/\"}]\n\nBased on the search results, I found the full author list for the SnapKV paper at NeurIPS 2024. The authors are: Yuhong Li, Yingbing Huang, Bowen Yang, Bharat Venkitesh, Acyr F. L\n…[truncated 168 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T06:00:12.079910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex",
+              "old_string": "Ada-KV~\\cite{adakv-neurips2025} introduce per-head adaptive budget allocation, outperforming uniform distribution but assuming stable importance across generation.\n\\cite{defensivekv-iclr2026} show",
+              "new_string": "Ada-KV~\\cite{adakv-neurips2025} introduce per-head adaptive budget allocation, outperforming uniform distribution but assuming stable importance across generation.\nSnapKV~\\cite{snapkv-neurips2024} identifies important KV positions per head from an observation window at the end of the prompt, compressing the cache before generation begins---effective for long contexts but committing to a fixed importance snapshot that cannot adapt across reasoning phases.\n\\cite{defensivekv-iclr2026} show"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T06:00:12.080192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T06:00:12.082468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex",
+              "old_string": "\\cite{defensivekv-iclr2026} show that standard mean-based importance aggregation is fragile, with worst-case quality loss 2.3--4.3$\\times$ higher than expected; their defensive aggregation mitigates but does not eliminate the instability.\n\\cite{obcache-2025}",
+              "new_string": "\\cite{defensivekv-iclr2026} show that standard mean-based importance aggregation is fragile, with worst-case quality loss 2.3--4.3$\\times$ higher than expected; their defensive aggregation mitigates but does not eliminate the instability.\n\\cite{nacl-acl2024} combine proxy-token eviction with random eviction to counteract attention bias, improving robustness over pure importance-based methods; yet the eviction policy remains uniform throughout generation.\n\\cite{obcache-2025}"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T06:00:12.082859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T06:00:12.083090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex",
+              "old_string": "No prior work examines the interaction between eviction \\emph{strategy} and reasoning phase in compound sparsity settings---the gap our study addresses.",
+              "new_string": "To our knowledge, no prior work examines the interaction between eviction \\emph{strategy} and reasoning phase in compound sparsity settings---the gap our study addresses."
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T06:00:12.083316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T06:00:12.083660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T06:00:12.083934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{Compound and Joint Compression}\n5\t\n6\tCombining multiple compression axes produces non-additive errors.\n7\t\\cite{spark-aaai2026} report super-additive degradation when combining channel pruning with token eviction, with up to 65\\% quality loss exceeding individual component effects---the first explicit measurement of this phenomenon in KV cache sparsity.\n8\t\\cite{slim-icml2025} formalize compound error for quantization and sparsity, deriving an invertible saliency function for low-rank compensation and confirming that aggregated error is strictly non-additive.\n9\t\\cite{unicomp-2026} evaluate compound compression across 40+ benchmarks, revealing that reasoning and multilingual capabilities degrade disproportionately relative to factual recall.\n10\tThe order of compression stages is itself consequential: \\cite{compression-ordering-2025} show that early quantization causes irreversible information loss, making P$\\to$KD$\\to$Q strictly preferable.\n11\tAt a more fundamental level, \\cite{phase-transition-compression-2026} characterize independent phase transition points per compression dimension, implying that the joint safe region is the intersection---not the union---of per-dimension safe zones.\n12\tOn the structural side, GRASPrune~\\cite{graspune-acl2026} learns global budget-constrained gates to jointly prune FFN channels and attention heads, but treats the pruning decision as static across generation.\n13\tThese works share a common assumption: compound interaction is either uniform across the generation process or varies only by task.\n14\tNone examines how the interaction shifts across reasoning phases within a single generation.\n15\t\n16\t\\subsection{KV Cache Eviction}\n17\t\n18\tMost eviction methods rely on importance scoring, yet accumulating evidence questions its reliability.\n19\tAda-KV~\\cite{adakv-neurips2025} introduce per-head adaptive budget allocation, outperforming uniform distribution but assuming stable impo\n…[truncated 3557 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T06:00:12.084242+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已更新完毕。以下是修改总结和 BibTeX 条目：\n\n**修改内容：**\n- L20: 插入 SnapKV（NeurIPS 2024）——基于 observation window 的 per-head KV 选择，一次性快照无法跨 phase 调整\n- L22: 插入 NACL（ACL 2024）——proxy-token + random eviction 对抗 attention bias，但 policy 全程不变\n- L39: gap statement 从 \"No prior work\" 软化为 \"To our knowledge, no prior work\"\n\n**BibTeX 条目：**\n\n```bibtex\n@inproceedings{snapkv-neurips2024,\n  title     = {{SnapKV}: {LLM} Knows What You Are Looking for Before Generation},\n  author    = {Li, Yuhong and Huang, Yingbing and Yang, Bowen and Venkitesh, Bharat and Locatelli, Acyr and Ye, Hanchen and Cai, Tianle and Lewis, Patrick and Chen, Deming},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2024}\n}\n\n@inproceedings{nacl-acl2024,\n  title     = {{NACL}: A General and Effective {KV} Cache Eviction Framework for {LLMs} at Inference Time},\n  author    = {Chen, Yilong and Wang, Guoxia and Shang, Junyuan and Cui, Shiyao and Zhang, Zhenyu and Liu, Tingwen and Wang, Shuohuan and Sun, Yu and Yu, Dianhai and Wu, Hua},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year      = {2024}\n}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-snapkv-nacl_20260514T055834"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/writing-related-work-snapkv-nacl.md"
+}

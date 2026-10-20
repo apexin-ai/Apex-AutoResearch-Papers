@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4b9a8acfbe2aafccbd2",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops 14b gpqa status check",
+  "task_key": "worker_ops_14b_gpqa_status_check_20260517T003045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b_gpqa_status_check_20260517T003045_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "c07f8baa1aeeb8e2225ee72acd4760a18b6b5b9a27a142d8023f2e8f8da08e24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 14B 模型 ===\n状态: 完成\n路径: /root/autodl-tmp/pacs/checkpoints/Qwen2.5-14B-Instruct -> /root/autodl-tmp/models/Qwen/Qwen2___5-14B-Instruct\n大小: 28G\n文件: config.json + 8x model*.safetensors + tokenizer.json + tokenizer_config.json ✓\n\n=== GPQA Pipeline ===\n数据: 就绪 (198 题)\n已完成条件:\n  - profiling_output_gpqa_ds_importance_s015/ — profiling_results.json ✓ + generations.json ✓\n\n进行中条件:\n  - profiling_output_gpqa_ds_importance_s020/ — 116/198 (58%), GPU0, 运行 ~7h\n  - profiling_output_gpqa_ds_importance_s025/ — 26/198 (13%), GPU1, 运行 ~1.3h\n\n适配状态: 无需额外适配\n  - 使用 --raw_prompt + --max_new_tokens 8192 + --max_problems 198\n  - 有 gpqa_batch_launcher.sh 和 gpqa_remaining_commands.txt 用于批量管理\n  - test_dsr1_gpqa.py 用于验证\n\n另外注意: GPU2/GPU3 正在跑 MATH500 的 recency masking 实验 (s025/s030)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-14b-gpqa-status-check.md"
+}

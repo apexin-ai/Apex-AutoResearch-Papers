@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "8cfe6e4c4f93fe93abbb",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper section corrections",
+  "task_key": "worker_paper_section-corrections_20260516T034937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section-corrections_20260516T034937.log",
+    "occurrence": 1,
+    "bytes": 1668929,
+    "sha256": "d2d5e386945b81a496faa1be1eeff1887d7d1a249a8336df8990330f7b1447ea"
+  },
+  "statistics": {
+    "messages": 425,
+    "user_turns": 2,
+    "tool_calls": 156,
+    "roles": {
+      "log": 1,
+      "system": 54,
+      "record": 2,
+      "assistant": 53,
+      "tool_call": 156,
+      "tool_result": 156,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 229,
+      "chunks": [
+        {
+          "path": "8cfe6e4c4f93fe93abbb-part-0001.json",
+          "message_count": 107
+        },
+        {
+          "path": "8cfe6e4c4f93fe93abbb-part-0002.json",
+          "message_count": 115
+        },
+        {
+          "path": "8cfe6e4c4f93fe93abbb-part-0003.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "8cfe6e4c4f93fe93abbb-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 187,
+      "chunks": [
+        {
+          "path": "8cfe6e4c4f93fe93abbb-part-0003.json",
+          "message_count": 164
+        },
+        {
+          "path": "8cfe6e4c4f93fe93abbb-part-0004.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-section-corrections.md"
+}

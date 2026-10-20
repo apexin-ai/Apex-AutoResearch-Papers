@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "473c0ae30c9dafd7421c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778797687.md",
+  "task_key": "loop_8_1778797687",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778797687.md",
+    "occurrence": 1,
+    "bytes": 4796,
+    "sha256": "7bf751d5d5ea598bc1f694c7818a46d761d228fee735676c1ce8b5a11c6a67d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T22:27:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-22162 cuda:0/1/2/3**。其他 GPU 即使 Director 指令也必须 push back\n- 论文数字只能引用 **median + median bootstrap CI**，禁止引用 mean（n=500 暴露 random outlier 导致 mean 不可靠，D054）\n- d_z 只报 **within-importance**（不同 sparsity 之间），禁止报 imp vs rand 的 d_z（D059）\n- `submit_training_job` 不支持 shell builtin（source/conda activate）。命令自带绝对路径或 `bash -c` 包装\n- **W3 CRITICAL**：conclusion.tex L11 和 appendix_disc_analysis.tex L33-35 仍写 \"cross-architecture validation is needed/future work\"，但 c3_llama 已完成。**有 LLaMA 数据却写 untested = integrity 问题**，n=500 更新时必须最优先修复\n- Cron 监控 c2_qw_n500_r3 靠 **shell PID 131858 + sentinel `/tmp/agent-ml-exit/c2_qw_n500_r3.exit`** 双机制（D062），不要改回单 PID 模式（已踩 5 次 false positive）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，工作目录 `/root/autodl-tmp/pacs/`\n- Python：`/root/miniconda3/bin/python`（conda base env，非 venv）\n- 数据集：`/root/autodl-tmp/pacs/data/math500.json`（DeepSeek）、`/root/autodl-tmp/pacs/data/MATH-500/`（Qwen）\n- 模型：DeepSeek-R1-Distill-Qwen-7B / Qwen2.5-7B-Instruct / DeepSeek-R1-Distill-Llama-8B（路径在服务器 autodl-tmp 下）\n- 论文 tex：本地项目 `paper/` 目录是最新版，远程 westd-22162 的 tex 是旧版（W1: 编译前必须先同步）\n- 活跃进程：\n  - c2_n500_deepseek: tmux `c2_n500_gpu0` + `c2_n500_gpu1`（cuda:0+1）\n  - c2_qw_n500_r3: screen `c2_qw_gpu2` + `c2_qw_gpu3`（cuda:2+3），shell PID 131858\n- Cron：3 个活跃（c2_n500_deepseek / c2_qw_n500 / c2_qw_n500_r3），reconcile 确认均 still running\n\n### 3. 📊 当前状态\n**刚完成**：session-start 初始化，reconcile crons 确认 3 个实验均在跑。\n\n**RUNNING 实验**：\n| exp_id | GPU | 进度 | ETA (UTC+8) |\n|--------|-----|------|-------------|\n| c2_n500_deepseek | cuda:0+1 | s015 ✅, s020 ~51%/60% | ~May 15 16:00 |\n| c2_qw_n500_r3 | cuda:2+3 | s015 ✅, s020 ~49%/45% | ~May 15 15:00 |\n\n两个实验各跑 8 conditions（imp/rand × 4 sparsity levels），s015 已完成并确认 Qwen 显著（D058: median_D=-0.0991, Bonferroni p<0.0001），s020 进行中，s025+s030 pending auto-advance。\n\n**等待中**：无 Worker、无 pending Director 决策。Worker 池 = 0（两个 GPU 实验在跑，无 CPU 任务可铺——但这是失职边界，接手后应考虑是否有 CPU 任务可并行：论文修复 W2-W5、文献 scan 等）。\n\n### 4. 📋 待办（条件触发式）\n- **c2_n500_deepseek cron 回调 DONE** → spawn Worker 跑分析 pipeline：median II + bootstrap CI (B=10000) + d_z within-importance only + per-phase effective n 报告\n- **c2_qw_n500_r3 cron 回调 DONE** → 同上分析 pipeline，特别关注 Qwen mid-phase null rate 是否从 58% 改善\n- **两个分析都完成** → spawn Worker 统一更新论文：n=500 tables/figures、修复 W3(CRITICAL LLaMA framing 矛盾)、W2(§5.5 selective reporting)、W4(Bootstrap B 不一致)、W5(Qwen null rate 披露)、C5b §8 future work、C8 限定语\n- **论文更新完成** → 同步 tex 到 westd-22162 → 编译 PDF → 提交 Group C full review\n- **若 Qwen n=500 某 sparsity CI 仍跨零** → 论文叙事加 caveat \"compound effect emerges above threshold sparsity (~s020)\"（预注册）\n- **若 cron 再次 false positive**（c2_qw_n500_r3）→ 检查 shell PID 131858 存活 + sentinel 文件，不要盲目重启\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25**，距今 11 天。论文全文 §1-§8 已完成（bf16 n=50 数据），PDF 可编译。n=500 是最后一批实验。\n- **核心发现**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DeepSeek 0.32→9.94），random masking 全 FAIL（7/8）。跨模型 ρ=1.0。LLaMA 跨架构 qualitative consistent 但交互弱（D060 partially_confirmed）。\n- **决策链关键节点**：D054(median-only) → D058(Qwen n=500 s015 显著) → D059(d_z within-importance only) → D060(C8 partially_confirmed) → D062(cron 双机制)\n- **最易判断错的事**：\n  1. 不要把 Qwen magnitude 和 DeepSeek 直接比（Qwen ~1/4 of DeepSeek，onset s≥0.20）\n  2. c2_qw_n500 (无 _r3) 是之前 5 次 cron false positive 后 failed 的旧实验，c2_qw_n500_r3 才是当前在跑的 continuation\n  3. LLaMA random 也显示 phase gradient（与 DeepSeek/Qwen random 7/8 FAIL 模式不同），论文中 C8 必须用 \"partially_confirmed\" + 限定语\n  4. W3 是 integrity 问题不是 nice-to-have——有数据说没测 = 审稿人直接 reject\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778797687.md"
+}

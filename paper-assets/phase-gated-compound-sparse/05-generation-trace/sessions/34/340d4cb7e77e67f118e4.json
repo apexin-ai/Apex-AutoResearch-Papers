@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "340d4cb7e77e67f118e4",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose c2 qw n500",
+  "task_key": "worker_diagnose_c2_qw_n500_20260514T143651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_c2_qw_n500_20260514T143651_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "fd899c59fd300bc988fe92b3dc6cb017b7f0f333a7360dccd72f5dfba3c61ca9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cron 已经不存在了（可能之前已被清除）。\n\n---\n\n## 诊断结论：still_running\n\n**结论**：进程仍在运行，这是 cron 第 3 次 false positive。\n\n**关键发现**：\n- **PID 131864** (SCREEN `c2_qw_gpu2`, importance): 正在跑 s015 condition，进度 93/500，100% CPU\n- **PID 132002** (SCREEN `c2_qw_gpu3`, random): 正在跑 s015 condition，进度 98/500，100% CPU\n- 实验用的是 **SCREEN sessions**（不是 tmux），运行 `python`（不是 `python3`）\n- 当前只在第 1 个 condition (s015)，总共 8 conditions（imp/rand × s015/s020/s025/s030），预计还需数小时\n- 无结果文件产出——正常，profiling 输出在全部完成后才写盘\n\n**误判原因**：profiling 实验不产生 W&B 数据也不写 sentinel 文件，cron 检测不到活跃信号就判定为进程退出。\n\n**已执行**：\n- Registry 状态已从 DONE/failed 修正回 RUNNING\n- cron 已不存在，不会再误触发"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-c2-qw-n500.md"
+}

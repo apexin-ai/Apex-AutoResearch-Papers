@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b99248fc0e8fd2fe5e44",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_7_1778784899.md",
+  "task_key": "loop_7_1778784899",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778784899.md",
+    "occurrence": 1,
+    "bytes": 4861,
+    "sha256": "76b514933b6aedf2a057a2dc5884071462ccc253f6bb5fab718c06f349244190"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T18:39:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格限 westd-22162 cuda:0/1/2/3，config 里只有这 4 张，用别的会被 CRITICAL\n- c2_qw_n500 跑在 **SCREEN** sessions（c2_qw_gpu2/c2_qw_gpu3），不是 tmux——查状态用 `screen -ls` 不是 `tmux ls`\n- II 主指标已切 **median**（D054），禁止用 mean——论文全文、分析脚本、汇报数字全部以 paired median difference 为准\n- Qwen s015 预注册：n=500 后 CI 仍跨零 → 叙事改为 \"compound effect emerges above threshold sparsity (~s020)\"，不是 negative\n- 论文数字基准全部 **bf16**，fp16 旧数据已弃用，不可引用\n- 跨模型对比禁止 claim \"similar magnitude\"——必须 frame 为 \"consistent qualitative pattern with architecture-dependent severity\"\n- DeepSeek skewness 高达 9.5，跨模型对比必须同时报 median + IQR，不能只用 mean\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162，account: root\n- **工作目录**: `/root/autodl-tmp/pacs`\n- **Python**: conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）——不是 venv\n- **模型路径**: DeepSeek-R1-Distill-Qwen-7B / Qwen2.5-7B-Instruct / DeepSeek-R1-Distill-Llama-8B 均在 `/root/autodl-tmp/` 下（具体子目录需 SSH 确认）\n- **数据**: `/root/autodl-tmp/pacs/data/math500.json`（n=500）\n- **c3_llama 产出**: `/root/autodl-tmp/pacs/analysis_output/c3_llama_{results,cohens_d,report}.*`\n- **活跃进程**:\n  - c2_n500_deepseek: PID 130124 (gpu0 imp) + 130263 (gpu1 rand)，tmux sessions `c2_n500_gpu0` / `c2_n500_gpu1`\n  - c2_qw_n500: PID 131864 (gpu2 imp) + 132002 (gpu3 rand)，**screen** sessions `c2_qw_gpu2` / `c2_qw_gpu3`\n- **Cron**: reconcile 确认两实验都 still running，但本 session 无 cron job 注册——**需要重新 register_cron 监控这两个实验**\n- **W&B**: 这两个实验不走 W&B（profiling 脚本，输出写本地 JSON）\n\n### 3. 📊 当前状态\n**刚做完**: Session #7/8 的工作——c3_llama 分析完成（success），c5b_pilot 确认 failed，c2 duplicate process 问题已解决。\n\n**RUNNING（2 个）**:\n| exp_id | GPU | 最后已知进度 (02:01 UTC) | 预估 ETA (full 8 conditions) |\n|--------|-----|--------------------------|------------------------------|\n| c2_n500_deepseek | cuda:0+1 | imp_s015 94%, rand_s015 99% | ~2026-05-15 16:10 UTC |\n| c2_qw_n500 | cuda:2+3 | imp_s015 71%, rand_s015 75% | ~2026-05-15 21:08 UTC |\n\n每个实验跑 8 conditions（imp/rand × s015/s020/s025/s030），每 condition ~4.5h，顺序执行。\n\n**等待中**:\n- 无 pending Worker\n- 无 Director 待决策事项\n- c5b_pilot failed，尚未向 Director 报告后续方案\n\n### 4. 📋 待办（条件触发式）\n- **c2_n500_deepseek cron 回调到达** → spawn Worker 运行分析脚本（计算 8 conditions 的 paired median diff + Cohen's d + bootstrap CI）→ 更新 registry（metrics + conclusion）→ 与 n=50 bf16 结果对比 → 更新论文 Table 2/3 + Figure 3 → 汇报 Director\n- **c2_qw_n500 cron 回调到达** → 同上分析流程 → 特别关注 s015 CI 是否跨零（预注册判定点）→ 若跨零则触发叙事微调（\"threshold ~s020\"）→ 更新论文 → 汇报 Director\n- **两个 C2 都完成** → 全量 cross-model 分析（3 模型: DeepSeek + Qwen + LLaMA，n=500 vs n=50 对比）→ 更新论文全部 tables/figures → 提交 Group C full review\n- **c5b_pilot 后续** → 需要向 Director 汇报 c5b 失败原因（process dead 5x，可能是代码 bug）并提出方案：(a) 修 bug 重跑 pilot，(b) 降为 future work（D052 已设 gate: >30% recovery 才 full rollout）\n- **GPU 释放后（任一实验完成）** → 立即用空闲 GPU 跑下一个任务（c5b 修复版 或 其他 matrix gap）\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25（11 天）**，论文全文已完成，当前是 **数据刷新冲刺**——C2 n=500 结果替换 n=50 数据，增强统计功效\n- **核心结论链**: importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（phase-modulated），random masking 无此梯度。跨模型方向一致（ρ=1.0），magnitude model-dependent\n- **C1/C2/C3/C6 confirmed，C4 降级 §6 supporting（D045/D046），C5/C5b pilot failed 待定，C7 running**\n- **最容易判断错的事**: c2_qw_n500 曾有 duplicate process 问题（已解决），分析时必须验证 profiling_results.json 数据完整性——检查时间戳单调性和问题数 =500\n- **容易踩的坑**:\n  - 不要把 c2_qw_n500 的 screen session 当 tmux 操作\n  - 不要用 mean 做主指标（D054 已切 median）\n  - DeepSeek 和 Qwen 的 II 绝对值差 ~4x，比趋势不比绝对值\n  - cron 在本 session 未注册，需要立即 register_cron 否则实验完成无回调\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778784899.md"
+}

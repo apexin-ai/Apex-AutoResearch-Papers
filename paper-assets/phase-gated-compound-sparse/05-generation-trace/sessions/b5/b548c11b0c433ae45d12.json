@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b548c11b0c433ae45d12",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code qw n100 ",
+  "task_key": "worker_code_qw_n100____20260515T213412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qw_n100____20260515T213412_result.json",
+    "occurrence": 1,
+    "bytes": 229,
+    "sha256": "55e49b3f92cdad4cbccecabaf382580bfa50efdea6d308bcc5333e4f2806c3fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验状态：\n- **acc_qw_dense_n100** — RUNNING on GPU 2\n- **acc_qw_s015_n100** — RUNNING on GPU 3\n- **acc_qw_s030_n100** — PREPARING（等 dense 完成后提交到 GPU 2）\n\n2 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qw-n100.md"
+}

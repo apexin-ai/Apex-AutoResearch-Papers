@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3ee18be099709ac6d36",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ssh gpu status and fp16 move",
+  "task_key": "worker_ssh_gpu-status-and-fp16-move_20260514T054813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-status-and-fp16-move_20260514T054813_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "488e6e1dfdfa6c7b3f26a9c0805c083cc82e19eac949c1db12759b770979504b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. v6_random_s030_r2 状态\n\n**异常终止**，不是预期的 EXIT_CODE=127 快速失败。日志显示它实际运行了 21/50 个问题（13:37–13:43），然后进程消失，**无 exit 文件**。推测 bash/sh 不兼容导致 exit trap 未正确注册，进程终止时没有记录退出码。已被 r3 替代，无需处理。\n\n### 2. GPU 当前状态\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 0 MiB / 98 GB | 0% | **空闲** |\n| 1 | 0 MiB / 98 GB | 0% | **空闲** |\n| 2 | 26 GB / 98 GB | 73% | v6_random_s030_r3 (26/50) |\n| 3 | 32 GB / 98 GB | 100% | v6_random_s025 (48/50, 即将完成) |\n\n### 3. 已完成的 v6_random 实验\n\n- **v6_random_s015**: EXIT_CODE=0 ✓\n- **v6_random_s020**: EXIT_CODE=0 ✓\n- **v6_random_s030 (r1)**: EXIT_CODE=143 (SIGTERM, 被 kill 替换)\n- **v6_random_s025**: 运行中 48/50, 几分钟内完成\n- **v6_random_s030_r3**: 运行中 26/50, 预计还需 ~15-20 分钟\n\n### 4. fp16 结果移动\n\n**暂不执行。** s025 和 s030_r3 仍在写入输出目录，需等这两个实验完成后再移动。\n\n### 5. bf16 Batch 1 Ready?\n\n**部分 ready。** GPU 0 和 GPU 1 立即可用，可先启动 2 个 bf16 实验。GPU 2/3 需等当前 fp16 实验完成（预计 ~20 分钟内全部空闲）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-and-fp16-move.md"
+}

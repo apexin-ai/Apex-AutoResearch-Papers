@@ -1,0 +1,503 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b543a24c6b45657f7b4e",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。最后做一个 EPS 敏感性测试。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "ef2e1aa0-f7bf-4b80-9f9b-284c617c7fa4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013BSXwvFqDKYobDbStFJK9v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2349,
+                "cache_read_input_tokens": 73453,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2349
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DGC9L9SdH8fk4LAjVjvWWk",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json, numpy as np\n\nprint(\"=== EPS Sensitivity Analysis ===\\n\")\nprint(f\"{'Metric':<45} {'s015':>8} {'s020':>8} {'s025':>8} {'s030':>8} {'Mono?':>6}\")\nprint(\"-\"*85)\n\nseg_data = {}\npp_data = {}\nfor s in ['s015', 's020', 's025', 's030']:\n    path = f'/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_{s}/profiling_results.json'\n    sparsity_key = {'s015': '0.15', 's020': '0.2', 's025': '0.25', 's030': '0.3'}[s]\n    with open(path) as f:\n        data = json.load(f)\n    ii = data['interaction_index']\n    seg_data[s] = {\n        'h_mean': ii['high_sparsity'][sparsity_key]['mean'],\n        'h_med': ii['high_sparsity'][sparsity_key]['median'],\n        'l_mean': ii['low_sparsity'][sparsity_key]['mean'],\n        'l_med': ii['low_sparsity'][sparsity_key]['median'],\n        'h_wm': ii['high_sparsity'][sparsity_key].get('winsorized_mean', 0),\n        'l_wm': ii['low_sparsity'][sparsity_key].get('winsorized_mean', 0),\n    }\n    pp = data['per_problem_ii'][sparsity_key]\n    pp_data[s] = pp\n\ndef is_mono(vals):\n    return all(vals[i] <= vals[i+1] for i in range(len(vals)-1))\n\ndef fmt(vals):\n    mono = \"YES\" if is_mono(vals) else \"NO\"\n    return \" \".join(f\"{v:8.2f}\" for v in vals) + f\" {mono:>6}\"\n\n# Metric 1: seg mean ratio\nvals = [seg_data[s]['l_mean']/seg_data[s]['h_mean'] if seg_data[s]['h_mean'] != 0 else float('inf') for s in ['s015','s020','s025','s030']]\nprint(f\"{'seg low_mean/high_mean':<45}{fmt(vals)}\")\n\n# Metric 2: seg median ratio\nvals = [seg_data[s]['l_med']/seg_data[s]['h_med'] if seg_data[s]['h_med'] != 0 else float('inf') for s in ['s015','s020','s025','s030']]\nprint(f\"{'seg low_median/high_median':<45}{fmt(vals)}\")\n\n# Metric 3: seg median diff\nvals = [seg_data[s]['l_med']-seg_data[s]['h_med'] for s in ['s015','s020','s025','s030']]\nprint(f\"{'seg median_diff (low-high)':<45}{fmt(vals)}\")\n\n# Metric 4: seg mean diff\nvals = [seg_data[s]['l_mean']-seg_data[s]['h_mean'] for s in ['s015','s020','s025','s030']]\nprint(f\"{'seg mean_diff (low-high)':<45}{fmt(vals)}\")\n\n# EPS sensitivity for per-problem ratio\nfor eps in [0.001, 0.005, 0.01, 0.05, 0.1]:\n    ratios_per_s = []\n    for s in ['s015','s020','s025','s030']:\n        sparsity_key = {'s015': '0.15', 's020': '0.2', 's025': '0.25', 's030': '0.3'}[s]\n        pp = pp_data[s]\n        rs = []\n        for item in pp:\n            h = item.get('ii_high')\n            l = item.get('ii_low')\n            if h is not None and l is not None:\n                rs.append(l / max(abs(h), eps))\n        ratios_per_s.append(np.median(rs))\n    print(f\"{'per-prob median(l/max(|h|,'+str(eps)+'))':<45}{fmt(ratios_per_s)}\")\n\n# Cohen's d\nvals_cd = []\nfor s in ['s015','s020','s025','s030']:\n    sp = {'s015': '0.15', 's020': '0.2', 's025': '0.25', 's030': '0.3'}[s]\n    pp = pp_data[s]\n    h = np.array([x['ii_high'] for x in pp if x.get('ii_high') is not None])\n    l = np.array([x['ii_low'] for x in pp if x.get('ii_low') is not None])\n    pooled_std = np.sqrt((np.var(h) + np.var(l)) / 2)\n    cd = (np.mean(l) - np.mean(h)) / pooled_std if pooled_std > 0 else 0\n    vals_cd.append(cd)\nprint(f\"{'Cohen d (per-problem)':<45}{fmt(vals_cd)}\")\n\n# Rank-biserial correlation\nfrom scipy import stats\nvals_rb = []\nfor s in ['s015','s020','s025','s030']:\n    sp = {'s015': '0.15', 's020': '0.2', 's025': '0.25', 's030': '0.3'}[s]\n    pp = pp_data[s]\n    h = [x['ii_high'] for x in pp if x.get('ii_high') is not None]\n    l = [x['ii_low'] for x in pp if x.get('ii_low') is not None]\n    u_stat, p = stats.mannwhitneyu(l, h, alternative='greater')\n    n1, n2 = len(l), len(h)\n    rb = 2*u_stat/(n1*n2) - 1\n    vals_rb.append(rb)\nprint(f\"{'Rank-biserial r (Mann-Whitney)':<45}{fmt(vals_rb)}\")\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "7802c1bc-f8ee-4616-997d-631bdb03e7ad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013BSXwvFqDKYobDbStFJK9v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2349,
+                "cache_read_input_tokens": 73453,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2349
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-14T07:42:40.994Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DGC9L9SdH8fk4LAjVjvWWk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== EPS Sensitivity Analysis ===\\\\n\\\\nMetric                                            s015     s020     s025     s030  Mono?\\\\n-------------------------------------------------------------------------------------\\\\nseg low_mean/high_mean                         -16.02    46.76    85.39   104.19    YES\\\\nseg low_median/high_median                      69.24   103.10   222.35   274.15    YES\\\\nseg median_diff (low-high)                       0.39     1.48     7.16    14.59    YES\\\\nseg mean_diff (low-high)                         2.56     5.90    25.55    57.24    YES\\\\nper-prob median(l/max(|h|,0.001))               14.05    54.07    79.79   175.77    YES\\\\nper-prob median(l/max(|h|,0.005))               14.05    53.86    79.79   175.77    YES\\\\nper-prob median(l/max(|h|,0.01))                13.87    50.34    78.78   175.77    YES\\\\nper-prob median(l/max(|h|,0.05))                 6.15    20.07    50.58   129.81    YES\\\\nper-prob median(l/max(|h|,0.1))                  3.24    10.77    38.74    79.78    YES\\\\nCohen d (per-problem)                            0.60     0.72     0.95     1.12    YES\\\\nRank-biserial r (Mann-Whitney)                   0.59     0.77     0.80     0.83    YES\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "0f5c6740-6823-4865-ae1e-c94f09f4bda9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== EPS Sensitivity Analysis ===\\\\n\\\\nMetric                                            s015     s020     s025     s030  Mono?\\\\n-------------------------------------------------------------------------------------\\\\nseg low_mean/high_mean                         -16.02    46.76    85.39   104.19    YES\\\\nseg low_median/high_median                      69.24   103.10   222.35   274.15    YES\\\\nseg median_diff (low-high)                       0.39     1.48     7.16    14.59    YES\\\\nseg mean_diff (low-high)                         2.56     5.90    25.55    57.24    YES\\\\nper-prob median(l/max(|h|,0.001))               14.05    54.07    79.79   175.77    YES\\\\nper-prob median(l/max(|h|,0.005))               14.05    53.86    79.79   175.77    YES\\\\nper-prob median(l/max(|h|,0.01))                13.87    50.34    78.78   175.77    YES\\\\nper-prob median(l/max(|h|,0.05))                 6.15    20.07    50.58   129.81    YES\\\\nper-prob median(l/max(|h|,0.1))                  3.24    10.77    38.74    79.78    YES\\\\nCohen d (per-problem)                            0.60     0.72     0.95     1.12    YES\\\\nRank-biserial r (Mann-Whitney)                   0.59     0.77     0.80     0.83    YES\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== EPS Sensitivity Analysis ===\\n\\nMetric                                            s015     s020     s025     s030  Mono?\\n-------------------------------------------------------------------------------------\\nseg low_mean/high_mean                         -16.02    46.76    85.39   104.19    YES\\nseg low_median/high_median                      69.24   103.10   222.35   274.15    YES\\nseg median_diff (low-high)                       0.39     1.48     7.16    14.59    YES\\nseg mean_diff (low-high)                         2.56     5.90    25.55    57.24    YES\\nper-prob median(l/max(|h|,0.001))               14.05    54.07    79.79   175.77    YES\\nper-prob median(l/max(|h|,0.005))               14.05    53.86    79.79   175.77    YES\\nper-prob median(l/max(|h|,0.01))                13.87    50.34    78.78   175.77    YES\\nper-prob median(l/max(|h|,0.05))                 6.15    20.07    50.58   129.81    YES\\nper-prob median(l/max(|h|,0.1))                  3.24    10.77    38.74    79.78    YES\\nCohen d (per-problem)                            0.60     0.72     0.95     1.12    YES\\nRank-biserial r (Mann-Whitney)                   0.59     0.77     0.80     0.83    YES\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+              }
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data needed. Let me compile the full report.\n\nKey finding: The mean-based ratio (what D028 used) is NOT monotonic for s015 (-16.02), but the table shows \"YES\" because the check function only checks `<=`, and -16 ≤ 46. But conceptually, a negative ratio has no meaningful interpretation as \"gradient.\" Let me note this.\n\nWait, actually the mono check says YES for `seg low_mean/high_mean` because -16.02 <= 46.76 <= 85.39 <= 104.19, which is technically monotonically increasing. \n\nBut the first value being negative makes it meaningless as a ratio. D028 had to substitute it with the median-based 69×. Now let me write the structured report with all the findings about where the \"47-104×\" range came from and how the formula mixing happened.\n\nFor s020, the gradient_paired_aggregate value of 5.90 is actually a difference, not a ratio—Worker 2 computed low_mean minus high_mean instead of dividing them. If it were calculated the same way as s015 using the median ratio, it would be 103.10, which explains why 5.90 looks anomalously low when treated as a ratio. And for s025, the 222.35 comes from Worker 1 correctly dividing the low_median by the high_median, though the high_median value of 0.032 is unusually small.\n\nNow I'm comparing different metric candidates across the samples to find the most stable and interpretable one. Looking at a comparison table that shows how each metric—segment median difference, Cohen's d, and others—performs across s015, s020, s025, and s030, along with their sensitivity to edge cases and reproducibility. Now I'm looking at the performance metrics across these tools. The segment-level median difference stands out as the best choice—it's monotonic, doesn't depend on EPS tuning, and tells a clear story about how the compound interaction grows from 0.39 to 14.59 PPL-equivalents as sparsity increases. Cohen's d provides a solid backup since reviewers are familiar with it and the 0.6-1.1 range shows consistent medium-to-large effects. I should steer clear of ratio-based metrics given how unstable the high-phase values become.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "4968eb1f-9c7e-44a8-9f3d-458b0f4c7e73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kt4GGVtW5zHHzVYZMtqfH3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3699,
+                "cache_read_input_tokens": 75802,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3699
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。现在整理结构化报告。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "31c17efc-7830-4e19-8a9c-1bb809dd98d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kt4GGVtW5zHHzVYZMtqfH3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3699,
+                "cache_read_input_tokens": 75802,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3699
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015gu4ZZNdLQP8i1pk7iwP89",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "80169c4e-a40a-491c-9bad-144ed267a71b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kt4GGVtW5zHHzVYZMtqfH3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3699,
+                "cache_read_input_tokens": 75802,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3699
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-14T07:43:14.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015gu4ZZNdLQP8i1pk7iwP89",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "c5e4940e-6e39-435b-9a93-4e14e321579c",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__save_project_file",
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 29
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WrcNscYA8Kz2GmYeQXdy5Z",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "gradient_ratio_provenance_report",
+                "type": "report",
+                "description": "P0 论文诚信调查：gradient ratio \"47-104×\" 溯源、registry 不一致根因、推荐替代指标",
+                "project": "phase-gated-compound-sparse",
+                "content_filename": "gradient_ratio_provenance.md",
+                "tags": [
+                  "provenance",
+                  "paper-integrity",
+                  "gradient",
+                  "P0"
+                ],
+                "content": "# Gradient Ratio 溯源调查报告\n\n> 调查日期：2026-05-14 | 严重性：P0 论文诚信\n\n---\n\n## 结论摘要\n\n1. **\"47-104×\" 来源已确认**：Reviewer agent 用 `seg low_mean / high_mean` 计算，s015 因 mean 为负替换为 median ratio。D028 原文采纳，未注明公式混用。\n2. **Registry gradient_paired_aggregate 存在跨实验公式不一致**：s015/s025 存的是 median ratio，s020/s030 存的是 mean **差值**（不是比值）。\n3. **所有 ratio 指标因 high-phase II 近零而本质不稳定**，不适合作为论文 headline number。\n4. **推荐**：median difference（D031 已采纳）+ Cohen's d 作为补充。\n\n---\n\n## 问题 1：\"47-104×\" 出自哪里？\n\n### 直接来源\n\nD028（2026-05-14 06:42 UTC），数字由 **Reviewer agent** 在 06:40 UTC 的审查报告中计算。\n\n### 计算公式\n\nReviewer 使用 `interaction_index.low_sparsity.mean / interaction_index.high_sparsity.mean`（segment-level aggregate mean ratio）：\n\n| s | high_mean | low_mean | low/high ratio | D028 报告值 |\n|---|-----------|----------|----------------|-------------|\n| 0.15 | **-0.150** | 2.406 | **-16.02** (负，无意义) | 69× (替换为 median ratio) |\n| 0.20 | 0.129 | 6.029 | 46.76 | 47× |\n| 0.25 | 0.303 | 25.853 | 85.39 | 85× |\n| 0.30 | 0.555 | 57.795 | 104.19 | 104× |\n\n**D028 的 \"47-104×\" = s020(47) 到 s030(104) 的 mean ratio 范围，s015 因 mean 为负而用 median ratio (69) 替代。Director 未注明公式混用。**\n\n### 为什么 fp16 的 \"11-42×\" 也不匹配\n\nfp16 registry 存储的是 `bootstrap_gradient_paired`（paired bootstrap 计算的 gradient），计算方式与 bf16 的 aggregate ratio 完全不同：\n- v6_importance_s015: bootstrap_gradient_paired = 11.53\n- v6_importance_s020: bootstrap_gradient_paired = 11.05\n- v6_importance_s025: bootstrap_gradient_paired = 35.72\n- v6_importance_s030: bootstrap_gradient_paired = 41.92\n\n这是第四种不同的计算方式。\n\n---\n\n## 问题 2：Registry s020 = 5.90 为何异常低？\n\n### 根因：Worker 2 计算的是差值，不是比值\n\nRegistry 中 `gradient_paired_aggregate` 由**两个不同 Worker** 使用**两个不同公式**写入：\n\n| Worker | 负责实验 | 公式 | 结果 |\n|--------|---------|------|------|\n| Worker 1 (06:21 UTC) | s015, s025 | `low_median / high_median` | 69.24, 222.35 |\n| Worker 2 (06:41 UTC) | s020, s030 | `low_mean - high_mean` | **5.90**, **57.24** |\n\n**s020 的 5.90 = 6.029 - 0.129 = 5.90（mean 差值），不是比值。** 同一字段名 `gradient_paired_aggregate` 在不同实验中存储了完全不同的量。\n\n如果 s020 用 Worker 1 的公式（median ratio），结果为 **103.10**。\n\n### 后续 batch2 Worker 检测到不一致\n\nbatch2 Worker (06:46 UTC) 重新计算了 s020=103.10, s030=274.24（使用 median ratio），但**未更新 registry**。\n\n---\n\n## 问题 3：Registry s025 = 222.35 为何异常高？\n\n### 根因：high_median 极小导致 ratio 膨胀\n\ns025 使用 Worker 1 的公式 `low_median / high_median = 7.196 / 0.032 = 222.35`。\n\nhigh_median = 0.032 非常小（接近零），导致比值膨胀。而 D028 的 85× 用的是 `low_mean / high_mean = 25.853 / 0.303 = 85.39`，因为 high_mean (0.303) >> high_median (0.032)。\n\n**两个看似针对同一实验的 \"gradient\" 指标差 2.6 倍，原因是 mean vs median 选择在 high-phase 分布高度偏斜时产生巨大差异。**\n\n---\n\n## High-Phase II 近零分析\n\nper-problem high-phase II 数据显示分母系统性接近零：\n\n| Sparsity | high n | near-zero (|x|<0.01) | negative | median | mean |\n|----------|--------|----------------------|----------|--------|------|\n| 0.15 | 49 | **14 (29%)** | **24 (49%)** | 0.00012 | -0.013 |\n| 0.20 | 49 | **8 (16%)** | **22 (45%)** | 0.0036 | 0.0025 |\n| 0.25 | 49 | **8 (16%)** | **21 (43%)** | 0.0099 | 0.134 |\n| 0.30 | 49 | **5 (10%)** | **15 (31%)** | 0.034 | 0.198 |\n\n高比例的近零和负值使得 **任何 ratio 指标** 都不稳定。\n\n---\n\n## 问题 4：推荐指标\n\n### 全指标对比表\n\n| 指标 | s015 | s020 | s025 | s030 | 单调? | EPS敏感? | 可解释? |\n|------|------|------|------|------|-------|---------|--------|\n| **D. seg median diff** | **0.39** | **1.48** | **7.16** | **14.59** | **✓** | **否** | **强** |\n| **G. Cohen's d** | **0.60** | **0.72** | **0.95** | **1.12** | **✓** | **否** | **强（标准）** |\n| H. Rank-biserial r | 0.59 | 0.77 | 0.80 | 0.83 | ✓ | 否 | 强（标准） |\n| C. seg mean diff | 2.56 | 5.90 | 25.55 | 57.24 | ✓ | 否 | 中（受 outlier 影响） |\n| E. per-prob median ratio (EPS=0.01) | 13.87 | 50.34 | 78.78 | 175.77 | ✓ | **是（变化 2×）** | 弱 |\n| A. seg median ratio | 69.24 | 103.10 | 222.35 | 274.15 | ✓ | N/A | 弱（膨胀） |\n| B. seg mean ratio | -16.02 | 46.76 | 85.39 | 104.19 | ✗ (s015负) | N/A | **不可用** |\n\n### EPS 敏感性（per-problem ratio）\n\n| EPS | s015 | s020 | s025 | s030 |\n|-----|------|------|------|------|\n| 0.001 | 14.05 | 54.07 | 79.79 | 175.77 |\n| 0.01 | 13.87 | 50.34 | 78.78 | 175.77 |\n| 0.05 | 6.15 | 20.07 | 50.58 | 129.81 |\n| 0.10 | 3.24 | 10.77 | 38.74 | 79.78 |\n\nEPS 从 0.01 变到 0.1，s015 ratio 从 14× 降到 3×（变化 4.3 倍），不可接受。\n\n### 推荐方案\n\n**主指标：Segment-level median difference (II_low - II_high)**\n- 值：0.39, 1.48, 7.16, 14.59\n- 优点：单调递增、不涉及除法、不受 outlier 影响、完全可复现\n- 论文表述：\"The compound interaction in the low-sparsity phase exceeds the high-sparsity phase by 0.39 to 14.59 (median II difference), scaling monotonically with sparsity level.\"\n- **D031 已采纳此方案**\n\n**补充指标：Cohen's d**\n- 值：0.60, 0.72, 0.95, 1.12（中等→大效应）\n- 优点：审稿人熟知的标准化效应量、单调、不受 EPS 影响\n- 论文表述：\"Effect sizes range from medium (d=0.60 at s=0.15) to large (d=1.12 at s=0.30).\"\n\n**弃用所有 ratio 指标**：high-phase II 系统性近零（29-49% 样本 < 0.01），ratio 本质不稳定。Registry 已有 3 种不同 \"gradient\" 计算结果差距 50×，证明 ratio 不可靠。\n\n---\n\n## Registry 数据完整性问题清单\n\n| 问题 | 受影响实验 | 建议 |\n|------|-----------|------|\n| gradient_paired_aggregate 存储差值而非比值 | bf16_importance_s020, s030 | 更新或删除该字段 |\n| 字段名暗示 ratio 但实际是 difference | s020 (5.90), s030 (57.24) | 重命名或统一公式 |\n| D028 混用 mean ratio + median ratio | 所有 4 个实验 | 更正 D028 或标注废弃 |\n| ROADMAP 中 \"47-104×\" 不可从 registry 复现 | N/A | 更新 ROADMAP 使用推荐指标 |\n\n---\n\n## 文件溯源链\n\n1. **Reviewer agent report** → feishu_group_oc_b6401b894d32f1aac1ce3e54ce0d0bd4_reviewer.jsonl, line 1596, 2026-05-14T06:40:09 UTC\n2. **D028** → decisions.yaml, 2026-05-14 06:42 UTC\n3. **Worker 1 (s015/s025 registry)** → worker_analysis_bf16_imp_s015_s025_20260514T062105.log\n4. **Worker 2 (s020/s030 registry)** → worker_analysis_bf16_importance_s020_s030_20260514T064103.log\n5. **batch2 Worker (detected inconsistency)** → worker_analysis_bf16_batch2_random_and_imp_20260514T064655.log\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "31cdb050-aec6-4d47-87ca-6b698aa6fc75",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NA9osWYw5YZ73bHVoy71FA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2214,
+                "cache_read_input_tokens": 79501,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2214
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-14T07:44:27.965Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WrcNscYA8Kz2GmYeQXdy5Z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_b20a87\\\", \\\"name\\\": \\\"gradient_ratio_provenance_report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"P0 论文诚信调查：gradient ratio \\\\\\\"47-104×\\\\\\\" 溯源、registry 不一致根因、推荐替代指标\\\", \\\"path\\\": \\\"projects/phase-gated-compound-sparse/artifacts/_project/report/gradient_ratio_provenance.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"phase-gated-compound-sparse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T07:44:27.927102+00:00\\\", \\\"tags\\\": [\\\"provenance\\\", \\\"paper-integrity\\\", \\\"gradient\\\", \\\"P0\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "165b1ec3-ca88-462e-82b4-9b2ac6b43264",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_b20a87\\\", \\\"name\\\": \\\"gradient_ratio_provenance_report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"P0 论文诚信调查：gradient ratio \\\\\\\"47-104×\\\\\\\" 溯源、registry 不一致根因、推荐替代指标\\\", \\\"path\\\": \\\"projects/phase-gated-compound-sparse/artifacts/_project/report/gradient_ratio_provenance.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"phase-gated-compound-sparse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T07:44:27.927102+00:00\\\", \\\"tags\\\": [\\\"provenance\\\", \\\"paper-integrity\\\", \\\"gradient\\\", \\\"P0\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_b20a87\", \"name\": \"gradient_ratio_provenance_report\", \"type\": \"report\", \"description\": \"P0 论文诚信调查：gradient ratio \\\"47-104×\\\" 溯源、registry 不一致根因、推荐替代指标\", \"path\": \"projects/phase-gated-compound-sparse/artifacts/_project/report/gradient_ratio_provenance.md\", \"url\": null, \"project\": \"phase-gated-compound-sparse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T07:44:27.927102+00:00\", \"tags\": [\"provenance\", \"paper-integrity\", \"gradient\", \"P0\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。核心发现：\n\n**问题 1：** \"47-104×\" 由 Reviewer agent 用 `low_mean/high_mean` 计算（s015 因负值替换为 median ratio 69×），Director 直接采纳进 D028，未注明公式混用。\n\n**问题 2：** s020=5.90 根因——Worker 2 存的是 `low_mean - high_mean`（**差值**），不是比值。同一字段名 `gradient_paired_aggregate` 在 s015/s025 存 median ratio，在 s020/s030 存 mean difference。\n\n**问题 3：** s025=222.35 根因——使用 `low_median/high_median`，high_median=0.032 极小导致 ratio 膨胀。D028 的 85× 用的是 mean ratio（high_mean=0.303 大 10 倍）。\n\n**问题 4 推荐：**\n- **主指标**：segment median difference → 0.39, 1.48, 7.16, 14.59（单调、无除法、完全可复现）\n- **补充**：Cohen's d → 0.60, 0.72, 0.95, 1.12（标准效应量，审稿人熟知）\n- **弃用所有 ratio 指标**：high-phase II 中 29-49% 样本 < 0.01，ratio 本质不稳定\n\n报告已注册为 artifact `gradient_ratio_provenance_report`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "uuid": "90f6664e-243a-448f-8366-3aa20ddba2bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014LF4XmradMwpn6qnxMKftN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3670,
+                "cache_read_input_tokens": 81715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3670
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。核心发现：\n\n**问题 1：** \"47-104×\" 由 Reviewer agent 用 `low_mean/high_mean` 计算（s015 因负值替换为 median ratio 69×），Director 直接采纳进 D028，未注明公式混用。\n\n**问题 2：** s020=5.90 根因——Worker 2 存的是 `low_mean - high_mean`（**差值**），不是比值。同一字段名 `gradient_paired_aggregate` 在 s015/s025 存 median ratio，在 s020/s030 存 mean difference。\n\n**问题 3：** s025=222.35 根因——使用 `low_median/high_median`，high_median=0.032 极小导致 ratio 膨胀。D028 的 85× 用的是 mean ratio（high_mean=0.303 大 10 倍）。\n\n**问题 4 推荐：**\n- **主指标**：segment median difference → 0.39, 1.48, 7.16, 14.59（单调、无除法、完全可复现）\n- **补充**：Cohen's d → 0.60, 0.72, 0.95, 1.12（标准效应量，审稿人熟知）\n- **弃用所有 ratio 指标**：high-phase II 中 29-49% 样本 < 0.01，ratio 本质不稳定\n\n报告已注册为 artifact `gradient_ratio_provenance_report`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1026363,
+            "duration_api_ms": 999536,
+            "num_turns": 24,
+            "stop_reason": "end_turn",
+            "session_id": "8c2ff082-1ba4-44ed-baa7-bfe5b41acc63",
+            "total_cost_usd": 4.922906149999998,
+            "usage": {
+              "input_tokens": 32,
+              "cache_creation_input_tokens": 73938,
+              "cache_read_input_tokens": 1343271,
+              "output_tokens": 21097,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 73938,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 419,
+                  "cache_read_input_tokens": 81715,
+                  "cache_creation_input_tokens": 3670,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3670
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2835,
+                "outputTokens": 5072,
+                "cacheReadInputTokens": 1024729,
+                "cacheCreationInputTokens": 82510,
+                "webSearchRequests": 0,
+                "costUSD": 0.2338054,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 86,
+                "outputTokens": 43795,
+                "cacheReadInputTokens": 4898629,
+                "cacheCreationInputTokens": 183117,
+                "webSearchRequests": 0,
+                "costUSD": 4.689100749999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "21ab50a4-71c8-437c-8ad3-40e46386a18a"
+          },
+          "id": "event-000371"
+        }
+      ]
+    }
+  ]
+}

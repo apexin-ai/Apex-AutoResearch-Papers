@@ -1,0 +1,712 @@
+tier: worst
+narrative_guidance: '核心reframe：从''strategy×phase interaction''转向''phase-dependent
+  amplification of compound sparsity''。
+
+  Phase gradient本身成立且跨模型/benchmark稳健，但importance vs random的区分在多数条件下模糊。
+
+  Strategy specificity降为secondary finding限定于DeepSeek+高sparsity+MATH-500。
+
+  论文C1改为''compound sparsity severity is phase-modulated''（drop strategy-modulated作为co-equal
+  claim）；
+
+  Crossover（C3）仍成立但解释为''magnitude difference''而非''qualitative strategy divergence''；
+
+  仍冲EMNLP：phase-dependent compound degradation本身是新发现且practical implications不变。
+
+  '
+imagined_experiments:
+- name: c8_llama_n250_fixed
+  plan_id: c8_llama_n250_fixed
+  description: 'LLaMA-8B n=250 cross-architecture replication: 8 conditions (imp+rand
+    × 4 sparsities)'
+  expected_results:
+    n_problems: 250
+    n_valid: 247
+    conditions_completed: 8/8
+    n_bootstrap: 10000
+    bonferroni_k: 4
+    imp_vs_rand_dz:
+      s015: 0.11
+      s020: 0.14
+      s025: 0.18
+      s030: 0.22
+    imp_vs_rand_dz_ci:
+      s015:
+      - -0.04
+      - 0.27
+      s020:
+      - -0.02
+      - 0.3
+      s025:
+      - 0.02
+      - 0.35
+      s030:
+      - 0.05
+      - 0.39
+    imp_vs_rand_dz_interpretation:
+      s015: negligible
+      s020: negligible
+      s025: negligible
+      s030: small
+    imp_vs_rand_dz_monotonic: true
+    phase_gradient_importance_dz:
+      s015: 0.92
+      s020: 1.01
+      s025: 1.05
+      s030: 0.97
+    phase_gradient_importance_dz_ci:
+      s015:
+      - 0.68
+      - 1.18
+      s020:
+      - 0.78
+      - 1.25
+      s025:
+      - 0.82
+      - 1.3
+      s030:
+      - 0.74
+      - 1.22
+    phase_gradient_importance_interpretation: all_large
+    phase_gradient_random_dz:
+      s015: 0.52
+      s020: 0.58
+      s025: 0.65
+      s030: 0.72
+    phase_gradient_random_dz_ci:
+      s015:
+      - 0.31
+      - 0.74
+      s020:
+      - 0.37
+      - 0.8
+      s025:
+      - 0.44
+      - 0.87
+      s030:
+      - 0.51
+      - 0.93
+    phase_gradient_random_interpretation: all_medium
+    median_diff_imp_vs_rand:
+      s015: 0.012
+      s020: 0.018
+      s025: 0.045
+      s030: 0.098
+    wilcoxon_p:
+      s015: 0.21
+      s020: 0.14
+      s025: 0.08
+      s030: 0.04
+    wilcoxon_p_bonferroni:
+      s015: 0.84
+      s020: 0.56
+      s025: 0.32
+      s030: 0.16
+    significant_bonferroni:
+      s015: false
+      s020: false
+      s025: false
+      s030: false
+    dose_response_importance_monotonic: true
+    dose_response_importance_spearman_rho: 1.0
+    dose_response_random_monotonic: true
+    dose_response_random_spearman_rho: 1.0
+    imp_rand_ratio_median_gradient: 1.3-1.8x
+  result_rationale: 'n=250提供了比n=50高得多的统计功效（可检测d≈0.18的效应），但即使如此imp_vs_rand d_z仍然<0.25。
+
+    这意味着LLaMA上importance与random之间的真实效应量确实极小——n=50时观察到的d_z 0.19-0.34部分是
+
+    噪声驱动的高估（regression to the mean）。增加样本量后估计值收缩到0.11-0.22。
+
+    关键发现：random phase gradient d_z在0.52-0.72范围，是medium效应量，与n=50数据（0.35-0.44）
+
+    方向一致但更精确。这意味着在LLaMA架构上，compound sparsity的phase-dependent amplification
+
+    是一个普遍现象，不依赖于eviction strategy。机制解释：LLaMA的GQA（Grouped Query Attention）
+
+    结构导致head pruning后剩余heads的attention distribution变化对所有eviction strategy产生
+
+    类似的phase-dependent degradation——information-dense reasoning phases无论用什么strategy
+
+    剔除KV cache都会受到更大的compound损伤。Bonferroni校正后0/4显著，确认strategy×phase
+
+    interaction在LLaMA上不是可靠发现。
+
+    '
+  tables:
+  - title: 'Table: LLaMA n=250 Phase Gradient Comparison (worst tier)'
+    columns:
+    - Sparsity
+    - Imp d_z
+    - Rand d_z
+    - Imp-Rand d_z
+    - Bonf. sig?
+    rows:
+    - - s015
+      - '0.92'
+      - '0.52'
+      - '0.11'
+      - 'No'
+    - - s020
+      - '1.01'
+      - '0.58'
+      - '0.14'
+      - 'No'
+    - - s025
+      - '1.05'
+      - '0.65'
+      - '0.18'
+      - 'No'
+    - - s030
+      - '0.97'
+      - '0.72'
+      - '0.22'
+      - 'No'
+  figures_description:
+  - 'Fig: Phase gradient comparison showing importance (solid) and random (dashed)
+    d_z values across sparsity levels. Both lines rise together with only ~0.3-0.4
+    d_z gap, far smaller than the 0.6-0.8 gap seen in DeepSeek. Error bars (95% CI)
+    heavily overlap.'
+  analysis: "LLaMA n=250数据定性确认了n=50的发现但更精确：(1) within-importance phase gradient依然large（d_z≈1.0），\n\
+    确认phase-dependent compound amplification是跨架构的；(2) 但random phase gradient也是medium（d_z≈0.6），\n\
+    且imp_vs_rand差异全部Bonferroni NS。这强力支持worst-tier叙事：phase modulation是universal的，\n\
+    strategy specificity不是。对论文影响：C8必须从\"partially confirmed\"降级为\"direction consistent\
+    \ only\"，\n且明确陈述\"strategy×phase interaction strength is architecture-dependent\
+    \ and not reliably detected \non LLaMA even at n=250\"。\n"
+- name: c8_llama_gpu0_s025
+  plan_id: c8_llama_gpu0_s025
+  description: LLaMA s025单条件加速跑（GPU0 preemptive），为n=250提供partial early results
+  expected_results:
+    n_problems: 250
+    condition: importance_s025
+    phase_gradient_dz: 1.05
+    phase_gradient_dz_ci:
+    - 0.82
+    - 1.3
+    median_ii_low: 2.85
+    median_ii_high: 0.42
+    median_diff: 2.43
+    median_diff_ci:
+    - 1.65
+    - 3.28
+    wilcoxon_p: 1.2e-18
+    interpretation: strong within-importance phase gradient confirmed
+  result_rationale: '这是c8_llama_n250_fixed的子集数据（仅importance s025条件），在GPU0上提前跑以获得early
+    signal。
+
+    在worst tier下，within-importance gradient仍然strong（d_z≈1.05），因为phase modulation本身
+
+    是universal的——问题不在于importance是否有phase gradient，而在于random是否也有。
+
+    单独看importance s025的数据会让人误以为结果很好，但需要等random条件完成才能评估strategy specificity。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'GPU0加速结果单独看是"positive"（importance gradient strong），但在worst tier下这不是
+
+    differentiating evidence——因为random条件也会显示medium gradient。此数据的主要价值是
+
+    确认LLaMA n=250实验的pipeline功能正常。
+
+    '
+- name: c10_lang_s020_s025
+  plan_id: c10_lang_s020_s025
+  description: DS MATH-500 language switching analysis at intermediate sparsities
+    s020/s025
+  expected_results:
+    n_problems: 50
+    s020:
+      switch_rate: 0.12
+      cn_count: 6
+      en_count: 44
+      cn_acc: 0.0
+      en_acc: 0.3
+      avg_cn_token_ratio: 0.35
+    s025:
+      switch_rate: 0.26
+      cn_count: 13
+      en_count: 37
+      cn_acc: 0.08
+      en_acc: 0.08
+      avg_cn_token_ratio: 0.52
+    trend_full: 0% (dense) → 4% (s015) → 12% (s020) → 26% (s025) → 40% (s030)
+    monotonic: true
+  result_rationale: 'Language switching是compound degradation的一个行为层面的表现——当compound
+    sparsity足够高时，
+
+    DeepSeek-R1-Distill（原始训练数据含中文）会退化到中文推理。这个现象在worst tier下不受影响，
+
+    因为它不涉及strategy specificity问题——它只是compound severity递增的behavioral correlate。
+
+    s020（12%）和s025（26%）填充了s015（4%）到s030（40%）之间的dose-response曲线。
+
+    monotonic递增与II median_diff的dose-response一致。在worst tier下，这个实验的结论不变：
+
+    compound sparsity severity递增导致behavioral degradation（包括language switching）递增。
+
+    但它不能用来支持strategy specificity claim——它只用了importance条件。
+
+    '
+  tables:
+  - title: 'Table: Language Switching Dose-Response (DS, MATH-500)'
+    columns:
+    - Sparsity
+    - Switch Rate
+    - CN Count
+    - EN Acc
+    - CN Acc
+    rows:
+    - - dense
+      - 0%
+      - '0'
+      - '0.52'
+      - —
+    - - s015
+      - 4%
+      - '2'
+      - '0.375'
+      - '0.0'
+    - - s020
+      - 12%
+      - '6'
+      - '0.30'
+      - '0.0'
+    - - s025
+      - 26%
+      - '13'
+      - '0.08'
+      - '0.08'
+    - - s030
+      - 40%
+      - '20'
+      - '0.10'
+      - '0.10'
+  figures_description:
+  - 'Fig: Monotonically increasing language switching rate vs sparsity level, with
+    accuracy decline overlay. Both curves show smooth dose-response without plateau.'
+  analysis: 'Language switching数据在worst tier下完全可用——它支持C2（phase-modulated severity）和C6
+
+    （sub-exponential growth），不依赖strategy specificity。可在论文§5 Discussion中作为
+
+    compound degradation的qualitative behavioral evidence，补充perplexity-based II metric。
+
+    '
+- name: gpqa_ds_importance_s015
+  plan_id: gpqa_ds_importance_s015
+  description: 'GPQA Diamond benchmark: DS importance s015 pilot — 测试非数学推理的phase gradient'
+  expected_results:
+    n_problems: 50
+    benchmark: GPQA Diamond
+    model: DeepSeek-R1-Distill-Qwen-7B
+    strategy: importance
+    sparsity: 0.15
+    phase_gradient_median_diff: 0.18
+    phase_gradient_ci:
+    - 0.04
+    - 0.35
+    wilcoxon_p: 0.012
+    ii_high_median: 0.008
+    ii_mid_median: 0.052
+    ii_low_median: 0.19
+    phase_distribution:
+      high_tokens: 8500
+      mid_tokens: 12000
+      low_tokens: 18500
+    dense_accuracy: 0.38
+    s015_accuracy: 0.32
+  result_rationale: 'GPQA Diamond是研究生级别的科学推理题，推理链通常比MATH-500更长且更复杂。在worst tier下：
+
+    (1) Phase gradient仍然存在（median_diff=0.18, p=0.012显著），确认phase modulation在
+
+    非数学benchmark上成立；(2) 但效应量远小于MATH-500同条件（DS s015 MATH-500 median_diff=0.39，
+
+    GPQA只有0.18，约为一半）。这本身不构成worst tier的核心打击——真正的问题是当后续跑random条件时，
+
+    GPQA上importance/random ratio会<2×。s015是pilot，效应量已经小意味着在更高sparsity下
+
+    即使importance gradient增大，random也会同步增大，导致ratio始终在1.0-1.9×范围。
+
+    原因：GPQA的推理链更distributed、attention pattern更uniform，导致importance score的
+
+    discrimination本身就比MATH-500弱——即head pruning后的Gini collapse更严重，
+
+    importance eviction更快退化为pseudo-random。
+
+    '
+  tables:
+  - title: 'Table: GPQA vs MATH-500 Phase Gradient Comparison (DS, s015, importance)'
+    columns:
+    - Benchmark
+    - median_diff
+    - II_low
+    - II_high
+    - ratio (low/high)
+    rows:
+    - - MATH-500
+      - '0.39'
+      - '0.398'
+      - '0.006'
+      - 66×
+    - - GPQA Diamond
+      - '0.18'
+      - '0.190'
+      - '0.008'
+      - 24×
+  figures_description:
+  - 'Fig: Side-by-side phase gradient at s015 for MATH-500 vs GPQA. Both show positive
+    gradient but GPQA magnitude is ~50% of MATH-500.'
+  analysis: 'GPQA pilot确认phase modulation的跨benchmark泛化（C10方向），但效应量缩减暗示在该benchmark上
+
+    strategy specificity将更弱。这是worst tier的关键预测：跨benchmark时phase gradient universal
+
+    但strategy specificity shrinks。论文需要在§6 Discussion诚实报告："Phase modulation generalizes
+
+    to non-mathematical reasoning, but strategy specificity magnitude is task-dependent."
+
+    '
+- name: gpqa_full_battery
+  plan_id: 线路A_GPQA_Diamond
+  description: 'GPQA Diamond full: DS+QW × importance × 4 sparsities + 2 random controls
+    = 10 runs'
+  expected_results:
+    ds_importance:
+      s015:
+        median_gradient: 0.18
+        wilcoxon_p: 0.012
+      s020:
+        median_gradient: 0.52
+        wilcoxon_p: 0.003
+      s025:
+        median_gradient: 1.35
+        wilcoxon_p: 0.0002
+      s030:
+        median_gradient: 2.89
+        wilcoxon_p: 0.0001
+    ds_random:
+      s025:
+        median_gradient: 0.92
+        wilcoxon_p: 0.008
+      s030:
+        median_gradient: 1.85
+        wilcoxon_p: 0.003
+    qw_importance:
+      s015:
+        median_gradient: 0.02
+        wilcoxon_p: 0.31
+      s020:
+        median_gradient: 0.11
+        wilcoxon_p: 0.045
+      s025:
+        median_gradient: 0.58
+        wilcoxon_p: 0.001
+      s030:
+        median_gradient: 1.42
+        wilcoxon_p: 0.0003
+    qw_random:
+      s025:
+        median_gradient: 0.41
+        wilcoxon_p: 0.02
+      s030:
+        median_gradient: 0.95
+        wilcoxon_p: 0.006
+    strategy_specificity_ratio:
+      ds_s025: 1.47
+      ds_s030: 1.56
+      qw_s025: 1.41
+      qw_s030: 1.49
+    cross_benchmark_comparison:
+      math500_ratio_range: 2.7-36×
+      gsm8k_ratio_range: 2.3-3.8×
+      gpqa_ratio_range: 1.4-1.6×
+    dose_response_monotonic_importance: true
+    dose_response_monotonic_random: true
+  result_rationale: 'GPQA Diamond上strategy specificity ratio全面崩塌到<2×，这是worst tier的核心证据。原因链：
+
+    (1) GPQA推理更复杂→attention pattern更distributed→importance score baseline discrimination更低；
+
+    (2) Head pruning后Gini collapse更严重→importance eviction质量下降更多；
+
+    (3) 结果：importance和random eviction在GPQA上产生的compound interaction差异缩小到1.4-1.6×。
+
+
+    注意：phase gradient本身对两种strategy都是单调递增的（importance和random都有dose-response），
+
+    这进一步支持worst tier的核心论点——phase modulation是universal的，strategy specificity不是。
+
+
+    关键对比：MATH-500 ratio 15-36×（DS n=500）→ GSM8K 2.3-3.8× → GPQA 1.4-1.6×。
+
+    随着task complexity增加，strategy specificity单调递减。这暗示strategy specificity
+
+    主要是"easy tasks with clear attention patterns"的特有属性，不是compound sparsity的
+
+    fundamental property。论文的novelty pitch必须从三维交互降级。
+
+    '
+  tables:
+  - title: 'Table: Strategy Specificity Ratio Across Benchmarks (worst tier)'
+    columns:
+    - Benchmark
+    - Task Type
+    - DS ratio
+    - QW ratio
+    - Interpretation
+    rows:
+    - - MATH-500
+      - Math reasoning
+      - 15-36×
+      - 2.7-20×
+      - Strong specificity
+    - - GSM8K
+      - Easy math
+      - 2.3-3.8×
+      - ~2×
+      - Weak specificity
+    - - GPQA Diamond
+      - Science reasoning
+      - 1.5-1.6×
+      - 1.4-1.5×
+      - No meaningful specificity
+  figures_description:
+  - 'Fig: Strategy specificity ratio vs benchmark complexity. Clear monotonic decline
+    from MATH-500 (high ratio) through GSM8K (medium) to GPQA (near 1.0). Shaded region
+    below 2× marked as ''no practical distinction''.'
+  analysis: 'GPQA结果是worst tier的杀手锏：它表明strategy specificity不是compound sparsity的intrinsic
+    property，
+
+    而是task-benchmark-specific artifact。Phase modulation remains robust（所有条件gradient单调），
+
+    但"importance is special"的claim被严重削弱。论文必须reframe：C1从"strategy- and task-modulated"
+
+    改为"phase-modulated; strategy modulation limited to specific task-architecture
+    combinations"。
+
+    EMNLP submission仍可行但novelty pitch缩窄。
+
+    '
+- name: 14b_scale_validation
+  plan_id: 线路B_14B_model
+  description: Qwen2.5-14B-Instruct × MATH-500 × importance × 4 sparsities + 1 random
+    control
+  expected_results:
+    model: Qwen2.5-14B-Instruct
+    n_problems: 50
+    importance:
+      s015:
+        median_gradient: 0.04
+        wilcoxon_p: 0.08
+      s020:
+        median_gradient: 0.19
+        wilcoxon_p: 0.005
+      s025:
+        median_gradient: 0.72
+        wilcoxon_p: 0.0003
+      s030:
+        median_gradient: 1.85
+        wilcoxon_p: 0.0001
+    random_s025:
+      median_gradient: 0.38
+      wilcoxon_p: 0.015
+    strategy_specificity_ratio_s025: 1.89
+    dose_response_monotonic: true
+    dense_accuracy: 0.58
+    s030_accuracy: 0.28
+    cohens_d_range: 0.28-0.95
+    phase_gradient_importance_dz:
+      s015: 0.45
+      s020: 0.62
+      s025: 0.78
+      s030: 0.88
+  result_rationale: '14B模型的redundancy更高（更多heads、更宽的attention），这意味着：
+
+    (1) 同样的pruning ratio对14B的相对影响更小→absolute gradient magnitude小于7B；
+
+    (2) 但phase modulation方向一致（gradient仍单调递增）；
+
+    (3) Strategy specificity ratio在14B上也<2×——因为14B有更多冗余heads，pruning后
+
+    剩余heads足以维持reasonable discrimination，导致importance和random的差异缩小。
+
+
+    Worst tier解释：更大的模型有更多architectural redundancy，head pruning的marginal impact
+
+    被缓冲。这表明phase-modulated compound severity在small models上被放大（7B更susceptible），
+
+    而strategy specificity在任何model scale上都不robust。
+
+
+    对论文影响：C5（cross-model generalization）方向confirmed但magnitude大幅缩减。
+
+    7B-only results不能直接外推到production-scale models。Limitations section必须诚实声明。
+
+    '
+  tables:
+  - title: 'Table: 14B vs 7B Phase Gradient Comparison (importance, MATH-500)'
+    columns:
+    - Model
+    - s015
+    - s020
+    - s025
+    - s030
+    rows:
+    - - DS-7B
+      - '0.39'
+      - '1.21'
+      - '3.99'
+      - '8.48'
+    - - QW-7B
+      - '0.07'
+      - '0.31'
+      - '1.07'
+      - '3.16'
+    - - QW-14B
+      - '0.04'
+      - '0.19'
+      - '0.72'
+      - '1.85'
+  figures_description:
+  - 'Fig: Phase gradient magnitude vs model scale (7B vs 14B) at each sparsity level.
+    14B values consistently ~50-60% of 7B, suggesting inverse relationship between
+    model capacity and compound vulnerability.'
+  analysis: '14B数据在worst tier下进一步削弱novelty：(1) Gradient magnitude随model scale递减，
+
+    暗示在64B/405B级production模型上效应可能negligible；(2) Strategy specificity仍然<2×。
+
+    论文Limitations需要：" Our findings are strongest at 7B scale; the 14B pilot suggests
+
+    effect magnitude inversely correlates with model capacity, and production-scale
+    models
+
+    may exhibit substantially reduced compound vulnerability."
+
+    '
+- name: c5_per_phase_gini_interaction
+  plan_id: mechanism_gini_interaction
+  description: 'Gini collapse × II correlation analysis: 检验discrimination collapse是否差异化驱动strategy
+    specificity'
+  expected_results:
+    ds_importance_gini_ii_correlation:
+      s015: 0.22
+      s020: 0.28
+      s025: 0.31
+      s030: 0.35
+    ds_random_gini_ii_correlation:
+      s015: 0.18
+      s020: 0.24
+      s025: 0.27
+      s030: 0.32
+    qw_importance_gini_ii_correlation:
+      s015: 0.12
+      s020: 0.19
+      s025: 0.25
+      s030: 0.29
+    gini_delta_imp_vs_rand_ttest_p:
+      ds_s015: 0.82
+      ds_s020: 0.65
+      ds_s025: 0.41
+      ds_s030: 0.28
+      qw_s015: 0.91
+      qw_s020: 0.73
+      qw_s025: 0.55
+      qw_s030: 0.38
+    overall_gini_interaction_correlation: 0.26
+    imp_rand_gini_difference_significant: false
+  result_rationale: '在worst tier下，Gini collapse在importance和random之间差异不显著（所有t-test
+    p>0.28）。
+
+    两种strategy都导致discrimination collapse（Gini下降），importance只是多drop 0.01-0.02——
+
+    这在统计上不可区分（n=30 problems, per-phase 分析进一步降低effective n）。
+
+
+    Gini×II correlation存在但weak（r≈0.26），且importance和random的correlation pattern
+
+    几乎相同——这意味着discrimination collapse是head pruning的universal consequence，
+
+    不是importance-specific的。机制reframe：head pruning导致所有surviving heads的attention
+
+    score distribution变得更uniform（Gini下降），这种uniform化在information-dense phases
+
+    影响更大（因为这些phases需要更selective的attention），导致compound interaction在low-sparsity
+
+    phases被放大——但这个amplification对任何eviction strategy都成立。
+
+
+    Correlation范围0.1-0.39对应worst tier的key metric range。
+
+    '
+  tables:
+  - title: 'Table: Gini Delta (importance vs random) — No Significant Difference'
+    columns:
+    - Model
+    - Sparsity
+    - Imp Gini Δ
+    - Rand Gini Δ
+    - Difference
+    - p-value
+    rows:
+    - - DS
+      - s015
+      - '-0.030'
+      - '-0.031'
+      - '+0.001'
+      - '0.82'
+    - - DS
+      - s020
+      - '-0.040'
+      - '-0.040'
+      - '0.000'
+      - '0.65'
+    - - DS
+      - s025
+      - '-0.065'
+      - '-0.062'
+      - '-0.003'
+      - '0.41'
+    - - DS
+      - s030
+      - '-0.081'
+      - '-0.073'
+      - '-0.008'
+      - '0.28'
+    - - QW
+      - s015
+      - '-0.010'
+      - '-0.019'
+      - '+0.009'
+      - '0.91'
+    - - QW
+      - s020
+      - '-0.012'
+      - '-0.023'
+      - '+0.011'
+      - '0.73'
+    - - QW
+      - s025
+      - '-0.010'
+      - '-0.034'
+      - '+0.024'
+      - '0.55'
+    - - QW
+      - s030
+      - '-0.020'
+      - '-0.045'
+      - '+0.025'
+      - '0.38'
+  figures_description:
+  - 'Fig: Scatter plot of per-phase Gini delta vs per-phase II, with importance (blue)
+    and random (red) overlaid. The two clouds heavily overlap, suggesting Gini collapse
+    predicts II magnitude universally, not strategy-specifically.'
+  analysis: 'Mechanism evidence在worst tier下被削弱但不完全失败：discrimination collapse仍然是
+
+    phase-dependent compound amplification的合理机制（correlation存在），只是它不能解释
+
+    为什么importance会比random更严重——因为在多数条件下两者差异不显著。
+
+    C4需要reframe为："discrimination collapse explains phase-dependent amplification universally;
+
+    its strategy-selectivity is an architecture-specific secondary effect observed
+    primarily in
+
+    DeepSeek on MATH-500"。'

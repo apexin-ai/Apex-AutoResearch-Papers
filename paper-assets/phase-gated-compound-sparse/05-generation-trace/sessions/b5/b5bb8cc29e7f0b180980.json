@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5bb8cc29e7f0b180980",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_4_1778753189.md",
+  "task_key": "loop_4_1778753189",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778753189.md",
+    "occurrence": 1,
+    "bytes": 3736,
+    "sha256": "a90613ecb977788eddd22ccd5178d828e8dbc661eca3309d724f483495d8025b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T10:05:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0~3，禁止使用其他设备\n- bf16_qw_imp 系列（Qwen cross-model）已连续两个失败（s015, s020），**不要盲目重跑**——必须先诊断 log 再决定 fix 策略\n- bf16 重跑系列共 16 实验（D020），实验命名有两套：`bf16_qw_imp_*` 和 `bf16_qwen_importance_*` 可能存在重复/混淆，registry 中 filter 返回空说明 exp_id 可能在 cron 自动更新时被改写或未正确注册——需要全量 registry dump 确认\n- Permutation test 必须用 median（非 mean）作 test statistic，Reviewer 已标记过\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 ~/runs/phase-gated-compound-sparse/\n- 日志路径模式：~/runs/phase-gated-compound-sparse/{exp_id}.log\n- 失败实验 log：~/runs/phase-gated-compound-sparse/bf16_qw_imp_s020.log, bf16_qw_imp_s015.log\n- Python/conda/模型路径：**未探测**——上一轮未 SSH 过，需要 Worker 探测（detect_image 优先）\n- 活跃 cron：bf16_qw_imp_s025（刚创建 ~40s，reconcile 时跳过）\n- 活跃实验（report.md）：bf16_ds_rand_s030/s025/s020 三个 DeepSeek random 在跑\n\n### 3. 📊 当前状态\n**我刚 session 启动，收到 bf16_qw_imp_s020 失败 CRON 回调，尚未完成诊断。**\n\nRegistry 状态（从 report.md）：\n- RUNNING: bf16_ds_rand_s030, bf16_ds_rand_s025, bf16_ds_rand_s020（DeepSeek random baseline 3 个）\n- QUEUED/ALLOCATED: bf16_qw_imp_s025（cuda:3，cron 刚注册）, bf16_qw_imp_s030, bf16_qw_rand_* ×4\n- DONE(failed): bf16_qw_imp_s015, bf16_qw_imp_s020（**本次回调**）\n- DONE(success): bf16_importance_s015~s030（DeepSeek importance 全 PASS）\n\n**未完成的关键动作**：\n1. 未 spawn Worker 诊断 bf16_qw_imp_s020 失败原因（log 未读）\n2. 未更新 registry（registry filter 返回空，可能 exp_id 格式问题）\n3. 未向 Director 汇报\n4. bf16_qw_imp_s015 也失败了，同样未诊断——两个连续失败很可能是同一 root cause（Qwen 模型路径？脚本兼容性？）\n\n### 4. 📋 待办（条件触发式）\n- **立即** → spawn Worker 读 bf16_qw_imp_s020.log + bf16_qw_imp_s015.log 诊断 root cause（同一个 Worker 读两个 log）\n- 诊断出 root cause → fix 后重跑 s015+s020，同时检查 s025（正在跑）是否有同样问题\n- bf16_ds_rand 3 个 cron 回调到 → on-experiment-done 流程，更新 registry + report.md + 汇报 Director\n- bf16_qw_imp_s025 cron 回调 → 如果也失败则确认 Qwen 系列 systemic issue\n- 所有 bf16 Qwen importance 完成 → 启动 bf16 Qwen random（Batch 4）\n- 所有 bf16 数据到齐 → 统一更新论文数字 + permutation test（median）\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25，距今 11 天**——bf16 全量重跑是 blocking path\n- 核心发现：importance-based eviction 的 compound interaction 在 low-sparsity phase 急剧放大（gradient 11-42× problem-level），random 保持平坦（~1×）\n- DeepSeek importance bf16 全 4 个 PASS（D031），gradient ratio 47-104×——fp16 和 bf16 趋势一致\n- **Qwen cross-model 是 C5 claim 的关键**：如果 Qwen 系列全部失败，C5 (cross-model) 无法 confirm，论文需要降级 claim 或改 framing\n- 易错点：registry 中 `bf16_qw_imp_*` filter 返回空——可能是注册时 exp_id 格式不一致，全量 dump 太大无法直接读。下一轮需要用 jq 从 dump 文件中定向提取\n- D022 决策：两模型共享 Qwen2ForCausalLM，是 cross-model 非 cross-architecture——论文措辞已修正\n- D030：Random baseline mean-based II outlier 是系统性问题，论文须用 median\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778753189.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "511275e6ad20726e83c3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code n500 analysis audit",
+  "task_key": "worker_code_n500_analysis_audit_20260514T224811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_n500_analysis_audit_20260514T224811_result.json",
+    "occurrence": 1,
+    "bytes": 1711,
+    "sha256": "01b3562ea5088aabeedac2e2e358025a64e6720930562605b63daa912a225916"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All fixes verified. Final summary:\n\n---\n\n## Audit Results\n\n### Issues found and fixed:\n\n| # | File | Issue | Fix |\n|---|------|-------|-----|\n| 1 | `analyze_n500.py:39` | `B_BOOTSTRAP = 1000` | Changed to `10000` |\n| 2 | `analyze_n500.py` | No per-phase null rate (W5 missing) | Added `midphase_null_rate()` function + integrated into `analyze_condition()` |\n| 3 | `analyze_n500.py:424` | d_z computed for both imp AND rand (D059 violation) | Loop now only runs for `\"imp\"` masking |\n| 4 | `analyze_n500_unified.py:131` | `midphase_null_rate` only computed rate for mid phase | Added `null_high_rate`, `null_low_rate`, `effective_n_*` for all 3 phases |\n| 5 | `analysis/cross_model_analysis.py` | Hardcoded n=50 paths, won't work for n=500 | Added `--n500` flag, compute d_z on the fly instead of loading pre-computed files |\n\n### No issues found (PASS):\n\n| Requirement | Status | Details |\n|---|---|---|\n| D054 (Median-only) | **PASS** | `analyze_n500_unified.py` and `analyze_n500.py` use median + bootstrap CI as primary. `analyze_c2_n500.py` includes mean as reference only. |\n| B=10,000 (W4) | **PASS** (after fix #1) | All scripts now use B=10,000. n=500 × 8 conditions × B=10,000 ≈ 10s — acceptable. |\n| Per-phase effective n (W5) | **PASS** (after fix #2,#4) | All phases report `effective_n_*` and `null_*_rate` |\n| D059 (d_z within-imp only) | **PASS** (after fix #3) | `analyze_n500_unified.py` was already compliant. `analyze_n500.py` fixed. |\n| Aggregation script | **PASS** | `analyze_n500_unified.py` is the main one-click script, outputs all required data. `cross_model_analysis.py --n500` handles cross-model. |\n\n### Pipeline readiness: **PASS**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-n500-analysis-audit.md"
+}

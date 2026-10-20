@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68e5b0b7107891bd2b8b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis acc ds s030 8k v2 final",
+  "task_key": "worker_analysis_acc_ds_s030_8k_v2_final_20260516T013133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_acc_ds_s030_8k_v2_final_20260516T013133_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "ababcd7ff248dbb0325ef0d7a4c4673b1ef8392af7e968205a4aaad53a7cbc46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "log_path 已在 registry 中存在，无需重复更新。Registry 更新完成（status 自动变为 DONE）。\n\n## 产出摘要\n\n**exp_id**: `acc_ds_s030_8k_v2` | **conclusion**: negative\n\n| 指标 | 值 |\n|------|-----|\n| accuracy | 0.04 (2/50) |\n| truncation_rate | 0.78 (39/50) |\n| non_truncated_accuracy | 0.182 (2/11) |\n| avg_tokens | 6566.3 |\n| total_time | 7095.1s (~1.97h) |\n| max_new_tokens | 8192 |\n\n### ⚠ 与 Director Reviewer-verified 值的差异\n\nJSON 实际 `gen_length=8192` 计数为 **39**（非 38），导致：\n- truncation_rate = **0.78** (Director: 0.76)\n- non_truncated_total = **11** (Director: 12)\n- non_truncated_accuracy = **2/11 = 0.182** (Director: 2/12 = 0.167)\n\n可能原因：Reviewer 手工计数时漏计了一个 truncated sample。Registry 已按 JSON 实际数据录入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-acc-ds-s030-8k-v2-final.md"
+}

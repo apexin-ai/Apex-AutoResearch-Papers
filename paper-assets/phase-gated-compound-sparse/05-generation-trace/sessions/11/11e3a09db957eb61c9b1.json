@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11e3a09db957eb61c9b1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper bib audit r10",
+  "task_key": "worker_paper_bib_audit_r10_20260516T032723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib_audit_r10_20260516T032723_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "a612d30495a9815e87dff645e7ed2c739c7db1ff007e80bd1e5b4bbc09280069"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果如下：\n\n**MUSTAFAR 状态**：`mustafar-neurips2025` 已不在 `references.bib` 和所有 `.tex` 文件中（此前已删除）。无需额外修改 bib/tex。\n\n**全量审计结果（42 条）**：\n- ✅ 39 条完全验证通过\n- ⚠️ 3 条有轻微问题（均非学术诚信问题）：\n  - `snapkv-neurips2024`：标题大小写 \"You Are\" vs \"You are\"（纯格式）\n  - `hold-onto-thought-neurips2025`：实际发表于 NeurIPS 2025 ER Workshop 而非主会（bib 标注为 arXiv preprint，不算错误）\n  - `deepseek-r1-2025`：作者用 \"DeepSeek-AI\"（arXiv 惯例），Nature 版用个人作者名\n- ❌ 0 条伪造\n\n**产出文件**：\n- `artifacts/_project/report/bib_audit_r10.md` — 完整审计报告\n- `artifacts/_project/paper/citation_audit_report.md` — 旧报告已标注 MUSTAFAR 为 ❌ FAKE 并标记为 superseded"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-audit-r10.md"
+}

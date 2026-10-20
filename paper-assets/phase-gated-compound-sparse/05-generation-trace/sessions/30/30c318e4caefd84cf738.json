@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30c318e4caefd84cf738",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops route a v6 random",
+  "task_key": "worker_ops_route-a-v6-random_20260514T050646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_route-a-v6-random_20260514T050646_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "022103b8d4b41809ccbceb4dad263128303046db7acf47abc24c18929f4967dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 上的 PID 71626 是另一个 worker 的 `diagnose_nan.py`（15GB），不影响我们的实验——GPU 0 总共 98GB，两个进程加起来约 30GB，空间充裕。\n\n**汇报：**\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| v6_random_s015 | cuda:0 | 72073 | RUNNING，模型已加载 |\n| v6_random_s020 | cuda:1 | 71488 | RUNNING，模型已加载（15GB） |\n\n- GPU 0/1 上的 Qwen importance 残留进程（68743/68885）已清理\n- GPU 2/3 上的进程未受影响\n- 两个实验 timeout 3h，output 分别在 `profiling_output_v6_random_s015` 和 `profiling_output_v6_random_s020`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-route-a-v6-random.md"
+}

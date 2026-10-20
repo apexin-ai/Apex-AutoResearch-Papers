@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16d911f311d09a01809f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "writing analysis skeleton",
+  "task_key": "worker_writing_analysis-skeleton_20260514T054050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_analysis-skeleton_20260514T054050_result.json",
+    "occurrence": 1,
+    "bytes": 1406,
+    "sha256": "a7cee950760d032c6dd3f4fa049b7b2b7c264828b1bc8b7c0fb8df44956b4ed7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Section written and registered. The file is at both `docs/paper/analysis.tex` (via `write_paper_section`) and `artifacts/_project/paper/analysis.tex`.\n\n**Structure delivered:**\n- **Opening paragraph**: poses the question (why phase-modulated for importance but not random?), introduces entropy-discrimination collapse\n- **§6.1 Attention Redistribution**: defines attention entropy $\\mathcal{H}$, argues pruning increases $\\mathcal{H}$ asymmetrically across phases due to differential head redundancy; `\\placeholder{}` for empirical entropy measurements\n- **§6.2 Discrimination Collapse**: links entropy increase → uniform importance scores → noise-sensitive eviction → degeneracy to biased random; `\\placeholder{}` for Gini/concentration metrics; explains crossover via the mechanism; notes random's immunity\n- **§6.3 Implications**: architecture generality (H₂O/SnapKV/PyramidKV all affected), testable prediction (attention-independent metrics should be immune), reframing compound severity as strategy-phase interaction\n\n**Framing constraints respected**: consistently frames as \"emergent phase-strategy interaction,\" explicitly states the severity inversion is \"not a failure of the importance metric in isolation\" (line 32). Uses \"we hypothesize\" / \"we propose\" for unverified claims. Two `\\placeholder{}` blocks mark where empirical data (C4) should go."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-analysis-skeleton.md"
+}

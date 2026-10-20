@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a737c33fa0fcac6a5c40",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis bf16 qw rand s030",
+  "task_key": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bf16_qw_rand_s030_20260514T084856_result.json",
+    "occurrence": 1,
+    "bytes": 1637,
+    "sha256": "466430b61fba66b6c46fdd3fff5b62612c9090513b28169bd703f6a1c53a2314"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n---\n\n## bf16_qw_rand_s030 分析报告\n\n### 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Verdict** | **PASS** |\n| Median II (high) | 4.2006 |\n| Median II (mid) | 6.4770 |\n| Median II (low) | 8.0657 |\n| Median diff (low−high) | **2.4183** |\n| Permutation p-value | **0.012** |\n| Wilcoxon p-value | 0.0157 |\n| Cohen's d | −0.035 \\[−0.225, 0.490\\] (negligible) |\n| Bootstrap 95% CI (median diff) | \\[0.242, 3.315\\] — **不含零** |\n| 单调递增 high < mid < low | **是** |\n\n### PASS 判定理由\n- Permutation p=0.012 < 0.05\n- 单调递增梯度 4.20 → 6.48 → 8.07 确认\n\n### 与 s015/s020/s025 的趋势对比\n\n| 实验 | median_diff | perm_p | Cohen's d | verdict |\n|------|------------|--------|-----------|---------|\n| s015 | −0.029 | 0.766 | −0.051 | FAIL |\n| s020 | 0.058 | 0.352 | 0.247 | FAIL |\n| s025 | 1.144 | 0.168 | 0.157 | FAIL |\n| **s030** | **2.418** | **0.012** | −0.035 | **PASS** |\n\n清晰的剂量-响应关系：随着 sparsity 增加，median_diff 单调上升（−0.03 → 0.06 → 1.14 → 2.42），p-value 单调下降，在 s=0.30 跨过显著性阈值。\n\n### 注意事项\n- Cohen's d 为负（−0.035）是因为 mean_diff=−1.13 被少数大负值 outlier 拉低，而 median_diff=2.42 反映了主体分布的真实趋势。Wilcoxon 和 permutation test 一致支持 PASS。\n- **叙述影响**：Random masking 不是\"无梯度\"的完美对照，而是\"仅在极端 sparsity (s≥0.30) 才出现梯度\"。这意味着 importance-based masking 的优势在于它在更低 sparsity 就能产生显著梯度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bf16-qw-rand-s030.md"
+}

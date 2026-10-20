@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d1b3735c5256bede2cb",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops gsm8k ds check",
+  "task_key": "worker_ops_gsm8k_ds_check_20260515T161651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k_ds_check_20260515T161651_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "657fad40a38fd5fa3230182050d28b7e9b0d15948ebaf3ccca14d587efcc40f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### DS (DeepSeek) — gsm8k_profiling_ds\n\n| 条件 | GPU | 进度 | 状态 |\n|------|-----|------|------|\n| ds_importance | cuda:0 (76%, 21GB) | **50/50** | **完成** — Verdict: PASS |\n| ds_random | cuda:1 (90%, 45GB) | **41/50** | 运行中 |\n\n**ds_importance 输出文件：**\n- `profiling_results.json` — 2.1MB, JSON 格式完整\n- `generations.json` — 179KB, 50 条生成结果\n\n**ds_importance 关键指标：**\n- high_sparsity: 19344 tokens, 352 segments\n- mid_sparsity: 21307 tokens, 267 segments  \n- low_sparsity: 25973 tokens, 359 segments\n- CI overlap test: low vs mid non-overlapping at threshold 0.3 → **PASS**\n\n**ds_random** 还在跑，约剩 ~18 分钟（~2 min/problem × 9 remaining）。\n\n---\n\n### QW (Qwen) — gsm8k_profiling_qw\n\n| 条件 | GPU | 进度 | 状态 |\n|------|-----|------|------|\n| qw_importance | cuda:2 (97%, 66GB) | **30/50** | 运行中 |\n| qw_random | cuda:3 (94%, 52GB) | **30/50** | 运行中 |\n\nQW 两个条件每问题约 3 分钟，预估还需 **~60 分钟**。\n\n---\n\n### 结论\n\n两个实验都**未完成**，不更新 registry、不删除 cron。所有 4 张 GPU 仍在活跃工作，无 error/OOM。\n\n建议 **30-40 分钟后再次检查**：届时 DS random 应已完成（可更新 DS registry），QW 可能也接近完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-ds-check.md"
+}

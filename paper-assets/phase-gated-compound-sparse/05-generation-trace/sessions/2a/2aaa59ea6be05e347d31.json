@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2aaa59ea6be05e347d31",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper verify bf16 figures",
+  "task_key": "worker_paper_verify-bf16-figures_20260514T130435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_verify-bf16-figures_20260514T130435_result.json",
+    "occurrence": 1,
+    "bytes": 2029,
+    "sha256": "ca0f43f7f7e7611d53b5c9e2d0275e22b9a9c7a655c2e23e6847e6bfcc61fe99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完毕。汇总报告：\n\n---\n\n## bf16 Figures 完整性验证报告\n\n### 1. 文件存在性 & 大小\n\n**主产出目录 `paper/figures/`**（论文引用目录）：\n\n| Figure | PDF | PNG | PDF 大小 |\n|--------|-----|-----|---------|\n| fig1_dose_response | ✅ | ✅ | 23,853 B |\n| fig1_severity_gradient | ✅ | ✅ | 23,724 B |\n| fig2_cohens_d | ✅ | ✅ | 20,634 B |\n| fig2_cohens_d_segment_level | ✅ | ✅ | 20,876 B |\n| fig2_crossover_heatmap | ✅ | ✅ | 30,823 B |\n| fig3_crossover | ✅ | ✅ | 20,525 B |\n| fig4_bootstrap | ✅ | ✅ | 20,646 B |\n| fig4_per_problem_dist | ✅ | ✅ | 64,860 B |\n| **fig5_crossmodel** | ✅ | ✅ | **23,562 B** |\n\n所有 PDF 均 >5KB，非空。\n\n**其他副本目录**也存在完整文件：\n- `figures/` — 含 fig1-fig5 全部 PDF+PNG + 生成脚本 `generate_paper_figures_v2.py`\n- `analysis/figures/` — fig1/fig3/fig4/fig5 的独立生成脚本 + PDF\n- `paper_figures/` — fig1/fig3/fig4/fig5 的 PDF+PNG 副本\n\n### 2. Figure 5 状态\n\n✅ **fig5_crossmodel 已存在**，paper/figures/ 中 PDF=23,562B, PNG=75,828B。之前缺失的问题已修复。\n\n### 3. 数据来源验证\n\n**所有生成脚本中零 fp16 引用。** 具体确认：\n\n- `analysis/figures/fig1_dose_response.py` — 数据键全部为 `bf16_ds_imp_*` / `bf16_ds_rand_*`\n- `analysis/figures/fig3_crossover.py` — 使用 `bf16_importance_s025` / `bf16_ds_rand_s025`\n- `analysis/figures/fig4_bootstrap.py` — 读取 `permutation_test_results.json`（无 fp16 键）\n- `analysis/figures/fig5_crossmodel.py` — 使用 `bf16_ds_imp_*` / `bf16_qw_imp_*`\n- `figures/generate_paper_figures_v2.py` — 主生成脚本，所有实验键均为 `bf16_*` 前缀\n- 上游数据文件 `experiment_summary_table.json` / `rebootstrap_b10000_results.json` 均无 fp16 键\n\n### 结论\n\n✅ fig1/fig3/fig4/fig5 四个论文 figure 全部存在、非空、数据来源正确（均为 bf16）。Figure 5 缺失问题已修复。无问题项。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-verify-bf16-figures.md"
+}

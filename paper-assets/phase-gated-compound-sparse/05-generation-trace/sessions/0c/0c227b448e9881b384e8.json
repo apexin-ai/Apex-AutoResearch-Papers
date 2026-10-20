@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c227b448e9881b384e8",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_14_1778905918.md",
+  "task_key": "loop_14_1778905918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778905918.md",
+    "occurrence": 1,
+    "bytes": 3803,
+    "sha256": "681320fdc1aa2fc460f6e8d30b28086afb3fd3901dd5a874298c07faf0114127"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T04:15:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，禁止用其他卡\n- DS (DeepSeek-R1-Distill-Qwen-7B) accuracy 数据已降级为定性观察（D086），不作为 dose curve 主证据，QW 为权威数据源\n- QW 权威值用原版 combined（非 b2_fix），因 b2_fix 差异 ≤1 correct，在统计误差内\n- batch1 token mismatch 修复系列：必须用 max_new_tokens=8192（原 batch1 用 2048，这是本轮重跑的唯一目的）\n- 论文 G× 值已修正为 21-64×（旧值 58-241× 已废弃），所有引用处必须同步\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 /root/autodl-tmp/pacs\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct, DeepSeek-R1-Distill-Qwen-7B\n- 评估脚本：/root/autodl-tmp/pacs/run_accuracy_eval.py\n- 分析脚本：/root/autodl-tmp/pacs/analyze_n500_v2.py（n=475 统计分析）\n- 活跃进程：acc_ds_s030_8k_v2 (PID 288901, cuda:2, cron 监控中)\n- Accuracy 输出目录：/root/autodl-tmp/pacs/accuracy_eval_*.json\n\n### 3. 📊 当前状态\n**刚做完**：收到 acc_qw_s015_b1_8k 完成回调，已 spawn Worker (worker_analysis_acc_qw_s015_b1_8k_20260516T011221) 去读结果 + 更新 registry，Worker 尚未返回。\n\n**Registry 状态**：\n- ANALYZING: acc_qw_s015_b1_8k（QW s015 batch1 8k 重跑，cuda:1，Worker 正在分析）\n- RUNNING: acc_ds_s030_8k_v2（DS s030 8k eval，cuda:2，PID 288901，cron 监控中）\n- PENDING: acc_qw_s030_b1_8k, acc_qw_s025_b1_8k（QW batch1 8k 重跑，等待审批）\n- 空闲 GPU: cuda:0, cuda:1, cuda:3（3 张空闲 = 失职状态，PENDING 审批通过后应立即提交）\n\n**等待中**：\n- Worker 回调：acc_qw_s015_b1_8k 分析 Worker\n- Cron 回调：acc_ds_s030_8k_v2 完成\n- Director 审批：acc_qw_s030_b1_8k + acc_qw_s025_b1_8k\n\n### 4. 📋 待办\n- acc_qw_s015_b1_8k Worker 返回 → 更新 registry 到 DONE + 更新 memory.md dose curve 表 + 向 Director 汇报（带 [资源] 行）\n- acc_ds_s030_8k_v2 cron 回调 → spawn Worker 分析 → 补全 DS 8k_v2 dose curve 最后一个点（s030）→ 汇报 Director\n- acc_qw_s030_b1_8k / acc_qw_s025_b1_8k 审批通过 → submit_on_allocated 到空闲 GPU（cuda:0/1/3 中选）\n- 全部 batch1 v2 rescore 完成 → 编译最终 QW dose curve（对比 pre-v2 vs v2） → consistency check → 准备 Round 10 审稿\n- DS s030_8k_v2 完成 → DS 8k_v2 全 5 点齐备 → 更新 memory.md DS dose curve 表 → 论文 Section 4.2 表注更新\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25（9 天）**，当前处于\"batch1 v2 rescore → 数据编译 → Round 10 审稿 → 最终提交\"阶段\n- 核心发现：compound interaction severity 随 sparsity 单调递增，且 random masking 也产生显著 compound interaction（C10 confirmed），不依赖 masking strategy\n- QW dose curve 预期：s015/s020 平台期（-4~5pp），s025→s030 断崖（-14pp）。8k rescore 对 QW 影响极小（s020 v2 = 不变），预计 s015/s025/s030/dense 的 v2 结果也几乎不变\n- **易踩坑**：(1) 不要把 DS accuracy 当主证据——截断率 58-76% 严重混淆，只能标 \"lower bound\"；(2) PENDING 实验有 3 张 GPU 空着，审批通过后必须立即提交，不能拖；(3) G× 数值用新值 21-64×，旧值已废弃；(4) DS rand s025/s030 Bonferroni 校正后 p≈0.07 不再显著，论文不能 claim significance\n- 关键决策链：D086（DS 降级）→ D087（QW 权威）→ D088（DS 8k 验证性重跑）→ D089（DS 双 regime：s≤0.20 截断驱动 vs s>0.20 能力退化+截断叠加）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778905918.md"
+}

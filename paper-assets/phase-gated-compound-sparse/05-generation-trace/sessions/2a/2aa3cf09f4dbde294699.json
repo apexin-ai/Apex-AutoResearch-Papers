@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "2aa3cf09f4dbde294699",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "ops fig1 sync retry",
+  "task_key": "worker_ops_fig1_sync_retry_20260516T063049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig1_sync_retry_20260516T063049.log",
+    "occurrence": 1,
+    "bytes": 633496,
+    "sha256": "7d864f934de8c06d92b13f9af84548e11adf66f5bb2a7559108ae3fba08a9ddd"
+  },
+  "statistics": {
+    "messages": 150,
+    "user_turns": 1,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 55,
+      "tool_result": 55,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 110,
+      "chunks": [
+        {
+          "path": "2aa3cf09f4dbde294699-part-0001.json",
+          "message_count": 110
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "2aa3cf09f4dbde294699-part-0001.json",
+          "message_count": 17
+        },
+        {
+          "path": "2aa3cf09f4dbde294699-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fig1-sync-retry.md"
+}

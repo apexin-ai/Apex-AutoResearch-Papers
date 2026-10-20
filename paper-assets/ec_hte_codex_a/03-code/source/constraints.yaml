@@ -1,0 +1,29 @@
+_next_id: 4
+constraints:
+- id: C001
+  added: 2026-05-31 16:57 UTC
+  summary: Codex 后端 submit_training_job API 缺失时，exp002 允许一次受控 tmux 事故例外；禁止 nohup，必须记录
+    pid/tmux_session/log_path/GPU 并手动更新 registry。
+  scope: all
+  reason: Manager confirmed submit_training_job/submit_on_allocated endpoints do not
+    exist for current Codex backend; manual monitored tmux launch is the only feasible
+    unblock path for exp002.
+  decision_id: M004
+- id: C002
+  added: 2026-05-31 17:22 UTC
+  summary: Stage1 formal launch remains blocked until Stage0 correction operator and
+    H1 grid diagnostic are repaired or explicitly waived by Director
+  scope: all
+  reason: 'D003 accepted exp002 audit: exp002 negative likely reflects operator/diagnostic
+    mismatch, so H2 Stage1 correction ablation would compare against inconsistent
+    baselines if launched now.'
+  decision_id: D003
+- id: C003
+  added: 2026-05-31 17:24 UTC
+  summary: '`art_20260531_0e5bc8` literature memo is advisory only and must not be
+    cited as empirical H1/H2 support'
+  scope: all
+  reason: D004 accepted the memo as design guidance for repair hypotheses, but it
+    contains no new experiment and explicitly says no findings update or experiment
+    launch occurred.
+  decision_id: D004

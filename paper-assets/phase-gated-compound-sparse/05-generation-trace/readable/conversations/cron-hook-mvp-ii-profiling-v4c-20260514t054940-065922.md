@@ -1,0 +1,2269 @@
+# cron hook mvp ii profiling v4c 20260514T054940 065922
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 2
+- **Tool calls:** 34
+- **Original source:** `logs/chats/archive/cron_hook_mvp_ii_profiling_v4c_20260514T054940_065922.jsonl`
+- **Structured JSON:** [`1b4a91da799131765759.json`](../../sessions/1b/1b4a91da799131765759.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+33 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T02:23:52.722556+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #3。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-22162 cuda:0~3，不得用其他设备
+- 项目路径：`/root/autodl-tmp/pacs/`，模型/数据/输出全在 autodl-tmp 下，禁止写根分区
+- v4 系列 4 个实验全部 EXIT_CODE=2 崩溃，代码有 bug 未修复——**修复前禁止提交 v4d 或任何新 profiling 实验**
+- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-22162，4× RTX 6000 Pro 96G
+- 工作目录：`/root/autodl-tmp/pacs/`
+- Python：`/root/miniconda3/bin/python`（conda base 环境）
+- 模型：`/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`
+- 数据：`/root/autodl-tmp/pacs/data/math500.json`（50 题，stratified 5×10）
+- 输出目录：`/root/autodl-tmp/pacs/profiling_output_v3`（v3 成功产出）、`v4a/v4b/v4c/v4_random`（v4 系列，可能为空或不完整）
+- 活跃进程：无（全部实验已结束）
+- Cron：无活跃 cron（reconcile 结果 0）
+
+### 3. 📊 当前状态
+**刚做完**：收到 mvp_ii_profiling_v4c 失败 CRON 回调，执行了 session-start 初始化。发现 v4 系列 4 个实验（v4/v4b/v4c/v4-random）全部以 EXIT_CODE=2 在 ~25 秒内崩溃。
+
+**正在进行**：诊断 Worker `worker_diagnose_v4_batch_failure_20260513T232112` 正在运行（turn_count=6，已读日志和代码），等待其回调。
+
+**Registry 状态**：
+- DONE(failed): v4, v4b, v4c, v4-random, mvp_interaction_index_profiling（共 5 个 failed）
+- DONE(negative): v3, v2（共 2 个 negative）
+- QUEUED: v4d（高 sparsity 40% 参考点，代码修复前不要提交）
+
+**等待中**：
+- Worker 回调：`worker_diagnose_v4_batch_failure` → 诊断结果到手后修 bug、重跑 v4 系列
+- Director 尚未收到本轮失败汇报（等诊断结果出来一起报）
+
+### 4. 📋 待办
+- 诊断 Worker 回调完成 → 读诊断报告 → 派 Worker 修复代码 → 重新提交 v4/v4b/v4c/v4-random/v4d（5 个实验，4 张卡并行）
+- v4 系列全部成功 → 汇总 importance vs random 的 II 对比数据 → 检验 MVP Pass 标准（importance CI 上界 < 0 且 random CI 下界 > 0）→ 向 Director 汇报
+- MVP Pass → 进入 M1' 阶段（cross-model replication on Qwen2.5-7B）
+- MVP Fail（连续 negative）→ 产 Framing 调整提案，等 Director 决策
+
+### 5. 🎯 战略上下文
+- **核心 pivot（D010）**：原假设 phase-dependent reversal 三轮否定后，pivot 到 strategy-dependent interaction direction reversal——random compound → super-additive，importance-based compound → sub-additive。Phase conditioning 降为二级贡献。
+- **截稿压力**：EMNLP 2026 ARR 截稿 2026-05-25，距今 11 天。GPU 预算 250h 已用仅 ~2.9h。
+- **v3 结论**：v3 跑了 55 分钟成功完成，结论 negative（CI 重叠、无 sign reversal）。但 v3 只测了 importance-based masking，**没有 random baseline 对照**。D009/D010 决策指出之前 v1-v3 实际上没测 random vs importance 的对比，v4 系列正是为了补这个关键对比。
+- **易错点**：v4 的 `--masking_method` 和 `--sparsity_levels` 是 v4 新加的 CLI 参数，v3 没有这些参数。EXIT_CODE=2 高度怀疑是 argparse 未注册这些参数或代码中处理 masking_method 的逻辑有语法错误。诊断 Worker 正在确认具体原因。
+- **不要做**：不要在代码未修复的情况下重试提交，会重复同样的崩溃。
+
+## 可查的历史
+前 5 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T02:24:05.256196+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T02:24:05.307684+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T02:24:09.227630+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T02:24:09.380484+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T02:24:09.382710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mvp_v5_random_s025\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:19:32.243Z\", \"updated_at\": \"2026-05-14T02:19:42.324Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 2>&1 | tee /root/runs/phase-gated-compound-sparse/mvp_v5_random_s025.log\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:3\"], \"pid\": \"52093\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_v5_random_s025.log\", \"submitted_at\": \"2026-05-14T02:19:32.155Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.25, cuda:3。与 mvp_v5_fixed_s025 (importance) 形成对照组。用修复后同一代码确保公平对比。\"}, \"mvp_v5_random_s015\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:19:30.549Z\", \"updated_at\": \"2026-05-14T02:19:41.510Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 2>&1 | tee /root/runs/phase-gated-compound-sparse/mvp_v5_random_s015.log\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:2\"], \"pid\": \"51951\", \"log_path\": \"~/runs/phase-gate
+…[truncated 40385 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 155
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T02:24:09.684553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 304
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T02:24:09.684896+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T02:24:10.087615+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp_v5_fixed_s030_r2 | v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive). 前次运行(s030)在35/50时被误杀。s=0.30是最关键的验证点。 | — | — | — |\\n| mvp_v5_fixed_s020_r2 | v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive). 前次运行(s020)在35/50时被误杀。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **mvp_v5_fixed_s025** (negative): —\\n- **mvp_v5_fixed_s015** (negative): —\\n- **mvp_v5_fixed_s030** (killed): v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.30, cuda:1。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\\n\\n## 趋势\\n成功 3 / 负向 5 / 失败 11 / 共 22\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-22162: 无 GPU 信息\\n\\n## 告警\\n- mvp_interaction_index_profiling: 训练失败 — unknown\\n- mvp_ii_profiling_v4: 训练失败 — unknown\\n- mvp_ii_profiling_v4b: 训练失败 — unknown\\n- mvp_ii_profiling_v4c: 训练失败 — unknown\\n- mvp_ii_profiling_v4d: 训练失败 — unknown\\n- mvp_ii_profiling_v4-random: 训练失败 — unknown\\n- mvp_v4a_r2: 训练失败 — unknown\\n- mvp_v4b_r2: 训练失败 — unknown\\n- mvp_v4c_r2: 训练失败 — unknown\\n- mvp_v4_legacy_s025: 训练失败 — unknown\\n- mvp_v4_legacy_s035: 训练失败 — unknown\\n- mvp_v4_float32_s030: 已被终止 — unknown\\n- mvp_v5_fixed_s020: 已被终止 — unknown\\n- mvp_v5_fixed_s030: 已被终止 — unknown\\n\", \"total_chars\": 1385, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T02:24:10.088021+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T02:24:10.138551+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T02:24:47.124719+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T02:24:47.677596+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/ROADMAP.md\", \"content\": \"# phase-gated-compound-sparse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 01:18 UTC | 更新原因: D013: importance 指标位置偏差根因确认，暂停结论，修复后重跑验证\\n\\n## 核心方向\\n**Pivot 后（D010）**：Strategy-dependent interaction direction reversal in compound sparsity。\\n⚠️ **D013 警告**：importance masking 的核心指标 `cumulative_attention_received` 存在因果注意力位置偏差（测量\\\"位置有多早\\\"而非\\\"内容有多重要\\\"），所有基于该指标的 II 结果暂不可信。需修复后重新验证 strategy-dependent reversal 是否成立。\\n\\n## 目标会议\\nEMNLP 2026 ARR — **截稿 2026-05-25（距今 11 天）**\\n\\n## 当前进展\\n- 阶段：**MVP 验证（importance 指标修复中）**\\n- 原始假设（phase-dependent reversal）：三轮否定（v1 bug / v2 negative / v3 negative）\\n- D010 pivot 信号：strategy-dependent reversal → **D013 判定可能是坏指标伪影**\\n- 根因：`cumulative_attention_received` 在 causal attention 下系统性偏向早期位置，`topk(largest=False)` 驱逐末尾 = 破坏最近上下文 → importance eviction 比 random 差 26-60×\\n- II 统计量不稳定：s025 per-sample mean (+152.7) vs 聚合计算 (-107.6) 符号相反，CI 宽 455 单位\\n- 服务器：**westd-22162** 4× RTX 6000 Pro 96G ✅\\n- GPU 使用：~2.9h / ~250h 预算\\n- **4 GPU 当前全部空闲**，等待指标修复后启动验证实验\\n\\n## 当前阻塞项\\n修复 `interaction_index.py` 中的 importance 指标（位置归一化），Agent 正在处理\\n\\n## Pivot 后 MVP Pass 标准（待修复后重新评估）\\n1. ≥2 个 sparsity level 下 importance-based II 的 95% CI 上界 < 0（显著 sub-additive）\\n2. Random II 在相同 sparsity 下 95% CI 下界 > 0（显著 super-additive）\\n3. 至少一个额外模型（Qwen2.5-7B）也观察到符号反转趋势\\n\\n## 近期任务\\n- [ ] 修复 `cumulative_attention_received` 位置偏差：`importance[j] /= (seq_len - j)`\\n- [ ] 修复后 sanity check：打印修复前后 top-10 eviction 位置确认不再系统性驱逐末尾\\n- [ ] II 统计量增加 median + winsorized mean + skewness + outlier count\\n- [ ] 修复后重跑 s=0.20 (cuda:0) 验证\\n- [ ] 修复后重跑 s=0.30 (cuda:1) 验证\\n- [ ] 根据修复后结果决定：strategy-dependent reversal 是否成立 → 继续 pivot / 再次 pivot\\n\\n## Post-MVP Milestones（暂定，修复结果出来后重估）\\n\\n| # | 阶段 | GPU-hours | 依赖 |\\n|---|------|-----------|------|\\n| M1' | Strategy reversal bootstrap + cross-model | ~8h |
+…[truncated 1773 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T02:24:47.728245+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T02:24:47.779115+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/memory.md\", \"content\": \"## 文献增量扫描分析 (2026-05-14)\\n\\n**核心发现对 framing 的影响：**\\n\\n1. **D010 假设得到多方间接支撑。** SLiM (ICML'25) 正式证明 compound compression 误差非加性；Compression Ordering 论文证明交互方向依赖于操作顺序——这与我们\\\"masking strategy 决定交互方向\\\"的核心 claim 同构。Phase Transitions (npj AI'26) 发现不同压缩维度有独立 PTP 且联合安全区可叠加，直接支撑 phase-gating 的理论动机。\\n\\n2. **GRASPrune (ACL'26 Main) 是最需警惕的 competitor。** 它也做 learned gate 联合 pruning FFN+heads under global budget，但(a)它在 weight space 不在 KV cache，(b)不分析 interaction direction (super/sub-additive)，(c)无 phase conditioning。我们需在 Related Work 中明确区分。\\n\\n3. **无论文直接对比 importance-based vs random masking 在 compound setting 下的交互方向差异。** 这是我们的核心 novelty gap。\\n\\n## Importance Metric Bug 全景 (2026-05-14 01:28 UTC)\\n\\n### 根因 1：Layer 27 NaN 中毒（主因，导致 importance 完全失效）\\n- `attentions[27]` 在 float16 下全 NaN → `kv_importance += NaN` → 整个 accumulator NaN\\n- `topk(largest=False)` 在全 NaN 上产生伪随机偏差 eviction → Q3 区域集中驱逐\\n- 结果：importance-based kv_ppl 比 random 高 26-60x（应该更低）\\n\\n### 根因 2：因果注意力位置偏差（二级问题）\\n- 因果 attention 中 position j 最多被 (seq_len-j) 个 query 关注\\n- 未归一化的 cumulative attention → 早期位置天然最高 → topk(largest=False) 倾向驱逐近期上下文\\n\\n### 根因 3：float16 inf×0→NaN scope 不一致\\n- Head masking hook 中 `inf × 0 = NaN` → ppl_both NaN\\n- PPL 和 II 聚合使用不同 segment 子集 → reported II 与 aggregate PPL 数学矛盾\\n\\n### 修复（commit `20182ec`）\\n1. NaN 层跳过：`if torch.isnan(attn_f).any(): continue`\\n2. 位置归一化：`importance /= arange(seq_len, 0, -1)`\\n3. torch.where 替代 `*`（消除 inf×0→NaN）\\n4. float32 cross_entropy\\n5. Robust statistics：median, winsorized_mean, skewness, outlier_count\\n\\n### 影响范围\\n**所有使用 importance masking 的实验（v4 legacy s01-s03, s025, s035, v4d）的 II 数据全部无效。** 只有 random baseline（mvp_v4_random_r2）不受影响。v5_fixed_s020 和 v5_fixed_s030 是修复后的首批验证实验。\\n\\n### Sanity check 结果\\n修复后 evicted importance < kept importance（正确），分布不再集中尾部。\\n\\n## Random Base
+…[truncated 1711 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T02:25:47.428393+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__load_project_config",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__load_project_config",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T02:25:47.428925+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T02:25:48.785726+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T02:25:48.836591+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_2ebb6b9a.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T02:25:53.512065+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T02:25:53.713189+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T02:25:53.713677+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "phase-gated-compound-sparse",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "phase-gated-compound-sparse",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T02:25:53.814340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"phase-gated-compound-sparse\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"westd-22162:cuda:0\", \"westd-22162:cuda:1\", \"westd-22162:cuda:2\", \"westd-22162:cuda:3\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/pacs\", \"servers\": [\"westd-22162\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T02:26:28.568462+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T02:26:28.569573+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T02:26:38.787790+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Session-start 初始化（registry + crons + report + ROADMAP）', 'status': 'completed', 'activeForm': '执行 session-start 初始化'}, {'content': '向 Director 汇报当前状态（4 GPU 运行中 + D014 发现 + 下一步建议）', 'status': 'in_progress', 'activeForm': '向 Director 汇报当前状态'}, {'content': 'Spawn CPU Worker: 文献调研 phase-adaptive compression', 'status': 'pending', 'activeForm': '派发文献调研 Worker'}, {'content': 'Spawn CPU Worker: 分析代码准备（importance vs random 对比可视化）', 'status': 'pending', 'activeForm': '派发分析代码 Worker'}, {'content': '等待 4 个 GPU 实验完成（s020_r2, s030_r2, random_s015, random_s025）', 'status': 'pending', 'activeForm': '等待 GPU 实验完成'}, {'content': '实验完成后：全矩阵对比分析 + MVP 判定 + 汇报 Director', 'status': 'pending', 'activeForm': '执行全矩阵对比分析'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Session-start 初始化（registry + crons + report + ROADMAP）', 'status': 'completed', 'activeForm': '执行 session-start 初始化'}, {'content': '向 Director 汇报当前状态（4 GPU 运行中 + D014 发现 + 下一步建议）', 'status': 'in_progress', 'activeForm': '向 Director 汇报当前状态'}, {'content': 'Spawn CPU Worker: 文献调研 phase-adaptive compression', 'status': 'pending', 'activeForm': '派发文献调研 Worker'}, {'content': 'Spawn CPU Worker: 分析代码准备（importance vs random 对比可视化）', 'status': 'pending', 'activeForm': '派发分析代码 Worker'}, {'content': '等待 4 个 GPU 实验完成（s020_r2, s030_r2, random_s015, random_s025）', 'status': 'pending', 'activeForm': '等待 GPU 实验完成'}, {'content': '实验完成后：全矩阵对比分析 + MVP 判定 + 汇报 Director', 'status': 'pending', 'activeForm': '执行全矩阵对比分析'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T02:26:38.788335+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T02:27:09.913671+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4 / 实际跑 4 | Worker 池 0→2 (GPU 0 / CPU 2 正在 spawn)\n\n## Loop #3 Session-Start 状态汇报\n\n### 当前实验（4 GPU 全满）\n| GPU | exp_id | 类型 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | mvp_v5_fixed_s020_r2 | importance s=0.20 | RUNNING |\n| cuda:1 | mvp_v5_fixed_s030_r2 | importance s=0.30 | RUNNING |\n| cuda:2 | mvp_v5_random_s015 | random s=0.15 | PREPARING |\n| cuda:3 | mvp_v5_random_s025 | random s=0.25 | PREPARING |\n\n预计 30-60 分钟全部完成（v3 参考: 50 题 ~55 分钟）。\n\n### D014 核心发现（上轮已记录，此处确认）\nv5 修复后 importance-based II **全部为正**（super-additive），D010 sign reversal 假设不成立。但发现 **strategy × phase magnitude crossover**：\n\n| 对比 | high phase (s=0.30) | low phase (s=0.30) | gradient ratio |\n|------|--------------------|--------------------|----------------|\n| importance | 1.18 | 1926 | 1633× |\n| random | 9.55 | 17.37 | 1.8× |\n\n- Importance 在 high-sparsity phase **优于** random（1.18 vs 9.55）\n- Importance 在 low-sparsity phase **灾难性恶化**（1926 vs 17.37，111×worse）\n- Importance 的 phase gradient 是 random 的 ~900×\n\n### 当前 Worker 部署\n正在 spawn 2 个 CPU Worker：\n1. 文献调研：phase-adaptive compression / dynamic sparsity budget\n2. 分析代码准备：importance vs random 全矩阵对比可视化\n\n### 下一步\n实验完成后提供完整 importance vs random 对比矩阵（4 sparsity × 3 phases × 2 strategies），据此判断：\n- \"Phase-modulated compound sparsity efficiency\" 能否作为新 story\n- 是否需要再次 pivot\n\n请 Director 确认：当前方向（magnitude crossover as story）是否值得继续推进？或需要等全部数据再决策？",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4 / 实际跑 4 | Worker 池 0→2 (GPU 0 / CPU 2 正在 spawn)\n\n## Loop #3 Session-Start 状态汇报\n\n### 当前实验（4 GPU 全满）\n| GPU | exp_id | 类型 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | mvp_v5_fixed_s020_r2 | importance s=0.20 | RUNNING |\n| cuda:1 | mvp_v5_fixed_s030_r2 | importance s=0.30 | RUNNING |\n| cuda:2 | mvp_v5_random_s015 | random s=0.15 | PREPARING |\n| cuda:3 | mvp_v5_random_s025 | random s=0.25 | PREPARING |\n\n预计 30-60 分钟全部完成（v3 参考: 50 题 ~55 分钟）。\n\n### D014 核心发现（上轮已记录，此处确认）\nv5 修复后 importance-based II **全部为正**（super-additive），D010 sign reversal 假设不成立。但发现 **strategy × phase magnitude crossover**：\n\n| 对比 | high phase (s=0.30) | low phase (s=0.30) | gradient ratio |\n|------|--------------------|--------------------|----------------|\n| importance | 1.18 | 1926 | 1633× |\n| random | 9.55 | 17.37 | 1.8× |\n\n- Importance 在 high-sparsity phase **优于** random（1.18 vs 9.55）\n- Importance 在 low-sparsity phase **灾难性恶化**（1926 vs 17.37，111×worse）\n- Importance 的 phase gradient 是 random 的 ~900×\n\n### 当前 Worker 部署\n正在 spawn 2 个 CPU Worker：\n1. 文献调研：phase-adaptive compression / dynamic sparsity budget\n2. 分析代码准备：importance vs random 全矩阵对比可视化\n\n### 下一步\n实验完成后提供完整 importance vs random 对比矩阵（4 sparsity × 3 phases × 2 strategies），据此判断：\n- \"Phase-modulated compound sparsity efficiency\" 能否作为新 story\n- 是否需要再次 pivot\n\n请 Director 确认：当前方向（magnitude crossover as story）是否值得继续推进？或需要等全部数据再决策？",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T02:27:14.487934+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_fdc656be1c7fe17c11ab639cdbce3710:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4574
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T02:27:40.850493+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "research:phase-adaptive-compression-lit",
+  "project": "phase-gated-compound-sparse",
+  "task_prompt": "## 任务：文献调研 — Phase-Adaptive Compound Compression\n\n### 背景\n我们在研究 compound sparsity（attention head pruning + KV cache eviction 同时应用）时发现一个关键现象：\n\n**Magnitude Crossover**：importance-based KV eviction 在不同推理阶段（high/mid/low sparsity phases）的表现与 random eviction 相比呈现戏剧性交叉：\n- High-sparsity phase: importance 远优于 random（II: 1.18 vs 9.55）\n- Low-sparsity phase: importance 灾难性恶化（II: 1926 vs 17.37，差 111 倍）\n- Importance 的 phase gradient 是 random 的 ~900 倍\n\n这暗示：**单一的全局 eviction 策略不适合 compound sparsity，需要 phase-adaptive budget 或 per-phase metric**。\n\n### 搜索方向\n请搜索以下方向的相关论文（2024-2026）：\n\n1. **Phase-adaptive / dynamic compression**：推理过程中根据当前状态动态调整压缩策略或预算的方法\n2. **Compound/joint sparsity interaction**：同时应用多种稀疏化方法时的交互效应分析\n3. **Reasoning-phase-dependent model behavior**：LLM 推理不同阶段（exploration vs exploitation, CoT phases）的行为差异\n4. **KV cache eviction strategy comparison**：比较不同 KV eviction 策略在不同条件下的优劣\n5. **Magnitude crossover / performance inversion**：任何展示某方法在一种条件下优于另一方法但在另一条件下反转的现象\n\n### 产出要求\n1. 对每篇相关论文：标题、作者、年份、venue、核心发现、与我们工作的关系（competitor/support/orthogonal）\n2. 判断是否有论文已经报告过类似的 \"magnitude crossover\" 现象\n3. 识别我们发现的 novelty gap（什么是已知的，什么是我们独有的发现）\n4. 将结果写入项目的 literature_map.yaml（使用 save_project_file 工具）\n\n### 输出格式\n用 save_project_file 将调研报告写入 `literature_scan_phase_adaptive.md`，并更新 `literature_map.yaml`（如果存在的话追加，不存在则创建）。",
+  "tool_groups": "['knowledge']",
+  "tools": "['WebSearch', 'WebFetch']",
+  "context": "项目：phase-gated-compound-sparse。核心方向：strategy-dependent interaction in compound sparsity。D014 发现 importance vs random 的 phase-modulated magnitude crossover。截稿 EMNLP 2026 ARR 2026-05-25。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:phase-adaptive-compression-lit",
+    "project": "phase-gated-compound-sparse",
+    "task_prompt": "## 任务：文献调研 — Phase-Adaptive Compound Compression\n\n### 背景\n我们在研究 compound sparsity（attention head pruning + KV cache eviction 同时应用）时发现一个关键现象：\n\n**Magnitude Crossover**：importance-based KV eviction 在不同推理阶段（high/mid/low sparsity phases）的表现与 random eviction 相比呈现戏剧性交叉：\n- High-sparsity phase: importance 远优于 random（II: 1.18 vs 9.55）\n- Low-sparsity phase: importance 灾难性恶化（II: 1926 vs 17.37，差 111 倍）\n- Importance 的 phase gradient 是 random 的 ~900 倍\n\n这暗示：**单一的全局 eviction 策略不适合 compound sparsity，需要 phase-adaptive budget 或 per-phase metric**。\n\n### 搜索方向\n请搜索以下方向的相关论文（2024-2026）：\n\n1. **Phase-adaptive / dynamic compression**：推理过程中根据当前状态动态调整压缩策略或预算的方法\n2. **Compound/joint sparsity interaction**：同时应用多种稀疏化方法时的交互效应分析\n3. **Reasoning-phase-dependent model behavior**：LLM 推理不同阶段（exploration vs exploitation, CoT phases）的行为差异\n4. **KV cache eviction strategy comparison**：比较不同 KV eviction 策略在不同条件下的优劣\n5. **Magnitude crossover / performance inversion**：任何展示某方法在一种条件下优于另一方法但在另一条件下反转的现象\n\n### 产出要求\n1. 对每篇相关论文：标题、作者、年份、venue、核心发现、与我们工作的关系（competitor/support/orthogonal）\n2. 判断是否有论文已经报告过类似的 \"magnitude crossover\" 现象\n3. 识别我们发现的 novelty gap（什么是已知的，什么是我们独有的发现）\n4. 将结果写入项目的 literature_map.yaml（使用 save_project_file 工具）\n\n### 输出格式\n用 save_project_file 将调研报告写入 `literature_scan_phase_adaptive.md`，并更新 `literature_map.yaml`（如果存在的话追加，不存在则创建）。",
+    "tool_groups": "['knowledge']",
+    "tools": "['WebSearch', 'WebFetch']",
+    "context": "项目：phase-gated-compound-sparse。核心方向：strategy-dependent interaction in compound sparsity。D014 发现 importance vs random 的 phase-modulated magnitude crossover。截稿 EMNLP 2026 ARR 2026-05-25。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T02:27:59.486493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_phase-adaptive-compression-lit_20260514T022741\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/logs/workers/worker_research_phase-adaptive-compression-lit_20260514T022741.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_phase-adaptive-compression-lit_20260514T022741 started. Use get_worker_status('worker_research_phase-adaptive-compression-lit_20260514T022741') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 18635
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T02:28:01.546561+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:analysis-viz-prep",
+  "project": "phase-gated-compound-sparse",
+  "task_prompt": "## 任务：编写 Importance vs Random 全矩阵对比分析脚本\n\n### 背景\n我们在 westd-22162 服务器上跑了一系列 compound sparsity profiling 实验，分为 importance-based 和 random KV eviction 两组。实验完成后需要自动化对比分析。\n\n### 数据位置（服务器 /root/autodl-tmp/pacs/）\n**v5 修复后 importance-based（NaN skip + position normalization）：**\n- profiling_output_v5_s015/ — sparsity=0.15（已完成）\n- profiling_output_v5_s020/ 或 profiling_output_v5_s020_r2/ — sparsity=0.20（r2 正在跑）\n- profiling_output_v5_s025/ — sparsity=0.25（已完成）\n- profiling_output_v5_s030/ 或 profiling_output_v5_s030_r2/ — sparsity=0.30（r2 正在跑）\n\n**Random baseline：**\n- profiling_output_v4_random_r2/ — sparsity=0.1~0.3 全覆盖（已完成）\n- profiling_output_v5_random_s015/ — sparsity=0.15（正在跑）\n- profiling_output_v5_random_s025/ — sparsity=0.25（正在跑）\n\n每个目录下有 `profiling_results.json`，包含 per-problem 的 II 数据和 PPL 数据。\n\n### 你的任务\n1. SSH 到 westd-22162，先读一个已完成的 profiling_results.json（如 profiling_output_v5_s025/profiling_results.json）了解数据结构\n2. 在 /root/autodl-tmp/pacs/ 下编写 `analyze_crossover.py` 脚本，功能：\n   - 加载所有可用的 importance 和 random profiling_results.json\n   - 生成对比表格：sparsity × phase × strategy 的 II mean/median/CI\n   - 计算 phase gradient ratio（low/high II ratio）for each strategy\n   - 计算 importance advantage/disadvantage（importance II / random II）per phase per sparsity\n   - 用 matplotlib 生成图表：\n     a) Heatmap: II值 (rows=phase, cols=sparsity, separate panels for importance vs random)\n     b) Line plot: II vs sparsity per phase, importance vs random overlay\n     c) Bar chart: phase gradient ratio comparison\n   - 输出 PDF 到 /root/autodl-tmp/pacs/analysis_output/\n3. dry-run 验证脚本能跑通（用已完成的数据子集）\n4. 脚本顶部写清楚文件注释（目的、输入、输出、依赖）\n\n### 环境\n- conda base: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Python 在 /root/miniconda3/bin/python\n- matplotlib 应该已装（如未装则 pip install）\n- 项目路径：/root/autodl-tmp/pacs/\n\n### 验证\n写完脚本后用已有数据跑一次 dry-run，确认能生成输出。如果某些目录不存在（实验还没完成），脚本应 gracefully skip。",
+  "tool_groups": "['ssh']",
+  "context": "服务器 westd-22162，conda base 环境，项目路径 /root/autodl-tmp/pacs/。GPU 白名单 cuda:0~3。此 Worker 只做代码编写和 dry-run，不提交 GPU 实验。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:analysis-viz-prep",
+    "project": "phase-gated-compound-sparse",
+    "task_prompt": "## 任务：编写 Importance vs Random 全矩阵对比分析脚本\n\n### 背景\n我们在 westd-22162 服务器上跑了一系列 compound sparsity profiling 实验，分为 importance-based 和 random KV eviction 两组。实验完成后需要自动化对比分析。\n\n### 数据位置（服务器 /root/autodl-tmp/pacs/）\n**v5 修复后 importance-based（NaN skip + position normalization）：**\n- profiling_output_v5_s015/ — sparsity=0.15（已完成）\n- profiling_output_v5_s020/ 或 profiling_output_v5_s020_r2/ — sparsity=0.20（r2 正在跑）\n- profiling_output_v5_s025/ — sparsity=0.25（已完成）\n- profiling_output_v5_s030/ 或 profiling_output_v5_s030_r2/ — sparsity=0.30（r2 正在跑）\n\n**Random baseline：**\n- profiling_output_v4_random_r2/ — sparsity=0.1~0.3 全覆盖（已完成）\n- profiling_output_v5_random_s015/ — sparsity=0.15（正在跑）\n- profiling_output_v5_random_s025/ — sparsity=0.25（正在跑）\n\n每个目录下有 `profiling_results.json`，包含 per-problem 的 II 数据和 PPL 数据。\n\n### 你的任务\n1. SSH 到 westd-22162，先读一个已完成的 profiling_results.json（如 profiling_output_v5_s025/profiling_results.json）了解数据结构\n2. 在 /root/autodl-tmp/pacs/ 下编写 `analyze_crossover.py` 脚本，功能：\n   - 加载所有可用的 importance 和 random profiling_results.json\n   - 生成对比表格：sparsity × phase × strategy 的 II mean/median/CI\n   - 计算 phase gradient ratio（low/high II ratio）for each strategy\n   - 计算 importance advantage/disadvantage（importance II / random II）per phase per sparsity\n   - 用 matplotlib 生成图表：\n     a) Heatmap: II值 (rows=phase, cols=sparsity, separate panels for importance vs random)\n     b) Line plot: II vs sparsity per phase, importance vs random overlay\n     c) Bar chart: phase gradient ratio comparison\n   - 输出 PDF 到 /root/autodl-tmp/pacs/analysis_output/\n3. dry-run 验证脚本能跑通（用已完成的数据子集）\n4. 脚本顶部写清楚文件注释（目的、输入、输出、依赖）\n\n### 环境\n- conda base: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Python 在 /root/miniconda3/bin/python\n- matplotlib 应该已装（如未装则 pip install）\n- 项目路径：/root/autodl-tmp/pacs/\n\n### 验证\n写完脚本后用已有数据跑一次 dry-run，确认能生成输出。如果某些目录不存在（实验还没完成），脚本应 gracefully skip。",
+    "tool_groups": "['ssh']",
+    "context": "服务器 westd-22162，conda base 环境，项目路径 /root/autodl-tmp/pacs/。GPU 白名单 cuda:0~3。此 Worker 只做代码编写和 dry-run，不提交 GPU 实验。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-14T02:43:52.949520+00:00_
+
+Director 已通知。现在 spawn 2 个 CPU Worker 填充 Worker 池。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_ii_profiling_v4c"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+38 recorded events
+
+### User
+
+_source line 34 · 2026-05-14T05:46:48.379984+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T05:47:02.338579+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T05:47:02.389265+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T05:47:05.608601+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T05:47:05.659334+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T05:47:06.223662+00:00_
+
+Error: result (78,161 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 615
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T05:47:06.629294+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "report.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "file": "report.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T05:47:06.680984+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T05:47:07.130541+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "phase-gated-compound-sparse",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "phase-gated-compound-sparse",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T05:47:32.972266+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 5, \"results\": [{\"exp_id\": \"v6_random_s015\", \"success\": true, \"actions\": [\"Job still running (pid=72073)\"]}, {\"exp_id\": \"v6_random_s020\", \"success\": true, \"actions\": [\"Sentinel EXIT_CODE=0 → Registry → ANALYZING\", \"Cron deleted\"]}, {\"exp_id\": \"v6_random_s025\", \"success\": true, \"actions\": [\"Job still running (pid=73459)\"]}, {\"exp_id\": \"v6_random_s030_r2\", \"success\": true, \"actions\": [\"Process gone, no sentinel, no W&B — escalating to agent (miss 3/5)\"]}, {\"exp_id\": \"v6_random_s030_r3\", \"success\": true, \"actions\": [\"Job still running (pid=77560)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 27312
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T05:47:32.973014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T05:47:13Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 70 个实验 — ANALYZING 1, DONE 33, PREPARING 8, QUEUED 25, RUNNING 3\\n**DONE 分布**: failed 12, killed 3, negative 7, success 11\\n\\n### GPU 占用\\n- **分配**: 4 张 — westd-22162:cuda:0, westd-22162:cuda:1, westd-22162:cuda:2, westd-22162:cuda:3\\n- **实际运行**: 3 张 — westd-22162:cuda:0(v6_random_s015), westd-22162:cuda:3(v6_random_s025), westd-22162:cuda:2(v6_random_s030_r3)\\n- **空闲（分配了没跑）**: westd-22162:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `v6_random_s015` | westd-22162 | cuda:0 | 72073 | `~/runs/phase-gated-compound-sparse/v6_random_s015.log` |\\n| `v6_random_s025` | westd-22162 | cuda:3 | 73459 | `~/runs/phase-gated-compound-sparse/v6_random_s025.log` |\\n| `v6_random_s030_r3` | westd-22162 | cuda:2 | 77560 | `~/runs/phase-gated-compound-sparse/v6_random_s030_r3.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `v6_random_s030` [failed] — 2026-05-14T05:32:08 — EXIT_CODE=143 (SIGTERM — graceful kill)\\n- `v6_importance_s030` [success] — 2026-05-14T04:48:16\\n- `v6_importance_s025` [success] — 2026-05-14T04:48:14\\n- `v6_importance_s020` [success] — 2026-05-14T04:48:11\\n- `v6_importance_s015` [success] — 2026-05-14T04:48:09\\n\\n### 🔴 最近失败原因 (top 3)\\n- `v6_random_s030`: EXIT_CODE=143 (SIGTERM — graceful kill)\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| v6_random_s030_r3 | v6 random masking s=0.30 重试 (cuda:2)。前次被误杀+tmux冲突。获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。 | — | — | — |\
+…[truncated 2984 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 26343
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T05:47:33.027152+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/ROADMAP.md\", \"content\": \"# phase-gated-compound-sparse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 05:45 UTC | 更新原因: 修正核心方向数字为 problem-level 11-42×（Reviewer 第四次标记）；新增 permutation test 修复任务和 C4 attention entropy 测量考虑\\n\\n> 核心文档链: paper_framing.md → experiment_plan.yaml → 本 ROADMAP\\n\\n## 核心方向\\n**Phase-modulated compound sparsity severity**：importance-based eviction 的 compound interaction 在 low-sparsity phase 急剧放大（gradient 11-42×, problem-level bootstrap; bf16 数据待更新），而 random 保持平坦（~1×）。详见 paper_framing.md。\\n\\n## 目标会议\\nEMNLP 2026 ARR — **截稿 2026-05-25（距今 11 天）**\\n\\n## 当前进展\\n- 阶段：**Research + 论文写作并行**\\n- Core claims C1/C2/C3/C6 已 confirmed（fp16 problem-level data; bf16 重跑获取干净数据中）\\n- C2 注意：problem-level 非严格单调（s015→s020 下降），论文用 \\\"increases with sparsity\\\" 措辞\\n- C4 (mechanism) partially confirmed，C5 (cross-model) pending\\n- **bf16 全量重跑**：16 实验 QUEUED（D020），等 fp16 v6_random 完成即启 Batch 1\\n- **Cross-model 澄清**（D022）：两模型共享 Qwen2ForCausalLM，是 cross-model 非 cross-architecture\\n- 论文 §2/§3/§4 初稿完成；§5/§6 骨架 Worker 进行中\\n- Paper Agent 正在 patch §3 + 规划 §7 \\\"trivially expected\\\" 攻防\\n\\n## 近期任务\\n- [ ] fp16 v6_random ×4 跑完 → 移至 results_fp16_ref/\\n- [ ] bf16 Batch 1: DeepSeek importance ×4 (~45min)\\n- [ ] bf16 Batch 2: DeepSeek random ×4 (~45min) → 立即启动 permutation test\\n- [ ] bf16 Batch 3: Qwen importance ×4 (~45min)\\n- [ ] bf16 Batch 4: Qwen random ×4 (~45min)\\n- [ ] Permutation test 修复：mean→median test statistic 统一 + EPS edge case（Reviewer flagged）\\n- [ ] §5 Results 骨架（数字留 placeholder 等 bf16 数据）\\n- [ ] §6 Analysis 骨架\\n- [ ] Related Work 补 SnapKV/NACL 引用 + gap statement 软化\\n- [ ] Discussion §7 \\\"trivially expected\\\" 攻防 + Limitations（cross-model 非 cross-architecture）\\n- [ ] Multiplicative null appendix\\n- [ ] bf16 数据到手后：统一更新所有文件中的具体数字\\n\\n## GPU 预算\\n- RTX 6000 Pro ×4: westd-22162 cuda:0~3\\n- 已用: ~13h /
+…[truncated 2556 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 26346
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T05:47:33.027796+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"phase-gated-compound-sparse\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"westd-22162:cuda:0\", \"westd-22162:cuda:1\", \"westd-22162:cuda:2\", \"westd-22162:cuda:3\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/pacs\", \"servers\": [\"westd-22162\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 25897
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T05:47:44.296384+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']\n# Show RUNNING, ANALYZING, and recent experiments\nfor exp in exps:\n    status = exp.get('status','')\n    if status in ('RUNNING','ANALYZING','PREPARING','QUEUED'):\n        print(f\\\"{exp['exp_id']} | {status} | {exp.get('conclusion','')} | server={exp.get('spec',{}).get('server','')} | gpu={exp.get('spec',{}).get('gpu','')} | pid={exp.get('spec',{}).get('pid','')}\\\")\n\" 2>&1 | head -60",
+  "description": "Extract RUNNING/ANALYZING/QUEUED experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']\n# Show RUNNING, ANALYZING, and recent experiments\nfor exp in exps:\n    status = exp.get('status','')\n    if status in ('RUNNING','ANALYZING','PREPARING','QUEUED'):\n        print(f\\\"{exp['exp_id']} | {status} | {exp.get('conclusion','')} | server={exp.get('spec',{}).get('server','')} | gpu={exp.get('spec',{}).get('gpu','')} | pid={exp.get('spec',{}).get('pid','')}\\\")\n\" 2>&1 | head -60",
+    "description": "Extract RUNNING/ANALYZING/QUEUED experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T05:47:44.520721+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T05:47:45.087703+00:00_
+
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    status = exp.get('status','')
+             ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "elapsed_ms": 791
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T05:47:45.141204+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/memory.md\", \"content\": \"# Project Memory — phase-gated-compound-sparse\\n\\n## 关键决策与经验\\n\\n### D022 写作修正 + Limitations (2026-05-14)\\n- **术语**: \\\"cross-architecture replication\\\" → \\\"cross-model replication\\\"（两模型共享 Qwen2ForCausalLM 架构，区别在训练方式）\\n- **§7 Limitations 必须声明**: 两模型共享 Qwen2 base architecture，cross-model replication 控制了架构变量、隔离了训练方式影响，但不能 claim 跨架构泛化（如 LLaMA vs Qwen vs Mistral）\\n- **Qwen 实验排在 Batch 3/4**（DeepSeek bf16 重跑之后）\\n\\n### D021 写作 + bf16 并行 (2026-05-14)\\n- Results 骨架先写，数字用 `\\\\placeholder{}`，不用 fp16 数字\\n- §6 Analysis 框架先写，定量部分留空\\n- 一致性：II 公式统一 ratio 形式，GPU 型号统一，Bootstrap B 值确认\\n\\n### D020 bf16 全量重跑 (2026-05-14)\\n- **决策**: 论文所有数值必须来自同一 dtype (bf16) 的实验。fp16 数据仅作 cross-validation reference\\n- **16 个实验 4 批次**: Batch 1 DeepSeek importance → Batch 2 DeepSeek random → Batch 3 Qwen importance → Batch 4 Qwen random\\n- **每批 4 GPU 并行 ~45min，总计 ~3h**\\n- **fp16 结果移至 results_fp16_ref/ 子目录**\\n- **Batch 2 完成后立即启动统计分析，不等 Qwen**\\n- **Qwen random 也要跑**（cross-model 验证需要 importance vs random 配对）\\n\\n### D015 GO 判定依据 (2026-05-14)\\n- **Median 为主指标**：mean/median ratio 高达 43:1 (s=0.30 low phase)，极端重尾分布使 mean 不可靠\\n- **GO 标准**：importance median gradient >> random median gradient\\n- **实际数据**：importance 12.8×→28.7×→52.9×→74.9× vs random ~1× → 差异数量级级别\\n- **Sub-exponential 增长**：gradient 增长率递减 (2.24x→1.84x→1.42x)，描述为\\\"单调递增但亚指数\\\"\\n- **Crossover 现象**：s=0.25 时 importance 在 high phase 优于 random (0.584 vs 3.002)，但在 low phase 劣于 random (30.903 vs 2.915) — 这是新颖发现\\n\\n### Entropy-Discrimination Collapse 机制 (2026-05-14)\\n- Head pruning → surviving heads 注意力更均匀 → importance score 区分度崩溃\\n- Importance eviction 在 distributed-attention phases 退化为有偏伪随机\\n- 这解释了 crossover: high-sparsity phase 注意力集中→importance 有效; low-sparsity phase 注意力分散→importance 失效\\n\\n### Importance 指标三大修复 (2026-05-14, commit 20182ec)\\n1. `torch.
+…[truncated 1563 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 620
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T05:47:51.392873+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']\n# exps is a dict keyed by exp_id\nfor exp_id, exp in exps.items():\n    status = exp.get('status','')\n    if status in ('RUNNING','ANALYZING','PREPARING','QUEUED'):\n        spec = exp.get('spec',{}) or {}\n        print(f'{exp_id} | {status} | server={spec.get(\\\"server\\\",\\\"\\\")} | gpu={spec.get(\\\"gpu\\\",\\\"\\\")} | pid={spec.get(\\\"pid\\\",\\\"\\\")}')\n\" 2>&1",
+  "description": "Parse registry as dict to extract active experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']\n# exps is a dict keyed by exp_id\nfor exp_id, exp in exps.items():\n    status = exp.get('status','')\n    if status in ('RUNNING','ANALYZING','PREPARING','QUEUED'):\n        spec = exp.get('spec',{}) or {}\n        print(f'{exp_id} | {status} | server={spec.get(\\\"server\\\",\\\"\\\")} | gpu={spec.get(\\\"gpu\\\",\\\"\\\")} | pid={spec.get(\\\"pid\\\",\\\"\\\")}')\n\" 2>&1",
+    "description": "Parse registry as dict to extract active experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T05:47:51.696842+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 9, in &lt;module>
+    status = exp.get('status','')
+             ^^^^^^^
+AttributeError: 'int' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "elapsed_ms": 303
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T05:47:57.234502+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']\nprint(type(exps))\nif isinstance(exps, list):\n    print('list, len=', len(exps))\n    print(type(exps[0]))\n    print(json.dumps(exps[0], indent=2)[:500])\nelif isinstance(exps, dict):\n    keys = list(exps.keys())[:5]\n    print('dict keys sample:', keys)\n    first_key = keys[0]\n    print(type(exps[first_key]))\n    print(json.dumps(exps[first_key], indent=2)[:500])\n\" 2>&1",
+  "description": "Probe registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']\nprint(type(exps))\nif isinstance(exps, list):\n    print('list, len=', len(exps))\n    print(type(exps[0]))\n    print(json.dumps(exps[0], indent=2)[:500])\nelif isinstance(exps, dict):\n    keys = list(exps.keys())[:5]\n    print('dict keys sample:', keys)\n    first_key = keys[0]\n    print(type(exps[first_key]))\n    print(json.dumps(exps[first_key], indent=2)[:500])\n\" 2>&1",
+    "description": "Probe registry data structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T05:47:57.337032+00:00_
+
+&lt;class 'dict'>
+dict keys sample: ['experiments', 'count', 'total', 'baseline']
+&lt;class 'dict'>
+{
+  "v6_random_s030_r2": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:32:09.051Z",
+    "updated_at": "2026-05-14T05:44:29.805Z",
+    "hypothesis": "v6 random masking s=0.30 \u91cd\u8bd5 (cuda:2)\u3002\u524d\u6b21\u88ab\u8bef\u6740\u3002\u83b7\u53d6 per_problem_ii \u7528\u4e8e importance vs random problem-level permutation test\u3002\u4e0e v6_importance_s030 \u5f62\u6210\u5bf9\u7167\u3002",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/p
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T05:48:02.062588+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor exp_id, exp in exps.items():\n    status = exp.get('status','')\n    if status in ('RUNNING','ANALYZING','PREPARING','QUEUED'):\n        spec = exp.get('spec',{}) or {}\n        print(f'{exp_id} | {status} | gpu={spec.get(\\\"gpu\\\",\\\"\\\")} | pid={spec.get(\\\"pid\\\",\\\"\\\")}')\n\" 2>&1",
+  "description": "List active experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor exp_id, exp in exps.items():\n    status = exp.get('status','')\n    if status in ('RUNNING','ANALYZING','PREPARING','QUEUED'):\n        spec = exp.get('spec',{}) or {}\n        print(f'{exp_id} | {status} | gpu={spec.get(\\\"gpu\\\",\\\"\\\")} | pid={spec.get(\\\"pid\\\",\\\"\\\")}')\n\" 2>&1",
+    "description": "List active experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T05:48:02.264647+00:00_
+
+v6_random_s030_r2 | QUEUED | gpu=['cuda:2'] | pid=77228
+bf16_qw_rand_s030 | QUEUED | gpu= | pid=
+bf16_qw_rand_s025 | QUEUED | gpu= | pid=
+bf16_qw_rand_s020 | QUEUED | gpu= | pid=
+bf16_qw_rand_s015 | QUEUED | gpu= | pid=
+bf16_qw_imp_s030 | QUEUED | gpu= | pid=
+bf16_qw_imp_s025 | QUEUED | gpu= | pid=
+bf16_qw_imp_s020 | QUEUED | gpu= | pid=
+bf16_qw_imp_s015 | QUEUED | gpu= | pid=
+bf16_ds_rand_s030 | QUEUED | gpu= | pid=
+bf16_ds_rand_s025 | QUEUED | gpu= | pid=
+bf16_ds_rand_s020 | QUEUED | gpu= | pid=
+bf16_ds_rand_s015 | QUEUED | gpu= | pid=
+bf16_ds_imp_s030 | QUEUED | gpu= | pid=
+bf16_ds_imp_s025 | QUEUED | gpu= | pid=
+bf16_ds_imp_s020 | QUEUED | gpu= | pid=
+bf16_ds_imp_s015 | QUEUED | gpu= | pid=
+bf16_importance_s030 | QUEUED | gpu= | pid=
+bf16_importance_s025 | QUEUED | gpu= | pid=
+bf16_importance_s020 | QUEUED | gpu= | pid=
+bf16_importance_s015 | QUEUED | gpu= | pid=
+v6_random_s030_r3 | RUNNING | gpu=['cuda:2'] | pid=77560
+bf16_qwen_importance_s030 | PREPARING | gpu= | pid=
+bf16_qwen_importance_s025 | PREPARING | gpu= | pid=
+bf16_qwen_importance_s020 | PREPARING | gpu= | pid=
+bf16_qwen_importance_s015 | PREPARING | gpu= | pid=
+bf16_random_s030 | PREPARING | gpu= | pid=
+bf16_random_s025 | PREPARING | gpu= | pid=
+bf16_random_s020 | PREPARING | gpu= | pid=
+bf16_random_s015 | PREPARING | gpu= | pid=
+qwen_importance_s030 | QUEUED | gpu= | pid=
+qwen_importance_s020 | QUEUED | gpu= | pid=
+qwen_importance_s015 | QUEUED | gpu= | pid=
+v6_random_s025 | RUNNING | gpu=['cuda:3'] | pid=73459
+v6_random_s020 | RUNNING | gpu=['cuda:1'] | pid=71488
+v6_random_s015 | RUNNING | gpu=['cuda:0'] | pid=72073
+qwen_importance_s025 | QUEUED | gpu= | pid=
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T05:48:11.999995+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__list_constraints",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__list_constraints",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T05:48:12.000546+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T05:48:15.536730+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T05:48:15.990433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_paper_writing_results_5_1_20260514T054652\", \"task_type\": \"paper_writing:results_5_1\", \"project\": \"phase-gated-compound-sparse\", \"status\": \"running\", \"started_at\": \"2026-05-14T05:46:52.898644+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_writing_p0-critical-fix_20260514T054759\", \"task_type\": \"writing:p0-critical-fix\", \"project\": \"phase-gated-compound-sparse\", \"status\": \"running\", \"started_at\": \"2026-05-14T05:47:59.627260+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ssh_gpu-status-and-fp16-move_20260514T054813\", \"task_type\": \"ssh:gpu-status-and-fp16-move\", \"project\": \"phase-gated-compound-sparse\", \"status\": \"running\", \"started_at\": \"2026-05-14T05:48:13.527360+00:00\", \"ended_at\": null}], \"count\": 3}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T05:48:16.242206+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "paper_framing.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "file": "paper_framing.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T05:48:16.294070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/paper_framing.md\", \"content\": \"# Paper Framing — Phase-Gated Compound Sparsity\\n\\n> 最后更新: 2026-05-14 | 维护者: Director\\n\\n## Core Insight\\n\\nCompound sparsity（attention head pruning + KV cache eviction）的 severity 不是固定常数——它是 eviction strategy 和 reasoning phase 交互的涌现属性。Importance-based eviction 在 low-sparsity reasoning phase 产生 11-42× severity amplification（problem-level bootstrap），而 random eviction 保持 ~1× 平坦。这一发现挑战了 compound degradation 均匀分布的隐含假设。\\n\\n**⚠️ 数字基准**：本文件中的具体数字（gradient magnitude, crossover values）基于 fp16 problem-level bootstrap 结果。bf16 重跑完成后必须统一更新。segment-level 估计（12-75×）已弃用，仅在被明确标注时作为参考。\\n\\n## Narrative Arc\\n\\nCompound sparsity 是高效 LLM 推理的实用部署需求，但 prior work（SparK, Ada-KV, SLiM）将 compound interaction 视为均匀超可加。我们发现 severity 是 strategy × phase 交互的涌现属性：importance eviction 在 distributed-attention phase 剧烈放大 compound degradation（problem-level gradient 11-42×），而 random eviction 在所有 phase 保持平坦（~1×）。我们通过 entropy-discrimination collapse 机制解释这一现象：head pruning → attention 重分布 → importance score 的判别力崩塌 → importance eviction 退化为有偏伪随机。这一发现为 phase-aware sparsity allocation 提供了动机。\\n\\n**Framing 硬约束（D015）**：\\n- MUST: \\\"emergent phase-strategy interaction\\\"\\n- MUST NOT: \\\"importance metric limitation / importance is broken\\\"\\n\\n## Core Claims\\n\\n| ID | Claim | Status | Key Evidence |\\n|----|-------|--------|-------------|\\n| C1 | Compound sparsity severity is strategy-dependent | confirmed | importance gradient 11-42× (problem-level) vs random ~1×. 待 bf16 数据更新 |\\n| C2 | Severity is phase-modulated (amplified in low-sparsity phase) | confirmed | low phase >> high phase at all 4 sparsity levels. Problem-level: 11.53→11.05→35.72→41.92（s015→s020 非严格单调，bf16 数据可能改变趋势。论文措辞用 \\\"increases with sparsity\\\" 而非 \\\"monotonically increases\\\"） |\\n| C3 | Phase-strategy crossover exists | confirmed | s=0.25: import
+…[truncated 3338 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T05:48:20.021587+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T05:48:20.072217+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T05:48:23.505654+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'v6_random_s020'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'v6_random_s020'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T05:48:23.657600+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0069}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T05:48:23.658052+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'v6_random_s030_r2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'v6_random_s030_r2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T05:48:23.708593+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0053}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T05:48:33.940929+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# v6_random_s020\ne = exps.get('v6_random_s020', {})\nprint('=== v6_random_s020 ===')\nprint(json.dumps({k: e[k] for k in ['status','conclusion','metrics','spec','hypothesis','updated_at'] if k in e}, indent=2, default=str))\n\nprint()\n\n# v6_random_s030_r2\ne2 = exps.get('v6_random_s030_r2', {})\nprint('=== v6_random_s030_r2 ===')\nprint(json.dumps({k: e2[k] for k in ['status','conclusion','metrics','spec','hypothesis','updated_at'] if k in e2}, indent=2, default=str))\n\nprint()\n\n# v6_random_s030_r3\ne3 = exps.get('v6_random_s030_r3', {})\nprint('=== v6_random_s030_r3 ===')\nprint(json.dumps({k: e3[k] for k in ['status','conclusion','metrics','spec','hypothesis','updated_at'] if k in e3}, indent=2, default=str))\n\" 2>&1",
+  "description": "Get details on v6_random_s020, s030_r2, s030_r3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-2ebb6b9a/5eacdcfd-0a6e-43c8-b0e0-e518049c5c50/tool-results/mcp-agent-ml-research-read_registry-1778737626078.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# v6_random_s020\ne = exps.get('v6_random_s020', {})\nprint('=== v6_random_s020 ===')\nprint(json.dumps({k: e[k] for k in ['status','conclusion','metrics','spec','hypothesis','updated_at'] if k in e}, indent=2, default=str))\n\nprint()\n\n# v6_random_s030_r2\ne2 = exps.get('v6_random_s030_r2', {})\nprint('=== v6_random_s030_r2 ===')\nprint(json.dumps({k: e2[k] for k in ['status','conclusion','metrics','spec','hypothesis','updated_at'] if k in e2}, indent=2, default=str))\n\nprint()\n\n# v6_random_s030_r3\ne3 = exps.get('v6_random_s030_r3', {})\nprint('=== v6_random_s030_r3 ===')\nprint(json.dumps({k: e3[k] for k in ['status','conclusion','metrics','spec','hypothesis','updated_at'] if k in e3}, indent=2, default=str))\n\" 2>&1",
+    "description": "Get details on v6_random_s020, s030_r2, s030_r3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T05:48:34.345758+00:00_
+
+=== v6_random_s020 ===
+{
+  "status": "RUNNING",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+    "server": "westd-22162",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "71488",
+    "log_path": "~/runs/phase-gated-compound-sparse/v6_random_s020.log",
+    "submitted_at": "2026-05-14T05:08:03.082Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+    "data_count": 50,
+    "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+    "seed": 42
+  },
+  "hypothesis": "v6 \u4ee3\u7801 random masking s=0.20, cuda:1. \u83b7\u53d6 per_problem_ii \u7528\u4e8e importance vs random problem-level permutation test\u3002\u4e0e v6_importance_s020 \u5f62\u6210\u5bf9\u7167\u3002",
+  "updated_at": "2026-05-14T05:10:20.736Z"
+}
+
+=== v6_random_s030_r2 ===
+{
+  "status": "QUEUED",
+  "conclusion": "killed",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+    "server": "westd-22162",
+    "gpu": [
+      "cuda:2"
+    ],
+    "pid": "77228",
+    "log_path": "~/runs/phase-gated-compound-sparse/v6_random_s030_r2.log",
+    "submitted_at": "2026-05-14T0
+…[truncated 1581 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_ii_profiling_v4c",
+  "tool": "Bash",
+  "elapsed_ms": 404
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-14T05:49:40.060136+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 **仅** westd-22162 cuda:0/1/2/3，不得使用其他服务器或 GPU
+- 论文所有定量 claim **必须**来自 bf16 实验数据，fp16 数据仅作 cross-validation reference（D019/D020 决策）
+- Framing 硬约束（D015）：必须用 "emergent phase-strategy interaction"，禁止 "importance metric limitation"
+- Cross-model 措辞：两模型共享 Qwen2ForCausalLM，是 **cross-model** 非 cross-architecture，§7 Limitations 必须声明
+- C2 severity gradient 措辞用 "increases with sparsity"，禁止 "monotonically increases"（s015→s020 非单调）
+- v6_random_s030 已被杀 3 次（原始 + r2 + r3 是当前尝试），cuda:2 上 tmux session 冲突是反复 kill 的根因，新启动前必须清理旧 tmux
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-22162，4× RTX 6000 Pro 96GB
+- **工作目录**: `/root/autodl-tmp/pacs/`
+- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）
+- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型**: DeepSeek `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`; Qwen `/root/autodl-tmp/models/Qwen2.5-7B-Instruct/`
+- **数据**: `/root/autodl-tmp/pacs/data/math500.json`（50 problems）
+- **活跃进程**:
+  - v6_random_s015: PID 72073, cuda:0, tmux session
+  - v6_random_s025: PID 73459, cuda:3, tmux session
+  - v6_random_s030_r3: PID 77560, cuda:2, tmux session
+- **刚完成**: v6_random_s020 (cuda:1) — reconcile 检测 EXIT_CODE=0 → ANALYZING，cron 已删除
+- **异常**: v6_random_s030_r2 — 进程消失，无 sentinel，reconcile miss 3/5，状态仍 QUEUED+conclusion=killed，已被 r3 替代
+
+### 3. 📊 当前状态
+**刚做完**: 上一轮 session 提交了 fp16 v6_random ×4 实验 + 派了 3 个 Worker（§5 Results 骨架写作、P0 写作修复、GPU 状态检查+fp16 文件迁移）。
+
+**RUNNING (3)**:
+- `v6_random_s015` — DeepSeek random s=0.15, cuda:0
+- `v6_random_s025` — DeepSeek random s=0.25, cuda:3  
+- `v6_random_s030_r3` — DeepSeek random s=0.30 第三次尝试, cuda:2
+
+**ANALYZING (1)**: `v6_random_s020` — 刚完成，cuda:1 已空闲，需要 spawn Worker 分析结果
+
+**QUEUED/PREPARING (33)**: 主要是 D020 bf16 全量重跑 16 实验（4 批次，每批 ~45min）+ 8 个 PREPARING 态的 bf16 实验 + Qwen importance ×4
+
+**Workers running (3)**:
+- `worker_paper_writing_results_5_1` — §5 Results 骨架
+- `worker_writing_p0-critical-fix` — §3 patch (bootstrap B, multiplicative null, gradient 定义域)
+- `worker_ssh_gpu-status-and-fp16-move` — 检查 GPU 状态 + 移 fp16 结果到 results_fp16_ref/
+
+**等待中**: 3 个 Worker 回调；v6_random ×3 的 cron 完成回调
+
+### 4. 📋 待办（条件触发式）
+- v6_random_s020 ANALYZING → **立即** spawn Worker 分析结果（提取 per_problem_ii），与 v6_importance_s020 配对做 permutation test
+- v6_random_s015/s025/s030_r3 完成 → 同上分析 + 与对应 importance 实验配对
+- **全部 4 个 v6_random 完成** → cuda:0~3 全部空闲 → 立即启动 bf16 Batch 1（DeepSeek importance ×4）
+- bf16 Batch 1 完成 → 启动 Batch 2（DeepSeek random ×4）→ Batch 2 完成后立即跑 bf16 permutation test（不等 Qwen）
+- bf16 Batch 2 完成 → 启动 Batch 3（Qwen importance ×4）→ Batch 4（Qwen random ×4）
+- v6_random_s030_r2 状态异常 → 忽略，r3 是有效替代，清理 r2 registry 为 killed
+- 3 个 Worker 回调 → 整合写作产出到 paper/，更新 ROADMAP 写作进度
+- Permutation test 修复（mean→median + EPS edge case）需要在 bf16 数据到手前完成代码准备
+
+### 5. 🎯 战略上下文
+**核心结论**: Compound sparsity severity 是 strategy × phase 交互的涌现属性。Importance eviction 在 low-sparsity phase 产生 11-42× severity amplification（problem-level），random 保持 ~1×。Crossover 现象在 s=0.25 确认。文献空白已由 3 个独立 Worker 验证。
+
+**决策链**: D011(fp16 NaN) → D013(cumulative_attention 根因) → D014(pivot to phase-modulated) → D015(GO) → D017(bootstrap confirms) → D019(bf16 必要性: 15.3% NaN 不一致) → D020(bf16 全量重跑) → D022(cross-model 非 cross-architecture)
+
+**关键时间线**: EMNLP ARR 截稿 2026-05-25（距今 11 天）。fp16 v6_random 预计 ~1h 内全完。bf16 全量重跑 ~3h（4 批次）。论文 §5/§6 骨架用 placeholder 先写，bf16 数据到手后统一填数字。
+
+**易错点**:
+- bf16 实验有两套 ID：`bf16_ds_imp_*` / `bf16_ds_rand_*`（D020 新建）和 `bf16_importance_*` / `bf16_random_*`（PREPARING 态，更早创建）。**用 D020 的那套**（bf16_ds_* / bf16_qw_*），PREPARING 态的是旧的可能需要清理或合并
+- v6_random_s030 已失败 3 次，r3 是当前唯一有效尝试，如果 r3 也挂了需要排查 cuda:2 是否有内存泄漏或 tmux 残留
+- Qwen 模型路径在 `/root/autodl-tmp/models/Qwen2.5-7B-Instruct/`，不在 checkpoints/ 下
+- permutation test 代码有 mean→median 修复待做（Reviewer flagged），bf16 数据到手前必须完成
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_ii_profiling_v4c"
+}
+```
+
+</details>
+
+---

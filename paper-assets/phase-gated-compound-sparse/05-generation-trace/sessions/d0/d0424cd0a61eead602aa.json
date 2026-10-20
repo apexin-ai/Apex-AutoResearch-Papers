@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "d0424cd0a61eead602aa",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analyze acc ds s030 8k v2",
+  "task_key": "worker_analyze_acc_ds_s030_8k_v2_20260516T013201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_acc_ds_s030_8k_v2_20260516T013201_result.json",
+    "occurrence": 1,
+    "bytes": 2126,
+    "sha256": "bcca04f2d4d42a8a49531e225cdad4af233a2f84a94821b535bbddc0de151fda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成全部 50/50 problems。以下是完整 metrics：\n\n## 最终 Metrics\n\n```json\n{\n  \"accuracy\": 0.04,\n  \"correct\": 2,\n  \"total\": 50,\n  \"truncation_rate\": 0.78,\n  \"truncated_count\": 39,\n  \"non_truncated_total\": 11,\n  \"non_truncated_correct\": 2,\n  \"non_truncated_accuracy\": 0.182,\n  \"null_count\": 41,\n  \"avg_tokens\": 6566.3,\n  \"max_new_tokens\": 8192,\n  \"total_time_seconds\": 7095.1\n}\n```\n\n## 结论：**negative**\n\n## DS 8k v2 系列对比\n\n| condition | accuracy | correct | trunc_rate | null_count | non_trunc_acc |\n|-----------|----------|---------|------------|------------|---------------|\n| dense     | 0.74     | 37/50   | 0.16       | -          | -             |\n| s015      | 0.48     | 24/50   | 0.32       | -          | 0.706         |\n| s020      | 0.30     | 15/50   | 0.58       | -          | 0.714         |\n| s025      | 0.08     | 4/50    | 0.76       | 36         | -             |\n| **s030**  | **0.04** | **2/50**| **0.78**   | **41**     | **0.182**     |\n\n关键观察：\n- s030 是系列最差，accuracy 仅 4%，比 s025 (8%) 进一步下降\n- 78% 截断率（39/50 达到 8192 上限），与 s025 的 76% 接近，说明在这个 sparsity 附近截断率已趋于饱和\n- 41/50 输出为 null（无法提取答案），即使在非截断的 11 个样本中也只有 2 个正确（non_trunc_acc=18.2%），远低于 s015/s020 的 ~71%\n- s030 的 non_truncated_accuracy 断崖式下降表明：在这个 sparsity 下，模型不仅被截断，连能完成推理的样本质量也严重退化\n- heads_pruned=224（全部 28×8=224 个 attention head 都被剪枝），KV eviction ~30%，剪枝过于激进导致推理能力崩溃\n- 无错误或异常退出，EXIT_CODE=0"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "accuracy": 0.04,
+              "correct": 2,
+              "total": 50,
+              "truncation_rate": 0.78,
+              "truncated_count": 39,
+              "non_truncated_total": 11,
+              "non_truncated_correct": 2,
+              "non_truncated_accuracy": 0.182,
+              "null_count": 41,
+              "avg_tokens": 6566.3,
+              "max_new_tokens": 8192,
+              "total_time_seconds": 7095.1
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-acc-ds-s030-8k-v2.md"
+}

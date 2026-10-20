@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2108445c30d8fc0e83e1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_4_1778749832.md",
+  "task_key": "loop_4_1778749832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778749832.md",
+    "occurrence": 1,
+    "bytes": 5250,
+    "sha256": "3a34cb00a9091951547fbd729bdddec45e583788911465a9d553ee349dad8a13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T09:06:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-22162 cuda:0/1/2/3，submit_training_job 必须检查 `execution.gpu_ids`\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python ...`（服务器用 conda，**没有 .venv**）\n- 论文数字必须用 **median**（不是 mean）——mean-based gradient 在 heavy-tailed II 分布上非单调，已决策弃用（见 memory.md \"Mean vs Median\"）\n- 论文弃用所有 ratio 指标，主指标 = median difference (low−high)，辅助 = Cohen's d\n- Cohen's d 实际值 DeepSeek: 0.44→0.52→0.68→0.80，Qwen: 0.28→0.55→0.89→1.02（旧 claim 0.60→1.12 已废弃）\n- Random baseline: 7/8 FAIL + 1 anomaly (qw_rand_s030)，主表报 7/8 FAIL + 1 anomaly，不可报 8/8 FAIL\n- Cross-model 只能称 \"cross-model\"，不能称 \"cross-architecture\"（两模型共享 Qwen2ForCausalLM）\n- Qwen s015 Cohen's d CI 含 0 不显著——dose-response 从 s≥0.20 起算\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-22162，4× RTX PRO 6000 Blackwell 96GB\n- **工作目录**：`/root/autodl-tmp/pacs`\n- **Python**：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**：DeepSeek-R1-Distill-Qwen-7B（默认 checkpoints/），Qwen2.5-7B-Instruct 在 `/root/autodl-tmp/models/Qwen2.5-7B-Instruct`（symlink at checkpoints/）\n- **数据**：`/root/autodl-tmp/pacs/data/math500.json`（50 problems）\n- **分析产出**：`/root/autodl-tmp/pacs/analysis_output/`（cohens_d_bf16.json, cross_model_analysis.json, experiment_summary_table.json, permutation_test_results.json）\n- **活跃进程**：qwen_c4_entropy PID 100538 已退出（EXIT_CODE=0），cuda:1，刚转 ANALYZING\n- **Cron**：reconcile 后 0 个活跃 cron（qwen_c4_entropy cron 已自动清理）\n\n### 3. 📊 当前状态\n**刚完成**：bf16 全量 16 组实验 + cross-model 统计分析 + Cohen's d re-bootstrap。qwen_c4_entropy 刚退出成功（EXIT_CODE=0 → ANALYZING），C4 claim 即将可确认。\n\n**Registry**：72 实验，71 DONE（32 success / 7 negative / 13 failed / 19 killed），1 ANALYZING (qwen_c4_entropy)\n\n**4 个 Worker 运行中**：\n1. `worker_analysis_rebootstrap_qw_rand_s030` — qw_rand_s030 B=10000 re-bootstrap 确认伪阳性\n2. `worker_paper_fill_results_placeholders` — §5 Results 填充真实数字\n3. `worker_analysis_importance_rebootstrap_b10000` — importance B=10000 re-bootstrap\n4. `worker_check_server_status_qwen_c4` — 检查 qwen_c4_entropy 服务器状态（实验已完成，Worker 可能很快回调）\n\n**等待中**：\n- 4 个 Worker 回调\n- qwen_c4_entropy ANALYZING → 需要 spawn analysis Worker 跑 C4 entropy 分析\n- Director 尚未收到 qwen_c4_entropy 完成通知\n\n### 4. 📋 待办（条件触发式）\n- `worker_check_server_status_qwen_c4` 回调 → qwen_c4_entropy 已转 ANALYZING，需 spawn Worker SSH 读取 entropy 分析结果 → 确认 C4 claim → 更新 registry(DONE) + report.md\n- qwen_c4_entropy 分析完成且 C4 confirmed → 向 Director 汇报 C4 状态 → §6 Analysis 补直接证据\n- `worker_paper_fill_results_placeholders` 回调 → 检查 §5 填充质量 → 若 OK 推进 §8 Conclusion + Abstract\n- `worker_analysis_rebootstrap_qw_rand_s030` 回调 → 确认 qw_rand_s030 伪阳性结论 → 更新 memory.md\n- `worker_analysis_importance_rebootstrap_b10000` 回调 → 用 B=10000 Cohen's d 更新论文数字\n- 所有分析 Worker 完成 → spawn Figure 生成 Worker（dose-response / crossover / Cohen's d / violin plot）→ 这是 P0\n- Figures 完成 → §8 Conclusion + Abstract 撰写 → 全文校审 → 投稿准备\n- **截稿 2026-05-25，距今 11 天**\n\n### 5. 🎯 战略上下文\n**核心结论**：Phase-modulated compound sparsity severity 随 sparsity 单调递增——importance-based eviction 展现 phase-dependent compound interaction（DeepSeek d: 0.44→0.80, Qwen d: 0.28→1.02），random masking 不展现（7/8 FAIL）。Cross-model replication: Cohen's d ρ=1.0, gradient permutation p=0.043。\n\n**决策链**：D035-D043 集中在 Cohen's d 修正 + random baseline verdict 修正 + cross-model 统计。关键转折点是 D041: qw_rand_s030 表面 PASS 但 Cohen's d≈0 确认为伪阳性。\n\n**易踩坑**：\n1. **不要混淆 fp16 和 bf16 数据**——论文核心数据源是 bf16 系列，fp16 有 Layer 27 NaN 中毒问题，已弃用\n2. **不要把 DeepSeek 和 Qwen 的 II 绝对值直接对比**——Qwen II 绝对值低 5-15×，但 gradient 方向一致，论文 claim 的是趋势一致性\n3. **Phase segmentation 两模型不同**——Qwen mid-phase 极小（4372 tokens vs DeepSeek 13306），影响 per-phase 统计的方差\n4. **Bootstrap B 值不一致**——fp16 实际 B=1000，bf16 已修正为 B=10000，论文需统一标注\n5. **qwen_c4_entropy 是最后一个数据点**——它的结果决定 C4 claim 是否 confirmed，直接影响 §6 Analysis 的写法\n6. **4 个 GPU 目前全部空闲**（qwen_c4_entropy 刚结束），剩余 11 天主要瓶颈是论文写作 + figure 生成，不是 GPU\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778749832.md"
+}

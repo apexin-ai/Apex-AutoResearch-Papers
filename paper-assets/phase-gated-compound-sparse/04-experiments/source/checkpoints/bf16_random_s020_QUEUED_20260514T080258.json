@@ -1,0 +1,15 @@
+{
+  "exp_id": "bf16_random_s020",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:33:34.093Z",
+    "updated_at": "2026-05-14T08:02:58.340Z",
+    "hypothesis": "bf16 DeepSeek random masking s=0.20。与 bf16_importance_s020 对照。"
+  },
+  "timestamp": "2026-05-14T08:02:58.498631+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "490003a08a129c50f2ba",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper cohens d 6point paired",
+  "task_key": "worker_paper_cohens_d_6point_paired_20260514T095332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cohens_d_6point_paired_20260514T095332_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "3096f0634500cdc1062fa424a7e4aa1b8e099c41b2b587cfa16eb8f076ffdb42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有文件已生成：\n\n**输出文件：**\n- `/root/autodl-tmp/pacs/figures/cohens_d_6point.pdf` (22.8 KB)\n- `/root/autodl-tmp/pacs/figures/cohens_d_6point.png` (100 KB)\n- `/root/autodl-tmp/pacs/analysis/regen_cohens_d_6point.py`\n- `/root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000_6point.json`\n\n**6-point paired d_z 汇总：**\n\n| Sparsity | DS d_z | QW d_z | 备注 |\n|----------|--------|--------|------|\n| 0.10 | 0.504 | **-0.064** | DS: n.s. (perm_p=0.15, CI含0); QW: d<0 |\n| 0.15 | 0.607 | 0.371 | QW: marginal (CI含0) |\n| 0.20 | 0.725 | 0.722 | |\n| 0.25 | 0.953 | 1.233 | |\n| 0.30 | 1.126 | 1.439 | |\n| 0.35 | 1.145 | 1.544 | |\n\n图表包含：零线、effect size 阈线（small/medium/large）、DS s010 标注 \"n.s.\"、QW s010 标注 \"d<0\"、QW s015 标注 \"CI incl. 0 (marginal)\"。风格与 fig2_cohens_d 一致（serif、隐藏上右边框、300 dpi、无标题）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cohens-d-6point-paired.md"
+}

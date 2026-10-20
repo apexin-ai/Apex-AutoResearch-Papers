@@ -1,0 +1,15 @@
+# 进度日志 — ec_hte_codex_a
+
+> 由 Agent 自动维护，记录关键里程碑和决策。
+
+- **[2026-05-31 16:34 UTC]** Real-data feasibility Worker completed deliverables despite failed status: Rohingya corpus feasibility is partial_support; memory.md, artifact, manifest, and C_REALDATA_FEASIBILITY matrix provenance updated.
+- **[2026-05-31 16:39 UTC]** exp_002_gpu_dgp_grid pending-only Worker completed deliverables despite failed status: proposal artifact registered, dry-run passed, registry moved to PENDING without submit_training_job/RUNNING.
+- **[2026-05-31 16:39 UTC]** exp_001_bias_bound_mvp reached DONE(success): oracle_global_minus_uncorrected_gate_rmse=0.664685 with 95% bootstrap CI [0.657467, 0.671796]; H1 gate_rmse criterion supported, not mixed.
+- **[2026-05-31 17:05 UTC]** exp_002_gpu_dgp_grid registry verified as DONE/negative; critical Worker returned no actionable output beyond stdin banner; no duplicate GPU launch performed.
+- **[2026-05-31 17:13 UTC]** Handled worker_critical_install_tmux_and_submit_exp002 callback: registry shows exp_002_gpu_dgp_grid DONE negative; refreshed report.md; spawned mechanism-audit and literature-solution Workers; awaiting Director decision before any same-chain formal launch.
+- **[2026-05-31 17:16 UTC]** Server-restart reinit completed from current registry: exp_002_gpu_dgp_grid DONE negative; exp_003_stage1_correction_ablation PREPARING/blocked; old worker_research_exp002_mechanism_audit_proposal_20260531T170529 confirmed true failed/no deliverable per M006; replacement audit/literature Workers running; no duplicate dispatch.
+- **[2026-05-31 17:17 UTC]** Director audit-first decision recorded: no exp002 rerun and no exp003 formal launch; exp003 stays PREPARING/blocked; replacement mechanism audit proposal must land and register before any decision; literature Worker is supporting evidence only, not registry truth.
+- **[2026-05-31 17:22 UTC]** Processed worker_analysis_exp002_negative_mechanism_audit_v2 callback: worker status failed but audit artifact exists and is registered as art_20260531_6a9e94; classified as deliverables-present with correction/DGP algebra root issue; exp002 rerun and exp003 formal remain blocked pending Director review.
+- **[2026-05-31 17:23 UTC]** Processed worker_research_exp002_negative_literature_solutions_v1 callback: worker status failed but reference memo exists and is registered as art_20260531_0e5bc8; memo is advisory only and does not unblock exp002 rerun or exp003 formal.
+- **[2026-05-31 17:25 UTC]** D003 accepted: exp002 mechanism audit art_20260531_6a9e94 is decision basis; exp002 rerun and exp003 formal remain blocked; spawned CPU-only proposal Worker worker_proposal_stage0_h1_repair_spec_v1_20260531T172517 to design Stage0/H1 repair spec without running experiments.
+- **[2026-05-31 17:32 UTC]** D004 accepted: literature memo art_20260531_0e5bc8 is failed-but-deliverables-present and advisory-only; not empirical H1/H2 support and does not unblock exp002 rerun or exp003 formal. Repair proposal Worker remains running.

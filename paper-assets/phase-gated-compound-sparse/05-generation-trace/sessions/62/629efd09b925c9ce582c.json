@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "629efd09b925c9ce582c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra sync v4 final submit",
+  "task_key": "worker_infra_sync-v4-final-submit_20260513T225541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync-v4-final-submit_20260513T225541_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "7937d5c3fcb040ae41fa7c18970ef73409e7eb69a4c064298ae7916d923432cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 路实验全部运行正常。\n\n### 结果汇总\n\n| 项目 | 状态 |\n|------|------|\n| **代码同步** | interaction_index.py (476行) + run_profiling.py (524行) → 双目录写入完成 |\n| **Bug 修复** | `compute_dense_forward_with_importance` 中 CPU/CUDA 设备不匹配，添加 `.cpu()` 修复 |\n| **导入验证** | IMPORT OK |\n| **CLI 验证** | CLI PARSE OK |\n\n| 实验 | exp_id | PID | GPU | Sparsity | 状态 |\n|------|--------|-----|-----|----------|------|\n| v4a | mvp_ii_profiling_v4a | 22704 | cuda:0 (25.2GB) | 0.1, 0.2 | 运行中 (3/50) |\n| v4b | mvp_ii_profiling_v4b | 23052 | cuda:1 (21.2GB) | 0.3, 0.4, 0.5 | 运行中 (2/50) |\n| v4c | mvp_ii_profiling_v4c | 23403 | cuda:2 (21.2GB) | 0.15, 0.25 | 运行中 (1/50) |\n\nGPU 利用率 94-99%，3 路并行正常推进。日志：`/tmp/profiling_v4{a,b,c}.log`，输出目录：`profiling_output_v4{a,b,c}/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-v4-final-submit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0918ecaeb139d283895",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis qwen s025 entropy investigation",
+  "task_key": "worker_analysis_qwen_s025_entropy_investigation_20260514T091123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen_s025_entropy_investigation_20260514T091123_result.json",
+    "occurrence": 1,
+    "bytes": 2454,
+    "sha256": "d3554d2802321db2bf9fcd538a34cabbc05d46f43fa5d2676432eef01841d77c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全，汇报结果。\n\n---\n\n## 调查结果\n\n### 调查 1：Qwen s025 entropy 符号反转 → **Systematic，非 outlier**\n\n**Qwen importance entropy_delta 分布：**\n\n| Sparsity | n | pos:neg | mean | median | std | trimmed mean |\n|----------|---|---------|------|--------|-----|-------------|\n| s015 | 30 | 2:28 | **-0.0733** | -0.0685 | 0.0831 | -0.0702 |\n| s020 | 30 | 4:26 | **-0.0759** | -0.0815 | 0.1089 | -0.0714 |\n| s025 | 30 | **22:8** | **+0.0451** | +0.1088 | 0.1378 | +0.0603 |\n| s030 | 30 | 15:15 | **-0.0072** | +0.0065 | 0.1557 | +0.0066 |\n\n**DeepSeek 对比（全部一致负值）：**\n\n| Sparsity | pos:neg | mean | std |\n|----------|---------|------|-----|\n| s015 | 1:29 | -0.0402 | 0.0222 |\n| s020 | 1:29 | -0.0472 | 0.0240 |\n| s025 | 1:29 | -0.0446 | 0.0242 |\n| s030 | 2:28 | -0.0436 | 0.0266 |\n\n**关键发现：**\n- Qwen s025 的正值由 **22/30 problems** 支撑，是 systematic effect\n- 唯一极端 outlier 是 **负值** (-0.4865)，它拉低了 mean；去掉后 mean 更正 (0.0634)\n- trimmed mean (+0.0603) 和 median (+0.1088) 都确认方向\n- Qwen 呈现 **非单调模式**：s015/s020 负 → s025 翻正 → s030 回到零附近。DeepSeek 则全程稳定负值\n- Qwen 的 std 比 DeepSeek 大 4-6 倍（0.08-0.16 vs 0.02-0.03），表明 Qwen 对 importance masking 的 entropy 响应异质性远高于 DeepSeek\n\n**结论：** Qwen s025 entropy 反转是 **systematic cross-model difference**，不是 outlier artifact。可能原因：Qwen（非 distill 版）的 attention head importance 分布与 DeepSeek-R1-Distill 有质的不同——在 25% sparsity 时，importance masking 反而打乱了 Qwen 的注意力集中模式。\n\n---\n\n### 调查 2：8 个 importance 实验 bootstrap 值 → **全部 B=1000，需要 re-bootstrap**\n\n| 实验 | B | per_problem_ii |\n|------|---|---------------|\n| DS s015 | 1000 | ✓ |\n| DS s020 | 1000 | ✓ |\n| DS s025 | 1000 | ✓ |\n| DS s030 | 1000 | ✓ |\n| QW s015 | 1000 | ✓ |\n| QW s020 | 1000 | ✓ |\n| QW s025 | 1000 | ✓ |\n| QW s030 | 1000 | ✓ |\n\n全部 8 个实验均有 `per_problem_ii` 原始数据，可直接 re-bootstrap 到 B=10000 而无需重跑实验。\n\n---\n\n### 调查 3：cross_model_analysis.json → **已是最新值，无需修复**\n\n`random_median_diffs.qwen.s030 = 2.418272`，匹配 B=10000 期望值。`gradient_permutation_test.B = 10000`。文件已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-s025-entropy-investigation.md"
+}

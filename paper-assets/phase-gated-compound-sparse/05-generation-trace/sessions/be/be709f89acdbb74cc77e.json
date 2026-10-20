@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be709f89acdbb74cc77e",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis acc ds s020 8k v2",
+  "task_key": "worker_analysis_acc_ds_s020_8k_v2_20260515T232745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_acc_ds_s020_8k_v2_20260515T232745_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "900a0ec3cef2e3f9f3a263e96257f0448603ee57ce595557f73b6fc2616ad0b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在，无需删除。\n\n**状态：SUCCESS**\n\n| 指标 | 值 |\n|------|-----|\n| accuracy | 30.0% (15/50) |\n| truncated | 29/50 (58%) |\n| total_time | 5549s (~92min) |\n| exit_code | 0 |\n\n注意：hypothesis 预期 8k 截断率 <20%，实际 58%——从 4096 的 64% 仅降至 58%，s020 条件下模型大量问题仍耗尽 8192 tokens 未能得出答案。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-acc-ds-s020-8k-v2.md"
+}

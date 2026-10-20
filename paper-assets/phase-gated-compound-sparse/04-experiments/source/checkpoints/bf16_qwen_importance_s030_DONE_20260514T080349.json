@@ -1,0 +1,23 @@
+{
+  "exp_id": "bf16_qwen_importance_s030",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:33:38.715Z",
+    "updated_at": "2026-05-14T08:03:49.138Z",
+    "hypothesis": "bf16 Qwen2.5-7B-Instruct importance masking s=0.30。Cross-model replication。",
+    "notes": "Superseded by bf16_qw_imp_s030 (DONE, success)",
+    "conclusion": "killed",
+    "spec": {
+      "notes": "Superseded by bf16_qw_imp_s030. Old placeholder.",
+      "checkpoint_path": "N/A",
+      "log_path": "N/A"
+    },
+    "completed_at": "2026-05-14T08:03:49.138Z"
+  },
+  "timestamp": "2026-05-14T08:03:49.305255+00:00",
+  "trigger": "update_registry"
+}

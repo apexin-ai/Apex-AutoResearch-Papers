@@ -1,0 +1,5 @@
+Experiment summary: 16 experiments (2 models x 2 masking x 4 sparsity)
+Server path: /root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json
+Script: /root/autodl-tmp/pacs/analysis/generate_summary_table.py
+
+Results: importance 8/8 PASS, random 7/8 FAIL + 1 unexpected PASS (bf16_qw_rand_s030)

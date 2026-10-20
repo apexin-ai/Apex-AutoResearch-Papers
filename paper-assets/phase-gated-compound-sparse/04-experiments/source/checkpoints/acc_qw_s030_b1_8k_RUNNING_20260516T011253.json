@@ -1,0 +1,41 @@
+{
+  "exp_id": "acc_qw_s030_b1_8k",
+  "project": "phase-gated-compound-sparse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:55:21.056Z",
+    "updated_at": "2026-05-16T01:12:52.805Z",
+    "hypothesis": "重跑 QW importance_s030 batch1 (problems 1-50) with max_new_tokens=8192，修复原 batch1 使用 2048 的 token 预算不匹配问题。",
+    "server": "westd-22162",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-16T01:11:35.867Z"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s030 --num-problems 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s030_b1_8k.json\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "296321",
+      "log_path": "~/runs/phase-gated-compound-sparse/acc_qw_s030_b1_8k.log",
+      "submitted_at": "2026-05-16T01:12:33.335Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MATH problems 1-50",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)"
+    }
+  },
+  "timestamp": "2026-05-16T01:12:53.080218+00:00",
+  "trigger": "update_registry"
+}

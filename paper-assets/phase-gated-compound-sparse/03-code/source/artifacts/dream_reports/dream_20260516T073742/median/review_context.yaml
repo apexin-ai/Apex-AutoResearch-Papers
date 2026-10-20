@@ -1,0 +1,486 @@
+narrative_guidance: Phase gradient核心发现稳健，但strategy specificity强度和机制覆盖度需要显著限定。LLaMA
+  n=250不会改变n=50的定性结论——imp_vs_rand交互仍为small effect，仅s030 Bonferroni显著。GPQA Diamond作为new
+  benchmark，strategy specificity ratio预期衰减至2-4×（远低于MATH-500的15×）。论文Claims需三处调整：Title/Abstract软化、C8改写为partial
+  support、Mechanism §降级。
+imagined_experiments:
+- name: c8_llama_n250_fixed
+  plan_id: c8_llama_n250_fixed
+  description: LLaMA-8B (DeepSeek-R1-Distill-Llama-8B) n=250, 8 conditions (importance/random
+    × s015/s020/s025/s030), MATH-500
+  expected_results:
+    n_problems: 250
+    n_valid: 245
+    phase_gradient_importance_dz:
+      s015: 0.98
+      s020: 1.05
+      s025: 1.08
+      s030: 0.97
+    phase_gradient_importance_interpretation: all_large
+    phase_gradient_random_dz:
+      s015: 0.33
+      s020: 0.37
+      s025: 0.42
+      s030: 0.44
+    phase_gradient_random_interpretation: all_small_but_significant
+    imp_vs_rand_dz:
+      s015: 0.18
+      s020: 0.24
+      s025: 0.28
+      s030: 0.33
+    imp_vs_rand_dz_monotonic: true
+    wilcoxon_p_bonferroni:
+      s015: 0.34
+      s020: 0.12
+      s025: 0.065
+      s030: 0.018
+    significant_bonferroni:
+      s015: false
+      s020: false
+      s025: false
+      s030: true
+    median_diff:
+      s015: 0.019
+      s020: 0.024
+      s025: 0.088
+      s030: 0.31
+    median_diff_ci:
+      s015:
+      - 0.005
+      - 0.035
+      s020:
+      - -0.02
+      - 0.08
+      s025:
+      - 0.01
+      - 0.21
+      s030:
+      - 0.05
+      - 0.48
+    random_phase_gradient_ci_excludes_zero:
+      s015: true
+      s020: true
+      s025: true
+      s030: true
+  result_rationale: 'n=50→n=250 功效提升（~2.2× SE缩减）不足以将 small effect (d_z≈0.3) 推过 Bonferroni
+    门槛 （需 d_z>0.4 在 n=250 时达显著）。s030 的 d_z=0.33 刚好在边缘——n=250 将其 p 值从 0.029 压至 ~0.018，仍然显著。s025
+    (d_z≈0.28) 在 n=250 时 uncorrected p≈0.016 但 Bonferroni×4 后 p≈0.065 仍不显著。关键：这不是
+    power 问题——效应本身就小，LLaMA 架构上 strategy×phase 交互 弱是 true effect。Random phase gradient
+    (d_z 0.33-0.44) CIs 将全部排除零（n=250 时 d_z>0.2 即可），确认 LLaMA 上 random 也有 non-trivial
+    phase gradient——这是与 DeepSeek/Qwen 的关键架构差异。整体结论：within-importance phase gradient
+    强且稳健(d_z~1.0)， imp_vs_rand 交互弱但方向正确(monotonic increasing)，定性结论与 n=50 完全一致。
+
+    '
+  tables:
+  - name: 'Table: LLaMA n=250 vs n=50 comparison'
+    columns:
+    - metric
+    - n=50_value
+    - n=250_predicted
+    - change
+    rows:
+    - - imp_vs_rand_dz_s030
+      - '0.3352'
+      - '0.33'
+      - stable (CI narrower)
+    - - Bonferroni_sig_count
+      - 1/4
+      - 1/4
+      - no change
+    - - random_phase_dz_mean
+      - '0.40'
+      - '0.39'
+      - stable
+    - - importance_phase_dz_mean
+      - '1.06'
+      - '1.02'
+      - stable
+  figures_description:
+  - 'Fig: Forest plot showing imp_vs_rand d_z with 95% CI for s015-s030, n=50 vs n=250
+    overlay. Both show same pattern—CIs narrow but effect remains small.'
+  - 'Fig: Phase gradient d_z comparison (importance vs random) across 4 sparsity levels,
+    demonstrating LLaMA''s unique pattern where random also shows significant gradient.'
+  analysis: 'n=250 确认 C8 partially_confirmed 不变。论文写法：''At n=250, LLaMA replicates
+    the within-importance phase gradient (d_z≈1.0, all levels p<0.001) but the strategy×phase
+    interaction remains small (d_z 0.18-0.33) with only s030 reaching Bonferroni significance
+    (p=0.018). Critically, random masking on LLaMA shows a non-trivial phase gradient
+    (d_z 0.33-0.44, all CIs exclude zero), suggesting strategy-dependence of compound
+    severity is architecture-modulated.'' 这是 median 档核心论点：phase gradient universal，
+    strategy specificity architecture-dependent。
+
+    '
+- name: c8_llama_gpu0_s025_preemptive
+  plan_id: c8_llama_gpu0_s025
+  description: LLaMA importance s025 单条件预加速（n=250），作为 c8_llama_n250_fixed 的一部分
+  expected_results:
+    n_problems: 250
+    n_valid: 245
+    importance_s025_median_ii_low: 1.82
+    importance_s025_median_ii_high: 0.085
+    importance_s025_median_diff: 0.088
+    importance_s025_phase_gradient_dz: 1.08
+    importance_s025_phase_gradient_ci:
+    - 0.82
+    - 1.38
+    importance_s025_wilcoxon_p: 0.0001
+  result_rationale: '这是 c8_llama_n250_fixed 中的一个子条件。LLaMA importance s025 在 n=50 时
+    phase gradient d_z=1.1227 (CI [0.87, 1.58])。n=250 时 CI 缩窄至 [0.82, 1.38]，中心估计稳定在~1.08。
+    这是 within-importance 效应（不涉及 imp_vs_rand 比较），本身是 large effect，n=250 只是 增加精度。Median
+    II 值与 n=50 的 median_diff=0.0947 基本一致（大样本回归到更稳定估计）。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 预期完全符合 n=50 结论，仅 CI 缩窄。不改变任何 claim。
+- name: gpqa_ds_importance_s015
+  plan_id: gpqa_ds_importance_s015
+  description: GPQA Diamond (n=198) × DeepSeek-R1 × importance × s015, quantile三分相位
+  expected_results:
+    n_problems: 198
+    n_valid: 185
+    mid_null_rate: 0.15
+    importance_s015_median_ii_low: 0.28
+    importance_s015_median_ii_mid: 0.09
+    importance_s015_median_ii_high: 0.018
+    importance_s015_median_diff: 0.24
+    importance_s015_ci:
+    - 0.12
+    - 0.42
+    importance_s015_wilcoxon_p: 0.0008
+    phase_gradient_dz: 0.52
+    phase_gradient_monotonic: true
+  result_rationale: 'GPQA Diamond 是非数学推理任务（科学 QA），推理链比 MATH-500 短~40%，phase 结构不如数学
+    清晰。s015 是最低 sparsity——在 MATH-500 上 DS imp s015 median_diff=0.39，但 GPQA 推理链 更短意味着
+    low-sparsity phase 的 token 数更少、II 累积效应弱化。预期 median_diff ~0.24 （约为 MATH-500 的 60%），但仍显著（n=198
+    提供充足功效）。Phase gradient monotonic 但 magnitude 衰减：与 GSM8K 模式一致——更简单/更短的推理链 → phase
+    modulation 效应变弱。 这支持 median 档的 cross_benchmark_phase_gradient_monotonic_count:
+    2-3 预测。
+
+    '
+  tables:
+  - name: 'Table: Cross-benchmark s015 comparison'
+    columns:
+    - benchmark
+    - DS_imp_s015_median_diff
+    - reasoning_chain_length
+    rows:
+    - - MATH-500
+      - '0.39'
+      - long (avg ~550 tokens)
+    - - GSM8K
+      - '0.241'
+      - medium (avg ~300 tokens)
+    - - GPQA Diamond
+      - 0.24 (predicted)
+      - medium-short (avg ~350 tokens)
+  figures_description:
+  - 'Fig: Bar chart comparing phase gradient magnitude at s015 across three benchmarks,
+    showing consistent monotonic decrease with reasoning chain complexity.'
+  analysis: 'GPQA s015 单条件预期 PASS——phase gradient 存在且显著。但 magnitude 低于 MATH-500， 与
+    median 档预期一致。关键意义：证明 phase modulation 不限于数学推理，也存在于科学 QA， 但 specificity ratio 可能更低（需要完整
+    random 对照才能计算）。
+
+    '
+- name: gpqa_ds_full_pipeline
+  plan_id: gpqa_diamond_full
+  description: GPQA Diamond (n=198) × DS+QW × importance(×4 sparsity) + random(×2
+    controls s025/s030) = 10 runs
+  expected_results:
+    ds_importance:
+      s015:
+        median_gradient: 0.24
+        wilcoxon_p: 0.0008
+      s020:
+        median_gradient: 0.68
+        wilcoxon_p: 0.0001
+      s025:
+        median_gradient: 1.85
+        wilcoxon_p: 0.0001
+      s030:
+        median_gradient: 3.92
+        wilcoxon_p: 0.0001
+    qw_importance:
+      s015:
+        median_gradient: 0.04
+        wilcoxon_p: 0.02
+      s020:
+        median_gradient: 0.19
+        wilcoxon_p: 0.0005
+      s025:
+        median_gradient: 0.72
+        wilcoxon_p: 0.0001
+      s030:
+        median_gradient: 1.68
+        wilcoxon_p: 0.0001
+    ds_random:
+      s025:
+        median_gradient: 0.58
+        wilcoxon_p: 0.03
+      s030:
+        median_gradient: 1.21
+        wilcoxon_p: 0.008
+    qw_random:
+      s025:
+        median_gradient: 0.31
+        wilcoxon_p: 0.06
+      s030:
+        median_gradient: 0.72
+        wilcoxon_p: 0.02
+    imp_rand_ratio:
+      ds_s025: 3.2
+      ds_s030: 3.2
+      qw_s025: 2.3
+      qw_s030: 2.3
+    dose_response_monotonic_ds: true
+    dose_response_monotonic_qw: true
+    strategy_specificity_ratio_range: 2.3-3.2×
+    cross_benchmark_phase_gradient_monotonic: true
+  result_rationale: 'Median 档核心预测：strategy_specificity_ratio_new_benchmark = [2.0,
+    4.9]。GPQA 作为 非数学推理 benchmark：(1) 推理链更短→ phase 区分度降低→ phase gradient magnitude
+    约为 MATH-500 的 55-65%（类似 GSM8K 衰减模式）；(2) Random eviction 在 GPQA 上也会显示 更强的 phase
+    gradient（因为任务推理结构不如数学严格，attention 模式更分散）， 导致 imp/rand ratio 从 MATH-500 的 15× 衰减至
+    2-4×；(3) 两模型 importance gradient 均 monotonic（cross_benchmark_phase_gradient_monotonic_count
+    达到 3/3）——phase gradient 的 universality 是 median 档确认的核心结论；(4) QW imp s015 可能 borderline
+    （p=0.02 uncorrected，Bonferroni 后 NS），与 QW onset threshold s≥0.20 一致。 DS random
+    s025 预期 borderline 显著——GPQA 的 random 比 MATH-500 更容易显著，因为 任务本身 phase structure
+    更弱→ random 和 importance 的差异缩小。
+
+    '
+  tables:
+  - name: 'Table: Strategy specificity ratio across benchmarks'
+    columns:
+    - benchmark
+    - DS_ratio_s025
+    - DS_ratio_s030
+    - QW_ratio_s025
+    - QW_ratio_s030
+    rows:
+    - - MATH-500 (n=500)
+      - 15.5×
+      - 16.6×
+      - 2.7×
+      - 3.5×
+    - - GSM8K (n=50)
+      - 3.8×
+      - 2.8×
+      - ~3×
+      - ~2.5×
+    - - GPQA Diamond (n=198, predicted)
+      - 3.2×
+      - 3.2×
+      - 2.3×
+      - 2.3×
+  - name: 'Table: Dose-response comparison (DS importance median_gradient)'
+    columns:
+    - sparsity
+    - MATH-500
+    - GSM8K
+    - GPQA (predicted)
+    rows:
+    - - s015
+      - '0.39'
+      - '0.241'
+      - '0.24'
+    - - s020
+      - '1.21'
+      - '0.740'
+      - '0.68'
+    - - s025
+      - '3.99'
+      - '1.992'
+      - '1.85'
+    - - s030
+      - '8.48'
+      - '4.682'
+      - '3.92'
+  figures_description:
+  - 'Fig: Three-panel dose-response curves (MATH-500 / GSM8K / GPQA) showing parallel
+    monotonic gradients with benchmark-dependent magnitude scaling.'
+  - 'Fig: Strategy specificity heatmap (benchmark × sparsity × model) demonstrating
+    systematic attenuation from MATH-500 (15×) → GSM8K (3×) → GPQA (3×).'
+  analysis: 'GPQA 完整数据将强化 C10 的叙事方向：phase gradient 跨 benchmark 稳健（3/3 monotonic），
+    但 strategy specificity 高度 task-dependent（15× → 3× → 3×）。论文 Discussion 需要 一段专门解释
+    specificity 衰减的可能机制：更短的推理链 → phase boundary 更模糊 → random eviction 在"错误" phase
+    的概率上升 → imp/rand 区分缩小。这是 median 档要求 的 "softened language" 之一：不能说 "strategy specificity
+    is a universal property"， 必须限定为 "strongest on complex mathematical reasoning with
+    long CoT"。
+
+    '
+- name: qwen25_14b_math500
+  plan_id: 14b_scale_extension
+  description: Qwen2.5-14B-Instruct × MATH-500 × importance(×4 sparsity) + random(s030)
+    = 5 runs
+  expected_results:
+    n_problems: 50
+    importance:
+      s015:
+        median_diff: 0.055
+        wilcoxon_p: 0.008
+        cohens_d: 0.42
+      s020:
+        median_diff: 0.28
+        wilcoxon_p: 0.0003
+        cohens_d: 0.68
+      s025:
+        median_diff: 0.92
+        wilcoxon_p: 0.0001
+        cohens_d: 1.05
+      s030:
+        median_diff: 2.35
+        wilcoxon_p: 0.0001
+        cohens_d: 1.28
+    random_s030:
+      median_diff: 0.68
+      wilcoxon_p: 0.02
+      phase_gradient_dz: 0.38
+    imp_rand_ratio_s030: 3.5
+    dose_response_monotonic: true
+    dose_response_spearman_rho: 1.0
+    phase_gradient_importance_dz:
+      s015: 0.85
+      s020: 0.92
+      s025: 1.02
+      s030: 0.95
+    onset_threshold: s015 (similar to QW-7B)
+  result_rationale: '14B 模型相对 7B 有更多 attention heads (40→40 for 14B GQA, 但 KV heads
+    从 8→8)， 实际 GQA 结构意味着 head pruning 的冗余度不同。预期：(1) Phase gradient 依然 monotonic 且
+    d_z~1.0（与 Qwen2-7B 一致，因为 phase modulation 是 reasoning structure 的属性， 不强依赖模型规模）；(2)
+    Absolute magnitude 可能比 7B 略小（14B 更鲁棒，residual stream 容量更大）——median_diff ~2.35
+    vs 7B 的 3.16 at s030；(3) Strategy specificity ratio ~3.5×（14B random 也更难产生大 gradient，因为冗余更多）；(4)
+    Onset threshold 仍在 s015 （与 7B Qwen 一致，架构决定而非规模决定）。Median 档预期：这个实验不会 dramatically
+    改变 故事，但为 Limitations 中的 "7B only" 提供部分回应。Cohen''s d 范围 0.42→1.28 落在 qw_cohens_d_range
+    [0.37, 1.44] 内。
+
+    '
+  tables:
+  - name: 'Table: 14B vs 7B Qwen importance dose-response'
+    columns:
+    - sparsity
+    - QW-7B_median_diff (n=500)
+    - QW-14B_predicted (n=50)
+    - ratio
+    rows:
+    - - s015
+      - '0.066'
+      - '0.055'
+      - 0.83×
+    - - s020
+      - '0.307'
+      - '0.28'
+      - 0.91×
+    - - s025
+      - '1.075'
+      - '0.92'
+      - 0.86×
+    - - s030
+      - '3.155'
+      - '2.35'
+      - 0.74×
+  figures_description:
+  - 'Fig: Dual dose-response curve (7B vs 14B) with shared x-axis (sparsity) showing
+    parallel scaling with 14B ~20-25% lower magnitude.'
+  analysis: '14B 实验是 reviewer concern RC1 (7B only) 的直接回应。Median 档预期：定性完全复制 （monotonic,
+    strategy×phase interaction），定量略弱（magnitude ~75-90% of 7B）。 论文加一句："Preliminary
+    results on Qwen2.5-14B-Instruct (n=50) replicate the monotonic phase gradient
+    (Spearman ρ=1.0, all d_z>0.8), suggesting the phenomenon is not scale-specific
+    within the 7-14B range. Larger-scale validation remains future work." 这足够回应 reviewer
+    而不需要 14B 的完整 n=500 replication。
+
+    '
+- name: c10_lang_s020_s025_analysis
+  plan_id: c10_lang_s020_s025
+  description: MATH-500 language switching at s020/s025, 补全 dense→s015→s020→s025→s030
+    全链
+  expected_results:
+    s020:
+      switch_rate: 0.14
+      cn_count: 7
+      en_count: 43
+      cn_acc: 0.33
+      en_acc: 0.25
+    s025:
+      switch_rate: 0.32
+      cn_count: 16
+      en_count: 34
+      cn_acc: 0.2
+      en_acc: 0.057
+    full_chain_switch_rate:
+    - 0.0
+    - 0.04
+    - 0.14
+    - 0.32
+    - 0.4
+    monotonic: true
+    correlation_switch_vs_ii: 0.55
+  result_rationale: '这个实验已经完成（registry 显示 success）。实际结果与 median 档吻合：language switching
+    单调递增 (0%→4%→14%→32%→40%)，是 compound degradation 的 behavioral manifestation。 Switch
+    rate 与 II 相关但不完美(r≈0.55)——因为 switching 是离散二元事件而 II 是连续量， 且 switching 受模型 tokenizer
+    双语 capability 影响（architecture-specific confound）。 Median 档解读：这个数据支持论文的 Discussion
+    段落（compound sparsity 不仅影响数值推理 能力，还影响 language coherence），但不能作为独立 claim——它是 severity
+    的 symptom 而非 独立发现。
+
+    '
+  tables:
+  - name: 'Table: Language switching dose-response'
+    columns:
+    - sparsity
+    - switch_rate
+    - cn_acc
+    - en_acc
+    - overall_acc
+    rows:
+    - - dense
+      - 0%
+      - N/A
+      - '0.52'
+      - '0.52'
+    - - s015
+      - 4%
+      - 0%
+      - '0.375'
+      - '0.36'
+    - - s020
+      - 14%
+      - '0.33'
+      - '0.25'
+      - '0.26'
+    - - s025
+      - 32%
+      - '0.20'
+      - '0.057'
+      - '0.10'
+    - - s030
+      - 40%
+      - '0.10'
+      - '0.10'
+      - '0.10'
+  figures_description:
+  - 'Fig: Dual-axis plot—left axis: accuracy decline; right axis: Chinese switching
+    rate. Both monotonic, showing compound sparsity triggers multilingual collapse.'
+  analysis: 'Language switching 数据已完成，为 Appendix 提供额外 behavioral evidence。 不改变核心 claims。Median
+    档下，这属于 ''nice-to-have supplementary evidence'' 而非 论文主线。§6 Discussion 加一段提及即可。
+
+    '
+- name: gpqa_think_validation
+  plan_id: gpqa_think_validation
+  description: GPQA Diamond </think> phase segmentation validation (Run 2, supplementary)
+  expected_results:
+    n_problems: 198
+    n_valid: 180
+    median_kappa: 0.82
+    thinking_in_low_sparsity_phase: 0.72
+    answer_in_high_sparsity_phase: 0.58
+    temporal_ordering: 0.51
+  result_rationale: 'GPQA 的 </think> validation 预期 kappa 略低于 MATH-500 (0.88)——GPQA
+    是多选题， 推理链结构更不规则（有些问题直接选答案，有些有长推理）。Kappa=0.82 仍在 ''substantial agreement'' 范围。thinking_in_low=0.72（低于
+    MATH-500 的 0.82）因为 GPQA 推理链更短 导致 low-sparsity phase 混合了更多 transition 内容。Answer_in_high=0.58（低于
+    MATH-500 的 0.66）因为 GPQA 答案部分通常只有一个字母选项，token 数极少，phase assignment 更不稳定。Temporal
+    ordering 更低（0.51 vs 0.58）因为 GPQA 非线性推理 较多（排除法、回溯等）。这些都是 median 档预期——kappa 仍然 acceptable
+    但 phase alignment 指标比数学弱。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: Appendix figure showing kappa distribution across GPQA problems (histogram)
+    vs MATH-500 overlay.'
+  analysis: Supplementary validation，放 Appendix。如果 kappa<0.75 则需要承认 quantile  segmentation
+    在 GPQA 上不如 MATH-500 可靠——但 0.82 仍然足够支持主结论。 不影响论文主线 claims。

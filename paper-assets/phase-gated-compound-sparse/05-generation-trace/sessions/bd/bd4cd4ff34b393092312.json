@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "bd4cd4ff34b393092312",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper final visual review v2",
+  "task_key": "worker_paper_final-visual-review-v2_20260514T135844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-visual-review-v2_20260514T135844.log",
+    "occurrence": 1,
+    "bytes": 3789941,
+    "sha256": "6844281aa2224457ae0a8890ea9a3899f35496d43158f7b7591210d99899d14f"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 0,
+    "tool_calls": 36,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 32,
+      "tool_call": 36,
+      "tool_result": 36,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "bd4cd4ff34b393092312-part-0001.json",
+          "message_count": 20
+        },
+        {
+          "path": "bd4cd4ff34b393092312-part-0002.json",
+          "message_count": 2
+        },
+        {
+          "path": "bd4cd4ff34b393092312-part-0003.json",
+          "message_count": 1
+        },
+        {
+          "path": "bd4cd4ff34b393092312-part-0004.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-final-visual-review-v2.md"
+}

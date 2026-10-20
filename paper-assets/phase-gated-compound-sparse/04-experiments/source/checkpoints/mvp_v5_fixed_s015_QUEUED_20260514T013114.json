@@ -1,0 +1,19 @@
+{
+  "exp_id": "mvp_v5_fixed_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:31:09.055Z",
+    "updated_at": "2026-05-14T01:31:14.252Z",
+    "spec": {
+      "hypothesis": "v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.15, cuda:2。低 sparsity 参照点，预期 importance 和 random 差距小。",
+      "server": "westd-22162",
+      "gpu": "cuda:2"
+    }
+  },
+  "timestamp": "2026-05-14T01:31:14.326054+00:00",
+  "trigger": "update_registry"
+}

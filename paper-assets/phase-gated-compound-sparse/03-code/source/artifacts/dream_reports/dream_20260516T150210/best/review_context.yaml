@@ -1,0 +1,653 @@
+narrative_guidance: "原始 framing \"phase-gated compound sparsity\" 完全成立。Strategy ×\
+  \ phase × compound 三维交互\n在三模型（DS/QW/LLaMA）、两架构（Qwen2/Llama）、三 benchmark（MATH-500/GSM8K/GPQA）上一致复现。\n\
+  LLaMA n=250 高功效下 imp_vs_rand d_z 达中等效应量（~0.52 at s030），random phase gradient 收缩至\n\
+  不显著（d_z~0.18），消除 n=50 的 architecture-dependent 限定。GPQA 提供跨推理领域（科学→数学）泛化，\nstrategy\
+  \ specificity ratio ≥5× 确认 importance 的 phase-dependent compound interaction \n\
+  不是 metric artifact 而是 genuine phenomenon。C8 升级为 confirmed，论文 claims 无需调整。\nTitle/framing\
+  \ 保持 \"phase-gated\"，EMNLP main 正会强竞争力——novelty 同时具备现象发现（三维交互）\n和机制解释（discrimination\
+  \ collapse），泛化证据覆盖模型/架构/任务三个维度。\n"
+imagined_experiments:
+- name: LLaMA n=250 Cross-Architecture Full Validation
+  plan_id: c8_llama_n250_fixed
+  description: 'DeepSeek-R1-Distill-Llama-8B 上 n=250 problems，8 条件（importance/random
+    × s015/s020/s025/s030）。
+
+    关键验证：(1) imp_vs_rand d_z 达 medium effect；(2) 3+ sparsity Bonferroni 显著；
+
+    (3) random phase gradient 在 n=250 下衰减至 negligible。
+
+    '
+  expected_results:
+    model: DeepSeek-R1-Distill-Llama-8B
+    n_problems: 250
+    n_valid: 244
+    n_skipped: 6
+    conditions_completed: 8/8
+    n_bootstrap: 10000
+    bonferroni_k: 4
+    imp_vs_rand_dz:
+      s015: 0.25
+      s020: 0.34
+      s025: 0.44
+      s030: 0.52
+    imp_vs_rand_dz_ci:
+      s015:
+      - 0.08
+      - 0.42
+      s020:
+      - 0.17
+      - 0.51
+      s025:
+      - 0.27
+      - 0.61
+      s030:
+      - 0.35
+      - 0.69
+    imp_vs_rand_dz_interpretation:
+      s015: small
+      s020: small_to_medium
+      s025: medium
+      s030: medium
+    imp_vs_rand_dz_monotonic: true
+    phase_gradient_importance_dz:
+      s015: 0.95
+      s020: 1.04
+      s025: 1.12
+      s030: 0.98
+    phase_gradient_importance_dz_ci:
+      s015:
+      - 0.75
+      - 1.15
+      s020:
+      - 0.86
+      - 1.22
+      s025:
+      - 0.94
+      - 1.3
+      s030:
+      - 0.82
+      - 1.14
+    phase_gradient_importance_interpretation: all_large
+    phase_gradient_random_dz:
+      s015: 0.14
+      s020: 0.17
+      s025: 0.2
+      s030: 0.22
+    phase_gradient_random_dz_ci:
+      s015:
+      - -0.03
+      - 0.31
+      s020:
+      - 0.0
+      - 0.34
+      s025:
+      - 0.03
+      - 0.37
+      s030:
+      - 0.05
+      - 0.39
+    phase_gradient_random_interpretation: negligible_to_small
+    phase_gradient_random_bonferroni_significant:
+      s015: false
+      s020: false
+      s025: false
+      s030: false
+    median_diff:
+      s015: 0.024
+      s020: 0.055
+      s025: 0.152
+      s030: 0.42
+    median_diff_ci:
+      s015:
+      - 0.007
+      - 0.044
+      s020:
+      - 0.015
+      - 0.112
+      s025:
+      - 0.058
+      - 0.285
+      s030:
+      - 0.19
+      - 0.63
+    wilcoxon_p:
+      s015: 0.015
+      s020: 0.003
+      s025: 0.00028
+      s030: 1.5e-05
+    wilcoxon_p_bonferroni:
+      s015: 0.06
+      s020: 0.012
+      s025: 0.0011
+      s030: 6.0e-05
+    significant_bonferroni:
+      s015: false
+      s020: true
+      s025: true
+      s030: true
+    bonferroni_significant_count: 3
+    cross_arch_comparison:
+      deepseek_qwen2_imp_vs_rand_dz_s030: 0.8
+      llama_imp_vs_rand_dz_s030: 0.52
+      delta: 0.28
+      note: LLaMA effect weaker in magnitude but unambiguously medium (CI excludes
+        zero). Architecture modulates strength but not direction.
+  result_rationale: "n=50 时 imp_vs_rand d_z=0.19→0.34，CI 极宽（s030: [0.06, 0.66]），仅\
+    \ s030 Bonferroni \n显著（p=0.029）。n=250 使 SE 缩小 √5≈2.24 倍，效应量估计趋于真值。三个关键机制：\n\n\
+    (1) Random phase gradient 衰减：n=50 时 random d_z=0.35-0.44 可能被采样变异性膨胀。\nRandom masking\
+    \ 是无差别噪声注入，不应产生与 importance 同等的 strategy-dependent phase 调制。\n在 n=250 下采样噪声被平滑，random\
+    \ d_z 回落至 ~0.14-0.22，无一 Bonferroni 显著——\n与 DS/QW 在 n=500 下 random s015/s020 NS\
+    \ 的模式一致。n=50 时 LLaMA random 显著\n很可能是 Type I error（多重比较 + 小样本变异性）。\n\n(2) Importance\
+    \ gradient 稳定：c8_llama_gpu0_s025 已验证 n=250 importance s025 \nd_z=1.1174（与 n=50\
+    \ 的 1.12 一致），确认 importance phase gradient 是 robust signal \n而非偶然。全 4 水平 d_z 维持在\
+    \ 0.95-1.12（large effect）。\n\n(3) imp_vs_rand 提升：当 random gradient 从 ~0.44 缩至\
+    \ ~0.22 而 importance 保持 ~1.0+，\n两者差距扩大→imp_vs_rand d_z 从 0.34 提升至 0.52。s020/s025/s030\
+    \ 三水平获得\nBonferroni 显著性（n=250 给出 >90% power 检测 d_z≥0.35 的效应）。\n"
+  tables:
+  - name: LLaMA n=250 vs n=50 Effect Size Comparison
+    columns:
+    - sparsity
+    - n50_imp_rand_dz
+    - n250_imp_rand_dz
+    - n250_bonf_p
+    - significant
+    rows:
+    - - s015
+      - 0.19
+      - 0.25
+      - 0.06
+      - NS
+    - - s020
+      - 0.26
+      - 0.34
+      - 0.012
+      - ✓
+    - - s025
+      - 0.29
+      - 0.44
+      - 0.0011
+      - ✓
+    - - s030
+      - 0.34
+      - 0.52
+      - 6.0e-05
+      - ✓
+  - name: Random Phase Gradient Attenuation n=50 → n=250
+    columns:
+    - sparsity
+    - n50_random_dz
+    - n250_random_dz
+    - n250_CI_contains_zero
+    - bonf_significant
+    rows:
+    - - s015
+      - 0.35
+      - 0.14
+      - 'yes'
+      - 'no'
+    - - s020
+      - 0.37
+      - 0.17
+      - borderline
+      - 'no'
+    - - s025
+      - 0.45
+      - 0.2
+      - 'no'
+      - 'no'
+    - - s030
+      - 0.44
+      - 0.22
+      - 'no'
+      - 'no'
+  figures_description:
+  - 'fig_c8_n250_forest.pdf: Forest plot 三架构 (DS-Qwen2/QW/LLaMA) × 4 sparsity 的 imp_vs_rand
+    d_z 及 95% CI。LLaMA n=250 点位从 n=50 虚线位置移至 medium zone。'
+  - 'fig_c8_random_attenuation.pdf: 左=importance dz (稳定 ~1.0)，右=random dz (从 0.35-0.44
+    衰减至 0.14-0.22)，双 panel 对比 n=50 vs n=250。'
+  analysis: "LLaMA n=250 解除 C8 的 architecture-dependent 限定。三个关键变化：\n(1) imp_vs_rand\
+    \ d_z s030=0.52（medium），s020/s025/s030 Bonferroni 显著（3/4）；\n(2) random phase gradient\
+    \ 全部无 Bonferroni 显著——与 DS/QW 模式一致；\n(3) importance gradient 稳定（d_z=0.95-1.12），与\
+    \ c8_llama_gpu0_s025 已验证的 1.1174 吻合。\n论文可改为 \"Cross-architecture validation confirms\
+    \ strategy×phase interaction \n(d_z=0.52, Bonferroni p<0.001 at s=0.30)\" 而非 \"\
+    suggests/provides partial support\"。\nC8 从 partially_confirmed 升级为 confirmed。\n"
+- name: GPQA DeepSeek Importance Phase Gradient Profiling
+  plan_id: gpqa_ds_importance_s015
+  description: 'DeepSeek-R1-Distill-Qwen-7B 对 GPQA-Diamond (n=50) 运行 importance masking，
+
+    4 sparsity levels (s015/s020/s025/s030)。验证 phase gradient 单调递增跨 benchmark。
+
+    '
+  expected_results:
+    model: DeepSeek-R1-Distill-Qwen-7B
+    benchmark: GPQA-Diamond
+    n_problems: 50
+    method: median + Wilcoxon + bootstrap_median(B=10000)
+    importance:
+      s015:
+        median_gradient: 0.19
+        ci_low: 0.065
+        ci_high: 0.39
+        wilcoxon_p: 0.0006
+        bonferroni_p: 0.0024
+      s020:
+        median_gradient: 0.58
+        ci_low: 0.24
+        ci_high: 0.95
+        wilcoxon_p: 0.0002
+        bonferroni_p: 0.0008
+      s025:
+        median_gradient: 1.72
+        ci_low: 0.82
+        ci_high: 2.55
+        wilcoxon_p: 0.0001
+        bonferroni_p: 0.0004
+      s030:
+        median_gradient: 4.15
+        ci_low: 1.9
+        ci_high: 8.9
+        wilcoxon_p: 0.0001
+        bonferroni_p: 0.0004
+    dose_response_monotonic: true
+    spearman_rho: 1.0
+    bonferroni_sig_count: 4
+    all_bonferroni_significant: true
+  result_rationale: "GPQA-Diamond 是 graduate-level 科学推理，推理链结构介于 MATH-500（长复杂链）和 \n\
+    GSM8K（短规律链）之间。预测 phase gradient 单调递增：\n\n(1) 物理机制不依赖 task 类型——head pruning → discrimination\
+    \ collapse → compound interaction \n在 low-sparsity phase 最严重，此机制跨 benchmark 通用。MATH-500\
+    \ 和 GSM8K 已 100% 单调。\n\n(2) Gradient magnitude 预计介于 MATH-500 (0.39→8.48) 和 GSM8K\
+    \ (0.24→4.68) 之间：\nGPQA 多选题 format 使 reasoning chain 比 MATH-500 短（平均 token 更少），但科学推理\n\
+    的知识检索步骤比 GSM8K 算术多，compound sensitivity 居中。预测 s030 ≈ 4.15。\n\n(3) 全 4 水平 Bonferroni\
+    \ 显著——DS 在 MATH-500 n=50 时 s015 就显著 (d=0.61)，\nGPQA 虽然绝对 magnitude 略小但效应仍在 detectable\
+    \ 范围，n=50 配合 DS 的强 signal 足够。\n"
+  tables:
+  - name: Cross-Benchmark Phase Gradient (DeepSeek Importance)
+    columns:
+    - sparsity
+    - MATH-500_n500
+    - GSM8K_n50
+    - GPQA_n50
+    rows:
+    - - s015
+      - 0.39
+      - 0.241
+      - 0.19
+    - - s020
+      - 1.21
+      - 0.74
+      - 0.58
+    - - s025
+      - 3.99
+      - 1.992
+      - 1.72
+    - - s030
+      - 8.48
+      - 4.682
+      - 4.15
+  figures_description:
+  - 'fig_cross_benchmark_ds.pdf: 三条 dose-response 曲线 (MATH/GSM/GPQA) 均单调递增，GPQA 居中。'
+  analysis: 'DS GPQA gradient 0.19→4.15 单调递增（ρ=1.0），全 4 水平 Bonferroni 显著。
+
+    三 benchmark 全部单调复现，phase modulation 是跨推理领域的 robust finding。
+
+    Magnitude ordering MATH > GPQA > GSM 反映推理链复杂度对 compound sensitivity 的调制。
+
+    '
+- name: GPQA Qwen Importance Phase Gradient Cross-Model
+  plan_id: gpqa_profiling_qw
+  description: 'Qwen2.5-7B-Instruct 对 GPQA-Diamond (n=50) importance masking，验证 cross-model
+    复现。
+
+    '
+  expected_results:
+    model: Qwen2.5-7B-Instruct
+    benchmark: GPQA-Diamond
+    n_problems: 50
+    importance:
+      s015:
+        median_gradient: 0.038
+        ci_low: 0.005
+        ci_high: 0.088
+        wilcoxon_p: 0.018
+        bonferroni_p: 0.072
+      s020:
+        median_gradient: 0.19
+        ci_low: 0.075
+        ci_high: 0.35
+        wilcoxon_p: 0.0004
+        bonferroni_p: 0.0016
+      s025:
+        median_gradient: 0.85
+        ci_low: 0.42
+        ci_high: 1.3
+        wilcoxon_p: 0.0001
+        bonferroni_p: 0.0004
+      s030:
+        median_gradient: 2.28
+        ci_low: 1.22
+        ci_high: 3.55
+        wilcoxon_p: 0.0001
+        bonferroni_p: 0.0004
+    dose_response_monotonic: true
+    spearman_rho: 1.0
+    bonferroni_sig_count: 3
+    qw_ds_ratio_s030: 0.55
+    note: QW magnitude ~55% of DS, consistent with MATH-500 pattern (QW ~37%). GPQA
+      ratio slightly higher because QW's science reasoning less disadvantaged than
+      math.
+  result_rationale: 'QW 在 MATH-500 上 gradient 为 0.066→3.155（DS 的 ~37%），在 GSM8K 上为
+    0.039→2.092。
+
+    GPQA 预测 QW gradient 0.038→2.28，DS/QW 比值约 1.8×。
+
+
+    QW magnitude 一贯小于 DS（Qwen2.5-7B-Instruct 的 attention head utilization 更均匀，
+
+    pruning 影响较分散），但方向和单调性完全一致。s015 Bonferroni 边缘不显著（p=0.072），
+
+    与 MATH-500 上 QW s015 CI 含零的 onset threshold 模式一致——QW 在最低 sparsity 效应弱，
+
+    但 s020+ 稳定显著。
+
+    '
+  tables:
+  - name: Cross-Benchmark Phase Gradient (Qwen Importance)
+    columns:
+    - sparsity
+    - MATH-500_n500
+    - GSM8K_n50
+    - GPQA_n50
+    rows:
+    - - s015
+      - 0.066
+      - 0.039
+      - 0.038
+    - - s020
+      - 0.307
+      - 0.158
+      - 0.19
+    - - s025
+      - 1.075
+      - 1.1
+      - 0.85
+    - - s030
+      - 3.155
+      - 2.092
+      - 2.28
+  figures_description:
+  - 'fig_cross_benchmark_qw.pdf: QW 三 benchmark gradient 曲线，标注 onset threshold ~s020。'
+  analysis: 'QW GPQA 单调递增复现（ρ=1.0），3/4 Bonferroni 显著。结合 DS，两模型×三 benchmark
+
+    共 6 条 dose-response 曲线全部单调。QW-GPQA s030=2.28 与 QW-GSM8K s030=2.09 接近，
+
+    暗示 QW 跨 task 的 compound sensitivity 较稳定。
+
+    '
+- name: GPQA Random Baselines and Strategy Specificity
+  plan_id: gpqa_random_baselines
+  description: 'DS 和 QW 对 GPQA-Diamond (n=50) 运行 random masking，计算 imp/rand ratio。
+
+    验证 strategy specificity ≥5×。
+
+    '
+  expected_results:
+    ds_random:
+      s015:
+        median_gradient: 0.024
+        wilcoxon_p: 0.12
+      s020:
+        median_gradient: 0.072
+        wilcoxon_p: 0.045
+      s025:
+        median_gradient: 0.24
+        wilcoxon_p: 0.008
+      s030:
+        median_gradient: 0.55
+        wilcoxon_p: 0.003
+    qw_random:
+      s015:
+        median_gradient: 0.005
+        wilcoxon_p: 0.38
+      s020:
+        median_gradient: 0.025
+        wilcoxon_p: 0.15
+      s025:
+        median_gradient: 0.12
+        wilcoxon_p: 0.022
+      s030:
+        median_gradient: 0.36
+        wilcoxon_p: 0.006
+    strategy_specificity_ratio_ds:
+      s015: 7.9
+      s020: 8.1
+      s025: 7.2
+      s030: 7.5
+    strategy_specificity_ratio_qw:
+      s015: 7.6
+      s020: 7.6
+      s025: 7.1
+      s030: 6.3
+    strategy_specificity_ratio_range: 6.3-8.1×
+    all_ratios_above_5x: true
+    cross_benchmark_specificity:
+      MATH-500: 15-36×
+      GPQA: 6.3-8.1×
+      GSM8K: 2.3-3.8×
+  result_rationale: "Strategy specificity ratio 的 task-dependence 与 reasoning chain\
+    \ 结构相关：\n\n(1) MATH-500 推理链最长最复杂（竞赛数学），importance score 的 phase-dependent \ndiscrimination\
+    \ collapse 最剧烈 → ratio 最高（15-36×）；\n\n(2) GSM8K 推理链最短最规律（小学数学），importance 和 random\
+    \ 的差异被压缩 → \nratio 最低（2.3-3.8×）；\n\n(3) GPQA 居中——graduate-level QA 涉及多步科学推理但为多选题\
+    \ format（答案段短），\nreasoning 部分复杂度介于两者之间。ratio 6.3-8.1× 满足 ≥5× 的 best 阈值。\n\n物理解释：GPQA\
+    \ 的 scientific reasoning 涉及领域知识检索和逻辑链推理，importance \nscore 对这些 pattern 的编码比 random\
+    \ 有明显优势（score collapse 使 importance 退化\n但仍保留部分 phase-dependent 判别力），但不如 MATH-500\
+    \ 中长推理链的累积优势大。\n\nRandom baseline 在 GPQA s025+ 产生可测 compound effect（p<0.05），但\
+    \ magnitude \n远小于 importance——与 DS/QW 在 MATH-500 n=500 上 random s025 显著但 ratio\
+    \ 15-38× \n的模式定性一致。\n"
+  tables:
+  - name: Strategy Specificity Ratio Across Benchmarks
+    columns:
+    - benchmark
+    - ratio_range
+    - interpretation
+    - reasoning_chain_complexity
+    rows:
+    - - MATH-500
+      - 15-36×
+      - very_high
+      - 长复杂链（竞赛数学）
+    - - GPQA
+      - 6.3-8.1×
+      - high
+      - 中等链（科学推理多选）
+    - - GSM8K
+      - 2.3-3.8×
+      - moderate
+      - 短规律链（小学算术）
+  - name: GPQA imp/rand Ratio by Sparsity
+    columns:
+    - sparsity
+    - DS_imp
+    - DS_rand
+    - DS_ratio
+    - QW_imp
+    - QW_rand
+    - QW_ratio
+    rows:
+    - - s015
+      - 0.19
+      - 0.024
+      - 7.9
+      - 0.038
+      - 0.005
+      - 7.6
+    - - s020
+      - 0.58
+      - 0.072
+      - 8.1
+      - 0.19
+      - 0.025
+      - 7.6
+    - - s025
+      - 1.72
+      - 0.24
+      - 7.2
+      - 0.85
+      - 0.12
+      - 7.1
+    - - s030
+      - 4.15
+      - 0.55
+      - 7.5
+      - 2.28
+      - 0.36
+      - 6.3
+  figures_description:
+  - 'fig_gpqa_specificity.pdf: 双线图 DS/QW importance vs random gradient on GPQA，阴影面积标注
+    imp/rand ratio ≥5× zone。'
+  - 'fig_specificity_by_task.pdf: Bar chart 三 benchmark 的 mean ratio（MATH=25×, GPQA=7.4×,
+    GSM=3.0×），ordered by chain complexity。'
+  analysis: "GPQA strategy specificity 6.3-8.1× 全部超过 5× 阈值，填补了 MATH (15-36×) 和 \n\
+    GSM (2.3-3.8×) 之间的 gap。三 benchmark 形成 interpretable gradient：推理链复杂度↑ \n→ specificity\
+    \ ratio↑。这支持 \"discrimination collapse 是 mechanism\" 的 framing——\n如果是 importance\
+    \ metric 本身有缺陷，ratio 不应随 task difficulty 系统性变化。\nGPQA 数据使论文可以声明 \"strategy specificity\
+    \ is a robust phenomenon (≥5×) across \ndiverse reasoning tasks\"。\n"
+- name: Discrimination Collapse Quantitative Prediction
+  plan_id: mechanism_gini_correlation
+  description: "利用已完成的 c5_per_phase_gini 和 c2_n500 数据，计算 per-phase Gini_delta \n与\
+    \ II severity 的跨模型定量相关。验证 Spearman ρ=1.0, Pearson r≥0.85。\n"
+  expected_results:
+    analysis_type: correlation of per-phase Gini collapse with II severity
+    data_source: c5_per_phase_gini (n=30/model) + c2_n500 (n=500/model)
+    ds_within_model:
+      gini_delta_low:
+      - -0.0163
+      - -0.0209
+      - -0.0313
+      - -0.0373
+      ii_median:
+      - 0.3907
+      - 1.2149
+      - 3.9857
+      - 8.4813
+      spearman_rho: -1.0
+      pearson_r: -0.94
+      pearson_p: 0.031
+    qw_within_model:
+      gini_delta_low:
+      - -0.0165
+      - -0.02
+      - -0.0286
+      - -0.035
+      ii_median:
+      - 0.0659
+      - 0.3073
+      - 1.0745
+      - 3.155
+      spearman_rho: -1.0
+      pearson_r: -0.96
+      pearson_p: 0.022
+    cross_model_pooled:
+      n_datapoints: 8
+      spearman_rho: -0.9
+      pearson_r: -0.86
+      pearson_p: 0.003
+    cv_correlation:
+      ds_cv_vs_ii_spearman: -1.0
+      qw_cv_vs_ii_spearman: -1.0
+      cross_model_cv_pearson: -0.88
+  result_rationale: "Gini delta 和 II 的相关性有坚实的因果机制：head pruning → 剩余 head 的 importance\
+    \ \nscore 分布更均匀（Gini 下降）→ importance-based eviction 丧失判别力 → eviction 近似\n随机 →\
+    \ compound interaction 增大。因此 |Gini 下降| 应与 II severity 正相关。\n\n(1) DS low-phase\
+    \ Gini delta [-0.016→-0.037] 与 II [0.39→8.48] 完美单调共变\n（Spearman ρ=-1.0 因为 Gini\
+    \ 是负值——更负=更大 collapse=更大 II）。\nPearson r=-0.94 因两者均近似幂律增长但指数不同。\n\n(2) QW 同样单调（Gini\
+    \ [-0.017→-0.035]，II [0.066→3.155]），Pearson r 略高(-0.96)\n因为 QW 的 II 增长在 log-scale\
+    \ 更接近线性。\n\n(3) 跨模型 pooling (8 points) r=-0.86——DS 和 QW 共享正趋势但斜率不同（DS 单位 \nGini\
+    \ 下降对应更大 II 增加），反映 Gini→II 传递函数是 architecture-dependent 的，\n但方向和 monotonicity\
+    \ 是 universal 的。\n\n数据已存在（c5_per_phase_gini + c2_n500），仅需分析脚本。\n"
+  tables:
+  - name: Gini-II Correlation Summary
+    columns:
+    - scope
+    - Spearman_ρ
+    - Pearson_r
+    - p_value
+    rows:
+    - - DS within-model
+      - -1.0
+      - -0.94
+      - 0.031
+    - - QW within-model
+      - -1.0
+      - -0.96
+      - 0.022
+    - - Cross-model pooled (n=8)
+      - -0.9
+      - -0.86
+      - 0.003
+  figures_description:
+  - 'fig_gini_ii_scatter.pdf: |Gini_delta| vs II_median (log y-axis)，DS 圆/QW 方，按 sparsity
+    着色。回归线及 r² 标注。'
+  analysis: "Within-model Spearman ρ=1.0（完美单调）排除了 \"Gini 下降但 II 不增加\" 的反例。\nCross-model\
+    \ r=-0.86 (p=0.003) 远超 r≥0.7 阈值。论文 §5 可声明 \"Gini decline \nquantitatively predicts\
+    \ interaction severity (cross-model r=0.86, p=0.003)\"，\n将 discrimination collapse\
+    \ 从 qualitative hypothesis 提升至 quantitative predictor。\n"
+- name: 'C8 Status Upgrade: confirmed'
+  plan_id: c8_upgrade
+  description: '基于 c8_llama_n250_fixed 结果，将 C8 从 partially_confirmed 升级为 confirmed。
+
+    更新论文措辞和 claim table。
+
+    '
+  expected_results:
+    c8_old_status: partially_confirmed
+    c8_new_status: confirmed
+    language_changes:
+      remove:
+      - suggests
+      - provides partial support
+      - architecture-dependent caveat
+      add:
+      - confirms strategy×phase interaction across architectures
+      - medium effect size (d_z=0.52)
+    limitation_retained: magnitude differs across architectures (LLaMA d_z=0.52 vs
+      Qwen2 d_z=0.80)
+    paper_abstract_update: can claim 'generalizes across architectures' without hedging
+  result_rationale: "C8 升级的三个充分条件在 best tier 下全部满足：\n(1) imp_vs_rand d_z ≥ 0.4 at\
+    \ s030 → ✓ (0.52, medium effect)\n(2) ≥2 sparsity Bonferroni significant → ✓ (3/4\
+    \ 显著)\n(3) random phase gradient 不再 Bonferroni significant → ✓ (0/4 显著)\n\nn=50\
+    \ 时的 \"architecture-dependent\" caveat 源于两个 anomaly：(a) imp_vs_rand 弱\n(仅 s030\
+    \ p=0.029)；(b) random 也显示 phase gradient (d_z=0.35-0.44)。\nn=250 同时解决了两者——(a)\
+    \ 3 水平显著，(b) random 衰减至 negligible。\n这说明 n=50 的 anomaly 是统计功效不足 + 小样本变异性的产物，不是\
+    \ architecture \n本身的差异。Strategy×phase interaction 是跨架构的 general phenomenon。\n"
+  tables: []
+  figures_description: []
+  analysis: "C8 confirmed 使论文 claim table 全部为 confirmed（除 C5b future_work 和 C4 \n\
+    partially_confirmed）。核心贡献 \"strategy×phase interaction generalizes across \narchitectures\"\
+    \ 无需 hedging，EMNLP reviewer 不能以 \"only works on one architecture\" \ndismiss。\n"
+- name: C9 Related Work Gap Analysis
+  plan_id: c9_related_work
+  description: '§2 Related Work 写作——定位与 Lethe/SparK/ThinKV/Physics of KV/HIES/R-KV
+    的区分。
+
+    纯分析写作任务，无计算。
+
+    '
+  expected_results:
+    output_type: manuscript_section
+    positioning: "唯一同时分析 pruning × eviction compound interaction 如何随 reasoning phase\
+      \ \n和 eviction strategy 变化的工作。三维 (compound × phase × strategy) 交互分析\n是 unique\
+      \ contribution。\n"
+    gap_matrix:
+      Lethe: adaptive method; no compound×phase analysis
+      SparK: compound but uniform; no phase modulation
+      ThinKV: single-axis phase-aware; no compound interaction
+      Physics_of_KV: compression-rate phase transition (different 'phase' semantics)
+      HIES: single-axis score collapse; no compound amplification
+      R-KV: task-specific optimization; not mechanistic analysis
+  result_rationale: "C9 是 writing task。在 best tier 下 positioning 清晰无争议——没有 prior work\
+    \ 同时\n分析三个维度。关键区分：our \"phase\" = reasoning phase（temporal），Physics of KV \n\"\
+    phase\" = compression-rate critical point（parametric）——语义正交。\nHIES 的 score collapse\
+    \ 发现反而是 supporting evidence，不是 prior art。\n"
+  tables: []
+  figures_description: []
+  analysis: §2 通过 6 篇工作的精确区分完成 novelty positioning。无需额外实验。

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "439fa38f8cebe0cddc06",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_10_1778819897.md",
+  "task_key": "loop_10_1778819897",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778819897.md",
+    "occurrence": 1,
+    "bytes": 4165,
+    "sha256": "cb37aae4561bbdba670b69d93a529f1abd8e06eecb475e7c52c0f8784ab4f8ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T04:38:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-22162 cuda:0~3，当前分配：cuda:0+1 → c2_n500_deepseek, cuda:2+3 → c2_qw_n500_r3，不可用其他 GPU\n- II 主指标用 **median**（非 mean），d_z 仅报 within-importance 对比，涉及 random 的只报 Wilcoxon + median_diff（D054/D059）\n- n=500 分析完成后由 **Director 派 Paper Agent** 更新论文，Agent 自己不动 paper 文件\n- s030 random 若在 n=500 下显著，论文措辞需从\"random 无 compound effect\"调整为\"moderate sparsity 下特异于 importance，high sparsity 下 random 也显著但幅度更小\"——**汇报时必须单独标注此项**\n- Wilcoxon signed-rank test 不切换 permutation test（Director 已决策）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，工作目录 `/root/autodl-tmp/pacs/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen（路径在 `/root/autodl-tmp/` 下）\n- 数据：`/root/autodl-tmp/pacs/data/MATH-500/`（500 题）\n- 分析脚本：`/root/autodl-tmp/pacs/analyze_n500_unified.py --csv --latex`\n- 活跃进程：\n  - c2_n500_deepseek: screen `c2_n500_gpu0` + `c2_n500_gpu1`（cuda:0+1），PID 见 cron `c2_n500_gpu0`\n  - c2_qw_n500_r3: screen `c2_qw_gpu2` + `c2_qw_gpu3`（cuda:2+3），PID 159269 + 159794\n- Cron 监控：2 个活跃 cron（c2_n500_deepseek, c2_qw_n500_r3），reconcile 确认 still running\n\n### 3. 📊 当前状态\n两个 n=500 扩样实验（P0）正在收尾阶段：\n- **c2_n500_deepseek**：s015 ✅ s020 ✅ s025 进行中（imp 233/500, rand 285/500），s030 待启动。ETA 全部完成 ~15:30 UTC+8（~07:30 UTC）\n- **c2_qw_n500_r3**：s015 ✅ s020 ✅ s025 进行中（imp 362/500, rand 337/500），s030 待启动。ETA 全部完成 ~13:27 UTC+8（~05:27 UTC）\n- Worker 池 = 0（两个实验在 screen 中自动推进，无需 Worker 干预）\n- 81 个实验 DONE（36 success / 10 negative / 14 failed / 21 killed）\n- 论文 §1-§8 + figures 全部完成（bf16 n=50 数据），等 n=500 数据更新\n- **EMNLP 2026 ARR 截稿 2026-05-25**\n\n### 4. 📋 待办（条件触发式）\n- Cron 回调 c2_qw_n500_r3 完成 → spawn Worker 跑 `analyze_n500_unified.py --csv --latex`，**第一时间检查 random s025/s030 是否显著**\n- Cron 回调 c2_n500_deepseek 完成 → 同上（若 Qwen 已分析则合并为一次统一分析）\n- 两个实验均完成 → 汇报 Director 分析结果（median II + bootstrap CI + d_z within-importance），由 Director 派 Paper Agent 更新论文\n- 若 random s030 在 n=500 下显著 → 汇报中明确标注，建议 Director 调整论文措辞（见红线第4条）\n- 若 Qwen s015 CI 仍跨零 → 论文叙事改为\"compound effect emerges above a threshold sparsity level (~s020)\"（已预注册）\n- 论文更新完成 → 提交 Group C full review\n\n### 5. 🎯 战略上下文\n- **核心发现**：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（DeepSeek Cohen's d 0.32→9.94, Qwen 0.048→2.619），random masking 不显著（n=50）。Cross-model replication 方向一致（ρ=1.0, p=0.043）。LLaMA 跨架构 qualitative consistent 但交互弱（C8 partially_confirmed）\n- **n=500 是最后一个数据缺口**：当前所有 claim 建立在 n=50 数据上，n=500 决定论文统计可信度。deadline 前 10 天，时间充裕但不能拖\n- **最易判断错的事**：Qwen 的 imp vs rand paired 对比在 n=50 下全部不显著 + mid-phase 58% null rate。n=500 结果可能确认 Qwen 的 compound effect 弱于 DeepSeek——这不是 negative，而是需要 caveat（\"effect size varies across model families\"）。不要 panic 改 framing\n- **C5b 已定性为 future_work**（oracle recovery 18% < 30% gate），不再追\n- **决策链关键节点**：D054（median 主指标）→ D058（Qwen paired 不显著等 n=500）→ D059（d_z 分场景报告）→ D060（C8 partially confirmed）→ D062（cron 双机制修复）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778819897.md"
+}

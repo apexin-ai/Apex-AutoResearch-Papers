@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "917d408bc254de21766b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "research reference audit",
+  "task_key": "worker_research_reference_audit_20260514T185731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_reference_audit_20260514T185731_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "d5dbecd5ffe92f3a61f88c1bc157b628a57d7613a329a5dd2675d05ae6821209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果如下：\n\n**总计**: 31 条 bib 条目，26 条被正文引用，8 条经 WebSearch 验证真实性（全部通过，无幻觉引用）。\n\n**发现 7 个问题**：\n\n| 严重度 | 数量 | 概要 |\n|--------|------|------|\n| Critical | 1 | `deepseek-r1-2025` DOI 错误：bib 中 `10.1038/s41586-025-08636-z`，正确应为 `10.1038/s41586-025-09422-z` |\n| Warning | 3 | (1) 同条目 Nature 标题与 bib 标题不一致；(2) author 用 `{DeepSeek-AI}` 但 Nature 列出个人作者；(3) 5 个 orphan bib 条目未被引用 |\n| Info | 3 | (1) PyramidKV 可能已发表但仍标为 arXiv；(2) paper_framing 提到的 3 篇定位参考文献（Physics of KV Cache Compression / HIES / R-KV）未出现在 Related Work 中；(3) DOI 字段不一致 |\n\n**最优先修复**：`deepseek-r1-2025` 的 DOI 需立即更正，否则读者/审稿人点击 DOI 链接无法到达正确论文。\n\n报告已写入 `artifacts/reference_audit_report.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reference-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73a7ab54411a3f82a43b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "writing section5 results",
+  "task_key": "worker_writing_section5_results_20260514T090520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_section5_results_20260514T090520_result.json",
+    "occurrence": 1,
+    "bytes": 3087,
+    "sha256": "8cf8cba029a05ca8fca489b8aa52d06dc981c61da1bf428daf5f18a110254096"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 变更报告\n\n### results.tex — 全部 placeholder 已替换（~60 处）\n\n**§5.2 Strategy-Dependent Severity (tab:aggregate-ii)**\n- 重构为 median severity difference Δ = II_low − II_high（原 \"mean II\" 指标在 JSON 中无数据）\n- Importance: 0.39 → 1.48 → 7.16 → 14.59（37× 放大）\n- Random: 0.01 → −0.02 → 0.54 → 1.54\n- 数据源: `experiment_summary_table.json` median_diff\n\n**§5.3 Phase-Modulated Amplification (tab:main-results)**\n- 8 行 per-phase median II 全部填入，新增 Δ 列，移除 95% CI 列（无 G ratio bootstrap CI 数据）\n- G ratio: importance 69×→103×→222×→274×; random 0.9×–1.7×\n- 增长率: Δ 增长因子 3.8×→4.8×→2.0×（递减，支撑 sub-exponential claim）\n- Skew ratio: mean/median = 22.94/14.59 = 1.6:1\n- 数据源: `experiment_summary_table.json`, `cohens_d_bf16.json` mean_diff\n\n**§5.4 Crossover (C3)**\n- s=0.25: importance high=0.032 vs random=0.818; importance low=7.196 vs random=1.363\n- 低相位反转比: 5.3×\n- Crossover onset 更新为 \"all four tested levels (s ≥ 0.15)\"，附各水平比值 3.9×→5.4×→5.3×→3.6×\n- 数据源: `experiment_summary_table.json`\n\n**§5.5 Cross-Model (C5)**\n- tab:cross-model 改为 Δ（原 G ratio 对 Qwen 不稳定——s020 分母 ≈ 0）\n- DeepSeek Δ: 0.39→14.59; Qwen Δ: 0.04→2.94（约 1/10 到 1/5）\n- 填入完整 narrative: Spearman ρ=1.0, gradient permutation p=0.043, per-problem concordance p=0.926 (ns)\n- Qwen 起效阈值 s≥0.20 (d≥0.55), s=0.15 CI 含 0\n- 新增 Qwen random control 段落: 3/4 FAIL, s030 borderline PASS (d≈0)\n- 数据源: `cross_model_analysis.json`, `cohens_d_bf16_qwen.json`, `experiment_summary_table.json`\n\n**§5.6 Statistical Validation** — 原已有真实数字，已验证全部与 JSON 一致（permutation test 4 行、Cohen's d 4×2 行）\n\n### discussion.tex — 5 处 PENDING-BF16 修正\n\n- G 范围: 11–42× → 69–274×\n- high-phase II: \"<1\" → \"<0.06\"\n- Crossover 数值: (0.58 vs 3.00, 30.9 vs 2.9) → (0.032 vs 0.818, 7.20 vs 1.36)\n- Statistical scope: fp16/B=1000 → bf16/B=10000; skew 34:1 → 1.6:1; bootstrap CI 更新为 permutation CI\n- Growth rate: 2.24→1.84→1.42× → 3.8→4.8→2.0×\n\n### analysis.tex — 1 处数值修正\n\n- G 范围: 11–42× → 69–274×; section ref 修正\n\n### 仍有 placeholder 未填\n\n| 文件 | 位置 | 内容 | 原因 |\n|------|------|------|------|\n| `analysis.tex:21` | §6.1 Attention Redistribution | 实证 attention entropy per phase（pruned vs unpruned） | 等 c4_entropy 实验完成（~21/30） |\n| `analysis.tex:30` | §6.2 Discrimination Collapse | Importance score Gini/concentration（pruned vs unpruned） | 同上 |\n| `results_5_1.tex` | 全文 | 36 处 PENDING-BF16 | 旧 fp16 草稿，已被 results.tex 取代，无需更新 |\n\n### 数字追溯\n\n每个数值在 LaTeX 注释中标注了 `exp_id` 和 `source` JSON 文件名，可直接追溯到 `/root/autodl-tmp/pacs/analysis_output/` 下的原始文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-section5-results.md"
+}

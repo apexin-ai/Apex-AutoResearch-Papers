@@ -1,0 +1,47 @@
+2026-05-14 06:04:55,779 ERROR   core.tools.dream  [dream] paper agent subprocess failed for tier=best
+Traceback (most recent call last):
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 1063, in _write_dream_paper
+    _run_paper_agent_subprocess(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        prompt=prompt,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        timeout_s=_WRITE_TIMEOUT_S,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 1099, in _run_paper_agent_subprocess
+    raise RuntimeError("Paper Agent (Dream) could not acquire a pool account — none healthy.")
+RuntimeError: Paper Agent (Dream) could not acquire a pool account — none healthy.
+2026-05-14 06:04:56,977 ERROR   core.tools.dream  [dream] paper agent subprocess failed for tier=median
+Traceback (most recent call last):
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 1063, in _write_dream_paper
+    _run_paper_agent_subprocess(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        prompt=prompt,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        timeout_s=_WRITE_TIMEOUT_S,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 1099, in _run_paper_agent_subprocess
+    raise RuntimeError("Paper Agent (Dream) could not acquire a pool account — none healthy.")
+RuntimeError: Paper Agent (Dream) could not acquire a pool account — none healthy.
+2026-05-14 06:04:58,202 ERROR   core.tools.dream  [dream] paper agent subprocess failed for tier=worst
+Traceback (most recent call last):
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 1063, in _write_dream_paper
+    _run_paper_agent_subprocess(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        prompt=prompt,
+        ^^^^^^^^^^^^^^
+    ...<3 lines>...
+        timeout_s=_WRITE_TIMEOUT_S,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/agent-ml-research/core/tools/dream.py", line 1099, in _run_paper_agent_subprocess
+    raise RuntimeError("Paper Agent (Dream) could not acquire a pool account — none healthy.")
+RuntimeError: Paper Agent (Dream) could not acquire a pool account — none healthy.
+2026-05-14 06:05:02,415 INFO    core.tools.feishu  create_chat: name='审稿-phase-gated-compound-sparse' → chat_id=oc_57b24a804b56707ec9118a483a8ac65e
+2026-05-14 06:05:02,426 INFO    core.tools.dream  [dream] auto-created Group C for project=phase-gated-compound-sparse: oc_57b24a804b56707ec9118a483a8ac65e

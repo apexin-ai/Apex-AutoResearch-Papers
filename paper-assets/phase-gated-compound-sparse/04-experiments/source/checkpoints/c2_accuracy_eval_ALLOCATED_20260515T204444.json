@@ -1,0 +1,15 @@
+{
+  "exp_id": "c2_accuracy_eval",
+  "project": "phase-gated-compound-sparse",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:44:33.644Z",
+    "updated_at": "2026-05-15T20:44:44.604Z",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T20:44:44.865965+00:00",
+  "trigger": "update_registry"
+}

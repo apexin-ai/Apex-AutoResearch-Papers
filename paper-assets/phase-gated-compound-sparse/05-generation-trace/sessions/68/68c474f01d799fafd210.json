@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68c474f01d799fafd210",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code c10 s020 s025 gen",
+  "task_key": "worker_code_c10_s020_s025_gen_20260516T033701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c10_s020_s025_gen_20260516T033701_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "77d64594e8505d7a60dfc426c86256f310151a3b1df0c7f65ee7d156538e5d09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型已加载，s020 第 1 题正在生成。\n\n任务已提交到 cuda:1，tmux session `c10_lang_s020_s025`：\n- 串行跑 importance_s020（50 题）→ importance_s025（50 题）\n- max_new_tokens=8192，保存完整 generated_text\n- 输出：`results_c10_s020_fulltext.json` / `results_c10_s025_fulltext.json`\n- 生成完成后自动运行 language switching 汇总（合并 dense/s015/s020/s025/s030）\n- 预估时长：每题 ~30-180s（取决于生成长度），两个条件共 100 题约 2-4 小时\n- 日志：`~/runs/phase-gated-compound-sparse/c10_lang_s020_s025.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c10-s020-s025-gen.md"
+}

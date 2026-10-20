@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_interaction_index_profiling",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:19:05.209Z",
+    "updated_at": "2026-05-13T19:19:15.991Z",
+    "hypothesis": "Phase-dependent interaction direction reversal: compound sparsity (attention head pruning + KV cache eviction) exhibits qualitatively different interaction patterns (super- vs sub-additive) across reasoning phases (execution/reasoning/transition), as measured by Interaction Index on DeepSeek-R1-Distill-Qwen-7B MATH-500 traces."
+  },
+  "timestamp": "2026-05-13T19:19:16.025656+00:00",
+  "trigger": "update_registry"
+}

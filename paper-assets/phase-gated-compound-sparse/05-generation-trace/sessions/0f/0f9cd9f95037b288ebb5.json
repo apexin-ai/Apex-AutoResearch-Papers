@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f9cd9f95037b288ebb5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code permutation test script",
+  "task_key": "worker_code_permutation-test-script_20260514T053725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_permutation-test-script_20260514T053725_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "b3a754341a82ddded4adcc872f48c4222f4edce47d33184d5ee5ee37adbe7afe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常。Random 数据文件尚未生成（目录存在但空），所以正确跳过了所有 level。等 random 实验跑完后直接执行即可：\n\n```\ncd /root/autodl-tmp/pacs && python -m pacs.analysis.permutation_test\n```\n\n脚本位于 `/root/autodl-tmp/pacs/pacs/analysis/permutation_test.py`，功能：\n- 自动定位 importance/random 各 sparsity level 的结果文件（含 retry 目录 `_r2`/`_r3`）\n- 按 problem_id 配对，计算 gradient = ii_low/(ii_high+eps)\n- 每个 level 做 paired permutation test (B=10000) + Wilcoxon signed-rank test\n- 多重比较 Bonferroni 校正\n- 输出 JSON 到 `analysis_output/permutation_test_results.json` + stdout summary"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-permutation-test-script.md"
+}

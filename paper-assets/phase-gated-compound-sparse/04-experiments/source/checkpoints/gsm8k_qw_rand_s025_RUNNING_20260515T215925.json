@@ -1,0 +1,43 @@
+{
+  "exp_id": "gsm8k_qw_rand_s025",
+  "project": "phase-gated-compound-sparse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:37:36.627Z",
+    "updated_at": "2026-05-15T21:59:25.025Z",
+    "hypothesis": "C10: QW random masking s=0.25 在 GSM8K 上的 compound interaction，作为 importance masking 的对照组。参照 gsm8k_profiling_qw 设置。",
+    "parent": "gsm8k_profiling_qw",
+    "spec": {
+      "command": "python run_profiling_gsm8k.py --model_path checkpoints/Qwen2.5-7B-Instruct --masking_method random --sparsity_levels 0.25 --max_problems 50 --seed 42 --device cuda:0",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "281019",
+      "log_path": "~/runs/phase-gated-compound-sparse/gsm8k_qw_rand_s025.log",
+      "submitted_at": "2026-05-15T21:58:43.521Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/gsm8k_test.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/Qwen2.5-7B-Instruct",
+      "eval_data": "gsm8k_test_n50"
+    },
+    "server": "westd-22162",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T21:59:24.115Z"
+    }
+  },
+  "timestamp": "2026-05-15T21:59:25.500273+00:00",
+  "trigger": "update_registry"
+}

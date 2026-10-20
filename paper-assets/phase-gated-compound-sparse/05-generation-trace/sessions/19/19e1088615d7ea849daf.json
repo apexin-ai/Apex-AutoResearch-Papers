@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19e1088615d7ea849daf",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops fig1 sync retry",
+  "task_key": "worker_ops_fig1_sync_retry_20260516T063049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig1_sync_retry_20260516T063049_result.json",
+    "occurrence": 1,
+    "bytes": 196,
+    "sha256": "4d5e4c012e698ed6b38aa378ce7a54efb72e9195ec1da414a86118617928d507"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，远程临时文件已清理。\n\n- 本地路径: `artifacts/_project/paper/fig1_ii_scatter.pdf`\n- 大小: 28286 bytes\n- MD5: `d2322dd48b19afb3dc1f6ef68186fc9d` ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fig1-sync-retry.md"
+}

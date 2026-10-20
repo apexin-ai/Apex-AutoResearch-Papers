@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d100b4bad627d99d8e25",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "fix n500 latex keyerror",
+  "task_key": "worker_fix_n500_latex_keyerror_20260515T044357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_n500_latex_keyerror_20260515T044357_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "592af55dd6be76f1ecc073e0755919bdf2a390f21b40621b4c391412441a330d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无 traceback，输出正确。所有 importance 和 random 条件的表格行完整。\n\n修复内容：\n- **main() summary（行 581）**: `else:` → `elif \"median_ii_diff_ci\" in c:`，避免条件字典缺少该 key 时 KeyError\n- **main() CSV（行 635）**: `if \"error\" in c:` → `if \"error\" in c or \"median_ii_diff_ci\" not in c:`，与 `latex_output` Table 1 的 guard 保持一致\n- `latex_output()` 本身（行 438）已有 `\"median_ii_diff_ci\" not in c` guard，无需改动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-n500-latex-keyerror.md"
+}

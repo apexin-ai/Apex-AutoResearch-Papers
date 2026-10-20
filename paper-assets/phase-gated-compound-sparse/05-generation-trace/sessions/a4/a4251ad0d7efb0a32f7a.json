@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4251ad0d7efb0a32f7a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper d059 d6d7d8 w5 appendix",
+  "task_key": "worker_paper_d059-d6d7d8-w5-appendix_20260514T233842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d059-d6d7d8-w5-appendix_20260514T233842_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "fa0d23b2528d1936d5da52dd81753cf854df0a14647caf7628a474525582d4d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **D6** (discussion.tex:11): `$d_z \\in [0.35, 0.45]$` → `Wilcoxon $p < \\placeholder{}$`\n- **D7** (appendix_results.tex:10): `negligible effect size ($d_z = -0.04$` → `negligible median difference ($\\widetilde{\\Delta} = \\placeholder{}$`\n- **W5** (appendix_moved.tex:28-46): `\\paragraph{Per-phase effective sample size.}` + `\\label{app:qwen-null-rate}` + `tab:qwen-effective-n` 表已插入\n- **D8** (appendix_moved.tex:76): 同 D7 替换完成\n\n无残留 `$d_z \\in [0.35, 0.45]$` 或 `$d_z = -0.04$`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d059-d6d7d8-w5-appendix.md"
+}

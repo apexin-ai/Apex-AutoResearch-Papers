@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75453257b29f7f0c9555",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_10_1778821045.md",
+  "task_key": "loop_10_1778821045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778821045.md",
+    "occurrence": 1,
+    "bytes": 4261,
+    "sha256": "b674db73d1ef1e9fb92193388af3943d324210df5cbe6ff1f25afc64fa256111"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T04:55:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，严禁用其他设备\n- d_z 报告规则（D059/D064）：within-importance 对比可报 d_z，涉及 random 的对比只报 Wilcoxon p + median_diff，不报 d_z\n- 主指标是 **median** + median bootstrap CI（B=10000），不是 mean（D054）\n- 统计检验用 Wilcoxon signed-rank，不切换 paired permutation（Director 已裁定）\n- 剂量-反应排列检验必须 4 levels（含 s030），3 levels 最小 p≈0.167 无效\n- Random s025 已显著（D063），论文叙事不再是 \"7/8 FAIL\"，而是 threshold story：\"compound effect 在 importance 中显著更强，high sparsity 下 random 也显著但幅度更小（3-15×）\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 分析一键命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 analyze_n500_unified.py --csv --latex`\n- GPU 分配：cuda:0+1 → c2_n500_deepseek | cuda:2+3 → c2_qw_n500_r3\n- 活跃进程：c2_qw_n500_r3 PIDs 159269/159794（screen c2_qw_gpu2/gpu3）；c2_n500_deepseek 通过 run_c2_n500_gpu0.sh / gpu1.sh\n- Cron 监控：c2_n500_deepseek + c2_qw_n500_r3 均 active（reconcile 确认 still running）\n- 活跃 Worker：`worker_fix_n500_pipeline_d063_d064`（正在修 n500 分析 pipeline 以适配 D063 random threshold + D064 d_z 方法论）\n\n### 3. 📊 当前状态\n上一 session 完成了 D063（random s025 跨模型显著 → threshold story）和 D064（d_z 方法论调整）的 framing 更新，ROADMAP 和 paper_framing.md 已同步。\n\n**RUNNING 实验（2/2）：**\n- `c2_n500_deepseek`：DeepSeek n=500 全量 profiling，cuda:0+1。ROADMAP 记录 DS s030 imp 157/500 rand 207/500，ETA ~15:00-15:30 UTC\n- `c2_qw_n500_r3`：Qwen n=500 continuation（接力 c2_qw_n500），cuda:2+3。QW s030 imp 409/500 rand 405/500，ETA ~13:10-13:20 UTC\n\n**等待中：**\n- Worker `fix_n500_pipeline_d063_d064` 正在运行（修分析 pipeline），等其回调\n- 两个实验的 cron 回调（完成时触发）\n\n### 4. 📋 待办（条件触发式）\n- `worker_fix_n500_pipeline_d063_d064` 回调 → 确认 pipeline 修复完成，准备就绪等实验数据\n- c2_qw_n500_r3 cron 回调（ETA 先到）→ 确认 Qwen n=500 全部 8 conditions 完成 → 但**不单独跑分析**，等 DeepSeek 一起\n- c2_n500_deepseek cron 回调 → 两个模型全部到齐 → spawn Worker 跑 `analyze_n500_unified.py --csv --latex` → 产出完整统计表 + LaTeX 片段\n- 分析完成 → 检查：(1) random s030 是否显著（预期是）(2) 4-level 剂量-反应排列检验 p 值 (3) d_z bootstrap CI 对称性 → 汇报 Director，由 Director 派 Paper Agent 统一更新论文\n- 论文更新需覆盖：n=500 tables/figures + random threshold story (D063) + d_z methodology note (D064) + C5b §8 future work + C8 限定语\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25（距今 10 天）**，目标 EMNLP 2026 ARR\n- 论文全文 §1-§8 已完成（基于 bf16 n=50 数据），PDF 可编译。n=500 是最后一轮补充实验，完成后统一更新数据再提交 Group C full review\n- 核心结论链：importance-based compound severity 随 sparsity 单调递增（C1/C2 confirmed），跨架构复现（C3 Qwen+DeepSeek confirmed，C8 LLaMA partially_confirmed），random 在 s025+ 也显著但效应量远小于 importance（D063 threshold story）\n- **易错点**：(1) 不要把 n=50 的 \"random 全 FAIL\" 结论带入 n=500 分析——n=500 下 random s025 已显著 (2) d_z 只能用于 within-importance 对比，DS s020→s025 有 variance explosion（D064）(3) C8 LLaMA 是 partially_confirmed，quantitative interaction weaker，不能 overclaim (4) C5b oracle recovery 18% < 30% gate，已定为 future_work，不要重开\n- 82 实验总计（36 success / 9 negative / 14 failed / 21 killed / 2 running），项目成熟度高，此时核心任务是等数据 → 分析 → 更新论文 → 提交审稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778821045.md"
+}

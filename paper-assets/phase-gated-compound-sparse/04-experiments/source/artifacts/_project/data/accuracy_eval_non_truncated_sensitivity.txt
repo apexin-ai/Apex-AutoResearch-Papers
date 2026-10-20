@@ -1,0 +1,15 @@
+Non-Truncated Sensitivity Analysis - C2 Accuracy Eval
+
+Methodology: Filter problems where BOTH dense and sparse gen_length < 2048, then recompute accuracy.
+
+Condition   n_total  n_NT   Dense(full)  Dense(NT)  Sparse(full)  Sparse(NT)  Delta(full)  Delta(NT)
+DS s015     50       17     52.0%        94.1%      34.0%         64.7%       -18.0%       -29.4%
+DS s030     50       9      52.0%        100.0%     10.0%         44.4%       -42.0%       -55.6%
+QW s015     50       42     32.0%        38.1%      32.0%         38.1%       +0.0%        +0.0%
+QW s030     50       42     32.0%        38.1%      14.0%         16.7%       -18.0%       -21.4%
+
+Truncation rates:
+DS dense: 28/50 (56%), DS s015 sparse: 26/50 (52%), DS s030 sparse: 33/50 (66%)
+QW dense: 5/50 (10%), QW s015 sparse: 4/50 (8%), QW s030 sparse: 3/50 (6%)
+
+Full JSON saved on server: /root/autodl-tmp/pacs/analysis_output/accuracy_eval_non_truncated_sensitivity.json

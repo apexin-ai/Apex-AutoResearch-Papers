@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "472de6854231c4fdc037",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper sync tex to remote",
+  "task_key": "worker_paper_sync_tex_to_remote_20260514T101158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sync_tex_to_remote_20260514T101158_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "eff5f20e1eea9d1da1660fe442d01d0b624379b89114f5cc32fb1d6f0745bc59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，验证全部通过：\n\n| 文件 | 状态 |\n|------|------|\n| results.tex | `d_z{=}0.44` ✓ |\n| abstract.tex | `paired Cohen's $d_z$` ✓ |\n| introduction.tex | `d_z{=}0.44` ✓ |\n| conclusion.tex | ✓ |\n| discussion.tex | ✓ |\n| background.tex | ✓ |\n| related_work.tex | ✓ |\n| main.tex | ✓ |\n| analysis.tex | ✓ |\n| methodology.tex | ✓ |\n\n共同步 10 个 .tex 文件（results_5_1.tex 本地不存在，已跳过）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sync-tex-to-remote.md"
+}

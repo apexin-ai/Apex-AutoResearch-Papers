@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e237862b4a8f14a9717",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "monitor c2 n500 progress check",
+  "task_key": "worker_monitor_c2_n500_progress_check_20260515T043831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_c2_n500_progress_check_20260515T043831_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "7e7d209cbfcd2b4d8d01ffb3b742691cf7c9db940a953d655a9ada13241379bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## n=500 实验进度汇总\n\n### GPU 状态\n4 块 GPU 全部在用，利用率 72-77%：\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 77% | 23.7/97.9 GB |\n| 1 | 77% | 27.4/97.9 GB |\n| 2 | 72% | 34.1/97.9 GB |\n| 3 | 76% | 34.7/97.9 GB |\n\n### 已完成 (12/16 conditions)\n\n| Condition | Qwen | DeepSeek |\n|-----------|------|----------|\n| imp_s015 | ✅ 500/500 | ✅ 500/500 |\n| rand_s015 | ✅ 500/500 | ✅ 500/500 |\n| imp_s020 | ✅ 500/500 | ✅ 500/500 |\n| rand_s020 | ✅ 500/500 | ✅ 500/500 |\n| imp_s025 | ✅ 500/500 | ✅ 500/500 |\n| rand_s025 | ✅ 500/500 | ✅ 500/500 |\n\n### 正在运行 (4/16 conditions, 全是 s030)\n\n| Condition | 进度 | 开始时间 | 预估剩余 |\n|-----------|------|----------|----------|\n| qw_imp_s030 | **407/500** (81%) | 09:53 | ~38 min |\n| qw_rand_s030 | **402/500** (80%) | 10:01 | ~39 min |\n| ds_rand_s030 | **205/500** (41%) | 10:54 | ~2.5h |\n| ds_imp_s030 | **154/500** (31%) | 11:19 | ~3h |\n\nQwen 两个 s030 条件约 **13:20** 前完成。DeepSeek 两个 s030 条件预计 **15:30-16:00** 完成（DeepSeek 每题生成 token 更多，速度约 2 problems/min vs Qwen 的 2.5/min）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-c2-n500-progress-check.md"
+}

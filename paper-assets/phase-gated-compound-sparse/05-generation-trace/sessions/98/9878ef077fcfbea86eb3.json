@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "9878ef077fcfbea86eb3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "viz fig1 title fix 7b",
+  "task_key": "worker_viz_fig1_title_fix_7b_20260516T051800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_title_fix_7b_20260516T051800.log",
+    "occurrence": 1,
+    "bytes": 785807,
+    "sha256": "eee0041a01a18562d0a31b7979d103bfbf3cae5a64ebf9e7f4cee7649221e294"
+  },
+  "statistics": {
+    "messages": 189,
+    "user_turns": 1,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 70,
+      "tool_result": 70,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 111,
+      "chunks": [
+        {
+          "path": "9878ef077fcfbea86eb3-part-0001.json",
+          "message_count": 111
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 78,
+      "chunks": [
+        {
+          "path": "9878ef077fcfbea86eb3-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "9878ef077fcfbea86eb3-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/viz-fig1-title-fix-7b.md"
+}

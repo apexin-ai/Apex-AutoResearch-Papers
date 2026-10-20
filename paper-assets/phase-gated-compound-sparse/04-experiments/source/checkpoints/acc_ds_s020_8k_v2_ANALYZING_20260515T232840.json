@@ -1,0 +1,53 @@
+{
+  "exp_id": "acc_ds_s020_8k_v2",
+  "project": "phase-gated-compound-sparse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:34:59.657Z",
+    "updated_at": "2026-05-15T23:28:40.504Z",
+    "hypothesis": "DS s020 accuracy eval with max_new_tokens=8192，补全 5-point dose curve。4096 版截断率 64%，8k 目标 <20%。",
+    "server": "westd-22162",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-15T21:52:57.528Z",
+      "finished_at": "2026-05-15T23:28:21.999Z",
+      "training_hours": 1.59
+    },
+    "spec": {
+      "command": "python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions importance_s020 --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_s020_8k_v2.json --gpu cuda:0",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "280638",
+      "log_path": "~/runs/phase-gated-compound-sparse/acc_ds_s020_8k_v2.log",
+      "submitted_at": "2026-05-15T21:55:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MATH problems 1-50",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T23:28:28.680643+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T23:28:40.822385+00:00",
+  "trigger": "update_registry"
+}

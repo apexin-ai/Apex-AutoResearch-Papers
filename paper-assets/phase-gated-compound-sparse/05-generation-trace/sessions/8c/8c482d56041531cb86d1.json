@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c482d56041531cb86d1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper compile check",
+  "task_key": "worker_paper_compile_check_20260516T232545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_check_20260516T232545_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "e1db6a92654d2bc6955677a14a30e5c9b70396df39838e1ce37fefc0160c0147"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译检查完成。结果汇总：\n\n| 检查项 | 状态 |\n|--------|------|\n| 编译成功 | ✓ 无错误 |\n| Undefined references | ✓ 无 |\n| Undefined citations | ✓ 无 |\n| Overfull hbox > 10pt | ✓ 无 |\n| Rerun warnings | ✓ 已消除（重新编译后） |\n| 总页数 | 24 页 |\n| 正文页数 | 8 页（Conclusion 在 p.8） |\n| Appendix 起始 | p.12（Limitations/Reproducibility 在 p.9-11） |\n\n**结论：编译完全通过，正文 8 页符合 EMNLP 限制（正文 ≤8 页 + Limitations 不计入 + unlimited appendix）。** 之前的 \"Label(s) may have changed\" 警告是因为只跑了一次 pdflatex，重新跑完整 cycle 后已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-check.md"
+}

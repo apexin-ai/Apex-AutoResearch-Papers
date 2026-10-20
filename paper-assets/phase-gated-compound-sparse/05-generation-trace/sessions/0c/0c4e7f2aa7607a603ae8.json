@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c4e7f2aa7607a603ae8",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "registry aggregate unification",
+  "task_key": "worker_registry_aggregate_unification_20260514T082600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_registry_aggregate_unification_20260514T082600_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "3bc2485162784f405fb7f2f1021d48d4ec295957c7aa12a5763d964c5d1f5ec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 12 个实验更新成功。汇总：\n\n| exp_id | median_difference |\n|--------|-------------------|\n| **DeepSeek importance** | |\n| bf16_importance_s015 | 0.3925 |\n| bf16_importance_s020 | 1.4818 |\n| bf16_importance_s025 | 7.1636 |\n| bf16_importance_s030 | 14.5861 |\n| **Qwen importance** | |\n| bf16_qw_imp_s015 | 0.0386 |\n| bf16_qw_imp_s020 | 0.2350 |\n| bf16_qw_imp_s025 | 1.2677 |\n| bf16_qw_imp_s030 | 2.9431 |\n| **DeepSeek random** | |\n| bf16_ds_rand_s015 | 0.0095 |\n| bf16_ds_rand_s020 | -0.0155 |\n| bf16_ds_rand_s025 | 0.5445 |\n| bf16_ds_rand_s030 | 1.5383 |\n\n4 个 DeepSeek importance 实验的旧 `gradient_paired_aggregate` 已保留为 `gradient_paired_aggregate_legacy`，原字段已移除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/registry-aggregate-unification.md"
+}

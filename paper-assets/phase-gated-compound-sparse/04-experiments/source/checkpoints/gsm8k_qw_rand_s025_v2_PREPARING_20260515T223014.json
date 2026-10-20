@@ -1,0 +1,17 @@
+{
+  "exp_id": "gsm8k_qw_rand_s025_v2",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:30:14.407Z",
+    "updated_at": "2026-05-15T22:30:14.407Z",
+    "spec": {
+      "hypothesis": "C10 重跑：QW random masking s=0.25 GSM8K compound interaction（修复 bootstrap bug 后）"
+    }
+  },
+  "timestamp": "2026-05-15T22:30:14.674020+00:00",
+  "trigger": "update_registry"
+}

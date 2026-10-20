@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b471ca3121f4816692d",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops gsm8k ds check r2",
+  "task_key": "worker_ops_gsm8k_ds_check_r2_20260515T162145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k_ds_check_r2_20260515T162145_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "1ab40a18e3908050931cc953d7beeabd1aa2a38d4933553fa7e6405bc6113a9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态总结**：\n\n- **DS importance**: 50/50 完成，verdict PASS，输出完整\n- **DS random**: 43/50，~20-25 min 完成\n- **QW importance**: 42/50，~20-25 min 完成  \n- **QW random**: 31/50（瓶颈），~55-60 min 完成\n- 4 GPU 全部活跃（76-98%）\n\n已安排 30 分钟后第三次检查。届时 DS pair 和 QW importance 应已完成，可更新 registry。QW random 可能还需再等一轮。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-ds-check-r2.md"
+}

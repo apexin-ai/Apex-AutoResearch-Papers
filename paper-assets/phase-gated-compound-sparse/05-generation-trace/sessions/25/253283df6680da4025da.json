@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "253283df6680da4025da",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ssh check n500 progress loop9",
+  "task_key": "worker_ssh_check-n500-progress-loop9_20260514T222953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-n500-progress-loop9_20260514T222953_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "d11bfa76a5db806560a7cbbc66d901579d5e8a99808dd174997addb04b57ed41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 n=500 实验各完成约 50%，4 GPU 满载运行，无异常。\n\n**实验 1 — c2_n500_deepseek (GPU 0+1)**\n\n| Condition | Done/500 | Status | ETA |\n|-----------|----------|--------|-----|\n| imp_s015 | 500 | ✅ | - |\n| imp_s020 | 461 | 🔄 | ~06:52 |\n| imp_s025 | 0 | ⏳ | ~11:17 |\n| imp_s030 | 0 | ⏳ | ~15:42 |\n| rand_s015 | 500 | ✅ | - |\n| rand_s020 | 500 | ✅ | - |\n| rand_s025 | 5 | 🔄 | ~10:55 |\n| rand_s030 | 0 | ⏳ | ~15:20 |\n\n速率 ~113 samples/hr，每 condition ~4h25m。**全部完成 ETA ~15:42**\n\n**实验 2 — c2_qw_n500_r3 (GPU 2+3)**\n\n| Condition | Done/500 | Status | ETA |\n|-----------|----------|--------|-----|\n| imp_s015 | 500 | ✅ | - |\n| imp_s020 | 500 | ✅ | - |\n| imp_s025 | 11 | 🔄 | ~09:52 |\n| imp_s030 | 0 | ⏳ | ~13:17 |\n| rand_s015 | 500 | ✅ | - |\n| rand_s020 | 489 | 🔄 | ~06:37 |\n| rand_s025 | 0 | ⏳ | ~10:02 |\n| rand_s030 | 0 | ⏳ | ~13:27 |\n\n速率 ~146 samples/hr，每 condition ~3h25m。**全部完成 ETA ~13:27**\n\n**GPU 快照**: GPU0 77%, GPU1 96%, GPU2 77%, GPU3 76% — 全部正常。\n\n报告已写入 `artifacts/n500_progress_20260515_0632.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-n500-progress-loop9.md"
+}

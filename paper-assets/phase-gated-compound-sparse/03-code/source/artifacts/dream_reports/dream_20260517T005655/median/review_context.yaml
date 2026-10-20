@@ -1,0 +1,546 @@
+narrative_guidance: '核心 claim（phase-modulated compound severity exists and is robust）不变，但
+  C11 从 ''scoring-independent eviction produces null gradient at all sparsities''
+  降级为 ''scoring-independent eviction produces null-to-weak gradient, confirming attention-score
+  mechanism is primary driver but not exclusive at extreme sparsity''。GPQA 跨 benchmark
+  扩展确认 phase gradient 普适性，但 strategy specificity ratio 继续衰减（2-3×），强化 task-modulation
+  叙事。Discussion 补充 boundary condition：extreme sparsity (s030) 下 任何 eviction 方法都可能触发弱
+  phase-dependent effects。Rebuttal 核心策略：effect size comparison（importance d_z >> recency
+  d_z 即使 s030 后者 nominally significant）。
+
+  '
+imagined_experiments:
+- name: recency_s025
+  plan_id: C11_recency_s025
+  description: 'Recency-based eviction (scoring-independent control) at sparsity=0.25,
+    n=100, DeepSeek-R1-Distill-Qwen-7B. Tests whether phase gradient remains null
+    at moderate-high sparsity.
+
+    '
+  expected_results:
+    n_problems: 100
+    model: DeepSeek-R1-Distill-Qwen-7B
+    masking_method: recency
+    sparsity: 0.25
+    phase_gradient_median_diff: 0.032
+    phase_gradient_median_diff_ci95:
+    - -0.08
+    - 0.16
+    cohens_dz: 0.14
+    p_value: 0.38
+    significant: false
+    low_phase_ii_median: 0.85
+    high_phase_ii_median: 0.78
+    low_high_ratio: 1.09
+    comparison_importance_s025_dz: 0.95
+    comparison_importance_s025_median_diff: 3.99
+    importance_vs_recency_ratio: ~125×
+    wilcoxon_p: 0.38
+    bonferroni_p_k3: 1.0
+  result_rationale: 'At s025, recency eviction removes the oldest 25% of KV entries
+    regardless of attention scores. Since discrimination collapse is driven by importance-score
+    judgment degradation after head pruning, recency eviction bypasses this mechanism
+    entirely. The slight positive trend (d_z=0.14) reflects marginal information loss
+    that differentially affects longer reasoning chains (low-sparsity phase has more
+    accumulated context to lose), but the effect is far below significance. The key
+    mechanistic argument holds: without attention-score-based selection, pruning doesn''t
+    create the biased pseudo-random degradation pattern that amplifies compound severity
+    in the low phase. At s025, total information loss from recency eviction is still
+    below the critical threshold where any removal method would trigger phase effects.
+
+    '
+  tables:
+  - title: 'Table: Triple dissociation at s025'
+    columns:
+    - Strategy
+    - median_diff
+    - d_z
+    - p
+    - Significant
+    rows:
+    - - Importance
+      - '3.99'
+      - '0.95'
+      - <1e-78
+      - 'Yes'
+    - - Random
+      - '0.26'
+      - '0.15'
+      - 0.006 (Bonf.)
+      - Marginal
+    - - Recency
+      - '0.03'
+      - '0.14'
+      - '0.38'
+      - 'No'
+  figures_description:
+  - Bar chart showing phase gradient (median_diff) across three eviction strategies
+    at s025. Importance bar dominates (~4.0), random barely visible (~0.26), recency
+    near zero (~0.03). Error bars (95% CI) for recency cross zero.
+  analysis: 's025 结果与 s015 (d_z=0.083) 方向一致：recency 在 moderate sparsity 范围内不产生 显著
+    phase gradient。d_z 从 0.083 升至 0.14 表明存在微弱的 sparsity-dependent 趋势， 但仍远低于 importance
+    的 d_z=0.95。Triple dissociation 在 s025 水平进一步确认： phase gradient 是 attention-score
+    mechanism 的特有产物。Random 在 s025 的 marginal significance (n=500 数据 Bonf. p=0.006)
+    与 recency NS 的对比值得注意——random masking 虽然不使用 importance scores，但其均匀采样仍受 head pruning
+    后 score distribution 变化的间接影响；recency 完全脱离 score pathway，因此更 clean 作为 control。
+
+    '
+- name: recency_s030
+  plan_id: C11_recency_s030
+  description: 'Recency-based eviction at sparsity=0.30 (extreme), n=100. Tests whether
+    extreme information loss triggers weak phase-dependent effects even without score-based
+    selection.
+
+    '
+  expected_results:
+    n_problems: 100
+    model: DeepSeek-R1-Distill-Qwen-7B
+    masking_method: recency
+    sparsity: 0.3
+    phase_gradient_median_diff: 0.21
+    phase_gradient_median_diff_ci95:
+    - 0.02
+    - 0.45
+    cohens_dz: 0.32
+    p_value: 0.028
+    significant_uncorrected: true
+    significant_bonferroni_k3: false
+    bonferroni_p: 0.084
+    low_phase_ii_median: 1.95
+    high_phase_ii_median: 1.62
+    low_high_ratio: 1.2
+    comparison_importance_s030_dz: 1.13
+    comparison_importance_s030_median_diff: 8.48
+    importance_vs_recency_dz_ratio: 3.5×
+    importance_vs_recency_mediandiff_ratio: ~40×
+    wilcoxon_p: 0.028
+  result_rationale: 'At extreme sparsity (s030), 30% of attention heads are pruned
+    AND the oldest 30% of KV cache is evicted. Even though recency eviction doesn''t
+    use attention scores, the sheer volume of information loss reaches a critical
+    threshold where phase-dependent effects emerge through a different mechanism:
+    low-sparsity phase (reasoning-heavy) relies more heavily on accumulated context
+    from earlier tokens, and recency eviction disproportionately removes this early
+    context. The effect is genuine but weak (d_z=0.32 vs importance d_z=1.13) and
+    fails Bonferroni correction (k=3 strategies tested at s030). This establishes
+    the boundary condition: at extreme sparsity, phase-dependent severity is not exclusively
+    attention-score-driven, but the score-based mechanism remains the dominant driver
+    (~40× stronger in median_diff). The weak recency signal at s030 reflects information-theoretic
+    inevitability rather than the discrimination collapse mechanism.
+
+    '
+  tables:
+  - title: 'Table: Triple dissociation at s030'
+    columns:
+    - Strategy
+    - median_diff
+    - d_z
+    - p_uncorrected
+    - p_Bonferroni
+    - Significant
+    rows:
+    - - Importance
+      - '8.48'
+      - '1.13'
+      - <1e-79
+      - <1e-79
+      - 'Yes'
+    - - Random
+      - '0.51'
+      - '0.35'
+      - '0.006'
+      - '0.018'
+      - 'Yes'
+    - - Recency
+      - '0.21'
+      - '0.32'
+      - '0.028'
+      - '0.084'
+      - No (trend)
+  - title: 'Table: Recency d_z dose-response across sparsities'
+    columns:
+    - Sparsity
+    - d_z
+    - p
+    - Interpretation
+    rows:
+    - - s015
+      - '0.083'
+      - '0.77'
+      - Null (negligible)
+    - - s025
+      - '0.14'
+      - '0.38'
+      - Null (negligible)
+    - - s030
+      - '0.32'
+      - '0.028'
+      - Weak (small, NS after Bonferroni)
+  figures_description:
+  - 'Line plot: d_z across sparsities for three strategies. Importance line rises
+    steeply (0.57→0.95→1.13). Random line rises moderately (flat→0.15→0.35). Recency
+    line stays near zero then upticks at s030 (0.08→0.14→0.32). Shaded region below
+    d_z=0.2 marked as ''negligible''. Bonferroni significance threshold marked.'
+  analysis: 's030 recency 弱信号是 median tier 的定义性特征。关键解读：(1) d_z=0.32 是 small effect，远低于
+    importance 的 d_z=1.13（3.5× gap）；(2) Bonferroni 校正后 NS，统计 稳健性不足；(3) 机制与 importance
+    不同——不是 discrimination collapse，而是 information loss 达到临界阈值后 phase-dependent context
+    dependency 的自然反映。 Paper 叙事调整：C11 从 "null at all sparsities" 改为 "null-to-weak,
+    confirming primary mechanism is score-based"。Discussion 新增 paragraph 解释 boundary
+    condition。 Rebuttal 准备：即使 s030 recency 在 larger sample 中确认显著，effect size comparison
+    (importance 40× stronger) 仍然支撑核心 claim。
+
+    '
+- name: gpqa_ds_importance_s020
+  plan_id: C10_gpqa_s020
+  description: 'GPQA Diamond benchmark importance masking phase gradient at s=0.20,
+    DeepSeek-R1-Distill-Qwen-7B, n≈198. Extends GPQA cross-benchmark validation to
+    second sparsity level.
+
+    '
+  expected_results:
+    n_problems: 198
+    interaction_index:
+      high:
+        mean: 0.58
+        median: 0.042
+        ci:
+        - 0.21
+        - 1.15
+        median_ci:
+        - 0.035
+        - 0.052
+        winsorized_mean: 0.18
+        skewness: 12.5
+      mid:
+        mean: 3.25
+        median: 0.38
+        ci:
+        - 2.45
+        - 4.21
+        median_ci:
+        - 0.32
+        - 0.46
+        winsorized_mean: 1.85
+        skewness: 8.2
+      low:
+        mean: 18.4
+        median: 2.85
+        ci:
+        - 15.2
+        - 22.1
+        median_ci:
+        - 2.52
+        - 3.25
+        winsorized_mean: 12.3
+        skewness: 7.6
+    perplexity:
+      high:
+        dense: 1.178
+        attn: 1.58
+        kv: 1.92
+        both: 2.85
+      mid:
+        dense: 1.308
+        attn: 1.74
+        kv: 4.85
+        both: 8.12
+      low:
+        dense: 1.422
+        attn: 2.15
+        kv: 32.5
+        both: 52.8
+    phase_stats:
+      high:
+        n_tokens: 479658
+        n_segments: 6261
+      mid:
+        n_tokens: 276409
+        n_segments: 2185
+      low:
+        n_tokens: 465085
+        n_segments: 5128
+    pass_fail:
+      ci_overlap: true
+      sign_reversal: false
+      overall: PASS
+    gradient_direction: low > mid > high
+    median_ratio_low_high: 67.9
+    median_difference: 2.81
+    wilcoxon_p: <1e-35
+    cohens_dz: 0.92
+  result_rationale: 'GPQA s020 extends the dose-response curve established at s015.
+    From MATH-500 reference, the s015→s020 scaling factor is approximately 3.8× (0.39→1.48).
+    Applying a similar but slightly attenuated ratio to GPQA (given longer reasoning
+    chains and harder problems that may show more gradual scaling): 0.95 × 3.0 ≈ 2.85.
+    GPQA problems elicit longer reasoning chains than MATH-500 (~6000 tokens vs ~1200),
+    meaning more tokens per problem and thus more stable per-problem statistics, but
+    also more opportunity for compound interaction to accumulate. The gradient remains
+    strongly monotonic (high < mid < low) with all phases well-separated. The effect
+    size (d_z ≈ 0.92) places this solidly in the "large" range, consistent with the
+    pattern that phase gradient is robust across benchmarks at the same sparsity level.
+    The per-phase perplexity pattern shows KV-only degradation concentrating in low
+    phase (dense ppl similar across phases, but kv/both ppl diverges dramatically),
+    consistent with discrimination collapse preferentially affecting attention-heavy
+    reasoning segments.
+
+    '
+  tables:
+  - title: 'Table: GPQA importance gradient dose-response (DS)'
+    columns:
+    - Sparsity
+    - low_median
+    - high_median
+    - ratio
+    - d_z
+    - p
+    rows:
+    - - s015
+      - '0.960'
+      - '0.013'
+      - 75.2×
+      - '0.81'
+      - <1e-29
+    - - s020
+      - '2.85'
+      - '0.042'
+      - 67.9×
+      - '0.92'
+      - <1e-35
+  figures_description:
+  - 'Dose-response bar chart: GPQA median_gradient (low-high) at s015 and s020. Clear
+    monotonic increase. Inset comparison with MATH-500 same sparsities showing parallel
+    trends but GPQA absolute values ~2.5× larger (due to longer chains).'
+  analysis: 'GPQA s020 确认 phase gradient 在第三个 benchmark 上成立（MATH-500, GSM8K, GPQA）。
+    Absolute magnitude 高于 MATH-500 同 sparsity (2.85 vs 1.48)，可能因为 GPQA 推理链 更长（更多 tokens
+    累积 compound interaction）。关键：dose-response monotonicity 跨 benchmark 一致。Strategy
+    specificity ratio 需要对应 GPQA random 实验才能计算； 基于 median tier 预测 ratio 在 2-3× 范围（类似
+    GSM8K）。
+
+    '
+- name: gpqa_ds_importance_s025
+  plan_id: C10_gpqa_s025
+  description: 'GPQA Diamond benchmark importance masking phase gradient at s=0.25,
+    DeepSeek-R1-Distill-Qwen-7B, n≈198. Third sparsity level for GPQA dose-response
+    characterization.
+
+    '
+  expected_results:
+    n_problems: 198
+    interaction_index:
+      high:
+        mean: 1.82
+        median: 0.145
+        ci:
+        - 0.95
+        - 3.12
+        median_ci:
+        - 0.115
+        - 0.185
+        winsorized_mean: 0.72
+        skewness: 10.8
+      mid:
+        mean: 12.5
+        median: 1.65
+        ci:
+        - 8.8
+        - 17.2
+        median_ci:
+        - 1.35
+        - 2.05
+        winsorized_mean: 7.8
+        skewness: 8.9
+      low:
+        mean: 52.3
+        median: 8.2
+        ci:
+        - 40.5
+        - 66.8
+        median_ci:
+        - 7.1
+        - 9.5
+        winsorized_mean: 35.6
+        skewness: 7.2
+    perplexity:
+      high:
+        dense: 1.178
+        attn: 1.72
+        kv: 2.35
+        both: 4.15
+      mid:
+        dense: 1.308
+        attn: 1.92
+        kv: 8.5
+        both: 18.6
+      low:
+        dense: 1.422
+        attn: 2.45
+        kv: 55.2
+        both: 98.5
+    phase_stats:
+      high:
+        n_tokens: 479658
+        n_segments: 6261
+      mid:
+        n_tokens: 276409
+        n_segments: 2185
+      low:
+        n_tokens: 465085
+        n_segments: 5128
+    pass_fail:
+      ci_overlap: true
+      sign_reversal: false
+      overall: PASS
+    gradient_direction: low > mid > high
+    median_ratio_low_high: 56.6
+    median_difference: 8.06
+    wilcoxon_p: <1e-42
+    cohens_dz: 1.05
+    gpqa_strategy_specificity_ratio_estimated: 2.5
+  result_rationale: 'At s025, GPQA follows the same dose-response escalation pattern.
+    From s020→s025 in MATH-500, the scaling factor is 4.8× (1.48→7.16). For GPQA,
+    applying a modestly attenuated ratio (~2.8×) given the already-high baseline:
+    2.85 × 2.8 ≈ 8.0. The attenuation reflects a ceiling effect as reasoning chains
+    at GPQA difficulty level experience compound degradation more uniformly (the most
+    complex reasoning steps are already heavily impacted at s020). The low/high ratio
+    decreases slightly from 75× (s015) to 68× (s020) to 57× (s025) as high-phase II
+    starts rising from its near-zero baseline. This mirrors MATH-500 where the ratio
+    also peaks at lower sparsity. The d_z=1.05 (large) confirms that even at higher
+    sparsity, the phase-dependent signal remains extremely robust on GPQA. For strategy
+    specificity, based on the median tier and GSM8K precedent: GPQA imp/rand ratio
+    is estimated at 2-3× (predicting ~2.5×), far below MATH-500''s 15-17× but consistent
+    with the task-modulation narrative. Harder tasks with longer reasoning chains
+    show weaker strategy specificity because even random eviction becomes increasingly
+    damaging in a phase-dependent manner when chains are long.
+
+    '
+  tables:
+  - title: 'Table: GPQA full dose-response (importance, DS)'
+    columns:
+    - Sparsity
+    - low_median
+    - mid_median
+    - high_median
+    - gradient
+    - d_z
+    rows:
+    - - s015
+      - '0.960'
+      - '0.102'
+      - '0.013'
+      - '0.947'
+      - '0.81'
+    - - s020
+      - '2.85'
+      - '0.38'
+      - '0.042'
+      - '2.81'
+      - '0.92'
+    - - s025
+      - '8.20'
+      - '1.65'
+      - '0.145'
+      - '8.06'
+      - '1.05'
+  - title: 'Table: Cross-benchmark strategy specificity ratio comparison'
+    columns:
+    - Benchmark
+    - s025 imp/rand ratio
+    - Task complexity
+    rows:
+    - - MATH-500
+      - 15.5×
+      - Medium (short chains)
+    - - GSM8K
+      - 3.8×
+      - Low (very short chains)
+    - - GPQA
+      - ~2.5×
+      - High (long chains)
+  figures_description:
+  - 'Three-panel dose-response figure: (A) GPQA phase gradient across s015-s025, monotonic
+    with tightening CIs at higher n. (B) Cross-benchmark comparison of median_gradient
+    at matched sparsities (MATH-500 vs GSM8K vs GPQA). (C) Strategy specificity ratio
+    heatmap (benchmark × sparsity) showing clear task-dependence pattern.'
+  analysis: 'GPQA s025 完成三点 dose-response，确认跨 benchmark monotonicity。关键发现： (1) Gradient
+    magnitude 高于 MATH-500 (8.06 vs 7.16 at s025)——更长推理链累积更多 compound interaction；(2)
+    Strategy specificity ratio (~2.5×) 继续 GSM8K 的衰减趋势， 进一步确认 task-modulation；(3) 低
+    ratio 的机制解释：GPQA 推理链长(~6000 tokens)， 即使 random eviction 也在 longer chains 上产生 moderate
+    phase gradient，压缩了 imp/rand gap。这为 reviewer 提供了清晰的 task-dependence 故事：chain length
+    调制 strategy specificity 强度，而 phase gradient 本身跨 task 稳健。 C1 claim 最终形式：strategy
+    specificity 是 task-modulated second-order finding， 不是 universal constant。
+
+    '
+- name: gpqa_random_s025_predicted
+  plan_id: C10_gpqa_rand
+  description: 'Predicted GPQA random masking result needed to compute strategy specificity
+    ratio. Not currently in registry but implied by median tier requiring imp/rand
+    ratio calculation.
+
+    '
+  expected_results:
+    n_problems: 198
+    low_phase_ii_median: 4.2
+    high_phase_ii_median: 1.35
+    median_gradient: 2.85
+    median_gradient_ci:
+    - 1.8
+    - 4.1
+    cohens_dz: 0.38
+    wilcoxon_p: 0.0015
+    imp_rand_ratio_s025: 2.83
+  result_rationale: 'GPQA random masking at s025 is predicted to show a moderate phase
+    gradient (d_z≈0.38, significant) because: (1) GPQA''s long reasoning chains mean
+    even random token removal has phase-dependent impact (more accumulated context
+    in low phase = more to lose); (2) this parallels GSM8K where random is significant
+    at s025 (QW: d_z≈0.16 with ratio 3.8×); (3) GPQA''s longer chains amplify the
+    random effect more than MATH-500. The resulting imp/rand ratio of ~2.8× fits squarely
+    in the median tier''s predicted [1.8, 3.5] range and reinforces the narrative
+    that strategy specificity is task-complexity-modulated.
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Strategy specificity ratio 在 GPQA 上的衰减 (2.8× vs MATH-500 的 15.5×) 是 median
+    tier 的核心预测之一。机制：task complexity → chain length → random eviction 也产生 significant
+    phase gradient → ratio 压缩。这不是 importance eviction 变弱 （GPQA importance gradient
+    实际更强），而是 random eviction 在长链上变强。 Reviewer 可能质疑：如果 random 也显著，specificity claim
+    是否成立？ Rebuttal：specificity 不是 binary (significant vs not)，而是 graded — importance
+    consistently 2-3× stronger across all tested benchmarks，且在短链 benchmarks (MATH)
+    上 specificity 极强 (15×)。
+
+    '
+- name: c9_literature_differentiation
+  plan_id: C9
+  description: 'Non-experimental claim. Differentiation from Lethe/SparK/ThinKV/Physics-of-KV
+    through Related Work positioning.
+
+    '
+  expected_results:
+    type: literature_review
+    status: addressed_in_paper
+    key_distinctions:
+      vs_lethe: Method paper (adaptive eviction) vs empirical finding (phase-dependent
+        severity)
+      vs_spark: Treats compound interaction as uniform; we show it's phase×strategy
+        modulated
+      vs_thinkv: Single-axis phase-aware compression; we study dual-axis compound
+        interaction
+      vs_physics_kv: Single-axis compression-rate phase transition; we study reasoning-phase
+        modulation
+      vs_hies: Single-axis score collapse observation; we show compound amplification
+        of collapse
+      vs_rkv: Task-specific optimization method; we do mechanistic analysis
+    citation_count_target: ≥50 (currently met)
+  result_rationale: 'C9 不需要新实验——通过 Related Work §2 的结构化比较和 gap analysis 完成。Median
+    tier 下 reviewer 可能仍认为 novelty 偏窄（"incremental over existing phase-aware methods"），
+    reviewer_novelty_score 预期 2.8-3.3。应对：强调 experimental design contribution (recency
+    as methodological control) 和 three-way interaction 的发现性质。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Reviewer 对 novelty 的 median 评分 (2.8-3.3) 反映了一个现实：empirical finding paper
+    在 novelty 维度天然弱于 method paper。应对策略：(1) 强调 no prior work 同时分析 compound × phase
+    × strategy 三维交互；(2) C11 的 recency control 作为 experimental design novelty 是独特贡献（"repurposing
+    recency eviction as methodological control has no precedent"）；(3) crossover phenomenon
+    (C3) 是 全新发现，prior work 无法预测。
+
+    '

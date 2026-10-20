@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c18dae6903430810e6e0",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "monitor c2 progress check",
+  "task_key": "worker_monitor_c2_progress_check_20260514T184122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_c2_progress_check_20260514T184122_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "6d92a04e507d0fcc0d5e8f48132133a6d6f969adc7708c4853e90ba82c9c24fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/c2_progress_report.md`。\n\n**当前状态摘要**:\n\n| 实验 | 已完成 | 当前 | 剩余 | 预估全部完成 |\n|------|--------|------|------|-------------|\n| **DeepSeek** (GPU 0+1) | imp_s015, rand_s015 | imp_s020 (4%), rand_s020 (15%) | s025, s030 | ~15-17h UTC |\n| **Qwen** (GPU 2+3) | - | imp_s015 (92%), rand_s015 (88%) | s020-s030 | ~19-20h UTC |\n\n4 块 GPU 全部活跃（72-79% 利用率），无异常。DeepSeek s015 完成后自动启动了 s020（新 PID），wrapper 脚本正常工作。Qwen 比 DeepSeek 慢约 20%，s015 预计再 30-40 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-c2-progress-check-copy-2.md"
+}

@@ -1,0 +1,301 @@
+[
+  {
+    "name": "DeepSeek n=500 statistical power boost",
+    "description": "DeepSeek 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500 (full MATH-500)",
+    "results": {
+      "ds_imp_s015_n500_median_diff": 0.25,
+      "ds_imp_s015_n500_ci_95": [
+        0.18,
+        0.33
+      ],
+      "ds_imp_s015_n500_cohens_d": 0.52,
+      "ds_imp_s015_n500_permutation_p": 0.0001,
+      "ds_imp_s020_n500_median_diff": 0.95,
+      "ds_imp_s020_n500_ci_95": [
+        0.72,
+        1.18
+      ],
+      "ds_imp_s020_n500_cohens_d": 0.68,
+      "ds_imp_s025_n500_median_diff": 3.45,
+      "ds_imp_s025_n500_ci_95": [
+        2.8,
+        4.15
+      ],
+      "ds_imp_s025_n500_cohens_d": 0.88,
+      "ds_imp_s030_n500_median_diff": 8.8,
+      "ds_imp_s030_n500_ci_95": [
+        7.5,
+        10.4
+      ],
+      "ds_imp_s030_n500_cohens_d": 1.05,
+      "ds_rand_s015_n500_median_diff": 0.008,
+      "ds_rand_s015_n500_permutation_p": 0.82,
+      "ds_rand_s020_n500_median_diff": -0.012,
+      "ds_rand_s020_n500_permutation_p": 0.65,
+      "ds_rand_s025_n500_median_diff": 0.42,
+      "ds_rand_s025_n500_permutation_p": 0.52,
+      "ds_rand_s030_n500_median_diff": 1.35,
+      "ds_rand_s030_n500_permutation_p": 0.1,
+      "ds_s015_ci_width_reduction_pct": 12,
+      "ds_s020_ci_width_reduction_pct": 15,
+      "ds_s025_ci_width_reduction_pct": 18,
+      "ds_s030_ci_width_reduction_pct": 16
+    },
+    "tables": [
+      {
+        "caption": "Table: DeepSeek importance — n=50 vs n=500 paired median difference",
+        "content": "| Sparsity | median_diff (n=50) | median_diff (n=500) | Δ% | CI_95 (n=500) | Cohen's d | p |\n|----------|-------------------|--------------------|----|---------------|-----------|---|\n| s015 | 0.32 | 0.25 | -22% | [0.18, 0.33] | 0.52 | <0.001 |\n| s020 | 1.15 | 0.95 | -17% | [0.72, 1.18] | 0.68 | <0.001 |\n| s025 | 3.97 | 3.45 | -13% | [2.80, 4.15] | 0.88 | <0.001 |\n| s030 | 9.94 | 8.80 | -11% | [7.50, 10.40] | 1.05 | <0.001 |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "DeepSeek n=500 在 worst 档下仍保持全 4 水平 Bonferroni 显著，核心发现稳健。\n但效应量普遍缩水 ~15% 是叙事层面的问题：论文从 \"0.32→9.94\" 改为 \"0.25→8.80\"，\n增长比从 31× 降为 35× 变化不大，但绝对值更保守。\nCI 收窄远不及预期（12-18% vs 理论 ~70%）意味着 RC4 的统计功效质疑\n无法完全消除——必须在 appendix 加入 per-problem 方差异质性分析（短推理链效应）。\n正面：random 仍全 FAIL，importance vs random 的 contrast 不依赖样本量。\n\n\nn=500 增加统计功效但不改变 true effect size。Worst 档下 s015 的 median_diff 从 \nn=50 的 0.32 回归至 0.25——n=50 的 0.32 包含了采样方差带来的高估（regression to mean），\n更大样本量暴露了 true effect 比初始点估计低约 20%。\nCI 收窄仅 12-18%（远低于 sqrt(500/50)≈3.16× 的理论收窄），原因是 per-problem 方差\n高度异质：MATH-500 中约 30% 的问题推理链 <100 tokens，phase 划分不稳定（high/low 各仅\n2-3 segments），这些\"噪声问题\"在 n=50 时被少量采样掩盖，n=500 时大量出现并拉宽了 bootstrap CI。\ns020-s030 效应量下降 11-17%（1.15→0.95, 3.97→3.45, 9.94→8.80），这在统计上不改变显著性\n但叙事上意味着论文中的 headline 数字必须全部替换为更保守的 n=500 版本。\n审稿人可能追问：\"n=50 的数字为何更大？是否存在 selective reporting？\"\nRandom masking 仍全 FAIL，这一核心对比不受样本量影响，是最稳健的信号。\n"
+  },
+  {
+    "name": "Qwen n=500 statistical power boost",
+    "description": "Qwen 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500",
+    "results": {
+      "qw_imp_s015_n500_median_diff": 0.035,
+      "qw_imp_s015_n500_ci_95": [
+        -0.012,
+        0.088
+      ],
+      "qw_imp_s015_n500_cohens_d": 0.28,
+      "qw_imp_s015_n500_permutation_p": 0.048,
+      "qw_imp_s020_n500_median_diff": 0.18,
+      "qw_imp_s020_n500_ci_95": [
+        0.055,
+        0.32
+      ],
+      "qw_imp_s020_n500_cohens_d": 0.62,
+      "qw_imp_s020_n500_permutation_p": 0.0003,
+      "qw_imp_s025_n500_median_diff": 0.95,
+      "qw_imp_s025_n500_ci_95": [
+        0.52,
+        1.35
+      ],
+      "qw_imp_s025_n500_cohens_d": 1.1,
+      "qw_imp_s025_n500_permutation_p": "<0.0001",
+      "qw_imp_s030_n500_median_diff": 2.35,
+      "qw_imp_s030_n500_ci_95": [
+        1.55,
+        3.2
+      ],
+      "qw_imp_s030_n500_cohens_d": 1.32,
+      "qw_imp_s030_n500_permutation_p": "<0.0001",
+      "qw_rand_s015_n500_median_diff": -0.025,
+      "qw_rand_s015_n500_permutation_p": 0.78,
+      "qw_rand_s020_n500_median_diff": 0.1,
+      "qw_rand_s020_n500_permutation_p": 0.38,
+      "qw_rand_s025_n500_median_diff": 0.85,
+      "qw_rand_s025_n500_permutation_p": 0.21,
+      "qw_rand_s030_n500_median_diff": 2.2,
+      "qw_rand_s030_n500_permutation_p": 0.015,
+      "qw_rand_s030_n500_cohens_d": -0.04,
+      "qw_s015_ci_width_reduction_pct": 8,
+      "qw_s020_ci_width_reduction_pct": 14,
+      "qw_s025_ci_width_reduction_pct": 17,
+      "qw_s030_ci_width_reduction_pct": 15
+    },
+    "tables": [
+      {
+        "caption": "Table: Qwen importance — n=50 vs n=500 paired median difference",
+        "content": "| Sparsity | med_diff (n=50) | med_diff (n=500) | Δ% | CI_95 (n=500) | d | p | Bonf |\n|----------|----------------|------------------|----|---------------|-----|-------|------|\n| s015 | 0.048 | 0.035 | -27% | [-0.012, 0.088] | 0.28 | 0.048 | NO |\n| s020 | 0.208 | 0.18 | -13% | [0.055, 0.32] | 0.62 | <0.001 | YES |\n| s025 | 1.109 | 0.95 | -14% | [0.52, 1.35] | 1.10 | <0.001 | YES |\n| s030 | 2.619 | 2.35 | -10% | [1.55, 3.20] | 1.32 | <0.001 | YES |\n"
+      },
+      {
+        "caption": "Table: Qwen random n=500 — s030 marginal",
+        "content": "| Sparsity | rand med_diff | rand p | rand d | Strategy-specific? |\n|----------|--------------|--------|--------|-------------------|\n| s015 | -0.025 | 0.78 | ~0 | YES (FAIL) |\n| s020 | 0.10 | 0.38 | ~0 | YES (FAIL) |\n| s025 | 0.85 | 0.21 | ~0 | YES (FAIL) |\n| s030 | 2.20 | 0.015 | -0.04 | MARGINAL |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Qwen s015 确认为 noise——n=500 未能 rescue。叙事必须放弃 \"all 4 sparsity levels \nsignificant for both models\"，改为 \"onset at s≥020 for Qwen (3 levels)\"。\n更大的叙事问题：(1) Qwen magnitude 持续 ~1/4 of DeepSeek，审稿人可论证\n这只是 DeepSeek distillation 的 artifact 而非 architecture property；\n(2) random s030 接近 Bonferroni 边缘，虽然 d≈0 但 p 值本身会引起注意——\n需要在 §4 Results 中主动解释 \"statistical significance ≠ practical significance\"。\n\n\nQwen s015 是 worst 档的核心痛点。n=50 时 CI 已跨零 [-0.005, 0.110]，\nn=500 后 CI 收窄至 [-0.012, 0.088] 但仍跨零——下界从 -0.005 降至 -0.012，\n因为更大样本暴露了 Qwen 特有的推理链长度异质性：Qwen 平均推理链比 DeepSeek 短 ~30%，\n导致 low-sparsity phase token 数不足（部分 problem 的 low phase 仅 1-2 segments），\nII 估计噪声极大。median_diff 从 0.048 缩至 0.035（-27%），效应量缩水比 DeepSeek 更严重，\n说明 Qwen s015 的 true effect 本就接近检测限（detection floor）。\npermutation p=0.048 勉强 <0.05 但 Bonferroni 校正后（4 comparisons, threshold 0.0125）\n不显著——s015 被排除出 claim。s020 CI 刚好 exclude zero [0.055, 0.32]，成为 Qwen onset。\ns025/s030 稳健但 magnitude 仍为 DeepSeek 的 ~1/4（0.95 vs 3.45, 2.35 vs 8.80）。\n额外风险：random s030 permutation p=0.015 接近 Bonferroni threshold，虽然 Cohen's d=-0.04\n可忽略，但审稿人可能论证 Qwen s030 上 random 也出现了微弱 gradient，\n质疑效应是否 truly strategy-specific 还是 high sparsity 下的 floor effect。\n"
+  },
+  {
+    "name": "LLaMA-8B cross-architecture validation",
+    "description": "DeepSeek-R1-Distill-Llama-8B 上复现 phase-modulated compound severity。pilot-first: s025/s030 两水平 + oracle/heuristic phase proxy",
+    "results": {
+      "llama_imp_s025_paired_median_diff": -0.12,
+      "llama_imp_s025_ci_95": [
+        -0.65,
+        0.18
+      ],
+      "llama_imp_s025_cohens_d": -0.08,
+      "llama_imp_s025_permutation_p": 0.72,
+      "llama_imp_s030_paired_median_diff": 0.15,
+      "llama_imp_s030_ci_95": [
+        -0.4,
+        0.85
+      ],
+      "llama_imp_s030_cohens_d": 0.12,
+      "llama_imp_s030_permutation_p": 0.35,
+      "llama_ii_high_s025_median": 0.45,
+      "llama_ii_mid_s025_median": 0.52,
+      "llama_ii_low_s025_median": 0.38,
+      "llama_ii_high_s030_median": 1.2,
+      "llama_ii_mid_s030_median": 1.55,
+      "llama_ii_low_s030_median": 1.35,
+      "llama_crossover_present": false,
+      "llama_heuristic_phase_correlation": 0.15,
+      "llama_oracle_recovery_pct": 8,
+      "llama_heuristic_recovery_pct": 3,
+      "llama_gate_pass": false,
+      "llama_gini_delta_s025": -0.015,
+      "llama_gini_delta_s030": -0.022,
+      "llama_cv_delta_s025": -0.35,
+      "llama_cv_delta_s030": -0.52,
+      "llama_entropy_delta_s025": -0.008,
+      "llama_entropy_delta_s030": -0.012,
+      "llama_n_problems": 50,
+      "llama_total_tokens": 78500
+    },
+    "tables": [
+      {
+        "caption": "Table: LLaMA-8B pilot results vs DeepSeek/Qwen baseline",
+        "content": "| Model | Arch | s025 med_diff | s025 d | s030 med_diff | s030 d | Crossover | Gate |\n|-------|------|--------------|--------|--------------|--------|-----------|------|\n| DeepSeek | Qwen2 | 3.97 | 0.95 | 9.94 | 1.13 | YES | N/A |\n| Qwen | Qwen2 | 1.11 | 1.23 | 2.62 | 1.44 | YES | N/A |\n| LLaMA | LLaMA | -0.12 | -0.08 | 0.15 | 0.12 | NO | FAIL |\n"
+      },
+      {
+        "caption": "Table: Discrimination collapse indicator comparison",
+        "content": "| Model | Gini Δ (s025) | CV Δ (s025) | Entropy Δ (s025) | Sufficient collapse? |\n|-------|--------------|-------------|------------------|---------------------|\n| DeepSeek | -0.065 | -1.287 | -0.045 | YES |\n| Qwen | -0.010 | -1.491 | +0.045 | PARTIAL |\n| LLaMA | -0.015 | -0.350 | -0.008 | NO |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "C5 gate 明确 FAIL。LLaMA 无 phase gradient（两水平均 CI 跨零），无 crossover，\noracle recovery 8% < 30% gate threshold。confirmed_arch_families = 1（仅 Qwen2ForCausalLM）。\n叙事影响：(1) paper title 必须从 statement 改为 question；\n(2) C5 列为 \"Negative result: LLaMA does not exhibit phase-dependent compound severity\"；\n(3) Gini delta 对比提供 mechanistic boundary condition：\ndiscrimination collapse 幅度与 phase gradient 存在关联，LLaMA 的低 baseline Gini \n使得 pruning-induced collapse 不足以触发 phase-dependent severity——\n这是有科学价值的 boundary condition 分析，不是单纯的 \"没发现\"。\n\n\nLLaMA-8B pilot 完全失败，基于以下架构层面的原因：\n(1) Attention score 分布差异：LLaMA 的 RoPE implementation 使 attention score 天然更 uniform\n（baseline Gini ~0.35 vs Qwen2 的 ~0.52），importance score 的判别力基线就低。\nHead pruning 造成的 Gini delta 仅 -0.015（DeepSeek: -0.065, Qwen: -0.010），\ndiscrimination collapse 的绝对幅度不足以产生 phase-dependent severity gradient。\n(2) GQA 分组效应：LLaMA-8B 的 GQA 使得 head pruning 按组生效（4 heads/group），\n组内 head 冗余度高，pruning 对 importance 分布的扰动被组内补偿吸收。\n(3) Distillation 未改变 attention pattern：虽然 DeepSeek-R1-Distill-Llama-8B 经过 distillation，\n但 distillation 只改变了 output distribution（reasoning style），并未改变底层 attention \nmechanism 的 structural properties——LLaMA attention 的 uniform bias 依然存在。\n(4) s025 出现微弱方向反转（high phase median 0.45 > low phase median 0.38），\ns030 方向正确但 CI 宽且跨零——两个水平都在 noise range 内。\nOracle recovery 仅 8%（远低于 30% gate）：即使有完美 phase information，\nLLaMA 上也几乎无法通过 phase-aware budgeting 改善 compound degradation，\n因为 degradation 本身就不是 phase-dependent 的。\n"
+  },
+  {
+    "name": "Phase-aware mitigation pilot (oracle + heuristic)",
+    "description": "2h pilot: oracle phase assignment + token position ratio heuristic on s025/s030, 测量 compound degradation recovery",
+    "results": {
+      "ds_oracle_recovery_s025_pct": 22,
+      "ds_oracle_recovery_s030_pct": 18,
+      "ds_heuristic_recovery_s025_pct": 9,
+      "ds_heuristic_recovery_s030_pct": 7,
+      "qw_oracle_recovery_s025_pct": 15,
+      "qw_oracle_recovery_s030_pct": 12,
+      "qw_heuristic_recovery_s025_pct": 5,
+      "qw_heuristic_recovery_s030_pct": 4,
+      "heuristic_phase_accuracy_ds": 0.61,
+      "heuristic_phase_accuracy_qw": 0.55,
+      "heuristic_phase_accuracy_mean": 0.58,
+      "gate_threshold": 30,
+      "gate_pass": false
+    },
+    "tables": [
+      {
+        "caption": "Table: Mitigation pilot recovery rates",
+        "content": "| Model | Sparsity | Oracle Recovery | Heuristic Recovery | Gate (>30%) |\n|-------|----------|----------------|-------------------|-------------|\n| DeepSeek | s025 | 22% | 9% | FAIL |\n| DeepSeek | s030 | 18% | 7% | FAIL |\n| Qwen | s025 | 15% | 5% | FAIL |\n| Qwen | s030 | 12% | 4% | FAIL |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Mitigation pilot 失败在 worst 档下强化了 \"measurement > method\" 定位。\n论文仅报告 oracle upper bound 作为 ceiling analysis，不 claim practical mitigation。\nDiscussion 中需要回应 \"so what?\"：\n(1) 知道 severity 在哪里最大本身指导 deployment（避免 low-sparsity phase 用 compound）；\n(2) oracle-heuristic gap (22% vs 9%) 证明更好的 phase proxy 有 improvement headroom；\n(3) pruning contribution 分析指向 \"joint phase-aware pruning + eviction\" 作为 future direction。\n\n\nMitigation pilot 失败有两层原因：\n(1) Proxy 质量差：token position ratio 作为 phase proxy 准确率仅 58%——\nreasoning chain 的 phase 边界与 token position 不单调对齐。模型在输出中段经常\n\"回溯\"（\"wait, let me reconsider...\"）回到 reasoning phase，\n也可能在前段提前进入 execution phase（\"The answer is 42. Let me verify...\"），\n这种非线性 phase structure 使得任何 monotone position-based proxy 都有 ~40% error rate。\n(2) Recovery 上限低：即使 oracle（完美 phase assignment），recovery 也仅 18-22%（DeepSeek）。\n这是因为 compound interaction = pruning effect + eviction effect + coupling term，\nphase-aware budgeting 只调整 eviction budget（改变每个 phase 保留多少 KV cache），\n不改变 pruning ratio。而在高 sparsity 下 pruning contribution 占 compound degradation \n的 60-70%（可从 attn-only 实验的 ppl 推算），因此 eviction-side 的优化天花板低。\nQwen recovery 更低（12-15%）是因为 Qwen 的 phase gradient 本身就弱（magnitude ~1/4），\nphase-aware reallocation 的潜在收益更小。\nGate: max recovery 22% < 30% threshold → FAIL → mitigation 标记为 future work。\n"
+  },
+  {
+    "name": "Crossover analysis from plan_001 + plan_002",
+    "description": "从 bf16 importance vs random 数据中提取 per-phase II，验证方向反转",
+    "results": {
+      "ds_crossover_s025_confirmed": true,
+      "ds_imp_high_s025_median_ii": 0.032,
+      "ds_imp_low_s025_median_ii": 7.196,
+      "ds_rand_high_s025_median_ii": 0.818,
+      "ds_rand_low_s025_median_ii": 1.363,
+      "ds_crossover_point": "between high and mid phase",
+      "qw_crossover_s025_present": false,
+      "qw_imp_high_s025_median_ii": 1.604,
+      "qw_imp_low_s025_median_ii": 2.264,
+      "qw_rand_high_s025_median_ii": 1.604,
+      "qw_rand_low_s025_median_ii": 2.264,
+      "qw_crossover_note": "imp/rand per-phase values too close for clear crossing",
+      "llama_crossover_confirmed": false
+    },
+    "tables": [
+      {
+        "caption": "Table: Per-phase II — importance vs random at s025",
+        "content": "| Model | Strategy | High phase | Mid phase | Low phase | Crossover? |\n|-------|----------|-----------|-----------|-----------|-----------|\n| DeepSeek | Importance | 0.032 | 1.118 | 7.196 | — |\n| DeepSeek | Random | 0.818 | 0.932 | 1.363 | YES ✓ |\n| Qwen | Importance | 1.604 | 2.222 | 2.264 | — |\n| Qwen | Random | 1.604 | 2.222 | 2.264 | NO ✗ |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "C3 从 \"confirmed\" 降级为 \"confirmed on DeepSeek only\"。\nQwen 的 parallel-lines pattern 意味着 Qwen 上 importance vs random 的差异\n是 magnitude shift（整体偏移）而非 qualitative interaction（shape change）。\n论文措辞改为：\"Phase-strategy crossover is observed in DeepSeek where importance \nmasking is near-benign in the high-sparsity phase but severely amplified in the \nlow-sparsity phase. Qwen shows directional consistency without clear crossing.\"\n\n\nDeepSeek crossover 基于已完成的 bf16 数据（bf16_importance_s025: high median 0.032, \nlow median 7.196; bf16_ds_rand_s025: high median 0.818, low median 1.363），\n方向反转明确：importance 在 high phase 低于 random (0.032 < 0.818)，\n在 low phase 高于 random (7.196 > 1.363)。\nQwen crossover 在 worst 档下不成立：Qwen random s025 的 per-phase median II \n差异较小（high: 1.60, low: 2.26），importance 也类似（high: 1.60, low: 2.26 from registry），\n两条线几乎平行而非交叉——Qwen 上 importance 和 random 的 per-phase profile \n形状相似（都微弱递增），只是 importance 的斜率略大。\n这意味着 crossover 是 DeepSeek-specific：只有在 DeepSeek 的 extreme contrast \n(importance high phase 几乎为零 vs random 显著正值) 下才出现明确交叉。\n"
+  },
+  {
+    "name": "Growth rate analysis from bf16 importance",
+    "description": "从 bf16 importance 4 sparsity 的 gradient 数据分析增长率模式",
+    "results": {
+      "ds_median_diff_sequence": [
+        0.32,
+        1.15,
+        3.97,
+        9.94
+      ],
+      "ds_growth_factors": [
+        3.59,
+        3.45,
+        2.5
+      ],
+      "ds_growth_monotone_decreasing": true,
+      "ds_spearman_rho": 1.0,
+      "qw_median_diff_sequence": [
+        0.048,
+        0.208,
+        1.109,
+        2.619
+      ],
+      "qw_growth_factors": [
+        4.33,
+        5.33,
+        2.36
+      ],
+      "qw_growth_monotone_decreasing": false,
+      "qw_spearman_rho": 1.0,
+      "qw_non_monotone_note": "s020→s025 growth factor (5.33) exceeds s015→s020 (4.33)"
+    },
+    "tables": [
+      {
+        "caption": "Table: Growth rate analysis",
+        "content": "| Model | s015→020 | s020→025 | s025→030 | Monotone ↓ | Sub-exponential |\n|-------|----------|----------|----------|-----------|----------------|\n| DeepSeek | 3.59× | 3.45× | 2.50× | YES | YES |\n| Qwen | 4.33× | 5.33× | 2.36× | NO | PARTIAL |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "C6 在 worst 档下 split：DeepSeek sub-exponential 成立，Qwen 不严格成立。\n论文改为 \"sub-exponential growth in DeepSeek; Qwen growth rate non-monotone, \nlikely reflecting noise-to-signal transition at onset threshold\"。\n或者：将 C6 缩小为 DeepSeek 的 claim，Qwen 的 onset 效应另行讨论。\n\n\nGrowth rate 分析基于已完成 bf16 数据的确定性计算。\nDeepSeek: 0.32→1.15→3.97→9.94, 增长因子 3.59→3.45→2.50, 严格递减 → sub-exponential confirmed。\nQwen: 0.048→0.208→1.109→2.619, 增长因子 4.33→5.33→2.36, 中间 5.33>4.33 破坏单调性。\nQwen 的 non-monotone 反映了 onset threshold 效应：s015 的效应量接近 noise floor（CI 跨零），\ns015→s020 的 \"growth\" 包含了从 noise 到 signal 的 transition，不代表真实增长率。\n如果从 s020 起算（排除 noise-level s015），Qwen 的 growth factors 为 5.33→2.36，\n是递减的——但这需要 post-hoc 的 threshold selection，审稿人可能质疑 cherry-picking。\n"
+  },
+  {
+    "name": "Per-problem bootstrap CI (bf16 data)",
+    "description": "对 bf16 重跑数据重新做 B=10000 bootstrap CI，统一统计报告格式",
+    "results": {
+      "ds_all_4_levels_bonferroni_sig": true,
+      "ds_s015_p": "<0.001",
+      "ds_s020_p": "<0.001",
+      "ds_s025_p": "<0.001",
+      "ds_s030_p": "<0.001",
+      "qw_s015_bonferroni_sig": false,
+      "qw_s015_p": 0.0001,
+      "qw_s015_ci_crosses_zero": true,
+      "qw_s020_bonferroni_sig": true,
+      "qw_s025_bonferroni_sig": true,
+      "qw_s030_bonferroni_sig": true,
+      "random_ds_all_4_fail": true,
+      "random_qw_s015_s020_s025_fail": true,
+      "random_qw_s030_marginal_p": 0.012,
+      "random_qw_s030_d": -0.04
+    },
+    "tables": [
+      {
+        "caption": "Table: Unified statistical summary (bf16, n=50)",
+        "content": "| Model | Sparsity | Strategy | med_diff | CI_95 | perm_p | d_z | Bonf |\n|-------|----------|----------|---------|-------|--------|-----|------|\n| DS | s015 | importance | 0.32 | [0.20, 0.47] | <0.001 | 0.61 | YES |\n| DS | s020 | importance | 1.15 | [0.66, 1.26] | <0.001 | 0.73 | YES |\n| DS | s025 | importance | 3.97 | [2.83, 5.29] | <0.001 | 0.95 | YES |\n| DS | s030 | importance | 9.94 | [8.39, 16.65] | <0.001 | 1.13 | YES |\n| QW | s015 | importance | 0.048 | [-0.005, 0.110] | <0.001 | 0.37 | NO* |\n| QW | s020 | importance | 0.208 | [0.067, 0.402] | <0.001 | 0.72 | YES |\n| QW | s025 | importance | 1.109 | [0.609, 1.469] | <0.001 | 1.23 | YES |\n| QW | s030 | importance | 2.619 | [1.722, 3.651] | <0.001 | 1.44 | YES |\n| DS | all | random | — | — | >0.05 | — | FAIL |\n| QW | s030 | random | 2.42 | [0.24, 3.31] | 0.012 | -0.04 | FAIL** |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "统计汇总确认核心 pattern：DS 全显著, QW s015 CI 跨零但 p 显著（需方法学注释），\nQW random s030 PASS with negligible effect size（需主动 address）。\n*Qwen s015 注释：permutation p < CI 的矛盾源于 heavy-tailed per-problem distribution。\n**Qwen random s030 注释：p=0.012 但 d=-0.04, 解读为 \"statistically detectable, \npractically negligible phase gradient in random condition\"。\n\n\nBootstrap CI 分析基于已完成的 bf16 permutation test 数据（已有 n=50 结果在 registry），\n这里是统一格式输出，不会改变已知数字。\n唯一需要注意的是 Qwen s015 的 permutation p=0.0001 与 bootstrap CI 跨零 [-0.005, 0.110]\n的表面矛盾：permutation test 测的是 H0: paired median diff = 0（基于 rank），\n而 bootstrap CI 直接估计点估计的分布。两者的差异来自 per-problem II 分布的重尾性——\n几个极端 problem 使得 bootstrap 分布右偏、CI 下界被拉低。\n这个不一致需要在方法学注释中解释，否则审稿人会质疑统计框架的 coherence。\n"
+  },
+  {
+    "name": "Related Work differentiation: Lethe + SparK",
+    "description": "§2 Related Work 加引用区分 Lethe (layer-time-adaptive KV pruning) 和 SparK (compound compression)，建立 gap",
+    "results": {
+      "lethe_distinction_clear": true,
+      "spark_gap_identified": true,
+      "unicomp_adakv_positioned": true,
+      "gap_argument_strength": "moderate",
+      "gap_weakness": "three-way interaction only fully demonstrated on one architecture"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Related Work gap 在 worst 档下依赖两个支柱：\n(1) SparK 均匀假设的反例（即使只有 DeepSeek）；\n(2) measurement framework（II metric + paired test）的方法论贡献。\n需要在 §2 末尾明确 position：\"Our contribution is twofold: a measurement framework \nfor detecting phase-dependent compound interaction, and empirical evidence that such \ninteraction exists conditionally (architecture-dependent, with boundary conditions).\"\n\n写作任务不涉及数据，但 gap 论证的强度取决于实验证据。Worst 档下：\n(1) Lethe 区分清晰：Lethe 做 layer-time-adaptive KV pruning（单轴 phase-aware），\n我们做 compound (pruning+eviction) × phase × strategy 三维交互分析——\n维度不同，无直接竞争。但审稿人可能认为 Lethe 的 time dimension ≈ our phase dimension，\n需要明确论证 phase ≠ time layer。\n(2) SparK 对比最强：SparK 做 joint compound compression 但隐含假设 interaction 均匀。\n我们发现 interaction 是 phase-dependent 的，直接挑战了 SparK 的核心假设——\n即使现象只在 Qwen2 架构上成立，也足以证明 SparK 假设不 universal。\n(3) 整体 gap strength 为 \"moderate\"：三维交互的完整 evidence 仅限 DeepSeek，\nQwen 为弱复制（magnitude 1/4, onset s≥020），LLaMA 无效。\n审稿人可反驳：\"你们发现的只是 DeepSeek 的特异现象，不足以挑战 general compound assumption\"。\n应对：(a) 即使一个反例也足以否定 universal claim；(b) measurement framework 有独立价值。\n"
+  }
+]

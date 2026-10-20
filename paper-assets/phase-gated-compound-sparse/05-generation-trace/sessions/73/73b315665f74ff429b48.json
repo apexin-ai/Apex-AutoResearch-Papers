@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73b315665f74ff429b48",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper fix discussion comment provenance",
+  "task_key": "worker_paper_fix_discussion_comment_provenance_20260514T094117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_discussion_comment_provenance_20260514T094117_result.json",
+    "occurrence": 1,
+    "bytes": 132,
+    "sha256": "803ff200354cfca7298330bf31016a09a3eb87a91a8c629317a9fe5f8b9abf21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修改，第29行注释中的 `cohens_d_bf16.json` 已改为 `cohens_d_paired_b10000.json`，其余内容未动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-discussion-comment-provenance.md"
+}

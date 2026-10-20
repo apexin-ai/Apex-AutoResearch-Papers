@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaf09e74703d8d495f54",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis v6 random s030 r3",
+  "task_key": "worker_analysis_v6_random_s030_r3_20260514T063834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v6_random_s030_r3_20260514T063834_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "da67f966ba44c3eb0eb5e71b08e5e30fdfd3d01d2a13a474b75272adc21ff45f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `v6_random_s030_r3` 已被之前的 hook 自动处理，registry 已是 **DONE / success** 状态，无需再次更新。\n\n## 结果摘要\n\n| 指标 | high_sparsity | mid_sparsity | low_sparsity |\n|------|--------------|-------------|-------------|\n| II mean | +9.24 | **-230.76** | -7.41 |\n| II median | 4.02 | 2.43 | 4.74 |\n| PPL (both) | 39.18 | 27.44 | 88.94 |\n| tokens | 21,086 | 13,306 | 27,748 |\n\n- **Verdict: PASS** — CI non-overlapping (high vs mid), sign reversal (high>0, mid<0)\n- 50 problems, EXIT_CODE=0, 运行 0.49h\n- 输出文件: `profiling_results.json` (1.9MB)\n\n**注意**: mid_sparsity mean II=-230.76 有极端 skewness (-13.08)，1个 outlier 拉低了 mean，但 median (2.43) 与其他 phase 接近。这与 random masking 预期一致——random baseline 的 II gradient 主要由 outlier 驱动而非结构化效应，对比 importance masking 的单调递增 gradient。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v6-random-s030-r3-copy-2.md"
+}

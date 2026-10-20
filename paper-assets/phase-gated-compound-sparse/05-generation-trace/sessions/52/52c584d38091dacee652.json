@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52c584d38091dacee652",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis p1 appendix b null",
+  "task_key": "worker_analysis_p1_appendix_b_null_20260515T143038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_p1_appendix_b_null_20260515T143038_result.json",
+    "occurrence": 1,
+    "bytes": 1380,
+    "sha256": "d0d193cf83752a83496167aa07263a04a27e87df8c94757292012b43a3c5fdd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**确认：Appendix B 中 G_× = 58–241× 来自 n=50 旧数据，需要更新。**\n\n### 关键证据\n- n=500 additive G 最大值 = 208，而 multiplicative correction 只会让 G 变小\n- G_× = 241 > 208，因此不可能来自 n=500 数据\n- n=50 additive G = 69–274，经 multiplicative 调整（×0.84–0.88）后恰好是 58–241\n\n### 更新数据\n\n| Sparsity | 旧值 (n=50) G_× | 新值 (n=500) G_× est |\n|----------|-----------------|---------------------|\n| 0.15     | 58              | **51**              |\n| 0.20     | —               | **91**              |\n| 0.25     | —               | **133**             |\n| 0.30     | 241             | **183**             |\n\n**建议更新 appendix.tex 第 38 行：** `G_× = 58–241×` → `G_× ≈ 51–183×`\n\n### 定性结论不变\n- G_× 随 sparsity 单调递增\n- Importance-based: G_× >> 1；Random: G_× ≈ 1\n- s=0.25 crossover 保留\n\n### 交付文件\n- 报告：`artifacts/p1_appendix_b_null/report.md`\n- 服务器 JSON：`analysis_output/p1_appendix_b_multiplicative_null.json`\n\n### 方法注意\n精确 n=500 G_× 需要 per-problem PPL ratio（未持久化在 profiling output 中）。当前估计使用 n=50 已知 G_×/G_add 比值（0.84–0.88）校准。如需精确值，需重新运行 profiling 并存储 per-problem PPL 分项。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-p1-appendix-b-null.md"
+}

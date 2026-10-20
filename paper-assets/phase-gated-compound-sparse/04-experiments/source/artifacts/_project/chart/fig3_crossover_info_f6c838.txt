@@ -1,0 +1,3 @@
+PDF: /root/autodl-tmp/pacs/paper_figures/fig3_crossover.pdf
+Server: westd-22162
+Content: s=0.25 grouped bar chart, importance vs random × 3 phases, crossover annotated

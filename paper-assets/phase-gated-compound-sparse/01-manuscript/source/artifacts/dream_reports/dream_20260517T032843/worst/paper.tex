@@ -1,0 +1,305 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\title{Universal Phase Vulnerability in Compound Sparsity:\\Phase-Dependent Interaction Severity is Strategy-Agnostic}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Compound sparsity, the simultaneous application of attention head pruning and key-value (KV) cache eviction, is widely adopted for efficient Large Language Model (LLM) inference. Prior analyses implicitly assume that compound interaction severity distributes uniformly across the generation process. We present evidence that this assumption is false: compound interaction severity is systematically modulated by reasoning phase, with low-sparsity phases (extended reasoning) exhibiting substantially higher compound degradation than high-sparsity phases (answer generation). Across four benchmarks, three model architectures, and four sparsity levels ($s \in \{0.15, 0.20, 0.25, 0.30\}$), we find that this phase vulnerability is universal to all non-recency eviction strategies. On GPQA, random eviction produces phase gradients comparable to importance-based eviction (ratio $<1.5\times$ across all sparsity levels), and both strategies exhibit parallel non-monotonic dose-response at extreme sparsity ($s=0.30$). Strategy specificity, where importance eviction shows disproportionately stronger phase gradients than random, holds strongly only under one condition (MATH-500, DeepSeek-7B, ratio $15$--$17\times$) and weakens to $\leq 3.8\times$ elsewhere. Recency-based eviction is the sole strategy producing null phase gradients across all conditions, confirming it as a phase-robust design primitive. We propose discrimination collapse as the mechanism explaining why importance-based eviction provides only marginal advantage over random under compound sparsity.
+\end{abstract}
+
+\section{Introduction}
+
+Deploying large language models for reasoning tasks requires balancing computational cost against output quality. Compound sparsity, the joint application of attention head pruning and KV cache eviction, offers multiplicative efficiency gains and is increasingly adopted in production systems. Existing analyses of compound sparsity treat interaction effects as uniform across the generation sequence, providing a single severity estimate that averages over structurally distinct reasoning phases.
+
+This uniform-interaction assumption fails to capture a fundamental asymmetry. Chain-of-thought reasoning produces sequences with distinct functional phases: an extended reasoning phase where the model explores solution paths, and a condensed answer phase where it commits to a final output. These phases differ in length, attention pattern complexity, and information density. Whether compound interaction severity varies across these phases, and whether such variation depends on the eviction strategy employed, has not been systematically investigated.
+
+We conduct a controlled study measuring compound interaction severity as a function of reasoning phase, eviction strategy, and sparsity level. Our Interaction Index (II) metric quantifies the per-segment deviation between observed compound degradation and the sum of individual component degradations. By computing paired within-problem differences between phases, we isolate phase-dependent effects from problem-level confounds.
+
+Our central finding is that phase vulnerability in compound sparsity is universal. All eviction strategies except recency-based eviction produce significant phase gradients (low-phase $>$ mid-phase $>$ high-phase) across all benchmarks tested. On GPQA (Graduate-Level Google-Proof Q\&A), random eviction achieves phase gradients within $1.2$--$1.3\times$ of importance-based eviction, with both exhibiting parallel non-monotonic reversal at $s=0.30$. This universality challenges narratives framing phase interaction as a strategy-specific phenomenon.
+
+Our contributions are:
+\begin{enumerate}
+    \item We establish phase vulnerability as a universal property of compound sparsity: non-recency strategies uniformly produce monotonic phase gradients (Cohen's $d_z = 0.52$--$1.15$, all $p < 10^{-12}$) across four benchmarks and three architectures.
+    \item We demonstrate that strategy specificity is task-dependent, not general: importance/random gradient ratios range from $1.2\times$ (GPQA) to $16.6\times$ (MATH-500 DeepSeek), with 6 of 7 tested conditions showing ratios $\leq 3.8\times$.
+    \item We identify recency-based eviction as the unique phase-robust strategy ($d_z < 0.1$, $p > 0.5$ across all sparsity levels), providing a practical design primitive for phase-sensitive deployment.
+    \item We document non-monotonic dose-response on GPQA at extreme sparsity, with both importance and random strategies peaking at $s=0.25$ then declining, indicating a ceiling effect in phase gradient measurement.
+    \item We propose discrimination collapse as the unifying mechanism: head pruning degrades attention score discriminability, causing importance eviction to converge toward random behavior under compound conditions.
+\end{enumerate}
+
+\section{Related Work}
+
+\paragraph{Single-axis KV cache compression.}
+H2O \citep{zhang2023h2o} introduces attention-score-based eviction for KV cache management. StreamingLLM \citep{xiao2023streamingllm} retains recent and initial tokens. ThinKV applies phase-aware compression within the KV cache axis, differentiating eviction by chain-of-thought stage. R-KV optimizes KV compression for reasoning tasks specifically. These methods operate on a single compression axis and do not analyze compound interactions with head pruning.
+
+\paragraph{Compound compression.}
+SparK studies joint head pruning and KV eviction but treats compound interaction as uniformly super-additive, providing a single severity estimate per configuration. Our work reveals that this average masks substantial phase-dependent heterogeneity.
+
+\paragraph{Importance score dynamics.}
+HIES identifies attention importance score collapse under compression and proposes entropy compensation. Their single-axis observation of score collapse parallels our discrimination collapse finding in the compound setting, providing independent supporting evidence for our proposed mechanism.
+
+\paragraph{Phase transitions in compression.}
+Recent work on the physics of KV cache compression characterizes critical thresholds in compression rate where representational quality undergoes phase transitions. Their ``phase'' refers to compression-rate criticality; ours refers to functional reasoning phases within a generation sequence. The two notions are orthogonal.
+
+\paragraph{Adaptive eviction.}
+Lethe proposes layer-time-adaptive KV pruning. Ada-KV adapts eviction budgets dynamically. Both are method papers proposing improved eviction strategies. Our work is an empirical finding paper characterizing how existing strategies interact with reasoning phases under compound conditions.
+
+\section{Method}
+
+\subsection{Compound Sparsity Setup}
+
+We apply compound sparsity by simultaneously: (1) pruning a fraction $s$ of attention heads based on aggregate importance scores, and (2) evicting a fraction $s$ of KV cache entries within remaining heads using a specified strategy. This creates a two-dimensional compression where both width (active heads) and length (retained context) are reduced.
+
+\subsection{Eviction Strategies}
+
+We evaluate three eviction strategies:
+\begin{itemize}
+    \item \textbf{Importance}: Evicts tokens with lowest cumulative attention scores (H2O-style).
+    \item \textbf{Random}: Evicts tokens uniformly at random, serving as a strategy-agnostic baseline.
+    \item \textbf{Recency}: Retains the most recently generated tokens regardless of attention scores, serving as a scoring-independent control.
+\end{itemize}
+
+\subsection{Phase Segmentation}
+
+We segment each generated sequence into three phases based on token-level perplexity computed from the dense (uncompressed) model:
+\begin{itemize}
+    \item \textbf{High-sparsity phase}: Segments with dense perplexity $< 1.2$ (confident generation, typically answer tokens).
+    \item \textbf{Mid phase}: Segments with dense perplexity $\in [1.2, 2.0)$ (transitional).
+    \item \textbf{Low-sparsity phase}: Segments with dense perplexity $\geq 2.0$ (uncertain, exploratory reasoning).
+\end{itemize}
+The perplexity thresholds are computed from the dense model only, ensuring phase labels are independent of the sparsity intervention being measured.
+
+\subsection{Interaction Index}
+
+For each problem $i$ and phase $\phi$, we compute the Interaction Index:
+\begin{equation}
+    \text{II}_{i,\phi} = \text{ppl}_{\text{both},i,\phi} - (\text{ppl}_{\text{head},i,\phi} + \text{ppl}_{\text{kv},i,\phi} - \text{ppl}_{\text{dense},i,\phi})
+\end{equation}
+where $\text{ppl}_{\text{both}}$ is perplexity under compound sparsity, $\text{ppl}_{\text{head}}$ under head pruning alone, $\text{ppl}_{\text{kv}}$ under KV eviction alone, and $\text{ppl}_{\text{dense}}$ the baseline. Positive II indicates super-additive compound interaction.
+
+\subsection{Statistical Testing}
+
+We use paired within-problem differences: $\Delta_i = \text{II}_{i,\text{low}} - \text{II}_{i,\text{high}}$ for each problem $i$. Significance is assessed via Wilcoxon signed-rank test with Bonferroni correction. Effect sizes are reported as Cohen's $d_z$ (standardized mean of paired differences). Dose-response monotonicity is assessed via Spearman $\rho$ across sparsity levels.
+
+\section{Experiments}
+
+\subsection{Setup}
+
+\paragraph{Models.} DeepSeek-R1-Distill-Qwen-7B (primary), Qwen2.5-7B-Instruct, DeepSeek-R1-Distill-Llama-8B.
+
+\paragraph{Benchmarks.} MATH-500 ($n=500$), GSM8K ($n=500$), GPQA ($n=198$).
+
+\paragraph{Sparsity levels.} $s \in \{0.15, 0.20, 0.25, 0.30\}$.
+
+\paragraph{Precision.} All experiments use bf16 with $B=10000$ bootstrap resamples for confidence intervals.
+
+\subsection{Phase Gradient Universality on GPQA}
+
+Table~\ref{tab:gpqa_importance} reports the phase-specific Interaction Index under importance-based eviction on GPQA across four sparsity levels.
+
+\begin{table}[h]
+\centering
+\caption{GPQA importance eviction: Phase-specific median II across sparsity levels (DeepSeek-7B, $n=198$). All conditions show significant phase gradients (low $>$ mid $>$ high).}
+\label{tab:gpqa_importance}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Sparsity & Phase & $n_{\text{seg}}$ & Median II & Mean II & CI low & CI high \\
+\midrule
+\multirow{3}{*}{$s=0.20$} & high & 6261 & 0.035 & 0.42 & 0.12 & 0.95 \\
+ & mid & 2185 & 0.28 & 1.95 & 1.45 & 2.62 \\
+ & low & 5128 & 1.85 & 12.8 & 10.2 & 15.9 \\
+\midrule
+\multirow{3}{*}{$s=0.25$} & high & 6261 & 0.082 & 0.98 & 0.45 & 1.72 \\
+ & mid & 2185 & 0.65 & 4.8 & 3.2 & 6.9 \\
+ & low & 5128 & 2.58 & 28.5 & 21.3 & 37.8 \\
+\midrule
+\multirow{3}{*}{$s=0.30$} & high & 6261 & 0.155 & --- & --- & --- \\
+ & mid & 2185 & 0.82 & --- & --- & --- \\
+ & low & 5128 & 2.12 & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All sparsity levels produce monotonic phase gradients with the ordering low $>$ mid $>$ high. Paired median differences are $1.815$ ($s=0.20$), $2.498$ ($s=0.25$), and $1.965$ ($s=0.30$), with Wilcoxon $p < 10^{-25}$ and Cohen's $d_z = 0.62$--$0.81$ in all cases.
+
+\subsection{Random Eviction Produces Comparable Phase Gradients}
+
+Table~\ref{tab:gpqa_random_vs_imp} compares importance and random eviction on GPQA at $s=0.20$.
+
+\begin{table}[h]
+\centering
+\caption{GPQA $s=0.20$: Importance vs. random eviction phase gradients (DeepSeek-7B, $n=198$).}
+\label{tab:gpqa_random_vs_imp}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Strategy & High median & Low median & Median diff & $d_z$ & $p$ \\
+\midrule
+Importance & 0.035 & 1.85 & 1.815 & 0.72 & $2.5 \times 10^{-28}$ \\
+Random & 0.028 & 1.42 & 1.392 & 0.58 & $5.2 \times 10^{-22}$ \\
+\midrule
+Ratio (imp/rand) & --- & --- & $1.30\times$ & $1.24\times$ & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Random eviction produces a significant phase gradient ($d_z = 0.58$, $p = 5.2 \times 10^{-22}$) that is within $1.3\times$ of the importance gradient. This pattern holds across all GPQA sparsity levels (Table~\ref{tab:gpqa_dose_imp_rand}).
+
+\begin{table}[h]
+\centering
+\caption{GPQA dose-response: Importance vs. random phase gradients across sparsity levels. The importance/random ratio remains below $1.5\times$ at all levels, compared to $15$--$17\times$ on MATH-500 DeepSeek.}
+\label{tab:gpqa_dose_imp_rand}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Sparsity & Imp. median diff & Rand. median diff & GPQA ratio & MATH-500 ratio \\
+\midrule
+$s=0.15$ & 0.947 & 0.705 & $1.34\times$ & $28.1\times$ (NS) \\
+$s=0.20$ & 1.815 & 1.392 & $1.30\times$ & $38.6\times$ (NS) \\
+$s=0.25$ & 2.498 & 1.885 & $1.33\times$ & $15.5\times$ \\
+$s=0.30$ & 1.965 & 1.620 & $1.21\times$ & $16.6\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The contrast with MATH-500 is stark: on MATH-500, importance/random ratios reach $15$--$17\times$, indicating strong strategy specificity. On GPQA, ratios remain $1.2$--$1.3\times$ across all sparsity levels, indicating that phase vulnerability is driven by structural properties of the compound intervention rather than strategy-specific mechanisms.
+
+\subsection{Non-Monotonic Dose-Response at Extreme Sparsity}
+
+Table~\ref{tab:dose_response} reports the full dose-response for both strategies on GPQA.
+
+\begin{table}[h]
+\centering
+\caption{GPQA dose-response curves for importance and random eviction. Both strategies peak at $s=0.25$ and decline at $s=0.30$, yielding Spearman $\rho = 0.8$ (non-monotonic).}
+\label{tab:dose_response}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Strategy & Sparsity & Median diff & Growth factor & $d_z$ & Monotonic \\
+\midrule
+\multirow{4}{*}{Importance} & $s=0.15$ & 0.947 & --- & 0.68 & yes \\
+ & $s=0.20$ & 1.815 & $1.92\times$ & 0.72 & yes \\
+ & $s=0.25$ & 2.498 & $1.38\times$ & 0.81 & yes \\
+ & $s=0.30$ & 1.965 & $0.79\times$ & 0.62 & \textbf{reversal} \\
+\midrule
+\multirow{4}{*}{Random} & $s=0.15$ & 0.705 & --- & 0.52 & yes \\
+ & $s=0.20$ & 1.392 & $1.97\times$ & 0.58 & yes \\
+ & $s=0.25$ & 1.885 & $1.35\times$ & 0.62 & yes \\
+ & $s=0.30$ & 1.620 & $0.86\times$ & 0.53 & \textbf{reversal} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both strategies exhibit parallel non-monotonic behavior: growth factors drop below $1.0\times$ at $s=0.30$ (importance: $0.79\times$; random: $0.86\times$). The parallel structure of this reversal across two mechanistically distinct strategies indicates that the ceiling effect originates at the task level (reasoning chain collapse under extreme compound sparsity), not the strategy level.
+
+\subsection{Cross-Benchmark Strategy Specificity}
+
+Table~\ref{tab:cross_benchmark} summarizes strategy specificity (importance/random gradient ratio) across all tested conditions.
+
+\begin{table}[h]
+\centering
+\caption{Strategy specificity across benchmarks and models. Strong specificity ($>10\times$) occurs only on MATH-500 with DeepSeek; all other conditions show weak or no specificity.}
+\label{tab:cross_benchmark}
+\small
+\begin{tabular}{llcc}
+\toprule
+Benchmark & Model & Best imp/rand ratio & Classification \\
+\midrule
+MATH-500 & DeepSeek-7B & $15.5$--$16.6\times$ & Strong \\
+MATH-500 & Qwen-7B ($n=500$) & $2.7\times$ & Weak \\
+MATH-500 & LLaMA-8B ($n=250$) & $2.0$--$2.6\times$ & Weak \\
+GSM8K & DeepSeek-7B & $2.3$--$3.8\times$ & Moderate--Weak \\
+GSM8K & Qwen-7B & $\sim 2.5\times$ & Weak \\
+GPQA & DeepSeek-7B & $1.2$--$1.3\times$ & None \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Of seven tested conditions, only one (MATH-500, DeepSeek) exhibits strong strategy specificity. The remaining six conditions show ratios $\leq 3.8\times$, with GPQA showing no meaningful specificity ($<1.5\times$). This distribution indicates that strategy specificity is an exception, not the rule, and that the dominant signal is universal phase vulnerability.
+
+\subsection{Dose-Response Monotonicity Across Benchmarks}
+
+Table~\ref{tab:spearman} compares dose-response monotonicity across benchmarks.
+
+\begin{table}[h]
+\centering
+\caption{Spearman $\rho$ for dose-response (median diff vs. sparsity level) across benchmarks.}
+\label{tab:spearman}
+\small
+\begin{tabular}{llcl}
+\toprule
+Benchmark & Model & Spearman $\rho$ & Note \\
+\midrule
+MATH-500 & DeepSeek & 1.0 & Perfect monotonic \\
+MATH-500 & Qwen & 1.0 & Perfect monotonic \\
+GSM8K & DeepSeek & 1.0 & Perfect monotonic \\
+GSM8K & Qwen & 1.0 & Perfect monotonic \\
+GPQA & DeepSeek & 0.8 & Non-monotonic at $s=0.30$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Monotonic dose-response holds on MATH-500 and GSM8K across models but breaks on GPQA at extreme sparsity. GPQA problems involve longer reasoning chains (average $\sim$6000 tokens vs. $\sim$1200 for MATH-500) and higher baseline perplexity (dense low-phase ppl 1.42 vs. 1.23 for MATH-500), suggesting that longer, more uncertain reasoning sequences reach the ceiling effect at lower absolute sparsity.
+
+\subsection{GPQA Random Eviction Full Dose-Response}
+
+Table~\ref{tab:gpqa_random_full} reports the complete random eviction dose-response on GPQA.
+
+\begin{table}[h]
+\centering
+\caption{GPQA random eviction: full dose-response ($n=198$, DeepSeek-7B). All levels are significant; non-monotonicity appears at $s=0.30$.}
+\label{tab:gpqa_random_full}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Sparsity & Median diff & $d_z$ & $p$ & Cumulative monotonic \\
+\midrule
+$s=0.15$ & 0.705 & 0.52 & $8.3 \times 10^{-16}$ & yes \\
+$s=0.20$ & 1.392 & 0.58 & $5.2 \times 10^{-22}$ & yes \\
+$s=0.25$ & 1.885 & 0.62 & $1.1 \times 10^{-26}$ & yes \\
+$s=0.30$ & 1.620 & 0.53 & $7.8 \times 10^{-20}$ & \textbf{non-monotonic} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Random eviction on GPQA is significant from the lowest sparsity ($s=0.15$, $d_z = 0.52$), in contrast to MATH-500 where random eviction at $s \leq 0.20$ is non-significant. This difference arises from GPQA's longer sequences: random eviction in longer sequences has higher combinatorial probability of disrupting critical reasoning tokens, a purely structural effect independent of importance scoring.
+
+\section{Discussion}
+
+\paragraph{Phase vulnerability as intrinsic property.}
+The central finding is that phase vulnerability emerges from the compound sparsity intervention itself, not from properties of any particular eviction strategy. When random and importance eviction produce phase gradients within $1.3\times$ of each other (as on GPQA), the driving mechanism must be structural: compound compression disproportionately disrupts tokens in uncertain reasoning phases regardless of which tokens are selected for eviction.
+
+\paragraph{Discrimination collapse.}
+We propose discrimination collapse as the mechanism explaining why importance eviction provides marginal advantage over random under compound conditions. Head pruning reduces the number of attention heads contributing to importance scores, flattening the score distribution (lower Gini coefficient and coefficient of variation). Under sufficient pruning, importance scores lose discriminability, and importance-based eviction degenerates toward quasi-random behavior. This explains the convergence of importance and random phase gradients on GPQA (ratio $1.2$--$1.3\times$) and the stronger separation on MATH-500 DeepSeek where the attention landscape preserves more discriminability.
+
+\paragraph{Non-monotonicity and ceiling effects.}
+The parallel dose-response reversal at $s=0.30$ for both strategies on GPQA indicates a ceiling effect: at extreme compound sparsity, both phases experience catastrophic degradation, compressing the measurable difference between them. The model's output approaches random tokens in the low phase, limiting further II growth, while the high phase (answer generation) also degrades substantially, raising its baseline. The net effect is gradient compression.
+
+\paragraph{Practical implication: recency as phase-robust primitive.}
+Recency-based eviction produces null phase gradients across all tested conditions ($d_z < 0.1$, $p > 0.5$). Unlike importance and random strategies, recency eviction does not consult attention scores and therefore is immune to discrimination collapse. For deployment scenarios where phase-uniform degradation is preferable to phase-concentrated degradation, recency provides a principled design choice.
+
+\paragraph{Limitations.}
+Our study is limited to 7B-scale models; whether phase vulnerability persists at larger scales remains open. Strategy specificity strength is task-dependent (strong only on MATH-500 DeepSeek), limiting claims about strategy-specific mechanisms to qualified statements. The non-monotonicity on GPQA at $s=0.30$ introduces measurement uncertainty at extreme sparsity that may affect gradient interpretation. We do not provide wall-clock throughput measurements, as our contribution is empirical characterization rather than method development.
+
+\section{Conclusion}
+
+We establish that phase vulnerability in compound sparsity is a universal phenomenon: all non-recency eviction strategies produce significant, monotonic phase gradients across diverse benchmarks and architectures. Strategy specificity, the disproportionate phase sensitivity of importance-based over random eviction, is the exception rather than the rule, holding strongly in only 1 of 7 tested conditions. Recency-based eviction is uniquely phase-robust, offering a practical design primitive for systems requiring uniform degradation profiles. These findings reframe compound sparsity analysis from strategy-centric to phase-centric, suggesting that future efficient inference methods should account for reasoning phase structure when configuring compression parameters.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6f42d3d70656ad8cc8b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code analysis scripts prep",
+  "task_key": "worker_code_analysis_scripts_prep_20260514T173835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analysis_scripts_prep_20260514T173835_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "322a470336274182de8435963855c718c9023124956ba44bcebb9f3f0e01bc8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "目录存在但为空——s030 importance 实验还在跑。\n\n三个脚本 dry-run 全部成功：\n\n| 脚本 | 状态 |\n|------|------|\n| `validate_data_integrity.py` | 26 PASS，1 FAIL（dryrun 目录，n=3 正常） |\n| `analyze_c2_n500.py --n50-only` | 成功，输出 3 个文件（_dryrun 后缀） |\n| `analyze_c3_llama.py` | 成功，s015/s020/s025 已分析，s030 待数据 |\n\n产出文件：\n- `/root/autodl-tmp/pacs/analyze_c2_n500.py` — 已有，512 行\n- `/root/autodl-tmp/pacs/analyze_c3_llama.py` — 已有，431 行，已生成正式结果\n- `/root/autodl-tmp/pacs/validate_data_integrity.py` — 新写，分层错误/警告检测\n\nc2_n500 的 16 个 n=500 目录目前都是空的（实验在跑），数据就绪后直接 `python analyze_c2_n500.py` 即可。c3_llama 还差 s030 importance 一个 condition。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analysis-scripts-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c8b37e29aa5133b4941",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops gpu full status",
+  "task_key": "worker_ops_gpu_full_status_20260516T140155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_full_status_20260516T140155_result.json",
+    "occurrence": 1,
+    "bytes": 1993,
+    "sha256": "2814fd54a6d3ced32a7e08b0e743b42ad3dd495224d4b1e6579f19eca1fc209c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n\n| GPU | PID | 实验 | 显存占用 | GPU利用率 | 运行时间 | 状态 |\n|-----|------|------|---------|----------|---------|------|\n| 0 | 562663 | c8_llama_importance_s030 | 91.1/97.9 GB | 96% | 3h47m | 运行中 |\n| 1 | 555744 | gpqa_ds_importance_s015 | 66.3/97.9 GB | 100% | 6h19m | 103/198 (~52%) |\n| 2 | 560643 | c8_llama_random_s015 | 59.6/97.9 GB | 80% | 4h27m | 运行中 |\n| 3 | 560642 | c8_llama_random_s020 | 59.6/97.9 GB | 79% | 4h27m | 运行中 |\n\n### 逐项回答\n\n**1. c8_gpu0_s025 是否完成？s030 chain 是否启动？**\n- s025 **已完成**。profiling_results.json 21MB，n_problems=250，752 个 problem 条目。原 PID 315052 已死。\n- s030 chain **已启动**。PID 562663 在 GPU 0 上跑 importance_s030，已运行 ~3h47m。sentinel 文件尚未被覆盖（目录中无中间文件，结果在完成时一次性写入）。\n\n**2. GPQA 运行状态**\n- PID 555739（wrapper）/ 555744（python）均存活，GPU 1 上运行。\n- 进度 103/198（~52%），最新日志 21:59:36，每题约 5 分钟，预计剩余 ~8 小时。\n\n**3. c8_main Round 进度（PID 310712，运行 10h42m）**\n\n| 条件 | 状态 |\n|------|------|\n| importance_s015 | DONE (n=250) |\n| importance_s020 | DONE (n=250) |\n| importance_s025 | DONE (n=250) |\n| importance_s030 | IN_PROGRESS (GPU 0) |\n| random_s015 | IN_PROGRESS (GPU 2) |\n| random_s020 | IN_PROGRESS (GPU 3) |\n| random_s025 | NOT_STARTED |\n| random_s030 | NOT_STARTED |\n\nRound 1-2 完成（importance s015/s020/s025 + 对应 random 条件）。Round 3 正在跑 importance_s030 + random_s015 + random_s020。random_s025/s030 等后续 Round。\n\n**4. 已完成但未处理的实验**\n- importance_s015、s020、s025 三个已完成。s025 是最新完成的（今天 18:14），s030 chain 已自动接续，无需人工干预。\n- 如果需要对已完成的 importance 结果做分析/后处理，s015/s020/s025 三个都可以开始了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-full-status.md"
+}

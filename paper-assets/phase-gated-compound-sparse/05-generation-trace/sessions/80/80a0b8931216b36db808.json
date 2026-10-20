@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "80a0b8931216b36db808",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "research paper update checklist",
+  "task_key": "worker_research_paper-update-checklist_20260514T183914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-update-checklist_20260514T183914.log",
+    "occurrence": 1,
+    "bytes": 629123,
+    "sha256": "ce63562810e6a490c3c0b8db9a92fda1a417f2998ae8b44c99587bcd97fc3e3c"
+  },
+  "statistics": {
+    "messages": 112,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 44,
+      "tool_result": 44,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "80a0b8931216b36db808-part-0001.json",
+          "message_count": 104
+        },
+        {
+          "path": "80a0b8931216b36db808-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-paper-update-checklist-copy-2.md"
+}

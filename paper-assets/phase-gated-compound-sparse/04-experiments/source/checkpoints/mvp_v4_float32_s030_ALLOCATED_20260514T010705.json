@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_v4_float32_s030",
+  "project": "phase-gated-compound-sparse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:06:48.670Z",
+    "updated_at": "2026-05-14T01:07:05.013Z",
+    "hypothesis": "Float32 修复验证：importance masking sparsity=0.3, cuda:3。验证 torch.where 修复后 NaN 是否消除 + II 真实值。最关键验证点——s=0.3 是唯一显示符号反转的 level。"
+  },
+  "timestamp": "2026-05-14T01:07:05.053868+00:00",
+  "trigger": "update_registry"
+}

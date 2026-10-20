@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d07c07c5cb28b92ab80c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code m1v2 analysis prep",
+  "task_key": "worker_code_m1v2-analysis-prep_20260513T210243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_m1v2-analysis-prep_20260513T210243_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "2209141546fa02d3d2acf25f9f098ab072ddd2d5df28917b528c22278a44326e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `artifacts/pacs/profiling/analyze_results.py`。\n\n**功能列表：**\n\n1. **`load_results(input_dir)`** — 加载 `profiling_results.json`\n2. **`build_ii_table(data)`** — 生成 per-phase × per-level 的 II 均值 + 95% CI 表，标注 pass/fail（CI 是否排除 0）\n3. **`compare_phases(data)`** — 所有 phase 对的差异检验：CI 不重叠 或 符号反转\n4. **`analyze_sparsity(data)`** — 从 diagnostics 提取全局 sparsity values，运行 `fit_gmm_bic` + `segment_by_quantile`，对比 GMM best_k 与 KDE 检测的 phase 数\n5. **`compute_verdict(data, comparisons)`** — MVP Pass 判定：任一 phase 对显著即 PASS\n6. **`run(input_dir)`** — 主流程，输出格式化表格到 stdout + 保存 `analysis_summary.json`\n7. **`main()`** — CLI 入口，`python -m pacs.profiling.analyze_results --input_dir /path/to/output`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-m1v2-analysis-prep.md"
+}

@@ -1,0 +1,1315 @@
+# analysis v6 random s030 r3
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_analysis_v6_random_s030_r3_20260514T063834.log`
+- **Structured JSON:** [`8e31b7edf34a5d864c35.json`](../../sessions/8e/8e31b7edf34a5d864c35.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "41bf3586-63cb-459b-a99d-ffaa3c7392e1",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778757000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3c6a7faf-80f2-4aa4-8671-4263750d100f",
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the experiment outputs on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "5d4e2abd-e727-4ef0-bbbc-26e7a9e65800",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UpZ5s4sGkHydV6XqGfQPK9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11310,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11310
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01U1AsdMb7QccxjaaXtvz2Ki`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "3c8b4382-03e5-4938-8f67-a02426d08bff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UpZ5s4sGkHydV6XqGfQPK9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11310,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11310
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T06:38:54.741Z_
+
+<details><summary>↩ Tool result · `toolu_01U1AsdMb7QccxjaaXtvz2Ki`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "4ba1889f-697c-4a7c-a177-883a5da493d7",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TBM4eDYWzLoYwgeSup5aSc`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -la /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "5b6216ec-22e7-4161-9a47-b82ff8022d18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C147SmZsqGQhmtFipk8fXY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 23151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T06:39:00.306Z_
+
+<details><summary>↩ Tool result · `toolu_01TBM4eDYWzLoYwgeSup5aSc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1952\\ndrwxr-xr-x  2 root root      44 May 14 14:03 .\\ndrwxr-xr-x 67 root root    4096 May 14 14:20 ..\\n-rw-r--r--  1 root root 1990370 May 14 14:03 profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "b1451009-54f1-4436-b28f-c7a62cd068c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1952\\\\ndrwxr-xr-x  2 root root      44 May 14 14:03 .\\\\ndrwxr-xr-x 67 root root    4096 May 14 14:20 ..\\\\n-rw-r--r--  1 root root 1990370 May 14 14:03 profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1952\\ndrwxr-xr-x  2 root root      44 May 14 14:03 .\\ndrwxr-xr-x 67 root root    4096 May 14 14:20 ..\\n-rw-r--r--  1 root root 1990370 May 14 14:03 profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LpyZnG85UW6xU7eBBodzuR`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -20 /root/runs/phase-gated-compound-sparse/v6_random_s030_r3.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "b91e3216-9bdf-4d5d-ae4b-c385e6d94944",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C147SmZsqGQhmtFipk8fXY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 23151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MmgKcGTmjiPgZJX6tKU9JH`</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "filters": {
+    "exp_id": "v6_random_s030_r3"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "74b0c810-04dd-48ca-a119-c6e70e68c172",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C147SmZsqGQhmtFipk8fXY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 23151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T06:39:02.831Z_
+
+<details><summary>↩ Tool result · `toolu_01LpyZnG85UW6xU7eBBodzuR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 14:03:52,294 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:03:52,377 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.3]: mean=+9.2364  95%CI=[+2.5075, +15.0727]\\n  II[low_sparsity, 0.3]: mean=-7.4119  95%CI=[-41.6272, +15.0604]\\n  II[mid_sparsity, 0.3]: mean=-230.7604  95%CI=[-659.6206, -3.9426]\\n\\nVerdict: PASS\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.3\\n  Sign reversal:   high_sparsity II>0, mid_sparsity II<0 at 0.3\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "1bd40225-c3be-456a-b53b-bb24712d45f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 14:03:52,294 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\\\n2026-05-14 14:03:52,377 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json\\\\n\\\\n============================================================\\\\nPACS Profiling Complete — 50 problems\\\\n============================================================\\\\n  high_sparsity: 21086 tokens, 387 segments\\\\n  low_sparsity: 27748 tokens, 397 segments\\\\n  mid_sparsity: 13306 tokens, 191 segments\\\\n\\\\n  II[high_sparsity, 0.3]: mean=+9.2364  95%CI=[+2.5075, +15.0727]\\\\n  II[low_sparsity, 0.3]: mean=-7.4119  95%CI=[-41.6272, +15.0604]\\\\n  II[mid_sparsity, 0.3]: mean=-230.7604  95%CI=[-659.6206, -3.9426]\\\\n\\\\nVerdict: PASS\\\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.3\\\\n  Sign reversal:   high_sparsity II>0, mid_sparsity II<0 at 0.3\\\\n============================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 14:03:52,294 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:03:52,377 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.3]: mean=+9.2364  95%CI=[+2.5075, +15.0727]\\n  II[low_sparsity, 0.3]: mean=-7.4119  95%CI=[-41.6272, +15.0604]\\n  II[mid_sparsity, 0.3]: mean=-230.7604  95%CI=[-659.6206, -3.9426]\\n\\nVerdict: PASS\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.3\\n  Sign reversal:   high_sparsity II>0, mid_sparsity II<0 at 0.3\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T06:39:03.529Z_
+
+<details><summary>↩ Tool result · `toolu_01MmgKcGTmjiPgZJX6tKU9JH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6453}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "76c3363d-5ce9-4749-9a7c-1866ce8c0b53",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6453}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6453}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the registry with the correct filter - maybe it's stored differently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "f41338f6-68f5-4b21-adc9-4c2fd341a464",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYmrGtmif2F2guAh5safwS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1278,
+      "cache_read_input_tokens": 24359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+输出完整，实验成功。让我读取详细指标并查找 registry 中的实验记录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "1575bc6e-5b7b-482c-89e9-435999e2add0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYmrGtmif2F2guAh5safwS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1278,
+      "cache_read_input_tokens": 24359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01EWaTDUX1zaHSWHbAtM8YmN`</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "filters": {
+    "status": "ANALYZING"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "2655f926-4a60-46f1-ad87-e30890a2c6d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYmrGtmif2F2guAh5safwS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1278,
+      "cache_read_input_tokens": 24359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T06:39:08.709Z_
+
+<details><summary>↩ Tool result · `toolu_01EWaTDUX1zaHSWHbAtM8YmN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"bf16_importance_s030\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:16.014Z\", \"updated_at\": \"2026-05-14T06:39:04.821Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.30。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T05:54:32.900Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:39:03.399Z\", \"training_hours\": 0.74}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"80495\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\", \"submitted_at\": \"2026-05-14T05:54:34.301Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"80495\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\"}, \"bf16_importance_s020\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:14.819Z\", \"updated_at\": \"2026-05-14T06:36:14.889Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.20。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020 --sparsity_levels 0.20 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"79812\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s020.log\", \"submitted_at\": \"2026-05-14T05:51:09.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"note\": \"Registry fix: actually running on cuda:0 sharing with bf16_importance_s030\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T06:36:14.442Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:36:16.633802+00:00\"}]}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6701}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "2aa81aa7-6f46-4a9e-ae14-4ffa0a9edcef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"bf16_importance_s030\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:16.014Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:39:04.821Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.30。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T05:54:32.900Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:39:03.399Z\\\", \\\"training_hours\\\": 0.74}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"80495\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:54:34.301Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"80495\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\\\"}, \\\"bf16_importance_s020\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:14.819Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:36:14.889Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.20。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020 --sparsity_levels 0.20 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"79812\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s020.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:51:09.305Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"Registry fix: actually running on cuda:0 sharing with bf16_importance_s030\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T06:36:14.442Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T06:36:16.633802+00:00\\\"}]}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6701}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"bf16_importance_s030\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:16.014Z\", \"updated_at\": \"2026-05-14T06:39:04.821Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.30。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T05:54:32.900Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:39:03.399Z\", \"training_hours\": 0.74}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"80495\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\", \"submitted_at\": \"2026-05-14T05:54:34.301Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"80495\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\"}, \"bf16_importance_s020\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:14.819Z\", \"updated_at\": \"2026-05-14T06:36:14.889Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.20。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020 --sparsity_levels 0.20 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"79812\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s020.log\", \"submitted_at\": \"2026-05-14T05:51:09.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"note\": \"Registry fix: actually running on cuda:0 sharing with bf16_importance_s030\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T06:36:14.442Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:36:16.633802+00:00\"}]}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6701}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SXkW4FEZj82uGGAu3kfRmZ`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json')); print(json.dumps({k:v for k,v in d.items() if k!='problems'}, indent=2)[:3000])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "404c1693-50e2-4fff-857f-2ca032c4ed51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HYmrGtmif2F2guAh5safwS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1278,
+      "cache_read_input_tokens": 24359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1278
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T06:39:09.935Z_
+
+<details><summary>↩ Tool result · `toolu_01SXkW4FEZj82uGGAu3kfRmZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "2a698fdc-9e54-4749-b9af-5bb5d09c282a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry filter by exp_id doesn't work as a filter - it seems the exp_id is the key. Let me search for "v6_random_s030_r3" specifically. Also, the python -c command was blocked because of the semicolon. Let me use a different approach.
+
+Let me check the registry for v6_random_s030_r3 and also read the results file differently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "c54aa524-5830-4b7c-a109-dd5c9ee7a978",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbYwPpKhBK1RLeBZJLQ4hh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2027,
+      "cache_read_input_tokens": 25637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2027
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_013Xs7Dxrj8K718RKD1atBVq`</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "limit": 20,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "15561743-0435-4834-a9e6-d161266a682e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbYwPpKhBK1RLeBZJLQ4hh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2027,
+      "cache_read_input_tokens": 25637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2027
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T06:39:16.724Z_
+
+<details><summary>↩ Tool result · `toolu_013Xs7Dxrj8K718RKD1atBVq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"bf16_ds_imp_s030\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:27.121Z\", \"updated_at\": \"2026-05-14T06:39:05.479Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.30, bf16 dtype. 核心 claim 数据源。\", \"notes\": \"已被 bf16_importance_s030 覆盖（RUNNING, cuda:0）。本 ID 不再单独跑。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:39:05.479Z\"}, \"bf16_importance_s030\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:16.014Z\", \"updated_at\": \"2026-05-14T06:39:04.821Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.30。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T05:54:32.900Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:39:03.399Z\", \"training_hours\": 0.74}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"80495\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\", \"submitted_at\": \"2026-05-14T05:54:34.301Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"80495\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:39:12.166442+00:00\"}]}}, \"bf16_ds_imp_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:26.099Z\", \"updated_at\": \"2026-05-14T06:39:04.011Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.25, bf16 dtype. 核心 claim 数据源。\", \"notes\": \"已被 bf16_importance_s025 覆盖（DONE, success）。本 ID 不再单独跑。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:39:04.011Z\"}, \"bf16_ds_imp_s020\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:25.159Z\", \"updated_at\": \"2026-05-14T06:39:01.901Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.20, bf16 dtype. 核心 claim 数据源。\", \"notes\": \"已被 bf16_importance_s020 覆盖（RUNNING, cuda:0）。本 ID 不再单独跑。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:39:01.901Z\"}, \"bf16_ds_imp_s015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:24.195Z\", \"updated_at\": \"2026-05-14T06:39:00.792Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.15, bf16 dtype. 核心 claim 数据源——论文所有数值来自此批实验。\", \"notes\": \"已被 bf16_importance_s015 覆盖（DONE, success）。本 ID 不再单独跑。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:39:00.792Z\"}, \"v6_random_s030_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:34:34.110Z\", \"updated_at\": \"2026-05-14T06:38:05.564Z\", \"hypothesis\": \"v6 random masking s=0.30 重试 (cuda:2)。前次被误杀+tmux冲突。获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-14T05:35:14.593Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:04:55.039Z\", \"training_hours\": 0.49}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:2\"], \"pid\": \"77560\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s030_r3.log\", \"submitted_at\": \"2026-05-14T05:35:15.849Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3769.7, \"gpu_hours\": 1.05}, \"pid\": \"77560\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s030_r3.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:05:03.633464+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json\", \"metrics\": {\"II_high_mean\": 9.2364, \"II_mid_mean\": -230.7604, \"II_low_mean\": -7.4119, \"II_high_median\": 4.0237, \"II_mid_median\": 2.4272, \"II_low_median\": 4.735, \"ppl_low_both\": 88.94, \"per_problem_count\": 50}, \"completed_at\": \"2026-05-14T06:38:05.564Z\"}, \"bf16_importance_s020\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:14.819Z\", \"updated_at\": \"2026-05-14T06:36:14.889Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.20。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020 --sparsity_levels 0.20 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"79812\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s020.log\", \"submitted_at\": \"2026-05-14T05:51:09.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"note\": \"Registry fix: actually running on cuda:0 sharing with bf16_importance_s030\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T06:36:14.442Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:36:16.633802+00:00\"}]}}, \"bf16_importance_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:15.339Z\", \"updated_at\": \"2026-05-14T06:25:06.208Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.25。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T05:53:50.305Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025 --sparsity_levels 0.25 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:18:14.664Z\", \"training_hours\": 0.41}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025 --sparsity_levels 0.25 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:3\"], \"pid\": \"80207\", \"log_path\": \"/root/runs/phase-gated-compound-sparse/bf16_importance_s025.log\", \"submitted_at\": \"2026-05-14T05:53:52.164Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/\", \"wall_clock_seconds\": 1712.2, \"gpu_hours\": 0.48}, \"pid\": \"80207\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s025.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:18:20.451822+00:00\"}]}, \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 0.302756, \"median\": 0.032363, \"ci\": [0.083714, 0.543977], \"winsorized_mean\": 0.200962, \"skewness\": 4.8826}, \"mid\": {\"mean\": 5.729665, \"median\": 1.118069, \"ci\": [3.455574, 8.471799], \"winsorized_mean\": 4.189902, \"skewness\": 8.2799}, \"low\": {\"mean\": 25.852951, \"median\": 7.195958, \"ci\": [19.077082, 33.497293], \"winsorized_mean\": 19.319103, \"skewness\": 7.3986}}, \"per_problem_ii_stats\": {\"high\": {\"n\": 49, \"min\": -0.316321, \"max\": 4.003714, \"mean\": 0.133714, \"median\": 0.009873, \"std\": 0.595358}, \"mid\": {\"n\": 40, \"min\": -0.024794, \"max\": 18.720486, \"mean\": 2.537744, \"median\": 1.05707, \"std\": 3.962575}, \"low\": {\"n\": 50, \"min\": -1.854733, \"max\": 75.467653, \"mean\": 11.28281, \"median\": 3.954593, \"std\": 16.620011}}, \"gradient_paired_aggregate\": 222.35, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"PASS\"}, \"phase_stats\": {\"high\": {\"n_tokens\": 21086, \"n_segments\": 387}, \"mid\": {\"n_tokens\": 13306, \"n_segments\": 191}, \"low\": {\"n_tokens\": 27748, \"n_segments\": 397}}, \"perplexity\": {\"high\": {\"dense\": 1.1689, \"attn\": 1.6511, \"kv\": 1.8628, \"both\": 2.7026}, \"mid\": {\"dense\": 1.2269, \"attn\": 1.7039, \"kv\": 5.6205, \"both\": 13.3436}, \"low\": {\"dense\": 1.2286, \"attn\": 1.8366, \"kv\": 31.756, \"both\": 63.668}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:22:24.406Z\", \"notes\": \"bf16 importance masking s=0.25, DeepSeek-R1-Distill-Qwen-7B, 50 problems. 强阳性结果：II gradient high→low 单调递增（high median=0.03, low median=7.20），CI不重叠，sign reversal未通过（high II略>0但接近0）。aggregate gradient=222.35x（高于fp16的35.72x）。PPL: high_both=2.70 vs low_both=63.67，s=0.25下compound sparsity效应比s=0.15放大约5x。对比fp16参考(gradient=35.72, low_median=24.16): bf16 low_median更低(7.20 vs 24.16)但high_median也更低(0.03 vs ~0.68)，gradient比更大。\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/\"}, \"bf16_importance_s015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:13.858Z\", \"updated_at\": \"2026-05-14T06:25:05.334Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.15。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T05:49:55.770Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:15:15.053Z\", \"training_hours\": 0.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:1\"], \"pid\": \"79406\", \"log_path\": \"/root/runs/phase-gated-compound-sparse/bf16_importance_s015.log\", \"submitted_at\": \"2026-05-14T05:49:58.070Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/\", \"wall_clock_seconds\": 1993.7, \"gpu_hours\": 0.55}, \"pid\": \"79406\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s015.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:15:22.371858+00:00\"}]}, \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": -0.150213, \"median\": 0.005752, \"ci\": [-0.294614, -0.055385], \"winsorized_mean\": -0.062378, \"skewness\": -14.9912}, \"mid\": {\"mean\": 0.447301, \"median\": 0.080738, \"ci\": [0.267993, 0.668749], \"winsorized_mean\": 0.324751, \"skewness\": 4.7221}, \"low\": {\"mean\": 2.405837, \"median\": 0.398291, \"ci\": [1.478784, 3.667675], \"winsorized_mean\": 1.278857, \"skewness\": 9.5402}}, \"per_problem_ii_stats\": {\"high\": {\"n\": 49, \"min\": -0.188061, \"max\": 0.335853, \"mean\": -0.013405, \"median\": 0.00012, \"std\": 0.078483}, \"mid\": {\"n\": 40, \"min\": -0.169092, \"max\": 3.88198, \"mean\": 0.308621, \"median\": 0.107114, \"std\": 0.690186}, \"low\": {\"n\": 50, \"min\": -0.872983, \"max\": 9.10289, \"mean\": 0.725504, \"median\": 0.315517, \"std\": 1.731056}}, \"gradient_paired_aggregate\": 69.24, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": true, \"overall\": \"PASS\"}, \"phase_stats\": {\"high\": {\"n_tokens\": 21086, \"n_segments\": 387}, \"mid\": {\"n_tokens\": 13306, \"n_segments\": 191}, \"low\": {\"n_tokens\": 27748, \"n_segments\": 397}}, \"perplexity\": {\"high\": {\"dense\": 1.1689, \"attn\": 1.4861, \"kv\": 1.4481, \"both\": 1.5911}, \"mid\": {\"dense\": 1.2269, \"attn\": 1.5137, \"kv\": 2.5971, \"both\": 3.4541}, \"low\": {\"dense\": 1.2286, \"attn\": 1.6147, \"kv\": 8.9201, \"both\": 12.5084}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:23:11.818Z\", \"notes\": \"bf16 importance masking s=0.15, DeepSeek-R1-Distill-Qwen-7B, 50 problems. 强阳性结果：II gradient high→low 单调递增（high median≈0, low median=0.40），CI不重叠，sign reversal PASS。aggregate gradient=69.24x（高于fp16的11.53x，因bf16 high phase II更接近0）。PPL: high_both=1.59 vs low_both=12.51，compound sparsity在low phase造成显著更大PPL损伤。对比fp16参考(gradient=11.53, low_median=2.88): bf16 low_median更低(0.40 vs 2.88)但high_median也更低(0.006 vs ~0.25)，gradient比更大。\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/\"}, \"bf16_ds_rand_s025\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:29.444Z\", \"updated_at\": \"2026-05-14T06:20:08.277Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.25, bf16 dtype. Importance 配对对照组。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T06:20:05.413Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:3\"], \"pid\": \"83421\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s025.log\", \"submitted_at\": \"2026-05-14T06:20:06.948Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"83421\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s025.log\"}, \"bf16_ds_rand_s020\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:28.504Z\", \"updated_at\": \"2026-05-14T06:20:03.756Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.20, bf16 dtype. Importance 配对对照组。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-14T06:20:01.277Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:2\"], \"pid\": \"83260\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s020.log\", \"submitted_at\": \"2026-05-14T06:20:02.850Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"83260\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s020.log\"}, \"bf16_ds_rand_s015\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:27.662Z\", \"updated_at\": \"2026-05-14T06:19:59.545Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.15, bf16 dtype. Importance 配对对照组。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T06:19:57.374Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:1\"], \"pid\": \"83111\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s015.log\", \"submitted_at\": \"2026-05-14T06:19:58.801Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"83111\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s015.log\"}, \"v6_random_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:11:50.836Z\", \"updated_at\": \"2026-05-14T05:59:32.155Z\", \"hypothesis\": \"v6 代码 random masking s=0.25, cuda:3. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s025 形成对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:3\"], \"pid\": \"73459\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s025.log\", \"submitted_at\": \"2026-05-14T05:12:37.985Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v6_random_s025/\", \"wall_clock_seconds\": 2808.5, \"gpu_hours\": 0.78}, \"reproduce\": {\"finished_at\": \"2026-05-14T05:52:19.115Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:52:24.167364+00:00\"}]}, \"metrics\": {\"ii_high_median\": 3.0024, \"ii_mid_median\": 2.9846, \"ii_low_median\": 2.9146, \"ii_high_mean\": 3.9052, \"ii_mid_mean\": 7.9491, \"ii_low_mean\": 3.9114, \"per_problem_ii_count\": 50, \"n_high\": 36, \"n_mid\": 25, \"n_low\": 24, \"bootstrap_gradient_paired\": -0.1199, \"bootstrap_ci_paired\": [-1.517, 1.2461], \"bootstrap_p\": 0.559, \"bootstrap_gradient_unpaired\": -0.8616, \"bootstrap_ci_unpaired\": [-3.3911, 1.5169], \"per_problem_ii_stats\": {\"high\": {\"min\": -6.1388, \"max\": 25.2471, \"mean\": 4.4098, \"median\": 3.0421, \"std\": 6.0734}, \"mid\": {\"min\": 0.158, \"max\": 108.7242, \"mean\": 7.5626, \"median\": 2.1407, \"std\": 20.926}, \"low\": {\"min\": -0.1953, \"max\": 12.8555, \"mean\": 3.5806, \"median\": 2.7289, \"std\": 3.4915}}, \"verdict\": \"FAIL\"}, \"conclusion\": \"success\", \"notes\": \"Random baseline 确认：gradient=0.90 (≈1.0, 无 phase-dependent amplification)。三 phase median II 均在 2-3 范围 (high=3.04, mid=2.14, low=2.73)，几乎无差异。对比 importance masking (gradient=35.72, low_median=24.16)，证明 phase-dependent interaction gradient 是 importance-based masking 的特异效应，非 sparsity 本身的 artifact。\", \"completed_at\": \"2026-05-14T05:59:26.490Z\"}, \"v6_random_s015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:54:17.188Z\", \"updated_at\": \"2026-05-14T05:59:25.315Z\", \"hypothesis\": \"v6 代码 random masking s=0.15, cuda:0. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s015 形成对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"72073\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s015.log\", \"submitted_at\": \"2026-05-14T05:08:13.748Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v6_random_s015/\", \"wall_clock_seconds\": 3071.6, \"gpu_hours\": 0.85}, \"reproduce\": {\"finished_at\": \"2026-05-14T05:50:02.236Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:50:03.894084+00:00\"}]}, \"metrics\": {\"ii_high_median\": 0.1606, \"ii_mid_median\": 0.252, \"ii_low_median\": 0.1831, \"ii_high_mean\": 0.4563, \"ii_mid_mean\": 0.5134, \"ii_low_mean\": 0.4775, \"per_problem_ii_count\": 50, \"n_high\": 43, \"n_mid\": 32, \"n_low\": 28, \"bootstrap_gradient_paired\": -0.2722, \"bootstrap_ci_paired\": [-0.7039, 0.1548], \"bootstrap_p\": 0.903, \"bootstrap_gradient_unpaired\": -0.0592, \"bootstrap_ci_unpaired\": [-0.5341, 0.3877], \"per_problem_ii_stats\": {\"high\": {\"min\": -3.0621, \"max\": 5.018, \"mean\": 0.5386, \"median\": 0.2003, \"std\": 1.2085}, \"mid\": {\"min\": -2.7245, \"max\": 4.6713, \"mean\": 0.3977, \"median\": 0.299, \"std\": 1.1456}, \"low\": {\"min\": -0.4031, \"max\": 3.7005, \"mean\": 0.4806, \"median\": 0.2465, \"std\": 0.779}}, \"verdict\": \"FAIL\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T05:59:25.315Z\"}, \"v6_random_s020\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:54:17.661Z\", \"updated_at\": \"2026-05-14T05:53:21.318Z\", \"hypothesis\": \"v6 代码 random masking s=0.20, cuda:1. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s020 形成对照。\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v6_random_s020/\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s020.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T05:47:11.560Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:47:15.118578+00:00\"}]}, \"metrics\": {\"ii_high_mean\": 0.855584, \"ii_high_median\": 0.321331, \"ii_high_ci\": [-0.124133, 1.616883], \"ii_high_winsorized_mean\": 0.913496, \"ii_mid_mean\": 1.258123, \"ii_mid_median\": 0.455663, \"ii_mid_ci\": [0.674852, 2.075565], \"ii_mid_winsorized_mean\": 1.074102, \"ii_low_mean\": 0.956933, \"ii_low_median\": 0.591916, \"ii_low_ci\": [0.583856, 1.413355], \"ii_low_winsorized_mean\": 0.96113, \"n_high\": 511, \"n_mid\": 391, \"n_low\": 454, \"problems\": 50, \"per_problem_ii_count\": 50, \"gradient_mean_low_over_high\": 1.118, \"gradient_median_low_over_high\": 1.842, \"pass_fail\": \"FAIL\", \"perplexity_high_dense\": 1.1462, \"perplexity_high_both\": 7.9749, \"perplexity_mid_dense\": 1.1226, \"perplexity_mid_both\": 6.8553, \"perplexity_low_dense\": 1.1105, \"perplexity_low_both\": 22.5868}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T05:51:10.663Z\", \"notes\": \"Verdict=FAIL 是 random baseline 预期行为：统计检验未检测到结构化 II 梯度 = random 不具有 phase-dependent interaction pattern。Random masking 仍有正 II (mean 0.86-1.26)，但无 phase-dependent gradient (gradient_mean=1.12×, 近乎平坦)。这正是对照组预期结果。注意 high_sparsity skewness=-4.83，后续 permutation test 应用 winsorized mean 或 median。\"}, \"v6_random_s030_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:32:09.051Z\", \"updated_at\": \"2026-05-14T05:49:21.289Z\", \"hypothesis\": \"v6 random masking s=0.30 重试 (cuda:2)。前次被误杀。获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:2\"], \"pid\": \"77228\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s030_r2.log\", \"submitted_at\": \"2026-05-14T05:33:33.451Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 945.1, \"gpu_hours\": 0.26}, \"notes\": \"tmux session 冲突，废弃。实际提交用 v6_random_s030_r3\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T05:49:18.558Z\", \"failure_reason\": \"bash-in-sh syntax error: allocate_and_submit 未用 bash -c 包装 source 命令，tmux /bin/sh 无法执行。EXIT_CODE=127。实际重试为 v6_random_s030_r3。\"}, \"bf16_qw_rand_s030\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:37.271Z\", \"updated_at\": \"2026-05-14T05:40:07.682Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.30, bf16 dtype. Cross-model 配对对照。\"}, \"bf16_qw_rand_s025\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:36.710Z\", \"updated_at\": \"2026-05-14T05:40:06.559Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.25, bf16 dtype. Cross-model 配对对照。\"}, \"bf16_qw_rand_s020\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:35.500Z\", \"updated_at\": \"2026-05-14T05:40:05.304Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.20, bf16 dtype. Cross-model 配对对照。\"}, \"bf16_qw_rand_s015\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T05:40:04.567Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\"}}, \"count\": 20, \"total\": 70, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7144}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "535402a8-7c01-49e3-be55-cc7b8f26f705",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"bf16_ds_imp_s030\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:27.121Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:39:05.479Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.30, bf16 dtype. 核心 claim 数据源。\\\", \\\"notes\\\": \\\"已被 bf16_importance_s030 覆盖（RUNNING, cuda:0）。本 ID 不再单独跑。\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T06:39:05.479Z\\\"}, \\\"bf16_importance_s030\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:16.014Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:39:04.821Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.30。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T05:54:32.900Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:39:03.399Z\\\", \\\"training_hours\\\": 0.74}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"80495\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:54:34.301Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"80495\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T06:39:12.166442+00:00\\\"}]}}, \\\"bf16_ds_imp_s025\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:26.099Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:39:04.011Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.25, bf16 dtype. 核心 claim 数据源。\\\", \\\"notes\\\": \\\"已被 bf16_importance_s025 覆盖（DONE, success）。本 ID 不再单独跑。\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T06:39:04.011Z\\\"}, \\\"bf16_ds_imp_s020\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:25.159Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:39:01.901Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.20, bf16 dtype. 核心 claim 数据源。\\\", \\\"notes\\\": \\\"已被 bf16_importance_s020 覆盖（RUNNING, cuda:0）。本 ID 不再单独跑。\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T06:39:01.901Z\\\"}, \\\"bf16_ds_imp_s015\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:24.195Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:39:00.792Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.15, bf16 dtype. 核心 claim 数据源——论文所有数值来自此批实验。\\\", \\\"notes\\\": \\\"已被 bf16_importance_s015 覆盖（DONE, success）。本 ID 不再单独跑。\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T06:39:00.792Z\\\"}, \\\"v6_random_s030_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:34:34.110Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:38:05.564Z\\\", \\\"hypothesis\\\": \\\"v6 random masking s=0.30 重试 (cuda:2)。前次被误杀+tmux冲突。获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-14T05:35:14.593Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:04:55.039Z\\\", \\\"training_hours\\\": 0.49}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"77560\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/v6_random_s030_r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:35:15.849Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 3769.7, \\\"gpu_hours\\\": 1.05}, \\\"pid\\\": \\\"77560\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/v6_random_s030_r3.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T06:05:03.633464+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json\\\", \\\"metrics\\\": {\\\"II_high_mean\\\": 9.2364, \\\"II_mid_mean\\\": -230.7604, \\\"II_low_mean\\\": -7.4119, \\\"II_high_median\\\": 4.0237, \\\"II_mid_median\\\": 2.4272, \\\"II_low_median\\\": 4.735, \\\"ppl_low_both\\\": 88.94, \\\"per_problem_count\\\": 50}, \\\"completed_at\\\": \\\"2026-05-14T06:38:05.564Z\\\"}, \\\"bf16_importance_s020\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:14.819Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:36:14.889Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.20。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020 --sparsity_levels 0.20 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"79812\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s020.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:51:09.305Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"Registry fix: actually running on cuda:0 sharing with bf16_importance_s030\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T06:36:14.442Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T06:36:16.633802+00:00\\\"}]}}, \\\"bf16_importance_s025\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:15.339Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:25:06.208Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.25。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T05:53:50.305Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025 --sparsity_levels 0.25 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:18:14.664Z\\\", \\\"training_hours\\\": 0.41}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025 --sparsity_levels 0.25 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"80207\\\", \\\"log_path\\\": \\\"/root/runs/phase-gated-compound-sparse/bf16_importance_s025.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:53:52.164Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/\\\", \\\"wall_clock_seconds\\\": 1712.2, \\\"gpu_hours\\\": 0.48}, \\\"pid\\\": \\\"80207\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s025.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T06:18:20.451822+00:00\\\"}]}, \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": 0.302756, \\\"median\\\": 0.032363, \\\"ci\\\": [0.083714, 0.543977], \\\"winsorized_mean\\\": 0.200962, \\\"skewness\\\": 4.8826}, \\\"mid\\\": {\\\"mean\\\": 5.729665, \\\"median\\\": 1.118069, \\\"ci\\\": [3.455574, 8.471799], \\\"winsorized_mean\\\": 4.189902, \\\"skewness\\\": 8.2799}, \\\"low\\\": {\\\"mean\\\": 25.852951, \\\"median\\\": 7.195958, \\\"ci\\\": [19.077082, 33.497293], \\\"winsorized_mean\\\": 19.319103, \\\"skewness\\\": 7.3986}}, \\\"per_problem_ii_stats\\\": {\\\"high\\\": {\\\"n\\\": 49, \\\"min\\\": -0.316321, \\\"max\\\": 4.003714, \\\"mean\\\": 0.133714, \\\"median\\\": 0.009873, \\\"std\\\": 0.595358}, \\\"mid\\\": {\\\"n\\\": 40, \\\"min\\\": -0.024794, \\\"max\\\": 18.720486, \\\"mean\\\": 2.537744, \\\"median\\\": 1.05707, \\\"std\\\": 3.962575}, \\\"low\\\": {\\\"n\\\": 50, \\\"min\\\": -1.854733, \\\"max\\\": 75.467653, \\\"mean\\\": 11.28281, \\\"median\\\": 3.954593, \\\"std\\\": 16.620011}}, \\\"gradient_paired_aggregate\\\": 222.35, \\\"n_problems\\\": 50, \\\"pass_fail\\\": {\\\"ci_overlap\\\": true, \\\"sign_reversal\\\": false, \\\"overall\\\": \\\"PASS\\\"}, \\\"phase_stats\\\": {\\\"high\\\": {\\\"n_tokens\\\": 21086, \\\"n_segments\\\": 387}, \\\"mid\\\": {\\\"n_tokens\\\": 13306, \\\"n_segments\\\": 191}, \\\"low\\\": {\\\"n_tokens\\\": 27748, \\\"n_segments\\\": 397}}, \\\"perplexity\\\": {\\\"high\\\": {\\\"dense\\\": 1.1689, \\\"attn\\\": 1.6511, \\\"kv\\\": 1.8628, \\\"both\\\": 2.7026}, \\\"mid\\\": {\\\"dense\\\": 1.2269, \\\"attn\\\": 1.7039, \\\"kv\\\": 5.6205, \\\"both\\\": 13.3436}, \\\"low\\\": {\\\"dense\\\": 1.2286, \\\"attn\\\": 1.8366, \\\"kv\\\": 31.756, \\\"both\\\": 63.668}}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T06:22:24.406Z\\\", \\\"notes\\\": \\\"bf16 importance masking s=0.25, DeepSeek-R1-Distill-Qwen-7B, 50 problems. 强阳性结果：II gradient high→low 单调递增（high median=0.03, low median=7.20），CI不重叠，sign reversal未通过（high II略>0但接近0）。aggregate gradient=222.35x（高于fp16的35.72x）。PPL: high_both=2.70 vs low_both=63.67，s=0.25下compound sparsity效应比s=0.15放大约5x。对比fp16参考(gradient=35.72, low_median=24.16): bf16 low_median更低(7.20 vs 24.16)但high_median也更低(0.03 vs ~0.68)，gradient比更大。\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/\\\"}, \\\"bf16_importance_s015\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:33:13.858Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:25:05.334Z\\\", \\\"hypothesis\\\": \\\"bf16 重跑 DeepSeek importance masking s=0.15。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-14T05:49:55.770Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\", \\\"finished_at\\\": \\\"2026-05-14T06:15:15.053Z\\\", \\\"training_hours\\\": 0.42}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"79406\\\", \\\"log_path\\\": \\\"/root/runs/phase-gated-compound-sparse/bf16_importance_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:49:58.070Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/\\\", \\\"wall_clock_seconds\\\": 1993.7, \\\"gpu_hours\\\": 0.55}, \\\"pid\\\": \\\"79406\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_importance_s015.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T06:15:22.371858+00:00\\\"}]}, \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": -0.150213, \\\"median\\\": 0.005752, \\\"ci\\\": [-0.294614, -0.055385], \\\"winsorized_mean\\\": -0.062378, \\\"skewness\\\": -14.9912}, \\\"mid\\\": {\\\"mean\\\": 0.447301, \\\"median\\\": 0.080738, \\\"ci\\\": [0.267993, 0.668749], \\\"winsorized_mean\\\": 0.324751, \\\"skewness\\\": 4.7221}, \\\"low\\\": {\\\"mean\\\": 2.405837, \\\"median\\\": 0.398291, \\\"ci\\\": [1.478784, 3.667675], \\\"winsorized_mean\\\": 1.278857, \\\"skewness\\\": 9.5402}}, \\\"per_problem_ii_stats\\\": {\\\"high\\\": {\\\"n\\\": 49, \\\"min\\\": -0.188061, \\\"max\\\": 0.335853, \\\"mean\\\": -0.013405, \\\"median\\\": 0.00012, \\\"std\\\": 0.078483}, \\\"mid\\\": {\\\"n\\\": 40, \\\"min\\\": -0.169092, \\\"max\\\": 3.88198, \\\"mean\\\": 0.308621, \\\"median\\\": 0.107114, \\\"std\\\": 0.690186}, \\\"low\\\": {\\\"n\\\": 50, \\\"min\\\": -0.872983, \\\"max\\\": 9.10289, \\\"mean\\\": 0.725504, \\\"median\\\": 0.315517, \\\"std\\\": 1.731056}}, \\\"gradient_paired_aggregate\\\": 69.24, \\\"n_problems\\\": 50, \\\"pass_fail\\\": {\\\"ci_overlap\\\": true, \\\"sign_reversal\\\": true, \\\"overall\\\": \\\"PASS\\\"}, \\\"phase_stats\\\": {\\\"high\\\": {\\\"n_tokens\\\": 21086, \\\"n_segments\\\": 387}, \\\"mid\\\": {\\\"n_tokens\\\": 13306, \\\"n_segments\\\": 191}, \\\"low\\\": {\\\"n_tokens\\\": 27748, \\\"n_segments\\\": 397}}, \\\"perplexity\\\": {\\\"high\\\": {\\\"dense\\\": 1.1689, \\\"attn\\\": 1.4861, \\\"kv\\\": 1.4481, \\\"both\\\": 1.5911}, \\\"mid\\\": {\\\"dense\\\": 1.2269, \\\"attn\\\": 1.5137, \\\"kv\\\": 2.5971, \\\"both\\\": 3.4541}, \\\"low\\\": {\\\"dense\\\": 1.2286, \\\"attn\\\": 1.6147, \\\"kv\\\": 8.9201, \\\"both\\\": 12.5084}}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T06:23:11.818Z\\\", \\\"notes\\\": \\\"bf16 importance masking s=0.15, DeepSeek-R1-Distill-Qwen-7B, 50 problems. 强阳性结果：II gradient high→low 单调递增（high median≈0, low median=0.40），CI不重叠，sign reversal PASS。aggregate gradient=69.24x（高于fp16的11.53x，因bf16 high phase II更接近0）。PPL: high_both=1.59 vs low_both=12.51，compound sparsity在low phase造成显著更大PPL损伤。对比fp16参考(gradient=11.53, low_median=2.88): bf16 low_median更低(0.40 vs 2.88)但high_median也更低(0.006 vs ~0.25)，gradient比更大。\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/\\\"}, \\\"bf16_ds_rand_s025\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:29.444Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:20:08.277Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.25, bf16 dtype. Importance 配对对照组。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T06:20:05.413Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"83421\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s025.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:20:06.948Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"83421\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s025.log\\\"}, \\\"bf16_ds_rand_s020\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:28.504Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:20:03.756Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.20, bf16 dtype. Importance 配对对照组。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-14T06:20:01.277Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"83260\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s020.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:20:02.850Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"83260\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s020.log\\\"}, \\\"bf16_ds_rand_s015\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:27.662Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:19:59.545Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.15, bf16 dtype. Importance 配对对照组。\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-14T06:19:57.374Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"code_commit\\\": \\\"5488041765f165e4e64323cfda552de868351f86\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"83111\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:19:58.801Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"83111\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s015.log\\\"}, \\\"v6_random_s025\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:11:50.836Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:59:32.155Z\\\", \\\"hypothesis\\\": \\\"v6 代码 random masking s=0.25, cuda:3. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s025 形成对照。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"73459\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/v6_random_s025.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:12:37.985Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v6_random_s025/\\\", \\\"wall_clock_seconds\\\": 2808.5, \\\"gpu_hours\\\": 0.78}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T05:52:19.115Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T05:52:24.167364+00:00\\\"}]}, \\\"metrics\\\": {\\\"ii_high_median\\\": 3.0024, \\\"ii_mid_median\\\": 2.9846, \\\"ii_low_median\\\": 2.9146, \\\"ii_high_mean\\\": 3.9052, \\\"ii_mid_mean\\\": 7.9491, \\\"ii_low_mean\\\": 3.9114, \\\"per_problem_ii_count\\\": 50, \\\"n_high\\\": 36, \\\"n_mid\\\": 25, \\\"n_low\\\": 24, \\\"bootstrap_gradient_paired\\\": -0.1199, \\\"bootstrap_ci_paired\\\": [-1.517, 1.2461], \\\"bootstrap_p\\\": 0.559, \\\"bootstrap_gradient_unpaired\\\": -0.8616, \\\"bootstrap_ci_unpaired\\\": [-3.3911, 1.5169], \\\"per_problem_ii_stats\\\": {\\\"high\\\": {\\\"min\\\": -6.1388, \\\"max\\\": 25.2471, \\\"mean\\\": 4.4098, \\\"median\\\": 3.0421, \\\"std\\\": 6.0734}, \\\"mid\\\": {\\\"min\\\": 0.158, \\\"max\\\": 108.7242, \\\"mean\\\": 7.5626, \\\"median\\\": 2.1407, \\\"std\\\": 20.926}, \\\"low\\\": {\\\"min\\\": -0.1953, \\\"max\\\": 12.8555, \\\"mean\\\": 3.5806, \\\"median\\\": 2.7289, \\\"std\\\": 3.4915}}, \\\"verdict\\\": \\\"FAIL\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Random baseline 确认：gradient=0.90 (≈1.0, 无 phase-dependent amplification)。三 phase median II 均在 2-3 范围 (high=3.04, mid=2.14, low=2.73)，几乎无差异。对比 importance masking (gradient=35.72, low_median=24.16)，证明 phase-dependent interaction gradient 是 importance-based masking 的特异效应，非 sparsity 本身的 artifact。\\\", \\\"completed_at\\\": \\\"2026-05-14T05:59:26.490Z\\\"}, \\\"v6_random_s015\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T04:54:17.188Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:59:25.315Z\\\", \\\"hypothesis\\\": \\\"v6 代码 random masking s=0.15, cuda:0. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s015 形成对照。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"72073\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/v6_random_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:08:13.748Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v6_random_s015/\\\", \\\"wall_clock_seconds\\\": 3071.6, \\\"gpu_hours\\\": 0.85}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T05:50:02.236Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T05:50:03.894084+00:00\\\"}]}, \\\"metrics\\\": {\\\"ii_high_median\\\": 0.1606, \\\"ii_mid_median\\\": 0.252, \\\"ii_low_median\\\": 0.1831, \\\"ii_high_mean\\\": 0.4563, \\\"ii_mid_mean\\\": 0.5134, \\\"ii_low_mean\\\": 0.4775, \\\"per_problem_ii_count\\\": 50, \\\"n_high\\\": 43, \\\"n_mid\\\": 32, \\\"n_low\\\": 28, \\\"bootstrap_gradient_paired\\\": -0.2722, \\\"bootstrap_ci_paired\\\": [-0.7039, 0.1548], \\\"bootstrap_p\\\": 0.903, \\\"bootstrap_gradient_unpaired\\\": -0.0592, \\\"bootstrap_ci_unpaired\\\": [-0.5341, 0.3877], \\\"per_problem_ii_stats\\\": {\\\"high\\\": {\\\"min\\\": -3.0621, \\\"max\\\": 5.018, \\\"mean\\\": 0.5386, \\\"median\\\": 0.2003, \\\"std\\\": 1.2085}, \\\"mid\\\": {\\\"min\\\": -2.7245, \\\"max\\\": 4.6713, \\\"mean\\\": 0.3977, \\\"median\\\": 0.299, \\\"std\\\": 1.1456}, \\\"low\\\": {\\\"min\\\": -0.4031, \\\"max\\\": 3.7005, \\\"mean\\\": 0.4806, \\\"median\\\": 0.2465, \\\"std\\\": 0.779}}, \\\"verdict\\\": \\\"FAIL\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T05:59:25.315Z\\\"}, \\\"v6_random_s020\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T04:54:17.661Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:53:21.318Z\\\", \\\"hypothesis\\\": \\\"v6 代码 random masking s=0.20, cuda:1. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s020 形成对照。\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v6_random_s020/\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/v6_random_s020.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T05:47:11.560Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T05:47:15.118578+00:00\\\"}]}, \\\"metrics\\\": {\\\"ii_high_mean\\\": 0.855584, \\\"ii_high_median\\\": 0.321331, \\\"ii_high_ci\\\": [-0.124133, 1.616883], \\\"ii_high_winsorized_mean\\\": 0.913496, \\\"ii_mid_mean\\\": 1.258123, \\\"ii_mid_median\\\": 0.455663, \\\"ii_mid_ci\\\": [0.674852, 2.075565], \\\"ii_mid_winsorized_mean\\\": 1.074102, \\\"ii_low_mean\\\": 0.956933, \\\"ii_low_median\\\": 0.591916, \\\"ii_low_ci\\\": [0.583856, 1.413355], \\\"ii_low_winsorized_mean\\\": 0.96113, \\\"n_high\\\": 511, \\\"n_mid\\\": 391, \\\"n_low\\\": 454, \\\"problems\\\": 50, \\\"per_problem_ii_count\\\": 50, \\\"gradient_mean_low_over_high\\\": 1.118, \\\"gradient_median_low_over_high\\\": 1.842, \\\"pass_fail\\\": \\\"FAIL\\\", \\\"perplexity_high_dense\\\": 1.1462, \\\"perplexity_high_both\\\": 7.9749, \\\"perplexity_mid_dense\\\": 1.1226, \\\"perplexity_mid_both\\\": 6.8553, \\\"perplexity_low_dense\\\": 1.1105, \\\"perplexity_low_both\\\": 22.5868}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T05:51:10.663Z\\\", \\\"notes\\\": \\\"Verdict=FAIL 是 random baseline 预期行为：统计检验未检测到结构化 II 梯度 = random 不具有 phase-dependent interaction pattern。Random masking 仍有正 II (mean 0.86-1.26)，但无 phase-dependent gradient (gradient_mean=1.12×, 近乎平坦)。这正是对照组预期结果。注意 high_sparsity skewness=-4.83，后续 permutation test 应用 winsorized mean 或 median。\\\"}, \\\"v6_random_s030_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:32:09.051Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:49:21.289Z\\\", \\\"hypothesis\\\": \\\"v6 random masking s=0.30 重试 (cuda:2)。前次被误杀。获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"77228\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/v6_random_s030_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:33:33.451Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 945.1, \\\"gpu_hours\\\": 0.26}, \\\"notes\\\": \\\"tmux session 冲突，废弃。实际提交用 v6_random_s030_r3\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-14T05:49:18.558Z\\\", \\\"failure_reason\\\": \\\"bash-in-sh syntax error: allocate_and_submit 未用 bash -c 包装 source 命令，tmux /bin/sh 无法执行。EXIT_CODE=127。实际重试为 v6_random_s030_r3。\\\"}, \\\"bf16_qw_rand_s030\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:37.271Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:40:07.682Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.30, bf16 dtype. Cross-model 配对对照。\\\"}, \\\"bf16_qw_rand_s025\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:36.710Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:40:06.559Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.25, bf16 dtype. Cross-model 配对对照。\\\"}, \\\"bf16_qw_rand_s020\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:35.500Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:40:05.304Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.20, bf16 dtype. Cross-model 配对对照。\\\"}, \\\"bf16_qw_rand_s015\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:34.607Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:40:04.567Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\\\"}}, \\\"count\\\": 20, \\\"total\\\": 70, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7144}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"bf16_ds_imp_s030\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:27.121Z\", \"updated_at\": \"2026-05-14T06:39:05.479Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.30, bf16 dtype. 核心 claim 数据源。\", \"notes\": \"已被 bf16_importance_s030 覆盖（RUNNING, cuda:0）。本 ID 不再单独跑。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:39:05.479Z\"}, \"bf16_importance_s030\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:16.014Z\", \"updated_at\": \"2026-05-14T06:39:04.821Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.30。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T05:54:32.900Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:39:03.399Z\", \"training_hours\": 0.74}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030 --sparsity_levels 0.30 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"80495\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\", \"submitted_at\": \"2026-05-14T05:54:34.301Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"80495\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s030.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:39:12.166442+00:00\"}]}}, \"bf16_ds_imp_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:26.099Z\", \"updated_at\": \"2026-05-14T06:39:04.011Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.25, bf16 dtype. 核心 claim 数据源。\", \"notes\": \"已被 bf16_importance_s025 覆盖（DONE, success）。本 ID 不再单独跑。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:39:04.011Z\"}, \"bf16_ds_imp_s020\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:25.159Z\", \"updated_at\": \"2026-05-14T06:39:01.901Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.20, bf16 dtype. 核心 claim 数据源。\", \"notes\": \"已被 bf16_importance_s020 覆盖（RUNNING, cuda:0）。本 ID 不再单独跑。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:39:01.901Z\"}, \"bf16_ds_imp_s015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:24.195Z\", \"updated_at\": \"2026-05-14T06:39:00.792Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.15, bf16 dtype. 核心 claim 数据源——论文所有数值来自此批实验。\", \"notes\": \"已被 bf16_importance_s015 覆盖（DONE, success）。本 ID 不再单独跑。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:39:00.792Z\"}, \"v6_random_s030_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:34:34.110Z\", \"updated_at\": \"2026-05-14T06:38:05.564Z\", \"hypothesis\": \"v6 random masking s=0.30 重试 (cuda:2)。前次被误杀+tmux冲突。获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-14T05:35:14.593Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:04:55.039Z\", \"training_hours\": 0.49}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:2\"], \"pid\": \"77560\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s030_r3.log\", \"submitted_at\": \"2026-05-14T05:35:15.849Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3769.7, \"gpu_hours\": 1.05}, \"pid\": \"77560\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s030_r3.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:05:03.633464+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json\", \"metrics\": {\"II_high_mean\": 9.2364, \"II_mid_mean\": -230.7604, \"II_low_mean\": -7.4119, \"II_high_median\": 4.0237, \"II_mid_median\": 2.4272, \"II_low_median\": 4.735, \"ppl_low_both\": 88.94, \"per_problem_count\": 50}, \"completed_at\": \"2026-05-14T06:38:05.564Z\"}, \"bf16_importance_s020\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:14.819Z\", \"updated_at\": \"2026-05-14T06:36:14.889Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.20。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020 --sparsity_levels 0.20 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"79812\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s020.log\", \"submitted_at\": \"2026-05-14T05:51:09.305Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"note\": \"Registry fix: actually running on cuda:0 sharing with bf16_importance_s030\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T06:36:14.442Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:36:16.633802+00:00\"}]}}, \"bf16_importance_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:15.339Z\", \"updated_at\": \"2026-05-14T06:25:06.208Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.25。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T05:53:50.305Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025 --sparsity_levels 0.25 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:18:14.664Z\", \"training_hours\": 0.41}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025 --sparsity_levels 0.25 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:3\"], \"pid\": \"80207\", \"log_path\": \"/root/runs/phase-gated-compound-sparse/bf16_importance_s025.log\", \"submitted_at\": \"2026-05-14T05:53:52.164Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/\", \"wall_clock_seconds\": 1712.2, \"gpu_hours\": 0.48}, \"pid\": \"80207\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s025.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:18:20.451822+00:00\"}]}, \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 0.302756, \"median\": 0.032363, \"ci\": [0.083714, 0.543977], \"winsorized_mean\": 0.200962, \"skewness\": 4.8826}, \"mid\": {\"mean\": 5.729665, \"median\": 1.118069, \"ci\": [3.455574, 8.471799], \"winsorized_mean\": 4.189902, \"skewness\": 8.2799}, \"low\": {\"mean\": 25.852951, \"median\": 7.195958, \"ci\": [19.077082, 33.497293], \"winsorized_mean\": 19.319103, \"skewness\": 7.3986}}, \"per_problem_ii_stats\": {\"high\": {\"n\": 49, \"min\": -0.316321, \"max\": 4.003714, \"mean\": 0.133714, \"median\": 0.009873, \"std\": 0.595358}, \"mid\": {\"n\": 40, \"min\": -0.024794, \"max\": 18.720486, \"mean\": 2.537744, \"median\": 1.05707, \"std\": 3.962575}, \"low\": {\"n\": 50, \"min\": -1.854733, \"max\": 75.467653, \"mean\": 11.28281, \"median\": 3.954593, \"std\": 16.620011}}, \"gradient_paired_aggregate\": 222.35, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"PASS\"}, \"phase_stats\": {\"high\": {\"n_tokens\": 21086, \"n_segments\": 387}, \"mid\": {\"n_tokens\": 13306, \"n_segments\": 191}, \"low\": {\"n_tokens\": 27748, \"n_segments\": 397}}, \"perplexity\": {\"high\": {\"dense\": 1.1689, \"attn\": 1.6511, \"kv\": 1.8628, \"both\": 2.7026}, \"mid\": {\"dense\": 1.2269, \"attn\": 1.7039, \"kv\": 5.6205, \"both\": 13.3436}, \"low\": {\"dense\": 1.2286, \"attn\": 1.8366, \"kv\": 31.756, \"both\": 63.668}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:22:24.406Z\", \"notes\": \"bf16 importance masking s=0.25, DeepSeek-R1-Distill-Qwen-7B, 50 problems. 强阳性结果：II gradient high→low 单调递增（high median=0.03, low median=7.20），CI不重叠，sign reversal未通过（high II略>0但接近0）。aggregate gradient=222.35x（高于fp16的35.72x）。PPL: high_both=2.70 vs low_both=63.67，s=0.25下compound sparsity效应比s=0.15放大约5x。对比fp16参考(gradient=35.72, low_median=24.16): bf16 low_median更低(7.20 vs 24.16)但high_median也更低(0.03 vs ~0.68)，gradient比更大。\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/\"}, \"bf16_importance_s015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:33:13.858Z\", \"updated_at\": \"2026-05-14T06:25:05.334Z\", \"hypothesis\": \"bf16 重跑 DeepSeek importance masking s=0.15。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T05:49:55.770Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\", \"finished_at\": \"2026-05-14T06:15:15.053Z\", \"training_hours\": 0.42}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:1\"], \"pid\": \"79406\", \"log_path\": \"/root/runs/phase-gated-compound-sparse/bf16_importance_s015.log\", \"submitted_at\": \"2026-05-14T05:49:58.070Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/\", \"wall_clock_seconds\": 1993.7, \"gpu_hours\": 0.55}, \"pid\": \"79406\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_importance_s015.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:15:22.371858+00:00\"}]}, \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": -0.150213, \"median\": 0.005752, \"ci\": [-0.294614, -0.055385], \"winsorized_mean\": -0.062378, \"skewness\": -14.9912}, \"mid\": {\"mean\": 0.447301, \"median\": 0.080738, \"ci\": [0.267993, 0.668749], \"winsorized_mean\": 0.324751, \"skewness\": 4.7221}, \"low\": {\"mean\": 2.405837, \"median\": 0.398291, \"ci\": [1.478784, 3.667675], \"winsorized_mean\": 1.278857, \"skewness\": 9.5402}}, \"per_problem_ii_stats\": {\"high\": {\"n\": 49, \"min\": -0.188061, \"max\": 0.335853, \"mean\": -0.013405, \"median\": 0.00012, \"std\": 0.078483}, \"mid\": {\"n\": 40, \"min\": -0.169092, \"max\": 3.88198, \"mean\": 0.308621, \"median\": 0.107114, \"std\": 0.690186}, \"low\": {\"n\": 50, \"min\": -0.872983, \"max\": 9.10289, \"mean\": 0.725504, \"median\": 0.315517, \"std\": 1.731056}}, \"gradient_paired_aggregate\": 69.24, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": true, \"overall\": \"PASS\"}, \"phase_stats\": {\"high\": {\"n_tokens\": 21086, \"n_segments\": 387}, \"mid\": {\"n_tokens\": 13306, \"n_segments\": 191}, \"low\": {\"n_tokens\": 27748, \"n_segments\": 397}}, \"perplexity\": {\"high\": {\"dense\": 1.1689, \"attn\": 1.4861, \"kv\": 1.4481, \"both\": 1.5911}, \"mid\": {\"dense\": 1.2269, \"attn\": 1.5137, \"kv\": 2.5971, \"both\": 3.4541}, \"low\": {\"dense\": 1.2286, \"attn\": 1.6147, \"kv\": 8.9201, \"both\": 12.5084}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:23:11.818Z\", \"notes\": \"bf16 importance masking s=0.15, DeepSeek-R1-Distill-Qwen-7B, 50 problems. 强阳性结果：II gradient high→low 单调递增（high median≈0, low median=0.40），CI不重叠，sign reversal PASS。aggregate gradient=69.24x（高于fp16的11.53x，因bf16 high phase II更接近0）。PPL: high_both=1.59 vs low_both=12.51，compound sparsity在low phase造成显著更大PPL损伤。对比fp16参考(gradient=11.53, low_median=2.88): bf16 low_median更低(0.40 vs 2.88)但high_median也更低(0.006 vs ~0.25)，gradient比更大。\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/\"}, \"bf16_ds_rand_s025\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:29.444Z\", \"updated_at\": \"2026-05-14T06:20:08.277Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.25, bf16 dtype. Importance 配对对照组。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T06:20:05.413Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:3\"], \"pid\": \"83421\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s025.log\", \"submitted_at\": \"2026-05-14T06:20:06.948Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"83421\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s025.log\"}, \"bf16_ds_rand_s020\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:28.504Z\", \"updated_at\": \"2026-05-14T06:20:03.756Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.20, bf16 dtype. Importance 配对对照组。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-14T06:20:01.277Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:2\"], \"pid\": \"83260\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s020.log\", \"submitted_at\": \"2026-05-14T06:20:02.850Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"83260\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s020.log\"}, \"bf16_ds_rand_s015\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:27.662Z\", \"updated_at\": \"2026-05-14T06:19:59.545Z\", \"hypothesis\": \"D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B random masking s=0.15, bf16 dtype. Importance 配对对照组。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T06:19:57.374Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"5488041765f165e4e64323cfda552de868351f86\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:1\"], \"pid\": \"83111\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s015.log\", \"submitted_at\": \"2026-05-14T06:19:58.801Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"83111\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_ds_rand_s015.log\"}, \"v6_random_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:11:50.836Z\", \"updated_at\": \"2026-05-14T05:59:32.155Z\", \"hypothesis\": \"v6 代码 random masking s=0.25, cuda:3. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s025 形成对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:3\"], \"pid\": \"73459\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s025.log\", \"submitted_at\": \"2026-05-14T05:12:37.985Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v6_random_s025/\", \"wall_clock_seconds\": 2808.5, \"gpu_hours\": 0.78}, \"reproduce\": {\"finished_at\": \"2026-05-14T05:52:19.115Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:52:24.167364+00:00\"}]}, \"metrics\": {\"ii_high_median\": 3.0024, \"ii_mid_median\": 2.9846, \"ii_low_median\": 2.9146, \"ii_high_mean\": 3.9052, \"ii_mid_mean\": 7.9491, \"ii_low_mean\": 3.9114, \"per_problem_ii_count\": 50, \"n_high\": 36, \"n_mid\": 25, \"n_low\": 24, \"bootstrap_gradient_paired\": -0.1199, \"bootstrap_ci_paired\": [-1.517, 1.2461], \"bootstrap_p\": 0.559, \"bootstrap_gradient_unpaired\": -0.8616, \"bootstrap_ci_unpaired\": [-3.3911, 1.5169], \"per_problem_ii_stats\": {\"high\": {\"min\": -6.1388, \"max\": 25.2471, \"mean\": 4.4098, \"median\": 3.0421, \"std\": 6.0734}, \"mid\": {\"min\": 0.158, \"max\": 108.7242, \"mean\": 7.5626, \"median\": 2.1407, \"std\": 20.926}, \"low\": {\"min\": -0.1953, \"max\": 12.8555, \"mean\": 3.5806, \"median\": 2.7289, \"std\": 3.4915}}, \"verdict\": \"FAIL\"}, \"conclusion\": \"success\", \"notes\": \"Random baseline 确认：gradient=0.90 (≈1.0, 无 phase-dependent amplification)。三 phase median II 均在 2-3 范围 (high=3.04, mid=2.14, low=2.73)，几乎无差异。对比 importance masking (gradient=35.72, low_median=24.16)，证明 phase-dependent interaction gradient 是 importance-based masking 的特异效应，非 sparsity 本身的 artifact。\", \"completed_at\": \"2026-05-14T05:59:26.490Z\"}, \"v6_random_s015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:54:17.188Z\", \"updated_at\": \"2026-05-14T05:59:25.315Z\", \"hypothesis\": \"v6 代码 random masking s=0.15, cuda:0. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s015 形成对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"72073\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s015.log\", \"submitted_at\": \"2026-05-14T05:08:13.748Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v6_random_s015/\", \"wall_clock_seconds\": 3071.6, \"gpu_hours\": 0.85}, \"reproduce\": {\"finished_at\": \"2026-05-14T05:50:02.236Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:50:03.894084+00:00\"}]}, \"metrics\": {\"ii_high_median\": 0.1606, \"ii_mid_median\": 0.252, \"ii_low_median\": 0.1831, \"ii_high_mean\": 0.4563, \"ii_mid_mean\": 0.5134, \"ii_low_mean\": 0.4775, \"per_problem_ii_count\": 50, \"n_high\": 43, \"n_mid\": 32, \"n_low\": 28, \"bootstrap_gradient_paired\": -0.2722, \"bootstrap_ci_paired\": [-0.7039, 0.1548], \"bootstrap_p\": 0.903, \"bootstrap_gradient_unpaired\": -0.0592, \"bootstrap_ci_unpaired\": [-0.5341, 0.3877], \"per_problem_ii_stats\": {\"high\": {\"min\": -3.0621, \"max\": 5.018, \"mean\": 0.5386, \"median\": 0.2003, \"std\": 1.2085}, \"mid\": {\"min\": -2.7245, \"max\": 4.6713, \"mean\": 0.3977, \"median\": 0.299, \"std\": 1.1456}, \"low\": {\"min\": -0.4031, \"max\": 3.7005, \"mean\": 0.4806, \"median\": 0.2465, \"std\": 0.779}}, \"verdict\": \"FAIL\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T05:59:25.315Z\"}, \"v6_random_s020\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:54:17.661Z\", \"updated_at\": \"2026-05-14T05:53:21.318Z\", \"hypothesis\": \"v6 代码 random masking s=0.20, cuda:1. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s020 形成对照。\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v6_random_s020/\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s020.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T05:47:11.560Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:47:15.118578+00:00\"}]}, \"metrics\": {\"ii_high_mean\": 0.855584, \"ii_high_median\": 0.321331, \"ii_high_ci\": [-0.124133, 1.616883], \"ii_high_winsorized_mean\": 0.913496, \"ii_mid_mean\": 1.258123, \"ii_mid_median\": 0.455663, \"ii_mid_ci\": [0.674852, 2.075565], \"ii_mid_winsorized_mean\": 1.074102, \"ii_low_mean\": 0.956933, \"ii_low_median\": 0.591916, \"ii_low_ci\": [0.583856, 1.413355], \"ii_low_winsorized_mean\": 0.96113, \"n_high\": 511, \"n_mid\": 391, \"n_low\": 454, \"problems\": 50, \"per_problem_ii_count\": 50, \"gradient_mean_low_over_high\": 1.118, \"gradient_median_low_over_high\": 1.842, \"pass_fail\": \"FAIL\", \"perplexity_high_dense\": 1.1462, \"perplexity_high_both\": 7.9749, \"perplexity_mid_dense\": 1.1226, \"perplexity_mid_both\": 6.8553, \"perplexity_low_dense\": 1.1105, \"perplexity_low_both\": 22.5868}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T05:51:10.663Z\", \"notes\": \"Verdict=FAIL 是 random baseline 预期行为：统计检验未检测到结构化 II 梯度 = random 不具有 phase-dependent interaction pattern。Random masking 仍有正 II (mean 0.86-1.26)，但无 phase-dependent gradient (gradient_mean=1.12×, 近乎平坦)。这正是对照组预期结果。注意 high_sparsity skewness=-4.83，后续 permutation test 应用 winsorized mean 或 median。\"}, \"v6_random_s030_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:32:09.051Z\", \"updated_at\": \"2026-05-14T05:49:21.289Z\", \"hypothesis\": \"v6 random masking s=0.30 重试 (cuda:2)。前次被误杀。获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:2\"], \"pid\": \"77228\", \"log_path\": \"~/runs/phase-gated-compound-sparse/v6_random_s030_r2.log\", \"submitted_at\": \"2026-05-14T05:33:33.451Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 945.1, \"gpu_hours\": 0.26}, \"notes\": \"tmux session 冲突，废弃。实际提交用 v6_random_s030_r3\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T05:49:18.558Z\", \"failure_reason\": \"bash-in-sh syntax error: allocate_and_submit 未用 bash -c 包装 source 命令，tmux /bin/sh 无法执行。EXIT_CODE=127。实际重试为 v6_random_s030_r3。\"}, \"bf16_qw_rand_s030\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:37.271Z\", \"updated_at\": \"2026-05-14T05:40:07.682Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.30, bf16 dtype. Cross-model 配对对照。\"}, \"bf16_qw_rand_s025\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:36.710Z\", \"updated_at\": \"2026-05-14T05:40:06.559Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.25, bf16 dtype. Cross-model 配对对照。\"}, \"bf16_qw_rand_s020\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:35.500Z\", \"updated_at\": \"2026-05-14T05:40:05.304Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.20, bf16 dtype. Cross-model 配对对照。\"}, \"bf16_qw_rand_s015\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T05:40:04.567Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\"}}, \"count\": 20, \"total\": 70, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7144}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S5SfeCTdz1AjFjxViK6J1i`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -100 /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "9ae90c46-e5b7-4595-ac7c-87abb0877d6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PbYwPpKhBK1RLeBZJLQ4hh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2027,
+      "cache_read_input_tokens": 25637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2027
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T06:39:17.578Z_
+
+<details><summary>↩ Tool result · `toolu_01S5SfeCTdz1AjFjxViK6J1i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.3\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.1687,\\n        \\\"attn\\\": 24.285,\\n        \\\"kv\\\": 6.8615,\\n        \\\"both\\\": 39.1848\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.2284,\\n        \\\"attn\\\": 94.8823,\\n        \\\"kv\\\": 9.8782,\\n        \\\"both\\\": 88.9398\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 382.6451,\\n        \\\"kv\\\": 7.3849,\\n        \\\"both\\\": 27.4358\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": 9.236418,\\n        \\\"ci_low\\\": 2.507511,\\n        \\\"ci_high\\\": 15.072707,\\n        \\\"median\\\": 4.02374,\\n        \\\"winsorized_mean\\\": 11.714042,\\n        \\\"skewness\\\": -5.7558,\\n        \\\"outlier_count\\\": 9\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": -7.411874,\\n        \\\"ci_low\\\": -41.627188,\\n        \\\"ci_high\\\": 15.060401,\\n        \\\"median\\\": 4.735038,\\n        \\\"winsorized_mean\\\": 9.963562,\\n        \\\"skewness\\\": -14.6004,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": -230.760401,\\n        \\\"ci_low\\\": -659.620611,\\n        \\\"ci_high\\\": -3.942599,\\n        \\\"median\\\": 2.427227,\\n        \\\"winsorized_mean\\\": 6.510514,\\n        \\\"skewness\\\": -13.0752,\\n        \\\"outlier_count\\\": 1\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.3\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity II>0, mid_sparsity II<0 at 0.3\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "b5e7ef65-7b98-42c3-9d05-f0d230ce59d3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.3\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1687,\\\\n        \\\\\\\"attn\\\\\\\": 24.285,\\\\n        \\\\\\\"kv\\\\\\\": 6.8615,\\\\n        \\\\\\\"both\\\\\\\": 39.1848\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2284,\\\\n        \\\\\\\"attn\\\\\\\": 94.8823,\\\\n        \\\\\\\"kv\\\\\\\": 9.8782,\\\\n        \\\\\\\"both\\\\\\\": 88.9398\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 382.6451,\\\\n        \\\\\\\"kv\\\\\\\": 7.3849,\\\\n        \\\\\\\"both\\\\\\\": 27.4358\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 9.236418,\\\\n        \\\\\\\"ci_low\\\\\\\": 2.507511,\\\\n        \\\\\\\"ci_high\\\\\\\": 15.072707,\\\\n        \\\\\\\"median\\\\\\\": 4.02374,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 11.714042,\\\\n        \\\\\\\"skewness\\\\\\\": -5.7558,\\\\n        \\\\\\\"outlier_count\\\\\\\": 9\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -7.411874,\\\\n        \\\\\\\"ci_low\\\\\\\": -41.627188,\\\\n        \\\\\\\"ci_high\\\\\\\": 15.060401,\\\\n        \\\\\\\"median\\\\\\\": 4.735038,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 9.963562,\\\\n        \\\\\\\"skewness\\\\\\\": -14.6004,\\\\n        \\\\\\\"outlier_count\\\\\\\": 4\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -230.760401,\\\\n        \\\\\\\"ci_low\\\\\\\": -659.620611,\\\\n        \\\\\\\"ci_high\\\\\\\": -3.942599,\\\\n        \\\\\\\"median\\\\\\\": 2.427227,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 6.510514,\\\\n        \\\\\\\"skewness\\\\\\\": -13.0752,\\\\n        \\\\\\\"outlier_count\\\\\\\": 1\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.3\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity II>0, mid_sparsity II<0 at 0.3\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"PASS\\\\\\\"\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.3\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.1687,\\n        \\\"attn\\\": 24.285,\\n        \\\"kv\\\": 6.8615,\\n        \\\"both\\\": 39.1848\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.2284,\\n        \\\"attn\\\": 94.8823,\\n        \\\"kv\\\": 9.8782,\\n        \\\"both\\\": 88.9398\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 382.6451,\\n        \\\"kv\\\": 7.3849,\\n        \\\"both\\\": 27.4358\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": 9.236418,\\n        \\\"ci_low\\\": 2.507511,\\n        \\\"ci_high\\\": 15.072707,\\n        \\\"median\\\": 4.02374,\\n        \\\"winsorized_mean\\\": 11.714042,\\n        \\\"skewness\\\": -5.7558,\\n        \\\"outlier_count\\\": 9\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": -7.411874,\\n        \\\"ci_low\\\": -41.627188,\\n        \\\"ci_high\\\": 15.060401,\\n        \\\"median\\\": 4.735038,\\n        \\\"winsorized_mean\\\": 9.963562,\\n        \\\"skewness\\\": -14.6004,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": -230.760401,\\n        \\\"ci_low\\\": -659.620611,\\n        \\\"ci_high\\\": -3.942599,\\n        \\\"median\\\": 2.427227,\\n        \\\"winsorized_mean\\\": 6.510514,\\n        \\\"skewness\\\": -13.0752,\\n        \\\"outlier_count\\\": 1\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.3\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity II>0, mid_sparsity II<0 at 0.3\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry already has v6_random_s030_r3 marked as DONE with conclusion=success and metrics populated. It was already analyzed. Let me summarize what I found:
+
+1. The experiment is already in DONE state with conclusion=success
+2. Output file exists: `profiling_results.json` (1.9MB)
+3. Log shows EXIT_CODE=0, Verdict=PASS
+
+Key metrics from the registry:
+- II_high_mean: 9.2364
+- II_mid_mean: -230.7604
+
+
+- II_low_mean: -7.4119
+- II_high_median: 4.0237
+- II_mid_median: 2.4272
+- II_low_median: 4.735
+- ppl_low_both: 88.94
+- per_problem_count: 50
+
+The detailed results confirm perplexity scores across all conditions, and both the CI overlap and sign reversal tests passed as expected.
+
+This experiment is already registered and marked as complete—no further action needed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "c82c27b5-63af-48b3-bf0f-2561f4deb435",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B2QFVHvjeFxrVLMRur37yK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16025,
+      "cache_read_input_tokens": 27664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+实验 `v6_random_s030_r3` 已被之前的 hook 自动处理，registry 已是 **DONE / success** 状态，无需再次更新。
+
+## 结果摘要
+
+| 指标 | high_sparsity | mid_sparsity | low_sparsity |
+|------|--------------|-------------|-------------|
+| II mean | +9.24 | **-230.76** | -7.41 |
+| II median | 4.02 | 2.43 | 4.74 |
+| PPL (both) | 39.18 | 27.44 | 88.94 |
+| tokens | 21,086 | 13,306 | 27,748 |
+
+- **Verdict: PASS** — CI non-overlapping (high vs mid), sign reversal (high>0, mid<0)
+- 50 problems, EXIT_CODE=0, 运行 0.49h
+- 输出文件: `profiling_results.json` (1.9MB)
+
+**注意**: mid_sparsity mean II=-230.76 有极端 skewness (-13.08)，1个 outlier 拉低了 mean，但 median (2.43) 与其他 phase 接近。这与 random masking 预期一致——random baseline 的 II gradient 主要由 outlier 驱动而非结构化效应，对比 importance masking 的单调递增 gradient。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "uuid": "5f7e089c-c3b8-4567-b4e3-5115e2467a10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B2QFVHvjeFxrVLMRur37yK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16025,
+      "cache_read_input_tokens": 27664,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 26_
+
+实验 `v6_random_s030_r3` 已被之前的 hook 自动处理，registry 已是 **DONE / success** 状态，无需再次更新。
+
+## 结果摘要
+
+| 指标 | high_sparsity | mid_sparsity | low_sparsity |
+|------|--------------|-------------|-------------|
+| II mean | +9.24 | **-230.76** | -7.41 |
+| II median | 4.02 | 2.43 | 4.74 |
+| PPL (both) | 39.18 | 27.44 | 88.94 |
+| tokens | 21,086 | 13,306 | 27,748 |
+
+- **Verdict: PASS** — CI non-overlapping (high vs mid), sign reversal (high>0, mid<0)
+- 50 problems, EXIT_CODE=0, 运行 0.49h
+- 输出文件: `profiling_results.json` (1.9MB)
+
+**注意**: mid_sparsity mean II=-230.76 有极端 skewness (-13.08)，1个 outlier 拉低了 mean，但 median (2.43) 与其他 phase 接近。这与 random masking 预期一致——random baseline 的 II gradient 主要由 outlier 驱动而非结构化效应，对比 importance masking 的单调递增 gradient。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 48400,
+  "duration_api_ms": 47975,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "06c0409b-8c8e-4421-ad6b-6b9ffb5fde36",
+  "total_cost_usd": 0.30335,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 31848,
+    "cache_read_input_tokens": 112652,
+    "output_tokens": 1868,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31848,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 702,
+        "cache_read_input_tokens": 27664,
+        "cache_creation_input_tokens": 16025,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 16025
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1119,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001229,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1868,
+      "cacheReadInputTokens": 112652,
+      "cacheCreationInputTokens": 31848,
+      "webSearchRequests": 0,
+      "costUSD": 0.302121,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7aba8a70-8f44-451d-9cfd-118acb19f855"
+}
+```
+
+</details>
+
+---

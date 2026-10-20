@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c52a7a05ca4aa14c5f62",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code verify analysis pipeline ready",
+  "task_key": "worker_code_verify-analysis-pipeline-ready_20260514T192745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-analysis-pipeline-ready_20260514T192745_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "f9b48a36ec32ac74cadb2118a7a20731808b545c0af153db4f40371877475d5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n**Pipeline 状态**: 基本就绪，1 个问题需修复。\n\n**通过项**:\n- D054 (median + median bootstrap CI): ✓\n- Wilcoxon + Bonferroni: ✓\n- 16 条件全覆盖（8/model），缺失条件优雅降级\n- s015 数据格式与脚本输入完全匹配（500 problems, `per_problem_ii` 结构正确）\n\n**需修复**:\n- **D059 违规**: `paired_imp_vs_rand()` 和 `paired_imp_vs_rand_gradient_test()` 报告了 imp vs rand 的 d_z，应移除。涉及 `scripts/analyze_c2_n500.py` 中两个函数的返回值和 `format_report()` 中两个表格的 d_z 列。\n\n**注意事项**:\n- 现有 s015 分析用了 `B_BOOTSTRAP=2000`，全量跑应用默认 10000\n- 始终使用 `scripts/analyze_c2_n500.py`，根目录版本已过时\n- 一键命令: `cd /root/autodl-tmp/pacs && /root/miniconda3/bin/python scripts/analyze_c2_n500.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-analysis-pipeline-ready.md"
+}

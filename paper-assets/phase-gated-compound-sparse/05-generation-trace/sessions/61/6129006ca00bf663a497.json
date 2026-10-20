@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6129006ca00bf663a497",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper aggressive page trim",
+  "task_key": "worker_paper_aggressive_page_trim_20260514T123018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_aggressive_page_trim_20260514T123018_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "5281e7223921a598990e7b368ab25d415ec6795ca9ea7ac67206b5336cba0ed5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compression complete. Final state:\n\n**Main text** (~21.6 KB, est. ~7 pages in ACL two-column):\n- abstract.tex: 2.4 KB\n- introduction.tex: 2.7 KB  \n- related_work.tex: 2.4 KB\n- background.tex: 2.6 KB (eqs moved to appendix, kept eq:ii + eq:gradient)\n- methodology.tex: 2.2 KB\n- results.tex: 3.9 KB (1 table + 1 figure in main text)\n- analysis.tex: 1.1 KB (discrimination collapse + testable prediction)\n- discussion.tex: 1.9 KB\n- conclusion.tex: 1.5 KB (includes \\section*{Limitations} for page 9)\n\n**Cross-references**: 0 broken refs. All appendix labels (tab:main-results, fig:crossover, tab:cross-model, tab:cohens-d, etc.) properly referenced from main text.\n\n**Testable prediction sentence** now added to analysis.tex."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-aggressive-page-trim.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b9ffaaf8b119e1abc76",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis collect s020 s025 accuracy results",
+  "task_key": "worker_analysis_collect_s020_s025_accuracy_results_20260515T205347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect_s020_s025_accuracy_results_20260515T205347_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "4e50219b2ac70a4979c01f9db67a9b62d23faa303057e483992ca4d43984bf6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checking back in ~4.5 min. QW results should be ready then, DS may need one more cycle."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-s020-s025-accuracy-results.md"
+}

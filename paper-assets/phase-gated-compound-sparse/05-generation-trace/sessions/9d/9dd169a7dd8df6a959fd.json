@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dd169a7dd8df6a959fd",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops gpu check and cleanup",
+  "task_key": "worker_ops_gpu_check_and_cleanup_20260514T153339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_check_and_cleanup_20260514T153339_result.json",
+    "occurrence": 1,
+    "bytes": 2284,
+    "sha256": "5eec31b731a99d800885ac31bde25f9112d27e3bdec4757a29d3c81ae741da46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。汇报如下：\n\n---\n\n## GPU 实际占用\n\n| GPU | 进程 | PID | 显存 | 实验 |\n|-----|------|-----|------|------|\n| **0** | DeepSeek imp s015 | 130124 | 26854 MiB | c2_n500_deepseek |\n| **1** | DeepSeek rand s015 | 130263 | 30598 MiB | c2_n500_deepseek |\n| **2** | Qwen imp s015 | 131864 | 27824 MiB | c2_qw_n500 |\n| **2** | **Llama imp s020** | **142944** | **20228 MiB** | **c3_llama** |\n| **3** | Qwen rand s015 | 132002 | 28436 MiB | c2_qw_n500 |\n| **3** | **Llama rand s020** | **142708** | **20386 MiB** | **c3_llama** |\n\n每张卡 97GB 总量。GPU 2 用了 48066 MiB (49%), GPU 3 用了 48836 MiB (50%)。显存没有爆，但 GPU 利用率 89%/93%——**c2_qw_n500 和 c3_llama 确实在争抢 GPU 2+3 的算力**。\n\n## GPU 争抢影响\n\n- 显存层面：尚有余量，不会 OOM\n- 算力层面：两个实验共享计算单元，互相拖慢。c3_llama 命令行没传 `--gpu` 参数，默认吃了 GPU 2+3（和 c2_qw 撞上）\n\n## 重复进程\n\nPID 132389, 132392 **已不存在**（ps 返回 exit code 1），无需手动 kill。\n\n## 实验进度\n\n| 实验 | 子任务 | 进度 | GPU |\n|------|--------|------|-----|\n| c2_n500_deepseek | imp s015 | **197/500** (39%) | 0 |\n| c2_n500_deepseek | rand s015 | **221/500** (44%) | 1 |\n| c2_qw_n500 | imp s015 | **170/500** (34%) | 2 |\n| c2_qw_n500 | rand s015 | **176/500** (35%) | 3 |\n| c3_llama | importance s020 | **3/50** (6%) | 2 |\n| c3_llama | random s020 | **4/50** (8%) | 3 |\n\n## 数据污染判断\n\n**无污染风险。** 脚本在完成全部问题后才写入单个 `profiling_results.json`，当前所有 n500 输出目录均为空。重复进程在写入前已死亡。\n\n## 需要决策\n\nc3_llama (50 题，刚开始) 和 c2_qw_n500 (500 题，约 1/3) 共享 GPU 2+3，互相减速。选项：\n1. **杀掉 c3_llama** (PID 142944, 142708)，等 c2_qw 跑完后再重启——c2_qw 还需很久，优先保证它的速度\n2. **保持现状**——显存够用，c3_llama 只有 50 题会先跑完，之后 c2_qw 独占\n3. **杀掉 c3_llama 并迁移到 GPU 0 或 1**——但那两张卡也在跑 c2_deepseek\n\n建议选 2：c3_llama 50 题量小，估计 1-2 小时内完成，之后 GPU 2+3 自动释放给 c2_qw。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-and-cleanup.md"
+}

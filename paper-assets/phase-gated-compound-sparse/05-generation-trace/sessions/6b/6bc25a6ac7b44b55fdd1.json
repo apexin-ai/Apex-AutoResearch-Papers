@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bc25a6ac7b44b55fdd1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis c5b framing proposal",
+  "task_key": "worker_analysis_c5b_framing_proposal_20260514T184055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c5b_framing_proposal_20260514T184055_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "eaa070ff033819887b9f4a1a5da2918a150e2f88417ea6b517ec63814947cf1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提案已完成并注册（`art_20260514_5a8363`）。\n\n核心结论：**推荐方案 A** — 将 C5b 降为 §8 Future Work open question。C5b 是 pilot 实现失败（非 hypothesis 否定），但 11 天 deadline 下重做 ROI 太低。论文作为 empirical finding paper，核心 claims (C1-C6) 完全不依赖 mitigation validation。仅需修改 §7/§8 共 2-3 句措辞。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c5b-framing-proposal.md"
+}

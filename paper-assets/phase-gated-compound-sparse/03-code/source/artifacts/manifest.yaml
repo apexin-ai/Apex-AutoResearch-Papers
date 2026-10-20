@@ -1,0 +1,2507 @@
+- id: art_20260513_9273cd
+  name: phase_segmentation.py
+  type: intermediate
+  description: PhaseSegmenter core module — attention sparsity -> KDE -> tri-modal
+    phase boundary detection (ThinKV methodology)
+  path: projects/phase-gated-compound-sparse/artifacts/_project/intermediate/phase_segmentation.py
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T17:47:07.830493+00:00'
+  tags:
+  - profiling
+  - phase-segmentation
+  - kde
+  - attention-sparsity
+- id: art_20260513_445d98
+  name: run_profiling.py
+  type: intermediate
+  description: PACS profiling entry point — load model, generate traces with attentions,
+    run phase segmentation, save results to JSON
+  path: projects/phase-gated-compound-sparse/artifacts/_project/intermediate/run_profiling.py
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T17:47:09.107225+00:00'
+  tags:
+  - profiling
+  - pipeline
+  - entry-point
+- id: art_20260513_e8a308
+  name: interaction_index.py
+  type: intermediate
+  description: 'Interaction Index calculator: measures super/sub-additivity of compound
+    sparsity (attention head pruning + KV eviction). Supports per-phase II computation.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/intermediate/interaction_index.py
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T17:48:12.290513+00:00'
+  tags:
+  - interaction-index
+  - profiling
+  - compound-sparsity
+- id: art_20260513_7c1762
+  name: metrics.py
+  type: intermediate
+  description: 'General-purpose metrics module: perplexity (with optional token-index
+    filtering) and exact-match accuracy.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/intermediate/metrics.py
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T17:48:14.397762+00:00'
+  tags:
+  - metrics
+  - perplexity
+  - utils
+- id: art_20260513_59bb5a
+  name: MVP Interaction Index Analysis Report
+  type: report
+  description: Analysis of mvp_interaction_index_profiling experiment results. FAIL
+    due to KV mask flattening bug (min across layers kills all positions). Hypothesis
+    untested. Fix identified.
+  path: projects/phase-gated-compound-sparse/artifacts/mvp_interaction_index_profiling/report/mvp_ii_analysis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: mvp_interaction_index_profiling
+  skill: ''
+  created_at: '2026-05-13T20:00:45.262054+00:00'
+  tags:
+  - mvp
+  - interaction-index
+  - profiling
+  - bug-analysis
+- id: art_20260513_c4933e
+  name: mvp_ii_v2_analysis
+  type: report
+  description: MVP Interaction Index Profiling v2 analysis report — P0 fix validated,
+    MVP PASS on CI non-overlap, but no direction reversal observed
+  path: projects/phase-gated-compound-sparse/artifacts/mvp_ii_profiling_v2/report/mvp_ii_v2_analysis_c4933e.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: mvp_ii_profiling_v2
+  skill: ''
+  created_at: '2026-05-13T21:21:19.687781+00:00'
+  tags:
+  - mvp
+  - interaction-index
+  - phase-segmentation
+  - analysis
+- id: art_20260513_7a8b0f
+  name: mvp_ii_v3_analysis
+  type: report
+  description: MVP II Profiling v3 分析报告：negative result，compound sparsity 交互在不同 attention
+    sparsity regime 间无显著差异
+  path: projects/phase-gated-compound-sparse/artifacts/mvp_ii_profiling_v3/report/mvp_ii_v3_analysis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: mvp_ii_profiling_v3
+  skill: ''
+  created_at: '2026-05-13T22:43:36.708677+00:00'
+  tags:
+  - mvp
+  - interaction-index
+  - v3
+  - negative
+- id: art_20260514_bg01
+  name: bootstrap_phase_gradient.py
+  type: intermediate
+  description: M1' Bootstrap Phase Gradient Analysis — reconstructs per-segment II
+    distributions (log-normal fit from aggregate stats), bootstraps gradient = median(II_low)/median(II_high),
+    Mann-Whitney U pairwise tests, Cohen's d, importance vs random p-value.
+  path: projects/phase-gated-compound-sparse/artifacts/bootstrap_phase_gradient.py
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T00:00:00.000000+00:00'
+  tags:
+  - m1-prime
+  - bootstrap
+  - phase-gradient
+  - analysis
+  - statistics
+- id: art_20260514_d8e664
+  name: writing_readiness
+  type: report
+  description: 论文写作就绪度评估：各章节数据依赖、写作优先级、关键风险
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/writing_readiness.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:21:28.084033+00:00'
+  tags:
+  - paper
+  - planning
+  - emnlp2026
+- id: art_20260514_46fb53
+  name: related_work_sec2
+  type: paper
+  description: Section 2 Related Work draft for EMNLP 2026 submission
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work_46fb53.tex
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:30:15.075149+00:00'
+  tags:
+  - paper
+  - related-work
+  - draft
+- id: art_20260514_fc6d1d
+  name: background.tex
+  type: paper
+  description: 'Section 3: Background and Problem Setup — compound sparsity formulation,
+    Interaction Index definition, phase segmentation'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/background_fc6d1d.tex
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:30:32.803474+00:00'
+  tags:
+  - paper
+  - section3
+  - background
+- id: art_20260514_4cc5f3
+  name: Section 4 Experimental Setup
+  type: paper
+  description: Section 4 (Experimental Setup) for EMNLP 2026 submission. Covers models,
+    dataset, compound sparsity config, metrics, phase segmentation, and statistical
+    analysis.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/methodology_4cc5f3.tex
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:32:41.809208+00:00'
+  tags:
+  - paper
+  - section4
+  - experimental-setup
+- id: art_20260514_759a80
+  name: multiplicative_null_comparison
+  type: report
+  description: Additive vs Multiplicative null model comparison for Interaction Index
+    across 4 sparsity levels (0.15-0.30). All 12 (sparsity x phase) combinations positive
+    under both nulls, all gradient directions match. Claim is robust.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/multiplicative_null_comparison.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:44:48.280251+00:00'
+  tags:
+  - null-model
+  - interaction-index
+  - robustness
+  - reviewer-response
+- id: art_20260514_99ac04
+  name: Mid-Sparsity Gap Analysis
+  type: report
+  description: 'Analysis of 10 missing mid_sparsity problems in bf16_importance_s015/s025:
+    systematic bias check, bootstrap CI N validation, robustness check with complete-data
+    subset'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/mid_sparsity_gap_analysis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:47:51.632813+00:00'
+  tags:
+  - review
+  - mid_sparsity
+  - robustness
+  - bf16_importance
+- id: art_20260514_7b82a9
+  name: D029_median_verification
+  type: data
+  description: 'D029 median fix verification: v6_random_s030_r3 verdict PASS→FAIL
+    confirmed'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/permutation_test_median_verification.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T07:09:10.546241+00:00'
+  tags:
+  - D029
+  - median-fix
+  - verification
+- id: art_20260514_b20a87
+  name: gradient_ratio_provenance_report
+  type: report
+  description: P0 论文诚信调查：gradient ratio "47-104×" 溯源、registry 不一致根因、推荐替代指标
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/gradient_ratio_provenance.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T07:44:27.927102+00:00'
+  tags:
+  - provenance
+  - paper-integrity
+  - gradient
+  - P0
+- id: art_20260514_86e238
+  name: bf16_qw_rand_s020_analysis
+  type: data
+  description: Statistical analysis of Qwen2.5-7B random masking s=0.20 profiling
+    - FAIL as expected (negative control)
+  path: projects/phase-gated-compound-sparse/artifacts/bf16_qw_rand_s020/data/analysis_summary.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: bf16_qw_rand_s020
+  skill: ''
+  created_at: '2026-05-14T08:26:01.712122+00:00'
+  tags: []
+- id: art_20260514_5d7a14
+  name: median_difference_unification
+  type: data
+  description: Unified gradient_paired_aggregate to median_difference across all bf16
+    experiments
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/median_difference_results.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:36:28.509108+00:00'
+  tags:
+  - metrics
+  - unification
+- id: art_20260514_6f42a7
+  name: stat_test_bf16_qw_rand_s015
+  type: data
+  description: 'Statistical test results for bf16_qw_rand_s015. Verdict: FAIL. Perm
+    p=0.766, d=-0.05, Wilcoxon p=0.863.'
+  path: projects/phase-gated-compound-sparse/artifacts/bf16_qw_rand_s015/data/stat_test_bf16_qw_rand_s015.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: bf16_qw_rand_s015
+  skill: ''
+  created_at: '2026-05-14T08:46:13.273835+00:00'
+  tags:
+  - statistical-test
+  - negative-control
+  - qwen-random
+- id: art_20260514_89c1c9
+  name: stat_test_bf16_qw_rand_s025
+  type: data
+  description: 'Statistical test results for bf16_qw_rand_s025. Verdict: FAIL. Perm
+    p=0.168, d=0.16, Wilcoxon p=0.010.'
+  path: projects/phase-gated-compound-sparse/artifacts/bf16_qw_rand_s025/data/stat_test_bf16_qw_rand_s025.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: bf16_qw_rand_s025
+  skill: ''
+  created_at: '2026-05-14T08:46:17.760979+00:00'
+  tags:
+  - statistical-test
+  - negative-control
+  - qwen-random
+- id: art_20260514_f8016a
+  name: bf16_qw_rand_s030 analysis summary
+  type: data
+  description: Interaction index analysis for Qwen2.5-7B-Instruct random masking s=0.30.
+    Median trend 3.955→6.398→8.196, median_diff=+4.241, overall PASS.
+  path: projects/phase-gated-compound-sparse/artifacts/bf16_qw_rand_s030/data/analysis_summary_f8016a.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: bf16_qw_rand_s030
+  skill: ''
+  created_at: '2026-05-14T08:47:39.411313+00:00'
+  tags:
+  - interaction_index
+  - random_masking
+  - qwen
+  - bf16
+- id: art_20260514_4f28ae
+  name: bf16_qw_rand_s030_analysis
+  type: data
+  description: 'Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict
+    with permutation p=0.012 and monotonic phase gradient'
+  path: projects/phase-gated-compound-sparse/artifacts/bf16_qw_rand_s030/data/bf16_qw_rand_s030_analysis.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: bf16_qw_rand_s030
+  skill: ''
+  created_at: '2026-05-14T08:51:40.015969+00:00'
+  tags:
+  - analysis
+  - random-masking
+  - qwen
+  - s030
+- id: art_20260514_4de0f8
+  name: cross_model_analysis
+  type: data
+  description: 'Cross-model permutation test and concordance analysis: DeepSeek vs
+    Qwen compound interaction gradients'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/cross_model_analysis_summary.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:56:06.619076+00:00'
+  tags:
+  - cross-model
+  - permutation-test
+  - bf16
+- id: art_20260514_26a151
+  name: experiment_summary_table
+  type: data
+  description: 4x4 experiment summary table with all 16 experiments key metrics
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/experiment_summary_overview.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:56:09.060769+00:00'
+  tags:
+  - summary
+  - bf16
+- id: art_20260514_07bc86
+  name: cross_model_analysis_summary
+  type: report
+  description: 'Cross-model (DeepSeek vs Qwen) compound sparsity analysis: 16 experiments,
+    Cohen d trend rho=1.0, gradient permutation p=0.043, Wilcoxon 8/8 significant'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/cross_model_analysis_summary.json
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:59:54.329282+00:00'
+  tags:
+  - cross-model
+  - statistics
+  - C5
+  - paper-ready
+- id: art_20260514_2aac8e
+  name: bf16_qw_rand_s030_rebootstrap_B10000
+  type: report
+  description: 'Re-bootstrap B=10000 for bf16_qw_rand_s030: verdict PASS->FAIL. CI
+    overlap, p=0.1113. Cohen d all 4 levels non-significant.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/rebootstrap_summary.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:05:48.022866+00:00'
+  tags:
+  - rebootstrap
+  - reviewer-critical
+  - verdict-change
+- id: art_20260514_ee5cb7
+  name: rebootstrap_b10000_results
+  type: data
+  description: Re-bootstrap B=10000 results for all 8 importance experiments (DeepSeek
+    + Qwen, s015-s030)
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/rebootstrap_b10000_results.json
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:10:04.117679+00:00'
+  tags:
+  - bootstrap
+  - importance
+  - B10000
+  - stat-test
+- id: art_20260514_2e8780
+  name: paper_figures_v1
+  type: chart
+  description: '4 paper figures: (1) dose-response curve symlog, (2) Cohen''s d trend
+    with CI, (3) crossover bar chart, (4) per-problem violin plots. Server: /root/autodl-tmp/pacs/figures/'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/paper_figures_manifest.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:12:59.178922+00:00'
+  tags:
+  - figures
+  - paper
+  - dose-response
+  - cohens-d
+  - crossover
+  - violin
+- id: art_20260514_95b362
+  name: paper_figures_v1
+  type: chart
+  description: 论文核心图表 v1（s=0.15-0.30 范围，4张）：Fig1 dose-response symlog曲线+CI, Fig2 Cohen's
+    d趋势+effect size阈值线, Fig3 s=0.25 crossover柱状图双模型, Fig4 per-problem ΔII violin+scatter
+    2×4 panel。生成脚本 /root/autodl-tmp/pacs/analysis/generate_paper_figures.py。待 s=0.10/0.35
+    实验完成后更新为 v2（6点曲线）。
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/paper_figures_v1_manifest.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:18:13.041292+00:00'
+  tags:
+  - paper
+  - figures
+  - bf16
+  - v1
+- id: art_20260514_e3e339
+  name: fig1_dose_response
+  type: chart
+  description: 'Dose-Response 曲线：4条线（2模型×2 masking），symlog Y轴，bootstrap 95% CI。远程:
+    /root/autodl-tmp/pacs/figures/fig1_dose_response.pdf'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig1_dose_response_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:19:32.134205+00:00'
+  tags:
+  - paper
+  - figure
+- id: art_20260514_dc7a8f
+  name: fig2_cohens_d
+  type: chart
+  description: 'Cohen''s d 趋势图：DS/QW 双线，shaded CI，effect size thresholds。远程: /root/autodl-tmp/pacs/figures/fig2_cohens_d.pdf'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig2_cohens_d_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:19:36.337923+00:00'
+  tags:
+  - paper
+  - figure
+- id: art_20260514_c8af19
+  name: fig3_crossover
+  type: chart
+  description: 's=0.25 crossover 柱状图：importance vs random phase-wise median II，双模型并排。远程:
+    /root/autodl-tmp/pacs/figures/fig3_crossover.pdf'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig3_crossover_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:19:38.247105+00:00'
+  tags:
+  - paper
+  - figure
+- id: art_20260514_23b71b
+  name: fig4_per_problem_dist
+  type: chart
+  description: 'Per-problem ΔII violin+scatter 8 panels (2×4)。远程: /root/autodl-tmp/pacs/figures/fig4_per_problem_dist.pdf'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig4_per_problem_dist_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:19:41.059382+00:00'
+  tags:
+  - paper
+  - figure
+- id: art_20260514_e8da95
+  name: fig2_cohens_d_paired_b10000
+  type: chart
+  description: 'Fig 2: Cohen''s d trend (per-problem paired, B=10000). No CI error
+    bars. Qwen s015 annotated as marginal.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig2_cohens_d_location.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:23:30.856083+00:00'
+  tags:
+  - fig2
+  - cohens_d
+  - paired
+  - b10000
+- id: art_20260514_e3dedf
+  name: fig2_cohens_d_paired_b10000
+  type: chart
+  description: 'Fig 2: Per-problem paired Cohen''s d (B=10000 bootstrap CI). DS: 0.607→0.725→0.953→1.126,
+    QW: 0.371→0.722→1.233→1.439. QW s015 marked as marginal (median_diff CI includes
+    0).'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig2_cohens_d_paired_b10000_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:28:40.793822+00:00'
+  tags:
+  - figure
+  - cohens_d
+  - per-problem-paired
+  - b10000
+- id: art_20260514_4decfc
+  name: fig2_cohens_d_segment_level_backup
+  type: chart
+  description: Old Fig 2 backup (segment-level aggregate Cohen's d) for supplementary
+    robustness check.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig2_segment_level_backup_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:28:43.207969+00:00'
+  tags:
+  - figure
+  - cohens_d
+  - segment-level
+  - supplementary
+- id: art_20260514_1d968a
+  name: paper_figures_v2_supplement
+  type: chart
+  description: '2 additional figures: fig4_bootstrap.pdf (forest plot with CI + Bonferroni
+    p) and fig5_crossmodel.pdf (cross-model comparison, symlog Y). Server: /root/autodl-tmp/pacs/figures/'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/paper_figures_v2_manifest.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:28:54.909670+00:00'
+  tags:
+  - figures
+  - paper
+  - forest-plot
+  - cross-model
+- id: art_20260514_7480e6
+  name: dose_response_6point
+  type: chart
+  description: '6-point dose-response curve (s=0.10-0.35): DeepSeek vs Qwen low_sparsity
+    II median with log scale, onset zone marking at s=0.10'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/dose_response_6point_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:45:32.082258+00:00'
+  tags:
+  - figure
+  - dose-response
+  - 6-point
+  - paper
+- id: art_20260514_0bd880
+  name: crossover_6point
+  type: chart
+  description: '6-point crossover diagram: high/mid/low phase II across sparsity levels
+    for DeepSeek and Qwen, with onset zone marking'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/crossover_6point_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:45:34.477272+00:00'
+  tags:
+  - figure
+  - crossover
+  - 6-point
+  - paper
+- id: art_20260514_b84477
+  name: cohens_d_6point
+  type: chart
+  description: '6-point Cohen''s d effect size: paired low-vs-high phase across sparsity
+    levels for both models, with effect size thresholds and onset zone'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:45:38.421069+00:00'
+  tags:
+  - figure
+  - cohens-d
+  - 6-point
+  - paper
+- id: art_20260514_675dd1
+  name: main.tex
+  type: paper
+  description: LaTeX main file for Phase-Modulated Compound Sparsity paper. Uses standard
+    article class (placeholder for ACL/EMNLP template). Inputs all section files,
+    anonymous submission.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/main_675dd1.tex
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:54:55.037298+00:00'
+  tags:
+  - latex
+  - paper
+  - emnlp2026
+- id: art_20260514_40887e
+  name: references.bib
+  type: paper
+  description: BibTeX references for Phase-Modulated Compound Sparsity paper. 31 entries
+    covering all citations across all .tex files, verified via web search.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/references_40887e.bib
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:54:55.298496+00:00'
+  tags:
+  - latex
+  - references
+  - emnlp2026
+- id: art_20260514_0e54ee
+  name: fig1_dose_response
+  type: chart
+  description: '6-point dose-response figure (G vs sparsity), importance solid + random
+    dashed, log scale, 95% CI. Remote: /root/autodl-tmp/pacs/paper_figures/fig1_dose_response.pdf
+    on westd-22162'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig1_dose_response_info_0e54ee.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:56:03.040122+00:00'
+  tags:
+  - paper
+  - figure
+  - dose-response
+- id: art_20260514_f6c838
+  name: fig3_crossover
+  type: chart
+  description: 's=0.25 crossover grouped bar chart, importance vs random × 3 phases.
+    Remote: /root/autodl-tmp/pacs/paper_figures/fig3_crossover.pdf on westd-22162'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig3_crossover_info_f6c838.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:56:05.832266+00:00'
+  tags:
+  - paper
+  - figure
+  - crossover
+- id: art_20260514_d2b126
+  name: fig4_bootstrap_forest
+  type: chart
+  description: 'Forest plot, 4 sparsity levels, median diff + 95% CI + p-value + Cohen''s
+    d (rebootstrap B=10000). Remote: /root/autodl-tmp/pacs/paper_figures/fig4_bootstrap.pdf
+    on westd-22162'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig4_bootstrap_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:56:10.138370+00:00'
+  tags:
+  - paper
+  - figure
+  - forest-plot
+  - bootstrap
+- id: art_20260514_76ed94
+  name: fig5_crossmodel
+  type: chart
+  description: 'DeepSeek vs Qwen cross-model Δ comparison, Spearman ρ=1.0 annotated.
+    Remote: /root/autodl-tmp/pacs/paper_figures/fig5_crossmodel.pdf on westd-22162'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig5_crossmodel_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:56:13.994046+00:00'
+  tags:
+  - paper
+  - figure
+  - cross-model
+- id: art_20260514_8cfa18
+  name: cohens_d_6point_paired
+  type: chart
+  description: '6-point paired d_z Cohen''s d chart (B=10000 per-problem paired bootstrap).
+    DS: 0.504/0.607/0.725/0.953/1.126/1.145, QW: -0.064/0.371/0.722/1.233/1.439/1.544.
+    Remote: /root/autodl-tmp/pacs/figures/cohens_d_6point.pdf on westd-22162'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_info.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:59:23.403800+00:00'
+  tags:
+  - paper
+  - figure
+  - cohens-d
+  - paired
+  - 6-point
+- id: art_20260514_40ff6e
+  name: fig1_dose_response_bf16
+  type: chart
+  description: 'Fig 1: 6-point dose-response severity gradient G vs sparsity (bf16,
+    importance+random, log scale, 95% CI). Remote: /root/autodl-tmp/pacs/paper_figures/fig1_dose_response.pdf'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig1_dose_response_bf16.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T10:44:02.603316+00:00'
+  tags:
+  - paper-figure
+  - bf16-canonical
+  - D051
+- id: art_20260514_8180ad
+  name: fig3_crossover_bf16
+  type: chart
+  description: 'Fig 3: Phase-strategy crossover at s=0.25 (bf16). Remote: /root/autodl-tmp/pacs/paper_figures/fig3_crossover.pdf'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig3_crossover_bf16.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T10:44:05.915540+00:00'
+  tags:
+  - paper-figure
+  - bf16-canonical
+  - D051
+- id: art_20260514_4c5e0a
+  name: fig4_forest_paired_dz
+  type: chart
+  description: 'Fig 4: Forest plot with paired d_z, B=10000 paired bootstrap, both
+    models (bf16, D048). Remote: /root/autodl-tmp/pacs/paper_figures/fig4_bootstrap.pdf'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig4_forest_paired_dz.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T10:44:09.655246+00:00'
+  tags:
+  - paper-figure
+  - bf16-canonical
+  - D048
+  - D051
+- id: art_20260514_e4a023
+  name: fig5_crossmodel_bf16
+  type: chart
+  description: 'Fig 5: Cross-model DS vs QW, Spearman rho=1.0, gradient perm p=0.043
+    (bf16). Remote: /root/autodl-tmp/pacs/paper_figures/fig5_crossmodel.pdf'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig5_crossmodel_bf16.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T10:44:13.452309+00:00'
+  tags:
+  - paper-figure
+  - bf16-canonical
+  - D051
+- id: art_20260514_d7626e
+  name: cohens_d_6point_paired_dz
+  type: chart
+  description: 'Cohen''s d 6-point using TRUE paired d_z (D047+D048). Remote: /root/autodl-tmp/pacs/paper_figures/cohens_d_6point.pdf'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_dz.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T10:44:17.441115+00:00'
+  tags:
+  - paper-figure
+  - bf16-canonical
+  - D047
+  - D048
+  - D051
+- id: art_20260514_b486c0
+  name: EMNLP 2026 ARR paper (ACL format)
+  type: paper
+  description: Phase-Modulated Compound Sparsity paper compiled in ACL two-column
+    review format. 17 pages total (15 main body + ~1.5 references + ~0.5 appendix).
+    Compiles cleanly with zero undefined references and zero warnings.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/paper_compilation_note.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:03:33.165875+00:00'
+  tags:
+  - paper
+  - emnlp2026
+  - acl-format
+- id: art_20260514_00fdd3
+  name: main_pdf_compiled_20260514
+  type: paper
+  description: EMNLP 2026 论文编译版 PDF — 17页（8页正文+appendix），bf16 数据，fig1/3/4/5 完整，零编译错误
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/main_00fdd3.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:29:09.830518+00:00'
+  tags:
+  - paper
+  - pdf
+  - compiled
+  - emnlp2026
+- id: art_20260514_444a81
+  name: number_consistency_audit_v2
+  type: report
+  description: 'Number consistency audit v2 (bf16): systematic comparison of all quantitative
+    claims in 6 .tex files against canonical JSON data on server. 119 matched, 0 mismatched,
+    1 partially verifiable (s=0.35 supplementary from log only).'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/number_consistency_audit_v2.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:35:30.729484+00:00'
+  tags:
+  - audit
+  - paper
+  - consistency
+- id: art_20260514_5d82e3
+  name: main_pdf_trimmed_8page_20260514
+  type: paper
+  description: EMNLP 2026 论文裁剪版 PDF — 主体≤8页（7.5页正文+references起page8），appendix 4页，共12页，零编译错误
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/main_5d82e3.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:37:47.978035+00:00'
+  tags:
+  - paper
+  - pdf
+  - trimmed
+  - 8page
+  - emnlp2026
+- id: art_20260514_c93d3b
+  name: main_pdf_trimmed_v2_20260514
+  type: paper
+  description: EMNLP 2026 裁剪版 PDF — 主体 ~7.5页（≤8 ✅），12页总计（含 refs+appendix），bf16 v2
+    figures，零编译错误
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/main_c93d3b.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:39:25.757519+00:00'
+  tags:
+  - paper
+  - pdf
+  - trimmed
+  - emnlp2026
+  - v2
+- id: art_20260514_a1a036
+  name: main_pdf_final_20260514
+  type: paper
+  description: EMNLP 2026 最终编译版 — 主体≤8页，12页总计，bib keys 统一为 shortname-venue-year 风格，零编译错误，零
+    undefined citation
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/main_a1a036.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:43:32.469239+00:00'
+  tags:
+  - paper
+  - pdf
+  - final
+  - emnlp2026
+  - bib-fixed
+- id: art_20260514_9a05ce
+  name: main_pdf_trimmed_8page_20260514
+  type: paper
+  description: EMNLP 2026 论文裁剪版 PDF — 主体 7 页 + 1 页 references + 4 页 appendix = 12
+    页总计。零编译错误。
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/main_9a05ce.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:43:36.678791+00:00'
+  tags:
+  - paper
+  - pdf
+  - trimmed
+  - emnlp2026
+- id: art_20260514_bdfc72
+  name: PACS paper compiled PDF (2026-05-14)
+  type: paper
+  description: Phase-Modulated Compound Sparsity paper, compiled 2026-05-14, 11 pages
+    total, main body ~5 pages, EMNLP 2026 ARR submission format
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/main_bdfc72.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:18:05.239213+00:00'
+  tags:
+  - paper
+  - compiled
+  - visual-review
+  - emnlp2026
+- id: art_20260514_c00977
+  name: numerical_audit_report
+  type: report
+  description: Full numerical consistency audit of all .tex files against canonical
+    bf16 data sources (2026-05-14)
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/numerical_audit_report.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:18:10.290938+00:00'
+  tags:
+  - paper
+  - audit
+  - numerical-consistency
+- id: art_20260514_3c0a10
+  name: C2 Pre-registration n=500
+  type: data
+  description: 'Pre-registration document for C2 n=500 experiment: hypothesis, decision
+    rule, analysis plan'
+  path: projects/phase-gated-compound-sparse/artifacts/c2_n500_deepseek/data/PRE_REGISTRATION_C2.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: c2_n500_deepseek
+  skill: ''
+  created_at: '2026-05-14T13:41:47.988737+00:00'
+  tags: []
+- id: art_20260514_610657
+  name: Final Visual Review & Reference Audit Report
+  type: report
+  description: 'Final pre-submission quality check for EMNLP ARR: visual review of
+    all 11 PDF pages, reference audit (31 entries), content consistency verification.
+    Verdict: SUBMISSION READY, 0 critical issues.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/final_review_report_610657.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:53:54.276655+00:00'
+  tags:
+  - review
+  - submission
+  - emnlp-arr
+- id: art_20260514_03667b
+  name: visual_review_report
+  type: report
+  description: 论文 PDF 最终视觉审查报告 - 排版、图表、公式、引用、页数检查
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/visual_review_report.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:06:44.325205+00:00'
+  tags:
+  - paper
+  - visual-review
+  - quality-check
+- id: art_20260514_4d09f3
+  name: C5b Mitigation Pilot Design
+  type: report
+  description: 'C5b phase-aware mitigation pilot experiment design: oracle + heuristic
+    baseline, n=30, s025/s030, >30% recovery gate, ~1.5h GPU'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/c5b_pilot_design.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:46:16.761387+00:00'
+  tags:
+  - c5b
+  - mitigation
+  - pilot
+  - experiment-design
+  - plan_011
+- id: art_20260514_e88887
+  name: gpu_check_loop7
+  type: report
+  description: Loop 7 GPU诊断报告：6进程正常，重复进程已清理，cuda:2+3争用存在但显存充足，c3_llama即将完成
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/gpu_check_loop7.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T15:20:38.104445+00:00'
+  tags:
+  - gpu
+  - diagnostics
+  - loop7
+- id: art_20260514_8cd6f2
+  name: analyze_n500.py
+  type: intermediate
+  description: C2 n=500 analysis script with integrity checks, paired imp-vs-rand,
+    dose-response, Gini/CV
+  path: projects/phase-gated-compound-sparse/artifacts/_project/intermediate/analyze_n500.py
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:43:07.109337+00:00'
+  tags:
+  - analysis
+  - c2
+  - n500
+- id: art_20260514_2b21e2
+  name: c3_llama_full_statistics
+  type: data
+  description: 'C3 LLaMA cross-architecture validation: complete statistical analysis
+    (paired d_z, bootstrap CI, Wilcoxon, phase gradient) for all 8 conditions'
+  path: projects/phase-gated-compound-sparse/artifacts/c3_llama/data/c3_llama_results.json
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: c3_llama
+  skill: ''
+  created_at: '2026-05-14T18:03:25.647285+00:00'
+  tags:
+  - c3
+  - llama
+  - cross-architecture
+  - statistics
+- id: art_20260514_5a8363
+  name: c5b_framing_proposal
+  type: report
+  description: C5b pilot 失败后的 Framing 调整提案：建议将 phase-aware mitigation 从 planned claim
+    降为 §8 Future Work open question，含三种备选方案和章节影响评估
+  path: projects/phase-gated-compound-sparse/artifacts/c5b_pilot/report/c5b_framing_proposal.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: c5b_pilot
+  skill: ''
+  created_at: '2026-05-14T18:42:33.404700+00:00'
+  tags:
+  - framing
+  - c5b
+  - failed-experiment
+  - narrative-adjustment
+- id: art_20260514_e351e2
+  name: c2_n500_paper_update_checklist
+  type: report
+  description: C2 n=500 论文更新清单：逐项标注论文中所有需要用 n=500 数据替换的位置（7处样本量文本、8个表格~80单元格、5个图表PDF、~55处内联统计数值、Qwen
+    s015条件性叙事方案）
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/c2_n500_paper_update_checklist.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:46:07.338855+00:00'
+  tags:
+  - c2
+  - n500
+  - paper
+  - checklist
+- id: art_20260514_8090b2
+  name: Reference Audit Report
+  type: report
+  description: 'Full citation audit for the phase-gated-compound-sparse paper: cross-reference
+    check, orphan detection, WebSearch verification of 8 key references, DOI validation.
+    Found 1 critical (wrong DOI), 3 warnings (title/author mismatch, orphan entries),
+    3 info items.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/reference_audit_report.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: reference-audit
+  created_at: '2026-05-14T19:01:46.219186+00:00'
+  tags:
+  - reference-audit
+  - submission
+  - quality
+- id: art_20260514_43711d
+  name: literature_scan_20260515
+  type: report
+  description: 2026-05-01~05-14 文献扫描报告：compound pruning interaction 方向，未发现直接竞争论文，识别
+    2 篇互补工作需纳入 related work
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/literature_scan_20260515.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:29:53.105104+00:00'
+  tags:
+  - literature-scan
+  - competitive-analysis
+  - pruning
+  - sparsity
+- id: art_20260514_b035f4
+  name: analysis_pipeline_verification
+  type: report
+  description: Verification report for C2 n=500 analysis pipeline readiness. Covers
+    D054/D059 compliance, data format, condition coverage, and action items.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/analysis_pipeline_verification.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T19:31:03.564645+00:00'
+  tags:
+  - analysis
+  - verification
+  - c2
+  - n500
+- id: art_20260514_5d7736
+  name: analyze_n500_unified
+  type: data
+  description: 'Unified n=500 analysis script: median II + bootstrap CI, within-strategy
+    d_z, dose-response Spearman. Server path: /root/autodl-tmp/pacs/analyze_n500_unified.py'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/analyze_n500_unified_pointer.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T20:46:17.905291+00:00'
+  tags:
+  - analysis
+  - n500
+  - pipeline
+- id: art_20260514_479d6c
+  name: paper_n500_update_plan
+  type: report
+  description: Section-by-section diff plan for updating the paper from n=50 to n=500
+    data, with claim strength adjustment logic, Qwen caveat triggers, C8 限定语 audit,
+    C5b future work spec, and prioritized execution checklist
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/paper_n500_update_plan.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T22:08:19.991912+00:00'
+  tags:
+  - paper
+  - n500
+  - update-plan
+  - diff-spec
+- id: art_20260515_0b75ea
+  name: c2_n500_progress_check
+  type: report
+  description: C2 n=500 profiling 进度报告 (2026-05-15 09:45)
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/c2_n500_progress_check.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:46:06.519567+00:00'
+  tags:
+  - profiling
+  - c2
+  - n500
+  - progress
+- id: art_20260515_9de71f
+  name: paper_update_checklist
+  type: report
+  description: n=500 论文更新清单：P0(10项核心数字替换) P1(10项表格/图/段落) P2(4项条件分支，依赖分析结果) P3(5项一致性声明)。n=500
+    分析完成后按此清单驱动 Paper Agent 更新。
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/paper_update_checklist.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:46:58.057161+00:00'
+  tags:
+  - paper
+  - n500
+  - checklist
+- id: art_20260515_9f6cc0
+  name: paper_placeholder_audit
+  type: report
+  description: 论文占位符完整审计：48处\placeholder{} + ~118处硬编码数值 + 5处间接比率 = ~170+处需替换。含4处与paper_update_checklist的差异。
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/paper_placeholder_audit.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:49:07.639997+00:00'
+  tags:
+  - paper
+  - n500
+  - placeholder
+  - audit
+- id: art_20260515_16466d
+  name: paper_placeholder_audit
+  type: report
+  description: 论文 placeholder 审计：48 处 \placeholder{} + ~118 处硬编码数值 + 5 处间接比率 = ~170+
+    替换位置。含 4 处 paper_update_checklist 遗漏项。
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/paper_placeholder_audit_16466d.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:53:31.473563+00:00'
+  tags:
+  - paper
+  - n500
+  - placeholder
+  - audit
+- id: art_20260515_a10684
+  name: n500_pipeline_check
+  type: report
+  description: n=500 profiling 进度快照 + 分析 pipeline (D054/D059) 验证报告, 2026-05-15
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/n500_pipeline_check.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T02:01:11.010142+00:00'
+  tags:
+  - n500
+  - pipeline
+  - D054
+  - D059
+  - progress
+- id: art_20260515_e21731
+  name: c2_n500_deepseek_diagnosis
+  type: report
+  description: c2_n500_deepseek 实验诊断报告：全部 8 conditions 完成 (500/500)，Verdict 均 PASS
+  path: projects/phase-gated-compound-sparse/artifacts/c2_n500_deepseek/report/diagnosis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: c2_n500_deepseek
+  skill: ''
+  created_at: '2026-05-15T07:51:56.214141+00:00'
+  tags:
+  - diagnosis
+  - c2
+  - deepseek
+  - n500
+- id: art_20260515_029b96
+  name: n500_statistics_summary
+  type: report
+  description: 'Complete n=500 statistical analysis: Wilcoxon tests, bootstrap CIs,
+    robust d_z, cross-model comparisons, dose-response monotonicity for DeepSeek and
+    Qwen'
+  path: projects/phase-gated-compound-sparse/artifacts/c2_n500_deepseek/report/n500_statistics_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: c2_n500_deepseek
+  skill: ''
+  created_at: '2026-05-15T07:58:56.694038+00:00'
+  tags:
+  - n500
+  - statistics
+  - wilcoxon
+  - cross-model
+  - deepseek
+  - qwen
+- id: art_20260515_5bf97e
+  name: n500_full_statistics_v2
+  type: report
+  description: PACS n=500 unified statistics v2 final — corrected filter (low+high
+    valid, n=475 Qwen), cross-model Mann-Whitney U, effect size ratio, all 16 conditions
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/n500_full_statistics.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:22:32.045967+00:00'
+  tags:
+  - statistics
+  - n500
+  - v2-final
+  - qwen-n475
+- id: art_20260515_008bca
+  name: n500_full_statistics_d066
+  type: report
+  description: 'n500 unified statistics with D066 revision: family-wise Bonferroni
+    k=4 + BH-FDR correction. DS rand s025/s030 restored to significant (**).'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/n500_full_statistics_008bca.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:42:33.152365+00:00'
+  tags:
+  - D066
+  - statistics
+  - bonferroni
+  - fdr
+- id: art_20260515_25df00
+  name: crossover_n500
+  type: data
+  description: 'SF2 Crossover n=500 verification: per-phase II comparison between
+    importance and random masking at s025. DS crossover confirmed (magnitude 2.13x,
+    both phases p<0.0001). Qwen no crossover (random uniformly worse).'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/crossover_n500.csv
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:15:15.739890+00:00'
+  tags:
+  - sf2
+  - crossover
+  - n500
+  - reviewer-response
+- id: art_20260515_41394c
+  name: crossover_all_sparsity
+  type: data
+  description: DeepSeek crossover verified across ALL 4 sparsity levels (s015-s030).
+    All p<0.001. Reversal magnitude 2.99x (s015) → 1.66x (s030). Paper can write "across
+    all sparsity levels".
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/crossover_all_sparsity.csv
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:21:55.280868+00:00'
+  tags:
+  - sf2
+  - crossover
+  - n500
+  - reviewer-response
+  - all-sparsity
+- id: art_20260515_95b922
+  name: paper_pdf_20260515_v2
+  type: paper
+  description: EMNLP 2026 论文 PDF 编译版（Phase 2+3 修复后）
+  path: projects/phase-gated-compound-sparse/artifacts/_project/paper/main_95b922.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:22:08.857852+00:00'
+  tags:
+  - paper
+  - emnlp2026
+  - round2
+- id: art_20260515_2bd145
+  name: N1a Answer-Region II Proxy Analysis Report
+  type: report
+  description: Proxy analysis showing answer-region tokens cluster in high-sparsity
+    phase with minimal compound degradation. 16/16 conditions show answer-region significantly
+    less degraded than reasoning-region (all p<1e-60).
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:03:34.503711+00:00'
+  tags:
+  - n1a
+  - rebuttal
+  - answer-region
+  - proxy-analysis
+- id: art_20260515_3a4474
+  name: N1a Answer-Region Analysis JSON
+  type: data
+  description: Full JSON results of answer-region vs reasoning-region PPL degradation
+    proxy analysis across 16 conditions
+  path: null
+  url: westd-22162:/root/autodl-tmp/pacs/analysis_output/n1a_answer_region_analysis.json
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:03:41.462230+00:00'
+  tags:
+  - n1a
+  - rebuttal
+  - answer-region
+- id: art_20260515_eb9f26
+  name: n1a_answer_region_analysis
+  type: report
+  description: N1a answer-region II proxy 分析：16/16 条件 answer-region degradation 显著低于
+    reasoning-region（p<1e-60）
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_eb9f26.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:04:13.735095+00:00'
+  tags:
+  - round7
+  - n1a
+  - answer-region
+  - review-fix
+- id: art_20260515_74a018
+  name: w5_llama_power_analysis
+  type: report
+  description: 'Post-hoc power analysis for LLaMA c3_llama experiment (n=49): per-condition
+    power, min n for 80%, interpretation for paper'
+  path: projects/phase-gated-compound-sparse/artifacts/c3_llama/report/report.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: c3_llama
+  skill: ''
+  created_at: '2026-05-15T13:07:38.445624+00:00'
+  tags:
+  - power-analysis
+  - statistics
+  - w5
+  - llama
+- id: art_20260515_35ea8e
+  name: W4 Pruned-Head Structural Specificity Report
+  type: report
+  description: Quantitative evidence that importance pruning selectively removes low-Gini
+    (diffuse attention) heads. Mann-Whitney U tests show p < 1e-28 for both DeepSeek
+    and Qwen, with rank-biserial r = 0.62–0.76.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_35ea8e.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:13:17.979695+00:00'
+  tags:
+  - w4
+  - structural-specificity
+  - pruning
+  - gini
+  - attention
+- id: art_20260515_c06b71
+  name: w5_llama_power_analysis
+  type: report
+  description: 'W5 LLaMA post-hoc power: phase-gated effect power=1.0; importance
+    vs random d=0.19-0.34 underpowered (need n=72-215)'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_c06b71.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:14:16.352806+00:00'
+  tags:
+  - round7
+  - w5
+  - llama
+  - power-analysis
+  - review-fix
+- id: art_20260515_ea3b65
+  name: w4_pruned_head_overlap
+  type: report
+  description: W4 structural specificity 分析：importance pruning 选择性移除低 Gini heads（ΔGini
+    −0.05~−0.07, p<1e-28, r=0.62-0.76）
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_ea3b65.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:15:05.616217+00:00'
+  tags:
+  - round7
+  - w4
+  - structural-specificity
+  - review-fix
+- id: art_20260515_e04652
+  name: n1a_boxed_validation
+  type: report
+  description: 'N1a supplement: validates answer-region proxy using actual \boxed{}
+    token positions. Boxed tokens are 93.2% high-sparsity (vs 82.2% for last-50-tokens
+    proxy), Δ=+11pp, 16/16 conditions significant.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_e04652.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:22:21.413485+00:00'
+  tags:
+  - n1a
+  - boxed-validation
+  - answer-region
+  - phase-distribution
+- id: art_20260515_1a8ee5
+  name: n1a_boxed_validation
+  type: report
+  description: 'N1a boxed token validation: 实际 \boxed{} 区域 93.2% 在 high-sparsity phase，last-50
+    proxy 是保守估计'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_1a8ee5.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:22:54.882014+00:00'
+  tags:
+  - round7
+  - n1a
+  - validation
+  - review-fix
+- id: art_20260515_d1ff4a
+  name: W6 Outlier Robustness Analysis
+  type: report
+  description: 'Outlier robustness analysis: winsorization at 5%/10% shows all median-based
+    core metrics are perfectly invariant. Mean/median ratio up to 97,640:1 in random
+    conditions, driven by 1-2 catastrophic perplexity events. All three core claims
+    (compound>individual, importance>random, monotonic dose-response) verified robust.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_d1ff4a.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:24:35.848859+00:00'
+  tags:
+  - w6
+  - outlier
+  - robustness
+  - winsorization
+  - reviewer-response
+- id: art_20260515_795bfc
+  name: w6_outlier_robustness_analysis
+  type: report
+  description: W6 outlier robustness：median-based 指标完全不受 winsorization 影响，三个核心 claims
+    全部 ROBUST
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_795bfc.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:25:38.775179+00:00'
+  tags:
+  - round7
+  - w6
+  - outlier-robustness
+  - review-fix
+- id: art_20260515_595715
+  name: figure1_n500
+  type: chart
+  description: 'Figure 1 updated with n=496 data: Severity gradient G vs sparsity
+    for importance and random eviction (DeepSeek)'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/figure1_n500.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:34:15.642167+00:00'
+  tags:
+  - m2
+  - figure1
+  - n500
+  - revision
+- id: art_20260515_32dfe4
+  name: m2_figure1_report
+  type: report
+  description: 'Report on Figure 1 update: data comparison between n=50 and n=496,
+    style consistency'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_32dfe4.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:34:17.874974+00:00'
+  tags:
+  - m2
+  - figure1
+  - n500
+  - revision
+- id: art_20260515_69c0c8
+  name: m2_figure1_n500
+  type: chart
+  description: Figure 1 dose-response 图更新至 n=500 数据：importance G 7.5×→79.8×, random
+    flat ~1×
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/figure1_n500_69c0c8.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:34:45.650156+00:00'
+  tags:
+  - round7
+  - figure1
+  - n500
+  - dose-response
+- id: art_20260515_507419
+  name: w6_outlier_robustness
+  type: report
+  description: 'W6 outlier robustness analysis: winsorized (5%/10%) vs original comparison
+    for all 16 conditions, outlier subject-type distribution, phase boundary analysis,
+    conclusion stability verification'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_507419.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:39:19.070891+00:00'
+  tags:
+  - w6
+  - outlier
+  - winsorization
+  - robustness
+  - reviewer-response
+- id: art_20260515_533999
+  name: w6_outlier_robustness
+  type: report
+  description: 'W6 outlier robustness: 5%/10% winsorization 后 15/16 conditions 结论不变，outlier
+    集中在最难题型 + 低 sparsity phase'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_533999.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:40:16.597349+00:00'
+  tags:
+  - round7
+  - w6
+  - outlier
+  - robustness
+  - review-fix
+- id: art_20260515_659d6a
+  name: w4_pruned_head_overlap
+  type: report
+  description: 'W4 structural specificity: importance pruning 选择性移除低 Gini heads（p<1e-28,
+    r=0.62-0.76）'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_659d6a.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:40:28.989010+00:00'
+  tags:
+  - round7
+  - w4
+  - structural-specificity
+  - gini
+  - review-fix
+- id: art_20260515_70cf21
+  name: w5_llama_power
+  type: report
+  description: 'W5 LLaMA post-hoc power: phase-gated effect power=1.0; imp vs rand
+    underpowered (d=0.19-0.34, need n=72-215)'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_70cf21.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:40:30.616499+00:00'
+  tags:
+  - round7
+  - w5
+  - llama
+  - power-analysis
+  - review-fix
+- id: art_20260515_d39bb5
+  name: GSM8K Profiling Prep Report
+  type: report
+  description: 'GSM8K n=50 profiling preparation: launch commands, dry-run results,
+    estimated runtime, differences from MATH-500'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/prep_report.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:25:37.954870+00:00'
+  tags:
+  - gsm8k
+  - profiling
+  - cross-dataset
+- id: art_20260515_3e608b
+  name: r8_citation_verification
+  type: report
+  description: Round 8 引用验证：ThinK (ICLR 2025), ForesightKV (arXiv 2026), PQQP (ICLR
+    2026), LKV 作者修复。含 BibTeX entries。
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_3e608b.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:30:09.145056+00:00'
+  tags:
+  - round8
+  - citations
+  - review-fix
+- id: art_20260515_eab818
+  name: p3_figure1_report
+  type: report
+  description: 'P3: Figure 1 data source confirmation - already updated to n=496,
+    with caption/table inconsistency noted'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_eab818.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:32:49.686886+00:00'
+  tags:
+  - figure1
+  - n496
+  - data-verification
+- id: art_20260515_9ac8c5
+  name: p3_figure1_data_source
+  type: report
+  description: P3 Figure 1 确认已用 n=496 数据，但发现 caption 仍写旧 G 值 (69×-274× vs 实际 7.5×-80×)
+    + Table 1/2 标注 n=50
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_9ac8c5.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:33:29.044809+00:00'
+  tags:
+  - round8
+  - p3
+  - figure1
+  - inconsistency
+- id: art_20260515_506681
+  name: p1_appendix_b_mult_null
+  type: report
+  description: P1 Appendix B 确认 G_×=58-241× 来自 n=50 旧数据。更新估计：G_×≈51-183×。定性结论不变。
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_506681.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T14:48:28.223079+00:00'
+  tags:
+  - round8
+  - p1
+  - appendix-b
+  - multiplicative-null
+  - data-fix
+- id: art_20260515_e7b95c
+  name: gsm8k_profiling_ds_diagnosis
+  type: report
+  description: gsm8k_profiling_ds 实验诊断报告：实验实际成功完成（50/50 problems），Cron 误报 failed
+  path: projects/phase-gated-compound-sparse/artifacts/gsm8k_profiling_ds/report/gsm8k_profiling_ds_diagnosis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: gsm8k_profiling_ds
+  skill: ''
+  created_at: '2026-05-15T16:38:58.639562+00:00'
+  tags:
+  - diagnosis
+  - gsm8k
+  - profiling
+- id: art_20260515_087e3b
+  name: GSM8K ii_low=0 Root Cause Diagnosis
+  type: report
+  description: 'Diagnosis of GSM8K DS importance ii_low=0.0 and aggregate perplexity
+    NaN. Root cause: fp16 NaN in kv_importance → degenerate KV eviction pattern that
+    doesn''t affect early-sequence low_sparsity tokens. Includes 5 bug fixes.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_087e3b.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:03:58.878700+00:00'
+  tags:
+  - gsm8k
+  - diagnosis
+  - ii_low
+  - nan
+  - fp16
+  - critical
+- id: art_20260515_239db4
+  name: GSM8K Importance Masking Bug Diagnosis Report
+  type: report
+  description: 'Diagnosis of ii_low=0.0 and NaN perplexity bugs in GSM8K profiling
+    pipeline. Identifies 4 issues: fp16 NaN overflow, compute_perplexity missing NaN
+    filter, np.mean NaN propagation, bootstrap dict unpacking crash. Per-sparsity
+    results confirmed correct.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_239db4.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:31:03.198568+00:00'
+  tags:
+  - bug-diagnosis
+  - gsm8k
+  - importance-masking
+  - nan
+  - fp16
+- id: art_20260515_2f2fd5
+  name: gsm8k_token_length_stratification
+  type: report
+  description: GSM8K token length 分层分析：假设不成立——长短题组 ratio 无显著差异（所有 p>0.27），QW 全部撞 max_tokens
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_2f2fd5.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:52:46.849436+00:00'
+  tags:
+  - round8
+  - gsm8k
+  - token-length
+  - stratification
+- id: art_20260515_237e7b
+  name: math500_token_length_contrast
+  type: report
+  description: MATH-500 token length 对照：长题 specificity 高 30-43%（p<0.013），但 GSM8K 方向相反——raw
+    length 不够，需考虑 task complexity
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_237e7b.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:53:44.997626+00:00'
+  tags:
+  - round8
+  - math500
+  - token-length
+  - cross-benchmark
+- id: art_20260515_1a72b7
+  name: appendix_b_precise_gx
+  type: report
+  description: 'Precise G_× computation from n=500 data for Appendix B Table 4. Combined
+    range: 21-64× (paper needs update from 58-241×).'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_1a72b7.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:09:57.132882+00:00'
+  tags:
+  - appendix-b
+  - multiplicative-null
+  - G_x
+  - n500
+- id: art_20260515_aca61b
+  name: appendix_b_precise_gx
+  type: report
+  description: 'Appendix B 精确 G_× (n=500): DS 21-36×, QW 44-64×, combined 21-64× (原
+    58-241× 需更新)'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/report_aca61b.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:10:30.677025+00:00'
+  tags:
+  - round8
+  - appendix-b
+  - multiplicative-g
+  - precise
+  - n500
+- id: art_20260515_c14605
+  name: gsm8k_16conditions_fixed
+  type: data
+  description: 'GSM8K 16-condition summary (fixed aggregation: NaN filter, nanmean,
+    bootstrap 10k, float64). CSV+JSON on server at analysis_output/gsm8k_16conditions_fixed.{csv,json}'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/gsm8k_16conditions_fixed_manifest.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:21:59.373918+00:00'
+  tags:
+  - gsm8k
+  - profiling
+  - aggregation
+  - fixed
+  - 16conditions
+- id: art_20260515_b677db
+  name: gsm8k_16conditions_fixed
+  type: data
+  description: GSM8K 16-condition summary table after D080 bugfix (NaN filter, nanmean,
+    bootstrap unpack, bf16). 2 models × 2 strategies × 4 sparsity levels with II,
+    gradient, bootstrap CI, p-value.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/gsm8k_16conditions_fixed_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:23:22.331277+00:00'
+  tags:
+  - gsm8k
+  - d080
+  - bugfix
+  - aggregation
+- id: art_20260515_78a17b
+  name: gsm8k_16conditions_clean
+  type: data
+  description: 'GSM8K 16-condition clean summary table (2 models × 2 strategies ×
+    4 sparsity levels) with II stats, gradient, bootstrap CI, p-values. Bug fixes
+    applied: NaN filter, nanmean, bootstrap dict unpacking, bf16.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/gsm8k_16conditions_clean.csv
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:25:19.528341+00:00'
+  tags:
+  - gsm8k
+  - aggregation
+  - D080
+  - bugfix
+- id: art_20260515_f724da
+  name: gsm8k_16conditions_median
+  type: data
+  description: GSM8K 16-condition median-based summary table (D080v2). Median + Wilcoxon
+    + bootstrap(median) B=10000. Matches MATH-500 methodology.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/gsm8k_16conditions_median_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:30:42.298863+00:00'
+  tags:
+  - gsm8k
+  - d080
+  - median
+  - final
+- id: art_20260515_d9f769
+  name: think_phase_validation
+  type: report
+  description: 'R9-C1: <think> token vs sparsity tercile phase validation. Median
+    κ=0.887, thinking_in_low=57.8%, answer_in_high=62.7%. Effective n=48 (not 192
+    — 4 sparsity conditions share identical dense-model phase boundaries).'
+  path: projects/phase-gated-compound-sparse/artifacts/think_phase_validation/report/think_phase_validation_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: think_phase_validation
+  skill: ''
+  created_at: '2026-05-15T19:36:08.604338+00:00'
+  tags:
+  - r9
+  - think_phase
+  - validation
+- id: art_20260515_8effab
+  name: r9_cpu_analysis_bundle
+  type: report
+  description: 'R9 CPU analysis: post-hoc power (9/16 powered), II_high≤0 sensitivity,
+    G× D082 confirmation, outlier case study gsm8k_189'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/r9_cpu_analysis_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:41:09.162159+00:00'
+  tags:
+  - r9
+  - power_analysis
+  - outlier
+  - sensitivity
+- id: art_20260515_5e1f12
+  name: qw_truncation_analysis
+  type: report
+  description: 'QW GSM8K 100% truncation analysis: QW lacks structured reasoning termination,
+    all 50 problems hit 2047 token limit. Includes paper footnote draft for QW rand
+    s030 INVALID.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/qw_truncation_analysis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:45:14.473219+00:00'
+  tags:
+  - r9
+  - truncation
+  - qw
+  - gsm8k
+- id: art_20260515_4691d7
+  name: novelty_evidence_summary
+  type: report
+  description: Structured novelty evidence summary integrating 5 evidence lines (C1
+    phase-CoT alignment, n=500 dose-response, GSM8K cross-benchmark, C3 LLaMA cross-architecture,
+    sf5 asymmetric robustness) with claim support ratings and paper-ready text
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/novelty_evidence_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T20:22:10.124774+00:00'
+  tags:
+  - novelty
+  - evidence
+  - phase-alignment
+  - paper
+- id: art_20260515_102a29
+  name: R9-C2 Accuracy Evaluation Summary
+  type: report
+  description: 'Compound sparsity accuracy evaluation on MATH-500: 2 models × 2 sparsity
+    levels × 50 problems. DS drops 18pp at s=0.15, 42pp at s=0.30. QW unaffected at
+    s=0.15, drops 18pp at s=0.30.'
+  path: projects/phase-gated-compound-sparse/artifacts/R9-C2/report/accuracy_eval_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: R9-C2
+  skill: ''
+  created_at: '2026-05-15T20:36:19.578094+00:00'
+  tags:
+  - accuracy
+  - math500
+  - compound-sparsity
+  - phase-gating
+- id: art_20260515_bd64df
+  name: R9-C2 Raw Results
+  type: data
+  description: Consolidated accuracy numbers from 4 evaluation conditions (DS/QW x
+    s0.15/s0.30)
+  path: projects/phase-gated-compound-sparse/artifacts/R9-C2/data/accuracy_eval_results.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: R9-C2
+  skill: ''
+  created_at: '2026-05-15T20:36:43.505497+00:00'
+  tags:
+  - accuracy
+  - math500
+  - raw-data
+- id: art_20260515_3eff31
+  name: C2 Accuracy Eval Summary - All Conditions
+  type: report
+  description: MATH-500 n=50 accuracy evaluation across 6 conditions (DS dense/s015/s030,
+    QW dense/s015/s030). Includes failure mode analysis and Chinese generation stats.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/c2_accuracy_eval_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T20:43:53.192685+00:00'
+  tags:
+  - accuracy
+  - math500
+  - c2
+  - summary
+- id: art_20260515_2eb2a2
+  name: C2 Non-Truncated Sensitivity Analysis
+  type: data
+  description: Sensitivity analysis filtering non-truncated problems (both dense and
+    sparse gen_length lt 2048) for all 4 conditions. Delta is preserved or amplified
+    after excluding truncated problems.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/accuracy_eval_non_truncated_sensitivity.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T20:49:44.004144+00:00'
+  tags:
+  - c2
+  - accuracy
+  - sensitivity
+  - truncation
+- id: art_20260515_b7ca16
+  name: acc_qw_s020_s025_analysis
+  type: report
+  description: Accuracy eval analysis for Qwen2.5-7B-Instruct importance_s020 and
+    importance_s025 on MATH-500 n=50
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/acc_qw_s020_s025_analysis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T21:04:24.521904+00:00'
+  tags:
+  - accuracy
+  - qwen
+  - compound-sparsity
+  - math500
+- id: art_20260515_12807c
+  name: round10_data_compilation
+  type: report
+  description: Round 10 审稿数据包：QW/DS accuracy dose curve、C2/C10 compound interaction、GSM8K
+    cross-task transfer 完整结果编译
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/round10_data_compilation.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:47:09.762873+00:00'
+  tags:
+  - round10
+  - review
+  - accuracy
+  - compound-interaction
+  - dose-response
+- id: art_20260516_13f1b5
+  name: exp_progress_check_20260516
+  type: report
+  description: 2026-05-16 实验进度检查：acc_ds_s015_8k_v2 (47/50), acc_ds_s030_8k_v2 (25/50),
+    GPU利用情况
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/exp_progress_check_20260516.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:24:43.139035+00:00'
+  tags:
+  - experiment
+  - progress
+  - gpu
+- id: art_20260516_f84dc2
+  name: qw_accuracy_dose_curve_summary
+  type: report
+  description: QW importance masking accuracy dose-response curve (n=100, MATH-500,
+    max_new_tokens=8192), 5-point complete
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/qw_accuracy_dose_curve_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:27:06.417392+00:00'
+  tags:
+  - accuracy
+  - dose-curve
+  - qwen
+  - summary
+- id: art_20260516_4e8596
+  name: qw_accuracy_dose_curve_final
+  type: data
+  description: 'QW (Qwen2.5-7B) accuracy dose curve across 5 sparsity levels, all
+    v2-rescored, MATH-500 n=100. File on server: /root/autodl-tmp/pacs/analysis_output/qw_accuracy_dose_curve_final.json'
+  path: null
+  url: file:///root/autodl-tmp/pacs/analysis_output/qw_accuracy_dose_curve_final.json
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:29:00.428934+00:00'
+  tags:
+  - accuracy
+  - dose-curve
+  - qwen
+  - v2-rescore
+- id: art_20260516_c8f9bc
+  name: round10_data_summary
+  type: report
+  description: Round 10 完整数据编译：PPL dose curve (n=500), QW/DS accuracy, GSM8K cross-benchmark,
+    sf5/entropy/LLaMA/pilot 补充证据，claim-evidence mapping，caveats 和 pending items
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/round10_data_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:34:10.408266+00:00'
+  tags:
+  - round10
+  - data-compilation
+  - emnlp2026
+- id: art_20260516_9f8bf8
+  name: acc_ds_s015_8k_v2_analysis
+  type: data
+  description: 'Accuracy analysis for DS-R1-7B at importance sparsity=0.015 (8k tokens,
+    50 MATH-500 problems): accuracy=48%, truncation_rate=32%, avg_tokens=3750.5'
+  path: projects/phase-gated-compound-sparse/artifacts/acc_ds_s015_8k_v2/data/acc_ds_s015_8k_v2_analysis.json
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: acc_ds_s015_8k_v2
+  skill: ''
+  created_at: '2026-05-16T00:48:25.761757+00:00'
+  tags:
+  - accuracy
+  - deepseek
+  - sparsity
+  - dose-curve
+- id: art_20260516_bd7613
+  name: QW dense batch1 8k accuracy eval
+  type: data
+  description: QW Qwen2.5-7B-Instruct dense accuracy eval on MATH problems 1-50, max_new_tokens=8192.
+    Accuracy=44% (22/50), truncation=2%.
+  path: projects/phase-gated-compound-sparse/artifacts/acc_qw_dense_b1_8k/data/acc_qw_dense_b1_8k_summary.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: acc_qw_dense_b1_8k
+  skill: ''
+  created_at: '2026-05-16T01:11:14.938072+00:00'
+  tags:
+  - accuracy
+  - qwen
+  - dense
+  - batch1
+  - 8k
+- id: art_20260516_55c6c3
+  name: QW s020 batch1 8k accuracy eval
+  type: data
+  description: QW Qwen2.5-7B-Instruct importance_s020 accuracy eval on MATH problems
+    1-50, max_new_tokens=8192. Accuracy=26% (13/50), truncation=2%.
+  path: projects/phase-gated-compound-sparse/artifacts/acc_qw_s020_b1_8k/data/acc_qw_s020_b1_8k_summary.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: acc_qw_s020_b1_8k
+  skill: ''
+  created_at: '2026-05-16T01:11:18.129080+00:00'
+  tags:
+  - accuracy
+  - qwen
+  - s020
+  - batch1
+  - 8k
+- id: art_20260516_d5ffee
+  name: QW Accuracy Dose Curve v2
+  type: report
+  description: 'Complete 5-point QW importance masking dose curve (dense→s030) with
+    corrected 8k token batch1_v2 results. Key finding: token fix had zero impact on
+    s025/s030.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/qw_accuracy_dose_curve_v2.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:33:34.821184+00:00'
+  tags:
+  - dose-curve
+  - qw
+  - accuracy
+  - importance-masking
+- id: art_20260516_c52c6a
+  name: dual_model_dose_curve_round10
+  type: report
+  description: DS + QW 双模型 5-point accuracy dose curve (max_new_tokens=8192)，含 non-truncated
+    accuracy，用于 Round 10 consistency check
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/dual_model_dose_curve_round10.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:38:21.653290+00:00'
+  tags:
+  - dose-curve
+  - accuracy
+  - round10
+  - consistency-check
+- id: art_20260516_aac8a6
+  name: dual_dose_curve_round10_summary
+  type: report
+  description: DS + QW dual 5-point accuracy dose curve summary for Round 10 consistency
+    check. DS n=50 Reviewer-verified, QW combined n=100 with unified 8k token budget.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/dual_dose_curve_round10_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:38:37.623714+00:00'
+  tags:
+  - accuracy
+  - dose-curve
+  - round10
+  - consistency-check
+- id: art_20260516_ac25a8
+  name: round10_final_data_summary
+  type: report
+  description: Round 10 最终数据编译：DS 5-point (Reviewer-verified) + QW combined n=100
+    dose curves，含单调性检查和一致性验证
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/round10_final_data_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:44:04.107262+00:00'
+  tags:
+  - round10
+  - dose-curve
+  - accuracy
+  - final
+- id: art_20260516_50346a
+  name: round10_consistency_check_summary
+  type: report
+  description: Round 10 最��一致性检查用 Data Summary：DS+QW 5-point dose curves、cross-model
+    对比、已知 caveats
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/round10_consistency_check_summary.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:45:38.357676+00:00'
+  tags:
+  - round10
+  - consistency-check
+  - final
+  - dose-curve
+- id: art_20260516_2f776c
+  name: round10_data_compilation
+  type: report
+  description: Round 10 数据编译 + 一致性检查：38实验数据总表、Claim-Evidence Matrix、consistency checklist、待解决问题、readiness
+    assessment
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/round10_data_compilation_2f776c.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:46:30.070267+00:00'
+  tags:
+  - round10
+  - consistency-check
+  - data-compilation
+  - pre-submission
+- id: art_20260516_f78c80
+  name: dose_curve_figure_data
+  type: data
+  description: 'Complete structured data for dose curve figures: DS and QW accuracy
+    dose curves (5-point, 0-30% sparsity) plus II dose curves (bf16 n=50 and n=500
+    large-scale validation for both models). All values from registry.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/dose_curve_figure_data.json
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:57:53.260249+00:00'
+  tags:
+  - figure
+  - dose-curve
+  - accuracy
+  - interaction-index
+  - ds
+  - qw
+- id: art_20260516_ea194d
+  name: think-phase-kappa-validation
+  type: report
+  description: Cohen's κ validation of sparsity-based phase segmentation vs DeepSeek
+    think boundaries. κ=0.88, AUC=0.98.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/report/think_phase_validation_report.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:42:46.811229+00:00'
+  tags:
+  - validation
+  - cohen-kappa
+  - think-token
+  - reviewer-response
+- id: art_20260516_20eb3c
+  name: c9_gsm8k_power_analysis
+  type: data
+  description: GSM8K post-hoc power analysis (Cohen d, one-sample t-test) for all
+    16 conditions. Min detectable d=0.4042 for n=50. All 8 random eviction conditions
+    underpowered under parametric assumptions (max power=0.21). Only QW importance
+    s025/s030 adequately powered.
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/results_c9_power.json
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:45:58.069545+00:00'
+  tags:
+  - power-analysis
+  - gsm8k
+  - reviewer-response
+  - c9
+- id: art_20260516_f4076a
+  name: c9_gsm8k_power_analysis_script
+  type: intermediate
+  description: Python script for GSM8K random eviction post-hoc power analysis (MDES,
+    required n, retrospective power)
+  path: projects/phase-gated-compound-sparse/artifacts/_project/intermediate/c9_gsm8k_power_analysis.py
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:51:02.349299+00:00'
+  tags:
+  - c9
+  - power-analysis
+  - gsm8k
+  - statistics
+- id: art_20260516_3f7931
+  name: c9_gsm8k_power_analysis_results
+  type: data
+  description: 'JSON results: MDES, required n, retrospective power for GSM8K random
+    eviction n=50 pilot'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/data/c9_gsm8k_power_analysis.json
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:51:04.246980+00:00'
+  tags:
+  - c9
+  - power-analysis
+  - gsm8k
+  - statistics
+- id: art_20260516_c61f37
+  name: c4_think_validation_math500
+  type: data
+  description: 'Think phase validation: DS kappa=0.880, thinking_in_low=0.816, answer_in_high=0.655.
+    QW no think tags. MATH-500 temporal ordering 100% positive DS, 98% QW.'
+  path: projects/phase-gated-compound-sparse/artifacts/c4_think_validation_math500/data/c4_think_validation_math500.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: c4_think_validation_math500
+  skill: ''
+  created_at: '2026-05-16T02:56:56.094552+00:00'
+  tags:
+  - r10-c4
+  - think-validation
+  - kappa
+  - phase-segmentation
+- id: art_20260516_0f9265
+  name: fig1_dose_response
+  type: chart
+  description: 'Fig 1: G (auxiliary metric) scatter + error bar, DS n=496, importance
+    vs random, bootstrap 95% CI'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig1_dose_response.pdf
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T02:57:32.845138+00:00'
+  tags:
+  - paper
+  - figure1
+  - dose-response
+  - scatter
+- id: art_20260516_5d2d9b
+  name: figure1_ii_scatter
+  type: chart
+  description: 'Figure 1: Interaction Index scatter plot with 95% CI error bars. 2-panel
+    (DeepSeek vs Qwen), importance vs random eviction across 4 sparsity levels. From
+    n500_unified_final.csv. PDF+PNG on server.'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/figure1_ii_scatter_meta.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:35:39.481690+00:00'
+  tags:
+  - figure1
+  - paper
+  - interaction_index
+  - n500
+- id: art_20260516_b70de1
+  name: fig1_ii_scatter_v2
+  type: chart
+  description: 'Figure 1: 2-panel II scatter+error bar (DS left, QW right). Importance
+    vs random pruning, bootstrap 95% CI. n=500 data. PDF+PNG on server at /root/autodl-tmp/pacs/figures/fig1_ii_scatter.{pdf,png}'
+  path: projects/phase-gated-compound-sparse/artifacts/_project/chart/fig1_ii_scatter_v2_manifest.txt
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:31:35.019068+00:00'
+  tags:
+  - paper
+  - figure1
+  - dose-response
+  - II
+- id: art_20260516_9860d3
+  name: gpqa_ds_importance_s015_analysis
+  type: report
+  description: 'Analysis of GPQA Diamond importance-based eviction at s=0.15: PASS
+    verdict, clear monotonic severity across 3 phase segments (75x ratio low vs high)'
+  path: projects/phase-gated-compound-sparse/artifacts/gpqa_ds_importance_s015/report/gpqa_ds_importance_s015_analysis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: gpqa_ds_importance_s015
+  skill: ''
+  created_at: '2026-05-16T20:12:29.430117+00:00'
+  tags:
+  - gpqa
+  - importance
+  - s015
+  - phase-decomposition
+  - analysis
+- id: art_20260516_2d3b67
+  name: c8_llama_n250_fixed_analysis
+  type: report
+  description: 'c8_llama_n250_fixed 分析报告: LLaMA n=250 跨架构验证，8/8 conditions PASS，compound
+    severity 单调递增+phase-dependent confirmed'
+  path: projects/phase-gated-compound-sparse/artifacts/c8_llama_n250_fixed/report/c8_llama_n250_fixed_analysis_2d3b67.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: c8_llama_n250_fixed
+  skill: ''
+  created_at: '2026-05-16T21:53:56.968341+00:00'
+  tags:
+  - c8
+  - llama
+  - cross-architecture
+  - n250
+  - interaction-index
+- id: art_20260517_cd326f
+  name: recency_s030_analysis
+  type: report
+  description: 'Analysis report for recency_s030 control experiment: confirms no phase
+    gradient under position-only eviction at s=0.30'
+  path: projects/phase-gated-compound-sparse/artifacts/recency_s030/report/analysis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: recency_s030
+  skill: ''
+  created_at: '2026-05-17T00:58:54.315274+00:00'
+  tags:
+  - control
+  - recency
+  - phase-gradient
+  - s030
+- id: art_20260517_4ad365
+  name: recency_s025_analysis
+  type: report
+  description: 'Analysis of recency-based eviction control experiment at s=0.25: shows
+    reversed phase gradient compared to importance-based, confirming PACS is attention-score-specific'
+  path: projects/phase-gated-compound-sparse/artifacts/recency_s025/report/analysis.md
+  url: null
+  project: phase-gated-compound-sparse
+  exp_id: recency_s025
+  skill: ''
+  created_at: '2026-05-17T01:00:21.992238+00:00'
+  tags:
+  - control
+  - recency
+  - phase-gradient
+  - s025

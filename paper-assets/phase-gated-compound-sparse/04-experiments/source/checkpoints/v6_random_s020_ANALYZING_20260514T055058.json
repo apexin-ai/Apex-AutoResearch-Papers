@@ -1,0 +1,68 @@
+{
+  "exp_id": "v6_random_s020",
+  "project": "phase-gated-compound-sparse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:54:17.661Z",
+    "updated_at": "2026-05-14T05:50:58.807Z",
+    "hypothesis": "v6 代码 random masking s=0.20, cuda:1. 获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s020 形成对照。",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_v6_random_s020/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T05:47:11.560Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T05:47:15.118578+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ii_high_mean": 0.855584,
+      "ii_high_median": 0.321331,
+      "ii_high_ci": [
+        -0.124133,
+        1.616883
+      ],
+      "ii_high_winsorized_mean": 0.913496,
+      "ii_mid_mean": 1.258123,
+      "ii_mid_median": 0.455663,
+      "ii_mid_ci": [
+        0.674852,
+        2.075565
+      ],
+      "ii_mid_winsorized_mean": 1.074102,
+      "ii_low_mean": 0.956933,
+      "ii_low_median": 0.591916,
+      "ii_low_ci": [
+        0.583856,
+        1.413355
+      ],
+      "ii_low_winsorized_mean": 0.96113,
+      "n_high": 511,
+      "n_mid": 391,
+      "n_low": 454,
+      "problems": 50,
+      "per_problem_ii_count": 50,
+      "gradient_mean_low_over_high": 1.118,
+      "gradient_median_low_over_high": 1.842,
+      "pass_fail": "FAIL",
+      "perplexity_high_dense": 1.1462,
+      "perplexity_high_both": 7.9749,
+      "perplexity_mid_dense": 1.1226,
+      "perplexity_mid_both": 6.8553,
+      "perplexity_low_dense": 1.1105,
+      "perplexity_low_both": 22.5868
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T05:50:58.912382+00:00",
+  "trigger": "update_registry"
+}

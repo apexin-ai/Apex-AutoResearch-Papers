@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b966873366f44acd222f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "diagnose gsm8k importance bug",
+  "task_key": "worker_diagnose_gsm8k_importance_bug_20260515T170857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gsm8k_importance_bug_20260515T170857.log",
+    "occurrence": 1,
+    "bytes": 953478,
+    "sha256": "6774cd51e2338ff767bbd74a4d5dc67f32b05690d74f26acedacb783808247e5"
+  },
+  "statistics": {
+    "messages": 211,
+    "user_turns": 1,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 74,
+      "tool_result": 74,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 196,
+      "chunks": [
+        {
+          "path": "b966873366f44acd222f-part-0001.json",
+          "message_count": 118
+        },
+        {
+          "path": "b966873366f44acd222f-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "b966873366f44acd222f-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-gsm8k-importance-bug.md"
+}

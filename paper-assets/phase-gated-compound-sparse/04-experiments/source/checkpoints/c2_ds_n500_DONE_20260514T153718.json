@@ -1,0 +1,18 @@
+{
+  "exp_id": "c2_ds_n500",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:34:03.705Z",
+    "updated_at": "2026-05-14T15:37:18.213Z",
+    "hypothesis": "C2: n=500 统计功效提升。将 DeepSeek 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500 (full MATH-500)，验证现有结论在大样本下是否稳健。预注册：若 QW s015 CI 仍跨零，改叙事为 threshold sparsity ~s020。",
+    "notes": "DUPLICATE — 勿跑。实际实验在 c2_n500_deepseek (RUNNING)。Director 指令清理。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T15:37:18.214Z"
+  },
+  "timestamp": "2026-05-14T15:37:18.410956+00:00",
+  "trigger": "update_registry"
+}

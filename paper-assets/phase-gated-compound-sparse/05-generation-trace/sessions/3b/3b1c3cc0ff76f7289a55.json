@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b1c3cc0ff76f7289a55",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_1_1778722973.md",
+  "task_key": "loop_1_1778722973",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778722973.md",
+    "occurrence": 1,
+    "bytes": 3533,
+    "sha256": "480beb7a5ff10955d5c2bc6298d14018c59667d09c12a22a112fdd7396127ba9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-14T00:17:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0~3，禁止用其他设备\n- 服务器上存在两套目录结构：flat (`/root/autodl-tmp/pacs/profiling/`) 和 package (`/root/autodl-tmp/pacs/pacs/profiling/`)，Python 加载 flat 结构。同步代码时两处都要写\n- KV eviction mask 必须是 1D 共享（所有层共用），绝不能 per-layer 独立生成再 min 合并——28 层交集存活率指数衰减到 ~0%（P0 教训）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，4× RTX PRO 6000 Blackwell 94GB（sm_100+）\n- 工作目录：`/root/autodl-tmp/pacs/`\n- Python：`/root/miniconda3/bin/python`（conda base，Python 3.12.3，PyTorch 2.10.0+cu128）\n- 模型：`/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`（符号链接，15.2GB bf16）\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（500 题，分层 5×10=50 用于 MVP）\n- W&B：有数据可查（CRON 消息说 W&B data available）\n- 活跃进程：无（mvp_ii_profiling_v2 已正常退出）\n- Cron：reconcile 返回 0 active\n\n### 3. 📊 当前状态\n- `mvp_ii_profiling_v2` 状态 ANALYZING，进程已正常退出（运行 0.54h）。**我刚 spawn 了分析 Worker**（`worker_analysis_mvp_ii_profiling_v2_20260513T211541`，status=running），该 Worker 正在 SSH 读日志和 profiling 输出，产出分析报告\n- `mvp_interaction_index_profiling`（前一次）已标记 failed（P0 KV bug 导致 II 全 NaN）\n- Worker 池：1 running（分析 Worker）\n- 4 张 GPU 全部空闲，等分析结果决定下一步\n\n**等待中**：\n- Worker 回调 `[WORKER DONE] analysis:mvp_ii_profiling_v2` → 读报告、判断 conclusion、更新 registry、汇报 Director\n\n### 4. 📋 待办\n- 分析 Worker 回调到达 → 读分析报告，判断 MVP Pass/Fail：\n  - **Pass**（任一 phase 对 II CI 不重叠或符号反转）→ conclusion=success，更新 registry+report.md，汇报 Director，立即铺 M2（per-phase grid search，4 GPU 并行）\n  - **Negative**（II 无显著跨 phase 差异）→ conclusion=negative，按 red-section 产出 Framing 调整提案，考虑 Pivot A（phase-agnostic compound vs single-axis）或 Pivot B（empirical characterization），汇报 Director 等决策\n  - **Failed**（代码错误/数据问题）→ conclusion=failed，诊断原因，修复后重跑\n- 无论结果如何，4 张 GPU 空闲 = 失职，应同步铺其他可并行工作（M4 kernel 调研实现、文献扫描等）\n\n### 5. 🎯 战略上下文\n- **截稿 EMNLP 2026 ARR 2026-05-25（距今 12 天）**，时间极紧\n- 核心假设：compound sparsity 的交互模式（super/sub-additive）随推理阶段变化（direction reversal）。MVP 用 Interaction Index 验证\n- 决策链：D001 MVP 方案 → D007 M1 结果无效（P0 bug）→ 修复后重跑（当前）\n- P1 已知问题：KDE tri-modal 假设在 DeepSeek-R1 + MATH 上不成立（82% samples KDE 失败需 fallback），token 分布严重不均（transition 90.7%）。如果 v2 仍有 phase segmentation 质量问题，可能需要替代分割方案\n- 易踩坑：不要假设 .venv 存在（用 conda base）；不要用 nohup 启动训练（必须 submit_training_job）；generate 时 output_attentions=True 会 OOM（用 forward hook）\n- M4 kernel 可与 M2 并行，应在 GPU 空闲时尽早启动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778722973.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1764628e8065160e9eb6",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code v6 analysis script",
+  "task_key": "worker_code_v6-analysis-script_20260514T043453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v6-analysis-script_20260514T043453_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "49defd346628f0a0c18a4c9a6d00bf399ff357b476c09832c91bf746c79d16b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量运行成功。\n\n**产出：**\n1. `/root/autodl-tmp/pacs/analysis/analyze_v6_complete.py` — 可运行\n2. `/root/autodl-tmp/pacs/analysis/v6_analysis_results.json` — 结果 JSON\n\n**关键发现：**\n- **Table 1**: 所有 sparsity 下 gradient 都显著 >1（p=0.0000），从 s015 的 11.5x 增长到 s030 的 41.9x，确认 importance 策略下 low-phase II 远大于 high-phase\n- **Table 3**: s025/s030 出现 crossover（high phase importance wins, mid/low phase random wins），s015/s020 random 全赢——低 sparsity 下 importance 策略反而让所有 phase 的 II 更高"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v6-analysis-script.md"
+}

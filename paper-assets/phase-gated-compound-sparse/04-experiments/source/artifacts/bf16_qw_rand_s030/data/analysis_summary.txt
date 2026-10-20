@@ -1,0 +1,44 @@
+bf16_qw_rand_s030 Analysis Summary
+====================================
+Model: Qwen2.5-7B-Instruct
+Masking: random, sparsity=0.30
+n_problems: 50, n_bootstrap: 1000, seed: 42
+
+Phase Token Stats:
+  high_sparsity: 16289 tokens, 295 segments
+  mid_sparsity:  4372 tokens, 26 segments
+  low_sparsity:  32227 tokens, 276 segments
+
+Perplexity (s=0.30):
+  Phase       | dense  | attn    | kv     | both
+  high        | 1.074  | 12.741  | 4.279  | 38.553
+  mid         | 1.132  | 2.562   | 5.944  | 25.962
+  low         | 1.152  | 370.999 | 8.838  | 317.666
+
+Interaction Index (s=0.30):
+  Phase | mean     | median | median_CI          | winsorized_mean | skewness | outliers
+  high  | 21.058   | 3.955  | [3.516, 5.605]     | 12.031          | 13.902   | 2
+  mid   | 15.567   | 6.398  | [3.377, 10.000]    | 12.069          | 3.528    | 1
+  low   | -33.242  | 8.196  | [5.766, 10.922]    | 19.803          | -11.436  | 3
+
+Pass/Fail Assessment:
+  ci_overlap_test:    PASS (high vs low CI non-overlapping)
+  sign_reversal_test: FAIL (mean sign reversal: low mean=-33.24 is negative)
+  overall:            PASS (built-in assessment)
+
+  Median trend: 3.955 → 6.398 → 8.196 (monotonically increasing ✓)
+  median_diff (low - high): +4.241
+  Note: Adjacent phase median CIs overlap (high-mid, mid-low)
+
+Comparison with other random masking experiments:
+  s=0.15: median 0.138→0.219→0.188, diff=+0.050, FAIL (sign_reversal + ci_overlap)
+  s=0.20: median 0.485→0.767→0.614, diff=+0.129, FAIL (sign_reversal + ci_overlap)
+  s=0.25: median 1.604→2.222→2.264, diff=+0.660, FAIL (ci_overlap)
+  s=0.30: median 3.955→6.398→8.196, diff=+4.241, PASS (high-low CI separated)
+
+Observation: As sparsity increases, interaction index magnitude grows and
+the phase gradient becomes more pronounced. At s=0.30 the median trend
+achieves clean monotonic ordering with non-overlapping high-low CIs,
+unlike lower sparsity levels. However, the large negative mean for
+low_sparsity (driven by 3 outliers with skewness=-11.4) suggests
+high variance and fragile results.

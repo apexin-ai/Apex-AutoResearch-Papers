@@ -1,0 +1,82 @@
+{
+  "exp_id": "bf16_qw_rand_s030",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:39:37.271Z",
+    "updated_at": "2026-05-14T08:46:56.207Z",
+    "hypothesis": "D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.30, bf16 dtype. Cross-model 配对对照。",
+    "server": "westd-22162",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T08:22:08.391Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+      "code_commit": "1b4f61aa366a9fe320f8563c8f7acb5af58d78b7",
+      "finished_at": "2026-05-14T08:42:12.294Z",
+      "training_hours": 0.33
+    },
+    "spec": {
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": null
+    },
+    "pid": "98285",
+    "log_path": "~/runs/phase-gated-compound-sparse/bf16_qw_rand_s030.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T08:42:18.234440+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030",
+    "metrics": {
+      "interaction_index": {
+        "high": {
+          "mean": 21.058,
+          "median": 3.955,
+          "ci": [
+            3.516,
+            5.605
+          ]
+        },
+        "mid": {
+          "mean": 15.567,
+          "median": 6.398,
+          "ci": [
+            3.377,
+            10
+          ]
+        },
+        "low": {
+          "mean": -33.242,
+          "median": 8.196,
+          "ci": [
+            5.766,
+            10.922
+          ]
+        }
+      },
+      "median_diff": 4.241,
+      "pass_fail": "PASS",
+      "pass_fail_detail": "median monotonic (high<mid<low), high-low CI non-overlapping; adjacent phase CIs overlap",
+      "n_problems": 50,
+      "sparsity": 0.3,
+      "masking": "random",
+      "model": "Qwen2.5-7B-Instruct"
+    },
+    "completed_at": "2026-05-14T08:46:56.207Z"
+  },
+  "timestamp": "2026-05-14T08:46:56.392811+00:00",
+  "trigger": "update_registry"
+}

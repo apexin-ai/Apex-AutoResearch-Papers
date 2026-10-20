@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3906d20bad547cdcc28c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis recency s015 per phase",
+  "task_key": "worker_analysis_recency_s015_per_phase_20260516T231612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_recency_s015_per_phase_20260516T231612_result.json",
+    "occurrence": 1,
+    "bytes": 2027,
+    "sha256": "bec825832e54e7027fc451ca78ff91163507f2ead1cceb4b94453ff3afaa7f98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report:\n\n```\n=== Recency s015 Per-Phase II (n_problems=100) ===\n\nSegment-level aggregates (from profiling_results.json):\n  high_sparsity: mean=-0.096374, median= 0.000097  CI=[-0.000609, 0.000523]\n  mid_sparsity:  mean=-72.1816,  median=-0.011459  CI=[-0.015675, -0.007871]\n  low_sparsity:  mean=-1062.64,  median=-0.013419  CI=[-0.019612, -0.007795]\n\nPer-problem level:\n  high: median=-0.007317\n  mid:  median=-0.012580\n  low:  median=-0.016682\n  low/high ratio (median): 2.28\n  low/high ratio bootstrap 95% CI: [-0.11, 6.67]  ← includes 1\n\nGradient test (median of per-problem low−high):\n  median_diff = -0.002577\n  95% CI: [-0.0238, +0.0047]  ← includes 0\n\n=== Importance s015 Per-Phase II (n=500 reference) ===\n\nSegment-level aggregates:\n  high_sparsity: mean=-0.137396, median=0.006531  CI=[0.005469, 0.007701]\n  mid_sparsity:  mean= 0.293752, median=0.081439  CI=[0.072508, 0.093776]\n  low_sparsity:  mean= 1.409599, median=0.397319  CI=[0.370514, 0.425770]\n\nPer-problem level:\n  high: median=0.002946\n  mid:  median=0.074222\n  low:  median=0.352830\n  low/high ratio (median): 119.77\n\nGradient test (median of per-problem low−high):\n  median_diff = 0.390717\n  95% CI: [0.3496, 0.4434]  ← excludes 0\n\n=== 比较 ===\n\nRecency gradient:  无. ratio=2.28, CI=[-0.11, 6.67] 包含 1; diff CI 包含 0\nImportance gradient: 有. ratio=119.8, diff CI 完全 >0\n差异倍数: importance/recency gradient = 0.391/0.003 ≈ 152×\n方向差异: importance 各相位 II 单调递增 (high→low: 0.003→0.074→0.353, 正值)\n          recency 各相位 II 全部 ≤0 (0.000→-0.011→-0.013), 无有益分配效应\n```\n\n**结论**: Recency 在 s=0.15 下无 phase gradient。所有相位 II 为负或零，CI 包含无差异假设。Importance 方法的梯度强度是 recency 的 ~152 倍，且方向正确（保留重要段获得正向交互增益）。Recency-based allocation 在该稀疏度下不优于 uniform eviction。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-recency-s015-per-phase.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c390343930e022d26b5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code qwen c4 entropy",
+  "task_key": "worker_code_qwen_c4_entropy_20260514T084555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen_c4_entropy_20260514T084555_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "fae0b0d5a190e7cff7a6d2c2387bab2fa88bbc583ed60ad67b8602ba8e22a9ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行：\n\n- **exp_id**: `qwen_c4_entropy`\n- **服务器**: westd-22162, cuda:1\n- **PID**: 100538, tmux session: `qwen_c4_entropy`\n- **模型**: Qwen2.5-7B-Instruct\n- **配置**: 与 DeepSeek 版本一致（s015-s030, importance+random, 30 problems, bf16）\n- **输出**: `/root/autodl-tmp/pacs/results/c4_attention_entropy_qwen/c4_entropy_results.json`\n- **预计耗时**: ~60-70 min（参考 DeepSeek 版 69.1 min）\n- **Registry 状态**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-c4-entropy.md"
+}

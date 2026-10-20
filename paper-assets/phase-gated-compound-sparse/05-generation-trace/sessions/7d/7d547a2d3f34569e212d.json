@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d547a2d3f34569e212d",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code bf16 nan fix",
+  "task_key": "worker_code_bf16-nan-fix_20260514T051554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bf16-nan-fix_20260514T051554_result.json",
+    "occurrence": 1,
+    "bytes": 109,
+    "sha256": "453bd91511d7606bb2468a3035b862c1e847fe3614b20504eaf52408fd33c775"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认，所有后台 timer 均已完成。验证任务已结束，无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bf16-nan-fix.md"
+}

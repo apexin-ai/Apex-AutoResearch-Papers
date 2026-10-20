@@ -1,0 +1,44 @@
+{
+  "exp_id": "acc_qw_s015_n100",
+  "project": "phase-gated-compound-sparse",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:34:38.959Z",
+    "updated_at": "2026-05-15T21:46:57.642Z",
+    "hypothesis": "补跑 QW importance_s015 problems 51-100，扩展到 n=100 以降低噪声",
+    "spec": {
+      "command": "python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s015 --num-problems 50 --start-index 50 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s015_n51_100.json",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "279145",
+      "log_path": "~/runs/phase-gated-compound-sparse/acc_qw_s015_n100.log",
+      "submitted_at": "2026-05-15T21:35:07.387Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MATH problems 51-100",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "metrics": {
+      "batch1_acc": 0.34,
+      "batch1_correct": 17,
+      "batch1_total": 50,
+      "batch2_acc": 0.38,
+      "batch2_correct": 19,
+      "batch2_total": 50,
+      "combined_acc": 0.36,
+      "combined_correct": 36,
+      "combined_total": 100
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T21:46:57.886843+00:00",
+  "trigger": "update_registry"
+}

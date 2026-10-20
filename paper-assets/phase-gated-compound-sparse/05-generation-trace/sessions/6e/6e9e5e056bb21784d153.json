@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e9e5e056bb21784d153",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code permutation test median fix",
+  "task_key": "worker_code_permutation-test-median-fix_20260514T065914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_permutation-test-median-fix_20260514T065914_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "ff839a89b7c1e89df25abe981dda86e1021929c1a989da0ab672998bbd247dc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修改了 3 个文件，commit `1b4f61a`：**\n\n1. **`interaction_index.py`** — `bootstrap_interaction_index` 现在同时 bootstrap mean 和 median，返回 dict 包含 `median_ci_low`/`median_ci_high`\n\n2. **`run_profiling.py`** — 5 处改动：\n   - `evaluate_pass_fail`：CI overlap 和 sign reversal 检测改用 median CI（向后兼容 `.get()` 回退）\n   - bootstrap caller：适配新 dict 返回值\n   - `ii_out`：输出包含 `median_ci_low`/`median_ci_high`\n   - EPS guard：`ppl_d > 1e-10`\n   - Print summary：显示 median CI\n\n3. **`metrics.py`**（先前未提交）：NaN/Inf CE loss 过滤\n\n**验证结果：** v6_random_s030_r3 verdict 从 PASS → FAIL。三个 phase 的 median II 均为正值（high=2.50, mid=2.59, low=4.04），无 sign reversal，符合 random masking 无 phase 区分的预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-permutation-test-median-fix.md"
+}

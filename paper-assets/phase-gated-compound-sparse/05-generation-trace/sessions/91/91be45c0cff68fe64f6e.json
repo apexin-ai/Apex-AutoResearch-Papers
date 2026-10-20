@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "id": "91be45c0cff68fe64f6e",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis acc ds s025 8k v2",
+  "task_key": "worker_analysis_acc_ds_s025_8k_v2_20260516T001835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_acc_ds_s025_8k_v2_20260516T001835_result.json",
+    "occurrence": 1,
+    "bytes": 1717,
+    "sha256": "7e5821b96f1767c6c2cdbe50043e05a985789dc99fcf5b8d80a0e0cda561939a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"accuracy\": 0.08,\n    \"correct\": 4,\n    \"total\": 50,\n    \"truncated_count\": 38,\n    \"truncated_rate\": 0.76,\n    \"avg_tokens\": 6343.8,\n    \"max_new_tokens\": 8192,\n    \"total_time_seconds\": 6827.8,\n    \"null_count\": 36\n  },\n  \"analysis\": \"8k 版本与 4096 版本结果完全一致：accuracy=0.08, truncation_rate=76%。增加 token 上限未带来任何改善。38/50 问题生成满 8192 tokens 仍无法得出答案（36 个 pred=null），说明 s025 稀疏度下模型进入退化循环，不是 token 预算不够的问题，而是推理能力根本性损坏。对比基线：dense 8k_v2 accuracy=0.74/trunc=16%，s020 8k_v2 accuracy=0.30/trunc=58%，s025 从 0.74→0.08 的断崖式下降表明 25% 稀疏度已超过该模型的可用阈值。\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "conclusion": "negative",
+              "metrics": {
+                "accuracy": 0.08,
+                "correct": 4,
+                "total": 50,
+                "truncated_count": 38,
+                "truncated_rate": 0.76,
+                "avg_tokens": 6343.8,
+                "max_new_tokens": 8192,
+                "total_time_seconds": 6827.8,
+                "null_count": 36
+              },
+              "analysis": "8k 版本与 4096 版本结果完全一致：accuracy=0.08, truncation_rate=76%。增加 token 上限未带来任何改善。38/50 问题生成满 8192 tokens 仍无法得出答案（36 个 pred=null），说明 s025 稀疏度下模型进入退化循环，不是 token 预算不够的问题，而是推理能力根本性损坏。对比基线：dense 8k_v2 accuracy=0.74/trunc=16%，s020 8k_v2 accuracy=0.30/trunc=58%，s025 从 0.74→0.08 的断崖式下降表明 25% 稀疏度已超过该模型的可用阈值。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-acc-ds-s025-8k-v2.md"
+}

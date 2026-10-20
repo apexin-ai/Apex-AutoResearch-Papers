@@ -1,0 +1,66 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{h2o2023}
+\citation{streamingllm2023}
+\citation{thinkv2025}
+\citation{rkv2025}
+\citation{spark2024}
+\citation{lethe2026}
+\citation{physicskv2026}
+\citation{hies2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KV Cache Compression.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compound Compression.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compression Phase Transitions.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Phase Segmentation}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Interaction Index}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Phase Gradient}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Eviction Strategies}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}GPQA Importance Masking: DeepSeek Dose-Response}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces DeepSeek GPQA Diamond: Importance-based eviction phase gradient across sparsity levels. All conditions show monotonic phase ordering and statistical significance after Bonferroni correction.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:gpqa_ds_importance}{{1}{4}{DeepSeek GPQA Diamond: Importance-based eviction phase gradient across sparsity levels. All conditions show monotonic phase ordering and statistical significance after Bonferroni correction}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-phase II statistics for DeepSeek GPQA at $s=0.20$.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:gpqa_ds_imp_s020_detail}{{2}{4}{Per-phase II statistics for DeepSeek GPQA at $s=0.20$}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}GPQA Importance Masking: Qwen Cross-Model Replication}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Qwen2.5-7B GPQA Diamond: Importance-based eviction dose-response. Phase gradient present but magnitude approximately 40\% of DeepSeek, consistent with cross-model scaling on MATH-500.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:gpqa_qw_importance}{{3}{4}{Qwen2.5-7B GPQA Diamond: Importance-based eviction dose-response. Phase gradient present but magnitude approximately 40\% of DeepSeek, consistent with cross-model scaling on MATH-500}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}GPQA Random Masking: Universal Phase Gradient}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces DeepSeek GPQA Diamond: Random eviction phase gradient. Unlike MATH-500 where random eviction produces null gradients at low sparsity, GPQA random eviction shows significant phase-dependent severity at all tested levels.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:gpqa_ds_random}{{4}{5}{DeepSeek GPQA Diamond: Random eviction phase gradient. Unlike MATH-500 where random eviction produces null gradients at low sparsity, GPQA random eviction shows significant phase-dependent severity at all tested levels}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Discriminativeness Scaling: Importance-to-Random Ratio}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-benchmark importance-to-random gradient ratio at $s=0.30$. The ratio decreases monotonically with reasoning chain length, from 16.6$\times $ on medium-chain MATH-500 to 1.47$\times $ on long-chain GPQA.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:imp_rand_ratio}{{5}{5}{Cross-benchmark importance-to-random gradient ratio at $s=0.30$. The ratio decreases monotonically with reasoning chain length, from 16.6$\times $ on medium-chain MATH-500 to 1.47$\times $ on long-chain GPQA}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces GPQA importance-to-random ratio across sparsity levels. The ratio remains stable at $\approx $1.5$\times $, indicating the discriminativeness gap is sparsity-independent on this benchmark.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:imp_rand_gpqa_sparsity}{{6}{5}{GPQA importance-to-random ratio across sparsity levels. The ratio remains stable at $\approx $1.5$\times $, indicating the discriminativeness gap is sparsity-independent on this benchmark}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Recency Control: Temporal Locality as Confound}{6}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Recency-based eviction on MATH-500: null phase gradient across all sparsity levels. All $d_z < 0.25$, no condition reaches practical significance.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:recency}{{7}{6}{Recency-based eviction on MATH-500: null phase gradient across all sparsity levels. All $d_z < 0.25$, no condition reaches practical significance}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Per-Phase Breakdown: GPQA Random at $s=0.20$}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Per-phase II for DeepSeek GPQA random eviction at $s=0.20$. The monotonic ordering is clear despite random (non-targeted) token removal.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:gpqa_rand_detail}{{8}{6}{Per-phase II for DeepSeek GPQA random eviction at $s=0.20$. The monotonic ordering is clear despite random (non-targeted) token removal}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Benchmark Strategy Specificity Summary}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-benchmark strategy specificity summary (DeepSeek, all at $s=0.30$ except where noted). Strategy specificity (imp/rand ratio) decreases with chain length. On long-chain tasks, phase-dependent severity is near-universal.}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{9}{6}{Cross-benchmark strategy specificity summary (DeepSeek, all at $s=0.30$ except where noted). Strategy specificity (imp/rand ratio) decreases with chain length. On long-chain tasks, phase-dependent severity is near-universal}{table.9}{}}
+\bibstyle{plainnat}
+\bibcite{h2o2023}{{1}{2023}{{Zhang et al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Universality of phase-dependent severity.}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Discriminativeness as the scaling variable.}{7}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Recency as a non-control.}{7}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for deployment.}{7}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{streamingllm2023}{{2}{2023}{{Xiao et al.}}{{}}}
+\bibcite{thinkv2025}{{3}{2025}{{Xu et al.}}{{}}}
+\bibcite{rkv2025}{{4}{2025}{{Luo et al.}}{{}}}
+\bibcite{spark2024}{{5}{2024}{{Wang et al.}}{{}}}
+\bibcite{lethe2026}{{6}{2026}{{Chen et al.}}{{}}}
+\bibcite{physicskv2026}{{7}{2026}{{Li et al.}}{{}}}
+\bibcite{hies2025}{{8}{2025}{{Zhao et al.}}{{}}}
+\gdef \@abspage@last{8}

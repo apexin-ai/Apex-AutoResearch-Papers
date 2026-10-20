@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f77bdafd22ea4224199",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code c8 gpu0 s025",
+  "task_key": "worker_code_c8_gpu0_s025_20260516T040415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c8_gpu0_s025_20260516T040415_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "614b8e4c4fcdb47cb4c635e24bc02e852a52a29b211b77abf27c26c55282ad22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。状态：\n\n- **PID**: 315052，运行中\n- **GPU 0**: 17703 MiB / 97887 MiB (18%)，利用率 78% — 模型已加载，正在推理\n- **进度**: 2/250 问题已处理，第1题检测到 8 个 phases\n- GPU 0 还有 ~80GB 空余，但模型推理时显存会动态增长（其他 GPU 各占 73GB），最终应该也会到 ~73GB\n\n关于同时跑 importance_s030：GPU 0 当前只用了 17.7GB（模型加载阶段），但参考 GPU 2/3 满载时各 73GB，单条件就需要 ~73GB。GPU 0 总共 97GB，跑两个条件会 OOM，不建议。\n\n**预估完成时间**：GPU 2/3 上 Round 1 (s015+s020) 当前 27/250，每条件 250 题。按日志看第1题约 20 秒，250 题预计 ~1.5-2 小时完成 s025。主脚本到 Round 2 时会发现 `profiling_output_c8_llama_importance_s025/profiling_results.json` 已存在，自动 skip。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c8-gpu0-s025.md"
+}

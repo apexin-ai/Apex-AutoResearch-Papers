@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "318940f9bf10bafb9dbe",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "exp c2 qw n500 submit",
+  "task_key": "worker_exp_c2-qw-n500-submit_20260514T135120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_c2-qw-n500-submit_20260514T135120_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "f61558d9b2d806df2248f2693e1a206bf6e1beb602686d92978574b5a7384ad9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中。\n\n**状态汇总：**\n- **GPU 2** (`c2_qw_n500_gpu2`): Qwen importance × 4 sparsity (s015→s020→s025→s030)，串行执行\n- **GPU 3** (`c2_qw_n500_gpu3`): Qwen random × 4 sparsity (s015→s020→s025→s030)，串行执行\n- 模型：`/root/autodl-tmp/models/Qwen2.5-7B-Instruct`，bf16，~30GB 显存\n- 两路均已开始处理 problem 1/500\n\n**预计完成时间：** 参考 DeepSeek n=50 单 condition 约 20-30 分钟，n=500 约 10× ≈ 3-5 小时/condition，4 conditions 串行 ≈ **12-20 小时**（预计明天上午完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-c2-qw-n500-submit.md"
+}

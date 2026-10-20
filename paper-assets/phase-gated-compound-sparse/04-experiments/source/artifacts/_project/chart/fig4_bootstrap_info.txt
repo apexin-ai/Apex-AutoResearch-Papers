@@ -1,0 +1,5 @@
+PDF: /root/autodl-tmp/pacs/paper_figures/fig4_bootstrap.pdf
+Server: westd-22162
+Content: Forest plot, 4 sparsity levels, median_diff + 95% CI + p-value + Cohen's d
+Data source: rebootstrap_b10000_results.json (per-problem paired bootstrap)
+median_diff: 0.32, 1.15, 3.97, 9.94

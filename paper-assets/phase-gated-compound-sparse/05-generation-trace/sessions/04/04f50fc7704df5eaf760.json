@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "04f50fc7704df5eaf760",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis c8 llama n250 fixed",
+  "task_key": "worker_analysis_c8_llama_n250_fixed_20260516T214849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c8_llama_n250_fixed_20260516T214849_result.json",
+    "occurrence": 1,
+    "bytes": 2101661,
+    "sha256": "2d6fdbc53744f49b82cdcf301b5ac481b30043abd6dc400835865f3289e1be19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2101681,
+                "serialized_sha256": "07d37e87becfc0dd9dad5ecbffd31671772c556f5b92bf0689d43de7d974def0",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c8-llama-n250-fixed.md"
+}

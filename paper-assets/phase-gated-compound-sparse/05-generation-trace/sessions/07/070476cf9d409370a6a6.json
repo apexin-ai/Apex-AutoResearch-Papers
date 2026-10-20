@@ -1,0 +1,1732 @@
+{
+  "schema_version": "1.0",
+  "id": "070476cf9d409370a6a6",
+  "project": "phase-gated-compound-sparse",
+  "kind": "conversation",
+  "title": "paper generate all figures v2",
+  "task_key": "worker_paper_generate_all_figures_v2_20260514T123045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_generate_all_figures_v2_20260514T123045.jsonl",
+    "occurrence": 1,
+    "bytes": 92406,
+    "sha256": "19439ec685a445fd58265ab17a45a95f8a6f9ce613f515ea9606f572ecbbec4b"
+  },
+  "statistics": {
+    "messages": 85,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "tool_call": 42,
+      "tool_result": 42,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T12:36:02.771785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T12:36:02.772207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T12:36:02.772390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "find /root/autodl-tmp/pacs -name \"*.json\" -path \"*analysis*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T12:36:02.772626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T12:36:02.772767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "find /root/autodl-tmp/pacs -name \"cohens_d*\" -o -name \"experiment_summary*\" -o -name \"rebootstrap*\" -o -name \"crossover*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T12:36:02.772897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T12:36:02.773019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls -la /root/autodl-tmp/pacs/analysis_output/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T12:36:02.773181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T12:36:02.773366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls -la /root/autodl-tmp/pacs/figures/ /root/autodl-tmp/pacs/paper_figures/ /root/autodl-tmp/pacs/paper/figures/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T12:36:02.773586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T12:36:02.773779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls -la /root/autodl-tmp/pacs/analysis/generate_paper_figures.py 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T12:36:02.773990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T12:36:02.774257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "find /root/autodl-tmp/pacs -name \"*.json\" -path \"*analysis*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T12:36:02.774568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "find /root/autodl-tmp/pacs -name \"cohens_d*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T12:36:02.774806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/analysis/bootstrap_ci_results.json\\\\n/root/autodl-tmp/pacs/analysis/bootstrap_gradient_results.json\\\\n/root/autodl-tmp/pacs/analysis/bootstrap_results_full.json\\\\n/root/autodl-tmp/pacs/analysis/v6_analysis_results.json\\\\n/root/autodl-tmp/pacs/analysis/mid_sparsity_gap_raw.json\\\\n/root/autodl-tmp/pacs/analysis_output/permutation_test_results.json\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_bf16.json\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_bf16_qwen.json\\\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s020/analysis_results.json\\\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s015/analysis_results.json\\\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s025/analysis_results.json\\\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/analysis_results.json\\\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json\\\\n/root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\\\\n/root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\\\\n/root/autodl-tmp/pacs/analysis_output/rebootstrap_b10000_results.json\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000.json\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000_6point.json\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_paired_dz_6point.json\\\\n/root/autodl-tmp/pacs/analysis_bf16_ds_comparison.json\\\\n/root/autodl-tmp/pacs/results/rebootstrap_analysis/rebootstrap_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T12:36:02.775023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "find /root/autodl-tmp/pacs -name \"experiment_summary*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T12:36:02.775238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/paper/figures/cohens_d_6point.pdf\\\\n/root/autodl-tmp/pacs/paper/figures/cohens_d_6point.png\\\\n/root/autodl-tmp/pacs/figures/cohens_d_6point.pdf\\\\n/root/autodl-tmp/pacs/figures/cohens_d_6point.png\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_bf16.json\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_bf16_qwen.json\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000.json\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000_6point.json\\\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_paired_dz_6point.json\\\\n/root/autodl-tmp/pacs/paper_figures/cohens_d_6point.pdf\\\\n/root/autodl-tmp/pacs/paper_figures/cohens_d_6point.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T12:36:02.775472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "find /root/autodl-tmp/pacs -name \"rebootstrap*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T12:36:02.775675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T12:36:02.775939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "find /root/autodl-tmp/pacs -name \"crossover*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T12:36:02.776145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/analysis/rebootstrap_importance_b10000.py\\\\n/root/autodl-tmp/pacs/analysis_output/rebootstrap_b10000_results.json\\\\n/root/autodl-tmp/pacs/results/rebootstrap_analysis\\\\n/root/autodl-tmp/pacs/results/rebootstrap_analysis/rebootstrap_results.json\\\\n/root/autodl-tmp/pacs/results/rebootstrap_analysis/rebootstrap_analysis.py\\\\n/root/autodl-tmp/pacs/rebootstrap_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T12:36:02.776336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/paper/figures/crossover_6point.pdf\\\\n/root/autodl-tmp/pacs/paper/figures/crossover_6point.png\\\\n/root/autodl-tmp/pacs/analysis/crossover_summary.csv\\\\n/root/autodl-tmp/pacs/figures/crossover_6point.pdf\\\\n/root/autodl-tmp/pacs/figures/crossover_6point.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T12:36:02.776552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls -la /root/autodl-tmp/pacs/analysis_output/",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T12:36:02.776762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 64\\\\ndrwxr-xr-x  6 root root 4096 May 14 18:43 .\\\\ndrwxr-xr-x 83 root root 8192 May 14 18:53 ..\\\\ndrwxr-xr-x  2 root root   43 May 14 16:44 bf16_qw_rand_s015\\\\ndrwxr-xr-x  2 root root   43 May 14 16:24 bf16_qw_rand_s020\\\\ndrwxr-xr-x  2 root root   43 May 14 16:44 bf16_qw_rand_s025\\\\ndrwxr-xr-x  2 root root   86 May 14 16:50 bf16_qw_rand_s030\\\\n-rw-r--r--  1 root root  788 May 14 16:00 cohens_d_bf16.json\\\\n-rw-r--r--  1 root root  815 May 14 16:04 cohens_d_bf16_qwen.json\\\\n-rw-r--r--  1 root root  910 May 14 17:25 cohens_d_paired_b10000.json\\\\n-rw-r--r--  1 root root  821 May 14 17:58 cohens_d_paired_b10000_6point.json\\\\n-rw-r--r--  1 root root  936 May 14 18:43 cohens_d_paired_dz_6point.json\\\\n-rw-r--r--  1 root root 3885 May 14 17:08 cross_model_analysis.json\\\\n-rw-r--r--  1 root root 6712 May 14 16:55 experiment_summary_table.json\\\\n-rw-r--r--  1 root root 8570 May 14 15:26 permutation_test_results.json\\\\n-rw-r--r--  1 root root 2576 May 14 17:07 rebootstrap_b10000_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T12:36:02.776982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls -la /root/autodl-tmp/pacs/figures/",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T12:36:02.777221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1840\\\\ndrwxr-xr-x  2 root root   4096 May 14 17:47 .\\\\ndrwxr-xr-x 83 root root   8192 May 14 18:53 ..\\\\n-rw-r--r--  1 root root  22830 May 14 17:58 cohens_d_6point.pdf\\\\n-rw-r--r--  1 root root 100389 May 14 17:58 cohens_d_6point.png\\\\n-rw-r--r--  1 root root  21758 May 14 17:45 crossover_6point.pdf\\\\n-rw-r--r--  1 root root 249120 May 14 17:45 crossover_6point.png\\\\n-rw-r--r--  1 root root  23066 May 14 17:45 dose_response_6point.pdf\\\\n-rw-r--r--  1 root root 163076 May 14 17:45 dose_response_6point.png\\\\n-rw-r--r--  1 root root  16665 May 14 17:47 fig1_dose_response.pdf\\\\n-rw-r--r--  1 root root  84900 May 14 17:47 fig1_dose_response.png\\\\n-rw-r--r--  1 root root  23724 May 14 13:44 fig1_severity_gradient.pdf\\\\n-rw-r--r--  1 root root 140821 May 14 13:44 fig1_severity_gradient.png\\\\n-rw-r--r--  1 root root  20634 May 14 17:28 fig2_cohens_d.pdf\\\\n-rw-r--r--  1 root root 107894 May 14 17:28 fig2_cohens_d.png\\\\n-rw-r--r--  1 root root  20876 May 14 17:22 fig2_cohens_d_segment_level.pdf\\\\n-rw-r--r--  1 root root 106338 May 14 17:22 fig2_cohens_d_segment_level.png\\\\n-rw-r--r--  1 root root  30823 May 14 13:44 fig2_crossover_heatmap.pdf\\\\n-rw-r--r--  1 root root 146166 May 14 13:44 fig2_crossover_heatmap.png\\\\n-rw-r--r--  1 root root  15548 May 14 17:47 fig3_crossover.pdf\\\\n-rw-r--r--  1 root root  50051 May 14 17:47 fig3_crossover.png\\\\n-rw-r--r--  1 root root  16496 May 14 17:47 fig4_bootstrap.pdf\\\\n-rw-r--r--  1 root root  41263 May 14 17:47 fig4_bootstrap.png\\\\n-rw-r--r--  1 root root  64860 May 14 17:28 fig4_per_problem_dist.pdf\\\\n-rw-r--r--  1 root root 233094 May 14 17:28 fig4_per_problem_dist.png\\\\n-rw-r--r--  1 root root  18501 May 14 17:47 fig5_crossmodel.pdf\\\\n-rw-r--r--  1 root root  84074 May 14 17:47 fig5_crossmodel.png\\\\n-rw-r--r--  1 root root   5139 May 14 17:46 generate_all_figures.py\\\\n-rw-r--r--  1 root root   6329 May 14 17:47 generate_paper_figures.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_cod\n…[truncated 70 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T12:36:02.777466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls -la /root/autodl-tmp/pacs/paper/figures/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T12:36:02.777701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1880\\\\ndrwxr-xr-x 2 root root   4096 May 14 18:06 .\\\\ndrwxr-xr-x 3 root root   4096 May 14 20:27 ..\\\\n-rw-r--r-- 1 root root  24335 May 14 18:46 cohens_d_6point.pdf\\\\n-rw-r--r-- 1 root root  86409 May 14 18:46 cohens_d_6point.png\\\\n-rw-r--r-- 1 root root  21758 May 14 18:06 crossover_6point.pdf\\\\n-rw-r--r-- 1 root root 249120 May 14 18:06 crossover_6point.png\\\\n-rw-r--r-- 1 root root  23066 May 14 18:06 dose_response_6point.pdf\\\\n-rw-r--r-- 1 root root 163076 May 14 18:06 dose_response_6point.png\\\\n-rw-r--r-- 1 root root  17105 May 14 18:46 fig1_dose_response.pdf\\\\n-rw-r--r-- 1 root root  85197 May 14 18:46 fig1_dose_response.png\\\\n-rw-r--r-- 1 root root  23724 May 14 18:06 fig1_severity_gradient.pdf\\\\n-rw-r--r-- 1 root root 140821 May 14 18:06 fig1_severity_gradient.png\\\\n-rw-r--r-- 1 root root  20634 May 14 18:06 fig2_cohens_d.pdf\\\\n-rw-r--r-- 1 root root 107894 May 14 18:06 fig2_cohens_d.png\\\\n-rw-r--r-- 1 root root  20876 May 14 18:06 fig2_cohens_d_segment_level.pdf\\\\n-rw-r--r-- 1 root root 106338 May 14 18:06 fig2_cohens_d_segment_level.png\\\\n-rw-r--r-- 1 root root  30823 May 14 18:06 fig2_crossover_heatmap.pdf\\\\n-rw-r--r-- 1 root root 146166 May 14 18:06 fig2_crossover_heatmap.png\\\\n-rw-r--r-- 1 root root  16670 May 14 18:46 fig3_crossover.pdf\\\\n-rw-r--r-- 1 root root  55597 May 14 18:46 fig3_crossover.png\\\\n-rw-r--r-- 1 root root  19441 May 14 19:43 fig4_bootstrap.pdf\\\\n-rw-r--r-- 1 root root  77928 May 14 19:43 fig4_bootstrap.png\\\\n-rw-r--r-- 1 root root  64860 May 14 18:06 fig4_per_problem_dist.pdf\\\\n-rw-r--r-- 1 root root 233094 May 14 18:06 fig4_per_problem_dist.png\\\\n-rw-r--r-- 1 root root  24731 May 14 20:13 fig5_crossmodel.pdf\\\\n-rw-r--r-- 1 root root 106652 May 14 18:53 fig5_crossmodel.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T12:36:02.777904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls -la /root/autodl-tmp/pacs/analysis/generate_paper_figures.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T12:36:02.778092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 14024 May 14 17:28 /root/autodl-tmp/pacs/analysis/generate_paper_figures.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T12:36:02.778331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T12:36:02.778880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"4x4 experiment summary: 2 models x 2 masking methods x 4 sparsity levels\\\\\\\",\\\\n  \\\\\\\"models\\\\\\\": [\\\\n    \\\\\\\"DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"masking_methods\\\\\\\": [\\\\n    \\\\\\\"importance\\\\\\\",\\\\n    \\\\\\\"random\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"sparsity_levels\\\\\\\": [\\\\n    \\\\\\\"s015\\\\\\\",\\\\n    \\\\\\\"s020\\\\\\\",\\\\n    \\\\\\\"s025\\\\\\\",\\\\n    \\\\\\\"s030\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"experiments\\\\\\\": {\\\\n    \\\\\\\"bf16_importance_s015\\\\\\\": {\\\\n      \\\\\\\"median_high\\\\\\\": 0.005752,\\\\n      \\\\\\\"median_mid\\\\\\\": 0.080738,\\\\n      \\\\\\\"median_low\\\\\\\": 0.398291,\\\\n      \\\\\\\"median_diff\\\\\\\": 0.392539,\\\\n      \\\\\\\"pass_fail\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n      \\\\\\\"masking\\\\\\\": \\\\\\\"importance\\\\\\\",\\\\n      \\\\\\\"sparsity\\\\\\\": 0.15,\\\\n      \\\\\\\"cohens_d_imp_vs_rand\\\\\\\": 0.4416,\\\\n      \\\\\\\"cohens_d_interpretation\\\\\\\": \\\\\\\"small\\\\\\\",\\\\n      \\\\\\\"permutation_p_diff\\\\\\\": 0.0007999200079992001\\\\n    },\\\\n    \\\\\\\"bf16_importance_s020\\\\\\\": {\\\\n      \\\\\\\"median_high\\\\\\\": 0.014513,\\\\n      \\\\\\\"median_mid\\\\\\\": 0.202695,\\\\n      \\\\\\\"median_low\\\\\\\": 1.496254,\\\\n      \\\\\\\"median_diff\\\\\\\": 1.481741,\\\\n      \\\\\\\"pass_fail\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n      \\\\\\\"masking\\\\\\\": \\\\\\\"importance\\\\\\\",\\\\n      \\\\\\\"sparsity\\\\\\\": 0.2,\\\\n      \\\\\\\"cohens_d_imp_vs_rand\\\\\\\": 0.5195,\\\\n      \\\\\\\"cohens_d_interpretation\\\\\\\": \\\\\\\"medium\\\\\\\",\\\\n      \\\\\\\"permutation_p_diff\\\\\\\": 0.00019998000199980003\\\\n    },\\\\n    \\\\\\\"bf16_importance_s025\\\\\\\": {\\\\n      \\\\\\\"median_high\\\\\\\": 0.032363,\\\\n      \\\\\\\"median_mid\\\\\\\": 1.118069,\\\\n      \\\\\\\"median_low\\\\\\\": 7.195958,\\\\n      \\\\\\\"median_diff\\\\\\\": 7.163595,\\\\n      \\\\\\\"pass_fail\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n      \\\\\\\"masking\\\\\\\": \\\\\\\"importance\\\\\\\",\\\\n      \\\\\\\"sparsity\\\\\\\": 0.25,\\\\n      \\\\\\\"cohens_d_imp_vs_rand\\\\\\\": 0.6831,\\\\n   \n…[truncated 6946 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T12:36:02.779145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/analysis_output/cohens_d_paired_dz_6point.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T12:36:02.779385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"paired d_z = mean(D)/SD(D), D = ii_low - ii_high, per-problem pairing\\\\\\\",\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"CORRECTED from pooled d to true paired d_z per D048\\\\\\\",\\\\n  \\\\\\\"deepseek\\\\\\\": {\\\\n    \\\\\\\"s010\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 0.376099,\\\\n      \\\\\\\"marginal\\\\\\\": true,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"median_diff CI includes 0 at some bootstrap samples\\\\\\\"\\\\n    },\\\\n    \\\\\\\"s015\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 0.441634\\\\n    },\\\\n    \\\\\\\"s020\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 0.519506\\\\n    },\\\\n    \\\\\\\"s025\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 0.683122\\\\n    },\\\\n    \\\\\\\"s030\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 0.803134\\\\n    },\\\\n    \\\\\\\"s035\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 0.815237\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen\\\\\\\": {\\\\n    \\\\\\\"s010\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": -0.04847,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"d_z<0, importance slightly worse than random at s=0.10\\\\\\\"\\\\n    },\\\\n    \\\\\\\"s015\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 0.281115,\\\\n      \\\\\\\"marginal\\\\\\\": true,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"median_diff CI includes 0\\\\\\\"\\\\n    },\\\\n    \\\\\\\"s020\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 0.549439\\\\n    },\\\\n    \\\\\\\"s025\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 0.889407\\\\n    },\\\\n    \\\\\\\"s030\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 1.021981\\\\n    },\\\\n    \\\\\\\"s035\\\\\\\": {\\\\n      \\\\\\\"d_z\\\\\\\": 1.102406\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T12:36:02.779629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T12:36:02.779969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Cross-model analysis: concordance of compound interaction severity across DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"cross-model (shared Qwen2ForCausalLM architecture), not cross-architecture\\\\\\\",\\\\n  \\\\\\\"importance_median_diffs\\\\\\\": {\\\\n    \\\\\\\"deepseek\\\\\\\": {\\\\n      \\\\\\\"s015\\\\\\\": 0.392539,\\\\n      \\\\\\\"s020\\\\\\\": 1.481741,\\\\n      \\\\\\\"s025\\\\\\\": 7.163595,\\\\n      \\\\\\\"s030\\\\\\\": 14.586064\\\\n    },\\\\n    \\\\\\\"qwen\\\\\\\": {\\\\n      \\\\\\\"s015\\\\\\\": 0.038565,\\\\n      \\\\\\\"s020\\\\\\\": 0.234979,\\\\n      \\\\\\\"s025\\\\\\\": 1.267732,\\\\n      \\\\\\\"s030\\\\\\\": 2.943093\\\\n    }\\\\n  },\\\\n  \\\\\\\"random_median_diffs\\\\\\\": {\\\\n    \\\\\\\"deepseek\\\\\\\": {\\\\n      \\\\\\\"s015\\\\\\\": 0.009572,\\\\n      \\\\\\\"s020\\\\\\\": -0.01555,\\\\n      \\\\\\\"s025\\\\\\\": 0.544512,\\\\n      \\\\\\\"s030\\\\\\\": 1.538314\\\\n    },\\\\n    \\\\\\\"qwen\\\\\\\": {\\\\n      \\\\\\\"s015\\\\\\\": 0.04971,\\\\n      \\\\\\\"s020\\\\\\\": 0.128948,\\\\n      \\\\\\\"s025\\\\\\\": 0.659798,\\\\n      \\\\\\\"s030\\\\\\\": 2.418272\\\\n    }\\\\n  },\\\\n  \\\\\\\"cohens_d_trend\\\\\\\": {\\\\n    \\\\\\\"deepseek\\\\\\\": {\\\\n      \\\\\\\"s015\\\\\\\": 0.4416,\\\\n      \\\\\\\"s020\\\\\\\": 0.5195,\\\\n      \\\\\\\"s025\\\\\\\": 0.6831,\\\\n      \\\\\\\"s030\\\\\\\": 0.8031\\\\n    },\\\\n    \\\\\\\"qwen\\\\\\\": {\\\\n      \\\\\\\"s015\\\\\\\": 0.2811,\\\\n      \\\\\\\"s020\\\\\\\": 0.5494,\\\\n      \\\\\\\"s025\\\\\\\": 0.8894,\\\\n      \\\\\\\"s030\\\\\\\": 1.022\\\\n    },\\\\n    \\\\\\\"deepseek_monotonic\\\\\\\": {\\\\n      \\\\\\\"monotonic_increasing\\\\\\\": true,\\\\n      \\\\\\\"strictly_increasing\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen_monotonic\\\\\\\": {\\\\n      \\\\\\\"monotonic_increasing\\\\\\\": true,\\\\n      \\\\\\\"strictly_increasing\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"spearman_rho\\\\\\\": 1.0,\\\\n    \\\\\\\"spearman_p\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"importance_monotonicity\\\\\\\": {\\\\n    \\\\\\\"deepseek\\\\\\\": {\\\\n      \\\\\\\"monotonic_increasing\\\\\\\": true,\\\\n      \\\\\\\"strictly_increasing\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"qwen\\\\\\\": {\\\\n      \\\\\\\"monotonic_increasing\\\\\\\": true,\\\\n      \\\\\\\"strictly_increasing\\\\\\\": true\\\\n    }\\\\n  },\\\\n  \\\\\\\"ra\n…[truncated 3192 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T12:36:02.780210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/analysis_output/rebootstrap_b10000_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T12:36:02.780533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"bf16_ds_imp_s015\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek\\\\\\\",\\\\n    \\\\\\\"sparsity\\\\\\\": \\\\\\\"0.15\\\\\\\",\\\\n    \\\\\\\"old_n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"new_n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"n_paired\\\\\\\": 49,\\\\n    \\\\\\\"median_diff\\\\\\\": 0.323579,\\\\n    \\\\\\\"permutation_p\\\\\\\": 0.0,\\\\n    \\\\\\\"cohens_d\\\\\\\": 0.606769,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      0.198824,\\\\n      0.471566\\\\n    ],\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"bf16_ds_imp_s020\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek\\\\\\\",\\\\n    \\\\\\\"sparsity\\\\\\\": \\\\\\\"0.2\\\\\\\",\\\\n    \\\\\\\"old_n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"new_n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"n_paired\\\\\\\": 49,\\\\n    \\\\\\\"median_diff\\\\\\\": 1.15202,\\\\n    \\\\\\\"permutation_p\\\\\\\": 0.0,\\\\n    \\\\\\\"cohens_d\\\\\\\": 0.725045,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      0.655454,\\\\n      1.256001\\\\n    ],\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"bf16_ds_imp_s025\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek\\\\\\\",\\\\n    \\\\\\\"sparsity\\\\\\\": \\\\\\\"0.25\\\\\\\",\\\\n    \\\\\\\"old_n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"new_n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"n_paired\\\\\\\": 49,\\\\n    \\\\\\\"median_diff\\\\\\\": 3.968568,\\\\n    \\\\\\\"permutation_p\\\\\\\": 0.0,\\\\n    \\\\\\\"cohens_d\\\\\\\": 0.953449,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      2.829037,\\\\n      5.291756\\\\n    ],\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"bf16_ds_imp_s030\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek\\\\\\\",\\\\n    \\\\\\\"sparsity\\\\\\\": \\\\\\\"0.3\\\\\\\",\\\\n    \\\\\\\"old_n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"new_n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"n_paired\\\\\\\": 49,\\\\n    \\\\\\\"median_diff\\\\\\\": 9.943595,\\\\n    \\\\\\\"permutation_p\\\\\\\": 0.0,\\\\n    \\\\\\\"cohens_d\\\\\\\": 1.126291,\\\\n    \\\\\\\"bootstrap_ci_95\\\\\\\": [\\\\n      8.391554,\\\\n      16.652865\\\\n    ],\\\\n    \\\\\\\"wilcoxon_p\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"bf16_qw_imp_s015\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen\\\\\\\",\\\\n    \\\\\\\"sparsity\\\\\\\": \\\\\\\"0.15\\\\\\\",\\\\n    \\\\\\\"old_n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"new_n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"n_paired\\\\\\\": 46,\\\\n    \\\\\\\"me\n…[truncated 1602 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T12:36:02.780784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/figures/generate_paper_figures.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T12:36:02.781133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/analysis/crossover_summary.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T12:36:02.781521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport json\\\\nimport os\\\\n\\\\nplt.rcParams.update({\\\\n    'font.family': 'serif',\\\\n    'font.serif': ['DejaVu Serif', 'Times New Roman', 'Times'],\\\\n    'font.size': 10,\\\\n    'axes.labelsize': 12,\\\\n    'xtick.labelsize': 10,\\\\n    'ytick.labelsize': 10,\\\\n    'legend.fontsize': 9,\\\\n    'figure.dpi': 300,\\\\n    'savefig.dpi': 300,\\\\n    'savefig.bbox': 'tight',\\\\n    'savefig.pad_inches': 0.05,\\\\n})\\\\n\\\\nOUTDIR = '/root/autodl-tmp/pacs/figures'\\\\nANALYSIS = '/root/autodl-tmp/pacs/analysis'\\\\nANALYSIS_OUT = '/root/autodl-tmp/pacs/analysis_output'\\\\n\\\\nC_IMP = '#1f77b4'\\\\nC_RND = '#d62728'\\\\nC_DS  = '#1f77b4'\\\\nC_QW  = '#ff7f0e'\\\\n\\\\nFIG_W = 3.5\\\\n\\\\n# ── Fig 1: Dose-response G vs sparsity ──────────────────────────────\\\\nwith open(f'{ANALYSIS}/bootstrap_results_full.json') as f:\\\\n    brf = json.load(f)\\\\n\\\\nsparsity = [0.15, 0.20, 0.25, 0.30]\\\\nimp_G   = [brf['per_strategy']['importance'][str(s)]['gradient'] for s in ['0.15','0.2','0.25','0.3']]\\\\nimp_lo  = [brf['per_strategy']['importance'][str(s)]['gradient_95ci'][0] for s in ['0.15','0.2','0.25','0.3']]\\\\nimp_hi  = [brf['per_strategy']['importance'][str(s)]['gradient_95ci'][1] for s in ['0.15','0.2','0.25','0.3']]\\\\n\\\\nrnd_sp  = [0.15, 0.25]\\\\nrnd_G   = [brf['per_strategy']['random'][str(s)]['gradient'] for s in ['0.15','0.25']]\\\\nrnd_lo  = [brf['per_strategy']['random'][str(s)]['gradient_95ci'][0] for s in ['0.15','0.25']]\\\\nrnd_hi  = [brf['per_strategy']['random'][str(s)]['gradient_95ci'][1] for s in ['0.15','0.25']]\\\\n\\\\nfig, ax = plt.subplots(figsize=(FIG_W, 2.6))\\\\nax.fill_between(sparsity, imp_lo, imp_hi, color=C_IMP, alpha=0.15)\\\\nax.plot(sparsity, imp_G, '-o', color=C_IMP, markersize=5, linewidth=1.5, label='Importance')\\\\nax.fill_between(rnd_sp, rnd_lo, rnd_hi, color=C_RND, alpha=0.15)\\\\nax.plot(rnd_sp, rnd_G, '--s', color=C_RND, markersize=5, linewi\n…[truncated 4548 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T12:36:02.781824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"strategy,sparsity,phase,ii_mean,ii_ci_low,ii_ci_high,phase_gradient,strategy_divergence\\\\r\\\\nimportance,0.15,high,0.306418,0.256205,0.359272,,0.12976192795248215\\\\r\\\\nimportance,0.15,mid,1.274087,0.895267,1.748581,,0.6471954071566594\\\\r\\\\nimportance,0.15,low,8.786397,5.294167,12.683732,28.674545881769344,7.658619349125216\\\\r\\\\nimportance,0.2,high,0.504425,0.407639,0.616586,,0.6168789477867935\\\\r\\\\nimportance,0.2,mid,3.515492,2.285555,5.347214,,5.4663504971894605\\\\r\\\\nimportance,0.2,low,31.893747,18.739079,47.215734,63.227926847400504,40.29455790477755\\\\r\\\\nimportance,0.25,high,0.85053,0.703122,0.998957,,0.5139359031840545\\\\r\\\\nimportance,0.25,mid,9.306385,6.09198,13.302996,,0.48360184180970817\\\\r\\\\nimportance,0.25,low,96.714663,59.642308,143.188411,113.71105428379951,39.44569982662022\\\\r\\\\nimportance,0.3,high,1.183186,0.858591,1.595158,,0.12392421261842433\\\\r\\\\nimportance,0.3,mid,168.5305,36.913842,348.206752,,28.771445999452673\\\\r\\\\nimportance,0.3,low,1926.227218,179.166192,4062.571948,1628.0003465220175,110.8854388614065\\\\r\\\\nrandom,0.1,high,0.061075,-0.025262,0.132091,,\\\\r\\\\nrandom,0.1,mid,0.096992,0.023298,0.181751,,\\\\r\\\\nrandom,0.1,low,0.072374,0.00282,0.162093,1.1850020466639377,\\\\r\\\\nrandom,0.15,high,2.361386,1.026773,3.880953,,0.12976192795248215\\\\r\\\\nrandom,0.15,mid,1.968628,0.682194,3.495251,,0.6471954071566594\\\\r\\\\nrandom,0.15,low,1.147256,0.355243,2.093433,0.48584009560486935,7.658619349125216\\\\r\\\\nrandom,0.2,high,0.817705,-0.237749,1.667835,,0.6168789477867935\\\\r\\\\nrandom,0.2,mid,0.643115,-0.822571,1.680769,,5.4663504971894605\\\\r\\\\nrandom,0.2,low,0.791515,-0.454301,1.824203,0.9679713344054396,40.29455790477755\\\\r\\\\nrandom,0.25,high,1.654934,0.08251,3.458355,,0.5139359031840545\\\\r\\\\nrandom,0.25,mid,19.243899,1.456039,53.975163,,0.48360184180970817\\\\r\\\\nrandom,0.25,low,2.451843,0.819125,4.274401,1.4815352153016377,39.44569982662022\\\\r\\\\nrandom,0.3,high,9.547658,6.487478,13.479667,,0.12392421261842433\n…[truncated 262 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T12:36:02.782129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/figures/generate_all_figures.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T12:36:02.782455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import matplotlib\\\\nmatplotlib.use('Agg')\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\n\\\\nplt.rcParams.update({\\\\n    'font.family': 'DejaVu Sans',\\\\n    'font.size': 11,\\\\n    'axes.titlesize': 13,\\\\n    'axes.labelsize': 12,\\\\n    'xtick.labelsize': 10,\\\\n    'ytick.labelsize': 10,\\\\n    'legend.fontsize': 10,\\\\n    'figure.dpi': 300,\\\\n    'savefig.dpi': 300,\\\\n    'savefig.bbox': 'tight',\\\\n    'savefig.pad_inches': 0.05,\\\\n    'axes.spines.top': False,\\\\n    'axes.spines.right': False,\\\\n    'lines.linewidth': 1.8,\\\\n    'text.usetex': False,\\\\n})\\\\n\\\\n# Okabe-Ito palette\\\\nOI_BLUE    = '#0072B2'\\\\nOI_ORANGE  = '#E69F00'\\\\nOI_GREEN   = '#009E73'\\\\nOI_GRAY    = '#999999'\\\\nOI_VERMIL  = '#D55E00'\\\\nOI_SKYBLUE = '#56B4E9'\\\\nOI_YELLOW  = '#F0E442'\\\\nOI_BLACK   = '#000000'\\\\n\\\\noutdir = '/root/autodl-tmp/pacs/figures'\\\\n\\\\n# ============================================================\\\\n# Figure 1: Dose-Response — Severity Gradient vs Sparsity\\\\n# ============================================================\\\\nfig, ax = plt.subplots(figsize=(3.5, 2.5))\\\\nsparsity = [0.15, 0.20, 0.25, 0.30]\\\\nG_imp = [69, 103, 222, 274]\\\\nG_rand = [1.1, 0.9, 1.7, 1.6]\\\\n\\\\nax.semilogy(sparsity, G_imp, 'o-', color=OI_BLUE, label='Importance-based', markersize=5, zorder=3)\\\\nax.semilogy(sparsity, G_rand, 's--', color=OI_GRAY, label='Random', markersize=5, zorder=3)\\\\nax.axhline(y=1, color='#666666', linestyle=':', linewidth=1.0, alpha=0.7, zorder=1)\\\\nax.set_xlabel('Sparsity level $s$')\\\\nax.set_ylabel('Severity gradient $G$ (log scale)')\\\\nax.set_xticks(sparsity)\\\\nax.legend(frameon=False, loc='upper left')\\\\nax.set_xlim(0.13, 0.32)\\\\n\\\\nfig.savefig(f'{outdir}/fig1_dose_response.pdf')\\\\nfig.savefig(f'{outdir}/fig1_dose_response.png')\\\\nplt.close(fig)\\\\nprint('Fig 1 done')\\\\n\\\\n# ============================================================\\\\n# Figure 3: Phase-Strategy Crossover at s=0.25\\\\n# ============================\n…[truncated 3611 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T12:36:02.782707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/analysis_bf16_ds_comparison.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T12:36:02.783258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"bf16 DeepSeek-R1-Distill-Qwen-7B: importance vs random masking comparison\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek-R1-Distill-Qwen-7B (bf16)\\\\\\\",\\\\n  \\\\\\\"sparsity_levels_analyzed\\\\\\\": [\\\\n    0.15,\\\\n    0.2,\\\\n    0.25\\\\n  ],\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"s030 random still running, excluded. Problems with null II in any phase excluded from gradient/monotonicity analysis.\\\\\\\",\\\\n  \\\\\\\"per_sparsity\\\\\\\": {\\\\n    \\\\\\\"s015\\\\\\\": {\\\\n      \\\\\\\"n_problems_total\\\\\\\": 50,\\\\n      \\\\\\\"n_problems_valid_gradient\\\\\\\": 49,\\\\n      \\\\\\\"problem_ids_match\\\\\\\": true,\\\\n      \\\\\\\"importance\\\\\\\": {\\\\n        \\\\\\\"phase_stats\\\\\\\": {\\\\n          \\\\\\\"high\\\\\\\": {\\\\n            \\\\\\\"median\\\\\\\": 0.00011950714612435354,\\\\n            \\\\\\\"mean\\\\\\\": -0.013404601606581582,\\\\n            \\\\\\\"n\\\\\\\": 49\\\\n          },\\\\n          \\\\\\\"mid\\\\\\\": {\\\\n            \\\\\\\"median\\\\\\\": 0.10711428023182856,\\\\n            \\\\\\\"mean\\\\\\\": 0.30862102587006696,\\\\n            \\\\\\\"n\\\\\\\": 40\\\\n          },\\\\n          \\\\\\\"low\\\\\\\": {\\\\n            \\\\\\\"median\\\\\\\": 0.3155165357061468,\\\\n            \\\\\\\"mean\\\\\\\": 0.7255037511215768,\\\\n            \\\\\\\"n\\\\\\\": 50\\\\n          }\\\\n        },\\\\n        \\\\\\\"median_gradient_low_minus_high\\\\\\\": 0.35075673366298554,\\\\n        \\\\\\\"mean_gradient_low_minus_high\\\\\\\": 0.7568039398314075,\\\\n        \\\\\\\"gradient_std\\\\\\\": 1.696068463666058,\\\\n        \\\\\\\"monotonicity\\\\\\\": {\\\\n          \\\\\\\"strict\\\\\\\": 0.5,\\\\n          \\\\\\\"weak\\\\\\\": 0.5,\\\\n          \\\\\\\"n\\\\\\\": 40\\\\n        },\\\\n        \\\\\\\"source\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json\\\\\\\"\\\\n      },\\\\n      \\\\\\\"random\\\\\\\": {\\\\n        \\\\\\\"phase_stats\\\\\\\": {\\\\n          \\\\\\\"high\\\\\\\": {\\\\n            \\\\\\\"median\\\\\\\": 0.09307577712507298,\\\\n            \\\\\\\"mean\\\\\\\": 0.22076682349727067,\\\\n            \\\\\\\"n\\\\\\\": 49\\\\n          },\\\\n          \\\\\\\"mid\\\\\\\": {\\\\n            \\\\\\\"median\\\\\\\": 0.09669573200282755,\\\\n            \\\\\\\"mea\n…[truncated 8074 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T12:36:02.783607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "find /root/autodl-tmp/pacs -name \"*s010*\" -o -name \"*s035*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T12:36:02.783925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/logs/bf16_ds_imp_s010.log\\\\n/root/autodl-tmp/pacs/logs/bf16_ds_imp_s035.log\\\\n/root/autodl-tmp/pacs/logs/bf16_qw_imp_s010.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s035\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s035.log\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s010\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s035\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s010\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s035\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T12:36:02.784161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000_6point.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T12:36:02.784367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"per-problem Cohen d (ii_low vs ii_high), bootstrap B=10000\\\\\\\",\\\\n  \\\\\\\"deepseek\\\\\\\": {\\\\n    \\\\\\\"s010\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 0.503977,\\\\n      \\\\\\\"marginal\\\\\\\": true,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"median_diff CI includes 0, perm_p=0.15\\\\\\\"\\\\n    },\\\\n    \\\\\\\"s015\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 0.606769\\\\n    },\\\\n    \\\\\\\"s020\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 0.725045\\\\n    },\\\\n    \\\\\\\"s025\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 0.953449\\\\n    },\\\\n    \\\\\\\"s030\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 1.126291\\\\n    },\\\\n    \\\\\\\"s035\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 1.145462\\\\n    }\\\\n  },\\\\n  \\\\\\\"qwen\\\\\\\": {\\\\n    \\\\\\\"s010\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": -0.063647,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"d<0, importance slightly worse than random at s=0.10\\\\\\\"\\\\n    },\\\\n    \\\\\\\"s015\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 0.37054,\\\\n      \\\\\\\"marginal\\\\\\\": true,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"median_diff CI includes 0\\\\\\\"\\\\n    },\\\\n    \\\\\\\"s020\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 0.722424\\\\n    },\\\\n    \\\\\\\"s025\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 1.232921\\\\n    },\\\\n    \\\\\\\"s030\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 1.439424\\\\n    },\\\\n    \\\\\\\"s035\\\\\\\": {\\\\n      \\\\\\\"d\\\\\\\": 1.544366\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T12:36:02.784704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s010/",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T12:36:02.784968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T12:36:02.785213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s035/",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T12:36:02.785518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T12:36:02.785736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls /root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s010/",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T12:36:02.785934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T12:36:02.786130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls /root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s035/",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T12:36:02.786338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T12:36:02.786563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/results/rebootstrap_analysis/rebootstrap_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T12:36:02.786836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"rebootstrap_s030\\\\\\\": {\\\\n    \\\\\\\"B\\\\\\\": 10000,\\\\n    \\\\\\\"gradient_observed\\\\\\\": 3.8651057150130885,\\\\n    \\\\\\\"gradient_ci\\\\\\\": [\\\\n      -1.5378185509622657,\\\\n      13.707189569658405\\\\n    ],\\\\n    \\\\\\\"p_value\\\\\\\": 0.1113,\\\\n    \\\\\\\"verdict\\\\\\\": \\\\\\\"FAIL\\\\\\\",\\\\n    \\\\\\\"median_high\\\\\\\": 4.200556755065918,\\\\n    \\\\\\\"median_high_ci\\\\\\\": [\\\\n      2.5756384307364435,\\\\n      7.958659550915026\\\\n    ],\\\\n    \\\\\\\"median_low\\\\\\\": 8.065662470079006,\\\\n    \\\\\\\"median_low_ci\\\\\\\": [\\\\n      4.136109870580391,\\\\n      17.57113322805851\\\\n    ],\\\\n    \\\\\\\"ci_overlap\\\\\\\": true,\\\\n    \\\\\\\"importance_gradient\\\\\\\": 2.5016376437525825,\\\\n    \\\\\\\"importance_gradient_ci\\\\\\\": [\\\\n      1.7156923070862073,\\\\n      3.3602282968978208\\\\n    ]\\\\n  },\\\\n  \\\\\\\"cohens_d_table\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"sparsity\\\\\\\": \\\\\\\"0.15\\\\\\\",\\\\n      \\\\\\\"imp_gradient_median\\\\\\\": 0.0493409298413251,\\\\n      \\\\\\\"rand_gradient_median\\\\\\\": 0.001271734015509729,\\\\n      \\\\\\\"imp_grad_mean\\\\\\\": 0.08172337736548915,\\\\n      \\\\\\\"rand_grad_mean\\\\\\\": -0.2920824762666102,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.12461955417179908,\\\\n      \\\\\\\"d_ci_low\\\\\\\": -0.34945074934638887,\\\\n      \\\\\\\"d_ci_high\\\\\\\": 0.4287703272060329,\\\\n      \\\\\\\"n_imp\\\\\\\": 46,\\\\n      \\\\\\\"n_rand\\\\\\\": 46\\\\n    },\\\\n    {\\\\n      \\\\\\\"sparsity\\\\\\\": \\\\\\\"0.2\\\\\\\",\\\\n      \\\\\\\"imp_gradient_median\\\\\\\": 0.1575097584641808,\\\\n      \\\\\\\"rand_gradient_median\\\\\\\": 0.010820233946432722,\\\\n      \\\\\\\"imp_grad_mean\\\\\\\": 0.2825190860908307,\\\\n      \\\\\\\"rand_grad_mean\\\\\\\": 0.5449158382487471,\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.16406407840481133,\\\\n      \\\\\\\"d_ci_low\\\\\\\": -0.594487281752686,\\\\n      \\\\\\\"d_ci_high\\\\\\\": 0.23676103256149608,\\\\n      \\\\\\\"n_imp\\\\\\\": 46,\\\\n      \\\\\\\"n_rand\\\\\\\": 46\\\\n    },\\\\n    {\\\\n      \\\\\\\"sparsity\\\\\\\": \\\\\\\"0.25\\\\\\\",\\\\n      \\\\\\\"imp_gradient_median\\\\\\\": 1.0636534705712952,\\\\n      \\\\\\\"rand_gradient_median\\\\\\\": 1.0649003833659116,\\\\n      \\\\\\\"imp_grad_mean\\\\\\\": 1.5160499686575866,\\\\n  \n…[truncated 831 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T12:36:02.787107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "python3 -c \"\nimport json\nfor tag in ['bf16_ds_imp_s010','bf16_ds_imp_s035','bf16_qw_imp_s010','bf16_qw_imp_s035']:\n    path = f'/root/autodl-tmp/pacs/profiling_output_{tag}/profiling_results.json'\n    d = json.load(open(path))\n    problems = d.get('per_problem_results', d.get('problems', {}))\n    diffs = []\n    for pid, pdata in problems.items():\n        phases = pdata.get('phase_ii', pdata.get('phases', {}))\n        hi = phases.get('high', {}).get('median_ii', phases.get('high',{}).get('ii'))\n        lo = phases.get('low', {}).get('median_ii', phases.get('low',{}).get('ii'))\n        if hi is not None and lo is not None:\n            diffs.append(lo - hi)\n    import statistics\n    med = statistics.median(diffs) if diffs else None\n    print(f'{tag}: n={len(diffs)}, median_diff={med}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T12:36:02.787329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T12:36:02.787578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, statistics\n\nfor tag in ['bf16_ds_imp_s010','bf16_ds_imp_s035','bf16_qw_imp_s010','bf16_qw_imp_s035']:\n    path = f'/root/autodl-tmp/pacs/profiling_output_{tag}/profiling_results.json'\n    d = json.load(open(path))\n    problems = d.get('per_problem_results', d.get('problems', {}))\n    diffs = []\n    for pid, pdata in problems.items():\n        phases = pdata.get('phase_ii', pdata.get('phases', {}))\n        hi = phases.get('high', {}).get('median_ii', phases.get('high',{}).get('ii'))\n        lo = phases.get('low', {}).get('median_ii', phases.get('low',{}).get('ii'))\n        if hi is not None and lo is not None:\n            diffs.append(lo - hi)\n    med = statistics.median(diffs) if diffs else None\n    print(f'{tag}: n={len(diffs)}, median_diff={med}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T12:36:02.787786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bf16_ds_imp_s010: n=0, median_diff=None\\\\nbf16_ds_imp_s035: n=0, median_diff=None\\\\nbf16_qw_imp_s010: n=0, median_diff=None\\\\nbf16_qw_imp_s035: n=0, median_diff=None\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T12:36:02.788018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s010/profiling_results.json'))\nprint(list(d.keys())[:10])\nfor k in list(d.keys())[:3]:\n    v = d[k]\n    if isinstance(v, dict):\n        print(f'{k}: keys={list(v.keys())[:10]}')\n    else:\n        print(f'{k}: {type(v).__name__} = {str(v)[:200]}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T12:36:02.788218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"['config', 'phase_stats', 'perplexity', 'interaction_index', 'pass_fail', 'warnings', 'diagnostics', 'per_problem_ii']\\\\nconfig: keys=['model', 'sparsity_levels', 'masking_method', 'head_importance_metric', 'kv_importance_metric', 'segmentation_method', 'n_bootstrap', 'n_problems', 'seed']\\\\nphase_stats: keys=['high_sparsity', 'low_sparsity', 'mid_sparsity']\\\\nperplexity: keys=['high_sparsity', 'low_sparsity', 'mid_sparsity']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T12:36:02.788459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, statistics, numpy as np\n\nresults = {}\nfor tag in ['bf16_ds_imp_s010','bf16_ds_imp_s035','bf16_qw_imp_s010','bf16_qw_imp_s035']:\n    path = f'/root/autodl-tmp/pacs/profiling_output_{tag}/profiling_results.json'\n    d = json.load(open(path))\n    ii = d.get('per_problem_ii', d.get('interaction_index', {}))\n    \n    # Check structure\n    if tag == 'bf16_ds_imp_s010':\n        print(f'Keys in per_problem_ii: {list(ii.keys())[:5]}')\n        first_k = list(ii.keys())[0]\n        print(f'First entry: {ii[first_k]}')\n    \n    diffs = []\n    for pid, pdata in ii.items():\n        if isinstance(pdata, dict):\n            hi = pdata.get('high', pdata.get('high_sparsity'))\n            lo = pdata.get('low', pdata.get('low_sparsity'))\n            if hi is not None and lo is not None:\n                diffs.append(lo - hi)\n        elif isinstance(pdata, (list, tuple)):\n            # maybe [high, mid, low]\n            if len(pdata) >= 3:\n                diffs.append(pdata[2] - pdata[0])\n    \n    med = statistics.median(diffs) if diffs else None\n    print(f'{tag}: n={len(diffs)}, median_diff={med}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-14T12:36:02.788818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nimport json, statistics, numpy as np\\\\\\\\n\\\\\\\\nresults = {}\\\\\\\\nfor tag in [\\\\\\\\'bf16_ds_imp_s010\\\\\\\\',\\\\\\\\'bf16_ds_imp_s035\\\\\\\\',\\\\\\\\'bf16_qw_imp_s010\\\\\\\\',\\\\\\\\'bf16_qw_imp_s035\\\\\\\\']:\\\\\\\\n    path = f\\\\\\\\'/root/autodl-tmp/pacs/profiling_output_{tag}/profiling_results.json\\\\\\\\'\\\\\\\\n    d = json.load(open(path))\\\\\\\\n    ii = d.get(\\\\\\\\'per_problem_ii\\\\\\\\', d.get(\\\\\\\\'interaction_index\\\\\\\\', {}))\\\\\\\\n    \\\\\\\\n    # Check structure\\\\\\\\n    if tag == \\\\\\\\'bf16_ds_imp_s010\\\\\\\\':\\\\\\\\n        print(f\\\\\\\\'Keys in per_problem_ii: {list(ii.keys())[:5]}\\\\\\\\')\\\\\\\\n        first_k = list(ii.keys())[0]\\\\\\\\n        print(f\\\\\\\\'First entry: {ii[first_k]}\\\\\\\\')\\\\\\\\n    \\\\\\\\n    diffs = []\\\\\\\\n    for pid, pdata in ii.items():\\\\\\\\n        if isinstance(pdata, dict):\\\\\\\\n            hi = pdata.get(\\\\\\\\'high\\\\\\\\', pdata.get(\\\\\\\\'high_sparsity\\\\\\\\'))\\\\\\\\n            lo = pdata.get(\\\\\\\\'low\\\\\\\\', pdata.get(\\\\\\\\'low_sparsity\\\\\\\\'))\\\\\\\\n            if hi is not None and lo is not None:\\\\\\\\n                diffs.append(lo - hi)\\\\\\\\n        elif isinstance(pdata, (list, tuple)):\\\\\\\\n            # maybe [high, mid, low]\\\\\\\\n            if len(pdata) >= 3:\\\\\\\\n                diffs.append(pdata[2] - pdata[0])\\\\\\\\n    \\\\\\\\n    med = statistics.median(diffs) if diffs else None\\\\\\\\n    print(f\\\\\\\\'{tag}: n={len(diffs)}, median_diff={med}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nKeys in per_problem_ii: ['0.1']\\\\nFirst entry: [{'problem_idx': 0, 'problem_id': 'test/algebra/2470.json', 'ii_high': -0.21910200851553818, 'n_segments_high': 1, 'ii_mid': -0.21073140205219087, 'n_segments_mid': 2, 'ii_low': 0.14053212339825993, 'n_segments_low': 6}, {'problem_idx': 1, 'problem_id': 'test/prealgebra/192.json', 'ii_high': 0.008423781474006742, 'n_segments_high': 6, 'ii_mid': 0.14941334068339\n…[truncated 10978 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-14T12:36:02.789114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, statistics\n\nfor tag in ['bf16_ds_imp_s010','bf16_ds_imp_s035','bf16_qw_imp_s010','bf16_qw_imp_s035']:\n    path = f'/root/autodl-tmp/pacs/profiling_output_{tag}/profiling_results.json'\n    d = json.load(open(path))\n    ii_data = d['per_problem_ii']\n    sparsity_key = list(ii_data.keys())[0]\n    problems = ii_data[sparsity_key]\n    diffs = []\n    for p in problems:\n        hi = p.get('ii_high')\n        lo = p.get('ii_low')\n        if hi is not None and lo is not None:\n            diffs.append(lo - hi)\n    med = statistics.median(diffs) if diffs else None\n    hi_med = statistics.median([p['ii_high'] for p in problems if p.get('ii_high') is not None])\n    lo_med = statistics.median([p['ii_low'] for p in problems if p.get('ii_low') is not None])\n    print(f'{tag}: sparsity={sparsity_key}, n={len(diffs)}, median_diff={med:.6f}, median_high={hi_med:.6f}, median_low={lo_med:.6f}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-14T12:36:02.789356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bf16_ds_imp_s010: sparsity=0.1, n=49, median_diff=0.029360, median_high=-0.003220, median_low=0.005410\\\\nbf16_ds_imp_s035: sparsity=0.35, n=49, median_diff=20.384320, median_high=0.065551, median_low=18.891318\\\\nbf16_qw_imp_s010: sparsity=0.1, n=46, median_diff=-0.026716, median_high=-0.007124, median_low=-0.048623\\\\nbf16_qw_imp_s035: sparsity=0.35, n=46, median_diff=7.925944, median_high=0.031820, median_low=7.702356\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-14T12:36:02.789689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "find /root/autodl-tmp/pacs -name \"profiling_results.json\" -path \"*rand*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-14T12:36:02.789911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v4_random_r2/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s025/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s030/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s025/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json\\\\n/root/autodl-tmp/pacs/results_fp16_ref/profiling_output_v6_random_s025/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s025/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-14T12:36:02.790130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/analysis/bootstrap_ci_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-14T12:36:02.790261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/analysis/bootstrap_gradient_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-14T12:36:02.790478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"importance\\\\\\\": {\\\\n    \\\\\\\"s015\\\\\\\": {\\\\n      \\\\\\\"gradient\\\\\\\": 12.8187,\\\\n      \\\\\\\"ci_low\\\\\\\": 10.3755,\\\\n      \\\\\\\"ci_high\\\\\\\": 15.7738,\\\\n      \\\\\\\"n_segments\\\\\\\": 965,\\\\n      \\\\\\\"n_low\\\\\\\": 454,\\\\n      \\\\\\\"n_high\\\\\\\": 511,\\\\n      \\\\\\\"II_low_median\\\\\\\": 2.626986,\\\\n      \\\\\\\"II_high_median\\\\\\\": 0.204934\\\\n    },\\\\n    \\\\\\\"s020\\\\\\\": {\\\\n      \\\\\\\"gradient\\\\\\\": 28.6941,\\\\n      \\\\\\\"ci_low\\\\\\\": 23.2095,\\\\n      \\\\\\\"ci_high\\\\\\\": 35.3321,\\\\n      \\\\\\\"n_segments\\\\\\\": 965,\\\\n      \\\\\\\"n_low\\\\\\\": 454,\\\\n      \\\\\\\"n_high\\\\\\\": 511,\\\\n      \\\\\\\"II_low_median\\\\\\\": 9.562646,\\\\n      \\\\\\\"II_high_median\\\\\\\": 0.333262\\\\n    },\\\\n    \\\\\\\"s025\\\\\\\": {\\\\n      \\\\\\\"gradient\\\\\\\": 52.8791,\\\\n      \\\\\\\"ci_low\\\\\\\": 43.069,\\\\n      \\\\\\\"ci_high\\\\\\\": 64.6714,\\\\n      \\\\\\\"n_segments\\\\\\\": 965,\\\\n      \\\\\\\"n_low\\\\\\\": 454,\\\\n      \\\\\\\"n_high\\\\\\\": 511,\\\\n      \\\\\\\"II_low_median\\\\\\\": 30.903183,\\\\n      \\\\\\\"II_high_median\\\\\\\": 0.584412\\\\n    },\\\\n    \\\\\\\"s030\\\\\\\": {\\\\n      \\\\\\\"gradient\\\\\\\": 74.8352,\\\\n      \\\\\\\"ci_low\\\\\\\": 52.4935,\\\\n      \\\\\\\"ci_high\\\\\\\": 105.2683,\\\\n      \\\\\\\"n_segments\\\\\\\": 965,\\\\n      \\\\\\\"n_low\\\\\\\": 454,\\\\n      \\\\\\\"n_high\\\\\\\": 511,\\\\n      \\\\\\\"II_low_median\\\\\\\": 44.632448,\\\\n      \\\\\\\"II_high_median\\\\\\\": 0.59641\\\\n    }\\\\n  },\\\\n  \\\\\\\"random\\\\\\\": {\\\\n    \\\\\\\"s015\\\\\\\": {\\\\n      \\\\\\\"gradient\\\\\\\": 1.1398,\\\\n      \\\\\\\"ci_low\\\\\\\": 0.9055,\\\\n      \\\\\\\"ci_high\\\\\\\": 1.4358,\\\\n      \\\\\\\"n_segments\\\\\\\": 965,\\\\n      \\\\\\\"n_low\\\\\\\": 454,\\\\n      \\\\\\\"n_high\\\\\\\": 511,\\\\n      \\\\\\\"II_low_median\\\\\\\": 0.183077,\\\\n      \\\\\\\"II_high_median\\\\\\\": 0.160628\\\\n    },\\\\n    \\\\\\\"s025\\\\\\\": {\\\\n      \\\\\\\"gradient\\\\\\\": 0.9708,\\\\n      \\\\\\\"ci_low\\\\\\\": 0.8608,\\\\n      \\\\\\\"ci_high\\\\\\\": 1.0951,\\\\n      \\\\\\\"n_segments\\\\\\\": 965,\\\\n      \\\\\\\"n_low\\\\\\\": 454,\\\\n      \\\\\\\"n_high\\\\\\\": 511,\\\\n      \\\\\\\"II_low_median\\\\\\\": 2.914616,\\\\n      \\\\\\\"II_high_median\\\\\\\": 3.002378\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"importance_gradient_t\n…[truncated 568 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-14T12:36:02.790838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_strategy\\\\\\\": {\\\\n    \\\\\\\"importance\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"gradient\\\\\\\": 14.2728,\\\\n        \\\\\\\"gradient_95ci\\\\\\\": [\\\\n          12.1182,\\\\n          17.4163\\\\n        ],\\\\n        \\\\\\\"mann_whitney_U\\\\\\\": {\\\\n          \\\\\\\"U\\\\\\\": 215044.0,\\\\n          \\\\\\\"p\\\\\\\": 2.97805594692458e-116,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.8539\\\\n        },\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.7073,\\\\n        \\\\\\\"phase_medians\\\\\\\": {\\\\n          \\\\\\\"high\\\\\\\": 0.207262,\\\\n          \\\\\\\"mid\\\\\\\": 0.716574,\\\\n          \\\\\\\"low\\\\\\\": 2.958196\\\\n        },\\\\n        \\\\\\\"phase_means\\\\\\\": {\\\\n          \\\\\\\"high\\\\\\\": 0.311765,\\\\n          \\\\\\\"mid\\\\\\\": 1.3052,\\\\n          \\\\\\\"low\\\\\\\": 8.851299\\\\n        },\\\\n        \\\\\\\"pairwise_tests\\\\\\\": {\\\\n          \\\\\\\"low vs mid\\\\\\\": {\\\\n            \\\\\\\"U\\\\\\\": 136674.0,\\\\n            \\\\\\\"p\\\\\\\": 8.498644032990309e-42,\\\\n            \\\\\\\"r_rb\\\\\\\": -0.5399\\\\n          },\\\\n          \\\\\\\"mid vs high\\\\\\\": {\\\\n            \\\\\\\"U\\\\\\\": 163644.0,\\\\n            \\\\\\\"p\\\\\\\": 1.0024964735227983e-60,\\\\n            \\\\\\\"r_rb\\\\\\\": -0.6381\\\\n          },\\\\n          \\\\\\\"low vs high\\\\\\\": {\\\\n            \\\\\\\"U\\\\\\\": 215044.0,\\\\n            \\\\\\\"p\\\\\\\": 2.97805594692458e-116,\\\\n            \\\\\\\"r_rb\\\\\\\": -0.8539\\\\n          }\\\\n        },\\\\n        \\\\\\\"pairwise_cohens_d\\\\\\\": {\\\\n          \\\\\\\"low vs mid\\\\\\\": 0.5823,\\\\n          \\\\\\\"mid vs high\\\\\\\": 0.812,\\\\n          \\\\\\\"low vs high\\\\\\\": 0.7073\\\\n        }\\\\n      },\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"gradient\\\\\\\": 30.8526,\\\\n        \\\\\\\"gradient_95ci\\\\\\\": [\\\\n          25.2851,\\\\n          41.2825\\\\n        ],\\\\n        \\\\\\\"mann_whitney_U\\\\\\\": {\\\\n          \\\\\\\"U\\\\\\\": 226011.0,\\\\n          \\\\\\\"p\\\\\\\": 5.884220586697296e-143,\\\\n          \\\\\\\"r_rb\\\\\\\": -0.9484\\\\n        },\\\\n        \\\\\\\"cohens_d\\\\\\\": 0.4916,\\\\n        \\\\\\\"phase_medians\\\\\\\": {\\\\n          \\\\\\\"high\\\\\\\": 0.352513,\\\\n          \\\\\\\"mid\\\\\\\": 1.51018,\\\\n          \\\\\\\"low\\\\\\\": 10.875949\\\\n        }\n…[truncated 7773 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-14T12:36:02.791091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /root/autodl-tmp/pacs/figures/generate_paper_figures_v2.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.colors as mcolors\nimport numpy as np\nimport json\nimport os\nimport shutil\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Times New Roman', 'Times'],\n    'font.size': 10,\n    'axes.labelsize': 11,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n})\n\nOUTDIR = '/root/autodl-tmp/pacs/figures'\nPAPER_OUTDIR = '/root/autodl-tmp/pacs/paper/figures'\nANALYSIS_OUT = '/root/autodl-tmp/pacs/analysis_output'\n\nos.makedirs(PAPER_OUTDIR, exist_ok=True)\n\nC_IMP = '#0072B2'\nC_RND = '#D55E00'\nC_DS  = '#0072B2'\nC_QW  = '#E69F00'\n\nCOL_W = 3.25\nTEXT_W = 6.75\n\n# ── Load data ────────────────────────────────────────────────────\nwith open(f'{ANALYSIS_OUT}/experiment_summary_table.json') as f:\n    exp_table = json.load(f)\nwith open(f'{ANALYSIS_OUT}/cohens_d_paired_dz_6point.json') as f:\n    dz_data = json.load(f)\nwith open(f'{ANALYSIS_OUT}/cross_model_analysis.json') as f:\n    cross_model = json.load(f)\nwith open(f'{ANALYSIS_OUT}/rebootstrap_b10000_results.json') as f:\n    reboot = json.load(f)\n\n# Extract s010/s035 median_diffs from profiling data\nimport statistics\ndef get_median_diff(tag):\n    path = f'/root/autodl-tmp/pacs/profiling_output_{tag}/profiling_results.json'\n    d = json.load(open(path))\n    ii_data = d['per_problem_ii']\n    sparsity_key = list(ii_data.keys())[0]\n    problems = ii_data[sparsity_key]\n    diffs = []\n    for p in problems:\n        hi = p.get('ii_high')\n        lo = p.get('ii_low')\n        if hi is not None and lo is not None:\n            diffs.append(lo - hi)\n    return statistics.median(diffs) if diffs else 0.0\n\nds_s010_diff = get_median_diff('bf16_ds_imp_s010')\nds_s035_diff = get_median_diff('bf16_ds_imp_s035')\nqw_s010_diff = get_median_diff('bf16_qw_imp_s010')\nqw_s035_diff = get_median_diff('bf16_qw_imp_s035')\n\ndef save_fig(fig, name):\n    for d in [OUTDIR, PAPER_OUTDIR]:\n        fig.savefig(f'{d}/{name}.pdf', format='pdf', bbox_inches='tight')\n        fig.savefig(f'{d}/{name}.png', format='png', bbox_inches='tight')\n    plt.close(fig)\n    print(f'  {name}: saved')\n\n# ================================================================\n# Fig 1: Dose-Response — Paired Median Severity Difference\n# ================================================================\nprint('Generating fig1_dose_response...')\n\nsparsity_6 = [0.10, 0.15, 0.20, 0.25, 0.30, 0.35]\nsparsity_4 = [0.15, 0.20, 0.25, 0.30]\n\n# DeepSeek importance (6 points)\nds_imp_delta = [\n    ds_s010_diff,\n    exp_table['experiments']['bf16_importance_s015']['median_diff'],\n    exp_table['experiments']['bf16_importance_s020']['median_diff'],\n    exp_table['experiments']['bf16_importance_s025']['median_diff'],\n    exp_table['experiments']['bf16_importance_s030']['median_diff'],\n    ds_s035_diff,\n]\n\n# DeepSeek random (4 points)\nds_rnd_delta = [\n    exp_table['experiments']['bf16_ds_rand_s015']['median_diff'],\n    exp_table['experiments']['bf16_ds_rand_s020']['median_diff'],\n    exp_table['experiments']['bf16_ds_rand_s025']['median_diff'],\n    exp_table['experiments']['bf16_ds_rand_s030']['median_diff'],\n]\n\n# Qwen importance (6 points)\nqw_imp_delta = [\n    qw_s010_diff,\n    exp_table['experiments']['bf16_qw_imp_s015']['median_diff'],\n    exp_table['experiments']['bf16_qw_imp_s020']['median_diff'],\n    exp_table['experiments']['bf16_qw_imp_s025']['median_diff'],\n    exp_table['experiments']['bf16_qw_imp_s030']['median_diff'],\n    qw_s035_diff,\n]\n\n# Qwen random (4 points)\nqw_rnd_delta = [\n    exp_table['experiments']['bf16_qw_rand_s015']['median_diff'],\n    exp_table['experiments']['bf16_qw_rand_s020']['median_diff'],\n    exp_table['experiments']['bf16_qw_rand_s025']['median_diff'],\n    exp_table['experiments']['bf16_qw_rand_s030']['median_diff'],\n]\n\nfig, ax = plt.subplots(figsize=(COL_W, 2.8))\n\nax.plot(sparsity_6, ds_imp_delta, '-o', color=C_DS, markersize=4.5, linewidth=1.6,\n        label='DeepSeek imp.', zorder=3)\nax.plot(sparsity_6, qw_imp_delta, '--^', color=C_QW, markersize=4.5, linewidth=1.6,\n        label='Qwen imp.', zorder=3)\nax.plot(sparsity_4, ds_rnd_delta, '-s', color=C_RND, markersize=3.5, linewidth=1.0,\n        alpha=0.7, label='DeepSeek rand.', zorder=2)\nax.plot(sparsity_4, qw_rnd_delta, '--d', color='#999999', markersize=3.5, linewidth=1.0,\n        alpha=0.7, label='Qwen rand.', zorder=2)\n\nax.set_yscale('symlog', linthresh=0.5)\nax.axhline(y=0, color='gray', linewidth=0.5, linestyle=':', alpha=0.5)\nax.set_xlabel('Sparsity level $s$')\nax.set_ylabel('Paired median severity diff. $\\\\widetilde{\\\\Delta}$')\nax.set_xticks(sparsity_6)\nax.set_xticklabels(['0.10','0.15','0.20','0.25','0.30','0.35'])\nax.legend(frameon=False, loc='upper left', fontsize=8, ncol=1)\nax.set_xlim(0.08, 0.37)\n\nsave_fig(fig, 'fig1_dose_response')\n\n# ================================================================\n# Fig 3: Crossover Heatmap\n# ================================================================\nprint('Generating fig3_crossover...')\n\nphases = ['high', 'mid', 'low']\nphase_labels = ['High', 'Mid', 'Low']\nskeys_4 = ['s015', 's020', 's025', 's030']\nslabels_4 = ['0.15', '0.20', '0.25', '0.30']\n\n# Build heatmap matrix: rows=phases, cols=imp_s015..s030, rand_s015..s030\nexp = exp_table['experiments']\nimp_map = {\n    's015': 'bf16_importance_s015', 's020': 'bf16_importance_s020',\n    's025': 'bf16_importance_s025', 's030': 'bf16_importance_s030',\n}\nrnd_map = {\n    's015': 'bf16_ds_rand_s015', 's020': 'bf16_ds_rand_s020',\n    's025': 'bf16_ds_rand_s025', 's030': 'bf16_ds_rand_s030',\n}\n\ndata_matrix = np.zeros((3, 8))\ncol_labels = []\nfor j, sk in enumerate(skeys_4):\n    for pi, ph in enumerate(phases):\n        data_matrix[pi, j] = exp[imp_map[sk]][f'median_{ph}']\n        data_matrix[pi, j+4] = exp[rnd_map[sk]][f'median_{ph}']\n    col_labels.append(f'Imp\\n{slabels_4[j]}')\nfor j, sk in enumerate(skeys_4):\n    col_labels.append(f'Rand\\n{slabels_4[j]}')\n\nfig, ax = plt.subplots(figsize=(TEXT_W, 2.0))\nnorm = mcolors.SymLogNorm(linthresh=0.1, vmin=0, vmax=data_matrix.max())\nim = ax.imshow(data_matrix, cmap='YlOrRd', aspect='auto', norm=norm)\n\nax.set_xticks(range(8))\nax.set_xticklabels(col_labels, fontsize=7.5)\nax.set_yticks(range(3))\nax.set_yticklabels(phase_labels)\n\n# Annotate cells\nfor i in range(3):\n    for j in range(8):\n        val = data_matrix[i, j]\n        txt = f'{val:.2f}' if val < 10 else f'{val:.1f}'\n        text_color = 'white' if val > 3 else 'black'\n        ax.text(j, i, txt, ha='center', va='center', fontsize=7, color=text_color)\n\n# Add vertical separator\nax.axvline(x=3.5, color='white', linewidth=2)\n\n# Add group labels\nax.text(1.5, -0.8, 'Importance-based', ha='center', fontsize=9, color=C_IMP, fontweight='bold',\n        transform=ax.transData)\nax.text(5.5, -0.8, 'Random', ha='center', fontsize=9, color=C_RND, fontweight='bold',\n        transform=ax.transData)\n\ncbar = fig.colorbar(im, ax=ax, fraction=0.02, pad=0.04)\ncbar.set_label('Median II', fontsize=9)\n\nax.set_title('DeepSeek: Phase $\\\\times$ Strategy Interaction (crossover)', fontsize=10, pad=18)\n\nsave_fig(fig, 'fig3_crossover')\n\n# ================================================================\n# Fig 4: Forest Plot — Cohen's d_z with 95% CI\n# ================================================================\nprint('Generating fig4_bootstrap...')\n\nskeys_6 = ['s010', 's015', 's020', 's025', 's030', 's035']\nslabels_6 = ['$s=0.10$', '$s=0.15$', '$s=0.20$', '$s=0.25$', '$s=0.30$', '$s=0.35$']\n\nds_dz = [dz_data['deepseek'][k]['d_z'] for k in skeys_6]\nqw_dz = [dz_data['qwen'][k]['d_z'] for k in skeys_6]\nn_ds, n_qw = 49, 46\n\n# Approximate 95% CI: d_z ± 1.96 * sqrt(1/n + d^2/(2n))\ndef dz_ci(d, n):\n    se = np.sqrt(1.0/n + d**2 / (2.0*n))\n    return d - 1.96*se, d + 1.96*se\n\nds_ci = [dz_ci(d, n_ds) for d in ds_dz]\nqw_ci = [dz_ci(d, n_qw) for d in qw_dz]\n\ny_pos = np.arange(len(skeys_6))\noffset = 0.18\n\nfig, ax = plt.subplots(figsize=(COL_W, 3.0))\n\n# DeepSeek\nfor i in range(len(skeys_6)):\n    lo, hi = ds_ci[i]\n    ax.plot([lo, hi], [y_pos[i] - offset]*2, color=C_DS, linewidth=1.5, solid_capstyle='round')\n    ax.plot(ds_dz[i], y_pos[i] - offset, 'o', color=C_DS, markersize=5, zorder=5)\n\n# Qwen\nfor i in range(len(skeys_6)):\n    lo, hi = qw_ci[i]\n    ax.plot([lo, hi], [y_pos[i] + offset]*2, color=C_QW, linewidth=1.5, solid_capstyle='round')\n    ax.plot(qw_dz[i], y_pos[i] + offset, '^', color=C_QW, markersize=5, zorder=5)\n\n# Mark marginal/negative entries\nfor i, k in enumerate(skeys_6):\n    entry_ds = dz_data['deepseek'][k]\n    entry_qw = dz_data['qwen'][k]\n    if entry_ds.get('marginal'):\n        ax.plot(ds_dz[i], y_pos[i] - offset, 'o', color=C_DS, markersize=5, zorder=5,\n                markeredgecolor='red', markeredgewidth=1.0)\n    if entry_qw.get('marginal') or entry_qw.get('d_z', 0) < 0:\n        ax.plot(qw_dz[i], y_pos[i] + offset, '^', color=C_QW, markersize=5, zorder=5,\n                markeredgecolor='red', markeredgewidth=1.0)\n\nax.axvline(x=0, color='gray', linewidth=0.7, linestyle='--', alpha=0.6)\n\n# Effect size boundaries\nfor thresh, label in [(0.2, 'small'), (0.5, 'medium'), (0.8, 'large')]:\n    ax.axvline(x=thresh, color='#cccccc', linewidth=0.5, linestyle=':', alpha=0.7)\n    ax.text(thresh, len(skeys_6)-0.5, label, fontsize=6.5, ha='center', va='bottom', color='#999999')\n\nax.set_yticks(y_pos)\nax.set_yticklabels(slabels_6)\nax.set_xlabel(\"Paired Cohen's $d_z$\")\nax.invert_yaxis()\n\n# Legend\nax.plot([], [], 'o-', color=C_DS, label='DeepSeek-R1-7B')\nax.plot([], [], '^-', color=C_QW, label='Qwen2.5-7B')\nax.legend(frameon=False, loc='lower right', fontsize=8)\n\nsave_fig(fig, 'fig4_bootstrap')\n\n# ================================================================\n# Fig 5: Cross-Model Bar Comparison\n# ================================================================\nprint('Generating fig5_crossmodel...')\n\nds_diffs = [cross_model['importance_median_diffs']['deepseek'][k] for k in ['s015','s020','s025','s030']]\nqw_diffs = [cross_model['importance_median_diffs']['qwen'][k] for k in ['s015','s020','s025','s030']]\n\nx = np.arange(len(sparsity_4))\nw = 0.35\n\nfig, ax = plt.subplots(figsize=(COL_W, 2.8))\nbars_ds = ax.bar(x - w/2, ds_diffs, w, color=C_DS, label='DeepSeek-R1-7B', zorder=3, edgecolor='white', linewidth=0.5)\nbars_qw = ax.bar(x + w/2, qw_diffs, w, color=C_QW, label='Qwen2.5-7B', zorder=3, edgecolor='white', linewidth=0.5)\n\n# Annotate values on bars\nfor bar in bars_ds:\n    h = bar.get_height()\n    ax.text(bar.get_x() + bar.get_width()/2, h + 0.3, f'{h:.1f}',\n            ha='center', va='bottom', fontsize=7, color=C_DS)\nfor bar in bars_qw:\n    h = bar.get_height()\n    ax.text(bar.get_x() + bar.get_width()/2, h + 0.3, f'{h:.1f}',\n            ha='center', va='bottom', fontsize=7, color=C_QW)\n\nax.set_xlabel('Sparsity level $s$')\nax.set_ylabel('Median severity diff. $\\\\widetilde{\\\\Delta}$')\nax.set_xticks(x)\nax.set_xticklabels([f'{s:.2f}' for s in sparsity_4])\nax.legend(frameon=False, loc='upper left', fontsize=8)\n\n# Annotate Spearman rho\nrho = cross_model['cohens_d_trend']['spearman_rho']\nax.text(0.97, 0.95, f'Spearman $\\\\rho$ = {rho:.1f}',\n        transform=ax.transAxes, ha='right', va='top', fontsize=9,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor='#f0f0f0', edgecolor='#cccccc', alpha=0.8))\n\nsave_fig(fig, 'fig5_crossmodel')\n\n# ── Verify outputs ───────────────────────────────────────────────\nprint('\\n=== Verification ===')\nfor name in ['fig1_dose_response', 'fig3_crossover', 'fig4_bootstrap', 'fig5_crossmodel']:\n    for d in [OUTDIR, PAPER_OUTDIR]:\n        pdf_path = f'{d}/{name}.pdf'\n        if os.path.exists(pdf_path):\n            sz = os.path.getsize(pdf_path)\n            status = 'OK' if sz > 0 else 'EMPTY!'\n            print(f'  {pdf_path}: {sz} bytes [{status}]')\n        else:\n            print(f'  {pdf_path}: MISSING!')\n\nprint('\\nDone.')\nPYEOF\necho \"Script written successfully\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-14T12:36:02.791371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-14T12:36:02.791582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 figures/generate_paper_figures_v2.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-14T12:36:02.791737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Generating fig1_dose_response...\\\\n  fig1_dose_response: saved\\\\nGenerating fig3_crossover...\\\\n  fig3_crossover: saved\\\\nGenerating fig4_bootstrap...\\\\n  fig4_bootstrap: saved\\\\nGenerating fig5_crossmodel...\\\\n  fig5_crossmodel: saved\\\\n\\\\n=== Verification ===\\\\n  /root/autodl-tmp/pacs/figures/fig1_dose_response.pdf: 20786 bytes [OK]\\\\n  /root/autodl-tmp/pacs/paper/figures/fig1_dose_response.pdf: 20786 bytes [OK]\\\\n  /root/autodl-tmp/pacs/figures/fig3_crossover.pdf: 37090 bytes [OK]\\\\n  /root/autodl-tmp/pacs/paper/figures/fig3_crossover.pdf: 37090 bytes [OK]\\\\n  /root/autodl-tmp/pacs/figures/fig4_bootstrap.pdf: 22277 bytes [OK]\\\\n  /root/autodl-tmp/pacs/paper/figures/fig4_bootstrap.pdf: 22277 bytes [OK]\\\\n  /root/autodl-tmp/pacs/figures/fig5_crossmodel.pdf: 22115 bytes [OK]\\\\n  /root/autodl-tmp/pacs/paper/figures/fig5_crossmodel.pdf: 22115 bytes [OK]\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-14T12:36:02.791921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom PyPDF2 import PdfReader\nimport os\nfor name in ['fig1_dose_response','fig3_crossover','fig4_bootstrap','fig5_crossmodel']:\n    for d in ['/root/autodl-tmp/pacs/figures', '/root/autodl-tmp/pacs/paper/figures']:\n        path = f'{d}/{name}.pdf'\n        try:\n            r = PdfReader(path)\n            print(f'{path}: {len(r.pages)} page(s), readable')\n        except Exception as e:\n            print(f'{path}: ERROR - {e}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-14T12:36:02.792077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nfrom PyPDF2 import PdfReader\\\\\\\\nimport os\\\\\\\\nfor name in [\\\\\\\\'fig1_dose_response\\\\\\\\',\\\\\\\\'fig3_crossover\\\\\\\\',\\\\\\\\'fig4_bootstrap\\\\\\\\',\\\\\\\\'fig5_crossmodel\\\\\\\\']:\\\\\\\\n    for d in [\\\\\\\\'/root/autodl-tmp/pacs/figures\\\\\\\\', \\\\\\\\'/root/autodl-tmp/pacs/paper/figures\\\\\\\\']:\\\\\\\\n        path = f\\\\\\\\'{d}/{name}.pdf\\\\\\\\'\\\\\\\\n        try:\\\\\\\\n            r = PdfReader(path)\\\\\\\\n            print(f\\\\\\\\'{path}: {len(r.pages)} page(s), readable\\\\\\\\')\\\\\\\\n        except Exception as e:\\\\\\\\n            print(f\\\\\\\\'{path}: ERROR - {e}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'PyPDF2'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-14T12:36:02.792218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport matplotlib.backends.backend_pdf as pdf_backend\nfor name in ['fig1_dose_response','fig3_crossover','fig4_bootstrap','fig5_crossmodel']:\n    for d in ['/root/autodl-tmp/pacs/figures', '/root/autodl-tmp/pacs/paper/figures']:\n        path = f'{d}/{name}.pdf'\n        try:\n            with open(path, 'rb') as f:\n                header = f.read(5)\n                assert header == b'%PDF-', f'Not a valid PDF: {header}'\n            print(f'{path}: valid PDF header')\n        except Exception as e:\n            print(f'{path}: ERROR - {e}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-14T12:36:02.792357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/figures/fig1_dose_response.pdf: valid PDF header\\\\n/root/autodl-tmp/pacs/paper/figures/fig1_dose_response.pdf: valid PDF header\\\\n/root/autodl-tmp/pacs/figures/fig3_crossover.pdf: valid PDF header\\\\n/root/autodl-tmp/pacs/paper/figures/fig3_crossover.pdf: valid PDF header\\\\n/root/autodl-tmp/pacs/figures/fig4_bootstrap.pdf: valid PDF header\\\\n/root/autodl-tmp/pacs/paper/figures/fig4_bootstrap.pdf: valid PDF header\\\\n/root/autodl-tmp/pacs/figures/fig5_crossmodel.pdf: valid PDF header\\\\n/root/autodl-tmp/pacs/paper/figures/fig5_crossmodel.pdf: valid PDF header\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-14T12:36:02.792629+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 个文件（4 figures × 2 目录）验证通过。\n\n### 汇报\n\n| Figure | 文件大小 | 数据源 |\n|--------|---------|--------|\n| `fig1_dose_response.pdf` | 20,786 bytes | `experiment_summary_table.json` + `profiling_output_bf16_{ds,qw}_imp_s0{10,35}/profiling_results.json` |\n| `fig3_crossover.pdf` | 37,090 bytes | `experiment_summary_table.json` |\n| `fig4_bootstrap.pdf` | 22,277 bytes | `cohens_d_paired_dz_6point.json` |\n| `fig5_crossmodel.pdf` | 22,115 bytes | `cross_model_analysis.json` |\n\n**文件路径**（两份副本）：\n- `/root/autodl-tmp/pacs/figures/fig{1,3,4,5}_*.pdf`\n- `/root/autodl-tmp/pacs/paper/figures/fig{1,3,4,5}_*.pdf`\n\n**生成脚本**：`/root/autodl-tmp/pacs/figures/generate_paper_figures_v2.py`\n\n**关键变更 vs 旧脚本**：\n- fig1: 从 4 点扩展到 6 点 dose-response (s010-s035)，Y 轴改为 symlog，显示双模型 + random baseline\n- fig3: 从 bar chart 改为 heatmap，3×8 矩阵覆盖 4 个 sparsity × importance/random\n- fig4: 从 permutation test forest plot 改为 Cohen's d_z forest plot，6 点 × 双模型，带 approximate CI\n- fig5: 从 line chart 改为 dual bar chart，标注 Spearman ρ=1.0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_generate_all_figures_v2_20260514T123045"
+          },
+          "id": "event-000085"
+        }
+      ],
+      "message_count": 85
+    }
+  ],
+  "readable_path": "readable/conversations/paper-generate-all-figures-v2.md"
+}

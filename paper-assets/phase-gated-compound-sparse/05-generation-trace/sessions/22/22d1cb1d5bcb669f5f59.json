@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d1cb1d5bcb669f5f59",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra gpu cleanup random",
+  "task_key": "worker_infra_gpu-cleanup-random_20260513T233244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-cleanup-random_20260513T233244_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "f2e3a1e6277cff8524adc4bd4b66ba524b9de10cab00ad3e9d95f5551679ee0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Random baseline 已经在 GPU 3 上运行了，无需重新启动。\n\n**汇报：**\n\n| 项目 | 结果 |\n|------|------|\n| Kill | 指定 PID (29514/29893/31124/31486/31844/28839) 已不存在，kill 静默完成 |\n| GPU 0 | PID 27689 — v4a (sparsity=0.1)，28929 MiB |\n| GPU 1 | PID 28083 — v4b (sparsity=0.2)，28929 MiB |\n| GPU 2 | PID 28452 — v4c (sparsity=0.3)，28929 MiB |\n| **GPU 3** | **PID 32192 — mvp_v4_random_r2 (random masking, sparsity 0.1-0.3)，17031 MiB，已运行 ~7.5 min** |\n\nRandom baseline (PID 32192) 在 07:29 启动，`--masking_method random --sparsity_levels 0.1,0.15,0.2,0.25,0.3`，输出到 `/root/autodl-tmp/pacs/profiling_output_v4_random_r2`，日志在 `/tmp/mvp_v4_random_r2.log`。\n\n四张 GPU 全部在工作，无需额外操作。需要我注册 registry 记录吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-cleanup-random.md"
+}

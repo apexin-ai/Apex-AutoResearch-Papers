@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae9303045a633ed486cc",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops check progress n500",
+  "task_key": "worker_ops_check-progress-n500_20260515T025542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-progress-n500_20260515T025542_result.json",
+    "occurrence": 1,
+    "bytes": 1599,
+    "sha256": "499526fb5fbfb1548049a0af1864f599d55d4f3a3f708754dab6e4225ae6e6b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进度报告\n\n### 实验 1: c2_n500_deepseek (DeepSeek-R1-Distill-Qwen-7B)\n\n| GPU | 方法 | s015 | s020 | s025 | s030 |\n|-----|------|------|------|------|------|\n| GPU 0 | importance | ✅ 02:31 | ✅ 06:55 | 🔄 **462/500** | ⏳ 待启动 |\n| GPU 1 | random | ✅ 02:05 | ✅ 06:30 | ✅ 10:54 | 🔄 **7/500** |\n\n- 每个 condition 平均耗时: **~4h24m**\n- GPU 0 s025 ETA: ~**11:17** (剩 38 个, ~20min), 之后跑 s030 → 全部完成约 **15:41**\n- GPU 1 s030 刚启动 → 完成约 **15:19**\n- **DeepSeek 整体完成 ETA: ~15:41**\n\n### 实验 2: c2_qw_n500_r3 (Qwen2.5-7B-Instruct)\n\n| GPU | 方法 | s015 | s020 | s025 | s030 |\n|-----|------|------|------|------|------|\n| GPU 2 | importance | ✅ 03:02 | ✅ 06:27 | ✅ 09:53 | 🔄 **153/500** |\n| GPU 3 | random | ✅ 03:11 | ✅ 06:36 | ✅ 10:01 | 🔄 **136/500** |\n\n- 每个 condition 平均耗时: **~3h25m**\n- GPU 2 s030: 153/500, 已跑 ~1h04m → 完成约 **13:22**\n- GPU 3 s030: 136/500, 已跑 ~56min → 完成约 **13:27**\n- **Qwen 整体完成 ETA: ~13:27**\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 78% | 33.4 / 97.9 GB |\n| 1 | 76% | 18.6 / 97.9 GB |\n| 2 | 78% | 27.8 / 97.9 GB |\n| 3 | 77% | 28.4 / 97.9 GB |\n\n### 汇总\n\n- 16 个 condition 中已完成 **10 个**，正在跑 **4 个**，待启动 **2 个** (DS imp s030 待 s025 完成后自动启动)\n- Qwen 实验预计 **今天 13:30** 前全部完成\n- DeepSeek 实验预计 **今天 15:45** 前全部完成\n- 所有 4 个 GPU 运行正常，进程健康"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-progress-n500.md"
+}

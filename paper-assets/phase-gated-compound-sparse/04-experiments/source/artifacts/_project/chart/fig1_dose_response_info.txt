@@ -1,0 +1,4 @@
+Remote path: /root/autodl-tmp/pacs/figures/fig1_dose_response.pdf (.png also available)
+Server: westd-22162
+Script: /root/autodl-tmp/pacs/analysis/generate_paper_figures.py
+Note: Uses paired difference median (median of ii_low - ii_high), not segment-level aggregate. Symlog scale (linthresh=0.5).

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c68498c79131788fe0f0",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_4_1778751652.md",
+  "task_key": "loop_4_1778751652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778751652.md",
+    "occurrence": 1,
+    "bytes": 4855,
+    "sha256": "fea2bb2e9a8d42b735f912f4073a4ae91a666e246f2981b5c10d7ce2a42d5b55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T09:40:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **westd-22162 cuda:0/1/2/3**，禁止用其他服务器/GPU\n- 论文数字基准：**bf16 per-problem paired 统计量（B=10000 bootstrap）**，fp16 旧数据已弃用，不得引用\n- median_diff 定义：论文图表用 **paired**（`median(II_low_i − II_high_i)`），summary table 用 unpaired（`median(II_low) − median(II_high)`），混用会导致数字不一致\n- Cross-model 只能称 **cross-model**，不能称 cross-architecture（两模型共享 Qwen2ForCausalLM）\n- C4 entropy-discrimination 已降级为 §6 supporting analysis（D045/D046），**不是 Core Claim**\n- Qwen s015 Cohen's d CI 含 0，论文必须标注 \"marginal at s=0.15, becoming reliable at s≥0.20\"\n- Random 8/8 FAIL（含 qw_rand_s030 经 B=10000 re-bootstrap 确认），论文可报 \"8/8 FAIL\"，但 Qwen s030 原始 p=0.012 需在 supplementary 披露并说明 d≈0 negligible\n- Framing 硬约束（D015）：MUST \"emergent phase-strategy interaction\"，MUST NOT \"importance is broken\"\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162，4× RTX PRO 6000 Blackwell 96GB（sm_120, compute cap 12.0）\n- **工作目录**: `/root/autodl-tmp/pacs`\n- **Python**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，无 venv）\n- **模型**: DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct（路径在服务器上，需 SSH 确认具体位置）\n- **数据**: math500.json（50 problems）\n- **分析产出**: `/root/autodl-tmp/pacs/analysis/` 目录下，含 `rebootstrap_importance_b10000.py`、analysis_output/\n- **论文目录**: 项目 `paper/` 子目录，§1-§4 + §7 已写\n- **活跃进程**: 无。全部 76 实验 DONE，0 cron，0 running worker\n- **GPU 状态**: cuda:0/1/2/3 全部 standby\n\n### 3. 📊 当前状态\n**全部实验完成**（76 DONE：35 success / 9 negative / 13 failed / 19 killed）。无 RUNNING/PREPARING 实验，无活跃 Worker，无活跃 Cron。\n\n**已完成的关键里程碑**:\n- bf16 全量实验 16 组（DS imp×4 + DS rand×4 + QW imp×4 + QW rand×4）全部 DONE\n- 6-point dose-response 补充实验（s=0.10, s=0.35 两模型 importance）DONE（D047）\n- Cross-model 统计分析完成：Cohen's d ρ=1.0, 8/8 Wilcoxon 显著, gradient permutation p=0.043\n- c4_entropy 两模型均完成：DS 一致负值，Qwen s025 反转 → C4 降级为 §6 supporting\n- B=10000 re-bootstrap 全部完成\n\n**瓶颈已从实验转为论文写作**。EMNLP ARR deadline 2026-05-25（距今 11 天）。\n\n### 4. 📋 待办（条件触发式）\n- **立即可做** → spawn Worker SSH 读 `analysis_output/` 拿真实数字 → 填充 §5 Results\n- **立即可做** → spawn Worker 生成论文 Figures（dose-response curve / crossover plot / Cohen's d bar / violin plot）\n- **§5 填完后** → 写 §8 Conclusion + Abstract\n- **§7 Discussion** → 更新 PENDING-BF16 占位符（用 bf16 最终数字替换）\n- **c4_entropy 数据已就绪** → §6 Analysis 补 discrimination collapse 直接证据（Gini/CV 跨模型一致；entropy 只报 DS，Qwen 标注 model-dependent）\n- **全部章节完成后** → 全文一致性审查（Dream full review mode）\n- **如 Director 要求补跑** → cuda:0/2/3 standby 可用（figure 生成或数据缺口补跑）\n\n### 5. 🎯 战略上下文\n**核心结论链**: importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DS paired median diff 0.32→1.15→3.97→9.94；QW 0.048→0.208→1.109→2.619），random 全 FAIL。机制=discrimination collapse（Gini/CV 下降跨模型一致），entropy redistribution 是 model-dependent secondary effect。\n\n**决策链关键节点**: D001(MVP 方案) → D009(random 混淆发现) → D010(pivot 到 strategy-dependent) → D011(fp16 NaN 发现) → D015(framing 硬约束) → D032(permutation test) → D039(B=10000 统一) → D041(qw_rand_s030 CRITICAL 处理) → D044(Qwen entropy 反转) → D045/D046(C4 降级) → D047(6-point dose-response)\n\n**最容易判断错的事**:\n1. **不要把 paired median diff 和 unpaired median diff 混淆**——两者数值不同（如 DS s015: 0.32 vs 0.39），论文正文用 paired，表格用 unpaired，必须在方法部分明确声明\n2. **Qwen random s030 是个陷阱**——原始 p=0.012 PASS 但 B=10000 re-bootstrap 后 p=0.111 FAIL、d≈0。论文必须报 re-bootstrap 结果，不能用原始 p\n3. **不要重跑已完成的实验**——所有数据点已齐，现在是纯写作阶段\n4. **C4 不再是 Core Claim**——已被 D045/D046 降级，不要在 abstract/intro 中把它当主线\n5. **Cohen's d 有两套值**——paired（正文用）和 segment-level（旧值，仅 supplementary），不要混用。正文值见 memory.md 表格\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778751652.md"
+}

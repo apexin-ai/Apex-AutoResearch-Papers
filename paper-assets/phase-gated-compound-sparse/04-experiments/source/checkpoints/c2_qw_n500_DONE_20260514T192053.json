@@ -1,0 +1,51 @@
+{
+  "exp_id": "c2_qw_n500",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-14T13:34:05.213Z",
+    "updated_at": "2026-05-14T19:20:51.858Z",
+    "hypothesis": "C2: Qwen n=500 统计功效提升。将 Qwen 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500，与 DeepSeek 对称验证。",
+    "notes": "[2026-05-15 02:01 UTC] Progress: imp_s015 357/500(71%), rand_s015 374/500(75%). Rate: imp ~1.43/min, rand ~1.50/min. Both processes alive (PID 131864 gpu2, 132002 gpu3). Qwen runs slower than DeepSeek (~25% slower). imp_s015 ETA ~03:42 UTC, rand_s015 ~03:26 UTC. Full 8-condition ETA: ~2026-05-15 21:08 UTC.",
+    "reproduce": {
+      "finished_at": "2026-05-14T19:20:41.163Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-14T14:13:26.223Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T14:13:28.582987+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T14:36:44.123761+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Status corrected: cron false positive (profiling无W&B/sentinel, 输出在完成后才写盘). 实验从未中断. PID 131864/132002 正常运行, 进度~49/500 s015. SEED=42 hardcoded. ETA ~02:00 CST."
+      }
+    },
+    "spec": {
+      "command": "run_profiling.py via screen c2_qw_gpu2/gpu3",
+      "server": "westd-22162",
+      "gpu": "cuda:2,cuda:3",
+      "pid": "131864,132002",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "Qwen",
+      "seed": 42,
+      "note": "3rd cron false positive corrected. PID 131864 (gpu2 imp) / 132002 (gpu3 rand). Progress: imp 93/500 s015, rand 98/500 s015 as of 22:37 CST. 8 conditions total (imp/rand x s015/s020/s025/s030). Running in SCREEN sessions not tmux."
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T19:20:53.277130+00:00",
+  "trigger": "update_registry"
+}

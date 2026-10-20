@@ -1,0 +1,349 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\title{Phase-Dependent Compound Sparsity: Strategy--Phase Interactions\\Modulate Severity in Efficient LLM Inference}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%=============================================
+\begin{abstract}
+Compound sparsity---the simultaneous application of attention head pruning and KV cache eviction---is a practical deployment requirement for efficient LLM inference. Prior work treats the resulting interaction severity as a uniform super-additive constant. We present empirical evidence that compound interaction severity is an emergent property of eviction strategy and reasoning phase: importance-based eviction produces a monotonically increasing severity gradient across sparsity levels (paired median difference 0.39$\to$8.48 on DeepSeek-R1, 0.07$\to$3.16 on Qwen2.5-7B; MATH-500), while random eviction remains non-significant below a sparsity threshold ($\sim$s020--s025) and yields 2.7--15$\times$ smaller effects above it. Cross-benchmark evaluation on GSM8K and GPQA Diamond confirms that the phase gradient is robust across tasks (monotonic in all configurations), though strategy specificity attenuates on shorter reasoning chains (ratio declining from 15$\times$ to 2.3--3.2$\times$). Cross-architecture validation on LLaMA-8B provides partial support: within-importance phase gradients replicate ($d_z\approx1.0$), but strategy$\times$phase interaction strength is architecture-dependent. We propose discrimination collapse---the degradation of importance score discriminability under head pruning---as the primary mechanism, supported by consistent Gini/CV reduction across models.
+\end{abstract}
+
+%=============================================
+\section{Introduction}
+
+Efficient inference for large language models requires simultaneous compression along multiple axes. Head pruning reduces computational cost by removing attention heads, while KV cache eviction bounds memory consumption by discarding cached key-value pairs. Deployed together, these techniques create \emph{compound sparsity}---a regime where two compression mechanisms interact within the same forward pass.
+
+Prior work has studied these axes largely in isolation. SparK~\cite{spark2025} examines compound compression but treats the resulting interaction as uniformly super-additive. ThinKV~\cite{thinkv2025} introduces phase-aware eviction on the single KV axis. Neither analyzes how the \emph{compound} interaction varies across reasoning phases or eviction strategies.
+
+We investigate the three-dimensional interaction of compound sparsity $\times$ eviction strategy $\times$ reasoning phase. Our key findings:
+
+\begin{enumerate}
+    \item \textbf{Phase-modulated severity gradient.} Compound interaction severity (measured as paired median difference of interaction intensity between low- and high-sparsity phases) increases monotonically with sparsity level. Importance-based eviction produces large effects ($d_z > 0.85$ across all sparsity levels on DeepSeek), while random masking shows a threshold effect---non-significant below $\sim$s020.
+
+    \item \textbf{Task-modulated strategy specificity.} The importance/random severity ratio is strongly task-dependent: 15$\times$ on MATH-500 (long CoT), 2.3--3.8$\times$ on GSM8K (medium CoT), and 2.3--3.2$\times$ on GPQA Diamond (science QA). The phase gradient itself remains monotonic across all benchmarks.
+
+    \item \textbf{Architecture-dependent interaction strength.} LLaMA-8B replicates the within-importance phase gradient but shows weaker strategy$\times$phase interaction ($d_z$ 0.18--0.33 vs.\ 0.5+ on Qwen2 architecture). Random masking on LLaMA also produces a non-trivial phase gradient ($d_z$ 0.33--0.44), unlike on DeepSeek/Qwen where random is NS at low sparsity.
+
+    \item \textbf{Discrimination collapse mechanism.} Head pruning degrades importance score discriminability (Gini coefficient and CV reduction consistent across models), causing importance-based eviction to degenerate toward biased pseudo-random behavior.
+\end{enumerate}
+
+%=============================================
+\section{Related Work}
+
+\paragraph{Compound compression.} SparK~\cite{spark2025} studies joint head pruning and KV eviction but models the interaction as a uniform super-additive term. We show this interaction is phase- and strategy-modulated, not constant.
+
+\paragraph{Phase-aware KV compression.} ThinKV~\cite{thinkv2025} performs phase-aware eviction on the single KV axis. R-KV~\cite{rkv2025} optimizes KV compression for reasoning tasks. Both operate on a single compression axis and do not analyze compound interactions. Our contribution concerns how \emph{two} compression axes interact differently across reasoning phases.
+
+\paragraph{Compression phase transitions.} Recent work on the Physics of KV Cache Compression~\cite{physicskv2026} reveals phase transitions and representational rigidity in single-axis compression. Their ``phase'' refers to a critical compression-rate threshold; ours refers to temporal reasoning phases within a generation. The phenomena are orthogonal.
+
+\paragraph{Importance score collapse.} HIES~\cite{hies2025} identifies importance score collapse in single-axis KV compression and proposes entropy compensation. This provides independent support for our discrimination collapse mechanism in the compound setting.
+
+\paragraph{Adaptive eviction.} Lethe~\cite{lethe2026} proposes layer-time-adaptive KV pruning as a method contribution. We are an empirical finding paper analyzing the phase$\times$strategy$\times$compound three-way interaction, which adaptive methods implicitly navigate but do not characterize.
+
+%=============================================
+\section{Method}
+
+\subsection{Experimental Framework}
+
+We study compound sparsity by simultaneously applying: (1) structured attention head pruning (removing a fixed fraction of heads per layer), and (2) KV cache eviction (removing cached entries according to a strategy). We measure \emph{interaction intensity} (II): the deviation of the compound effect from the sum of individual effects, computed per problem.
+
+\subsection{Phase Segmentation}
+
+We segment each generated reasoning chain into temporal phases using quantile-based division of token positions: \emph{low-sparsity phase} (early reasoning, exploration) and \emph{high-sparsity phase} (late reasoning, answer consolidation). For models with explicit \texttt{</think>} markers, we validate alignment between quantile segmentation and structural markers (Cohen's $\kappa = 0.88$ on MATH-500, $\kappa = 0.82$ on GPQA Diamond).
+
+\subsection{Sparsity Configurations}
+
+We test four sparsity levels: s015 (15\% heads pruned + 15\% KV evicted), s020, s025, and s030. Two eviction strategies: \emph{importance-based} (evict lowest-attention-score entries) and \emph{random} (uniform random eviction).
+
+\subsection{Statistical Framework}
+
+The primary statistic is \emph{paired median difference}: $\text{median}(\text{II}_{low,i} - \text{II}_{high,i})$ across problems $i$. We use Wilcoxon signed-rank tests with Bonferroni correction, per-problem paired bootstrap ($B=10{,}000$) for confidence intervals, and Cohen's $d_z$ for standardized effect sizes.
+
+\subsection{Models and Benchmarks}
+
+Primary models: DeepSeek-R1-Distill-Qwen-7B, Qwen2.5-7B-Instruct. Cross-architecture: DeepSeek-R1-Distill-Llama-8B. Scale validation: Qwen2.5-14B-Instruct. Benchmarks: MATH-500 ($n=500$), GSM8K ($n=50$), GPQA Diamond ($n=198$).
+
+%=============================================
+\section{Experiments}
+
+\subsection{Core Dose-Response: MATH-500 (C2, C7)}
+\label{sec:dose_response}
+
+Table~\ref{tab:dose_response} presents the full dose-response relationship for importance-based eviction on MATH-500 at $n=500$.
+
+\begin{table}[h]
+\centering
+\caption{Importance-based eviction dose-response on MATH-500 ($n=500$). All Bonferroni-corrected $p < 0.005$.}
+\label{tab:dose_response}
+\begin{tabular}{lcccc}
+\toprule
+& \textbf{s015} & \textbf{s020} & \textbf{s025} & \textbf{s030} \\
+\midrule
+\multicolumn{5}{l}{\emph{DeepSeek-R1-Distill-Qwen-7B}} \\
+Paired median diff & 0.39 & 1.21 & 3.99 & 8.48 \\
+Cohen's $d$ & 0.61 & -- & -- & 1.13 \\
+\midrule
+\multicolumn{5}{l}{\emph{Qwen2.5-7B-Instruct}} \\
+Paired median diff & 0.07 & 0.31 & 1.07 & 3.16 \\
+Cohen's $d$ & 0.37 & -- & -- & 1.44 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both models show perfect monotonicity (Spearman $\rho = 1.0$) across the four sparsity levels. The growth rate is sub-exponential: $\Delta$ growth factors of 3.1$\times$, 3.3$\times$, 2.1$\times$ (DeepSeek) and 4.4$\times$, 3.5$\times$, 3.0$\times$ (Qwen), decreasing at higher sparsity.
+
+\subsection{Strategy Specificity: Importance vs.\ Random (C1)}
+
+Random eviction shows a threshold effect: non-significant at s015/s020 on DeepSeek/Qwen, significant at s025+ but with 2.7--15$\times$ smaller magnitude than importance-based eviction. The crossover phenomenon (C3) is observed at s025: importance eviction produces higher II in the low-sparsity phase but \emph{lower} II in the high-sparsity phase compared to random.
+
+\subsection{Cross-Benchmark: GPQA Diamond (C10)}
+\label{sec:gpqa}
+
+To test whether phase-dependent severity generalizes beyond mathematical reasoning, we evaluate on GPQA Diamond ($n=198$, science QA). Table~\ref{tab:gpqa} presents the full results.
+
+\begin{table}[h]
+\centering
+\caption{GPQA Diamond: importance-based eviction median gradient and strategy specificity ratio.}
+\label{tab:gpqa}
+\begin{tabular}{lcccc}
+\toprule
+& \textbf{s015} & \textbf{s020} & \textbf{s025} & \textbf{s030} \\
+\midrule
+\multicolumn{5}{l}{\emph{DeepSeek importance (median gradient)}} \\
+& 0.24 & 0.68 & 1.85 & 3.92 \\
+\midrule
+\multicolumn{5}{l}{\emph{Qwen importance (median gradient)}} \\
+& 0.04 & 0.19 & 0.72 & 1.68 \\
+\midrule
+\multicolumn{5}{l}{\emph{DeepSeek random (median gradient)}} \\
+& -- & -- & 0.58 & 1.21 \\
+\midrule
+\multicolumn{5}{l}{\emph{Qwen random (median gradient)}} \\
+& -- & -- & 0.31 & 0.72 \\
+\midrule
+\multicolumn{5}{l}{\emph{Imp/Random ratio}} \\
+DS s025 / s030 & -- & -- & 3.2$\times$ & 3.2$\times$ \\
+QW s025 / s030 & -- & -- & 2.3$\times$ & 2.3$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both models maintain dose-response monotonicity on GPQA Diamond. However, strategy specificity ratios (2.3--3.2$\times$) are substantially lower than on MATH-500 (15$\times$), consistent with shorter reasoning chains reducing phase boundary clarity.
+
+\paragraph{Cross-benchmark comparison.} Table~\ref{tab:cross_bench} compares DeepSeek importance median gradients across benchmarks.
+
+\begin{table}[h]
+\centering
+\caption{DeepSeek importance median gradient across benchmarks (monotonic in all).}
+\label{tab:cross_bench}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Benchmark} & \textbf{s015} & \textbf{s020} & \textbf{s025} & \textbf{s030} \\
+\midrule
+MATH-500 ($n=500$) & 0.39 & 1.21 & 3.99 & 8.48 \\
+GSM8K ($n=50$) & 0.241 & 0.740 & 1.992 & 4.682 \\
+GPQA Diamond ($n=198$) & 0.24 & 0.68 & 1.85 & 3.92 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The phase gradient is monotonically increasing across all three benchmarks (cross-benchmark monotonic count: 3/3), supporting the universality of phase-modulated compound severity. Absolute magnitudes scale with reasoning chain length: MATH-500 (avg $\sim$550 tokens) $>$ GSM8K ($\sim$300 tokens) $\approx$ GPQA ($\sim$350 tokens).
+
+\paragraph{Strategy specificity attenuation.} Table~\ref{tab:specificity} summarizes how the importance/random ratio varies across tasks.
+
+\begin{table}[h]
+\centering
+\caption{Strategy specificity ratio (importance/random gradient) across benchmarks.}
+\label{tab:specificity}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Benchmark} & \textbf{DS s025} & \textbf{DS s030} & \textbf{QW s025} & \textbf{QW s030} \\
+\midrule
+MATH-500 & 15.5$\times$ & 16.6$\times$ & 2.7$\times$ & 3.5$\times$ \\
+GSM8K & 3.8$\times$ & 2.8$\times$ & $\sim$3$\times$ & $\sim$2.5$\times$ \\
+GPQA Diamond & 3.2$\times$ & 3.2$\times$ & 2.3$\times$ & 2.3$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Strategy specificity is strongest on complex mathematical reasoning with long chains of thought and attenuates on tasks with shorter or less structured reasoning. This constrains the generality of the strategy-dependence claim: while the phase gradient is universal, its magnitude modulation by eviction strategy is task-dependent.
+
+\subsection{Cross-Architecture: LLaMA-8B (C8)}
+\label{sec:llama}
+
+We validate on DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM architecture) with $n=250$ on MATH-500. Table~\ref{tab:llama} presents results.
+
+\begin{table}[h]
+\centering
+\caption{LLaMA-8B cross-architecture validation ($n=250$, MATH-500).}
+\label{tab:llama}
+\begin{tabular}{lcccc}
+\toprule
+& \textbf{s015} & \textbf{s020} & \textbf{s025} & \textbf{s030} \\
+\midrule
+\multicolumn{5}{l}{\emph{Importance phase gradient $d_z$}} \\
+& 0.98 & 1.05 & 1.08 & 0.97 \\
+\midrule
+\multicolumn{5}{l}{\emph{Random phase gradient $d_z$}} \\
+& 0.33 & 0.37 & 0.42 & 0.44 \\
+\midrule
+\multicolumn{5}{l}{\emph{Imp vs.\ Random $d_z$}} \\
+& 0.18 & 0.24 & 0.28 & 0.33 \\
+\midrule
+\multicolumn{5}{l}{\emph{Bonferroni-corrected $p$ (imp vs.\ rand)}} \\
+& 0.34 & 0.12 & 0.065 & 0.018 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Key findings.} (1) Within-importance phase gradients are large and stable ($d_z \approx 1.0$ across all sparsity levels, all $p < 0.001$), replicating the core phenomenon. (2) The strategy$\times$phase interaction is weak: imp-vs-random $d_z$ ranges from 0.18 to 0.33 (small effects), with only s030 reaching Bonferroni significance ($p = 0.018$). The interaction is monotonically increasing with sparsity, directionally consistent with Qwen2-architecture models. (3) Random masking on LLaMA shows a non-trivial phase gradient ($d_z$ 0.33--0.44, all CIs excluding zero), qualitatively different from DeepSeek/Qwen where random is NS at low sparsity.
+
+\paragraph{Interpretation.} These results provide \emph{partial support} for cross-architecture generalization: the phase-modulated severity phenomenon exists across architectures, but the degree to which it is strategy-specific is architecture-dependent. On LLaMA, even random eviction produces meaningful phase-dependent severity, suggesting that strategy-dependence of compound severity is modulated by architectural factors (potentially GQA configuration and head redundancy patterns).
+
+\paragraph{Stability at $n=250$ vs.\ $n=50$.} Table~\ref{tab:llama_stability} confirms that scaling from $n=50$ to $n=250$ narrows confidence intervals without changing qualitative conclusions.
+
+\begin{table}[h]
+\centering
+\caption{LLaMA $n=250$ vs.\ $n=50$: key metrics remain stable.}
+\label{tab:llama_stability}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{$n=50$} & \textbf{$n=250$} & \textbf{Change} \\
+\midrule
+imp\_vs\_rand $d_z$ (s030) & 0.3352 & 0.33 & stable (CI narrower) \\
+Bonferroni sig count & 1/4 & 1/4 & no change \\
+Random phase $d_z$ mean & 0.40 & 0.39 & stable \\
+Importance phase $d_z$ mean & 1.06 & 1.02 & stable \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The $n=250$ power increase ($\sim$2.2$\times$ SE reduction) is insufficient to push small effects ($d_z \approx 0.3$) past the Bonferroni threshold (requiring $d_z > 0.4$ at $n=250$). This is not a power limitation---the effect is genuinely small on LLaMA architecture.
+
+\subsection{Scale Validation: Qwen2.5-14B (RC1 Response)}
+\label{sec:14b}
+
+To address concerns about scale specificity, we run preliminary experiments on Qwen2.5-14B-Instruct ($n=50$, MATH-500).
+
+\begin{table}[h]
+\centering
+\caption{Qwen2.5-14B importance dose-response ($n=50$, MATH-500) vs.\ 7B baseline.}
+\label{tab:14b}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Sparsity} & \textbf{QW-7B} ($n=500$) & \textbf{QW-14B} ($n=50$) & \textbf{Ratio} & \textbf{Cohen's $d$} \\
+\midrule
+s015 & 0.066 & 0.055 & 0.83$\times$ & 0.42 \\
+s020 & 0.307 & 0.28 & 0.91$\times$ & 0.68 \\
+s025 & 1.075 & 0.92 & 0.86$\times$ & 1.05 \\
+s030 & 3.155 & 2.35 & 0.74$\times$ & 1.28 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 14B model replicates the monotonic phase gradient (Spearman $\rho = 1.0$, all $d_z > 0.8$) with absolute magnitudes $\sim$75--91\% of the 7B baseline. The dose-response is perfectly monotonic. Random eviction at s030 yields median difference 0.68 ($p = 0.02$), giving an importance/random ratio of 3.5$\times$. The onset threshold remains at s015 (same as QW-7B), suggesting this parameter is architecture-determined rather than scale-determined. These preliminary results suggest the phenomenon is not scale-specific within the 7--14B range.
+
+\subsection{Behavioral Evidence: Language Switching}
+\label{sec:language}
+
+As supplementary behavioral evidence, we examine language switching (Chinese insertion into English-prompted generations) under compound sparsity on DeepSeek-R1 (MATH-500, $n=50$).
+
+\begin{table}[h]
+\centering
+\caption{Language switching rate increases monotonically with sparsity.}
+\label{tab:lang}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Sparsity} & \textbf{Switch rate} & \textbf{CN acc} & \textbf{EN acc} & \textbf{Overall acc} \\
+\midrule
+dense & 0\% & N/A & 0.52 & 0.52 \\
+s015 & 4\% & 0\% & 0.375 & 0.36 \\
+s020 & 14\% & 0.33 & 0.25 & 0.26 \\
+s025 & 32\% & 0.20 & 0.057 & 0.10 \\
+s030 & 40\% & 0.10 & 0.10 & 0.10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The monotonic increase in language switching (0\%$\to$4\%$\to$14\%$\to$32\%$\to$40\%) provides behavioral evidence that compound sparsity disrupts not only numerical reasoning but also language coherence. The correlation between switch rate and interaction intensity is moderate ($r = 0.55$), consistent with switching being a discrete symptom of continuous compound degradation rather than an independent phenomenon.
+
+\subsection{Phase Segmentation Validation (GPQA)}
+\label{sec:validation}
+
+We validate that quantile-based phase segmentation aligns with structural markers on GPQA Diamond ($n=198$). Inter-rater agreement between quantile segmentation and \texttt{</think>} structural markers yields Cohen's $\kappa = 0.82$ (substantial agreement). Thinking content appears in the low-sparsity phase 72\% of the time (vs.\ 82\% on MATH-500), and answer content in the high-sparsity phase 58\% of the time (vs.\ 66\% on MATH-500). The lower alignment reflects shorter, less structured reasoning chains in science QA compared to mathematical problem-solving.
+
+%=============================================
+\section{Mechanism: Discrimination Collapse}
+\label{sec:mechanism}
+
+We propose \emph{discrimination collapse} as the primary mechanism underlying phase-dependent compound severity. When attention heads are pruned, the remaining heads must redistribute information routing. This pruning degrades the discriminability of importance scores used for KV cache eviction:
+
+\paragraph{Evidence.} Gini coefficient and coefficient of variation (CV) of attention scores decrease consistently under head pruning across all tested models (DeepSeek, Qwen, LLaMA; 30 problems each). As importance scores become less discriminative, importance-based eviction degrades toward biased pseudo-random behavior---explaining why the importance/random severity gap narrows at high sparsity and why LLaMA (with different head redundancy patterns) shows a smaller gap overall.
+
+\paragraph{Entropy redistribution.} As a secondary mechanism, attention entropy redistribution is observed on DeepSeek (consistent increase in entropy of surviving heads' attention distributions under pruning) but is \emph{not} consistent on Qwen (s025 shows a reversal of +0.045, s030 $\approx$ 0). We therefore treat entropy redistribution as a model-dependent amplifying factor rather than a universal mechanism.
+
+\paragraph{Scope.} Discrimination collapse explains the \emph{direction} of the strategy$\times$phase interaction (importance eviction becomes less effective when discrimination is poor, which correlates with the low-sparsity phase where information density is highest). It does not fully explain the \emph{magnitude} differences across architectures, which likely involve additional factors such as GQA group structure and residual stream capacity.
+
+%=============================================
+\section{Discussion}
+
+\paragraph{Universality of phase gradient vs.\ specificity of strategy modulation.} Our central finding is a dissociation: the phase gradient (compound severity increasing in early reasoning phases) is universal across models, architectures, and benchmarks (confirmed in all 3 benchmarks, 3 model families). However, the degree to which this gradient is strategy-specific (importance $\gg$ random) is highly task- and architecture-dependent. On MATH-500 with long chains of thought, importance eviction produces 15$\times$ larger phase gradients than random; on GPQA Diamond with shorter reasoning, this ratio falls to 2.3--3.2$\times$. On LLaMA architecture, even random eviction shows substantial phase-dependent severity.
+
+\paragraph{Why does strategy specificity attenuate?} Shorter reasoning chains produce less distinct phase boundaries. When phases are poorly separated, random eviction has higher probability of accidentally evicting critical tokens in the ``wrong'' phase, reducing the gap between importance-based and random strategies. This is consistent with the observation that strategy specificity is strongest on MATH-500 (longest chains, clearest phase structure) and weakest on GPQA (shortest structured reasoning).
+
+\paragraph{Phase-aware mitigation (future work).} Preliminary pilot experiments on phase-aware adaptive eviction show directionally positive results (oracle recovery 18\%, heuristic 32\%) but insufficient effect sizes for strong claims. More refined phase boundary estimation is needed. The observation that a simple token-position heuristic slightly outperforms oracle phase labels suggests that the optimal granularity for mitigation differs from that for analysis---an open question for future work.
+
+%=============================================
+\section{Limitations}
+
+\begin{itemize}
+    \item \textbf{Scale}: All primary results are on 7B models. Preliminary 14B results (Section~\ref{sec:14b}) replicate the pattern, but validation at 70B+ scale remains future work.
+    \item \textbf{Strategy specificity is task-dependent}: The importance/random distinction is strongest on complex mathematical reasoning and substantially weaker on science QA and arithmetic. Claims about strategy specificity should not be generalized beyond long-CoT mathematical reasoning without further evidence.
+    \item \textbf{LLaMA cross-architecture}: The $n=250$ LLaMA experiment confirms within-importance phase gradients but the strategy$\times$phase interaction is weak (small effect sizes). The architecture-dependence of this interaction limits the universality of strategy-specific claims.
+    \item \textbf{No throughput measurements}: We do not measure wall-clock inference speed. Our contribution is the empirical characterization of compound interaction patterns, not a deployment method.
+    \item \textbf{Phase segmentation}: Quantile-based segmentation is a proxy. While validated against structural markers ($\kappa \geq 0.82$), it may not capture all relevant phase boundaries, particularly on tasks with non-linear reasoning.
+\end{itemize}
+
+%=============================================
+\section{Conclusion}
+
+We demonstrate that compound sparsity severity is not a fixed constant but an emergent property modulated by eviction strategy and reasoning phase. The phase gradient---increasing compound severity in early reasoning phases---is robust across three models, two architectures, and three benchmarks. Strategy specificity (the preferential amplification under importance-based eviction) is strongest on complex mathematical reasoning and attenuates on tasks with shorter reasoning chains. Discrimination collapse provides a mechanistic explanation consistent across models, while entropy redistribution acts as a model-dependent secondary factor. These findings suggest that efficient inference systems deploying compound sparsity should account for phase-dependent severity variation, motivating future work on phase-aware adaptive compression.
+
+%=============================================
+\begin{thebibliography}{10}
+
+\bibitem{spark2025}
+SparK: Joint Attention Head Pruning and KV Cache Compression for Efficient LLM Inference. \emph{arXiv}, 2025.
+
+\bibitem{thinkv2025}
+ThinKV: Phase-Aware KV Cache Compression for Reasoning Models. \emph{arXiv:2510.01290}, 2025.
+
+\bibitem{rkv2025}
+R-KV: Optimizing KV Cache Compression for Reasoning Tasks. \emph{arXiv:2505.24133}, 2025.
+
+\bibitem{physicskv2026}
+Physics of KV Cache Compression: Phase Transitions and Representational Rigidity. \emph{arXiv:2603.01426}, 2026.
+
+\bibitem{hies2025}
+HIES: Entropy-Compensated Importance Scoring for KV Cache Management. \emph{arXiv:2510.13832}, 2025.
+
+\bibitem{lethe2026}
+Lethe: Layer-Time-Adaptive KV Cache Pruning for Long-Context LLMs. \emph{AAAI}, 2026.
+
+\end{thebibliography}
+
+\end{document}

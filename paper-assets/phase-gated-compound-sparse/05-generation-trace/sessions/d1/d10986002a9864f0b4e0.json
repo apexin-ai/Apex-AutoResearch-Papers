@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d10986002a9864f0b4e0",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "monitor c2 progress check",
+  "task_key": "worker_monitor_c2_progress_check_20260515T005351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_c2_progress_check_20260515T005351_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "7a69d944b76c66d3fc6467a013e0c07c5d5f9755866de1089e32d7c2835df3a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n| 实验 | GPU | s015 | s020 | s025 imp | s025 rand | s030 | Rate | ETA 全部完成 |\n|------|-----|------|------|----------|-----------|------|------|-------------|\n| **c2_n500_deepseek** | 0+1 | DONE | DONE | 233/500 | 285/500 | PENDING | ~0.51 min/prob | ~15:30 UTC+8 |\n| **c2_qw_n500_r3** | 2+3 | DONE | DONE | 362/500 | 337/500 | PENDING | ~0.41 min/prob | ~13:27 UTC+8 |\n\nGPU 利用率：GPU0 2%, GPU1 79%, GPU2 76%, GPU3 96%（GPU0 低利用率可能是在等待生成间歇）。\n\nQwen 预计今天 ~13:27 全部跑完，DeepSeek 预计 ~15:30。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-c2-progress-check.md"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "sf5_asymmetric_spot",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:59:35.784Z",
+    "updated_at": "2026-05-15T17:41:56.872Z",
+    "spec": {
+      "type": "experiment",
+      "hypothesis": "Phase-gated compound sparsity effect (II_low > II_high) is robust to asymmetric head/KV sparsity configurations. Total sparsity held at 25% (matching s025 symmetric baseline), varying only allocation between head and KV.",
+      "description": "SF5: Asymmetric sparsity spot check. 2 configs: (head=0.20,KV=0.30) and (head=0.30,KV=0.20), compared against symmetric s025 (head=0.25,KV=0.25). n=50, DeepSeek only, importance-based. 4 conditions per config: dense/head-only/KV-only/compound. Pre-registered criterion: direction consistency of D=II_low-II_high.",
+      "parent": "c2_n500_deepseek",
+      "model_name": "deepseek-r1",
+      "data_count": 50,
+      "server": "westd-22162"
+    }
+  },
+  "timestamp": "2026-05-15T17:41:57.094509+00:00",
+  "trigger": "update_registry"
+}

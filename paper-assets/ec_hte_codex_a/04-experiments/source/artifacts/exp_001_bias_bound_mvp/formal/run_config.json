@@ -1,0 +1,10 @@
+{
+  "alpha": 0.5,
+  "bootstrap": 2000,
+  "expert_budget": 600,
+  "n": 10000,
+  "out_dir": "artifacts/exp_001_bias_bound_mvp/formal",
+  "quick": false,
+  "replications": 200,
+  "seed": 20260531
+}

@@ -1,0 +1,247 @@
+{
+  "schema_version": "1.0",
+  "id": "0edc5b381f255ef5e652",
+  "project": "phase-gated-compound-sparse",
+  "kind": "conversation",
+  "title": "writing discussion limitations",
+  "task_key": "worker_writing_discussion-limitations_20260514T055858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_discussion-limitations_20260514T055858.jsonl",
+    "occurrence": 1,
+    "bytes": 17217,
+    "sha256": "541fcb5c10bb32919a290f56babc9701627acef4f8408e06370398d5c5dddf9e"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T06:00:01.833037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T06:00:01.833549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t% TODO: §7 full draft pending Phase 4. Currently contains only the\n5\t% \"trivially expected\" defense (P1-5 patch). Additional content:\n6\t% - Implications for compound sparsity deployment\n7\t% - Phase-gated controllers as solution direction\n8\t% - Limitations (7B only, MATH-500 only, no throughput)\n9\t\n10\t\\paragraph{On the predictability of phase-modulated severity.}\n11\tOne might argue that the qualitative direction of our findings is intuitive: in low-sparsity phases, attention distributes broadly across many tokens, so importance scores carry less discriminative signal, and importance-based eviction should degrade.\n12\tWe do not dispute this intuition.\n13\tThe surprise lies in the quantitative structure of the interaction, which is not predictable from first principles alone.\n14\t\n15\tFirst, the \\emph{magnitude} of the severity gradient---$11$--$42\\times$ amplification % PENDING-BF16\n16\tacross sparsity levels (Table~\\ref{tab:bootstrap})---far exceeds what a naive ``less discriminative $\\Rightarrow$ somewhat worse'' argument would predict.\n17\tA reviewer expecting a $2$--$3\\times$ effect would find an order-of-magnitude amplification difficult to anticipate without measurement.\n18\tSecond, the gradient is \\emph{phase-specific}: compound interaction concentrates in low-sparsity phases while high-sparsity phases exhibit near-additive behavior ($\\widetilde{\\mathrm{II}}_{\\text{high}} < 1$ at all sparsity levels). % PENDING-BF16\n19\tThis asymmetry means that importance-based eviction is not uniformly fragile---it is selectively fragile in a phase-dependent manner.\n20\tThird, and most strikingly, a \\emph{crossover} emerges: at $s \\geq 0.25$, importance-based eviction \\emph{outperforms} random eviction in high-sparsity phases ($\\widetilde{\\mathrm{II}} = 0.58$ vs.\\ $3.00$) % PENDING-BF16\n21\tyet \\emph{underperforms} dramatically in low-sparsity phases ($\\widetilde{\\mathrm{II}} = 30.9$ vs.\\ $2.9$). % PENDING-BF16\n22\tThe same strategy r\n…[truncated 160 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T06:00:01.833814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/*.tex",
+              "description": "List all tex files in paper directory"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T06:00:01.833982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/analysis.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/background.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/background_fc6d1d.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/methodology.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/methodology_4cc5f3.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work_46fb53.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results_5_1.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T06:00:01.834128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/analysis.tex",
+              "limit": "40"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T06:00:01.834285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Analysis: Entropy-Discrimination Collapse}\n3\t\\label{sec:analysis}\n4\t\n5\tThe results in \\S\\ref{sec:experiments} reveal a striking asymmetry: importance-based eviction exhibits $12$--$75\\times$ severity amplification in low-sparsity phases, while random eviction remains flat at ${\\sim}1\\times$ across all phases. Why is compound severity phase-modulated for one strategy but not the other? We propose \\emph{entropy-discrimination collapse} as an explanatory mechanism: head pruning redistributes attention mass in a phase-dependent manner, degrading the discriminative power of importance scores precisely in phases where attention is already broadly distributed.\n6\t\n7\t\\subsection{Attention Redistribution Under Head Pruning}\n8\t\\label{sec:attn-redistribution}\n9\t\n10\tWhen a fraction $s$ of attention heads are pruned, the surviving heads must compensate for the lost information pathways. We characterize this compensation through the attention entropy of a surviving head $h$ at query position $i$:\n11\t\\begin{equation}\n12\t    \\mathcal{H}_i^{(h)} = -\\sum_{j=1}^{T} a_{ij}^{(h)} \\log a_{ij}^{(h)}\n13\t    \\label{eq:attn-entropy}\n14\t\\end{equation}\n15\tHigher $\\mathcal{H}$ indicates more uniformly distributed attention. The effect of pruning on $\\mathcal{H}$ depends critically on the reasoning phase.\n16\t\n17\tIn the \\textbf{high-sparsity phase}, attention is already concentrated on a few key positions ($\\mathcal{H}$ is low). Head redundancy is high---concentrated attention patterns are likely to overlap across heads---so pruning removes largely redundant capacity. The surviving heads continue to attend to the same narrow set of positions, and $\\mathcal{H}$ changes minimally.\n18\t\n19\tIn the \\textbf{low-sparsity phase}, attention distributes broadly across many positions ($\\mathcal{H}$ is already elevated). Head redundancy is low: each head captures partially non-overlapping information. Pruning forces surviving heads to broaden their attention further to compensate for the lost cov\n…[truncated 2929 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T06:00:01.834461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+              "limit": "40"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T06:00:01.834632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Results}\n3\t\\label{sec:results}\n4\t\n5\tWe present our empirical findings in five parts: strategy-dependent compound severity (\\S\\ref{sec:strategy-severity}), phase-modulated amplification (\\S\\ref{sec:phase-amplification}), the phase-strategy crossover (\\S\\ref{sec:crossover}), cross-model replication (\\S\\ref{sec:cross-model}), and statistical validation (\\S\\ref{sec:stat-validation}).\n6\t\n7\t\n8\t\\subsection{Experimental Overview}\n9\t\\label{sec:exp-overview}\n10\t\n11\tWe evaluate compound sparsity on DeepSeek-R1-Distill-Qwen-7B using a 50-problem stratified subset of MATH-500 (\\S\\ref{sec:dataset}). For each problem, we measure perplexity under four conditions---dense, attention-only pruning, KV-only eviction, and compound (both)---at sparsity levels $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$. We compare importance-based and random eviction strategies (\\S\\ref{sec:sparsity-config}), and segment each generated sequence into high-, mid-, and low-sparsity reasoning phases via quantile-based attention sparsity partitioning (\\S\\ref{sec:phase-seg}). The interaction index (II, Eq.~\\ref{eq:ii}) quantifies compound super-additivity, and the severity gradient ($G$, Eq.~\\ref{eq:gradient}) captures phase-dependent amplification. All models are loaded in \\texttt{bfloat16} precision. Full experimental details appear in \\S\\ref{sec:experimental-setup}.\n12\t\n13\t\n14\t\\subsection{Strategy-Dependent Severity (C1)}\n15\t\\label{sec:strategy-severity}\n16\t\n17\tThe aggregate interaction index reveals a stark dependence on eviction strategy. Table~\\ref{tab:aggregate-ii} reports the problem-level mean II across all 50 problems for each strategy and sparsity level. Under importance-based eviction, compound sparsity produces substantial super-additive degradation that grows with sparsity: mean II increases from \\placeholder{exp_id: deepseek_bf16_importance, metric: mean_II_s015} at $s{=}0.15$ to \\placeholder{exp_id: deepseek_bf16_importance, metric: mean_II_s030} at $s{=}0.30$. Under random eviction, compoun\n…[truncated 1926 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T06:00:01.834817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex",
+              "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{On the predictability of phase-modulated severity.}\nOne might argue that the qualitative direction of our findings is intuitive: in low-sparsity phases, attention distributes broadly across many tokens, so importance scores carry less discriminative signal, and importance-based eviction should degrade.\nWe do not dispute this intuition.\nThe surprise lies in the quantitative structure of the interaction, which is not predictable from first principles alone.\n\nFirst, the \\emph{magnitude} of the severity gradient---$11$--$42\\times$ amplification % PENDING-BF16\nacross sparsity levels (Table~\\ref{tab:bootstrap})---far exceeds what a naive ``less discriminative $\\Rightarrow$ somewhat worse'' argument would predict.\nA reviewer expecting a $2$--$3\\times$ effect would find an order-of-magnitude amplification difficult to anticipate without measurement.\nSecond, the gradient is \\emph{phase-specific}: compound interaction concentrates in low-sparsity phases while high-sparsity phases exhibit near-additive behavior ($\\widetilde{\\mathrm{II}}_{\\text{high}} < 1$ at all sparsity levels). % PENDING-BF16\nThis asymmetry means that importance-based eviction is not uniformly fragile---it is selectively fragile in a phase-dependent manner.\nThird, and most strikingly, a \\emph{crossover} emerges: at $s \\geq 0.25$, importance-based eviction \\emph{outperforms} random eviction in high-sparsity phases ($\\widetilde{\\mathrm{II}} = 0.58$ vs.\\ $3.00$) % PENDING-BF16\nyet \\emph{underperforms} dramatically in low-sparsity phases ($\\widetilde{\\mathrm{II}} = 30.9$ vs.\\ $2.9$). % PENDING-BF16\nThe same strategy reverses direction across phases---a phenomenon that cannot be derived from the observation that ``importance scores are noisier when attention is diffuse.''\n\n\\paragraph{Implications for compound sparsity deployment.}\nOur findings suggest that the standard practice of applying a uniform compression budget across all inference steps is suboptimal for reasoning models.\nCompound severity is not distributed evenly: it concentrates in low-sparsity phases, where the entropy-discrimination collapse mechanism (\\S\\ref{sec:analysis}) renders importance-based eviction unreliable.\nA deployment pipeline that allocates the same sparsity level $s$ to every token position implicitly accepts order-of-magnitude severity penalties during the exploratory reasoning stages that happen to fall in the low-sparsity regime.\n\nThis observation motivates \\emph{phase-aware compression budgets}: rather than a single global sparsity target, the system would allocate higher capacity (lower sparsity) to low-sparsity phases---where compound interaction is most severe---and reclaim that budget in high-sparsity phases, where compound behavior is near-additive and importance-based eviction remains effective.\nThe severity gradient $G$ reported in \\S\\ref{sec:phase-amplification} provides a natural signal for such allocation: phases with $G \\gg 1$ receive a reduced sparsity budget, while phases with $G \\leq 1$ tolerate aggressive compression with minimal quality loss.\n\n\\paragraph{Future directions.}\nThe phase-aware allocation principle above points toward a concrete system design: a \\emph{phase-gated controller} that monitors attention sparsity statistics in real time and dynamically adjusts the compound sparsity budget per reasoning phase.\nThe controller would route each generation step through a low-overhead phase classifier (\\S\\ref{sec:phase-seg}), then apply a phase-specific sparsity configuration derived from the severity gradient.\nWhether such a controller can recover most of the compression benefit while avoiding the severity amplification in low-sparsity phases is an open empirical question.\n\nA second direction concerns mechanism validation.\nThe entropy-discrimination collapse hypothesis (\\S\\ref{sec:analysis}) makes testable predictions about attention entropy redistribution under head pruning.\nDirectly measuring per-head entropy shifts across phases---and correlating them with the observed compound severity---would provide causal evidence beyond the correlational structure reported here.\n\nFinally, scaling the empirical methodology to larger models and diverse reasoning tasks would establish the generality of the phase-strategy interaction documented in this work.\n\n\\subsection{Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Model scale.}\nAll experiments are conducted at the 7B parameter scale.\nWhether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested.\nLarger models may exhibit different attention redundancy structures that alter the entropy-discrimination collapse dynamics.\n\n\\paragraph{Architectural scope.}\nOur two models---DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct---share the Qwen2ForCausalLM architecture.\nThe cross-model replication (\\S\\ref{sec:cross-model}) confirms that the findings are not artifacts of a single model's weights, but both models share the same attention mechanism design.\nThe entropy-discrimination collapse mechanism is in principle architecture-agnostic (it depends on attention redistribution, not architecture-specific components), but empirical validation on architecturally distinct models (e.g., Mamba-based or mixture-of-experts architectures) is needed.\n\n\\paragraph{Task coverage.}\nWe evaluate exclusively on MATH-500, a mathematical reasoning benchmark.\nDifferent reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.\nGeneralizing the phase-strategy interaction to broader reasoning domains is an important next step.\n\n\\paragraph{No throughput evaluation.}\nThis work focuses on characterizing the \\emph{structural} properties of compound sparsity severity---its phase dependence, strategy dependence, and interaction magnitude.\nWe do not report inference throughput or latency measurements, which are necessary for a complete deployment analysis but orthogonal to the severity characterization that is our primary contribution.\n"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T06:00:01.835049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T06:00:01.835238+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。discussion.tex 已更新：\n\n- **保留**了原 \"predictability\" paragraph 不动\n- **删除**了顶部 TODO 注释\n- **新增** Implications paragraph：uniform budget 次优 → phase-aware allocation 方向，以 severity gradient $G$ 作为 allocation signal\n- **新增** Future directions paragraph：phase-gated controller、entropy 机制验证、规模/架构扩展\n- **新增** `\\subsection{Limitations}`：四个 `\\paragraph` 分别覆盖 model scale、architectural scope（cross-model 非 cross-architecture）、task coverage（MATH-500 only）、no throughput"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_discussion-limitations_20260514T055858"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/writing-discussion-limitations.md"
+}

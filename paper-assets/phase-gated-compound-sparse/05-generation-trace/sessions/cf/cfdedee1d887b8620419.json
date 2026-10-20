@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfdedee1d887b8620419",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis mvp interaction index profiling",
+  "task_key": "worker_analysis_mvp_interaction_index_profiling_20260513T195650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_interaction_index_profiling_20260513T195650_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "d1a5eba02e910e48ac0f900aa4531655f9e5150dda92de4d44b8248e0da5f918"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结论\n\n**MVP FAIL — 代码 bug，非假设失败。**\n\n### 根因\n\n`interaction_index.py` 第 ~210 行，KV mask 展平逻辑错误：\n\n```python\nflat_kv_mask = kv_mask.min(dim=0).values  # 取 28 层交集\n```\n\n`_select_kv_to_evict` 在每层**独立随机**选位置 evict。`min(dim=0)` 要求位置在**全部 28 层**都未被 evict 才保留。存活概率：\n- s=0.3: 0.7^28 = **0.07%**\n- s=0.5: 0.5^28 ≈ **0%**\n\n结果：attention mask 全零 → NaN logits → NaN perplexity → NaN II。\n\n### 可用数据\n\n`dense` 和 `attn` 条件正常工作，phase segmentation 健康（execution 25 segments, reasoning 96, transition 192，均 ≥ 20）。attn-only 已展现 phase-dependent 差异（execution 对 head pruning 最敏感，474× dense PPL）。\n\n### 修复方案\n\n最简修复：`_select_kv_to_evict` 改为 layer-uniform（所有层 evict 相同位置）。单行改动，重跑 ~0.5h。\n\n报告已写入 `artifacts/mvp_ii_analysis.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-interaction-index-profiling.md"
+}

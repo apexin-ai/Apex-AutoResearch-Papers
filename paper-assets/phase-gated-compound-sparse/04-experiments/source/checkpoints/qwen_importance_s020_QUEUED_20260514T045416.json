@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen_importance_s020",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:50:42.892Z",
+    "updated_at": "2026-05-14T04:54:16.914Z",
+    "hypothesis": "Cross-model replication: Qwen2.5-7B-Instruct importance masking s=0.20, cuda:1. 验证 phase-modulated severity 在非 DeepSeek 模型上是否复现。v6 代码含 per_problem_ii。"
+  },
+  "timestamp": "2026-05-14T04:54:16.994857+00:00",
+  "trigger": "update_registry"
+}

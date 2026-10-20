@@ -1,0 +1,140 @@
+{
+  "exp_id": "bf16_qw_imp_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-14T05:39:31.289Z",
+    "updated_at": "2026-05-14T07:58:22.107Z",
+    "hypothesis": "D020 bf16 全量重跑: Qwen2.5-7B-Instruct importance masking s=0.15, bf16 dtype. Cross-model replication。",
+    "server": "westd-22162",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T07:01:46.764Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+      "code_commit": "5488041765f165e4e64323cfda552de868351f86",
+      "finished_at": "2026-05-14T07:01:57.332Z",
+      "training_hours": 0.0
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-14T07:01:59.250Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T07:02:01.732372+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Qwen2.5-7B-Instruct checkpoint not found on server, 待下载后重跑"
+      }
+    },
+    "notes": "Qwen2.5-7B importance s=0.15, PASS. Median II gradient: high≈0.001 → mid≈-0.011 → low≈0.039. PPL(both): high=1.31 → mid=2.20 → low=5.44. CI non-overlapping (high vs low). 弱 gradient，与 DeepSeek 在 s=0.15 趋势一致。",
+    "spec": {
+      "command": "python -m pacs.profiling.run_profiling --model_path checkpoints/Qwen2.5-7B-Instruct --sparsity_levels 0.15 --masking_method importance --max_problems 50",
+      "server": "westd-22162",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s015",
+    "log_path": "~/runs/phase-gated-compound-sparse/bf16_qw_imp_s015.log",
+    "metrics": {
+      "interaction_index": {
+        "high": {
+          "mean": -0.082758,
+          "median": 0.000864,
+          "ci": [
+            -0.117242,
+            -0.052902
+          ],
+          "median_ci": [
+            -0.000527,
+            0.001986
+          ],
+          "winsorized_mean": -0.058659,
+          "skewness": -4.5327
+        },
+        "mid": {
+          "mean": -0.011963,
+          "median": -0.010624,
+          "ci": [
+            -0.077076,
+            0.053275
+          ],
+          "median_ci": [
+            -0.056075,
+            0.020825
+          ],
+          "winsorized_mean": -0.014765,
+          "skewness": -0.1202
+        },
+        "low": {
+          "mean": 0.034392,
+          "median": 0.039429,
+          "ci": [
+            -0.157736,
+            0.255236
+          ],
+          "median_ci": [
+            0.005149,
+            0.07937
+          ],
+          "winsorized_mean": -0.027059,
+          "skewness": 4.7585
+        }
+      },
+      "perplexity": {
+        "high": {
+          "dense": 1.0738,
+          "attn": 1.1991,
+          "kv": 1.2763,
+          "both": 1.3067
+        },
+        "mid": {
+          "dense": 1.1327,
+          "attn": 1.2436,
+          "kv": 2.1066,
+          "both": 2.1968
+        },
+        "low": {
+          "dense": 1.1518,
+          "attn": 1.5613,
+          "kv": 5.0456,
+          "both": 5.4409
+        }
+      },
+      "phase_stats": {
+        "high": {
+          "n_tokens": 16289,
+          "n_segments": 295
+        },
+        "mid": {
+          "n_tokens": 4372,
+          "n_segments": 26
+        },
+        "low": {
+          "n_tokens": 32227,
+          "n_segments": 276
+        }
+      },
+      "n_problems": 50,
+      "pass_fail": {
+        "ci_overlap": true,
+        "sign_reversal": false,
+        "overall": "PASS"
+      }
+    }
+  },
+  "timestamp": "2026-05-14T07:58:22.277109+00:00",
+  "trigger": "update_registry"
+}

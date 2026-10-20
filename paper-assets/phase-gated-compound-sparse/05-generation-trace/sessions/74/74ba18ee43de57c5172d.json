@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74ba18ee43de57c5172d",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "prep analysis pipeline validation",
+  "task_key": "worker_prep_analysis-pipeline-validation_20260515T005345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_analysis-pipeline-validation_20260515T005345_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "5a0362362e8dbd4a4edb4f520e871b31c81a0cd36a9b5d1bd601cbb9543e786a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/report_analysis_pipeline_ready.md`。\n\n验证结果总结：\n\n**分析脚本：✅ 就绪**。`analyze_n500_unified.py` 对 DeepSeek 和 Qwen 的 s015/s020 conditions 成功运行，输出 median II diff、bootstrap CI (B=10000)、Bonferroni 校正 p 值、d_z、dose-response 等全部指标。缺失 condition 优雅降级。\n\n**实验进度：**\n- s015/s020：全部 8 条完成 ✅\n- s025：4 条运行中（46%-73%）\n- s030：尚未开始，s025 完成后自动启动\n\n**初步结果亮点：** importance masking 在两个模型上都显著（p_bonf=0.0000），random 均不显著（p_bonf=1.0000），符合预期。DeepSeek 效应量明显大于 Qwen。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-analysis-pipeline-validation.md"
+}

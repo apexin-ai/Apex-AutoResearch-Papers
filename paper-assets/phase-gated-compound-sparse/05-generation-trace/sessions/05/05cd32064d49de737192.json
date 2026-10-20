@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05cd32064d49de737192",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code recency masking v2",
+  "task_key": "worker_code_recency_masking_v2_20260516T183330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_recency_masking_v2_20260516T183330_result.json",
+    "occurrence": 1,
+    "bytes": 1758,
+    "sha256": "359f0b9f4a5c179c30aef84a4af345ddfaa62086b803e0d306e0706aacb20524"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n---\n\n## 报告\n\n### 1. 现有架构\n- **argparse**: `run_profiling.py:649-650` — `--masking_method` choices 原为 `[\"importance\", \"random\"]`\n- **flag 解析**: `run_profiling.py:194-195` — `use_importance` / `use_recency_kv` 已存在（但 recency 未接入）\n- **dense forward 分流**: `run_profiling.py:391` — importance 走 `compute_dense_forward_with_importance`，否则只算 CE loss\n- **KV mask 构建**: `run_profiling.py:422` — 调 `InteractionIndexCalculator._select_kv_to_evict(seq_len, ratio, importance=...)`\n- **recency 方法体**: `interaction_index.py:294` — `_select_kv_to_evict_recency` 已实现，evict position 1~n_evict（oldest），保留 BOS + recent\n\n### 2. 修改内容（3 处）\n\n| 行号 | 修改 |\n|------|------|\n| 650 | choices 增加 `\"recency\"` |\n| 391 | dense forward 条件改为 `if use_importance or use_recency_kv:`（recency 仍需 head_importance） |\n| 422-428 | KV mask 构建增加 `if use_recency_kv:` 分支，调用 `_select_kv_to_evict_recency` |\n\nHead pruning 逻辑不变（recency 仍用 importance-based head mask）。\n\n### 3. Dry-run 结果\n- Argument parsing: `masking_method=recency` ✓\n- Recency mask (seq_len=100, s=0.25): evict 25 oldest positions (1-25), keep 75 recent positions (26-99), BOS preserved ✓\n- 全部 assertion 通过\n\n### 4. Recency masking 细节\n- 纯 position-based：按 index 升序 evict，**不使用任何 attention score**\n- BOS (position 0) 永远保留\n- Evict 的是 positions 1 ~ `int(seq_len * ratio)`（最早的 token）\n- Keep 的是 positions `int(seq_len * ratio)+1` ~ `seq_len-1`（最近的 token）\n- Head pruning 仍走 importance-based（需要 dense forward with attention）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-recency-masking-v2.md"
+}

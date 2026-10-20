@@ -1,0 +1,533 @@
+narrative_guidance: '核心叙事从 ''strategy-specific phase interaction'' 重构为 ''universal
+  phase vulnerability in compound sparsity''。GPQA 数据显示 random eviction 产生与 importance
+  可比拟的 phase gradient (ratio <1.5×)，且 importance gradient 在 s025→s030 出现 non-monotonicity。Strategy
+  specificity 仅在 MATH-500 DeepSeek 上强 (15-17×)，其余条件均 ≤3×。新 angle: phase vulnerability
+  universality 本身是 novel characterization；recency 作为唯一 phase-robust strategy 的 practical
+  implication；discrimination collapse 解释 importance≥random 的微弱优势。'
+imagined_experiments:
+- name: gpqa_ds_importance_s020
+  plan_id: gpqa_ds_importance_s020
+  description: GPQA importance masking s=0.20, DeepSeek-R1-Distill-Qwen-7B, n=198
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.035
+    mid_median_ii: 0.28
+    low_median_ii: 1.85
+    median_diff_low_minus_high: 1.815
+    wilcoxon_p: 2.5e-28
+    cohens_dz: 0.72
+    ci_low: 1.52
+    ci_high: 2.18
+    monotonic: true
+    phase_gradient_direction: low > mid > high
+    median_ratio_low_high: 52.9
+  result_rationale: GPQA 问题的推理链平均 ~6000 tokens (远长于 MATH-500 ~1200)，导致 low-sparsity
+    phase 中可被 evict 的 critical token 绝对数量远多于 MATH-500。s020 compound interaction 在
+    GPQA 上产生 median_diff ~1.8，虽然方向与 MATH-500 一致 (MATH-500 s020=1.21)，但增长率从 MATH-500
+    的 s015→s020 3.1× 压缩为 GPQA 的 1.9×。原因：GPQA 多学科内容 (physics/chem/bio) 的 attention
+    pattern 比纯数学推理更分散，head pruning 后的 discrimination collapse 在 s015 时已较充分——进一步增加
+    sparsity 的边际 collapse 效应递减。
+  tables:
+  - name: GPQA DS Importance s020 Phase II
+    columns:
+    - phase
+    - n_segments
+    - ii_median
+    - ii_mean
+    - ii_ci_low
+    - ii_ci_high
+    rows:
+    - - high
+      - 6261
+      - 0.035
+      - 0.42
+      - 0.12
+      - 0.95
+    - - mid
+      - 2185
+      - 0.28
+      - 1.95
+      - 1.45
+      - 2.62
+    - - low
+      - 5128
+      - 1.85
+      - 12.8
+      - 10.2
+      - 15.9
+  figures_description:
+  - 'Phase gradient bar chart: 三 phase II median 值递增但绝对量级弱于 MATH-500 同 sparsity (MATH
+    1.50 vs GPQA 1.85 — 仅 1.23× 而非预期 ~3×)'
+  analysis: 虽然 monotonic 且显著，但 median_diff 仅 1.82，低于 MATH-500 同 sparsity 的 1.48 ×
+    3(GPQA序列长度比) 的预期。暗示 GPQA 上 phase gradient 的 scaling behavior 不同于 MATH-500。
+- name: gpqa_ds_importance_s025
+  plan_id: gpqa_ds_importance_s025
+  description: GPQA importance masking s=0.25, DeepSeek-R1-Distill-Qwen-7B, n=198
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.082
+    mid_median_ii: 0.65
+    low_median_ii: 2.58
+    median_diff_low_minus_high: 2.498
+    wilcoxon_p: 8.1e-32
+    cohens_dz: 0.81
+    ci_low: 2.05
+    ci_high: 3.12
+    monotonic: true
+    phase_gradient_direction: low > mid > high
+    dose_response_rho_s015_to_s025: 1.0
+    growth_factor_vs_s020: 1.38
+  result_rationale: s025 在 GPQA 上仍保持 monotonic，但增长率急剧放缓 (s020→s025 仅 1.38× vs MATH-500
+    同区间 3.3×)。机制：GPQA 问题在 s025 compound sparsity 下，模型的 reasoning pathway 开始崩溃——不再尝试深度推理而转为浅层
+    pattern matching。这导致 low-sparsity phase 的 'reasoning content' 本身变少 (模型生成更短的 CoT)，压缩了
+    phase 间的 II 差异。同时 high-sparsity phase 的 II 也在上升 (0.013→0.035→0.082)，表明 compound
+    interaction 开始渗透到 answer phase。
+  tables:
+  - name: GPQA DS Importance s025 Phase II
+    columns:
+    - phase
+    - n_segments
+    - ii_median
+    - ii_mean
+    - ii_ci_low
+    - ii_ci_high
+    rows:
+    - - high
+      - 6261
+      - 0.082
+      - 0.98
+      - 0.45
+      - 1.72
+    - - mid
+      - 2185
+      - 0.65
+      - 4.8
+      - 3.2
+      - 6.9
+    - - low
+      - 5128
+      - 2.58
+      - 28.5
+      - 21.3
+      - 37.8
+  figures_description:
+  - 'Dose-response curve (GPQA): s015→s020→s025 median_diff = 0.95, 1.82, 2.50 — 曲线明显
+    concave (增长率递减) vs MATH-500 的 convex 加速增长'
+  analysis: 关键信号：GPQA gradient 增长 sub-linear 且远弱于 MATH-500。如果 s030 继续减速或反转，将确认 non-monotonicity。
+- name: gpqa_ds_importance_s030
+  plan_id: gpqa_ds_importance_s030
+  description: GPQA importance masking s=0.30, DeepSeek-R1-Distill-Qwen-7B, n=198
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.155
+    mid_median_ii: 0.82
+    low_median_ii: 2.12
+    median_diff_low_minus_high: 1.965
+    wilcoxon_p: 3.7e-25
+    cohens_dz: 0.62
+    ci_low: 1.42
+    ci_high: 2.68
+    monotonic: true
+    phase_gradient_direction: low > mid > high
+    dose_response_rho_full: 0.8
+    growth_factor_vs_s025: 0.79
+    non_monotonic: true
+    non_monotonic_note: median_diff DECREASES from s025 (2.50) to s030 (1.97) — gradient
+      SHRINKS at extreme sparsity
+  result_rationale: Non-monotonicity 的机制：s030 extreme compound sparsity 导致 GPQA 上
+    BOTH phases 的 perplexity 飙升至 catastrophic level (both_ppl > 200 在 low phase)。此时
+    low-sparsity phase 的 II 增长遇到 ceiling effect (模型输出接近 random tokens，II 计算中的 ppl_both
+    分子/分母同时爆炸导致 ratio 压缩)，而 high-sparsity phase 的 II 继续上升 (因为 answer phase 也开始严重受损)。净效果：phase
+    间差异反而缩小。这与 recency s030 的 numerical instability 观察一致 (D102)，表明 extreme sparsity
+    下 phase gradient 本身变得 unreliable。GPQA 比 MATH-500 更早触及此 ceiling 因为其 baseline perplexity
+    更高 (dense low-phase ppl 1.42 vs MATH 1.23)。
+  tables:
+  - name: GPQA DS Importance Dose-Response (Worst Tier)
+    columns:
+    - sparsity
+    - median_diff
+    - growth_factor
+    - cohens_dz
+    - monotonic
+    rows:
+    - - s015
+      - 0.947
+      - '-'
+      - 0.68
+      - true
+    - - s020
+      - 1.815
+      - 1.92×
+      - 0.72
+      - true
+    - - s025
+      - 2.498
+      - 1.38×
+      - 0.81
+      - true
+    - - s030
+      - 1.965
+      - 0.79×
+      - 0.62
+      - NON-MONOTONIC (reversal)
+  - name: Spearman ρ comparison across benchmarks
+    columns:
+    - benchmark
+    - model
+    - dose_response_rho
+    - note
+    rows:
+    - - MATH-500
+      - DeepSeek
+      - 1.0
+      - perfect monotonic
+    - - MATH-500
+      - Qwen
+      - 1.0
+      - perfect monotonic
+    - - GSM8K
+      - DeepSeek
+      - 1.0
+      - perfect monotonic
+    - - GSM8K
+      - Qwen
+      - 1.0
+      - perfect monotonic
+    - - GPQA
+      - DeepSeek
+      - 0.8
+      - NON-MONOTONIC at s030
+  figures_description:
+  - 'Four-panel dose-response: MATH-500 convex acceleration vs GPQA concave deceleration
+    + reversal at s030。视觉上 GPQA curve ''rolls over'' 而非持续上升'
+  - 'Phase II heatmap (sparsity × phase): GPQA s030 的 high-phase II 显著升高 (0.155 vs
+    s015 的 0.013)，表明 compound damage 向 answer phase 扩散'
+  analysis: 这是 worst tier 的核心证据：GPQA importance gradient 在 s030 出现 non-monotonicity
+    (ρ=0.8)，直接否定了 'monotonic dose-response' 作为 universal property。解释为 ceiling effect
+    + catastrophic collapse——strategy specificity 的前提 (importance gradient 远强于 random)
+    在 extreme GPQA compound 条件下不成立。
+- name: gpqa_ds_random_s020
+  plan_id: gpqa_ds_random_s020
+  description: GPQA random masking s=0.20, DeepSeek-R1-Distill-Qwen-7B, n=198
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.028
+    mid_median_ii: 0.35
+    low_median_ii: 1.42
+    median_diff_low_minus_high: 1.392
+    wilcoxon_p: 5.2e-22
+    cohens_dz: 0.58
+    ci_low: 1.05
+    ci_high: 1.82
+    monotonic: true
+    phase_gradient_significant: true
+    imp_rand_ratio_s020: 1.3
+  result_rationale: GPQA random eviction 在 s020 产生显著 phase gradient (d_z=0.58 > 0.5
+    threshold)，与 MATH-500 s020 random 的 NS 结果 (median_diff=-0.016, FAIL) 形成鲜明对比。机制：GPQA
+    推理链极长 (~6000 tokens)，low-sparsity phase 占据大量序列位置。Random eviction 在长序列上有更高概率命中关键
+    reasoning token——这是一个纯粹的 combinatorial effect (更长序列 = 更多 critical tokens = 随机删除更可能破坏推理链)，与
+    importance score 的 discriminability 无关。换言之，GPQA 的 phase gradient 主要由 'phase duration
+    asymmetry × random hit probability' 驱动，而非 strategy-specific discrimination collapse。imp/rand
+    ratio 仅 1.30× 表明 importance 相比 random 几乎没有额外的 phase-specific damage——所谓 'strategy
+    specificity' 在 GPQA 上 collapse。
+  tables:
+  - name: GPQA Random s020 vs Importance s020
+    columns:
+    - strategy
+    - high_median
+    - low_median
+    - median_diff
+    - dz
+    - p
+    rows:
+    - - importance
+      - 0.035
+      - 1.85
+      - 1.815
+      - 0.72
+      - '2.5e-28'
+    - - random
+      - 0.028
+      - 1.42
+      - 1.392
+      - 0.58
+      - '5.2e-22'
+    - - ratio (imp/rand)
+      - '-'
+      - '-'
+      - 1.30×
+      - 1.24×
+      - '-'
+  - name: Strategy Specificity Cross-Benchmark Comparison
+    columns:
+    - benchmark
+    - model
+    - sparsity
+    - imp/rand_ratio
+    - interpretation
+    rows:
+    - - MATH-500
+      - DeepSeek
+      - s025
+      - 15.5×
+      - strong specificity
+    - - MATH-500
+      - DeepSeek
+      - s030
+      - 16.6×
+      - strong specificity
+    - - MATH-500
+      - Qwen (n=500)
+      - s025
+      - 2.7×
+      - weak specificity
+    - - GSM8K
+      - DeepSeek
+      - s025
+      - 3.8×
+      - moderate
+    - - GSM8K
+      - DeepSeek
+      - s030
+      - 2.8×
+      - weak
+    - - GPQA
+      - DeepSeek
+      - s020
+      - 1.30×
+      - NO specificity
+    - - LLaMA
+      - LLaMA-8B
+      - s025
+      - 2.0×
+      - weak
+  figures_description:
+  - 'Paired comparison: GPQA importance vs random phase gradient 几乎重叠 (ratio 1.3×)，视觉上无法区分——与
+    MATH-500 DeepSeek 的 clear separation (15×) 形成 stark contrast'
+  - 'Cross-benchmark strategy specificity heatmap: 仅 MATH-500 DeepSeek 一个 cell 显示强
+    specificity (>10×)，其余 5/6 条件均 ≤3.8×'
+  analysis: GPQA random 的强 phase gradient 确认：phase vulnerability 是 compound sparsity
+    的 intrinsic property (universal)，不是 importance strategy 的 specific behavior。核心叙事必须重构。
+- name: gpqa_ds_random_s015
+  plan_id: gpqa_ds_random_s015_planned
+  description: GPQA random masking s=0.15, DeepSeek (needed for complete ratio comparison)
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.015
+    mid_median_ii: 0.18
+    low_median_ii: 0.72
+    median_diff_low_minus_high: 0.705
+    wilcoxon_p: 8.3e-16
+    cohens_dz: 0.52
+    ci_low: 0.48
+    ci_high: 0.95
+    monotonic: true
+    phase_gradient_significant: true
+    imp_rand_ratio_s015: 1.34
+  result_rationale: 即使在低 sparsity s015，GPQA random 已显示显著 phase gradient (d_z=0.52)。对比
+    MATH-500 s015 random 完全 NS (median_diff=0.0095, FAIL)。原因同上：GPQA 序列长度导致 random
+    eviction 的 combinatorial hit probability 在 low-sparsity reasoning phase 远高于 MATH-500。imp/rand
+    ratio 1.34× 表明在所有 GPQA sparsity level 上 strategy specificity 都不成立。
+  tables: []
+  figures_description:
+  - 'GPQA random dose-response: s015=0.71, s020=1.39 — 本身已是 monotonic increasing，且与
+    importance 几乎平行增长'
+  analysis: 与 MATH-500 random s015 NS 的 qualitative difference 确认 phase gradient universality
+    是 task/sequence-length dependent 而非 strategy-specific。
+- name: gpqa_ds_random_s025
+  plan_id: gpqa_ds_random_s025_planned
+  description: GPQA random masking s=0.25, DeepSeek (needed for full dose-response)
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.065
+    mid_median_ii: 0.72
+    low_median_ii: 1.95
+    median_diff_low_minus_high: 1.885
+    wilcoxon_p: 1.1e-26
+    cohens_dz: 0.62
+    ci_low: 1.48
+    ci_high: 2.35
+    monotonic: true
+    imp_rand_ratio_s025: 1.33
+  result_rationale: Random s025 的 median_diff (1.89) 甚至接近 importance s025 (2.50)。ratio
+    仅 1.33×。在 MATH-500 s025 上 imp/rand ratio 是 15.5× (DS n=500)。这一 ~12× 的 ratio 衰减
+    (15.5→1.33) 彻底瓦解了 strategy specificity 作为 general finding 的地位。机制：GPQA 问题的 attention
+    score landscape 在 s025 compound 条件下已极度 flat (discrimination collapse 更彻底)，导致 importance
+    eviction 退化为 quasi-random——两种 strategy 在行为上趋同。
+  tables:
+  - name: 'GPQA Dose-Response: Importance vs Random'
+    columns:
+    - sparsity
+    - imp_median_diff
+    - rand_median_diff
+    - ratio
+    - MATH500_ratio
+    rows:
+    - - s015
+      - 0.947
+      - 0.705
+      - 1.34×
+      - 28.1× (NS)
+    - - s020
+      - 1.815
+      - 1.392
+      - 1.30×
+      - 38.6× (NS)
+    - - s025
+      - 2.498
+      - 1.885
+      - 1.33×
+      - 15.5×
+    - - s030
+      - 1.965
+      - 1.62
+      - 1.21×
+      - 16.6×
+  figures_description:
+  - '双轴 ribbon plot: importance 和 random 的 phase gradient 在 GPQA 上近乎重叠 (narrow ribbon)，在
+    MATH-500 上大幅分离 (wide ribbon)'
+  analysis: Strategy specificity 在 GPQA 全 4 个 sparsity 上均 <1.5×。这是 worst tier 的 decisive
+    evidence。
+- name: gpqa_ds_random_s030
+  plan_id: gpqa_ds_random_s030_planned
+  description: GPQA random masking s=0.30, DeepSeek (needed for full picture)
+  expected_results:
+    n_problems: 198
+    high_median_ii: 0.12
+    mid_median_ii: 0.85
+    low_median_ii: 1.74
+    median_diff_low_minus_high: 1.62
+    wilcoxon_p: 7.8e-20
+    cohens_dz: 0.53
+    ci_low: 1.15
+    ci_high: 2.18
+    monotonic: true
+    imp_rand_ratio_s030: 1.21
+    random_also_non_monotonic: true
+    random_rho: 0.8
+  result_rationale: Random 在 s030 同样出现增长放缓 (s025 1.89 → s030 1.62, growth factor 0.86×)，与
+    importance 的 non-monotonicity 平行。这进一步确认：non-monotonicity 不是 importance-specific
+    behavior 而是 GPQA + extreme sparsity 的 ceiling/collapse effect。两种 strategy 的 phase
+    gradient 同步衰减表明驱动因素是 task-level 的 (reasoning chain 在 extreme compound sparsity
+    下崩溃导致 phase structure 本身消失)，而非 strategy-level 的。imp/rand ratio 在 s030 降至最低 (1.21×)——strategy
+    完全不可区分。
+  tables:
+  - name: GPQA Random Full Dose-Response
+    columns:
+    - sparsity
+    - median_diff
+    - dz
+    - p
+    - monotonic_cumulative
+    rows:
+    - - s015
+      - 0.705
+      - 0.52
+      - '8.3e-16'
+      - 'yes'
+    - - s020
+      - 1.392
+      - 0.58
+      - '5.2e-22'
+      - 'yes'
+    - - s025
+      - 1.885
+      - 0.62
+      - '1.1e-26'
+      - 'yes'
+    - - s030
+      - 1.62
+      - 0.53
+      - '7.8e-20'
+      - NON-MONOTONIC (peak at s025)
+  figures_description:
+  - 'Overlay plot: GPQA importance 和 random dose-response 曲线几乎完全重合，两者都在 s025 reach
+    peak 后在 s030 回落'
+  analysis: Random 和 importance 的 parallel non-monotonicity 是 worst tier 最强证据——任何基于
+    'strategy-specific' 的 narrative 都无法解释为什么两种完全不同的 eviction 方法产生相同的 dose-response
+    shape。
+- name: cross_benchmark_strategy_specificity_synthesis
+  plan_id: synthesis_analysis
+  description: 综合分析：跨 4 benchmarks × 3 models 的 strategy specificity 汇总
+  expected_results:
+    conditions_with_strong_specificity: 1
+    conditions_with_moderate_specificity: 1
+    conditions_with_weak_or_no_specificity: 5
+    cross_benchmark_gradient_correlation: 0.72
+    strategy_specificity_fraction: 1/7 (14%)
+    expected_reviewer_avg_score: 2.8
+    novelty_score: 2.7
+  result_rationale: '汇总所有条件后，''strategy-specific phase interaction'' 仅在单一条件 (MATH-500
+    DeepSeek, 15-17×) 成立。其余 6/7 条件的 imp/rand ratio 均 ≤3.8×，其中 GPQA 全部 <1.5×。Reviewers
+    会合理质疑：如果核心 claim 仅在一个 (model, benchmark) pair 上强，这是 robust finding 还是 idiosyncratic
+    artifact？cross_benchmark_gradient_correlation 0.72 表明 phase gradient 本身跨 benchmark
+    存在 (moderate correlation)，但 strategy modulation 不 generalizable。预期 reviewer scores:
+    Novelty 2.7 (phase gradient universality 有一定新意但被视为 ''obvious once you measure
+    it'')，Soundness 3.0 (统计严格)，Significance 2.5 (practical impact unclear without
+    method paper)，Overall 2.8。'
+  tables:
+  - name: Strategy Specificity Summary (All Conditions)
+    columns:
+    - benchmark
+    - model
+    - best_sparsity_ratio
+    - classification
+    rows:
+    - - MATH-500
+      - DeepSeek-7B
+      - 15.5-16.6×
+      - STRONG
+    - - MATH-500
+      - Qwen-7B (n=500)
+      - 2.7×
+      - WEAK
+    - - MATH-500
+      - LLaMA-8B (n=250)
+      - 2.0-2.6×
+      - WEAK
+    - - GSM8K
+      - DeepSeek-7B
+      - 2.3-3.8×
+      - MODERATE-WEAK
+    - - GSM8K
+      - Qwen-7B
+      - ~2.5×
+      - WEAK
+    - - GPQA
+      - DeepSeek-7B
+      - 1.2-1.3×
+      - NONE
+  - name: Revised Paper Claim Structure (Worst Tier)
+    columns:
+    - claim
+    - status_revision
+    - note
+    rows:
+    - - Phase gradient universality
+      - PRIMARY (upgraded)
+      - All strategies (except recency) show phase gradient on all benchmarks
+    - - Strategy specificity
+      - SECONDARY (downgraded)
+      - Only MATH-500 DeepSeek; task/architecture dependent
+    - - Recency as phase-robust control
+      - PRIMARY (retained)
+      - 'Still unique: only strategy with NS across all sparsities'
+    - - Discrimination collapse
+      - MECHANISM (retained)
+      - Explains why importance ≥ random even when ratio small
+    - - Dose-response monotonicity
+      - QUALIFIED
+      - Holds for MATH-500/GSM8K; non-monotonic on GPQA at extreme sparsity
+  figures_description:
+  - 'Strategy specificity heatmap (benchmark × model): 颜色编码 imp/rand ratio。仅左上角一个
+    cell (MATH-500/DS) 为深色 (>10×)，其余浅色 (<4×)。GPQA row 全为最浅色 (<1.5×)'
+  - 'Reframed narrative diagram: ''universal phase vulnerability'' 为中心节点，''strategy
+    modulation'' 为弱 secondary edge，''recency immunity'' 为 key exception'
+  analysis: 在 worst tier 下，论文需要完全重构。核心贡献变为：(1) 首次量化 compound sparsity 的 phase vulnerability
+    是 universal property (所有 non-recency strategy 在所有 benchmark 上均显示)，(2) recency
+    作为唯一 immune strategy 的 practical design implication，(3) strategy specificity 作为
+    task/architecture-dependent secondary phenomenon。Reviewer 预期反应：'interesting empirical
+    observation but incremental—once you measure phase gradient for random you see
+    it's not strategy-specific, so the whole discrimination collapse story becomes
+    auxiliary rather than central。' Expected score ~2.8, borderline for EMNLP。需要加强
+    practical implication (e.g., phase-aware compression guideline) 来弥补 novelty 不足。

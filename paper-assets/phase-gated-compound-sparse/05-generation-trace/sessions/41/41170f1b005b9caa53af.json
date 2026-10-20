@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "41170f1b005b9caa53af",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "code sf5 asymmetric spot",
+  "task_key": "worker_code_sf5_asymmetric_spot_20260515T173319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sf5_asymmetric_spot_20260515T173319.log",
+    "occurrence": 1,
+    "bytes": 609472,
+    "sha256": "f8bc13f447f04225057ccdb6e30545d5cc5f666f4b5576a4464187cdf4d40d46"
+  },
+  "statistics": {
+    "messages": 157,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "41170f1b005b9caa53af-part-0001.json",
+          "message_count": 150
+        },
+        {
+          "path": "41170f1b005b9caa53af-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sf5-asymmetric-spot.md"
+}

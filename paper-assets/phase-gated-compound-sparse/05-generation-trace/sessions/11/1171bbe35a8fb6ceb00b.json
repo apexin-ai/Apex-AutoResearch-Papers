@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1171bbe35a8fb6ceb00b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_4_1778749525.md",
+  "task_key": "loop_4_1778749525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778749525.md",
+    "occurrence": 1,
+    "bytes": 5452,
+    "sha256": "ffddf8b37e562bf6be1bafc81b3a1d4e2296103b239c851e41d07f4b5c1ce7d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T09:02:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，无其他服务器/GPU 可用\n- 代码路径必须是 `/root/autodl-tmp/pacs`，模型在 `/root/autodl-tmp/models/Qwen2.5-7B-Instruct`（有 symlink `checkpoints/`）\n- 论文所有数字必须基于 **bf16** 系列实验（fp16 旧数据已弃用），bootstrap B=10000\n- 论文主统计量用 **median difference**（不是 mean），ratio 指标已弃用（D032 决策）\n- Cohen's d 实际值 DeepSeek 0.44→0.80 / Qwen 0.28→1.02（旧 claim 0.60→1.12 错误，已纠正 D035/D036）\n- bf16_qw_rand_s030 的 conclusion=success 但 Cohen's d≈-0.04（D041/D042/D043 系列决策），论文不能声称 random masking \"no phase gradient\"——应说 \"near-zero effect size, no dose-response\"\n- Framing 硬约束（D015）：MUST NOT claim \"importance is broken\"；区分信号是 **phase-dependent gradient**（importance 单调递增 vs random 全 FAIL），不是 super-additivity 本身\n- 两个模型共享 Qwen2ForCausalLM 架构——只能说 cross-model，**不能说 cross-architecture**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，4× RTX PRO 6000 Blackwell 96GB（sm_100+, compute cap 12.0）\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，**无 venv**）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（50 problems）\n- DeepSeek 模型：默认 checkpoints 目录；Qwen 模型：`/root/autodl-tmp/models/Qwen2.5-7B-Instruct`\n- 分析产出：`/root/autodl-tmp/pacs/analysis_output/`（permutation test, Cohen's d 等 JSON）\n- bf16 实验结果：`/root/autodl-tmp/pacs/results/` 下各子目录\n- 活跃进程：`qwen_c4_entropy` PID 100538（tmux session, cuda:1），状态 RUNNING\n- 活跃 Worker：`worker_analysis_rebootstrap_qw_rand_s030`（running, turn 16, 正在 SSH 读 per-problem 原始数据做 re-bootstrap 分析）\n- Cron：reconcile 返回 0 active（qwen_c4_entropy 的 cron 可能未注册或已过期，需检查）\n\n### 3. 📊 当前状态\n**刚完成的事**：本 session 密集处理了 Qwen random ×4 实验分析（全部 DONE/success）、Cohen's d 修正（D035-D038）、D041 危机处理（bf16_qw_rand_s030 PASS 但 gradient 几乎为零，结论：random 无 dose-response，与 importance 对比仍成立）。论文 §1-§6 骨架/初稿分别由 Worker 产出。\n\n**Registry 状态**：\n- 72 个实验，71 DONE + 1 RUNNING（qwen_c4_entropy）\n- 32 success / 7 negative / 13 failed / 20 killed（superseded）/ 1 running\n- qwen_c4_entropy（RUNNING, cuda:1）：C4 claim 的关键证据，Qwen cross-model entropy-discrimination collapse 验证，30 problems，进度未知（report.md 说 19/30 但可能已推进）\n\n**等待中**：\n- Worker `rebootstrap_qw_rand_s030`（running）：正在对 bf16_qw_rand_s030 做 B=10000 re-bootstrap，验证 D041/D042 结论\n- qwen_c4_entropy 完成回调（cron 需确认是否活跃——reconcile 返回 0）\n- 无未处理的 Director 决策请求\n\n### 4. 📋 待办（条件触发式）\n- `rebootstrap_qw_rand_s030` Worker 完成 → 读产出，更新 registry bf16_qw_rand_s030 metrics，确认 D043 结论是否需修正\n- `qwen_c4_entropy` 完成 → 分析 entropy/Gini/CV 数据，更新 registry，确认 C4 claim，汇报 Director\n- **⚠️ qwen_c4_entropy cron 可能缺失**（reconcile=0）→ 检查进程是否还活着，必要时重新注册 cron 或 spawn Worker 检查\n- 全部实验完成后 → cross-model permutation test（Qwen random 统计检验尚未跑）\n- 全部数据就绪 → §5 Results 填充实际数字（当前 placeholder）→ §7 Discussion + §1 Intro + Abstract\n- 论文写作并行：§3 Background 需补 bootstrap B 说明 + multiplicative null appendix\n- **截稿 2026-05-25（距今 11 天）**：§1/§7/§8/Abstract 未开始，Related Work 需补 SnapKV/NACL\n- 8 个 PREPARING 旧实验待标记 superseded（清理任务，低优先级）\n\n### 5. 🎯 战略上下文\n**核心发现**：importance-based compound sparsity severity 随 sparsity 单调递增（phase-modulated），random masking 无此效应。这是 empirical finding paper，不是 method paper。\n\n**关键决策链**：D001（MVP 方案）→ D009-D010（pivot: phase-dependent → strategy-dependent）→ D015（framing 硬约束）→ D023（区分信号是 gradient 不是 super-additivity）→ D032（difference statistic 替代 ratio）→ D035-D038（Cohen's d 修正）→ D041-D043（Qwen random s030 PASS 但无 dose-response）\n\n**最容易判断错的事**：\n1. bf16_qw_rand_s030 conclusion=success **不代表** random masking 有 phase gradient——它 Cohen's d≈0，PASS 是因为 permutation p<0.05 但效应量可忽略。论文叙事是 \"random 无 dose-response gradient\"，不能改\n2. Qwen importance s015 不显著（CI 含 0）——论文 dose-response 叙事应从 s≥0.20 开始（D037/D038）\n3. qwen_c4_entropy 是 C4 claim 唯一直接证据，如果失败需要 C4 降级为 \"proposed mechanism\" 而非 \"confirmed\"\n4. Phase segmentation 两模型不同（DeepSeek mid=13306 tokens vs Qwen mid=4372）——跨模型对比用 gradient 趋势，不比绝对值\n5. 服务器是 Blackwell（非 Hopper/Ada）——throughput benchmark 阶段需 H20，当前不阻塞\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778749525.md"
+}

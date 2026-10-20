@@ -1,0 +1,40 @@
+{
+  "exp_id": "v6_random_s030_r3",
+  "project": "phase-gated-compound-sparse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:34:34.110Z",
+    "updated_at": "2026-05-14T05:35:16.754Z",
+    "hypothesis": "v6 random masking s=0.30 重试 (cuda:2)。前次被误杀+tmux冲突。获取 per_problem_ii 用于 importance vs random problem-level permutation test。与 v6_importance_s030 形成对照。",
+    "server": "westd-22162",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-14T05:35:14.593Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+      "code_commit": "5488041765f165e4e64323cfda552de868351f86"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "77560",
+      "log_path": "~/runs/phase-gated-compound-sparse/v6_random_s030_r3.log",
+      "submitted_at": "2026-05-14T05:35:15.849Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "77560",
+    "log_path": "~/runs/phase-gated-compound-sparse/v6_random_s030_r3.log"
+  },
+  "timestamp": "2026-05-14T05:35:17.340044+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18f44f12654c380905d5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "review dz bootstrap ci",
+  "task_key": "worker_review_dz_bootstrap_ci_20260515T044502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_dz_bootstrap_ci_20260515T044502_result.json",
+    "occurrence": 1,
+    "bytes": 1924,
+    "sha256": "b82b15d64098fc761d08765d99294cc3fb2c7a39030291fa98d49d79ddcaa160"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 复查结论：**PASS（代码无 bug）**，CI 不对称是数据特性\n\n### 代码审查\n\n| 检查项 | 结果 |\n|--------|------|\n| `paired_cohens_dz` 公式 (mean/std, ddof=1) | ✅ 正确 |\n| `bootstrap_dz_ci` 对原始 diffs resampling 再算 d_z | ✅ 正确 |\n| 百分位法取 CI | ✅ 正确 |\n| problem_id 对齐 | ✅ 两条件 500 题顺序一致，None 位置相同（idx 56,86,430,457） |\n\n### 根因：单个极端离群值\n\n问题出在 `test/intermediate_algebra/431.json`（idx=102）：\n\n| 条件 | ii_low | ii_high | diff(lo-hi) |\n|------|--------|---------|-------------|\n| s020 | -0.19 | 0.03 | -0.22 |\n| **s025** | **1524.13** | 1.16 | **1522.97** |\n\ns025 的 `ii_low=1524.13` 比典型值大 3 个数量级，产生 paired_diff = **-1523.19**。\n\n**连锁效应**：\n- 该离群值将 `paired_diffs` 的 std 从 ~30 膨胀到 ~70，**稀释了点估计** d_z（-0.49 → -0.16）\n- Bootstrap 中大多数 resample 不会过度抽到该离群值 → d_z 集中在 -0.14 附近（CI 上界）\n- 少数 resample 多次抽到 → d_z 跌至 -0.5~-0.7（CI 下界）\n- 形成**双峰** bootstrap 分布，导致极端不对称\n\n验证——去除该离群值后：\n\n| 指标 | 含离群值 (n=496) | 去除后 (n=495) |\n|------|-----------------|---------------|\n| d_z | -0.1565 | **-0.4879** |\n| CI | [-0.643, -0.135] | **[-0.665, -0.387]** |\n| bootstrap skew | -0.73 | **-0.30** |\n\n去除后 CI 对称，d_z 从 negligible 变为 **medium** 效应。\n\n### 建议\n\n无需修代码，但统计报告需要补充说明。有两个选择：\n\n1. **最小改动**：在报告中标注 s020→s025 的 d_z 受单个极端 ii_low=1524 影响，trimmed d_z=-0.49（medium）\n2. **更稳健**：对 `paired_diffs` 做 Winsorize（如 1% 两端截断）后再算 d_z 和 CI，或用 robust effect size（median/MAD）\n\n需要我实施哪个方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-dz-bootstrap-ci.md"
+}

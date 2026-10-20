@@ -1,0 +1,136 @@
+{
+  "exp_id": "bf16_qw_rand_s025",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:39:36.710Z",
+    "updated_at": "2026-05-14T08:27:38.764Z",
+    "hypothesis": "D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.25, bf16 dtype. Cross-model 配对对照。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "96437",
+      "log_path": "~/runs/phase-gated-compound-sparse/bf16_qw_rand_s025.log",
+      "submitted_at": "2026-05-14T07:58:41.225Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": null,
+      "wall_clock_seconds": 1598.1,
+      "gpu_hours": 0.44
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T08:18:30.530Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T08:18:34.069307+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s025",
+    "completed_at": "2026-05-14T08:25:19.332Z",
+    "metrics": {
+      "interaction_index": {
+        "high": {
+          "mean": 6.549833,
+          "ci": [
+            4.349383,
+            9.512776
+          ],
+          "median": 1.604343,
+          "median_ci": [
+            1.234275,
+            1.856578
+          ],
+          "winsorized_mean": 4.267976,
+          "skewness": 7.7254
+        },
+        "mid": {
+          "mean": 8.520076,
+          "ci": [
+            3.599746,
+            15.539762
+          ],
+          "median": 2.222455,
+          "median_ci": [
+            1.666917,
+            4.568741
+          ],
+          "winsorized_mean": 8.400572,
+          "skewness": 2.5443
+        },
+        "low": {
+          "mean": -34.53659,
+          "ci": [
+            -203.335784,
+            120.009066
+          ],
+          "median": 2.264141,
+          "median_ci": [
+            1.757151,
+            3.452652
+          ],
+          "winsorized_mean": 6.097786,
+          "skewness": -5.9085
+        }
+      },
+      "perplexity": {
+        "high": {
+          "dense": 1.0737,
+          "attn": 2.7753,
+          "kv": 3.3137,
+          "both": 12.3954
+        },
+        "mid": {
+          "dense": 1.1322,
+          "attn": 2.4944,
+          "kv": 4.187,
+          "both": 15.8108
+        },
+        "low": {
+          "dense": 1.1517,
+          "attn": 476.0375,
+          "kv": 6.225,
+          "both": 345.0363
+        }
+      },
+      "phase_stats": {
+        "high": {
+          "n_tokens": 16289,
+          "n_segments": 295
+        },
+        "mid": {
+          "n_tokens": 4372,
+          "n_segments": 26
+        },
+        "low": {
+          "n_tokens": 32227,
+          "n_segments": 276
+        }
+      },
+      "n_problems": 50,
+      "pass_fail": {
+        "ci_overlap": false,
+        "sign_reversal": false,
+        "overall": "FAIL"
+      },
+      "median_difference": 0.659798
+    }
+  },
+  "timestamp": "2026-05-14T08:27:38.971192+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04fa199560ef90993057",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code permutation test fix",
+  "task_key": "worker_code_permutation-test-fix_20260514T055613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_permutation-test-fix_20260514T055613_result.json",
+    "occurrence": 1,
+    "bytes": 1323,
+    "sha256": "2e5f3210839c041b6f91e14d16f669e252ecd66b04f28962c32064668bdfa5f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### 修改的文件\n`/root/autodl-tmp/pacs/pacs/analysis/permutation_test.py`\n\n### 变更内容\n1. **Test statistic**: `np.mean(diffs)` → `np.median(diffs)` 作为主统计量，mean 保留为辅助\n2. **EPS**: `1e-6` → `1e-10`\n3. **输出结构**: 主字段用 median（`observed_median_diff`, `p_value`），辅助字段加 `_mean` 后缀（`observed_mean_diff`, `p_value_mean`）\n4. **新增**: 95% CI（bootstrap on median of diffs, 2000 iterations）\n5. **Bonferroni 校正**: 同时输出 median 和 mean 版本\n\n### Dry-run 结果（v6_importance_s020 vs v6_random_s020）\n\n| Sparsity | n_paired | gradient_ratio | perm_p (median) | perm_p (mean) | wilcoxon_p |\n|----------|----------|---------------|-----------------|---------------|------------|\n| s015 | 22 | 30.9x | **0.0041** | 0.0007 | 9.87e-05 |\n| s020 | 18 | 27.4x | **0.0016** | 0.0002 | 1.91e-04 |\n| s025 | 12 | 51.5x | 0.0740 (n.s.) | 1.0000 | 0.0342 |\n\ns025 的 mean p-value = 1.0 印证了 reviewer 的担忧：heavy-tail 下 mean 统计量不可靠，被极端值主导导致 null distribution 方差极大。切换到 median 后 p=0.074，虽然未达 0.05 但比 mean 版本信息量大得多。s015/s020 的 median-based p-value 均显著（Bonferroni 校正后仍 < 0.05）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-permutation-test-fix-copy-2.md"
+}

@@ -1,0 +1,137 @@
+{
+  "exp_id": "bf16_qw_rand_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:39:34.607Z",
+    "updated_at": "2026-05-14T08:36:03.452Z",
+    "hypothesis": "D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "95899",
+      "log_path": "~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log",
+      "submitted_at": "2026-05-14T07:55:27.130Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": null,
+      "wall_clock_seconds": 1790.5,
+      "gpu_hours": 0.5,
+      "checkpoint_path": "N/A (profiling)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T08:14:18.084Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T08:14:20.510775+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015",
+    "completed_at": "2026-05-14T08:25:17.665Z",
+    "metrics": {
+      "interaction_index": {
+        "high": {
+          "mean": 1.6652,
+          "median": 0.1381,
+          "ci": [
+            1.0986,
+            2.4042
+          ],
+          "median_ci": [
+            0.1025,
+            0.2074
+          ],
+          "winsorized_mean": 1.0044,
+          "skewness": 7.1842
+        },
+        "mid": {
+          "mean": 1.6975,
+          "median": 0.2194,
+          "ci": [
+            0.4473,
+            3.4612
+          ],
+          "median_ci": [
+            -0.0048,
+            0.6621
+          ],
+          "winsorized_mean": 1.4038,
+          "skewness": 3.2101
+        },
+        "low": {
+          "mean": 1.4082,
+          "median": 0.1878,
+          "ci": [
+            0.8358,
+            2.06
+          ],
+          "median_ci": [
+            0.0962,
+            0.3139
+          ],
+          "winsorized_mean": 0.9403,
+          "skewness": 7.1113
+        }
+      },
+      "perplexity": {
+        "high": {
+          "dense": 1.0737,
+          "attn": 1.3939,
+          "kv": 2.0487,
+          "both": 4.2076
+        },
+        "mid": {
+          "dense": 1.1322,
+          "attn": 1.4175,
+          "kv": 2.3709,
+          "both": 4.6105
+        },
+        "low": {
+          "dense": 1.1517,
+          "attn": 1.7177,
+          "kv": 3.3253,
+          "both": 5.4788
+        }
+      },
+      "phase_stats": {
+        "high": {
+          "n_tokens": 16289,
+          "n_segments": 295
+        },
+        "mid": {
+          "n_tokens": 4372,
+          "n_segments": 26
+        },
+        "low": {
+          "n_tokens": 32227,
+          "n_segments": 276
+        }
+      },
+      "n_problems": 50,
+      "pass_fail": {
+        "ci_overlap": true,
+        "sign_reversal": false,
+        "overall": "FAIL"
+      }
+    },
+    "notes": "Random masking (s=0.15) on Qwen2.5-7B-Instruct produces FAIL as expected. Median II: high=0.138, mid=0.219, low=0.188 — no structured gradient across phases. CIs heavily overlap (high [0.10,0.21] vs low [0.10,0.31]). All phases show high positive skewness (3.2-7.2), indicating heavy-tailed II distributions dominated by outliers. Perplexity impact is mild at s=0.15 (both-masked ppl ~4-5.5x dense). Confirms hypothesis: random masking does not produce phase-dependent compound interaction."
+  },
+  "timestamp": "2026-05-14T08:36:03.628625+00:00",
+  "trigger": "update_registry"
+}

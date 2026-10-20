@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68c3423028efaba2d260",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis v6 bootstrap 10k",
+  "task_key": "worker_analysis_v6-bootstrap-10k_20260514T044601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v6-bootstrap-10k_20260514T044601_result.json",
+    "occurrence": 1,
+    "bytes": 2224,
+    "sha256": "8c8605882c42532cffb37e86794dbf262bda6957e95c6dad0cd552e64a85b2b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "analyze_v6_complete.py 成功运行，B=10000。以下是完整结果：\n\n---\n\n## Part 1: V6 四组实验 Metrics\n\n| Sparsity | Phase | n (non-null) | Median | Mean | Std |\n|----------|-------|-------------|--------|------|-----|\n| **s015** | high | 43 | 0.2266 | 0.2874 | 0.2719 |\n| | mid | 32 | 0.7432 | 1.6858 | 2.7778 |\n| | low | 24 | 2.8762 | 8.5161 | 15.4338 |\n| **s020** | high | 42 | 0.3353 | 0.4936 | 0.5491 |\n| | mid | 28 | 1.6733 | 4.9538 | 10.8443 |\n| | low | 21 | 9.2538 | 25.8764 | 35.6782 |\n| **s025** | high | 42 | 0.6641 | 0.8842 | 0.9003 |\n| | mid | 23 | 5.3067 | 10.0570 | 14.4768 |\n| | low | 21 | 24.1619 | 71.8854 | 113.6517 |\n| **s030** | high | 40 | 0.8833 | 1.5151 | 2.7019 |\n| | mid | 22 | 7.2706 | 78.8215 | 296.0726 |\n| | low | 20 | 34.6937 | 1163.9677 | 4226.1852 |\n\n每组 per_problem_ii count = 50 problems（non-null 数量因 phase 而异，见上表 n 列）。\n\n---\n\n## Part 2: Bootstrap CI 表 (B=10000, problem-level resampling)\n\n### Paired variant（同一 problem 同时有 ii_high 和 ii_low）\n\n| Sparsity | Gradient | 95% CI | p(g≤1) | n_paired |\n|----------|----------|--------|--------|----------|\n| s015 | 11.53 | [3.49, 23.78] | 0.0000 | 22 |\n| s020 | 11.05 | [5.42, 69.27] | 0.0000 | 19 |\n| s025 | 35.72 | [9.52, 101.54] | 0.0000 | 19 |\n| s030 | 41.92 | [19.14, 299.76] | 0.0000 | 16 |\n\n### Unpaired variant（独立重采样 high/low）\n\n| Sparsity | Gradient | 95% CI | p(g≤1) | n_high | n_low |\n|----------|----------|--------|--------|--------|-------|\n| s015 | 12.69 | [4.96, 28.45] | 0.0000 | 43 | 24 |\n| s020 | 27.60 | [6.55, 75.16] | 0.0000 | 42 | 21 |\n| s025 | 36.38 | [13.19, 97.61] | 0.0000 | 42 | 21 |\n| s030 | 39.28 | [21.87, 129.59] | 0.0000 | 40 | 20 |\n\n所有 sparsity 下 p(g≤1) = 0.0000，gradient 显著大于 1（低重要性 phase 的 II 远高于高重要性 phase）。\n\n### Crossover check（importance vs random）\n\n- s025、s030 出现 crossover：importance 在 high phase 优于 random，但 mid/low phase random 更优\n- s015、s020 无 crossover：random 在所有 phase 均优\n\n---\n\n## Part 3: JSON 结果文件\n\n`/root/autodl-tmp/pacs/analysis/v6_analysis_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v6-bootstrap-10k.md"
+}

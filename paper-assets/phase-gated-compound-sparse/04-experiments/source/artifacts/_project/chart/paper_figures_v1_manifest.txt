@@ -1,0 +1,15 @@
+Figures generated on westd-22162 at /root/autodl-tmp/pacs/figures/
+
+Files:
+- fig1_dose_response.pdf (23KB) / fig1_dose_response.png (154KB) — Dose-Response curves, 4 lines (2 models × 2 masking), symlog Y axis, bootstrap 95% CI error bars
+- fig2_cohens_d.pdf (21KB) / fig2_cohens_d.png (104KB) — Cohen's d trend, DS 0.44→0.80, QW 0.28→1.02, shaded CI, small/medium/large threshold lines
+- fig3_crossover.pdf (22KB) / fig3_crossover.png (79KB) — s=0.25 importance vs random phase-wise median II bars, dual model side-by-side
+- fig4_per_problem_dist.pdf (65KB) / fig4_per_problem_dist.png (228KB) — 8 panel violin + scatter, 2×4 (model × sparsity), per-problem ΔII distribution
+
+Script: /root/autodl-tmp/pacs/analysis/generate_paper_figures.py
+
+Notes:
+- Fig 1 uses symlog scale (linthresh=0.5) for importance vs random magnitude difference
+- Fig 1 uses paired difference median (median of per-problem diffs), not median-of-medians
+- ~1-4 None values per experiment filtered in per-problem data
+- Will need v2 update when s=0.10/0.35 experiments complete (expand to 6-point curves)

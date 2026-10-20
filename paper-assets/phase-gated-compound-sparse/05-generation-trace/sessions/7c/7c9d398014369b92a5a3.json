@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c9d398014369b92a5a3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops c8 s030 chain setup",
+  "task_key": "worker_ops_c8_s030_chain_setup_20260516T043746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c8_s030_chain_setup_20260516T043746_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "710171ed121a3651844e7c6c377a4ef1be07edd4c8d156e043be3170d60037a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "链式监控已就绪。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| 链式监控 PID | **317541** |\n| 监控日志 | `logs/chain_s030_monitor.log` |\n| 等待目标 | s025 PID 315052 完成 |\n| s025 当前进度 | 23/250 |\n\n**s030 启动命令**（s025 完成后自动执行）：\n```bash\nCUDA_VISIBLE_DEVICES=0 python3 -u -m pacs.profiling.run_profiling \\\n    --model_path \"checkpoints/DeepSeek-R1-Distill-Llama-8B\" \\\n    --data_path \"data/math500.json\" \\\n    --output_dir \"./profiling_output_c8_llama_importance_s030\" \\\n    --sparsity_levels \"0.30\" \\\n    --masking_method \"importance\" \\\n    --max_new_tokens 8192 \\\n    --min_phase_length 10 \\\n    --max_problems 250 \\\n    --save_generations \\\n    --gpu 0\n```\n\n触发条件：`profiling_output_c8_llama_importance_s025/profiling_results.json` 存在才启动 s030，否则中止。s025 按当前速率（~75s/problem）预计还需 ~4.7h，s030 预计约在 17:20 CST 自动启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c8-s030-chain-setup.md"
+}

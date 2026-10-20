@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d18d3e4fca81bdb97796",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "collect v5 final results",
+  "task_key": "worker_collect_v5-final-results_20260514T014957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_v5-final-results_20260514T014957_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "fc02a59390d53c5fb6a14a1ef33b83b544b2d5ccde0262a3692cb648c51bb0b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验仍在运行中，尚未完成：\n\n| 实验 | GPU | 进度 | 启动时间 | 预计完成 |\n|------|-----|------|----------|----------|\n| s020 | GPU0 | 35/50 (70%) | 09:26 | ~10:00 UTC |\n| s030 | GPU1 | 35/50 (70%) | 09:26 | ~10:00 UTC |\n| s015 | GPU2 | 28/50 (56%) | 09:32 | ~10:05 UTC |\n| s025 | GPU3 | 28/50 (56%) | 09:32 | ~10:05 UTC |\n\nNaN skip 修复生效中（日志可见 `Skipped 1 NaN attention layers: [27]`）。\n\n旧进程（38120, 38996, 38760）已清理。\n\n**冗余下载进程**：有 3 个 modelscope + 1 个 huggingface_hub 进程在下载 Qwen2.5-7B，PIDs: 43532, 46175, 46558, 47323。这些是冗余的，要现在 kill 掉吗？\n\n预计 ~15 分钟后全部完成，届时我再收集结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-v5-final-results.md"
+}

@@ -1,0 +1,74 @@
+{
+  "exp_id": "mvp_v5_random_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:19:30.549Z",
+    "updated_at": "2026-05-14T03:04:44.225Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10\"",
+      "server": "westd-22162",
+      "gpu": "cuda:2",
+      "pid": "51951",
+      "log_path": "/root/autodl-tmp/pacs/profiling_output_v5_random_s015/",
+      "submitted_at": "2026-05-14T02:19:30.478Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_v5_random_s015/",
+      "wall_clock_seconds": 2697.6,
+      "gpu_hours": 0.75
+    },
+    "hypothesis": "v5 修复后代码 random masking baseline, sparsity=0.15, cuda:2。与 mvp_v5_fixed_s015 (importance) 形成对照组。用修复后同一代码确保公平对比。",
+    "reproduce": {
+      "finished_at": "2026-05-14T02:58:13.456Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T02:58:14.836532+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "ii_high_median": 0.1606,
+      "ii_mid_median": 0.252,
+      "ii_low_median": 0.1831,
+      "ii_high_mean": 0.4563,
+      "ii_mid_mean": 0.5134,
+      "ii_low_mean": 0.4775,
+      "ii_high_ci": [
+        0.12,
+        0.77
+      ],
+      "ii_mid_ci": [
+        0.34,
+        0.74
+      ],
+      "ii_low_ci": [
+        0.28,
+        0.7
+      ],
+      "kv_ppl_high": 3.14,
+      "kv_ppl_mid": 2.91,
+      "kv_ppl_low": 3.61,
+      "both_ppl_high": 3.92,
+      "both_ppl_mid": 4.14,
+      "both_ppl_low": 4.71,
+      "problems": 50
+    },
+    "completed_at": "2026-05-14T03:04:28.108Z"
+  },
+  "timestamp": "2026-05-14T03:04:44.284076+00:00",
+  "trigger": "update_registry"
+}

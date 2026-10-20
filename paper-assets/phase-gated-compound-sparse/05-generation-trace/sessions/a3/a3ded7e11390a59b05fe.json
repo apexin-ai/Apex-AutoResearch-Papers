@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3ded7e11390a59b05fe",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper results cohens d",
+  "task_key": "worker_paper_results-cohens-d_20260514T080529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_results-cohens-d_20260514T080529_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "b2e7ad94267b52ac35973a61c52948b757f65b66d26bebbb8733b97fffe5d23e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。变更总结：\n\n**§5.0 Experimental Overview:**\n- dtype 从 `float16` 改为 `bfloat16`，移除 \"bf16 replication pending\" 和 `PENDING-BF16` 注释\n\n**§5.5 Statistical Validation — 完全重写：**\n\n1. **Permutation test table** (`tab:permutation`)：用 difference statistic（不是 ratio）作主检验，填入真实数据：\n   - s=0.15: Δ̃=0.37, CI=[0.19, 0.62], p_Bonf=0.0032\n   - s=0.20: Δ̃=0.97, CI=[0.69, 1.49], p_Bonf<0.001\n   - s=0.25: Δ̃=3.34, CI=[1.66, 6.64], p_Bonf<0.001\n   - s=0.30: Δ̃=9.85, CI=[6.70, 16.29], p_Bonf<0.001\n   - 所有 4 水平 Bonferroni p < 0.005，单调递增\n\n2. **Cohen's d table** (`tab:cohens-d`)：已有表确认数据正确，补充了：\n   - DeepSeek n 从 50 修正为 49（1 excluded）\n   - 每行添加 exp_id 注释\n   - 叙述段添加 exp_id 和 Appendix 交叉引用\n\n3. **移除的内容：**\n   - 旧 bootstrap CI table（`tab:bootstrap`）及其 ratio-based G 统计\n   - 所有 `\\placeholder{}` 标记（§5.5 范围内）\n   - \"severity gradient\" ratio 作为主检验的描述\n\n**未动的部分：** §5.1–5.4 的 `\\placeholder{}` 保留（需要 per-phase II 数据填充，不在当前数据文件中）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-results-cohens-d.md"
+}

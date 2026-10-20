@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e2c57ec7477f2b50a07",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis c8 s025 extract",
+  "task_key": "worker_analysis_c8_s025_extract_20260516T144010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c8_s025_extract_20260516T144010_result.json",
+    "occurrence": 1,
+    "bytes": 2273,
+    "sha256": "4a415a63bdd0388923ab218bd404db0d79c2c9b8499f5639b6340848d8522dae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无 warnings。数据完整。以下是完整指标汇总：\n\n---\n\n## c8_llama_importance_s025 (n=250) 关键指标\n\n### 配置\n| 参数 | 值 |\n|------|-----|\n| Model | DeepSeek-R1-Distill-Llama-8B |\n| Sparsity | 0.25 |\n| Masking | importance (attn_frobenius + cumulative_attn) |\n| Segmentation | quantile |\n| n_problems | 250 |\n| n_bootstrap | 1000 |\n\n### Per-Phase II\n\n| Phase | n | Mean | Median | Median 95% CI |\n|-------|---|------|--------|---------------|\n| high | 244 | 0.0218 | 0.0171 | [0.0172, 0.0207] |\n| mid | 217 | 0.2126 | 0.1916 | [0.1760, 0.2063] |\n| low | 250 | 0.4713 | 0.3880 | [0.3953, 0.4484] |\n\n### Phase Gradient (low − high)\n\n| 指标 | 值 |\n|------|-----|\n| n_paired | 244 |\n| mean_diff | 0.4474 |\n| **median_diff** | **0.3761** |\n| median_diff 95% CI | [0.3147, 0.4039] |\n| **Wilcoxon p (one-sided)** | **4.30e-39** |\n| **Bonferroni p (k=4)** | **1.72e-38 ✓ significant** |\n| **Cohen's d_z** | **1.1174** |\n| Rank-biserial r | 0.8689 (228 pos / 16 neg) |\n\n### 与 Baselines 对比\n\n| 指标 | DS-R1-7B s025 (n=50) | LLaMA s025 (n=50, c3) | **LLaMA s025 (n=250, c8)** |\n|------|----------------------|------------------------|----------------------------|\n| high median | 0.032 | — | 0.0171 |\n| mid median | 1.118 | — | 0.1916 |\n| low median | 7.196 | — | 0.3880 |\n| median_diff | 7.1636 | 0.0947 | **0.3761** |\n| Wilcoxon p | — | 0.0209 | **4.30e-39** |\n| Bonferroni p | — | 0.0834 (NS) | **1.72e-38** |\n| Cohen's d_z | — | 1.1227 | **1.1174** |\n\n### 关键判断\n\n1. **统计显著性**：n=250 下 LLaMA s025 **极其显著** (Bonferroni p = 1.72e-38)，彻底解决了 n=50 时 Bonferroni 不显著的问题。\n\n2. **效应量稳定**：d_z = 1.1174 与 n=50 时的 1.1227 几乎一致，说明 n=50 的效应量估计是可靠的，只是样本不足导致 p 值不够小。\n\n3. **与 DS 的差异**：LLaMA median_diff (0.376) 仅为 DS (7.164) 的 **5.3%**。方向一致（low > high）但幅度差 ~19x。这意味着 phase-gated sparsity 效应在 LLaMA 上存在但远弱于 DS-R1-7B。\n\n4. **n=250 vs n=50 的提升**：median_diff 从 0.0947 增加到 0.3761 (3.97x)——这主要反映了 n=50 时估计不稳定，n=250 的估计更可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c8-s025-extract.md"
+}

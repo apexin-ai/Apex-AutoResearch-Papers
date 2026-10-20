@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46793efc2342481828e1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code ds 8k rerun",
+  "task_key": "worker_code_ds_8k_rerun_20260515T213356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ds_8k_rerun_20260515T213356_result.json",
+    "occurrence": 1,
+    "bytes": 56,
+    "sha256": "80986d8c392ef72260219551a4f14e5d0b181cde5528fa72728ae164a0c1b6b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待中，~4.5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ds-8k-rerun.md"
+}

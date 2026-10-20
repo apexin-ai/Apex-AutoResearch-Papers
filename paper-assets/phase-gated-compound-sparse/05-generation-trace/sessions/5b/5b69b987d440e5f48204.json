@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b69b987d440e5f48204",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose c2 qw n500 status",
+  "task_key": "worker_diagnose_c2_qw_n500_status_20260514T192251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_c2_qw_n500_status_20260514T192251_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "cd84b367818dc8f073401afbaa78f83213075ee0fe7a52be3a614221183dfdf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**Cron 误报，实验正常运行中。**\n\n### s015 已完成\n| Condition | 结果文件 | 完成时间 | 大小 |\n|-----------|---------|---------|------|\n| qw_imp_s015 | `profiling_results.json` | May 15 03:02 UTC | 18.7MB |\n| qw_rand_s015 | `profiling_results.json` | May 15 03:11 UTC | 18.7MB |\n\n### s020 正在运行\nScreen 会话内的脚本在 s015 跑完后自动启动了 s020。原始 PID (131864/132002) 是 s015 的进程，已正常退出。新进程：\n\n| GPU | PID | 任务 | 已运行 | CPU |\n|-----|-----|------|--------|-----|\n| 0 | 156554 | ds_imp_s020 (DeepSeek) | 53m | 100% |\n| 1 | 154305 | ds_rand_s020 (DeepSeek) | 1h19m | 100% |\n| 2 | 159269 | **qw_imp_s020** | 22m | 101% |\n| 3 | 159794 | **qw_rand_s020** | 13m | 102% |\n\n所有 4 个 GPU 都满载（77-99% GPU util），s020 输出目录已创建但结果尚未写入（profiling 在结束时才写 JSON）。\n\n### Cron 误报原因\nCron 监控的是 s015 的 PID (131864/132002)，s015 正常完成后这些 PID 消失，cron 检测到\"process dead\"就报 failed。实际上 screen 会话中的脚本已经顺利推进到下一个 sparsity level。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-c2-qw-n500-status.md"
+}

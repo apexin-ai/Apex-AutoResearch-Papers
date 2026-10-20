@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96d7e0d7d0f287ec21b0",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "check analysis pipeline readiness",
+  "task_key": "worker_check_analysis_pipeline_readiness_20260515T014857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_analysis_pipeline_readiness_20260515T014857_result.json",
+    "occurrence": 1,
+    "bytes": 2598,
+    "sha256": "13f89a7f4906ec834ccf365c25aa74a17923b6a7107471779f157835f8c21b4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整审查完成。以下是分析结论。\n\n---\n\n## 分析代码审查结果\n\n**主脚本**: `/root/autodl-tmp/pacs/analyze_n500_unified.py` (676 行)\n\n### 各项检查\n\n| 要求 | 状态 | 说明 |\n|------|------|------|\n| median（非 mean） | ✅ | `np.median(diffs)` + `bootstrap_median_ci` 均用 median |\n| Bootstrap B=10000 | ✅ | `B_BOOT = 10000` |\n| d_z within-importance only | ✅ | `within_dz_importance` 仅对 imp pairs 计算 d_z；rand 和 imp-vs-rand 仅报 Wilcoxon + median_diff |\n| 输出格式 | ✅ | aggregate table, per-condition breakdown, Cohen's d table, CSV/JSON/LaTeX |\n\n### 一个差异点\n\n任务要求\"paired permutation test\"，但脚本用的是 **Wilcoxon signed-rank test** (`scipy.stats.wilcoxon`)。Permutation test 仅用于 dose-response 单调性检验。n=500 时两者结论基本一致，但方法论上不同。如果论文要求严格用 permutation test，需要修改 `analyze_condition` 中的检验方法。\n\n---\n\n## Dry-run 结果（s015 + s020，共 8 conditions，各 n=500）\n\n### DeepSeek\n| Condition | Median II (low−high) | 95% CI | p_bonf |\n|-----------|---------------------|--------|--------|\n| imp_s015 | +0.3907 | [0.3496, 0.4431] | <0.0001 |\n| imp_s020 | +1.2149 | [1.1072, 1.3365] | <0.0001 |\n| rand_s015 | +0.0139 | [−0.0167, 0.0389] | 1.0000 |\n| rand_s020 | +0.0315 | [−0.0112, 0.0767] | 1.0000 |\n\nWithin-imp d_z: s015 vs s020 = **−0.468** [−0.528, −0.415] (small)\n\n### Qwen\n| Condition | Median II (low−high) | 95% CI | p_bonf |\n|-----------|---------------------|--------|--------|\n| imp_s015 | +0.0659 | [0.0492, 0.0925] | <0.0001 |\n| imp_s020 | +0.3073 | [0.2612, 0.3564] | <0.0001 |\n| rand_s015 | −0.0111 | [−0.0390, 0.0124] | 1.0000 |\n| rand_s020 | +0.0153 | [−0.0145, 0.0684] | 1.0000 |\n\nWithin-imp d_z: s015 vs s020 = **−0.509** [−0.608, −0.422] (medium)\n\n**对比 n=50**: DeepSeek s015 Δ=0.32→0.39, s020 Δ=1.15→1.21，方向一致、幅度接近，n=500 CI 显著收窄。\n\n---\n\n## 数据就绪状态\n\n- s015: ✅ 4/4 conditions (profiling_results.json 存在)\n- s020: ✅ 4/4 conditions\n- s025: ⏳ 目录已创建但无 profiling_results.json（实验进行中）\n- s030: ❌ 目录不存在\n\n---\n\n## 全量分析一键命令\n\n数据到齐后：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp/pacs && \\\npython3 analyze_n500_unified.py --csv --latex\n```\n\n输出写入 `analysis_output/n500_unified.json` + `.csv`，LaTeX 表格打到 stdout。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-analysis-pipeline-readiness.md"
+}

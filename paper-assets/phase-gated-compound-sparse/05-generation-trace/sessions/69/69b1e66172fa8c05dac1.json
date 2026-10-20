@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69b1e66172fa8c05dac1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ssh qwen kill investigation",
+  "task_key": "worker_ssh_qwen-kill-investigation_20260514T051704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen-kill-investigation_20260514T051704_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "6f956943a375fc662b0364135e9d054af628a7a0bd84dadec0755923d4694cd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查结果：\n\n**Kill 原因：被 v6_random 实验启动挤占，非 OOM。**\n\n4 个 Qwen 实验在 13:07-13:08 同时被终止（日志无错误、dmesg 无 OOM），v6_random tmux session 恰好在 13:08 创建并接管了全部 4 块 GPU。`/tmp/agent-ml-exit/` 无 qwen exit code 文件，说明进程被 SIGKILL。\n\n- **Qwen 模型完整可用**（15GB，4 分片齐全）\n- **v6_random 全部健康**（s015: 18/50, s020: 20/50, s025: 13/50, s030: 4/50）\n- **可安全重跑** Qwen 实验，等 v6_random 跑完释放 GPU 即可\n\n报告已保存到 `artifacts/qwen_kill_investigation.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen-kill-investigation.md"
+}

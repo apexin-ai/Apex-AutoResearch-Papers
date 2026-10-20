@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dd6586d33b995bf12a1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ssh r2 r3 conflict check",
+  "task_key": "worker_ssh_r2-r3-conflict-check_20260514T054114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_r2-r3-conflict-check_20260514T054114_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "2cd986c5444c0316fb9b11d550a094d31e65caefdd0cd4faa1b1a225a6611e06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告：cuda:2 上 v6_random_s030 进程冲突\n\n### 进程状态\n\n| | r2 (废弃) | r3 (替代) |\n|---|---|---|\n| **PID** | 77228 → 77233 (python) | 77560 → 77565 (python) |\n| **运行时间** | 8 min 7 sec | 6 min 25 sec |\n| **GPU 显存** | 23,512 MiB | 21,038 MiB |\n| **输出目录** | `profiling_output_v6_random_s030` | `profiling_output_v6_random_s030_r3` |\n| **已产出文件** | **0** | **0** |\n\n### GPU 情况\n\n- 两个进程都在 **cuda:2** (GPU-ae901ff8)，合计占用 **44,550 MiB / 97,887 MiB** (~45.5%)\n- 显存没有溢出风险（H800 97GB 足够），但两个进程**争抢 GPU 计算资源**，互相拖慢\n\n### 关键发现\n\n- **两者都还没产出任何结果文件**——运行 6-8 分钟仍在加载模型或推理第一个 problem，说明 GPU 竞争已经显著拖慢速度\n- 两者参数完全相同（random, s=0.30, 50 problems, 2048 tokens），只是输出目录不同\n- r2 的输出目录是 `profiling_output_v6_random_s030`（无后缀），r3 是 `_r3` 后缀\n\n### 建议\n\n**Kill r2 (PID 77228)**。理由：\n1. r2 本就是废弃实验，没有产出任何有效结果\n2. 两个同参数实验同时跑在同一 GPU 上毫无意义，只会互相拖慢\n3. 杀掉 r2 后 r3 独占 cuda:2，推理速度会显著提升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-r2-r3-conflict-check.md"
+}

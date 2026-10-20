@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c7fdc04d24226cec969",
+  "project": "ec_hte_codex_a",
+  "kind": "worker",
+  "title": "critical install tmux and submit exp002",
+  "task_key": "worker_critical_install_tmux_and_submit_exp002_20260531T164734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_install_tmux_and_submit_exp002_20260531T164734.log",
+    "occurrence": 1,
+    "bytes": 39,
+    "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reading additional input from stdin..."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/worker-executions/critical-install-tmux-and-submit-exp002.md"
+}

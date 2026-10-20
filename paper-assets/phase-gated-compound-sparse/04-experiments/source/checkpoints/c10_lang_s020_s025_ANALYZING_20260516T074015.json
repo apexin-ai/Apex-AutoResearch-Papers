@@ -1,0 +1,31 @@
+{
+  "exp_id": "c10_lang_s020_s025",
+  "project": "phase-gated-compound-sparse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:42:58.878Z",
+    "updated_at": "2026-05-16T07:40:15.577Z",
+    "spec": {
+      "command": "python scripts/gen_c10_s020_s025.py",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "312143",
+      "log_path": "~/runs/phase-gated-compound-sparse/c10_lang_s020_s025.log",
+      "submitted_at": "2026-05-16T03:42:58.420Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MATH-500 subset",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-0528-Qwen3-8B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T07:40:15.893977+00:00",
+  "trigger": "update_registry"
+}

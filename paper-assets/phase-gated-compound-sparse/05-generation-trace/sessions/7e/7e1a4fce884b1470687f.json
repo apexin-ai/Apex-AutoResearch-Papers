@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e1a4fce884b1470687f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra importance vs random",
+  "task_key": "worker_infra_importance-vs-random_20260513T222105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_importance-vs-random_20260513T222105_result.json",
+    "occurrence": 1,
+    "bytes": 1383,
+    "sha256": "abb6f2680b7b90f1086478bf7bc9cf9cb0b87e81c146c7863ad4934ddd741f4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n## Importance vs Random Masking PPL 退化对比\n\n| Sparsity | Method | Head-only | KV-only | Compound (Head+KV) |\n|----------|--------|-----------|---------|---------------------|\n| **10%** | importance | **1.07x** | **1.46x** | **1.54x** |\n| 10% | random | 0.97x | 2.20x | 2.23x |\n| **20%** | importance | **1.22x** | **2.28x** | **2.71x** |\n| 20% | random | 1.31x | 6.48x | 7.31x |\n| **30%** | importance | **1.47x** | **5.09x** | **4.65x** |\n| 30% | random | 4.02x | 13.80x | **26.20x** |\n\n### 关键发现\n\n1. **Importance-based 显著优于 random**，尤其在高 sparsity 下差距急剧扩大：\n   - 30% compound: importance 4.65x vs random **26.20x**（差 5.6 倍）\n   - 20% compound: importance 2.71x vs random 7.31x（差 2.7 倍）\n\n2. **KV eviction 是退化主因**，不是 head masking：\n   - 30% importance: head 仅 1.47x，KV 达 5.09x\n   - Random KV eviction 在 30% 已达 13.80x，是灾难性的\n\n3. **Head masking 本身退化可控**：importance-based 在 30% 仅 1.47x，说明确实有大量冗余 head 可以安全剪掉。Random 在 30% 也才 4.02x，远低于 compound 的 26.20x。\n\n4. **M1v2 的 24-33x 退化主要来自 random KV eviction + compound 叠加效应**，而非 head pruning 本身。Importance-based 选择可以将 30% compound 退化从 26x 降到 4.6x。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-importance-vs-random.md"
+}

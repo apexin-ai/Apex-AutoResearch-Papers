@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "110469f5c4379728811b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper headline consistency verify",
+  "task_key": "worker_paper_headline_consistency_verify_20260516T042410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_headline_consistency_verify_20260516T042410_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "29447a9795d210b8a63fd3cf8779d3902938e445f3ef283200fe35b7415a7c57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## PASS — 全文数字一致性验证通过\n\n**旧数字（n=50 pilot）**：`0.32`, `9.94`, `0.048`, `2.619` — 在所有 .tex 文件和 paper_framing.md 中**零匹配**，已完全清除。\n\n**新数字（n=500 正式）出现位置**：\n\n| 数字 | 文件 |\n|------|------|\n| DS 0.39 (s015) | abstract.tex:4, introduction.tex:14/23, results.tex:19/42/117, appendix_moved.tex:27/83, appendix_robustness.tex:42/82, appendix_disc_analysis.tex:106 |\n| DS 8.48 (s030) | abstract.tex:4, introduction.tex:14/23, results.tex:19/51/120, appendix_moved.tex:83, appendix_robustness.tex:45/85 |\n| QW 0.07 (s015) | abstract.tex:6, introduction.tex:15/24, results.tex:55/117, appendix_moved.tex:84, appendix_robustness.tex:194 |\n| QW 3.16 (s030) | abstract.tex:6, introduction.tex:15/24, results.tex:64/120, appendix_moved.tex:84/100, appendix_disc_analysis.tex:52(间接) |\n\n**paper_framing.md**：更新头标注明 n=500 数值（DS 0.39/1.21/3.99/8.48; QW 0.07/0.31/1.07/3.16），与论文一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-headline-consistency-verify.md"
+}

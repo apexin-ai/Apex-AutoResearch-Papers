@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39ff34edb98bd2ae279f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code accuracy eval s020 s025",
+  "task_key": "worker_code_accuracy_eval_s020_s025_20260515T204744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_accuracy_eval_s020_s025_20260515T204744_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "189eab3149979bc04713e770a56c097df0aeae5d010369fbb744308e41acfb64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 jobs submitted across 4 GPUs:\n\n| Job | GPU | Model | Condition |\n|-----|-----|-------|-----------|\n| acc_ds_s020 | cuda:0 | DeepSeek-R1-Distill-Qwen-7B | importance_s020 |\n| acc_ds_s025 | cuda:1 | DeepSeek-R1-Distill-Qwen-7B | importance_s025 |\n| acc_qw_s020 | cuda:2 | Qwen2.5-7B-Instruct | importance_s020 |\n| acc_qw_s025 | cuda:3 | Qwen2.5-7B-Instruct | importance_s025 |\n\nAll confirmed running. Will check back in ~30min to collect results and compile the full table."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-accuracy-eval-s020-s025.md"
+}

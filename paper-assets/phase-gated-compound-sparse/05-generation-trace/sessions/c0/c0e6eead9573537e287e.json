@@ -1,0 +1,1253 @@
+{
+  "schema_version": "1.0",
+  "id": "c0e6eead9573537e287e",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper bib new refs",
+  "task_key": "worker_paper_bib_new_refs_20260516T232247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib_new_refs_20260516T232247.log",
+    "occurrence": 1,
+    "bytes": 103961,
+    "sha256": "7c7826dd65b506d327dbf12aa4b45935a191c35ecfb21a5a912df8740c2d542b"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+                "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c25107dc-364c-43ec-b721-145eb845c331",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778983200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "35302963-6211-44fc-b831-c4a8282146f7",
+                "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the existing bib file to check which papers are already cited.",
+              "signature": "EpECClkIDRgCKkAYwGAeL+oriWGCsFkgC29WbLx6ezojhp1IxJCtrlkkJpJJvezFpEb46hSmmKnQnyaK3PvEFHrvrx0hPOUYA6zxMg9jbGF1ZGUtb3B1cy00LTY4ABIM5KBKIGaxAcW/92gXGgwQvW/Yoszu88IImOMiMKpkBOMq3pIPuhLuUEcoCgjkMtj7DYs3yO5pAj3UmMqk4cCKCN3PBRxy6leUkcqduypmD875sk3M557oNg5ac1PSnNtB9mCohgFgfGpIx9wzc7Y6bEBEUcUTkXznHDI8W5v2BEyiQ9YJQR4tYAS5uHqH53ehgl91BR6FiwCskIeP/QuJy1nBKFCPme7ZbRvjrBK7kwWQc2j9GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "935a7d65-815e-496a-b21c-0a5aadf3bcac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PawtN1bX4TnbcAAqczhHMp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12993,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12993
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012iVZQoRYubjMPHA2T3GWXP",
+              "name": "Glob",
+              "input": {
+                "pattern": "*.bib",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "6e6f3c55-d0ae-4648-a513-a485b9eb6448",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PawtN1bX4TnbcAAqczhHMp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12993,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12993
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T23:22:58.550Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012iVZQoRYubjMPHA2T3GWXP",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "c22c097f-3acf-4dbb-b1a7-d75f9a78280a",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/_project/paper/references.bib"
+              ],
+              "durationMs": 15,
+              "numFiles": 1,
+              "truncated": false
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TKJRRn9scfZQVP4oHfZcmR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "bf97b776-b519-41a5-900e-4b7d81893ba0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WCZfhgC2BPUBeaiVvyzAsJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 163,
+                "cache_read_input_tokens": 24440,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 163
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T23:23:01.968Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TKJRRn9scfZQVP4oHfZcmR",
+              "type": "tool_result",
+              "content": "1\t\n2\t@inproceedings{streamingllm-iclr2024,\n3\t    title     = {Efficient Streaming Language Models with Attention Sinks},\n4\t    author    = {Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike},\n5\t    booktitle = {International Conference on Learning Representations},\n6\t    year      = {2024},\n7\t    url       = {https://arxiv.org/abs/2309.17453},\n8\t}\n9\t\n10\t@article{duoattention-2024,\n11\t    title   = {{DuoAttention}: Efficient Long-Context {LLM} Inference with Retrieval and Streaming Heads},\n12\t    author  = {Xiao, Guangxuan and Tang, Jiaming and Zuo, Jingwei and Guo, Junxian and Yang, Shang and Tang, Haotian and Fu, Yao and Han, Song},\n13\t    journal = {arXiv preprint arXiv:2410.10819},\n14\t    year    = {2024},\n15\t    url     = {https://arxiv.org/abs/2410.10819},\n16\t}\n17\t\n18\t@inproceedings{adakv-neurips2025,\n19\t    title     = {Ada-{KV}: Optimizing {KV} Cache Eviction by Adaptive Budget Allocation for Efficient {LLM} Inference},\n20\t    author    = {Feng, Yuan and Lv, Junlin and Cao, Yukun and Xie, Xike and Zhou, S. Kevin},\n21\t    booktitle = {Advances in Neural Information Processing Systems},\n22\t    year      = {2025},\n23\t    url       = {https://arxiv.org/abs/2407.11550},\n24\t}\n25\t\n26\t@article{decision-repr-transition-2026,\n27\t    title   = {Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions},\n28\t    author  = {Shi, Boyu and Liu, Chang and Gao, ChuanBao and Yang, Xu and Geng, Xin},\n29\t    journal = {arXiv preprint arXiv:2605.07271},\n30\t    year    = {2026},\n31\t    url     = {https://arxiv.org/abs/2605.07271},\n32\t}\n33\t\n34\t@article{deepseek-r1-2025,\n35\t    title   = {{DeepSeek-R1} incentivizes reasoning in {LLMs} through reinforcement learning},\n36\t    author  = {{DeepSeek-AI}},\n37\t    journal = {Nature},\n38\t    volume  = {645},\n39\t    pages   = {633--638},\n40\t    year    = {2025},\n41\t    doi     = {10.1038/s41586-025-09422-z},\n42\t}\n43\t\n44\t@inproceedings{defensivekv-iclr2026,\n45\t    title     = {{DefensiveKV}: Taming the Fragility of {KV} Cache Eviction in {LLM} Inference},\n46\t    author    = {Feng, Yuan and Guo, Haoyu and Lv, Junlin and Zhou, S. Kevin and Xie, Xike},\n47\t    booktitle = {International Conference on Learning Representations},\n48\t    year      = {2026},\n49\t    url       = {https://arxiv.org/abs/2510.13334},\n50\t}\n51\t\n52\t@article{doing-more-with-less-2026,\n53\t    title   = {Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},\n54\t    author  = {Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},\n55\t    journal = {arXiv preprint arXiv:2604.25098},\n56\t    year    = {2026},\n57\t    url     = {https://arxiv.org/abs/2604.25098},\n58\t}\n59\t\n60\t@book{efron-1993,\n61\t    title     = {An Introduction to the Bootstrap},\n62\t    author    = {Efron, Bradley and Tibshirani, Robert J.},\n63\t    publisher = {Chapman \\& Hall/CRC},\n64\t    year      = {1993},\n65\t}\n66\t\n67\t@inproceedings{graspune-acl2026,\n68\t    title     = {{GRASPrune}: Global Gating for Budgeted Structured Pruning of Large Language Models},\n69\t    author    = {Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n70\t    booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics},\n71\t    year      = {2026},\n72\t    url       = {https://arxiv.org/abs/2604.19398},\n73\t}\n74\t\n75\t@article{greedy-bias-kvcache-2026,\n76\t    title   = {More Than a Quick Glance: Overcoming the Greedy Bias in {KV}-Cache Compression},\n77\t    author  = {Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},\n78\t    journal = {arXiv preprint arXiv:2602.02199},\n79\t    year    = {2026},\n80\t    url     = {https://arxiv.org/abs/2602.02199},\n81\t}\n82\t\n83\t@article{hold-onto-thought-neurips2025,\n84\t    title   = {Hold Onto That Thought: Assessing {KV} Cache Compression On Reasoning},\n85\t    author  = {Liu, Minghui and Palnitkar, Aadi and Rabbani, Tahseen and Jae, Hyunwoo and Sang, Kyle Rui and Yao, Dixi and Shabihi, Shayan and Zhao, Fuheng and Li, Tian and Zhang, Ce and Huang, Furong and Zhang, Kunpeng},\n86\t    journal = {arXiv preprint arXiv:2512.12008},\n87\t    year    = {2025},\n88\t    url     = {https://arxiv.org/abs/2512.12008},\n89\t}\n90\t\n91\t@inproceedings{h2o-neurips2023,\n92\t    title     = {{H2O}: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models},\n93\t    author    = {Zhang, Zhenyu and Sheng, Ying and Zhou, Tianyi and Chen, Tianlong and Zheng, Lianmin and Cai, Ruisi and Song, Zhao and Tian, Yuandong and R{\\'e}, Christopher and Barrett, Clark and Wang, Zhangyang and Chen, Beidi},\n94\t    booktitle = {Advances in Neural Information Processing Systems},\n95\t    year      = {2023},\n96\t    url       = {https://arxiv.org/abs/2306.14048},\n97\t}\n98\t\n99\t@article{hies-2025,\n100\t    title   = {Entropy Meets Importance: A Unified Head Importance-Entropy Score for Stable and Efficient Transformer Pruning},\n101\t    author  = {Choi, Minsik and Son, Hyegang and Kim, Changhoon and Kim, Young Geun},\n102\t    journal = {arXiv preprint arXiv:2510.13832},\n103\t    year    = {2025},\n104\t    url     = {https://arxiv.org/abs/2510.13832},\n105\t}\n106\t\n107\t@inproceedings{kwon-sosp2023,\n108\t    title     = {Efficient Memory Management for Large Language Model Serving with {PagedAttention}},\n109\t    author    = {Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph E. and Zhang, Hao and Stoica, Ion},\n110\t    booktitle = {Proceedings of the 29th Symposium on Operating Systems Principles},\n111\t    year      = {2023},\n112\t    url       = {https://arxiv.org/abs/2309.06180},\n113\t}\n114\t\n115\t@inproceedings{lethe-aaai2026,\n116\t    title     = {Lethe: Layer- and Time-Adaptive {KV} Cache Pruning for Reasoning-Intensive {LLM} Serving},\n117\t    author    = {Zeng, Hui and Zhao, Daming and Yang, Pengfei and Hou, WenXuan and Zheng, Tianyang and Li, Hui and Ji, Weiye and Zhai, Jidong},\n118\t    booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n119\t    year      = {2026},\n120\t    url       = {https://arxiv.org/abs/2511.06029},\n121\t}\n122\t\n123\t@inproceedings{math500-neurips2021,\n124\t    title     = {Measuring Mathematical Problem Solving With the {MATH} Dataset},\n125\t    author    = {Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart, Steven and Tang, Eric and Song, Dawn and Steinhardt, Jacob},\n126\t    booktitle = {Advances in Neural Information Processing Systems},\n127\t    year      = {2021},\n128\t    url       = {https://arxiv.org/abs/2103.03874},\n129\t}\n130\t\n131\t@inproceedings{michel-neurips2019,\n132\t    title     = {Are Sixteen Heads Really Better than One?},\n133\t    author    = {Michel, Paul and Levy, Omer and Neubig, Graham},\n134\t    booktitle = {Advances in Neural Information Processing Systems},\n135\t    year      = {2019},\n136\t    url       = {https://arxiv.org/abs/1905.10650},\n137\t}\n138\t\n139\t@inproceedings{nacl-acl2024,\n140\t    title     = {{NACL}: A General and Effective {KV} Cache Eviction Framework for {LLMs} at Inference Time},\n141\t    author    = {Chen, Yilong and Wang, Guoxia and Shang, Junyuan and Cui, Shiyao and Zhang, Zhenyu and Liu, Tingwen and Wang, Shuohuan and Sun, Yu and Yu, Dianhai and Wu, Hua},\n142\t    booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics},\n143\t    year      = {2024},\n144\t    url       = {https://arxiv.org/abs/2408.03675},\n145\t}\n146\t\n147\t@article{phase-transition-compression-2026,\n148\t    title   = {Phase transitions in large language model compression},\n149\t    author  = {Ma, Ziyang and Li, Zuchao and Zhang, Lefei and Xia, Gui-Song and Du, Bo and Zhang, Liangpei and Tao, Dacheng},\n150\t    journal = {npj Artificial Intelligence},\n151\t    volume  = {2},\n152\t    number  = {21},\n153\t    year    = {2026},\n154\t    url     = {https://www.nature.com/articles/s44387-026-00072-8},\n155\t}\n156\t\n157\t@article{physics-kvcache-2026,\n158\t    title   = {Understanding the Physics of Key-Value Cache Compression for {LLMs} through Attention Dynamics},\n159\t    author  = {Ananthanarayanan, Samhruth and Sengupta, Ayan and Chakraborty, Tanmoy},\n160\t    journal = {arXiv preprint arXiv:2603.01426},\n161\t    year    = {2026},\n162\t    url     = {https://arxiv.org/abs/2603.01426},\n163\t}\n164\t\n165\t@inproceedings{pope-mlsys2023,\n166\t    title     = {Efficiently Scaling Transformer Inference},\n167\t    author    = {Pope, Reiner and Douglas, Sholto and Chowdhery, Aakanksha and Devlin, Jacob and Bradbury, James and Heek, Jonathan and Xiao, Kefan and Agrawal, Shivani and Dean, Jeff},\n168\t    booktitle = {Proceedings of Machine Learning and Systems},\n169\t    year      = {2023},\n170\t    url       = {https://arxiv.org/abs/2211.05102},\n171\t}\n172\t\n173\t@inproceedings{pyramidkv-colm2025,\n174\t    title     = {{PyramidKV}: Dynamic {KV} Cache Compression based on Pyramidal Information Funneling},\n175\t    author    = {Cai, Zefan and Zhang, Yichi and Gao, Bofei and Liu, Yuliang and Liu, Tianyu and Lu, Keming and Xiong, Wayne and Dong, Yue and Chang, Baobao and Hu, Junjie and Xiao, Wen},\n176\t    booktitle = {Conference on Language Modeling},\n177\t    year      = {2025},\n178\t    url       = {https://arxiv.org/abs/2406.02069},\n179\t}\n180\t\n181\t@article{qwen25-2024,\n182\t    title   = {{Qwen2.5} Technical Report},\n183\t    author  = {Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Li, Chengyuan and Liu, Dayiheng and Huang, Fei and Wei, Haoran and others},\n184\t    journal = {arXiv preprint arXiv:2412.15115},\n185\t    year    = {2024},\n186\t    url     = {https://arxiv.org/abs/2412.15115},\n187\t}\n188\t\n189\t@article{retentivekv-2026,\n190\t    title   = {{RetentiveKV}: State-Space Memory for Uncertainty-Aware Multimodal {KV} Cache Eviction},\n191\t    author  = {Liu, Sihao and Xiong, YuFan and Jiang, Zhonghua and Wang, Zhaode and Lv, Chengfei and Zhang, Shengyu},\n192\t    journal = {arXiv preprint arXiv:2605.04075},\n193\t    year    = {2026},\n194\t    url     = {https://arxiv.org/abs/2605.04075},\n195\t}\n196\t\n197\t@inproceedings{rkv-neurips2025,\n198\t    title     = {{R-KV}: Redundancy-Aware {KV} Cache Compression for Reasoning Models},\n199\t    author    = {Cai, Zefan and Xiao, Wen and Sun, Hanshi and Luo, Cheng and Zhang, Yikai and Wan, Ke and Li, Yucheng and Zhou, Yeyang and Chang, Li-Wen and Gu, Jiuxiang and Dong, Zhen and Anandkumar, Anima and Asi, Abedelkadir and Hu, Junjie},\n200\t    booktitle = {Advances in Neural Information Processing Systems},\n201\t    year      = {2025},\n202\t    url       = {https://arxiv.org/abs/2505.24133},\n203\t}\n204\t\n205\t@inproceedings{slim-icml2025,\n206\t    title     = {{SLiM}: One-shot Quantization and Sparsity with Low-rank Approximation for {LLM} Weight Compression},\n207\t    author    = {Mozaffari, Mohammad and Yazdanbakhsh, Amir and Dehnavi, Maryam Mehri},\n208\t    booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n209\t    year      = {2025},\n210\t    url       = {https://arxiv.org/abs/2410.09615},\n211\t}\n212\t\n213\t@inproceedings{snapkv-neurips2024,\n214\t    title     = {{SnapKV}: {LLM} Knows What You Are Looking for Before Generation},\n215\t    author    = {Li, Yuhong and Huang, Yingbing and Yang, Bowen and Venkitesh, Bharat and Locatelli, Acyr and Ye, Hanchen and Cai, Tianle and Lewis, Patrick and Chen, Deming},\n216\t    booktitle = {Advances in Neural Information Processing Systems},\n217\t    year      = {2024},\n218\t    url       = {https://arxiv.org/abs/2404.14469},\n219\t}\n220\t\n221\t\n222\t@inproceedings{spark-aaai2026,\n223\t    title     = {{SparK}: Query-Aware Unstructured Sparsity with Recoverable {KV} Cache Channel Pruning},\n224\t    author    = {Liao, Huanxuan and Xu, Yixing and He, Shizhu and Li, Guanchen and Yin, Xuanwu and Li, Dong and Barsoum, Emad and Zhao, Jun and Liu, Kang},\n225\t    booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n226\t    year      = {2026},\n227\t    url       = {https://arxiv.org/abs/2508.15212},\n228\t}\n229\t\n230\t@article{sparse-frontier-2025,\n231\t    title   = {The Sparse Frontier: Sparse Attention Trade-offs in Transformer {LLMs}},\n232\t    author  = {Nawrot, Piotr and Li, Robert and Huang, Renjie and Ruder, Sebastian and Marchisio, Kelly and Ponti, Edoardo M.},\n233\t    journal = {arXiv preprint arXiv:2504.17768},\n234\t    year    = {2025},\n235\t    url     = {https://arxiv.org/abs/2504.17768},\n236\t}\n237\t\n238\t@inproceedings{thinkv-iclr2026,\n239\t    title     = {{ThinKV}: Thought-Adaptive {KV} Cache Compression for Efficient Reasoning Models},\n240\t    author    = {Ramachandran, Akshat and Neseem, Marina and Sakr, Charbel and Venkatesan, Rangharajan and Khailany, Brucek and Krishna, Tushar},\n241\t    booktitle = {International Conference on Learning Representations},\n242\t    year      = {2026},\n243\t    url       = {https://arxiv.org/abs/2510.01290},\n244\t}\n245\t\n246\t@article{unicomp-2026,\n247\t    title   = {{UniComp}: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation},\n248\t    author  = {von Rad, Jonathan and Cao, Yong and Geiger, Andreas},\n249\t    journal = {arXiv preprint arXiv:2602.09130},\n250\t    year    = {2026},\n251\t    url     = {https://arxiv.org/abs/2602.09130},\n252\t}\n253\t\n254\t@article{longflow-2026,\n255\t    title   = {{LongFlow}: Efficient {KV} Cache Compression for Reasoning Models},\n256\t    author  = {Su, Yi and Tian, Zhenxu and Qiao, Dan and Zhou, Yuechi and Li, Juntao and Zhang, Min},\n257\t    journal = {arXiv preprint arXiv:2603.11504},\n258\t    year    = {2026},\n259\t    url     = {https://arxiv.org/abs/2603.11504},\n260\t}\n261\t\n262\t@inproceedings{pmkvq-iclr2026,\n263\t    title     = {{PM-KVQ}: Progressive Mixed-precision {KV} Cache Quantization for Long-{CoT} {LLMs}},\n264\t    author    = {Liu, Tengxuan and Li, Shiyao and Yang, Jiayi and Zhao, Tianchen and Zhou, Feng and Song, Xiaohui and Dai, Guohao and Yan, Shengen and Yang, Huazhong and Wang, Yu},\n265\t    booktitle = {International Conference on Learning Representations},\n266\t    year      = {2026},\n267\t    url       = {https://arxiv.org/abs/2505.18610},\n268\t}\n269\t\n270\t@article{rlkv-2025,\n271\t    title   = {Which Heads Matter for Reasoning? {RL}-Guided {KV} Cache Compression},\n272\t    author  = {Du, Wenjie and Jiang, Li and Tao, Keda and Liu, Xue and Wang, Huan},\n273\t    journal = {arXiv preprint arXiv:2510.08525},\n274\t    year    = {2025},\n275\t    url     = {https://arxiv.org/abs/2510.08525},\n276\t}\n277\t\n278\t\n279\t@article{lkv-2026,\n280\t    title   = {{LKV}: End-to-End Learning of Head-wise Budgets and Token Selection for {LLM} {KV} Cache Eviction},\n281\t    author  = {Zhou, Enshuai and Hao, Yifan and Wang, Chao and Zhang, Rui and Huang, Di and Guo, Jiaming and Hu, Xing and Du, Zidong and Guo, Qi and Chen, Yunji},\n282\t    journal = {arXiv preprint arXiv:2605.06676},\n283\t    year    = {2026},\n284\t    url     = {https://arxiv.org/abs/2605.06676},\n285\t}\n286\t\n287\t@inproceedings{xu2025think,\n288\t    title     = {{ThinK}: Thinner Key Cache by Query-Driven Pruning},\n289\t    author    = {Xu, Yuhui and Jie, Zhanming and Dong, Hanze and Wang, Lei and Lu, Xudong and Zhou, Aojun and Saha, Amrita and Xiong, Caiming and Sahoo, Doyen},\n290\t    booktitle = {International Conference on Learning Representations},\n291\t    year      = {2025},\n292\t    url       = {https://arxiv.org/abs/2407.21018},\n293\t}\n294\t\n295\t@article{dong2026foresightkv,\n296\t    title   = {{ForesightKV}: Optimizing {KV} Cache Eviction for Reasoning Models by Learning Long-Term Contribution},\n297\t    author  = {Dong, Zican and Liu, Peiyu and Li, Junyi and Chen, Zhipeng and Peng, Han and Wang, Shuo and Zhao, Wayne Xin},\n298\t    journal = {arXiv preprint arXiv:2602.03203},\n299\t    year    = {2026},\n300\t    url     = {https://arxiv.org/abs/2602.03203},\n301\t}\n302\t\n303\t@inproceedings{kim2026pqqp,\n304\t    title     = {Prune-then-Quantize or Quantize-then-Prune? Understanding the Impact of Compression Order in Joint Model Compression},\n305\t    author    = {Kim, Minjun and Choi, Jaehyeon and Yang, Hyunwoo and Kim, Jongjin and Song, Jinho and Kang, U},\n306\t    booktitle = {International Conference on Learning Representations},\n307\t    year      = {2026},\n308\t    url       = {https://arxiv.org/abs/2603.18426},\n309\t}\n310\t\n311\t@article{lanham-2023-faithfulness,\n312\t    title   = {Measuring Faithfulness in Chain-of-Thought Reasoning},\n313\t    author  = {Lanham, Tamera and Chen, Anna and Radhakrishnan, Ansh and Steiner, Benoit and Denison, Carson and Hernandez, Danny and Li, Dustin and Durmus, Esin and Hubinger, Evan and Kernion, Jackson and others},\n314\t    journal = {arXiv preprint arXiv:2307.13702},\n315\t    year    = {2023},\n316\t    url     = {https://arxiv.org/abs/2307.13702},\n317\t}\n318\t\n319\t@inproceedings{turpin-2023-biased-cot,\n320\t    title     = {Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting},\n321\t    author    = {Turpin, Miles and Michael, Julian and Perez, Ethan and Bowman, Samuel R.},\n322\t    booktitle = {Advances in Neural Information Processing Systems},\n323\t    year      = {2023},\n324\t    url       = {https://arxiv.org/abs/2305.04388},\n325\t}\n326\t\n327\t@inproceedings{voita-acl2019,\n328\t    title     = {Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned},\n329\t    author    = {Voita, Elena and Talbot, David and Moiseev, Fedor and Sennrich, Rico and Titov, Ivan},\n330\t    booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n331\t    year      = {2019},\n332\t    url       = {https://arxiv.org/abs/1905.09418},\n333\t}\n334\t\n335\t@inproceedings{wei-neurips2022-cot,\n336\t    title     = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},\n337\t    author    = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed and Le, Quoc and Zhou, Denny},\n338\t    booktitle = {Advances in Neural Information Processing Systems},\n339\t    year      = {2022},\n340\t    url       = {https://arxiv.org/abs/2201.11903},\n341\t}\n342\t\n343\t@article{rein-gpqa-2024,\n344\t    title   = {{GPQA}: A Graduate-Level Google-Proof Q\\&A Benchmark},\n345\t    author  = {Rein, David and Hou, Betty Li and Stickland, Asa Cooper and Petty, Jackson and Pang, Richard Yuanzhe and Dirani, Julien and Michael, Julian and Bowman, Samuel R.},\n346\t    journal = {arXiv preprint arXiv:2311.12022},\n347\t    year    = {2024},\n348\t    url     = {https://arxiv.org/abs/2311.12022},\n349\t}\n350\t\n351\t@inproceedings{frankle-iclr2019,\n352\t    title     = {The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks},\n353\t    author    = {Frankle, Jonathan and Carlin, Michael},\n354\t    booktitle = {International Conference on Learning Representations},\n355\t    year      = {2019},\n356\t    url       = {https://arxiv.org/abs/1803.03635},\n357\t}\n358\t\n359\t@inproceedings{han-neurips2015,\n360\t    title     = {Learning both Weights and Connections for Efficient Neural Networks},\n361\t    author    = {Han, Song and Pool, Jeff and Tran, John and Dally, William J.},\n362\t    booktitle = {Advances in Neural Information Processing Systems},\n363\t    year      = {2015},\n364\t    url       = {https://arxiv.org/abs/1506.02626},\n365\t}\n366\t\n367\t@inproceedings{sanh-neurips2020,\n368\t    title     = {Movement Pruning: Adaptive Sparsity during Fine-Tuning},\n369\t    author    = {Sanh, Victor and Wolf, Thomas and Rush, Alexander M.},\n370\t    booktitle = {Advances in Neural Information Processing Systems},\n371\t    year      = {2020},\n372\t    url       = {https://arxiv.org/abs/2005.07683},\n373\t}\n374\t\n375\t@article{scissorhands-2023,\n376\t    title   = {Scissorhands: Exploiting the Persistence of Importance Hypothesis for {LLM} {KV} Cache Compression},\n377\t    author  = {Liu, Zichang and Desai, Aditya and Liao, Fangshuo and Wang, Weitao and Xie, Victor and Xu, Zhaozhuo and Kyrillidis, Anastasios and Shrivastava, Anshumali},\n378\t    journal = {arXiv preprint arXiv:2305.17118},\n379\t    year    = {2023},\n380\t    url     = {https://arxiv.org/abs/2305.17118},\n381\t}\n382\t\n383\t@article{snell-2024-scaling-test-time,\n384\t    title   = {Scaling {LLM} Test-Time Compute Optimally Can be More Effective Than Scaling Model Parameters},\n385\t    author  = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n386\t    journal = {arXiv preprint arXiv:2408.03314},\n387\t    year    = {2024},\n388\t    url     = {https://arxiv.org/abs/2408.03314},\n389\t}\n390\t\n391\t@article{fedus-jmlr2022,\n392\t    title   = {Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},\n393\t    author  = {Fedus, William and Zoph, Barret and Shazeer, Noam},\n394\t    journal = {Journal of Machine Learning Research},\n395\t    volume  = {23},\n396\t    number  = {120},\n397\t    pages   = {1--39},\n398\t    year    = {2022},\n399\t    url     = {https://arxiv.org/abs/2101.03961},\n400\t}\n401\t\n402\t@inproceedings{shazeer-2017-moe,\n403\t    title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},\n404\t    author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},\n405\t    booktitle = {International Conference on Learning Representations},\n406\t    year      = {2017},\n407\t    url       = {https://arxiv.org/abs/1701.06538},\n408\t}\n409\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "83c64727-0942-4467-9749-5dac7e707b4e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/references.bib",
+                "content": "\n@inproceedings{streamingllm-iclr2024,\n    title     = {Efficient Streaming Language Models with Attention Sinks},\n    author    = {Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2309.17453},\n}\n\n@article{duoattention-2024,\n    title   = {{DuoAttention}: Efficient Long-Context {LLM} Inference with Retrieval and Streaming Heads},\n    author  = {Xiao, Guangxuan and Tang, Jiaming and Zuo, Jingwei and Guo, Junxian and Yang, Shang and Tang, Haotian and Fu, Yao and Han, Song},\n    journal = {arXiv preprint arXiv:2410.10819},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2410.10819},\n}\n\n@inproceedings{adakv-neurips2025,\n    title     = {Ada-{KV}: Optimizing {KV} Cache Eviction by Adaptive Budget Allocation for Efficient {LLM} Inference},\n    author    = {Feng, Yuan and Lv, Junlin and Cao, Yukun and Xie, Xike and Zhou, S. Kevin},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2407.11550},\n}\n\n@article{decision-repr-transition-2026,\n    title   = {Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions},\n    author  = {Shi, Boyu and Liu, Chang and Gao, ChuanBao and Yang, Xu and Geng, Xin},\n    journal = {arXiv preprint arXiv:2605.07271},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2605.07271},\n}\n\n@article{deepseek-r1-2025,\n    title   = {{DeepSeek-R1} incentivizes reasoning in {LLMs} through reinforcement learning},\n    author  = {{DeepSeek-AI}},\n    journal = {Nature},\n    volume  = {645},\n    pages   = {633--638},\n    year    = {2025},\n    doi     = {10.1038/s41586-025-09422-z},\n}\n\n@inproceedings{defensivekv-iclr2026,\n    title     = {{DefensiveKV}: Taming the Fragility of {KV} Cache Eviction in {LLM} Inference},\n    author    = {Feng, Yuan and Guo, Haoyu and Lv, Junlin and Zhou, S. Kevin and Xie, Xike},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2510.13334},\n}\n\n@article{doing-more-with-less-2026,\n    title   = {Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},\n    author  = {Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},\n    journal = {arXiv preprint arXiv:2604.25098},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2604.25098},\n}\n\n@book{efron-1993,\n    title     = {An Introduction to the Bootstrap},\n    author    = {Efron, Bradley and Tibshirani, Robert J.},\n    publisher = {Chapman \\& Hall/CRC},\n    year      = {1993},\n}\n\n@inproceedings{graspune-acl2026,\n    title     = {{GRASPrune}: Global Gating for Budgeted Structured Pruning of Large Language Models},\n    author    = {Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n    booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2604.19398},\n}\n\n@article{greedy-bias-kvcache-2026,\n    title   = {More Than a Quick Glance: Overcoming the Greedy Bias in {KV}-Cache Compression},\n    author  = {Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},\n    journal = {arXiv preprint arXiv:2602.02199},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2602.02199},\n}\n\n@article{hold-onto-thought-neurips2025,\n    title   = {Hold Onto That Thought: Assessing {KV} Cache Compression On Reasoning},\n    author  = {Liu, Minghui and Palnitkar, Aadi and Rabbani, Tahseen and Jae, Hyunwoo and Sang, Kyle Rui and Yao, Dixi and Shabihi, Shayan and Zhao, Fuheng and Li, Tian and Zhang, Ce and Huang, Furong and Zhang, Kunpeng},\n    journal = {arXiv preprint arXiv:2512.12008},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2512.12008},\n}\n\n@inproceedings{h2o-neurips2023,\n    title     = {{H2O}: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models},\n    author    = {Zhang, Zhenyu and Sheng, Ying and Zhou, Tianyi and Chen, Tianlong and Zheng, Lianmin and Cai, Ruisi and Song, Zhao and Tian, Yuandong and R{\\'e}, Christopher and Barrett, Clark and Wang, Zhangyang and Chen, Beidi},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2023},\n    url       = {https://arxiv.org/abs/2306.14048},\n}\n\n@article{hies-2025,\n    title   = {Entropy Meets Importance: A Unified Head Importance-Entropy Score for Stable and Efficient Transformer Pruning},\n    author  = {Choi, Minsik and Son, Hyegang and Kim, Changhoon and Kim, Young Geun},\n    journal = {arXiv preprint arXiv:2510.13832},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2510.13832},\n}\n\n@inproceedings{kwon-sosp2023,\n    title     = {Efficient Memory Management for Large Language Model Serving with {PagedAttention}},\n    author    = {Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph E. and Zhang, Hao and Stoica, Ion},\n    booktitle = {Proceedings of the 29th Symposium on Operating Systems Principles},\n    year      = {2023},\n    url       = {https://arxiv.org/abs/2309.06180},\n}\n\n@inproceedings{lethe-aaai2026,\n    title     = {Lethe: Layer- and Time-Adaptive {KV} Cache Pruning for Reasoning-Intensive {LLM} Serving},\n    author    = {Zeng, Hui and Zhao, Daming and Yang, Pengfei and Hou, WenXuan and Zheng, Tianyang and Li, Hui and Ji, Weiye and Zhai, Jidong},\n    booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2511.06029},\n}\n\n@inproceedings{math500-neurips2021,\n    title     = {Measuring Mathematical Problem Solving With the {MATH} Dataset},\n    author    = {Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart, Steven and Tang, Eric and Song, Dawn and Steinhardt, Jacob},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2021},\n    url       = {https://arxiv.org/abs/2103.03874},\n}\n\n@inproceedings{michel-neurips2019,\n    title     = {Are Sixteen Heads Really Better than One?},\n    author    = {Michel, Paul and Levy, Omer and Neubig, Graham},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2019},\n    url       = {https://arxiv.org/abs/1905.10650},\n}\n\n@inproceedings{nacl-acl2024,\n    title     = {{NACL}: A General and Effective {KV} Cache Eviction Framework for {LLMs} at Inference Time},\n    author    = {Chen, Yilong and Wang, Guoxia and Shang, Junyuan and Cui, Shiyao and Zhang, Zhenyu and Liu, Tingwen and Wang, Shuohuan and Sun, Yu and Yu, Dianhai and Wu, Hua},\n    booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2408.03675},\n}\n\n@article{phase-transition-compression-2026,\n    title   = {Phase transitions in large language model compression},\n    author  = {Ma, Ziyang and Li, Zuchao and Zhang, Lefei and Xia, Gui-Song and Du, Bo and Zhang, Liangpei and Tao, Dacheng},\n    journal = {npj Artificial Intelligence},\n    volume  = {2},\n    number  = {21},\n    year    = {2026},\n    url     = {https://www.nature.com/articles/s44387-026-00072-8},\n}\n\n@article{physics-kvcache-2026,\n    title   = {Understanding the Physics of Key-Value Cache Compression for {LLMs} through Attention Dynamics},\n    author  = {Ananthanarayanan, Samhruth and Sengupta, Ayan and Chakraborty, Tanmoy},\n    journal = {arXiv preprint arXiv:2603.01426},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2603.01426},\n}\n\n@inproceedings{pope-mlsys2023,\n    title     = {Efficiently Scaling Transformer Inference},\n    author    = {Pope, Reiner and Douglas, Sholto and Chowdhery, Aakanksha and Devlin, Jacob and Bradbury, James and Heek, Jonathan and Xiao, Kefan and Agrawal, Shivani and Dean, Jeff},\n    booktitle = {Proceedings of Machine Learning and Systems},\n    year      = {2023},\n    url       = {https://arxiv.org/abs/2211.05102},\n}\n\n@inproceedings{pyramidkv-colm2025,\n    title     = {{PyramidKV}: Dynamic {KV} Cache Compression based on Pyramidal Information Funneling},\n    author    = {Cai, Zefan and Zhang, Yichi and Gao, Bofei and Liu, Yuliang and Liu, Tianyu and Lu, Keming and Xiong, Wayne and Dong, Yue and Chang, Baobao and Hu, Junjie and Xiao, Wen},\n    booktitle = {Conference on Language Modeling},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2406.02069},\n}\n\n@article{qwen25-2024,\n    title   = {{Qwen2.5} Technical Report},\n    author  = {Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Li, Chengyuan and Liu, Dayiheng and Huang, Fei and Wei, Haoran and others},\n    journal = {arXiv preprint arXiv:2412.15115},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2412.15115},\n}\n\n@article{retentivekv-2026,\n    title   = {{RetentiveKV}: State-Space Memory for Uncertainty-Aware Multimodal {KV} Cache Eviction},\n    author  = {Liu, Sihao and Xiong, YuFan and Jiang, Zhonghua and Wang, Zhaode and Lv, Chengfei and Zhang, Shengyu},\n    journal = {arXiv preprint arXiv:2605.04075},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2605.04075},\n}\n\n@inproceedings{rkv-neurips2025,\n    title     = {{R-KV}: Redundancy-Aware {KV} Cache Compression for Reasoning Models},\n    author    = {Cai, Zefan and Xiao, Wen and Sun, Hanshi and Luo, Cheng and Zhang, Yikai and Wan, Ke and Li, Yucheng and Zhou, Yeyang and Chang, Li-Wen and Gu, Jiuxiang and Dong, Zhen and Anandkumar, Anima and Asi, Abedelkadir and Hu, Junjie},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2505.24133},\n}\n\n@inproceedings{slim-icml2025,\n    title     = {{SLiM}: One-shot Quantization and Sparsity with Low-rank Approximation for {LLM} Weight Compression},\n    author    = {Mozaffari, Mohammad and Yazdanbakhsh, Amir and Dehnavi, Maryam Mehri},\n    booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2410.09615},\n}\n\n@inproceedings{snapkv-neurips2024,\n    title     = {{SnapKV}: {LLM} Knows What You Are Looking for Before Generation},\n    author    = {Li, Yuhong and Huang, Yingbing and Yang, Bowen and Venkitesh, Bharat and Locatelli, Acyr and Ye, Hanchen and Cai, Tianle and Lewis, Patrick and Chen, Deming},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2404.14469},\n}\n\n\n@inproceedings{spark-aaai2026,\n    title     = {{SparK}: Query-Aware Unstructured Sparsity with Recoverable {KV} Cache Channel Pruning},\n    author    = {Liao, Huanxuan and Xu, Yixing and He, Shizhu and Li, Guanchen and Yin, Xuanwu and Li, Dong and Barsoum, Emad and Zhao, Jun and Liu, Kang},\n    booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2508.15212},\n}\n\n@article{sparse-frontier-2025,\n    title   = {The Sparse Frontier: Sparse Attention Trade-offs in Transformer {LLMs}},\n    author  = {Nawrot, Piotr and Li, Robert and Huang, Renjie and Ruder, Sebastian and Marchisio, Kelly and Ponti, Edoardo M.},\n    journal = {arXiv preprint arXiv:2504.17768},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2504.17768},\n}\n\n@inproceedings{thinkv-iclr2026,\n    title     = {{ThinKV}: Thought-Adaptive {KV} Cache Compression for Efficient Reasoning Models},\n    author    = {Ramachandran, Akshat and Neseem, Marina and Sakr, Charbel and Venkatesan, Rangharajan and Khailany, Brucek and Krishna, Tushar},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2510.01290},\n}\n\n@article{unicomp-2026,\n    title   = {{UniComp}: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation},\n    author  = {von Rad, Jonathan and Cao, Yong and Geiger, Andreas},\n    journal = {arXiv preprint arXiv:2602.09130},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2602.09130},\n}\n\n@article{longflow-2026,\n    title   = {{LongFlow}: Efficient {KV} Cache Compression for Reasoning Models},\n    author  = {Su, Yi and Tian, Zhenxu and Qiao, Dan and Zhou, Yuechi and Li, Juntao and Zhang, Min},\n    journal = {arXiv preprint arXiv:2603.11504},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2603.11504},\n}\n\n@inproceedings{pmkvq-iclr2026,\n    title     = {{PM-KVQ}: Progressive Mixed-precision {KV} Cache Quantization for Long-{CoT} {LLMs}},\n    author    = {Liu, Tengxuan and Li, Shiyao and Yang, Jiayi and Zhao, Tianchen and Zhou, Feng and Song, Xiaohui and Dai, Guohao and Yan, Shengen and Yang, Huazhong and Wang, Yu},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2505.18610},\n}\n\n@article{rlkv-2025,\n    title   = {Which Heads Matter for Reasoning? {RL}-Guided {KV} Cache Compression},\n    author  = {Du, Wenjie and Jiang, Li and Tao, Keda and Liu, Xue and Wang, Huan},\n    journal = {arXiv preprint arXiv:2510.08525},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2510.08525},\n}\n\n\n@article{lkv-2026,\n    title   = {{LKV}: End-to-End Learning of Head-wise Budgets and Token Selection for {LLM} {KV} Cache Eviction},\n    author  = {Zhou, Enshuai and Hao, Yifan and Wang, Chao and Zhang, Rui and Huang, Di and Guo, Jiaming and Hu, Xing and Du, Zidong and Guo, Qi and Chen, Yunji},\n    journal = {arXiv preprint arXiv:2605.06676},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2605.06676},\n}\n\n@inproceedings{xu2025think,\n    title     = {{ThinK}: Thinner Key Cache by Query-Driven Pruning},\n    author    = {Xu, Yuhui and Jie, Zhanming and Dong, Hanze and Wang, Lei and Lu, Xudong and Zhou, Aojun and Saha, Amrita and Xiong, Caiming and Sahoo, Doyen},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2407.21018},\n}\n\n@article{dong2026foresightkv,\n    title   = {{ForesightKV}: Optimizing {KV} Cache Eviction for Reasoning Models by Learning Long-Term Contribution},\n    author  = {Dong, Zican and Liu, Peiyu and Li, Junyi and Chen, Zhipeng and Peng, Han and Wang, Shuo and Zhao, Wayne Xin},\n    journal = {arXiv preprint arXiv:2602.03203},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2602.03203},\n}\n\n@inproceedings{kim2026pqqp,\n    title     = {Prune-then-Quantize or Quantize-then-Prune? Understanding the Impact of Compression Order in Joint Model Compression},\n    author    = {Kim, Minjun and Choi, Jaehyeon and Yang, Hyunwoo and Kim, Jongjin and Song, Jinho and Kang, U},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2603.18426},\n}\n\n@article{lanham-2023-faithfulness,\n    title   = {Measuring Faithfulness in Chain-of-Thought Reasoning},\n    author  = {Lanham, Tamera and Chen, Anna and Radhakrishnan, Ansh and Steiner, Benoit and Denison, Carson and Hernandez, Danny and Li, Dustin and Durmus, Esin and Hubinger, Evan and Kernion, Jackson and others},\n    journal = {arXiv preprint arXiv:2307.13702},\n    year    = {2023},\n    url     = {https://arxiv.org/abs/2307.13702},\n}\n\n@inproceedings{turpin-2023-biased-cot,\n    title     = {Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting},\n    author    = {Turpin, Miles and Michael, Julian and Perez, Ethan and Bowman, Samuel R.},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2023},\n    url       = {https://arxiv.org/abs/2305.04388},\n}\n\n@inproceedings{voita-acl2019,\n    title     = {Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned},\n    author    = {Voita, Elena and Talbot, David and Moiseev, Fedor and Sennrich, Rico and Titov, Ivan},\n    booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n    year      = {2019},\n    url       = {https://arxiv.org/abs/1905.09418},\n}\n\n@inproceedings{wei-neurips2022-cot,\n    title     = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},\n    author    = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed and Le, Quoc and Zhou, Denny},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2022},\n    url       = {https://arxiv.org/abs/2201.11903},\n}\n\n@article{rein-gpqa-2024,\n    title   = {{GPQA}: A Graduate-Level Google-Proof Q\\&A Benchmark},\n    author  = {Rein, David and Hou, Betty Li and Stickland, Asa Cooper and Petty, Jackson and Pang, Richard Yuanzhe and Dirani, Julien and Michael, Julian and Bowman, Samuel R.},\n    journal = {arXiv preprint arXiv:2311.12022},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2311.12022},\n}\n\n@inproceedings{frankle-iclr2019,\n    title     = {The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks},\n    author    = {Frankle, Jonathan and Carlin, Michael},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2019},\n    url       = {https://arxiv.org/abs/1803.03635},\n}\n\n@inproceedings{han-neurips2015,\n    title     = {Learning both Weights and Connections for Efficient Neural Networks},\n    author    = {Han, Song and Pool, Jeff and Tran, John and Dally, William J.},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2015},\n    url       = {https://arxiv.org/abs/1506.02626},\n}\n\n@inproceedings{sanh-neurips2020,\n    title     = {Movement Pruning: Adaptive Sparsity during Fine-Tuning},\n    author    = {Sanh, Victor and Wolf, Thomas and Rush, Alexander M.},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2020},\n    url       = {https://arxiv.org/abs/2005.07683},\n}\n\n@article{scissorhands-2023,\n    title   = {Scissorhands: Exploiting the Persistence of Importance Hypothesis for {LLM} {KV} Cache Compression},\n    author  = {Liu, Zichang and Desai, Aditya and Liao, Fangshuo and Wang, Weitao and Xie, Victor and Xu, Zhaozhuo and Kyrillidis, Anastasios and Shrivastava, Anshumali},\n    journal = {arXiv preprint arXiv:2305.17118},\n    year    = {2023},\n    url     = {https://arxiv.org/abs/2305.17118},\n}\n\n@article{snell-2024-scaling-test-time,\n    title   = {Scaling {LLM} Test-Time Compute Optimally Can be More Effective Than Scaling Model Parameters},\n    author  = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n    journal = {arXiv preprint arXiv:2408.03314},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2408.03314},\n}\n\n@article{fedus-jmlr2022,\n    title   = {Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},\n    author  = {Fedus, William and Zoph, Barret and Shazeer, Noam},\n    journal = {Journal of Machine Learning Research},\n    volume  = {23},\n    number  = {120},\n    pages   = {1--39},\n    year    = {2022},\n    url     = {https://arxiv.org/abs/2101.03961},\n}\n\n@inproceedings{shazeer-2017-moe,\n    title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},\n    author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2017},\n    url       = {https://arxiv.org/abs/1701.06538},\n}\n",
+                "numLines": 409,
+                "startLine": 1,
+                "totalLines": 409
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check which of the 4 papers are already in the bib file:\n\n1. **Hold Onto That Thought** - arxiv 2512.12008 → Found at line 83: `hold-onto-thought-neurips2025` ✓\n2. **DefensiveKV** - ICLR 2026, arxiv 2510.13334 → Found at line 44: `defensivekv-iclr2026` ✓\n3. **LazyEviction** - arxiv 2506.15969 → NOT found ✗\n4. **ForesightKV** - arxiv 2602.03203 → Found at line 295: `dong2026foresightkv` ✓\n\n\nSo LazyEviction is the only one missing and needs to be added. I also notice the existing citation keys don't follow the requested naming pattern—they use different formats like hyphens and venue names instead of the standardized format requested.\n\nHowever, since the task specifies the keys should be lowercase and unified, but the existing entries already have different keys that are likely referenced in tex files, I'll just add the missing LazyEviction entry with the appropriate key rather than renaming the existing ones. Let me look up the LazyEviction paper details from arxiv 2506.15969.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "2aa693cb-64c5-4b9a-95f7-9a14913750ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbYwG8XzHB9MfqNtwSH1CN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8306,
+                "cache_read_input_tokens": 24603,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8306
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 篇中 3 篇已存在：`hold-onto-thought-neurips2025`、`defensivekv-iclr2026`、`dong2026foresightkv`。仅缺 LazyEviction (2506.15969)。搜索其完整信息。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "18cbf4d7-abd8-4df3-96e1-9ea9b8c4e3e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbYwG8XzHB9MfqNtwSH1CN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8306,
+                "cache_read_input_tokens": 24603,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8306
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JqjV7upsfiDeuQq99C43X9",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "6ce84e92-ded1-42d1-a615-b4aa5ab30dc7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbYwG8XzHB9MfqNtwSH1CN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8306,
+                "cache_read_input_tokens": 24603,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8306
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T23:23:15.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JqjV7upsfiDeuQq99C43X9",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "0c267c61-1257-4a96-b18d-80b2e8a8d126",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019AfqqLBNrLTidu8uCmRfJW",
+              "name": "WebSearch",
+              "input": {
+                "query": "LazyEviction arxiv 2506.15969 KV cache recurring tokens"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "5237fbe0-0ae3-41ec-aece-e8b2fb048dc1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H55cto44zT5ABpenEBcvSo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1110,
+                "cache_read_input_tokens": 32909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1110
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T23:23:25.034Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019AfqqLBNrLTidu8uCmRfJW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LazyEviction arxiv 2506.15969 KV cache recurring tokens\"\n\nLinks: [{\"title\":\"[2506.15969] LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning\",\"url\":\"https://arxiv.org/abs/2506.15969\"},{\"title\":\"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning\",\"url\":\"https://arxiv.org/html/2506.15969\"},{\"title\":\"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for\",\"url\":\"https://www.arxiv.org/pdf/2506.15969v3\"},{\"title\":\"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250615969Z/abstract\"},{\"title\":\"Computation and Language Jun 2025\",\"url\":\"https://www.arxiv.org/list/cs.CL/2025-06?skip=2250&show=250\"},{\"title\":\"THINKV: THOUGHT-ADAPTIVE KV CACHE COM- PRESSION FOR EFFICIENT REASONING MODELS\",\"url\":\"https://arxiv.org/pdf/2510.01290v1\"},{\"title\":\"Make Each Token Count: Towards Improving Long-Context Performance with KV Cache Eviction\",\"url\":\"https://arxiv.org/html/2605.09649\"},{\"title\":\"KVCache Cache in the Wild: Characterizing and Optimizing KVCache Cache at a Large Cloud Provider\",\"url\":\"https://arxiv.org/html/2506.02634v5\"},{\"title\":\"Reformulating KV Cache Eviction Problem for Long-Context LLM Inference\",\"url\":\"https://arxiv.org/html/2605.07234\"},{\"title\":\"Cache What Lasts: Token Retention for Memory-Bounded KV Cache in LLMs\",\"url\":\"https://arxiv.org/html/2512.03324v2\"}]\n\nBased on the search results, here's what I found about the LazyEviction paper (arXiv 2506.15969):\n\n## Overview\n\nLazyEviction is an observation window-based lagged eviction framework that retains latent recurring tokens by prioritized eviction based on tokens' recurrence patterns.\n\n## Key Problem\n\nThe paper analyzes attention patterns in reasoning tasks and reveals a Token Importance Recurrence phenomenon: a large proportion of tokens regain high attention after multiple decoding steps, which existing works fail to capture and may lead to unpredictable eviction on such periodically critical tokens.\n\n## Main Approach\n\nLazyEviction performs lagged eviction based on tokens' recurrence patterns, rather than making step-by-step greedy eviction decisions. The framework includes two key components: (1) Recurrence Interval Tracking, which records each token's Maximum Recurrence Interval (MRI) to capture the temporal variation of token importance, and (2) MRI-Centric Eviction Policy, which prioritizes evicting tokens whose recurrence likelihood has diminished.\n\n## Results\n\nExtensive experiments demonstrate that LazyEviction reduces KV cache by 50%~70% while maintaining comparable accuracy, outperforming existing KV cache compression baselines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "4b60ff09-fa96-42d3-ad99-ee30ae08f63d",
+            "tool_use_result": {
+              "query": "LazyEviction arxiv 2506.15969 KV cache recurring tokens",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_015oEfyMYdBJBNq2SkF4wYZk",
+                  "content": [
+                    {
+                      "title": "[2506.15969] LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning",
+                      "url": "https://arxiv.org/abs/2506.15969"
+                    },
+                    {
+                      "title": "LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning",
+                      "url": "https://arxiv.org/html/2506.15969"
+                    },
+                    {
+                      "title": "LazyEviction: Lagged KV Eviction with Attention Pattern Observation for",
+                      "url": "https://www.arxiv.org/pdf/2506.15969v3"
+                    },
+                    {
+                      "title": "LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250615969Z/abstract"
+                    },
+                    {
+                      "title": "Computation and Language Jun 2025",
+                      "url": "https://www.arxiv.org/list/cs.CL/2025-06?skip=2250&show=250"
+                    },
+                    {
+                      "title": "THINKV: THOUGHT-ADAPTIVE KV CACHE COM- PRESSION FOR EFFICIENT REASONING MODELS",
+                      "url": "https://arxiv.org/pdf/2510.01290v1"
+                    },
+                    {
+                      "title": "Make Each Token Count: Towards Improving Long-Context Performance with KV Cache Eviction",
+                      "url": "https://arxiv.org/html/2605.09649"
+                    },
+                    {
+                      "title": "KVCache Cache in the Wild: Characterizing and Optimizing KVCache Cache at a Large Cloud Provider",
+                      "url": "https://arxiv.org/html/2506.02634v5"
+                    },
+                    {
+                      "title": "Reformulating KV Cache Eviction Problem for Long-Context LLM Inference",
+                      "url": "https://arxiv.org/html/2605.07234"
+                    },
+                    {
+                      "title": "Cache What Lasts: Token Retention for Memory-Bounded KV Cache in LLMs",
+                      "url": "https://arxiv.org/html/2512.03324v2"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about the LazyEviction paper (arXiv 2506.15969):\n\n## Overview\n\nLazyEviction is an observation window-based lagged eviction framework that retains latent recurring tokens by prioritized eviction based on tokens' recurrence patterns.\n\n## Key Problem\n\nThe paper analyzes attention patterns in reasoning tasks and reveals a Token Importance Recurrence phenomenon: a large proportion of tokens regain high attention after multiple decoding steps, which existing works fail to capture and may lead to unpredictable eviction on such periodically critical tokens.\n\n## Main Approach\n\nLazyEviction performs lagged eviction based on tokens' recurrence patterns, rather than making step-by-step greedy eviction decisions. The framework includes two key components: (1) Recurrence Interval Tracking, which records each token's Maximum Recurrence Interval (MRI) to capture the temporal variation of token importance, and (2) MRI-Centric Eviction Policy, which prioritizes evicting tokens whose recurrence likelihood has diminished.\n\n## Results\n\nExtensive experiments demonstrate that LazyEviction reduces KV cache by 50%~70% while maintaining comparable accuracy, outperforming existing KV cache compression baselines."
+              ],
+              "durationSeconds": 5.813305337000002
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me get the authors for the LazyEviction paper. Let me search for more details.",
+              "signature": "EpECClkIDRgCKkCS7FjMJ+HS1Rn7yRFS3bxKGe3sag1jKRG66I9T9vSN2aA0e1QbVAr47bnRptdYYExGHLoKNyFVIVfHjfOJi3gCMg9jbGF1ZGUtb3B1cy00LTY4ABIMVrRgiplisgn2jKHvGgxOdCHjpTxPBnTzR+8iMOAiuOa8f0OXGnUSZvuP9ZD/RpYyEIw8MwphNwlDo0kBb/d6pwBqjdH1+gBP6SGKxSpmysQ745U4d/qkArQjo51JUHDU8VbbOA36oCQ1G1xAuKlCw6y5MH++dxtNd7dYM6uzLV+NyjcEMt0i+h2/2wYqYlbh8oWR8l8PCr02rybq3IMWF9Z5W0r1Yh3lQWBFddLwL21oMSMsGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "6361940e-831d-41cf-bca1-88b9df09c4c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016EDLiGQ7Jfpo4SidEuXuzb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 886,
+                "cache_read_input_tokens": 34019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 886
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SjTPma6fnaPjkcN6bEimEH",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2506.15969 LazyEviction authors Zhu Zhang"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "3f8fa5ce-117d-437c-8ec0-fe06d7c83028",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016EDLiGQ7Jfpo4SidEuXuzb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 886,
+                "cache_read_input_tokens": 34019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 886
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T23:23:36.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SjTPma6fnaPjkcN6bEimEH",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2506.15969 LazyEviction authors Zhu Zhang\"\n\nLinks: [{\"title\":\"[2506.15969] LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning\",\"url\":\"https://arxiv.org/abs/2506.15969\"},{\"title\":\"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning\",\"url\":\"https://arxiv.org/html/2506.15969\"},{\"title\":\"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for\",\"url\":\"https://www.arxiv.org/pdf/2506.15969v3\"},{\"title\":\"Computation and Language Jun 2025\",\"url\":\"https://www.arxiv.org/list/cs.CL/2025-06?skip=2250&show=250\"},{\"title\":\"Computer Science Jun 2025\",\"url\":\"https://arxiv.org/list/cs/2025-06?skip=8325&show=100\"},{\"title\":\"Computation and Language Jun 2025\",\"url\":\"https://arxiv.org/list/cs.CL/2025-06?skip=2250&show=25\"},{\"title\":\"Jie ZHANG (张婕), Ph.D. - Homepage\",\"url\":\"https://judy-jiezhang.github.io/\"},{\"title\":\"Machine Learning Jun 2025\",\"url\":\"https://www.arxiv.org/list/cs.LG/2025-06?skip=1725&show=25\"},{\"title\":\"Artificial Intelligence Jun 2025\",\"url\":\"https://www.arxiv.org/list/cs.AI/2025-06?skip=3050&show=2000\"},{\"title\":\"Computer Science Jan 2025\",\"url\":\"https://arxiv.org/list/cs/2025-01?skip=6925&show=2000\"}]\n\nBased on the search results, I found information about the paper arxiv 2506.15969 \"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning.\"\n\n## Paper Details\n\n**Title:** LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning\n\n**Authors:** Haoyue Zhang, Hualei Zhang, Xiaosong Ma, Jie Zhang, Song Guo\n\n**arxiv ID:** 2506.15969\n\n**Subjects:** Machine Learning (cs.LG); Computation and Language (cs.CL)\n\n## Overview\n\nThe extended reasoning sequences introduce significant GPU memory overhead due to increased key-value (KV) cache. Existing KV cache compression methods mitigate memory bottlenecks but struggle in long reasoning tasks.\n\nThe paper analyzes attention patterns in reasoning tasks and reveals a Token Importance Recurrence phenomenon: a large proportion of tokens regain high attention after multiple decoding steps, which is failed to capture by existing works and may lead to unpredictable eviction on such periodically critical tokens.\n\nTo address this, the authors propose LazyEviction, an observation window-based lagged eviction framework retaining latent recurring tokens by prioritized eviction based on tokens' recurrence patterns.\n\n## Results\n\nExtensive experiments demonstrate that LazyEviction reduces KV cache by 50%~70% while maintaining comparable accuracy, outperforming existing KV cache compression baselines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "3d253c63-6860-4bf6-bb3e-a3b149715ecd",
+            "tool_use_result": {
+              "query": "arxiv 2506.15969 LazyEviction authors Zhu Zhang",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_013AoC2VbP9ursASp3PTw2UE",
+                  "content": [
+                    {
+                      "title": "[2506.15969] LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning",
+                      "url": "https://arxiv.org/abs/2506.15969"
+                    },
+                    {
+                      "title": "LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning",
+                      "url": "https://arxiv.org/html/2506.15969"
+                    },
+                    {
+                      "title": "LazyEviction: Lagged KV Eviction with Attention Pattern Observation for",
+                      "url": "https://www.arxiv.org/pdf/2506.15969v3"
+                    },
+                    {
+                      "title": "Computation and Language Jun 2025",
+                      "url": "https://www.arxiv.org/list/cs.CL/2025-06?skip=2250&show=250"
+                    },
+                    {
+                      "title": "Computer Science Jun 2025",
+                      "url": "https://arxiv.org/list/cs/2025-06?skip=8325&show=100"
+                    },
+                    {
+                      "title": "Computation and Language Jun 2025",
+                      "url": "https://arxiv.org/list/cs.CL/2025-06?skip=2250&show=25"
+                    },
+                    {
+                      "title": "Jie ZHANG (张婕), Ph.D. - Homepage",
+                      "url": "https://judy-jiezhang.github.io/"
+                    },
+                    {
+                      "title": "Machine Learning Jun 2025",
+                      "url": "https://www.arxiv.org/list/cs.LG/2025-06?skip=1725&show=25"
+                    },
+                    {
+                      "title": "Artificial Intelligence Jun 2025",
+                      "url": "https://www.arxiv.org/list/cs.AI/2025-06?skip=3050&show=2000"
+                    },
+                    {
+                      "title": "Computer Science Jan 2025",
+                      "url": "https://arxiv.org/list/cs/2025-01?skip=6925&show=2000"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the paper arxiv 2506.15969 \"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning.\"\n\n## Paper Details\n\n**Title:** LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning\n\n**Authors:** Haoyue Zhang, Hualei Zhang, Xiaosong Ma, Jie Zhang, Song Guo\n\n**arxiv ID:** 2506.15969\n\n**Subjects:** Machine Learning (cs.LG); Computation and Language (cs.CL)\n\n## Overview\n\nThe extended reasoning sequences introduce significant GPU memory overhead due to increased key-value (KV) cache. Existing KV cache compression methods mitigate memory bottlenecks but struggle in long reasoning tasks.\n\nThe paper analyzes attention patterns in reasoning tasks and reveals a Token Importance Recurrence phenomenon: a large proportion of tokens regain high attention after multiple decoding steps, which is failed to capture by existing works and may lead to unpredictable eviction on such periodically critical tokens.\n\nTo address this, the authors propose LazyEviction, an observation window-based lagged eviction framework retaining latent recurring tokens by prioritized eviction based on tokens' recurrence patterns.\n\n## Results\n\nExtensive experiments demonstrate that LazyEviction reduces KV cache by 50%~70% while maintaining comparable accuracy, outperforming existing KV cache compression baselines."
+              ],
+              "durationSeconds": 7.540195724999998
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I need to verify the authors. Let me fetch the arxiv page directly to get the exact author list.",
+              "signature": "EpsCClkIDRgCKkD813aQEOURRgFGCnyNEBY5h7S4n1TzznMRX9jXACFtlFtRzUWr68ZeBk+iKQbdQ0dEVGh+OvHmW17MRiIpHq0gMg9jbGF1ZGUtb3B1cy00LTY4ABIMuPrcPrT356MuUK7LGgxESNP/dc/9DTDgl9giMM+qlspJAlZtIR9BMO3RCJ3S24jGkR/BsFNqopO7YJQ5sHIAjuC426+HpkHwKA2tCSpwPotEONQ6GJOwodu5bj3N/GNdg3OspeKLiPoanAaCmAHWULTaJdd9MWXPfsdUQuZBVi+aopaj9YT/urkcx+unPd6RU4BNNLKQlJqMoszf4p7+QJbueNxFsEUAE55jd4ot7vLO3StUY3wbjT0IUPZJ8BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "4f2a8698-37b4-4c45-815a-a44974191a94",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JkMrFvw8KBAjd1SsTN5qjV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 934,
+                "cache_read_input_tokens": 34905,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 934
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X52E7n4JKwg3fDyXMx29Zg",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"LazyEviction\" \"Haoyue Zhang\" \"Hualei Zhang\" arxiv 2506.15969"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "fce4ca8f-7d2f-4f8e-926d-3e9753a3a184",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JkMrFvw8KBAjd1SsTN5qjV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 934,
+                "cache_read_input_tokens": 34905,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 934
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T23:23:46.991Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X52E7n4JKwg3fDyXMx29Zg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"LazyEviction\" \"Haoyue Zhang\" \"Hualei Zhang\" arxiv 2506.15969\"\n\nLinks: [{\"title\":\"[2506.15969] LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning\",\"url\":\"https://arxiv.org/abs/2506.15969\"},{\"title\":\"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning\",\"url\":\"https://arxiv.org/html/2506.15969\"},{\"title\":\"Computation and Language Jun 2025\",\"url\":\"https://www.arxiv.org/list/cs.CL/2025-06?skip=2250&show=250\"},{\"title\":\"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for\",\"url\":\"https://www.arxiv.org/pdf/2506.15969v3\"},{\"title\":\"Computer Science Jun 2025\",\"url\":\"https://arxiv.org/list/cs/2025-06?skip=8325&show=100\"},{\"title\":\"Computation and Language Jun 2025\",\"url\":\"https://arxiv.org/list/cs.CL/2025-06?skip=2250&show=25\"},{\"title\":\"dblp: Hualei Zhang (disambiguation)\",\"url\":\"https://dblp.org/pid/162/8546.html\"},{\"title\":\"dblp: Xiaosong Ma\",\"url\":\"https://dblp.org/pid/m/XiaosongMa.html\"},{\"title\":\"Artificial Intelligence Jun 2025\",\"url\":\"https://arxiv.org/list/cs.AI/2025-06?skip=1025&show=2000\"},{\"title\":\"Xiaojie Zhou\",\"url\":\"https://scholar.google.com/citations?user=dOCNRlsAAAAJ&hl=en\"}]\n\nI found the paper! Here's what I found about the LazyEviction paper (arxiv 2506.15969):\n\n## Paper Overview\n\nThe paper is authored by Haoyue Zhang, Hualei Zhang, Xiaosong Ma, Jie Zhang, and Song Guo from HKUST and HK PolyU.\n\n## Key Problem and Solution\n\nThe paper addresses how extended reasoning sequences in large language models introduce significant GPU memory overhead due to increased key-value (KV) cache, with existing KV cache compression methods struggling in long reasoning tasks.\n\nThe authors analyze attention patterns in reasoning tasks and reveal a Token Importance Recurrence phenomenon: a large proportion of tokens regain high attention after multiple decoding steps, which existing methods fail to capture and may lead to unpredictable eviction on such periodically critical tokens.\n\n## Proposed Method\n\nThe authors propose LazyEviction, an observation window-based lagged eviction framework retaining latent recurring tokens by prioritized eviction based on tokens' recurrence patterns.\n\n## Results\n\nExtensive experiments demonstrate that LazyEviction reduces KV cache by 50%~70% while maintaining comparable accuracy, outperforming existing KV cache compression baselines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "364770a5-d14e-4777-80f3-d420eef237db",
+            "tool_use_result": {
+              "query": "\"LazyEviction\" \"Haoyue Zhang\" \"Hualei Zhang\" arxiv 2506.15969",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01APsJQjDYyVuVB3xJmXuQVT",
+                  "content": [
+                    {
+                      "title": "[2506.15969] LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning",
+                      "url": "https://arxiv.org/abs/2506.15969"
+                    },
+                    {
+                      "title": "LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning",
+                      "url": "https://arxiv.org/html/2506.15969"
+                    },
+                    {
+                      "title": "Computation and Language Jun 2025",
+                      "url": "https://www.arxiv.org/list/cs.CL/2025-06?skip=2250&show=250"
+                    },
+                    {
+                      "title": "LazyEviction: Lagged KV Eviction with Attention Pattern Observation for",
+                      "url": "https://www.arxiv.org/pdf/2506.15969v3"
+                    },
+                    {
+                      "title": "Computer Science Jun 2025",
+                      "url": "https://arxiv.org/list/cs/2025-06?skip=8325&show=100"
+                    },
+                    {
+                      "title": "Computation and Language Jun 2025",
+                      "url": "https://arxiv.org/list/cs.CL/2025-06?skip=2250&show=25"
+                    },
+                    {
+                      "title": "dblp: Hualei Zhang (disambiguation)",
+                      "url": "https://dblp.org/pid/162/8546.html"
+                    },
+                    {
+                      "title": "dblp: Xiaosong Ma",
+                      "url": "https://dblp.org/pid/m/XiaosongMa.html"
+                    },
+                    {
+                      "title": "Artificial Intelligence Jun 2025",
+                      "url": "https://arxiv.org/list/cs.AI/2025-06?skip=1025&show=2000"
+                    },
+                    {
+                      "title": "Xiaojie Zhou",
+                      "url": "https://scholar.google.com/citations?user=dOCNRlsAAAAJ&hl=en"
+                    }
+                  ]
+                },
+                "I found the paper! Here's what I found about the LazyEviction paper (arxiv 2506.15969):\n\n## Paper Overview\n\nThe paper is authored by Haoyue Zhang, Hualei Zhang, Xiaosong Ma, Jie Zhang, and Song Guo from HKUST and HK PolyU.\n\n## Key Problem and Solution\n\nThe paper addresses how extended reasoning sequences in large language models introduce significant GPU memory overhead due to increased key-value (KV) cache, with existing KV cache compression methods struggling in long reasoning tasks.\n\nThe authors analyze attention patterns in reasoning tasks and reveal a Token Importance Recurrence phenomenon: a large proportion of tokens regain high attention after multiple decoding steps, which existing methods fail to capture and may lead to unpredictable eviction on such periodically critical tokens.\n\n## Proposed Method\n\nThe authors propose LazyEviction, an observation window-based lagged eviction framework retaining latent recurring tokens by prioritized eviction based on tokens' recurrence patterns.\n\n## Results\n\nExtensive experiments demonstrate that LazyEviction reduces KV cache by 50%~70% while maintaining comparable accuracy, outperforming existing KV cache compression baselines."
+              ],
+              "durationSeconds": 6.187115972
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "作者确认：Haoyue Zhang, Hualei Zhang, Xiaosong Ma, Jie Zhang, Song Guo。现在添加 entry。\n\n注意：任务要求 key 为 `lazyeviction2025`，但现有 bib 中其他论文的 key 已经是 `hold-onto-thought-neurips2025`、`defensivekv-iclr2026`、`dong2026foresightkv` 这类风格。为保持一致性并避免在后续 `\\cite` 时产生混淆，我用任务指定的 `lazyeviction2025` 作为 key。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "9fb5f611-1891-4d2c-b177-c7c37c699d06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DDt4mD3NLUHDZDocEfb7Bm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 875,
+                "cache_read_input_tokens": 35839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EhYrBHrEYXcgtvPmhYP4en",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/references.bib",
+                "old_string": "@inproceedings{shazeer-2017-moe,\n    title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},\n    author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2017},\n    url       = {https://arxiv.org/abs/1701.06538},\n}",
+                "new_string": "@article{lazyeviction2025,\n    title   = {{LazyEviction}: Lagged {KV} Eviction with Attention Pattern Observation for Efficient Long Reasoning},\n    author  = {Zhang, Haoyue and Zhang, Hualei and Ma, Xiaosong and Zhang, Jie and Guo, Song},\n    journal = {arXiv preprint arXiv:2506.15969},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2506.15969},\n}\n\n@inproceedings{shazeer-2017-moe,\n    title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},\n    author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2017},\n    url       = {https://arxiv.org/abs/1701.06538},\n}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "2abb9ba5-9b97-4b1c-b82b-a30e6b0c14b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DDt4mD3NLUHDZDocEfb7Bm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 875,
+                "cache_read_input_tokens": 35839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T23:24:02.067Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EhYrBHrEYXcgtvPmhYP4en",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "f21cec0d-9b9f-4b1b-af16-40411899a3f6",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/references.bib",
+              "oldString": "@inproceedings{shazeer-2017-moe,\n    title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},\n    author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2017},\n    url       = {https://arxiv.org/abs/1701.06538},\n}",
+              "newString": "@article{lazyeviction2025,\n    title   = {{LazyEviction}: Lagged {KV} Eviction with Attention Pattern Observation for Efficient Long Reasoning},\n    author  = {Zhang, Haoyue and Zhang, Hualei and Ma, Xiaosong and Zhang, Jie and Guo, Song},\n    journal = {arXiv preprint arXiv:2506.15969},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2506.15969},\n}\n\n@inproceedings{shazeer-2017-moe,\n    title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},\n    author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2017},\n    url       = {https://arxiv.org/abs/1701.06538},\n}",
+              "originalFile": "\n@inproceedings{streamingllm-iclr2024,\n    title     = {Efficient Streaming Language Models with Attention Sinks},\n    author    = {Xiao, Guangxuan and Tian, Yuandong and Chen, Beidi and Han, Song and Lewis, Mike},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2309.17453},\n}\n\n@article{duoattention-2024,\n    title   = {{DuoAttention}: Efficient Long-Context {LLM} Inference with Retrieval and Streaming Heads},\n    author  = {Xiao, Guangxuan and Tang, Jiaming and Zuo, Jingwei and Guo, Junxian and Yang, Shang and Tang, Haotian and Fu, Yao and Han, Song},\n    journal = {arXiv preprint arXiv:2410.10819},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2410.10819},\n}\n\n@inproceedings{adakv-neurips2025,\n    title     = {Ada-{KV}: Optimizing {KV} Cache Eviction by Adaptive Budget Allocation for Efficient {LLM} Inference},\n    author    = {Feng, Yuan and Lv, Junlin and Cao, Yukun and Xie, Xike and Zhou, S. Kevin},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2407.11550},\n}\n\n@article{decision-repr-transition-2026,\n    title   = {Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions},\n    author  = {Shi, Boyu and Liu, Chang and Gao, ChuanBao and Yang, Xu and Geng, Xin},\n    journal = {arXiv preprint arXiv:2605.07271},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2605.07271},\n}\n\n@article{deepseek-r1-2025,\n    title   = {{DeepSeek-R1} incentivizes reasoning in {LLMs} through reinforcement learning},\n    author  = {{DeepSeek-AI}},\n    journal = {Nature},\n    volume  = {645},\n    pages   = {633--638},\n    year    = {2025},\n    doi     = {10.1038/s41586-025-09422-z},\n}\n\n@inproceedings{defensivekv-iclr2026,\n    title     = {{DefensiveKV}: Taming the Fragility of {KV} Cache Eviction in {LLM} Inference},\n    author    = {Feng, Yuan and Guo, Haoyu and Lv, Junlin and Zhou, S. Kevin and Xie, Xike},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2510.13334},\n}\n\n@article{doing-more-with-less-2026,\n    title   = {Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},\n    author  = {Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},\n    journal = {arXiv preprint arXiv:2604.25098},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2604.25098},\n}\n\n@book{efron-1993,\n    title     = {An Introduction to the Bootstrap},\n    author    = {Efron, Bradley and Tibshirani, Robert J.},\n    publisher = {Chapman \\& Hall/CRC},\n    year      = {1993},\n}\n\n@inproceedings{graspune-acl2026,\n    title     = {{GRASPrune}: Global Gating for Budgeted Structured Pruning of Large Language Models},\n    author    = {Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n    booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2604.19398},\n}\n\n@article{greedy-bias-kvcache-2026,\n    title   = {More Than a Quick Glance: Overcoming the Greedy Bias in {KV}-Cache Compression},\n    author  = {Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh},\n    journal = {arXiv preprint arXiv:2602.02199},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2602.02199},\n}\n\n@article{hold-onto-thought-neurips2025,\n    title   = {Hold Onto That Thought: Assessing {KV} Cache Compression On Reasoning},\n    author  = {Liu, Minghui and Palnitkar, Aadi and Rabbani, Tahseen and Jae, Hyunwoo and Sang, Kyle Rui and Yao, Dixi and Shabihi, Shayan and Zhao, Fuheng and Li, Tian and Zhang, Ce and Huang, Furong and Zhang, Kunpeng},\n    journal = {arXiv preprint arXiv:2512.12008},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2512.12008},\n}\n\n@inproceedings{h2o-neurips2023,\n    title     = {{H2O}: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models},\n    author    = {Zhang, Zhenyu and Sheng, Ying and Zhou, Tianyi and Chen, Tianlong and Zheng, Lianmin and Cai, Ruisi and Song, Zhao and Tian, Yuandong and R{\\'e}, Christopher and Barrett, Clark and Wang, Zhangyang and Chen, Beidi},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2023},\n    url       = {https://arxiv.org/abs/2306.14048},\n}\n\n@article{hies-2025,\n    title   = {Entropy Meets Importance: A Unified Head Importance-Entropy Score for Stable and Efficient Transformer Pruning},\n    author  = {Choi, Minsik and Son, Hyegang and Kim, Changhoon and Kim, Young Geun},\n    journal = {arXiv preprint arXiv:2510.13832},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2510.13832},\n}\n\n@inproceedings{kwon-sosp2023,\n    title     = {Efficient Memory Management for Large Language Model Serving with {PagedAttention}},\n    author    = {Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianmin and Yu, Cody Hao and Gonzalez, Joseph E. and Zhang, Hao and Stoica, Ion},\n    booktitle = {Proceedings of the 29th Symposium on Operating Systems Principles},\n    year      = {2023},\n    url       = {https://arxiv.org/abs/2309.06180},\n}\n\n@inproceedings{lethe-aaai2026,\n    title     = {Lethe: Layer- and Time-Adaptive {KV} Cache Pruning for Reasoning-Intensive {LLM} Serving},\n    author    = {Zeng, Hui and Zhao, Daming and Yang, Pengfei and Hou, WenXuan and Zheng, Tianyang and Li, Hui and Ji, Weiye and Zhai, Jidong},\n    booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2511.06029},\n}\n\n@inproceedings{math500-neurips2021,\n    title     = {Measuring Mathematical Problem Solving With the {MATH} Dataset},\n    author    = {Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart, Steven and Tang, Eric and Song, Dawn and Steinhardt, Jacob},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2021},\n    url       = {https://arxiv.org/abs/2103.03874},\n}\n\n@inproceedings{michel-neurips2019,\n    title     = {Are Sixteen Heads Really Better than One?},\n    author    = {Michel, Paul and Levy, Omer and Neubig, Graham},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2019},\n    url       = {https://arxiv.org/abs/1905.10650},\n}\n\n@inproceedings{nacl-acl2024,\n    title     = {{NACL}: A General and Effective {KV} Cache Eviction Framework for {LLMs} at Inference Time},\n    author    = {Chen, Yilong and Wang, Guoxia and Shang, Junyuan and Cui, Shiyao and Zhang, Zhenyu and Liu, Tingwen and Wang, Shuohuan and Sun, Yu and Yu, Dianhai and Wu, Hua},\n    booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2408.03675},\n}\n\n@article{phase-transition-compression-2026,\n    title   = {Phase transitions in large language model compression},\n    author  = {Ma, Ziyang and Li, Zuchao and Zhang, Lefei and Xia, Gui-Song and Du, Bo and Zhang, Liangpei and Tao, Dacheng},\n    journal = {npj Artificial Intelligence},\n    volume  = {2},\n    number  = {21},\n    year    = {2026},\n    url     = {https://www.nature.com/articles/s44387-026-00072-8},\n}\n\n@article{physics-kvcache-2026,\n    title   = {Understanding the Physics of Key-Value Cache Compression for {LLMs} through Attention Dynamics},\n    author  = {Ananthanarayanan, Samhruth and Sengupta, Ayan and Chakraborty, Tanmoy},\n    journal = {arXiv preprint arXiv:2603.01426},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2603.01426},\n}\n\n@inproceedings{pope-mlsys2023,\n    title     = {Efficiently Scaling Transformer Inference},\n    author    = {Pope, Reiner and Douglas, Sholto and Chowdhery, Aakanksha and Devlin, Jacob and Bradbury, James and Heek, Jonathan and Xiao, Kefan and Agrawal, Shivani and Dean, Jeff},\n    booktitle = {Proceedings of Machine Learning and Systems},\n    year      = {2023},\n    url       = {https://arxiv.org/abs/2211.05102},\n}\n\n@inproceedings{pyramidkv-colm2025,\n    title     = {{PyramidKV}: Dynamic {KV} Cache Compression based on Pyramidal Information Funneling},\n    author    = {Cai, Zefan and Zhang, Yichi and Gao, Bofei and Liu, Yuliang and Liu, Tianyu and Lu, Keming and Xiong, Wayne and Dong, Yue and Chang, Baobao and Hu, Junjie and Xiao, Wen},\n    booktitle = {Conference on Language Modeling},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2406.02069},\n}\n\n@article{qwen25-2024,\n    title   = {{Qwen2.5} Technical Report},\n    author  = {Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Li, Chengyuan and Liu, Dayiheng and Huang, Fei and Wei, Haoran and others},\n    journal = {arXiv preprint arXiv:2412.15115},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2412.15115},\n}\n\n@article{retentivekv-2026,\n    title   = {{RetentiveKV}: State-Space Memory for Uncertainty-Aware Multimodal {KV} Cache Eviction},\n    author  = {Liu, Sihao and Xiong, YuFan and Jiang, Zhonghua and Wang, Zhaode and Lv, Chengfei and Zhang, Shengyu},\n    journal = {arXiv preprint arXiv:2605.04075},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2605.04075},\n}\n\n@inproceedings{rkv-neurips2025,\n    title     = {{R-KV}: Redundancy-Aware {KV} Cache Compression for Reasoning Models},\n    author    = {Cai, Zefan and Xiao, Wen and Sun, Hanshi and Luo, Cheng and Zhang, Yikai and Wan, Ke and Li, Yucheng and Zhou, Yeyang and Chang, Li-Wen and Gu, Jiuxiang and Dong, Zhen and Anandkumar, Anima and Asi, Abedelkadir and Hu, Junjie},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2505.24133},\n}\n\n@inproceedings{slim-icml2025,\n    title     = {{SLiM}: One-shot Quantization and Sparsity with Low-rank Approximation for {LLM} Weight Compression},\n    author    = {Mozaffari, Mohammad and Yazdanbakhsh, Amir and Dehnavi, Maryam Mehri},\n    booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2410.09615},\n}\n\n@inproceedings{snapkv-neurips2024,\n    title     = {{SnapKV}: {LLM} Knows What You Are Looking for Before Generation},\n    author    = {Li, Yuhong and Huang, Yingbing and Yang, Bowen and Venkitesh, Bharat and Locatelli, Acyr and Ye, Hanchen and Cai, Tianle and Lewis, Patrick and Chen, Deming},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2024},\n    url       = {https://arxiv.org/abs/2404.14469},\n}\n\n\n@inproceedings{spark-aaai2026,\n    title     = {{SparK}: Query-Aware Unstructured Sparsity with Recoverable {KV} Cache Channel Pruning},\n    author    = {Liao, Huanxuan and Xu, Yixing and He, Shizhu and Li, Guanchen and Yin, Xuanwu and Li, Dong and Barsoum, Emad and Zhao, Jun and Liu, Kang},\n    booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2508.15212},\n}\n\n@article{sparse-frontier-2025,\n    title   = {The Sparse Frontier: Sparse Attention Trade-offs in Transformer {LLMs}},\n    author  = {Nawrot, Piotr and Li, Robert and Huang, Renjie and Ruder, Sebastian and Marchisio, Kelly and Ponti, Edoardo M.},\n    journal = {arXiv preprint arXiv:2504.17768},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2504.17768},\n}\n\n@inproceedings{thinkv-iclr2026,\n    title     = {{ThinKV}: Thought-Adaptive {KV} Cache Compression for Efficient Reasoning Models},\n    author    = {Ramachandran, Akshat and Neseem, Marina and Sakr, Charbel and Venkatesan, Rangharajan and Khailany, Brucek and Krishna, Tushar},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2510.01290},\n}\n\n@article{unicomp-2026,\n    title   = {{UniComp}: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation},\n    author  = {von Rad, Jonathan and Cao, Yong and Geiger, Andreas},\n    journal = {arXiv preprint arXiv:2602.09130},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2602.09130},\n}\n\n@article{longflow-2026,\n    title   = {{LongFlow}: Efficient {KV} Cache Compression for Reasoning Models},\n    author  = {Su, Yi and Tian, Zhenxu and Qiao, Dan and Zhou, Yuechi and Li, Juntao and Zhang, Min},\n    journal = {arXiv preprint arXiv:2603.11504},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2603.11504},\n}\n\n@inproceedings{pmkvq-iclr2026,\n    title     = {{PM-KVQ}: Progressive Mixed-precision {KV} Cache Quantization for Long-{CoT} {LLMs}},\n    author    = {Liu, Tengxuan and Li, Shiyao and Yang, Jiayi and Zhao, Tianchen and Zhou, Feng and Song, Xiaohui and Dai, Guohao and Yan, Shengen and Yang, Huazhong and Wang, Yu},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2505.18610},\n}\n\n@article{rlkv-2025,\n    title   = {Which Heads Matter for Reasoning? {RL}-Guided {KV} Cache Compression},\n    author  = {Du, Wenjie and Jiang, Li and Tao, Keda and Liu, Xue and Wang, Huan},\n    journal = {arXiv preprint arXiv:2510.08525},\n    year    = {2025},\n    url     = {https://arxiv.org/abs/2510.08525},\n}\n\n\n@article{lkv-2026,\n    title   = {{LKV}: End-to-End Learning of Head-wise Budgets and Token Selection for {LLM} {KV} Cache Eviction},\n    author  = {Zhou, Enshuai and Hao, Yifan and Wang, Chao and Zhang, Rui and Huang, Di and Guo, Jiaming and Hu, Xing and Du, Zidong and Guo, Qi and Chen, Yunji},\n    journal = {arXiv preprint arXiv:2605.06676},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2605.06676},\n}\n\n@inproceedings{xu2025think,\n    title     = {{ThinK}: Thinner Key Cache by Query-Driven Pruning},\n    author    = {Xu, Yuhui and Jie, Zhanming and Dong, Hanze and Wang, Lei and Lu, Xudong and Zhou, Aojun and Saha, Amrita and Xiong, Caiming and Sahoo, Doyen},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2025},\n    url       = {https://arxiv.org/abs/2407.21018},\n}\n\n@article{dong2026foresightkv,\n    title   = {{ForesightKV}: Optimizing {KV} Cache Eviction for Reasoning Models by Learning Long-Term Contribution},\n    author  = {Dong, Zican and Liu, Peiyu and Li, Junyi and Chen, Zhipeng and Peng, Han and Wang, Shuo and Zhao, Wayne Xin},\n    journal = {arXiv preprint arXiv:2602.03203},\n    year    = {2026},\n    url     = {https://arxiv.org/abs/2602.03203},\n}\n\n@inproceedings{kim2026pqqp,\n    title     = {Prune-then-Quantize or Quantize-then-Prune? Understanding the Impact of Compression Order in Joint Model Compression},\n    author    = {Kim, Minjun and Choi, Jaehyeon and Yang, Hyunwoo and Kim, Jongjin and Song, Jinho and Kang, U},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2026},\n    url       = {https://arxiv.org/abs/2603.18426},\n}\n\n@article{lanham-2023-faithfulness,\n    title   = {Measuring Faithfulness in Chain-of-Thought Reasoning},\n    author  = {Lanham, Tamera and Chen, Anna and Radhakrishnan, Ansh and Steiner, Benoit and Denison, Carson and Hernandez, Danny and Li, Dustin and Durmus, Esin and Hubinger, Evan and Kernion, Jackson and others},\n    journal = {arXiv preprint arXiv:2307.13702},\n    year    = {2023},\n    url     = {https://arxiv.org/abs/2307.13702},\n}\n\n@inproceedings{turpin-2023-biased-cot,\n    title     = {Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting},\n    author    = {Turpin, Miles and Michael, Julian and Perez, Ethan and Bowman, Samuel R.},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2023},\n    url       = {https://arxiv.org/abs/2305.04388},\n}\n\n@inproceedings{voita-acl2019,\n    title     = {Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned},\n    author    = {Voita, Elena and Talbot, David and Moiseev, Fedor and Sennrich, Rico and Titov, Ivan},\n    booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n    year      = {2019},\n    url       = {https://arxiv.org/abs/1905.09418},\n}\n\n@inproceedings{wei-neurips2022-cot,\n    title     = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},\n    author    = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed and Le, Quoc and Zhou, Denny},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2022},\n    url       = {https://arxiv.org/abs/2201.11903},\n}\n\n@article{rein-gpqa-2024,\n    title   = {{GPQA}: A Graduate-Level Google-Proof Q\\&A Benchmark},\n    author  = {Rein, David and Hou, Betty Li and Stickland, Asa Cooper and Petty, Jackson and Pang, Richard Yuanzhe and Dirani, Julien and Michael, Julian and Bowman, Samuel R.},\n    journal = {arXiv preprint arXiv:2311.12022},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2311.12022},\n}\n\n@inproceedings{frankle-iclr2019,\n    title     = {The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks},\n    author    = {Frankle, Jonathan and Carlin, Michael},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2019},\n    url       = {https://arxiv.org/abs/1803.03635},\n}\n\n@inproceedings{han-neurips2015,\n    title     = {Learning both Weights and Connections for Efficient Neural Networks},\n    author    = {Han, Song and Pool, Jeff and Tran, John and Dally, William J.},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2015},\n    url       = {https://arxiv.org/abs/1506.02626},\n}\n\n@inproceedings{sanh-neurips2020,\n    title     = {Movement Pruning: Adaptive Sparsity during Fine-Tuning},\n    author    = {Sanh, Victor and Wolf, Thomas and Rush, Alexander M.},\n    booktitle = {Advances in Neural Information Processing Systems},\n    year      = {2020},\n    url       = {https://arxiv.org/abs/2005.07683},\n}\n\n@article{scissorhands-2023,\n    title   = {Scissorhands: Exploiting the Persistence of Importance Hypothesis for {LLM} {KV} Cache Compression},\n    author  = {Liu, Zichang and Desai, Aditya and Liao, Fangshuo and Wang, Weitao and Xie, Victor and Xu, Zhaozhuo and Kyrillidis, Anastasios and Shrivastava, Anshumali},\n    journal = {arXiv preprint arXiv:2305.17118},\n    year    = {2023},\n    url     = {https://arxiv.org/abs/2305.17118},\n}\n\n@article{snell-2024-scaling-test-time,\n    title   = {Scaling {LLM} Test-Time Compute Optimally Can be More Effective Than Scaling Model Parameters},\n    author  = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},\n    journal = {arXiv preprint arXiv:2408.03314},\n    year    = {2024},\n    url     = {https://arxiv.org/abs/2408.03314},\n}\n\n@article{fedus-jmlr2022,\n    title   = {Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},\n    author  = {Fedus, William and Zoph, Barret and Shazeer, Noam},\n    journal = {Journal of Machine Learning Research},\n    volume  = {23},\n    number  = {120},\n    pages   = {1--39},\n    year    = {2022},\n    url     = {https://arxiv.org/abs/2101.03961},\n}\n\n@inproceedings{shazeer-2017-moe,\n    title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},\n    author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},\n    booktitle = {International Conference on Learning Representations},\n    year      = {2017},\n    url       = {https://arxiv.org/abs/1701.06538},\n}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 399,
+                  "oldLines": 6,
+                  "newStart": 399,
+                  "newLines": 14,
+                  "lines": [
+                    "     url     = {https://arxiv.org/abs/2101.03961},",
+                    " }",
+                    " ",
+                    "+@article{lazyeviction2025,",
+                    "+    title   = {{LazyEviction}: Lagged {KV} Eviction with Attention Pattern Observation for Efficient Long Reasoning},",
+                    "+    author  = {Zhang, Haoyue and Zhang, Hualei and Ma, Xiaosong and Zhang, Jie and Guo, Song},",
+                    "+    journal = {arXiv preprint arXiv:2506.15969},",
+                    "+    year    = {2025},",
+                    "+    url     = {https://arxiv.org/abs/2506.15969},",
+                    "+}",
+                    "+",
+                    " @inproceedings{shazeer-2017-moe,",
+                    "     title     = {Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer},",
+                    "     author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。4 篇论文检查结果：\n\n| 论文 | 状态 | 现有 key |\n|------|------|----------|\n| Hold Onto That Thought | 已存在 | `hold-onto-thought-neurips2025` |\n| DefensiveKV | 已存在 | `defensivekv-iclr2026` |\n| ForesightKV | 已存在 | `dong2026foresightkv` |\n| LazyEviction | **已添加** | `lazyeviction2025` |\n\n新增 entry 使用 `@article` + `eprint` 风格（arXiv 预印本）。后续在 tex 中引用时对应 key：\n- `\\cite{lazyeviction2025}`\n- 其余三篇用已有 key"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "uuid": "a01fc3f7-4ada-40a4-8311-8ba2084e77a6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KrG24mNTNS7AB8EnAj128a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 815,
+                "cache_read_input_tokens": 36714,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 815
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。4 篇论文检查结果：\n\n| 论文 | 状态 | 现有 key |\n|------|------|----------|\n| Hold Onto That Thought | 已存在 | `hold-onto-thought-neurips2025` |\n| DefensiveKV | 已存在 | `defensivekv-iclr2026` |\n| ForesightKV | 已存在 | `dong2026foresightkv` |\n| LazyEviction | **已添加** | `lazyeviction2025` |\n\n新增 entry 使用 `@article` + `eprint` 风格（arXiv 预印本）。后续在 tex 中引用时对应 key：\n- `\\cite{lazyeviction2025}`\n- 其余三篇用已有 key"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 75164,
+            "duration_api_ms": 76277,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "5e102d60-4c0b-4ea7-81f5-0c0cd916c13b",
+            "total_cost_usd": 0.4167845,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 26082,
+              "cache_read_input_tokens": 234876,
+              "output_tokens": 2059,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26082,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 217,
+                  "cache_read_input_tokens": 36714,
+                  "cache_creation_input_tokens": 815,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 815
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 48069,
+                "outputTokens": 1346,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 3,
+                "costUSD": 0.084799,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 2059,
+                "cacheReadInputTokens": 234876,
+                "cacheCreationInputTokens": 26082,
+                "webSearchRequests": 0,
+                "costUSD": 0.33198550000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "2e542049-a530-4291-a710-f49ebd6c16a1"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-bib-new-refs.md"
+}

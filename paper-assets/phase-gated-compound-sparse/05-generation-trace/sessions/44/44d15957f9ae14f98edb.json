@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44d15957f9ae14f98edb",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper trim disc analysis method",
+  "task_key": "worker_paper_trim_disc_analysis_method_20260514T114611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_trim_disc_analysis_method_20260514T114611_result.json",
+    "occurrence": 1,
+    "bytes": 1065,
+    "sha256": "7f164ec6e91f5b43d92c0426f743d5a4c8efcabb2c28360b149c3140750744b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files look correct. Labels and references are intact.\n\n裁剪前后行数变化：\n\n| 文件 | 裁剪前 | 裁剪后 | 减少 |\n|------|--------|--------|------|\n| discussion.tex | 103 | 67 | **36 行** |\n| analysis.tex | 95 | 62 | **33 行** |\n| methodology.tex | 79 | 66 | **13 行** |\n| **合计** | **277** | **195** | **82 行** |\n\n移入 appendix 的内容：`appendix_disc_analysis.tex`（83 行），包含完整的 6 个 limitation 段落（含 REVIEWER-ATTACK/REBUTTAL 注释）和完整的 entropy redistribution 分析（含公式、表格、per-phase 数据）。\n\n主体节省的渲染页面估算：\n- discussion.tex limitations：~1.5 页（6 段正文 → 4 行）\n- analysis.tex entropy redistribution：~1 页（含 Table + 公式 + 讨论 → 3 行摘要）\n- methodology.tex 去重：~0.5 页（删除重复公式、压缩 phase segmentation 和 metrics）\n- **总计约 3–3.5 页**（LaTeX 注释行不占渲染空间，实际可视内容削减约 3 页；如果双栏格式 margins 较紧可达 ~4 页）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-trim-disc-analysis-method.md"
+}

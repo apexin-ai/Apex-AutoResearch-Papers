@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3793215261fc494d1f16",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis acc qw batch1 8k",
+  "task_key": "worker_analysis_acc_qw_batch1_8k_20260516T010914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_acc_qw_batch1_8k_20260516T010914_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "402a02b7f13471c29e561ceb96f99ac066d8902d84089324c288b99786739554"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成分析，registry 和 artifacts 已更新。\n\n## QW Accuracy Eval Batch1 (8k) 结果摘要\n\n| 指标 | dense | importance_s020 |\n|------|-------|-----------------|\n| **Accuracy** | **44.0% (22/50)** | **26.0% (13/50)** |\n| 截断率 | 2.0% (1/50) | 2.0% (1/50) |\n| 平均生成长度 | 759.7 tokens | 722.1 tokens |\n| 最大生成长度 | 8192 (截断) | 8192 (截断) |\n| 总耗时 | 681.8s | 729.1s |\n\n**关键发现：**\n- s020 相对 dense 的 accuracy 降幅为 **-18pp**（44% → 26%），相对下降 **40.9%**\n- 截断率极低（各仅 1 条），说明 8192 token 预算充足，之前 2048 的截断问题已修复\n- s020 旧数据约 34%，现在 batch1 (n=50) 为 26%，差异可能来自题目子集不同或旧数据 rescore 版本差异"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-acc-qw-batch1-8k.md"
+}

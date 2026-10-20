@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c3fa35fd701be1c7a83",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "research tex w1w5 audit",
+  "task_key": "worker_research_tex_w1w5_audit_20260514T224833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_tex_w1w5_audit_20260514T224833_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "db5eef9f6fc28143253c41528af98a68adc11e2c8ed563ec0c25ade5d3b65020"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存至 `artifacts/w1w5_audit_report.md`。\n\n**核心发现**：\n\n| Warning | 状态 | 关键位置 |\n|---------|------|---------|\n| **W1** | PASS — 远程 tex 已包含 LLaMA | 无需操作 |\n| **W2** | results.tex:L74 prose cherry-pick CI/p | abstract.tex:L10 同样 |\n| **W3 [CRITICAL]** | appendix_disc_analysis.tex:L33 + limitations.tex:L2 仍需加强 D060 partially_confirmed 表述 | conclusion/discussion 已 OK |\n| **W4** | methodology.tex:L22 声称 B=10,000，但 profiling 实际 B=1,000（40+ json 文件可证），post-hoc rebootstrap 才到 10,000 | appendix_disc_analysis.tex:L45 同 |\n| **W5** | 完全缺失 per-phase effective sample sizes，仅有总 exclusion 数 | 等 n=500 数据后补 appendix_moved.tex:L26 |\n\n每个 warning 都附带了精确行号、当前原文、建议替换文本。W2/W3/W4 不依赖 n=500 可立即修复，W5 需等数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-tex-w1w5-audit.md"
+}

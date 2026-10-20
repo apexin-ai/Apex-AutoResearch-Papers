@@ -1,0 +1,212 @@
+{
+  "args": {
+    "allow_formal": false,
+    "config": "configs/exp_003_stage1_correction_ablation.json",
+    "confirm_exp002_done": false,
+    "limit_conditions": 2,
+    "max_replications": 2,
+    "output_dir": "artifacts/exp_003_stage1_correction_ablation/smoke",
+    "smoke": true
+  },
+  "conditions": [
+    {
+      "budget_label": "low",
+      "cate_heterogeneity": "high",
+      "condition_id": "budget=low|B=100|N=2000|k=3|mis=high|cate=high|corr=positive",
+      "correlation_direction": "positive",
+      "expert_budget": 100,
+      "k": 3,
+      "misclassification_heterogeneity": "high",
+      "n": 2000
+    },
+    {
+      "budget_label": "mid",
+      "cate_heterogeneity": "high",
+      "condition_id": "budget=mid|B=500|N=2000|k=3|mis=high|cate=high|corr=positive",
+      "correlation_direction": "positive",
+      "expert_budget": 500,
+      "k": 3,
+      "misclassification_heterogeneity": "high",
+      "n": 2000
+    }
+  ],
+  "config": {
+    "arm_specific_error_delta": 0.04,
+    "bootstrap_iterations": 1000,
+    "bootstrap_seed": 20260604,
+    "budget_tiers": {
+      "low": {
+        "description": "low expert-label budget for H2 primary claim",
+        "expert_budget": 100
+      },
+      "mid": {
+        "description": "mid expert-label budget diagnostic",
+        "expert_budget": 500
+      }
+    },
+    "cate_heterogeneity": [
+      "high"
+    ],
+    "correlation_directions": [
+      "positive",
+      "negative"
+    ],
+    "disk_estimate": "Formal JSON/CSV artifacts expected < 500 MB; no model checkpoint or external dataset download.",
+    "exp_id": "exp_003_stage1_correction_ablation",
+    "expected_runtime": "Formal Stage1 grid expected to run after exp_002 completion and approval; CPU/Numpy baseline should be low-to-mid cost, GPU not required by this skeleton.",
+    "group_probs": {
+      "3": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "6": [
+        0.3,
+        0.22,
+        0.16,
+        0.13,
+        0.11,
+        0.08
+      ]
+    },
+    "low_budget_label": "low",
+    "matrix_target_mapping": [
+      {
+        "col": "partial_pooling_vs_global",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "low_budget.partial_pooling_minus_global_gate_rmse",
+        "row": "low_budget",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "C_PARTIAL_POOLING_BETTER_LOW_BUDGET"
+      },
+      {
+        "col": "partial_pooling_vs_per_subgroup",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "low_budget.partial_pooling_minus_per_subgroup_gate_rmse",
+        "row": "low_budget",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "C_PARTIAL_POOLING_BETTER_LOW_BUDGET"
+      },
+      {
+        "col": "global",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "budget_low.global.gate_rmse",
+        "row": "budget_low",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "T_STAGE1_CORRECTION_ABLATION"
+      },
+      {
+        "col": "arm_specific",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "budget_low.arm_specific.gate_rmse",
+        "row": "budget_low",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "T_STAGE1_CORRECTION_ABLATION"
+      },
+      {
+        "col": "per_subgroup_independent",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "budget_low.per_subgroup_independent.gate_rmse",
+        "row": "budget_low",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "T_STAGE1_CORRECTION_ABLATION"
+      },
+      {
+        "col": "partial_pooling",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "budget_low.partial_pooling.gate_rmse",
+        "row": "budget_low",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "T_STAGE1_CORRECTION_ABLATION"
+      },
+      {
+        "col": "global",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "budget_mid.global.gate_rmse",
+        "row": "budget_mid",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "T_STAGE1_CORRECTION_ABLATION"
+      },
+      {
+        "col": "arm_specific",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "budget_mid.arm_specific.gate_rmse",
+        "row": "budget_mid",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "T_STAGE1_CORRECTION_ABLATION"
+      },
+      {
+        "col": "per_subgroup_independent",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "budget_mid.per_subgroup_independent.gate_rmse",
+        "row": "budget_mid",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "T_STAGE1_CORRECTION_ABLATION"
+      },
+      {
+        "col": "partial_pooling",
+        "exp_id": "exp_003_stage1_correction_ablation",
+        "metric_key": "budget_mid.partial_pooling.gate_rmse",
+        "row": "budget_mid",
+        "source": "artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv",
+        "target_id": "T_STAGE1_CORRECTION_ABLATION"
+      }
+    ],
+    "methods": [
+      "global",
+      "arm_specific",
+      "per_subgroup_independent",
+      "partial_pooling"
+    ],
+    "minimum_formal_replications": 200,
+    "misclassification_heterogeneity": [
+      "high"
+    ],
+    "n_values": [
+      2000,
+      5000
+    ],
+    "noise_sd": 1.0,
+    "noninferiority_relative_margin": 0.05,
+    "operational_criteria": {
+      "claim": "H2 low-budget partial pooling better",
+      "formal_launch_gate": "Do not run formal experiment until exp_002_gpu_dgp_grid is DONE and Director approval/allocation is present.",
+      "minimum_replications_per_condition": 200,
+      "noninferiority_rule": "Partial pooling must be non-inferior to per-subgroup independent correction with a 5% relative GATE RMSE margin.",
+      "primary_metric": "gate_rmse",
+      "secondary_metrics": [
+        "pehe",
+        "mean_subgroup_cate_bias"
+      ],
+      "success_rule": "At low expert-label budget, partial pooling must beat global correction on gate_rmse: partial_pooling_minus_global bootstrap 95% CI upper bound < 0."
+    },
+    "output_contract": {
+      "noninferiority_comparison": "partial_pooling_minus_per_subgroup_independent",
+      "primary_comparison": "partial_pooling_minus_global",
+      "primary_metric": "gate_rmse",
+      "required_provenance_fields": [
+        "target_id",
+        "row",
+        "col",
+        "metric_key",
+        "exp_id",
+        "source"
+      ],
+      "secondary_metrics": [
+        "pehe",
+        "mean_subgroup_cate_bias"
+      ]
+    },
+    "partial_pooling_shrinkage_strength": 25.0,
+    "plan_id": "plan_003_stage1_correction_ablation",
+    "replications_per_condition": 200,
+    "requires_exp002_done": true,
+    "seed": 20260603,
+    "smoothing_alpha": 1.0,
+    "subgroup_counts": [
+      3,
+      6
+    ],
+    "treatment_probability": 0.5
+  }
+}

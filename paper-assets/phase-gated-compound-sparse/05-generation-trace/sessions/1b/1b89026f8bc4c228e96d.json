@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b89026f8bc4c228e96d",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "registry c3 llama metrics backfill",
+  "task_key": "worker_registry_c3_llama_metrics_backfill_20260516T025245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_registry_c3_llama_metrics_backfill_20260516T025245_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "fc2d45f77682bb6c4b89fcaa358595ca046ea7cb5f26a595c137d41990d37e0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入成功。完整 metrics 结构：\n\n| 字段 | 值 |\n|------|-----|\n| **imp_vs_rand d_z** | s015=0.19, s020=0.26, s025=0.29, s030=0.34（单调递增） |\n| **phase_gradient_importance d_z** | 全部 large（1.00–1.12） |\n| **phase_gradient_random d_z** | 全部 small（0.35–0.45） |\n| **s030 Bonferroni p** | 0.029（显著） |\n| **cross_arch delta** | LLaMA d_z 比 DeepSeek 高 0.20–0.59 |\n\nRegistry `c3_llama` metrics 字段已更新，包含 imp_vs_rand_dz、phase_gradient_{importance,random}_dz、median_diff、wilcoxon_p（含 Bonferroni 校正）、CI、cross_arch_comparison 等全部结构化数值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/registry-c3-llama-metrics-backfill.md"
+}

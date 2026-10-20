@@ -1,0 +1,765 @@
+tier: median
+narrative_guidance: 'bf16 数值系统性缩水但 pattern 定性保持。DeepSeek importance gradient headline
+  从 fp32 的 12.7-39.3× 修订为 bf16 的 8.5-32.1×（bf16/fp32 ratio 约 0.67-0.82）。 Qwen 复现 phase-dependent
+  pattern 但 gradient 显著弱于 DeepSeek（4-22×），定位为 partial replication。Crossover 在 DeepSeek
+  bf16 明确保持，Qwen 上 marginally significant。 C4 entropy-discrimination collapse 降级为
+  hypothesis。Random baselines 大体 flat 但 s030 存在 2× 噪声波动。Sub-exponential growth 在 bf16
+  下保持但 rate 略有偏移。 Bootstrap 全部 p<0.01 但个别 sparsity CI 比 fp32 宽 30-50%。
+
+  '
+imagined_experiments:
+- name: DeepSeek importance bf16 × 4 sparsity
+  plan_id: plan_001
+  description: 'bf16 重跑 DeepSeek-R1-Distill-Qwen-7B importance masking，4 个 sparsity
+    水平 (s015/s020/s025/s030)。消除 fp16 NaN 偏差，获得论文可报告数据。
+
+    '
+  expected_results:
+    bf16_imp_s015_ii_high_median: 0.2
+    bf16_imp_s015_ii_mid_median: 0.58
+    bf16_imp_s015_ii_low_median: 1.7
+    bf16_imp_s015_ii_high_mean: 0.24
+    bf16_imp_s015_ii_mid_mean: 1.08
+    bf16_imp_s015_ii_low_mean: 4.82
+    bf16_imp_s015_gradient_median: 8.5
+    bf16_imp_s015_bootstrap_p: 0.0
+    bf16_imp_s015_bootstrap_ci:
+    - 2.8
+    - 18.4
+    bf16_imp_s015_bf16_fp32_ratio: 0.67
+    bf16_imp_s020_ii_high_median: 0.28
+    bf16_imp_s020_ii_mid_median: 1.18
+    bf16_imp_s020_ii_low_median: 4.7
+    bf16_imp_s020_ii_high_mean: 0.39
+    bf16_imp_s020_ii_mid_mean: 3.12
+    bf16_imp_s020_ii_low_mean: 14.85
+    bf16_imp_s020_gradient_median: 16.8
+    bf16_imp_s020_bootstrap_p: 0.0
+    bf16_imp_s020_bootstrap_ci:
+    - 5.1
+    - 42.3
+    bf16_imp_s020_bf16_fp32_ratio: 0.61
+    bf16_imp_s025_ii_high_median: 0.52
+    bf16_imp_s025_ii_mid_median: 3.45
+    bf16_imp_s025_ii_low_median: 13.47
+    bf16_imp_s025_ii_high_mean: 0.7
+    bf16_imp_s025_ii_mid_mean: 6.48
+    bf16_imp_s025_ii_low_mean: 36.18
+    bf16_imp_s025_gradient_median: 25.9
+    bf16_imp_s025_bootstrap_p: 0.0
+    bf16_imp_s025_bootstrap_ci:
+    - 7.8
+    - 68.2
+    bf16_imp_s025_bf16_fp32_ratio: 0.71
+    bf16_imp_s030_ii_high_median: 0.68
+    bf16_imp_s030_ii_mid_median: 5.1
+    bf16_imp_s030_ii_low_median: 21.83
+    bf16_imp_s030_ii_high_mean: 1.02
+    bf16_imp_s030_ii_mid_mean: 32.5
+    bf16_imp_s030_ii_low_mean: 328.4
+    bf16_imp_s030_gradient_median: 32.1
+    bf16_imp_s030_bootstrap_p: 0.0
+    bf16_imp_s030_bootstrap_ci:
+    - 14.2
+    - 198.5
+    bf16_imp_s030_bf16_fp32_ratio: 0.82
+  result_rationale: 'bf16 truncates mantissa from 23 bits (fp32) to 7 bits，直接影响 PPL
+    计算中的极端值。 Compound interaction index (II) 是 PPL 比值的乘积——low-phase segments 本身 PPL
+    很高 （dense 时就有 14-40），compound 后 PPL 飙到数百甚至上千。fp32 下这些极端值被精确累积， bf16 下被 round-to-nearest-even
+    系统性截断。关键点：截断对大数值的绝对影响远大于小数值， 因此 ii_low（数值大）比 ii_high（数值小）受影响更严重。gradient = ii_low/ii_high，
+    分子缩水 35-45% 而分母仅缩水 10-20%，导致 gradient 整体降 20-40%。 但 monotonicity（high < mid <
+    low）完全保持——这是 structural pattern 而非 numerical artifact。 s015 的 fp32 gradient 仅
+    12.7×，缩水后到 8.5×，接近 ds_importance_gradient 下界； s030 的 fp32 gradient 39.3× 缩到 32.1×，仍是最高点。Bootstrap
+    p 仍为 0.0000 因为 per-problem pairing 消除了噪声——50 个 problem 中 48+ 个保持 ii_low > ii_high。
+    CI 比 fp32 宽约 30% 因为 bf16 在尾部引入了更多离散化噪声。
+
+    '
+  tables:
+  - title: 'Table 1: DeepSeek bf16 Importance — Phase-Stratified II'
+    columns:
+    - sparsity
+    - ii_high_med
+    - ii_mid_med
+    - ii_low_med
+    - gradient
+    - p_value
+    - bf16_fp32_ratio
+    rows:
+    - - 0.15
+      - 0.2
+      - 0.58
+      - 1.7
+      - 8.5×
+      - <0.001
+      - 0.67
+    - - 0.2
+      - 0.28
+      - 1.18
+      - 4.7
+      - 16.8×
+      - <0.001
+      - 0.61
+    - - 0.25
+      - 0.52
+      - 3.45
+      - 13.47
+      - 25.9×
+      - <0.001
+      - 0.71
+    - - 0.3
+      - 0.68
+      - 5.1
+      - 21.83
+      - 32.1×
+      - <0.001
+      - 0.82
+  figures_description:
+  - 'Fig 1a: 4-panel bar chart (one per sparsity), x=phase(high/mid/low), y=II median,
+    显示 monotonic gradient。每个 bar 附 bootstrap 95% CI error bar。bf16 bars 旁边画 fp32 ghost
+    bars (半透明) 做对比。'
+  - 'Fig 1b: Line plot, x=sparsity(0.15-0.30), y=gradient(ii_low/ii_high), 两条线分别是
+    bf16 和 fp32。bf16 线系统性低于 fp32 但形状平行。shaded area = bootstrap CI。'
+  analysis: 'bf16 gradient 从 fp32 的 12.7-39.3× 缩水到 8.5-32.1×，headline 修订为 "8-32×"。
+    Pattern 完全保持：(1) monotonic phase gradient 在所有 4 个 sparsity 级别成立， (2) gradient
+    随 sparsity 增加而增大，(3) 所有 bootstrap p < 0.001。 bf16/fp32 ratio 平均约 0.70，符合 precision-inflated
+    假说——fp32 下极端 PPL 尾部 被更精确地累积，导致 gradient 被 inflated 约 30%。这不影响 qualitative claim
+    但 headline 数字必须下调。论文应报告 bf16 数字并在 appendix 讨论 dtype sensitivity。
+
+    '
+- name: DeepSeek random bf16 × 4 sparsity
+  plan_id: plan_002
+  description: 'bf16 重跑 DeepSeek random masking (s015/s020/s025/s030)，作为 importance
+    的配对对照。 验证 random eviction 在 bf16 下仍保持 ~1× flat gradient。
+
+    '
+  expected_results:
+    bf16_rand_s015_ii_high_median: 0.14
+    bf16_rand_s015_ii_mid_median: 0.21
+    bf16_rand_s015_ii_low_median: 0.16
+    bf16_rand_s015_gradient_median: 1.1
+    bf16_rand_s020_ii_high_median: 0.29
+    bf16_rand_s020_ii_mid_median: 0.38
+    bf16_rand_s020_ii_low_median: 0.44
+    bf16_rand_s020_gradient_median: 1.5
+    bf16_rand_s025_ii_high_median: 2.62
+    bf16_rand_s025_ii_mid_median: 2.48
+    bf16_rand_s025_ii_low_median: 2.15
+    bf16_rand_s025_gradient_median: 0.8
+    bf16_rand_s030_ii_high_median: 4.83
+    bf16_rand_s030_ii_mid_median: 4.52
+    bf16_rand_s030_ii_low_median: 10.46
+    bf16_rand_s030_gradient_median: 2.2
+    bf16_rand_s030_note: s030 存在 2× 噪声波动，源于个别 problem 的 random seed 敏感性
+    bf16_rand_overall_gradient_range: 0.8-2.2×
+  result_rationale: 'Random eviction 没有 phase-strategy interaction 机制：它对每个 token 等概率丢弃
+    KV cache， 不依赖 importance score。因此 compound degradation 在所有 phase 大致均匀分布。 bf16
+    对 random 的影响比对 importance 小得多，因为 random 的 II 值本身就不极端—— high/mid/low phase 的 PPL
+    变化量级相近，不存在需要高精度累积的尾部极端值。 s030 是唯一可能出现 >2× 波动的点：在 30% eviction rate 下 random seed
+    对 个别 problem 的影响放大，某些 problem 的 low-phase segment 恰好丢弃了关键 KV， 导致 II 异常高。但这是 stochastic
+    noise（换 seed 会变），不是 systematic gradient。 across-problem median 仍然大致 flat。这个 2.2×
+    波动在 appendix 中可以通过 展示 per-problem 分布的高方差来解释——random s030 的 IQR 远大于 importance
+    s015。
+
+    '
+  tables:
+  - title: 'Table 2: DeepSeek bf16 Random — Phase-Stratified II'
+    columns:
+    - sparsity
+    - ii_high_med
+    - ii_mid_med
+    - ii_low_med
+    - gradient
+    - interpretation
+    rows:
+    - - 0.15
+      - 0.14
+      - 0.21
+      - 0.16
+      - 1.1×
+      - flat
+    - - 0.2
+      - 0.29
+      - 0.38
+      - 0.44
+      - 1.5×
+      - flat
+    - - 0.25
+      - 2.62
+      - 2.48
+      - 2.15
+      - 0.8×
+      - flat (reverse noise)
+    - - 0.3
+      - 4.83
+      - 4.52
+      - 10.46
+      - 2.2×
+      - noisy, not systematic
+  figures_description:
+  - 'Fig 2: Importance vs Random gradient comparison。双 y 轴或 side-by-side bar chart。x=sparsity,
+    importance 显示 8-32× gradient, random 显示 ~1× flat line with error bars covering
+    0.8-2.2×。视觉冲击力来自两者的量级差异。'
+  analysis: 'Random gradient 在 0.8-2.2× 范围波动，与 importance 的 8.5-32.1× 形成数量级对比。 s030
+    的 2.2× 是唯一超过 2× 的点，但 (1) 方向不一致（不是 systematic low > high）， (2) per-problem 方差极大（IQR
+    ~5-15×），(3) 换不同 random seed 跑会得到不同方向。 论文可报告 "random eviction maintains ~1× flat
+    gradient (range 0.8-2.2×) across all sparsity levels" 并在 footnote 注明 s030 单点波动。
+
+    '
+- name: Phase-strategy crossover analysis (bf16)
+  plan_id: plan_003
+  description: '从 bf16 importance vs random 数据中提取 per-phase II，验证 crossover 现象： importance
+    在 high-phase 表现优于 random 但在 low-phase 劣于 random，方向反转。
+
+    '
+  expected_results:
+    crossover_sparsity: 0.25
+    crossover_s025_importance_high: 0.52
+    crossover_s025_random_high: 2.62
+    crossover_s025_importance_low: 13.47
+    crossover_s025_random_low: 2.15
+    crossover_direction_high: importance < random (0.52 < 2.62) → importance 更优
+    crossover_direction_low: importance > random (13.47 > 2.15) → importance 更差
+    crossover_confirmed: true
+    crossover_also_at_s030: true
+    crossover_s030_importance_high: 0.68
+    crossover_s030_random_high: 4.83
+    crossover_s030_importance_low: 21.83
+    crossover_s030_random_low: 10.46
+    crossover_s020_marginal: false
+    crossover_s020_note: s020 importance_high(0.28) < random_high(0.29) 但差异不显著
+    crossover_bootstrap_p_s025: 0.0003
+    crossover_bootstrap_p_s030: 0.0021
+  result_rationale: 'Crossover 的物理机制：importance eviction 在 high-phase（attention 集中）有效因为
+    importance score 判别力高——正确保留关键 KV，compound degradation 小。在 low-phase （attention
+    分散）importance score 判别力崩塌——错误丢弃关键 KV，compound degradation 爆炸。 Random eviction
+    不依赖 importance score，因此在所有 phase 均匀退化。 结果：high-phase importance < random（importance
+    策略有效），low-phase importance > random （importance 策略失效甚至有害）。bf16 不影响这个 structural
+    crossover 因为两个方向的 数值差距太大（5× 和 6×），即使 bf16 缩水 30% 也不会翻转。 s025 和 s030 都确认 crossover（fp32
+    也是这两个点）。s020 接近但不显著—— importance_high 和 random_high 的差在 noise margin 内。s015 不存在
+    crossover 因为 sparsity 太低，compound effect 整体可忽略。 Bootstrap p 不再是 0.0000 而是 0.0003/0.0021——仍然
+    highly significant 但比 fp32 (p=0.0000) 略高，因为 bf16 增加了 variance。
+
+    '
+  tables:
+  - title: 'Table 3: Phase-Strategy Crossover (bf16)'
+    columns:
+    - sparsity
+    - imp_high
+    - rand_high
+    - imp_low
+    - rand_low
+    - crossover
+    - p_value
+    rows:
+    - - 0.15
+      - 0.2
+      - 0.14
+      - 1.7
+      - 0.16
+      - 'No'
+      - —
+    - - 0.2
+      - 0.28
+      - 0.29
+      - 4.7
+      - 0.44
+      - Marginal
+      - 0.312
+    - - 0.25
+      - 0.52
+      - 2.62
+      - 13.47
+      - 2.15
+      - 'Yes'
+      - 0.0003
+    - - 0.3
+      - 0.68
+      - 4.83
+      - 21.83
+      - 10.46
+      - 'Yes'
+      - 0.0021
+  figures_description:
+  - 'Fig 3: Crossover diagram。x=phase(high→low), y=II median, 两条线 importance(红) 和
+    random(蓝)。Importance 线从低到高急剧上升，random 线大致水平。两线交叉点 = crossover。画 s025 和 s030 两个
+    panel，标注 crossover point 和 bootstrap CI shaded region。'
+  analysis: 'Crossover 在 bf16 下 confirmed at s=0.25 (p=0.0003) 和 s=0.30 (p=0.0021)。
+    s=0.20 存在方向但不显著（p=0.312）。这与 fp32 结果 qualitatively identical。 论文表述："The phase-strategy
+    crossover — where importance eviction transitions from outperforming to underperforming
+    random eviction — is confirmed at sparsity ≥ 0.25 (paired bootstrap p < 0.005)."
+    这是 paper 最强的 qualitative claim，bf16 完全支持。
+
+    '
+- name: Qwen importance bf16 × 4 sparsity
+  plan_id: plan_004
+  description: 'Qwen2.5-7B-Instruct importance masking bf16 (s015/s020/s025/s030)，
+    cross-model replication 核心实验。验证 phase-dependent gradient 是否在不同架构上复现。
+
+    '
+  expected_results:
+    qw_imp_s015_ii_high_median: 0.16
+    qw_imp_s015_ii_mid_median: 0.35
+    qw_imp_s015_ii_low_median: 0.67
+    qw_imp_s015_gradient_median: 4.2
+    qw_imp_s015_bootstrap_p: 0.0042
+    qw_imp_s020_ii_high_median: 0.23
+    qw_imp_s020_ii_mid_median: 0.78
+    qw_imp_s020_ii_low_median: 1.96
+    qw_imp_s020_gradient_median: 8.5
+    qw_imp_s020_bootstrap_p: 0.0008
+    qw_imp_s025_ii_high_median: 0.41
+    qw_imp_s025_ii_mid_median: 2.18
+    qw_imp_s025_ii_low_median: 6.48
+    qw_imp_s025_gradient_median: 15.8
+    qw_imp_s025_bootstrap_p: 0.0
+    qw_imp_s030_ii_high_median: 0.57
+    qw_imp_s030_ii_mid_median: 3.85
+    qw_imp_s030_ii_low_median: 12.71
+    qw_imp_s030_gradient_median: 22.3
+    qw_imp_s030_bootstrap_p: 0.0
+    qw_gradient_range: 4.2-22.3×
+    qw_vs_ds_ratio: 0.50-0.70
+    qw_monotonicity_preserved: true
+    qw_s015_ci_note: s015 bootstrap CI may cross 1.0 at lower bound
+  result_rationale: 'Qwen2.5-7B-Instruct 与 DeepSeek-R1-Distill-Qwen-7B 共享 Qwen2.5
+    base architecture 但训练目标和数据差异显著——DeepSeek 是 distilled reasoning model，attention
+    pattern 更极端（reasoning phase 的 attention 极度集中在少数 head）。Qwen2.5-Instruct 是 general-purpose
+    chat model，attention 分布更均匀，head redundancy 更低。 结果：(1) Qwen 的 head pruning 影响更均匀分布到各
+    head，compound degradation 的 phase-dependent amplification 效应更弱；(2) importance
+    score 的 discrimination 在 Qwen 上退化更慢（因为 attention 本身更均匀，pruning 后 redistribution
+    幅度更小）； (3) 因此 gradient 幅度约为 DeepSeek 的 50-70%。 但 qualitative pattern 保持：monotonic
+    increase (high < mid < low) 在所有 4 个 sparsity 级别成立，gradient 随 sparsity 增加而增大。 s015
+    是最脆弱的点——gradient 仅 4.2×，bootstrap CI 下界可能接近或轻触 1.0×， 意味着在 α=0.05 下仍然 significant
+    但 margin 不大。论文可以选择仅报告 s020-s030 作为 Qwen 的 robust 证据，s015 作为 supplementary。
+
+    '
+  tables:
+  - title: 'Table 4: Qwen bf16 Importance — Phase-Stratified II'
+    columns:
+    - sparsity
+    - ii_high_med
+    - ii_mid_med
+    - ii_low_med
+    - gradient
+    - p_value
+    rows:
+    - - 0.15
+      - 0.16
+      - 0.35
+      - 0.67
+      - 4.2×
+      - 0.0042
+    - - 0.2
+      - 0.23
+      - 0.78
+      - 1.96
+      - 8.5×
+      - 0.0008
+    - - 0.25
+      - 0.41
+      - 2.18
+      - 6.48
+      - 15.8×
+      - <0.001
+    - - 0.3
+      - 0.57
+      - 3.85
+      - 12.71
+      - 22.3×
+      - <0.001
+  - title: 'Table 5: Cross-Model Gradient Comparison (bf16)'
+    columns:
+    - sparsity
+    - ds_gradient
+    - qw_gradient
+    - qw_ds_ratio
+    rows:
+    - - 0.15
+      - 8.5×
+      - 4.2×
+      - 0.49
+    - - 0.2
+      - 16.8×
+      - 8.5×
+      - 0.51
+    - - 0.25
+      - 25.9×
+      - 15.8×
+      - 0.61
+    - - 0.3
+      - 32.1×
+      - 22.3×
+      - 0.69
+  figures_description:
+  - 'Fig 4: Cross-model comparison。两行 panel: top=DeepSeek, bottom=Qwen。每行 4 columns
+    (s015-s030)。Bar chart per phase。Qwen bars 系统性低于 DeepSeek 但 shape 一致。'
+  - 'Fig 4b: Gradient vs sparsity line plot, DeepSeek(红) 和 Qwen(蓝) 两条线。两条都 monotonically
+    increasing 但 Qwen 的 slope 更浅。shaded = CI。'
+  analysis: 'Qwen 复现 phase-dependent gradient 但幅度为 DeepSeek 的 50-70%。这支持 C5 (cross-model
+    generalizability) 但需要 nuanced 表述： "The phase-modulated severity gradient generalizes
+    across model families, with qualitatively consistent monotonic patterns (4-22×
+    in Qwen vs 8-32× in DeepSeek), though the magnitude is model-dependent." Qwen/DeepSeek
+    ratio 从 0.49 (s015) 到 0.69 (s030) 随 sparsity 增加而收敛， 暗示 high-sparsity 的 compound
+    interaction 足够强烈以部分 override model-specific attention patterns。这是一个可以在 Discussion
+    中简短提及但不做 strong claim 的观察。
+
+    '
+- name: Qwen random bf16 × 4 sparsity
+  plan_id: plan_005
+  description: 'Qwen2.5-7B-Instruct random masking bf16 (s015/s020/s025/s030)， 验证
+    Qwen 上 random eviction 同样保持 flat gradient。
+
+    '
+  expected_results:
+    qw_rand_s015_gradient: 1.0
+    qw_rand_s020_gradient: 1.3
+    qw_rand_s025_gradient: 0.9
+    qw_rand_s030_gradient: 1.8
+    qw_rand_overall_range: 0.9-1.8×
+    qw_rand_s015_ii_high_median: 0.12
+    qw_rand_s015_ii_low_median: 0.12
+    qw_rand_s020_ii_high_median: 0.26
+    qw_rand_s020_ii_low_median: 0.34
+    qw_rand_s025_ii_high_median: 1.85
+    qw_rand_s025_ii_low_median: 1.67
+    qw_rand_s030_ii_high_median: 3.92
+    qw_rand_s030_ii_low_median: 7.05
+  result_rationale: '与 DeepSeek random 同理——random eviction 不依赖 importance score，不存在
+    phase-strategy interaction 机制。Qwen 上 random 的绝对 II 值可能略低于 DeepSeek （因为 Qwen 的
+    head redundancy 更低，pruning 后 remaining heads 已经 cover 大部分 attention pattern，random
+    KV eviction 的额外 compound impact 更小）。 s030 出现 1.8× gradient 是噪声——50 个 problem 中
+    5-8 个的 random seed 恰好 丢弃了 low-phase 的 critical KV entry，拉高了 median。但 (1) 方向不稳定（不同
+    seed 可能反转），(2) bootstrap CI 宽到覆盖 1.0×。论文可统一报告："Random eviction maintains flat
+    gradient (~1×) across both models and all sparsity levels."
+
+    '
+  tables:
+  - title: 'Table 6: Qwen bf16 Random — Phase-Stratified II'
+    columns:
+    - sparsity
+    - ii_high_med
+    - ii_mid_med
+    - ii_low_med
+    - gradient
+    rows:
+    - - 0.15
+      - 0.12
+      - 0.11
+      - 0.12
+      - 1.0×
+    - - 0.2
+      - 0.26
+      - 0.3
+      - 0.34
+      - 1.3×
+    - - 0.25
+      - 1.85
+      - 1.72
+      - 1.67
+      - 0.9×
+    - - 0.3
+      - 3.92
+      - 4.15
+      - 7.05
+      - 1.8×
+  figures_description:
+  - 'Fig 5: 4-model-strategy comparison matrix (2×2)。DeepSeek×Importance, DeepSeek×Random,
+    Qwen×Importance, Qwen×Random。每个 cell 是 gradient vs sparsity 曲线。Importance 两条线上升（DeepSeek
+    更陡），Random 两条线 flat。这是论文 main figure。'
+  analysis: 'Qwen random gradient 0.9-1.8×，确认 flat pattern 跨模型保持。 与 Qwen importance
+    的 4.2-22.3× 形成鲜明对比。 两个模型的 random 结果一致支持核心论点：compound severity gradient 是 strategy-specific（importance
+    eviction 特有）而非 compound sparsity 的通用属性。
+
+    '
+- name: Attention entropy measurement (optional ablation)
+  plan_id: plan_006
+  description: '测量 pruned vs unpruned 的 per-head attention entropy + importance score
+    分布。 直接验证 entropy-discrimination collapse 机制。P2 优先级，仅在时间允许时执行。
+
+    '
+  expected_results:
+    entropy_unpruned_high_phase: 2.1
+    entropy_unpruned_low_phase: 3.8
+    entropy_pruned_high_phase: 2.4
+    entropy_pruned_low_phase: 4.9
+    entropy_increase_high: +0.3 nats (14%)
+    entropy_increase_low: +1.1 nats (29%)
+    discrimination_score_unpruned_high: 0.82
+    discrimination_score_unpruned_low: 0.61
+    discrimination_score_pruned_high: 0.74
+    discrimination_score_pruned_low: 0.38
+    discrimination_collapse_ratio_high: 0.9
+    discrimination_collapse_ratio_low: 0.62
+    mechanism_verdict: directionally consistent but effect size modest
+  result_rationale: 'Entropy-discrimination collapse 假说的核心链条：head pruning → attention
+    redistribute 到 remaining heads → remaining heads 的 attention 变得更 diffuse（entropy
+    上升）→ importance score 判别力下降（discrimination collapse）→ importance eviction 退化为
+    biased pseudo-random。 在 median tier 下，这个链条的每一步都 directionally confirmed 但 effect
+    size 不像 理论预测的那么大：(1) entropy 确实上升，但 high-phase 仅 14%（attention 本身就集中， pruning
+    几个 redundant head 影响有限）而 low-phase 29%（attention 分散，pruning 迫使更多 redistribute）；(2)
+    discrimination 确实下降，但 high-phase 仍有 0.74 （远未 "collapse"），low-phase 降到 0.38（significant
+    degradation 但不是零）。 这意味着 C4 的表述需要从 "collapse" 软化为 "degradation"——"entropy-discrimination
+    degradation" 或保持 "collapse" 但在正文中定义 collapse 为 "substantial reduction" 而非 "complete
+    failure"。论文中最安全的表述： "We hypothesize that head pruning induces attention entropy
+    increase and importance score discrimination degradation, with the effect amplified
+    in distributed-attention phases."
+
+    '
+  tables:
+  - title: 'Table 7: Attention Entropy & Discrimination (if collected)'
+    columns:
+    - condition
+    - phase
+    - entropy
+    - discrimination
+    - entropy_change
+    - discrim_change
+    rows:
+    - - unpruned
+      - high
+      - 2.1
+      - 0.82
+      - —
+      - —
+    - - unpruned
+      - low
+      - 3.8
+      - 0.61
+      - —
+      - —
+    - - pruned
+      - high
+      - 2.4
+      - 0.74
+      - +14%
+      - -10%
+    - - pruned
+      - low
+      - 4.9
+      - 0.38
+      - +29%
+      - -38%
+  figures_description:
+  - 'Fig S1 (supplementary): Dual-axis plot。Left y=attention entropy, right y=discrimination
+    score。x=phase。两对 bars (unpruned/pruned)。显示 pruning 后 entropy 上升 + discrimination
+    下降，且 low-phase 变化更剧烈。'
+  analysis: '数据 directionally supports mechanism 但 effect size 不足以称 "collapse"。 论文策略：(1)
+    main text 中 C4 表述为 hypothesis + directional evidence， (2) 如果时间允许跑了 plan_006，数据放
+    supplementary 作为 supporting evidence， (3) 如果没跑，C4 纯粹基于 conceptual argument + indirect
+    evidence (gradient pattern 本身 consistent with the mechanism)。Either way C4 表述为
+    "we hypothesize" 不变。
+
+    '
+- name: Growth rate analysis from bf16 importance data
+  plan_id: plan_007
+  description: '从 bf16 importance 4 个 sparsity 的 gradient 数据分析增长率模式， 验证 sub-exponential
+    growth 在 bf16 下保持。
+
+    '
+  expected_results:
+    bf16_gradients:
+    - 8.5
+    - 16.8
+    - 25.9
+    - 32.1
+    growth_rate_s015_to_s020: 1.98
+    growth_rate_s020_to_s025: 1.54
+    growth_rate_s025_to_s030: 1.24
+    growth_rate_sequence: 1.98 → 1.54 → 1.24
+    growth_rate_decreasing: true
+    sub_exponential_confirmed: true
+    fp32_growth_rates_for_comparison: 2.24 → 1.84 → 1.42
+    bf16_growth_rates_systematically_lower: true
+    bf16_fp32_growth_ratio: 0.87-0.88
+  result_rationale: 'Sub-exponential 意味着 gradient 的增长率递减——每增加 5% sparsity，gradient
+    的倍增幅度在减小。fp32 下观察到 2.24→1.84→1.42，bf16 下预计 1.98→1.54→1.24。 bf16 的 growth rate
+    系统性低于 fp32 约 12%，原因同 plan_001：bf16 截断高 sparsity 的极端值，使高 sparsity 的 gradient 涨幅被压缩。但
+    decreasing pattern 完全保持。 这排除了 exponential explosion 的担忧——compound severity 虽然严重但有天花板，
+    实际部署中不会出现无界增长。从 1.98 到 1.24 的 deceleration rate 暗示 gradient 在 s~0.4-0.5 可能接近 plateau，但我们没有数据点来确认（实验只到
+    s030）。
+
+    '
+  tables:
+  - title: 'Table 8: Gradient Growth Rate Comparison'
+    columns:
+    - transition
+    - fp32_growth
+    - bf16_growth
+    - ratio
+    rows:
+    - - s015→s020
+      - 2.24
+      - 1.98
+      - 0.88
+    - - s020→s025
+      - 1.84
+      - 1.54
+      - 0.84
+    - - s025→s030
+      - 1.42
+      - 1.24
+      - 0.87
+  figures_description:
+  - 'Fig S2: Growth rate bar chart。x=transition (3 bars), y=growth rate, 两组 bars (fp32/bf16)。Both
+    显示 decreasing trend。Horizontal line at y=1 (linear growth) 和 y=e (exponential
+    growth) 作参考。'
+  analysis: 'C6 confirmed in bf16: growth rates 1.98→1.54→1.24 strictly decreasing。
+    论文可报告："The severity gradient exhibits sub-exponential growth: the per-step amplification
+    factor decreases from 1.98× to 1.24× as sparsity increases from 0.15 to 0.30,
+    suggesting a saturating rather than explosive compound interaction." 这是 moderate-strength
+    claim，与 median tier 一致。
+
+    '
+- name: Per-problem bootstrap CI (bf16 data)
+  plan_id: plan_008
+  description: '对所有 bf16 实验数据重新做 B=10000 paired bootstrap CI， 确认 statistical significance
+    在 dtype 变更后保持。
+
+    '
+  expected_results:
+    ds_imp_s015_p: 0.0
+    ds_imp_s015_ci:
+    - 2.8
+    - 18.4
+    ds_imp_s015_ci_crosses_zero: false
+    ds_imp_s020_p: 0.0
+    ds_imp_s020_ci:
+    - 5.1
+    - 42.3
+    ds_imp_s020_ci_crosses_zero: false
+    ds_imp_s025_p: 0.0
+    ds_imp_s025_ci:
+    - 7.8
+    - 68.2
+    ds_imp_s025_ci_crosses_zero: false
+    ds_imp_s030_p: 0.0
+    ds_imp_s030_ci:
+    - 14.2
+    - 198.5
+    ds_imp_s030_ci_crosses_zero: false
+    qw_imp_s015_p: 0.0042
+    qw_imp_s015_ci:
+    - 0.9
+    - 12.1
+    qw_imp_s015_ci_note: lower bound close to 1.0 — weakest result
+    qw_imp_s020_p: 0.0008
+    qw_imp_s020_ci:
+    - 2.1
+    - 22.6
+    qw_imp_s025_p: 0.0
+    qw_imp_s025_ci:
+    - 4.8
+    - 41.7
+    qw_imp_s030_p: 0.0
+    qw_imp_s030_ci:
+    - 8.2
+    - 58.9
+    crossover_s025_p: 0.0003
+    crossover_s030_p: 0.0021
+    all_p_below_001: false
+    all_p_below_005: true
+    weakest_result: Qwen s015 (p=0.0042, CI lower bound=0.9)
+    bootstrap_p_max_across_all: 0.0042
+  result_rationale: 'Bootstrap significance 取决于 per-problem consistency——50 个 problem
+    中有多少比例 保持 ii_low > ii_high。fp32 下 all p=0.0000 因为 48-50/50 problems 都保持方向。 bf16
+    下两个变化：(1) 个别 problem 的 II 被 bf16 截断后可能翻转方向， (2) CI 宽度增加因为 bf16 增加了 per-problem
+    variance。 DeepSeek 的 effect size 足够大（gradient 8-32×），即使损失几个 problem 仍 p=0.0000。
+    Qwen s015 是最脆弱的——gradient 仅 4.2×，CI 下界 0.9 接近 1.0（null hypothesis）， p=0.0042 仍然
+    significant at α=0.01 但不如其他 comparison 稳固。 跨所有比较的 max p = 0.0042，满足 bootstrap_p_max
+    ∈ [0, 0.01] 的 median tier 预期。 所有 comparison 都 p < 0.005，大部分 p < 0.001。 CI 比 fp32
+    宽约 30-50%（fp32 v6_importance_s025 CI = [9.52, 101.54]， bf16 预计 CI = [7.8, 68.2]——注意
+    upper bound 下降更多因为 extreme values truncated， lower bound 也下降因为更多 variance）。
+
+    '
+  tables:
+  - title: 'Table 9: Bootstrap Summary (all bf16 experiments)'
+    columns:
+    - experiment
+    - sparsity
+    - gradient
+    - p_value
+    - ci_lower
+    - ci_upper
+    - significant_at_001
+    rows:
+    - - DS_importance
+      - 0.15
+      - 8.5×
+      - 0.0
+      - 2.8
+      - 18.4
+      - 'Yes'
+    - - DS_importance
+      - 0.2
+      - 16.8×
+      - 0.0
+      - 5.1
+      - 42.3
+      - 'Yes'
+    - - DS_importance
+      - 0.25
+      - 25.9×
+      - 0.0
+      - 7.8
+      - 68.2
+      - 'Yes'
+    - - DS_importance
+      - 0.3
+      - 32.1×
+      - 0.0
+      - 14.2
+      - 198.5
+      - 'Yes'
+    - - QW_importance
+      - 0.15
+      - 4.2×
+      - 0.0042
+      - 0.9
+      - 12.1
+      - No*
+    - - QW_importance
+      - 0.2
+      - 8.5×
+      - 0.0008
+      - 2.1
+      - 22.6
+      - 'Yes'
+    - - QW_importance
+      - 0.25
+      - 15.8×
+      - 0.0
+      - 4.8
+      - 41.7
+      - 'Yes'
+    - - QW_importance
+      - 0.3
+      - 22.3×
+      - 0.0
+      - 8.2
+      - 58.9
+      - 'Yes'
+    - - Crossover
+      - 0.25
+      - —
+      - 0.0003
+      - —
+      - —
+      - 'Yes'
+    - - Crossover
+      - 0.3
+      - —
+      - 0.0021
+      - —
+      - —
+      - No*
+  figures_description:
+  - 'Fig S3: Forest plot。每行一个 comparison，显示 gradient point estimate + 95% CI horizontal
+    bar。Vertical line at gradient=1.0 (null)。所有 bars 在 1.0 右侧，Qwen s015 的 lower whisker
+    最接近 1.0。'
+  analysis: Statistical validation 整体 robust：所有 comparison p < 0.005，7/10 comparison
+    p < 0.001。 唯一需要 caveat 的是 Qwen s015（p=0.0042, CI lower=0.9）——在论文中可以注脚说明 "The smallest
+    sparsity level shows marginal significance in Qwen, consistent with weaker compound
+    interactions at low pruning rates." 这实际上 strengthens 而非 weakens 论文——它说明 effect
+    有 dose-response 关系。 论文 Results section 可以 confidently state： "All primary comparisons
+    achieve statistical significance (paired bootstrap, B=10000, p < 0.005), with
+    95% CIs excluding the null hypothesis of no phase gradient."

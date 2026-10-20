@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13591eff6761139007d1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_10_1778819825.md",
+  "task_key": "loop_10_1778819825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778819825.md",
+    "occurrence": 1,
+    "bytes": 4307,
+    "sha256": "f278c324e864f1f03776df6088e48df8943a3ca0a464a9f4b3786800eaefe263"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T04:36:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，四张卡，无其他可用\n- 环境是 **conda base**（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），**没有 venv**\n- II 主指标已切 **median + median bootstrap CI (B=10000)**（D054），禁止用 mean\n- d_z 只报 **within-importance** 对比（如 imp_s015 vs imp_s020），涉及 random 的对比只报 Wilcoxon + median_diff，不报 d_z（D059）\n- n=500 分析命令已锁定：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 analyze_n500_unified.py --csv --latex`——不要改参数或换脚本\n- 截稿 **2026-05-25**（EMNLP 2026 ARR），距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen（路径在服务器 `/root/autodl-tmp/pacs` 下）\n- 数据：`/root/autodl-tmp/pacs/data/MATH-500/`（n=500, MATH-500）\n- 活跃进程：\n  - `c2_n500_deepseek`：screen c2_n500_gpu0 + c2_n500_gpu1，cuda:0+1，cron ID = c2_n500_deepseek\n  - `c2_qw_n500_r3`：screen c2_qw_gpu2 + c2_qw_gpu3，cuda:2+3，PID 159269+159794，cron ID = c2_qw_n500_r3\n- Cron：2 个活跃（c2_n500_deepseek, c2_qw_n500_r3），reconcile 确认均 still running\n\n### 3. 📊 当前状态\n两个 P0 n=500 实验均在 s025 阶段，s030 待自动启动：\n- **c2_n500_deepseek**（DeepSeek, cuda:0+1）：s015✅ s020✅ s025🔄(imp 233/500, rand 285/500) s030⏳。ETA 全部完成 ~15:30 UTC+8（约 2026-05-15）\n- **c2_qw_n500_r3**（Qwen, cuda:2+3）：s015✅ s020✅ s025🔄(imp 362/500, rand 337/500) s030⏳。ETA 全部完成 ~13:27 UTC+8\n\nWorker 池 = 0（实验自动推进中，无需人工干预）。无待处理 Director 决策。论文 §1-§8 + Figures 1-5 全部完成，PDF 可编译，等 n=500 数据更新。\n\n### 4. 📋 待办（条件触发式）\n- **c2_qw_n500_r3 cron 回调 ANALYZING** → spawn Worker 跑 `analyze_n500_unified.py --csv --latex` 全量分析（Qwen 预计先完成）\n- **c2_n500_deepseek cron 回调 ANALYZING** → 同上（若 Qwen 分析已完成，合并两个模型结果一起汇报）\n- **两个实验全部完成** → 汇报 Director：(1) random s025/s030 是否显著（重点！见下方战略上下文）；(2) 整体 CI 收窄情况；(3) 建议 Paper Agent 更新论文（n=500 tables/figures + C5b §8 future_work + C8 限定语 + Qwen caveat if needed）\n- **若 Qwen n=500 imp-vs-rand 仍不显著** → 论文需加 Qwen caveat：compound effect 在 Qwen 上弱于 DeepSeek\n- **若 random s025/s030 在 n=500 下显著** → 措辞调整为 \"compound effect emerges above threshold sparsity (~s020), random 也显著但幅度更小\"（已预注册在 memory.md）\n- **分析 + 论文更新完成后** → 提交 Group C full review\n\n### 5. 🎯 战略上下文\n**核心结论链**：importance-based compound severity 随 sparsity 单调递增（DS: 0.32→9.94, QW: 0.048→2.619），random 在 n=50 下不显著。n=500 是统计功效验证，不是探索新方向。\n\n**最易判断错的事**：\n1. **random s030 的显著性**——n=50 dry-run 显示 DS rand s030 CI [0.198, 1.885] 不跨零，n=500 很可能翻转 narrative（从 \"random 无 compound effect\" → \"random 在 high sparsity 也有但弱于 importance\"）。这是 Reviewer 重点关注项，分析时第一时间检查。\n2. **Qwen mid-phase 58% null rate**——Qwen 在中等 sparsity 下很多 problem 的 II=0，导致 paired 检验不显著。n=500 能否救回来是关键。如果仍不显著，论文需要加 caveat 而非删 Qwen。\n3. **不要混淆 c2_qw_n500（failed，cron false positive）和 c2_qw_n500_r3（当前 RUNNING 的续跑）**——r3 是在 c2_qw_n500 的 s015 基础上继续 s020-s030。\n4. **C8（LLaMA cross-architecture）是 partially_confirmed**（D060）——qualitative direction consistent 但 quantitative interaction 弱。论文已降级为 partially confirmed + 限定语，不要再跑 LLaMA 实验试图 rescue。\n5. **C5b 已定性为 future_work**（D056）——oracle recovery 18% < 30% gate，不再追。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778819825.md"
+}

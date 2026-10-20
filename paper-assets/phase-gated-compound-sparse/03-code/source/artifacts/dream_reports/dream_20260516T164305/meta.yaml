@@ -1,0 +1,3429 @@
+dream_id: dream_20260516T164305
+project: phase-gated-compound-sparse
+venue: EMNLP 2026
+focus: 验证结构性修复效果：(1) 50篇引用是否解决 bibliography 不足；(2) framing 修正（correlational diagnostic、phase-agnostic
+  positioning、architecture diversity qualification）是否解决 straw man 和 novelty 问题；(3)
+  practical contribution framing 是否回应 "so what" 质疑；(4) p=s 显式声明是否解决 reproducibility
+  concern
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 所有结构性修复被接受；LLaMA n=250 升级 C8 至显著；GPQA 复现 strategy specificity；reviewer
+        认可 novelty
+      key_assumptions:
+      - LLaMA n=250 imp_vs_rand d_z 在 s025+s030 均 Bonferroni 显著（true d_z ≥ 0.35），C8
+        升级为 confirmed
+      - GPQA imp phase gradient 单调递增且 imp/rand ratio ≥ 5×，strategy specificity 非 task-specific
+        artifact
+      - 50篇引用 + Physics of KV Cache/ThinKV/HIES 区分论证被接受为充分 novelty
+      - correlational diagnostic framing 消除 'importance is broken' 误读
+      - p=s 声明 + 完整 config 描述解决 reproducibility concern
+      - Entropy model-dependence 被接受为 'interesting nuance' 而非 weakness
+      number_ranges:
+        llama_n250_imp_vs_rand_dz_s030:
+        - 0.35
+        - 0.5
+        llama_n250_bonferroni_significant_conditions:
+        - 2
+        - 4
+        gpqa_imp_phase_gradient_monotonic:
+        - true
+        gpqa_imp_rand_ratio_s030:
+        - 5.0
+        - 15.0
+        average_reviewer_score:
+        - 3.8
+        - 4.5
+        novelty_challenged_by_reviewers:
+        - 0
+        - 1
+        accept_probability:
+        - 0.55
+        - 0.75
+      narrative_direction: 原始 framing 完全成立——'emergent phase-strategy interaction'
+        作为 compound sparsity 的新发现轴被认可。四层泛化（cross-model/architecture/benchmark/scale）形成完整证据链。Discrimination
+        collapse 机制获 partial 支持已足够（empirical finding paper 标准）。Practical contribution
+        = diagnostic framework + phase-aware design guideline。Paper 无需调整 claims 强度。
+    median:
+      tier: median
+      meaning: 核心 phase gradient 无争议但 strategy specificity 泛化受质疑；LLaMA 维持 partial；需收窄
+        claims scope
+      key_assumptions:
+      - LLaMA n=250 imp_vs_rand d_z 维持 n=50 水平（0.25-0.35），仅 s030 Bonferroni 显著，C8
+        维持 partially_confirmed
+      - GPQA imp phase gradient 单调但 imp/rand ratio 进一步衰减至 1.5-3×（与 GSM8K 类似）
+      - 1-2 位 reviewer 质疑 novelty vs Physics of KV Cache（2026年3月），认为区分不够 crisp
+      - 7B-only limitation 被标记为 major concern 但非 fatal（需 rebuttal 承诺 scaling）
+      - Strategy specificity 的 task-dependence 被要求在 title/abstract 加 qualifier
+      - Random 在 LLaMA 上的 phase gradient 被视为 weakening strategy-specificity story
+      number_ranges:
+        llama_n250_imp_vs_rand_dz_s030:
+        - 0.25
+        - 0.38
+        llama_n250_bonferroni_significant_conditions:
+        - 1
+        - 2
+        gpqa_imp_phase_gradient_monotonic:
+        - true
+        gpqa_imp_rand_ratio_s030:
+        - 1.5
+        - 4.0
+        average_reviewer_score:
+        - 3.0
+        - 3.7
+        novelty_challenged_by_reviewers:
+        - 1
+        - 2
+        accept_probability:
+        - 0.25
+        - 0.5
+      narrative_direction: Phase gradient 本身稳健（跨模型/架构/benchmark 方向一致），但 strategy specificity
+        从 'universal emergent property' 降级为 'task- and architecture-modulated phenomenon'。Claims
+        调整：(1) title 加 'in mathematical reasoning' scope qualifier；(2) abstract 从
+        '2.7-15× separation' 改为 'up to 15× on MATH-500, with task-dependent modulation'；(3)
+        C8 叙事从 'cross-architecture confirmation' 改为 'directional support with architecture-dependent
+        magnitude'。补充实验承诺：camera-ready 加 13B/70B scaling spot-check。Rebuttal 需精准回应
+        novelty concern——强调 compound×phase×strategy 三维交互是 prior work 的空白维度。
+    worst:
+      tier: worst
+      meaning: Strategy specificity 在新 benchmark/architecture 上消失；novelty 被判 insufficient；需
+        reframe 为 methodology contribution
+      key_assumptions:
+      - LLaMA n=250 imp_vs_rand d_z < 0.20 全水平（n=50 是 noise），NS 甚至校正后，strategy×phase
+        交互 architecture-specific
+      - GPQA imp/rand ratio ≈ 1-1.5（无 strategy specificity），或 gradient 非单调
+      - 2+ reviewer 判 novelty insufficient：Physics of KV Cache 已覆盖 phase-dependent
+        compression behavior，本文仅是 'another data point'
+      - LLaMA random phase gradient（d_z 0.35-0.44）被解读为 'phase gradient is universal,
+        not strategy-specific' → 核心 C1 framing 崩塌
+      - Task-dependence（MATH 15× → GSM8K 3× → GPQA ~1×）被解读为 'effect disappears on
+        simpler/harder tasks' → overfitting to MATH-500
+      - 7B + 单 benchmark 家族被判为 insufficient scope for EMNLP
+      number_ranges:
+        llama_n250_imp_vs_rand_dz_s030:
+        - 0.1
+        - 0.22
+        llama_n250_bonferroni_significant_conditions:
+        - 0
+        - 1
+        gpqa_imp_phase_gradient_monotonic:
+        - false
+        gpqa_imp_rand_ratio_s030:
+        - 0.8
+        - 1.8
+        average_reviewer_score:
+        - 2.3
+        - 3.0
+        novelty_challenged_by_reviewers:
+        - 2
+        - 3
+        accept_probability:
+        - 0.05
+        - 0.2
+      narrative_direction: Reframe 不降级目标（仍冲 EMNLP），但从 'finding paper' 转向 'methodology
+        + diagnostic framework' contribution。新 angle：(1) 提出 Interaction Index (II)
+        作为 compound compression 的标准化诊断指标——prior work 缺乏统一量化框架；(2) 证明 per-problem paired
+        bootstrap + phase-stratified analysis 能揭示 aggregate metrics 掩盖的 heterogeneity；(3)
+        Phase gradient 作为 'robust phenomenon'（importance 内部始终成立，d_z>1.0 跨所有模型），strategy
+        specificity 降级为 'one manifestation that varies by context'。核心 claim 从 'severity
+        is strategy×phase emergent' 收缩为 'compound interaction exhibits phase-dependent
+        heterogeneity that standard evaluation misses'。Practical hook：任何部署 compound
+        compression 的团队都需 phase-stratified audit，我们提供 protocol + open-source toolkit。Related
+        Work 重写：不再与 Physics of KV Cache 竞争 'phase' narrative，而是定位为 complementary（他们做
+        single-axis phase transition 理论，我们做 compound-axis phase-stratified empirical
+        audit）。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260516T164305/best/paper.pdf
+  imagined_experiments:
+  - name: c8_llama_n250_fixed
+    plan_id: c8_llama_n250
+    description: 'LLaMA-8B (DeepSeek-R1-Distill-Llama-8B) n=250, 8 conditions (imp/rand
+      × s015/s020/s025/s030). 升级 C8 从 partially_confirmed 到 confirmed。关键：imp_vs_rand
+      d_z 在 s025+s030 均 Bonferroni 显著，证明 strategy×phase 交互跨架构泛化。
+
+      '
+    expected_results:
+      n_problems: 250
+      n_valid: 244
+      n_bootstrap: 10000
+      bonferroni_k: 4
+      imp_vs_rand_dz:
+        s015: 0.24
+        s020: 0.31
+        s025: 0.38
+        s030: 0.43
+      imp_vs_rand_dz_ci:
+        s015:
+        - 0.11
+        - 0.37
+        s020:
+        - 0.18
+        - 0.44
+        s025:
+        - 0.25
+        - 0.51
+        s030:
+        - 0.3
+        - 0.56
+      imp_vs_rand_wilcoxon_p:
+        s015: 0.00032
+        s020: 8.9e-06
+        s025: 1.4e-08
+        s030: 2.1e-10
+      imp_vs_rand_wilcoxon_p_bonferroni:
+        s015: 0.00128
+        s020: 3.56e-05
+        s025: 5.6e-08
+        s030: 8.4e-10
+      significant_bonferroni:
+        s015: true
+        s020: true
+        s025: true
+        s030: true
+      bonferroni_significant_count: 4
+      imp_vs_rand_dz_monotonic: true
+      phase_gradient_importance_dz:
+        s015: 1.02
+        s020: 1.09
+        s025: 1.12
+        s030: 1.05
+      phase_gradient_importance_interpretation: all_large (>1.0, CI excludes zero)
+      phase_gradient_random_dz:
+        s015: 0.36
+        s020: 0.38
+        s025: 0.42
+        s030: 0.41
+      phase_gradient_random_interpretation: all_small (0.36-0.42, CI excludes zero
+        — architecture-specific)
+      median_diff_imp_vs_rand:
+        s015: 0.018
+        s020: 0.052
+        s025: 0.285
+        s030: 0.612
+      median_diff_ci:
+        s015:
+        - 0.004
+        - 0.035
+        s020:
+        - 0.012
+        - 0.098
+        s025:
+        - 0.141
+        - 0.442
+        s030:
+        - 0.318
+        - 0.935
+      imp_phase_gradient_median_diff:
+        s015: 0.085
+        s020: 0.198
+        s025: 0.376
+        s030: 0.748
+      rand_phase_gradient_median_diff:
+        s015: 0.041
+        s020: 0.089
+        s025: 0.143
+        s030: 0.221
+      imp_rand_gradient_ratio:
+        s015: 2.1
+        s020: 2.2
+        s025: 2.6
+        s030: 3.4
+    result_rationale: 'n=50 时 imp_vs_rand d_z 为 0.19→0.34（单调递增），仅 s030 Bonferroni
+      显著（p=0.029）。 n=50 的 SE≈0.14 导致估计值噪声大；c8_llama_gpu0_s025 (n=250, importance-only)
+      已确认 importance phase gradient d_z=1.12 (p=4.3e-39)，表明 importance 信号极强。 n=250
+      时 SE≈0.063，对 true d_z≥0.35 的效应有 >95% power 检测。 n=50 时 d_z 被低估（样本噪声向零收缩），n=250
+      精确估计将揭示 true d_z 在 0.38-0.43 区间（s025/s030）。 LLaMA 上 random 也有 phase gradient
+      是架构特性（MHA vs GQA），但 importance 仍然系统性更大 （ratio 2-3×），足以支持 strategy×phase 交互在
+      LLaMA 架构上成立。 关键区别：Qwen2/DeepSeek 的 imp_rand_ratio 为 15-38×，LLaMA 为 2-3×——交互存在但弱于
+      GQA 架构，因为 LLaMA MHA 的 28 heads 使 random pruning 本身就有更大方差（非均匀 head importance）。
+
+      '
+    tables:
+    - title: 'Table: Cross-architecture imp_vs_rand d_z comparison (n=250)'
+      content: '| Sparsity | Qwen2 (n=500) | DeepSeek (n=500) | LLaMA (n=250) |
+
+        |----------|---------------|------------------|---------------|
+
+        | s015     | 0.44*         | 0.44*            | 0.24*         |
+
+        | s020     | 0.63*         | 0.52*            | 0.31*         |
+
+        | s025     | 0.87*         | 0.68*            | 0.38*         |
+
+        | s030     | 0.92*         | 0.80*            | 0.43*         |
+
+        * = Bonferroni p<0.05
+
+        '
+    figures_description:
+    - 'Fig: imp_vs_rand d_z across 3 architectures × 4 sparsity levels, with 95% CI
+      bands. LLaMA shows consistent positive slope but flatter than Qwen2/DeepSeek.'
+    analysis: 'C8 升级为 confirmed。关键升级依据：(1) imp_vs_rand d_z 在 s025+s030 均 Bonferroni
+      显著， 驳斥 ''strategy×phase 交互是 Qwen2 架构 artifact'' 假说；(2) d_z 单调递增确认 dose-response；
+      (3) importance phase gradient 全 4 水平 d_z>1.0 证明 phase modulation 跨架构泛化。 限定：LLaMA
+      上 random 也有 non-trivial phase gradient（d_z 0.36-0.42），strategy-dependence 幅度弱于
+      Qwen2（ratio 2-3× vs 15-38×）。论文用 "strategy×phase interaction is architecture-universal
+      in direction but architecture-dependent in magnitude" 叙述。
+
+      '
+  - name: gpqa_ds_importance_s015
+    plan_id: gpqa_importance_s015
+    description: 'DeepSeek-R1-Distill-Qwen-7B 在 GPQA Diamond (n=50) 上的 importance
+      masking phase gradient, sparsity=0.15。验证 compound severity phase modulation
+      在 graduate-level reasoning 上成立。
+
+      '
+    expected_results:
+      n_problems: 50
+      benchmark: GPQA Diamond
+      model: DeepSeek-R1-Distill-Qwen-7B
+      sparsity: 0.15
+      strategy: importance
+      interaction_index:
+        high:
+          median: 0.012
+          mean: 0.085
+          ci:
+          - 0.031
+          - 0.152
+        mid:
+          median: 0.145
+          mean: 0.412
+          ci:
+          - 0.218
+          - 0.654
+        low:
+          median: 0.528
+          mean: 1.876
+          ci:
+          - 1.124
+          - 2.812
+      median_difference: 0.516
+      median_difference_ci:
+      - 0.298
+      - 0.782
+      wilcoxon_p: 4.0e-05
+      cohens_dz: 0.62
+      phase_gradient_monotonic: true
+      phase_stats:
+        high:
+          n_tokens: 18500
+          n_segments: 320
+        mid:
+          n_tokens: 22400
+          n_segments: 245
+        low:
+          n_tokens: 35200
+          n_segments: 410
+    result_rationale: 'GPQA Diamond 问题需要更长推理链（graduate-level physics/chemistry/biology），thinking
+      phase 占比更高。DeepSeek 在 MATH-500 s015 median_diff=0.39，GPQA 上因推理链更长（~50% more
+      tokens）， low-sparsity phase 累积更多 compound interaction，predicted median_diff
+      略高（0.52）。 效应量 d_z=0.62 介于 MATH-500 s015 (d_z=0.61) 和 s020 (d_z=0.73) 之间，合理——
+      GPQA 更难问题有更多 deep thinking tokens 聚集在 low-sparsity phase，放大了 phase gradient。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: gpqa_ds_importance_s020
+    plan_id: gpqa_importance_s020
+    description: 'DeepSeek GPQA Diamond importance s=0.20. 验证 dose-response 在 GPQA
+      上单调递增。
+
+      '
+    expected_results:
+      n_problems: 50
+      sparsity: 0.2
+      strategy: importance
+      interaction_index:
+        high:
+          median: 0.028
+          mean: 0.195
+          ci:
+          - 0.082
+          - 0.338
+        mid:
+          median: 0.418
+          mean: 1.352
+          ci:
+          - 0.784
+          - 2.106
+        low:
+          median: 1.825
+          mean: 6.284
+          ci:
+          - 4.102
+          - 9.128
+      median_difference: 1.797
+      median_difference_ci:
+      - 1.062
+      - 2.684
+      wilcoxon_p: 8.2e-07
+      cohens_dz: 0.84
+      phase_gradient_monotonic: true
+    result_rationale: 'MATH-500 DS s020 median_diff=1.48, GPQA predicted 1.80 (+22%).
+      增幅来源： GPQA 推理链更长，low-phase 段落含更多 multi-step deduction，importance scores 的 discrimination
+      collapse 在长链中累积更严重。d_z=0.84 与 MATH-500 s020 (d_z=0.73)  相比偏高，因为 GPQA 的 per-problem
+      方差更低（问题难度更均匀，都是 graduate-level）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: gpqa_ds_importance_s025
+    plan_id: gpqa_importance_s025
+    description: 'DeepSeek GPQA Diamond importance s=0.25. 验证 strategy specificity（与
+      random 对比基线）。
+
+      '
+    expected_results:
+      n_problems: 50
+      sparsity: 0.25
+      strategy: importance
+      interaction_index:
+        high:
+          median: 0.065
+          mean: 0.448
+          ci:
+          - 0.215
+          - 0.742
+        mid:
+          median: 1.562
+          mean: 5.824
+          ci:
+          - 3.412
+          - 8.956
+        low:
+          median: 5.842
+          mean: 22.156
+          ci:
+          - 15.428
+          - 30.612
+      median_difference: 5.777
+      median_difference_ci:
+      - 3.824
+      - 8.214
+      wilcoxon_p: 1.4e-09
+      cohens_dz: 1.05
+      phase_gradient_monotonic: true
+    result_rationale: 'MATH-500 DS s025 median_diff=3.99, GPQA predicted 5.78 (+45%).
+      放大效应增大是因为 s025 时 discrimination collapse 进入非线性区域——pruning 196/784 heads (25%)
+      后 importance score Gini 系数下降约 6%，在更长的 GPQA 推理链中该 collapse 的 token-level 影响被
+      multiplicatively 放大。Cohen''s d_z 突破 1.0 标志着 strong effect size。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: gpqa_ds_importance_s030
+    plan_id: gpqa_importance_s030
+    description: 'DeepSeek GPQA Diamond importance s=0.30. Dose-response 最高点，用于计算
+      imp/rand ratio。
+
+      '
+    expected_results:
+      n_problems: 50
+      sparsity: 0.3
+      strategy: importance
+      interaction_index:
+        high:
+          median: 0.112
+          mean: 0.824
+          ci:
+          - 0.412
+          - 1.356
+        mid:
+          median: 3.245
+          mean: 12.562
+          ci:
+          - 7.842
+          - 18.924
+        low:
+          median: 12.856
+          mean: 52.418
+          ci:
+          - 36.214
+          - 72.846
+      median_difference: 12.744
+      median_difference_ci:
+      - 8.612
+      - 18.256
+      wilcoxon_p: 3.8e-11
+      cohens_dz: 1.22
+      phase_gradient_monotonic: true
+      dose_response_spearman_rho: 1.0
+      dose_response_sequence:
+      - 0.516
+      - 1.797
+      - 5.777
+      - 12.744
+    result_rationale: 'MATH-500 DS s030 median_diff=8.48, GPQA predicted 12.74 (+50%).
+      Severity amplification 在最高 sparsity 处最大——30% head pruning 使 importance scores
+      几乎完全失去判别力 (Gini delta ≈ -0.08)，KV eviction 本质退化为 biased pseudo-random。GPQA 的
+      longer reasoning chains (平均 ~1200 tokens thinking vs MATH-500 ~550 tokens) 使这一退化
+      在更多 segments 上累积，产生更大的 phase gradient。Dose-response 完美单调 (0.52→1.80→5.78→12.74，growth
+      factors 3.5×→3.2×→2.2× 递减 = sub-exponential confirmed)。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: gpqa_ds_random_s025
+    plan_id: gpqa_random_s025
+    description: 'DeepSeek GPQA Diamond random masking s=0.25. 基线对照——验证 strategy specificity。
+
+      '
+    expected_results:
+      n_problems: 50
+      sparsity: 0.25
+      strategy: random
+      interaction_index:
+        high:
+          median: 0.682
+          mean: 2.145
+          ci:
+          - 0.856
+          - 3.812
+        mid:
+          median: 0.845
+          mean: 1.924
+          ci:
+          - 0.512
+          - 3.648
+        low:
+          median: 1.124
+          mean: 2.856
+          ci:
+          - 1.245
+          - 4.812
+      median_difference: 0.442
+      median_difference_ci:
+      - -0.125
+      - 1.048
+      wilcoxon_p: 0.062
+      cohens_dz: 0.18
+      phase_gradient_monotonic: true
+      imp_rand_ratio_s025: 13.1
+    result_rationale: 'MATH-500 n=500 DS random s025 median_diff=0.257 (Bonf p=0.006)。GPQA
+      n=50 功效较低， random 在 s025 上 borderline NS (p=0.062)。Random 有微弱 phase gradient
+      但远小于 importance (median_diff 0.44 vs 5.78 = 13.1× ratio)。这与 MATH-500 的 15.5-38.6×
+      ratio 一致（GPQA 稍低因 n=50 noise 更大）。关键：strategy specificity 在 GPQA 上 replicates，importance/random
+      比值 >5× 证明 phase-dependent compound severity 不是 任何 masking 都会产生的 artifact，而是
+      importance-specific 的。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: gpqa_ds_random_s030
+    plan_id: gpqa_random_s030
+    description: 'DeepSeek GPQA Diamond random masking s=0.30. 最高 sparsity 对照，计算 imp/rand
+      ratio。
+
+      '
+    expected_results:
+      n_problems: 50
+      sparsity: 0.3
+      strategy: random
+      interaction_index:
+        high:
+          median: 1.856
+          mean: 4.524
+          ci:
+          - 2.412
+          - 7.124
+        mid:
+          median: 2.124
+          mean: 5.212
+          ci:
+          - 2.856
+          - 8.148
+        low:
+          median: 2.812
+          mean: 6.148
+          ci:
+          - 3.524
+          - 9.412
+      median_difference: 0.956
+      median_difference_ci:
+      - 0.124
+      - 1.842
+      wilcoxon_p: 0.018
+      cohens_dz: 0.28
+      phase_gradient_monotonic: true
+      imp_rand_ratio_s030: 13.3
+    result_rationale: 'MATH-500 n=500 DS random s030 median_diff=0.51 (Bonf p=0.006)。GPQA
+      s030 random  median_diff=0.96 略高，因 GPQA 更长推理链使 random masking 的 phase gradient
+      也有 微弱放大。但 importance/random ratio=13.3× (12.74/0.96) 维持在 [5, 15] 目标区间内。 Random
+      在 s030 达到统计显著(p=0.018) 与 MATH-500 模式一致——存在 sparsity threshold ~s020-s025 以上
+      random 也触发，但 magnitude 远小于 importance。GPQA 复现了 MATH-500  和 GSM8K 的双层结构：(1) phase
+      gradient 存在性跨 strategy 普遍; (2) magnitude  modulation 是 importance-specific（5-15×
+      amplification）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: gpqa_aggregate_cross_benchmark
+    plan_id: gpqa_cross_benchmark_synthesis
+    description: 'GPQA 与 MATH-500/GSM8K 三 benchmark 对比综合分析。验证 phase gradient 跨 benchmark  robustness
+      和 strategy specificity task-modulation。
+
+      '
+    expected_results:
+      gpqa_importance_gradient_monotonic: true
+      gpqa_importance_gradient:
+      - 0.516
+      - 1.797
+      - 5.777
+      - 12.744
+      math500_importance_gradient:
+      - 0.393
+      - 1.215
+      - 3.986
+      - 8.481
+      gsm8k_importance_gradient:
+      - 0.241
+      - 0.74
+      - 1.992
+      - 4.682
+      gpqa_imp_rand_ratio:
+        s025: 13.1
+        s030: 13.3
+      math500_imp_rand_ratio:
+        s025: 15.5
+        s030: 16.6
+      gsm8k_imp_rand_ratio:
+        s025: 3.8
+        s030: 2.8
+      difficulty_ordering: GPQA > MATH-500 > GSM8K
+      gradient_magnitude_ordering: GPQA > MATH-500 > GSM8K
+      strategy_specificity_ordering: MATH-500 ≈ GPQA >> GSM8K
+      cross_benchmark_spearman_rho: 1.0
+    result_rationale: '三 benchmark 形成 difficulty gradient：GSM8K (小学数学, short chains)
+      < MATH-500  (竞赛数学, medium chains) < GPQA (graduate-level, long chains)。Phase
+      gradient magnitude 与 benchmark difficulty 正相关——更难的问题需要更长 thinking，low-sparsity
+      phase  accumulates 更多 compound interaction。Strategy specificity (imp/rand ratio)
+      在 GPQA  和 MATH-500 上强(13-16×) 而 GSM8K 弱(2.3-3.8×)，因为 GSM8K 推理链短且步骤简单， importance
+      scores 的 discrimination collapse 在短链上影响较小。这证明 strategy specificity 不是 task-specific
+      artifact 而是 reasoning depth-dependent：deeper reasoning →  stronger strategy
+      specificity。GPQA 作为最难 benchmark 上 ratio≥5× 确认了这一点。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: reviewer_outcome_simulation
+    plan_id: paper_submission_outcome
+    description: '模拟 EMNLP 2026 reviewer 评分和 acceptance outcome，基于 best tier 的完整证据链。
+
+      '
+    expected_results:
+      reviewer_1:
+        overall_score: 4.0
+        soundness: 4
+        novelty: 3.5
+        significance: 3.5
+        clarity: 4.0
+        main_concern: Strategy specificity weakens on GSM8K (2-4×) — task-dependence
+          mechanism unclear
+        novelty_challenge: false
+        accepts_framing: true
+      reviewer_2:
+        overall_score: 4.2
+        soundness: 4.5
+        novelty: 4.0
+        significance: 3.5
+        clarity: 4.0
+        main_concern: 7B scale only — unclear if effect persists at 70B+
+        novelty_challenge: false
+        accepts_framing: true
+      reviewer_3:
+        overall_score: 3.8
+        soundness: 4.0
+        novelty: 3.0
+        significance: 3.5
+        clarity: 3.5
+        main_concern: Entropy mechanism model-dependent weakens theoretical contribution
+        novelty_challenge: true
+        challenge_resolved: true
+        resolution: 50 citations differentiation + empirical finding paper positioning
+          accepted
+      average_reviewer_score: 4.0
+      novelty_challenged_by_reviewers: 1
+      meta_reviewer_assessment: Solid empirical contribution with thorough cross-validation.
+        Minor concerns about scale generalization and mechanism incompleteness. Recommend
+        accept.
+      accept_probability: 0.65
+      decision: accept (poster)
+    result_rationale: 'Best tier 假设所有结构性修复被接受。具体映射： (1) 50篇引用 + ThinKV/HIES/Physics
+      of KV Cache 三重区分 → R3 novelty challenge 被 化解，从 "this is already known" 降级为 "minor
+      concern about positioning"; (2) Correlational diagnostic framing → 消除 "importance
+      is broken" 误读，soundness 分数 维持 4.0+（不再被扣 "misleading claim" 分）; (3) p=s 显式声明
+      + 完整 config → reproducibility concern 消失; (4) Entropy model-dependence → 被接受为
+      interesting nuance ("cross-model consistency  in Gini collapse is the main story,
+      entropy is secondary"); (5) LLaMA n=250 confirmed → "three models, two architectures"
+      回应 generalizability; (6) GPQA replication → "three benchmarks spanning elementary
+      to graduate" 加强说服力。 均分 4.0 在 EMNLP 属于 borderline accept → accept 区间。1/3 reviewer
+      challenge novelty 但通过 rebuttal 解决 → 不影响最终决定。Accept probability 0.65 = 中等偏上信心。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: novelty_structural_fix_outcome
+    plan_id: novelty_defense
+    description: '50篇引用 + 三篇核心区分论文 (Physics of KV Cache/ThinKV/HIES) 的 novelty 论证效果评估。
+
+      '
+    expected_results:
+      total_citations: 52
+      key_differentiation_papers:
+      - paper: Physics of KV Cache Compression (2603.01426)
+        differentiation: single-axis phase transition vs our compound×phase×strategy
+        reviewer_acceptance: true
+      - paper: ThinKV (2510.01290)
+        differentiation: single-axis phase-aware eviction vs our compound interaction
+          analysis
+        reviewer_acceptance: true
+      - paper: HIES (2510.13832)
+        differentiation: single-axis score collapse → independent supporting evidence
+          for our mechanism
+        reviewer_acceptance: true
+      related_work_gap_analysis_accepted: true
+      novelty_score_range:
+      - 3.0
+      - 4.0
+      novelty_mean: 3.5
+    result_rationale: 'Prior work 分三类且无重叠：(a) compound compression methods (SparK,
+      SLiM) 不分析 phase; (b) single-axis phase-aware (ThinKV, R-KV) 不涉及 compound; (c)
+      phase transition  analysis (Physics of KV Cache) 是 compression-rate phase 不是
+      reasoning phase。 我们是唯一同时分析 compound × reasoning-phase × strategy 三维交互的。HIES
+      的  importance score collapse 发现还为 discrimination collapse 机制提供了独立佐证。 52 篇引用覆盖了
+      2024-2026 所有相关工作，reviewer 很难再指出 "missed important prior work"。 Novelty 均分 3.5
+      = "some novelty" → 对 empirical finding paper 已足够。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: reproducibility_fix_outcome
+    plan_id: reproducibility_defense
+    description: 'p=s 显式声明 + 完整实验配置描述解决 reproducibility concern 的预期效果。
+
+      '
+    expected_results:
+      config_disclosure:
+        pruning_rate_declaration: p=s (pruning rate equals sparsity level)
+        head_selection: lowest attention score heads removed
+        kv_eviction: 'importance-based: lowest cumulative attention; random: uniform
+          random'
+        phase_segmentation: quantile-based on dense model sparsity profile
+        bootstrap_params: B=10000, paired per-problem
+        bonferroni_k: 4
+        seed: 42
+      reproducibility_concern_raised: 0
+      appendix_config_table: true
+      code_release_promised: true
+    result_rationale: 'RC5 (reproducibility) 的根源是原稿未明确 p=s（pruning rate = sparsity
+      parameter）， reviewer 误以为存在额外 hidden hyperparameter。显式声明 "we set head pruning
+      rate = KV  eviction rate = s for symmetric compound sparsity" + Appendix 完整
+      config table  (model, sparsity, n_heads_pruned, kv_budget, phase_boundaries,
+      seeds) 使实验完全可复现。 Code release 承诺（camera-ready 时开放）进一步消除疑虑。预期：0 reviewers raise  reproducibility
+      concern（best tier assumption）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: c8_status_upgrade
+    plan_id: c8_claim_upgrade
+    description: 'C8 从 partially_confirmed 升级为 confirmed 后的 claim table 更新和论文叙述调整。
+
+      '
+    expected_results:
+      old_status: partially_confirmed
+      new_status: confirmed
+      qualification_change:
+        old: suggests / provides partial support
+        new: confirms cross-architecture generalization with architecture-dependent
+          magnitude
+      paper_language_update:
+        abstract: Phase-strategy interaction generalizes across three models and two
+          architectures (Qwen2, LLaMA)
+        conclusion: Cross-architecture replication (n=250) confirms strategy×phase
+          interaction is architecture-universal
+      remaining_qualification: magnitude of strategy×phase interaction is architecture-dependent
+        (2-3× on LLaMA vs 15-38× on Qwen2/DeepSeek)
+    result_rationale: 'n=50 时 LLaMA imp_vs_rand d_z=0.34 (s030) 仅 borderline significant，限制了
+      claim 强度。 n=250 功效充分后，s025+s030 均 Bonferroni 显著 (d_z≥0.38)，确认 strategy×phase
+      交互 在 LLaMA 架构上统计显著存在（非 sampling noise）。升级 C8 允许论文从 "suggests" 改为  "confirms"，但保留
+      "architecture-dependent magnitude" 限定——这是诚实的科学陈述， 也预防 reviewer 质疑 "why is LLaMA
+      effect weaker"（主动承认 = 显示 self-awareness）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: ''
+  - name: gpqa_strategy_specificity_confirmation
+    plan_id: gpqa_specificity
+    description: 'GPQA 上 strategy specificity (imp/rand ratio ≥ 5×) 确认后，驳斥 "task-specific
+      artifact" 假说。
+
+      '
+    expected_results:
+      gpqa_imp_rand_ratio_s025: 13.1
+      gpqa_imp_rand_ratio_s030: 13.3
+      math500_imp_rand_ratio_s025: 15.5
+      math500_imp_rand_ratio_s030: 16.6
+      gsm8k_imp_rand_ratio_s025: 3.8
+      gsm8k_imp_rand_ratio_s030: 2.8
+      pattern: ratio scales with reasoning depth, not task identity
+      task_specificity_hypothesis_rejected: true
+      mechanism_explanation: 'Strategy specificity 与 reasoning depth 正相关：GPQA (long
+        chains) ≈ MATH-500 (medium)  >> GSM8K (short). 这排除了 "specificity is an artifact
+        of MATH-500 problem structure"， 因为相同 pattern 在不同 domain (math vs science)
+        和 difficulty 上复现。 低 ratio 在 GSM8K 上的原因是：短推理链中 importance scores 的 discrimination
+        collapse 影响有限（fewer tokens accumulated in low-phase），random 和 importance 的
+        phase  gradient 差异被压缩。
+
+        '
+    result_rationale: GSM8K ratio 2.3-3.8× 曾引发 "strategy specificity may be benchmark-specific"
+      担忧。 GPQA ratio 13× (与 MATH-500 15× comparable) 证明 specificity 是 reasoning depth
+      的 函数而非 task artifact。三 benchmark 形成清晰 pattern：ratio ∝ avg_reasoning_length。
+      这转化了一个潜在 weakness (GSM8K 低 ratio) 为 additional finding：strategy specificity
+      的 magnitude 是 reasoning complexity-modulated，为 Discussion §6 提供了额外 insight。
+    tables: []
+    figures_description: []
+    analysis: ''
+  review_report: '---
+
+    dream_id: dream_20260516T164305
+
+    tier: best
+
+    overall_score: borderline findings (3.0)
+
+    timestamp: 2026-05-16T17:24:26.655146+00:00
+
+    ---
+
+
+    # Dream Review Report
+
+
+    **Paper**: "Emergent Phase-Strategy Interaction in Compound Sparsity: Severity
+    Is Not a Constant"
+
+    **Target Venue**: EMNLP 2026 (via ACL Rolling Review)
+
+    **Review Mode**: Full (2 Reviewers, 4-Step Roundtable)
+
+    **Dream ID**: 20260516T164305
+
+
+    ---
+
+
+    ## Venue Scoring Rubric (ARR/EMNLP 2026)
+
+
+    - **Overall Assessment** (1–5, half-point increments): 5=Award-worthy; 4=Conference-worthy;
+    3=Findings-worthy; 2=Needs substantial revision; 1=Not suitable
+
+    - **Soundness** (1–5): 5=Excellent thoroughness; 4=Sufficient for all claims;
+    3=Sufficient for main claims; 2=Main claims insufficiently supported; 1=Major
+    issues
+
+    - **Excitement** (1–5): 5=Highly exciting; 4=Exciting; 3=Interesting; 2=Potentially
+    interesting; 1=Not exciting
+
+    - **Confidence** (1–5): 5=Positive correct; 4=Quite sure; 3=Pretty sure; 2=Might
+    have missed; 1=Not my area
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### R1 Review: Methods & Experiments
+
+
+    #### Summary of Contributions
+
+    The paper introduces a within-problem paired diagnostic (Interaction Index decomposed
+    by reasoning phase) to show that compound sparsity severity is modulated by an
+    interaction between eviction strategy and attention-sparsity-defined reasoning
+    phase. The main finding is that importance-based eviction produces a monotonically
+    increasing severity gradient across phases (Δ_med: 0.39→8.48 on DeepSeek/MATH-500)
+    that is 2.7–17× larger than random eviction, replicated across two architectures
+    and three benchmarks.
+
+
+    #### Strengths
+
+    - **[S1] Rigorous paired design**: The within-problem pairing (II_{i,LOW} − II_{i,HIGH})
+    eliminates problem-difficulty confounds. Effective sample sizes (n=500 for MATH-500/GSM8K,
+    n=250 for LLaMA, n=50 for GPQA) are clearly reported.
+
+    - **[S2] Statistical conservatism**: Using medians for heavy-tailed distributions,
+    Bonferroni as primary correction with BH-FDR as robustness check, Wilcoxon signed-rank
+    (nonparametric), and explicit reporting of non-significant results (random at
+    s≤0.20) demonstrates discipline.
+
+    - **[S3] Transparent negative/partial results**: Entropy mechanism failing on
+    Qwen, mitigation pilot failing (CI crosses zero), LLaMA effect being weaker —
+    all reported honestly with appropriate hedging.
+
+    - **[S4] Sub-exponential scaling characterization**: Reporting growth factors
+    (3.1×→3.3×→2.1×) and confirming sub-exponential rather than exponential scaling
+    adds nuance beyond simple monotonicity.
+
+
+    #### Weaknesses
+
+    - **[W1] Phase segmentation may encode the measured effect**: The "low-sparsity
+    phase" (broadly distributed attention) is precisely where importance scores have
+    minimal discriminative power by definition. The severity gradient could partly
+    be a tautological consequence: positions with broad attention lose more under
+    attention-score-based eviction. The paper does not test an independent phase definition
+    (e.g., explicit ⟨think⟩ token boundaries or held-out segmentation).
+
+    - **[W2] Cross-architecture interaction claim is incomplete in magnitude**: LLaMA
+    shows imp/rand ratio of only 2–3× vs 15–38× on GQA. The paper appropriately qualifies
+    this as "architecture-dependent in magnitude," but the practical significance
+    of a 2–3× ratio is unclear—at what ratio does the "interaction" become negligible
+    for practitioners?
+
+    - **[W3] Mechanism section acknowledges its own inadequacy**: Both strategies
+    show near-identical Gini drops (~6%), yet severity diverges by 15–17×. The paper
+    invokes "structural specificity" as the actual differentiator but provides only
+    correlational evidence (Mann-Whitney on Gini of pruned vs retained heads). The
+    mechanistic contribution remains a plausible post-hoc narrative.
+
+    - **[W4] Bonferroni k=4 family size is narrow**: Correction is applied per model×strategy
+    family (k=4 sparsity levels), but the paper tests dozens of hypotheses across
+    16+ conditions. While BH-FDR robustness is reported, the primary correction unit
+    may appear optimistic. The justification is reasonable but debatable.
+
+    - **[W5] GPQA n=50 limits power for random baseline**: Random eviction at s=0.25
+    on GPQA is non-significant (p=0.062). The paper cannot definitively establish
+    the imp/rand gap on GPQA at s=0.25 — the 13.1× ratio relies on a non-significant
+    denominator.
+
+
+    #### Questions for Authors
+
+    - [Q1] Have you tested whether the severity gradient persists under phase segmentation
+    from a held-out problem set or an independent signal (e.g., ⟨think⟩ boundaries)?
+
+    - [Q2] What is the practical threshold for imp/rand ratio below which the "interaction"
+    is negligible? Does LLaMA''s 2–3× ratio warrant the "architecture-universal" claim?
+
+    - [Q3] Why not test an eviction strategy whose scores are independent of attention
+    (e.g., position-based recency) to disentangle the H2O confound?
+
+
+    #### Scores
+
+    - Overall Assessment: 3.0
+
+    - Soundness: 3.5
+
+    - Excitement: 3.0
+
+    - Reproducibility: 3
+
+    - Confidence: 4
+
+
+    ---
+
+
+    ### R2 Review: Novelty & Related Work
+
+
+    #### Summary of Contributions
+
+    The paper empirically characterizes how compound sparsity severity varies with
+    reasoning phase and eviction strategy, showing that importance-based eviction
+    produces large monotonic phase gradients while random eviction produces much weaker
+    ones. The finding is replicated across 3 models, 2 architectures, and 3 benchmarks.
+
+
+    #### Novelty Assessment
+
+    The core novelty is **incremental** rather than substantially new:
+
+
+    **Genuinely new**: The specific quantitative dose-response curve (paired median
+    differences across sparsity levels), the systematic multi-dimensional replication,
+    and the strategy specificity ratio (13–17×) are new empirical data not available
+    elsewhere.
+
+
+    **Derivable from prior work**: ThinKV (2025) establishes phase-dependent compression
+    tolerance; HIES (2025) identifies importance score collapse under pruning; SparK
+    (2024) establishes super-additive compound interaction. The logical chain ThinKV
+    + HIES + SparK strongly implies compound interaction would be phase-dependent
+    and strategy-dependent. The paper confirms this with rigorous measurement rather
+    than discovering something conceptually surprising.
+
+
+    #### Related Work Completeness
+
+    The Related Work section is well-organized with 5 clear categories, but the paper
+    cites only **9 references total** — extremely thin for EMNLP. Missing areas include:
+
+    - Token merging/pruning literature
+
+    - Dynamic sparse attention (BigBird, Longformer)
+
+    - KV cache compression surveys
+
+    - Broader joint quantization-pruning literature
+
+    - Attention pattern analysis literature (attention rollout, etc.)
+
+
+    The differentiation against Physics of KV Cache ("their phase ≠ our phase"), ThinKV
+    (single-axis vs compound), and HIES (independent supporting evidence) is clearly
+    articulated and convincing.
+
+
+    #### Strengths
+
+    - **[S1] Multi-dimensional replication with honest reporting**: Testing across
+    3 models, 2 architectures, 3 benchmarks with transparent reporting of where effects
+    attenuate (LLaMA weaker, GSM8K specificity lower).
+
+    - **[S2] Correlational framing is appropriately scoped**: Explicitly stating "we
+    do not claim causal" prevents overclaiming on the mechanism.
+
+    - **[S3] Well-structured empirical paper**: Clear progression from core finding
+    → strategy specificity → cross-model → cross-architecture → cross-benchmark →
+    mechanism.
+
+
+    #### Weaknesses
+
+    - **[W1] Conceptual novelty is incremental**: The qualitative direction (compound
+    severity is phase/strategy-dependent) is predictable from combining existing single-axis
+    findings. The contribution is careful quantification of a predictable phenomenon.
+
+    - **[W2] "Emergent" framing overclaims**: The mechanism is directly traceable
+    (pruning degrades importance scores → importance eviction degenerates in low-sparsity
+    phases). This is a compositional effect, not emergent in any meaningful sense.
+
+    - **[W3] Only 9 references**: Far below the typical EMNLP reference count (30–50).
+    Major gaps in coverage of related literature.
+
+    - **[W4] Practical impact limited**: Pilot mitigation failed (CI crosses zero).
+    The actionable takeaway ("use s≤0.20 during low-sparsity phases") is conservative
+    engineering, not a novel insight.
+
+    - **[W5] Strategy specificity variability undermines generality**: Imp/rand ratio
+    ranges from 2.8× (GSM8K s30) to 16.6× (MATH-500 s30) — a 6× variation across conditions.
+    This makes it hard to extract a crisp, generalizable finding.
+
+
+    #### Questions for Authors
+
+    - [Q1] Can you articulate what about the compound interaction was genuinely unpredictable
+    from combining ThinKV + HIES + SparK?
+
+    - [Q2] What is the practical cost of the false assumption (uniform degradation)
+    that you identify? Can you quantify deployment mistakes practitioners would make?
+
+
+    #### Scores
+
+    - Overall Assessment: 3.0
+
+    - Soundness: 4.0
+
+    - Excitement: 2.5
+
+    - Reproducibility: 4
+
+    - Confidence: 4
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing
+
+
+    ### R1 → R2 (Methods concerns shared with Novelty reviewer)
+
+    R1 raised the phase segmentation circularity concern: the finding may partly reflect
+    that attention-score-based eviction fails where attention is inherently broad
+    (definitional coupling). R1 also flagged the mechanism''s self-admitted insufficiency
+    (Gini drops equal across strategies yet severity diverges 15–17×).
+
+
+    ### R2 → R1 (Novelty concerns shared with Methods reviewer)
+
+    R2 raised the incremental novelty concern (ThinKV + HIES + SparK → predictable
+    finding) and the "emergent" overclaiming issue. R2 also flagged the extremely
+    thin reference list (9 references) and limited practical impact.
+
+
+    ### Cross-Responses
+
+
+    **R1 response to R2''s novelty concern**: R1 agrees that the qualitative direction
+    may be predictable, but argues the quantitative characterization (dose-response
+    curve, sub-exponential scaling, specific sparsity thresholds) has independent
+    value. The five-layer replication effort is methodologically commendable even
+    if the underlying finding is incremental. R1 maintains that the circularity concern
+    is the more fundamental issue — if the finding is partly tautological, even the
+    quantitative contribution is undermined.
+
+
+    **R2 response to R1''s circularity concern**: R2 agrees this is a significant
+    methodological concern. R2 notes that testing with ⟨think⟩ token boundaries as
+    an independent phase definition would be a strong rebuttal, but the paper doesn''t
+    do this. R2 also agrees the reference count is problematic and would be flagged
+    by any reviewer at EMNLP.
+
+
+    ---
+
+
+    ## Step 3: Convergence
+
+
+    ### Points of Agreement
+
+    1. **Overall assessment: Findings-level (3.0)**. Both reviewers converge on the
+    paper being solid empirical work appropriate for Findings track but below the
+    novelty/impact threshold for main conference.
+
+    2. **Statistical rigor is the paper''s clear strength**. Paired design, nonparametric
+    tests, Bonferroni correction, effect size reporting, honest negative results —
+    both reviewers rate this as exemplary.
+
+    3. **Mechanism section is the weakest contribution**. Self-admittedly insufficient
+    (Gini drops equal but severity diverges 15–17×), correlational only.
+
+    4. **Practical impact is limited**. Pilot mitigation failed. The actionable insight
+    is conservative and does not change practice.
+
+    5. **Model scale is a real limitation**. 7–8B only; behavior at 70B+ unknown.
+
+    6. **GPQA n=50 limits statistical power** for the random baseline comparison.
+
+
+    ### Points of Disagreement
+
+    1. **Soundness**: R1 rates 3.5 (concerned about circularity), R2 rates 4.0 (considers
+    methods sufficient for claims as stated). Resolved toward 3.5 — the circularity
+    concern is valid and unaddressed in the paper.
+
+    2. **Excitement**: R1 rates 3.0 (finds the dose-response quantification interesting),
+    R2 rates 2.5 (considers it predictable). Resolved toward 3.0 — the systematic
+    replication effort has value even if the direction was predictable.
+
+
+    ### Consensus Scores
+
+    - **Overall Assessment: 3.0** (Findings-worthy)
+
+    - **Soundness: 3.5** (between "acceptable" and "strong")
+
+    - **Excitement: 3.0** (Interesting but not exciting)
+
+    - **Reproducibility: 3.5** (configuration table provided, but only 9 references
+    limit contextual reproducibility)
+
+    - **Confidence: 4** (Quite sure)
+
+
+    ---
+
+
+    ## Step 4: Meta-Review Synthesis
+
+
+    ### Paper Strengths (Ordered by Importance)
+
+    1. **Exemplary statistical methodology**: The paired within-problem design, bootstrap
+    CIs (B=10,000), Wilcoxon signed-rank with Bonferroni, Cohen''s d_z effect sizes,
+    and Spearman dose-response tests represent best practices for empirical NLP work.
+    The paper reports both significant and non-significant results transparently.
+
+    2. **Systematic multi-dimensional replication**: Testing across 3 models × 2 architectures
+    × 3 benchmarks with honest reporting of where effects attenuate (LLaMA weaker
+    ratio, GSM8K lower specificity) demonstrates scientific integrity.
+
+    3. **Clear quantitative characterization**: The dose-response curve (Δ_med from
+    0.39→8.48), sub-exponential scaling (decreasing growth factors), strategy specificity
+    ratios (13–17× on complex reasoning), and sparsity threshold identification (~s=0.20–0.025)
+    provide useful quantitative benchmarks.
+
+    4. **Honest limitations**: The paper is unusually self-critical — correlational
+    framing, entropy mechanism failing on Qwen, pilot mitigation CI crossing zero,
+    scale limitation, symmetric-only constraint.
+
+
+    ### Paper Weaknesses (Ordered by Severity)
+
+    1. **Incremental conceptual novelty**: The core finding (compound severity is
+    phase- and strategy-dependent) is the natural prediction from combining ThinKV
+    (phase-dependent compression tolerance), HIES (importance score collapse), and
+    SparK (super-additive compound interaction). The paper provides careful quantification
+    of a predictable phenomenon rather than discovering something conceptually surprising.
+
+    2. **Phase segmentation circularity**: Low-sparsity phases are defined as regions
+    of broadly distributed attention — exactly where importance-score-based eviction
+    inherently loses discriminative power. The finding may partially reflect a tautology
+    rather than an emergent interaction. No independent phase definition (e.g., ⟨think⟩
+    boundaries, held-out segmentation) is tested to disentangle this.
+
+    3. **Very thin reference list (9 references)**: Extremely below EMNLP standards
+    (typically 30–50). Major areas of related work are entirely absent: token merging/pruning,
+    dynamic sparse attention, KV cache surveys, broader structured pruning literature,
+    attention analysis methods. This limits the reader''s ability to contextualize
+    the contribution.
+
+    4. **Mechanism is incomplete**: The paper''s own analysis shows both strategies
+    exhibit near-identical Gini drops (~6%), yet severity diverges by 15–17×. The
+    proposed "structural specificity" explanation is correlational. The mechanistic
+    contribution remains a plausible narrative rather than an explanation.
+
+    5. **"Emergent" framing overclaims**: The title uses "emergent" for a compositional
+    effect that is directly traceable from component behaviors. More appropriate framing:
+    "phase-modulated" or "phase-dependent."
+
+    6. **Limited practical impact**: Pilot mitigation failed (CI crosses zero). The
+    paper''s own Discussion offers only conservative engineering guidance (reduce
+    s in low-sparsity phases).
+
+    7. **Strategy specificity variability**: Imp/rand ratio ranges from 2.8× (GSM8K)
+    to 16.6× (MATH-500) — making it hard to extract a single generalizable finding
+    about the magnitude of the interaction.
+
+
+    ### Critical Questions for Authors
+
+    1. Can you test phase segmentation using ⟨think⟩ token boundaries or a held-out
+    set to address the circularity concern?
+
+    2. What about the compound interaction was genuinely unpredictable from combining
+    ThinKV + HIES + SparK? Can you quantify the practical cost of the uniform-degradation
+    assumption you challenge?
+
+    3. Why does the paper cite only 9 references? Can the related work be expanded
+    to cover token merging, dynamic attention, and KV cache surveys?
+
+    4. Can you test a non-attention-based eviction strategy (e.g., position/recency-based)
+    to disentangle the H2O confound from the compound interaction effect?
+
+
+    ### Experiment Coverage Assessment
+
+    Comparing the paper against the experiment design YAML (review_context.yaml):
+
+    - **c8_llama_n250_fixed** (LLaMA cross-architecture): ✅ Covered (Table 2, Table
+    9, §4.4)
+
+    - **gpqa_ds_importance_s015/s020/s025/s030**: ✅ Covered (Table 3, §4.5)
+
+    - **gpqa_ds_random_s025/s030**: ✅ Covered (Table 4, §4.5)
+
+    - **gpqa_aggregate_cross_benchmark**: ✅ Covered (Table 5, §4.6)
+
+    - **gpqa_strategy_specificity_confirmation**: ✅ Covered (Table 4, §4.5)
+
+    - Meta-analyses (reviewer_outcome_simulation, novelty_structural_fix, reproducibility_fix,
+    c8_status_upgrade): Not experimental — these are framing/positioning decisions,
+    all reflected in the paper''s narrative.
+
+
+    **Coverage: All planned experiments are present in the submitted paper.** Tables
+    1–9 are complete with data. The paper fully reflects the experiment design.
+
+
+    ### Recommendation
+
+
+    **Consensus: 3.0 — Findings-worthy (Borderline Findings / solid Findings)**
+
+
+    This is a methodologically rigorous empirical study that provides useful quantitative
+    characterization of compound sparsity behavior. The statistical practices are
+    exemplary and the honest reporting of limitations is commendable. However, the
+    conceptual novelty is incremental (derivable from combining existing single-axis
+    findings), the phase segmentation has a circularity concern that is unaddressed,
+    the reference list is far too thin for EMNLP, the mechanism is incomplete by the
+    paper''s own admission, and practical impact is limited. The paper would benefit
+    from: (1) expanding references to 30+, (2) testing independent phase definitions
+    to address circularity, (3) reframing from "emergent" to "phase-dependent," and
+    (4) either strengthening the mechanism or explicitly repositioning as a purely
+    empirical characterization without mechanistic contribution.
+
+
+    **For main conference acceptance**, the paper would need to address the circularity
+    concern with additional experiments, expand the reference list substantially,
+    and either strengthen the mechanistic contribution or demonstrate practical impact
+    through a working phase-aware compression method. The current pilot mitigation
+    failure is a significant gap.
+
+
+    **For Findings acceptance**, the paper in its current form is borderline-suitable:
+    the quantitative contribution and statistical rigor are valuable, but the reference
+    count issue needs resolution.
+
+
+    ### Final Scores
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|-----|-----|-----------|
+
+    | Overall Assessment | 3.0 | 3.0 | **3.0** |
+
+    | Soundness | 3.5 | 4.0 | **3.5** |
+
+    | Excitement | 3.0 | 2.5 | **3.0** |
+
+    | Reproducibility | 3 | 4 | **3.5** |
+
+    | Confidence | 4 | 4 | **4** |
+
+
+    **Accept Probability Estimate**: ~30–40% for main conference; ~60–70% for Findings
+    track.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260516T164305/median/paper.pdf
+  imagined_experiments:
+  - name: c8_llama_n250_fixed
+    plan_id: c8_llama_n250_fixed
+    description: LLaMA-8B (DeepSeek-R1-Distill-Llama-8B) n=250 全 8 条件 (importance×4
+      + random×4 sparsity levels) per-problem paired 复现，验证 n=50 结论是否在更高统计功效下维持
+    expected_results:
+      n_problems: 250
+      n_valid: 244
+      n_bootstrap: 10000
+      bonferroni_k: 4
+      imp_vs_rand_dz:
+        s015: 0.21
+        s020: 0.27
+        s025: 0.3
+        s030: 0.33
+      imp_vs_rand_dz_ci:
+        s015:
+        - -0.01
+        - 0.43
+        s020:
+        - 0.03
+        - 0.51
+        s025:
+        - 0.07
+        - 0.54
+        s030:
+        - 0.11
+        - 0.56
+      imp_vs_rand_median_diff:
+        s015: 0.018
+        s020: 0.024
+        s025: 0.085
+        s030: 0.31
+      wilcoxon_p_bonferroni:
+        s015: 0.312
+        s020: 0.087
+        s025: 0.041
+        s030: 0.0082
+      significant_bonferroni:
+        s015: false
+        s020: false
+        s025: true
+        s030: true
+      phase_gradient_importance_dz:
+        s015: 1.02
+        s020: 1.11
+        s025: 1.12
+        s030: 1.01
+      phase_gradient_importance_median_diff:
+        s015: 0.34
+        s020: 1.05
+        s025: 0.38
+        s030: 2.89
+      phase_gradient_random_dz:
+        s015: 0.36
+        s020: 0.39
+        s025: 0.44
+        s030: 0.43
+      phase_gradient_random_dz_ci:
+        s015:
+        - 0.14
+        - 0.58
+        s020:
+        - 0.17
+        - 0.61
+        s025:
+        - 0.22
+        - 0.66
+        s030:
+        - 0.21
+        - 0.65
+      dose_response_monotonic_importance: true
+      dose_response_spearman_rho: 1.0
+    result_rationale: n=250 相比 n=50 统计功效提升约 2.2×（√(250/50)），但 imp_vs_rand 交互的真实效应量本身就很小（population
+      d_z ≈ 0.25-0.35）。LLaMA 架构的 GQA (grouped query attention) 使得 head pruning 后残余
+      attention pattern 的 strategy-dependence 弱于 MHA 架构（Qwen2）——pruning 掉一个 GQA group
+      影响更多 query heads，导致 random 和 importance 的 compound effect 差异缩小。n=250 的 tighter
+      CI 使 s030（最大效应）和 s025（borderline）跨过 Bonferroni 阈值，但 s015/s020 仍 NS。Random 的非平凡
+      phase gradient（d_z 0.36-0.44）在 n=250 下 CI 完全排除零，进一步确认这不是 noise——LLaMA 上任何形式的
+      KV eviction 都触发 phase-dependent compound degradation，strategy specificity 是
+      architecture-modulated。
+    tables:
+    - title: 'Table: LLaMA n=250 imp_vs_rand interaction summary'
+      columns:
+      - Sparsity
+      - d_z
+      - 95% CI
+      - Bonferroni p
+      - Significant
+      rows:
+      - - s015
+        - '0.21'
+        - '[-0.01, 0.43]'
+        - '0.312'
+        - 'No'
+      - - s020
+        - '0.27'
+        - '[0.03, 0.51]'
+        - '0.087'
+        - 'No'
+      - - s025
+        - '0.30'
+        - '[0.07, 0.54]'
+        - '0.041'
+        - 'Yes'
+      - - s030
+        - '0.33'
+        - '[0.11, 0.56]'
+        - '0.0082'
+        - 'Yes'
+    figures_description:
+    - 'Fig: LLaMA n=250 phase gradient comparison (importance vs random). 左: importance
+      的 per-phase median II 显示强单调递增（d_z>1.0 全水平）; 右: random 也显示较弱但显著的单调递增（d_z 0.36-0.44），两条线斜率差异即为
+      strategy specificity 的可视化——差异存在但远小于 DeepSeek/Qwen 上观察到的 15-36× separation。'
+    analysis: n=250 结果与 n=50 定性一致：(1) importance within-phase gradient 强且稳定（d_z≈1.0-1.1）；(2)
+      imp_vs_rand 交互弱（d_z 0.21-0.33, small effect）；(3) random 非平凡 phase gradient 稳定存在。新增发现：s025
+      在 n=250 下跨过 Bonferroni 阈值（n=50 时 p_bonf=0.083, n=250 时 p_bonf=0.041），总 Bonferroni
+      显著条件数从 1 增加到 2。但核心叙事不变——LLaMA 上 strategy×phase 交互量级远小于 Qwen2 架构（d_z 0.33 vs
+      DeepSeek d_z 0.80），C8 维持 partially_confirmed。论文措辞：'LLaMA replication provides
+      directional support (2/4 sparsities significant) with architecture-dependent
+      magnitude attenuation.'
+  - name: gpqa_ds_importance_s015
+    plan_id: gpqa_ds_importance_s015
+    description: GPQA benchmark (198 graduate-level science questions) DeepSeek-R1-Distill-Qwen-7B
+      importance masking s=0.15，验证 phase gradient 在非数学推理任务上的泛化性
+    expected_results:
+      n_problems: 198
+      n_valid: 185
+      mid_null_rate: 0.22
+      per_phase_ii_median:
+        high: 0.008
+        mid: 0.052
+        low: 0.19
+      per_phase_ii_mean:
+        high: 0.031
+        mid: 0.14
+        low: 0.48
+      phase_gradient_median_diff: 0.182
+      phase_gradient_median_diff_ci95:
+      - 0.11
+      - 0.27
+      wilcoxon_p: 3.2e-12
+      cohens_dz: 0.52
+      dose_response_contribution: s015 单调递增起点确认
+    result_rationale: GPQA 的推理链通常比 MATH-500 短（mean ~800 tokens vs ~1500），且推理类型更多样（物理/化学/生物实验设计
+      vs 纯数学演绎）。Phase segmentation 在短 sequence 上分辨率降低，high/low phase 之间的 token 数差距缩小，导致
+      compound interaction 的 phase-dependent 放大效应较弱。s015 是最低 sparsity，compound effect
+      本身微弱，但方向已可检测（median_diff 0.18 > 0, p<1e-11）。与 MATH-500 的 s015 median_diff=0.39
+      相比，GPQA 约为其 47%——这与 GSM8K 的衰减模式一致（GSM8K s015 DS=0.241, 约为 MATH-500 的 62%），GPQA
+      因推理链更短+更多样而进一步衰减。
+    tables: []
+    figures_description: []
+    analysis: GPQA s015 的 phase gradient 方向正确且统计显著，确认 compound interaction 的 phase-dependence
+      不限于数学推理。但 absolute magnitude 约为 MATH-500 的一半，预示后续 sparsity 水平的 gradient 也将整体缩小。Cohen's
+      d_z=0.52（medium effect）表明信号稳健但不如 MATH-500 上的 large effect。
+  - name: gpqa_ds_importance_s020
+    plan_id: gpqa_ds_importance_s020
+    description: GPQA DeepSeek importance masking s=0.20，dose-response 第二点
+    expected_results:
+      n_problems: 198
+      n_valid: 182
+      mid_null_rate: 0.25
+      per_phase_ii_median:
+        high: 0.021
+        mid: 0.18
+        low: 0.56
+      per_phase_ii_mean:
+        high: 0.072
+        mid: 0.41
+        low: 1.52
+      phase_gradient_median_diff: 0.54
+      phase_gradient_median_diff_ci95:
+      - 0.35
+      - 0.78
+      wilcoxon_p: 8.7e-22
+      cohens_dz: 0.68
+      monotonic_with_s015: true
+    result_rationale: 从 s015 到 s020 的 jump 在 MATH-500 上约为 3.1×（0.39→1.21），在 GSM8K
+      上约为 3.1×（0.241→0.740）。GPQA 预期类似倍增（0.18→0.54, 约 3.0×），因为 sparsity 从 15% 到 20%
+      的 head pruning 增量对 compound interaction 的影响机制是通用的——更多 head 被移除导致 importance
+      score 判别力进一步下降（Gini delta 加大），这个机制不 task-dependent。绝对量级比 MATH-500（1.48）小约 63%，与
+      s015 的缩减比例一致，表明 GPQA 的整体 'baseline severity' 较低但 dose-response shape 保持。
+    tables: []
+    figures_description: []
+    analysis: s020 延续单调递增趋势。GPQA 的特点是 mid_null_rate 偏高（~25%），因为短 reasoning chain 导致
+      mid-phase segment 经常过短或不存在。这不影响 low vs high 的 paired comparison，但需要在论文中 report
+      effective_n。
+  - name: gpqa_ds_importance_s025
+    plan_id: gpqa_ds_importance_s025
+    description: GPQA DeepSeek importance masking s=0.25，dose-response 第三点，预期进入 steep
+      gradient 区间
+    expected_results:
+      n_problems: 198
+      n_valid: 178
+      mid_null_rate: 0.28
+      per_phase_ii_median:
+        high: 0.065
+        mid: 0.62
+        low: 1.73
+      per_phase_ii_mean:
+        high: 0.19
+        mid: 1.45
+        low: 5.21
+      phase_gradient_median_diff: 1.67
+      phase_gradient_median_diff_ci95:
+      - 1.08
+      - 2.41
+      wilcoxon_p: 2.1e-30
+      cohens_dz: 0.84
+      monotonic_with_s020: true
+      growth_factor_s020_to_s025: 3.1
+    result_rationale: s020→s025 在 MATH-500 上是 compound effect 急剧放大的区间（1.21→3.99, 3.3×），因为
+      s025 是 importance score discrimination collapse 的 critical threshold（D063）。GPQA
+      预期同样的 threshold 效应（0.54→1.67, 3.1×），因为 discrimination collapse 是 attention score
+      分布的固有属性，不依赖下游 task。但绝对量级仍约为 MATH-500 的 42%（1.67 vs 3.99），因为 GPQA 推理链短意味着每个 phase
+      内积累的 compound degradation token 数更少。
+    tables: []
+    figures_description: []
+    analysis: s025 是关键转折点——如果 GPQA 在此处也显示 >3× 的 jump（相对 s020），则确认 onset threshold
+      ~s020-s025 是跨 benchmark 通用的。这支持 discrimination collapse 机制的通用性假设。
+  - name: gpqa_ds_importance_s030
+    plan_id: gpqa_ds_importance_s030
+    description: GPQA DeepSeek importance masking s=0.30，dose-response 最高点
+    expected_results:
+      n_problems: 198
+      n_valid: 174
+      mid_null_rate: 0.31
+      per_phase_ii_median:
+        high: 0.14
+        mid: 1.35
+        low: 3.82
+      per_phase_ii_mean:
+        high: 0.42
+        mid: 3.8
+        low: 12.6
+      phase_gradient_median_diff: 3.68
+      phase_gradient_median_diff_ci95:
+      - 2.45
+      - 5.31
+      wilcoxon_p: 1.5e-33
+      cohens_dz: 0.91
+      monotonic_with_s025: true
+      growth_factor_s025_to_s030: 2.2
+      dose_response_full_spearman_rho: 1.0
+      dose_response_perm_p: 0.042
+    result_rationale: s025→s030 的增长因子在 MATH-500 上是 2.1×（3.99→8.48），比 s020→s025 的 3.3×
+      减小——这是 sub-exponential growth 的特征（C6）。GPQA 预期类似的减速（1.67→3.68, 2.2×），进一步确认 severity
+      gradient 的 sub-exponential 性质跨 benchmark 成立。绝对量级为 MATH-500 的 43%（3.68 vs 8.48），与之前水平的
+      42-47% ratio 一致，说明 GPQA 的 'scaling factor' 相对 MATH-500 大约恒定在 0.43。
+    tables:
+    - title: 'Table: GPQA DeepSeek importance dose-response summary'
+      columns:
+      - Sparsity
+      - Median Diff
+      - 95% CI
+      - Cohen's d_z
+      - Wilcoxon p
+      rows:
+      - - s015
+        - '0.182'
+        - '[0.11, 0.27]'
+        - '0.52'
+        - '3.2e-12'
+      - - s020
+        - '0.54'
+        - '[0.35, 0.78]'
+        - '0.68'
+        - '8.7e-22'
+      - - s025
+        - '1.67'
+        - '[1.08, 2.41]'
+        - '0.84'
+        - '2.1e-30'
+      - - s030
+        - '3.68'
+        - '[2.45, 5.31]'
+        - '0.91'
+        - '1.5e-33'
+    figures_description:
+    - 'Fig: GPQA vs MATH-500 vs GSM8K dose-response comparison. 三条单调递增曲线，MATH-500
+      最陡（0.39→8.48），GSM8K 居中（0.24→4.68），GPQA 最平缓（0.18→3.68）。三者形状高度相似（均 sub-exponential），仅
+      vertical scale 不同，支持 ''phase gradient shape universal, magnitude task-dependent''
+      叙事。'
+    analysis: GPQA 全 4 sparsity 单调递增，Spearman ρ=1.0，与 MATH-500 和 GSM8K 一致。这是第三个独立
+      benchmark 确认 dose-response monotonicity，极大强化 C2/C7 claims。Cohen's d_z 从 medium(0.52)
+      增长到 large(0.91)，表明信号随 sparsity 增强。
+  - name: gpqa_ds_random_s030
+    plan_id: gpqa_ds_random_s030
+    description: GPQA DeepSeek random masking s=0.30，用于计算 imp/rand ratio 验证 strategy
+      specificity 的 task-dependence
+    expected_results:
+      n_problems: 198
+      n_valid: 170
+      per_phase_ii_median:
+        high: 0.72
+        mid: 1.15
+        low: 1.84
+      phase_gradient_median_diff: 1.12
+      phase_gradient_median_diff_ci95:
+      - 0.45
+      - 1.92
+      wilcoxon_p: 0.0034
+      cohens_dz: 0.22
+      imp_rand_ratio_s030: 2.1
+      imp_rand_ratio_interpretation: further decay from GSM8K 2.8×
+    result_rationale: Median tier 预测 GPQA 的 imp/rand ratio 在 1.5-4.0× 范围。GPQA 的多学科特性（物理/化学/生物）意味着
+      attention pattern 更加多样——不像数学推理有高度结构化的 'step-by-step' pattern 使 importance score
+      能有效区分关键 vs 非关键 KV。在多样化推理模式下，importance score 的 discriminative advantage 被稀释：(1)
+      不同学科的 'important' token pattern 差异大，importance metric 的泛化能力下降；(2) 推理链短导致 temporal
+      structure 弱化，phase boundary 模糊。因此 random 的 phase gradient（median_diff 1.12）相对
+      importance（3.68）的差距进一步缩小，ratio 约 3.3×。但考虑到 CI 的 overlap，实际 point estimate 可能在
+      2.0-3.5× 范围。取 2.1× 作为 median tier 的 conservative estimate。
+    tables: []
+    figures_description: []
+    analysis: GPQA 的 imp/rand ratio ≈ 2.1× 进一步确认 strategy specificity 的 task-dependence：MATH-500
+      15-36× → GSM8K 2.3-3.8× → GPQA 1.5-3×。衰减趋势与 task 的 'reasoning structure regularity'
+      相关——数学推理高度结构化（importance score 区分度高），GSM8K 结构化程度中等，GPQA 多学科混合结构化程度最低。这为论文 §6
+      Discussion 的 'strategy specificity mechanism' 提供了第三个数据点。
+  - name: gpqa_ds_random_s015
+    plan_id: gpqa_ds_random_s015
+    description: GPQA DeepSeek random masking s=0.15，验证低 sparsity 下 random NS 模式是否在
+      GPQA 上维持
+    expected_results:
+      n_problems: 198
+      n_valid: 180
+      per_phase_ii_median:
+        high: 0.09
+        mid: 0.11
+        low: 0.13
+      phase_gradient_median_diff: 0.04
+      phase_gradient_median_diff_ci95:
+      - -0.05
+      - 0.14
+      wilcoxon_p: 0.31
+      cohens_dz: 0.07
+      bonferroni_significant: false
+    result_rationale: 在 MATH-500 (n=500) 上，random s015 的 median_II=0.014 (DS) 且 NS
+      (p=0.863)。GSM8K 上 random 也在低 sparsity NS。GPQA 预期维持这一模式：s015 的 compound effect
+      对 random masking 而言太微弱——random 不 systematically 破坏特定 phase 的关键 token（因为无 selection
+      bias），因此 phase-dependent amplification 不触发。Phase gradient 的 median_diff 接近零（0.04），CI
+      跨零，NS。这确认了 onset threshold ~s020-s025 对 random 的跨 benchmark 通用性。
+    tables: []
+    figures_description: []
+    analysis: Random s015 NS 在 GPQA 上复现，与 MATH-500 和 GSM8K 一致。这对 novelty story 有利——即使在最弱化
+      strategy specificity 的 benchmark 上，random 在低 sparsity 仍然 NS，保持 'onset threshold'
+      叙事。
+  - name: reviewer_simulation
+    plan_id: reviewer_assessment
+    description: 模拟 3 位 EMNLP reviewer 的评分和主要质疑，基于 median tier 的 claims scope 和实验证据
+    expected_results:
+      reviewer_1:
+        score: 3.5
+        confidence: 4
+        stance: weak accept
+        main_praise: Thorough empirical study with cross-model/architecture/benchmark
+          validation. Statistical methodology rigorous (Bonferroni, bootstrap, effect
+          sizes).
+        main_concerns:
+        - 'Novelty vs Physics of KV Cache Compression (Mar 2026): both study phase-dependent
+          compression behavior. The distinction (''compression-rate phase vs reasoning
+          phase'') is acknowledged but could be more crisply articulated.'
+        - 7B models only. Camera-ready 13B/70B promise is appreciated but unverified.
+        novelty_challenge: true
+        fatal_concern: false
+      reviewer_2:
+        score: 3.0
+        confidence: 3
+        stance: borderline
+        main_praise: Important practical finding for LLM deployment. Discrimination
+          collapse mechanism is well-supported.
+        main_concerns:
+        - Strategy specificity weakens substantially across benchmarks (15× → 3× →
+          2×) and architectures (LLaMA random also shows phase gradient). Is this
+          really 'strategy-specific' or just 'strategy-modulated with diminishing
+          returns'?
+        - Title/abstract still oversell given the qualification needed. 'Phase-gated'
+          implies a clean gating mechanism but the phenomenon is continuous and noisy.
+        - LLaMA partial confirmation with only s030 significant at n=50 (now 2/4 at
+          n=250) is thin for a 'cross-architecture' claim.
+        novelty_challenge: true
+        fatal_concern: false
+      reviewer_3:
+        score: 3.5
+        confidence: 4
+        stance: weak accept
+        main_praise: Clean experimental design. Crossover phenomenon is genuinely
+          novel. Dose-response with Spearman ρ=1.0 across three benchmarks is compelling.
+        main_concerns:
+        - Practical implications unclear. C5b pilot failed. Without actionable mitigation,
+          this is purely diagnostic.
+        - Would benefit from 13B results even as preliminary.
+        novelty_challenge: false
+        fatal_concern: false
+      average_score: 3.33
+      accept_probability: 0.35
+      meta_reviewer_likely_decision: borderline, leaning reject without strong rebuttal
+    result_rationale: Median tier 的 accept probability 在 0.25-0.5 范围。3 位 reviewer
+      中 1-2 位质疑 novelty（与 Physics of KV Cache 区分）。核心 phase gradient 无争议（跨 3 benchmark
+      + 3 model 复现），但 strategy specificity 的 progressive weakening（从 15× 到 2×）让 'strategy-specific'
+      framing 受到挑战。7B-only 是 major concern 但非 fatal（因为有 camera-ready 承诺）。Overall：两个
+      weak accept + 一个 borderline = 需要精准 rebuttal 才能过 threshold。
+    tables:
+    - title: 'Table: Simulated reviewer scores'
+      columns:
+      - Reviewer
+      - Score
+      - Confidence
+      - Novelty Challenged
+      - Fatal Concern
+      rows:
+      - - R1
+        - '3.5'
+        - '4'
+        - 'Yes'
+        - 'No'
+      - - R2
+        - '3.0'
+        - '3'
+        - 'Yes'
+        - 'No'
+      - - R3
+        - '3.5'
+        - '4'
+        - 'No'
+        - 'No'
+    figures_description: []
+    analysis: Rebuttal 的关键任务：(1) 精准区分 Physics of KV Cache 的 'compression-rate phase
+      transition' 与我们的 'reasoning-phase compound interaction gradient'——强调维度正交性（他们是单轴阈值，我们是双轴交互×phase
+      的连续调制）；(2) 将 strategy specificity 的 task-dependence 重新 frame 为 positive finding（揭示了
+      importance metric 的 'discriminative ceiling' 随 task regularity 变化，这本身是 novel
+      insight）；(3) 承诺 13B/70B spot-check 数据在 camera-ready，并指出 mechanism（discrimination
+      collapse）是 scale-independent 的理论预测。
+  review_report: '---
+
+    dream_id: dream_20260516T164305
+
+    tier: median
+
+    overall_score: borderline — findings track with reservations
+
+    timestamp: 2026-05-16T17:32:04.533543+00:00
+
+    ---
+
+
+    # Dream Review Report — Phase-Dependent Compound Sparsity
+
+
+    **Paper**: "Phase-Dependent Compound Sparsity: Reasoning Phase Modulates the Severity
+    of Pruning–Eviction Interactions in 7B LLMs"
+
+    **Venue**: EMNLP 2026 (ARR 1–5 scale)
+
+    **Review Mode**: Full (2 Reviewers → Roundtable)
+
+    **Dream ID**: 20260516T164305
+
+
+    ---
+
+
+    ## Venue Calibration
+
+
+    Scoring follows the ACL Rolling Review form used by EMNLP 2026:
+
+    - **Overall Assessment**: 5 = Award (top 2.5%), 4 = Accept, 3 = Findings track,
+    2 = Resubmit, 1 = Reject
+
+    - **Soundness**: 5 = Excellent, 4 = Strong, 3 = Acceptable, 2 = Poor, 1 = Major
+    issues
+
+    - **Excitement**: 5 = Highly exciting, 4 = Exciting, 3 = Interesting, 2 = Potentially
+    interesting, 1 = Not exciting
+
+    - Half-point increments allowed. EMNLP acceptance rate ~22–25%.
+
+
+    ---
+
+
+    ## Roundtable Process
+
+
+    | Step | Description |
+
+    |------|-------------|
+
+    | Step 1 | R1 (Methods + Experiments) and R2 (Novelty + Related Work) reviewed
+    independently |
+
+    | Step 2 | Cross-sharing of findings; identified 6 areas of agreement, 2 areas
+    of divergence |
+
+    | Step 3 | Convergence discussion; calibrated scores and resolved framing disagreements
+    |
+
+    | Step 4 | This synthesized report |
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper investigates how compound sparsity—jointly applying attention head pruning
+    and KV cache eviction—interacts with the temporal structure of reasoning in 7B
+    LLMs. The central finding is that compound interaction severity is *phase-modulated*:
+    degradation from the pruning–eviction interaction amplifies monotonically in later
+    reasoning phases compared to earlier phases (Spearman ρ = 1.0 across all conditions).
+    Across three benchmarks (MATH-500, GSM8K, GPQA) and three models spanning two
+    architectures (Qwen2/MHA, LLaMA/GQA), the paper shows a dose-response relationship
+    between sparsity level and phase gradient magnitude. Strategy specificity—the
+    degree to which importance-based eviction amplifies this beyond random masking—is
+    shown to be task- and architecture-modulated rather than universal (imp/rand ratio:
+    15–36× on MATH-500, 2.3–3.8× on GSM8K, ~2.1× on GPQA). "Discrimination collapse"
+    (Gini coefficient decline of importance scores under pruning) is proposed as the
+    primary mechanism.
+
+
+    ---
+
+
+    ## 2. Strengths
+
+
+    ### Agreed by both reviewers:
+
+
+    - **S1. Rigorous statistical methodology.** The paired within-problem design with
+    Wilcoxon signed-rank tests, Bonferroni correction (k = 4), bootstrap CIs (B =
+    10,000), and Cohen''s d_z effect sizes represents a substantially higher standard
+    than typical KV cache compression papers. The choice of nonparametric tests and
+    median-based reporting is appropriate for the skewed distributions expected from
+    interaction indices.
+
+
+    - **S2. Multi-benchmark and multi-architecture replication.** Testing on MATH-500,
+    GSM8K, and GPQA across two architecture families (Qwen2/MHA, LLaMA/GQA) with three
+    models provides credible evidence that the core phase gradient finding is directionally
+    robust—not a benchmark or architecture artifact. The dose-response monotonicity
+    (Spearman ρ = 1.0 in all cases) is consistent.
+
+
+    - **S3. Transparent reporting of negative and partial results.** The paper is
+    commendably honest about: (a) the mitigation pilot failure (oracle 18%, heuristic
+    32%—insufficient for deployment), (b) entropy redistribution being model-dependent
+    (not observed on Qwen at s = 0.25), (c) LLaMA providing only "directional support"
+    (2/4 sparsities significant), (d) strategy specificity being "task-modulated"
+    rather than universal. This calibrated framing increases trust in the positive
+    findings.
+
+
+    - **S4. Appropriate scoping of claims.** The abstract and conclusion correctly
+    characterize strategy specificity as "a task- and architecture-modulated phenomenon
+    rather than a universal property." The title uses "Phase-Dependent" which accurately
+    reflects the continuous/graded nature of the finding.
+
+
+    - **S5. GPQA dose-response provides genuine cross-domain validation.** Extending
+    from mathematical reasoning (MATH-500, GSM8K) to multi-disciplinary science questions
+    (physics, chemistry, biology) is a meaningful generalization test. The ~43% magnitude
+    scaling with preserved dose-response shape (sub-exponential growth factors: 3.0×,
+    3.1×, 2.2×) is a clean result.
+
+
+    ### Additional strength noted by R2:
+
+
+    - **S6. The GQA vs. MHA architectural analysis is informative.** The finding that
+    LLaMA''s GQA architecture reduces strategy×phase interaction while maintaining
+    within-importance phase gradients is a useful deployment insight: on GQA models,
+    the choice between importance and random eviction matters less for phase-dependent
+    degradation.
+
+
+    ---
+
+
+    ## 3. Weaknesses
+
+
+    ### Major (agreed by both reviewers):
+
+
+    - **W1. (Major — Novelty) Incremental contribution over the union of ThinKV +
+    HIES + SparK.** ThinKV [2025] establishes that different reasoning phases need
+    different KV compression strategies. HIES [2025] identifies importance score collapse
+    under eviction pressure. SparK [2025] characterizes compound interaction as super-additive.
+    This paper measures the intersection: compound interaction (SparK) varies by phase
+    (ThinKV) because of score collapse (HIES). The measurement is competent, but the
+    conceptual advance is modest—it is arguably the expected corollary of combining
+    these three findings. The paper positions itself by noting that prior works each
+    address only one axis, but does not adequately argue why the intersection constitutes
+    a sufficient standalone contribution beyond "someone had to measure it."
+
+
+    - **W2. (Major — Mechanism) Discrimination collapse is correlational, not mechanistic.**
+    Both importance and random strategies exhibit near-identical Gini coefficient
+    declines under pruning, yet their severity diverges by 15×. The paper acknowledges
+    this "order-of-magnitude mismatch" but still presents discrimination collapse
+    as the "primary mechanism." In reality, the Gini decline is a *correlate* (it
+    tracks with phase), not an *explanation* (it cannot account for why identical
+    Gini drops produce 15× different outcomes). The actual mechanistic insight—that
+    importance-based eviction depends on the very scores that pruning degrades, creating
+    a circular dependency—is buried rather than foregrounded. This conflation of correlation
+    with mechanism weakens the third claimed contribution.
+
+
+    - **W3. (Major — Claims scope) Strategy specificity progressive weakening undermines
+    the framing.** The imp/rand ratio decays from 15–36× (MATH-500) → 2.3–3.8× (GSM8K)
+    → ~2.1× (GPQA). On LLaMA, random eviction *also* shows significant phase gradients
+    (d_z = 0.36–0.44, CIs excluding zero). This progressive convergence raises the
+    question: is the underlying phenomenon "importance-based eviction specifically
+    amplifies phase-dependent degradation" (the paper''s framing) or simply "later
+    reasoning phases are more fragile to any perturbation, and importance-based eviction
+    is a more severe perturbation"? The latter interpretation is simpler and explains
+    all the data, including the LLaMA random gradients. The paper does not adequately
+    distinguish between these two interpretations.
+
+
+    - **W4. (Major — Scale) 7B-only with no verification of scaling behavior.** All
+    experiments use 7B-scale models. The paper claims discrimination collapse is "theoretically
+    scale-independent," but this is asserted without evidence. At larger scales, attention
+    patterns may be more robust to pruning (more redundant heads), which could either
+    amplify or attenuate the phase gradient. The camera-ready promise of 13B/70B is
+    appreciated but unverified evidence cannot support current claims.
+
+
+    ### Major (raised by individual reviewers):
+
+
+    - **W5. (Major — R1) Phase segmentation circularity.** The "low" phase (late tokens)
+    is defined as the region where cumulative eviction has been greatest—which is
+    exactly where importance scores are expected to lose discriminative power by definition
+    (fewer remaining KV pairs, more degraded attention patterns). The gradient may
+    partly be a tautological consequence of the segmentation scheme rather than a
+    genuine temporal property of reasoning. Testing with semantically-motivated phase
+    boundaries (e.g., think-token segmentation or reasoning step boundaries) would
+    help distinguish measurement artifact from genuine phenomenon.
+
+
+    - **W6. (Major — R2) "Uniform degradation assumption" is a strawman.** The paper
+    repeatedly claims to "challenge the implicit assumption that compound degradation
+    distributes uniformly across reasoning." However, no cited work (SparK, UniComp,
+    etc.) explicitly assumes uniformity—they report aggregate metrics because they
+    measure aggregate outcomes. The absence of phase-level analysis in prior work
+    is not equivalent to an assumption of phase invariance. This rhetorical framing
+    inflates the novelty by constructing a strawman that prior work never endorsed.
+
+
+    ### Minor:
+
+
+    - **W7. (Minor) Spearman ρ = 1.0 with only 4 data points is statistically marginal.**
+    With k = 4 sparsity levels, ρ = 1.0 yields a permutation p = 0.042—barely below
+    α = 0.05. Any non-monotonicity in a single comparison would destroy significance.
+    While the result replicates across conditions, each individual ρ test has very
+    limited resolving power. The paper should acknowledge this limitation rather than
+    presenting it as strong evidence.
+
+
+    - **W8. (Minor) Only 6 references.** For an EMNLP submission, this is thin. Missing
+    citations include: attention head pruning literature (Michel et al., Voita et
+    al.), KV cache compression surveys, dynamic inference/early exit methods that
+    also exploit temporal reasoning structure. Lethe [AAAI 2026] appears in references
+    but is not discussed in the Related Work text despite being directly relevant
+    (layer-time-adaptive KV pruning).
+
+
+    - **W9. (Minor) GSM8K incomplete in cross-benchmark table.** Table 3 reports GSM8K
+    with no sample size (n) and no Cohen''s d_z, making it the weakest entry in the
+    consolidation table. If the data quality issues noted in limitations prevent full
+    reporting, this should be explicitly flagged.
+
+
+    - **W10. (Minor) Two of three models share the Qwen2 architecture.** DeepSeek-R1-Distill-Qwen-7B
+    and Qwen2.5-7B-Instruct are both Qwen2-based. The "three models, two architectures"
+    framing gives an impression of broader coverage than exists—the cross-architecture
+    evidence rests solely on the LLaMA comparison, which itself shows only partial
+    significance (2/4 sparsities).
+
+
+    - **W11. (Minor) No actionable deployment recommendation.** The mitigation pilot
+    failed (oracle 18%, heuristic 32%), leaving this as a purely diagnostic contribution.
+    While diagnostic work has value, the paper''s concluding implication ("phase-aware
+    budget allocation could improve compound sparsity deployments") is unsupported
+    by evidence in this paper.
+
+
+    ---
+
+
+    ## 4. Questions for Authors
+
+
+    1. **On the strawman (W6)**: Can you cite a specific passage in SparK, UniComp,
+    or any prior work that explicitly assumes compound degradation is phase-invariant?
+    If the assumption is truly "implicit," how do you distinguish "implicit assumption"
+    from "something nobody thought to measure yet"?
+
+
+    2. **On mechanism (W2)**: Both importance and random show similar Gini drops,
+    yet severity diverges by 15×. Isn''t the actual mechanism the circular dependency
+    (pruning degrades the scores that eviction relies on) rather than discrimination
+    collapse per se? Would you consider reframing discrimination collapse as a diagnostic
+    correlate rather than the "primary mechanism"?
+
+
+    3. **On phase segmentation (W5)**: Have you tested alternative phase definitions—e.g.,
+    reasoning-step boundaries, think-token positions, or semantic segmentation—to
+    verify that the gradient reflects genuine temporal reasoning structure rather
+    than an artifact of positional segmentation?
+
+
+    4. **On strategy specificity scope (W3)**: If the imp/rand ratio continued decaying
+    to ~1.5× on additional benchmarks, would you still consider strategy specificity
+    a core finding? What is the minimum ratio you consider practically meaningful?
+
+
+    5. **On LLaMA random gradients (W3)**: How do you reconcile LLaMA''s significant
+    random phase gradients with the "strategy-specific amplification" framing? Is
+    the simpler interpretation—"later phases are more fragile regardless of strategy"—ruled
+    out by your evidence?
+
+
+    6. **On scaling (W4)**: What specific theoretical argument supports "scale-independence"
+    of discrimination collapse? At 70B scale with 8× more heads, pruning 15% is a
+    very different perturbation than at 7B.
+
+
+    ---
+
+
+    ## 5. Experiment Coverage Assessment
+
+
+    Comparing the paper to the full experiment design (review_context.yaml):
+
+
+    | Planned Experiment | Covered in Paper? | Notes |
+
+    |----|----|----|
+
+    | c8_llama_n250_fixed | ✅ §3.3, Table 2 | Full 8-condition results reported |
+
+    | gpqa_ds_importance_s015–s030 | ✅ §3.1, Table 1 | All 4 sparsity levels complete
+    |
+
+    | gpqa_ds_random_s030 | ✅ §3.2 | Imp/rand ratio computed |
+
+    | gpqa_ds_random_s015 | ✅ §3.2 | NS result reported, replicates prior pattern
+    |
+
+    | reviewer_simulation | N/A | Meta-experiment, not empirical |
+
+
+    **Coverage is complete** for all imagined experiments. The paper includes all
+    planned conditions. No experiments were dropped from the design.
+
+
+    ---
+
+
+    ## 6. Consolidated Scores
+
+
+    | Dimension | R1 | R2 | Consensus | Justification |
+
+    |-----------|----|----|-----------|---------------|
+
+    | **Overall** | 3.0 | 2.5 | **3.0** | Borderline Findings track. Empirical work
+    is solid but conceptual novelty is incremental over ThinKV+HIES+SparK; mechanism
+    is correlational; strategy specificity weakens across benchmarks. Reaches Findings
+    threshold on the strength of the rigorous statistical design and honest scoping,
+    but does not meet main-conference accept bar. |
+
+    | **Soundness** | 3.5 | 3.5 | **3.5** | Statistical methodology is strong and
+    above the subfield norm. Phase segmentation circularity and the Gini-as-mechanism
+    issue prevent a 4.0. Main claims are supported for what they are (an empirical
+    characterization), but the mechanistic claim is overclaimed in places. |
+
+    | **Excitement** | 2.5 | 2.5 | **2.5** | The dose-response characterization and
+    the GQA vs. MHA analysis are interesting to the KV cache compression community.
+    But without actionable mitigation and with incremental novelty, the finding is
+    "good to know" rather than "must account for." Unlikely to change how most practitioners
+    approach compound compression. |
+
+    | **Reproducibility** | 3.5 | 3.5 | **3.5** | Methodology is described in sufficient
+    detail for replication. Code release promised. GSM8K data quality issues and the
+    missing n/d_z entries in Table 3 slightly reduce confidence. |
+
+    | **Confidence** | 4.0 | 4.0 | **4.0** | Both reviewers have read the full paper
+    thoroughly and are familiar with the KV cache compression and structured pruning
+    literatures. |
+
+
+    ---
+
+
+    ## 7. Meta-Reviewer Assessment
+
+
+    **Decision recommendation: Borderline — Findings track with reservations.**
+
+
+    The paper''s core empirical contribution (phase-modulated compound interaction
+    severity, confirmed across 3 benchmarks and 2 architectures) is real and well-measured.
+    The statistical rigor exceeds the subfield norm. However, four concerns collectively
+    place this below the main-conference acceptance threshold:
+
+
+    1. **Incremental novelty**: The finding is the expected intersection of three
+    known results (phase-aware compression, compound super-additivity, importance
+    score collapse).
+
+    2. **Mechanism overclaimed**: Discrimination collapse is a correlate, not an explanation
+    for the 15× severity divergence.
+
+    3. **Strategy specificity erosion**: The progressive decay from 15× to 2× raises
+    questions about whether this is a general property or a MATH-500-specific finding.
+
+    4. **No actionable outcome**: The mitigation pilot failed, leaving this purely
+    diagnostic.
+
+
+    **What would change the assessment:**
+
+    - Testing with semantically-motivated phase boundaries to rule out segmentation
+    circularity → would address W5
+
+    - A recency-based or learned eviction baseline to disentangle the H2O circular
+    dependency → would address W2
+
+    - 13B/70B spot-check results → would address W4
+
+    - Reframing: promote the crossover phenomenon (implicit in the data but not highlighted),
+    tighten to two contributions, drop the strawman → would address W1/W6
+
+
+    **Estimated accept probability at EMNLP 2026: ~25–35%.** The paper would benefit
+    from one revision cycle to sharpen framing, add the scale verification, and either
+    deepen the mechanism or honestly relabel it as correlational throughout.
+
+
+    ---
+
+
+    ## 8. Reviewer Disagreement Log
+
+
+    | Issue | R1 Position | R2 Position | Resolution |
+
+    |-------|------------|------------|------------|
+
+    | Overall score | 3.0 | 2.5 | 3.0 — R1''s argument that the statistical rigor
+    and complete experiment coverage justify Findings track was accepted; R2''s novelty
+    concerns are noted as the primary risk factor |
+
+    | Phase segmentation circularity | Flagged as major | Acknowledged as minor |
+    Kept as major — the concern that positional segmentation may be tautological is
+    not addressed in the paper and could undermine the core finding |
+
+    | Strawman framing | Not flagged | Flagged as major | Kept as major — both reviewers
+    agree no cited work explicitly assumes uniform degradation; this inflates novelty
+    |
+
+    | Crossover phenomenon | Noted as interesting | Flagged as underexploited | Agreed
+    — the implicit crossover in the data (importance underperforms random in early
+    phases on some conditions) is the most surprising finding and should be promoted
+    |
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260516T164305/worst/paper.pdf
+  imagined_experiments:
+  - name: LLaMA n=250 Cross-Architecture Full Validation
+    plan_id: c8_llama_n250_fixed
+    description: '在 DeepSeek-R1-Distill-Llama-8B 上扩展至 n=250，8 条件（importance/random
+      × s015-s030）。 Worst 预测：imp_vs_rand d_z 全部 < 0.20，random phase gradient 持续显著。
+
+      '
+    expected_results:
+      model: DeepSeek-R1-Distill-Llama-8B
+      n_problems: 250
+      n_valid: 244
+      n_skipped: 6
+      conditions_completed: 8/8
+      n_bootstrap: 10000
+      bonferroni_k: 4
+      imp_vs_rand_dz:
+        s015: 0.1
+        s020: 0.12
+        s025: 0.15
+        s030: 0.18
+      imp_vs_rand_dz_ci:
+        s015:
+        - -0.03
+        - 0.23
+        s020:
+        - -0.01
+        - 0.25
+        s025:
+        - 0.02
+        - 0.28
+        s030:
+        - 0.05
+        - 0.31
+      imp_vs_rand_dz_interpretation:
+        s015: negligible
+        s020: negligible
+        s025: negligible
+        s030: negligible
+      imp_vs_rand_dz_monotonic: true
+      phase_gradient_importance_dz:
+        s015: 0.95
+        s020: 1.05
+        s025: 1.08
+        s030: 0.98
+      phase_gradient_importance_dz_ci:
+        s015:
+        - 0.75
+        - 1.15
+        s020:
+        - 0.87
+        - 1.23
+        s025:
+        - 0.9
+        - 1.26
+        s030:
+        - 0.82
+        - 1.14
+      phase_gradient_importance_interpretation: all_large
+      phase_gradient_random_dz:
+        s015: 0.3
+        s020: 0.33
+        s025: 0.38
+        s030: 0.36
+      phase_gradient_random_dz_ci:
+        s015:
+        - 0.13
+        - 0.47
+        s020:
+        - 0.16
+        - 0.5
+        s025:
+        - 0.21
+        - 0.55
+        s030:
+        - 0.19
+        - 0.53
+      phase_gradient_random_interpretation: all_small_but_significant
+      median_diff:
+        s015: 0.012
+        s020: 0.018
+        s025: 0.055
+        s030: 0.145
+      median_diff_ci:
+        s015:
+        - -0.005
+        - 0.032
+        s020:
+        - -0.028
+        - 0.07
+        s025:
+        - -0.02
+        - 0.155
+        s030:
+        - -0.035
+        - 0.31
+      wilcoxon_p:
+        s015: 0.135
+        s020: 0.098
+        s025: 0.052
+        s030: 0.028
+      wilcoxon_p_bonferroni:
+        s015: 0.54
+        s020: 0.392
+        s025: 0.208
+        s030: 0.112
+      significant_bonferroni:
+        s015: false
+        s020: false
+        s025: false
+        s030: false
+      bonferroni_significant_count: 0
+      cross_arch_comparison:
+        deepseek_qwen2_imp_vs_rand_dz_s030: 0.8
+        llama_imp_vs_rand_dz_s030: 0.18
+        delta: 0.62
+        note: 'LLaMA imp_vs_rand d_z=0.18 远低于 Qwen2 架构的 0.80。Strategy × phase interaction
+          在 LLaMA 上 effectively absent——importance 和 random 均展示 phase gradient，差异
+          不足以达到统计显著。Strategy specificity 是 architecture-dependent 而非 universal。
+
+          '
+    result_rationale: 'n=50 时 imp_vs_rand d_z=0.19→0.34 反映了小样本噪声膨胀——CI 极宽（s030: [0.06,0.66]），
+      真值可能在区间下端。n=250 将 SE 缩小 √5≈2.24 倍，效应量估计趋于真值。关键推理： (1) LLaMA 架构（standard MHA,
+      32 heads/layer）的 attention head 冗余结构不同于 Qwen2 的 GQA——pruning 后 importance score
+      的 phase-dependent 行为在两种架构上定性不同。LLaMA 的均匀 head 分布使得 pruning 对 importance score
+      discrimination 的影响在各 phase 间更对称， importance 和 random 的差异缩小。 (2) n=50 时 random
+      phase gradient d_z=0.35-0.44 不是 Type I error——LLaMA 的 attention redistribution
+      模式确实使 random masking 也产生 phase-dependent compound effect。n=250 确认 random d_z
+      稳定在 0.30-0.38（CI 排除零），这与 DS/QW 在低 sparsity 下 random NS 的模式定性不同，是 LLaMA 架构的 genuine
+      特征。 (3) 结果是 imp_vs_rand d_z 收缩至 0.10-0.18，全部低于 medium effect 阈值，0 个 Bonferroni
+      显著。Phase gradient 在 importance 内强烈（d_z≈1.0），但这是 universal 的 phase effect，不是
+      strategy-specific interaction——random 也显示 d_z 0.30-0.38 的 non-trivial gradient。核心
+      C1 framing "''severity is strategy×phase emergent''" 在 LLaMA 上不成立，须降级为 "''phase
+      gradient is universal, strategy modulation is architecture-dependent''"。
+
+      '
+    tables:
+    - name: 'Table: LLaMA n=250 vs n=50 Effect Size Comparison'
+      columns:
+      - sparsity
+      - n50_dz
+      - n250_dz
+      - n250_bonf_p
+      - n250_significant
+      rows:
+      - - s015
+        - 0.19
+        - 0.1
+        - 0.54
+        - NS
+      - - s020
+        - 0.26
+        - 0.12
+        - 0.392
+        - NS
+      - - s025
+        - 0.29
+        - 0.15
+        - 0.208
+        - NS
+      - - s030
+        - 0.34
+        - 0.18
+        - 0.112
+        - NS
+    - name: 'Table: Random Phase Gradient Persistence (n=50 → n=250)'
+      columns:
+      - sparsity
+      - n50_random_dz
+      - n250_random_dz
+      - n250_random_CI_excludes_zero
+      rows:
+      - - s015
+        - 0.35
+        - 0.3
+        - 'yes'
+      - - s020
+        - 0.37
+        - 0.33
+        - 'yes'
+      - - s025
+        - 0.45
+        - 0.38
+        - 'yes'
+      - - s030
+        - 0.44
+        - 0.36
+        - 'yes'
+    figures_description:
+    - 'fig_c8_n250_worst.pdf: 左 panel=imp_vs_rand d_z 随 sparsity 变化（n=50 虚线 vs n=250
+      实线，含 CI band），所有 n=250 点 CI 含零或 borderline。右 panel=importance vs random phase
+      gradient d_z 在 n=250 下的对比——两者 CI 大量重叠，importance 略高但差异不显著。灰色虚线标注 medium effect
+      阈值 d_z=0.4。
+
+      '
+    analysis: 'LLaMA n=250 确认 strategy×phase interaction 在 LLaMA 架构上 effectively absent。
+      n=50 的 d_z=0.34 (s030) 是小样本噪声膨胀，真值 d_z=0.18（negligible）。更关键的是， random phase
+      gradient 在 n=250 下仍显著（d_z 0.30-0.38），且 CI 排除零——这与 DeepSeek/Qwen 上 random 低 sparsity
+      NS 的模式定性不同。解读：phase gradient 是 universal phenomenon（importance 和 random 均展示），strategy
+      specificity 是 architecture-dependent 的——仅在 Qwen2 架构上稳健，LLaMA 上不成立。 论文必须将 C8
+      从 "partially_confirmed" 改为 "architecture-dependent"，Abstract/Intro 不能声明 "strategy×phase
+      interaction generalizes across architectures"。 Framing 修改：phase gradient 作为
+      robust universal finding（三架构均 d_z>0.9 for importance），strategy specificity 作为
+      Qwen2-specific observation that requires further investigation across architectures。
+
+      '
+  - name: GPQA DeepSeek Importance Phase Gradient Profiling
+    plan_id: gpqa_profiling_ds
+    description: '在 DeepSeek-R1-Distill-Qwen-7B 上对 GPQA-Diamond (n≤198) 运行 importance
+      masking across 4 sparsity levels。Worst 预测：gradient 非单调或极弱。
+
+      '
+    expected_results:
+      model: DeepSeek-R1-Distill-Qwen-7B
+      benchmark: GPQA-Diamond
+      n_problems: 198
+      mid_null_rate: 0.42
+      effective_n: 115
+      method: median + Wilcoxon + bootstrap_median(B=10000)
+      importance:
+        s015:
+          median_gradient: 0.068
+          ci_low: -0.015
+          ci_high: 0.182
+          wilcoxon_p: 0.085
+        s020:
+          median_gradient: 0.195
+          ci_low: 0.042
+          ci_high: 0.405
+          wilcoxon_p: 0.012
+        s025:
+          median_gradient: 0.312
+          ci_low: 0.085
+          ci_high: 0.622
+          wilcoxon_p: 0.005
+        s030:
+          median_gradient: 0.855
+          ci_low: 0.285
+          ci_high: 1.68
+          wilcoxon_p: 0.001
+      dose_response_monotonic: true
+      spearman_rho: 1.0
+      cross_benchmark_comparison:
+        math500_ds_gradient_s030: 8.48
+        gsm8k_ds_gradient_s030: 4.682
+        gpqa_ds_gradient_s030: 0.855
+        ratio_math_to_gpqa: 9.9
+        note: 'GPQA gradient magnitude 仅为 MATH-500 的 ~10%，远低于 GSM8K。GPQA 多选题格式 导致
+          reasoning chain 短（平均 ~300 tokens vs MATH-500 ~1200 tokens），low-sparsity
+          phase token 极少，phase gradient 被压缩。
+
+          '
+    result_rationale: 'GPQA-Diamond 是 graduate-level 多选题，格式决定了 reasoning chain 远短于
+      MATH-500。 DeepSeek-R1-Distill-Qwen-7B 对 GPQA 的生成通常 300-600 tokens（vs MATH-500
+      的 800-2000 tokens），且 <think> 段落较短（多选题不需要长推理链）。这导致： (1) Phase segmentation 后
+      low-sparsity phase 包含的 token 很少，mid phase 高 null rate （~42%），compound interaction
+      的 phase-dependent 放大效应被稀释； (2) Gradient magnitude 仅 0.068→0.855——虽然单调但 s030
+      仅 0.855，不到 MATH-500 的 1/10。物理原因：短 reasoning chain 意味着 head pruning 对 importance
+      score discrimination 的影响没有足够的 token 累积来放大 compound effect； (3) s015 的 CI 跨零（p=0.085），Bonferroni
+      后更不显著——GPQA 在低 sparsity 下 compound effect 不可检测。Dose-response 虽然技术上单调（ρ=1.0），但
+      absolute magnitude 太小，reviewer 会质疑 practical significance。
+
+      '
+    tables:
+    - name: 'Table: Cross-Benchmark Phase Gradient Comparison (DeepSeek)'
+      columns:
+      - sparsity
+      - MATH-500
+      - GSM8K
+      - GPQA
+      rows:
+      - - s015
+        - 0.39
+        - 0.241
+        - 0.068
+      - - s020
+        - 1.21
+        - 0.74
+        - 0.195
+      - - s025
+        - 3.99
+        - 1.992
+        - 0.312
+      - - s030
+        - 8.48
+        - 4.682
+        - 0.855
+    figures_description:
+    - 'fig_cross_benchmark_gradient_worst.pdf: 三条线(MATH/GSM/GPQA)展示 DS importance
+      phase gradient。GPQA 曲线几乎贴近 x 轴，与 MATH-500 差距巨大。Y 轴 log scale 使三条线可见但 GPQA gradient
+      在 linear scale 上 visually trivial。
+
+      '
+    analysis: 'GPQA gradient 技术上单调但 magnitude 极弱（s030 仅 0.855 vs MATH-500 的 8.48），
+      构成 "effect disappears on different tasks" 的叙事风险。Reviewer 会解读为： phase gradient
+      的 magnitude 是 task-dependent 的，MATH-500 上的强效应可能是 overfitting to one specific
+      benchmark 的 reasoning chain 结构。加上 GSM8K 已显示 衰减（4.68），GPQA 进一步衰减至 <1，趋势指向 "effect
+      diminishes as task changes"。 Reframe：phase gradient 方向一致但 magnitude task-dependent，强调方向
+      robustness 而非 magnitude，将 magnitude variation 归因于 reasoning chain length differences
+      （可量化：MATH ~1200 tok, GSM ~400 tok, GPQA ~300 tok）。
+
+      '
+  - name: GPQA Qwen Importance Phase Gradient Profiling
+    plan_id: gpqa_profiling_qw
+    description: '在 Qwen2.5-7B-Instruct 上对 GPQA-Diamond 运行 importance masking，验证 cross-model。
+      Worst 预测：QW 效应更弱，s015/s020 NS。
+
+      '
+    expected_results:
+      model: Qwen2.5-7B-Instruct
+      benchmark: GPQA-Diamond
+      n_problems: 198
+      mid_null_rate: 0.55
+      effective_n: 89
+      importance:
+        s015:
+          median_gradient: 0.012
+          ci_low: -0.025
+          ci_high: 0.058
+          wilcoxon_p: 0.32
+        s020:
+          median_gradient: 0.048
+          ci_low: -0.008
+          ci_high: 0.125
+          wilcoxon_p: 0.078
+        s025:
+          median_gradient: 0.185
+          ci_low: 0.035
+          ci_high: 0.405
+          wilcoxon_p: 0.008
+        s030:
+          median_gradient: 0.52
+          ci_low: 0.145
+          ci_high: 1.05
+          wilcoxon_p: 0.002
+      dose_response_monotonic: true
+      spearman_rho: 1.0
+      qw_ds_gradient_ratio_s030: 0.61
+      note: 'QW gradient ~61% of DS（与 MATH-500 pattern 一致），但 absolute magnitude 极小——s030
+        仅 0.52，s015/s020 CI 含零。
+
+        '
+    result_rationale: 'QW 在 MATH-500 上 gradient 为 DS 的 ~37%（3.155 vs 8.48），在 GSM8K
+      上约 45% （2.092 vs 4.682）。GPQA 上预测 QW ~61% of DS。QW 的 attention head utilization
+      更均匀，pruning 影响更分散，compound interaction 更弱。GPQA 短 reasoning chain 进一步压缩效应。s015
+      和 s020 的 gradient 极小（0.012 和 0.048），CI 含零，不可靠。 高 mid_null_rate（55%）反映 QW 在 GPQA
+      上的 reasoning chain 更短更不稳定——many problems 的 mid phase 基本为空。仅 s025/s030 Wilcoxon
+      显著，但 Bonferroni k=4 后 s025 borderline。
+
+      '
+    tables:
+    - name: 'Table: Cross-Benchmark Phase Gradient Comparison (Qwen)'
+      columns:
+      - sparsity
+      - MATH-500
+      - GSM8K
+      - GPQA
+      rows:
+      - - s015
+        - 0.066
+        - 0.039
+        - 0.012
+      - - s020
+        - 0.307
+        - 0.158
+        - 0.048
+      - - s025
+        - 1.075
+        - 1.1
+        - 0.185
+      - - s030
+        - 3.155
+        - 2.092
+        - 0.52
+    figures_description:
+    - 'fig_qw_cross_benchmark_worst.pdf: QW 三 benchmark gradient 曲线。GPQA 几乎平坦， 与 MATH-500/GSM8K
+      差距明显。
+
+      '
+    analysis: 'QW GPQA gradient s030=0.52，不到 MATH-500 的 1/6。Cross-model replication
+      方向一致 但 magnitude 进一步衰减。两模型 × 三 benchmark 的 gradient magnitude 矩阵显示 明确的 task-dependence：MATH-500
+      >> GSM8K >> GPQA。Reviewer 会用此论证 "phase gradient magnitude is primarily driven
+      by reasoning chain length, not a fundamental property of compound compression"——如果效应量完全由
+      chain length 解释，则贡献 降级为 trivial observation。
+
+      '
+  - name: GPQA Random Baselines and Strategy Specificity Ratio
+    plan_id: gpqa_random_baselines
+    description: '在 GPQA-Diamond 上对 DS 和 QW 运行 random masking，计算 strategy specificity
+      ratio。 Worst 预测：ratio ≈ 1.0-1.5，无 strategy specificity。
+
+      '
+    expected_results:
+      ds_random:
+        s015:
+          median_gradient: 0.052
+        s020:
+          median_gradient: 0.148
+        s025:
+          median_gradient: 0.265
+        s030:
+          median_gradient: 0.715
+      qw_random:
+        s015:
+          median_gradient: 0.01
+        s020:
+          median_gradient: 0.042
+        s025:
+          median_gradient: 0.155
+        s030:
+          median_gradient: 0.48
+      strategy_specificity_ratio_ds:
+        s015: 1.3
+        s020: 1.3
+        s025: 1.2
+        s030: 1.2
+      strategy_specificity_ratio_qw:
+        s015: 1.2
+        s020: 1.1
+        s025: 1.2
+        s030: 1.1
+      strategy_specificity_ratio_range: 1.1-1.3×
+      all_ratios_above_5x: false
+      gpqa_imp_rand_ratio_s030: 1.2
+      cross_benchmark_specificity_comparison:
+        math500: 15-36×
+        gsm8k: 2.3-3.8×
+        gpqa: 1.1-1.3×
+      gradient_non_monotonic_random: false
+      note: 'Random gradient 在 GPQA 上与 importance 几乎相同（ratio ≈ 1.2），strategy specificity
+        在 GPQA 上完全消失。趋势：MATH 15-36× → GSM 2.3-3.8× → GPQA 1.1-1.3×，外推 意味着 "更难/更短的任务上
+        strategy specificity 趋于 1"。
+
+        '
+    result_rationale: 'GPQA 多选题格式下 reasoning chain 短（~300 tokens），importance score
+      在短 sequence 中的 discrimination 优势被大幅压缩。物理解释： (1) Importance eviction 的优势依赖于 importance
+      score 能准确识别 "关键 token" vs "冗余 token"——在长 reasoning chain（MATH-500）中，late-phase
+      token 累积了大量 attention pattern 的信息差异，importance score 的判别力强，random 无法匹配； (2)
+      在短 chain（GPQA）中，attention pattern 尚未充分分化，importance score 的 判别力有限——pruning 后
+      discrimination collapse 使 importance eviction 接近 random， 两者 compound interaction
+      的 phase gradient 接近； (3) Task-dependence 趋势（15-36× → 2.3-3.8× → 1.1-1.3×）完美对应
+      reasoning chain length 的递减（MATH ~1200 → GSM ~400 → GPQA ~300 tokens），支持 "strategy
+      specificity 是 chain length 的函数" 解读——这削弱了 strategy specificity 作为 fundamental
+      finding 的叙事。 (4) GPQA random 也显示单调 gradient（与 importance 几乎平行），进一步支持 "phase
+      gradient is universal, not strategy-specific" 的 worst-tier narrative。
+
+      '
+    tables:
+    - name: 'Table: Strategy Specificity Ratio Across Benchmarks (Worst)'
+      columns:
+      - benchmark
+      - ratio_range
+      - interpretation
+      rows:
+      - - MATH-500
+        - 15-36×
+        - very_high
+      - - GSM8K
+        - 2.3-3.8×
+        - moderate
+      - - GPQA
+        - 1.1-1.3×
+        - absent
+    - name: 'Table: GPQA Importance vs Random Phase Gradient (DS)'
+      columns:
+      - sparsity
+      - importance_gradient
+      - random_gradient
+      - ratio
+      rows:
+      - - s015
+        - 0.068
+        - 0.052
+        - 1.3
+      - - s020
+        - 0.195
+        - 0.148
+        - 1.3
+      - - s025
+        - 0.312
+        - 0.265
+        - 1.2
+      - - s030
+        - 0.855
+        - 0.715
+        - 1.2
+    figures_description:
+    - 'fig_specificity_decay.pdf: Strategy specificity ratio vs benchmark 的柱状图。 三组柱（MATH/GSM/GPQA），从
+      15-36× 下降到 1.1-1.3×。标注 5× 阈值线（虚线）， GPQA 远低于阈值。附带 reasoning chain length annotation（平均
+      token count）。
+
+      '
+    - 'fig_gpqa_imp_vs_rand_worst.pdf: GPQA 上 importance vs random gradient 的双线图 （DS
+      和 QW 各一个 panel）。两条线几乎重合，阴影区域（差距）极窄。
+
+      '
+    analysis: 'GPQA strategy specificity ratio 1.1-1.3×，完全不具 practical significance。三
+      benchmark 构成 "specificity decay"：15-36× → 2.3-3.8× → 1.1-1.3×，与 reasoning chain
+      length 完美相关。Reviewer 将论证：(a) strategy specificity 不是 compound compression 的固有属性，而是长
+      reasoning chain 的 artifact；(b) MATH-500 上的 15-36× 是 "overfitting to a benchmark
+      where importance happens to work well"； (c) 在实际部署场景中（混合 task），average specificity
+      接近 GSM8K/GPQA 水平 （2-3× 或更低），practical importance 有限。 Reframe 策略：承认 strategy
+      specificity 是 task-modulated（chain length dependent）， 将贡献重心转向 phase gradient
+      本身的 robustness 和 II 作为诊断工具的价值。
+
+      '
+  - name: Discrimination Collapse Quantitative Correlation Analysis
+    plan_id: mechanism_gini_correlation
+    description: '利用 c5_per_phase_gini 和 c2_n500 数据计算 per-phase Gini_delta 与 II 的定量相关。
+      Worst 预测：within-model ρ=1.0 trivially，cross-model r < 0.7。
+
+      '
+    expected_results:
+      analysis_type: correlation of per-phase Gini collapse magnitude with II severity
+      data_source: c5_per_phase_gini (n=30 per model) + c2_n500 (n=500 per model)
+      ds_within_model:
+        gini_delta_low_phase:
+        - -0.0163
+        - -0.0209
+        - -0.0313
+        - -0.0373
+        ii_median:
+        - 0.3907
+        - 1.2149
+        - 3.9857
+        - 8.4813
+        spearman_rho: 1.0
+        pearson_r: 0.93
+        pearson_p: 0.035
+      qw_within_model:
+        gini_delta_low_phase:
+        - -0.0165
+        - -0.02
+        - -0.0286
+        - -0.035
+        ii_median:
+        - 0.0659
+        - 0.3073
+        - 1.0745
+        - 3.155
+        spearman_rho: 1.0
+        pearson_r: 0.95
+        pearson_p: 0.025
+      cross_model_pooled:
+        n_datapoints: 8
+        spearman_rho: 0.55
+        pearson_r: 0.48
+        pearson_p: 0.115
+      cv_correlation:
+        ds_cv_delta_vs_ii_spearman: 1.0
+        qw_cv_delta_vs_ii_spearman: 1.0
+        cross_model_cv_pearson_r: 0.52
+      llama_validation:
+        note: 'LLaMA per-phase Gini 数据不可用（c8_llama_n250_fixed 不含 per-head Gini 计算），
+          无法加入 cross-model pooling。即使有，LLaMA 的 Gini-II 关系斜率会因 architecture 差异导致 cross-model
+          r 进一步下降。
+
+          '
+    result_rationale: 'Within-model Spearman ρ=1.0 是 trivial 的——仅 4 个单调递增的点（sparsity
+      s015-s030）， 任何两个单调递增序列的 Spearman 都是 1.0。Pearson r=0.93/0.95 反映线性近似，但 仅 4 个点的
+      Pearson r 的统计功效极低（df=2, critical r at α=0.05 is 0.95）。
+
+      Cross-model pooled 是关键指标，但 worst case 下 r=0.48： (1) DS 和 QW 的 Gini_delta 范围相似（[-0.016,
+      -0.037] vs [-0.017, -0.035]）， 但 II 范围差异巨大（DS: 0.39-8.48 vs QW: 0.066-3.16）。这意味着
+      Gini→II 的 传递函数在两模型间斜率差 2-3 倍——pooled regression 被迫拟合两条不同斜率的线， r 大幅下降。 (2) 8
+      个数据点中，DS 的 4 个点主导高 II 区间（II>1），QW 的 4 个点主导低 II 区间——两组点在 x-y 空间中形成两个分离的 cluster，pooled
+      r 主要反映 cluster-level 的正趋势而非 within-cluster 的线性关系。 (3) Reviewer 会指出：cross-model
+      r=0.48 不支持 "Gini collapse quantitatively predicts II severity" 的声明——at best
+      它说明方向一致但量化关系是 model-specific。
+
+      '
+    tables:
+    - name: 'Table: Gini-II Correlation Summary (Worst)'
+      columns:
+      - scope
+      - Spearman ρ
+      - Pearson r
+      - p-value
+      - interpretation
+      rows:
+      - - DS within-model
+        - 1.0
+        - 0.93
+        - 0.035
+        - trivially monotonic (n=4)
+      - - QW within-model
+        - 1.0
+        - 0.95
+        - 0.025
+        - trivially monotonic (n=4)
+      - - Cross-model pooled
+        - 0.55
+        - 0.48
+        - 0.115
+        - weak, NS
+    figures_description:
+    - 'fig_gini_ii_scatter_worst.pdf: 散点图 |Gini_delta| vs II_median (log scale)。 DS
+      4 点（高 II 区间）和 QW 4 点（低 II 区间）形成两个分离 cluster。Pooled 回归线 r=0.48 但 CI band 极宽。两组分别画
+      within-model 回归线（斜率差异明显）。
+
+      '
+    analysis: 'Within-model ρ=1.0 是 trivial 的（4 个单调点），不应作为 "quantitative prediction"
+      claim。Cross-model r=0.48 不支持 "Gini decline quantitatively predicts interaction
+      severity" 的声明——两模型的 Gini-II 传递函数斜率不同，pooled 分析被 Simpson''s paradox-like 效应削弱。Reframe：Gini
+      decline 方向跨模型一致（qualitative support for discrimination collapse hypothesis），但
+      quantitative prediction 是 model-specific 的——论文降级为 "Gini decline is a consistent
+      correlate of II severity within each model (ρ=1.0), but the Gini-to-II transfer
+      function is architecture-dependent"。 这仍支持 discrimination collapse 作为 mechanism
+      hypothesis，但不支持 universal quantitative law 的叙事。
+
+      '
+  - name: Language Switching at Intermediate Sparsities (s020/s025)
+    plan_id: c10_lang_s020_s025
+    description: '填补 s020 和 s025 的 language switching rate 数据。注意：此实验已完成（DONE）， 实际结果可用。Worst
+      tier 关注 reviewer 的 dismissive 解读。
+
+      '
+    expected_results:
+      method: GPU inference + language detection
+      n_per_sparsity: 50
+      s020:
+        switch_rate: 0.14
+        cn_count: 7
+        en_count: 43
+        cn_acc: 0.333
+        en_acc: 0.25
+      s025:
+        switch_rate: 0.32
+        cn_count: 16
+        en_count: 34
+        cn_acc: 0.2
+        en_acc: 0.057
+      full_dose_response:
+        dense: 0.0
+        s015: 0.04
+        s020: 0.14
+        s025: 0.32
+        s030: 0.4
+      monotonic: true
+      spearman_rho: 1.0
+      note: '实际数据已完成。Dose-response 单调递增。但 worst tier 下 reviewer 解读为 DeepSeek bilingual
+        training artifact，非 compound sparsity 的 general 现象。
+
+        '
+    result_rationale: '实验已完成，数据与 best tier 预测一致（单调递增）。但在 worst tier narrative 下， reviewer
+      质疑：(1) Language switching 是 DeepSeek-R1-Distill 系列的特有 artifact （bilingual 中英训练），Qwen
+      和 non-bilingual 模型上不会复现；(2) 这与 compound sparsity 的 mechanism 无直接关系——任何足够 severe
+      的 perturbation 都可能触发 language switching，不证明 phase-dependent interaction 是原因；(3)
+      作为 behavioral evidence 太间接，不能替代 direct mechanistic validation。Reviewer 建议移至
+      appendix 作为 interesting observation 但不支撑 core claims。
+
+      '
+    tables:
+    - name: 'Table: Language Switching Dose-Response (Actual Data)'
+      columns:
+      - sparsity
+      - switch_rate
+      - cn_count
+      - cn_acc
+      - en_acc
+      - II_median
+      rows:
+      - - dense
+        - 0%
+        - 0
+        - n/a
+        - 0.74
+        - 0
+      - - s015
+        - 4%
+        - 2
+        - 0.0
+        - 0.48
+        - 0.39
+      - - s020
+        - 14%
+        - 7
+        - 0.333
+        - 0.25
+        - 1.21
+      - - s025
+        - 32%
+        - 16
+        - 0.2
+        - 0.057
+        - 3.99
+      - - s030
+        - 40%
+        - 20
+        - 0.1
+        - 0.1
+        - 8.48
+    figures_description:
+    - 'fig_lang_switching_actual.pdf: 实际数据与 II dose-response 的双 Y 轴图。 两条曲线同步上升。Reviewer
+      批注：" DeepSeek-specific artifact"。
+
+      '
+    analysis: '数据本身 clean（单调递增，ρ=1.0），但在 worst tier 下其价值被限制。Reviewer 将其作为 "interesting
+      side observation" 但不计入 contribution 评估。论文中最多 作为 §6 Discussion 的 behavioral illustration，不列入
+      core evidence。
+
+      '
+  - name: C9 Related Work Differentiation (Lethe/SparK/ThinKV/HIES/Physics-KV)
+    plan_id: c9_related_work
+    description: '§2 Related Work 定位。Worst 预测：2+ reviewer 仍判 novelty insufficient，
+      Physics of KV Cache (2603.01426) 被认为已覆盖核心 narrative。
+
+      '
+    expected_results:
+      output_type: manuscript_section
+      reviewer_reception:
+        reviewer_1_novelty_concern: '"Physics of KV Cache Compression already characterizes
+          phase-dependent compression behavior with a rigorous theoretical framework.
+          This paper''s empirical observation of phase-dependent compound interaction
+          is a special case of their general theory. The contribution is incremental."
+
+          '
+        reviewer_2_novelty_concern: '"HIES identified importance score collapse and
+          proposed a fix. The discrimination collapse mechanism here is essentially
+          the same observation applied to a compound setting. The ''compound amplification''
+          claim is interesting but the underlying mechanism is known."
+
+          '
+        reviewer_3_scope_concern: '"Results on 7B models only, strategy specificity
+          doesn''t hold on LLaMA or GPQA. The core finding seems benchmark- and architecture-specific
+          rather than a general phenomenon."
+
+          '
+        novelty_challenged_count: 2
+        average_score: 2.7
+        accept_probability: 0.12
+      gap_analysis_effectiveness:
+        positioning_accepted: false
+        main_objection: 'Reviewers recognize the compound × phase × strategy 三维 framing
+          as novel in principle, but argue (a) the strategy dimension collapses on
+          GPQA and LLaMA, reducing it to compound × phase (already partially covered
+          by Physics of KV); (b) the phase dimension uses a different semantic of
+          "phase" (reasoning phase vs compression-rate phase transition), but the
+          practical insight is similar — "compression hurts more at certain stages."
+
+          '
+    result_rationale: '在 worst tier 下，即使 Related Work 写作清晰区分了本文与 prior work 的定位， reviewer
+      仍因以下原因判 novelty insufficient： (1) LLaMA 上 strategy specificity 消失（imp_vs_rand
+      d_z < 0.20）→ "strategy" 维度不 robust，三维交互降级为二维（compound × phase）； (2) GPQA 上 specificity
+      ratio ≈ 1.1-1.3 → 在非 MATH-500 benchmark 上 "strategy" 维度也消失； (3) 剩余的 "compound
+      × phase" 二维交互被 Physics of KV Cache 的 phase transition 理论部分覆盖——虽然 "phase" 语义不同，但
+      reviewer 认为 insight level 相似； (4) Discrimination collapse mechanism 被 HIES 的
+      score collapse 发现覆盖—— compound setting 中的放大效应被视为 "straightforward extension"；
+      (5) 7B 模型 + 有限 benchmark 的 scope 不足以支撑 EMNLP 发表。 Reframe 策略：从 finding paper
+      转向 methodology contribution——II 作为标准化 诊断指标 + per-problem paired bootstrap protocol
+      + phase-stratified audit framework。 这避免了与 Physics of KV Cache 的 novelty 竞争。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'C9 在 worst tier 下 effectively fails——Related Work 的 gap analysis 虽然
+      technically 正确（没有 prior work 同时分析三维），但当 strategy 维度在 LLaMA 和 GPQA 上崩塌 时，novelty
+      的 unique contribution 缩水。2/3 reviewer 判 novelty insufficient， average score
+      2.7，accept probability ~12%。
+
+      Reframe 路径（仍冲 EMNLP，不降级目标）： (1) Interaction Index (II) 作为 compound compression
+      的标准化诊断指标——prior work 缺乏统一量化框架。II 的 per-problem paired 定义 + bootstrap CI + phase
+      stratification 是 methodological contribution。 (2) 证明 per-problem paired bootstrap
+      + phase-stratified analysis 能揭示 aggregate metrics（如 average perplexity）掩盖的 within-problem
+      heterogeneity。 (3) Phase gradient 定位为 ''robust phenomenon''（importance 内部始终
+      d_z>1.0 跨三架构）， strategy specificity 降级为 ''one manifestation that varies by context''。
+      (4) Practical contribution：任何部署 compound compression 的团队都需 phase-stratified
+      audit，我们提供 protocol + open-source toolkit。 (5) Related Work 不再与 Physics of KV
+      Cache 竞争 ''phase'' narrative，而定位为 complementary：他们做 single-axis phase transition
+      理论，我们做 compound-axis phase-stratified empirical audit——维度正交。'
+  review_report: '---
+
+    dream_id: dream_20260516T164305
+
+    tier: worst
+
+    overall_score: reject
+
+    timestamp: 2026-05-16T17:39:31.470971+00:00
+
+    ---
+
+
+    # Dream Review Report: Phase-Stratified Diagnosis of Compound Sparsity Interactions
+
+
+    **Paper**: "Phase-Stratified Diagnosis of Compound Sparsity Interactions: The
+    Interaction Index Framework"
+
+    **Venue**: EMNLP 2026 (via ACL Rolling Review)
+
+    **Review Mode**: Full (2 Reviewers + Roundtable)
+
+    **Date**: 2026-05-16
+
+
+    ---
+
+
+    ## Venue Calibration
+
+
+    - **Scoring scale**: ARR 1–5 (5=Excellent, 4=Strong, 3=Acceptable, 2=Poor, 1=Major
+    Issues)
+
+    - **Dimensions**: Soundness, Excitement, Overall Recommendation
+
+    - **Acceptance rate**: ~22% (EMNLP 2025 reference); meta-review ≥3.5 → Main, 3
+    → unstable, <3 → reject
+
+    - **Source**: [ARR Review Form](http://aclrollingreview.org/reviewform), [EMNLP
+    2025 Statistics](https://papercopilot.com/statistics/emnlp-statistics/emnlp-2025-statistics/)
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### Reviewer 1 (R1) — Methods + Experiments
+
+
+    **Summary**: The paper introduces the Interaction Index (II), a per-problem paired
+    metric for diagnosing compound sparsity interactions, with bootstrap CIs and phase-stratified
+    decomposition. The core finding is that the phase gradient (low-sparsity reasoning
+    phases suffer more from compound compression) is robust across three architectures
+    (dz > 0.95), while strategy specificity (importance vs. random eviction differential)
+    is context-dependent—strong on MATH-500, absent on GPQA and LLaMA.
+
+
+    **Strengths**:
+
+    - Rigorous paired statistical design: per-problem paired analysis avoids ecological
+    fallacy; bootstrap (B=10,000), Wilcoxon signed-rank, Bonferroni correction are
+    all appropriate for heavy-tailed distributions
+
+    - Transparent about limitations: acknowledges H2O confound, correlational Gini
+    mechanism, model-dependent entropy redistribution, and symmetric sparsity assumption
+
+    - Multi-dimensional replication: cross-architecture (GQA vs MHA), cross-benchmark
+    (MATH-500, GSM8K, GPQA), cross-training-paradigm (DeepSeek vs Qwen)
+
+    - Well-calibrated claims: LLaMA results use hedged language, Gini mechanism labeled
+    "correlational," strategy specificity explicitly bounded
+
+    - Practical guidance: concrete operating-point recommendations (e.g., s ≤ 0.20
+    during low-sparsity phases)
+
+
+    **Weaknesses**:
+
+    - **II is not a novel metric**: Eq. 1 is the standard interaction contrast from
+    2×2 factorial design (Δ_compound − Δ_prune − Δ_evict). Phase stratification is
+    computing this in two data subsets. Branding it "Interaction Index Framework"
+    overstates methodological novelty.
+
+    - **Arbitrary phase segmentation**: The 33/67 percentile split on cumulative token
+    position has weak theoretical motivation. Why terciles? What if the true phase
+    boundary is at 10% or 60%? No information-theoretic justification (e.g., changepoint
+    detection on attention entropy).
+
+    - **Trivial ρ=1.0 claims**: Within-model Spearman ρ=1.0 with n=4 monotonically
+    ordered sparsity levels is guaranteed by construction. Any monotonic 4-point sequence
+    gives ρ=1.0. This is prominently featured in the abstract—misleading presentation.
+
+    - **Cross-model Gini-II correlation is NS**: Pearson r=0.48, p=0.115 with only
+    8 data points (two 4-point clusters with different slopes). Does not support "Gini
+    decline quantitatively predicts II severity." The mechanism is self-admittedly
+    insufficient (aggregate Gini drops <10% different between strategies yet severity
+    diverges 15-17×).
+
+    - **LLaMA validation deflates original claims**: n=50 pilot showed dz=0.34 for
+    imp_vs_rand at s030; n=250 reveals true dz=0.18 (negligible). All four sparsity
+    levels NS after Bonferroni. Random eviction also shows significant phase gradients
+    (dz 0.30-0.38, CIs excluding zero), directly undermining strategy specificity.
+
+    - **GPQA results are weak**: s015 CI crosses zero (p=0.085); Qwen mid-null rate
+    55% leaving effective n=89; strategy specificity ratio 1.1-1.3× (absent). Phase
+    gradient magnitude ~10% of MATH-500, raising "effect disappears on different tasks"
+    concern.
+
+    - **Only 7B-scale models**: No evidence of generalization to 13B, 70B, or MoE
+    architectures.
+
+    - **No computational cost analysis**: The diagnostic framework requires 4-condition
+    evaluation (dense + prune-only + evict-only + compound) per problem—potentially
+    4× inference cost—but no overhead is reported.
+
+    - **Broken references**: Multiple "??" and "?" throughout the manuscript indicate
+    unresolved citations.
+
+
+    **Questions for Authors**:
+
+    1. How does II differ from the standard interaction contrast in factorial ANOVA,
+    beyond domain application?
+
+    2. Have you considered changepoint detection for phase boundary identification
+    rather than fixed terciles?
+
+    3. Can you disentangle the H2O confound by using a scoring mechanism independent
+    of pruned attention distributions (e.g., recency-based eviction)?
+
+    4. What is the computational overhead of the full 4-condition audit protocol?
+
+
+    **R1 Scores**: Soundness 3, Excitement 2.5, Overall 2.5, Confidence 4
+
+
+    ---
+
+
+    ### Reviewer 2 (R2) — Novelty + Related Work
+
+
+    **Summary**: The paper proposes phase-stratified compound sparsity diagnostics
+    using a per-problem interaction metric. While the statistical methodology is sound,
+    the core contributions face significant novelty challenges from existing work
+    (Physics of KV Cache Compression, HIES) and the key differentiating claim—strategy
+    specificity—collapses on two of three tested conditions.
+
+
+    **Strengths**:
+
+    - Honest, comprehensive reporting of negative and boundary results—unusual and
+    commendable
+
+    - Clear related work section with explicit positioning paragraph differentiating
+    from Physics of KV Cache
+
+    - Well-structured progression from core validation to cross-architecture to cross-benchmark
+
+    - The boundary-condition analysis (where strategy specificity fails) is itself
+    informative for the community
+
+
+    **Weaknesses**:
+
+    - **Physics of KV Cache Compression overlap**: Phase-dependent compression behavior
+    is already characterized with a rigorous theoretical framework (2603.01426). Their
+    "phase" refers to compression-rate thresholds while this paper uses temporal reasoning
+    stages, but the practical insight is equivalent: "compression hurts more at certain
+    stages." The compound extension is predictable.
+
+    - **HIES already covers discrimination collapse**: Importance score collapse in
+    single-axis settings is established. The paper''s "discrimination collapse" in
+    compound setting shows near-identical Gini drops (<10% difference between strategies),
+    with no demonstrated amplification effect. This is a straightforward extension,
+    not a novel mechanism.
+
+    - **Three-dimensional framing collapses to two dimensions**: The paper''s unique
+    positioning is compound × phase × strategy. But strategy specificity is absent
+    on GPQA (ratio 1.1-1.3×) and LLaMA (dz < 0.20). Without the strategy dimension,
+    the remaining compound × phase interaction is substantially covered by existing
+    phase-aware compression literature.
+
+    - **Textbook metric as contribution**: II (Eq. 1) is the standard interaction
+    term from factorial experimental design. Per-problem computation and bootstrap
+    CIs are good statistical practice but not a methodological innovation—these are
+    standard techniques applied to a new domain.
+
+    - **Benchmark-specific findings risk "overfitting" narrative**: MATH-500 shows
+    15-36× strategy specificity; GSM8K 2.3-3.8×; GPQA 1.1-1.3×. The monotonic decay
+    perfectly correlates with reasoning chain length (1200 → 400 → 300 tokens). Reviewers
+    can argue the strong MATH-500 effect is an artifact of long CoT chains specific
+    to one benchmark, not a fundamental property of compound compression.
+
+    - **7B-only scale**: All three models are 7B/8B. No completed larger-model experiments.
+    At this scale, findings may not transfer to production-relevant sizes (70B+).
+
+    - **Broken references throughout**: "??" citations in Introduction and Related
+    Work sections undermine submission quality.
+
+    - **Language switching section (§4.5)**: Acknowledged as DeepSeek bilingual-specific,
+    contributing nothing to core claims. Should be appendix material at most.
+
+
+    **Questions for Authors**:
+
+    1. If strategy specificity is "one manifestation that varies by context," what
+    is the core contribution that Physics of KV Cache + HIES do not already provide?
+
+    2. The specificity decay (15-36× → 2.3-3.8× → 1.1-1.3×) correlates perfectly with
+    chain length. Can you rule out that strategy specificity is purely a function
+    of chain length rather than a property of compound compression?
+
+    3. What would the results look like on a 70B model? Is there any reason to expect
+    the 7B findings to transfer?
+
+    4. How do you respond to the concern that removing the strategy dimension reduces
+    your contribution to "compound compression hurts more in early reasoning phases"—a
+    finding partially anticipated by phase-aware compression literature?
+
+
+    **R2 Scores**: Soundness 3, Excitement 2, Overall 2, Confidence 4
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing
+
+
+    After exchanging reviews, both reviewers identified strong convergence on the
+    following points:
+
+
+    1. **Both agree**: II is a standard factorial interaction term, not a novel methodological
+    contribution. The "framework" branding is an overclaim.
+
+    2. **Both agree**: Strategy specificity collapse on LLaMA and GPQA is the paper''s
+    biggest empirical problem—it reduces the three-dimensional contribution to two
+    dimensions.
+
+    3. **Both agree**: Statistical methodology is rigorous (paired bootstrap, Bonferroni,
+    nonparametric tests). This is a genuine strength.
+
+    4. **Both agree**: ρ=1.0 on n=4 monotonic points is trivially guaranteed and should
+    not be featured prominently.
+
+    5. **Both agree**: Cross-model Gini-II r=0.48 (NS) does not support quantitative
+    mechanistic claims.
+
+    6. **Both agree**: Broken references are a submission-quality issue.
+
+    7. **Both agree**: 7B-only scope is limiting.
+
+
+    **Divergence**: R1 is slightly more sympathetic to the engineering utility of
+    the phase-stratified audit protocol; R2 is more concerned about the novelty gap
+    relative to Physics of KV Cache and HIES. R1 notes the paper''s honesty about
+    limitations as a strength; R2 views the same honesty as inadvertently highlighting
+    how narrow the surviving contribution is.
+
+
+    ---
+
+
+    ## Step 3: Convergence Discussion
+
+
+    **R1**: "The statistical infrastructure is genuinely solid—this is better empirical
+    methodology than most compression papers. But the surviving contribution after
+    strategy specificity collapses is: ''compound compression hurts more in early
+    reasoning phases, and here''s a standard factorial metric to measure it.'' That''s
+    a useful observation but not EMNLP-main caliber."
+
+
+    **R2**: "Agreed. The paper is well-executed but the novelty ceiling is low. Physics
+    of KV Cache already established phase-dependent compression behavior (single-axis);
+    extending to compound (showing the same pattern persists when you add a second
+    compression axis) is predictable rather than surprising. The honest boundary-condition
+    analysis is valuable but works against the paper—it shows the most interesting
+    claim (strategy specificity) doesn''t generalize."
+
+
+    **Consensus reached**:
+
+    - The phase gradient universality finding is real and well-supported but has limited
+    novelty given prior phase-aware compression work
+
+    - Strategy specificity was the paper''s best shot at a differentiated contribution,
+    and it fails on 2/3 conditions
+
+    - The statistical methodology is above-average for the subfield but applies standard
+    techniques (factorial interaction, bootstrap) rather than introducing new ones
+
+    - The paper would benefit from: (a) larger-scale models, (b) a principled phase
+    segmentation method, (c) resolving the H2O confound, (d) completing all experiments
+
+    - Appropriate venue: ARR Findings track or a workshop (e.g., Efficient NLP)
+
+
+    ---
+
+
+    ## Step 4: Consolidated Assessment
+
+
+    ### Final Scores
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness | 3.0 | 3.0 | **3.0** |
+
+    | Excitement | 2.5 | 2.0 | **2.0** |
+
+    | Overall | 2.5 | 2.0 | **2.0** (Poor — below acceptance threshold) |
+
+    | Confidence | 4 | 4 | **4** |
+
+
+    ### Meta-Review Summary
+
+
+    This paper proposes the Interaction Index (II) for diagnosing compound sparsity
+    interactions in LLM inference, with phase-stratified decomposition across reasoning
+    trajectories. The statistical methodology (per-problem paired bootstrap, Bonferroni
+    correction, Wilcoxon tests) is rigorous and above-average for the efficient inference
+    literature. The paper is also commendably honest about its limitations and boundary
+    conditions.
+
+
+    However, the paper does not clear the EMNLP main conference bar for the following
+    reasons:
+
+
+    **1. Insufficient novelty (both reviewers agree)**. The II metric is the standard
+    interaction contrast from factorial experimental design—not a new statistical
+    method. Phase-dependent compression behavior is already characterized by Physics
+    of KV Cache Compression (single-axis phase transitions) and HIES (importance score
+    collapse). The compound extension is a predictable follow-up, not a surprising
+    discovery.
+
+
+    **2. Core differentiating claim fails to generalize**. Strategy specificity—the
+    paper''s most distinctive contribution beyond prior work—collapses on GPQA-Diamond
+    (ratio 1.1-1.3×, effectively absent) and on the LLaMA architecture (dz < 0.20,
+    all NS after Bonferroni). This reduces the three-dimensional (compound × phase
+    × strategy) framing to two dimensions (compound × phase), which is substantially
+    anticipated by existing phase-aware compression literature. The perfect correlation
+    of specificity decay with reasoning chain length (MATH 1200 tok → GSM 400 tok
+    → GPQA 300 tok) suggests strategy specificity may be a chain-length artifact rather
+    than a fundamental property of compound compression.
+
+
+    **3. Mechanistic analysis is underpowered**. Within-model Gini-II Spearman ρ=1.0
+    is trivially guaranteed with n=4 monotonic points. Cross-model Pearson r=0.48
+    is non-significant (p=0.115). The discrimination collapse mechanism is acknowledged
+    as insufficient to explain the observed 15-17× severity divergence between strategies
+    with <10% Gini difference. No LLaMA Gini data is available for full three-architecture
+    validation.
+
+
+    **4. Scope limitations**. Only 7B-scale models. No evidence of generalization
+    to 13B, 70B, or MoE architectures. Language switching analysis (§4.5) is acknowledged
+    as bilingual-model-specific. The H2O confound (importance scores degraded by the
+    very pruning they evaluate) is acknowledged but unresolved.
+
+
+    **5. Presentation issues**. Broken references ("??") throughout. The abstract
+    prominently features the trivial ρ=1.0 result.
+
+
+    ### What Survives
+
+
+    - The phase gradient universality (within-importance dz > 0.95 across three architectures)
+    is a well-supported empirical observation
+
+    - The boundary-condition analysis (where strategy specificity fails and why) is
+    informative
+
+    - The statistical protocol (per-problem paired bootstrap + phase stratification)
+    is a sensible best-practice template
+
+
+    ### Recommendation
+
+
+    **Overall: 2.0 — Reject from EMNLP main conference.**
+
+
+    The paper is methodologically competent but does not provide sufficient novelty
+    or generalization for a ~22% acceptance-rate venue. The surviving contribution
+    after strategy specificity collapses is: "compound compression severity increases
+    monotonically across reasoning phases"—a useful observation that extends known
+    single-axis phase-dependent behavior to the compound setting, but not a major
+    advance.
+
+
+    **Alternative venue suggestion**: ARR Findings track (where methodological rigor
+    + useful empirical observations are valued even without strong novelty), or Efficient
+    NLP workshop at EMNLP/ACL.
+
+
+    ### Experiment Coverage Assessment
+
+
+    | Experiment | Status in Paper | Assessment |
+
+    |------------|----------------|------------|
+
+    | LLaMA n=250 cross-architecture | ✅ Complete (Tables 1-3) | Well-executed; reveals
+    strategy specificity is architecture-dependent |
+
+    | GPQA DeepSeek profiling | ✅ Complete (Table 4) | Gradient monotonic but magnitude
+    ~10% of MATH-500 |
+
+    | GPQA Qwen profiling | ✅ Complete (Table 4) | Further attenuated; high mid-null
+    rate (55%) |
+
+    | GPQA random baselines + specificity | ✅ Complete (Tables 5-6) | Ratio 1.1-1.3×;
+    strategy specificity absent |
+
+    | Gini-II correlation | ✅ Complete (Table 7) | Within-model trivial; cross-model
+    NS |
+
+    | Language switching s020/s025 | ✅ Complete (Table 8) | Monotonic but DeepSeek-specific
+    artifact |
+
+    | C9 Related Work differentiation | ✅ Complete (§2) | Clear positioning but reviewers
+    still find novelty insufficient |
+
+
+    All imagined experiments from the design document are reflected in the paper.
+    The paper''s honest reporting of boundary conditions (GPQA weakness, LLaMA strategy
+    specificity failure, NS cross-model Gini correlation) is noted positively, but
+    these same results constrain the contribution''s scope.
+
+
+    ### Actionable Revision Guidance (if resubmitting)
+
+
+    1. **Drop "Interaction Index Framework" framing** — acknowledge II as standard
+    factorial interaction; reposition contribution as empirical characterization +
+    diagnostic protocol
+
+    2. **Scale to ≥13B models** — critical for generalization claims
+
+    3. **Develop principled phase segmentation** — changepoint detection or information-theoretic
+    boundary identification instead of fixed terciles
+
+    4. **Address H2O confound** — test with eviction scoring independent of pruned
+    attention (recency-based, random-fixed-budget)
+
+    5. **Remove ρ=1.0 from abstract** — replace with the more honest cross-model r=0.48
+    or focus on directional consistency
+
+    6. **Fix all broken references** before any submission
+
+    7. **Reframe strategy specificity as chain-length-modulated phenomenon** — this
+    is already partially done but should be the upfront framing, not a post-hoc qualification'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-16T17:39:40+00:00'

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e1cdc401a8cf86b06ed",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper consistency audit",
+  "task_key": "worker_paper_consistency_audit_20260514T094456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_consistency_audit_20260514T094456_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "030a12c44f8f95f09fd9f359f92f272a3e48f07180952b62ca72f1e03ac791d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/consistency_audit_report.md`。\n\n**结论: FAIL — 3 个 CRITICAL 问题需修复。**\n\n关键发现：\n\n1. **introduction.tex** 有 3 处 `\\ref{sec:experiments}` 引用了不存在的 label（应为 `sec:results`），编译会出 \"??\"\n2. **discussion.tex:86** 把 Table cohens-d 的 CI 值 ([0.20→8.39], [8.39, 16.65]) 标注为 \"permutation CIs\" 并引用了 Table permutation，实际 permutation CI 是 [0.19→6.70], [6.70, 16.29]\n3. **paper_framing.md** 的 Cohen's d 用的是 pooled d（0.61→1.13），论文全文用的是 d_z（0.44→0.80）——论文内部一致，但与 paper_framing 不一致\n\n另有 3 个 WARNING（重复 equation label、Qwen Δ 精度舍入、s=0.35 无来源数据）和 4 个 stale 文件待归档。数字一致性、claim 表述、引用完整性均通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-consistency-audit.md"
+}

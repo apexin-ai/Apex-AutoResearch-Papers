@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b335cfed50f6b48bfbf9",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper fix cohens d notation",
+  "task_key": "worker_paper_fix-cohens-d-notation_20260514T094929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-cohens-d-notation_20260514T094929_result.json",
+    "occurrence": 1,
+    "bytes": 3504,
+    "sha256": "4938e8351da10302a4234adbe5ba5f920412747d9f47f57f97f1b27540c96a7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All remaining `$d{=}` are `$d{=}{-}0.04$` — random eviction, correctly kept as `$d$`.\n\n---\n\n**修改清单：**\n\n| # | 文件 | 位置 | 旧值 | 新值 |\n|---|------|------|------|------|\n| 1 | abstract.tex:7 | paired effect size range | `Cohen's $d$ growing from $0.44$ (small) to $0.80$ (large)` | `paired $d_z$ growing from $0.61$ (medium) to $1.13$ (large)` |\n| 2 | abstract.tex:10 | Qwen threshold | `(Cohen's $d \\geq 0.55$` | `($d_z \\geq 0.72$` |\n| 3 | introduction.tex:14 | DeepSeek effect sizes | `paired effect sizes increasing from $d{=}0.44$ (small) to $d{=}0.80$ (large)` | `paired effect sizes ($d_z$) increasing from $d_z{=}0.61$ (medium) to $d_z{=}1.13$ (large)` |\n| 4 | introduction.tex:15 | Qwen threshold + marginal | `($d \\geq 0.55$)…($d{=}0.28$` | `($d_z \\geq 0.72$)…($d_z{=}0.37$` |\n| 5 | results.tex:124 | cross-model d trajectories | `Cohen's $d$ trajectories (DeepSeek: $0.44 \\to 0.80$; Qwen: $0.28 \\to 1.02$…four-point $d$` | `paired $d_z$ trajectories (DeepSeek: $0.61 \\to 1.13$; Qwen: $0.37 \\to 1.44$…four-point $d_z$` |\n| 6 | results.tex:124 | Qwen marginal + threshold | `($d{=}0.28$…($d \\geq 0.55$)` | `($d_z{=}0.37$…($d_z \\geq 0.72$)` |\n| 7 | results.tex:141 | method intro | `Cohen's $d$ for effect size` | `paired $d_z$ for effect size` |\n| 8 | results.tex:175 | paragraph header | `Cohen's $d$ (bootstrap` | `paired $d_z$ (bootstrap` |\n| 9 | results.tex:180 | Table 4 caption | `Cohen's $d$ and per-problem` | `Paired $d_z$ and per-problem` |\n| 10 | results.tex:184 | Table 4 header | `DeepSeek $d$`, `Qwen $d$` | `DeepSeek $d_z$`, `Qwen $d_z$` |\n| 11 | results.tex:186 | Table row s015 | `0.44 (small)`, `0.28 (small)` | `0.61 (medium)`, `0.37 (small)` |\n| 12 | results.tex:187 | Table row s020 | `0.52 (medium)`, `0.55 (medium)` | `0.73 (medium)`, `0.72 (medium)` |\n| 13 | results.tex:188 | Table row s025 | `0.68 (medium)`, `0.89 (large)` | `0.95 (large)`, `1.23 (large)` |\n| 14 | results.tex:189 | Table row s030 | `0.80 (large)`, `1.02 (large)` | `1.13 (large)`, `1.44 (large)` |\n| 15 | results.tex:195 | DeepSeek text | `small ($d{=}0.44$)…large ($d{=}0.80$)` | `medium ($d_z{=}0.61$)…large ($d_z{=}1.13$)` |\n| 16 | results.tex:196 | Qwen text | `($d{=}0.28$…($d \\geq 0.55$)` | `($d_z{=}0.37$…($d_z \\geq 0.72$)` |\n| 17 | results.tex:197 | comparison | `($d{=}0.89$/$1.02$…$0.68$/$0.80$)` | `($d_z{=}1.23$/$1.44$…$0.95$/$1.13$)` |\n| 18 | discussion.tex:25 | Spearman context | `Cohen's $d$ effect sizes` | `paired $d_z$ effect sizes` |\n| 19 | discussion.tex:29 | onset threshold (3dp→2dp + d→d_z) | `Cohen's $d{=}0.442$…$d{=}0.549$…$d{=}0.281$` | `paired $d_z{=}0.61$…$d_z{=}0.72$…$d_z{=}0.37$` + comment updated to d_z 3dp |\n| 20 | conclusion.tex:10 | DeepSeek effect sizes | `$d{=}0.44$ (small) to $d{=}0.80$ (large)` | `$d_z{=}0.61$ (medium) to $d_z{=}1.13$ (large)` |\n| 21 | conclusion.tex:16 | Qwen threshold | `$d \\geq 0.55$` | `$d_z \\geq 0.72$` |\n\n**验证结果：**\n- 3dp 值 (0.607, 0.725, 0.953, 1.126, 0.371, 0.722, 1.233, 1.439) — 均仅出现在 discussion.tex:29 注释中 ✓\n- `Cohen's $d$` 引用 paired effect size — 0 处 ✓（唯一残留的 `Cohen's $d = -0.04$` 在 results.tex:126 是 random eviction independent-samples d）\n- 所有 `{=}0.61` 位置均使用 `$d_z` ✓\n- 所有 `$d{=}{-}0.04$` 保持为 `$d$`（random eviction） ✓\n- 旧 d 值 (0.44, 0.52, 0.68, 0.80, 0.28, 0.55, 0.89, 1.02) 在 `$d{=}` 模式中无残留 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-cohens-d-notation.md"
+}

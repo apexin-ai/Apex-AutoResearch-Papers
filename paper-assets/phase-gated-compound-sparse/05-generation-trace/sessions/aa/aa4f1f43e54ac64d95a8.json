@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa4f1f43e54ac64d95a8",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops qw data rescue",
+  "task_key": "worker_ops_qw_data_rescue_20260515T173304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qw_data_rescue_20260515T173304_result.json",
+    "occurrence": 1,
+    "bytes": 1494,
+    "sha256": "9e3e2c8da1631e105e3f6787aa35c56958a18d7cf5b363ccf6db1843d3d8eaf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n---\n\n## QW GSM8K Profiling 数据抢救结果\n\n### 数据完整性\n- **QW Importance**: 4/4 per-sparsity 完整，exit code=0，PASS\n- **QW Random**: 3/4 per-sparsity 完整，`rand_s030` per-sparsity 目录为空（merged fallback 存在但可能有聚合 bug，同 DS）\n- 两个 job 均处理了 50/50 problems，log 末尾显示 PASS verdict\n\n### Per-Phase Per-Sparsity II 汇总（Median，更鲁棒）\n\n| Sparsity | IMP low | IMP mid | IMP high | IMP gradient | RAND low | RAND mid | RAND high | RAND gradient |\n|----------|---------|---------|----------|-------------|----------|----------|-----------|--------------|\n| 0.15 | 0.046 | 0.009 | 0.001 | **0.045** | 0.105 | 0.086 | 0.081 | 0.024 |\n| 0.20 | 0.124 | 0.025 | 0.002 | **0.122** | 0.329 | 0.235 | 0.203 | 0.126 |\n| 0.25 | 0.902 | 0.150 | 0.006 | **0.896** | 1.271 | 0.835 | 0.722 | 0.549 |\n| 0.30 | 2.637 | 0.771 | 0.016 | **2.621** | N/A | N/A | N/A | N/A |\n\n### 关键发现\n1. **IMP gradient 单调递增**：0.045 → 0.122 → 0.896 → 2.621，phase 分化随 sparsity 增大明显加剧\n2. **IMP 的 phase 分化比 RAND 更清晰**：low >> mid >> high 的阶梯结构更陡峭（IMP high 接近 0，RAND high 相对更大）\n3. **`rand_s030` 缺失**：per-sparsity 目录为空，merged 数据显示极端负值（-68, -88），与 DS 的聚合 bug 一致，不可信\n\n### Registry\n`gsm8k_profiling_qw` → status=DONE, conclusion=success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qw-data-rescue.md"
+}

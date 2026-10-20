@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "a8d6860afbc7301bbc61",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "code accuracy eval r9c2 v2",
+  "task_key": "worker_code_accuracy_eval_r9c2_v2_20260515T201814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_accuracy_eval_r9c2_v2_20260515T201814.log",
+    "occurrence": 1,
+    "bytes": 935531,
+    "sha256": "c37089e02ff141b0732fd1f0febb48270c69fbb5d136970b7f14cd39fcb3308f"
+  },
+  "statistics": {
+    "messages": 408,
+    "user_turns": 1,
+    "tool_calls": 158,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 158,
+      "tool_result": 158,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 305,
+      "chunks": [
+        {
+          "path": "a8d6860afbc7301bbc61-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "a8d6860afbc7301bbc61-part-0002.json",
+          "message_count": 154
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "a8d6860afbc7301bbc61-part-0002.json",
+          "message_count": 26
+        },
+        {
+          "path": "a8d6860afbc7301bbc61-part-0003.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-accuracy-eval-r9c2-v2.md"
+}

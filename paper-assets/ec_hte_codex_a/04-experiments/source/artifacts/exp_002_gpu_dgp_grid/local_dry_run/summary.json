@@ -1,0 +1,32 @@
+{
+  "conditions": 4,
+  "cuda_available": false,
+  "cuda_version": "13.0",
+  "device": "cpu",
+  "dry_run": true,
+  "elapsed_seconds": 0.327,
+  "exp_id": "exp_002_gpu_dgp_grid",
+  "methods": [
+    "uncorrected",
+    "oracle_global_confusion_correction",
+    "estimated_global_confusion_correction",
+    "stratified_subgroup_correction"
+  ],
+  "operational_criteria": {
+    "estimated_global_reporting": "Report estimated-global separately from oracle-global; estimated_global_minus_oracle_global_gate_rmse quantifies finite-sample confusion-estimation noise.",
+    "minimum_replications_per_condition": 200,
+    "primary_metric": "global_worse_rate_difference_positive_minus_negative",
+    "success_rule": "Positive-correlation conditions must have at least a 20 percentage-point higher oracle-global-worse rate than negative-correlation controls, with bootstrap 95% CI lower bound above 0. Bias-bound diagnostic Spearman rho must be >= 0.50 with bootstrap 95% CI lower bound above 0."
+  },
+  "planned_metric_paths": {
+    "condition_metrics": "artifacts/exp_002_gpu_dgp_grid/local_dry_run/condition_metrics.jsonl",
+    "planned_metrics": "artifacts/exp_002_gpu_dgp_grid/local_dry_run/planned_metrics.json"
+  },
+  "primary_metric": "global_worse_rate_difference_positive_minus_negative",
+  "replications_per_condition": 2,
+  "secondary_metrics": [
+    "bias_bound_vs_global_worse_spearman",
+    "estimated_global_minus_oracle_global_gate_rmse"
+  ],
+  "torch": "2.12.0+cu130"
+}

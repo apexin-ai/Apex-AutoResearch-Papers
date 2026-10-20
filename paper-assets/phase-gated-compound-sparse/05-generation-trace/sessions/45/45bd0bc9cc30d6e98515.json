@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45bd0bc9cc30d6e98515",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_6_1778772852.md",
+  "task_key": "loop_6_1778772852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778772852.md",
+    "occurrence": 1,
+    "bytes": 5439,
+    "sha256": "894975c0e117088f61de02b1f92cc86e73cec05defc5ae12d04d1ee50ee04ae6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T15:33:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有 cuda:0~3**（westd-22162），任何其他 GPU 需 Director 申请扩配额\n- c2_qw_n500 和 c3_llama **同时占用 cuda:2+3**——这是当前最大风险，下一步必须先确认两者是否冲突（c2_qw_n500 的 SCREEN 进程 PID 131864/132002 vs c3_llama 的 PID 138408/138410）\n- c2_qw_n500 存在 **重复进程**（PID 132389, 132392 是 131864, 132002 的副本），必须先杀掉重复进程再信任输出数据；如果已经写入了交错数据，该 condition 的输出需清空重跑\n- 所有数字基于 **bf16**（fp16 已废弃），paper 里不得引用 fp16 数据\n- Pre-registration: 若 Qwen s015 在 n=500 后 CI 仍跨零 → 叙事改为 \"compound effect emerges above threshold sparsity (~s020)\"，不能硬拗\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162, 4× RTX PRO 6000 Blackwell **96GB**\n- **工作目录**: `/root/autodl-tmp/pacs/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: DeepSeek `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`, Qwen `/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct`（推测）, LLaMA `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Llama-8B`\n- **数据**: `/root/autodl-tmp/pacs/data/math500.json`\n- **日志**: `/root/autodl-tmp/pacs/logs/`\n- **活跃进程**:\n  - c2_n500_deepseek: cuda:0+1, tmux `c2_n500_gpu0` / `c2_n500_gpu1`\n  - c2_qw_n500: cuda:2+3, SCREEN `c2_qw_gpu2` / `c2_qw_gpu3`, PID 131864/132002（主）+ 132389/132392（重复，需杀）\n  - c3_llama: cuda:2+3, PID 138408 (imp gpu2) / 138410 (rand gpu3)\n- **c5b_pilot 脚本**: `/root/autodl-tmp/pacs/profiling/run_mitigation_pilot.py`（577 行，dry-run 已通过）\n\n### 3. 📊 当前状态\n**我刚完成**: session-start 初始化，同步 registry + 读 ROADMAP + report.md。\n\n**Registry 活跃实验**:\n| exp_id | status | GPU | 摘要 |\n|--------|--------|-----|------|\n| c2_n500_deepseek | RUNNING | cuda:0+1 | DeepSeek n=500, 8 conditions, ~20h wall clock |\n| c2_qw_n500 | RUNNING | cuda:2+3 | Qwen n=500, 8 conditions, 进度 ~93/500 s015 (22:37 CST), 有重复进程问题 |\n| c3_llama | RUNNING | cuda:2+3 | LLaMA-8B 跨架构验证, 8 conditions n=50, PID 138408/138410 |\n| c5b_pilot | QUEUED | — | Phase-aware mitigation pilot, 代码完成, 等 GPU |\n\n**关键问题**: c2_qw_n500 和 c3_llama 同时声称占用 cuda:2+3。高概率场景是 c3_llama 在 c2_qw_n500 还没跑完时就被启动了——需要立即 SSH 检查哪些 PID 还活着、GPU 实际占用情况。\n\n**Cron 状态**: c2_qw_n500 已 3 次 cron false positive（profiling 无 W&B/sentinel，cron 反复误判进程已死）。下次回调仍可能误判。\n\n**等待中**: 无 pending Worker 回调。3 个 RUNNING 实验等 cron 完成回调。\n\n### 4. 📋 待办（条件触发式）\n- **立即（BOOT 后第一件事）** → SSH 探查 cuda:2+3 实际占用：`nvidia-smi` + `ps -p 131864,132002,132389,132392,138408,138410`。根据结果决定：(a) 若 c2_qw_n500 和 c3_llama 共存 → 至少一个被挤掉了，确认哪个存活，杀掉重复进程；(b) 若 c3_llama 已死 → 等 c2_qw_n500 完成后重启 c3_llama\n- c2_n500_deepseek 完成 → 分析 8 conditions 结果，更新 registry metrics，刷新 paper tables\n- c2_qw_n500 完成 → 分析 8 conditions，特别关注 s015 CI 是否跨零（触发 pre-registration 叙事切换）\n- c3_llama 完成 → 分析 crossover 是否在 LLaMA 架构复现，更新 C8 claim\n- c2 + c3 全部完成 → 提交 c5b_pilot（已 QUEUED，代码就绪）→ 更新 paper → 送 Group C review\n- Paper 数据更新完成 → Day 9 (05-23) 准备 rebuttal letter\n- 05-25 EMNLP 2026 ARR deadline\n\n### 5. 🎯 战略上下文\n**项目核心结论**: Importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DeepSeek 0.32→9.94，Qwen 0.048→2.619），random masking 跨 phase 几乎无差异（7/8 FAIL）。Cross-model Cohen's d ρ=1.0。这是 empirical finding paper，不是 method paper。\n\n**Decision 链关键节点**:\n- D015: Framing 硬约束（\"emergent phase-strategy interaction\"，禁止说\"importance is broken\"）\n- D023: 区分信号是 phase-dependent gradient，不是 super-additivity 本身\n- D044: Discrimination collapse 跨模型一致，entropy redistribution 仅 DeepSeek 一致（Qwen 反转）\n- D047: 6-point dose-response Spearman ρ=1.0\n- D048: 统一用 paired d_z (cohens_d_bf16.json)\n- D051: 所有 figures 需基于 bf16 canonical data 重新生成（已完成？需确认）\n- D052: C5 pilot-first + heuristic baseline（Director + Reviewer 共识）\n\n**最容易判断错的事**:\n1. c2_qw_n500 cron 回调很可能又是 false positive（profiling 没 W&B/sentinel）——收到\"进程已死\"回调后**先 SSH 验证 PID**，不要直接标 DONE/failed\n2. cuda:2+3 上 c2_qw_n500 vs c3_llama 的 GPU 冲突——不要假设两者能并行跑（96GB 不一定够两个 7B+ 模型同时跑），先查再动\n3. Qwen 模型路径不确定——registry 里 c2_qw_n500 只写了 \"Qwen\" 没写全路径，需要 SSH 确认\n4. 论文已完成但数据可能是旧的——D051 说 figures 需要用 bf16 数据重生成，确认是否已完成再改 paper\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778772852.md"
+}

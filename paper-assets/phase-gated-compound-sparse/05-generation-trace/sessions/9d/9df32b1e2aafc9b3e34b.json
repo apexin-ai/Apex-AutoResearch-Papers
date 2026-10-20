@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9df32b1e2aafc9b3e34b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "fix permutation exhaustive",
+  "task_key": "worker_fix_permutation_exhaustive_20260515T051433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_permutation_exhaustive_20260515T051433_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "d8d221c4424348f796c0f928a10447ec3f7c2bdf01a4327c5dc2b621676c2f2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行成功。所有 `perm_p = 0.167 = 4/24`，是精确的 k/24 形式。4 个 sparsity 水平中，完全单调递增的排列有 4 种（本身 + 3 种 ≥ observed_stat 的情况），对应 p = 4/24 ≈ 0.1667。\n\n改动总结：\n- 删除 `N_PERM = 5000` 常量\n- 新增 `from itertools import permutations`\n- `permutation_monotonicity_test` 从 Monte Carlo 5000 次采样改为精确穷举 `permutations(vals)`（24 种），p 值直接用 `count / len(all_perms)`（无 Laplace 校正，因为是精确计算）\n- 函数签名移除 `n_perm` 和 `seed` 参数，返回值中 `n_perm` 改为 `n_perms_exact`\n- 输出 metadata 中 `permutation_N` 改为 `permutation_method: \"exact\"`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-permutation-exhaustive.md"
+}

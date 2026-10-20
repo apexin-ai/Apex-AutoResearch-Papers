@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45752db7383c61de830e",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code c3 llama analysis script",
+  "task_key": "worker_code_c3_llama_analysis_script_20260514T162920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c3_llama_analysis_script_20260514T162920_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "10f8d5493e47e16992fbe8cca04b53aa514af03d27d9809ec53cbfd75f27d9ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证通过：`/root/autodl-tmp/pacs/analyze_c3_llama.py`\n\n功能确认：\n- **s015/s020** 数据正确加载，统计量计算无误\n- **s025/s030** 缺失时优雅跳过，标记为 missing\n- **Paired bootstrap** 使用共享 idx（`bootstrap_paired_dz_and_median` 函数）\n- **Wilcoxon** 使用 Bonferroni 校正 (k=4)\n- **c3_llama_cohens_d.json** 与 cohens_d_bf16.json 格式一致\n- **跨架构对比表**正常生成（LLaMA phase gradient d_z 约 1.0-1.1，远大于 DeepSeek 的 0.44-0.52）\n- 已清除验证用的临时输出，等全部 8 conditions 就绪后正式运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c3-llama-analysis-script.md"
+}

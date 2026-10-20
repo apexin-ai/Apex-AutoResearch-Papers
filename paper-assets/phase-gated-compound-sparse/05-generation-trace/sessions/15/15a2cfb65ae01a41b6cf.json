@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15a2cfb65ae01a41b6cf",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code gsm8k median fix d080v2",
+  "task_key": "worker_code_gsm8k_median_fix_d080v2_20260515T182740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gsm8k_median_fix_d080v2_20260515T182740_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "238cfd90d63b2ce65d98a7080a22f573f87f59ab8b1a0d2e81ab8fbe83fce0e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 17 行（1 header + 16 data）。验证通过：\n\n**验证清单：**\n- 16 行输出，无 NaN ✓\n- DS importance s015-s025 median gradient > 0 且 Wilcoxon p < 0.05 ✓\n- QW rand s030 标记 INVALID ✓\n- CSV + JSON 都写入 ✓\n\n---\n\n**DS Importance dose-response 表（Director 需要）：**\n\n| Sparsity | median_gradient | CI [2.5%, 97.5%] | wilcoxon_p |\n|----------|----------------|-------------------|------------|\n| s015 | +0.2409 | [0.0769, 0.4781] | 0.0003 |\n| s020 | +0.7403 | [0.3139, 1.1186] | <0.0001 |\n| s025 | +1.9915 | [0.9327, 2.8198] | <0.0001 |\n| s030 | +4.6819 | [2.1211, 10.5566] | <0.0001 |\n\nDose-response 单调性确认：0.24 → 0.74 → 1.99 → 4.68，严格递增，全部 p < 0.001。与 MATH-500 方法论一致（median + Wilcoxon）。\n\n注意：DS imp s030 的 mean_gradient 只有 0.607（被负离群值严重拉低），而 median 为 4.68——正好说明 mean→median 修复的必要性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gsm8k-median-fix-d080v2.md"
+}

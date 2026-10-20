@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "462b9305aac9cc7fdb74",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper trim results tex",
+  "task_key": "worker_paper_trim_results_tex_20260514T114501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_trim_results_tex_20260514T114501_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "a633c11d80975c6908233960d1fdab94cb501a769fe289accd14121a44f4ba77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完毕，所有编辑正确。\n\n**行数变化**: 200 → 155 行 (−45 行 LaTeX 源码)\n\n**移出内容清单**:\n| 元素 | 移至 |\n|------|------|\n| §5.5 模型架构细节、phase segmentation 说明 | `app:cross-model-details` |\n| §5.5 per-problem concordance (ρ=−0.11) | `app:cross-model-details` |\n| §5.5 random eviction control (3/4 FAIL) | `app:cross-model-details` |\n| §5.5 onset lag 讨论 | `app:cross-model-details` |\n| Figure 5 (fig5_crossmodel.pdf) | `app:cross-model-details` |\n| §5.6 permutation test 方法段 | `app:stat-validation-details` |\n| Table 4 (permutation test 表) | `app:stat-validation-details` |\n| Figure 4 (fig4_bootstrap.pdf, forest plot) | `app:stat-validation-details` |\n| §5.6 CI 增长分析 | `app:stat-validation-details` |\n| §5.6 QW onset threshold + variance 讨论 | `app:stat-validation-details` |\n\n**估计页数节省**: ~2.5–3 页（2 个 figure + 1 个 table + 大量 prose 移出，双栏格式下）\n\n**Table 3 Qwen s020**: 已是 0.23，无需修改。\n\n**label/ref 完整性**: 主体中 `\\ref{app:cross-model-details}` 和 `\\ref{app:stat-validation-details}` 指向 appendix 中对应 `\\label`；移出的 `fig:cross-model`、`fig:permtest-forest`、`tab:permutation` 的 label 均在 appendix 中，主体不再直接引用这些浮动体。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-trim-results-tex.md"
+}

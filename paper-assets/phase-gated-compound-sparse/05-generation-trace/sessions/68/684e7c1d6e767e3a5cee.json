@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "684e7c1d6e767e3a5cee",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis w6 outlier robustness",
+  "task_key": "worker_analysis_w6_outlier_robustness_20260515T131441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w6_outlier_robustness_20260515T131441_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "c1c91a6f4a1ce620426e3a557dd7254b52d14801df2f679ee14c3af551359f01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W6 分析完成。核心发现：\n\n**Median-based 指标完全不受 winsorization 影响** — D_median、G_ratio、Wilcoxon p 在原始/5%/10% winsorization 下数值完全一致。这是因为 winsorize 只替换尾部极值，不影响分布中心。\n\n**Mean-based 指标被严重扭曲** — random masking 条件下 mean/median ratio 最高达 97,640:1（远超审稿人提到的 43:1），由 1-2 个 catastrophic perplexity explosion 驱动。5% winsorize 后 MMR 全部降至 ≤13×。\n\n**三个核心 claims 全部 ROBUST**：\n- compound > individual (所有 importance 条件 p < 10⁻¹⁴，winsorize 后不变)\n- importance > random (8/8 sparsity 配对比较，median 不变)\n- dose-response 单调性 (median-based 全部保持)\n\n交付物：\n- 服务器：`analysis_output/w6_outlier_robustness.json`\n- 本地报告：`artifacts/w6_outlier_robustness/report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w6-outlier-robustness.md"
+}

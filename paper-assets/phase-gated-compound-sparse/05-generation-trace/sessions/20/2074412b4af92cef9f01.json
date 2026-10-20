@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2074412b4af92cef9f01",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis appendix b precise gx",
+  "task_key": "worker_analysis_appendix_b_precise_gx_20260515T175728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_appendix_b_precise_gx_20260515T175728_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "97d03ef47bd5636ea478de266403bbf6a6020499860aec5f3edcc4155f07d497"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**不需要重跑 profiling**——利用已有 n=500 per-problem additive II + aggregate PPL 修正项计算。\n\n**Precise G_× (importance masking, n=500):**\n\n| Model | s015 | s020 | s025 | s030 |\n|-------|------|------|------|------|\n| DeepSeek | 21.1× | 28.6× | 36.5× | 36.2× |\n| Qwen | 43.9× | 53.4× | 62.2× | 64.0× |\n\n**Combined range: 21–64×**（论文当前声称 58–241×，需更新）\n\n关键文件：\n- 计算脚本：`/root/autodl-tmp/pacs/compute_gx_final.py`\n- 输出 JSON：`/root/autodl-tmp/pacs/analysis_output/appendix_b_precise_gx.json`\n- 报告：`artifacts/appendix_b_precise_gx/report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-appendix-b-precise-gx.md"
+}

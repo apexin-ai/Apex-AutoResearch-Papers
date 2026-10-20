@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8adbfb50e04fe07c80d4",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778798734.md",
+  "task_key": "loop_8_1778798734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778798734.md",
+    "occurrence": 1,
+    "bytes": 4111,
+    "sha256": "cd516c796a20d48e929aa081ab92f62c48e5ebe50a69b938c9ab61ddd1884562"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T22:45:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 的 cuda:0/1/2/3，不可使用其他设备\n- 当前占用：cuda:0+1 → c2_n500_deepseek，cuda:2+3 → c2_qw_n500_r3。**四卡全满，禁止抢占**\n- 论文只能引用 **median + median bootstrap CI**，禁止引用 mean（D054，random pruning 14.2% 问题产生灾难性 outlier）\n- d_z 只报 **within-importance**（不同 sparsity 之间），禁止报 imp vs rand 的 d_z（D059）\n- LLaMA 跨架构只能 frame 为 \"qualitative pattern\"，禁止定量跨架构比较（效应量差 ~40×）\n- **EMNLP 2026 ARR 截稿 2026-05-25**（距今 11 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen（路径在 /root/autodl-tmp/ 下）\n- 数据：`/root/autodl-tmp/pacs/data/MATH-500/`（n=500）\n- c2_n500_deepseek：tmux `c2_n500_gpu0` + `c2_n500_gpu1`，cuda:0+1，PID 见 cron（shell PID `c2_n500_gpu0`）\n- c2_qw_n500_r3：screen `c2_qw_gpu2` + `c2_qw_gpu3`，cuda:2+3，shell PID 131858，sentinel 机制\n- 活跃 cron：2 个（c2_n500_deepseek + c2_qw_n500_r3），reconcile 确认 both still running\n\n### 3. 📊 当前状态\n两个 n=500 统计功效提升实验正在跑，是论文提交前最后一批实验：\n- **c2_n500_deepseek**：s015 DONE，s020 进行中（imp 51%, rand 60%），ETA ~May 15 16:00 UTC+8（全部 8 conditions）\n- **c2_qw_n500_r3**：s015 DONE，s020 进行中（imp 49%, rand 45%），ETA ~May 15 15:00 UTC+8（全部 8 conditions）\n\nWorker 池 = 0（两个实验都在自动推进，无需人工干预，等 cron 回调）。论文 §1-§8 全文已完成（基于 n=50 数据），PDF 可编译。等 n=500 完成后统一更新。\n\n等待中：cron 回调（实验完成时自动触发）。无待处理 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调 DONE → spawn Worker 跑 n=500 分析 pipeline（median II + bootstrap CI + d_z within-importance only）\n- c2_qw_n500_r3 cron 回调 DONE → 同上，Qwen 分析 pipeline\n- **两个分析都完成** → spawn Paper Worker 统一更新论文：\n  1. n=500 tables/figures 替换 n=50 数据\n  2. 修复 W3 [CRITICAL]：conclusion.tex L11 + appendix_disc_analysis.tex L33-35 仍写 \"cross-architecture untested\"，已有 LLaMA 数据\n  3. 修复 W2：§5.5 LLaMA 每个 sparsity 同时报 CI 和 Bonferroni Wilcoxon\n  4. 修复 W4：Bootstrap B 值声明不一致（methodology 说 B=10000，profiling 实际 B=1000）\n  5. 修复 W5：Qwen mid-phase null rate 披露 + per-phase effective n\n  6. C5b → §8 Future Work，C8 限定语\n  7. 同步本地 tex → 远程再编译（W1）\n- 论文更新完 → 提交 Group C full review\n\n### 5. 🎯 战略上下文\n**核心结论链**：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（DeepSeek 强，Qwen 弱但 n=500 s015 已显著 p<0.0001），random 不显示此模式。LLaMA 方向一致但交互弱（C8 partially_confirmed）。\n\n**决策关键点**：\n- D058 已解决：n=500 s015 Qwen paired gradient 显著（之前 n=50 不显著）。但 Qwen null rate 仍 ~45%，需在论文加 caveat\n- D054：全面切 median 是 n=500 后最重要的方法论变更。mean 已被 outlier 彻底摧毁\n- D060：C8 从 confirmed 降级为 partially_confirmed，LLaMA random 也显示 phase gradient（不符合预期）\n\n**最容易判断错的事**：\n- 不要把 c2_qw_n500（已 failed/killed，cron 误报 5 次）和 c2_qw_n500_r3（当前 RUNNING 的续跑）搞混。r3 是正式的，parent=c2_qw_n500\n- n=500 分析必须用 **median_diff** 而非 mean_diff，所有 profiling_results.json 已含 median 字段\n- 论文更新是一次性统一做（n=500 + W1-W5 + C5b/C8），不要分批滚动修改（防 Frankenstein 论文）\n- 截稿 11 天，但实验 ETA 明天（May 15），分析+论文更新+审稿需要 ~3-5 天，时间充裕但不能拖\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778798734.md"
+}

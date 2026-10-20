@@ -1,0 +1,27 @@
+{
+  "exp_id": "c10-lang-s020-s025",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:39:03.248Z",
+    "updated_at": "2026-05-16T03:46:36.520Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && CUDA_VISIBLE_DEVICES=1 python scripts/c10_gen_s020_s025.py --gpu cuda:0 --num-problems 50 --max-new-tokens 8192 --seed 42 --output /root/autodl-tmp/pacs/results_c10_lang_s020_s025.json 2>&1 | tee /root/autodl-tmp/pacs/logs/c10_s020_s025.log\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "312133",
+      "log_path": "~/runs/phase-gated-compound-sparse/c10-lang-s020-s025.log",
+      "submitted_at": "2026-05-16T03:39:02.569Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T03:46:36.861729+00:00",
+  "trigger": "update_registry"
+}

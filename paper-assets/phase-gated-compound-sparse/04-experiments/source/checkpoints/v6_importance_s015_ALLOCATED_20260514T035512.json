@@ -1,0 +1,15 @@
+{
+  "exp_id": "v6_importance_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:52:50.334Z",
+    "updated_at": "2026-05-14T03:55:11.669Z",
+    "hypothesis": "v6 per-problem II 修复: importance masking s=0.15, cuda:0. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI."
+  },
+  "timestamp": "2026-05-14T03:55:12.005357+00:00",
+  "trigger": "update_registry"
+}

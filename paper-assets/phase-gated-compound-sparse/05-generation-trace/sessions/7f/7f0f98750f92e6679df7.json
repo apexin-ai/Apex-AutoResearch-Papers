@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f0f98750f92e6679df7",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_7_1778786528.md",
+  "task_key": "loop_7_1778786528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778786528.md",
+    "occurrence": 1,
+    "bytes": 4507,
+    "sha256": "bbd95b23eed5c2938e78b1e08039c7eb83732a3ddba619c6c0a9959556351552"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T19:20:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-22162 cuda:0~3，无例外\n- 指标：全面切 median（D054），mean 不可引用。d_z 仅报 within-importance 场景（D059），涉及 random 的比较只报方向不报 d_z 数值\n- c2_qw_n500 跑在 **screen** session（c2_qw_gpu2/gpu3），不是 tmux。cron 反复误判（无 sentinel/W&B 是 profiling 实验的正常行为），已有 3 次 false positive 记录。不要因 cron escalation 就 kill 重跑——先 SSH 查进程\n- 预注册约束（D058）：若 Qwen s015 n=500 CI 仍跨零 → 论文叙事改 \"compound effect emerges above threshold sparsity ~s020\"，不可强行 claim s015 显著\n- C8 是 partially_confirmed（D060）：LLaMA 跨架构只做 qualitative claim，不做定量比较（效应量差 ~40×）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，account=root\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python：conda 环境（aml-train 镜像），`/root/miniconda3/bin/python`\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（MATH-500, 500 条）\n- 模型：DeepSeek-R1-Distill-Qwen-7B / Qwen（路径在 pacs 代码中配置）\n- 活跃进程：\n  - c2_n500_deepseek: PID 130124 (gpu0, tmux=c2_n500_gpu0) + PID 130263 (gpu1, tmux=c2_n500_gpu1)\n  - c2_qw_n500: PID 131864 (gpu2, screen=c2_qw_gpu2) + PID 132002 (gpu3, screen=c2_qw_gpu3)\n- Cron 监控：c2_n500_deepseek + c2_qw_n500 各一个 active cron\n\n### 3. 📊 当前状态\n**刚做完**：c3_llama 分析（D060 C8 partially_confirmed）、c5b_pilot 关闭（D056 gate_failed → future work）、bf16 canonical 数据全部跑完、论文 §1-§8 全文完成。\n\n**正在进行**：\n- `c2_n500_deepseek` RUNNING — DeepSeek 8 conditions n=500。截至 02:01 UTC: imp_s015 94%, rand_s015 99%。ETA 全部完成 ~2026-05-15 16:10 UTC\n- `c2_qw_n500` RUNNING — Qwen 8 conditions n=500。截至 02:01 UTC: imp_s015 71%, rand_s015 75%。ETA ~2026-05-15 21:08 UTC（Qwen 比 DeepSeek 慢 ~25%）\n- **⚠️ c2_qw_n500 cron 报 \"process gone miss 4/5\"** — 大概率又是 false positive（第 4 次了），worker_ops_c2_qw_cron_check 正在 SSH 查证（turn 9）\n\n**活跃 Worker**：\n1. `worker_code_analysis_pipeline_p1p2` — 写分析 pipeline patcher 脚本（修 9 处文本替换），turn 2\n2. `worker_ops_c2_qw_cron_check` — 排查 c2_qw_n500 cron 告警，turn 9\n\n**等待中**：无 Director 决策阻塞\n\n### 4. 📋 待办（条件触发式）\n- worker_ops_c2_qw_cron_check 返回 → 如进程存活：dismiss cron alert，更新 registry notes；如进程真死：立即在同 GPU 重启对应 condition\n- worker_code_analysis_pipeline_p1p2 返回 → 验证 patcher 输出，确认分析脚本可执行\n- c2_n500_deepseek cron 回调（ETA ~05-15 16h UTC）→ spawn worker 跑完整分析 pipeline：median II + bootstrap CI + d_z within-importance only → 更新 registry metrics → 汇报 Director\n- c2_qw_n500 cron 回调（ETA ~05-15 21h UTC）→ 同上分析 pipeline → 特别关注 s015 CI 是否跨零（预注册 D058）\n- 两个 n=500 分析全完成 → spawn worker 统一更新论文：n=500 tables/figures + C5b §8 future work + C8 限定语 + Qwen caveat（如适用）→ 提交 Group C full review\n- 论文更新完成 → s3-backup 归档 → 通知 Director 准备投稿\n\n### 5. 🎯 战略上下文\n- **核心结论**：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（phase-modulated）；random 无此 pattern。跨模型（DeepSeek/Qwen）方向一致，跨架构（LLaMA）qualitative consistent\n- **EMNLP 2026 ARR 截稿 2026-05-25**，距今 11 天。论文全文已完成，只差 n=500 数据更新\n- **最容易判断错的事**：c2_qw_n500 的 cron 告警。这个实验已经 3 次 cron false positive（profiling 无 sentinel/W&B），不要条件反射 kill 重跑。先 SSH 查 PID 存活 + screen session 状态\n- **Qwen 是 narrative 风险点**：n=50 时 imp vs rand paired 全部不显著 + mid-phase 58% null rate。n=500 是救命实验——如果 s015 CI 仍跨零，必须执行预注册的叙事降级（D058）\n- **决策链**：D054(median) → D058(预注册) → D059(d_z 分场景) → D060(C8 降级) 形成一条逻辑链，改任何一个都要检查下游影响\n- **坑**：submit_training_job 不支持 shell builtin（source/conda activate）。这两个实验是手动 screen/tmux 启动的，不走 submit_training_job 框架\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778786528.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0893030adea784b5f24",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis bf16 importance s020",
+  "task_key": "worker_analysis_bf16_importance_s020_20260514T063748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bf16_importance_s020_20260514T063748_result.json",
+    "occurrence": 1,
+    "bytes": 1524,
+    "sha256": "c2c3be4132e0b5565ab027595585fad5f09ae7e419fd7868446201538c2a6fc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bf16_importance_s020 实验结果\n\n### Interaction Index (sparsity=0.20)\n\n| Phase | Mean | 95% CI | Median | Winsorized Mean | Skewness | Outliers |\n|-------|------|--------|--------|-----------------|----------|----------|\n| high_sparsity | **+0.1289** | [-0.1975, +0.6647] | +0.0145 | -0.0297 | 16.67 | 2 |\n| mid_sparsity | **+1.2604** | [+0.7466, +1.8962] | +0.2027 | +0.7660 | 7.05 | 4 |\n| low_sparsity | **+6.0288** | [+4.4671, +7.9237] | +1.4963 | +4.3426 | 6.01 | 8 |\n\n### Perplexity\n\n| Phase | Dense | Attn-only | KV-only | Both |\n|-------|-------|-----------|---------|------|\n| high_sparsity | 1.1689 | 1.5233 | 1.6191 | 2.1047 |\n| mid_sparsity | 1.2269 | 1.5375 | 3.5164 | 5.4246 |\n| low_sparsity | 1.2286 | 1.6486 | 15.7987 | 23.7400 |\n\n### Phase Stats\n\n| Phase | Tokens | Segments |\n|-------|--------|----------|\n| high_sparsity | 21,086 | 387 |\n| mid_sparsity | 13,306 | 191 |\n| low_sparsity | 27,748 | 397 |\n\n### 数据完整性\n- **per_problem_ii: 50 条（完整）**\n- **NaN count: 0**\n- Pass/Fail: **PASS**（CI overlap test 通过：low vs mid CI 不重叠）\n\n### 与 s015/s025 对照\n\n| Phase | s015 | **s020** | s025 |\n|-------|------|----------|------|\n| II_high | -0.1502 | **+0.1289** | +0.3028 |\n| II_mid | +0.4473 | **+1.2604** | +5.7297 |\n| II_low | +2.4058 | **+6.0288** | +25.8530 |\n\ns020 的 II 值处于 s015 和 s025 之间，单调递增趋势符合预期。bf16 消除了 NaN 问题，50 条 per_problem_ii 数据完整无缺失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bf16-importance-s020.md"
+}

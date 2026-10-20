@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "af4adb5f65a2ee413876",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "diagnose v4c scope inconsistency",
+  "task_key": "worker_diagnose_v4c-scope-inconsistency_20260514T003342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v4c-scope-inconsistency_20260514T003342.log",
+    "occurrence": 1,
+    "bytes": 670327,
+    "sha256": "9f1b924f3c2c7adafa2fd326a36b7c6da226e8cb23b427e2eb46d229d81137d9"
+  },
+  "statistics": {
+    "messages": 157,
+    "user_turns": 0,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 46,
+      "tool_call": 53,
+      "tool_result": 53,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "af4adb5f65a2ee413876-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "af4adb5f65a2ee413876-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-v4c-scope-inconsistency.md"
+}

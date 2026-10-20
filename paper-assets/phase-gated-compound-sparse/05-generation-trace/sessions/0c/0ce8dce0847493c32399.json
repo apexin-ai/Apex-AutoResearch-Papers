@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ce8dce0847493c32399",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ssh gpu status check",
+  "task_key": "worker_ssh_gpu_status_check_20260515T212743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_status_check_20260515T212743_result.json",
+    "occurrence": 1,
+    "bytes": 1549,
+    "sha256": "9a7d612c28c7154b4961e7c9fa927d239acaa862f34e5a122448f3414f309f6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 使用情况\n\n| GPU | 型号 | 显存占用 | 利用率 | 进程 |\n|-----|------|---------|--------|------|\n| 0 | RTX PRO 6000 Black (96GB) | 15,553 / 97,887 MiB | 81% | PID 277995 — `acc_ds_dense_8k` |\n| 1 | RTX PRO 6000 Black (96GB) | 15,427 / 97,887 MiB | 70% | PID 278395 — `acc_ds_s015_8k` |\n| 2 | RTX PRO 6000 Black (96GB) | 0 MiB | 0% | 空闲 |\n| 3 | RTX PRO 6000 Black (96GB) | 0 MiB | 0% | 空闲 |\n\n### QW n100 进度\n\n**没有名为 `acc_qw_s020_n100` / `acc_qw_s025_n100` 的日志或进程。** 实际存在的是两批各 50 题的结果：\n\n| 条件 | 第一批 (1-50) | 第二批 (51-100) | 合计 n=100 |\n|------|-------------|----------------|-----------|\n| QW importance_s020 | 24.0% (12/50) ✅完成 | 44.0% (22/50) ✅完成 | **34.0% (34/100)** |\n| QW importance_s025 | 26.0% (13/50) ✅完成 | 34.0% (17/50) ✅完成 | **30.0% (30/100)** |\n\n两个 QW n100 评测都已全部完成，无正在运行的进程。\n\n### DS 8k 进程\n\n两个 DS 8k 评测刚启动约 2 分钟，都在 **Problem 2/50**：\n\n| 任务 | GPU | PID | 状态 | 进度 | 预计总时长 |\n|------|-----|-----|------|------|-----------|\n| `acc_ds_dense_8k` (dense) | 0 | 277995 | 运行中 | 2/50 | ~20s/题 × 50 ≈ 17min（简单题），但 8k token 长输出的题会更久 |\n| `acc_ds_s015_8k` (importance_s015) | 1 | 278395 | 运行中 | 2/50 | 类似 |\n\n两个 DS 8k 都跑 `DeepSeek-R1-Distill-Qwen-7B`，`--num-problems 50 --max-new-tokens 8192`。GPU 2、3 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-check-copy-2.md"
+}

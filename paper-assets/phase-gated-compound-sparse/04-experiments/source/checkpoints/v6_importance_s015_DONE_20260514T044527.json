@@ -1,0 +1,37 @@
+{
+  "exp_id": "v6_importance_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:52:50.334Z",
+    "updated_at": "2026-05-14T04:45:27.320Z",
+    "hypothesis": "v6 per-problem II 修复: importance masking s=0.15, cuda:0. 输出含 per_problem_ii 字段(50条), 用于 problem-level bootstrap CI.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v6_importance_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "64408",
+      "log_path": "/root/autodl-tmp/pacs/profiling_output_v6_importance_s015/",
+      "submitted_at": "2026-05-14T03:55:41.270Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_v6_importance_s015/",
+      "wall_clock_seconds": 2986.1,
+      "gpu_hours": 0.83
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T04:45:27.320Z"
+  },
+  "timestamp": "2026-05-14T04:45:27.394071+00:00",
+  "trigger": "update_registry"
+}

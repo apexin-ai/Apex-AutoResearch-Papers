@@ -1,0 +1,23 @@
+{
+  "exp_id": "gsm8k_profiling_ds",
+  "project": "phase-gated-compound-sparse",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:09:41.908Z",
+    "updated_at": "2026-05-15T14:29:32.909Z",
+    "hypothesis": "GSM8K profiling 验证 compound sparsity severity 的可迁移性：DeepSeek 在 GSM8K n=50 上是否复现 MATH-500 的 phase-gated II pattern（importance > random, 单调递增）",
+    "server": "westd-22162",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T14:12:03.382Z"
+    }
+  },
+  "timestamp": "2026-05-15T14:29:33.105954+00:00",
+  "trigger": "update_registry"
+}

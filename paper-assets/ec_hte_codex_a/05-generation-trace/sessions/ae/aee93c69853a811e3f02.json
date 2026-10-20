@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "aee93c69853a811e3f02",
+  "project": "ec_hte_codex_a",
+  "kind": "worker",
+  "title": "proposal stage0 h1 repair spec v1",
+  "task_key": "worker_proposal_stage0_h1_repair_spec_v1_20260531T172517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_proposal_stage0_h1_repair_spec_v1_20260531T172517.log",
+    "occurrence": 1,
+    "bytes": 1263414,
+    "sha256": "e11225eb9dd126d202f6cd45b08e71e1cba341a771c13cb8bbc482ebc5d23233"
+  },
+  "statistics": {
+    "messages": 47,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1,
+      "record": 46
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "aee93c69853a811e3f02-part-0001.json",
+          "message_count": 23
+        },
+        {
+          "path": "aee93c69853a811e3f02-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "aee93c69853a811e3f02-part-0003.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/proposal-stage0-h1-repair-spec-v1.md"
+}

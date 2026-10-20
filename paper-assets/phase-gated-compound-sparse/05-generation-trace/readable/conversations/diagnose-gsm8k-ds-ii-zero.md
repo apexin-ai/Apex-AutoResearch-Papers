@@ -1,0 +1,3381 @@
+# diagnose gsm8k ds ii zero
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 115
+- **Recorded user turns:** 0
+- **Tool calls:** 57
+- **Original source:** `logs/chats/worker_diagnose_gsm8k_ds_ii_zero_20260515T164837.jsonl`
+- **Structured JSON:** [`4ce9833fedd3128c888a.json`](../../sessions/4c/4ce9833fedd3128c888a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+115 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T17:04:08.568645+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T17:04:08.569056+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T17:04:08.569266+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T17:04:08.569423+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -la /root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "ls -la /root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T17:04:08.569560+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -la /root/autodl-tmp/pacs/analysis_output/gsm8k/qw_importance/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "ls -la /root/autodl-tmp/pacs/analysis_output/gsm8k/qw_importance/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T17:04:08.569746+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -50 /tmp/gsm8k_qw_imp.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "tail -50 /tmp/gsm8k_qw_imp.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T17:04:08.570061+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# GSM8K Profiling Adapter for PACS compound sparsity analysis.\\n#\\n# Adapts the MATH-500 profiling pipeline to GSM8K (n=50).\\n# Data: HuggingFace gsm8k test split, random 50 samples (seed=42).\\n# Prompt: Same \\\"Solve the following math problem step by step\\\" template.\\n# Profiling logic: Identical to run_profiling_qwen.py — same II formula,\\n#   same importance/random masking, same quantile phase segmentation.\\n# Output: Same JSON format + per_problem_ii (compatible with extract_table2.py).\\n#\\n# Differences from MATH-500:\\n#   - Data source: HuggingFace gsm8k (not local JSON)\\n#   - Sampling: Random 50 (no difficulty levels to stratify by)\\n#   - GSM8K uses \\\"question\\\" field; answer contains \\\"#### &lt;number>\\\"\\n#\\n# Usage:\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --output_dir ./gsm8k_profiling/ds_imp_s015 \\\\\\n#     --sparsity_levels 0.15 --masking_method importance\\n#\\n#   # Dry-run (1 problem):\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --max_problems 1 --max_new_tokens 128 \\\\\\n#     --output_dir ./gsm8k_profiling/dryrun\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport random\\nimport sys\\nfrom collections import defaultdict\\nfrom itertools import combinations\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\n_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\n_PROJECT_ROOT = os.path.dirname(_SCRIPT_DIR)\\nif _PROJECT_ROOT not in sys.path:\\n    sys.path.insert(0, _PROJECT_ROOT)\\n\\nimport numpy as np\\nimport torch\\n\\nfrom pacs.utils.metrics import compute_perplexity, ppl_from_cached_losses\\nfrom pacs.profiling.interaction_index import (\\n    Interacti
+…[truncated 7131 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T17:04:08.570259+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"bootstrap\\|n_boot\\|N_BOOT\\|1000\\|10000\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"bootstrap\\|n_boot\\|N_BOOT\\|1000\\|10000\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T17:04:08.570428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2288\\ndrwxr-xr-x 2 root root      72 May 16 00:14 .\\ndrwxr-xr-x 7 root root     127 May 15 22:38 ..\\n-rw-r--r-- 1 root root  179349 May 16 00:14 generations.json\\n-rw-r--r-- 1 root root 2161514 May 16 00:14 profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T17:04:08.570611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 3308\\ndrwxr-xr-x 2 root root      72 May 16 00:47 .\\ndrwxr-xr-x 7 root root     127 May 15 22:38 ..\\n-rw-r--r-- 1 root root  155970 May 16 00:47 generations.json\\n-rw-r--r-- 1 root root 3224136 May 16 00:47 profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T17:04:08.570801+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 00:14:48,748 [INFO] run_profiling_gsm8k:   -> 16 phases, boundaries at [55, 417, 437, 453, 908, 920, 958, 1638, 1670, 1898, 1918, 1944, 1962, 1984, 2032]\\n2026-05-16 00:14:48,748 [INFO] run_profiling_gsm8k: [40/50] Processing problem gsm8k_test/1034\\n2026-05-16 00:17:21,246 [INFO] run_profiling_gsm8k:   -> 16 phases, boundaries at [536, 569, 623, 640, 679, 712, 810, 1095, 1191, 1373, 1472, 1544, 1566, 1626, 1722]\\n2026-05-16 00:17:21,246 [INFO] run_profiling_gsm8k: [41/50] Processing problem gsm8k_test/1098\\n2026-05-16 00:19:56,069 [INFO] run_profiling_gsm8k:   -> 17 phases, boundaries at [337, 431, 445, 494, 553, 568, 594, 635, 695, 786, 810, 830, 874, 1148, 1378, 1402]\\n2026-05-16 00:19:56,069 [INFO] run_profiling_gsm8k: [42/50] Processing problem gsm8k_test/1116\\n2026-05-16 00:23:30,585 [INFO] run_profiling_gsm8k:   -> 33 phases, boundaries at [388, 417, 502, 522, 577, 615, 691, 702, 717, 755, 801, 813, 840, 859, 878, 907, 920, 1117, 1158, 1231, 1311, 1365, 1410, 1434, 1458, 1479, 1547, 1617, 1642, 1711, 1799, 1818]\\n2026-05-16 00:23:30,586 [INFO] run_profiling_gsm8k: [43/50] Processing problem gsm8k_test/1130\\n2026-05-16 00:25:22,051 [INFO] run_profiling_gsm8k:   -> 10 phases, boundaries at [688, 736, 1299, 1323, 1358, 1389, 1400, 1426, 2034]\\n2026-05-16 00:25:22,052 [INFO] run_profiling_gsm8k: [44/50] Processing problem gsm8k_test/1149\\n2026-05-16 00:28:02,833 [INFO] run_profiling_gsm8k:   -> 20 phases, boundaries at [667, 677, 687, 875, 886, 916, 930, 953, 967, 1062, 1182, 1358, 1411, 1430, 1547, 1594, 1616, 1670, 1825]\\n2026-05-16 00:28:02,833 [INFO] run_profiling_gsm8k: [45/50] Processing problem gsm8k_test/1206\\n2026-05-16 00:31:55,769 [INFO] run_profiling_gsm8k:   -> 33 phases, boundaries at [2, 388, 405, 545, 562, 595, 616, 630, 659, 683, 724, 762, 821, 840, 886, 899, 1062, 1077, 1090, 1130, 1179, 1253, 1292, 1349, 1372, 1429, 1473, 1490, 1528, 1559, 1597, 1637]\\n2026-05-16 00
+…[truncated 3188 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T17:04:08.570969+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T17:04:08.571139+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"bootstrap\\|n_boot\\|N_BOOT\\|1000\\|10000\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"bootstrap\\|n_boot\\|N_BOOT\\|1000\\|10000\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T17:04:08.571267+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T17:04:08.571387+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json')); print(type(d)); print(list(d.keys()) if isinstance(d,dict) else 'list_len='+str(len(d)))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json')); print(type(d)); print(list(d.keys()) if isinstance(d,dict) else 'list_len='+str(len(d)))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T17:04:08.571536+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T17:04:08.571657+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n# Check per_problem_ii structure\nif 'per_problem_ii' in d:\n    pp = d['per_problem_ii']\n    print('per_problem_ii keys:', list(pp.keys())[:5])\n    for phase in pp:\n        for level in pp[phase]:\n            vals = pp[phase][level]\n            print(f'{phase}/{level}: len={len(vals)}, first3={vals[:3]}')\n            break\n        break\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n# Check per_problem_ii structure\nif 'per_problem_ii' in d:\n    pp = d['per_problem_ii']\n    print('per_problem_ii keys:', list(pp.keys())[:5])\n    for phase in pp:\n        for level in pp[phase]:\n            vals = pp[phase][level]\n            print(f'{phase}/{level}: len={len(vals)}, first3={vals[:3]}')\n            break\n        break\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T17:04:08.571779+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T17:04:08.571909+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n# Show all ii results\nif 'interaction_index' in d:\n    print(json.dumps(d['interaction_index'], indent=2))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n# Show all ii results\nif 'interaction_index' in d:\n    print(json.dumps(d['interaction_index'], indent=2))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T17:04:08.572035+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T17:04:08.572152+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n# Check aggregate perplexity\nif 'aggregate_perplexity' in d:\n    print(json.dumps(d['aggregate_perplexity'], indent=2)[:3000])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n# Check aggregate perplexity\nif 'aggregate_perplexity' in d:\n    print(json.dumps(d['aggregate_perplexity'], indent=2)[:3000])\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T17:04:08.572269+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T17:04:08.572430+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"bootstrap\\|N_BOOT\\|n_boot\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"bootstrap\\|N_BOOT\\|n_boot\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T17:04:08.572563+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T17:04:08.572686+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\nprint('Top-level keys:', list(d.keys()))\n\n# per_problem_ii\nif 'per_problem_ii' in d:\n    pp = d['per_problem_ii']\n    for phase in sorted(pp.keys()):\n        for level in sorted(pp[phase].keys()):\n            vals = pp[phase][level]\n            nonzero = sum(1 for v in vals if v != 0.0)\n            print(f'{phase}/{level}: len={len(vals)}, nonzero={nonzero}, min={min(vals):.6f}, max={max(vals):.6f}, mean={sum(vals)/len(vals):.6f}')\n\n# aggregate_perplexity\nif 'aggregate_perplexity' in d:\n    agg = d['aggregate_perplexity']\n    print('\\naggregate_perplexity keys:', list(agg.keys())[:10])\n    for k in list(agg.keys())[:3]:\n        print(f'  {k}: {json.dumps(agg[k])[:300]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\nprint('Top-level keys:', list(d.keys()))\n\n# per_problem_ii\nif 'per_problem_ii' in d:\n    pp = d['per_problem_ii']\n    for phase in sorted(pp.keys()):\n        for level in sorted(pp[phase].keys()):\n            vals = pp[phase][level]\n            nonzero = sum(1 for v in vals if v != 0.0)\n            print(f'{phase}/{level}: len={len(vals)}, nonzero={nonzero}, min={min(vals):.6f}, max={max(vals):.6f}, mean={sum(vals)/len(vals):.6f}')\n\n# aggregate_perplexity\nif 'aggregate_perplexity' in d:\n    agg = d['aggregate_perplexity']\n    print('\\naggregate_perplexity keys:', list(agg.keys())[:10])\n    for k in list(agg.keys())[:3]:\n        print(f'  {k}: {json.dumps(agg[k])[:300]}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T17:04:08.572833+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport json\\\\nd=json.load(open(\\\\'/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json\\\\'))\\\\nprint(\\\\'Top-level keys:\\\\', list(d.keys()))\\\\n\\\\n# per_problem_ii\\\\nif \\\\'per_problem_ii\\\\' in d:\\\\n    pp = d[\\\\'per_problem_ii\\\\']\\\\n    for phase in sorted(pp.keys()):\\\\n        for level in sorted(pp[phase].keys()):\\\\n            vals = pp[phase][level]\\\\n            nonzero = sum(1 for v in vals if v != 0.0)\\\\n            print(f\\\\'{phase}/{level}: len={len(vals)}, nonzero={nonzero}, min={min(vals):.6f}, max={max(vals):.6f}, mean={sum(vals)/len(vals):.6f}\\\\')\\\\n\\\\n# aggregate_perplexity\\\\nif \\\\'aggregate_perplexity\\\\' in d:\\\\n    agg = d[\\\\'aggregate_perplexity\\\\']\\\\n    print(\\\\'\\\\\\\\naggregate_perplexity keys:\\\\', list(agg.keys())[:10])\\\\n    for k in list(agg.keys())[:3]:\\\\n        print(f\\\\'  {k}: {json.dumps(agg[k])[:300]}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nTop-level keys: ['config', 'phase_stats', 'perplexity', 'interaction_index', 'pass_fail', 'per_problem_ii', 'warnings', 'diagnostics']\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 10, in &lt;module>\\nAttributeError: 'list' object has no attribute 'keys'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T17:04:08.572972+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n\n# Check interaction_index section\nif 'interaction_index' in d:\n    ii = d['interaction_index']\n    for phase in sorted(ii.keys()):\n        for level in sorted(ii[phase].keys()):\n            print(f'II[{phase},{level}]: {json.dumps(ii[phase][level])}')\n\n# Check phase_stats\nif 'phase_stats' in d:\n    print('\\nphase_stats:')\n    for phase, stats in d['phase_stats'].items():\n        print(f'  {phase}: {json.dumps(stats)}')\n\n# Check diagnostics\nif 'diagnostics' in d:\n    diag = d['diagnostics']\n    print('\\ndiagnostics keys:', list(diag.keys()) if isinstance(diag, dict) else type(diag))\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n\n# Check interaction_index section\nif 'interaction_index' in d:\n    ii = d['interaction_index']\n    for phase in sorted(ii.keys()):\n        for level in sorted(ii[phase].keys()):\n            print(f'II[{phase},{level}]: {json.dumps(ii[phase][level])}')\n\n# Check phase_stats\nif 'phase_stats' in d:\n    print('\\nphase_stats:')\n    for phase, stats in d['phase_stats'].items():\n        print(f'  {phase}: {json.dumps(stats)}')\n\n# Check diagnostics\nif 'diagnostics' in d:\n    diag = d['diagnostics']\n    print('\\ndiagnostics keys:', list(diag.keys()) if isinstance(diag, dict) else type(diag))\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T17:04:08.573130+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"II[high_sparsity,0.15]: {\\\"mean\\\": -0.6639000886737849, \\\"ci_low\\\": -2.001321578871368, \\\"ci_high\\\": 0.009981732904842916}\\nII[high_sparsity,0.2]: {\\\"mean\\\": -0.015014867300145488, \\\"ci_low\\\": -0.08793754894946156, \\\"ci_high\\\": 0.028740468457814965}\\nII[high_sparsity,0.25]: {\\\"mean\\\": -2.4756125255962496, \\\"ci_low\\\": -24.676802981596214, \\\"ci_high\\\": 11.495246807986565}\\nII[high_sparsity,0.3]: {\\\"mean\\\": 73.82387974673955, \\\"ci_low\\\": 9.927712989934987, \\\"ci_high\\\": 154.47591923794926}\\nII[low_sparsity,0.15]: {\\\"mean\\\": 0.0, \\\"ci_low\\\": 0.0, \\\"ci_high\\\": 0.0}\\nII[low_sparsity,0.2]: {\\\"mean\\\": 0.0, \\\"ci_low\\\": 0.0, \\\"ci_high\\\": 0.0}\\nII[low_sparsity,0.25]: {\\\"mean\\\": 0.0, \\\"ci_low\\\": 0.0, \\\"ci_high\\\": 0.0}\\nII[low_sparsity,0.3]: {\\\"mean\\\": 0.0, \\\"ci_low\\\": 0.0, \\\"ci_high\\\": 0.0}\\nII[mid_sparsity,0.15]: {\\\"mean\\\": 0.26280128498155964, \\\"ci_low\\\": -4.0920558907266384, \\\"ci_high\\\": 3.6447087028025438}\\nII[mid_sparsity,0.2]: {\\\"mean\\\": -15.61963007501697, \\\"ci_low\\\": -182.49718832723127, \\\"ci_high\\\": 96.62766686198844}\\nII[mid_sparsity,0.25]: {\\\"mean\\\": 275.5409358005306, \\\"ci_low\\\": 19.55361390334902, \\\"ci_high\\\": 653.6111781037587}\\nII[mid_sparsity,0.3]: {\\\"mean\\\": 291.3552486274804, \\\"ci_low\\\": 28.35110529187299, \\\"ci_high\\\": 570.0593409802167}\\n\\nphase_stats:\\n  high_sparsity: {\\\"n_tokens\\\": 19344, \\\"n_segments\\\": 352}\\n  low_sparsity: {\\\"n_tokens\\\": 25973, \\\"n_segments\\\": 359}\\n  mid_sparsity: {\\\"n_tokens\\\": 21307, \\\"n_segments\\\": 267}\\n\\ndiagnostics keys: ['per_problem_sparsity', 'global_sparsity_histogram']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T17:04:08.573310+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\npp = d['per_problem_ii']\n# pp is a list - check first few items structure\nprint('type:', type(pp))\nprint('len:', len(pp))\nif isinstance(pp, list):\n    for item in pp[:2]:\n        print(type(item), json.dumps(item)[:500])\nelif isinstance(pp, dict):\n    for k in list(pp.keys())[:2]:\n        print(k, type(pp[k]), json.dumps(pp[k])[:500])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\npp = d['per_problem_ii']\n# pp is a list - check first few items structure\nprint('type:', type(pp))\nprint('len:', len(pp))\nif isinstance(pp, list):\n    for item in pp[:2]:\n        print(type(item), json.dumps(item)[:500])\nelif isinstance(pp, dict):\n    for k in list(pp.keys())[:2]:\n        print(k, type(pp[k]), json.dumps(pp[k])[:500])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T17:04:08.573492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"type: &lt;class 'dict'>\\nlen: 4\\n0.15 &lt;class 'list'> [{\\\"problem_idx\\\": 0, \\\"problem_id\\\": \\\"gsm8k_test/13\\\", \\\"ii_high\\\": 0.0007586396772455206, \\\"n_segments_high\\\": 7, \\\"ii_mid\\\": 0.0, \\\"n_segments_mid\\\": 4, \\\"ii_low\\\": 0.0, \\\"n_segments_low\\\": 7}, {\\\"problem_idx\\\": 1, \\\"problem_id\\\": \\\"gsm8k_test/51\\\", \\\"ii_high\\\": -0.014701817635571435, \\\"n_segments_high\\\": 5, \\\"ii_mid\\\": null, \\\"n_segments_mid\\\": 1, \\\"ii_low\\\": null, \\\"n_segments_low\\\": 5}, {\\\"problem_idx\\\": 2, \\\"problem_id\\\": \\\"gsm8k_test/54\\\", \\\"ii_high\\\": -28.59697650956062, \\\"n_segments_high\\\": 12, \\\"ii_mid\\\": null, \\\"n_segments_mid\\\": 7\\n0.2 &lt;class 'list'> [{\\\"problem_idx\\\": 0, \\\"problem_id\\\": \\\"gsm8k_test/13\\\", \\\"ii_high\\\": 0.025936599423631246, \\\"n_segments_high\\\": 7, \\\"ii_mid\\\": null, \\\"n_segments_mid\\\": 4, \\\"ii_low\\\": 0.0, \\\"n_segments_low\\\": 7}, {\\\"problem_idx\\\": 1, \\\"problem_id\\\": \\\"gsm8k_test/51\\\", \\\"ii_high\\\": 0.0009223373892143227, \\\"n_segments_high\\\": 5, \\\"ii_mid\\\": null, \\\"n_segments_mid\\\": 1, \\\"ii_low\\\": null, \\\"n_segments_low\\\": 5}, {\\\"problem_idx\\\": 2, \\\"problem_id\\\": \\\"gsm8k_test/54\\\", \\\"ii_high\\\": -2.2415985467756627, \\\"n_segments_high\\\": 12, \\\"ii_mid\\\": 907.5659494855003, \\\"n_se\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T17:04:08.573635+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "find /root/autodl-tmp/pacs/pacs/profiling -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "find /root/autodl-tmp/pacs/pacs/profiling -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T17:04:08.573953+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/pacs/profiling/interaction_index.py\\n/root/autodl-tmp/pacs/pacs/profiling/run_profiling.py\\n/root/autodl-tmp/pacs/pacs/profiling/phase_segmentation.py\\n/root/autodl-tmp/pacs/pacs/profiling/__init__.py\\n/root/autodl-tmp/pacs/pacs/profiling/alt_segmentation.py\\n/root/autodl-tmp/pacs/pacs/profiling/analyze_results.py\\n/root/autodl-tmp/pacs/pacs/profiling/analyze_n500.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T17:04:08.574121+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T17:04:08.574350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Interaction Index (II) calculator for measuring super/sub-additivity\\n# of compound sparsity (attention head pruning + KV cache eviction).\\n#\\n# II = R_both - R_attn - R_kv + 1\\n# where R_x = ppl_x / ppl_dense (relative degradation ratio).\\n# II > 0 → super-additive degradation (compound sparsity hurts more than sum of parts)\\n# II < 0 → sub-additive degradation\\n# II = 0 → independent\\n\\nfrom __future__ import annotations\\n\\nimport math\\nfrom dataclasses import dataclass, field\\nfrom typing import Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nimport torch\\nimport torch.nn.functional as F\\n\\nfrom ..utils.metrics import compute_perplexity\\n\\ntry:\\n    from .phase_segmentation import Phase\\nexcept ImportError:\\n    Phase = None  # will be resolved when phase_segmentation is created\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data classes\\n# ---------------------------------------------------------------------------\\n\\n@dataclass\\nclass InteractionResult:\\n    ii_value: float\\n    ppl_dense: float\\n    ppl_attn_sparse: float\\n    ppl_kv_sparse: float\\n    ppl_both_sparse: float\\n    r_attn: float          # ppl_attn / ppl_dense\\n    r_kv: float            # ppl_kv / ppl_dense\\n    r_both: float          # ppl_both / ppl_dense\\n    is_super_additive: bool  # II > 0 → compound sparsity degrades more than sum of parts\\n    sparsity_level: float = 0.0\\n    phase_name: Optional[str] = None\\n    num_tokens: int = 0\\n\\n    def summary(self) -> str:\\n        tag = \\\"super-additive\\\" if self.is_super_additive else \\\"sub-additive\\\"\\n        return (\\n            f\\\"II={self.ii_value:+.4f} ({tag})  \\\"\\n            f\\\"R_attn={self.r_attn:.4f}  R_kv={self.r_kv:.4f}  R_both={self.r_both:.4f}  \\\"\\n            f\\\"dense={self.ppl_dense:.2f}  attn={self.ppl_attn_sparse:.2f}  \\\"\\n            f\\\"kv={self.ppl_k
+…[truncated 6859 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T17:04:08.574594+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\npp = d['per_problem_ii']\n# Examine ii_low distribution across all problems for sparsity 0.25\nlevel = '0.25'\nif level in pp:\n    items = pp[level]\n    null_count = sum(1 for x in items if x['ii_low'] is None)\n    zero_count = sum(1 for x in items if x['ii_low'] == 0.0)\n    nonzero_count = sum(1 for x in items if x['ii_low'] is not None and x['ii_low'] != 0.0)\n    print(f's={level}: null={null_count}, zero={zero_count}, nonzero={nonzero_count}, total={len(items)}')\n    # Print first 10 items with segment counts\n    for item in items[:10]:\n        print(f'  {item[\\\"problem_id\\\"]}: ii_low={item[\\\"ii_low\\\"]}, n_seg_low={item[\\\"n_segments_low\\\"]}, ii_high={item.get(\\\"ii_high\\\",\\\"?\\\"):.6f}' if item['ii_high'] is not None else f'  {item[\\\"problem_id\\\"]}: ii_low={item[\\\"ii_low\\\"]}, n_seg_low={item[\\\"n_segments_low\\\"]}, ii_high=null')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\npp = d['per_problem_ii']\n# Examine ii_low distribution across all problems for sparsity 0.25\nlevel = '0.25'\nif level in pp:\n    items = pp[level]\n    null_count = sum(1 for x in items if x['ii_low'] is None)\n    zero_count = sum(1 for x in items if x['ii_low'] == 0.0)\n    nonzero_count = sum(1 for x in items if x['ii_low'] is not None and x['ii_low'] != 0.0)\n    print(f's={level}: null={null_count}, zero={zero_count}, nonzero={nonzero_count}, total={len(items)}')\n    # Print first 10 items with segment counts\n    for item in items[:10]:\n        print(f'  {item[\\\"problem_id\\\"]}: ii_low={item[\\\"ii_low\\\"]}, n_seg_low={item[\\\"n_segments_low\\\"]}, ii_high={item.get(\\\"ii_high\\\",\\\"?\\\"):.6f}' if item['ii_high'] is not None else f'  {item[\\\"problem_id\\\"]}: ii_low={item[\\\"ii_low\\\"]}, n_seg_low={item[\\\"n_segments_low\\\"]}, ii_high=null')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T17:04:08.574752+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"s=0.25: null=26, zero=24, nonzero=0, total=50\\n  gsm8k_test/13: ii_low=0.0, n_seg_low=7, ii_high=0.133525\\n  gsm8k_test/51: ii_low=None, n_seg_low=5, ii_high=0.098945\\n  gsm8k_test/54: ii_low=0.0, n_seg_low=14, ii_high=0.111427\\n  gsm8k_test/61: ii_low=0.0, n_seg_low=9, ii_high=-0.114685\\n  gsm8k_test/65: ii_low=0.0, n_seg_low=4, ii_high=null\\n  gsm8k_test/88: ii_low=0.0, n_seg_low=11, ii_high=null\\n  gsm8k_test/161: ii_low=None, n_seg_low=7, ii_high=0.080836\\n  gsm8k_test/178: ii_low=None, n_seg_low=5, ii_high=null\\n  gsm8k_test/189: ii_low=0.0, n_seg_low=5, ii_high=0.034567\\n  gsm8k_test/191: ii_low=None, n_seg_low=1, ii_high=0.507286\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T17:04:08.574894+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n# Check perplexity section\nppl = d['perplexity']\nprint('perplexity type:', type(ppl))\nif isinstance(ppl, dict):\n    print('keys:', list(ppl.keys())[:10])\n    for k in list(ppl.keys())[:3]:\n        v = ppl[k]\n        print(f'  {k}: {json.dumps(v)[:400]}')\nelif isinstance(ppl, list):\n    print('len:', len(ppl))\n    print('first:', json.dumps(ppl[0])[:500])\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\n# Check perplexity section\nppl = d['perplexity']\nprint('perplexity type:', type(ppl))\nif isinstance(ppl, dict):\n    print('keys:', list(ppl.keys())[:10])\n    for k in list(ppl.keys())[:3]:\n        v = ppl[k]\n        print(f'  {k}: {json.dumps(v)[:400]}')\nelif isinstance(ppl, list):\n    print('len:', len(ppl))\n    print('first:', json.dumps(ppl[0])[:500])\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T17:04:08.575064+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"perplexity type: &lt;class 'dict'>\\nkeys: ['high_sparsity', 'low_sparsity', 'mid_sparsity']\\n  high_sparsity: {\\\"0.15\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}, \\\"0.2\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}, \\\"0.25\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}, \\\"0.3\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}}\\n  low_sparsity: {\\\"0.15\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}, \\\"0.2\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}, \\\"0.25\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}, \\\"0.3\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}}\\n  mid_sparsity: {\\\"0.15\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}, \\\"0.2\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}, \\\"0.25\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}, \\\"0.3\\\": {\\\"dense\\\": NaN, \\\"attn\\\": NaN, \\\"kv\\\": NaN, \\\"both\\\": NaN}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T17:04:08.575239+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"ii_low\\|low_sparsity\\|phase_ii\\|segment_ii\\|per_problem\\|ppl_dense\\|ppl_attn\\|ppl_kv\\|ppl_both\\|aggregate_perplexity\\|NaN\\|nan\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"ii_low\\|low_sparsity\\|phase_ii\\|segment_ii\\|per_problem\\|ppl_dense\\|ppl_attn\\|ppl_kv\\|ppl_both\\|aggregate_perplexity\\|NaN\\|nan\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T17:04:08.575369+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T17:04:08.575513+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "wc -l /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "wc -l /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T17:04:08.575636+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"620 /root/autodl-tmp/pacs/run_profiling_gsm8k.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T17:04:08.575765+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -n 420 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "tail -n 420 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T17:04:08.576037+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    overall = \\\"PASS\\\" if (ci_pass or sign_pass) else \\\"FAIL\\\"\\n    return {\\n        \\\"ci_overlap_test\\\": {\\\"pass\\\": ci_pass, \\\"details\\\": ci_detail},\\n        \\\"sign_reversal_test\\\": {\\\"pass\\\": sign_pass, \\\"details\\\": sign_detail},\\n        \\\"overall\\\": overall,\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# Main pipeline\\n# ---------------------------------------------------------------------------\\n\\n@torch.no_grad()\\ndef run_profiling(args: argparse.Namespace) -> None:\\n    device = args.device\\n    torch.manual_seed(args.seed)\\n    sparsity_levels = args.sparsity_levels\\n    use_importance = (args.masking_method == \\\"importance\\\")\\n    model, tokenizer = load_model_and_tokenizer(args.model_path, device=device)\\n\\n    # --max_problems controls sample size (default 50); --seed controls RNG\\n    n_sample = args.max_problems if args.max_problems is not None else GSM8K_N_SAMPLE\\n    data = load_gsm8k_data(data_path=args.data_path, n_sample=n_sample, seed=args.seed)\\n    logger.info(\\\"Processing %d GSM8K problems\\\", len(data))\\n\\n    generation_records: list = []\\n\\n    segmenter = PhaseSegmenter(\\n        bandwidth=args.kde_bandwidth,\\n        min_phase_length=args.min_phase_length,\\n    )\\n    ii_calc = InteractionIndexCalculator(model, tokenizer, device=device)\\n\\n    os.makedirs(args.output_dir, exist_ok=True)\\n    warnings_list: List[str] = []\\n\\n    ii_per_phase_level: Dict[str, Dict[str, List[float]]] = defaultdict(\\n        lambda: defaultdict(list)\\n    )\\n    ppl_per_phase_level: Dict[str, Dict[str, Dict[str, List[float]]]] = defaultdict(\\n        lambda: defaultdict(lambda: defaultdict(list))\\n    )\\n    phase_token_counts: Dict[str, List[int]] = defaultdict(list)\\n    phase_segment_counts: Dict[str, int] = defaultdict(int)\\n\\n    all_problem_diagnostics: List[Dict[st
+…[truncated 7110 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T17:04:08.576233+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 450 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 450 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T17:04:08.576542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# GSM8K Profiling Adapter for PACS compound sparsity analysis.\\n#\\n# Adapts the MATH-500 profiling pipeline to GSM8K (n=50).\\n# Data: HuggingFace gsm8k test split, random 50 samples (seed=42).\\n# Prompt: Same \\\"Solve the following math problem step by step\\\" template.\\n# Profiling logic: Identical to run_profiling_qwen.py — same II formula,\\n#   same importance/random masking, same quantile phase segmentation.\\n# Output: Same JSON format + per_problem_ii (compatible with extract_table2.py).\\n#\\n# Differences from MATH-500:\\n#   - Data source: HuggingFace gsm8k (not local JSON)\\n#   - Sampling: Random 50 (no difficulty levels to stratify by)\\n#   - GSM8K uses \\\"question\\\" field; answer contains \\\"#### &lt;number>\\\"\\n#\\n# Usage:\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --output_dir ./gsm8k_profiling/ds_imp_s015 \\\\\\n#     --sparsity_levels 0.15 --masking_method importance\\n#\\n#   # Dry-run (1 problem):\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --max_problems 1 --max_new_tokens 128 \\\\\\n#     --output_dir ./gsm8k_profiling/dryrun\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport random\\nimport sys\\nfrom collections import defaultdict\\nfrom itertools import combinations\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\n_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\n_PROJECT_ROOT = os.path.dirname(_SCRIPT_DIR)\\nif _PROJECT_ROOT not in sys.path:\\n    sys.path.insert(0, _PROJECT_ROOT)\\n\\nimport numpy as np\\nimport torch\\n\\nfrom pacs.utils.metrics import compute_perplexity, ppl_from_cached_losses\\nfrom pacs.profiling.interaction_index import (\\n    Interacti
+…[truncated 6901 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T17:04:08.576822+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"def compute_conditioned_perplexities\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"def compute_conditioned_perplexities\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T17:04:08.576970+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"137:def compute_conditioned_perplexities(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T17:04:08.577097+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"def compute_conditioned_perplexities\\|def _select_heads_to_mask\\|def _select_kv_to_evict\\|def forward_with_sparse_config\" /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"def compute_conditioned_perplexities\\|def _select_heads_to_mask\\|def _select_kv_to_evict\\|def forward_with_sparse_config\" /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T17:04:08.577220+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T17:04:08.577338+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 210 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 210 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T17:04:08.577624+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# GSM8K Profiling Adapter for PACS compound sparsity analysis.\\n#\\n# Adapts the MATH-500 profiling pipeline to GSM8K (n=50).\\n# Data: HuggingFace gsm8k test split, random 50 samples (seed=42).\\n# Prompt: Same \\\"Solve the following math problem step by step\\\" template.\\n# Profiling logic: Identical to run_profiling_qwen.py — same II formula,\\n#   same importance/random masking, same quantile phase segmentation.\\n# Output: Same JSON format + per_problem_ii (compatible with extract_table2.py).\\n#\\n# Differences from MATH-500:\\n#   - Data source: HuggingFace gsm8k (not local JSON)\\n#   - Sampling: Random 50 (no difficulty levels to stratify by)\\n#   - GSM8K uses \\\"question\\\" field; answer contains \\\"#### &lt;number>\\\"\\n#\\n# Usage:\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --output_dir ./gsm8k_profiling/ds_imp_s015 \\\\\\n#     --sparsity_levels 0.15 --masking_method importance\\n#\\n#   # Dry-run (1 problem):\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --max_problems 1 --max_new_tokens 128 \\\\\\n#     --output_dir ./gsm8k_profiling/dryrun\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport random\\nimport sys\\nfrom collections import defaultdict\\nfrom itertools import combinations\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\n_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\n_PROJECT_ROOT = os.path.dirname(_SCRIPT_DIR)\\nif _PROJECT_ROOT not in sys.path:\\n    sys.path.insert(0, _PROJECT_ROOT)\\n\\nimport numpy as np\\nimport torch\\n\\nfrom pacs.utils.metrics import compute_perplexity, ppl_from_cached_losses\\nfrom pacs.profiling.interaction_index import (\\n    Interacti
+…[truncated 6283 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T17:04:08.577811+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"def forward_with_sparse_config\" /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"def forward_with_sparse_config\" /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T17:04:08.577947+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"184:    def forward_with_sparse_config(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T17:04:08.578110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 320 /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 320 /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T17:04:08.578334+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Interaction Index (II) calculator for measuring super/sub-additivity\\n# of compound sparsity (attention head pruning + KV cache eviction).\\n#\\n# II = R_both - R_attn - R_kv + 1\\n# where R_x = ppl_x / ppl_dense (relative degradation ratio).\\n# II > 0 → super-additive degradation (compound sparsity hurts more than sum of parts)\\n# II < 0 → sub-additive degradation\\n# II = 0 → independent\\n\\nfrom __future__ import annotations\\n\\nimport math\\nfrom dataclasses import dataclass, field\\nfrom typing import Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nimport torch\\nimport torch.nn.functional as F\\n\\nfrom ..utils.metrics import compute_perplexity\\n\\ntry:\\n    from .phase_segmentation import Phase\\nexcept ImportError:\\n    Phase = None  # will be resolved when phase_segmentation is created\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data classes\\n# ---------------------------------------------------------------------------\\n\\n@dataclass\\nclass InteractionResult:\\n    ii_value: float\\n    ppl_dense: float\\n    ppl_attn_sparse: float\\n    ppl_kv_sparse: float\\n    ppl_both_sparse: float\\n    r_attn: float          # ppl_attn / ppl_dense\\n    r_kv: float            # ppl_kv / ppl_dense\\n    r_both: float          # ppl_both / ppl_dense\\n    is_super_additive: bool  # II > 0 → compound sparsity degrades more than sum of parts\\n    sparsity_level: float = 0.0\\n    phase_name: Optional[str] = None\\n    num_tokens: int = 0\\n\\n    def summary(self) -> str:\\n        tag = \\\"super-additive\\\" if self.is_super_additive else \\\"sub-additive\\\"\\n        return (\\n            f\\\"II={self.ii_value:+.4f} ({tag})  \\\"\\n            f\\\"R_attn={self.r_attn:.4f}  R_kv={self.r_kv:.4f}  R_both={self.r_both:.4f}  \\\"\\n            f\\\"dense={self.ppl_dense:.2f}  attn={self.ppl_attn_sparse:.2f}  \\\"\\n            f\\\"kv={self.ppl_k
+…[truncated 6811 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T17:04:08.578549+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 270 /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 270 /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T17:04:08.578778+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Interaction Index (II) calculator for measuring super/sub-additivity\\n# of compound sparsity (attention head pruning + KV cache eviction).\\n#\\n# II = R_both - R_attn - R_kv + 1\\n# where R_x = ppl_x / ppl_dense (relative degradation ratio).\\n# II > 0 → super-additive degradation (compound sparsity hurts more than sum of parts)\\n# II < 0 → sub-additive degradation\\n# II = 0 → independent\\n\\nfrom __future__ import annotations\\n\\nimport math\\nfrom dataclasses import dataclass, field\\nfrom typing import Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nimport torch\\nimport torch.nn.functional as F\\n\\nfrom ..utils.metrics import compute_perplexity\\n\\ntry:\\n    from .phase_segmentation import Phase\\nexcept ImportError:\\n    Phase = None  # will be resolved when phase_segmentation is created\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data classes\\n# ---------------------------------------------------------------------------\\n\\n@dataclass\\nclass InteractionResult:\\n    ii_value: float\\n    ppl_dense: float\\n    ppl_attn_sparse: float\\n    ppl_kv_sparse: float\\n    ppl_both_sparse: float\\n    r_attn: float          # ppl_attn / ppl_dense\\n    r_kv: float            # ppl_kv / ppl_dense\\n    r_both: float          # ppl_both / ppl_dense\\n    is_super_additive: bool  # II > 0 → compound sparsity degrades more than sum of parts\\n    sparsity_level: float = 0.0\\n    phase_name: Optional[str] = None\\n    num_tokens: int = 0\\n\\n    def summary(self) -> str:\\n        tag = \\\"super-additive\\\" if self.is_super_additive else \\\"sub-additive\\\"\\n        return (\\n            f\\\"II={self.ii_value:+.4f} ({tag})  \\\"\\n            f\\\"R_attn={self.r_attn:.4f}  R_kv={self.r_kv:.4f}  R_both={self.r_both:.4f}  \\\"\\n            f\\\"dense={self.ppl_dense:.2f}  attn={self.ppl_attn_sparse:.2f}  \\\"\\n            f\\\"kv={self.ppl_k
+…[truncated 6819 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T17:04:08.578998+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/pacs/utils/metrics.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/pacs/utils/metrics.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T17:04:08.579183+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# General-purpose metrics for PACS profiling: perplexity, accuracy, etc.\\n\\nfrom typing import List, Optional\\n\\nimport torch\\nimport torch.nn.functional as F\\n\\n\\ndef compute_perplexity(\\n    logits: torch.Tensor,\\n    labels: torch.Tensor,\\n    token_indices: Optional[List[int]] = None,\\n) -> float:\\n    \\\"\\\"\\\"Compute mean per-token perplexity, optionally restricted to specific positions.\\n\\n    Args:\\n        logits: (seq_len, vocab_size) – unnormalized logits.\\n        labels: (seq_len,) – ground-truth token ids.  Positions with label == -100\\n                are ignored (standard HF convention).\\n        token_indices: If given, only these positions contribute to the result.\\n                       None means all valid positions.\\n\\n    Returns:\\n        Scalar perplexity (exp of mean cross-entropy over selected positions).\\n    \\\"\\\"\\\"\\n    # Shift: logits[t] predicts labels[t+1]\\n    shift_logits = logits[:-1]  # (S-1, V)\\n    shift_labels = labels[1:]   # (S-1,)\\n\\n    # float32 for numerical stability with fp16 logits\\n    per_token_ce = F.cross_entropy(\\n        shift_logits.float(), shift_labels, reduction=\\\"none\\\"\\n    )  # (S-1,)\\n\\n    if token_indices is not None:\\n        # token_indices refer to *label* positions; after shift they map to index-1\\n        idx = torch.tensor(\\n            [i - 1 for i in token_indices if 0 < i < len(labels)],\\n            device=per_token_ce.device,\\n        )\\n        if idx.numel() == 0:\\n            return float(\\\"nan\\\")\\n        per_token_ce = per_token_ce[idx]\\n\\n    # Ignore positions where label == -100\\n    valid = shift_labels[: per_token_ce.size(0)] != -100 if token_indices is None else torch.ones_like(per_token_ce, dtype=torch.bool)\\n    if token_indices is None:\\n        per_token_ce = per_token_ce[valid]\\n\\n    if per_token_ce.numel() == 0:\\n        return float(\\\"nan\\\")\\n\\n  
+…[truncated 1581 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T17:04:08.579339+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\npp = d['per_problem_ii']\n# Check exact values for ii_low at s=0.25\nfor item in pp['0.25'][:15]:\n    val = item['ii_low']\n    nseg = item['n_segments_low']\n    print(f'{item[\\\"problem_id\\\"]}: ii_low={repr(val)}, n_seg={nseg}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/gsm8k/ds_importance/profiling_results.json'))\npp = d['per_problem_ii']\n# Check exact values for ii_low at s=0.25\nfor item in pp['0.25'][:15]:\n    val = item['ii_low']\n    nseg = item['n_segments_low']\n    print(f'{item[\\\"problem_id\\\"]}: ii_low={repr(val)}, n_seg={nseg}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T17:04:08.579513+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gsm8k_test/13: ii_low=0.0, n_seg=7\\ngsm8k_test/51: ii_low=None, n_seg=5\\ngsm8k_test/54: ii_low=0.0, n_seg=14\\ngsm8k_test/61: ii_low=0.0, n_seg=9\\ngsm8k_test/65: ii_low=0.0, n_seg=4\\ngsm8k_test/88: ii_low=0.0, n_seg=11\\ngsm8k_test/161: ii_low=None, n_seg=7\\ngsm8k_test/178: ii_low=None, n_seg=5\\ngsm8k_test/189: ii_low=0.0, n_seg=5\\ngsm8k_test/191: ii_low=None, n_seg=1\\ngsm8k_test/198: ii_low=None, n_seg=4\\ngsm8k_test/209: ii_low=0.0, n_seg=10\\ngsm8k_test/228: ii_low=0.0, n_seg=9\\ngsm8k_test/255: ii_low=0.0, n_seg=16\\ngsm8k_test/285: ii_low=0.0, n_seg=12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T17:04:08.579713+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 180 /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 180 /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T17:04:08.579948+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Interaction Index (II) calculator for measuring super/sub-additivity\\n# of compound sparsity (attention head pruning + KV cache eviction).\\n#\\n# II = R_both - R_attn - R_kv + 1\\n# where R_x = ppl_x / ppl_dense (relative degradation ratio).\\n# II > 0 → super-additive degradation (compound sparsity hurts more than sum of parts)\\n# II < 0 → sub-additive degradation\\n# II = 0 → independent\\n\\nfrom __future__ import annotations\\n\\nimport math\\nfrom dataclasses import dataclass, field\\nfrom typing import Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nimport torch\\nimport torch.nn.functional as F\\n\\nfrom ..utils.metrics import compute_perplexity\\n\\ntry:\\n    from .phase_segmentation import Phase\\nexcept ImportError:\\n    Phase = None  # will be resolved when phase_segmentation is created\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data classes\\n# ---------------------------------------------------------------------------\\n\\n@dataclass\\nclass InteractionResult:\\n    ii_value: float\\n    ppl_dense: float\\n    ppl_attn_sparse: float\\n    ppl_kv_sparse: float\\n    ppl_both_sparse: float\\n    r_attn: float          # ppl_attn / ppl_dense\\n    r_kv: float            # ppl_kv / ppl_dense\\n    r_both: float          # ppl_both / ppl_dense\\n    is_super_additive: bool  # II > 0 → compound sparsity degrades more than sum of parts\\n    sparsity_level: float = 0.0\\n    phase_name: Optional[str] = None\\n    num_tokens: int = 0\\n\\n    def summary(self) -> str:\\n        tag = \\\"super-additive\\\" if self.is_super_additive else \\\"sub-additive\\\"\\n        return (\\n            f\\\"II={self.ii_value:+.4f} ({tag})  \\\"\\n            f\\\"R_attn={self.r_attn:.4f}  R_kv={self.r_kv:.4f}  R_both={self.r_both:.4f}  \\\"\\n            f\\\"dense={self.ppl_dense:.2f}  attn={self.ppl_attn_sparse:.2f}  \\\"\\n            f\\\"kv={self.ppl_k
+…[truncated 5208 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T17:04:08.580105+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"def compute_dense_forward_with_importance\" /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"def compute_dense_forward_with_importance\" /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T17:04:08.580235+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"310:    def compute_dense_forward_with_importance(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T17:04:08.580373+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -n 180 /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "tail -n 180 /root/autodl-tmp/pacs/pacs/profiling/interaction_index.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T17:04:08.580610+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                            nan_layers.append(l_idx)\\n                        else:\\n                            head_importance[l_idx] = attn_f.norm(dim=(-2, -1)).cpu()\\n                            kv_importance.add_(attn_f.sum(dim=(0, 1)).cpu())\\n                        del attn_f\\n                        return (output[0],) + (None,) + output[2:]\\n                return _post\\n\\n            h_pre = attn_module.register_forward_pre_hook(\\n                _make_pre_hook(), with_kwargs=True\\n            )\\n            h_post = attn_module.register_forward_hook(_make_post_hook(layer_idx))\\n            handles.extend([h_pre, h_post])\\n\\n        try:\\n            outputs = self.model(\\n                input_ids=input_ids,\\n                attention_mask=attention_mask,\\n            )\\n        finally:\\n            for h in handles:\\n                h.remove()\\n\\n        logits = outputs.logits[0]\\n        labels = input_ids[0]\\n        ce_losses = F.cross_entropy(logits[:-1].float(), labels[1:], reduction=\\\"none\\\")\\n\\n        if nan_layers:\\n            import logging\\n            logging.getLogger('interaction_index').warning(\\n                'Skipped %d NaN attention layers: %s', len(nan_layers), nan_layers\\n            )\\n\\n        return ce_losses, head_importance, kv_importance\\n\\n\\n    def _get_model_dims(self) -> Tuple[int, int]:\\n        \\\"\\\"\\\"Return (num_layers, num_attention_heads) from model config.\\\"\\\"\\\"\\n        config = self.model.config\\n        num_layers = getattr(config, \\\"num_hidden_layers\\\", None)\\n        num_heads = getattr(config, \\\"num_attention_heads\\\", None)\\n        if num_layers is None or num_heads is None:\\n            raise ValueError(\\n                \\\"Cannot infer num_hidden_layers / num_attention_heads from model config\\\"\\n            )\\n        return num_layers, num_heads\\n\\n    # ----------------------
+…[truncated 5362 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T17:04:08.580782+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 380 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 380 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T17:04:08.581013+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# GSM8K Profiling Adapter for PACS compound sparsity analysis.\\n#\\n# Adapts the MATH-500 profiling pipeline to GSM8K (n=50).\\n# Data: HuggingFace gsm8k test split, random 50 samples (seed=42).\\n# Prompt: Same \\\"Solve the following math problem step by step\\\" template.\\n# Profiling logic: Identical to run_profiling_qwen.py — same II formula,\\n#   same importance/random masking, same quantile phase segmentation.\\n# Output: Same JSON format + per_problem_ii (compatible with extract_table2.py).\\n#\\n# Differences from MATH-500:\\n#   - Data source: HuggingFace gsm8k (not local JSON)\\n#   - Sampling: Random 50 (no difficulty levels to stratify by)\\n#   - GSM8K uses \\\"question\\\" field; answer contains \\\"#### &lt;number>\\\"\\n#\\n# Usage:\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --output_dir ./gsm8k_profiling/ds_imp_s015 \\\\\\n#     --sparsity_levels 0.15 --masking_method importance\\n#\\n#   # Dry-run (1 problem):\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --max_problems 1 --max_new_tokens 128 \\\\\\n#     --output_dir ./gsm8k_profiling/dryrun\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport random\\nimport sys\\nfrom collections import defaultdict\\nfrom itertools import combinations\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\n_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\n_PROJECT_ROOT = os.path.dirname(_SCRIPT_DIR)\\nif _PROJECT_ROOT not in sys.path:\\n    sys.path.insert(0, _PROJECT_ROOT)\\n\\nimport numpy as np\\nimport torch\\n\\nfrom pacs.utils.metrics import compute_perplexity, ppl_from_cached_losses\\nfrom pacs.profiling.interaction_index import (\\n    Interacti
+…[truncated 6919 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T17:04:08.581205+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/pacs/profiling/alt_segmentation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/pacs/profiling/alt_segmentation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T17:04:08.581484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nAlternative Phase Segmentation: GMM + BIC and Quantile-based methods.\\n\\nDeveloped as fallback when KDE tri-modal detection fails (e.g., unimodal\\nsparsity distributions where 82% of samples trigger KDE fallback).\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nfrom dataclasses import dataclass, field\\nfrom typing import List, Optional, Tuple\\n\\nimport numpy as np\\n\\ntry:\\n    from .phase_segmentation import Phase, PhaseAnnotation, PHASE_NAMES_BY_SPARSITY\\nexcept ImportError:\\n    # Fallback for environments without torch (phase_segmentation imports torch at top level).\\n    # Re-define the minimal dataclasses needed.\\n    from dataclasses import field as _field\\n\\n    PHASE_NAMES_BY_SPARSITY = [\\\"execution\\\", \\\"reasoning\\\", \\\"transition\\\"]\\n\\n    @dataclass\\n    class Phase:\\n        name: str\\n        start: int\\n        end: int\\n        mean_sparsity: float\\n\\n        @property\\n        def token_indices(self) -> List[int]:\\n            return list(range(self.start, self.end))\\n\\n    @dataclass\\n    class PhaseAnnotation:\\n        phases: List[\\\"Phase\\\"]\\n        boundaries: List[int]\\n        sparsity: np.ndarray\\n        kde_x: np.ndarray\\n        kde_density: np.ndarray\\n        metadata: dict = _field(default_factory=dict)\\n\\n\\n# =====================================================================\\n# B1: GMM + BIC Diagnostics\\n# =====================================================================\\n\\n@dataclass\\nclass GMMDiagnostics:\\n    best_k: int\\n    bic_scores: dict\\n    means: np.ndarray\\n    stds: np.ndarray\\n    weights: np.ndarray\\n    assignments: np.ndarray\\n    posterior: np.ndarray\\n\\n\\ndef fit_gmm_bic(\\n    sparsity_values: np.ndarray,\\n    max_k: int = 5,\\n    seed: int = 42,\\n) -> GMMDiagnostics:\\n    \\\"\\\"\\\"Fit GMM with k=1..max_k, return BIC-optimal model.\\\"\\\"\\\"\\n    from 
+…[truncated 7050 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-15T17:04:08.581650+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"class Phase\\|token_indices\\|@property\" /root/autodl-tmp/pacs/pacs/profiling/phase_segmentation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"class Phase\\|token_indices\\|@property\" /root/autodl-tmp/pacs/pacs/profiling/phase_segmentation.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T17:04:08.581780+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T17:04:08.582000+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat > /root/autodl-tmp/pacs/diagnose_gsm8k.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Diagnostic script for GSM8K ii_low = 0.0 issue.\"\"\"\nimport sys, os, json, random\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\n\n_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\n_PROJECT_ROOT = os.path.dirname(_SCRIPT_DIR)\nif _PROJECT_ROOT not in sys.path:\n    sys.path.insert(0, _PROJECT_ROOT)\n\nfrom pacs.utils.metrics import compute_perplexity, ppl_from_cached_losses\nfrom pacs.profiling.interaction_index import (\n    InteractionIndexCalculator, _HeadMaskHook,\n)\nfrom pacs.profiling.phase_segmentation import PhaseSegmenter\nfrom pacs.profiling.alt_segmentation import segment_by_quantile, to_phase_annotation\n\nSEED = 42\nSPARSITY = 0.25\nN_PROBLEMS = 3\nMODEL_PATH = \"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\"\nDATA_PATH = os.path.join(_SCRIPT_DIR, \"data\", \"gsm8k_test.json\")\n\ndef main():\n    device = \"cuda:0\"\n    torch.manual_seed(SEED)\n    \n    from transformers import AutoModelForCausalLM, AutoTokenizer\n    print(\"Loading model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.float16, device_map=device,\n        trust_remote_code=True, attn_implementation=\"eager\",\n    )\n    model.eval()\n    \n    # Load data\n    with open(DATA_PATH) as f:\n        raw = json.load(f)\n    rng = random.Random(SEED)\n    indices = sorted(rng.sample(range(len(raw)), min(50, len(raw))))\n    \n    segmenter = PhaseSegmenter(bandwidth=\"scott\", min_phase_length=10)\n    ii_calc = InteractionIndexCalculator(model, tokenizer, device=device)\n    \n    attn_layers = _HeadMaskHook._find_attention_layers(model)\n    last_attn_layer = attn_layers[-1]\n    \n    for prob_idx in range(N_PROBLEMS):\n        i = indices[prob_idx]\n        item = raw[i]\n        problem_id = f\"gsm8k_test/{i}\"\n        print(f\"\\n{'='*70}\")\n        print(f\"PROBLEM {prob_idx}: {problem_id}\")\n        print(f\"{'='*70}\")\n        \n        prompt = f\"Solve the following math problem step by step.\\n\\nProblem: {item['question']}\\n\\nSolution:\"\n        inputs = tokenizer(prompt, return_tensors=\"pt\").to(device)\n        prompt_len = inputs[\"input_ids\"].shape[1]\n        print(f\"prompt_len = {prompt_len}\")\n        \n        step_sparsities = []\n        def _enable_attn_pre_hook(module, args, kwargs):\n            kwargs = dict(kwargs)\n            kwargs[\"output_attentions\"] = True\n            return args, kwargs\n        def _capture_sparsity_hook(module, input, output):\n            if isinstance(output, tuple) and len(output) > 1 and output[1] is not None:\n                attn_w = output[1]\n                if attn_w.shape[-2] == 1:\n                    step_sparsities.append(segmenter.compute_step_sparsity(attn_w[0]))\n                return (output[0],) + (None,) + output[2:]\n        \n        pre_h = last_attn_layer.register_forward_pre_hook(_enable_attn_pre_hook, with_kwargs=True)\n        post_h = last_attn_layer.register_forward_hook(_capture_sparsity_hook)\n        try:\n            outputs = model.generate(**inputs, max_new_tokens=2048, do_sample=False)\n        finally:\n            pre_h.remove()\n            post_h.remove()\n        \n        full_ids = outputs.sequences if hasattr(outputs, \"sequences\") else outputs\n        if full_ids.dim() == 1:\n            full_ids = full_ids.unsqueeze(0)\n        \n        gen_sparsity = np.array(step_sparsities)\n        print(f\"gen_tokens = {len(step_sparsities)}, full_seq_len = {full_ids.shape[1]}\")\n        print(f\"sparsity: min={gen_sparsity.min():.4f}, max={gen_sparsity.max():.4f}, mean={gen_sparsity.mean():.4f}\")\n        \n        quant_seg = segment_by_quantile(gen_sparsity, n_groups=3)\n        annotation = to_phase_annotation(\n            quant_seg.assignments, quant_seg.group_names, gen_sparsity,\n            offset=0, min_phase_length=10,\n        )\n        \n        # Print phase summary BEFORE prompt_len shift\n        print(f\"\\nPhase segmentation (before prompt_len shift):\")\n        for p in annotation.phases:\n            print(f\"  {p.name}: [{p.start}, {p.end}) = {p.end-p.start} tokens, mean_sparsity={p.mean_sparsity:.4f}\")\n        \n        # Shift phases\n        for phase in annotation.phases:\n            phase.start += prompt_len\n            phase.end += prompt_len\n        \n        # Compute importance\n        dense_ce_losses, head_importance, kv_importance = ii_calc.compute_dense_forward_with_importance(full_ids)\n        full_seq_len = full_ids.shape[1]\n        \n        print(f\"\\ndense_ce_losses: shape={dense_ce_losses.shape}, has_nan={dense_ce_losses.isnan().any().item()}, has_inf={dense_ce_losses.isinf().any().item()}\")\n        print(f\"head_importance: shape={head_importance.shape}, zeros_per_layer_min={head_importance.eq(0).sum(1).min().item()}, zeros_per_layer_max={head_importance.eq(0).sum(1).max().item()}\")\n        print(f\"kv_importance: shape={kv_importance.shape}, min={kv_importance.min():.6f}, max={kv_importance.max():.6f}, zeros={kv_importance.eq(0).sum().item()}\")\n        \n        # Build masks\n        num_layers, num_heads = ii_calc._get_model_dims()\n        attn_head_mask = InteractionIndexCalculator._select_heads_to_mask(\n            num_layers, num_heads, SPARSITY, importance=head_importance,\n        )\n        kv_mask = InteractionIndexCalculator._select_kv_to_evict(\n            full_seq_len, SPARSITY, importance=kv_importance,\n        )\n        \n        n_heads_masked = (attn_head_mask == 0).sum().item()\n        n_kv_evicted = (kv_mask == 0).sum().item()\n        print(f\"\\nMasks at s={SPARSITY}:\")\n        print(f\"  heads masked: {n_heads_masked} / {num_layers * num_heads}\")\n        print(f\"  KV evicted: {n_kv_evicted} / {full_seq_len}\")\n        \n        # Analyze which KV positions are evicted\n        evicted_positions = (kv_mask == 0).nonzero(as_tuple=True)[0].tolist()\n        if evicted_positions:\n            print(f\"  KV evicted range: [{min(evicted_positions)}, {max(evicted_positions)}]\")\n            evicted_in_prompt = sum(1 for p in evicted_positions if p < prompt_len)\n            evicted_in_gen = sum(1 for p in evicted_positions if p >= prompt_len)\n            print(f\"  KV evicted in prompt: {evicted_in_prompt}, in generation: {evicted_in_gen}\")\n        \n        # Per-phase detailed diagnosis\n        print(f\"\\n--- Per-segment PPL diagnosis ---\")\n        for phase in annotation.phases:\n            if phase.name != \"low_sparsity\":\n                continue\n            toks = phase.token_indices\n            n_tok = len(toks)\n            tok_min, tok_max = min(toks), max(toks)\n            \n            # Count how many evicted KV positions are before (accessible to) these tokens\n            evicted_before = sum(1 for p in evicted_positions if p <= tok_max)\n            \n            ppl_dense_cached = ppl_from_cached_losses(dense_ce_losses, toks, full_seq_len)\n            \n            # Dense forward (no masks, for comparison with cached)\n            ppl_dense_fresh = ii_calc.forward_with_sparse_config(\n                full_ids, phase_token_indices=toks,\n            )\n            \n            ppl_attn = ii_calc.forward_with_sparse_config(\n                full_ids, attn_head_mask=attn_head_mask, phase_token_indices=toks,\n            )\n            ppl_kv = ii_calc.forward_with_sparse_config(\n                full_ids, kv_mask=kv_mask, phase_token_indices=toks,\n            )\n            ppl_both = ii_calc.forward_with_sparse_config(\n                full_ids, attn_head_mask=attn_head_mask, kv_mask=kv_mask, phase_token_indices=toks,\n            )\n            \n            if ppl_dense_cached > 0:\n                r_attn = ppl_attn / ppl_dense_cached\n                r_kv = ppl_kv / ppl_dense_cached\n                r_both = ppl_both / ppl_dense_cached\n                ii_val = r_both - r_attn - r_kv + 1\n            else:\n                ii_val = float(\"nan\")\n            \n            # Also compute II using fresh dense\n            if ppl_dense_fresh > 0:\n                ii_fresh = ppl_both/ppl_dense_fresh - ppl_attn/ppl_dense_fresh - ppl_kv/ppl_dense_fresh + 1\n            else:\n                ii_fresh = float(\"nan\")\n            \n            print(f\"\\n  LOW_SPARSITY segment [{tok_min}, {tok_max}] ({n_tok} tokens)\")\n            print(f\"    evicted KV positions accessible: {evicted_before}\")\n            print(f\"    ppl_dense (cached) = {ppl_dense_cached:.6f}\")\n            print(f\"    ppl_dense (fresh)  = {ppl_dense_fresh:.6f}\")\n            print(f\"    ppl_attn           = {ppl_attn:.6f}\")\n            print(f\"    ppl_kv             = {ppl_kv:.6f}\")\n            print(f\"    ppl_both           = {ppl_both:.6f}\")\n            print(f\"    II (cached dense)  = {ii_val:.10f}\")\n            print(f\"    II (fresh dense)   = {ii_fresh:.10f}\")\n            print(f\"    ppl_attn == ppl_dense_fresh?  {abs(ppl_attn - ppl_dense_fresh) < 1e-6}\")\n            print(f\"    ppl_kv == ppl_dense_fresh?    {abs(ppl_kv - ppl_dense_fresh) < 1e-6}\")\n            print(f\"    ppl_both == ppl_dense_fresh?   {abs(ppl_both - ppl_dense_fresh) < 1e-6}\")\n            print(f\"    all_same?                      {abs(ppl_attn - ppl_kv) < 1e-6 and abs(ppl_kv - ppl_both) < 1e-6}\")\n        \n        # Also show one high_sparsity segment for comparison\n        for phase in annotation.phases:\n            if phase.name == \"high_sparsity\":\n                toks = phase.token_indices\n                ppl_d = ppl_from_cached_losses(dense_ce_losses, toks, full_seq_len)\n                ppl_a = ii_calc.forward_with_sparse_config(full_ids, attn_head_mask=attn_head_mask, phase_token_indices=toks)\n                ppl_k = ii_calc.forward_with_sparse_config(full_ids, kv_mask=kv_mask, phase_token_indices=toks)\n                ppl_b = ii_calc.forward_with_sparse_config(full_ids, attn_head_mask=attn_head_mask, kv_mask=kv_mask, phase_token_indices=toks)\n                if ppl_d > 0:\n                    ii_h = ppl_b/ppl_d - ppl_a/ppl_d - ppl_k/ppl_d + 1\n                else:\n                    ii_h = float(\"nan\")\n                print(f\"\\n  HIGH_SPARSITY segment [{min(toks)}, {max(toks)}] ({len(toks)} tokens)\")\n                print(f\"    ppl_dense={ppl_d:.6f}, ppl_attn={ppl_a:.6f}, ppl_kv={ppl_k:.6f}, ppl_both={ppl_b:.6f}\")\n                print(f\"    II = {ii_h:.10f}\")\n                break  # Just one for comparison\n        \n        torch.cuda.empty_cache()\n    \n    print(f\"\\n{'='*70}\")\n    print(\"DIAGNOSIS COMPLETE\")\n    print(f\"{'='*70}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script created.\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat > /root/autodl-tmp/pacs/diagnose_gsm8k.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"Diagnostic script for GSM8K ii_low = 0.0 issue.\"\"\"\nimport sys, os, json, random\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\n\n_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\n_PROJECT_ROOT = os.path.dirname(_SCRIPT_DIR)\nif _PROJECT_ROOT not in sys.path:\n    sys.path.insert(0, _PROJECT_ROOT)\n\nfrom pacs.utils.metrics import compute_perplexity, ppl_from_cached_losses\nfrom pacs.profiling.interaction_index import (\n    InteractionIndexCalculator, _HeadMaskHook,\n)\nfrom pacs.profiling.phase_segmentation import PhaseSegmenter\nfrom pacs.profiling.alt_segmentation import segment_by_quantile, to_phase_annotation\n\nSEED = 42\nSPARSITY = 0.25\nN_PROBLEMS = 3\nMODEL_PATH = \"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\"\nDATA_PATH = os.path.join(_SCRIPT_DIR, \"data\", \"gsm8k_test.json\")\n\ndef main():\n    device = \"cuda:0\"\n    torch.manual_seed(SEED)\n    \n    from transformers import AutoModelForCausalLM, AutoTokenizer\n    print(\"Loading model...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.float16, device_map=device,\n        trust_remote_code=True, attn_implementation=\"eager\",\n    )\n    model.eval()\n    \n    # Load data\n    with open(DATA_PATH) as f:\n        raw = json.load(f)\n    rng = random.Random(SEED)\n    indices = sorted(rng.sample(range(len(raw)), min(50, len(raw))))\n    \n    segmenter = PhaseSegmenter(bandwidth=\"scott\", min_phase_length=10)\n    ii_calc = InteractionIndexCalculator(model, tokenizer, device=device)\n    \n    attn_layers = _HeadMaskHook._find_attention_layers(model)\n    last_attn_layer = attn_layers[-1]\n    \n    for prob_idx in range(N_PROBLEMS):\n        i = indices[prob_idx]\n        item = raw[i]\n        problem_id = f\"gsm8k_test/{i}\"\n        print(f\"\\n{'='*70}\")\n        print(f\"PROBLEM {prob_idx}: {problem_id}\")\n        print(f\"{'='*70}\")\n        \n        prompt = f\"Solve the following math problem step by step.\\n\\nProblem: {item['question']}\\n\\nSolution:\"\n        inputs = tokenizer(prompt, return_tensors=\"pt\").to(device)\n        prompt_len = inputs[\"input_ids\"].shape[1]\n        print(f\"prompt_len = {prompt_len}\")\n        \n        step_sparsities = []\n        def _enable_attn_pre_hook(module, args, kwargs):\n            kwargs = dict(kwargs)\n            kwargs[\"output_attentions\"] = True\n            return args, kwargs\n        def _capture_sparsity_hook(module, input, output):\n            if isinstance(output, tuple) and len(output) > 1 and output[1] is not None:\n                attn_w = output[1]\n                if attn_w.shape[-2] == 1:\n                    step_sparsities.append(segmenter.compute_step_sparsity(attn_w[0]))\n                return (output[0],) + (None,) + output[2:]\n        \n        pre_h = last_attn_layer.register_forward_pre_hook(_enable_attn_pre_hook, with_kwargs=True)\n        post_h = last_attn_layer.register_forward_hook(_capture_sparsity_hook)\n        try:\n            outputs = model.generate(**inputs, max_new_tokens=2048, do_sample=False)\n        finally:\n            pre_h.remove()\n            post_h.remove()\n        \n        full_ids = outputs.sequences if hasattr(outputs, \"sequences\") else outputs\n        if full_ids.dim() == 1:\n            full_ids = full_ids.unsqueeze(0)\n        \n        gen_sparsity = np.array(step_sparsities)\n        print(f\"gen_tokens = {len(step_sparsities)}, full_seq_len = {full_ids.shape[1]}\")\n        print(f\"sparsity: min={gen_sparsity.min():.4f}, max={gen_sparsity.max():.4f}, mean={gen_sparsity.mean():.4f}\")\n        \n        quant_seg = segment_by_quantile(gen_sparsity, n_groups=3)\n        annotation = to_phase_annotation(\n            quant_seg.assignments, quant_seg.group_names, gen_sparsity,\n            offset=0, min_phase_length=10,\n        )\n        \n        # Print phase summary BEFORE prompt_len shift\n        print(f\"\\nPhase segmentation (before prompt_len shift):\")\n        for p in annotation.phases:\n            print(f\"  {p.name}: [{p.start}, {p.end}) = {p.end-p.start} tokens, mean_sparsity={p.mean_sparsity:.4f}\")\n        \n        # Shift phases\n        for phase in annotation.phases:\n            phase.start += prompt_len\n            phase.end += prompt_len\n        \n        # Compute importance\n        dense_ce_losses, head_importance, kv_importance = ii_calc.compute_dense_forward_with_importance(full_ids)\n        full_seq_len = full_ids.shape[1]\n        \n        print(f\"\\ndense_ce_losses: shape={dense_ce_losses.shape}, has_nan={dense_ce_losses.isnan().any().item()}, has_inf={dense_ce_losses.isinf().any().item()}\")\n        print(f\"head_importance: shape={head_importance.shape}, zeros_per_layer_min={head_importance.eq(0).sum(1).min().item()}, zeros_per_layer_max={head_importance.eq(0).sum(1).max().item()}\")\n        print(f\"kv_importance: shape={kv_importance.shape}, min={kv_importance.min():.6f}, max={kv_importance.max():.6f}, zeros={kv_importance.eq(0).sum().item()}\")\n        \n        # Build masks\n        num_layers, num_heads = ii_calc._get_model_dims()\n        attn_head_mask = InteractionIndexCalculator._select_heads_to_mask(\n            num_layers, num_heads, SPARSITY, importance=head_importance,\n        )\n        kv_mask = InteractionIndexCalculator._select_kv_to_evict(\n            full_seq_len, SPARSITY, importance=kv_importance,\n        )\n        \n        n_heads_masked = (attn_head_mask == 0).sum().item()\n        n_kv_evicted = (kv_mask == 0).sum().item()\n        print(f\"\\nMasks at s={SPARSITY}:\")\n        print(f\"  heads masked: {n_heads_masked} / {num_layers * num_heads}\")\n        print(f\"  KV evicted: {n_kv_evicted} / {full_seq_len}\")\n        \n        # Analyze which KV positions are evicted\n        evicted_positions = (kv_mask == 0).nonzero(as_tuple=True)[0].tolist()\n        if evicted_positions:\n            print(f\"  KV evicted range: [{min(evicted_positions)}, {max(evicted_positions)}]\")\n            evicted_in_prompt = sum(1 for p in evicted_positions if p < prompt_len)\n            evicted_in_gen = sum(1 for p in evicted_positions if p >= prompt_len)\n            print(f\"  KV evicted in prompt: {evicted_in_prompt}, in generation: {evicted_in_gen}\")\n        \n        # Per-phase detailed diagnosis\n        print(f\"\\n--- Per-segment PPL diagnosis ---\")\n        for phase in annotation.phases:\n            if phase.name != \"low_sparsity\":\n                continue\n            toks = phase.token_indices\n            n_tok = len(toks)\n            tok_min, tok_max = min(toks), max(toks)\n            \n            # Count how many evicted KV positions are before (accessible to) these tokens\n            evicted_before = sum(1 for p in evicted_positions if p <= tok_max)\n            \n            ppl_dense_cached = ppl_from_cached_losses(dense_ce_losses, toks, full_seq_len)\n            \n            # Dense forward (no masks, for comparison with cached)\n            ppl_dense_fresh = ii_calc.forward_with_sparse_config(\n                full_ids, phase_token_indices=toks,\n            )\n            \n            ppl_attn = ii_calc.forward_with_sparse_config(\n                full_ids, attn_head_mask=attn_head_mask, phase_token_indices=toks,\n            )\n            ppl_kv = ii_calc.forward_with_sparse_config(\n                full_ids, kv_mask=kv_mask, phase_token_indices=toks,\n            )\n            ppl_both = ii_calc.forward_with_sparse_config(\n                full_ids, attn_head_mask=attn_head_mask, kv_mask=kv_mask, phase_token_indices=toks,\n            )\n            \n            if ppl_dense_cached > 0:\n                r_attn = ppl_attn / ppl_dense_cached\n                r_kv = ppl_kv / ppl_dense_cached\n                r_both = ppl_both / ppl_dense_cached\n                ii_val = r_both - r_attn - r_kv + 1\n            else:\n                ii_val = float(\"nan\")\n            \n            # Also compute II using fresh dense\n            if ppl_dense_fresh > 0:\n                ii_fresh = ppl_both/ppl_dense_fresh - ppl_attn/ppl_dense_fresh - ppl_kv/ppl_dense_fresh + 1\n            else:\n                ii_fresh = float(\"nan\")\n            \n            print(f\"\\n  LOW_SPARSITY segment [{tok_min}, {tok_max}] ({n_tok} tokens)\")\n            print(f\"    evicted KV positions accessible: {evicted_before}\")\n            print(f\"    ppl_dense (cached) = {ppl_dense_cached:.6f}\")\n            print(f\"    ppl_dense (fresh)  = {ppl_dense_fresh:.6f}\")\n            print(f\"    ppl_attn           = {ppl_attn:.6f}\")\n            print(f\"    ppl_kv             = {ppl_kv:.6f}\")\n            print(f\"    ppl_both           = {ppl_both:.6f}\")\n            print(f\"    II (cached dense)  = {ii_val:.10f}\")\n            print(f\"    II (fresh dense)   = {ii_fresh:.10f}\")\n            print(f\"    ppl_attn == ppl_dense_fresh?  {abs(ppl_attn - ppl_dense_fresh) < 1e-6}\")\n            print(f\"    ppl_kv == ppl_dense_fresh?    {abs(ppl_kv - ppl_dense_fresh) < 1e-6}\")\n            print(f\"    ppl_both == ppl_dense_fresh?   {abs(ppl_both - ppl_dense_fresh) < 1e-6}\")\n            print(f\"    all_same?                      {abs(ppl_attn - ppl_kv) < 1e-6 and abs(ppl_kv - ppl_both) < 1e-6}\")\n        \n        # Also show one high_sparsity segment for comparison\n        for phase in annotation.phases:\n            if phase.name == \"high_sparsity\":\n                toks = phase.token_indices\n                ppl_d = ppl_from_cached_losses(dense_ce_losses, toks, full_seq_len)\n                ppl_a = ii_calc.forward_with_sparse_config(full_ids, attn_head_mask=attn_head_mask, phase_token_indices=toks)\n                ppl_k = ii_calc.forward_with_sparse_config(full_ids, kv_mask=kv_mask, phase_token_indices=toks)\n                ppl_b = ii_calc.forward_with_sparse_config(full_ids, attn_head_mask=attn_head_mask, kv_mask=kv_mask, phase_token_indices=toks)\n                if ppl_d > 0:\n                    ii_h = ppl_b/ppl_d - ppl_a/ppl_d - ppl_k/ppl_d + 1\n                else:\n                    ii_h = float(\"nan\")\n                print(f\"\\n  HIGH_SPARSITY segment [{min(toks)}, {max(toks)}] ({len(toks)} tokens)\")\n                print(f\"    ppl_dense={ppl_d:.6f}, ppl_attn={ppl_a:.6f}, ppl_kv={ppl_k:.6f}, ppl_both={ppl_b:.6f}\")\n                print(f\"    II = {ii_h:.10f}\")\n                break  # Just one for comparison\n        \n        torch.cuda.empty_cache()\n    \n    print(f\"\\n{'='*70}\")\n    print(\"DIAGNOSIS COMPLETE\")\n    print(f\"{'='*70}\")\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script created.\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T17:04:08.582241+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script created.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-15T17:04:08.582375+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && CUDA_VISIBLE_DEVICES=0 python3 diagnose_gsm8k.py 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && CUDA_VISIBLE_DEVICES=0 python3 diagnose_gsm8k.py 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T17:04:08.582612+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && CUDA_VISIBLE_DEVICES=0 python3 diagnose_gsm8k.py 2>&1'\\n\\nStdout:\\n\\n`torch_dtype` is deprecated! Use `dtype` instead!\\nLoading model...\\n\\nLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\nLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.83s/it]\\nLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.54s/it]\\nLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.58s/it]\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-15T17:04:08.582798+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 diagnose_gsm8k.py' > /tmp/diagnose_gsm8k.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python3 diagnose_gsm8k.py' > /tmp/diagnose_gsm8k.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T17:04:08.582934+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=254540\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 31.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-15T17:04:08.583071+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"N_BOOTSTRAP\\|n_boot\\|bootstrap\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"N_BOOTSTRAP\\|n_boot\\|bootstrap\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T17:04:08.583191+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-15T17:04:08.583310+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"aggregate_perplexity\\|mean_ppl\\|agg_ppl\\|ppl_out\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"aggregate_perplexity\\|mean_ppl\\|agg_ppl\\|ppl_out\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-15T17:04:08.583448+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-15T17:04:08.583595+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"N_BOOTSTRAP\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"N_BOOTSTRAP\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-15T17:04:08.583722+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"65:N_BOOTSTRAP = 1000\\n455:                    samples, n_resamples=N_BOOTSTRAP, seed=args.seed,\\n508:            \\\"n_bootstrap\\\": N_BOOTSTRAP,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-15T17:04:08.583868+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"bootstrap\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"bootstrap\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T17:04:08.584005+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"53:    bootstrap_interaction_index,\\n437:    # Aggregate: bootstrap CI for II and mean perplexity\\n454:                mean, ci_low, ci_high = bootstrap_interaction_index(\\n508:            \\\"n_bootstrap\\\": N_BOOTSTRAP,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-15T17:04:08.584123+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"aggregate_perplexity\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"aggregate_perplexity\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T17:04:08.584240+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-15T17:04:08.584352+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"mean_ppl\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -n \"mean_ppl\" /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-15T17:04:08.584491+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-15T17:04:08.584637+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 500 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 500 /root/autodl-tmp/pacs/run_profiling_gsm8k.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T17:04:08.584871+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n# GSM8K Profiling Adapter for PACS compound sparsity analysis.\\n#\\n# Adapts the MATH-500 profiling pipeline to GSM8K (n=50).\\n# Data: HuggingFace gsm8k test split, random 50 samples (seed=42).\\n# Prompt: Same \\\"Solve the following math problem step by step\\\" template.\\n# Profiling logic: Identical to run_profiling_qwen.py — same II formula,\\n#   same importance/random masking, same quantile phase segmentation.\\n# Output: Same JSON format + per_problem_ii (compatible with extract_table2.py).\\n#\\n# Differences from MATH-500:\\n#   - Data source: HuggingFace gsm8k (not local JSON)\\n#   - Sampling: Random 50 (no difficulty levels to stratify by)\\n#   - GSM8K uses \\\"question\\\" field; answer contains \\\"#### &lt;number>\\\"\\n#\\n# Usage:\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --output_dir ./gsm8k_profiling/ds_imp_s015 \\\\\\n#     --sparsity_levels 0.15 --masking_method importance\\n#\\n#   # Dry-run (1 problem):\\n#   python run_profiling_gsm8k.py \\\\\\n#     --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B \\\\\\n#     --max_problems 1 --max_new_tokens 128 \\\\\\n#     --output_dir ./gsm8k_profiling/dryrun\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport random\\nimport sys\\nfrom collections import defaultdict\\nfrom itertools import combinations\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\n_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\n_PROJECT_ROOT = os.path.dirname(_SCRIPT_DIR)\\nif _PROJECT_ROOT not in sys.path:\\n    sys.path.insert(0, _PROJECT_ROOT)\\n\\nimport numpy as np\\nimport torch\\n\\nfrom pacs.utils.metrics import compute_perplexity, ppl_from_cached_losses\\nfrom pacs.profiling.interaction_index import (\\n    Interacti
+…[truncated 6916 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-15T17:04:08.585102+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -80 /tmp/diagnose_gsm8k.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "tail -80 /tmp/diagnose_gsm8k.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-15T17:04:08.585275+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    ppl_both == ppl_dense_fresh?   False\\n    all_same?                      False\\n\\n  LOW_SPARSITY segment [567, 587] (21 tokens)\\n    evicted KV positions accessible: 0\\n    ppl_dense (cached) = nan\\n    ppl_dense (fresh)  = nan\\n    ppl_attn           = nan\\n    ppl_kv             = nan\\n    ppl_both           = nan\\n    II (cached dense)  = nan\\n    II (fresh dense)   = nan\\n    ppl_attn == ppl_dense_fresh?  False\\n    ppl_kv == ppl_dense_fresh?    False\\n    ppl_both == ppl_dense_fresh?   False\\n    all_same?                      False\\n\\n  LOW_SPARSITY segment [588, 633] (46 tokens)\\n    evicted KV positions accessible: 0\\n    ppl_dense (cached) = nan\\n    ppl_dense (fresh)  = nan\\n    ppl_attn           = nan\\n    ppl_kv             = nan\\n    ppl_both           = nan\\n    II (cached dense)  = nan\\n    II (fresh dense)   = nan\\n    ppl_attn == ppl_dense_fresh?  False\\n    ppl_kv == ppl_dense_fresh?    False\\n    ppl_both == ppl_dense_fresh?   False\\n    all_same?                      False\\n\\n  LOW_SPARSITY segment [634, 650] (17 tokens)\\n    evicted KV positions accessible: 0\\n    ppl_dense (cached) = 1.160156\\n    ppl_dense (fresh)  = 1.160156\\n    ppl_attn           = 1.429688\\n    ppl_kv             = 1.160156\\n    ppl_both           = 1.429688\\n    II (cached dense)  = 0.0000000000\\n    II (fresh dense)   = 0.0000000000\\n    ppl_attn == ppl_dense_fresh?  False\\n    ppl_kv == ppl_dense_fresh?    True\\n    ppl_both == ppl_dense_fresh?   False\\n    all_same?                      False\\n\\n  LOW_SPARSITY segment [651, 666] (16 tokens)\\n    evicted KV positions accessible: 0\\n    ppl_dense (cached) = nan\\n    ppl_dense (fresh)  = nan\\n    ppl_attn           = nan\\n    ppl_kv             = nan\\n    ppl_both           = nan\\n    II (cached dense)  = nan\\n    II (fresh dense)   = nan\\n    ppl_attn == ppl_dense_fresh?  False\\n    ppl_kv == ppl_dense_fres
+…[truncated 1001 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-15T17:04:08.585505+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 120 /tmp/diagnose_gsm8k.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 120 /tmp/diagnose_gsm8k.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-15T17:04:08.585704+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.89s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.56s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.61s/it]\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n\\n======================================================================\\nPROBLEM 0: gsm8k_test/13\\n======================================================================\\nprompt_len = 72\\ngen_tokens = 888, full_seq_len = 961\\nsparsity: min=0.2972, max=0.9440, mean=0.7155\\n\\nPhase segmentation (before prompt_len shift):\\n  low_sparsity: [0, 121) = 121 tokens, mean_sparsity=0.5191\\n  low_sparsity: [121, 143) = 22 tokens, mean_sparsity=0.5815\\n  low_sparsity: [143, 156) = 13 tokens, mean_sparsity=0.6032\\n  low_sparsity: [156, 169) = 13 tokens, mean_sparsity=0.5718\\n  low_sparsity: [169, 193) = 24 tokens, mean_sparsity=0.5940\\n  low_sparsity: [193, 315) = 122 tokens, mean_sparsity=0.6380\\n  low_sparsity: [315, 334) = 19 tokens, mean_sparsity=0.6063\\n  mid_sparsity: [334, 369) = 35 tokens, mean_sparsity=0.6990\\n  mid_sparsity: [369, 418) = 49 tokens, mean_sparsity=0.6850\\n  mid_sparsity: [418, 432) = 14 tokens, mean_sparsity=0.7480\\n  high_sparsity: [432, 594) = 162 tokens, mean_sparsity=0.8195\\n  mid_sparsity: [594, 748) = 154 tokens, mean_sparsity=0.7899\\n  high_sparsity: [748, 765) = 17 tokens, mean_sparsity=0.8504\\n  high_sparsity: [765, 780) = 15 tokens, mean_sparsity=0.8457\\n  high_sparsity: [780, 810) = 30 tokens, mean_sparsity=0.8275\\n
+…[truncated 3319 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-15T17:04:08.585905+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 200 /tmp/diagnose_gsm8k.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 200 /tmp/diagnose_gsm8k.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T17:04:08.586119+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.89s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.56s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.61s/it]\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n\\n======================================================================\\nPROBLEM 0: gsm8k_test/13\\n======================================================================\\nprompt_len = 72\\ngen_tokens = 888, full_seq_len = 961\\nsparsity: min=0.2972, max=0.9440, mean=0.7155\\n\\nPhase segmentation (before prompt_len shift):\\n  low_sparsity: [0, 121) = 121 tokens, mean_sparsity=0.5191\\n  low_sparsity: [121, 143) = 22 tokens, mean_sparsity=0.5815\\n  low_sparsity: [143, 156) = 13 tokens, mean_sparsity=0.6032\\n  low_sparsity: [156, 169) = 13 tokens, mean_sparsity=0.5718\\n  low_sparsity: [169, 193) = 24 tokens, mean_sparsity=0.5940\\n  low_sparsity: [193, 315) = 122 tokens, mean_sparsity=0.6380\\n  low_sparsity: [315, 334) = 19 tokens, mean_sparsity=0.6063\\n  mid_sparsity: [334, 369) = 35 tokens, mean_sparsity=0.6990\\n  mid_sparsity: [369, 418) = 49 tokens, mean_sparsity=0.6850\\n  mid_sparsity: [418, 432) = 14 tokens, mean_sparsity=0.7480\\n  high_sparsity: [432, 594) = 162 tokens, mean_sparsity=0.8195\\n  mid_sparsity: [594, 748) = 154 tokens, mean_sparsity=0.7899\\n  high_sparsity: [748, 765) = 17 tokens, mean_sparsity=0.8504\\n  high_sparsity: [765, 780) = 15 tokens, mean_sparsity=0.8457\\n  high_sparsity: [780, 810) = 30 tokens, mean_sparsity=0.8275\\n
+…[truncated 6452 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-15T17:04:08.586494+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -n 300 /tmp/diagnose_gsm8k.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -n 300 /tmp/diagnose_gsm8k.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-15T17:04:08.586725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\nLoading model...\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.89s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.56s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.61s/it]\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n\\n======================================================================\\nPROBLEM 0: gsm8k_test/13\\n======================================================================\\nprompt_len = 72\\ngen_tokens = 888, full_seq_len = 961\\nsparsity: min=0.2972, max=0.9440, mean=0.7155\\n\\nPhase segmentation (before prompt_len shift):\\n  low_sparsity: [0, 121) = 121 tokens, mean_sparsity=0.5191\\n  low_sparsity: [121, 143) = 22 tokens, mean_sparsity=0.5815\\n  low_sparsity: [143, 156) = 13 tokens, mean_sparsity=0.6032\\n  low_sparsity: [156, 169) = 13 tokens, mean_sparsity=0.5718\\n  low_sparsity: [169, 193) = 24 tokens, mean_sparsity=0.5940\\n  low_sparsity: [193, 315) = 122 tokens, mean_sparsity=0.6380\\n  low_sparsity: [315, 334) = 19 tokens, mean_sparsity=0.6063\\n  mid_sparsity: [334, 369) = 35 tokens, mean_sparsity=0.6990\\n  mid_sparsity: [369, 418) = 49 tokens, mean_sparsity=0.6850\\n  mid_sparsity: [418, 432) = 14 tokens, mean_sparsity=0.7480\\n  high_sparsity: [432, 594) = 162 tokens, mean_sparsity=0.8195\\n  mid_sparsity: [594, 748) = 154 tokens, mean_sparsity=0.7899\\n  high_sparsity: [748, 765) = 17 tokens, mean_sparsity=0.8504\\n  high_sparsity: [765, 780) = 15 tokens, mean_sparsity=0.8457\\n  high_sparsity: [780, 810) = 30 tokens, mean_sparsity=0.8275\\n
+…[truncated 6566 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-15T17:04:08.586901+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "wc -l /tmp/diagnose_gsm8k.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "wc -l /tmp/diagnose_gsm8k.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-15T17:04:08.587037+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"512 /tmp/diagnose_gsm8k.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-15T17:04:08.587158+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -n 210 /tmp/diagnose_gsm8k.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "tail -n 210 /tmp/diagnose_gsm8k.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-15T17:04:08.587340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  heads masked: 196 / 784\\n  KV evicted: 536 / 2145\\n  KV evicted range: [1074, 1609]\\n  KV evicted in prompt: 0, in generation: 536\\n\\n--- Per-segment PPL diagnosis ---\\n\\n  LOW_SPARSITY segment [97, 269] (173 tokens)\\n    evicted KV positions accessible: 0\\n    ppl_dense (cached) = nan\\n    ppl_dense (fresh)  = nan\\n    ppl_attn           = nan\\n    ppl_kv             = nan\\n    ppl_both           = nan\\n    II (cached dense)  = nan\\n    II (fresh dense)   = nan\\n    ppl_attn == ppl_dense_fresh?  False\\n    ppl_kv == ppl_dense_fresh?    False\\n    ppl_both == ppl_dense_fresh?   False\\n    all_same?                      False\\n\\n  LOW_SPARSITY segment [270, 305] (36 tokens)\\n    evicted KV positions accessible: 0\\n    ppl_dense (cached) = nan\\n    ppl_dense (fresh)  = nan\\n    ppl_attn           = nan\\n    ppl_kv             = nan\\n    ppl_both           = nan\\n    II (cached dense)  = nan\\n    II (fresh dense)   = nan\\n    ppl_attn == ppl_dense_fresh?  False\\n    ppl_kv == ppl_dense_fresh?    False\\n    ppl_both == ppl_dense_fresh?   False\\n    all_same?                      False\\n\\n  LOW_SPARSITY segment [306, 351] (46 tokens)\\n    evicted KV positions accessible: 0\\n    ppl_dense (cached) = nan\\n    ppl_dense (fresh)  = nan\\n    ppl_attn           = nan\\n    ppl_kv             = nan\\n    ppl_both           = nan\\n    II (cached dense)  = nan\\n    II (fresh dense)   = nan\\n    ppl_attn == ppl_dense_fresh?  False\\n    ppl_kv == ppl_dense_fresh?    False\\n    ppl_both == ppl_dense_fresh?   False\\n    all_same?                      False\\n\\n  LOW_SPARSITY segment [352, 365] (14 tokens)\\n    evicted KV positions accessible: 0\\n    ppl_dense (cached) = nan\\n    ppl_dense (fresh)  = nan\\n    ppl_attn           = nan\\n    ppl_kv             = nan\\n    ppl_both           = nan\\n    II (cached dense)  = nan\\n    II (fresh dense)   = nan\\n    ppl_attn == ppl_d
+…[truncated 5403 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-15T17:04:08.587587+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 -c \"\nimport torch, json, random, sys, os\nsys.path.insert(0, os.path.dirname(os.path.abspath('.')))\nfrom pacs.profiling.interaction_index import InteractionIndexCalculator, _HeadMaskHook\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nMODEL_PATH = '/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B'\nDATA_PATH = 'data/gsm8k_test.json'\ndevice = 'cuda:0'\n\ntok = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\nif tok.pad_token is None: tok.pad_token = tok.eos_token\nmodel = AutoModelForCausalLM.from_pretrained(MODEL_PATH, torch_dtype=torch.float16, device_map=device, trust_remote_code=True, attn_implementation='eager')\nmodel.eval()\n\n# Use first problem, short generation\nwith open(DATA_PATH) as f:\n    raw = json.load(f)\nrng = random.Random(42)\nindices = sorted(rng.sample(range(len(raw)), min(50, len(raw))))\nitem = raw[indices[0]]\nprompt = f\\\"\\\"\\\"Solve the following math problem step by step.\\n\\nProblem: {item['question']}\\n\\nSolution:\\\"\\\"\\\"\ninputs = tok(prompt, return_tensors='pt').to(device)\nprompt_len = inputs['input_ids'].shape[1]\n\n# Generate short\nwith torch.no_grad():\n    out = model.generate(**inputs, max_new_tokens=200, do_sample=False)\nfull_ids = out.unsqueeze(0) if out.dim() == 1 else out\nseq_len = full_ids.shape[1]\n\nii_calc = InteractionIndexCalculator(model, tok, device=device)\n\n# Check importance computation\nce_losses, head_imp, kv_imp = ii_calc.compute_dense_forward_with_importance(full_ids)\nnan_positions = torch.where(ce_losses.isnan())[0]\ntotal = ce_losses.shape[0]\nprint(f'CE losses: total={total}, NaN={nan_positions.shape[0]} ({nan_positions.shape[0]/total*100:.1f}%)')\nif nan_positions.shape[0] > 0:\n    print(f'  NaN range: [{nan_positions[0].item()}, {nan_positions[-1].item()}]')\n    # Check if NaN is contiguous\n    diffs = nan_positions[1:] - nan_positions[:-1]\n    if diffs.max() == 1 and diffs.min() == 1:\n        print(f'  NaN is contiguous from {nan_positions[0].item()} to {nan_positions[-1].item()}')\n    else:\n        print(f'  NaN has gaps, first non-contiguous at idx {(diffs > 1).nonzero()[0].item() if (diffs > 1).any() else \\\"none\\\"}')\n\nprint(f'kv_importance: NaN={kv_imp.isnan().sum().item()}/{kv_imp.shape[0]}')\nprint(f'head_importance all-zero layers: {(head_imp.sum(1) == 0).sum().item()}/{head_imp.shape[0]}')\n\n# Compare: plain dense forward (no hooks)\nplain_ce = ii_calc.compute_dense_ce_losses(full_ids)\nnan_plain = plain_ce.isnan().sum().item()\nprint(f'\\\\nPlain dense CE (no importance hooks): NaN={nan_plain}/{plain_ce.shape[0]}')\n\" 2>&1\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 -c \"\nimport torch, json, random, sys, os\nsys.path.insert(0, os.path.dirname(os.path.abspath('.')))\nfrom pacs.profiling.interaction_index import InteractionIndexCalculator, _HeadMaskHook\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nMODEL_PATH = '/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B'\nDATA_PATH = 'data/gsm8k_test.json'\ndevice = 'cuda:0'\n\ntok = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\nif tok.pad_token is None: tok.pad_token = tok.eos_token\nmodel = AutoModelForCausalLM.from_pretrained(MODEL_PATH, torch_dtype=torch.float16, device_map=device, trust_remote_code=True, attn_implementation='eager')\nmodel.eval()\n\n# Use first problem, short generation\nwith open(DATA_PATH) as f:\n    raw = json.load(f)\nrng = random.Random(42)\nindices = sorted(rng.sample(range(len(raw)), min(50, len(raw))))\nitem = raw[indices[0]]\nprompt = f\\\"\\\"\\\"Solve the following math problem step by step.\\n\\nProblem: {item['question']}\\n\\nSolution:\\\"\\\"\\\"\ninputs = tok(prompt, return_tensors='pt').to(device)\nprompt_len = inputs['input_ids'].shape[1]\n\n# Generate short\nwith torch.no_grad():\n    out = model.generate(**inputs, max_new_tokens=200, do_sample=False)\nfull_ids = out.unsqueeze(0) if out.dim() == 1 else out\nseq_len = full_ids.shape[1]\n\nii_calc = InteractionIndexCalculator(model, tok, device=device)\n\n# Check importance computation\nce_losses, head_imp, kv_imp = ii_calc.compute_dense_forward_with_importance(full_ids)\nnan_positions = torch.where(ce_losses.isnan())[0]\ntotal = ce_losses.shape[0]\nprint(f'CE losses: total={total}, NaN={nan_positions.shape[0]} ({nan_positions.shape[0]/total*100:.1f}%)')\nif nan_positions.shape[0] > 0:\n    print(f'  NaN range: [{nan_positions[0].item()}, {nan_positions[-1].item()}]')\n    # Check if NaN is contiguous\n    diffs = nan_positions[1:] - nan_positions[:-1]\n    if diffs.max() == 1 and diffs.min() == 1:\n        print(f'  NaN is contiguous from {nan_positions[0].item()} to {nan_positions[-1].item()}')\n    else:\n        print(f'  NaN has gaps, first non-contiguous at idx {(diffs > 1).nonzero()[0].item() if (diffs > 1).any() else \\\"none\\\"}')\n\nprint(f'kv_importance: NaN={kv_imp.isnan().sum().item()}/{kv_imp.shape[0]}')\nprint(f'head_importance all-zero layers: {(head_imp.sum(1) == 0).sum().item()}/{head_imp.shape[0]}')\n\n# Compare: plain dense forward (no hooks)\nplain_ce = ii_calc.compute_dense_ce_losses(full_ids)\nnan_plain = plain_ce.isnan().sum().item()\nprint(f'\\\\nPlain dense CE (no importance hooks): NaN={nan_plain}/{plain_ce.shape[0]}')\n\" 2>&1\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-15T17:04:08.587764+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.88s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.57s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.62s/it]\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\nCE losses: total=271, NaN=41 (15.1%)\\n  NaN range: [0, 265]\\n  NaN has gaps, first non-contiguous at idx 2\\nkv_importance: NaN=272/272\\nhead_importance all-zero layers: 0/28\\n\\nPlain dense CE (no importance hooks): NaN=41/271\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-15T17:04:08.587997+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/gsm8k_diagnosis",
+  "description": "Create diagnosis output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/gsm8k_diagnosis",
+    "description": "Create diagnosis output directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-15T17:04:08.588131+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-15T17:04:08.588277+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/gsm8k_diagnosis/report.md",
+  "content": "# GSM8K DS Importance ii_low = 0.0 — Root Cause Diagnosis\n\n**Date**: 2026-05-15  \n**Server**: westd-22162, `/root/autodl-tmp/pacs/`  \n**Model**: DeepSeek-R1-Distill-Qwen-7B (fp16, eager attention)\n\n---\n\n## Executive Summary\n\nii_low = 0.0 是 **两个独立 bug 交互** 的结果，不是 GSM8K 短 trace 的自然特性：\n\n1. **fp16 NaN 污染 kv_importance** → `_select_kv_to_evict` 对全-NaN importance 做 `topk` → 退化的 eviction pattern（全部集中在序列中后段）\n2. **低稀疏 tokens 系统性位于序列前段** → 因果注意力下，evicted KV positions 全在 low_sparsity tokens 之后 → KV masking 对 low_sparsity 零效果 → `ppl_kv = ppl_dense` → II = 0\n\nAggregate perplexity 全 NaN 同根同源：fp16 forward pass 产生 NaN CE losses。\n\n---\n\n## 诊断任务 1：n=3 Diagnostic Run — ii_low = 0 根因\n\n### 诊断数据\n\n| Problem | seq_len | low_sparsity max pos | KV evicted range | evicted accessible to low | ii_low |\n|---------|---------|---------------------|------------------|--------------------------|--------|\n| gsm8k_test/13 | 961 | 405 | [482, 721] | **0** | 0.0 |\n| gsm8k_test/51 | 744 | 377 | [373, 558] | 5 | null (all NaN) |\n| gsm8k_test/54 | 2145 | 1058 | [1074, 1609] | **0** | 0.0 |\n\n### Per-segment PPL 值（非 NaN 示例）\n\nProblem 0, low_sparsity segment [215, 227] (13 tokens):\n```\nppl_dense (cached) = 1.059570\nppl_dense (fresh)  = 1.059570\nppl_attn           = 1.833008    ← head masking 有效果\nppl_kv             = 1.059570    ← KV masking 零效果 (= dense!)\nppl_both           = 1.833008    ← = ppl_attn (KV 无贡献)\nII = 1.833008/1.059570 - 1.833008/1.059570 - 1.059570/1.059570 + 1 = 0.0000000000\n```\n\nProblem 2, low_sparsity segment [634, 650] (17 tokens):\n```\nppl_dense = 1.160156\nppl_attn  = 1.429688\nppl_kv    = 1.160156    ← = dense\nppl_both  = 1.429688    ← = attn\nII = 0.0000000000\n```\n\n### 机制确认\n\n**`ppl_kv ≡ ppl_dense`** 对所有非 NaN 的 low_sparsity segments 成立。原因：\n\n1. `kv_importance` 全部 NaN (272/272 positions)\n2. `_select_kv_to_evict` 对 NaN importance 执行 `importance / position_counts`（仍是 NaN），然后 `topk(n, largest=False)` 在全 NaN tensor 上返回 **implementation-dependent** indices\n3. 实际 eviction 集中在序列 50%-75% 位置区间（如 [482, 721] in seq_len=961）\n4. Low_sparsity tokens 全部在序列 0-40% 位置（因为低稀疏 = 早期推理阶段）\n5. 因果注意力：token t 只能 attend to positions ≤ t → 被 evict 的 positions 全在 low_sparsity tokens 之后 → KV eviction 无效 → `ppl_kv = ppl_dense`\n6. II = R_both - R_attn - R_kv + 1 = R_attn - R_attn - 1 + 1 = **0.0**\n\n### 根因 #1: kv_importance NaN 来源\n\n```\nkv_importance: shape=(961,), min=nan, max=nan, zeros=0\nhead_importance all-zero layers: 0/28    ← 无 layer 被跳过\n```\n\n`compute_dense_forward_with_importance` 中：\n- 各 layer 的 attention weights 通过 `attn_f.isnan().any()` 检查（28 层全通过）\n- 但 `kv_importance.add_(attn_f.sum(dim=(0,1)).cpu())` 在 fp16 下执行 sum → **fp16 partial sum overflow** 产生 NaN\n- NaN 通过 `add_` 传播：一旦某个 position 变成 NaN，后续所有 layer 的累加都保持 NaN\n- 最终 kv_importance 272/272 positions 全部 NaN\n\n**验证**：plain `compute_dense_ce_losses`（无 hooks）同样产生 41/271 NaN CE losses。fp16 溢出是模型本身的问题，非 hooks 引起。\n\n### 根因 #2: 大量 NaN PPL → 部分 problems ii_low = None\n\n50 题中 26 题 ii_low = None（非 0.0），因为该问题所有 low_sparsity segments 的 ppl_dense 全部 NaN：\n- `ppl_from_cached_losses` 对 NaN CE losses 过滤后如果无有效值 → 返回 NaN\n- `ppl_d > 0` 判断 NaN → False → ii_val = NaN → 不进入 `phase_ii_vals_for_problem` → `rec[\"ii_low\"] = None`\n\n24 题 ii_low = 0.0：至少有一个 low_sparsity segment 的 CE losses 中含非 NaN 值 → ppl_dense 有效 → II 计算走正常路径 → 但因 KV masking 无效得到 0.0。\n\n---\n\n## 诊断任务 2：QW Importance 输出检查\n\n**QW importance 输出不为空**，文件存在且完整：\n```\n/root/autodl-tmp/pacs/analysis_output/gsm8k/qw_importance/\n  profiling_results.json  (3.2 MB, May 16 00:47)\n  generations.json        (156 KB, May 16 00:47)\n```\n\n50/50 完成，log 显示正常结束。但 QW importance 同样出现 ii_low = 0.0：\n```\nII[low_sparsity, 0.15]: mean=+0.0000  95%CI=[+0.0000, +0.0000]\nII[low_sparsity, 0.20]: mean=+0.0000  95%CI=[+0.0000, +0.0000]\nII[low_sparsity, 0.25]: mean=+0.0000  95%CI=[+0.0000, +0.0000]\nII[low_sparsity, 0.30]: mean=+0.0000  95%CI=[+0.0000, +0.0000]\n```\n\n**根因相同**：QW importance 使用相同的 `compute_dense_forward_with_importance` → 同样的 kv_importance NaN → 同样的退化 eviction → 同样的 ii_low = 0。\n\n---\n\n## 诊断任务 3：Aggregate Perplexity NaN 根因\n\n**全部 NaN**（DS importance 和 QW importance 均是）：\n```json\n{\n  \"high_sparsity\": {\"0.15\": {\"dense\": NaN, \"attn\": NaN, \"kv\": NaN, \"both\": NaN}, ...},\n  \"low_sparsity\":  {\"0.15\": {\"dense\": NaN, \"attn\": NaN, \"kv\": NaN, \"both\": NaN}, ...},\n  \"mid_sparsity\":  {\"0.15\": {\"dense\": NaN, \"attn\": NaN, \"kv\": NaN, \"both\": NaN}, ...}\n}\n```\n\n**根因**：聚合代码 `round(float(np.mean(vals)), 4)` 中，`vals` list 包含 NaN 值（来自 fp16 NaN CE losses）→ `np.mean()` 含 NaN → 结果 NaN。\n\n**修复**：聚合时过滤 NaN：`np.nanmean(vals)` 或 `[v for v in vals if not np.isnan(v)]`。\n\n---\n\n## 诊断任务 4：Bootstrap N 参数\n\n```python\n# run_profiling_gsm8k.py line 65\nN_BOOTSTRAP = 1000\n```\n\nMATH-500 使用 `N=10000`。GSM8K 用 `N=1000`，需统一到 10000。\n\n**附注**：bootstrap 调用处有 unpacking bug：\n```python\nmean, ci_low, ci_high = bootstrap_interaction_index(samples, ...)\n```\n`bootstrap_interaction_index` 返回 6-key dict，3 变量 unpacking 应导致 `ValueError`。但结果文件确实存在 — 推测运行时使用的是旧版函数（返回 3 元素）。当前代码与运行时代码不一致，需确认。\n\n---\n\n## Bug 清单与修复方案\n\n### Bug 1 (Critical): kv_importance NaN → 退化 KV eviction\n\n**位置**: `pacs/profiling/interaction_index.py` — `compute_dense_forward_with_importance`\n\n**修复方案 A（推荐）**: importance 计算用 float32\n```python\n# 在 hook 中: \nattn_f = output[1].float()  # fp16 → fp32 before norm/sum\n```\n\n**修复方案 B**: NaN 保护\n```python\n# _select_kv_to_evict 中 topk 之前:\nimportance = importance.nan_to_num(0.0)  # NaN → 0（最低重要性，优先 evict）\n```\n\n**建议**: 同时实施 A+B（A 治本，B 防御性兜底）\n\n### Bug 2 (Critical): fp16 NaN 在 dense CE losses\n\n**位置**: `pacs/profiling/interaction_index.py` — `compute_dense_ce_losses` 和 `compute_dense_forward_with_importance`\n\n**修复**: forward pass 用 float32 logits 计算 CE\n```python\nce_losses = F.cross_entropy(logits[:-1].float(), labels[1:], reduction=\"none\")\n# ↑ 已有 .float() 在 compute_perplexity 中，但 compute_dense_ce_losses 缺失\n```\n\n实际上 `compute_dense_ce_losses` 没有 `.float()` 转换：\n```python\n# 当前（有 bug）:\nreturn F.cross_entropy(shift_logits, shift_labels, reduction=\"none\")\n# 应改为:\nreturn F.cross_entropy(shift_logits.float(), shift_labels, reduction=\"none\")\n```\n\n### Bug 3 (Medium): Aggregate perplexity 不过滤 NaN\n\n**位置**: `run_profiling_gsm8k.py` — 聚合循环\n\n```python\n# 当前:\ncond: round(float(np.mean(vals)), 4)\n# 应改为:\ncond: round(float(np.nanmean(vals)), 4) if vals else float(\"nan\")\n```\n\n### Bug 4 (Low): Bootstrap unpacking\n\n**位置**: `run_profiling_gsm8k.py` line ~454\n\n```python\n# 当前:\nmean, ci_low, ci_high = bootstrap_interaction_index(...)\n# 应改为:\nresult = bootstrap_interaction_index(...)\nii_out[pname][level_str] = {\n    \"mean\": result[\"mean\"], \"ci_low\": result[\"ci_low\"], \"ci_high\": result[\"ci_high\"],\n}\n```\n\n### Issue 5 (Config): Bootstrap N 不一致\n\n`N_BOOTSTRAP = 1000` → 改为 `10000` 与 MATH-500 一致。\n\n---\n\n## 结论\n\n| 问题 | 根因 | 严重度 |\n|------|------|--------|\n| ii_low = 0.0 (24/50) | NaN kv_importance → eviction 全在序列后段 → 对 early low_sparsity tokens 无效 | Critical (bug) |\n| ii_low = None (26/50) | fp16 NaN CE losses → ppl_dense = NaN | Critical (bug) |\n| Aggregate PPL = NaN | NaN 值未过滤即求均值 | Medium (bug) |\n| DS random FAIL | 同根因：NaN importance 使 random vs importance 对比失效 | Critical (same root) |\n| Bootstrap N = 1000 | Config 不一致 | Low (config) |\n\n**ii_low = 0.0 不是 GSM8K 短 trace 的自然特性。修复 fp16 NaN 后应能获得有意义的 low_sparsity II 值。**\n\n---\n\n## 推荐优先级\n\n1. **立即修复** Bug 1 + Bug 2（importance float32 + CE losses float32）→ 重跑 DS importance + QW importance\n2. **同步修复** Bug 3（nanmean）+ Bug 4（bootstrap unpacking）+ Issue 5（N=10000）\n3. **重跑验证** 修复后跑 n=5 quick validation，确认 ii_low ≠ 0 且 aggregate PPL 非 NaN\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/gsm8k_diagnosis/report.md",
+    "content": "# GSM8K DS Importance ii_low = 0.0 — Root Cause Diagnosis\n\n**Date**: 2026-05-15  \n**Server**: westd-22162, `/root/autodl-tmp/pacs/`  \n**Model**: DeepSeek-R1-Distill-Qwen-7B (fp16, eager attention)\n\n---\n\n## Executive Summary\n\nii_low = 0.0 是 **两个独立 bug 交互** 的结果，不是 GSM8K 短 trace 的自然特性：\n\n1. **fp16 NaN 污染 kv_importance** → `_select_kv_to_evict` 对全-NaN importance 做 `topk` → 退化的 eviction pattern（全部集中在序列中后段）\n2. **低稀疏 tokens 系统性位于序列前段** → 因果注意力下，evicted KV positions 全在 low_sparsity tokens 之后 → KV masking 对 low_sparsity 零效果 → `ppl_kv = ppl_dense` → II = 0\n\nAggregate perplexity 全 NaN 同根同源：fp16 forward pass 产生 NaN CE losses。\n\n---\n\n## 诊断任务 1：n=3 Diagnostic Run — ii_low = 0 根因\n\n### 诊断数据\n\n| Problem | seq_len | low_sparsity max pos | KV evicted range | evicted accessible to low | ii_low |\n|---------|---------|---------------------|------------------|--------------------------|--------|\n| gsm8k_test/13 | 961 | 405 | [482, 721] | **0** | 0.0 |\n| gsm8k_test/51 | 744 | 377 | [373, 558] | 5 | null (all NaN) |\n| gsm8k_test/54 | 2145 | 1058 | [1074, 1609] | **0** | 0.0 |\n\n### Per-segment PPL 值（非 NaN 示例）\n\nProblem 0, low_sparsity segment [215, 227] (13 tokens):\n```\nppl_dense (cached) = 1.059570\nppl_dense (fresh)  = 1.059570\nppl_attn           = 1.833008    ← head masking 有效果\nppl_kv             = 1.059570    ← KV masking 零效果 (= dense!)\nppl_both           = 1.833008    ← = ppl_attn (KV 无贡献)\nII = 1.833008/1.059570 - 1.833008/1.059570 - 1.059570/1.059570 + 1 = 0.0000000000\n```\n\nProblem 2, low_sparsity segment [634, 650] (17 tokens):\n```\nppl_dense = 1.160156\nppl_attn  = 1.429688\nppl_kv    = 1.160156    ← = dense\nppl_both  = 1.429688    ← = attn\nII = 0.0000000000\n```\n\n### 机制确认\n\n**`ppl_kv ≡ ppl_dense`** 对所有非 NaN 的 low_sparsity segments 成立。原因：\n\n1. `kv_importance` 全部 NaN (272/272 positions)\n2. `_select_kv_to_evict` 对 NaN importance 执行 `importance / position_counts`（仍是 NaN），然后 `topk(n, largest=False)` 在全 NaN tensor 上返回 **implementation-dependent** indices\n3. 实际 eviction 集中在序列 50%-75% 位置区间（如 [482, 721] in seq_len=961）\n4. Low_sparsity tokens 全部在序列 0-40% 位置（因为低稀疏 = 早期推理阶段）\n5. 因果注意力：token t 只能 attend to positions ≤ t → 被 evict 的 positions 全在 low_sparsity tokens 之后 → KV eviction 无效 → `ppl_kv = ppl_dense`\n6. II = R_both - R_attn - R_kv + 1 = R_attn - R_attn - 1 + 1 = **0.0**\n\n### 根因 #1: kv_importance NaN 来源\n\n```\nkv_importance: shape=(961,), min=nan, max=nan, zeros=0\nhead_importance all-zero layers: 0/28    ← 无 layer 被跳过\n```\n\n`compute_dense_forward_with_importance` 中：\n- 各 layer 的 attention weights 通过 `attn_f.isnan().any()` 检查（28 层全通过）\n- 但 `kv_importance.add_(attn_f.sum(dim=(0,1)).cpu())` 在 fp16 下执行 sum → **fp16 partial sum overflow** 产生 NaN\n- NaN 通过 `add_` 传播：一旦某个 position 变成 NaN，后续所有 layer 的累加都保持 NaN\n- 最终 kv_importance 272/272 positions 全部 NaN\n\n**验证**：plain `compute_dense_ce_losses`（无 hooks）同样产生 41/271 NaN CE losses。fp16 溢出是模型本身的问题，非 hooks 引起。\n\n### 根因 #2: 大量 NaN PPL → 部分 problems ii_low = None\n\n50 题中 26 题 ii_low = None（非 0.0），因为该问题所有 low_sparsity segments 的 ppl_dense 全部 NaN：\n- `ppl_from_cached_losses` 对 NaN CE losses 过滤后如果无有效值 → 返回 NaN\n- `ppl_d > 0` 判断 NaN → False → ii_val = NaN → 不进入 `phase_ii_vals_for_problem` → `rec[\"ii_low\"] = None`\n\n24 题 ii_low = 0.0：至少有一个 low_sparsity segment 的 CE losses 中含非 NaN 值 → ppl_dense 有效 → II 计算走正常路径 → 但因 KV masking 无效得到 0.0。\n\n---\n\n## 诊断任务 2：QW Importance 输出检查\n\n**QW importance 输出不为空**，文件存在且完整：\n```\n/root/autodl-tmp/pacs/analysis_output/gsm8k/qw_importance/\n  profiling_results.json  (3.2 MB, May 16 00:47)\n  generations.json        (156 KB, May 16 00:47)\n```\n\n50/50 完成，log 显示正常结束。但 QW importance 同样出现 ii_low = 0.0：\n```\nII[low_sparsity, 0.15]: mean=+0.0000  95%CI=[+0.0000, +0.0000]\nII[low_sparsity, 0.20]: mean=+0.0000  95%CI=[+0.0000, +0.0000]\nII[low_sparsity, 0.25]: mean=+0.0000  95%CI=[+0.0000, +0.0000]\nII[low_sparsity, 0.30]: mean=+0.0000  95%CI=[+0.0000, +0.0000]\n```\n\n**根因相同**：QW importance 使用相同的 `compute_dense_forward_with_importance` → 同样的 kv_importance NaN → 同样的退化 eviction → 同样的 ii_low = 0。\n\n---\n\n## 诊断任务 3：Aggregate Perplexity NaN 根因\n\n**全部 NaN**（DS importance 和 QW importance 均是）：\n```json\n{\n  \"high_sparsity\": {\"0.15\": {\"dense\": NaN, \"attn\": NaN, \"kv\": NaN, \"both\": NaN}, ...},\n  \"low_sparsity\":  {\"0.15\": {\"dense\": NaN, \"attn\": NaN, \"kv\": NaN, \"both\": NaN}, ...},\n  \"mid_sparsity\":  {\"0.15\": {\"dense\": NaN, \"attn\": NaN, \"kv\": NaN, \"both\": NaN}, ...}\n}\n```\n\n**根因**：聚合代码 `round(float(np.mean(vals)), 4)` 中，`vals` list 包含 NaN 值（来自 fp16 NaN CE losses）→ `np.mean()` 含 NaN → 结果 NaN。\n\n**修复**：聚合时过滤 NaN：`np.nanmean(vals)` 或 `[v for v in vals if not np.isnan(v)]`。\n\n---\n\n## 诊断任务 4：Bootstrap N 参数\n\n```python\n# run_profiling_gsm8k.py line 65\nN_BOOTSTRAP = 1000\n```\n\nMATH-500 使用 `N=10000`。GSM8K 用 `N=1000`，需统一到 10000。\n\n**附注**：bootstrap 调用处有 unpacking bug：\n```python\nmean, ci_low, ci_high = bootstrap_interaction_index(samples, ...)\n```\n`bootstrap_interaction_index` 返回 6-key dict，3 变量 unpacking 应导致 `ValueError`。但结果文件确实存在 — 推测运行时使用的是旧版函数（返回 3 元素）。当前代码与运行时代码不一致，需确认。\n\n---\n\n## Bug 清单与修复方案\n\n### Bug 1 (Critical): kv_importance NaN → 退化 KV eviction\n\n**位置**: `pacs/profiling/interaction_index.py` — `compute_dense_forward_with_importance`\n\n**修复方案 A（推荐）**: importance 计算用 float32\n```python\n# 在 hook 中: \nattn_f = output[1].float()  # fp16 → fp32 before norm/sum\n```\n\n**修复方案 B**: NaN 保护\n```python\n# _select_kv_to_evict 中 topk 之前:\nimportance = importance.nan_to_num(0.0)  # NaN → 0（最低重要性，优先 evict）\n```\n\n**建议**: 同时实施 A+B（A 治本，B 防御性兜底）\n\n### Bug 2 (Critical): fp16 NaN 在 dense CE losses\n\n**位置**: `pacs/profiling/interaction_index.py` — `compute_dense_ce_losses` 和 `compute_dense_forward_with_importance`\n\n**修复**: forward pass 用 float32 logits 计算 CE\n```python\nce_losses = F.cross_entropy(logits[:-1].float(), labels[1:], reduction=\"none\")\n# ↑ 已有 .float() 在 compute_perplexity 中，但 compute_dense_ce_losses 缺失\n```\n\n实际上 `compute_dense_ce_losses` 没有 `.float()` 转换：\n```python\n# 当前（有 bug）:\nreturn F.cross_entropy(shift_logits, shift_labels, reduction=\"none\")\n# 应改为:\nreturn F.cross_entropy(shift_logits.float(), shift_labels, reduction=\"none\")\n```\n\n### Bug 3 (Medium): Aggregate perplexity 不过滤 NaN\n\n**位置**: `run_profiling_gsm8k.py` — 聚合循环\n\n```python\n# 当前:\ncond: round(float(np.mean(vals)), 4)\n# 应改为:\ncond: round(float(np.nanmean(vals)), 4) if vals else float(\"nan\")\n```\n\n### Bug 4 (Low): Bootstrap unpacking\n\n**位置**: `run_profiling_gsm8k.py` line ~454\n\n```python\n# 当前:\nmean, ci_low, ci_high = bootstrap_interaction_index(...)\n# 应改为:\nresult = bootstrap_interaction_index(...)\nii_out[pname][level_str] = {\n    \"mean\": result[\"mean\"], \"ci_low\": result[\"ci_low\"], \"ci_high\": result[\"ci_high\"],\n}\n```\n\n### Issue 5 (Config): Bootstrap N 不一致\n\n`N_BOOTSTRAP = 1000` → 改为 `10000` 与 MATH-500 一致。\n\n---\n\n## 结论\n\n| 问题 | 根因 | 严重度 |\n|------|------|--------|\n| ii_low = 0.0 (24/50) | NaN kv_importance → eviction 全在序列后段 → 对 early low_sparsity tokens 无效 | Critical (bug) |\n| ii_low = None (26/50) | fp16 NaN CE losses → ppl_dense = NaN | Critical (bug) |\n| Aggregate PPL = NaN | NaN 值未过滤即求均值 | Medium (bug) |\n| DS random FAIL | 同根因：NaN importance 使 random vs importance 对比失效 | Critical (same root) |\n| Bootstrap N = 1000 | Config 不一致 | Low (config) |\n\n**ii_low = 0.0 不是 GSM8K 短 trace 的自然特性。修复 fp16 NaN 后应能获得有意义的 low_sparsity II 值。**\n\n---\n\n## 推荐优先级\n\n1. **立即修复** Bug 1 + Bug 2（importance float32 + CE losses float32）→ 重跑 DS importance + QW importance\n2. **同步修复** Bug 3（nanmean）+ Bug 4（bootstrap unpacking）+ Issue 5（N=10000）\n3. **重跑验证** 修复后跑 n=5 quick validation，确认 ii_low ≠ 0 且 aggregate PPL 非 NaN\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-15T17:04:08.588543+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/gsm8k_diagnosis/report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-15T17:04:08.588691+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "GSM8K ii_low=0 Root Cause Diagnosis",
+  "type": "report",
+  "description": "Diagnosis of GSM8K DS importance ii_low=0.0 and aggregate perplexity NaN. Root cause: fp16 NaN in kv_importance → degenerate KV eviction pattern that doesn't affect early-sequence low_sparsity tokens. Includes 5 bug fixes.",
+  "project": "phase-gated-compound-sparse",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/gsm8k_diagnosis/report.md",
+  "tags": "['gsm8k', 'diagnosis', 'ii_low', 'nan', 'fp16', 'critical']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "GSM8K ii_low=0 Root Cause Diagnosis",
+    "type": "report",
+    "description": "Diagnosis of GSM8K DS importance ii_low=0.0 and aggregate perplexity NaN. Root cause: fp16 NaN in kv_importance → degenerate KV eviction pattern that doesn't affect early-sequence low_sparsity tokens. Includes 5 bug fixes.",
+    "project": "phase-gated-compound-sparse",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/gsm8k_diagnosis/report.md",
+    "tags": "['gsm8k', 'diagnosis', 'ii_low', 'nan', 'fp16', 'critical']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-15T17:04:08.588852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_087e3b\", \"name\": \"GSM8K ii_low=0 Root Cause Diagnosis\", \"type\": \"report\", \"description\": \"Diagnosis of GSM8K DS importance ii_low=0.0 and aggregate perplexity NaN. Root cause: fp16 NaN in kv_importance → degenerate KV eviction pattern that doesn't affect early-sequence low_sparsity tokens. Includes 5 bug fixes.\", \"path\": \"projects/phase-gated-compound-sparse/artifacts/_project/report/report_087e3b.md\", \"url\": null, \"project\": \"phase-gated-compound-sparse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T17:03:58.878700+00:00\", \"tags\": [\"gsm8k\", \"diagnosis\", \"ii_low\", \"nan\", \"fp16\", \"critical\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 115 · 2026-05-15T17:04:08.589037+00:00_
+
+诊断完成。报告已写入并注册。核心结论：
+
+**ii_low = 0.0 是 bug，不是 GSM8K 的自然特性。** 根因链：
+
+1. **fp16 NaN 传播** → `kv_importance` 全部 NaN（272/272 positions）
+2. **`_select_kv_to_evict` 对 NaN 做 `topk`** → eviction 集中在序列 50-75% 位置
+3. **Low_sparsity tokens 系统性在序列前 40%** → 因果注意力下被 evict 的 KV positions 全在其后 → **KV masking 对 low_sparsity 完全无效**
+4. `ppl_kv ≡ ppl_dense`, `ppl_both ≡ ppl_attn` → II = R_attn - R_attn - 1 + 1 = **0.0**
+
+5 个 bug 需修复：
+- **Critical**: importance 计算转 float32 + CE losses 加 `.float()` + NaN 保护 `nan_to_num`
+- **Medium**: aggregate PPL 用 `nanmean` + bootstrap unpacking 修复
+- **Low**: `N_BOOTSTRAP` 1000 → 10000
+
+修复后重跑应获得有意义的 low_sparsity II 值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837"
+}
+```
+
+</details>
+
+---

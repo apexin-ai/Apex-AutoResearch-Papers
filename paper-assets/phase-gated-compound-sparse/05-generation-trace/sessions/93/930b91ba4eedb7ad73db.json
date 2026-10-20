@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "930b91ba4eedb7ad73db",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops sf5 completion check",
+  "task_key": "worker_ops_sf5_completion_check_20260515T181007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sf5_completion_check_20260515T181007_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "06f97cb31acd2965edbabfca5f95d86ff3ccecf0995e2f31d88e97fe45ac2d52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**交付总结：**\n\n- **状态**：Config A (h0.2/kv0.3) 和 Config B (h0.3/kv0.2) 均 50/50 完成，GPU 已释放\n- **Phase gradient 方向**：两个 config 均为 II_low >> II_mid >> II_high，与 symmetric s025 baseline 方向一致。预注册判据（D = II_low − II_high > 0）通过\n  - Config A: D = 19.51 − 0.38 = **+19.13**\n  - Config B: D = 18.77 − 0.52 = **+18.25**\n- **不对称分配效应**：kv sparsity 较高时（Config A）mid_sparsity II 更大（6.05 vs 3.97），head sparsity 较高时（Config B）high_sparsity II 略高（0.52 vs 0.38），但整体 gradient 方向稳健\n- **Registry**：sf5_asymmetric_spot → DONE, conclusion=success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sf5-completion-check.md"
+}

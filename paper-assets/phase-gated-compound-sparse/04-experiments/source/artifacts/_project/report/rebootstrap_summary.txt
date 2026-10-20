@@ -1,0 +1,1 @@
+Re-bootstrap B=10000 results saved to /root/autodl-tmp/pacs/results/rebootstrap_analysis/ on westd-22162. Verdict changed from PASS to FAIL. Script: rebootstrap_analysis.py, data: rebootstrap_results.json.

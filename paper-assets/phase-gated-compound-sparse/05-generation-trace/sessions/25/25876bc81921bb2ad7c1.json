@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25876bc81921bb2ad7c1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops rsync compile verify",
+  "task_key": "worker_ops_rsync-compile-verify_20260514T234035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rsync-compile-verify_20260514T234035_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "5b7d4ef162b13b5f0f63e23943d2641cef9c6727a869b13d10a4aefdcff4d9a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### rsync\n- 第一次同步 8 个 tex 文件\n- 第二次同步 1 个文件（修复后的 main.tex）\n\n### 编译\n- **首次编译失败**：`\\placeholder` 未定义（Undefined control sequence）\n- **修复**：在 main.tex preamble 添加 `\\newcommand{\\placeholder}[1]{\\textcolor{red}{[#1]}}`\n- **重新编译成功**，生成 `main.pdf`（347KB，**13 页**）\n\n### Warning 清单\n\n| 类型 | 数量 | 说明 |\n|------|------|------|\n| Undefined citation | **大量**（~40+ 个 unique bib keys） | `references.bib` 中缺少这些条目，如 `kwon-sosp2023`, `spark-aaai2026`, `unicomp-2026`, `thinkv-iclr2026` 等 |\n| Undefined reference | 4 个 | `sec:results`, `sec:analysis`, `app:formulation-details`, `eq:kv-importance` |\n| pdfTeX dest warnings | 6 个 | 引用了不存在的 caption/section 锚点 |\n| Lineno warning | 2 个 | 行号引用失败（review 模式常见） |\n| Underfull/Overfull hbox | 若干 | 排版微调，非关键 |\n\n关键问题是 **bib 文件不完整**——绝大多数引用都是 undefined。需要补全 `references.bib`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rsync-compile-verify.md"
+}

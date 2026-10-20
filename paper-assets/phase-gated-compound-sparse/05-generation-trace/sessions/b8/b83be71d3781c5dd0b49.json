@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b83be71d3781c5dd0b49",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778795144.md",
+  "task_key": "loop_8_1778795144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778795144.md",
+    "occurrence": 1,
+    "bytes": 3784,
+    "sha256": "09de72ef3e796990f4f2f690a38f3ea305c8fc6fbe0deb6b8c10b21ea285d6d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T21:45:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 上 cuda:0/1/2/3（RTX 6000 Pro x4）。当前 0+1 跑 DeepSeek n=500，2+3 跑 Qwen n=500。不要动其他机器的 GPU。\n- n=500 实验是 sequential multi-sparsity 脚本（s015→s020→s025→s030），PID 会随阶段变化。cron 监控曾因 PID 变化误报 dead process（见 memory.md cron false positive 教训），不要因为 PID 变了就判定实验挂了。\n- 主指标用 **median**（不是 mean）。D054 决策：mean 被 random pruning 灾难性失败的离群值污染。汇报时写 median_difference + Cohen's d。\n- LLaMA 效应量比 DeepSeek/Qwen 小 ~40x，只能 claim \"qualitative pattern\"，不要放进定量对比表。\n- Framing 硬约束 D015：必须 frame 为 \"emergent phase-strategy interaction\"，禁止 frame 为 \"importance is broken\"。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，4x RTX 6000 Pro\n- 工作目录：需 SSH 确认（上次在 `/root/autodl-tmp/` 或 `/root/` 下的项目目录）\n- Python：大概率 miniconda（`/root/miniconda3/bin/python`），需 Worker 确认\n- 活跃进程：c2_n500_deepseek (cuda:0+1, s020 阶段)；c2_qw_n500_r3 (cuda:2+3, s020 阶段)\n- Cron：两个实验各有 cron 监控，reconcile_crons 可同步状态\n- W&B / HF cache：未在 memory.md 中记录，需要时 SSH 查\n\n### 3. 📊 当前状态\n- **刚完成**：session-start 初始化（读 registry + report + ROADMAP）\n- **RUNNING 实验**：\n  - `c2_n500_deepseek`：DeepSeek n=500 统计功效增强，8 conditions (imp/rand x 4 sparsity)，s015 已完成，s020 进行中\n  - `c2_qw_n500_r3`：Qwen n=500 续跑（parent: c2_qw_n500），s015 已完成，s020 进行中\n- **等待**：两个实验的 cron 完成回调。完成后需跑分析 pipeline 并将 n=500 数据更新到论文。\n- **论文**：§1-§8 + Abstract 全部完成，PDF 可编译。距 EMNLP 2026 ARR 截稿 **11 天**（2026-05-25）。\n- **累计**：82 实验，36 success / 10 negative / 14 failed / 21 killed / 2 running\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调（s020→s025→s030 全部完成）→ spawn Worker 跑 n=500 分析 pipeline → 更新 paper 中的统计表格（Table 1/2）为 n=500 数据 → 更新 report.md + registry\n- c2_qw_n500_r3 cron 回调（同上）→ 同样跑分析 + 更新论文 Qwen 部分\n- 两个 n=500 都完成 → plan_008 Bootstrap CI 分析（纯分析任务，P0）→ 补充到论文 supplementary\n- plan_007 Growth rate analysis（P1，纯分析）→ 可在等 n=500 时并行做\n- plan_013 Related Work differentiation（P1，写作任务）→ C9 claim 支撑，需在截稿前完成\n- 论文最终检查：reference audit + visual review + consistency check → 截稿前 2 天启动\n\n### 5. 🎯 战略上下文\n- **核心发现**：compound sparsity severity 不是常数，是 eviction strategy × reasoning phase 的交互涌现属性。importance masking 呈单调递增梯度（median_diff 0.32→9.94），random masking 平坦（7/8 FAIL = 无结构性梯度）。\n- **决策链**：D054(median>mean) → D059(d_z 仅限 within-importance) → D058(n=500 确认 Qwen 显著性) → C5b 移至 future work\n- **最易判断错的事**：\n  1. 不要把 n=500 实验的中间阶段（s015 done, s020 running）误判为实验完成——它是 sequential 脚本，要跑完 s015/s020/s025/s030 四个阶段才算 DONE\n  2. 不要因为 c2_qw_n500 (前序) 是 failed 就怀疑 c2_qw_n500_r3——前者是 cron 误报导致的 false failure，r3 是正常续跑\n  3. 截稿 11 天，论文主体已完成，当前是 n=500 数据补充阶段。不要发起新的大实验，聚焦在分析 + 论文打磨\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778795144.md"
+}

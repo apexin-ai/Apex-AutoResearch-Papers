@@ -1,0 +1,121 @@
+{
+  "exp_id": "gsm8k_qw_rand_s025_v2",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:30:14.407Z",
+    "updated_at": "2026-05-15T23:44:43.451Z",
+    "spec": {
+      "data_path": "data/gsm8k.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "masking_method": "random",
+      "sparsity": 0.25,
+      "output_dir": "/root/autodl-tmp/pacs/profiling_output_gsm8k_qw_rand_s025_v2",
+      "bootstrap_fix": "D029 median CI"
+    },
+    "hypothesis": "C10 重跑：QW random masking s=0.25 GSM8K compound interaction（修复 bootstrap bug 后）",
+    "parent": "gsm8k_qw_rand_s025",
+    "server": "westd-22162",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T23:23:26.824Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path data/gsm8k.json --output_dir ./profiling_output_gsm8k_qw_rand_s025_v2 --sparsity_levels 0.25 --masking_method random --save_generations\"",
+      "code_commit": "1b4f61aa366a9fe320f8563c8f7acb5af58d78b7",
+      "finished_at": "2026-05-15T23:41:06.084Z",
+      "training_hours": 0.29
+    },
+    "pid": "288196",
+    "log_path": "~/runs/phase-gated-compound-sparse/gsm8k_qw_rand_s025_v2.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T23:41:09.749498+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "verdict": "PASS",
+      "n_problems": 50,
+      "n_bootstrap": 1000,
+      "seed": 42,
+      "high_sparsity": {
+        "n_segments": 216,
+        "n_tokens": 9326,
+        "ppl_dense": 1.0695,
+        "ppl_attn": 5.9362,
+        "ppl_kv": 3.4316,
+        "ppl_both": 15.7484,
+        "ii_mean": 6.5954,
+        "ii_ci": [
+          1.1114,
+          11.3791
+        ],
+        "ii_median": 0.7176,
+        "ii_median_ci": [
+          0.5959,
+          0.9347
+        ],
+        "winsorized_mean": 6.5046,
+        "skewness": -4.6807,
+        "outlier_count": 3
+      },
+      "low_sparsity": {
+        "n_segments": 252,
+        "n_tokens": 29224,
+        "ppl_dense": 1.1972,
+        "ppl_attn": 11.5347,
+        "ppl_kv": 5.6038,
+        "ppl_both": 21.6874,
+        "ii_mean": 2.3883,
+        "ii_ci": [
+          -8.4602,
+          11.029
+        ],
+        "ii_median": 1.4587,
+        "ii_median_ci": [
+          1.1121,
+          2.0451
+        ],
+        "winsorized_mean": 5.8911,
+        "skewness": -7.6074,
+        "outlier_count": 4
+      },
+      "mid_sparsity": {
+        "n_segments": 51,
+        "n_tokens": 5954,
+        "ppl_dense": 1.2601,
+        "ppl_attn": 13.4132,
+        "ppl_kv": 6.4841,
+        "ppl_both": 20.8714,
+        "ii_mean": 4.5407,
+        "ii_ci": [
+          -4.8854,
+          12.4605
+        ],
+        "ii_median": 1.1272,
+        "ii_median_ci": [
+          0.637,
+          3.3729
+        ],
+        "winsorized_mean": 6.3284,
+        "skewness": -3.4048,
+        "outlier_count": 1
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_gsm8k_qw_rand_s025_v2",
+    "completed_at": "2026-05-15T23:44:43.451Z"
+  },
+  "timestamp": "2026-05-15T23:44:43.892871+00:00",
+  "trigger": "update_registry"
+}

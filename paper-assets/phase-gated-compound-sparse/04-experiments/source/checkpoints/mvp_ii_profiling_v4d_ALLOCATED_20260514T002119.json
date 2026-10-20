@@ -1,0 +1,24 @@
+{
+  "exp_id": "mvp_ii_profiling_v4d",
+  "project": "phase-gated-compound-sparse",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:56:47.723Z",
+    "updated_at": "2026-05-14T00:21:19.918Z",
+    "hypothesis": "M1v4 importance-based masking (cuda:3, 40% sparsity): 高 sparsity 参考点，验证 30% 以上 sub-additive 趋势是否延续。",
+    "parent": "mvp_ii_profiling_v3",
+    "spec": {
+      "server": "westd-22162",
+      "gpu": "cuda:2",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T00:21:19.958337+00:00",
+  "trigger": "update_registry"
+}

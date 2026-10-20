@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e8b7a50d1167d1e15b8",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra sync analysis script",
+  "task_key": "worker_infra_sync-analysis-script_20260513T210518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync-analysis-script_20260513T210518_result.json",
+    "occurrence": 1,
+    "bytes": 302,
+    "sha256": "e525698d797f00b95534e9014efc269c48160a2026205f243335b0f45b0246b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成：\n- `/root/autodl-tmp/pacs/profiling/analyze_results.py` — 已写入\n- `/root/autodl-tmp/pacs/pacs/profiling/analyze_results.py` — 已写入\n- `from pacs.profiling.analyze_results import load_results, build_ii_table, analyze_sparsity` — import 通过，输出 `OK`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-analysis-script.md"
+}

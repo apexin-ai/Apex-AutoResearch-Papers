@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "98ace9c8205aa42fcad7",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "analysis v6 random s015",
+  "task_key": "worker_analysis_v6_random_s015_20260514T055245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v6_random_s015_20260514T055245.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/analysis-v6-random-s015.md"
+}

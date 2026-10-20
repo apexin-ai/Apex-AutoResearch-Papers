@@ -1,0 +1,1 @@
+imp_high=0.032, rand_high=0.818; imp_mid=1.118, rand_mid=0.932; imp_low=7.196, rand_low=1.363. Crossover: importance < random in high phase, 5.3x higher in low phase.

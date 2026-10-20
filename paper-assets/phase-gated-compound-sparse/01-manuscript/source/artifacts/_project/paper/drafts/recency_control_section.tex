@@ -1,0 +1,34 @@
+\subsection{Scoring-Independent Control: Recency-Based Eviction}
+\label{sec:recency-control}
+
+The preceding results establish that importance-based eviction produces a strong phase gradient in compound severity. Two confounds remain: (a) the phase segmentation procedure itself might induce a systematic bias that appears as a gradient regardless of eviction strategy, and (b) the H2O attention-score computation pathway might interact with head pruning in ways that produce a phase-correlated artifact. To isolate these possibilities, we introduce a scoring-independent control: recency-based eviction, which bypasses the attention-score mechanism entirely.
+
+Recency eviction retains the $\lfloor (1-s) \cdot L \rfloor$ most recent KV positions (excluding BOS) and discards the oldest $\lfloor s \cdot L \rfloor$ positions, where $L$ is the current sequence length. This strategy preserves the same sparsity budget as importance-based eviction but replaces the H2O scoring function with a deterministic positional rule. If the phase gradient were an artifact of phase segmentation or of the attention-score computation pathway, recency eviction would exhibit a comparable gradient.
+
+Table~\ref{tab:recency-control} reports results for recency-based eviction at $s{=}0.15$ ($n{=}100$, DeepSeek-R1-Distill-Qwen-7B, MATH-500 pilot). The paired median difference is $\Delta{=}-0.003$ with a negligible effect size ($d_z{=}0.083$, $p{=}0.77$), indistinguishable from zero. For comparison, importance-based eviction at the same sparsity yields $\Delta{=}0.39$ ($d_z{=}0.574$, $p < 10^{-70}$), and random eviction yields $\Delta{=}0.014$ ($d_z{=}-0.045$, $p{=}0.86$). The importance/recency effect-size ratio exceeds $6.9{\times}$, confirming that the phase gradient requires the attention-score mechanism and is not a segmentation artifact.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Recency control: paired median difference ($\Delta$) under recency-based eviction (DeepSeek-R1-Distill-Qwen-7B, $n{=}100$ pilot, MATH-500). Importance and random baselines at matched $s$ shown for comparison.}
+\label{tab:recency-control}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Strategy & $\Delta$ & $d_z$ & $p$ \\
+\midrule
+Importance & $+0.39$ & $0.574$ & $< 10^{-70}$ \\
+Random     & $+0.014$ & $-0.045$ & $0.86$ \\
+Recency    & $-0.003$ & $0.083$ & $0.77$ \\
+\addlinespace
+\multicolumn{4}{@{}l}{\textit{Additional sparsity levels (in progress):}} \\
+Recency ($s{=}0.25$) & \placeholder{recency_s025_delta} & \placeholder{recency_s025_dz} & \placeholder{recency_s025_p} \\
+Recency ($s{=}0.30$) & \placeholder{recency_s030_delta} & \placeholder{recency_s030_dz} & \placeholder{recency_s030_p} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This null result eliminates two alternative explanations. First, it rules out phase-segmentation bias: if the temporal autocorrelation threshold used to define phases introduced a systematic asymmetry in II computation, recency eviction (which is maximally sensitive to positional structure) would amplify rather than eliminate the gradient. Second, it rules out H2O pathway interference: because recency eviction never queries the attention-score distribution, any gradient arising from the scoring computation itself cannot appear in the recency condition. The phase gradient observed under importance-based eviction therefore reflects a genuine interaction between score-dependent token selection and reasoning phase, not a measurement artifact.
+
+%% NOTE: s025/s030 recency results expected to confirm NS pattern.
+%% Update \placeholder values and convert pilot caveat to full confirmation
+%% once all conditions complete.

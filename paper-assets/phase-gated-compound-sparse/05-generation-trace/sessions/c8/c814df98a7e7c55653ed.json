@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c814df98a7e7c55653ed",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper fix missing bib",
+  "task_key": "worker_paper_fix-missing-bib_20260514T234859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-missing-bib_20260514T234859_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "14cb6918fb9c99b44d23b896d17c8f985cfccfe7e1c4665525ba5027ff3e6e59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 tex 文件中引用的 29 个 bib key 在 `references.bib` 中均已存在，没有缺失条目。\n\n完整对照：\n\n| # | Key | Bib 状态 |\n|---|-----|---------|\n| 1 | `spark-aaai2026` | ✓ |\n| 2 | `slim-icml2025` | ✓ |\n| 3 | `unicomp-2026` | ✓ |\n| 4 | `phase-transition-compression-2026` | ✓ |\n| 5 | `graspune-acl2026` | ✓ |\n| 6 | `adakv-neurips2025` | ✓ |\n| 7 | `snapkv-neurips2024` | ✓ |\n| 8 | `defensivekv-iclr2026` | ✓ |\n| 9 | `nacl-acl2024` | ✓ |\n| 10 | `retentivekv-2026` | ✓ |\n| 11 | `greedy-bias-kvcache-2026` | ✓ |\n| 12 | `hies-2025` | ✓ |\n| 13 | `lethe-aaai2026` | ✓ |\n| 14 | `thinkv-iclr2026` | ✓ |\n| 15 | `decision-repr-transition-2026` | ✓ |\n| 16 | `doing-more-with-less-2026` | ✓ |\n| 17 | `sparse-frontier-2025` | ✓ |\n| 18 | `physics-kvcache-2026` | ✓ |\n| 19 | `rkv-neurips2025` | ✓ |\n| 20 | `kwon-sosp2023` | ✓ |\n| 21 | `pope-mlsys2023` | ✓ |\n| 22 | `math500-neurips2021` | ✓ |\n| 23 | `efron-1993` | ✓ |\n| 24 | `voita-acl2019` | ✓ |\n| 25 | `michel-neurips2019` | ✓ |\n| 26 | `h2o-neurips2023` | ✓ |\n| 27 | `pyramidkv-2024` | ✓ |\n| 28 | `deepseek-r1-2025` | ✓ |\n| 29 | `qwen25-2024` | ✓ |\n\n无需修改 `references.bib`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-missing-bib.md"
+}

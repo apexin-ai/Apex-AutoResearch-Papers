@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7ef0d5ac5145920c786",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "exp extended sparsity submit",
+  "task_key": "worker_exp_extended_sparsity_submit_20260514T090618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_extended_sparsity_submit_20260514T090618_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "699df357342122b63add0158c74b21fbe97044b44ca5cf5c512a702e7fc5b46b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部提交成功，registry 已更新为 RUNNING。\n\n**汇总：**\n\n| 实验 | GPU | tmux session | Python PID | 状态 |\n|------|-----|-------------|-----------|------|\n| bf16_ds_imp_s010 | cuda:0 | bf16_ds_imp_s010 | 102651 | RUNNING |\n| bf16_ds_imp_s035 | cuda:2 | bf16_ds_imp_s035 | 102789 | RUNNING |\n| bf16_qw_imp_s010 | cuda:3 | bf16_qw_imp_s010 | 102928 | RUNNING |\n\n日志路径：`/root/autodl-tmp/pacs/logs/bf16_ds_imp_s0{10,35}.log` 和 `bf16_qw_imp_s010.log`\n\n参考同类实验，预计每个 ~30-60 分钟完成。bf16_qw_imp_s035 等 cuda:0 释放后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-extended-sparsity-submit.md"
+}

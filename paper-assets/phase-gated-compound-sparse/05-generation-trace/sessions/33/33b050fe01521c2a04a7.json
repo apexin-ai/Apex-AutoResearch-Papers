@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33b050fe01521c2a04a7",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_10_1778819904.md",
+  "task_key": "loop_10_1778819904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778819904.md",
+    "occurrence": 1,
+    "bytes": 4785,
+    "sha256": "fb7c9c44a3b6e5fd3ac69b7d598e236389f5f7930721607760c00e983b1e9f08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T04:38:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，**不可用其他设备**\n- cuda:0+1 已分配给 c2_n500_deepseek，cuda:2+3 已分配给 c2_qw_n500_r3——两组实验仍在跑，**不要中断或重用这些 GPU**\n- n=500 分析必须用 **median + median bootstrap CI (B=10000)**，不是 mean（D054）\n- d_z 报告规则（D059）：within-importance 对比可报 d_z，涉及 random 的对比**只报 Wilcoxon + median_diff，不报 d_z**\n- Framing 硬约束（D015）：必须用 \"emergent phase-strategy interaction\"，禁止 \"importance is broken\"；不可 claim importance 产生 super-additive interaction without qualifier\n- C8 (LLaMA cross-arch) 是 partially_confirmed——论文**禁用 \"confirms\"，改用 \"suggests\"/\"provides partial support\"**\n- 论文数字基准：**bf16 per-problem paired 统计量**，fp16 旧数据已弃用\n- random s025/s030 重点关注（Reviewer 中期审查要求）：n=50 dryrun 信号显示 DS/QW rand s030 CI 不跨零，n=500 若确认则需调整措辞从 \"random 无 compound effect\" 改为 \"moderate sparsity 下特异于 importance，high sparsity 下 random 也显著但幅度更小\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型/数据：均在 `/root/autodl-tmp/pacs` 下（具体子路径由脚本管理）\n- 分析一键命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 analyze_n500_unified.py --csv --latex`\n- 活跃进程：\n  - c2_n500_deepseek：PID=c2_n500_gpu0，tmux 会话存在，cuda:0+1，cron 监控中\n  - c2_qw_n500_r3：PID=131858，tmux 会话存在，cuda:2+3，cron 监控中\n- Cron：2 个 active（刚 reconcile 确认两个都 still running）\n\n### 3. 📊 当前状态\n- **刚完成**：session-start 初始化（reconcile crons + 读 registry/report/roadmap/memory）\n- **正在跑**：\n  - `c2_n500_deepseek`（RUNNING）：DeepSeek 8 conditions n=500 统计功效提升。s015+s020 完成，s025 接近完成，s030 等 s025 后自动启动。ETA ~15:40 UTC 今天\n  - `c2_qw_n500_r3`（RUNNING）：Qwen 8 conditions n=500（是 c2_qw_n500 的续跑，之前 cron false positive）。s015 ~92%，s020-s030 remaining。ETA ~21h UTC 今天\n- **Worker 池**：全部 done，无活跃 Worker（当前两个实验都在 GPU 上跑，等 cron 回调）\n- **等待中**：两个实验的 cron 完成回调\n- 总计：82 实验（36 success / 10 negative / 14 failed / 21 killed / 2 running）\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调（DONE）→ 检查 conclusion → spawn Worker 跑 `analyze_n500_unified.py --csv --latex`（先跑 DeepSeek 部分）→ 汇报 Director\n- c2_qw_n500_r3 cron 回调（DONE）→ 同上跑 Qwen 部分 → 合并两模型完整分析\n- 两模型分析均完成 → **第一时间单独检查 random s025/s030 是否显著**（memory.md 要求）→ 若显著则准备措辞调整提案\n- 全量分析完成 → 汇报 Director，由 Director 派 Paper Agent 统一更新论文（n=500 tables/figures + c5b §8 future work + C8 限定语 + Qwen caveat）\n- 论文更新完成 → 提交 Group C full review\n- **截稿 2026-05-25，距今 10 天**\n\n### 5. 🎯 战略上下文\n- 项目核心发现：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（phase-modulated），random masking 保持平坦（7/8 FAIL）。这是 \"emergent phase-strategy interaction\"\n- n=500 实验是**最后的数据补充冲刺**——目的是收窄 CI、提升统计功效，不是发现新现象\n- **Qwen 是薄弱环节**：n=50 下 mid-phase 58% null rate + imp vs rand paired 全部不显著（D058）。n=500 结果将决定 Qwen 部分的叙事：若 s015 CI 仍跨零 → 改为 \"compound effect emerges above threshold sparsity (~s020)\"\n- C5b (phase-aware mitigation) 已确认 future_work（oracle recovery 18% < 30% gate），不再追\n- 决策链关键节点：D054（median 替代 mean）、D059（d_z 分场景报告）、D060（C8 降级 partially_confirmed）\n- **易错点**：\n  - 不要把 c2_qw_n500 和 c2_qw_n500_r3 搞混——前者 failed（cron false positive），后者是正在跑的续跑\n  - 分析时 Wilcoxon 是主检验，permutation test 仅用于 dose-response 单调性检验，不要混用\n  - submit_on_allocated 的命令必须自带环境激活（conda），不能假设 shell 已激活\n  - GPU 编号脚本内始终从 0 开始（CUDA_VISIBLE_DEVICES 映射物理 GPU）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778819904.md"
+}

@@ -1,0 +1,386 @@
+\begin{thebibliography}{50}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Ananthanarayanan et~al.(2026)Ananthanarayanan, Sengupta, and
+  Chakraborty}]{physics-kvcache-2026}
+Samhruth Ananthanarayanan, Ayan Sengupta, and Tanmoy Chakraborty. 2026.
+\newblock \href {https://arxiv.org/abs/2603.01426} {Understanding the physics
+  of key-value cache compression for {LLMs} through attention dynamics}.
+\newblock \emph{arXiv preprint arXiv:2603.01426}.
+
+\bibitem[{Cai et~al.(2025{\natexlab{a}})Cai, Xiao, Sun, Luo, Zhang, Wan, Li,
+  Zhou, Chang, Gu, Dong, Anandkumar, Asi, and Hu}]{rkv-neurips2025}
+Zefan Cai, Wen Xiao, Hanshi Sun, Cheng Luo, Yikai Zhang, Ke~Wan, Yucheng Li,
+  Yeyang Zhou, Li-Wen Chang, Jiuxiang Gu, Zhen Dong, Anima Anandkumar,
+  Abedelkadir Asi, and Junjie Hu. 2025{\natexlab{a}}.
+\newblock \href {https://arxiv.org/abs/2505.24133} {{R-KV}: Redundancy-aware
+  {KV} cache compression for reasoning models}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Cai et~al.(2025{\natexlab{b}})Cai, Zhang, Gao, Liu, Liu, Lu, Xiong,
+  Dong, Chang, Hu, and Xiao}]{pyramidkv-colm2025}
+Zefan Cai, Yichi Zhang, Bofei Gao, Yuliang Liu, Tianyu Liu, Keming Lu, Wayne
+  Xiong, Yue Dong, Baobao Chang, Junjie Hu, and Wen Xiao. 2025{\natexlab{b}}.
+\newblock \href {https://arxiv.org/abs/2406.02069} {{PyramidKV}: Dynamic {KV}
+  cache compression based on pyramidal information funneling}.
+\newblock In \emph{Conference on Language Modeling}.
+
+\bibitem[{Chen et~al.(2024)Chen, Wang, Shang, Cui, Zhang, Liu, Wang, Sun, Yu,
+  and Wu}]{nacl-acl2024}
+Yilong Chen, Guoxia Wang, Junyuan Shang, Shiyao Cui, Zhenyu Zhang, Tingwen Liu,
+  Shuohuan Wang, Yu~Sun, Dianhai Yu, and Hua Wu. 2024.
+\newblock \href {https://arxiv.org/abs/2408.03675} {{NACL}: A general and
+  effective {KV} cache eviction framework for {LLMs} at inference time}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics}.
+
+\bibitem[{Choi et~al.(2025)Choi, Son, Kim, and Kim}]{hies-2025}
+Minsik Choi, Hyegang Son, Changhoon Kim, and Young~Geun Kim. 2025.
+\newblock \href {https://arxiv.org/abs/2510.13832} {Entropy meets importance: A
+  unified head importance-entropy score for stable and efficient transformer
+  pruning}.
+\newblock \emph{arXiv preprint arXiv:2510.13832}.
+
+\bibitem[{{DeepSeek-AI}(2025)}]{deepseek-r1-2025}
+{DeepSeek-AI}. 2025.
+\newblock \href {https://doi.org/10.1038/s41586-025-09422-z} {{DeepSeek-R1}
+  incentivizes reasoning in {LLMs} through reinforcement learning}.
+\newblock \emph{Nature}, 645:633--638.
+
+\bibitem[{Dong et~al.(2026)Dong, Liu, Li, Chen, Peng, Wang, and
+  Zhao}]{dong2026foresightkv}
+Zican Dong, Peiyu Liu, Junyi Li, Zhipeng Chen, Han Peng, Shuo Wang, and
+  Wayne~Xin Zhao. 2026.
+\newblock \href {https://arxiv.org/abs/2602.03203} {{ForesightKV}: Optimizing
+  {KV} cache eviction for reasoning models by learning long-term contribution}.
+\newblock \emph{arXiv preprint arXiv:2602.03203}.
+
+\bibitem[{Du et~al.(2025)Du, Jiang, Tao, Liu, and Wang}]{rlkv-2025}
+Wenjie Du, Li~Jiang, Keda Tao, Xue Liu, and Huan Wang. 2025.
+\newblock \href {https://arxiv.org/abs/2510.08525} {Which heads matter for
+  reasoning? {RL}-guided {KV} cache compression}.
+\newblock \emph{arXiv preprint arXiv:2510.08525}.
+
+\bibitem[{Efron and Tibshirani(1993)}]{efron-1993}
+Bradley Efron and Robert~J. Tibshirani. 1993.
+\newblock \emph{An Introduction to the Bootstrap}.
+\newblock Chapman \& Hall/CRC.
+
+\bibitem[{Fedus et~al.(2022)Fedus, Zoph, and Shazeer}]{fedus-jmlr2022}
+William Fedus, Barret Zoph, and Noam Shazeer. 2022.
+\newblock \href {https://arxiv.org/abs/2101.03961} {Switch transformers:
+  Scaling to trillion parameter models with simple and efficient sparsity}.
+\newblock \emph{Journal of Machine Learning Research}, 23(120):1--39.
+
+\bibitem[{Feng et~al.(2026)Feng, Guo, Lv, Zhou, and Xie}]{defensivekv-iclr2026}
+Yuan Feng, Haoyu Guo, Junlin Lv, S.~Kevin Zhou, and Xike Xie. 2026.
+\newblock \href {https://arxiv.org/abs/2510.13334} {{DefensiveKV}: Taming the
+  fragility of {KV} cache eviction in {LLM} inference}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Feng et~al.(2025)Feng, Lv, Cao, Xie, and Zhou}]{adakv-neurips2025}
+Yuan Feng, Junlin Lv, Yukun Cao, Xike Xie, and S.~Kevin Zhou. 2025.
+\newblock \href {https://arxiv.org/abs/2407.11550} {Ada-{KV}: Optimizing {KV}
+  cache eviction by adaptive budget allocation for efficient {LLM} inference}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Frankle and Carlin(2019)}]{frankle-iclr2019}
+Jonathan Frankle and Michael Carlin. 2019.
+\newblock \href {https://arxiv.org/abs/1803.03635} {The lottery ticket
+  hypothesis: Finding sparse, trainable neural networks}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Han et~al.(2015)Han, Pool, Tran, and Dally}]{han-neurips2015}
+Song Han, Jeff Pool, John Tran, and William~J. Dally. 2015.
+\newblock \href {https://arxiv.org/abs/1506.02626} {Learning both weights and
+  connections for efficient neural networks}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath, Arora, Basart,
+  Tang, Song, and Steinhardt}]{math500-neurips2021}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric
+  Tang, Dawn Song, and Jacob Steinhardt. 2021.
+\newblock \href {https://arxiv.org/abs/2103.03874} {Measuring mathematical
+  problem solving with the {MATH} dataset}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Kim et~al.(2026)Kim, Choi, Yang, Kim, Song, and Kang}]{kim2026pqqp}
+Minjun Kim, Jaehyeon Choi, Hyunwoo Yang, Jongjin Kim, Jinho Song, and U~Kang.
+  2026.
+\newblock \href {https://arxiv.org/abs/2603.18426} {Prune-then-quantize or
+  quantize-then-prune? understanding the impact of compression order in joint
+  model compression}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Kwon et~al.(2023)Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang,
+  and Stoica}]{kwon-sosp2023}
+Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
+  Joseph~E. Gonzalez, Hao Zhang, and Ion Stoica. 2023.
+\newblock \href {https://arxiv.org/abs/2309.06180} {Efficient memory management
+  for large language model serving with {PagedAttention}}.
+\newblock In \emph{Proceedings of the 29th Symposium on Operating Systems
+  Principles}.
+
+\bibitem[{Lanham et~al.(2023)Lanham, Chen, Radhakrishnan, Steiner, Denison,
+  Hernandez, Li, Durmus, Hubinger, Kernion et~al.}]{lanham-2023-faithfulness}
+Tamera Lanham, Anna Chen, Ansh Radhakrishnan, Benoit Steiner, Carson Denison,
+  Danny Hernandez, Dustin Li, Esin Durmus, Evan Hubinger, Jackson Kernion, and
+  1 others. 2023.
+\newblock \href {https://arxiv.org/abs/2307.13702} {Measuring faithfulness in
+  chain-of-thought reasoning}.
+\newblock \emph{arXiv preprint arXiv:2307.13702}.
+
+\bibitem[{Li et~al.(2024)Li, Huang, Yang, Venkitesh, Locatelli, Ye, Cai, Lewis,
+  and Chen}]{snapkv-neurips2024}
+Yuhong Li, Yingbing Huang, Bowen Yang, Bharat Venkitesh, Acyr Locatelli,
+  Hanchen Ye, Tianle Cai, Patrick Lewis, and Deming Chen. 2024.
+\newblock \href {https://arxiv.org/abs/2404.14469} {{SnapKV}: {LLM} knows what
+  you are looking for before generation}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Liao et~al.(2026)Liao, Xu, He, Li, Yin, Li, Barsoum, Zhao, and
+  Liu}]{spark-aaai2026}
+Huanxuan Liao, Yixing Xu, Shizhu He, Guanchen Li, Xuanwu Yin, Dong Li, Emad
+  Barsoum, Jun Zhao, and Kang Liu. 2026.
+\newblock \href {https://arxiv.org/abs/2508.15212} {{SparK}: Query-aware
+  unstructured sparsity with recoverable {KV} cache channel pruning}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Liu et~al.(2025)Liu, Palnitkar, Rabbani, Jae, Sang, Yao, Shabihi,
+  Zhao, Li, Zhang, Huang, and Zhang}]{hold-onto-thought-neurips2025}
+Minghui Liu, Aadi Palnitkar, Tahseen Rabbani, Hyunwoo Jae, Kyle~Rui Sang, Dixi
+  Yao, Shayan Shabihi, Fuheng Zhao, Tian Li, Ce~Zhang, Furong Huang, and
+  Kunpeng Zhang. 2025.
+\newblock \href {https://arxiv.org/abs/2512.12008} {Hold onto that thought:
+  Assessing {KV} cache compression on reasoning}.
+\newblock \emph{arXiv preprint arXiv:2512.12008}.
+
+\bibitem[{Liu et~al.(2026{\natexlab{a}})Liu, Xiong, Jiang, Wang, Lv, and
+  Zhang}]{retentivekv-2026}
+Sihao Liu, YuFan Xiong, Zhonghua Jiang, Zhaode Wang, Chengfei Lv, and Shengyu
+  Zhang. 2026{\natexlab{a}}.
+\newblock \href {https://arxiv.org/abs/2605.04075} {{RetentiveKV}: State-space
+  memory for uncertainty-aware multimodal {KV} cache eviction}.
+\newblock \emph{arXiv preprint arXiv:2605.04075}.
+
+\bibitem[{Liu et~al.(2026{\natexlab{b}})Liu, Li, Yang, Zhao, Zhou, Song, Dai,
+  Yan, Yang, and Wang}]{pmkvq-iclr2026}
+Tengxuan Liu, Shiyao Li, Jiayi Yang, Tianchen Zhao, Feng Zhou, Xiaohui Song,
+  Guohao Dai, Shengen Yan, Huazhong Yang, and Yu~Wang. 2026{\natexlab{b}}.
+\newblock \href {https://arxiv.org/abs/2505.18610} {{PM-KVQ}: Progressive
+  mixed-precision {KV} cache quantization for long-{CoT} {LLMs}}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Liu et~al.(2023)Liu, Desai, Liao, Wang, Xie, Xu, Kyrillidis, and
+  Shrivastava}]{scissorhands-2023}
+Zichang Liu, Aditya Desai, Fangshuo Liao, Weitao Wang, Victor Xie, Zhaozhuo Xu,
+  Anastasios Kyrillidis, and Anshumali Shrivastava. 2023.
+\newblock \href {https://arxiv.org/abs/2305.17118} {Scissorhands: Exploiting
+  the persistence of importance hypothesis for {LLM} {KV} cache compression}.
+\newblock \emph{arXiv preprint arXiv:2305.17118}.
+
+\bibitem[{Ma et~al.(2026)Ma, Li, Zhang, Xia, Du, Zhang, and
+  Tao}]{phase-transition-compression-2026}
+Ziyang Ma, Zuchao Li, Lefei Zhang, Gui-Song Xia, Bo~Du, Liangpei Zhang, and
+  Dacheng Tao. 2026.
+\newblock \href {https://www.nature.com/articles/s44387-026-00072-8} {Phase
+  transitions in large language model compression}.
+\newblock \emph{npj Artificial Intelligence}, 2(21).
+
+\bibitem[{Michel et~al.(2019)Michel, Levy, and Neubig}]{michel-neurips2019}
+Paul Michel, Omer Levy, and Graham Neubig. 2019.
+\newblock \href {https://arxiv.org/abs/1905.10650} {Are sixteen heads really
+  better than one?}
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Monjur et~al.(2026)Monjur, Nahin, and
+  Chhabra}]{doing-more-with-less-2026}
+Ocean Monjur, Shahriar~Kabir Nahin, and Anshuman Chhabra. 2026.
+\newblock \href {https://arxiv.org/abs/2604.25098} {Doing more with less:
+  Revisiting the effectiveness of {LLM} pruning for test-time scaling}.
+\newblock \emph{arXiv preprint arXiv:2604.25098}.
+
+\bibitem[{Mozaffari et~al.(2025)Mozaffari, Yazdanbakhsh, and
+  Dehnavi}]{slim-icml2025}
+Mohammad Mozaffari, Amir Yazdanbakhsh, and Maryam~Mehri Dehnavi. 2025.
+\newblock \href {https://arxiv.org/abs/2410.09615} {{SLiM}: One-shot
+  quantization and sparsity with low-rank approximation for {LLM} weight
+  compression}.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning}.
+
+\bibitem[{Nawrot et~al.(2025)Nawrot, Li, Huang, Ruder, Marchisio, and
+  Ponti}]{sparse-frontier-2025}
+Piotr Nawrot, Robert Li, Renjie Huang, Sebastian Ruder, Kelly Marchisio, and
+  Edoardo~M. Ponti. 2025.
+\newblock \href {https://arxiv.org/abs/2504.17768} {The sparse frontier: Sparse
+  attention trade-offs in transformer {LLMs}}.
+\newblock \emph{arXiv preprint arXiv:2504.17768}.
+
+\bibitem[{Pope et~al.(2023)Pope, Douglas, Chowdhery, Devlin, Bradbury, Heek,
+  Xiao, Agrawal, and Dean}]{pope-mlsys2023}
+Reiner Pope, Sholto Douglas, Aakanksha Chowdhery, Jacob Devlin, James Bradbury,
+  Jonathan Heek, Kefan Xiao, Shivani Agrawal, and Jeff Dean. 2023.
+\newblock \href {https://arxiv.org/abs/2211.05102} {Efficiently scaling
+  transformer inference}.
+\newblock In \emph{Proceedings of Machine Learning and Systems}.
+
+\bibitem[{Ramachandran et~al.(2026)Ramachandran, Neseem, Sakr, Venkatesan,
+  Khailany, and Krishna}]{thinkv-iclr2026}
+Akshat Ramachandran, Marina Neseem, Charbel Sakr, Rangharajan Venkatesan,
+  Brucek Khailany, and Tushar Krishna. 2026.
+\newblock \href {https://arxiv.org/abs/2510.01290} {{ThinKV}: Thought-adaptive
+  {KV} cache compression for efficient reasoning models}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Rein et~al.(2024)Rein, Hou, Stickland, Petty, Pang, Dirani, Michael,
+  and Bowman}]{rein-gpqa-2024}
+David Rein, Betty~Li Hou, Asa~Cooper Stickland, Jackson Petty, Richard~Yuanzhe
+  Pang, Julien Dirani, Julian Michael, and Samuel~R. Bowman. 2024.
+\newblock \href {https://arxiv.org/abs/2311.12022} {{GPQA}: A graduate-level
+  google-proof q\&a benchmark}.
+\newblock \emph{arXiv preprint arXiv:2311.12022}.
+
+\bibitem[{Sanh et~al.(2020)Sanh, Wolf, and Rush}]{sanh-neurips2020}
+Victor Sanh, Thomas Wolf, and Alexander~M. Rush. 2020.
+\newblock \href {https://arxiv.org/abs/2005.07683} {Movement pruning: Adaptive
+  sparsity during fine-tuning}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Shazeer et~al.(2017)Shazeer, Mirhoseini, Maziarz, Davis, Le, Hinton,
+  and Dean}]{shazeer-2017-moe}
+Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le,
+  Geoffrey Hinton, and Jeff Dean. 2017.
+\newblock \href {https://arxiv.org/abs/1701.06538} {Outrageously large neural
+  networks: The sparsely-gated mixture-of-experts layer}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Shi et~al.(2026)Shi, Liu, Gao, Yang, and
+  Geng}]{decision-repr-transition-2026}
+Boyu Shi, Chang Liu, ChuanBao Gao, Xu~Yang, and Xin Geng. 2026.
+\newblock \href {https://arxiv.org/abs/2605.07271} {Understanding performance
+  collapse in layer-pruned large language models via decision representation
+  transitions}.
+\newblock \emph{arXiv preprint arXiv:2605.07271}.
+
+\bibitem[{Snell et~al.(2024)Snell, Lee, Xu, and
+  Kumar}]{snell-2024-scaling-test-time}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2024.
+\newblock \href {https://arxiv.org/abs/2408.03314} {Scaling {LLM} test-time
+  compute optimally can be more effective than scaling model parameters}.
+\newblock \emph{arXiv preprint arXiv:2408.03314}.
+
+\bibitem[{Sood et~al.(2026)Sood, Sharma, and
+  Agrawal}]{greedy-bias-kvcache-2026}
+Aryan Sood, Tanvi Sharma, and Vansh Agrawal. 2026.
+\newblock \href {https://arxiv.org/abs/2602.02199} {More than a quick glance:
+  Overcoming the greedy bias in {KV}-cache compression}.
+\newblock \emph{arXiv preprint arXiv:2602.02199}.
+
+\bibitem[{Su et~al.(2026)Su, Tian, Qiao, Zhou, Li, and Zhang}]{longflow-2026}
+Yi~Su, Zhenxu Tian, Dan Qiao, Yuechi Zhou, Juntao Li, and Min Zhang. 2026.
+\newblock \href {https://arxiv.org/abs/2603.11504} {{LongFlow}: Efficient {KV}
+  cache compression for reasoning models}.
+\newblock \emph{arXiv preprint arXiv:2603.11504}.
+
+\bibitem[{Turpin et~al.(2023)Turpin, Michael, Perez, and
+  Bowman}]{turpin-2023-biased-cot}
+Miles Turpin, Julian Michael, Ethan Perez, and Samuel~R. Bowman. 2023.
+\newblock \href {https://arxiv.org/abs/2305.04388} {Language models don't
+  always say what they think: Unfaithful explanations in chain-of-thought
+  prompting}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Voita et~al.(2019)Voita, Talbot, Moiseev, Sennrich, and
+  Titov}]{voita-acl2019}
+Elena Voita, David Talbot, Fedor Moiseev, Rico Sennrich, and Ivan Titov. 2019.
+\newblock \href {https://arxiv.org/abs/1905.09418} {Analyzing multi-head
+  self-attention: Specialized heads do the heavy lifting, the rest can be
+  pruned}.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}.
+
+\bibitem[{von Rad et~al.(2026)von Rad, Cao, and Geiger}]{unicomp-2026}
+Jonathan von Rad, Yong Cao, and Andreas Geiger. 2026.
+\newblock \href {https://arxiv.org/abs/2602.09130} {{UniComp}: A unified
+  evaluation of large language model compression via pruning, quantization and
+  distillation}.
+\newblock \emph{arXiv preprint arXiv:2602.09130}.
+
+\bibitem[{Wang et~al.(2026)Wang, Xiao, Xiao, Li, Mao, and
+  Qin}]{graspune-acl2026}
+Ziyang Wang, Jiangfeng Xiao, Chuan Xiao, Ruoxiang Li, Rui Mao, and Jianbin Qin.
+  2026.
+\newblock \href {https://arxiv.org/abs/2604.19398} {{GRASPrune}: Global gating
+  for budgeted structured pruning of large language models}.
+\newblock In \emph{Proceedings of the 64th Annual Meeting of the Association
+  for Computational Linguistics}.
+
+\bibitem[{Wei et~al.(2022)Wei, Wang, Schuurmans, Bosma, Ichter, Xia, Chi, Le,
+  and Zhou}]{wei-neurips2022-cot}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia,
+  Ed~Chi, Quoc Le, and Denny Zhou. 2022.
+\newblock \href {https://arxiv.org/abs/2201.11903} {Chain-of-thought prompting
+  elicits reasoning in large language models}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Xiao et~al.(2024{\natexlab{a}})Xiao, Tang, Zuo, Guo, Yang, Tang, Fu,
+  and Han}]{duoattention-2024}
+Guangxuan Xiao, Jiaming Tang, Jingwei Zuo, Junxian Guo, Shang Yang, Haotian
+  Tang, Yao Fu, and Song Han. 2024{\natexlab{a}}.
+\newblock \href {https://arxiv.org/abs/2410.10819} {{DuoAttention}: Efficient
+  long-context {LLM} inference with retrieval and streaming heads}.
+\newblock \emph{arXiv preprint arXiv:2410.10819}.
+
+\bibitem[{Xiao et~al.(2024{\natexlab{b}})Xiao, Tian, Chen, Han, and
+  Lewis}]{streamingllm-iclr2024}
+Guangxuan Xiao, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis.
+  2024{\natexlab{b}}.
+\newblock \href {https://arxiv.org/abs/2309.17453} {Efficient streaming
+  language models with attention sinks}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Xu et~al.(2025)Xu, Jie, Dong, Wang, Lu, Zhou, Saha, Xiong, and
+  Sahoo}]{xu2025think}
+Yuhui Xu, Zhanming Jie, Hanze Dong, Lei Wang, Xudong Lu, Aojun Zhou, Amrita
+  Saha, Caiming Xiong, and Doyen Sahoo. 2025.
+\newblock \href {https://arxiv.org/abs/2407.21018} {{ThinK}: Thinner key cache
+  by query-driven pruning}.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Yang et~al.(2024)Yang, Yang, Zhang, Hui, Zheng, Yu, Li, Liu, Huang,
+  Wei et~al.}]{qwen25-2024}
+An~Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, Bowen Yu,
+  Chengyuan Li, Dayiheng Liu, Fei Huang, Haoran Wei, and 1 others. 2024.
+\newblock \href {https://arxiv.org/abs/2412.15115} {{Qwen2.5} technical
+  report}.
+\newblock \emph{arXiv preprint arXiv:2412.15115}.
+
+\bibitem[{Zeng et~al.(2026)Zeng, Zhao, Yang, Hou, Zheng, Li, Ji, and
+  Zhai}]{lethe-aaai2026}
+Hui Zeng, Daming Zhao, Pengfei Yang, WenXuan Hou, Tianyang Zheng, Hui Li, Weiye
+  Ji, and Jidong Zhai. 2026.
+\newblock \href {https://arxiv.org/abs/2511.06029} {Lethe: Layer- and
+  time-adaptive {KV} cache pruning for reasoning-intensive {LLM} serving}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Zhang et~al.(2023)Zhang, Sheng, Zhou, Chen, Zheng, Cai, Song, Tian,
+  R{\'e}, Barrett, Wang, and Chen}]{h2o-neurips2023}
+Zhenyu Zhang, Ying Sheng, Tianyi Zhou, Tianlong Chen, Lianmin Zheng, Ruisi Cai,
+  Zhao Song, Yuandong Tian, Christopher R{\'e}, Clark Barrett, Zhangyang Wang,
+  and Beidi Chen. 2023.
+\newblock \href {https://arxiv.org/abs/2306.14048} {{H2O}: Heavy-hitter oracle
+  for efficient generative inference of large language models}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Zhou et~al.(2026)Zhou, Hao, Wang, Zhang, Huang, Guo, Hu, Du, Guo, and
+  Chen}]{lkv-2026}
+Enshuai Zhou, Yifan Hao, Chao Wang, Rui Zhang, Di~Huang, Jiaming Guo, Xing Hu,
+  Zidong Du, Qi~Guo, and Yunji Chen. 2026.
+\newblock \href {https://arxiv.org/abs/2605.06676} {{LKV}: End-to-end learning
+  of head-wise budgets and token selection for {LLM} {KV} cache eviction}.
+\newblock \emph{arXiv preprint arXiv:2605.06676}.
+
+\end{thebibliography}

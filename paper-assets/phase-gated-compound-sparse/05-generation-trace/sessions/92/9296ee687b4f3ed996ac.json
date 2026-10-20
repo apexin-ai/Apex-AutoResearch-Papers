@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9296ee687b4f3ed996ac",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "fix n500 json both models",
+  "task_key": "worker_fix_n500_json_both_models_20260515T020536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_n500_json_both_models_20260515T020536_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "ba1223e576092c6e17059227c55655525d965ebeec4963cbab6e737fc49033ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码本身没有 bug。`analyze_n500_unified.py` 的默认 `--model all` 已经正确处理两个模型。之前的 JSON 只有 DeepSeek 是因为当时运行时要么指定了 `--model deepseek`，要么 Qwen 数据还不存在。\n\n刚才重新运行 `python3 analyze_n500_unified.py --csv --latex`，JSON 已从 269 行（仅 DeepSeek）增长到 666 行，包含两个模型完整数据：\n\n**DeepSeek**: 4 conditions (imp/rand × s015/s020)，缺 s025/s030 数据\n**Qwen**: 6 conditions (imp/rand × s015/s020/s025)，缺 s030 数据\n\nJSON、CSV 和 LaTeX 输出均已生成，包含 DeepSeek 和 Qwen 两个模型的所有可用结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-n500-json-both-models.md"
+}

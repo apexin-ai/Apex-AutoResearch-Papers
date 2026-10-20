@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4db1d66dc2f17eb911b7",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_6_1778775370.md",
+  "task_key": "loop_6_1778775370",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778775370.md",
+    "occurrence": 1,
+    "bytes": 5081,
+    "sha256": "075cddbf34f9d5461f378cefc939ded3e9c07b4e788261e9d22897aaaebff947"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T16:15:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-22162 的 cuda:0/1/2/3，任何其他 GPU 必须 push back Director\n- c2_qw_n500 有重复进程问题（PID 132389, 132392 是重复的），但原始进程 131864/132002 正常跑。下一个 session 如果收到 cron 回调说 c2_qw_n500 失败，先验证是 cron false positive（已经发生 3 次），不要盲目重启\n- c2_qw_n500 跑在 SCREEN sessions（c2_qw_gpu2, c2_qw_gpu3），不是 tmux。cron 检测进程用 PID 131864/132002\n- EMNLP 2026 ARR 截稿 2026-05-25（距今 11 天），所有实验必须全速推进\n- 论文数字全部基于 bf16 per-problem paired 统计量（B=10000 bootstrap），fp16 旧数据已弃用，不要引用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，4× RTX PRO 6000 Blackwell 96GB\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python：conda base（`/root/miniconda3/bin/python`，aml-train 镜像）\n- 模型路径：DeepSeek-R1-Distill-Qwen-7B / Qwen2.5-7B-Instruct / DeepSeek-R1-Distill-Llama-8B（均在 /root/autodl-tmp/ 下，具体路径需 SSH 确认）\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（500 problems）\n- 活跃进程：\n  - **c2_n500_deepseek**: cuda:0+1, tmux sessions c2_n500_gpu0/c2_n500_gpu1, PID c2_n500_gpu0（cron 确认 still running）\n  - **c2_qw_n500**: cuda:2+3, SCREEN sessions c2_qw_gpu2/c2_qw_gpu3, PID 131864 (imp) / 132002 (rand), 进度 ~93-98/500 on s015（第 1/4 条件）\n  - **c3_llama**: cuda:2+3（与 c2_qw_n500 共享？需确认），PID 138393 parent / 138408 imp_gpu2 / 138410 rand_gpu3, cron 确认 still running\n- Cron 监控：3 个活跃（c2_n500_deepseek, c2_qw_n500, c3_llama）\n- ⚠️ c3_llama 和 c2_qw_n500 都声称用 cuda:2+3——可能有 GPU 冲突，下一个 session 需要 SSH 确认实际 GPU 占用\n\n### 3. 📊 当前状态\n**刚做完**：Session #6 的日常运维——reconcile crons、处理 c2_qw_n500 的第 3 次 cron false positive（profiling 实验无 W&B/sentinel，cron 反复误判进程已死）。\n\n**Registry 活跃实验**：\n| exp_id | status | GPU | 摘要 |\n|--------|--------|-----|------|\n| c2_n500_deepseek | RUNNING | cuda:0+1 | DeepSeek 8 conditions n=500, ~18h 估计 |\n| c2_qw_n500 | RUNNING | cuda:2+3 | Qwen 8 conditions n=500, 进度 ~93/500 s015 |\n| c3_llama | RUNNING | cuda:2+3 | LLaMA-8B 跨架构验证, 8 conditions n=50 |\n| c5b_pilot | QUEUED | 无 | Oracle+heuristic mitigation pilot, 代码已完成+dry-run通过, 等 GPU |\n\n**等待中**：\n- 3 个 cron 监控会在实验完成时自动回调\n- c5b_pilot 排队等 GPU（需要 c3_llama 或 c2_qw_n500 完成释放 GPU）\n- 0 个 running workers（全部已完成或销毁）\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调（完成）→ spawn worker 分析 8 conditions 结果 → 计算 paired median diff + Cohen's d + bootstrap CI → 更新 registry + report.md → 汇报 Director（与 n=50 bf16 对比）\n- c2_qw_n500 cron 回调（完成）→ 同上分析流程 → 特别关注 s015 CI 是否跨零（预注册：若跨零则改叙事为 \"threshold sparsity ~s020\"）\n- c3_llama cron 回调（完成）→ 分析 LLaMA 架构是否复现 phase-modulated compound severity → 若复现则 C5/C8 confirmed，论文加 cross-architecture evidence\n- c3_llama 或 c2_qw_n500 完成释放 GPU → 立即提交 c5b_pilot（代码已就绪，run_mitigation_pilot.py 577 行，dry-run 通过）\n- c2_qw_n500 再次 cron false positive → 不要重启，SSH 确认 PID 131864/132002 存活即可，手动 update_registry 回 RUNNING\n- 全部实验完成 → 更新论文 tables/figures → 提交 Group C full review\n\n### 5. 🎯 战略上下文\n**核心发现**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DeepSeek 0.32→9.94, Qwen 0.048→2.619），random masking 7/8 FAIL。这是 \"emergent phase-strategy interaction\" 而非 \"importance is broken\"（D015 硬约束）。\n\n**决策链关键**：\n- D044: Discrimination collapse 跨模型一致，entropy redistribution model-dependent → C4 降级为 §6 supporting（D045/D046）\n- D047: 6-point dose-response 纳入，II_high 限定 ≥0.10\n- D048: 全文统一用 paired d_z（cohens_d_bf16.json）\n- D052: Reviewer 审查采纳——C5 pilot-first + heuristic baseline\n\n**易错点**：\n- c2_qw_n500 的 cron 会反复 false positive（profiling 实验无 W&B sentinel），不要每次都当真——先 SSH 查 PID\n- c3_llama 和 c2_qw_n500 的 GPU 分配可能冲突（都声称 cuda:2+3），需要第一时间 SSH 确认\n- 论文所有数字必须来自 bf16 数据，不要引用任何 fp16 旧实验\n- median_diff 定义是 median(II_low_i − II_high_i)（逐 problem 配对差的中位数），不是 median(II_low) − median(II_high)\n- c5b_pilot 的 gate 是 oracle recovery >30% at s025 or s030，不到就降为 future work\n- 81 实验中 35 success / 9 negative / 13 failed，大量早期 mvp/v4/v5/v6/bf16 killed 实验是历史遗留，不需要管\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778775370.md"
+}

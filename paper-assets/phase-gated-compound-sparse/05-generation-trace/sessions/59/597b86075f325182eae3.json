@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "597b86075f325182eae3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_7_1778783922.md",
+  "task_key": "loop_7_1778783922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778783922.md",
+    "occurrence": 1,
+    "bytes": 4585,
+    "sha256": "9f3b75cdb86aba9f4d7da5890ba2b3057469ce32b401dc44666797cb3743e355"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T18:38:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅** westd-22162 cuda:0/1/2/3（config.execution.gpu_ids）。其他 GPU 一律 push back Director\n- c2_qw_n500 有数据完整性风险：重复进程期间（~8→~93/500 s015）可能有交叉写入，分析时**必须验证** profiling_results.json 时间戳单调性 + 问题数=500\n- D054 生效：II 主指标已从 mean 切换为 **median + median bootstrap CI**，所有后续分析/论文更新必须用 median\n- Qwen s015 预注册（D037/D038）：若 n=500 后 CI 仍跨零，叙事改为 \"compound effect emerges above a threshold sparsity level (~s020)\"——不是 negative，是 nuanced finding\n- 跨模型对比禁止比绝对值（DeepSeek ~4× Qwen），只比趋势（ρ=1.0）；LLaMA II 比 DeepSeek 小 ~40×，禁止 claim \"similar magnitude\"\n- c2_qw_n500 跑在 **screen**（不是 tmux），检查时用 `screen -ls`\n- 截稿 **2026-05-25 EMNLP ARR**，距今 11 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162 | 账户: root | 工作目录: `/root/autodl-tmp/pacs`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: DeepSeek-R1-Distill-Qwen-7B + Qwen-7B + DeepSeek-R1-Distill-Llama-8B（均在服务器本地）\n- **数据**: `/root/autodl-tmp/pacs/data/math500.json`（MATH-500, n=500）\n- **c3_llama 产出**: `/root/autodl-tmp/pacs/analysis_output/c3_llama_{results,cohens_d,report}.*`\n- **活跃进程**:\n  - c2_n500_deepseek: PID 130124 (gpu0 imp) + 130263 (gpu1 rand) | tmux: `c2_n500_gpu0`, `c2_n500_gpu1`\n  - c2_qw_n500: PID 131864 (gpu2 imp) + 132002 (gpu3 rand) | **screen**: `c2_qw_gpu2`, `c2_qw_gpu3`\n- **活跃 Cron**: 2 个（c2_n500_deepseek, c2_qw_n500），reconcile 确认均 still running\n\n### 3. 📊 当前状态\n82 实验：36 success / 9 negative / 14 failed / 21 killed / **2 RUNNING**。论文全文已完成（§1-§8 + Abstract + Figures），PDF 可编译。\n\n**RUNNING**:\n- **c2_n500_deepseek** (cuda:0+1): imp_s015 94%, rand_s015 99%。每条件 ~4.5h，8 条件全完成 ETA **~2026-05-15 16:10 UTC**\n- **c2_qw_n500** (cuda:2+3): imp_s015 71%, rand_s015 75%。Qwen 比 DeepSeek 慢 ~25%，8 条件全完成 ETA **~2026-05-15 21:08 UTC**\n\n**刚完成**:\n- c3_llama (success): LLaMA 跨架构验证通过，三架构 compound severity 方向一致\n- c5b_pilot (failed): process dead 5× auto-resolved，C5b mitigation pilot 需要诊断/Director 决策\n\n**等待**: 无 pending Worker 回调。0 个 running Worker。2 个 cron 在监控。\n\n### 4. 📋 待办（条件触发式）\n- **c2_n500_deepseek cron 回调（DONE）** → spawn Worker 跑 median bootstrap 分析 + Cohen's d 计算 → 更新 registry metrics → 对比 n=50 结论是否稳健\n- **c2_qw_n500 cron 回调（DONE）** → spawn Worker 跑同上分析 → **重点检查 s015 CI 是否仍跨零**（触发预注册叙事切换）→ 验证 profiling_results.json 数据完整性（重复进程风险）\n- **两个 C2 n=500 都完成** → spawn Worker 更新论文 Table 2/3 + Figure 2/3（bf16 canonical + n=500 数据）→ 提交 Group C full review\n- **c5b_pilot 诊断** → 向 Director 汇报失败原因，等决策是否重试（GPU 当前被 C2 占满，需 C2 完成后才能重启 C5b）\n- **论文更新完成** → 全文数字一致性审查（D054 median 切换后所有 table/figure/text 中的数字）\n\n### 5. 🎯 战略上下文\n- **核心结论**: importance-based pruning 的 compound interaction severity 随 sparsity 单调递增，跨 3 架构（Qwen2 + LLaMA）复现，random masking 全 FAIL。这是论文的 central claim\n- **Claims 状态**: C1(monotonicity)✅ C2(statistical power)⏳ C3(cross-arch)✅ C4(entropy→§6 supporting, D045/D046) C5(mitigation)❌c5b failed C6(dose-response)✅\n- **最易判断错的事**:\n  1. c2_qw_n500 的 screen session 不是 tmux——用 `screen -r c2_qw_gpu2` 不是 `tmux attach`\n  2. DeepSeek skewness 高达 9.5，必须用 median 不是 mean（D054）\n  3. c5b_pilot 失败不代表 C5 放弃——只是 pilot 实现有 bug，C5 mitigation 方向本身未被否定\n  4. 论文已经全部写完但数据是 bf16 canonical（n=50），C2 n=500 完成后需要**更新论文中所有引用 n=50 CI 的地方**\n- **决策链**: D045→D046(C4降级) → D047(dose-response) → D048(paired d_z) → D049/D050(修复回退) → D051(图表重生成) → D052(C5 pilot-first) → D053(s_trans cap) → D054(median切换)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778783922.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50f35438324ea3121271",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code fix critical pipeline bugs",
+  "task_key": "worker_code_fix-critical-pipeline-bugs_20260513T185158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-critical-pipeline-bugs_20260513T185158_result.json",
+    "occurrence": 1,
+    "bytes": 1314,
+    "sha256": "d322090970774beda6a1fd282513c187c179c6f6377ec15975b3dd4c7891e763"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 files pass syntax check. Here's a summary of the 5 fixes:\n\n**C3 + C1 (OOM + wrong segmentation target)** — `run_profiling.py:219-262`\n- Removed `output_attentions=True` from `model.generate()`\n- Added a pre-hook on the last attention layer to enable attention output only for that layer\n- Post-hook computes per-step sparsity via `compute_step_sparsity()` and strips the tensor immediately\n- Segmentation now uses `segment_from_sparsity()` on the **generation trace** (not the prompt's prefill attention)\n- Phase indices are offset by `prompt_len` to map into `full_ids` coordinates\n\n**C2 (different masks per phase)** — `run_profiling.py:277-306`\n- Mask generation (`_select_heads_to_mask`, `_select_kv_to_evict`) moved outside the phase loop\n- Same masks are reused for all phases at a given (problem, sparsity level)\n\n**M1 (redundant dense forward)** — `run_profiling.py:269-271`, `interaction_index.py:292-302`, `metrics.py:55-79`\n- Dense forward done once per problem via `compute_dense_ce_losses()`\n- Per-phase dense ppl computed from cached CE losses using `ppl_from_cached_losses()`\n- Saves N_phases × N_levels - 1 dense forward passes per problem\n\n**m4 (missing seed)** — `run_profiling.py:173`\n- Added `torch.manual_seed(SEED)` before any torch random ops"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-critical-pipeline-bugs.md"
+}

@@ -1,0 +1,2123 @@
+{
+  "schema_version": "1.0",
+  "id": "68ce3c22859616471398",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "analysis bf16 ds imp vs rand",
+  "task_key": "worker_analysis_bf16-ds-imp-vs-rand_20260514T071001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bf16-ds-imp-vs-rand_20260514T071001.log",
+    "occurrence": 1,
+    "bytes": 146305,
+    "sha256": "fd2b71f0d54b48461cf291acff81f74d3da2d1a0606e34539a31eccc1ed1fec2"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 17,
+      "tool_result": 17,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+                "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5362a44b-70e9-4ef0-8460-762a0efc1c92",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778760000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "da68e2f6-f1da-44c9-950f-56c96eb03171",
+                "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the profiling results from the server to understand the data structure, then perform the comparison analysis.",
+              "signature": "EsECClkIDRgCKkCoZtIh2AMXRMblS9mu6Potjb+4IerR1dKJYkpAcdIZh0d2Mg6hL+VkChcXJprWgy5m/jm1O4sEG+Ef4JMvTYBvMg9jbGF1ZGUtb3B1cy00LTY4ABIMsAi2th7z0haO4maqGgxtsY84+7jlAd+6lukiMI3bxntB3Dj0gU6rYsRvIjKNdXg9x7vud5dap6pcXgHXYLmu4V219K7v0Kc3ZyErKyqVAUQq9JSZj9HNO+6ajGpdeVh/viZpux90Zy6tzq8uGMaEjXC7ZqOzy3SmkKzBKRpxceHjGAFGVTWog6FYIGsQHyMsXW0/89dwXxC8/MCtQuaVS840Ir7/KPJO7+ZPBvRFiPrWfftywz+Mnx/bmDJlh//oo6VOpUeAbcYYp59gwB4j06N1oQoslidJn++o5vbeQGmp7ZPUGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "a6705067-d1a0-44d9-abc5-ab1105b24471",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GEfZX3TCuA7T7FJNr97jE6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12056,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12056
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先读取所有 JSON 文件，了解数据结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "5838885b-4b93-43ec-8c67-f5d4b9f2eef5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GEfZX3TCuA7T7FJNr97jE6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12056,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12056
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RaXyER2mS2MCva9kv119ZR",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "f2685c40-8b02-449a-85cd-727fc94d4dac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GEfZX3TCuA7T7FJNr97jE6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12056,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12056
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T07:10:13.898Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RaXyER2mS2MCva9kv119ZR",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "d9d457c9-41d8-46d6-a4d0-e10f10c6233c",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0192mdg6qULghZPVhVBc8wQc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "ls /root/autodl-tmp/pacs/profiling_output_bf16_importance_s015/profiling_results.json /root/autodl-tmp/pacs/profiling_output_bf16_importance_s020/profiling_results.json /root/autodl-tmp/pacs/profiling_output_bf16_importance_s025/profiling_results.json /root/autodl-tmp/pacs/profiling_output_bf16_importance_s030/profiling_results.json /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "64be7ee3-610c-4c8e-9971-8eea2e8e2ec7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MZgDnpZ3PNCUHFpnavWWKM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 729,
+                "cache_read_input_tokens": 23503,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 729
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T07:10:20.443Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0192mdg6qULghZPVhVBc8wQc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s015/profiling_results.json': No such file or directory\\\\nls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s020/profiling_results.json': No such file or directory\\\\nls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s025/profiling_results.json': No such file or directory\\\\nls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s030/profiling_results.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "580e33aa-58cd-4e0e-929f-3b28cfa6895b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s015/profiling_results.json': No such file or directory\\\\nls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s020/profiling_results.json': No such file or directory\\\\nls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s025/profiling_results.json': No such file or directory\\\\nls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s030/profiling_results.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json\\n\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s015/profiling_results.json': No such file or directory\\nls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s020/profiling_results.json': No such file or directory\\nls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s025/profiling_results.json': No such file or directory\\nls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_importance_s030/profiling_results.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.46}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Importance 文件路径不对，先查找实际路径。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "cdf97b5d-a362-4b49-a370-41ae31c9bd2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TY6sf3PhiJTwVq3vxuUvrT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 669,
+                "cache_read_input_tokens": 24232,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 669
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G5oBjUjwkywUpS9GhQeLu6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "find /root/autodl-tmp/pacs/ -maxdepth 2 -name \"profiling_results.json\" -path \"*importance*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "4c296414-1c35-435c-bde7-5af43c709c47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TY6sf3PhiJTwVq3vxuUvrT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 669,
+                "cache_read_input_tokens": 24232,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 669
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T07:10:25.987Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G5oBjUjwkywUpS9GhQeLu6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v6_importance_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s025/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s030/profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "855a4f02-3293-4881-a381-49252833f867",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v6_importance_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s025/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s030/profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling_output_v6_importance_s015/profiling_results.json\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s020/profiling_results.json\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s025/profiling_results.json\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s030/profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G6Xq1JGzXsHQAu9bKHC1KX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "ls -d /root/autodl-tmp/pacs/profiling_output_bf16*",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "fdb6a1e3-a8f1-42f1-8c62-e2d8cf989851",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TY6sf3PhiJTwVq3vxuUvrT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 669,
+                "cache_read_input_tokens": 24232,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 669
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T07:10:26.515Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G6Xq1JGzXsHQAu9bKHC1KX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "a05a8728-9dd4-4cc6-88a6-66bfaac687a7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So the importance directories are named `profiling_output_bf16_ds_imp_s0XX`, not `profiling_output_bf16_importance_s0XX`. Let me check if these have profiling_results.json files.",
+              "signature": "Eu4CClkIDRgCKkAAyek7Xi9VEmqxDGO7GrAzBeCR4cnuScFNptHPvLODo1kD0WtJ66z3Xn6BNlftLxHQW5KKXl6kvMEYFYgIkqoHMg9jbGF1ZGUtb3B1cy00LTY4ABIMOgXXAhkFAAFDZhyUGgyN/46ImTJba+4XqpwiMOeNFigQRr9yXJOCCc8qQ7TCT2lke7ACIJ/89GwMAOlBXSAxfqBta0Wx4ixmdj68jyrCAY+vZy7DLRMnelwMgVfbdYfjwHs0Zdlt4XSAMnup4CGmNT4z2fXoxpoNXIDPDkwV6mI5H/7xwyeqdpKIFqgbC2iwCtRt1S/vLZwwuAKhV9GOZHNZ3xhR/7Z64GBx05xCGyYnefT9QuaOIyuwDzcokOcD6ZW5fJOm9gsWdOPqsyt0zRAWpwZjXVqV9xh1u1qoX0YYoKmFmGQfC0ZbbXlaBmpykpX5/Klr8eahwLvDwOYZV8/7v+eoPwKVNUA7Q4dGaj1nGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "7a9aa0c8-fd4f-4833-9c11-15e0b15fe524",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WA5SxjxLVRn67n3eRhWea",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 24901,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 835
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了，importance 目录实际名是 `bf16_ds_imp_*`。确认文件存在并查看数据结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "ec0fda19-760d-414b-b3af-0d2efb03e4a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WA5SxjxLVRn67n3eRhWea",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 24901,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 835
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EeGZY1Ej7Hse3ugYUyQJKe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "ls /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/profiling_results.json /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "c9455728-b0d6-4d75-a272-6438d8716db4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WA5SxjxLVRn67n3eRhWea",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 24901,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 835
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T07:10:33.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EeGZY1Ej7Hse3ugYUyQJKe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "05800ee9-a763-4ed9-ae4c-4c716a074a56",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/profiling_results.json\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/profiling_results.json\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012jH9Vu22rADJg6ZqvJBtUT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json')); print(list(d.keys())); pp=d.get('per_problem_ii',{}); print('num_problems:', len(pp)); k0=list(pp.keys())[0]; print('example_key:', k0); print('example_val:', pp[k0])\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "9d8e7364-a6ac-4d7e-a0dc-272df37c654e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WA5SxjxLVRn67n3eRhWea",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 24901,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 835
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T07:10:35.060Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012jH9Vu22rADJg6ZqvJBtUT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "6296efb0-d8c1-45a4-a276-5b328a6a2e42",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0152zDDriZPzuUvXLP3FLm8e",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json')); print(list(d.keys()))\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "83e30803-1d76-49f6-86a3-de4e20f5759e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0119o7BkYjWTtnQ9CT8tQej6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 900,
+                "cache_read_input_tokens": 25736,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 900
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T07:10:38.060Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0152zDDriZPzuUvXLP3FLm8e",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "1e494d90-3113-4c74-b3a4-7331c6b0018e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YLDN9wPSby9PDruj3aSDvo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "head -100 /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "6b7b5b77-94c5-4729-bc88-c3d4c8bf5cff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PshAKo1Xk3TEYmtrrJDZdS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 357,
+                "cache_read_input_tokens": 26636,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 357
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T07:10:41.214Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YLDN9wPSby9PDruj3aSDvo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.15\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"importance\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"attention_frobenius_norm\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"cumulative_attention_received\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1689,\\\\n        \\\\\\\"attn\\\\\\\": 1.4861,\\\\n        \\\\\\\"kv\\\\\\\": 1.4481,\\\\n        \\\\\\\"both\\\\\\\": 1.5911\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2286,\\\\n        \\\\\\\"attn\\\\\\\": 1.6147,\\\\n        \\\\\\\"kv\\\\\\\": 8.9201,\\\\n        \\\\\\\"both\\\\\\\": 12.5084\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 1.5137,\\\\n        \\\\\\\"kv\\\\\\\": 2.5971,\\\\n        \\\\\\\"both\\\\\\\": 3.4541\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.150213,\\\\n        \\\\\\\"ci_low\\\\\\\": -0.294614,\\\\n        \\\\\\\"ci_high\\\\\\\": -0.055385,\\\\n        \\\\\\\"median\\\\\\\": 0.005752,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": -0.062378,\\\\n        \\\\\\\"skewness\\\\\\\": -14.9912,\\\\n        \\\\\\\"outlier_count\\\\\\\": 2\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 2.405837,\\\\n        \\\\\\\"ci_low\\\\\\\": 1.478784,\\\\n        \\\\\\\"ci_high\\\\\\\": 3.667675,\\\\n        \\\\\\\"median\\\\\\\": 0.398291,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 1.278857,\\\\n        \\\\\\\"skewness\\\\\\\": 9.5402,\\\\n        \\\\\\\"outlier_count\\\\\\\": 5\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.447301,\\\\n        \\\\\\\"ci_low\\\\\\\": 0.267993,\\\\n        \\\\\\\"ci_high\\\\\\\": 0.668749,\\\\n        \\\\\\\"median\\\\\\\": 0.080738,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.324751,\\\\n        \\\\\\\"skewness\\\\\\\": 4.7221,\\\\n        \\\\\\\"outlier_count\\\\\\\": 5\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity II<0, mid_sparsity II>0 at 0.15\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"PASS\\\\\\\"\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "5caa2730-4955-4731-944e-ea06a6b29a51",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.15\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"importance\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"attention_frobenius_norm\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"cumulative_attention_received\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1689,\\\\n        \\\\\\\"attn\\\\\\\": 1.4861,\\\\n        \\\\\\\"kv\\\\\\\": 1.4481,\\\\n        \\\\\\\"both\\\\\\\": 1.5911\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2286,\\\\n        \\\\\\\"attn\\\\\\\": 1.6147,\\\\n        \\\\\\\"kv\\\\\\\": 8.9201,\\\\n        \\\\\\\"both\\\\\\\": 12.5084\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 1.5137,\\\\n        \\\\\\\"kv\\\\\\\": 2.5971,\\\\n        \\\\\\\"both\\\\\\\": 3.4541\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.150213,\\\\n        \\\\\\\"ci_low\\\\\\\": -0.294614,\\\\n        \\\\\\\"ci_high\\\\\\\": -0.055385,\\\\n        \\\\\\\"median\\\\\\\": 0.005752,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": -0.062378,\\\\n        \\\\\\\"skewness\\\\\\\": -14.9912,\\\\n        \\\\\\\"outlier_count\\\\\\\": 2\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 2.405837,\\\\n        \\\\\\\"ci_low\\\\\\\": 1.478784,\\\\n        \\\\\\\"ci_high\\\\\\\": 3.667675,\\\\n        \\\\\\\"median\\\\\\\": 0.398291,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 1.278857,\\\\n        \\\\\\\"skewness\\\\\\\": 9.5402,\\\\n        \\\\\\\"outlier_count\\\\\\\": 5\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.447301,\\\\n        \\\\\\\"ci_low\\\\\\\": 0.267993,\\\\n        \\\\\\\"ci_high\\\\\\\": 0.668749,\\\\n        \\\\\\\"median\\\\\\\": 0.080738,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.324751,\\\\n        \\\\\\\"skewness\\\\\\\": 4.7221,\\\\n        \\\\\\\"outlier_count\\\\\\\": 5\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity II<0, mid_sparsity II>0 at 0.15\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"PASS\\\\\\\"\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.15\\n    ],\\n    \\\"masking_method\\\": \\\"importance\\\",\\n    \\\"head_importance_metric\\\": \\\"attention_frobenius_norm\\\",\\n    \\\"kv_importance_metric\\\": \\\"cumulative_attention_received\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1689,\\n        \\\"attn\\\": 1.4861,\\n        \\\"kv\\\": 1.4481,\\n        \\\"both\\\": 1.5911\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2286,\\n        \\\"attn\\\": 1.6147,\\n        \\\"kv\\\": 8.9201,\\n        \\\"both\\\": 12.5084\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 1.5137,\\n        \\\"kv\\\": 2.5971,\\n        \\\"both\\\": 3.4541\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": -0.150213,\\n        \\\"ci_low\\\": -0.294614,\\n        \\\"ci_high\\\": -0.055385,\\n        \\\"median\\\": 0.005752,\\n        \\\"winsorized_mean\\\": -0.062378,\\n        \\\"skewness\\\": -14.9912,\\n        \\\"outlier_count\\\": 2\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 2.405837,\\n        \\\"ci_low\\\": 1.478784,\\n        \\\"ci_high\\\": 3.667675,\\n        \\\"median\\\": 0.398291,\\n        \\\"winsorized_mean\\\": 1.278857,\\n        \\\"skewness\\\": 9.5402,\\n        \\\"outlier_count\\\": 5\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 0.447301,\\n        \\\"ci_low\\\": 0.267993,\\n        \\\"ci_high\\\": 0.668749,\\n        \\\"median\\\": 0.080738,\\n        \\\"winsorized_mean\\\": 0.324751,\\n        \\\"skewness\\\": 4.7221,\\n        \\\"outlier_count\\\": 5\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity II<0, mid_sparsity II>0 at 0.15\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gj3ecMfufKm5z6fWPF97Ze",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "grep -c \"per_problem_ii\" /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "a7e2dd15-7fab-494a-bd47-70b1e6905668",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016VVgJ5h15JgxnieUq5dihf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1582,
+                "cache_read_input_tokens": 26993,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1582
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T07:10:46.802Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gj3ecMfufKm5z6fWPF97Ze",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "49fa2bd2-b8df-444d-b2da-f7631f2cc83d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YPBVFWx6A78g6uC75yDbsS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "grep -A 20 \"per_problem_ii\" /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "358c30c0-de76-4c69-8eea-6bd5249ea3f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016VVgJ5h15JgxnieUq5dihf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1582,
+                "cache_read_input_tokens": 26993,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1582
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T07:10:47.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YPBVFWx6A78g6uC75yDbsS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"per_problem_ii\\\\\\\": {\\\\n    \\\\\\\"0.15\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 0,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2470.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.1874896682924343,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 1,\\\\n        \\\\\\\"ii_mid\\\\\\\": -0.11002383088109124,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.1757887856547541,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 1,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/prealgebra/192.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.020959047991743196,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 6,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.9691659845450609,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 1,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.29079332592432994,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "25b79a87-72cf-415f-ba92-f4ef89576e11",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"per_problem_ii\\\\\\\": {\\\\n    \\\\\\\"0.15\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 0,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2470.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.1874896682924343,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 1,\\\\n        \\\\\\\"ii_mid\\\\\\\": -0.11002383088109124,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.1757887856547541,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 1,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/prealgebra/192.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.020959047991743196,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 6,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.9691659845450609,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 1,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.29079332592432994,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"per_problem_ii\\\": {\\n    \\\"0.15\\\": [\\n      {\\n        \\\"problem_idx\\\": 0,\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"ii_high\\\": -0.1874896682924343,\\n        \\\"n_segments_high\\\": 1,\\n        \\\"ii_mid\\\": -0.11002383088109124,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 0.1757887856547541,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 1,\\n        \\\"problem_id\\\": \\\"test/prealgebra/192.json\\\",\\n        \\\"ii_high\\\": 0.020959047991743196,\\n        \\\"n_segments_high\\\": 6,\\n        \\\"ii_mid\\\": 0.9691659845450609,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": 0.29079332592432994,\\n        \\\"n_segments_low\\\": 4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I can see the data structure. Each per_problem_ii entry has ii_high, ii_mid, ii_low values for each problem. Now I need to write a comprehensive analysis script that:\n\n1. Reads all importance and random JSON files\n2. Compares II values across phases (high/mid/low) for each sparsity level\n3. Runs permutation tests\n4. Outputs analysis_bf16_ds_comparison.json\n\nLet me also check if there's a permutation_test.py already.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "535f1f40-693a-4ade-911c-2a45fd9d6478",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GxwycPdceXqAP7goeGHGqR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 838,
+                "cache_read_input_tokens": 28575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 838
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据结构清楚了。现在检查是否有现成的 permutation test 脚本，然后写分析脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "5a8d412b-ef32-4ed0-9b92-b1c0993493d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GxwycPdceXqAP7goeGHGqR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 838,
+                "cache_read_input_tokens": 28575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 838
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T2oL7tYFJe9qmEyTKW4iLq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "find /root/autodl-tmp/pacs/ -maxdepth 2 -name \"*permutation*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "4b6f9509-ec5f-42f1-9e58-13b6975a9b05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GxwycPdceXqAP7goeGHGqR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 838,
+                "cache_read_input_tokens": 28575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 838
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T07:10:56.530Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T2oL7tYFJe9qmEyTKW4iLq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/artifacts/permutation_test_median_verification.json\\\\n/root/autodl-tmp/pacs/analysis_output/permutation_test_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "3c8cec1f-00ef-49e7-b408-c28f92bac9c2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/artifacts/permutation_test_median_verification.json\\\\n/root/autodl-tmp/pacs/analysis_output/permutation_test_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/artifacts/permutation_test_median_verification.json\\n/root/autodl-tmp/pacs/analysis_output/permutation_test_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014XSz3zB8y6cjvWnk4UosfE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "wc -l /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "817f6b76-88a0-41c9-9b03-16006475641e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GxwycPdceXqAP7goeGHGqR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 838,
+                "cache_read_input_tokens": 28575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 838
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T07:10:57.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014XSz3zB8y6cjvWnk4UosfE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"67406 /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "ad067e0b-7dbe-49a1-bebf-676a70e3804d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"67406 /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"67406 /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有现成的 permutation test 脚本，但有旧结果文件。我直接写一个完整的分析脚本在服务器上运行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "b644d5a3-e62d-4eea-adec-49d2cb105411",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015jz26N5YbNFTH2CHmnMYBQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 29413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AuwZL3nXjzv2jKY5hhKndG",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cat > /root/autodl-tmp/pacs/run_bf16_ds_comparison.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom pathlib import Path\nimport sys\n\nBASE = Path(\"/root/autodl-tmp/pacs\")\n\n# --- Config ---\nIMP_DIRS = {\n    0.15: BASE / \"profiling_output_bf16_ds_imp_s015\",\n    0.20: BASE / \"profiling_output_bf16_ds_imp_s020\",\n    0.25: BASE / \"profiling_output_bf16_ds_imp_s025\",\n    0.30: BASE / \"profiling_output_bf16_ds_imp_s030\",\n}\nRAND_DIRS = {\n    0.15: BASE / \"profiling_output_bf16_ds_rand_s015\",\n    0.20: BASE / \"profiling_output_bf16_ds_rand_s020\",\n    0.25: BASE / \"profiling_output_bf16_ds_rand_s025\",\n}\nPHASES = [\"high\", \"mid\", \"low\"]\n\ndef load_per_problem(path, sparsity):\n    with open(path / \"profiling_results.json\") as f:\n        d = json.load(f)\n    sp_key = str(sparsity)\n    problems = d[\"per_problem_ii\"][sp_key]\n    return problems\n\ndef extract_ii_arrays(problems):\n    \"\"\"Return dict of phase -> np.array of II values, and problem_ids.\"\"\"\n    ids = [p[\"problem_id\"] for p in problems]\n    out = {}\n    for phase in PHASES:\n        out[phase] = np.array([p[f\"ii_{phase}\"] for p in problems])\n    return out, ids\n\ndef gradient_metric(ii_dict):\n    \"\"\"Compute median gradient: median(low) - median(high).\"\"\"\n    return float(np.median(ii_dict[\"low\"]) - np.median(ii_dict[\"high\"]))\n\ndef monotonicity_score(ii_dict):\n    \"\"\"Fraction of problems where II_low > II_mid > II_high.\"\"\"\n    n = len(ii_dict[\"high\"])\n    strict = sum(1 for i in range(n) if ii_dict[\"low\"][i] > ii_dict[\"mid\"][i] > ii_dict[\"high\"][i])\n    weak = sum(1 for i in range(n) if ii_dict[\"low\"][i] >= ii_dict[\"mid\"][i] >= ii_dict[\"high\"][i])\n    return {\"strict\": strict / n, \"weak\": weak / n, \"n\": n}\n\ndef permutation_test(imp_gradients, rand_gradients, n_perm=10000, seed=42):\n    \"\"\"Problem-level paired permutation test on per-problem gradient (ii_low - ii_high).\n    H0: importance and random masking produce the same gradient distribution.\n    Test statistic: mean(imp_gradients - rand_gradients).\"\"\"\n    rng = np.random.RandomState(seed)\n    diff = imp_gradients - rand_gradients\n    observed = np.mean(diff)\n    count = 0\n    for _ in range(n_perm):\n        signs = rng.choice([-1, 1], size=len(diff))\n        perm_stat = np.mean(diff * signs)\n        if perm_stat >= observed:\n            count += 1\n    p_value = (count + 1) / (n_perm + 1)\n    return {\"observed_mean_diff\": float(observed), \"p_value\": float(p_value), \"n_perm\": n_perm}\n\ndef wilcoxon_test(imp_gradients, rand_gradients):\n    \"\"\"Wilcoxon signed-rank test as backup.\"\"\"\n    try:\n        from scipy.stats import wilcoxon\n        stat, p = wilcoxon(imp_gradients, rand_gradients, alternative='greater')\n        return {\"statistic\": float(stat), \"p_value\": float(p)}\n    except ImportError:\n        return {\"error\": \"scipy not available\"}\n\n# --- Main ---\nresults = {\n    \"description\": \"bf16 DeepSeek-R1-Distill-Qwen-7B: importance vs random masking comparison\",\n    \"model\": \"DeepSeek-R1-Distill-Qwen-7B (bf16)\",\n    \"sparsity_levels_analyzed\": [0.15, 0.20, 0.25],\n    \"note\": \"s030 random still running, excluded\",\n    \"per_sparsity\": {},\n    \"cross_sparsity_summary\": {},\n    \"statistical_tests\": {},\n}\n\nall_imp_gradients = {}\nall_rand_gradients = {}\ncommon_ids_check = {}\n\nfor sp in [0.15, 0.20, 0.25]:\n    sp_str = f\"s{int(sp*100):03d}\"\n    \n    imp_problems = load_per_problem(IMP_DIRS[sp], sp)\n    rand_problems = load_per_problem(RAND_DIRS[sp], sp)\n    \n    imp_ii, imp_ids = extract_ii_arrays(imp_problems)\n    rand_ii, rand_ids = extract_ii_arrays(rand_problems)\n    \n    # Verify same problems\n    assert imp_ids == rand_ids, f\"Problem ID mismatch at sparsity {sp}\"\n    common_ids_check[sp_str] = {\"n_problems\": len(imp_ids), \"ids_match\": True}\n    \n    # Per-problem gradient: ii_low - ii_high\n    imp_grad = imp_ii[\"low\"] - imp_ii[\"high\"]\n    rand_grad = rand_ii[\"low\"] - rand_ii[\"high\"]\n    all_imp_gradients[sp_str] = imp_grad\n    all_rand_gradients[sp_str] = rand_grad\n    \n    sp_result = {\n        \"importance\": {\n            \"medians\": {phase: float(np.median(imp_ii[phase])) for phase in PHASES},\n            \"means\": {phase: float(np.mean(imp_ii[phase])) for phase in PHASES},\n            \"median_gradient_low_minus_high\": float(np.median(imp_ii[\"low\"]) - np.median(imp_ii[\"high\"])),\n            \"mean_gradient_low_minus_high\": float(np.mean(imp_ii[\"low\"]) - np.mean(imp_ii[\"high\"])),\n            \"per_problem_gradient_mean\": float(np.mean(imp_grad)),\n            \"per_problem_gradient_median\": float(np.median(imp_grad)),\n            \"per_problem_gradient_std\": float(np.std(imp_grad)),\n            \"monotonicity\": monotonicity_score(imp_ii),\n            \"source\": str(IMP_DIRS[sp] / \"profiling_results.json\"),\n        },\n        \"random\": {\n            \"medians\": {phase: float(np.median(rand_ii[phase])) for phase in PHASES},\n            \"means\": {phase: float(np.mean(rand_ii[phase])) for phase in PHASES},\n            \"median_gradient_low_minus_high\": float(np.median(rand_ii[\"low\"]) - np.median(rand_ii[\"high\"])),\n            \"mean_gradient_low_minus_high\": float(np.mean(rand_ii[\"low\"]) - np.mean(rand_ii[\"high\"])),\n            \"per_problem_gradient_mean\": float(np.mean(rand_grad)),\n            \"per_problem_gradient_median\": float(np.median(rand_grad)),\n            \"per_problem_gradient_std\": float(np.std(rand_grad)),\n            \"monotonicity\": monotonicity_score(rand_ii),\n            \"source\": str(RAND_DIRS[sp] / \"profiling_results.json\"),\n        },\n        \"comparison\": {\n            \"gradient_ratio_median\": float(np.median(imp_grad) / np.median(rand_grad)) if np.median(rand_grad) != 0 else \"inf\",\n            \"gradient_ratio_mean\": float(np.mean(imp_grad) / np.mean(rand_grad)) if np.mean(rand_grad) != 0 else \"inf\",\n            \"problems_imp_gradient_larger\": int(np.sum(imp_grad > rand_grad)),\n            \"problems_rand_gradient_larger\": int(np.sum(rand_grad > imp_grad)),\n            \"problems_equal\": int(np.sum(imp_grad == rand_grad)),\n        },\n        \"n_problems\": len(imp_ids),\n        \"problem_ids_match\": True,\n    }\n    \n    # Statistical tests per sparsity\n    perm = permutation_test(imp_grad, rand_grad)\n    wilc = wilcoxon_test(imp_grad, rand_grad)\n    sp_result[\"statistical_tests\"] = {\n        \"permutation_test\": perm,\n        \"wilcoxon_signed_rank\": wilc,\n    }\n    \n    results[\"per_sparsity\"][sp_str] = sp_result\n\n# Cross-sparsity: gradient trend across sparsity levels\nimp_median_gradients = []\nrand_median_gradients = []\nfor sp_str in [\"s015\", \"s020\", \"s025\"]:\n    imp_median_gradients.append(results[\"per_sparsity\"][sp_str][\"importance\"][\"per_problem_gradient_median\"])\n    rand_median_gradients.append(results[\"per_sparsity\"][sp_str][\"random\"][\"per_problem_gradient_median\"])\n\nresults[\"cross_sparsity_summary\"] = {\n    \"importance_median_gradients\": dict(zip([\"s015\", \"s020\", \"s025\"], imp_median_gradients)),\n    \"random_median_gradients\": dict(zip([\"s015\", \"s020\", \"s025\"], rand_median_gradients)),\n    \"importance_gradient_increases_with_sparsity\": imp_median_gradients[-1] > imp_median_gradients[0],\n    \"random_gradient_stays_flat\": abs(rand_median_gradients[-1] - rand_median_gradients[0]) < 0.1,\n}\n\n# Pooled test across all sparsity levels\npooled_imp = np.concatenate([all_imp_gradients[s] for s in [\"s015\", \"s020\", \"s025\"]])\npooled_rand = np.concatenate([all_rand_gradients[s] for s in [\"s015\", \"s020\", \"s025\"]])\nresults[\"statistical_tests\"][\"pooled_permutation_test\"] = permutation_test(pooled_imp, pooled_rand)\nresults[\"statistical_tests\"][\"pooled_wilcoxon\"] = wilcoxon_test(pooled_imp, pooled_rand)\nresults[\"statistical_tests\"][\"pooled_n\"] = int(len(pooled_imp))\n\nresults[\"common_ids_check\"] = common_ids_check\n\n# Also add s030 importance-only data for completeness\nimp030 = load_per_problem(IMP_DIRS[0.30], 0.30)\nimp030_ii, _ = extract_ii_arrays(imp030)\nresults[\"s030_importance_only\"] = {\n    \"medians\": {phase: float(np.median(imp030_ii[phase])) for phase in PHASES},\n    \"median_gradient\": float(np.median(imp030_ii[\"low\"]) - np.median(imp030_ii[\"high\"])),\n    \"monotonicity\": monotonicity_score(imp030_ii),\n    \"note\": \"random s030 not yet complete, no comparison possible\",\n}\n\n# Save\nout_path = BASE / \"analysis_bf16_ds_comparison.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"Saved to {out_path}\")\n\n# --- Text summary ---\nprint(\"\\n\" + \"=\"*70)\nprint(\"BF16 DeepSeek-R1-Distill-Qwen-7B: Importance vs Random Masking\")\nprint(\"=\"*70)\n\nfor sp_str in [\"s015\", \"s020\", \"s025\"]:\n    sp = results[\"per_sparsity\"][sp_str]\n    print(f\"\\n--- Sparsity {sp_str} ---\")\n    print(f\"  Importance II medians:  high={sp['importance']['medians']['high']:.4f}  mid={sp['importance']['medians']['mid']:.4f}  low={sp['importance']['medians']['low']:.4f}\")\n    print(f\"  Random II medians:      high={sp['random']['medians']['high']:.4f}  mid={sp['random']['medians']['mid']:.4f}  low={sp['random']['medians']['low']:.4f}\")\n    print(f\"  Imp gradient (median):  {sp['importance']['per_problem_gradient_median']:.4f}\")\n    print(f\"  Rand gradient (median): {sp['random']['per_problem_gradient_median']:.4f}\")\n    print(f\"  Imp monotonicity:       {sp['importance']['monotonicity']['strict']*100:.0f}% strict, {sp['importance']['monotonicity']['weak']*100:.0f}% weak\")\n    print(f\"  Rand monotonicity:      {sp['random']['monotonicity']['strict']*100:.0f}% strict, {sp['random']['monotonicity']['weak']*100:.0f}% weak\")\n    print(f\"  Permutation p-value:    {sp['statistical_tests']['permutation_test']['p_value']:.4f}\")\n    print(f\"  Wilcoxon p-value:       {sp['statistical_tests']['wilcoxon_signed_rank'].get('p_value', 'N/A')}\")\n    print(f\"  Problems imp>rand:      {sp['comparison']['problems_imp_gradient_larger']}/{sp['n_problems']}\")\n\nprint(f\"\\n--- Pooled (all 150 problems) ---\")\npt = results[\"statistical_tests\"][\"pooled_permutation_test\"]\nwt = results[\"statistical_tests\"][\"pooled_wilcoxon\"]\nprint(f\"  Permutation p-value:    {pt['p_value']:.4f}  (observed diff: {pt['observed_mean_diff']:.4f})\")\nprint(f\"  Wilcoxon p-value:       {wt.get('p_value', 'N/A')}\")\n\nprint(f\"\\n--- s030 (importance only) ---\")\ns030 = results[\"s030_importance_only\"]\nprint(f\"  Medians: high={s030['medians']['high']:.4f}  mid={s030['medians']['mid']:.4f}  low={s030['medians']['low']:.4f}\")\nprint(f\"  Gradient: {s030['median_gradient']:.4f}\")\nprint(f\"  Monotonicity: {s030['monotonicity']['strict']*100:.0f}% strict\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/autodl-tmp/pacs/run_bf16_ds_comparison.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "15ff5abd-c1fe-415d-a578-3528b266bfc3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015jz26N5YbNFTH2CHmnMYBQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 29413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 713
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T07:11:50.143Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AuwZL3nXjzv2jKY5hhKndG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat > /root/autodl-tmp/pacs/run_bf16_ds_comparison.py << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json\\\\\\\\nimport numpy as np\\\\\\\\nfrom pathlib import Path\\\\\\\\nimport sys\\\\\\\\n\\\\\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/pacs\\\\\\\")\\\\\\\\n\\\\\\\\n# --- Config ---\\\\\\\\nIMP_DIRS = {\\\\\\\\n    0.15: BASE / \\\\\\\"profiling_output_bf16_ds_imp_s015\\\\\\\",\\\\\\\\n    0.20: BASE / \\\\\\\"profiling_output_bf16_ds_imp_s020\\\\\\\",\\\\\\\\n    0.25: BASE / \\\\\\\"profiling_output_bf16_ds_imp_s025\\\\\\\",\\\\\\\\n    0.30: BASE / \\\\\\\"profiling_output_bf16_ds_imp_s030\\\\\\\",\\\\\\\\n}\\\\\\\\nRAND_DIRS = {\\\\\\\\n    0.15: BASE / \\\\\\\"profiling_output_bf16_ds_rand_s015\\\\\\\",\\\\\\\\n    0.20: BASE / \\\\\\\"profiling_output_bf16_ds_rand_s020\\\\\\\",\\\\\\\\n    0.25: BASE / \\\\\\\"profiling_output_bf16_ds_rand_s025\\\\\\\",\\\\\\\\n}\\\\\\\\nPHASES = [\\\\\\\"high\\\\\\\", \\\\\\\"mid\\\\\\\", \\\\\\\"low\\\\\\\"]\\\\\\\\n\\\\\\\\ndef load_per_problem(path, sparsity):\\\\\\\\n    with open(path / \\\\\\\"profiling_results.json\\\\\\\") as f:\\\\\\\\n        d = json.load(f)\\\\\\\\n    sp_key = str(sparsity)\\\\\\\\n    problems = d[\\\\\\\"per_problem_ii\\\\\\\"][sp_key]\\\\\\\\n    return problems\\\\\\\\n\\\\\\\\ndef extract_ii_arrays(problems):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return dict of phase -> np.array of II values, and problem_ids.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    ids = [p[\\\\\\\"problem_id\\\\\\\"] for p in problems]\\\\\\\\n    out = {}\\\\\\\\n    for phase in PHASES:\\\\\\\\n        out[phase] = np.array([p[f\\\\\\\"ii_{phase}\\\\\\\"] for p in problems])\\\\\\\\n    return out, ids\\\\\\\\n\\\\\\\\ndef gradient_metric(ii_dict):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute median gradient: median(low) - median(high).\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    return float(np.median(ii_dict[\\\\\\\"low\\\\\\\"]) - np.median(ii_dict[\\\\\\\"high\\\\\\\"]))\\\\\\\\n\\\\\\\\ndef monotonicity_score(ii_dict):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fraction of problems where II_low > II_mid > II_high.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    n = len(ii_dict[\\\\\\\"high\\\\\\\"])\\\\\\\\n    strict = sum(1 for i in range(n) if ii_dict[\\\\\\\"low\\\\\\\"][i] > ii_dict[\\\\\\\"mid\\\\\\\"][i] > ii_dict[\\\\\\\"high\\\\\\\"][i])\\\\\\\\n    weak = sum(1 for i in range(n) if ii_dict[\\\\\\\"low\\\\\\\"][i] >= ii_dict[\\\\\\\"mid\\\\\\\"][i] >= ii_dict[\\\\\\\"high\\\\\\\"][i])\\\\\\\\n    return {\\\\\\\"strict\\\\\\\": strict / n, \\\\\\\"weak\\\\\\\": weak / n, \\\\\\\"n\\\\\\\": n}\\\\\\\\n\\\\\\\\ndef permutation_test(imp_gradients, rand_gradients, n_perm=10000, seed=42):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Problem-level paired permutation test on per-problem gradient (ii_low - ii_high).\\\\\\\\n    H0: importance and random masking produce the same gradient distribution.\\\\\\\\n    Test statistic: mean(imp_gradients - rand_gradients).\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    rng = np.random.RandomState(seed)\\\\\\\\n    diff = imp_gradients - rand_gradients\\\\\\\\n    observed = np.mean(diff)\\\\\\\\n    count = 0\\\\\\\\n    for _ in range(n_perm):\\\\\\\\n        signs = rng.choice([-1, 1], size=len(diff))\\\\\\\\n        perm_stat = np.mean(diff * signs)\\\\\\\\n        if perm_stat >= observed:\\\\\\\\n            count += 1\\\\\\\\n    p_value = (count + 1) / (n_perm + 1)\\\\\\\\n    return {\\\\\\\"observed_mean_diff\\\\\\\": float(observed), \\\\\\\"p_value\\\\\\\": float(p_value), \\\\\\\"n_perm\\\\\\\": n_perm}\\\\\\\\n\\\\\\\\ndef wilcoxon_test(imp_gradients, rand_gradients):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wilcoxon signed-rank test as backup.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    try:\\\\\\\\n        from scipy.stats import wilcoxon\\\\\\\\n        stat, p = wilcoxon(imp_gradients, rand_gradients, alternative=\\\\\\\\'greater\\\\\\\\')\\\\\\\\n        return {\\\\\\\"statistic\\\\\\\": float(stat), \\\\\\\"p_value\\\\\\\": float(p)}\\\\\\\\n    except ImportError:\\\\\\\\n        return {\\\\\\\"error\\\\\\\": \\\\\\\"scipy not available\\\\\\\"}\\\\\\\\n\\\\\\\\n# --- Main ---\\\\\\\\nresults = {\\\\\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"bf16 DeepSeek-R1-Distill-Qwen-7B: importance vs random masking comparison\\\\\\\",\\\\\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek-R1-Distill-Qwen-7B (bf16)\\\\\\\",\\\\\\\\n    \\\\\\\"sparsity_levels_analyzed\\\\\\\": [0.15, 0.20, 0.25],\\\\\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"s030 random still running, excluded\\\\\\\",\\\\\\\\n    \\\\\\\"per_sparsity\\\\\\\": {},\\\\\\\\n    \\\\\\\"cross_sparsity_summary\\\\\\\": {},\\\\\\\\n    \\\\\\\"statistical_tests\\\\\\\": {},\\\\\\\\n}\\\\\\\\n\\\\\\\\nall_imp_gradients = {}\\\\\\\\nall_rand_gradients = {}\\\\\\\\ncommon_ids_check = {}\\\\\\\\n\\\\\\\\nfor sp in [0.15, 0.20, 0.25]:\\\\\\\\n    sp_str = f\\\\\\\"s{int(sp*100):03d}\\\\\\\"\\\\\\\\n    \\\\\\\\n    imp_problems = load_per_problem(IMP_DIRS[sp], sp)\\\\\\\\n    rand_problems = load_per_problem(RAND_DIRS[sp], sp)\\\\\\\\n    \\\\\\\\n    imp_ii, imp_ids = extract_ii_arrays(imp_problems)\\\\\\\\n    rand_ii, rand_ids = extract_ii_arrays(rand_problems)\\\\\\\\n    \\\\\\\\n    # Verify same problems\\\\\\\\n    assert imp_ids == rand_ids, f\\\\\\\"Problem ID mismatch at sparsity {sp}\\\\\\\"\\\\\\\\n    common_ids_check[sp_str] = {\\\\\\\"n_problems\\\\\\\": len(imp_ids), \\\\\\\"ids_match\\\\\\\": True}\\\\\\\\n    \\\\\\\\n    # Per-problem gradient: ii_low - ii_high\\\\\\\\n    imp_grad = imp_ii[\\\\\\\"low\\\\\\\"] - imp_ii[\\\\\\\"high\\\\\\\"]\\\\\\\\n    rand_grad = rand_ii[\\\\\\\"low\\\\\\\"] - rand_ii[\\\\\\\"high\\\\\\\"]\\\\\\\\n    all_imp_gradients[sp_str] = imp_grad\\\\\\\\n    all_rand_gradients[sp_str] = rand_grad\\\\\\\\n    \\\\\\\\n    sp_result = {\\\\\\\\n        \\\\\\\"importance\\\\\\\": {\\\\\\\\n            \\\\\\\"medians\\\\\\\": {phase: float(np.median(imp_ii[phase])) for phase in PHASES},\\\\\\\\n            \\\\\\\"means\\\\\\\": {phase: float(np.mean(imp_ii[phase])) for phase in PHASES},\\\\\\\\n            \\\\\\\"median_gradient_low_minus_high\\\\\\\": float(np.median(imp_ii[\\\\\\\"low\\\\\\\"]) - np.median(imp_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n            \\\\\\\"mean_gradient_low_minus_high\\\\\\\": float(np.mean(imp_ii[\\\\\\\"low\\\\\\\"]) - np.mean(imp_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n            \\\\\\\"per_problem_gradient_mean\\\\\\\": float(np.mean(imp_grad)),\\\\\\\\n            \\\\\\\"per_problem_gradient_median\\\\\\\": float(np.median(imp_grad)),\\\\\\\\n            \\\\\\\"per_problem_gradient_std\\\\\\\": float(np.std(imp_grad)),\\\\\\\\n            \\\\\\\"monotonicity\\\\\\\": monotonicity_score(imp_ii),\\\\\\\\n            \\\\\\\"source\\\\\\\": str(IMP_DIRS[sp] / \\\\\\\"profiling_results.json\\\\\\\"),\\\\\\\\n        },\\\\\\\\n        \\\\\\\"random\\\\\\\": {\\\\\\\\n            \\\\\\\"medians\\\\\\\": {phase: float(np.median(rand_ii[phase])) for phase in PHASES},\\\\\\\\n            \\\\\\\"means\\\\\\\": {phase: float(np.mean(rand_ii[phase])) for phase in PHASES},\\\\\\\\n            \\\\\\\"median_gradient_low_minus_high\\\\\\\": float(np.median(rand_ii[\\\\\\\"low\\\\\\\"]) - np.median(rand_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n            \\\\\\\"mean_gradient_low_minus_high\\\\\\\": float(np.mean(rand_ii[\\\\\\\"low\\\\\\\"]) - np.mean(rand_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n            \\\\\\\"per_problem_gradient_mean\\\\\\\": float(np.mean(rand_grad)),\\\\\\\\n            \\\\\\\"per_problem_gradient_median\\\\\\\": float(np.median(rand_grad)),\\\\\\\\n            \\\\\\\"per_problem_gradient_std\\\\\\\": float(np.std(rand_grad)),\\\\\\\\n            \\\\\\\"monotonicity\\\\\\\": monotonicity_score(rand_ii),\\\\\\\\n            \\\\\\\"source\\\\\\\": str(RAND_DIRS[sp] / \\\\\\\"profiling_results.json\\\\\\\"),\\\\\\\\n        },\\\\\\\\n        \\\\\\\"comparison\\\\\\\": {\\\\\\\\n            \\\\\\\"gradient_ratio_median\\\\\\\": float(np.median(imp_grad) / np.median(rand_grad)) if np.median(rand_grad) != 0 else \\\\\\\"inf\\\\\\\",\\\\\\\\n            \\\\\\\"gradient_ratio_mean\\\\\\\": float(np.mean(imp_grad) / np.mean(rand_grad)) if np.mean(rand_grad) != 0 else \\\\\\\"inf\\\\\\\",\\\\\\\\n            \\\\\\\"problems_imp_gradient_larger\\\\\\\": int(np.sum(imp_grad > rand_grad)),\\\\\\\\n            \\\\\\\"problems_rand_gradient_larger\\\\\\\": int(np.sum(rand_grad > imp_grad)),\\\\\\\\n            \\\\\\\"problems_equal\\\\\\\": int(np.sum(imp_grad == rand_grad)),\\\\\\\\n        },\\\\\\\\n        \\\\\\\"n_problems\\\\\\\": len(imp_ids),\\\\\\\\n        \\\\\\\"problem_ids_match\\\\\\\": True,\\\\\\\\n    }\\\\\\\\n    \\\\\\\\n    # Statistical tests per sparsity\\\\\\\\n    perm = permutation_test(imp_grad, rand_grad)\\\\\\\\n    wilc = wilcoxon_test(imp_grad, rand_grad)\\\\\\\\n    sp_result[\\\\\\\"statistical_tests\\\\\\\"] = {\\\\\\\\n        \\\\\\\"permutation_test\\\\\\\": perm,\\\\\\\\n        \\\\\\\"wilcoxon_signed_rank\\\\\\\": wilc,\\\\\\\\n    }\\\\\\\\n    \\\\\\\\n    results[\\\\\\\"per_sparsity\\\\\\\"][sp_str] = sp_result\\\\\\\\n\\\\\\\\n# Cross-sparsity: gradient trend across sparsity levels\\\\\\\\nimp_median_gradients = []\\\\\\\\nrand_median_gradients = []\\\\\\\\nfor sp_str in [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"]:\\\\\\\\n    imp_median_gradients.append(results[\\\\\\\"per_sparsity\\\\\\\"][sp_str][\\\\\\\"importance\\\\\\\"][\\\\\\\"per_problem_gradient_median\\\\\\\"])\\\\\\\\n    rand_median_gradients.append(results[\\\\\\\"per_sparsity\\\\\\\"][sp_str][\\\\\\\"random\\\\\\\"][\\\\\\\"per_problem_gradient_median\\\\\\\"])\\\\\\\\n\\\\\\\\nresults[\\\\\\\"cross_sparsity_summary\\\\\\\"] = {\\\\\\\\n    \\\\\\\"importance_median_gradients\\\\\\\": dict(zip([\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"], imp_median_gradients)),\\\\\\\\n    \\\\\\\"random_median_gradients\\\\\\\": dict(zip([\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"], rand_median_gradients)),\\\\\\\\n    \\\\\\\"importance_gradient_increases_with_sparsity\\\\\\\": imp_median_gradients[-1] > imp_median_gradients[0],\\\\\\\\n    \\\\\\\"random_gradient_stays_flat\\\\\\\": abs(rand_median_gradients[-1] - rand_median_gradients[0]) < 0.1,\\\\\\\\n}\\\\\\\\n\\\\\\\\n# Pooled test across all sparsity levels\\\\\\\\npooled_imp = np.concatenate([all_imp_gradients[s] for s in [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"]])\\\\\\\\npooled_rand = np.concatenate([all_rand_gradients[s] for s in [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"]])\\\\\\\\nresults[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_permutation_test\\\\\\\"] = permutation_test(pooled_imp, pooled_rand)\\\\\\\\nresults[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_wilcoxon\\\\\\\"] = wilcoxon_test(pooled_imp, pooled_rand)\\\\\\\\nresults[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_n\\\\\\\"] = int(len(pooled_imp))\\\\\\\\n\\\\\\\\nresults[\\\\\\\"common_ids_check\\\\\\\"] = common_ids_check\\\\\\\\n\\\\\\\\n# Also add s030 importance-only data for completeness\\\\\\\\nimp030 = load_per_problem(IMP_DIRS[0.30], 0.30)\\\\\\\\nimp030_ii, _ = extract_ii_arrays(imp030)\\\\\\\\nresults[\\\\\\\"s030_importance_only\\\\\\\"] = {\\\\\\\\n    \\\\\\\"medians\\\\\\\": {phase: float(np.median(imp030_ii[phase])) for phase in PHASES},\\\\\\\\n    \\\\\\\"median_gradient\\\\\\\": float(np.median(imp030_ii[\\\\\\\"low\\\\\\\"]) - np.median(imp030_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n    \\\\\\\"monotonicity\\\\\\\": monotonicity_score(imp030_ii),\\\\\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"random s030 not yet complete, no comparison possible\\\\\\\",\\\\\\\\n}\\\\\\\\n\\\\\\\\n# Save\\\\\\\\nout_path = BASE / \\\\\\\"analysis_bf16_ds_comparison.json\\\\\\\"\\\\\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    json.dump(results, f, indent=2)\\\\\\\\nprint(f\\\\\\\"Saved to {out_path}\\\\\\\")\\\\\\\\n\\\\\\\\n# --- Text summary ---\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*70)\\\\\\\\nprint(\\\\\\\"BF16 DeepSeek-R1-Distill-Qwen-7B: Importance vs Random Masking\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\"*70)\\\\\\\\n\\\\\\\\nfor sp_str in [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"]:\\\\\\\\n    sp = results[\\\\\\\"per_sparsity\\\\\\\"][sp_str]\\\\\\\\n    print(f\\\\\\\"\\\\\\\\\\\\\\\\n--- Sparsity {sp_str} ---\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Importance II medians:  high={sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'high\\\\\\\\']:.4f}  mid={sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'mid\\\\\\\\']:.4f}  low={sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'low\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Random II medians:      high={sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'high\\\\\\\\']:.4f}  mid={sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'mid\\\\\\\\']:.4f}  low={sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'low\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Imp gradient (median):  {sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'per_problem_gradient_median\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Rand gradient (median): {sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'per_problem_gradient_median\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Imp monotonicity:       {sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'strict\\\\\\\\']*100:.0f}% strict, {sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'weak\\\\\\\\']*100:.0f}% weak\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Rand monotonicity:      {sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'strict\\\\\\\\']*100:.0f}% strict, {sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'weak\\\\\\\\']*100:.0f}% weak\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Permutation p-value:    {sp[\\\\\\\\'statistical_tests\\\\\\\\'][\\\\\\\\'permutation_test\\\\\\\\'][\\\\\\\\'p_value\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Wilcoxon p-value:       {sp[\\\\\\\\'statistical_tests\\\\\\\\'][\\\\\\\\'wilcoxon_signed_rank\\\\\\\\'].get(\\\\\\\\'p_value\\\\\\\\', \\\\\\\\'N/A\\\\\\\\')}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Problems imp>rand:      {sp[\\\\\\\\'comparison\\\\\\\\'][\\\\\\\\'problems_imp_gradient_larger\\\\\\\\']}/{sp[\\\\\\\\'n_problems\\\\\\\\']}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n--- Pooled (all 150 problems) ---\\\\\\\")\\\\\\\\npt = results[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_permutation_test\\\\\\\"]\\\\\\\\nwt = results[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_wilcoxon\\\\\\\"]\\\\\\\\nprint(f\\\\\\\"  Permutation p-value:    {pt[\\\\\\\\'p_value\\\\\\\\']:.4f}  (observed diff: {pt[\\\\\\\\'observed_mean_diff\\\\\\\\']:.4f})\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Wilcoxon p-value:       {wt.get(\\\\\\\\'p_value\\\\\\\\', \\\\\\\\'N/A\\\\\\\\')}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n--- s030 (importance only) ---\\\\\\\")\\\\\\\\ns030 = results[\\\\\\\"s030_importance_only\\\\\\\"]\\\\\\\\nprint(f\\\\\\\"  Medians: high={s030[\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'high\\\\\\\\']:.4f}  mid={s030[\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'mid\\\\\\\\']:.4f}  low={s030[\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'low\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Gradient: {s030[\\\\\\\\'median_gradient\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Monotonicity: {s030[\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'strict\\\\\\\\']*100:.0f}% strict\\\\\\\")\\\\\\\\nPYEOF\\\\\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/autodl-tmp/pacs/run_bf16_ds_comparison.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/pacs/run_bf16_ds_comparison.py\\\\\\\", line 102, in <module>\\\\n    imp_grad = imp_ii[\\\\\\\"low\\\\\\\"] - imp_ii[\\\\\\\"high\\\\\\\"]\\\\n               ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~\\\\nTypeError: unsupported operand type(s) for -: 'float' and 'NoneType'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "e34f54aa-6b96-4ddd-9c36-a49445376114",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat > /root/autodl-tmp/pacs/run_bf16_ds_comparison.py << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json\\\\\\\\nimport numpy as np\\\\\\\\nfrom pathlib import Path\\\\\\\\nimport sys\\\\\\\\n\\\\\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/pacs\\\\\\\")\\\\\\\\n\\\\\\\\n# --- Config ---\\\\\\\\nIMP_DIRS = {\\\\\\\\n    0.15: BASE / \\\\\\\"profiling_output_bf16_ds_imp_s015\\\\\\\",\\\\\\\\n    0.20: BASE / \\\\\\\"profiling_output_bf16_ds_imp_s020\\\\\\\",\\\\\\\\n    0.25: BASE / \\\\\\\"profiling_output_bf16_ds_imp_s025\\\\\\\",\\\\\\\\n    0.30: BASE / \\\\\\\"profiling_output_bf16_ds_imp_s030\\\\\\\",\\\\\\\\n}\\\\\\\\nRAND_DIRS = {\\\\\\\\n    0.15: BASE / \\\\\\\"profiling_output_bf16_ds_rand_s015\\\\\\\",\\\\\\\\n    0.20: BASE / \\\\\\\"profiling_output_bf16_ds_rand_s020\\\\\\\",\\\\\\\\n    0.25: BASE / \\\\\\\"profiling_output_bf16_ds_rand_s025\\\\\\\",\\\\\\\\n}\\\\\\\\nPHASES = [\\\\\\\"high\\\\\\\", \\\\\\\"mid\\\\\\\", \\\\\\\"low\\\\\\\"]\\\\\\\\n\\\\\\\\ndef load_per_problem(path, sparsity):\\\\\\\\n    with open(path / \\\\\\\"profiling_results.json\\\\\\\") as f:\\\\\\\\n        d = json.load(f)\\\\\\\\n    sp_key = str(sparsity)\\\\\\\\n    problems = d[\\\\\\\"per_problem_ii\\\\\\\"][sp_key]\\\\\\\\n    return problems\\\\\\\\n\\\\\\\\ndef extract_ii_arrays(problems):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return dict of phase -> np.array of II values, and problem_ids.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    ids = [p[\\\\\\\"problem_id\\\\\\\"] for p in problems]\\\\\\\\n    out = {}\\\\\\\\n    for phase in PHASES:\\\\\\\\n        out[phase] = np.array([p[f\\\\\\\"ii_{phase}\\\\\\\"] for p in problems])\\\\\\\\n    return out, ids\\\\\\\\n\\\\\\\\ndef gradient_metric(ii_dict):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute median gradient: median(low) - median(high).\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    return float(np.median(ii_dict[\\\\\\\"low\\\\\\\"]) - np.median(ii_dict[\\\\\\\"high\\\\\\\"]))\\\\\\\\n\\\\\\\\ndef monotonicity_score(ii_dict):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fraction of problems where II_low > II_mid > II_high.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    n = len(ii_dict[\\\\\\\"high\\\\\\\"])\\\\\\\\n    strict = sum(1 for i in range(n) if ii_dict[\\\\\\\"low\\\\\\\"][i] > ii_dict[\\\\\\\"mid\\\\\\\"][i] > ii_dict[\\\\\\\"high\\\\\\\"][i])\\\\\\\\n    weak = sum(1 for i in range(n) if ii_dict[\\\\\\\"low\\\\\\\"][i] >= ii_dict[\\\\\\\"mid\\\\\\\"][i] >= ii_dict[\\\\\\\"high\\\\\\\"][i])\\\\\\\\n    return {\\\\\\\"strict\\\\\\\": strict / n, \\\\\\\"weak\\\\\\\": weak / n, \\\\\\\"n\\\\\\\": n}\\\\\\\\n\\\\\\\\ndef permutation_test(imp_gradients, rand_gradients, n_perm=10000, seed=42):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Problem-level paired permutation test on per-problem gradient (ii_low - ii_high).\\\\\\\\n    H0: importance and random masking produce the same gradient distribution.\\\\\\\\n    Test statistic: mean(imp_gradients - rand_gradients).\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    rng = np.random.RandomState(seed)\\\\\\\\n    diff = imp_gradients - rand_gradients\\\\\\\\n    observed = np.mean(diff)\\\\\\\\n    count = 0\\\\\\\\n    for _ in range(n_perm):\\\\\\\\n        signs = rng.choice([-1, 1], size=len(diff))\\\\\\\\n        perm_stat = np.mean(diff * signs)\\\\\\\\n        if perm_stat >= observed:\\\\\\\\n            count += 1\\\\\\\\n    p_value = (count + 1) / (n_perm + 1)\\\\\\\\n    return {\\\\\\\"observed_mean_diff\\\\\\\": float(observed), \\\\\\\"p_value\\\\\\\": float(p_value), \\\\\\\"n_perm\\\\\\\": n_perm}\\\\\\\\n\\\\\\\\ndef wilcoxon_test(imp_gradients, rand_gradients):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Wilcoxon signed-rank test as backup.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    try:\\\\\\\\n        from scipy.stats import wilcoxon\\\\\\\\n        stat, p = wilcoxon(imp_gradients, rand_gradients, alternative=\\\\\\\\'greater\\\\\\\\')\\\\\\\\n        return {\\\\\\\"statistic\\\\\\\": float(stat), \\\\\\\"p_value\\\\\\\": float(p)}\\\\\\\\n    except ImportError:\\\\\\\\n        return {\\\\\\\"error\\\\\\\": \\\\\\\"scipy not available\\\\\\\"}\\\\\\\\n\\\\\\\\n# --- Main ---\\\\\\\\nresults = {\\\\\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"bf16 DeepSeek-R1-Distill-Qwen-7B: importance vs random masking comparison\\\\\\\",\\\\\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"DeepSeek-R1-Distill-Qwen-7B (bf16)\\\\\\\",\\\\\\\\n    \\\\\\\"sparsity_levels_analyzed\\\\\\\": [0.15, 0.20, 0.25],\\\\\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"s030 random still running, excluded\\\\\\\",\\\\\\\\n    \\\\\\\"per_sparsity\\\\\\\": {},\\\\\\\\n    \\\\\\\"cross_sparsity_summary\\\\\\\": {},\\\\\\\\n    \\\\\\\"statistical_tests\\\\\\\": {},\\\\\\\\n}\\\\\\\\n\\\\\\\\nall_imp_gradients = {}\\\\\\\\nall_rand_gradients = {}\\\\\\\\ncommon_ids_check = {}\\\\\\\\n\\\\\\\\nfor sp in [0.15, 0.20, 0.25]:\\\\\\\\n    sp_str = f\\\\\\\"s{int(sp*100):03d}\\\\\\\"\\\\\\\\n    \\\\\\\\n    imp_problems = load_per_problem(IMP_DIRS[sp], sp)\\\\\\\\n    rand_problems = load_per_problem(RAND_DIRS[sp], sp)\\\\\\\\n    \\\\\\\\n    imp_ii, imp_ids = extract_ii_arrays(imp_problems)\\\\\\\\n    rand_ii, rand_ids = extract_ii_arrays(rand_problems)\\\\\\\\n    \\\\\\\\n    # Verify same problems\\\\\\\\n    assert imp_ids == rand_ids, f\\\\\\\"Problem ID mismatch at sparsity {sp}\\\\\\\"\\\\\\\\n    common_ids_check[sp_str] = {\\\\\\\"n_problems\\\\\\\": len(imp_ids), \\\\\\\"ids_match\\\\\\\": True}\\\\\\\\n    \\\\\\\\n    # Per-problem gradient: ii_low - ii_high\\\\\\\\n    imp_grad = imp_ii[\\\\\\\"low\\\\\\\"] - imp_ii[\\\\\\\"high\\\\\\\"]\\\\\\\\n    rand_grad = rand_ii[\\\\\\\"low\\\\\\\"] - rand_ii[\\\\\\\"high\\\\\\\"]\\\\\\\\n    all_imp_gradients[sp_str] = imp_grad\\\\\\\\n    all_rand_gradients[sp_str] = rand_grad\\\\\\\\n    \\\\\\\\n    sp_result = {\\\\\\\\n        \\\\\\\"importance\\\\\\\": {\\\\\\\\n            \\\\\\\"medians\\\\\\\": {phase: float(np.median(imp_ii[phase])) for phase in PHASES},\\\\\\\\n            \\\\\\\"means\\\\\\\": {phase: float(np.mean(imp_ii[phase])) for phase in PHASES},\\\\\\\\n            \\\\\\\"median_gradient_low_minus_high\\\\\\\": float(np.median(imp_ii[\\\\\\\"low\\\\\\\"]) - np.median(imp_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n            \\\\\\\"mean_gradient_low_minus_high\\\\\\\": float(np.mean(imp_ii[\\\\\\\"low\\\\\\\"]) - np.mean(imp_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n            \\\\\\\"per_problem_gradient_mean\\\\\\\": float(np.mean(imp_grad)),\\\\\\\\n            \\\\\\\"per_problem_gradient_median\\\\\\\": float(np.median(imp_grad)),\\\\\\\\n            \\\\\\\"per_problem_gradient_std\\\\\\\": float(np.std(imp_grad)),\\\\\\\\n            \\\\\\\"monotonicity\\\\\\\": monotonicity_score(imp_ii),\\\\\\\\n            \\\\\\\"source\\\\\\\": str(IMP_DIRS[sp] / \\\\\\\"profiling_results.json\\\\\\\"),\\\\\\\\n        },\\\\\\\\n        \\\\\\\"random\\\\\\\": {\\\\\\\\n            \\\\\\\"medians\\\\\\\": {phase: float(np.median(rand_ii[phase])) for phase in PHASES},\\\\\\\\n            \\\\\\\"means\\\\\\\": {phase: float(np.mean(rand_ii[phase])) for phase in PHASES},\\\\\\\\n            \\\\\\\"median_gradient_low_minus_high\\\\\\\": float(np.median(rand_ii[\\\\\\\"low\\\\\\\"]) - np.median(rand_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n            \\\\\\\"mean_gradient_low_minus_high\\\\\\\": float(np.mean(rand_ii[\\\\\\\"low\\\\\\\"]) - np.mean(rand_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n            \\\\\\\"per_problem_gradient_mean\\\\\\\": float(np.mean(rand_grad)),\\\\\\\\n            \\\\\\\"per_problem_gradient_median\\\\\\\": float(np.median(rand_grad)),\\\\\\\\n            \\\\\\\"per_problem_gradient_std\\\\\\\": float(np.std(rand_grad)),\\\\\\\\n            \\\\\\\"monotonicity\\\\\\\": monotonicity_score(rand_ii),\\\\\\\\n            \\\\\\\"source\\\\\\\": str(RAND_DIRS[sp] / \\\\\\\"profiling_results.json\\\\\\\"),\\\\\\\\n        },\\\\\\\\n        \\\\\\\"comparison\\\\\\\": {\\\\\\\\n            \\\\\\\"gradient_ratio_median\\\\\\\": float(np.median(imp_grad) / np.median(rand_grad)) if np.median(rand_grad) != 0 else \\\\\\\"inf\\\\\\\",\\\\\\\\n            \\\\\\\"gradient_ratio_mean\\\\\\\": float(np.mean(imp_grad) / np.mean(rand_grad)) if np.mean(rand_grad) != 0 else \\\\\\\"inf\\\\\\\",\\\\\\\\n            \\\\\\\"problems_imp_gradient_larger\\\\\\\": int(np.sum(imp_grad > rand_grad)),\\\\\\\\n            \\\\\\\"problems_rand_gradient_larger\\\\\\\": int(np.sum(rand_grad > imp_grad)),\\\\\\\\n            \\\\\\\"problems_equal\\\\\\\": int(np.sum(imp_grad == rand_grad)),\\\\\\\\n        },\\\\\\\\n        \\\\\\\"n_problems\\\\\\\": len(imp_ids),\\\\\\\\n        \\\\\\\"problem_ids_match\\\\\\\": True,\\\\\\\\n    }\\\\\\\\n    \\\\\\\\n    # Statistical tests per sparsity\\\\\\\\n    perm = permutation_test(imp_grad, rand_grad)\\\\\\\\n    wilc = wilcoxon_test(imp_grad, rand_grad)\\\\\\\\n    sp_result[\\\\\\\"statistical_tests\\\\\\\"] = {\\\\\\\\n        \\\\\\\"permutation_test\\\\\\\": perm,\\\\\\\\n        \\\\\\\"wilcoxon_signed_rank\\\\\\\": wilc,\\\\\\\\n    }\\\\\\\\n    \\\\\\\\n    results[\\\\\\\"per_sparsity\\\\\\\"][sp_str] = sp_result\\\\\\\\n\\\\\\\\n# Cross-sparsity: gradient trend across sparsity levels\\\\\\\\nimp_median_gradients = []\\\\\\\\nrand_median_gradients = []\\\\\\\\nfor sp_str in [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"]:\\\\\\\\n    imp_median_gradients.append(results[\\\\\\\"per_sparsity\\\\\\\"][sp_str][\\\\\\\"importance\\\\\\\"][\\\\\\\"per_problem_gradient_median\\\\\\\"])\\\\\\\\n    rand_median_gradients.append(results[\\\\\\\"per_sparsity\\\\\\\"][sp_str][\\\\\\\"random\\\\\\\"][\\\\\\\"per_problem_gradient_median\\\\\\\"])\\\\\\\\n\\\\\\\\nresults[\\\\\\\"cross_sparsity_summary\\\\\\\"] = {\\\\\\\\n    \\\\\\\"importance_median_gradients\\\\\\\": dict(zip([\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"], imp_median_gradients)),\\\\\\\\n    \\\\\\\"random_median_gradients\\\\\\\": dict(zip([\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"], rand_median_gradients)),\\\\\\\\n    \\\\\\\"importance_gradient_increases_with_sparsity\\\\\\\": imp_median_gradients[-1] > imp_median_gradients[0],\\\\\\\\n    \\\\\\\"random_gradient_stays_flat\\\\\\\": abs(rand_median_gradients[-1] - rand_median_gradients[0]) < 0.1,\\\\\\\\n}\\\\\\\\n\\\\\\\\n# Pooled test across all sparsity levels\\\\\\\\npooled_imp = np.concatenate([all_imp_gradients[s] for s in [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"]])\\\\\\\\npooled_rand = np.concatenate([all_rand_gradients[s] for s in [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"]])\\\\\\\\nresults[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_permutation_test\\\\\\\"] = permutation_test(pooled_imp, pooled_rand)\\\\\\\\nresults[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_wilcoxon\\\\\\\"] = wilcoxon_test(pooled_imp, pooled_rand)\\\\\\\\nresults[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_n\\\\\\\"] = int(len(pooled_imp))\\\\\\\\n\\\\\\\\nresults[\\\\\\\"common_ids_check\\\\\\\"] = common_ids_check\\\\\\\\n\\\\\\\\n# Also add s030 importance-only data for completeness\\\\\\\\nimp030 = load_per_problem(IMP_DIRS[0.30], 0.30)\\\\\\\\nimp030_ii, _ = extract_ii_arrays(imp030)\\\\\\\\nresults[\\\\\\\"s030_importance_only\\\\\\\"] = {\\\\\\\\n    \\\\\\\"medians\\\\\\\": {phase: float(np.median(imp030_ii[phase])) for phase in PHASES},\\\\\\\\n    \\\\\\\"median_gradient\\\\\\\": float(np.median(imp030_ii[\\\\\\\"low\\\\\\\"]) - np.median(imp030_ii[\\\\\\\"high\\\\\\\"])),\\\\\\\\n    \\\\\\\"monotonicity\\\\\\\": monotonicity_score(imp030_ii),\\\\\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"random s030 not yet complete, no comparison possible\\\\\\\",\\\\\\\\n}\\\\\\\\n\\\\\\\\n# Save\\\\\\\\nout_path = BASE / \\\\\\\"analysis_bf16_ds_comparison.json\\\\\\\"\\\\\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    json.dump(results, f, indent=2)\\\\\\\\nprint(f\\\\\\\"Saved to {out_path}\\\\\\\")\\\\\\\\n\\\\\\\\n# --- Text summary ---\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*70)\\\\\\\\nprint(\\\\\\\"BF16 DeepSeek-R1-Distill-Qwen-7B: Importance vs Random Masking\\\\\\\")\\\\\\\\nprint(\\\\\\\"=\\\\\\\"*70)\\\\\\\\n\\\\\\\\nfor sp_str in [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"]:\\\\\\\\n    sp = results[\\\\\\\"per_sparsity\\\\\\\"][sp_str]\\\\\\\\n    print(f\\\\\\\"\\\\\\\\\\\\\\\\n--- Sparsity {sp_str} ---\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Importance II medians:  high={sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'high\\\\\\\\']:.4f}  mid={sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'mid\\\\\\\\']:.4f}  low={sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'low\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Random II medians:      high={sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'high\\\\\\\\']:.4f}  mid={sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'mid\\\\\\\\']:.4f}  low={sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'low\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Imp gradient (median):  {sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'per_problem_gradient_median\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Rand gradient (median): {sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'per_problem_gradient_median\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Imp monotonicity:       {sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'strict\\\\\\\\']*100:.0f}% strict, {sp[\\\\\\\\'importance\\\\\\\\'][\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'weak\\\\\\\\']*100:.0f}% weak\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Rand monotonicity:      {sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'strict\\\\\\\\']*100:.0f}% strict, {sp[\\\\\\\\'random\\\\\\\\'][\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'weak\\\\\\\\']*100:.0f}% weak\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Permutation p-value:    {sp[\\\\\\\\'statistical_tests\\\\\\\\'][\\\\\\\\'permutation_test\\\\\\\\'][\\\\\\\\'p_value\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Wilcoxon p-value:       {sp[\\\\\\\\'statistical_tests\\\\\\\\'][\\\\\\\\'wilcoxon_signed_rank\\\\\\\\'].get(\\\\\\\\'p_value\\\\\\\\', \\\\\\\\'N/A\\\\\\\\')}\\\\\\\")\\\\\\\\n    print(f\\\\\\\"  Problems imp>rand:      {sp[\\\\\\\\'comparison\\\\\\\\'][\\\\\\\\'problems_imp_gradient_larger\\\\\\\\']}/{sp[\\\\\\\\'n_problems\\\\\\\\']}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n--- Pooled (all 150 problems) ---\\\\\\\")\\\\\\\\npt = results[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_permutation_test\\\\\\\"]\\\\\\\\nwt = results[\\\\\\\"statistical_tests\\\\\\\"][\\\\\\\"pooled_wilcoxon\\\\\\\"]\\\\\\\\nprint(f\\\\\\\"  Permutation p-value:    {pt[\\\\\\\\'p_value\\\\\\\\']:.4f}  (observed diff: {pt[\\\\\\\\'observed_mean_diff\\\\\\\\']:.4f})\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Wilcoxon p-value:       {wt.get(\\\\\\\\'p_value\\\\\\\\', \\\\\\\\'N/A\\\\\\\\')}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n--- s030 (importance only) ---\\\\\\\")\\\\\\\\ns030 = results[\\\\\\\"s030_importance_only\\\\\\\"]\\\\\\\\nprint(f\\\\\\\"  Medians: high={s030[\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'high\\\\\\\\']:.4f}  mid={s030[\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'mid\\\\\\\\']:.4f}  low={s030[\\\\\\\\'medians\\\\\\\\'][\\\\\\\\'low\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Gradient: {s030[\\\\\\\\'median_gradient\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"  Monotonicity: {s030[\\\\\\\\'monotonicity\\\\\\\\'][\\\\\\\\'strict\\\\\\\\']*100:.0f}% strict\\\\\\\")\\\\\\\\nPYEOF\\\\\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/autodl-tmp/pacs/run_bf16_ds_comparison.py'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/pacs/run_bf16_ds_comparison.py\\\\\\\", line 102, in <module>\\\\n    imp_grad = imp_ii[\\\\\\\"low\\\\\\\"] - imp_ii[\\\\\\\"high\\\\\\\"]\\\\n               ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~\\\\nTypeError: unsupported operand type(s) for -: 'float' and 'NoneType'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /root/autodl-tmp/pacs/run_bf16_ds_comparison.py << \\\\'PYEOF\\\\'\\\\nimport json\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\nimport sys\\\\n\\\\nBASE = Path(\\\"/root/autodl-tmp/pacs\\\")\\\\n\\\\n# --- Config ---\\\\nIMP_DIRS = {\\\\n    0.15: BASE / \\\"profiling_output_bf16_ds_imp_s015\\\",\\\\n    0.20: BASE / \\\"profiling_output_bf16_ds_imp_s020\\\",\\\\n    0.25: BASE / \\\"profiling_output_bf16_ds_imp_s025\\\",\\\\n    0.30: BASE / \\\"profiling_output_bf16_ds_imp_s030\\\",\\\\n}\\\\nRAND_DIRS = {\\\\n    0.15: BASE / \\\"profiling_output_bf16_ds_rand_s015\\\",\\\\n    0.20: BASE / \\\"profiling_output_bf16_ds_rand_s020\\\",\\\\n    0.25: BASE / \\\"profiling_output_bf16_ds_rand_s025\\\",\\\\n}\\\\nPHASES = [\\\"high\\\", \\\"mid\\\", \\\"low\\\"]\\\\n\\\\ndef load_per_problem(path, sparsity):\\\\n    with open(path / \\\"profiling_results.json\\\") as f:\\\\n        d = json.load(f)\\\\n    sp_key = str(sparsity)\\\\n    problems = d[\\\"per_problem_ii\\\"][sp_key]\\\\n    return problems\\\\n\\\\ndef extract_ii_arrays(problems):\\\\n    \\\"\\\"\\\"Return dict of phase -> np.array of II values, and problem_ids.\\\"\\\"\\\"\\\\n    ids = [p[\\\"problem_id\\\"] for p in problems]\\\\n    out = {}\\\\n    for phase in PHASES:\\\\n        out[phase] = np.array([p[f\\\"ii_{phase}\\\"] for p in problems])\\\\n    return out, ids\\\\n\\\\ndef gradient_metric(ii_dict):\\\\n    \\\"\\\"\\\"Compute median gradient: median(low) - median(high).\\\"\\\"\\\"\\\\n    return float(np.median(ii_dict[\\\"low\\\"]) - np.median(ii_dict[\\\"high\\\"]))\\\\n\\\\ndef monotonicity_score(ii_dict):\\\\n    \\\"\\\"\\\"Fraction of problems where II_low > II_mid > II_high.\\\"\\\"\\\"\\\\n    n = len(ii_dict[\\\"high\\\"])\\\\n    strict = sum(1 for i in range(n) if ii_dict[\\\"low\\\"][i] > ii_dict[\\\"mid\\\"][i] > ii_dict[\\\"high\\\"][i])\\\\n    weak = sum(1 for i in range(n) if ii_dict[\\\"low\\\"][i] >= ii_dict[\\\"mid\\\"][i] >= ii_dict[\\\"high\\\"][i])\\\\n    return {\\\"strict\\\": strict / n, \\\"weak\\\": weak / n, \\\"n\\\": n}\\\\n\\\\ndef permutation_test(imp_gradients, rand_gradients, n_perm=10000, seed=42):\\\\n    \\\"\\\"\\\"Problem-level paired permutation test on per-problem gradient (ii_low - ii_high).\\\\n    H0: importance and random masking produce the same gradient distribution.\\\\n    Test statistic: mean(imp_gradients - rand_gradients).\\\"\\\"\\\"\\\\n    rng = np.random.RandomState(seed)\\\\n    diff = imp_gradients - rand_gradients\\\\n    observed = np.mean(diff)\\\\n    count = 0\\\\n    for _ in range(n_perm):\\\\n        signs = rng.choice([-1, 1], size=len(diff))\\\\n        perm_stat = np.mean(diff * signs)\\\\n        if perm_stat >= observed:\\\\n            count += 1\\\\n    p_value = (count + 1) / (n_perm + 1)\\\\n    return {\\\"observed_mean_diff\\\": float(observed), \\\"p_value\\\": float(p_value), \\\"n_perm\\\": n_perm}\\\\n\\\\ndef wilcoxon_test(imp_gradients, rand_gradients):\\\\n    \\\"\\\"\\\"Wilcoxon signed-rank test as backup.\\\"\\\"\\\"\\\\n    try:\\\\n        from scipy.stats import wilcoxon\\\\n        stat, p = wilcoxon(imp_gradients, rand_gradients, alternative=\\\\'greater\\\\')\\\\n        return {\\\"statistic\\\": float(stat), \\\"p_value\\\": float(p)}\\\\n    except ImportError:\\\\n        return {\\\"error\\\": \\\"scipy not available\\\"}\\\\n\\\\n# --- Main ---\\\\nresults = {\\\\n    \\\"description\\\": \\\"bf16 DeepSeek-R1-Distill-Qwen-7B: importance vs random masking comparison\\\",\\\\n    \\\"model\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (bf16)\\\",\\\\n    \\\"sparsity_levels_analyzed\\\": [0.15, 0.20, 0.25],\\\\n    \\\"note\\\": \\\"s030 random still running, excluded\\\",\\\\n    \\\"per_sparsity\\\": {},\\\\n    \\\"cross_sparsity_summary\\\": {},\\\\n    \\\"statistical_tests\\\": {},\\\\n}\\\\n\\\\nall_imp_gradients = {}\\\\nall_rand_gradients = {}\\\\ncommon_ids_check = {}\\\\n\\\\nfor sp in [0.15, 0.20, 0.25]:\\\\n    sp_str = f\\\"s{int(sp*100):03d}\\\"\\\\n    \\\\n    imp_problems = load_per_problem(IMP_DIRS[sp], sp)\\\\n    rand_problems = load_per_problem(RAND_DIRS[sp], sp)\\\\n    \\\\n    imp_ii, imp_ids = extract_ii_arrays(imp_problems)\\\\n    rand_ii, rand_ids = extract_ii_arrays(rand_problems)\\\\n    \\\\n    # Verify same problems\\\\n    assert imp_ids == rand_ids, f\\\"Problem ID mismatch at sparsity {sp}\\\"\\\\n    common_ids_check[sp_str] = {\\\"n_problems\\\": len(imp_ids), \\\"ids_match\\\": True}\\\\n    \\\\n    # Per-problem gradient: ii_low - ii_high\\\\n    imp_grad = imp_ii[\\\"low\\\"] - imp_ii[\\\"high\\\"]\\\\n    rand_grad = rand_ii[\\\"low\\\"] - rand_ii[\\\"high\\\"]\\\\n    all_imp_gradients[sp_str] = imp_grad\\\\n    all_rand_gradients[sp_str] = rand_grad\\\\n    \\\\n    sp_result = {\\\\n        \\\"importance\\\": {\\\\n            \\\"medians\\\": {phase: float(np.median(imp_ii[phase])) for phase in PHASES},\\\\n            \\\"means\\\": {phase: float(np.mean(imp_ii[phase])) for phase in PHASES},\\\\n            \\\"median_gradient_low_minus_high\\\": float(np.median(imp_ii[\\\"low\\\"]) - np.median(imp_ii[\\\"high\\\"])),\\\\n            \\\"mean_gradient_low_minus_high\\\": float(np.mean(imp_ii[\\\"low\\\"]) - np.mean(imp_ii[\\\"high\\\"])),\\\\n            \\\"per_problem_gradient_mean\\\": float(np.mean(imp_grad)),\\\\n            \\\"per_problem_gradient_median\\\": float(np.median(imp_grad)),\\\\n            \\\"per_problem_gradient_std\\\": float(np.std(imp_grad)),\\\\n            \\\"monotonicity\\\": monotonicity_score(imp_ii),\\\\n            \\\"source\\\": str(IMP_DIRS[sp] / \\\"profiling_results.json\\\"),\\\\n        },\\\\n        \\\"random\\\": {\\\\n            \\\"medians\\\": {phase: float(np.median(rand_ii[phase])) for phase in PHASES},\\\\n            \\\"means\\\": {phase: float(np.mean(rand_ii[phase])) for phase in PHASES},\\\\n            \\\"median_gradient_low_minus_high\\\": float(np.median(rand_ii[\\\"low\\\"]) - np.median(rand_ii[\\\"high\\\"])),\\\\n            \\\"mean_gradient_low_minus_high\\\": float(np.mean(rand_ii[\\\"low\\\"]) - np.mean(rand_ii[\\\"high\\\"])),\\\\n            \\\"per_problem_gradient_mean\\\": float(np.mean(rand_grad)),\\\\n            \\\"per_problem_gradient_median\\\": float(np.median(rand_grad)),\\\\n            \\\"per_problem_gradient_std\\\": float(np.std(rand_grad)),\\\\n            \\\"monotonicity\\\": monotonicity_score(rand_ii),\\\\n            \\\"source\\\": str(RAND_DIRS[sp] / \\\"profiling_results.json\\\"),\\\\n        },\\\\n        \\\"comparison\\\": {\\\\n            \\\"gradient_ratio_median\\\": float(np.median(imp_grad) / np.median(rand_grad)) if np.median(rand_grad) != 0 else \\\"inf\\\",\\\\n            \\\"gradient_ratio_mean\\\": float(np.mean(imp_grad) / np.mean(rand_grad)) if np.mean(rand_grad) != 0 else \\\"inf\\\",\\\\n            \\\"problems_imp_gradient_larger\\\": int(np.sum(imp_grad > rand_grad)),\\\\n            \\\"problems_rand_gradient_larger\\\": int(np.sum(rand_grad > imp_grad)),\\\\n            \\\"problems_equal\\\": int(np.sum(imp_grad == rand_grad)),\\\\n        },\\\\n        \\\"n_problems\\\": len(imp_ids),\\\\n        \\\"problem_ids_match\\\": True,\\\\n    }\\\\n    \\\\n    # Statistical tests per sparsity\\\\n    perm = permutation_test(imp_grad, rand_grad)\\\\n    wilc = wilcoxon_test(imp_grad, rand_grad)\\\\n    sp_result[\\\"statistical_tests\\\"] = {\\\\n        \\\"permutation_test\\\": perm,\\\\n        \\\"wilcoxon_signed_rank\\\": wilc,\\\\n    }\\\\n    \\\\n    results[\\\"per_sparsity\\\"][sp_str] = sp_result\\\\n\\\\n# Cross-sparsity: gradient trend across sparsity levels\\\\nimp_median_gradients = []\\\\nrand_median_gradients = []\\\\nfor sp_str in [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\"]:\\\\n    imp_median_gradients.append(results[\\\"per_sparsity\\\"][sp_str][\\\"importance\\\"][\\\"per_problem_gradient_median\\\"])\\\\n    rand_median_gradients.append(results[\\\"per_sparsity\\\"][sp_str][\\\"random\\\"][\\\"per_problem_gradient_median\\\"])\\\\n\\\\nresults[\\\"cross_sparsity_summary\\\"] = {\\\\n    \\\"importance_median_gradients\\\": dict(zip([\\\"s015\\\", \\\"s020\\\", \\\"s025\\\"], imp_median_gradients)),\\\\n    \\\"random_median_gradients\\\": dict(zip([\\\"s015\\\", \\\"s020\\\", \\\"s025\\\"], rand_median_gradients)),\\\\n    \\\"importance_gradient_increases_with_sparsity\\\": imp_median_gradients[-1] > imp_median_gradients[0],\\\\n    \\\"random_gradient_stays_flat\\\": abs(rand_median_gradients[-1] - rand_median_gradients[0]) < 0.1,\\\\n}\\\\n\\\\n# Pooled test across all sparsity levels\\\\npooled_imp = np.concatenate([all_imp_gradients[s] for s in [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\"]])\\\\npooled_rand = np.concatenate([all_rand_gradients[s] for s in [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\"]])\\\\nresults[\\\"statistical_tests\\\"][\\\"pooled_permutation_test\\\"] = permutation_test(pooled_imp, pooled_rand)\\\\nresults[\\\"statistical_tests\\\"][\\\"pooled_wilcoxon\\\"] = wilcoxon_test(pooled_imp, pooled_rand)\\\\nresults[\\\"statistical_tests\\\"][\\\"pooled_n\\\"] = int(len(pooled_imp))\\\\n\\\\nresults[\\\"common_ids_check\\\"] = common_ids_check\\\\n\\\\n# Also add s030 importance-only data for completeness\\\\nimp030 = load_per_problem(IMP_DIRS[0.30], 0.30)\\\\nimp030_ii, _ = extract_ii_arrays(imp030)\\\\nresults[\\\"s030_importance_only\\\"] = {\\\\n    \\\"medians\\\": {phase: float(np.median(imp030_ii[phase])) for phase in PHASES},\\\\n    \\\"median_gradient\\\": float(np.median(imp030_ii[\\\"low\\\"]) - np.median(imp030_ii[\\\"high\\\"])),\\\\n    \\\"monotonicity\\\": monotonicity_score(imp030_ii),\\\\n    \\\"note\\\": \\\"random s030 not yet complete, no comparison possible\\\",\\\\n}\\\\n\\\\n# Save\\\\nout_path = BASE / \\\"analysis_bf16_ds_comparison.json\\\"\\\\nwith open(out_path, \\\"w\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(f\\\"Saved to {out_path}\\\")\\\\n\\\\n# --- Text summary ---\\\\nprint(\\\"\\\\\\\\n\\\" + \\\"=\\\"*70)\\\\nprint(\\\"BF16 DeepSeek-R1-Distill-Qwen-7B: Importance vs Random Masking\\\")\\\\nprint(\\\"=\\\"*70)\\\\n\\\\nfor sp_str in [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\"]:\\\\n    sp = results[\\\"per_sparsity\\\"][sp_str]\\\\n    print(f\\\"\\\\\\\\n--- Sparsity {sp_str} ---\\\")\\\\n    print(f\\\"  Importance II medians:  high={sp[\\\\'importance\\\\'][\\\\'medians\\\\'][\\\\'high\\\\']:.4f}  mid={sp[\\\\'importance\\\\'][\\\\'medians\\\\'][\\\\'mid\\\\']:.4f}  low={sp[\\\\'importance\\\\'][\\\\'medians\\\\'][\\\\'low\\\\']:.4f}\\\")\\\\n    print(f\\\"  Random II medians:      high={sp[\\\\'random\\\\'][\\\\'medians\\\\'][\\\\'high\\\\']:.4f}  mid={sp[\\\\'random\\\\'][\\\\'medians\\\\'][\\\\'mid\\\\']:.4f}  low={sp[\\\\'random\\\\'][\\\\'medians\\\\'][\\\\'low\\\\']:.4f}\\\")\\\\n    print(f\\\"  Imp gradient (median):  {sp[\\\\'importance\\\\'][\\\\'per_problem_gradient_median\\\\']:.4f}\\\")\\\\n    print(f\\\"  Rand gradient (median): {sp[\\\\'random\\\\'][\\\\'per_problem_gradient_median\\\\']:.4f}\\\")\\\\n    print(f\\\"  Imp monotonicity:       {sp[\\\\'importance\\\\'][\\\\'monotonicity\\\\'][\\\\'strict\\\\']*100:.0f}% strict, {sp[\\\\'importance\\\\'][\\\\'monotonicity\\\\'][\\\\'weak\\\\']*100:.0f}% weak\\\")\\\\n    print(f\\\"  Rand monotonicity:      {sp[\\\\'random\\\\'][\\\\'monotonicity\\\\'][\\\\'strict\\\\']*100:.0f}% strict, {sp[\\\\'random\\\\'][\\\\'monotonicity\\\\'][\\\\'weak\\\\']*100:.0f}% weak\\\")\\\\n    print(f\\\"  Permutation p-value:    {sp[\\\\'statistical_tests\\\\'][\\\\'permutation_test\\\\'][\\\\'p_value\\\\']:.4f}\\\")\\\\n    print(f\\\"  Wilcoxon p-value:       {sp[\\\\'statistical_tests\\\\'][\\\\'wilcoxon_signed_rank\\\\'].get(\\\\'p_value\\\\', \\\\'N/A\\\\')}\\\")\\\\n    print(f\\\"  Problems imp>rand:      {sp[\\\\'comparison\\\\'][\\\\'problems_imp_gradient_larger\\\\']}/{sp[\\\\'n_problems\\\\']}\\\")\\\\n\\\\nprint(f\\\"\\\\\\\\n--- Pooled (all 150 problems) ---\\\")\\\\npt = results[\\\"statistical_tests\\\"][\\\"pooled_permutation_test\\\"]\\\\nwt = results[\\\"statistical_tests\\\"][\\\"pooled_wilcoxon\\\"]\\\\nprint(f\\\"  Permutation p-value:    {pt[\\\\'p_value\\\\']:.4f}  (observed diff: {pt[\\\\'observed_mean_diff\\\\']:.4f})\\\")\\\\nprint(f\\\"  Wilcoxon p-value:       {wt.get(\\\\'p_value\\\\', \\\\'N/A\\\\')}\\\")\\\\n\\\\nprint(f\\\"\\\\\\\\n--- s030 (importance only) ---\\\")\\\\ns030 = results[\\\"s030_importance_only\\\"]\\\\nprint(f\\\"  Medians: high={s030[\\\\'medians\\\\'][\\\\'high\\\\']:.4f}  mid={s030[\\\\'medians\\\\'][\\\\'mid\\\\']:.4f}  low={s030[\\\\'medians\\\\'][\\\\'low\\\\']:.4f}\\\")\\\\nprint(f\\\"  Gradient: {s030[\\\\'median_gradient\\\\']:.4f}\\\")\\\\nprint(f\\\"  Monotonicity: {s030[\\\\'monotonicity\\\\'][\\\\'strict\\\\']*100:.0f}% strict\\\")\\\\nPYEOF\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/autodl-tmp/pacs/run_bf16_ds_comparison.py'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"/root/autodl-tmp/pacs/run_bf16_ds_comparison.py\\\", line 102, in <module>\\n    imp_grad = imp_ii[\\\"low\\\"] - imp_ii[\\\"high\\\"]\\n               ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~\\nTypeError: unsupported operand type(s) for -: 'float' and 'NoneType'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.63}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "There's a `NoneType` in the ii values. Let me check the data structure more carefully. It seems some problems might have None for ii values. Let me check the data first.",
+              "signature": "EuUCClkIDRgCKkCap3IxYcRdQmTJyhrEWPY9ZZlmgDAAIuICRCZ568zQZy6DDpqDPnyWuVR2DuJQ6x3KQ+GDOy/F1KrVmXJ52Gf1Mg9jbGF1ZGUtb3B1cy00LTY4ABIMQqQYvb9f/ppLEQVYGgzggnfloxr6zDtNfxkiMJCqvBE8dbDoSoEAZEE7QyckdHjKnWFix8GF5ZMHaYNYJQmnlMyJn4S7lEeXApXWNSq5AR0UX7JIogMKN2fEOAughuJ9lklOdNifJnUXe3Bx3lzS8Rp/ZBk3NgBVfEa3MdrEU9o0LeqvPVfrX5UGTcfa2OS5T1mkGnaQWxEH4Uhmh3pw3eFCqpWajp3Bv8PZnlOcwWHQwTRKHCiNg5i0suEB/UaX86Q7+HQh3ddjV1rBw9EwlA78CMMFpGsSwebPxS0wxIx6mn0EmFLR1sUvgIEpulUKFjrUo3J+uHub3X1q5+hJyGYNrA2Es7tmGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "d1ddea7e-7d9d-4e38-a741-9b7bfb487a26",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016gJGE8txc6wD4we8CE8fKD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9380,
+                "cache_read_input_tokens": 30126,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9380
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "有 None 值。先检查数据中的 None 情况。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "68784b92-2a29-4ce0-b3d6-ed13343508b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016gJGE8txc6wD4we8CE8fKD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9380,
+                "cache_read_input_tokens": 30126,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9380
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JMWCZX63F7WCS4LUJv3roL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "grep -c \"null\" /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "0a4aa6d1-a69a-44a3-99b3-84ab1b47a4ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016gJGE8txc6wD4we8CE8fKD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9380,
+                "cache_read_input_tokens": 30126,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9380
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017xALWox9c1VA1s91RNvCvN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "grep -B2 \"null\" /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "b46ad636-76b8-479d-9357-3823dce81654",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016gJGE8txc6wD4we8CE8fKD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9380,
+                "cache_read_input_tokens": 30126,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9380
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T07:11:59.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JMWCZX63F7WCS4LUJv3roL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "f0a7d113-3c50-4121-a3d3-afe1f8a83d04",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"11\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T07:11:59.601Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017xALWox9c1VA1s91RNvCvN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"ii_high\\\\\\\": 0.00027155497011055463,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 4,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"problem_idx\\\\\\\": 6,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/prealgebra/307.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": null,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 0,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.00839260218866733,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 4,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.08940607403725087,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 1,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.18843987483737212,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.04635577130528601,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 1,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": 0.012063363714524877,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.011763569038394595,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": 0.014698127854351595,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 4,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": 0.008493087551082024,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "14c47798-f2bc-4d41-98a2-b9deb511e641",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"ii_high\\\\\\\": 0.00027155497011055463,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 4,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"problem_idx\\\\\\\": 6,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/prealgebra/307.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": null,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 0,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.00839260218866733,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 4,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.08940607403725087,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 1,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.18843987483737212,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.04635577130528601,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 1,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": 0.012063363714524877,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": -0.011763569038394595,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": 0.014698127854351595,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 4,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n--\\\\n        \\\\\\\"ii_high\\\\\\\": 0.008493087551082024,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"        \\\"ii_high\\\": 0.00027155497011055463,\\n        \\\"n_segments_high\\\": 4,\\n        \\\"ii_mid\\\": null,\\n--\\n        \\\"problem_idx\\\": 6,\\n        \\\"problem_id\\\": \\\"test/prealgebra/307.json\\\",\\n        \\\"ii_high\\\": null,\\n        \\\"n_segments_high\\\": 0,\\n        \\\"ii_mid\\\": null,\\n--\\n        \\\"ii_high\\\": -0.00839260218866733,\\n        \\\"n_segments_high\\\": 4,\\n        \\\"ii_mid\\\": null,\\n--\\n        \\\"ii_high\\\": -0.08940607403725087,\\n        \\\"n_segments_high\\\": 1,\\n        \\\"ii_mid\\\": null,\\n--\\n        \\\"ii_high\\\": -0.18843987483737212,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n--\\n        \\\"ii_high\\\": -0.04635577130528601,\\n        \\\"n_segments_high\\\": 1,\\n        \\\"ii_mid\\\": null,\\n--\\n        \\\"ii_high\\\": 0.012063363714524877,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n--\\n        \\\"ii_high\\\": -0.011763569038394595,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n--\\n        \\\"ii_high\\\": 0.014698127854351595,\\n        \\\"n_segments_high\\\": 4,\\n        \\\"ii_mid\\\": null,\\n--\\n        \\\"ii_high\\\": 0.008493087551082024,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So there are null values in the data for some phases (when n_segments is 0, no II can be computed). I need to handle None values in the analysis script. Let me rewrite the script to handle nulls - skip problems where any phase has null, or handle them appropriately.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "60a223ac-4aa1-4ab0-a59f-e90fe97aac28",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VL59zHtBzzBwSya2vp4CQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1244,
+                "cache_read_input_tokens": 39506,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1244
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "一些 problem 的 mid phase 有 null（segment 数为 0 时无法计算 II）。重写脚本处理 None 值。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "d0a18729-f550-4a8d-bd8d-391da5409670",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VL59zHtBzzBwSya2vp4CQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1244,
+                "cache_read_input_tokens": 39506,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1244
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BRt1yp3uhgbHXjRuZAyapR",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cat > /root/autodl-tmp/pacs/run_bf16_ds_comparison.py << 'PYEOF'\nimport json, numpy as np\nfrom pathlib import Path\n\nBASE = Path(\"/root/autodl-tmp/pacs\")\nIMP_DIRS = {\n    0.15: BASE / \"profiling_output_bf16_ds_imp_s015\",\n    0.20: BASE / \"profiling_output_bf16_ds_imp_s020\",\n    0.25: BASE / \"profiling_output_bf16_ds_imp_s025\",\n    0.30: BASE / \"profiling_output_bf16_ds_imp_s030\",\n}\nRAND_DIRS = {\n    0.15: BASE / \"profiling_output_bf16_ds_rand_s015\",\n    0.20: BASE / \"profiling_output_bf16_ds_rand_s020\",\n    0.25: BASE / \"profiling_output_bf16_ds_rand_s025\",\n}\nPHASES = [\"high\", \"mid\", \"low\"]\n\ndef load_per_problem(path, sparsity):\n    with open(path / \"profiling_results.json\") as f:\n        d = json.load(f)\n    return d[\"per_problem_ii\"][str(sparsity)]\n\ndef extract_ii_arrays(problems, require_all_phases=False):\n    ids = [p[\"problem_id\"] for p in problems]\n    out = {}\n    for phase in PHASES:\n        vals = []\n        for p in problems:\n            v = p[f\"ii_{phase}\"]\n            vals.append(v if v is not None else np.nan)\n        out[phase] = np.array(vals, dtype=float)\n    if require_all_phases:\n        valid = np.ones(len(ids), dtype=bool)\n        for phase in PHASES:\n            valid &= ~np.isnan(out[phase])\n        for phase in PHASES:\n            out[phase] = out[phase][valid]\n        ids = [ids[i] for i in range(len(valid)) if valid[i]]\n    return out, ids\n\ndef monotonicity_score(ii_dict):\n    valid = ~(np.isnan(ii_dict[\"high\"]) | np.isnan(ii_dict[\"mid\"]) | np.isnan(ii_dict[\"low\"]))\n    h, m, l = ii_dict[\"high\"][valid], ii_dict[\"mid\"][valid], ii_dict[\"low\"][valid]\n    n = len(h)\n    if n == 0:\n        return {\"strict\": 0, \"weak\": 0, \"n\": 0}\n    strict = int(np.sum((l > m) & (m > h)))\n    weak = int(np.sum((l >= m) & (m >= h)))\n    return {\"strict\": strict / n, \"weak\": weak / n, \"n\": n}\n\ndef permutation_test(a, b, n_perm=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    diff = a - b\n    observed = np.mean(diff)\n    count = 0\n    for _ in range(n_perm):\n        signs = rng.choice([-1, 1], size=len(diff))\n        if np.mean(diff * signs) >= observed:\n            count += 1\n    return {\"observed_mean_diff\": float(observed), \"p_value\": float((count + 1) / (n_perm + 1)), \"n_perm\": n_perm, \"n\": len(diff)}\n\ndef wilcoxon_test(a, b):\n    try:\n        from scipy.stats import wilcoxon\n        stat, p = wilcoxon(a, b, alternative='greater')\n        return {\"statistic\": float(stat), \"p_value\": float(p)}\n    except Exception as e:\n        return {\"error\": str(e)}\n\nresults = {\n    \"description\": \"bf16 DeepSeek-R1-Distill-Qwen-7B: importance vs random masking comparison\",\n    \"model\": \"DeepSeek-R1-Distill-Qwen-7B (bf16)\",\n    \"sparsity_levels_analyzed\": [0.15, 0.20, 0.25],\n    \"note\": \"s030 random still running, excluded. Problems with null II in any phase excluded from gradient/monotonicity analysis.\",\n    \"per_sparsity\": {},\n    \"cross_sparsity_summary\": {},\n    \"statistical_tests\": {},\n}\n\nall_imp_gradients = {}\nall_rand_gradients = {}\n\nfor sp in [0.15, 0.20, 0.25]:\n    sp_str = f\"s{int(sp*100):03d}\"\n    imp_problems = load_per_problem(IMP_DIRS[sp], sp)\n    rand_problems = load_per_problem(RAND_DIRS[sp], sp)\n\n    imp_ii_all, imp_ids_all = extract_ii_arrays(imp_problems)\n    rand_ii_all, rand_ids_all = extract_ii_arrays(rand_problems)\n    assert imp_ids_all == rand_ids_all, f\"ID mismatch at {sp}\"\n\n    # For gradient analysis: need high and low (mid optional)\n    # Use only problems where both imp and rand have non-null high AND low\n    n_total = len(imp_ids_all)\n    valid_hl = np.ones(n_total, dtype=bool)\n    for arr in [imp_ii_all, rand_ii_all]:\n        valid_hl &= ~np.isnan(arr[\"high\"]) & ~np.isnan(arr[\"low\"])\n\n    imp_grad = imp_ii_all[\"low\"][valid_hl] - imp_ii_all[\"high\"][valid_hl]\n    rand_grad = rand_ii_all[\"low\"][valid_hl] - rand_ii_all[\"high\"][valid_hl]\n    n_valid_hl = int(valid_hl.sum())\n    all_imp_gradients[sp_str] = imp_grad\n    all_rand_gradients[sp_str] = rand_grad\n\n    # Medians/means over non-null values per phase\n    def phase_stats(ii_dict, label):\n        s = {}\n        for phase in PHASES:\n            v = ii_dict[phase][~np.isnan(ii_dict[phase])]\n            s[phase] = {\"median\": float(np.median(v)), \"mean\": float(np.mean(v)), \"n\": len(v)} if len(v) > 0 else {\"median\": None, \"mean\": None, \"n\": 0}\n        return s\n\n    imp_ps = phase_stats(imp_ii_all, \"imp\")\n    rand_ps = phase_stats(rand_ii_all, \"rand\")\n\n    sp_result = {\n        \"n_problems_total\": n_total,\n        \"n_problems_valid_gradient\": n_valid_hl,\n        \"problem_ids_match\": True,\n        \"importance\": {\n            \"phase_stats\": imp_ps,\n            \"median_gradient_low_minus_high\": float(np.median(imp_grad)),\n            \"mean_gradient_low_minus_high\": float(np.mean(imp_grad)),\n            \"gradient_std\": float(np.std(imp_grad)),\n            \"monotonicity\": monotonicity_score(imp_ii_all),\n            \"source\": str(IMP_DIRS[sp] / \"profiling_results.json\"),\n        },\n        \"random\": {\n            \"phase_stats\": rand_ps,\n            \"median_gradient_low_minus_high\": float(np.median(rand_grad)),\n            \"mean_gradient_low_minus_high\": float(np.mean(rand_grad)),\n            \"gradient_std\": float(np.std(rand_grad)),\n            \"monotonicity\": monotonicity_score(rand_ii_all),\n            \"source\": str(RAND_DIRS[sp] / \"profiling_results.json\"),\n        },\n        \"comparison\": {\n            \"gradient_ratio_median\": float(np.median(imp_grad) / np.median(rand_grad)) if np.median(rand_grad) != 0 else \"inf\",\n            \"gradient_ratio_mean\": float(np.mean(imp_grad) / np.mean(rand_grad)) if np.mean(rand_grad) != 0 else \"inf\",\n            \"problems_imp_gradient_larger\": int(np.sum(imp_grad > rand_grad)),\n            \"problems_rand_gradient_larger\": int(np.sum(rand_grad > imp_grad)),\n        },\n    }\n\n    perm = permutation_test(imp_grad, rand_grad)\n    wilc = wilcoxon_test(imp_grad, rand_grad)\n    sp_result[\"statistical_tests\"] = {\"permutation_test\": perm, \"wilcoxon_signed_rank\": wilc}\n    results[\"per_sparsity\"][sp_str] = sp_result\n\n# Cross-sparsity summary\nimp_mg = {s: results[\"per_sparsity\"][s][\"importance\"][\"median_gradient_low_minus_high\"] for s in [\"s015\",\"s020\",\"s025\"]}\nrand_mg = {s: results[\"per_sparsity\"][s][\"random\"][\"median_gradient_low_minus_high\"] for s in [\"s015\",\"s020\",\"s025\"]}\nresults[\"cross_sparsity_summary\"] = {\n    \"importance_median_gradients\": imp_mg,\n    \"random_median_gradients\": rand_mg,\n    \"importance_gradient_increases_with_sparsity\": imp_mg[\"s025\"] > imp_mg[\"s015\"],\n    \"random_gradient_flat\": abs(rand_mg[\"s025\"] - rand_mg[\"s015\"]) < 0.1,\n}\n\n# Pooled tests\npooled_imp = np.concatenate([all_imp_gradients[s] for s in [\"s015\",\"s020\",\"s025\"]])\npooled_rand = np.concatenate([all_rand_gradients[s] for s in [\"s015\",\"s020\",\"s025\"]])\nresults[\"statistical_tests\"] = {\n    \"pooled_permutation_test\": permutation_test(pooled_imp, pooled_rand),\n    \"pooled_wilcoxon\": wilcoxon_test(pooled_imp, pooled_rand),\n    \"pooled_n\": int(len(pooled_imp)),\n}\n\n# s030 importance only\nimp030 = load_per_problem(IMP_DIRS[0.30], 0.30)\nimp030_ii, _ = extract_ii_arrays(imp030)\nimp030_valid = ~np.isnan(imp030_ii[\"high\"]) & ~np.isnan(imp030_ii[\"low\"])\nimp030_grad = imp030_ii[\"low\"][imp030_valid] - imp030_ii[\"high\"][imp030_valid]\nresults[\"s030_importance_only\"] = {\n    \"phase_medians\": {p: float(np.nanmedian(imp030_ii[p])) for p in PHASES},\n    \"median_gradient\": float(np.median(imp030_grad)),\n    \"monotonicity\": monotonicity_score(imp030_ii),\n    \"n_valid\": int(imp030_valid.sum()),\n    \"note\": \"random s030 not yet complete\",\n}\n\nout_path = BASE / \"analysis_bf16_ds_comparison.json\"\nwith open(out_path, \"w\") as f:\n    json.dump(results, f, indent=2)\nprint(f\"Saved: {out_path}\")\n\n# Text summary\nprint(\"\\n\" + \"=\"*70)\nprint(\"BF16 DeepSeek: Importance vs Random Masking Comparison\")\nprint(\"=\"*70)\nfor sp_str in [\"s015\", \"s020\", \"s025\"]:\n    sp = results[\"per_sparsity\"][sp_str]\n    ips = sp[\"importance\"][\"phase_stats\"]\n    rps = sp[\"random\"][\"phase_stats\"]\n    print(f\"\\n--- Sparsity {sp_str} ({sp['n_problems_valid_gradient']}/{sp['n_problems_total']} valid) ---\")\n    print(f\"  Imp II medians:   high={ips['high']['median']:.4f}  mid={ips['mid']['median'] if ips['mid']['median'] else 'N/A':>7}  low={ips['low']['median']:.4f}\")\n    print(f\"  Rand II medians:  high={rps['high']['median']:.4f}  mid={rps['mid']['median'] if rps['mid']['median'] else 'N/A':>7}  low={rps['low']['median']:.4f}\")\n    print(f\"  Gradient (med):   imp={sp['importance']['median_gradient_low_minus_high']:.4f}  rand={sp['random']['median_gradient_low_minus_high']:.4f}\")\n    print(f\"  Monotonicity:     imp={sp['importance']['monotonicity']['strict']*100:.0f}%  rand={sp['random']['monotonicity']['strict']*100:.0f}%\")\n    print(f\"  Perm p={sp['statistical_tests']['permutation_test']['p_value']:.4f}  Wilcox p={sp['statistical_tests']['wilcoxon_signed_rank'].get('p_value','N/A')}\")\n    print(f\"  imp>rand: {sp['comparison']['problems_imp_gradient_larger']}/{sp['n_problems_valid_gradient']}\")\n\npt = results[\"statistical_tests\"][\"pooled_permutation_test\"]\nwt = results[\"statistical_tests\"][\"pooled_wilcoxon\"]\nprint(f\"\\n--- Pooled ({results['statistical_tests']['pooled_n']} problems) ---\")\nprint(f\"  Perm p={pt['p_value']:.4f} (diff={pt['observed_mean_diff']:.4f})  Wilcox p={wt.get('p_value','N/A')}\")\n\ns030 = results[\"s030_importance_only\"]\nprint(f\"\\n--- s030 importance only ({s030['n_valid']} valid) ---\")\nprint(f\"  Medians: high={s030['phase_medians']['high']:.4f}  mid={s030['phase_medians']['mid']:.4f}  low={s030['phase_medians']['low']:.4f}\")\nprint(f\"  Gradient={s030['median_gradient']:.4f}  Mono={s030['monotonicity']['strict']*100:.0f}%\")\nPYEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "fd5ae324-2218-4dfc-bcb5-308c092eae0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VL59zHtBzzBwSya2vp4CQe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1244,
+                "cache_read_input_tokens": 39506,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1244
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T07:12:55.532Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BRt1yp3uhgbHXjRuZAyapR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "e019d8b8-4a75-4c90-92ac-6bc5a8176230",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LvQE3Nb8fbKQzRmXh8tJJz",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/autodl-tmp/pacs/run_bf16_ds_comparison.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "186cfe08-e0fa-41e5-be9f-3d03daea360a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HhF5cpSqGYr3Ua1pkj3yGt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3924,
+                "cache_read_input_tokens": 40750,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3924
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T07:13:01.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LvQE3Nb8fbKQzRmXh8tJJz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved: /root/autodl-tmp/pacs/analysis_bf16_ds_comparison.json\\\\n\\\\n======================================================================\\\\nBF16 DeepSeek: Importance vs Random Masking Comparison\\\\n======================================================================\\\\n\\\\n--- Sparsity s015 (49/50 valid) ---\\\\n  Imp II medians:   high=0.0001  mid=0.10711428023182856  low=0.3155\\\\n  Rand II medians:  high=0.0931  mid=0.09669573200282755  low=0.1026\\\\n  Gradient (med):   imp=0.3508  rand=0.0110\\\\n  Monotonicity:     imp=50%  rand=10%\\\\n  Perm p=0.0001  Wilcox p=3.0860079171191046e-05\\\\n  imp>rand: 36/49\\\\n\\\\n--- Sparsity s020 (49/50 valid) ---\\\\n  Imp II medians:   high=0.0036  mid=0.19772851989447066  low=1.1280\\\\n  Rand II medians:  high=0.2918  mid=0.3503566892174488  low=0.2763\\\\n  Gradient (med):   imp=1.1363  rand=0.0434\\\\n  Monotonicity:     imp=72%  rand=18%\\\\n  Perm p=0.0001  Wilcox p=8.01534602246079e-07\\\\n  imp>rand: 39/49\\\\n\\\\n--- Sparsity s025 (49/50 valid) ---\\\\n  Imp II medians:   high=0.0099  mid=1.057070399151736  low=3.9546\\\\n  Rand II medians:  high=0.8182  mid=0.9324096125060083  low=1.3627\\\\n  Gradient (med):   imp=4.0174  rand=0.3032\\\\n  Monotonicity:     imp=82%  rand=25%\\\\n  Perm p=0.0001  Wilcox p=2.411505484190002e-08\\\\n  imp>rand: 42/49\\\\n\\\\n--- Pooled (147 problems) ---\\\\n  Perm p=0.0001 (diff=6.9979)  Wilcox p=2.7619433645124515e-15\\\\n\\\\n--- s030 importance only (49 valid) ---\\\\n  Medians: high=0.0343  mid=1.5173  low=9.9731\\\\n  Gradient=9.9538  Mono=90%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "09017fcd-47ab-4159-80f1-19c9ee9c12d8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved: /root/autodl-tmp/pacs/analysis_bf16_ds_comparison.json\\\\n\\\\n======================================================================\\\\nBF16 DeepSeek: Importance vs Random Masking Comparison\\\\n======================================================================\\\\n\\\\n--- Sparsity s015 (49/50 valid) ---\\\\n  Imp II medians:   high=0.0001  mid=0.10711428023182856  low=0.3155\\\\n  Rand II medians:  high=0.0931  mid=0.09669573200282755  low=0.1026\\\\n  Gradient (med):   imp=0.3508  rand=0.0110\\\\n  Monotonicity:     imp=50%  rand=10%\\\\n  Perm p=0.0001  Wilcox p=3.0860079171191046e-05\\\\n  imp>rand: 36/49\\\\n\\\\n--- Sparsity s020 (49/50 valid) ---\\\\n  Imp II medians:   high=0.0036  mid=0.19772851989447066  low=1.1280\\\\n  Rand II medians:  high=0.2918  mid=0.3503566892174488  low=0.2763\\\\n  Gradient (med):   imp=1.1363  rand=0.0434\\\\n  Monotonicity:     imp=72%  rand=18%\\\\n  Perm p=0.0001  Wilcox p=8.01534602246079e-07\\\\n  imp>rand: 39/49\\\\n\\\\n--- Sparsity s025 (49/50 valid) ---\\\\n  Imp II medians:   high=0.0099  mid=1.057070399151736  low=3.9546\\\\n  Rand II medians:  high=0.8182  mid=0.9324096125060083  low=1.3627\\\\n  Gradient (med):   imp=4.0174  rand=0.3032\\\\n  Monotonicity:     imp=82%  rand=25%\\\\n  Perm p=0.0001  Wilcox p=2.411505484190002e-08\\\\n  imp>rand: 42/49\\\\n\\\\n--- Pooled (147 problems) ---\\\\n  Perm p=0.0001 (diff=6.9979)  Wilcox p=2.7619433645124515e-15\\\\n\\\\n--- s030 importance only (49 valid) ---\\\\n  Medians: high=0.0343  mid=1.5173  low=9.9731\\\\n  Gradient=9.9538  Mono=90%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Saved: /root/autodl-tmp/pacs/analysis_bf16_ds_comparison.json\\n\\n======================================================================\\nBF16 DeepSeek: Importance vs Random Masking Comparison\\n======================================================================\\n\\n--- Sparsity s015 (49/50 valid) ---\\n  Imp II medians:   high=0.0001  mid=0.10711428023182856  low=0.3155\\n  Rand II medians:  high=0.0931  mid=0.09669573200282755  low=0.1026\\n  Gradient (med):   imp=0.3508  rand=0.0110\\n  Monotonicity:     imp=50%  rand=10%\\n  Perm p=0.0001  Wilcox p=3.0860079171191046e-05\\n  imp>rand: 36/49\\n\\n--- Sparsity s020 (49/50 valid) ---\\n  Imp II medians:   high=0.0036  mid=0.19772851989447066  low=1.1280\\n  Rand II medians:  high=0.2918  mid=0.3503566892174488  low=0.2763\\n  Gradient (med):   imp=1.1363  rand=0.0434\\n  Monotonicity:     imp=72%  rand=18%\\n  Perm p=0.0001  Wilcox p=8.01534602246079e-07\\n  imp>rand: 39/49\\n\\n--- Sparsity s025 (49/50 valid) ---\\n  Imp II medians:   high=0.0099  mid=1.057070399151736  low=3.9546\\n  Rand II medians:  high=0.8182  mid=0.9324096125060083  low=1.3627\\n  Gradient (med):   imp=4.0174  rand=0.3032\\n  Monotonicity:     imp=82%  rand=25%\\n  Perm p=0.0001  Wilcox p=2.411505484190002e-08\\n  imp>rand: 42/49\\n\\n--- Pooled (147 problems) ---\\n  Perm p=0.0001 (diff=6.9979)  Wilcox p=2.7619433645124515e-15\\n\\n--- s030 importance only (49 valid) ---\\n  Medians: high=0.0343  mid=1.5173  low=9.9731\\n  Gradient=9.9538  Mono=90%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"
+              }
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，结果非常清晰。\n\n## 结果摘要\n\n### Per-Sparsity 对比\n\n| Sparsity | Imp 梯度 (median) | Rand 梯度 (median) | Imp 单调性 | Rand 单调性 | Perm p | Wilcox p | imp>rand |\n|----------|-------------------|-------------------|-----------|-----------|--------|----------|----------|\n| **s015** | 0.3508 | 0.0110 | 50% | 10% | 0.0001 | 3.1e-05 | 36/49 |\n| **s020** | 1.1363 | 0.0434 | 72% | 18% | 0.0001 | 8.0e-07 | 39/49 |\n| **s025** | 4.0174 | 0.3032 | 82% | 25% | 0.0001 | 2.4e-08 | 42/49 |\n\n**Pooled** (147 problems): Perm p=0.0001, Wilcox p=2.8e-15\n\n### 关键发现\n\n1. **Importance masking 梯度随 sparsity 强单调递增**：0.35 → 1.14 → 4.02 → 9.95 (s030)\n2. **Random masking 梯度几乎平坦**：0.01 → 0.04 → 0.30（仅 s025 略有上升）\n3. **Importance 单调性远高于 random**：50%→72%→82%→90% vs 10%→18%→25%\n4. **所有 sparsity level 的 permutation test 和 Wilcoxon test 均高度显著**（p < 0.001）\n5. 每个 sparsity level 中，>73% 的 problem 的 importance 梯度大于 random 梯度\n\n结果已保存至 `/root/autodl-tmp/pacs/analysis_bf16_ds_comparison.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "uuid": "102dc4bf-cc7b-46c8-921a-18a1f338b15e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012fWKiMZ9Ef8pFRCgV1EH5t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 891,
+                "cache_read_input_tokens": 44674,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 891
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，结果非常清晰。\n\n## 结果摘要\n\n### Per-Sparsity 对比\n\n| Sparsity | Imp 梯度 (median) | Rand 梯度 (median) | Imp 单调性 | Rand 单调性 | Perm p | Wilcox p | imp>rand |\n|----------|-------------------|-------------------|-----------|-----------|--------|----------|----------|\n| **s015** | 0.3508 | 0.0110 | 50% | 10% | 0.0001 | 3.1e-05 | 36/49 |\n| **s020** | 1.1363 | 0.0434 | 72% | 18% | 0.0001 | 8.0e-07 | 39/49 |\n| **s025** | 4.0174 | 0.3032 | 82% | 25% | 0.0001 | 2.4e-08 | 42/49 |\n\n**Pooled** (147 problems): Perm p=0.0001, Wilcox p=2.8e-15\n\n### 关键发现\n\n1. **Importance masking 梯度随 sparsity 强单调递增**：0.35 → 1.14 → 4.02 → 9.95 (s030)\n2. **Random masking 梯度几乎平坦**：0.01 → 0.04 → 0.30（仅 s025 略有上升）\n3. **Importance 单调性远高于 random**：50%→72%→82%→90% vs 10%→18%→25%\n4. **所有 sparsity level 的 permutation test 和 Wilcoxon test 均高度显著**（p < 0.001）\n5. 每个 sparsity level 中，>73% 的 problem 的 importance 梯度大于 random 梯度\n\n结果已保存至 `/root/autodl-tmp/pacs/analysis_bf16_ds_comparison.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 183587,
+            "duration_api_ms": 178241,
+            "num_turns": 18,
+            "stop_reason": "end_turn",
+            "session_id": "1fac13dd-2024-4b8b-bd1d-3e33589f1926",
+            "total_cost_usd": 0.6800245,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 34118,
+              "cache_read_input_tokens": 376492,
+              "output_tokens": 11076,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 34118,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 550,
+                  "cache_read_input_tokens": 44674,
+                  "cache_creation_input_tokens": 891,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 891
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1451,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001556,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 17,
+                "outputTokens": 11076,
+                "cacheReadInputTokens": 376492,
+                "cacheCreationInputTokens": 34118,
+                "webSearchRequests": 0,
+                "costUSD": 0.6784685,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5abc0955-c909-4874-ae9b-24ffacd7d15f"
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bf16-ds-imp-vs-rand.md"
+}

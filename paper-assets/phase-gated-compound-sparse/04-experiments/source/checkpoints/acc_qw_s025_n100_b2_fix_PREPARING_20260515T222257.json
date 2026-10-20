@@ -1,0 +1,18 @@
+{
+  "exp_id": "acc_qw_s025_n100_b2_fix",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:22:57.057Z",
+    "updated_at": "2026-05-15T22:22:57.057Z",
+    "spec": {
+      "hypothesis": "重跑 QW s025 batch2 (problems 51-100) with max_new_tokens=8192，修复原 batch2 使用 2048 的不一致问题。",
+      "parent": "acc_qw_s025_n100"
+    }
+  },
+  "timestamp": "2026-05-15T22:22:57.301128+00:00",
+  "trigger": "update_registry"
+}

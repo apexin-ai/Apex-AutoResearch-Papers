@@ -1,0 +1,40 @@
+{
+  "exp_id": "gsm8k_qw_rand_s025_v2",
+  "project": "phase-gated-compound-sparse",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:30:14.407Z",
+    "updated_at": "2026-05-15T23:41:06.679Z",
+    "spec": {
+      "data_path": "data/gsm8k.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "masking_method": "random",
+      "sparsity": 0.25,
+      "output_dir": "/root/autodl-tmp/pacs/profiling_output_gsm8k_qw_rand_s025_v2",
+      "bootstrap_fix": "D029 median CI"
+    },
+    "hypothesis": "C10 重跑：QW random masking s=0.25 GSM8K compound interaction（修复 bootstrap bug 后）",
+    "parent": "gsm8k_qw_rand_s025",
+    "server": "westd-22162",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T23:23:26.824Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path data/gsm8k.json --output_dir ./profiling_output_gsm8k_qw_rand_s025_v2 --sparsity_levels 0.25 --masking_method random --save_generations\"",
+      "code_commit": "1b4f61aa366a9fe320f8563c8f7acb5af58d78b7",
+      "finished_at": "2026-05-15T23:41:06.084Z",
+      "training_hours": 0.29
+    },
+    "pid": "288196",
+    "log_path": "~/runs/phase-gated-compound-sparse/gsm8k_qw_rand_s025_v2.log"
+  },
+  "timestamp": "2026-05-15T23:41:06.932524+00:00",
+  "trigger": "update_registry"
+}

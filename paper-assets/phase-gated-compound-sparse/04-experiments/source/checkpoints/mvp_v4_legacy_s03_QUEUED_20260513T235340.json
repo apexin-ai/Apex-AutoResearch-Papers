@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_v4_legacy_s03",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:53:20.777Z",
+    "updated_at": "2026-05-13T23:53:40.938Z",
+    "hypothesis": "v4 legacy: importance-based masking (hardcoded), sparsity=0.3, cuda:2. 30% 是唯一有初步符号反转信号的 level。最关键。"
+  },
+  "timestamp": "2026-05-13T23:53:40.975486+00:00",
+  "trigger": "update_registry"
+}

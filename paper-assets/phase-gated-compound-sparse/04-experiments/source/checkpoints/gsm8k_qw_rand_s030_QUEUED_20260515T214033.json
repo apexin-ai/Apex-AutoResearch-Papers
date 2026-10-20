@@ -1,0 +1,16 @@
+{
+  "exp_id": "gsm8k_qw_rand_s030",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:37:39.530Z",
+    "updated_at": "2026-05-15T21:40:33.611Z",
+    "hypothesis": "C10: QW random masking s=0.30 在 GSM8K 上的 compound interaction，作为 importance masking 的对照组。gsm8k_profiling_qw 中此条件结果 INVALID，需重跑。",
+    "parent": "gsm8k_profiling_qw"
+  },
+  "timestamp": "2026-05-15T21:40:33.822162+00:00",
+  "trigger": "update_registry"
+}

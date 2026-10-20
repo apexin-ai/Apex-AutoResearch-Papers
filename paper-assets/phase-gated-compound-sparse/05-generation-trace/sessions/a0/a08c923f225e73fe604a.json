@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a08c923f225e73fe604a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops gpqa remaining commands",
+  "task_key": "worker_ops_gpqa_remaining_commands_20260517T021850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpqa_remaining_commands_20260517T021850_result.json",
+    "occurrence": 1,
+    "bytes": 1768,
+    "sha256": "dfd6b91a91741c04247840eab22a7c70181097ad6d03e6d7f5b875e4fe2d50ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`gpqa_batch_launcher.sh` 已更新，新增 `run_qw_random_s020` 函数。\n\n---\n\n## 3 个完整可执行命令\n\n**exp_id: gpqa_qw_importance_s025**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 -u -m pacs.profiling.run_profiling --model_path checkpoints/Qwen2.5-7B-Instruct --data_path data/gpqa_diamond.json --output_dir ./profiling_output_gpqa_qw_importance_s025 --raw_prompt --sparsity_levels 0.25 --masking_method importance --max_new_tokens 8192 --min_phase_length 10 --max_problems 198 --save_generations --gpu 0\n```\n\n**exp_id: gpqa_qw_importance_s030**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 -u -m pacs.profiling.run_profiling --model_path checkpoints/Qwen2.5-7B-Instruct --data_path data/gpqa_diamond.json --output_dir ./profiling_output_gpqa_qw_importance_s030 --raw_prompt --sparsity_levels 0.30 --masking_method importance --max_new_tokens 8192 --min_phase_length 10 --max_problems 198 --save_generations --gpu 0\n```\n\n**exp_id: gpqa_qw_random_s020**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 -u -m pacs.profiling.run_profiling --model_path checkpoints/Qwen2.5-7B-Instruct --data_path data/gpqa_diamond.json --output_dir ./profiling_output_gpqa_qw_random_s020 --raw_prompt --sparsity_levels 0.20 --masking_method random --max_new_tokens 8192 --min_phase_length 10 --max_problems 198 --save_generations --gpu 0\n```\n\n---\n\n每条命令需约 1 GPU。当前 gpqa_qw_importance_s020 占 GPU0，释放后依次提交即可。三条可分别在不同 GPU 并行（改 `--gpu N`），或同 GPU 串行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpqa-remaining-commands.md"
+}

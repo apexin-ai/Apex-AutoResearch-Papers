@@ -1,0 +1,330 @@
+{
+  "schema_version": "1.0",
+  "id": "bb62cff7e50ad2c32170",
+  "project": "phase-gated-compound-sparse",
+  "kind": "conversation",
+  "title": "paper w2 d059 results abstract",
+  "task_key": "worker_paper_w2-d059-results-abstract_20260514T232126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_w2-d059-results-abstract_20260514T232126.jsonl",
+    "occurrence": 1,
+    "bytes": 15683,
+    "sha256": "03333a792b9b2171b123d2e6d82fc832f008f3e08c30ea541669495925de5b41"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T23:22:24.652431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T23:22:24.652900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Results}\n3\t\\label{sec:results}\n4\t\n5\t\\subsection{Strategy-Dependent Severity}\n6\t\\label{sec:strategy-severity}\n7\t\n8\tTable~\\ref{tab:aggregate-ii} reports the median compound severity difference across strategies and sparsity levels. Under importance-based eviction, $\\Delta$ increases from $0.39$ at $s{=}0.15$ to $14.59$ at $s{=}0.30$---a $37{\\times}$ amplification. Under random eviction, no systematic growth is observed ($-0.02$ to $1.54$), confirming that compound severity depends qualitatively on eviction strategy. % exp_id: bf16_importance_s015..s030, bf16_ds_rand_s015..s030; source: experiment_summary_table.json\n9\t\n10\t\\begin{table}[t]\n11\t\\centering\n12\t\\small\n13\t\\caption{Median compound severity difference ($\\Delta = \\widetilde{\\mathrm{II}}_{\\textit{low}} - \\widetilde{\\mathrm{II}}_{\\textit{high}}$) by eviction strategy and sparsity level on DeepSeek-R1-Distill-Qwen-7B ($n{=}50$ MATH-500 problems).}\n14\t\\label{tab:aggregate-ii}\n15\t\\begin{tabular}{@{}lcccc@{}}\n16\t\\toprule\n17\tStrategy & $s{=}0.15$ & $s{=}0.20$ & $s{=}0.25$ & $s{=}0.30$ \\\\\n18\t\\midrule\n19\tImportance & 0.39 & 1.48 & 7.16 & 14.59 \\\\ % exp_id: bf16_importance_s015..s030; source: experiment_summary_table.json median_diff\n20\tRandom     & 0.01 & $-$0.02 & 0.54 & 1.54 \\\\ % exp_id: bf16_ds_rand_s015..s030; source: experiment_summary_table.json median_diff\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\end{table}\n24\t\n25\t\n26\t\\subsection{Phase-Modulated Amplification}\n27\t\\label{sec:phase-amplification}\n28\t\n29\tDecomposing II by reasoning phase reveals that strategy-dependent severity is driven by amplification in the low-sparsity phase. Table~\\ref{tab:main-results} reports the full per-phase breakdown. The severity gradient $G$ increases from $69{\\times}$ at $s{=}0.15$ to $274{\\times}$ at $s{=}0.30$ under importance-based eviction, while the high-sparsity phase experiences near-zero interaction ($\\widetilde{\\mathrm{II}}_{\\textit{high}}$ ranges from $0.006$ to $0.053$). Under random eviction, $G \\approx 0.9$--$1.7{\n…[truncated 9017 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T23:22:24.653113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T23:22:24.653282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tCompound sparsity---simultaneously pruning attention heads and evicting KV cache entries---is essential for efficient LLM inference but produces super-additive quality degradation whose structure is poorly understood.\n3\tPrior work treats compound interaction magnitude as approximately constant across the generation process.\n4\tWe show that this assumption is wrong: compound sparsity severity is an emergent phase-strategy interaction that varies by over an order of magnitude across reasoning phases.\n5\t\n6\tWe evaluate compound sparsity on three models---DeepSeek-R1-Distill-Qwen-7B, Qwen2.5-7B-Instruct (both Qwen2ForCausalLM), and DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM)---spanning two architectures, using 50 MATH-500 problems, measuring the Interaction Index---a super-additivity metric---across quantile-segmented reasoning phases at sparsity levels $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$.\n7\tUnder importance-based KV cache eviction, the median Interaction Index difference between low-sparsity and high-sparsity reasoning phases increases monotonically from $0.39$ at $s{=}0.15$ to $14.59$ at $s{=}0.30$, with paired Cohen's $d_z$ growing from $0.44$ (small) to $0.80$ (large); Bonferroni-corrected permutation tests yield $p < 0.005$ at all four sparsity levels.\n8\tRandom eviction produces no significant phase modulation in 7/8 conditions; the single exception (Qwen $s{=}0.30$, $p{=}0.012$) shows negligible effect size ($d_z{=}{-}0.04$), confirming that the severity gradient is strategy-specific, not an inherent property of compound sparsity.\n9\tAt $s{=}0.25$, a crossover emerges: importance-based eviction outperforms random in high-sparsity phases ($\\widetilde{\\mathrm{II}} = 0.032$ vs.\\ $0.818$) yet underperforms in low-sparsity phases ($\\widetilde{\\mathrm{II}} = 7.196$ vs.\\ $1.363$)---a qualitative reversal in strategy ranking.\n10\tThe pattern replicates on Qwen2.5-7B-Instruct at $s \\geq 0.20$ ($d_z \\geq 0.55$; Spearman $\\rho = 1.0$; gradient permutation\n…[truncated 815 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T23:22:24.653541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+              "old_string": "The directional pattern is consistent: importance-based eviction produces systematically larger phase-dependent severity than random eviction at all four sparsity levels. Table~\\ref{tab:llama-cross-arch} reports the Wilcoxon signed-rank test with Bonferroni correction ($k{=}4$) and median paired differences with bootstrap 95\\% CIs ($B{=}10{,}000$) for each level. At $s{=}0.30$, the test reaches significance ($p_{\\text{Bonf}} = \\placeholder{LLAMA\\_P030}$, $\\widetilde{\\Delta} = \\placeholder{LLAMA\\_DELTA030}$\\; $[\\placeholder{CI}]$); at $s{=}0.15$, the median difference is small but the CI excludes zero ($\\widetilde{\\Delta} = \\placeholder{LLAMA\\_DELTA015}$\\; $[\\placeholder{CI}]$, $p_{\\text{Bonf}} = \\placeholder{LLAMA\\_P015}$). The remaining levels ($s \\in \\{0.20, 0.25\\}$) show intermediate effects ($p_{\\text{Bonf}} = \\placeholder{}, \\placeholder{}$). % exp_id: c3_llama",
+              "new_string": "Table~\\ref{tab:llama-cross-arch} reports the full results. The evidence for a strategy contrast on LLaMA is mixed: at $s{=}0.15$, the bootstrap CI excludes zero ($[0.002, 0.043]$) but the Bonferroni-corrected Wilcoxon test is non-significant ($p_{\\text{Bonf}}{=}0.219$); conversely, at $s{=}0.30$ the CI spans zero ($[-0.069, 0.544]$) while the Wilcoxon test reaches significance ($p_{\\text{Bonf}}{=}0.029$). At intermediate levels ($s \\in \\{0.20, 0.25\\}$), neither CI nor Wilcoxon reaches significance. The median paired difference increases monotonically ($\\widetilde{\\Delta}$: $0.020 \\to 0.356$), consistent with a genuine but weak trend---partially confirming the cross-architecture hypothesis while underscoring the substantially weaker interaction on LlamaForCausalLM. % exp_id: c3_llama"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T23:22:24.653778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T23:22:24.653910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex",
+              "old_string": "$d_z{=}{-}0.04$",
+              "new_string": "negligible median difference ($\\widetilde{\\Delta} = \\placeholder{}$)"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T23:22:24.654053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T23:22:24.654181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex",
+              "old_string": "and on DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM), where monotonically increasing $d_z$ ($0.19 \\to 0.34$; $s{=}0.30$ Wilcoxon $p_{\\text{Bonf}} = 0.029$) suggests cross-architecture generalization, though at ${\\sim}$1/40 the absolute magnitude and with substantially weaker interaction than in Qwen2-based architectures. % exp_id: c3_llama",
+              "new_string": "and on DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM), where monotonically increasing median paired differences ($\\widetilde{\\Delta}$: $0.020 \\to 0.356$; $s{=}0.30$ Wilcoxon $p_{\\text{Bonf}}{=}0.029$) provide mixed but directionally consistent evidence for cross-architecture generalization, though at ${\\sim}$1/40 the absolute magnitude and with substantially weaker interaction than in Qwen2-based architectures. % exp_id: c3_llama"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T23:22:24.654329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T23:22:24.654483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+              "offset": "74",
+              "limit": "15"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T23:22:24.654626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "74\t\\subsection{Cross-Architecture Validation}\n75\t\\label{sec:cross-arch}\n76\t\n77\tTo test whether the phase-modulated severity pattern extends beyond the Qwen2 architecture, we replicate the experiment on DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM, 8B parameters; $n{=}49$ paired problems). Table~\\ref{tab:llama-cross-arch} reports the strategy-dependent severity comparison across sparsity levels.\n78\t\n79\tTable~\\ref{tab:llama-cross-arch} reports the full results. The evidence for a strategy contrast on LLaMA is mixed: at $s{=}0.15$, the bootstrap CI excludes zero ($[0.002, 0.043]$) but the Bonferroni-corrected Wilcoxon test is non-significant ($p_{\\text{Bonf}}{=}0.219$); conversely, at $s{=}0.30$ the CI spans zero ($[-0.069, 0.544]$) while the Wilcoxon test reaches significance ($p_{\\text{Bonf}}{=}0.029$). At intermediate levels ($s \\in \\{0.20, 0.25\\}$), neither CI nor Wilcoxon reaches significance. The median paired difference increases monotonically ($\\widetilde{\\Delta}$: $0.020 \\to 0.356$), consistent with a genuine but weak trend---partially confirming the cross-architecture hypothesis while underscoring the substantially weaker interaction on LlamaForCausalLM. % exp_id: c3_llama\n80\t\n81\tThe absolute magnitude is architecture-dependent: LLaMA severity differences are ${\\sim}40{\\times}$ smaller than DeepSeek and ${\\sim}7{\\times}$ smaller than Qwen, and the interaction is substantially weaker---random eviction also shows a non-trivial phase gradient (Wilcoxon $p < \\placeholder{}$ at $s{=}0.30$), reducing the strategy contrast observed in Qwen2 models. The directional pattern---importance $>$ random, larger phase gradient under importance---is qualitatively consistent across all three models spanning two architectures (Qwen2ForCausalLM, LlamaForCausalLM), though the interaction magnitude is substantially weaker on LlamaForCausalLM. % exp_id: c3_llama; cross_model_analysis.json\n82\t\n83\t\\begin{table}[t]\n84\t\\centering\n85\t\\small\n86\t\\caption{Cross-architecture validation on\n…[truncated 332 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T23:22:24.654772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T23:22:24.654909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tCompound sparsity---simultaneously pruning attention heads and evicting KV cache entries---is essential for efficient LLM inference but produces super-additive quality degradation whose structure is poorly understood.\n3\tPrior work treats compound interaction magnitude as approximately constant across the generation process.\n4\tWe show that this assumption is wrong: compound sparsity severity is an emergent phase-strategy interaction that varies by over an order of magnitude across reasoning phases.\n5\t\n6\tWe evaluate compound sparsity on three models---DeepSeek-R1-Distill-Qwen-7B, Qwen2.5-7B-Instruct (both Qwen2ForCausalLM), and DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM)---spanning two architectures, using 50 MATH-500 problems, measuring the Interaction Index---a super-additivity metric---across quantile-segmented reasoning phases at sparsity levels $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$.\n7\tUnder importance-based KV cache eviction, the median Interaction Index difference between low-sparsity and high-sparsity reasoning phases increases monotonically from $0.39$ at $s{=}0.15$ to $14.59$ at $s{=}0.30$, with paired Cohen's $d_z$ growing from $0.44$ (small) to $0.80$ (large); Bonferroni-corrected permutation tests yield $p < 0.005$ at all four sparsity levels.\n8\tRandom eviction produces no significant phase modulation in 7/8 conditions; the single exception (Qwen $s{=}0.30$, $p{=}0.012$) shows negligible effect size (negligible median difference ($\\widetilde{\\Delta} = \\placeholder{}$)), confirming that the severity gradient is strategy-specific, not an inherent property of compound sparsity.\n9\tAt $s{=}0.25$, a crossover emerges: importance-based eviction outperforms random in high-sparsity phases ($\\widetilde{\\mathrm{II}} = 0.032$ vs.\\ $0.818$) yet underperforms in low-sparsity phases ($\\widetilde{\\mathrm{II}} = 7.196$ vs.\\ $1.363$)---a qualitative reversal in strategy ranking.\n10\tThe pattern replicates on Qwen2.5-7B-Instruct at $s \\geq 0.20$ ($d_z \\g\n…[truncated 959 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T23:22:24.655083+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n1. **results.tex §5.5** — 第二段已替换，使用实际数值（0.002, 0.043, 0.219, 0.029, 0.020, 0.356），无 `\\placeholder`。\n2. **abstract.tex D1**（line 8）— `$d_z{=}{-}0.04$` 已替换为 `negligible median difference ($\\widetilde{\\Delta} = \\placeholder{}$)`。\n3. **abstract.tex D2+W2**（line 10）— LLaMA 部分已替换，使用 `$\\widetilde{\\Delta}$: $0.020 \\to 0.356$`，无残留的 imp-vs-rand `d_z`。\n\n检查 abstract.tex 中剩余的 `d_z` 出现：line 7 的 `$d_z$ growing from $0.44$ to $0.80$` 和 line 10 的 `$d_z \\geq 0.55$` 均为 within-importance d_z，合规保留。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w2-d059-results-abstract_20260514T232126"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/paper-w2-d059-results-abstract.md"
+}

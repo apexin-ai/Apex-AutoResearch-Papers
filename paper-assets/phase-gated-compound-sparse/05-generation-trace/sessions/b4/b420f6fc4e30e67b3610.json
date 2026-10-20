@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b420f6fc4e30e67b3610",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code dense n100 then ds8k",
+  "task_key": "worker_code_dense_n100_then_ds8k_20260515T215355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dense_n100_then_ds8k_20260515T215355_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "9ef352f89ef1b9967a93d785bd172d063ab4e8ebfcd23efd958468b57636185a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### QW Dense n=100 结果（Priority 1）\n\n| Batch | Correct | Total | Acc |\n|-------|---------|-------|-----|\n| batch1 (1-50) | 16 | 50 | 32% |\n| batch2 (51-100) | 24 | 50 | 48% |\n| **Combined** | **40** | **100** | **40%** |\n\nbatch2 显著高于 batch1（48% vs 32%），可能有题目难度分布差异。\n\n### GPU 状态\n\n| GPU | 任务 | 状态 |\n|-----|------|------|\n| GPU 0 | 其他任务 | 78% util |\n| GPU 1 | 其他任务 | 69% util |\n| GPU 2 | **acc_ds_s020_8k_v2** | 刚提交 (PID 280638) |\n| GPU 3 | acc_qw_s030_n100 | 仍在运行 (72% util)，s030 输出文件尚未生成 |\n\nDS s025 8k 需等 GPU 3 上的 s030_n100 完成后再提交，后续 Worker 处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dense-n100-then-ds8k.md"
+}

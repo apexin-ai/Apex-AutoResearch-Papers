@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b00957e6ed24d68bb202",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis v6 random s030 r3",
+  "task_key": "worker_analysis_v6_random_s030_r3_20260514T061854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v6_random_s030_r3_20260514T061854_result.json",
+    "occurrence": 1,
+    "bytes": 1779,
+    "sha256": "d736eb7deac12c8cc3419221fb7b96cd0c4dbd259e8e1d3c76ca2c0f516a7fcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v6_random_s030_r3 结果\n\n**状态：** 完成，EXIT_CODE=0，Verdict=**PASS**\n\n### Interaction Index (s=0.30, random masking)\n\n| Phase | Mean | Median | Winsorized Mean | 95% CI | Skewness | Outliers |\n|-------|------|--------|-----------------|--------|----------|----------|\n| high_sparsity | **+9.2364** | 4.0237 | 11.7140 | [+2.51, +15.07] | -5.76 | 9 |\n| mid_sparsity | **-230.7604** | 2.4272 | 6.5105 | [-659.62, -3.94] | -13.08 | 1 |\n| low_sparsity | **-7.4119** | 4.7350 | 9.9636 | [-41.63, +15.06] | -14.60 | 4 |\n\n### Perplexity (s=0.30)\n\n| Phase | Dense | Attn-only | KV-only | Both |\n|-------|-------|-----------|---------|------|\n| high | 1.169 | 24.29 | 6.86 | 39.18 |\n| mid | 1.227 | 382.65 | 7.38 | 27.44 |\n| low | 1.228 | 94.88 | 9.88 | 88.94 |\n\n### Phase Stats\n- high: 21,086 tokens / 387 segments\n- mid: 13,306 tokens / 191 segments\n- low: 27,748 tokens / 397 segments\n\n### Pass/Fail Tests\n- **CI overlap test:** PASS — high vs mid CI non-overlapping\n- **Sign reversal test:** PASS — high II>0, mid II<0\n- **Overall:** PASS\n\n### 注意点\n- mid_sparsity 的 mean (-230.76) 被极端 outlier 严重拉偏，winsorized_mean (6.51) 和 median (2.43) 均为正值，说明是少数 problem 的极端负值造成\n- low_sparsity 同理：mean=-7.41 但 median=4.74, winsorized_mean=9.96\n- per_problem_ii 中 problem 42 (number_theory/427) 的 ii_mid=null（0 个 mid segments）\n- 50 problems 全部处理完成\n\n### 输出文件\n- `/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3/profiling_results.json` (1.9MB)\n\n---\n\n关于消息末尾的 `allocate_and_submit` 调用（bf16_ds_rand_s015）：我没有 `allocate_and_submit` 工具。如需启动该实验，请提供可用的执行方式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v6-random-s030-r3.md"
+}

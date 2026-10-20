@@ -1,0 +1,15 @@
+{
+  "exp_id": "acc_qw_s030_b1_8k",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:55:21.056Z",
+    "updated_at": "2026-05-16T01:11:26.476Z",
+    "hypothesis": "重跑 QW importance_s030 batch1 (problems 1-50) with max_new_tokens=8192，修复原 batch1 使用 2048 的 token 预算不匹配问题。"
+  },
+  "timestamp": "2026-05-16T01:11:26.755725+00:00",
+  "trigger": "update_registry"
+}

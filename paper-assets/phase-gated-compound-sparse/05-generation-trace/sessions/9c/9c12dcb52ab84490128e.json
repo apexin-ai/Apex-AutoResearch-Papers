@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c12dcb52ab84490128e",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose v4 legacy all and analyze",
+  "task_key": "worker_diagnose_v4-legacy-all-and-analyze_20260514T001037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v4-legacy-all-and-analyze_20260514T001037_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "a9933c03abbd569f441e4226f73fb791796b3210ea9e681c34b0f2dbba0aa27a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s01 registry 更新完毕。\n\n## 总结\n\n### s01 (importance, sparsity=0.1, cuda:0)\n- **状态**: 完成，Verdict=**FAIL**，conclusion → negative\n- **关键指标**:\n\n| Phase | II mean | 95% CI | 判定 |\n|-------|---------|--------|------|\n| high_sparsity | -0.11 | [-0.81, +0.41] | CI 跨零 |\n| mid_sparsity | -15.97 | [-47.99, +1.29] | CI 跨零 |\n| low_sparsity | 0.00 | [0.00, 0.00] | 零（无 KV 剪枝） |\n\n- sparsity=0.1 太低，pruning 信号几乎不可区分\n\n### random_r2 (random baseline, sparsity=0.1-0.3, cuda:3)\n- **状态**: 仍在跑，进度 **28/50**（最新日志 08:10）\n- 预计剩余 ~30 分钟（~2 min/problem × 22 problems）\n- Registry 不动\n\n### 分析脚本\n等 random_r2 完成后再跑 `analyze_v4_comparison.py`。\n\n### 四实验汇总\n\n| Exp ID | Masking | Sparsity | Verdict | II[high] | II[mid] | 状态 |\n|--------|---------|----------|---------|----------|---------|------|\n| s01 | importance | 0.1 | FAIL | -0.11 (CI跨零) | -15.97 (CI跨零) | DONE/negative |\n| s02 | importance | 0.2 | PASS | +21.29 (全正) | +21.87 (全正) | DONE/success |\n| s03 | importance | 0.3 | FAIL | -224.5 (CI跨零) | — | DONE/negative |\n| random_r2 | random | 0.1-0.3 | — | — | — | RUNNING 28/50 |\n\n**关键发现**: importance masking 在 sparsity=0.2 是甜点——0.1 太弱无信号，0.3 过强导致 catastrophic degradation。等 random baseline 完成后可对比 importance vs random 的 II 差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-v4-legacy-all-and-analyze.md"
+}

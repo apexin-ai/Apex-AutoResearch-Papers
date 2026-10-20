@@ -1,0 +1,83 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{liu2024sparsecompress}
+\citation{he2024sparseattn}
+\citation{he2024sparseattn}
+\citation{xu2025thinkv}
+\citation{devoto2026physics}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{voita2019heads}
+\citation{michel2019sixteen}
+\citation{zhang2024h2o}
+\citation{liu2024scissorhands}
+\citation{he2024sparseattn}
+\citation{feng2024adakv}
+\citation{tang2024slim}
+\citation{xu2025thinkv}
+\citation{xu2025rkv}
+\citation{devoto2026physics}
+\citation{cai2025hies}
+\citation{wu2026lethe}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KV cache compression.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase-aware methods.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Score collapse.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adaptive eviction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Experimental Framework}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{2}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Phase gradient (paired median difference of II) on MATH-500, importance eviction, $n=500$. All Bonferroni $p < 0.005$.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:primary}{{1}{3}{Phase gradient (paired median difference of II) on MATH-500, importance eviction, $n=500$. All Bonferroni $p < 0.005$}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sparsity levels.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Eviction strategies.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Phase Classification}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Interaction Intensity (II)}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Statistical Analysis}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Phase Gradient: Cross-Model and Cross-Architecture}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:cross-arch}{{4.1}{3}{Phase Gradient: Cross-Model and Cross-Architecture}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Primary models (DS, QW, $n=500$).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture replication (LLaMA, $n=250$).}{3}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces LLaMA-8B phase gradient ($n=250$, MATH-500). $d_z$: Cohen's $d_z$ for within-strategy phase gradient. Imp--Rand $d_z$: effect size of importance vs.\ random difference. Bonf.\ sig.: Bonferroni-corrected significance at $\alpha =0.05$.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:llama}{{2}{4}{LLaMA-8B phase gradient ($n=250$, MATH-500). $d_z$: Cohen's $d_z$ for within-strategy phase gradient. Imp--Rand $d_z$: effect size of importance vs.\ random difference. Bonf.\ sig.: Bonferroni-corrected significance at $\alpha =0.05$}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces GPQA Diamond phase gradient (median difference) and strategy specificity ratio. Both importance and random gradients are monotonically increasing.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:gpqa}{{3}{4}{GPQA Diamond phase gradient (median difference) and strategy specificity ratio. Both importance and random gradients are monotonically increasing}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Benchmark Generalization}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross-bench}{{4.2}{4}{Cross-Benchmark Generalization}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{GPQA Diamond ($n=50$).}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Comparison of phase gradient magnitudes.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Model Scale Effects}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:scale}{{4.3}{4}{Model Scale Effects}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Strategy specificity ratio (importance/random phase gradient) across benchmarks. GPQA shows no meaningful strategy specificity.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:specificity}{{4}{5}{Strategy specificity ratio (importance/random phase gradient) across benchmarks. GPQA shows no meaningful strategy specificity}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Phase gradient comparison: MATH-500 vs.\ GPQA Diamond (DS, importance, $s=0.15$).}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:gpqa_vs_math}{{5}{5}{Phase gradient comparison: MATH-500 vs.\ GPQA Diamond (DS, importance, $s=0.15$)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Mechanism: Discrimination Collapse}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:mechanism}{{4.4}{5}{Mechanism: Discrimination Collapse}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Behavioral Correlate: Language Switching}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:lang}{{4.5}{5}{Behavioral Correlate: Language Switching}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{5}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Phase modulation as the primary finding.}{5}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Phase gradient at 14B vs.\ 7B scale (importance eviction, MATH-500).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:14b}{{6}{6}{Phase gradient at 14B vs.\ 7B scale (importance eviction, MATH-500)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Gini coefficient change ($\Delta $Gini) under importance vs.\ random eviction. No significant difference between strategies ($p > 0.28$ for all conditions).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:gini}{{7}{6}{Gini coefficient change ($\Delta $Gini) under importance vs.\ random eviction. No significant difference between strategies ($p > 0.28$ for all conditions)}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Strategy specificity is conditional.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Crossover reinterpretation.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mechanism.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale considerations.}{6}{section*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Language switching dose--response (DS, MATH-500, importance eviction, $n=50$). Switch rate = fraction of problems with Chinese tokens. CN Acc/EN Acc = accuracy for switched/non-switched problems.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:lang}{{8}{7}{Language switching dose--response (DS, MATH-500, importance eviction, $n=50$). Switch rate = fraction of problems with Chinese tokens. CN Acc/EN Acc = accuracy for switched/non-switched problems}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Detailed LLaMA Results}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:llama}{{A}{7}{Detailed LLaMA Results}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}GPQA Phase Distribution}{8}{appendix.B}\protected@file@percent }
+\newlabel{app:gpqa}{{B}{8}{GPQA Phase Distribution}{appendix.B}{}}
+\gdef \@abspage@last{8}

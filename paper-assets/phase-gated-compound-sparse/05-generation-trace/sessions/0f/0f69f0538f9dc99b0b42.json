@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "0f69f0538f9dc99b0b42",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "sync artifacts download",
+  "task_key": "worker_sync_artifacts_download_20260515T084423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_artifacts_download_20260515T084423.log",
+    "occurrence": 1,
+    "bytes": 1236872,
+    "sha256": "b8756ac02ee715d0aea19ef9ce2c3ff7531eeaa57115e783e8a2a7455a0bed12"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 54,
+      "tool_call": 88,
+      "tool_result": 88,
+      "record": 3,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 94,
+      "chunks": [
+        {
+          "path": "0f69f0538f9dc99b0b42-part-0001.json",
+          "message_count": 87
+        },
+        {
+          "path": "0f69f0538f9dc99b0b42-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 146,
+      "chunks": [
+        {
+          "path": "0f69f0538f9dc99b0b42-part-0002.json",
+          "message_count": 133
+        },
+        {
+          "path": "0f69f0538f9dc99b0b42-part-0003.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-artifacts-download.md"
+}

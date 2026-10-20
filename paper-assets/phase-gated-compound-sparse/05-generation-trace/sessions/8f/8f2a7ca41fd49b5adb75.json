@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "8f2a7ca41fd49b5adb75",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper final figures compile v2",
+  "task_key": "worker_paper_final_figures_compile_v2_20260514T114221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final_figures_compile_v2_20260514T114221.log",
+    "occurrence": 1,
+    "bytes": 803670,
+    "sha256": "992203f8b321f0b01f0b370ae373f0b5fb740225177d06cca7ae91573f61c52a"
+  },
+  "statistics": {
+    "messages": 302,
+    "user_turns": 1,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 73,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 94,
+      "tool_result": 94,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 83,
+      "chunks": [
+        {
+          "path": "8f2a7ca41fd49b5adb75-part-0001.json",
+          "message_count": 83
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "8f2a7ca41fd49b5adb75-part-0001.json",
+          "message_count": 97
+        },
+        {
+          "path": "8f2a7ca41fd49b5adb75-part-0002.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-final-figures-compile-v2.md"
+}

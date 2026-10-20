@@ -1,0 +1,89 @@
+{
+  "exp_id": "c2_qw_n500_r3",
+  "project": "phase-gated-compound-sparse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:26:53.700Z",
+    "updated_at": "2026-05-15T07:59:19.865Z",
+    "hypothesis": "C2 Qwen n=500 continuation (cron false positive on c2_qw_n500). s015 完成, s020-s030 remaining. 与 DeepSeek 对称验证 compound sparsity severity.",
+    "parent": "c2_qw_n500",
+    "spec": {
+      "command": "run_profiling.py via screen c2_qw_gpu2/gpu3 (auto-continuation from c2_qw_n500)",
+      "server": "westd-22162",
+      "gpu": "cuda:2,cuda:3",
+      "pid": "159269,159794",
+      "data_path": "/root/autodl-tmp/pacs/data/MATH-500/",
+      "data_count": 500,
+      "model_name": "Qwen",
+      "seed": 42,
+      "checkpoint_source": "N/A (profiling, not training)",
+      "eval_data": "MATH-500 n=500",
+      "note": "s015 done (500/500 both imp+rand), s020 running (PID 159269 gpu2 imp, 159794 gpu3 rand). Screen: c2_qw_gpu2, c2_qw_gpu3. s025+s030 pending auto-advance."
+    },
+    "notes": "[2026-05-15 08:55 UTC+8] s015 DONE, s020 DONE, s025 RUNNING (imp 362/500, rand 337/500), s030 PENDING. Rate: ~0.41 min/prob. ETA s025 done ~10:02, all 8 conditions done ~13:27 UTC+8.",
+    "reproduce": {
+      "finished_at": "2026-05-15T05:26:52.529Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T05:26:57.979865+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "n_problems": 500,
+      "effective_n": 274,
+      "mid_null_rate": 0.452,
+      "imp_s015_median_ii": 0.0659,
+      "imp_s015_ci": [
+        0.0492,
+        0.0925
+      ],
+      "imp_s015_wilcoxon_p": 2.71e-39,
+      "imp_s020_median_ii": 0.3073,
+      "imp_s020_ci": [
+        0.2612,
+        0.3564
+      ],
+      "imp_s020_wilcoxon_p": 4.05e-44,
+      "imp_s025_median_ii": 1.0745,
+      "imp_s025_ci": [
+        0.9766,
+        1.1787
+      ],
+      "imp_s025_wilcoxon_p": 1.62e-46,
+      "imp_s030_median_ii": 3.155,
+      "imp_s030_ci": [
+        2.7986,
+        3.5582
+      ],
+      "imp_s030_wilcoxon_p": 3.36e-47,
+      "rand_s015_median_ii": -0.0111,
+      "rand_s015_wilcoxon_p": 0.375,
+      "rand_s020_median_ii": 0.0153,
+      "rand_s020_wilcoxon_p": 0.18,
+      "rand_s025_median_ii": 0.3931,
+      "rand_s025_bonf_p": 3.18e-10,
+      "rand_s030_median_ii": 0.9127,
+      "rand_s030_bonf_p": 3.2e-10,
+      "dz_s015_s020": -0.629,
+      "dz_s020_s025": -0.865,
+      "dz_s025_s030": -0.767,
+      "dz_s015_s030": -0.923,
+      "all_dz_reliable": true,
+      "dose_response_monotonic": true,
+      "dose_response_spearman_rho": 1,
+      "dose_response_perm_p": 0.0417,
+      "imp_rand_ratio_range": "2.7-20.1x"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T07:59:20.048395+00:00",
+  "trigger": "update_registry"
+}

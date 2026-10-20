@@ -1,0 +1,89 @@
+# agent / loop_6.md
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_6.md`
+- **Structured JSON:** [`cf375efda922bbe9095c.json`](../../sessions/cf/cf375efda922bbe9095c.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 6
+reason: idle_timeout
+updated: '2026-05-14T14:47:31+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-22162 cuda:0/1/2/3，不得使用其他设备
+- c2_qw_n500 用 SCREEN session（不是 tmux），cron 依赖 tmux 探测会误判为 dead——已发生 3 次 false positive，**不要因 cron 报 process gone 就标 failed**，必须 SSH 验证 PID
+- c2_qw_n500 存在重复进程问题（PID 132389/132392 是重复的，应已被杀），接手后先确认是否已清理
+- PENDING 的 c3_llama_arch 和 c2_ds_n500 是 DUPLICATE 已 killed，**勿重新提交**
+- 论文数字基准全部基于 bf16 paired 统计量（B=10000 bootstrap），fp16 旧数据已弃用，不要引用
+- Framing 硬约束 D015："emergent phase-strategy interaction"，禁止 "importance is broken" 叙事
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-22162，4× RTX PRO 6000 Blackwell 96GB
+- 工作目录：`/root/autodl-tmp/pacs`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）
+- 数据集：`/root/autodl-tmp/pacs/data/math500.json`（MATH-500, n=500）
+- 日志：`/root/autodl-tmp/pacs/logs/` 下 `c2_qw_n500_gpu{2,3}_full.log`、`n500_qw_{imp,rand}_s015.log`
+- c2_n500_deepseek：cuda:0+1，tmux sessions `c2_n500_gpu0` / `c2_n500_gpu1`
+- c2_qw_n500：cuda:2+3，**SCREEN** sessions `c2_qw_gpu2` / `c2_qw_gpu3`，PID 131864(imp) / 132002(rand)
+- c3_llama：重启后 PID 138393(parent) / 138408+138410(python)，用 `run_c3_llama_full.sh`
+- 活跃 cron：c2_n500_deepseek / c2_qw_n500 / c3_llama（3 个）
+- 论文产出：`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/`
+- 论文可编译：main.tex + references.bib 齐全
+
+### 3. 📊 当前状态
+**刚做完**：Session #6 处理了大量任务——bf16 全量实验完成、Cohen's d 统一为 paired d_z (D048)、C4 降级为 §6 supporting (D045/D046)、论文全文完成（§1-§8 + Abstract + 5 figures）、数字一致性审查、Reviewer 审查建议采纳 (D052)。
+
+**3 个 RUNNING 实验**：
+| exp_id | GPU | 内容 | 预估 |
+|--------|-----|------|------|
+| c2_n500_deepseek | cuda:0+1 | DeepSeek 8 conditions n=500 | ~18-20h |
+| c2_qw_n500 | cuda:2+3 | Qwen 8 conditions n=500，进度 ~93-98/500 s015 | ~22h/GPU |
+| c3_llama | CPU→GPU | LLaMA-8B 8 conditions，bug fix 后重启 | 待确认 |
+
+**⚠️ 紧急**：reconcile_crons 报告 c3_llama "Process gone, no sentinel, no W&B — miss 2/5"。但 notes 显示刚做过 bug fix 重启（PID 138393/138408/138410）。**必须立即 SSH 验证 c3_llama 进程是否存活**——可能是 cron 探测方式与实际启动方式不匹配（类似 c2_qw_n500 的 SCREEN 误判）。
+
+**2 个 running workers**：
+- `worker_monitor_all-experiments-progress`：监控所有实验进度
+- `worker_prep_c5b-pilot-design`：准备 C5b pilot 实验设计（oracle + heuristic on LLaMA s025/s030）
+
+### 4. 📋 待办（条件触发式）
+- c3_llama cron 报 process gone → **立即** spawn worker SSH 验证 PID 138393/138408/138410 是否存活；若真死了→查日志诊断→修复重启
+- c2_qw_n500 完成回调 → spawn worker 跑 paired bootstrap 统计分析 + 生成 n=500 版 Table/Figure → 更新论文
+- c2_n500_deepseek 完成回调 → 同上，DeepSeek n=500 统计分析
+- C2 两个 n=500 实验都完成 → 检查预注册条件："QW s015 CI 仍跨零 → 改叙事为 threshold sparsity ~s020"
+- c3_llama 完成 → 分析 LLaMA 架构验证结果；若 compound severity 方向一致 → C8 confirmed，更新论文 §4+§5；若不一致 → red-section framing 提案
+- worker_prep_c5b-pilot-design 完成 → 根据产出决定 C5b pilot 是否执行（需 GPU 释放后才能跑）
+- 所有补充实验完成 → 更新论文 tables/figures → 提交 Group C full review
+- **截稿 2026-05-25（距今 11 天）**：所有实验+论文更新+审稿修改必须在此前完成
+
+### 5. 🎯 战略上下文
+**核心结论链**：importance-based eviction 的 compound severity 随 sparsity 单调递增（DeepSeek 0.32→9.94; Qwen 0.048→2.619），random masking 平坦（7/8 FAIL）。机制：discrimination collapse（Gini/CV 下降跨模型一致），entropy redistribution 仅 DeepSeek 一致（D044）。
+
+**当前冲刺**：论文已完成，现在跑的是补强实验——C2 n=500 提升统计功效 + C3 LLaMA 跨架构验证。这些实验结果决定论文最终版本的 claim 强度。
+
+**易判断错的事**：
+- c2_qw_n500 的 cron 会频繁误报 failed（已 3 次 false positive），因为用了 SCREEN 而非 tmux。**永远先 SSH 查 PID 再信 cron 状态**
+- c3_llama 刚做了 bug fix（`bc` 命令返回空导致所有条件输出到 s000），重启后可能 cron 探测尚未同步
+- Qwen s015 是边缘 case（d=0.28, CI 含 0），n=500 结果决定叙事走"全 sparsity 显著"还是"threshold ~s020"
+- C4 已降级为 §6 supporting，不要试图恢复为 Core Claim
+- C5b (phase-aware mitigation) 采用 pilot-first 策略：先 2h 测 oracle + heuristic，>30% recovery 才全面铺开，否则降为 future work
+
+
+---

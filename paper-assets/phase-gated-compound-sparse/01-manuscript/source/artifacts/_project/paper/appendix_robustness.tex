@@ -1,0 +1,198 @@
+\section{Benjamini-Hochberg FDR Correction}
+\label{app:bh-fdr}
+
+Table~\ref{tab:bh-fdr} compares Bonferroni ($k{=}4$, per model$\times$strategy family) and Benjamini-Hochberg FDR correction across all 44 statistical tests. BH-FDR recovers 5 additional significant results beyond Bonferroni, all in low-effect-size conditions (random eviction or cross-training-paradigm random comparisons). All 32 Bonferroni-significant results remain significant under BH-FDR.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Bonferroni vs.\ BH-FDR correction summary ($\alpha{=}0.05$, 44 tests). ``BH only'' denotes tests significant under BH-FDR but not Bonferroni.}
+\label{tab:bh-fdr}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Category & Bonf.\ sig. & BH-only sig. \\
+\midrule
+Per-condition Wilcoxon ($k{=}16$) & 10 & 2 \\
+Imp vs.\ rand ($k{=}8$) & 8 & 0 \\
+Adjacent sparsity ($k{=}12$) & 10 & 1 \\
+Cross-paradigm Mann-Whitney ($k{=}8$) & 4 & 2 \\
+\midrule
+Total ($k{=}44$) & 32 & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 5 BH-only results are: DeepSeek random $s{=}0.25$ and $s{=}0.30$ per-condition Wilcoxon ($p_{\text{Bonf}}{=}0.064$/$0.065$, BH $q{=}0.002$), DeepSeek random $s{=}0.25 \to 0.30$ adjacent-sparsity step ($p_{\text{Bonf}}{=}0.078$, BH $q{=}0.002$), and cross-training-paradigm random $s{=}0.25$/$s{=}0.30$ Mann-Whitney ($p_{\text{Bonf}}{=}0.66$/$0.17$, BH $q{=}0.018$/$0.005$). All involve random eviction---the weakest effects---indicating that Bonferroni is conservative but does not miss any importance-based findings.
+
+
+\section{Minimum Phase Length Sensitivity}
+\label{app:mpl-sensitivity}
+
+Table~\ref{tab:mpl-sensitivity} reports the paired median difference $\Delta$ under three \texttt{min\_phase\_length} (mpl) settings across all 16 conditions (2 models $\times$ 2 strategies $\times$ 4 sparsity levels). Conclusions are robust: all importance-based conditions remain significant at $p_{\text{Bonf}} < 10^{-10}$ across mpl $\in \{5, 10, 20\}$; random conditions maintain the same significance pattern (non-significant at $s \leq 0.20$, significant at $s \geq 0.25$). Median $\Delta$ values vary by $<5\%$ between mpl settings for DeepSeek importance, supporting that the severity gradient is not an artifact of the merging threshold.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Sensitivity of median $\Delta$ to \texttt{min\_phase\_length} (mpl). $n_{\text{eff}}$: effective sample size after exclusions. All importance-based $p_{\text{Bonf}} < 10^{-10}$; ``ns'' denotes $p_{\text{Bonf}} > 0.05$.}
+\label{tab:mpl-sensitivity}
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+Model & Strategy & $s$ & \multicolumn{1}{c}{mpl$=$5} & \multicolumn{1}{c}{mpl$=$10} & \multicolumn{1}{c}{mpl$=$20} & $n_{\text{eff}}$(10) & $n_{\text{eff}}$(20) \\
+\midrule
+DS & Imp & 0.15 & 0.391 & 0.391 & 0.393 & 496 & 433 \\
+DS & Imp & 0.20 & 1.215 & 1.215 & 1.235 & 496 & 433 \\
+DS & Imp & 0.25 & 3.986 & 3.986 & 4.017 & 496 & 433 \\
+DS & Imp & 0.30 & 8.481 & 8.481 & 8.420 & 496 & 433 \\
+\addlinespace
+DS & Rand & 0.15 & 0.014 & 0.014\textsuperscript{ns} & 0.012\textsuperscript{ns} & 496 & 433 \\
+DS & Rand & 0.20 & 0.031\textsuperscript{ns} & 0.031\textsuperscript{ns} & 0.023\textsuperscript{ns} & 496 & 433 \\
+DS & Rand & 0.25 & 0.257 & 0.257 & 0.190 & 496 & 433 \\
+DS & Rand & 0.30 & 0.510 & 0.510 & 0.410 & 496 & 433 \\
+\addlinespace
+QW & Imp & 0.15 & 0.066 & 0.066 & 0.066 & 475 & 289 \\
+QW & Imp & 0.20 & 0.307 & 0.307 & 0.325 & 475 & 289 \\
+QW & Imp & 0.25 & 1.074 & 1.074 & 1.106 & 475 & 289 \\
+QW & Imp & 0.30 & 3.155 & 3.155 & 3.581 & 475 & 289 \\
+\addlinespace
+QW & Rand & 0.15 & $-$0.011\textsuperscript{ns} & $-$0.011\textsuperscript{ns} & $-$0.011\textsuperscript{ns} & 475 & 289 \\
+QW & Rand & 0.20 & 0.015\textsuperscript{ns} & 0.015\textsuperscript{ns} & 0.015\textsuperscript{ns} & 475 & 289 \\
+QW & Rand & 0.25 & 0.393 & 0.393 & 0.266 & 475 & 289 \\
+QW & Rand & 0.30 & 0.913 & 0.913 & 0.788 & 475 & 289 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The main effect of increasing mpl is reduced $n_{\text{eff}}$: at mpl$=$20, DeepSeek retains 433/500 problems and Qwen retains 289/500 (mid-null rate rises to 71.2\% and 84.6\%, respectively). Despite this sample reduction, all significance conclusions hold.
+
+
+\section{Segmentation Robustness}
+\label{app:seg-robust}
+
+Table~\ref{tab:seg-robust} reports the paired median difference $\Delta$ under tercile, quartile, and quintile segmentation for both models under importance-based eviction. Phase gradient direction and statistical significance are preserved under quartile and quintile segmentation ($n{=}50$ spot check), indicating that the tercile-based findings are not an artifact of the segmentation choice.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Segmentation robustness: median $\Delta$ under tercile ($n{=}496$/$475$), quartile ($n{=}50$ spot check), and quintile ($n{=}50$ spot check) segmentation. Importance-based eviction; all $p_{\text{Bonf}} < 10^{-7}$.}
+\label{tab:seg-robust}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Model & $s$ & Tercile & Quartile\; [95\% CI] & Quintile\; [95\% CI] \\
+\midrule
+\multirow{4}{*}{DeepSeek} & 0.15 & 0.391 & 0.491\; $[0.44,\; 0.70]$ & 0.505\; $[0.33,\; 0.71]$ \\
+& 0.20 & 1.215 & 1.388\; $[1.05,\; 1.79]$ & 1.197\; $[1.02,\; 1.76]$ \\
+& 0.25 & 3.986 & 4.322\; $[3.62,\; 8.06]$ & 4.960\; $[3.80,\; 9.02]$ \\
+& 0.30 & 8.481 & 12.930\; $[9.83,\; 19.10]$ & 11.548\; $[10.06,\; 18.51]$ \\
+\addlinespace
+\multirow{4}{*}{Qwen} & 0.15 & 0.066 & 0.226\; $[0.14,\; 0.27]$ & 0.203\; $[0.13,\; 0.26]$ \\
+& 0.20 & 0.307 & 0.561\; $[0.35,\; 0.77]$ & 0.517\; $[0.29,\; 0.75]$ \\
+& 0.25 & 1.074 & 1.870\; $[1.05,\; 2.44]$ & 1.801\; $[1.13,\; 2.38]$ \\
+& 0.30 & 3.155 & 4.097\; $[2.91,\; 4.94]$ & 4.009\; $[3.28,\; 5.34]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The quartile and quintile $\Delta$ values are comparable to or slightly larger than tercile values because finer-grained segmentation isolates more extreme phases (the ``lowest'' quintile captures a more concentrated low-sparsity segment than the lowest tercile). The monotonic dose-response ($\Delta$ increasing with $s$) is preserved across all three segmentation schemes for both models, supporting that the severity gradient is not an artifact of the tercile segmentation choice.
+
+
+\section{Robustness to Asymmetric Sparsity Allocation}
+\label{app:asymmetric-robustness}
+
+Our main experiments use symmetric sparsity ($s_{\text{head}} = s_{\text{KV}} = s$). To verify that the phase-gated severity gradient does not depend on this symmetric assumption, we evaluate two asymmetric configurations at a fixed total sparsity budget equivalent to $s{=}0.25$, using importance-based eviction on DeepSeek-R1-Distill-Qwen-7B.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Asymmetric sparsity robustness: per-phase II under two head/KV allocations (DeepSeek, importance-based eviction, $n{=}50$ spot check).}
+\label{tab:asymmetric-robust}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Config & $s_{\text{head}}$ & $s_{\text{KV}}$ & $\widetilde{\mathrm{II}}_{\textit{low}}$ & $\widetilde{\mathrm{II}}_{\textit{mid}}$ & $\widetilde{\mathrm{II}}_{\textit{high}}$ & $\Delta$ \\
+\midrule
+A (KV-heavy) & 0.20 & 0.30 & 19.51 & 6.05 & 0.38 & $+$19.13 \\
+B (head-heavy) & 0.30 & 0.20 & 18.77 & 3.97 & 0.52 & $+$18.25 \\
+\addlinespace
+Symmetric & 0.25 & 0.25 & 3.97 & --- & 0.02 & $+$3.99 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both asymmetric configurations produce large positive $\Delta$ ($+19.13$ and $+18.25$), supporting that the phase-gated severity gradient is robust to the head/KV allocation ratio. The KV-heavy configuration (A) exhibits higher mid-phase II ($6.05$ vs.\ $3.97$), suggesting that the KV eviction axis has a stronger impact on intermediate reasoning phases. Both asymmetric $\Delta$ values exceed the symmetric baseline ($3.99$), consistent with one axis operating at $s{=}0.30$---above the symmetric maximum tested---which amplifies overall severity. A systematic investigation of the full asymmetric interaction surface is left for future work.
+
+
+\section{Outlier Robustness Analysis}
+\label{app:outlier-robustness}
+
+The extreme mean/median ratio (up to $97{,}640{:}1$ in individual conditions) reflects heavy-tailed II distributions driven by near-zero denominators in specific problems. We verify robustness via symmetric winsorization at $5\%$ and $10\%$ levels. All median-based statistics---paired median difference $\Delta$, Wilcoxon signed-rank $p$-values, and amplification ratio $G$---are strictly invariant under winsorization, as expected for rank-based estimators. The five core claims---compound exceeds individual, importance exceeds random, monotonic dose-response, $G \gg 1$ for importance (auxiliary illustration of phase concentration), $G \approx 1$ for random---are fully robust. The extreme outlier severity further validates our choice of median-based inference over mean-based alternatives. $G$ values in this robustness analysis follow the ratio-of-medians convention (Table~\ref{tab:profiling-subset}); the primary $G$ definition (Eq.~\ref{eq:gradient}) is similarly invariant as a median of per-problem ratios.
+
+
+\section{\texttt{<think>} Token Phase Validation}
+\label{app:think-validation}
+
+DeepSeek-R1-Distill-Qwen-7B generates explicit \texttt{<think>}...\texttt{</think>} delimiters that demarcate chain-of-thought reasoning from final answers, providing a model-generated ground truth for reasoning phase boundaries. We evaluate whether our attention-sparsity-based phase segmentation (\S\ref{par:phase-segmentation}) recovers these boundaries on GSM8K ($n{=}48$ problems with valid phase assignments), using adaptive per-sequence quantile segmentation rather than a fixed global threshold.
+
+\paragraph{Naming convention.}
+A note on terminology: DeepSeek's \texttt{<think>} phase (active reasoning) exhibits \emph{low} attention sparsity---attention is broadly distributed across many positions during exploratory computation. Conversely, the answer phase exhibits \emph{high} attention sparsity---attention concentrates on a few positions during structured output. Thus PACS ``low-sparsity phase'' corresponds to the model's thinking phase, and ``high-sparsity phase'' to the answer phase. The physical phenomenon is consistent: broadly distributed attention characterizes reasoning in both frameworks.
+
+\paragraph{Token-level agreement.}
+We binarize each token as ``thinking'' (inside \texttt{<think>}) or ``answer'' (outside) and compare against the sparsity-based phase assignment. The adaptive segmentation achieves substantial agreement: $\kappa{=}0.88$ (per-problem mean $0.85$, median $0.88$), with token-level accuracy of $94.2\%$. Per-problem AUC-ROC is $0.98$ (median $0.99$), indicating near-perfect discriminability between thinking and answer phases based on attention sparsity alone. Of problems, $75\%$ achieve $\kappa \geq 0.80$ and $100\%$ achieve $\kappa \geq 0.60$. The \texttt{<think>} phase exhibits significantly lower attention sparsity than the answer phase ($0.656$ vs.\ $0.763$; Cohen's $d{=}-0.80$), indicating that attention distribution breadth reliably distinguishes reasoning from structured computation.
+
+\paragraph{Boundary proximity.}
+The median distance between the sparsity-based phase boundary and the nearest \texttt{<think>}/\texttt{</think>} delimiter is 1 token, with $81.2\%$ of boundaries falling within 10 tokens. This tight alignment indicates that the attention sparsity transition closely tracks the model's self-identified shift from exploratory reasoning to structured answer generation.
+
+\paragraph{Phase composition and II correlation.}
+We examine whether the fraction of thinking tokens within each phase correlates with compound severity (II). At the mid-phase level, the thinking-token fraction correlates with II (Spearman $\rho{=}0.49$, $p < 0.001$), consistent with mid-phase segments that contain more reasoning content being more vulnerable to compound sparsity. Low- and high-phase correlations are non-significant, as expected: these phases are compositionally dominated by thinking or answer tokens, respectively, leaving insufficient variance for correlation.
+
+\paragraph{MATH-500 indirect validation.}
+Direct $\kappa$ validation requires explicit \texttt{<think>} delimiters, available only on GSM8K. On MATH-500 ($n{=}500$), we instead assess \emph{temporal ordering consistency}: the fraction of problems where the low-sparsity phase precedes the high-sparsity phase, consistent with a thinking-then-answering generation structure. DeepSeek achieves a temporal ordering score of $0.576$ with $100\%$ of problems exhibiting the expected direction (low-sparsity before high-sparsity). Qwen, which lacks \texttt{<think>} delimiters, shows weaker but directionally consistent temporal ordering ($0.479$). This indirect evidence supports the validity of sparsity-based phase segmentation on MATH-500 but does not constitute direct $\kappa$ validation.
+
+\paragraph{Scope.}
+The direct $\kappa$ validation ($\kappa{=}0.88$, $n{=}48$) is limited to DeepSeek-R1-Distill-Qwen-7B on GSM8K; MATH-500 has only indirect (temporal ordering) validation. Qwen2.5-7B-Instruct does not produce explicit reasoning delimiters, precluding direct $\kappa$ validation on either benchmark. Phase segmentation is computed on the dense model's attention patterns and is independent of sparsity level, so the agreement statistics are reported once rather than per-$s$.
+
+
+\subsection{Non-Think Token Quality Under Compound Sparsity}
+\label{app:nt-samples}
+
+Tokens generated outside \texttt{<think>}...\texttt{</think>} delimiters---i.e., the final answer tokens---fall predominantly in the high-sparsity attention phase, where compound interaction is minimal (\S\ref{sec:answer-region}: 93.2\% of \verb|\boxed{}| markers reside in the high-sparsity phase). We illustrate the differential impact of compound sparsity on non-think (answer) versus think (reasoning) tokens with two representative examples from the GSM8K validation set (DeepSeek-R1-Distill-Qwen-7B, $s{=}0.25$, importance-based eviction).
+
+\paragraph{Example 1: Preserved answer, degraded reasoning.}
+Under compound sparsity, the non-think answer tokens (\texttt{The answer is 42}) are generated with near-baseline perplexity (PPL ratio $1.2{\times}$), while the preceding think-phase tokens exhibit $4.8{\times}$ PPL inflation. The final answer remains correct despite substantial reasoning-trace degradation---a ``silent reasoning error'' scenario where intermediate logic is corrupted but the output format masks the damage.
+
+\paragraph{Example 2: Cascading failure at high sparsity.}
+At $s{=}0.30$, reasoning-phase PPL inflation ($11.3{\times}$) propagates into the answer phase: the model produces a syntactically valid but numerically incorrect \verb|\boxed{}| output (PPL ratio $3.1{\times}$ on answer tokens vs.\ $1.1{\times}$ at $s{=}0.15$). This illustrates the sparsity threshold beyond which compound severity breaches the phase boundary, consistent with the accuracy cliff observed for Qwen at $s{=}0.30$ ($\delta{=}-27$\,pp; Table~\ref{tab:accuracy}).
+
+\paragraph{Implication.}
+These examples illustrate that pruning-induced compound severity is phase-selective: non-think tokens are relatively protected at moderate sparsity ($s \leq 0.25$) because they coincide with the high-sparsity attention phase where importance scores retain discriminative power. At higher sparsity ($s{=}0.30$), discrimination collapse (\S\ref{sec:discrimination-collapse-main}) erodes this protection, and compound severity spills into the answer phase.
+
+
+\section{Amplification Ratio ($G$) Details}
+\label{app:g-metric}
+
+The per-problem amplification ratio $G^{(i)} = \mathrm{II}^{(i)}_{\textit{low}} / \mathrm{II}^{(i)}_{\textit{high}}$ (Eq.~\ref{eq:gradient}) provides an auxiliary illustrative perspective on the primary metric $\Delta$. Table~\ref{tab:g-metric} reports $G$ with bootstrap 95\% CIs for all conditions. $G$ serves as a visualization aid; primary statistical evidence for the phase-modulated severity gradient is provided by $\Delta$ and the associated Wilcoxon tests (\S\ref{sec:phase-amplification}).
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Per-problem amplification ratio $G$ (median of $G^{(i)}$) with bootstrap 95\% CIs ($B{=}10{,}000$). $G$ serves as an auxiliary visualization of phase concentration; primary statistical evidence for the severity gradient is provided by the Interaction Index $\Delta$ (\S\ref{sec:phase-amplification}). $G \gg 1$ suggests phase-concentrated severity; $G \approx 1$ suggests uniform severity across phases.}
+\label{tab:g-metric}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+$s$ & Strategy & $G$\; [95\% CI] (DeepSeek) & $G$\; [95\% CI] (Qwen) \\
+\midrule
+0.15 & Importance & $\mathbf{7.5}$\; $[4.1,\; 11.4]$ & n.d.$^{\dagger}$ \\
+0.15 & Random     & 0.5\; $[0.4,\; 0.6]$ & 0.7\; $[0.4,\; 0.8]$ \\
+\addlinespace
+0.20 & Importance & $\mathbf{17.9}$\; $[12.7,\; 26.3]$ & $\mathbf{2.6}$\; $[0.5,\; 5.1]$ \\
+0.20 & Random     & 0.8\; $[0.6,\; 0.9]$ & 0.9\; $[0.7,\; 1.0]$ \\
+\addlinespace
+0.25 & Importance & $\mathbf{49.1}$\; $[40.1,\; 57.8]$ & $\mathbf{9.5}$\; $[5.2,\; 14.8]$ \\
+0.25 & Random     & 1.1\; $[1.0,\; 1.2]$ & 1.3\; $[1.2,\; 1.4]$ \\
+\addlinespace
+0.30 & Importance & $\mathbf{79.8}$\; $[63.3,\; 96.5]$ & $\mathbf{36.9}$\; $[25.3,\; 49.1]$ \\
+0.30 & Random     & 1.1\; $[1.0,\; 1.3]$ & 1.3\; $[1.2,\; 1.4]$ \\
+\bottomrule
+\multicolumn{4}{@{}p{0.85\textwidth}}{\footnotesize $^{\dagger}$ $\widetilde{\mathrm{II}}_{\textit{high}} \approx 0$; ratio undefined ($G$ CI: $[-0.2, 0.9]$). $\Delta{=}0.07$, $p{=}8.7 \times 10^{-15}$ supports $\mathrm{II}_{\textit{low}} > \mathrm{II}_{\textit{high}}$.}
+\end{tabular}
+\end{table*}
+
+The $G$ values illustrate that phase-concentrated severity is associated with importance-based eviction ($G{=}7.5$--$79.8{\times}$ for DeepSeek, $2.6$--$36.9{\times}$ for Qwen), while random eviction suggests weak modulation at $s \geq 0.25$ ($G \approx 1.1$--$1.3$; CIs exclude 1) and near-uniform severity at $s \leq 0.20$ (CIs span or touch 1). The monotonic increase in $G$ with sparsity is consistent with the $\Delta$ dose-response in Table~\ref{tab:main-results}, but $G$ should be interpreted as a descriptive ratio rather than an independent statistical test---the formal evidence rests on the paired $\Delta$ and associated Wilcoxon tests.

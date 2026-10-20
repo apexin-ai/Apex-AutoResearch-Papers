@@ -1,0 +1,10 @@
+Cross-model analysis results
+Server path: /root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json
+Script: /root/autodl-tmp/pacs/analysis/cross_model_analysis.py
+
+Key results:
+- Gradient permutation test p=0.043 (significant at alpha=0.05)
+- Cohen's d Spearman rho=1.0 (perfect rank concordance)
+- Both models strictly monotonically increasing
+- Per-problem concordance p=0.926 (not significant - different problems affected)
+- All 8 Wilcoxon one-sided tests significant (importance diff > 0)

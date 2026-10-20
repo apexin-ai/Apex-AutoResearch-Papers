@@ -1,0 +1,59 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{zhang2024h2o}
+\citation{xiao2024streamingllm}
+\citation{xu2025thinkv}
+\citation{rkv2025}
+\citation{physics2026}
+\citation{hies2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KV Cache Compression.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compound Compression.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase Transitions and Score Collapse.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adaptive Eviction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Experimental Framework}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compound Interaction Index (II).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase Segmentation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Paired Median Difference.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Eviction Strategies}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Sparsity Levels}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Models and Benchmarks}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}GPQA Importance Gradient: Dose-Response Across Sparsity}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces GPQA importance-based phase gradient across sparsity levels (DeepSeek-R1-Distill-Qwen-7B, $n=198$). Paired median difference $\Delta _{\text  {median}} = \text  {median}(\text  {II}_{\text  {low}} - \text  {II}_{\text  {high}})$ increases monotonically with sparsity (Spearman $\rho = 1.0$).}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:gpqa_dose_response}{{1}{4}{GPQA importance-based phase gradient across sparsity levels (DeepSeek-R1-Distill-Qwen-7B, $n=198$). Paired median difference $\Delta _{\text {median}} = \text {median}(\text {II}_{\text {low}} - \text {II}_{\text {high}})$ increases monotonically with sparsity (Spearman $\rho = 1.0$)}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces GPQA phase-level II statistics at $s=0.20$ (importance-based, $n=198$).}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:gpqa_phase_breakdown_s020}{{2}{4}{GPQA phase-level II statistics at $s=0.20$ (importance-based, $n=198$)}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}GPQA Random Masking: Strategy Specificity is Weak}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Strategy specificity on GPQA: importance vs.\ random phase gradients ($n=198$). Random masking also produces statistically significant gradients ($p < 0.005$), unlike on MATH-500 where random is NS at $s \leq 0.20$.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:gpqa_strategy_specificity}{{3}{4}{Strategy specificity on GPQA: importance vs.\ random phase gradients ($n=198$). Random masking also produces statistically significant gradients ($p < 0.005$), unlike on MATH-500 where random is NS at $s \leq 0.20$}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Benchmark Comparison}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-benchmark comparison at $s=0.30$. Phase modulation (importance gradient) is universal; strategy selectivity (imp/rand ratio) is task-modulated.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:cross_benchmark}{{4}{5}{Cross-benchmark comparison at $s=0.30$. Phase modulation (importance gradient) is universal; strategy selectivity (imp/rand ratio) is task-modulated}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Random Masking Phase Breakdown on GPQA}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces GPQA random masking phase breakdown at $s=0.20$ ($n=198$). Even random eviction produces a weak monotonic gradient.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:gpqa_random_phase}{{5}{5}{GPQA random masking phase breakdown at $s=0.20$ ($n=198$). Even random eviction produces a weak monotonic gradient}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Importance vs.\ Random Effect Size Comparison}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Direct comparison of importance vs.\ random at $s=0.20$ on GPQA.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:effect_size_comparison}{{6}{6}{Direct comparison of importance vs.\ random at $s=0.20$ on GPQA}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Simulated Reviewer Assessment}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Simulated reviewer scores for the median-tier evidence profile.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:reviewer}{{7}{6}{Simulated reviewer scores for the median-tier evidence profile}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Universality of Phase Modulation.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Task-Modulated Strategy Selectivity.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Implications.}{6}{section*.17}\protected@file@percent }
+\bibcite{zhang2024h2o}{1}
+\bibcite{xiao2024streamingllm}{2}
+\bibcite{xu2025thinkv}{3}
+\bibcite{rkv2025}{4}
+\bibcite{physics2026}{5}
+\bibcite{hies2025}{6}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\gdef \@abspage@last{7}

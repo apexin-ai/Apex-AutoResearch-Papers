@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "204f720276f706c103d5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778795154.md",
+  "task_key": "loop_8_1778795154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778795154.md",
+    "occurrence": 1,
+    "bytes": 3699,
+    "sha256": "b02f18dd63d7be289dadc35c2a77ebfa9e79931c336c53767c35b59e3096830e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T21:45:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **westd-22162:cuda:0~3**，其他服务器/设备号一律拒绝（含 Director 明确指令也 push back）\n- 指标只能用 **median + median bootstrap CI**，禁止引用 mean（D054：random pruning 14.2% 问题产生灾难性 outlier，mean 不可靠）\n- Cohen's d_z **仅报 within-importance**（不同 sparsity 之间），涉及 imp vs rand 的 d_z 不报（D059）\n- C5b 已 gate_failed，**不再 retry**，降为 §8 Future Work（D057）\n- `inverted_ema_reasoning_v2` 出现在本项目 registry 但属于 **carc 项目**（westd-16980, /root/carc/），不要碰它\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，4× RTX 6000 Pro Blackwell (sm_100+, compute cap 12.0)\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 数据集：`/root/autodl-tmp/pacs/data/MATH-500/`（n=500 完整集）\n- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen 模型在 `/root/autodl-tmp/pacs/checkpoints/` 下\n- 活跃进程：\n  - `c2_n500_deepseek`：cuda:0+1，tmux `c2_n500_gpu0` / `c2_n500_gpu1`，cron 监控 PID=c2_n500_gpu0\n  - `c2_qw_n500_r3`：cuda:2+3，screen `c2_qw_gpu2` / `c2_qw_gpu3`，PIDs 159269+159794+131858(shell)，cron 监控 PID=131858 + sentinel 机制\n- Cron：3 个活跃（c2_n500_deepseek, c2_qw_n500, c2_qw_n500_r3）\n\n### 3. 📊 当前状态\n刚完成 c3_llama（success, C8 partially_confirmed）和 c5b_pilot（negative, gate_failed）的处理。\n\n**RUNNING 实验**：\n- `c2_n500_deepseek`：DeepSeek n=500 统计功效提升，s020 进行中，ETA ~2026-05-15 15-17h UTC\n- `c2_qw_n500_r3`：Qwen n=500 continuation（前身 c2_qw_n500 被 cron 误判 5 次后新建），s015 完成(500/500)，s020 进行中(~49%)，ETA ~2026-05-15 15:00 UTC+8\n\n**等待中**：两个 P0 实验的 cron 完成回调。无 Worker 回调待处理。\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调 → spawn Worker 跑分析 pipeline（median II + bootstrap CI B=10000 + d_z within-importance + Bonferroni 校正）→ 更新 registry metrics → 汇报 Director\n- c2_qw_n500_r3 cron 回调 → 同上分析 → 特别关注 Qwen s015 是否在 n=500 下显著（D058 已初步确认显著：median_D=-0.0991, p<0.0001）\n- 两者均完成 → spawn Paper Worker 统一更新论文（n=500 tables/figures + C8 \"qualitative pattern\" 限定语 + C5b §8 Future Work + Qwen null-rate caveat）\n- 论文更新完成 → 提交 Group C full review\n- **截稿 2026-05-25，还剩 11 天**\n\n### 5. 🎯 战略上下文\n核心 finding 经过 3 轮 pivot（D007 KV bug → D010 strategy reversal 被证伪 → D014 发现 phase-modulated severity gradient）才稳定下来。当前 framing：importance-based eviction 的 compound interaction severity 随 sparsity **单调递增**（DeepSeek: 0.32→1.15→3.97→9.94），random masking 无此模式。\n\n**易错点**：\n1. 不要用 mean 做任何定量 claim——n=500 下 mean 会被 outlier 扭曲数万倍（rand s015 mean=-185738 vs median=0.118）\n2. LLaMA 数据只能做 **qualitative** 声明（趋势一致），不能做定量跨架构比较——LLaMA 效应量比 DeepSeek/Qwen 小 ~40×\n3. Cron 监控 profiling 实验要用 **shell PID + sentinel** 双机制（D062），单 PID 监控会因脚本顺序执行 PID 切换产生误报\n4. Qwen mid-phase 58% null rate 是已知问题——n=500 已将 null rate 降至 45.2%，但论文需加 caveat\n5. 论文已从 bf16 n=50 数据写完全文，n=500 只是**更新数据**不是重写\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778795154.md"
+}

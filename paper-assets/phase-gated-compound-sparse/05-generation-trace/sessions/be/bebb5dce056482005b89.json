@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bebb5dce056482005b89",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778795095.md",
+  "task_key": "loop_8_1778795095",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778795095.md",
+    "occurrence": 1,
+    "bytes": 4933,
+    "sha256": "071125457ea905e122768f8c497c9466006501cdec10e6bca44f73239320613a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T21:44:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：仅 cuda:0/1/2/3 on westd-22162。历史上有 D012 事件（用了白名单外 GPU 被 CRITICAL）\n- **论文指标只用 median**（D054）：mean 被 outlier 摧毁（rand s015 mean=-185K vs median=0.118）。引用 mean 即 CRITICAL\n- **d_z 分场景**（D059）：within-importance 报 d_z，涉及 random 的比较只报 Wilcoxon p + median_diff，不报 d_z\n- **gradient 用差值不用 ratio**（D031/D033）：high-phase II 近零导致 ratio 膨胀无意义\n- **C5b 已 gate_failed**（D056/D057）：oracle recovery 18% < 30%，不可 retry，只能写 §8 future work\n- **C4 已降级**（D045/D046）：仅作 §6 supporting analysis，不作 core claim\n- **Qwen random s030 borderline PASS**（D042/D043）：gradient=2.418 但 Cohen's d≈0，论文必须标注 \"borderline PASS, d≈0\"\n- **c2_qw_n500 的 cron 已修复**（D062）：用 shell PID 131858 + sentinel 机制，不要改回 python PID 监控\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-22162，4× RTX PRO 6000 Blackwell 96GB (sm_100+, compute cap 12.0)\n- **工作目录**：`/root/phase-gated-compound-sparse/`（远程）\n- **Python**：`/root/miniconda3/bin/python`（conda base，不是 venv）\n- **环境激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**：DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct + DeepSeek-R1-Distill-Llama-8B（均在 `/root/autodl-tmp/` 或 HF cache 下，具体路径需 SSH 确认）\n- **活跃进程**：\n  - c2_n500_deepseek: PID=c2_n500_gpu0, cuda:0+1, screen session\n  - c2_qw_n500_r3: shell PID=131858, cuda:2+3, screen session（原 c2_qw_n500 PID=159269 也有 cron 但实际由 r3 接替）\n- **Cron 活跃**：c2_n500_deepseek / c2_qw_n500 / c2_qw_n500_r3（3 条）\n- **论文位置**：`projects/phase-gated-compound-sparse/paper/` 下，main.tex 可编译\n\n### 3. 📊 当前状态\n**刚完成**：c3_llama (C8 success/partially_confirmed)、c5b_pilot (gate_failed→future work)、bf16 全系列 importance+random DeepSeek+Qwen (n=50)、6-point dose-response (s010-s035)、Qwen C4 entropy (negative→§6)\n\n**正在跑**：\n- `c2_n500_deepseek` (RUNNING)：s015 完成 500/500，s020 进行中 imp 51%/rand 60%，ETA 全部 8 conditions ~May 15 16:00 UTC+8\n- `c2_qw_n500_r3` (RUNNING)：s015 完成 500/500，s020 进行中 imp 49%/rand 45%，ETA ~May 15 15:00 UTC+8\n\n**等待中**：\n- 两个 n=500 实验的 cron 完成回调\n- n=500 完成后 → 分析 pipeline → 论文更新 → Group C review → 提交\n\n**D061 确认**：n=500 下 DeepSeek 和 Qwen s015 的 paired gradient 均达 Bonferroni 显著（Qwen 此前 n=50 不显著的问题已解决）\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 完成回调 → spawn Worker 跑全 8 conditions 分析 pipeline（median II + bootstrap CI B=10000 + d_z within-importance + permutation test difference statistic）\n- c2_qw_n500_r3 cron 完成回调 → 同上 Qwen 分析\n- 两组分析均完成 → spawn Worker 更新论文（n=500 tables/figures + C5b §8 future work + C8 限定语 + Qwen null rate caveat + D054 median 叙事）\n- 论文更新完成 → 提交 Group C full review\n- Qwen s015 n=500 若 CI 仍跨零（D058 已解决，不太可能）→ 叙事改为 \"compound effect emerges above threshold sparsity ~s020\"\n- Group C review 返回 → 按 review 修改 → 最终提交\n\n### 5. 🎯 战略上下文\n**项目核心结论**：importance-based compound sparsity 的 phase gradient 显著（DeepSeek median diff 0.39→14.59 单调递增，random ≈flat），跨模型方向一致（Qwen 1/5 magnitude 但趋势同），跨架构 qualitative consistent（LLaMA）。\n\n**决策链要点**：\n- D010: 原假设 phase-dependent direction reversal FAIL → pivot 到 phase-modulated severity gradient\n- D014: 选定 Framing A \"Phase-Modulated Compound Interaction Severity\"\n- D019/D020: fp16 NaN 偏差 → bf16 全量重跑\n- D025/D026/D031/D033: ratio 指标反复出问题 → 最终弃用 ratio，改用 median difference + Cohen's d\n\n**易错点**：\n- **不要用 ratio 报 gradient**——high-phase II 近零导致 ratio 膨胀（D033 的 \"47-104×\" 已废弃）\n- **不要混淆 cohens_d_bf16.json（正确，paired d_z）和 cohens_d_paired_b10000.json（错误，independent-samples d）**——D050 已确认\n- **Qwen mid-phase null rate 45-58%**——论文必须披露 per-phase effective sample size\n- **LLaMA 效应量小 ~40×**——只做 qualitative claim，不做定量跨架构比较\n- **c2_qw_n500 vs c2_qw_n500_r3**：前者 status=DONE(failed) 是 cron 误判，实际由 r3 接替继续跑。不要对 c2_qw_n500 做任何操作\n- **n_bootstrap 全部实际为 1000**（D039）：论文如实标注 B=1,000（profiling CI）+ B=10,000（Cohen's d CI），除非从原始数据 re-bootstrap\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778795095.md"
+}

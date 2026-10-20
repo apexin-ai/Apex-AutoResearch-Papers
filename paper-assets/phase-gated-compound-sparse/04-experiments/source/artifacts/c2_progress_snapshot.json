@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-05-15T05:48:00Z",
+  "snapshot_note": "All 4 GPUs running s020 (2nd of 4 sparsity levels). s015 completed for all conditions.",
+  "deepseek": {
+    "s015_imp": {"done": 500, "total": 500, "status": "completed", "duration_min": 290},
+    "s015_rand": {"done": 500, "total": 500, "status": "completed", "duration_min": 264},
+    "s020_imp": {"done": 375, "total": 500, "status": "running", "gpu": 0, "started": "2026-05-15T02:31:28Z", "rate_per_min": 1.90, "eta_finish": "2026-05-15T06:54:00Z"},
+    "s020_rand": {"done": 423, "total": 500, "status": "running", "gpu": 1, "started": "2026-05-15T02:05:46Z", "rate_per_min": 1.90, "eta_finish": "2026-05-15T06:28:00Z"},
+    "s025_imp": {"status": "queued"},
+    "s025_rand": {"status": "queued"},
+    "s030_imp": {"status": "queued"},
+    "s030_rand": {"status": "queued"}
+  },
+  "qwen": {
+    "s015_imp": {"done": 500, "total": 500, "status": "completed", "duration_min": 310},
+    "s015_rand": {"done": 500, "total": 500, "status": "completed", "duration_min": 319},
+    "s020_imp": {"done": 419, "total": 500, "status": "running", "gpu": 2, "started": "2026-05-15T03:02:57Z", "rate_per_min": 2.54, "eta_finish": "2026-05-15T06:20:00Z"},
+    "s020_rand": {"done": 397, "total": 500, "status": "running", "gpu": 3, "started": "2026-05-15T03:11:57Z", "rate_per_min": 2.54, "eta_finish": "2026-05-15T06:28:00Z"},
+    "s025_imp": {"status": "queued"},
+    "s025_rand": {"status": "queued"},
+    "s030_imp": {"status": "queued"},
+    "s030_rand": {"status": "queued"}
+  },
+  "gpu_utilization": [
+    {"index": 0, "utilization_pct": 77, "memory_used_MiB": 33383, "memory_total_MiB": 97887},
+    {"index": 1, "utilization_pct": 76, "memory_used_MiB": 33919, "memory_total_MiB": 97887},
+    {"index": 2, "utilization_pct": 79, "memory_used_MiB": 34073, "memory_total_MiB": 97887},
+    {"index": 3, "utilization_pct": 79, "memory_used_MiB": 34685, "memory_total_MiB": 97887}
+  ],
+  "tmux_sessions": ["c2_n500_gpu0 (DeepSeek imp)", "c2_n500_gpu1 (DeepSeek rand)"],
+  "screen_sessions": ["c2_qw_gpu2 (Qwen imp)", "c2_qw_gpu3 (Qwen rand)"],
+  "estimated_completion": {
+    "all_s020_done": "2026-05-15T06:54:00Z",
+    "all_experiments_done": "2026-05-15T15:40:00Z",
+    "all_experiments_done_cst": "2026-05-15T23:40:00+08:00",
+    "bottleneck": "GPU0 ds_imp — slowest rate at 1.90 problems/min",
+    "remaining_levels_after_s020": ["s025", "s030"],
+    "estimated_per_level_duration": {
+      "deepseek": "~4.4h per level",
+      "qwen": "~3.3h per level"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f4879cebfd39371a236",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "cpu analysis pipeline prep",
+  "task_key": "worker_cpu_analysis-pipeline-prep_20260514T222002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_analysis-pipeline-prep_20260514T222002_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "de3bee65c4182b03ec02281f1be6d6b4af616bc0d4c7f1cf025ade92c5870fb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/analysis_pipeline_readiness.md`。核心结论：\n\n**实验进度**: s015 全部完成 (4/4 conditions)，s020 接近完成 (436-486/500)，约 30 分钟内全部完成。s025/s030 预计各需 ~5 小时，全部 16 conditions 约 17:00 CST 完成。\n\n**分析代码**: `analyze_n500_unified.py` 完全就绪，无需修改。D054 (median only) 和 D059 (d_z within-importance only) 均已正确实现。B=10000 bootstrap、Bonferroni 校正、permutation monotonicity test 均已到位。\n\n**建议**: s020 完成后先跑 8-condition 部分分析验证 pipeline，不影响后续 s025/s030 数据接入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-analysis-pipeline-prep.md"
+}

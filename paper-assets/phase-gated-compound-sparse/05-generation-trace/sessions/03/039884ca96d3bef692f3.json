@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "039884ca96d3bef692f3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_13_1778894837.md",
+  "task_key": "loop_13_1778894837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778894837.md",
+    "occurrence": 1,
+    "bytes": 4606,
+    "sha256": "2b62b4de69ba7814cf350afce6619a89cac87f0fdda6f1b15d97e89474c0b8c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T00:26:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0~3（共 4 张 RTX 6000 Pro），禁止使用其他设备\n- DS accuracy 已被 D086 降为**定性观察**，论文中不能作为主定量证据。QW accuracy 是唯一主证据线\n- DS rand s025/s030 Bonferroni 校正后 p≈0.07，**不显著**——论文不能 claim DS random masking 达到 significance\n- G× 已从 58-241× 下修至 21-64×（D082），论文所有引用处必须用修正值\n- acc_ds_s025_8k_v2 结论为 negative（accuracy=0.08, 截断率 76%）——已知 DS 8k 仍不够，别再加 token budget 重跑\n- 服务器用 **conda base**，不是 venv。激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-22162 (root@)\n- **工作目录**：`/root/autodl-tmp/pacs`\n- **Python**：`/root/miniconda3/bin/python`（conda base）\n- **模型 checkpoints**：`/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`、`Qwen2.5-7B-Instruct`、`DeepSeek-R1-Distill-Llama-8B`\n- **数据**：`/root/autodl-tmp/pacs/data/`（math500.json, gsm8k_test.json, MATH-500/）\n- **分析产出**：`/root/autodl-tmp/pacs/analysis_output/accuracy_*.json`\n- **日志**：`~/runs/phase-gated-compound-sparse/*.log`\n- **代码 commit**：`1b4f61aa`\n- **活跃进程**：PID 287691（acc_ds_s015_8k_v2, cuda:0）、PID 288901（acc_ds_s030_8k_v2, cuda:2）\n- **活跃 cron**：acc_ds_s015_8k_v2、acc_ds_s030_8k_v2（reconcile 确认均 still running）\n- **无 W&B**——全项目零 wandb 使用\n\n### 3. 📊 当前状态\n**刚完成**：session-start 初始化（registry 读取 + cron reconcile）。本 session 未执行任何实验操作，直接收到 WRITE HANDOFF。\n\n**RUNNING（2）**：\n- `acc_ds_s015_8k_v2`：DS importance s015 accuracy eval, max_new_tokens=8192, cuda:0, PID 287691。验证 dense→s015 是否断崖（v1 暗示 0.74→~0.36）\n- `acc_ds_s030_8k_v2`：DS importance s030 accuracy eval, max_new_tokens=8192, cuda:2, PID 288901。补全 5-point dose curve\n\n**PENDING/QUEUED/ALLOCATED**：无\n\n**最近结论**：\n- `acc_ds_s025_8k_v2` → negative（accuracy=0.08, 截断率 76%）\n- `gsm8k_qw_rand_s025_v2` → success（C10 random masking compound interaction confirmed）\n- `gsm8k_qw_rand_s030_v2` → success\n- `acc_ds_s020_8k_v2` → success（accuracy=0.30, 截断率 58%）\n\n**等待中**：2 个 cron 回调（上述两个 RUNNING 实验完成时触发）\n\n### 4. 📋 待办（条件触发式）\n- `acc_ds_s015_8k_v2` cron 回调到达 → 分析截断率和 accuracy，更新 registry，若截断仍 >20% 则进一步确认 DS 8k 不可用\n- `acc_ds_s030_8k_v2` cron 回调到达 → 分析（预期 accuracy 极低），更新 registry\n- 两个 DS 8k 都完成 → 编译完整 DS 8k dose curve（dense/s015/s020/s025/s030），标注为 lower bound，汇报 Director（D088 收尾）\n- QW accuracy dose curve 待确认 s025 v2 fix 结果（acc_qw_s025_n100_b1_fix 状态需查），确认 4-point 完整后整合进论文\n- r9c2-spike 系列清理（标记 abandoned）——低优先级\n- **距 EMNLP 截稿 9 天**：paper 整合（accuracy 数据 + C10 GSM8K random masking）→ consistency check → Round 10 审稿 → 最终提交决策\n\n### 5. 🎯 战略上下文\n- **核心发现**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（n=500 confirmed, QW n=475 reanalysis）。C10 证明 random masking 也有此现象 → compound interaction 是 sparsity 固有属性，不依赖 masking strategy\n- **论文双证据线**：(1) GSM8K profiling（DS+QW, importance+random, median+Wilcoxon+bootstrap）(2) QW accuracy dose-response（dense→s030 monotonic decline）。DS accuracy 仅定性辅助\n- **关键决策链**：D080（median fix）→ D082（G× 下修 21-64×）→ D083（median+Wilcoxon 对齐）→ D084（R9 action matrix）→ D085（C1+C2 PASS）→ D086（DS accuracy 降级）→ D087（QW n=100 eval）→ D088（DS 8k 验证性重跑）\n- **易错点**：\n  - 不要把 DS 的 accuracy 数字当主证据——截断率 >50% 意味着这是下界\n  - QW s015=s020=0.36 是平台期，断崖在 s025→s030（-14pp）。早期\"s015 无损\"结论已被推翻\n  - DS s030 触发 40% 中文推理（语言切换病理信号），可作为定性观察写入论文\n  - Bonferroni 校正后 DS random 不显著——论文措辞需谨慎，避免 overclaim\n  - 当前 cuda:1 和 cuda:3 空闲（只有 cuda:0 和 cuda:2 在跑），若有新实验可用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778894837.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37e01027452d7d1fa469",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code collect and submit round2",
+  "task_key": "worker_code_collect_and_submit_round2_20260515T214615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_collect_and_submit_round2_20260515T214615_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "ef88ea6d96f3928651e5efcfe06ede2ba93ede8808df43229c7bb71f0428fd81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇总：\n\n| GPU | 实验 | 进度 | 预计完成 |\n|-----|------|------|---------|\n| 0 | acc_ds_dense_8k | 20/50 | ~75min |\n| 1 | acc_ds_s015_8k | 16/50 | ~80min |\n| 2 | acc_qw_dense_n100 | 41/50 | ~2-3min |\n| 3 | acc_qw_s030_n100 | 刚提交 | ~15min |\n\n已完成：\n- **acc_qw_s015_n100** → DONE, combined 36/100 = 36% (batch1: 17/50, batch2: 19/50)\n- **acc_qw_s030_n100** 已提交到 GPU 3 (PID 280094)\n\n等待：\n- QW dense 完成后更新 registry + 合并 n=100 结果\n- DS 8k 完成后收集结果 + 提交 gsm8k_qw_rand_s025/s030 到 GPU 0/1\n\n2 分钟后检查 QW dense 完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-collect-and-submit-round2.md"
+}

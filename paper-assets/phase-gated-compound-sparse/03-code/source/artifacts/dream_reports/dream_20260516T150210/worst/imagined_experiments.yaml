@@ -1,0 +1,588 @@
+tier: worst
+narrative_guidance: 'Title 改为 "Phase-Dependent Compound Sparsity Severity in Reasoning
+  LLMs"（去掉 strategy-gated）。 Core finding 收窄：compound sparsity severity 是 phase-modulated
+  的涌现属性， importance phase gradient 跨三模型两架构一致（d_z≈1.0-1.2），但 strategy×phase 交互仅 Qwen2
+  架构显著，Llama 上 random 也产生 comparable phase gradient（d_z 0.35-0.55）。 论文重组为三层递进：(1)
+  Phase gradient universality（核心贡献，跨模型/架构稳健）， (2) Strategy modulation 的 architecture-dependence（secondary
+  finding，Qwen2 confirmed / Llama NS → 开放问题）， (3) Discrimination collapse 机制（Gini/CV
+  跨模型一致，作为 phase gradient 的解释 而非 strategy-specificity 的解释）。Scope 限于 MATH-500 + GSM8K（GPQA
+  仅放 appendix 或不纳入）。 EMNLP main 仍可冲——pitch 改为 "first systematic quantitative characterization
+  of phase-dependent compound sparsity"，强调 dose-response monotonicity（ρ=1.0, n=500
+  两模型）、 sparsity threshold discovery（~s020-s025）、discrimination collapse 机制。 Novelty
+  论证需加强 methodology 贡献（per-problem paired II metric + phase segmentation framework）。
+  需重写 §1-§3，将 strategy 从核心 claim 降级到 architecture-dependent 观察。 Limitations 增加一段 strategy-specificity
+  的 scope boundary。
+
+  '
+imagined_experiments:
+- name: LLaMA n=250 cross-architecture validation (8 conditions)
+  plan_id: c8_llama_n250_fixed
+  description: 'DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM), MATH-500 n=250 problems,
+    8 conditions (importance/random × s015/s020/s025/s030)。从 c3_llama (n=49) 升级到 n=250，功效提升
+    ~5×。n=250 对 d=0.25 的检测功效 >0.95。 已有 partial result：c8_llama_gpu0_s025 (importance
+    s025, d_z=1.1174)。
+
+    '
+  expected_results:
+    n_problems: 250
+    n_valid: 244
+    n_bootstrap: 10000
+    bonferroni_k: 4
+    imp_phase_gradient_dz:
+      s015: 0.97
+      s020: 1.06
+      s025: 1.12
+      s030: 1.01
+    imp_phase_gradient_dz_ci:
+      s015:
+      - 0.81
+      - 1.13
+      s020:
+      - 0.9
+      - 1.22
+      s025:
+      - 0.93
+      - 1.31
+      s030:
+      - 0.85
+      - 1.17
+    imp_phase_gradient_interpretation: all_large
+    imp_median_diff:
+      s015: 0.019
+      s020: 0.06
+      s025: 0.376
+      s030: 0.85
+    imp_median_diff_ci:
+      s015:
+      - 0.012
+      - 0.025
+      s020:
+      - 0.042
+      - 0.078
+      s025:
+      - 0.315
+      - 0.404
+      s030:
+      - 0.72
+      - 1.0
+    imp_wilcoxon_p:
+      s015: 2.0e-22
+      s020: 5.0e-27
+      s025: 4.3e-39
+      s030: 1.0e-37
+    imp_bonferroni_all_sig: true
+    imp_dose_response_monotonic: true
+    imp_spearman_rho: 1.0
+    rand_phase_gradient_dz:
+      s015: 0.38
+      s020: 0.42
+      s025: 0.48
+      s030: 0.46
+    rand_phase_gradient_dz_ci:
+      s015:
+      - 0.24
+      - 0.52
+      s020:
+      - 0.28
+      - 0.56
+      s025:
+      - 0.34
+      - 0.62
+      s030:
+      - 0.32
+      - 0.6
+    rand_phase_gradient_interpretation: all_small_to_medium
+    rand_median_diff:
+      s015: 0.007
+      s020: 0.012
+      s025: 0.048
+      s030: 0.12
+    rand_median_diff_ci:
+      s015:
+      - 0.001
+      - 0.014
+      s020:
+      - 0.003
+      - 0.022
+      s025:
+      - 0.02
+      - 0.078
+      s030:
+      - 0.058
+      - 0.19
+    rand_wilcoxon_p:
+      s015: 0.00035
+      s020: 8.0e-06
+      s025: 2.0e-09
+      s030: 5.0e-09
+    rand_bonferroni_all_sig: true
+    rand_dose_response_monotonic: true
+    imp_vs_rand_dz:
+      s015: 0.09
+      s020: 0.12
+      s025: 0.15
+      s030: 0.21
+    imp_vs_rand_dz_ci:
+      s015:
+      - -0.04
+      - 0.22
+      s020:
+      - -0.01
+      - 0.25
+      s025:
+      - 0.02
+      - 0.28
+      s030:
+      - 0.08
+      - 0.34
+    imp_vs_rand_dz_interpretation:
+      s015: negligible
+      s020: negligible
+      s025: small
+      s030: small
+    imp_vs_rand_median_diff:
+      s015: 0.012
+      s020: 0.018
+      s025: 0.068
+      s030: 0.195
+    imp_vs_rand_wilcoxon_p:
+      s015: 0.12
+      s020: 0.055
+      s025: 0.015
+      s030: 0.0009
+    imp_vs_rand_bonferroni_p:
+      s015: 0.48
+      s020: 0.22
+      s025: 0.06
+      s030: 0.0036
+    imp_vs_rand_bonferroni_sig:
+      s015: false
+      s020: false
+      s025: false
+      s030: true
+    bonferroni_sig_count_out_of_4: 1
+    imp_rand_gradient_ratio_llama: 2.4
+    imp_rand_gradient_ratio_qwen2_ds: 16.6
+    imp_rand_gradient_ratio_qwen2_qw: 3.5
+    architecture_dependence_confirmed: true
+  result_rationale: 'n=49→n=250 提供约 5× 功效提升。三个核心预测及其原因：
+
+    (1) Importance phase gradient 保持 d_z≈1.0（范围 0.97-1.12）： c3_llama 在 n=49 已显示 d_z
+    1.00-1.12（所有 CI 排除零），且 c8_llama_gpu0_s025 在 n=250 已实测 d_z=1.1174。n=250 使 CI 从宽度
+    ~0.8 缩窄到 ~0.3， 但点估计不会实质性变化，因为 n=49 的估计已经是稳健的（bootstrap B=10000）。 这确认了 phase-dependent
+    compound severity 在 LLaMA 架构上是真实的涌现属性。
+
+    (2) Random phase gradient 被确认（d_z 0.38-0.48，所有 CI 排除零）： c3_llama n=49 已显示 random
+    d_z 0.35-0.45 但 CI 较宽（下界 0.07-0.20）。 n=250 将 CI 压缩到下界 0.24-0.34，稳固排除零。这是 worst
+    档的关键发现： LLaMA 上 random eviction 也产生显著的 phase-dependent compound interaction。 机制推测：LLaMA
+    的 attention 分布在 reasoning 不同阶段对 KV cache 扰动 的敏感性不同，与扰动是 importance-based 还是 random
+    无关。 这与 Qwen2 架构形成对比——Qwen2 上 random 在 s015/s020 NS， 说明 Qwen2 的 attention pattern
+    能更好地容忍 random KV loss。
+
+    (3) imp_vs_rand 交互仍然很小（d_z 0.09-0.21，仅 s030 Bonferroni 显著）： n=250 对 d=0.25 的功效
+    >0.95，但观测到的最大 d_z=0.21 < 0.25 阈值。 与 n=49 的点估计（0.19-0.34）相比有所回落，这符合小样本效应量膨胀 的统计预期。s030
+    的 Bonferroni p=0.0036 达到显著，但 d_z=0.21 仍是 small effect， 实质上是高功效确认了 strategy×phase
+    交互在 Llama 上可忽略。 对比 Qwen2 架构上的 imp_vs_rand dz（DS n=500: 0.44-0.80）， LLaMA 的 0.09-0.21
+    小了 3-5×，确认了 architecture-dependence。
+
+    '
+  tables:
+  - name: 'Table: LLaMA n=250 Phase Gradient Summary'
+    content: '| Sparsity | Imp d_z [95% CI]    | Rand d_z [95% CI]    | Imp-Rand d_z
+      [95% CI] | Bonf. sig |
+
+      |----------|---------------------|----------------------|-----------------------|-----------|
+
+      | s015     | 0.97 [0.81, 1.13]   | 0.38 [0.24, 0.52]   | 0.09 [−0.04, 0.22]   |
+      NS        |
+
+      | s020     | 1.06 [0.90, 1.22]   | 0.42 [0.28, 0.56]   | 0.12 [−0.01, 0.25]   |
+      NS        |
+
+      | s025     | 1.12 [0.93, 1.31]   | 0.48 [0.34, 0.62]   | 0.15 [0.02, 0.28]    |
+      NS        |
+
+      | s030     | 1.01 [0.85, 1.17]   | 0.46 [0.32, 0.60]   | 0.21 [0.08, 0.34]    |
+      * (p=.004)|
+
+      '
+  - name: 'Table: Cross-Architecture Strategy Specificity Comparison'
+    content: '| Architecture | Model              | Imp/Rand Gradient Ratio | Strategy×Phase
+      Sig |
+
+      |--------------|--------------------|------------------------|--------------------|
+
+      | Qwen2        | DS-R1-Distill-7B   | 16.6× (n=500)          | 4/4 Bonferroni     |
+
+      | Qwen2        | QW-2.5-7B          | 3.5× (n=500)           | 4/4 Bonferroni     |
+
+      | LlamaForCausalLM | DS-R1-Distill-Llama-8B | 2.4× (n=250)   | 1/4 Bonferroni     |
+
+      '
+  figures_description:
+  - 'Fig A: LLaMA n=250 paired phase gradient comparison。双 bar chart（每 sparsity level
+    importance vs random），error bars = 95% CI on d_z。Importance 一致 ~1.0（蓝色）， random
+    一致 ~0.4（橙色）。两者都显著高于零，但间距远小于 Qwen2 架构。
+
+    '
+  - 'Fig B: Cross-architecture strategy×phase interaction heatmap。行=架构（Qwen2-DS, Qwen2-QW,
+    LLaMA）， 列=sparsity level。颜色=imp_vs_rand d_z。Qwen2 行显示从绿（medium）到红（large）， LLaMA
+    行几乎全绿（negligible-small）。视觉呈现 architecture-dependence。
+
+    '
+  analysis: "这是 worst 档的决定性实验。n=250 的高功效使得 imp_vs_rand d_z<0.25 成为可信的零结果， 而非功效不足导致的假阴性。三个核心结论：\n\
+    (1) Phase gradient universality 被加强：importance phase gradient d_z≈1.0 跨三个模型两个架构一致（DS\
+    \ Qwen2: 0.44-0.80; QW Qwen2: 0.37-1.44; LLaMA: 0.97-1.12）， 这是论文最强的贡献点。\n(2) Strategy\
+    \ specificity 局限于 Qwen2 架构：LLaMA 上 random 也显示显著 phase gradient (d_z 0.38-0.48)，打破了\
+    \ \"importance eviction 特有\" 的叙事。在 Qwen2 上 random 在 s015/s020 NS 但在 LLaMA 上全部显著，说明\
+    \ architecture 决定了 strategy specificity 是否成立。\n(3) \"Strategy-gated\" framing\
+    \ 无法维持：原标题和核心 claim 需要 reframe。 Phase modulation 是普遍的（universality），strategy 作用是\
+    \ architecture-dependent 的 secondary modulator（not a gating mechanism）。\n对论文结构的影响：\
+    \ - §1 Introduction: 重写 motivation，从 \"strategy-gated\" 改为 \"phase-dependent\"\
+    \ - §3 Main results: Lead with phase gradient universality，然后 strategy modulation\
+    \ as secondary - §5 Discussion: 新增 \"Architecture-Dependence of Strategy Modulation\"\
+    \ 小节 - §6 Limitations: 明确声明 strategy-specificity scope boundary - C8 claim 从 \"\
+    partially_confirmed\" 改为 narrative-aware 表述：\n  \"Phase gradient confirmed cross-architecture;\
+    \ strategy×phase interaction architecture-dependent\"\n"
+- name: GPQA DeepSeek importance sweep (4 sparsity levels)
+  plan_id: gpqa_ds_importance_s015_to_s030
+  description: 'DeepSeek-R1-Distill-Qwen-7B, GPQA Diamond subset, importance masking
+    at s015/s020/s025/s030。Quantile 3-segment phase decomposition (D098)。 测试 phase-dependent
+    compound severity 是否泛化到非数学推理。 gpqa_ds_importance_s015 RUNNING, s020 QUEUED, s025/s030
+    planned。
+
+    '
+  expected_results:
+    n_problems: 50
+    segmentation: quantile_3segment
+    n_bootstrap: 10000
+    bonferroni_k: 4
+    importance_per_phase_ii_median:
+      s015:
+        high: 0.004
+        mid: 0.012
+        low: 0.035
+      s020:
+        high: 0.018
+        mid: 0.008
+        low: 0.015
+      s025:
+        high: 0.025
+        mid: 0.052
+        low: 0.108
+      s030:
+        high: 0.04
+        mid: 0.035
+        low: 0.088
+    importance_median_diff:
+      s015: 0.03
+      s020: -0.02
+      s025: 0.08
+      s030: 0.05
+    importance_median_diff_ci:
+      s015:
+      - -0.02
+      - 0.09
+      s020:
+      - -0.1
+      - 0.06
+      s025:
+      - -0.03
+      - 0.22
+      s030:
+      - -0.08
+      - 0.25
+    importance_wilcoxon_p:
+      s015: 0.18
+      s020: 0.65
+      s025: 0.09
+      s030: 0.15
+    importance_bonferroni_p:
+      s015: 0.72
+      s020: 1.0
+      s025: 0.36
+      s030: 0.6
+    bonferroni_sig_count: 0
+    phase_gradient_dz:
+      s015: 0.22
+      s020: -0.08
+      s025: 0.3
+      s030: 0.18
+    dose_response_monotonic: false
+    dose_response_pattern: 0.03, -0.02, 0.08, 0.05 (non-monotonic, s020 direction
+      reversal)
+    spearman_rho: 0.4
+    spearman_p: 0.6
+  result_rationale: 'GPQA Diamond 是 graduate-level 非数学推理（物理/化学/生物/哲学/法律）， 与 MATH-500/GSM8K
+    的结构化数学推理在多个维度不同，导致 phase gradient 失败：
+
+    (1) 推理链长度差异：MATH-500 平均 >2000 tokens（DeepSeek）， GPQA 平均 ~300-800 tokens。短推理链意味着
+    phase 间差异积累的 token 更少， compound interaction 的 phase-dependent 放大效应被稀释。 Phase segmentation
+    在 <500 token 的推理链上，每个 phase 可能只有 100-150 tokens， 统计量估计不稳定。
+
+    (2) 推理结构差异：数学推理有明确的 "exploratory thinking → structured calculation → verification"
+    阶段，这些阶段对应不同的 attention sparsity pattern（已由 think_phase_validation kappa=0.887
+    确认）。 GPQA 的推理模式更异质——有些是知识检索（低依赖链），有些是逻辑推导（中等依赖链）， 有些是排除法（浅广搜索）。dense model 的 sparsity
+    pattern 不一定形成 数学推理那样清晰的 phase 结构。
+
+    (3) s020 方向反转的机制：在某些 GPQA 问题上，"answer extraction" 阶段 （通常对应 high-sparsity phase）的
+    compound interaction 可能反而高于 "reasoning" 阶段，因为 GPQA 的答案需要精确引用科学事实或逻辑规则， 这要求 attention
+    对 context 中特定 KV entries 有精确访问。 而数学推理的 answer extraction 通常只需要从已计算的结果中提取数字， 对
+    KV cache 的依赖更低。
+
+    (4) n=50 功效问题：如果 GPQA 上的真实 effect size 很小（d_z < 0.3）， n=50 的功效约 30%，大量 NS 结果是预期的。但
+    dose-response 非单调性 不是功效问题——如果真实效应存在，方向至少应一致。 s020 方向反转（negative median_diff）是质性失败，非功效问题。
+
+    '
+  tables:
+  - name: 'Table: GPQA DS Importance Phase Gradient'
+    content: '| Sparsity | median_diff | 95% CI          | Wilcoxon p | Bonf. p |
+      d_z   |
+
+      |----------|-------------|-----------------|------------|---------|-------|
+
+      | s015     | 0.03        | [−0.02, 0.09]   | 0.18       | 0.72    | 0.22  |
+
+      | s020     | −0.02       | [−0.10, 0.06]   | 0.65       | 1.00    | −0.08 |
+
+      | s025     | 0.08        | [−0.03, 0.22]   | 0.09       | 0.36    | 0.30  |
+
+      | s030     | 0.05        | [−0.08, 0.25]   | 0.15       | 0.60    | 0.18  |
+
+      '
+  - name: 'Table: Cross-Benchmark Comparison (DS importance median_diff)'
+    content: '| Sparsity | MATH-500 (n=500) | GSM8K (n=50) | GPQA (n=50)    |
+
+      |----------|------------------|--------------|----------------|
+
+      | s015     | 0.391***         | 0.241***     | 0.03 NS        |
+
+      | s020     | 1.215***         | 0.740***     | −0.02 NS (↻)  |
+
+      | s025     | 3.986***         | 1.992***     | 0.08 NS        |
+
+      | s030     | 8.481***         | 4.682***     | 0.05 NS        |
+
+      | ρ        | 1.0              | 1.0          | 0.40           |
+
+      Note: ↻ = direction reversal; *** = Bonferroni p<0.005
+
+      '
+  figures_description:
+  - 'Fig: 三 benchmark phase gradient dose-response 对比。三条线（MATH-500=蓝实线， GSM8K=绿虚线，GPQA=红点线），x=sparsity
+    level，y=median_diff (log scale for MATH/GSM)。 MATH-500 和 GSM8K 都显示清晰的单调上升，GPQA
+    在零线附近波动且 s020 为负。 GPQA 的 error bars（95% CI）全部跨越零线。
+
+    '
+  analysis: "GPQA 4 个 sparsity level 的结果全面失败：零个 Bonferroni 显著， dose-response 非单调（s020\
+    \ 方向反转），Spearman ρ=0.40（NS）。 这与 MATH-500（ρ=1.0, 全部 p<1e-70）和 GSM8K（ρ=1.0, 全部 p<0.001）\
+    \ 形成质性差异。\n关键判断：这是 task-type boundary 而非 power 问题。 如果仅是 n=50 功效不足，应预期方向一致但 p 值不显著——\
+    \ 而 s020 的方向反转和 s030<s025 的非单调性是质性不一致， 即使 n=500 也不太可能变成单调显著。\n对论文的影响： - GPQA 结果放\
+    \ Appendix 作为 negative result，或完全不纳入主文 - Paper scope 明确限于 mathematical reasoning（MATH-500\
+    \ + GSM8K） - Discussion 新增段落解释为何 phase modulation 可能是 math-reasoning-specific：\n\
+    \  结构化 CoT 的长链依赖是 phase gradient 的前提条件\n- Limitations 增加 \"cross-task generalization\
+    \ remains an open question\"\n"
+- name: GPQA Qwen importance sweep (4 sparsity levels)
+  plan_id: gpqa_qw_importance_s015_to_s030
+  description: 'Qwen2.5-7B-Instruct, GPQA Diamond, importance masking at s015-s030。
+    Cross-model replication of GPQA results。ROADMAP 线路 A 的一部分。
+
+    '
+  expected_results:
+    n_problems: 50
+    importance_median_diff:
+      s015: 0.01
+      s020: 0.03
+      s025: -0.01
+      s030: 0.04
+    importance_median_diff_ci:
+      s015:
+      - -0.03
+      - 0.05
+      s020:
+      - -0.04
+      - 0.1
+      s025:
+      - -0.08
+      - 0.06
+      s030:
+      - -0.06
+      - 0.15
+    importance_wilcoxon_p:
+      s015: 0.45
+      s020: 0.32
+      s025: 0.78
+      s030: 0.22
+    bonferroni_sig_count: 0
+    dose_response_monotonic: false
+    dose_response_pattern: 0.01, 0.03, -0.01, 0.04 (non-monotonic, s025 direction
+      reversal)
+    spearman_rho: 0.2
+    spearman_p: 0.8
+  result_rationale: 'Qwen2.5-7B-Instruct 在 MATH-500 上的 importance phase gradient 已知弱于
+    DeepSeek（QW n=500 median_diff: 0.066→3.155 vs DS: 0.391→8.481，约 1/3 量级）。 在 GPQA
+    上，这个已经较弱的信号进一步被稀释： (1) QW 在 GPQA 上的推理链可能更短（非数学不触发长 CoT），phase 分割更粗糙； (2) QW 的
+    compound interaction 效应量在 MATH-500 上已是 DS 的 ~1/3， 在 GPQA 上预期进一步衰减到接近零； (3) s025
+    方向反转（与 DS 的 s020 反转位置不同）表明 phase gradient  失败不是系统性的"缺一个 sparsity level"，而是整个模式在
+    GPQA 上不稳健。 两个模型在不同 sparsity level 出现方向反转，是 phase segmentation 在非数学推理上不适用的强证据。
+
+    '
+  tables:
+  - name: 'Table: GPQA QW Importance Phase Gradient'
+    content: '| Sparsity | median_diff | 95% CI          | Wilcoxon p | Bonf. p |
+
+      |----------|-------------|-----------------|------------|---------|
+
+      | s015     | 0.01        | [−0.03, 0.05]   | 0.45       | 1.00    |
+
+      | s020     | 0.03        | [−0.04, 0.10]   | 0.32       | 1.00    |
+
+      | s025     | −0.01       | [−0.08, 0.06]   | 0.78       | 1.00    |
+
+      | s030     | 0.04        | [−0.06, 0.15]   | 0.22       | 0.88    |
+
+      '
+  figures_description:
+  - 'Fig: GPQA DS vs QW importance phase gradient。两 panel，每 panel 四个 bar （s015-s030），error
+    bars = 95% CI。两模型都在零线附近波动， DS 在 s020 为负，QW 在 s025 为负。无一致方向。
+
+    '
+  analysis: 'QW 在 GPQA 上复制了 DS 的失败模式：全部 NS，dose-response 非单调。 两个模型的方向反转出现在不同 sparsity
+    level（DS: s020, QW: s025）， 排除了"某个 sparsity level 恰好在边界"的解释——如果 phase gradient
+    真实存在 但效应弱，两模型应在相同方向上一致，即使 p 值不显著。 Cross-model 方向不一致是 GPQA 上 phase gradient 不存在的强证据。
+
+    '
+- name: GPQA random masking controls (DS s025 + s030)
+  plan_id: gpqa_ds_random_controls
+  description: 'DeepSeek random masking on GPQA Diamond at s025/s030。 ROADMAP 线路 A
+    规划的 2 个 random control conditions。 测试 GPQA 上是否存在 importance/random separation。
+
+    '
+  expected_results:
+    n_problems: 50
+    random_median_diff:
+      s025: 0.05
+      s030: 0.04
+    random_median_diff_ci:
+      s025:
+      - -0.04
+      - 0.15
+      s030:
+      - -0.06
+      - 0.16
+    random_wilcoxon_p:
+      s025: 0.25
+      s030: 0.3
+    imp_rand_ratio:
+      s025: 1.6
+      s030: 1.25
+    overall_imp_rand_ratio: 1.2
+    strategy_separation: false
+  result_rationale: "在 GPQA 上 importance gradient 本身已接近零/NS（DS s025 median_diff=0.08,\
+    \ s030=0.05）， 因此 imp/rand ratio 无信息量——分子分母都接近零，比值可以是任意正数。 预测 ratio 在 0.5-2.0 范围内浮动：\
+    \ - s025: imp=0.08, rand=0.05, ratio=1.6——看似 importance 略大，\n  但两者 CI 都跨零，差异无统计意义\n\
+    - s030: imp=0.05, rand=0.04, ratio=1.25——几乎无差异\n对比 MATH-500（ratio 15.5-38.6×,\
+    \ n=500）和 GSM8K（ratio 2.3-3.8×, n=50）， GPQA 的 ratio ~1.2 表明在非数学推理上完全没有 strategy\
+    \ separation。 这不是 \"strategy specificity 在 GPQA 上也存在但更弱\" —— 而是 \"phase gradient\
+    \ 在 GPQA 上不存在，所以 strategy 区分无从谈起\"。\n"
+  tables:
+  - name: 'Table: GPQA Strategy Specificity (DS importance vs random)'
+    content: '| Sparsity | Imp med_diff | Rand med_diff | Ratio | MATH-500 Ratio |
+
+      |----------|-------------|---------------|-------|----------------|
+
+      | s025     | 0.08 NS     | 0.05 NS       | 1.6   | 15.5×          |
+
+      | s030     | 0.05 NS     | 0.04 NS       | 1.25  | 16.6×          |
+
+      '
+  figures_description: []
+  analysis: 'GPQA random controls 确认了 worst 档预期：无 strategy separation。 但需注意，这不是独立的
+    negative finding——它是 GPQA phase gradient 整体失败的 downstream 后果。如果 base effect 不存在，strategy
+    modulation 无从测量。 在论文中，这应作为 GPQA negative result 的补充证据， 而非独立的 "strategy specificity
+    fails on GPQA" claim。
+
+    '
+- name: GPQA cross-task generalization synthesis
+  plan_id: gpqa_cross_task_synthesis
+  description: '汇总 GPQA 全部 10 条件的结果，与 MATH-500 和 GSM8K 对比， 评估 cross-task generalization
+    的整体状态。
+
+    '
+  expected_results:
+    gpqa_ds_bonferroni_sig_count: 0
+    gpqa_qw_bonferroni_sig_count: 0
+    gpqa_total_sig_count_out_of_10: 0
+    gpqa_ds_dose_response_monotonic: false
+    gpqa_qw_dose_response_monotonic: false
+    gpqa_ds_spearman_rho: 0.4
+    gpqa_qw_spearman_rho: 0.2
+    gpqa_imp_rand_ratio_range: 0.5-2.0
+    cross_model_direction_consistency: false
+    cross_benchmark_comparison:
+      math500_sig_rate: 8/8 (DS+QW importance all Bonferroni sig)
+      gsm8k_sig_rate: 6/8 (importance all sig, random mixed)
+      gpqa_sig_rate: 0/10 (none significant)
+    task_complexity_gradient:
+      math500_avg_chain_length: '>2000 tokens'
+      gsm8k_avg_chain_length: ~800 tokens
+      gpqa_avg_chain_length: ~400 tokens
+    strategy_specificity_by_benchmark:
+      math500_imp_rand_ratio: 15-36×
+      gsm8k_imp_rand_ratio: 2.3-3.8×
+      gpqa_imp_rand_ratio: 0.5-2.0×
+  result_rationale: '三个 benchmark 形成清晰的 task-complexity gradient：
+
+    MATH-500（长链结构化数学推理, ~2000+ tokens）： Phase gradient 最强（DS median_diff 0.39→8.48），strategy
+    specificity 最高（15-36×）， 全部显著。这是 phase-dependent compound severity 的"最佳条件"—— 长推理链提供足够的
+    token 来积累 phase-dependent 差异， 结构化 CoT 的 exploration→calculation→verification 阶段
+    自然映射到 high→mid→low sparsity phases。
+
+    GSM8K（中链基础数学推理, ~800 tokens）： Phase gradient 存在但更弱（DS: 0.24→4.68, 约 MATH-500 的
+    1/2）， strategy specificity 衰减至 2.3-3.8×。GSM8K 推理链更短， phase 间差异积累更少，但基本数学推理仍保持足够的
+    phase 结构。
+
+    GPQA（短链非数学推理, ~400 tokens）： Phase gradient 消失。两个关键差异导致失败： (a) 推理链过短（~400 tokens），三段
+    phase 分割后每段仅 ~130 tokens， 统计量估计极不稳定； (b) 非数学推理的 attention pattern 不形成数学 CoT 那样的清晰
+    phase 结构， quantile-based phase segmentation 捕获的不是有意义的 reasoning stage 转换， 而是噪声。
+
+    对论文叙事的影响： 从 "phase modulation 是 universal property of reasoning LLMs" 退缩为 "phase
+    modulation 是 structured mathematical reasoning 的涌现属性"。 这缩小了 novelty scope 但增加了
+    specificity—— 可以 argue 数学推理是最清晰的 "phase-structured" 推理范式， 我们的发现精确刻画了这个 regime
+    的行为， 泛化到其他推理类型是明确声明的 future work。
+
+    '
+  tables:
+  - name: 'Table: Cross-Benchmark Phase Gradient Summary'
+    content: '| Benchmark | Chain Length | Sig Rate   | ρ (DS) | ρ (QW) | Imp/Rand
+      Ratio |
+
+      |-----------|-------------|------------|--------|--------|----------------|
+
+      | MATH-500  | ~2000 tok   | 8/8 (100%) | 1.0    | 1.0    | 15-36×         |
+
+      | GSM8K     | ~800 tok    | 6/8 (75%)  | 1.0    | 1.0    | 2.3-3.8×       |
+
+      | GPQA      | ~400 tok    | 0/10 (0%)  | 0.40   | 0.20   | 0.5-2.0×       |
+
+      '
+  figures_description:
+  - 'Fig: Task-complexity gradient visualization。三列 panel (MATH-500, GSM8K, GPQA)。
+    每列：上方 bar chart 为 DS importance median_diff × 4 sparsity levels（y-axis log）， 下方热力图为
+    per-phase II median（3×4 grid, phase×sparsity）。 MATH-500 和 GSM8K 显示清晰的从左上到右下的 gradient
+    pattern， GPQA 的热力图近乎均匀噪声。
+
+    '
+  analysis: "GPQA 的全面失败将论文 scope 限定于数学推理。这对 EMNLP 投稿的影响：\n负面影响： - Reviewer 会问 \"为什么只研究数学推理\"\
+    ——需要在 Related Work 和 Discussion 中\n  充分论证数学 CoT 是 phase-structured reasoning 的\
+    \ canonical case\n- \"Phase-Dependent Compound Sparsity Severity in Reasoning\
+    \ LLMs\" 中的 \"Reasoning\"\n  实际只覆盖 math reasoning，可能被认为 overclaiming\n\n应对策略：\
+    \ - Title 加限定：\"...in Mathematical Reasoning LLMs\" 或保持当前 title\n  但在 abstract\
+    \ 第一句声明 scope\n- 将 task-complexity gradient (MATH>GSM8K>GPQA) 本身作为一个 finding：\n\
+    \  \"phase modulation strength correlates with reasoning chain length and structural\
+    \ complexity\"\n  (虽然只有 3 个数据点，但方向清晰)\n- GPQA negative result 放 Appendix B，诚实报告，转化为\
+    \ \"scope boundary evidence\"\nEMNLP main 可行性评估： - 缩小 scope 后仍有足够 novelty：phase\
+    \ gradient universality 跨模型/架构/benchmark（数学类），\n  dose-response characterization，discrimination\
+    \ collapse 机制，methodology 贡献\n- 但 reviewer 对 generalizability 的 concern 无法用 GPQA\
+    \ 正面数据回应，\n  需要其他策略（如 \"math reasoning is the most important use case for reasoning\
+    \ LLMs\"\n  的 practical relevance argument）"

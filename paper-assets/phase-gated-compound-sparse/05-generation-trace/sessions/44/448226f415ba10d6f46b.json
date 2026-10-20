@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "448226f415ba10d6f46b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778798046.md",
+  "task_key": "loop_8_1778798046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778798046.md",
+    "occurrence": 1,
+    "bytes": 4488,
+    "sha256": "06be4ea04e0306379a9403ad02a4585886dfb11ca9b3ebf80b08f98c25f2d0fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T22:31:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-22162 cuda:0/1/2/3**，其他设备号/服务器一律禁止\n- cuda:0+1 → c2_n500_deepseek，cuda:2+3 → c2_qw_n500_r3，**两组实验都在 RUNNING，不得中断或覆盖**\n- 论文指标只能引用 **median + median bootstrap CI**，禁止引用 mean（D054，random pruning outlier 会摧毁 mean）\n- d_z 只报 **within-importance**（不同 sparsity 间），imp vs rand 的 d_z 不报（D059）\n- LLaMA 跨架构只能 frame 为 **\"qualitative pattern\"**，不做定量跨架构比较（效应量差 ~40×）\n- 远程 tex 文件是旧版，**编译前必须先从本地同步最新 tex 到 westd-22162**（W1）\n- EMNLP 2026 ARR **截稿 2026-05-25**（距今 11 天）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- **Python**：conda 环境（aml-train 镜像），`/root/miniconda3/bin/python`\n- **模型路径**：DeepSeek-R1-Distill-Qwen-1.5B + Qwen2.5-1.5B + DeepSeek-R1-Distill-Llama-8B（均在 `/root/autodl-tmp/` 下，具体路径见 registry spec）\n- **W&B**：无（profiling 实验不用 W&B，结果写 JSON）\n- **HF cache**：`/root/autodl-tmp/.hf_cache`\n- **活跃进程**：\n  - c2_n500_deepseek: PID=c2_n500_gpu0（screen session），cuda:0+1，DeepSeek s020 进行中\n  - c2_qw_n500_r3: PID=131858（screen session），cuda:2+3，Qwen s015 ~92%\n- **Cron 监控**：2 个 active cron 跟踪上述两个实验（shell PID + sentinel 双机制，D062）\n- **活跃 Worker**（4 个 running）：\n  - `worker_ssh_check-n500-progress` — 检查 n=500 进度\n  - `worker_ops_w1_tex_sync_setup` — 本地→远程 tex 同步设置\n  - `worker_ssh_check-n500-progress-loop9` — 进度轮询\n  - `worker_code_analysis-pipeline-prep` — n=500 分析 pipeline 准备\n\n### 3. 📊 当前状态\n**刚做完**：session-start 初始化，reconcile crons 确认两个实验仍在运行。\n\n**Registry**：83 实验（81 DONE + 2 RUNNING）\n- `c2_n500_deepseek` RUNNING — DeepSeek 8 conditions n=500，s020 进行中，ETA ~2026-05-15 15-17h UTC\n- `c2_qw_n500_r3` RUNNING — Qwen 8 conditions n=500（c2_qw_n500 cron 误报后的 continuation），s015 ~92%，ETA ~2026-05-15 21h UTC\n\n**等待中**：\n- 4 个 Worker 正在运行（进度检查 + tex 同步 + 分析 pipeline 准备）\n- Cron 会在实验完成时自动回调\n- 无待处理的 Director 决策请求\n\n**D058 已解决**：n=500 s015 分析确认 Qwen paired gradient 显著（Bonferroni p<0.0001），等全部 conditions 完成后最终确认。\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调（进程退出）→ spawn worker 跑 n=500 全 8 conditions 分析 pipeline（median II + bootstrap CI + d_z within-importance only）→ 更新 registry → 汇报 Director\n- c2_qw_n500_r3 cron 回调 → 同上分析 pipeline → 与 DeepSeek 结果合并做 cross-model 对比\n- **两个实验都完成后**→ spawn Paper Agent 统一更新论文：n=500 tables/figures + c5b §8 future work + C8 限定语 + Qwen caveat（若仍有高 null rate）+ 修复 W1-W5 全部 reviewer warnings\n- 论文更新完成 → 提交 Group C full review\n- W3 [CRITICAL] 最优先修复：conclusion.tex L11 和 appendix_disc_analysis.tex L33-35 写\"cross-architecture untested\"但已有 LLaMA 数据 → integrity 问题\n\n### 5. 🎯 战略上下文\n- **核心发现**：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（phase-modulated），random masking 无此效应。跨模型 replication 方向一致（DeepSeek/Qwen/LLaMA），但 LLaMA 交互效应弱。\n- **决策链关键节点**：D054（mean→median）→ D058（Qwen n=500 显著性确认）→ D059（d_z 分场景）→ D060（C8 partially_confirmed）→ D062（cron sentinel 机制）\n- **最易判断错的事**：\n  1. 不要把 n=50 的 mean 数据和 n=500 的 median 数据混着引用——全面切 median\n  2. c2_qw_n500 已 DONE(failed)，当前跑的是 **c2_qw_n500_r3**（continuation），不要混淆\n  3. Qwen mid-phase null rate 高（45-58%），即使 n=500 显著也需要在论文中披露 effective sample size\n  4. Cron 用 shell PID + sentinel 双机制（D062），不是旧的单 PID 检测——不要回退\n  5. 距截稿 11 天，n=500 完成后的工作链是：分析 → 论文更新 → W1-W5 修复 → Group C review → 提交，每一步都不能拖\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778798046.md"
+}

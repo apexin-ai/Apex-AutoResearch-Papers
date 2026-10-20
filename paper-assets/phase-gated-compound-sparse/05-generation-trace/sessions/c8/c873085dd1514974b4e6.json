@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c873085dd1514974b4e6",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_14_1778903432.md",
+  "task_key": "loop_14_1778903432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778903432.md",
+    "occurrence": 1,
+    "bytes": 4986,
+    "sha256": "ab7e4e8f20ed29b76b6dfa915d5f0097a0b0150e97c654b54125783786a911a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T03:46:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单**仅** westd-22162 cuda:0/1/2/3，不得越权使用其他设备（D094 事故：c10 越权 GPU 导致 c8 数据全丢）\n- c5_per_phase_gini 占 cuda:0（DS 部分），c8_llama_n250_fixed 占 cuda:2+3 — 不要 kill 或抢占\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（服务器用 conda 不是 venv）\n- 论文已接受 Findings track 定位（D091），不要用 main conference 的 framing 写 contribution\n- c8_llama_n250_fixed 是**第二次跑**（第一次因 c10 越权 GPU 数据全丢），不能再出事故\n- Negative 结果（c5b_pilot FAIL、qwen_c4_entropy negative）已有 Director 决策，不要重新提 Framing 调整\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：DeepSeek-R1-Distill-Qwen-7B / Qwen2.5-7B-Instruct / DeepSeek-R1-Distill-Llama-8B（均在服务器本地）\n- W&B：未配置（本项目不用 W&B，全走本地 log + registry metrics）\n- 活跃进程：\n  - c5_per_phase_gini: PID 307021, cuda:0（DS 部分 16/30，QW 已完成）\n  - c8_llama_n250_fixed: PID 310712, cuda:2+3, tmux session, cron 监控中\n- 活跃 cron：2 个（c5_per_phase_gini + c8_llama_n250_fixed）\n- 活跃 Worker：3 个 running（worker_code_c10_s020_s025_gpu1 生成 c10 缺失数据、worker_paper_figure_download_fig1、worker_ops_download_fig1 下载 figure1 散点图）\n\n### 3. 📊 当前状态\n**刚完成**：Round 10 修订 Wave 1——bib 全量审计（MUSTAFAR 删除）、§4-7 corrections（贡献词降级+统计补全+匿名化）、c10_lang_switching 分析、c9 power analysis、c4 think validation v2、figure1 散点图生成。\n\n**正在跑**：\n- `c8_llama_n250_fixed` (RUNNING, cuda:2+3): LLaMA-8B n=250 cross-architecture validation, 8 conditions (imp/rand × 4 sparsity), 预计 5-6h（~03:21 UTC 启动）\n- `c5_per_phase_gini` (RUNNING, cuda:0): DS per-phase Gini decomposition, 16/30 problems done, QW 部分已完成\n- Worker 正在生成 c10 s020/s025 gen_snippet 数据（补齐 language switching 中间 sparsity 点）\n- Worker 正在下载 figure1 散点图到本地 artifacts\n\n**等待中**：\n- c5_per_phase_gini cron 回调（DS 部分完成后）\n- c8_llama_n250_fixed cron 回调（预计 ~08:30-09:30 UTC）\n- c10 s020/s025 Worker 完成回调\n- figure1 下载 Worker 完成回调\n\n**Registry 统计**：125 实验（62 success / 17 negative / 17 failed），38 plan experiments coverage 92.1%\n\n### 4. 📋 待办（条件触发式）\n- c5_per_phase_gini cron 回调（DS 完成）→ 合并 DS+QW 结果，更新 registry metrics，spawn Paper Worker 写 §4 discrimination collapse 段落（含 per-phase Gini 表），汇报 Director\n- c8_llama_n250_fixed cron 回调 → 分析 n=250 结果：若 Bonferroni 显著性从 n=50 的 \"仅 s030\" 扩展到更多 sparsity → 更新 paper §5 cross-arch 段，更新 registry；若仍仅 s030 显著 → 维持 \"qualitative replication\" framing\n- c10 s020/s025 gen Worker 完成 → spawn 分析 Worker 跑 language switching 全 5 点 dose curve，更新 memory.md §L，补入 paper appendix\n- figure1 下载完成 → 确认 artifacts 注册，可用于 paper 编译\n- **所有 GPU 实验完成后** → 全面更新 report.md，spawn Paper Agent 做 Round 10 修订 Wave 2（Abstract/Intro rewrite for Findings framing），准备 Round 11 提交\n- 截稿前（2026-05-25）→ 确保 bib 审计通过、所有 figure 就位、appendix 完整\n\n### 5. 🎯 战略上下文\n- **核心发现**：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（II 从 0.39→8.48 across s015-s030），phase-modulated（low phase >> high phase），cross-model replicated（DS magnitude ~3× QW）\n- **决策链**：D091 接受 Findings track → D094 c8 数据丢失事故 → D095 c8 重跑 + c10 排队 → D096 Paper Agent 启动 Findings framing corrections\n- **最易判断错的事**：\n  1. c8 LLaMA n=250 结果可能仍然 \"仅 s030 显著\"（n=50 时就是这样），不要期望 dramatic improvement——准备好 \"qualitative replication, quantitatively weaker\" 的 framing\n  2. QW random s025/s030 在 GSM8K 上 gradient > importance（§E 注释），这是已知异常，paper_framing 已处理为 \"反转仅在原始 II_low 值上\"，不要当新发现处理\n  3. DS accuracy dose curve 已**降为定性观察**（D086），主 accuracy 证据是 QW n=100——不要在 paper 里给 DS accuracy 过多权重\n  4. c5b_pilot（mitigation）FAIL 已降为 future work（D057），不要再尝试 mitigation 实验\n  5. 距截稿 9 天，GPU 实验（c8+c5）完成后主要是写作任务——Paper Agent 是瓶颈，要并行派多个 section Writer\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778903432.md"
+}

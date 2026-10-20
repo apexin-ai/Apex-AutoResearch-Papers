@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_v4_legacy_s025",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:12:53.157Z",
+    "updated_at": "2026-05-14T00:12:53.157Z"
+  },
+  "timestamp": "2026-05-14T00:12:53.194522+00:00",
+  "trigger": "update_registry"
+}

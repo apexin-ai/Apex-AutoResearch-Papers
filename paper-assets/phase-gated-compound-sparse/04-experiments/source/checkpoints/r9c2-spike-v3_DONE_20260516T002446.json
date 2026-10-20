@@ -1,0 +1,31 @@
+{
+  "exp_id": "r9c2-spike-v3",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:35:35.819Z",
+    "updated_at": "2026-05-16T00:24:46.524Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --num-problems 10 --conditions dense,importance_s025 --gpu cuda:0 --output-name accuracy_eval_r9c2_spike.json 2>&1 | tee /root/autodl-tmp/pacs/analysis_output/spike_log.txt\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "272763",
+      "log_path": "~/runs/phase-gated-compound-sparse/r9c2-spike-v3.log",
+      "submitted_at": "2026-05-15T20:35:35.531Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 3452.4,
+      "gpu_hours": 0.96
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T21:33:07.954Z"
+  },
+  "timestamp": "2026-05-16T00:24:46.796692+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cc458eb2260617e25d3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper consistency check",
+  "task_key": "worker_paper_consistency_check_20260514T094613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_consistency_check_20260514T094613_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "092a88605752ff03b0ad3a48e1b6734e35c400d633789adf9028a865e454d29d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/consistency_report.md`。\n\n发现 **5 个关键问题**：\n\n1. **introduction.tex Qwen Cohen's d 与 Table 3 矛盾** — intro 用 d=0.37/≥0.72，Table 3 用 d=0.28/0.55，两套数值来源不同\n2. **全部 Cohen's d 与 task-spec 基准值不符** — 论文用 DS 0.44→0.80 / QW 0.28→1.02，基准为 DS 0.61→1.13 / QW 0.37→1.44，需确认哪套计算正确\n3. **`\\ref{sec:experiments}` 未定义** — intro 引用 3 次，实际 label 是 `sec:results`，编译产生 ??\n4. **`eq:ii` 和 `eq:gradient` 重复定义** — background.tex 和 methodology.tex 各定义一次\n5. **methodology.tex 称 \"p < 0.0001\"** — 但 s=0.15 的 Bonferroni p=0.0032\n\n另有 3 个中等问题（正文用 unpaired 而非 paired median_diff、discussion 自引用、两张 figure 未被 \\ref）。其余 14 项数字检查全部一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-consistency-check.md"
+}

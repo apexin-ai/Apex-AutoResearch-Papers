@@ -1,0 +1,575 @@
+tier: median
+narrative_guidance: '调整 claims 强度：C5 降级为 "preliminary evidence / suggestive pilot"
+  放入 §5 Discussion 而非 §4 Results 主体，或作为 Appendix 补充证据。C2 叙事改为 threshold framing： "compound
+  effect emerges above threshold sparsity (~s020)"，Qwen s015 作为 boundary condition
+  讨论。Title 去掉 "across architectures"，改为强调 Qwen-family 内的 cross-model replication（distillation
+  vs instruction tuning）。RC1 诚实承认同架构局限， 以 mechanism 的 architecture-agnostic 性质作为间接论证。贡献收缩为：
+  (1) 发现 + 同架构跨训练验证，(2) 量化 gradient（threshold-dependent）， (3) discrimination collapse
+  机制。仍是 solid EMNLP empirical finding paper。
+
+  '
+imagined_experiments:
+- name: DeepSeek importance bf16 × 4 sparsity
+  plan_id: plan_001
+  description: bf16 重跑 DeepSeek importance masking (s015/s020/s025/s030)，消除 fp16 NaN
+    偏差
+  expected_results:
+    s015_median_diff: 0.3236
+    s015_cohens_d: 0.6068
+    s015_ci:
+    - 0.199
+    - 0.472
+    s020_median_diff: 1.152
+    s020_cohens_d: 0.725
+    s020_ci:
+    - 0.655
+    - 1.256
+    s025_median_diff: 3.969
+    s025_cohens_d: 0.9534
+    s025_ci:
+    - 2.829
+    - 5.292
+    s030_median_diff: 9.944
+    s030_cohens_d: 1.1263
+    s030_ci:
+    - 8.392
+    - 16.653
+    monotonic_gradient: true
+    all_bonferroni_p: <0.005
+    n_paired: 49
+  result_rationale: '已完成实验，数据为 median tier 的锚点。bf16 消除 NaN 偏差后 paired median difference
+    呈清晰单调递增 (0.32→1.15→3.97→9.94)，Cohen''s d 从 medium (0.61) 到 large (1.13)。这些数据在所有
+    tier 下均不变——它们是已观测事实，不是预测。
+
+    '
+  tables:
+  - 'Table 1 (DeepSeek importance 列): paired median diff + Cohen''s d + CI'
+  figures_description:
+  - 'Fig 2a: Phase gradient heatmap — II median across 3 phases × 4 sparsity'
+  analysis: '核心证据锚点。4 水平 Bonferroni p<0.005，effect size medium→large。 median tier
+    下游实验的所有预测以此为参照基线。
+
+    '
+- name: DeepSeek random bf16 × 4 sparsity
+  plan_id: plan_002
+  description: bf16 重跑 DeepSeek random masking (s015/s020/s025/s030) 配对对照
+  expected_results:
+    s015_median_diff: 0.0095
+    s015_verdict: FAIL
+    s020_median_diff: -0.0155
+    s020_verdict: FAIL
+    s025_median_diff: 0.5445
+    s025_verdict: FAIL
+    s030_median_diff: 1.5383
+    s030_verdict: FAIL
+    phase_gradient_present: false
+    all_4_fail: 7/8 conditions FAIL (counting Qwen random)
+  result_rationale: '已完成实验。Random masking 4 水平 permutation test 全部 FAIL，paired median
+    difference 近零或无系统方向。与 importance 的强单调梯度形成鲜明对比， 直接支撑 C1 strategy-dependent claim。s030
+    median_diff=1.54 虽非零但 无 phase gradient（high/mid/low II 无系统差异），不具 phase-modulation
+    特征。
+
+    '
+  tables:
+  - 'Table 1 (DeepSeek random 列): FAIL 标注'
+  figures_description:
+  - 'Fig 2b: Random masking flat II profile 对比 importance gradient'
+  analysis: 'Random flatness 是论文最关键的对照证据。Phase gradient 的特异性 (importance-only) 排除了
+    "任何 compound interaction 都有 phase gradient" 的 trivial 解释。
+
+    '
+- name: Crossover analysis from plan_001 + plan_002
+  plan_id: plan_003
+  description: 从 bf16 importance vs random 数据中提取 per-phase II，验证方向反转
+  expected_results:
+    s025_importance_high_phase_median: 0.032
+    s025_random_high_phase_median: 0.818
+    s025_importance_low_phase_median: 7.196
+    s025_random_low_phase_median: 1.363
+    crossover_present: true
+    crossover_significant: true
+    direction: importance < random (high phase) → importance > random (low phase)
+  result_rationale: '从已完成数据直接派生。在 s025，importance masking 在 high-sparsity phase 的
+    II (0.032) 远低于 random (0.818)——importance 在早期 reasoning 反而比 random 好； 但在 low-sparsity
+    phase，importance II (7.196) 远超 random (1.363)——importance 在晚期 reasoning 比 random
+    差得多。方向反转是 C3 crossover 的核心证据。 这个 crossover 在所有 tier 下均成立——它是已确认的 DeepSeek 结果。
+
+    '
+  tables:
+  - 'Table 2: Per-phase II — importance vs random at s025'
+  figures_description:
+  - 'Fig 3: Crossover interaction plot — X轴 phase, Y轴 II, 两线交叉'
+  analysis: 'Crossover 是本文最独特的发现。Prior work 从未报告 compound interaction 方向随 reasoning
+    phase 反转。这直接否定了 compound degradation 均匀分布的隐含假设。
+
+    '
+- name: Qwen importance bf16 × 4 sparsity
+  plan_id: plan_004
+  description: Qwen2.5-7B-Instruct importance masking bf16 (s015/s020/s025/s030)
+  expected_results:
+    s015_median_diff: 0.0476
+    s015_cohens_d: 0.3705
+    s015_ci:
+    - -0.005
+    - 0.11
+    s015_ci_crosses_zero: true
+    s020_median_diff: 0.2075
+    s020_cohens_d: 0.7224
+    s020_ci:
+    - 0.067
+    - 0.402
+    s025_median_diff: 1.1087
+    s025_cohens_d: 1.2329
+    s025_ci:
+    - 0.609
+    - 1.469
+    s030_median_diff: 2.6194
+    s030_cohens_d: 1.4394
+    s030_ci:
+    - 1.722
+    - 3.651
+    onset_threshold: s020
+    magnitude_ratio_vs_deepseek: ~1/4
+    n_paired: 46
+  result_rationale: '已完成实验。Qwen 复现 DeepSeek 的单调模式 (0.048→0.208→1.109→2.619) 但绝对量级约
+    1/4。关键：s015 CI 跨零 [-0.005, 0.110]——这个边界性 是 median tier 叙事的核心驱动因素。Qwen 使用 instruction
+    tuning (vs DeepSeek 的 R1 distillation)，attention pattern 更均匀，导致 低 sparsity 下 head
+    importance 差异更小，compound interaction 接近 noise floor。
+
+    '
+  tables:
+  - Table 1 (Qwen importance 列)
+  figures_description:
+  - 'Fig 2c: Qwen phase gradient — magnitude ~1/4 of DeepSeek'
+  analysis: 'Qwen s015 的边缘性是 median tier 中 threshold framing 的实证基础。 Cross-model replication
+    确认方向一致但量级不同——训练方式影响 compound interaction 的 sensitivity。
+
+    '
+- name: Qwen random bf16 × 4 sparsity
+  plan_id: plan_005
+  description: Qwen2.5-7B-Instruct random masking bf16 (s015/s020/s025/s030)
+  expected_results:
+    s015_verdict: FAIL
+    s015_cohens_d: -0.0507
+    s015_perm_p: 0.766
+    s020_verdict: FAIL
+    s020_cohens_d: 0.247
+    s020_perm_p: 0.352
+    s025_verdict: FAIL
+    s025_cohens_d: 0.1574
+    s025_perm_p: 0.168
+    s030_verdict: PASS (p=0.012, d=-0.035 negligible)
+    s030_perm_p: 0.012
+    s030_cohens_d: -0.035
+    cross_model_random_pattern: 7/8 FAIL (DeepSeek 4/4 + Qwen 3/4)
+  result_rationale: '已完成实验。Qwen random 3/4 FAIL，与 DeepSeek random 4/4 FAIL 合计 形成 7/8
+    FAIL 模式。唯一例外 Qwen s030 perm_p=0.012 但 Cohen''s d=-0.035 效应量可忽略。这个 exception 需论文中明确标注：统计显著但实际无意义。
+    Random 的 phase-independent flatness 在两个模型上均稳健复现。
+
+    '
+  tables:
+  - 'Table 1 (Qwen random 列): 3 FAIL + 1 PASS(negligible d)'
+  figures_description: []
+  analysis: 's030 PASS 的处理策略：在表中用脚注标注 "p=0.012 but |d|<0.05, negligible effect size"。审稿人可能问
+    "为什么 s030 PASS"——回应：sample size effect， 大样本任何微小差异都可能 significant，效应量才是实质指标。
+
+    '
+- name: Attention entropy + discrimination collapse measurement
+  plan_id: plan_006
+  description: 测量 pruned vs unpruned 的 attention entropy + importance score Gini/CV
+  expected_results:
+    ds_entropy_delta:
+      s015: -0.04
+      s020: -0.047
+      s025: -0.045
+      s030: -0.044
+    ds_gini_delta:
+      s015: -0.03
+      s020: -0.04
+      s025: -0.065
+      s030: -0.081
+    ds_cv_delta:
+      s015: -0.564
+      s020: -0.774
+      s025: -1.287
+      s030: -1.665
+    qw_entropy_delta:
+      s015: -0.073
+      s020: -0.076
+      s025: 0.045
+      s030: -0.007
+    qw_gini_delta:
+      s015: -0.01
+      s020: -0.012
+      s025: -0.01
+      s030: -0.02
+    qw_cv_delta:
+      s015: -0.045
+      s020: -0.208
+      s025: -1.491
+      s030: -1.142
+    cross_model_gini_cv_consistent: true
+    cross_model_entropy_consistent: false
+    problems_completed: 30
+  result_rationale: '已完成实验。Discrimination collapse (Gini/CV 下降) 跨模型方向一致—— head pruning
+    后 importance score 判别力系统性降低，两个模型均观察到。 但 entropy redistribution 在 Qwen s025 反转
+    (+0.045)，说明 entropy collapse 是 DeepSeek 特有的（可能与 R1 distillation 的 attention 集中度
+    有关），不是 universal mechanism。Median tier 预测 LLaMA 验证时 Gini/CV 方向一致——这是 "在可用架构上方向一致"
+    假设的延伸。
+
+    '
+  tables:
+  - 'Table 3: Discrimination collapse (Gini/CV) 跨模型对比'
+  figures_description:
+  - 'Fig 4: Gini delta heatmap (DeepSeek vs Qwen × 4 sparsity)'
+  analysis: '论文以 discrimination collapse 为 primary mechanism，entropy 降级为 DeepSeek-specific
+    amplifier。这避免了 Qwen entropy 反转的尴尬—— 转为 "model-dependent secondary effect" 的诚实表述。
+
+    '
+- name: Growth rate analysis from plan_001
+  plan_id: plan_007
+  description: 从 bf16 importance 数据分析增长率模式，验证 C6 sub-exponential
+  expected_results:
+    ds_median_diff_series:
+    - 0.3236
+    - 1.152
+    - 3.969
+    - 9.944
+    ds_growth_factors:
+    - 3.56
+    - 3.44
+    - 2.51
+    ds_growth_decreasing: true
+    qw_median_diff_series:
+    - 0.0476
+    - 0.2075
+    - 1.1087
+    - 2.6194
+    qw_growth_factors:
+    - 4.36
+    - 5.34
+    - 2.36
+    qw_growth_s025_to_s030_decreasing: true
+    both_sub_exponential: true
+  result_rationale: '从已有数据派生。DeepSeek 增长因子 3.56→3.44→2.51 单调递减。 Qwen 增长因子 4.36→5.34→2.36
+    在 s020→s025 微升但 s025→s030 大幅下降。 两模型在高 sparsity 端增速均放缓。物理解释：低 sparsity 段 eviction
+    优先 移除低重要度 token，compound interaction 随每个被移除 token 的边际重要性 递增而快速增长；但高 sparsity 段多数"安全"token
+    已被移除，剩余 token 重要性趋同（discrimination collapse），边际增长减速。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig 2d inset: Growth factor deceleration curve'
+  analysis: 'Sub-exponential 是 positive framing 的重要论据：compound severity 可控， 高 sparsity
+    下增速自然放缓而非指数爆炸，对实际部署是利好信号。
+
+    '
+- name: Per-problem bootstrap CI (bf16 data)
+  plan_id: plan_008
+  description: B=10000 paired bootstrap CI + permutation test (Bonferroni)
+  expected_results:
+    ds_all_4_significant: true
+    ds_bonferroni_p: <0.005 全 4 水平
+    qw_s020_s025_s030_significant: true
+    qw_s015_borderline: true
+    qw_s015_bonferroni_p: ~0.0004 (permutation) 但 CI 跨零
+    bootstrap_B: 10000
+    n_paired_ds: 49
+    n_paired_qw: 46
+  result_rationale: '已完成。统计框架使用 paired median difference 作为 robust statistic， permutation
+    test B=10000 + Bonferroni 多重校正。DeepSeek 全部显著， Qwen s015 permutation_p=0.0001（显著）但
+    bootstrap CI 跨零—— 这种 permutation 显著但 CI 跨零的 discrepancy 来自 permutation test 对任何系统性差异敏感，而
+    bootstrap CI 反映 median 估计的不确定性。 n=500 扩展主要解决这个 discrepancy。
+
+    '
+  tables:
+  - Table 1 CI 列 + significance markers
+  figures_description:
+  - 'Fig A1: Per-problem paired difference distribution (violin plots)'
+  analysis: 'RC4 的回应材料已充足。permutation + bootstrap + Cohen''s d 三层验证 确保统计稳健性。唯一的 grey
+    area 是 Qwen s015， 这正是 n=500 实验 (plan_010) 要解决的问题。
+
+    '
+- name: DeepSeek n=500 statistical power boost
+  plan_id: plan_009
+  description: DeepSeek 8 conditions (imp/rand × 4 sparsity) n=50→n=500 (full MATH-500)
+  expected_results:
+    imp_s015_median_diff: 0.3
+    imp_s015_cohens_d: 0.58
+    imp_s015_ci:
+    - 0.22
+    - 0.4
+    imp_s015_ci_width: 0.18
+    imp_s015_ci_width_reduction_pct: 34
+    imp_s020_median_diff: 1.1
+    imp_s020_cohens_d: 0.7
+    imp_s020_ci:
+    - 0.85
+    - 1.25
+    imp_s020_ci_width_reduction_pct: 33
+    imp_s025_median_diff: 3.85
+    imp_s025_cohens_d: 0.92
+    imp_s025_ci:
+    - 3.1
+    - 4.8
+    imp_s025_ci_width_reduction_pct: 31
+    imp_s030_median_diff: 9.7
+    imp_s030_cohens_d: 1.1
+    imp_s030_ci:
+    - 8.4
+    - 14.1
+    imp_s030_ci_width_reduction_pct: 31
+    rand_s015_verdict: FAIL
+    rand_s020_verdict: FAIL
+    rand_s025_verdict: FAIL
+    rand_s030_verdict: FAIL
+    all_bonferroni_significant: true
+    monotonic_gradient_preserved: true
+    n_problems: 500
+    n_effective_paired: ~470
+  result_rationale: 'Median tier 预测 DeepSeek n=500 CI 收窄约 25-35%（远低于理论 √10≈68%）。 原因：MATH-500
+    包含大量简单题目，这些题目的 reasoning trace 极短 （phase assignment 仅 1-2 segments per phase），compound
+    interaction 接近 noise floor，对 paired median difference 贡献有限。有效配对数 从 49 增至约 470（~30
+    题因 phase coverage 不足被排除），但 per-problem II 分布的高偏斜度（skewness 4-16）使 median 的 bootstrap
+    CI 不如 mean 收窄快。 点估计微调（s015 从 0.324 降至 0.30）：简单题目的 near-zero II 拉低了 overall median，但变化
+    <10%，说明 n=50 采样已是合理估计。 Random 对照在 10× 样本下仍全部 FAIL，进一步排除 sampling bias。
+
+    '
+  tables:
+  - 'Table 1 更新: n=500 CI (DeepSeek)'
+  - 'Table A1: CI width reduction summary by sparsity'
+  figures_description:
+  - 'Fig A1: n=50 vs n=500 forest plot — CI narrowing 可视化'
+  - 'Fig A2: Per-problem II distribution (500 problems) violin — 展示 easy-problem floor
+    effect'
+  analysis: 'DeepSeek n=500 在 median tier 下无 surprise。主要价值： (1) 用 full MATH-500 消除
+    reviewer 的 sampling bias 疑虑； (2) 更精确的 effect size 估计可用于 future meta-analysis；
+    (3) Random 10× replication 彻底巩固 strategy-dependent contrast。
+
+    '
+- name: Qwen n=500 statistical power boost
+  plan_id: plan_010
+  description: Qwen 8 conditions (imp/rand × 4 sparsity) n=50→n=500
+  expected_results:
+    imp_s015_median_diff: 0.045
+    imp_s015_cohens_d: 0.35
+    imp_s015_ci:
+    - -0.005
+    - 0.095
+    imp_s015_ci_crosses_zero: true
+    imp_s015_point_estimate_positive: true
+    imp_s015_wilcoxon_p: 0.038
+    imp_s015_bonferroni_p: 0.152
+    imp_s015_bonferroni_significant: false
+    imp_s020_median_diff: 0.19
+    imp_s020_cohens_d: 0.68
+    imp_s020_ci:
+    - 0.1
+    - 0.32
+    imp_s020_ci_crosses_zero: false
+    imp_s020_bonferroni_p: <0.001
+    imp_s025_median_diff: 1.05
+    imp_s025_cohens_d: 1.18
+    imp_s025_ci:
+    - 0.72
+    - 1.35
+    imp_s025_bonferroni_p: <0.001
+    imp_s030_median_diff: 2.55
+    imp_s030_cohens_d: 1.38
+    imp_s030_ci:
+    - 1.85
+    - 3.3
+    imp_s030_bonferroni_p: <0.001
+    rand_s015_verdict: FAIL
+    rand_s020_verdict: FAIL
+    rand_s025_verdict: FAIL
+    rand_s030_verdict: PASS (p~0.008, d~-0.03 negligible)
+    onset_threshold: s020
+    threshold_framing: compound effect emerges above s~0.020
+    n_problems: 500
+    n_effective_paired: ~440
+  result_rationale: '这是 median tier 的定义性预测。Qwen s015 在 n=500 后 CI 仍跨零的原因：
+
+    (1) 效应量太小（d≈0.35）。对 paired design + Bonferroni α=0.0125， 检测 d=0.35 需要 n≈120 paired
+    observations 达到 power=0.80。虽然 n=500 远超此数，但 MATH-500 中约 40% 的题目在 s015 下 compound
+    interaction 接近零（非常简单的算术题），实际有效 n 约 280-300；
+
+    (2) Per-problem paired difference 在 s015 的分布呈双峰：多数题目 差异 ≈0（简单题），少数题目差异 >0.2（需要深度
+    reasoning 的题）， bootstrap median 在两个模式之间振荡；
+
+    (3) Instruction tuning (Qwen) vs distillation (DeepSeek) 的关键差异： instruction tuning
+    产生更均匀的 attention distribution，head importance 差异天然更小，s015 这个低 sparsity 下 compound
+    interaction 确实 接近 noise floor——这不是 power 不足，而是 true effect 接近零。
+
+    s020 在 n=500 后清晰脱离零 (CI [0.10, 0.32])，与 s015 形成清晰的 threshold boundary。这支持 "compound
+    effect emerges above s~0.020" 的 threshold framing，为叙事调整提供直接证据。
+
+    Qwen s030 random 仍然 PASS (p~0.008) 但 d~-0.03——与 n=50 一致， 更大样本确认这是 persistent but
+    negligible 的统计 artifact。
+
+    '
+  tables:
+  - 'Table 1 更新: Qwen n=500 CI + significance'
+  - 'Table 4: Threshold analysis — s015 boundary condition'
+  figures_description:
+  - 'Fig 5: Qwen s015 per-problem paired difference distribution (n=500)'
+  - 'Fig 5 inset: s015 双峰分布 — 简单题 near-zero cluster vs 难题 positive cluster'
+  analysis: 'Qwen s015 的"不显著"是 informative null——它定义了 compound effect 的 onset boundary。叙事从
+    "universally phase-modulated" 转为 "phase-modulated above threshold sparsity (~s020)"。这实际上增强论文的
+    精确度：与其 claim 所有 sparsity 都有效，不如给出清晰的 operating regime。 RC1 应对：Qwen s015 boundary
+    condition + DeepSeek s015 significant = onset threshold is model-dependent (与已确认的
+    S3→C 一致)。
+
+    '
+- name: Phase-aware mitigation pilot (oracle + heuristic)
+  plan_id: plan_011
+  description: '2h pilot: oracle phase assignment + token position ratio heuristic,
+    compute-matched'
+  expected_results:
+    oracle_s025_recovery_pct: 22
+    oracle_s025_compound_ppl: 49.6
+    oracle_s025_baseline_compound_ppl: 63.7
+    oracle_s025_dense_ppl: 1.23
+    oracle_s030_recovery_pct: 18
+    oracle_s030_compound_ppl: 100.5
+    oracle_s030_baseline_compound_ppl: 122.6
+    heuristic_phase_accuracy: 0.67
+    heuristic_s025_recovery_pct: 12
+    heuristic_s025_compound_ppl: 55.3
+    heuristic_s030_recovery_pct: 8
+    heuristic_s030_compound_ppl: 113.0
+    gate_threshold: 30%
+    gate_passed: false
+    recommendation: 降级为 future work
+  result_rationale: 'Oracle recovery 仅 18-22% (<30% gate) 的根本原因： phase-aware eviction
+    只调整"什么时候 evict"，不改变"如何 evict"—— discrimination collapse 发生在 importance scoring
+    层面，即使在正确的 phase 减少 eviction rate，剩余的 eviction 仍然是低判别力的伪随机决策。 具体机制：oracle 在 low-sparsity
+    phase (compound interaction 最大处) 降低 eviction rate，但 compute-matched constraint
+    要求在 high-sparsity phase 相应增加 eviction rate，后者虽然 compound interaction 小但不是零—— 净收益被部分抵消。
+
+    Heuristic (token position ratio) 作为 phase proxy 准确率约 67%—— reasoning 的 phase 不完全与
+    token position 对应（回溯、correction、 multi-step verification 打破了线性位置假设），导致 phase 分类噪声。
+    Heuristic recovery (8-12%) 是 oracle (18-22%) 的约 50-55%，反映 proxy accuracy 的传递损失。
+
+    Gate 未通过 (max 22% < 30%) 意味着 mitigation 不进入论文 §4 Results， 但 pilot 数据有论文价值：它量化了
+    phase-aware 方法的理论上限， 表明单独调整 eviction timing 不足以解决 compound interaction—— 需要更根本的
+    scoring mechanism 改进。这实际上强化了 discrimination collapse 作为 root cause 的叙事。
+
+    '
+  tables:
+  - 'Table A3 (Appendix): Mitigation pilot — oracle vs heuristic'
+  figures_description:
+  - 'Fig A3: Recovery curve — oracle upper bound vs heuristic lower bound'
+  analysis: 'Pilot failure 在叙事上可转化为 positive insight： "Even oracle phase knowledge
+    recovers only ~20% of compound degradation, confirming that the root cause is
+    discrimination collapse in importance scoring, not suboptimal eviction timing."
+    这为 future work 明确了方向： fix the scoring, not the timing。
+
+    '
+- name: LLaMA-8B cross-architecture validation
+  plan_id: plan_012
+  description: DeepSeek-R1-Distill-Llama-8B s025/s030 phase gradient + crossover
+  expected_results:
+    s025_paired_median_diff: 0.55
+    s025_cohens_d: 0.3
+    s025_ci:
+    - 0.05
+    - 1.2
+    s025_ci_crosses_zero: false
+    s025_bonferroni_p: 0.028
+    s030_paired_median_diff: 1.4
+    s030_cohens_d: 0.42
+    s030_ci:
+    - 0.18
+    - 3.1
+    s030_ci_crosses_zero: false
+    s030_bonferroni_p: 0.006
+    crossover_direction_correct: true
+    crossover_significant: false
+    crossover_verdict: ambiguous
+    s025_imp_high_phase: 0.08
+    s025_rand_high_phase: 0.35
+    s025_imp_low_phase: 0.95
+    s025_rand_low_phase: 0.7
+    crossover_gap: importance low (0.95) > random low (0.70) 但 CI 重叠
+    gini_delta_s025: -0.015
+    gini_delta_s030: -0.022
+    cv_delta_s025: -0.4
+    cv_delta_s030: -0.65
+    gini_cv_direction_consistent: true
+    magnitude_vs_deepseek: ~1/7
+    magnitude_vs_qwen: ~1/2
+    n_problems: 50
+    n_paired: ~45
+    c5_verdict: suggestive — positive gradient, small-medium effect size
+    paper_placement: §5 Discussion or Appendix B
+    confirmed_arch_families: 1
+  result_rationale: 'LLaMA 效应量偏小的三个原因：
+
+    (1) GQA 架构差异。LLaMA-8B 使用 Grouped Query Attention（8 KV heads shared across 32 Q
+    heads），Qwen 使用类似但参数化不同的 GQA。GQA 中 pruning 一个 KV head 影响 4 个 Q heads 的所有 attention，compound
+    interaction 的 phase-dependence 被 head sharing 部分平滑——每个被 prune 的 head 的影响 分散到更多
+    query 位置，dilute 了 phase-specific signal；
+
+    (2) Distillation source 差异。DeepSeek-R1-Distill-Llama-8B 虽然用 DeepSeek-R1 蒸馏，但 target
+    architecture 是 LLaMA，蒸馏过程中 attention pattern 被 LLaMA 的 architectural prior 约束，不如
+    DeepSeek-R1-Distill-Qwen-7B 那样忠实还原 R1 的 attention 模式；
+
+    (3) n=50 power 不足。对 d=0.30-0.42 (small-medium)，n=50 paired 在 α=0.025 (Bonferroni
+    for 2 comparisons) 下 power 仅 0.35-0.55， 导致 CI 宽且 barely significant。
+
+    Crossover 方向正确但不显著：importance low-phase II (0.95) > random (0.70) 是预期方向，但差异仅 0.25，而
+    bootstrap CI 宽度约 ±0.40，重叠严重。 标记为 "ambiguous" 而非 "confirmed" 或 "absent"。
+
+    Gini/CV 方向一致 (negative delta) 但 magnitude 更小——支持 mechanism 的 architecture-agnostic
+    性质（方向一致）但不构成强证据。
+
+    综合评估：LLaMA 结果 directionally consistent 但 underpowered。 不足以支撑 "across architectures"
+    claim，但也不 contradictory。 适合放入 Discussion 作为 "suggestive evidence" 并诚实讨论 limitation。
+
+    '
+  tables:
+  - 'Table A2 (Appendix): LLaMA-8B pilot results'
+  figures_description:
+  - 'Fig A4: LLaMA phase gradient — 与 Qwen-family 量级对比'
+  - 'Fig A5: LLaMA crossover plot — 标注 ambiguous 区域'
+  analysis: 'Median tier 下 LLaMA 结果的论文处理： (1) Title 去掉 "across architectures"，改为 "Phase-Gated
+    Compound Sparsity in Qwen-family Models" 或类似； (2) §5 Discussion 加段："Preliminary
+    evidence from LLaMA-8B shows directionally consistent phase gradient (d=0.30-0.42)
+    but insufficient power to confirm architectural generalization. We leave full
+    cross-architecture validation to future work." (3) Limitations 明确声明 confirmed_arch_families=1
+    (Qwen2ForCausalLM)。
+
+    '
+- name: 'Related Work differentiation: Lethe + SparK'
+  plan_id: plan_013
+  description: §2 Related Work 加引用区分 Lethe/SparK/ThinKV/UniComp
+  expected_results:
+    lethe_gap: layer-time-adaptive KV pruning, single-axis (layer × time); no compound
+      interaction analysis
+    spark_gap: joint compression but assumes uniform compound interaction; our finding
+      directly contradicts this assumption
+    thinkv_gap: phase-aware single-axis KV eviction; no compound × phase × strategy
+      three-way interaction
+    unicomp_gap: unified compression framework without phase decomposition
+    new_paragraphs: 2
+    new_citations: 4
+    positioning: our unique contribution is the compound × phase × strategy three-way
+      interaction — a dimension no prior work examines
+  result_rationale: '写作任务，无实验数据。在 median tier 下 Related Work 的 positioning 需要 格外精确，因为贡献已收缩：不
+    claim 跨架构泛化，只 claim 同架构跨训练 验证 + threshold-dependent gradient + mechanism。Positioning
+    核心是 "我们发现了一个新维度"而非"我们做了更多实验"。
+
+    Lethe 最需要区分：它的 layer-time-adaptive 与我们的 phase-gated 在 名称上易混淆，但本质不同——Lethe 动态调整
+    per-layer eviction rate based on cumulative information loss，不涉及 compound interaction
+    (head pruning + KV eviction 的交互)。我们的 phase decomposition 分析的是 compound interaction
+    如何随 reasoning phase 变化。
+
+    SparK 是最直接的 contrast：它假设 compound interaction 是均匀的 (uniform across inference)，我们的核心发现正是否定这个假设——
+    compound interaction 是 phase-dependent 且 strategy-specific 的。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: Related Work 在 median tier 下的写作策略： 强调 "three-way interaction (compound
+    × phase × strategy)" 是 literature gap，避免过度 claim 泛化性。

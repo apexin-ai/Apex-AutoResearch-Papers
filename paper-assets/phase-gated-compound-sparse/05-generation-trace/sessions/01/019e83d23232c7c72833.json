@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "019e83d23232c7c72833",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "research paper update prep",
+  "task_key": "worker_research_paper_update_prep_20260514T204242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_update_prep_20260514T204242_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "6a240995e0568ae75729f7375da3425a1774f2259de07eb0f4c164f95a9d880d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清单已保存到 `artifacts/n500_paper_update_checklist.md`。\n\n**摘要**：\n\n- **~60 处内联数值** + **~80 个表格单元格** + **5 个图表 PDF** 需更新\n- **8 处** \"50\"→\"500\" 文本替换\n- **2 个条件分支**：QW s015 CI 是否含零（6 处叙事方案）、7/8 vs 8/8（5 处）\n- **4 处 LLaMA 比率声明**（§10 新增）：LLaMA 数据不变但 DS/QW 基数变化导致 \"~40×\"/\"~7×\"/\"~1/40\" 需重算\n- **文献缺口**：HIES (arXiv 2510.13832) 已在 paper_framing RC5/RC6 中引用但未收录到 literature_map.yaml，需补录\n- **C5b/C8 叙事位置**已确认无需修改（除 §10 比率外）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-update-prep.md"
+}

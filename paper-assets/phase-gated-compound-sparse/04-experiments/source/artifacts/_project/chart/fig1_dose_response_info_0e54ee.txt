@@ -1,0 +1,5 @@
+PDF: /root/autodl-tmp/pacs/paper_figures/fig1_dose_response.pdf
+Server: westd-22162
+Content: 6-point dose-response (G vs s), importance solid + random dashed, log scale, 95% CI
+Importance G: s010=5.6, s015=69.2, s020=103.1, s025=222.4, s030=274.2, s035=273.6
+Random G: ~1.0 flat

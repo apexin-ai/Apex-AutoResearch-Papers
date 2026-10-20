@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00ab146a7bb11ba2f3e3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "writing section7 pending bf16 update",
+  "task_key": "worker_writing_section7_pending_bf16_update_20260514T091732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_section7_pending_bf16_update_20260514T091732_result.json",
+    "occurrence": 1,
+    "bytes": 1728,
+    "sha256": "65c02812498a7e1f42d42020bf427eab8b690ee61e0724d4961b95a795cf896a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有编辑已完成。以下是变更汇总：\n\n---\n\n## 替换/标注清单\n\n### 1. 已替换：CI 数值（line 86）\n| 位置 | 旧值 | 新值 | 来源 |\n|------|------|------|------|\n| CI lower bounds range | $0.19$ to $6.70$ | $0.20$ to $8.39$ | DeepSeek bf16 B=10000 per-problem paired: s015 lower=0.199, s030 lower=8.392 |\n| s=0.30 CI example | $[6.70,\\; 16.29]$ | $[8.39,\\; 16.65]$ | DeepSeek s030 CI=[8.392, 16.653] |\n\n### 2. 已标注 `[VERIFY: segment-level vs per-problem]`（3处）\n\n| 位置 | 问题 | 详情 |\n|------|------|------|\n| **Line 9** (G values) | G=69–274× vs results_5_1.tex G=11.53–41.92× | ~6× 差异，可能是 segment-level vs problem-level aggregation。必须与 §5 主表对齐 |\n| **Line 29** (median_diff) | 体文用 segment-level median_diff (DS: 0.39→14.59, QW: 0.039→2.943)，comment 中 Cohen's d 用 per-problem paired | per-problem paired median_diff: DS=(0.324,1.152,3.969,9.944), QW=(0.048,0.208,1.109,2.619)。两套数字混在一段中 |\n| **Line 85** (mean/median ratio) | comment 中 median_diff=14.59 是 segment-level | per-problem paired median_diff=9.9436 at s030；mean/median ratio ~1.6:1 可能在 per-problem 级别不成立 |\n\n### 3. 已确认无需改动的数值\n- ρ=1.0, gradient permutation p=0.043 ✓\n- Cohen's d (DS: 0.607→1.126, QW: 0.371→1.439) ✓ 已是 per-problem paired\n- Qwen s015 borderline (d=0.371, CI crossing zero) ✓\n- B=10,000, n=49/n=46 ✓\n- C4/entropy 内容未触碰\n\n### 需主 Agent 决策\n3 处 `[VERIFY]` 标注需要统一决策：§7 Discussion 的 median_diff 和 G 值应使用 segment-level 还是 per-problem paired，取决于 §5 主表最终采用哪套数字。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-section7-pending-bf16-update.md"
+}

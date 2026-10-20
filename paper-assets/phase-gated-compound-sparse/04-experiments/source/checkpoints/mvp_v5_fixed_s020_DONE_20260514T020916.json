@@ -1,0 +1,31 @@
+{
+  "exp_id": "mvp_v5_fixed_s020",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:26:04.454Z",
+    "updated_at": "2026-05-14T02:09:16.728Z",
+    "spec": {
+      "command": "python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.20 --output_dir profiling_output_v5_s020 --max_problems 50",
+      "server": "westd-22162",
+      "data_path": "MATH-500 (embedded)",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "pid": 46574,
+      "gpu": "cuda:0",
+      "hypothesis": "v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive)",
+      "notes": "Killed at 35/50 by ops worker (kill-and-prep-v5-restart). Needs restart.",
+      "log_path": "/root/autodl-tmp/pacs/profiling_output_v5_s020.log",
+      "checkpoint_path": "N/A - killed before completion"
+    },
+    "hypothesis": "v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.20, cuda:0。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T02:09:16.728Z"
+  },
+  "timestamp": "2026-05-14T02:09:16.775185+00:00",
+  "trigger": "update_registry"
+}

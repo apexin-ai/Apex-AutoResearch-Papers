@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "226b6dc15fbaa1b8e642",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "check qwen random status",
+  "task_key": "worker_check_qwen-random-status_20260514T080325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen-random-status_20260514T080325_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "00de8de3376e9fe728be95be88f71d909d2d254408cf825cc901305d0e30024d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 3 个 Qwen random 实验 — 全部正常运行中\n\nRegistry 已经是 RUNNING 状态，无需更新。\n\n| 实验 | GPU | PID | 进度 | GPU Util | 显存 |\n|------|-----|-----|------|----------|------|\n| bf16_qw_rand_s015 | cuda:0 | 95904 | **22/50** (44%) | 76% | 25.6GB |\n| bf16_qw_rand_s020 | cuda:2 | 96299 | **14/50** (28%) | 75% | 23.1GB |\n| bf16_qw_rand_s025 | cuda:3 | 96442 | **14/50** (28%) | 74% | 23.1GB |\n\n预估剩余时间：\n- s015：~22 个 problem 已完成，约 20 分钟处理了 ~10 个 → 剩余 28 个约需 **~56 分钟**\n- s020/s025：进度类似，剩余 36 个约需 **~70-80 分钟**\n\n### bf16_qw_rand_s030\n仍为 QUEUED，未提交（无空闲 GPU）。需等某个实验完成后才能跑。\n\n### c4_entropy — 运行中\n\nGPU 1 (PID 93190) 占 22.3GB 显存，当前 GPU util 0%（可能在 I/O 间隙）。\n\n结果 JSON 显示 **20/30 problems 已完成**（67%）。运行约 36 分钟，剩余 10 个 problem 预计 **~18 分钟**完成。\n\n已有中间结果显示 importance vs random masking 效应方向符合预期：\n- **Importance pruning**: entropy_delta 一致为负（-0.033 ~ -0.046），表示 entropy 下降\n- **Random pruning**: entropy_delta 一致为正（+0.13 ~ +0.28），entropy 上升，且随 sparsity 增大而增大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen-random-status.md"
+}

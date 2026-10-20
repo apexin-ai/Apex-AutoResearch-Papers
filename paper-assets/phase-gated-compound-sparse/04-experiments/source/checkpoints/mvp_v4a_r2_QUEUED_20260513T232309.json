@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_v4a_r2",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:22:54.240Z",
+    "updated_at": "2026-05-13T23:23:09.844Z",
+    "hypothesis": "v4 retry: importance-based masking, sparsity 0.1,0.2, cuda:0"
+  },
+  "timestamp": "2026-05-13T23:23:09.893593+00:00",
+  "trigger": "update_registry"
+}

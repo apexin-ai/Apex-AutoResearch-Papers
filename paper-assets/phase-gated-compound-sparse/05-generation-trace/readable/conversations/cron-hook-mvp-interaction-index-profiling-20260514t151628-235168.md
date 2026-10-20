@@ -1,0 +1,3042 @@
+# cron hook mvp interaction index profiling 20260514T151628 235168
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 96
+- **Recorded user turns:** 2
+- **Tool calls:** 46
+- **Original source:** `logs/chats/archive/cron_hook_mvp_interaction_index_profiling_20260514T151628_235168.jsonl`
+- **Structured JSON:** [`6beb8edc360ef28cc38d.json`](../../sessions/6b/6beb8edc360ef28cc38d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+70 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T12:09:36.485139+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #6。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-22162 cuda:0~3，不可用其他设备
+- 论文统计数据源必须是 bf16（fp16 有 Layer 27 NaN 中毒，已废弃）
+- Cohen's d 论文正文用 paired d_z（`cohens_d_bf16.json`），supplementary 用 segment-level；不可混用（D048/D050 两次回退教训）
+- II 用 median 报告（skewness 6-17），不用 mean（D047 决策）
+- Random masking 8/8 FAIL 已确认，不可重跑或 reframe 为 partial success
+- C4 entropy-collapse 已降级为 §6 supporting（D045/D046），不可重新提升为 Core Claim——Qwen s025 符号反转
+- 截稿 **2026-05-25 EMNLP ARR**，距今 11 天
+
+### 2. 🖥️ 基础设施快照
+- 服务器：**westd-22162**，4× RTX PRO 6000 Blackwell 96GB
+- 工作目录：`/root/autodl-tmp/pacs`
+- Python/conda：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，pip/python 在 `/root/miniconda3/bin/`
+- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct（路径在服务器上，详见 registry spec）
+- 数据：math500.json (50 problems)
+- 关键脚本：`/root/autodl-tmp/pacs/analysis/rebootstrap_importance_b10000.py`
+- W&B/HF cache：未特别配置（实验阶段已结束）
+- 活跃进程：**无训练进程**（全部 76 实验 DONE）
+- 活跃 Worker：`worker_paper_resync_compile_trim_20260514T120018`（running，task=resync+compile+trim，已执行 5 轮含 ssh_execute）
+- Cron：reconcile 返回 0 条活跃
+
+### 3. 📊 当前状态
+**论文最终编译冲刺阶段。** 76 实验全部 DONE（35 success / 9 negative / 13 failed / 19 killed），无需再跑实验。
+
+论文全文（§1-§8 + Abstract）已完成 bf16 数据填充。当前瓶颈：
+- **页数严重超限**：正文约 15 页，EMNLP 限制 8 页，超 ~7 页。上一轮已派 3 个 Worker 做 trim（results/discussion/analysis/method），均已 done
+- **Figure 5 缺失**：fig1/3/4 存在，fig5 未生成
+- **Limitations 位置不当**：§7.1 在正文内计入页数，应移至 Conclusion 后独立无编号节
+- 正在运行的 Worker（`resync_compile_trim`）在做重新同步 + 编译 + 继续裁剪
+
+等待中：
+- Worker `resync_compile_trim` 回调
+- 无 Director 决策待回复
+- 无 Cron 回调
+
+### 4. 📋 待办（条件触发式）
+- `resync_compile_trim` Worker 完成 → 检查编译后 PDF 页数；若仍 >8 页 → 继续派 Worker 裁剪（优先砍 §5 Results 冗余 subsection、§6 Analysis entropy 部分移 appendix、§7 Discussion 精简）
+- PDF ≤8 页 → 派 Worker 做 visual review（上次 `visual_review_final_pdf` failed，需重试）
+- Figure 5 仍缺失 → 派 Worker 生成（或确认是否从论文中移除 fig5 引用）
+- 页数达标 + figures 齐全 → 全文数字一致性审查 → full review mode → 汇报 Director 可投稿
+- 若需加速：页数裁剪、figure 生成、一致性审查可并行派 Worker
+
+### 5. 🎯 战略上下文
+**核心发现**：importance-based eviction 的 compound interaction severity（II）随 sparsity 单调递增（两模型方向一致，Cohen's d ρ=1.0），random masking 完全无此效应（8/8 FAIL）。这是论文的 central claim。
+
+**Claims 状态**：C1/C2/C3/C5/C6 confirmed。C4（entropy-collapse mechanism）降级为 §6 supporting——Qwen s025 符号反转，不能作为 Core Claim。
+
+**关键决策链**：D043-D051 全在 2026-05-14，核心是 bf16 数据统一 + Cohen's d paired 方法 + C4 降级 + 图表重生成。
+
+**最容易判断错的事**：
+1. 页数问题是当前唯一阻塞项，不要被 figure/数字一致性分散注意力——先裁到 8 页
+2. 不要尝试恢复 C4 为 Core Claim（Qwen entropy 数据不支持）
+3. Cohen's d 数值：之前有 Worker 错误地用 independent d 替换 paired d_z，被 D050 回退。任何涉及 Cohen's d 的修改必须确认用的是 `cohens_d_bf16.json` 中的 paired 值
+4. Median difference 有 paired 和 unpaired 两种定义，图表用 paired、summary table 用 unpaired，不可混
+5. GPU 当前全 standby（纯写作阶段），不需要申请释放——截稿前可能还需要补跑
+
+## 项目硬约束 (memory.md 节选)
+
+## 实验设计约束
+
+### Phase segmentation 固定
+- high/mid/low tokens: 21086/13306/27748（DS）；16289/4372/32227（QW）
+- Qwen mid-phase 极小（4372 tokens）
+
+### bf16 vs fp16
+- bf16 消除 fp16 Layer 27 NaN 中毒
+- 论文核心数据源：bf16
+
+## 服务器环境
+- westd-22162: 4x RTX PRO 6000 Blackwell 96GB
+- conda: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+- 代码路径：/root/autodl-tmp/pacs
+- 数据：math500.json (50 problems)
+- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct
+
+## 可查的历史
+前 57 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T12:09:47.989164+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T12:09:48.040127+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T12:09:51.864564+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T12:09:52.316419+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3022}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T12:09:52.316872+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PREPARING'}",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PREPARING'}",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T12:09:52.317112+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T12:09:52.820635+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2831}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T12:09:52.821118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T12:09:53.273447+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T12:09:53.273909+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T12:09:53.675699+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **bf16_qw_imp_s035** (success): —\\n- **bf16_qw_imp_s010** (success): —\\n- **bf16_ds_imp_s035** (success): —\\n\\n## 趋势\\n成功 35 / 负向 9 / 失败 13 / 共 76\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-22162: 无 GPU 信息\\n\\n## 告警\\n- mvp_interaction_index_profiling: 训练失败 — unknown\\n- mvp_ii_profiling_v4: 训练失败 — unknown\\n- mvp_ii_profiling_v4b: 训练失败 — unknown\\n- mvp_ii_profiling_v4c: 训练失败 — unknown\\n- mvp_ii_profiling_v4d: 训练失败 — unknown\\n- mvp_ii_profiling_v4-random: 训练失败 — unknown\\n- mvp_v4a_r2: 训练失败 — unknown\\n- mvp_v4b_r2: 训练失败 — unknown\\n- mvp_v4c_r2: 训练失败 — unknown\\n- mvp_v4_legacy_s025: 训练失败 — unknown\\n- mvp_v4_legacy_s035: 训练失败 — unknown\\n- mvp_v4_float32_s030: 已被终止 — unknown\\n- mvp_v5_fixed_s020: 已被终止 — unknown\\n- mvp_v5_fixed_s030: 已被终止 — unknown\\n- qwen_importance_s015: 已被终止 — unknown\\n- qwen_importance_s020: 已被终止 — unknown\\n- qwen_importance_s025: 已被终止 — unknown\\n- qwen_importance_s030: 已被终止 — unknown\\n- v6_random_s030: 训练失败 — unknown\\n- v6_random_s030_r2: 训练失败 — unknown\\n- bf16_random_s015: 已被终止 — unknown\\n- bf16_random_s020: 已被终止 — unknown\\n- bf16_random_s025: 已被终止 — unknown\\n- bf16_random_s030: 已被终止 — unknown\\n- bf16_qwen_importance_s015: 已被终止 — unknown\\n- bf16_qwen_importance_s020: 已被终止 — unknown\\n- bf16_qwen_importance_s025: 已被终止 — unknown\\n- bf16_qwen_importance_s030: 已被终止 — unknown\\n- bf16_ds_imp_s015: 已被终止 — unknown\\n- bf16_ds_imp_s020: 已被终止 — unknown\\n- bf16_ds_imp_s025: 已被终止 — unknown\\n- bf16_ds_imp_s030: 已被终止 — unknown\\n\", \"total_chars\": 1511, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T12:09:53.726822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/ROADMAP.md\", \"content\": \"# phase-gated-compound-sparse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 09:48 UTC | 更新原因: 论文全文实际已完成（§1-§8+Abstract bf16 数据填充），瓶颈转为 figures 生成 + LaTeX 编译\\n\\n> 核心文档链: paper_framing.md → experiment_plan.yaml → 本 ROADMAP\\n\\n## 核心方向\\n**Phase-modulated compound sparsity severity**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DeepSeek: 0.39→1.48→7.16→14.59; Qwen: 0.039→0.235→1.268→2.943），random masking 全 FAIL。Cross-model replication 方向一致（Cohen's d ρ=1.0, gradient permutation p=0.043）。详见 paper_framing.md。\\n\\n## 目标会议\\nEMNLP 2026 ARR — **截稿 2026-05-25（距今 11 天）**\\n\\n## 当前进展\\n- 阶段：**论文最终编译冲刺**\\n- 76 实验全部 DONE（35 success / 9 negative / 13 failed / 19 killed）\\n- bf16 全量实验完成：DeepSeek imp/rand ×4 + Qwen imp/rand ×4 + 6-point dose-response\\n- Cross-model 统计分析完成：Cohen's d ρ=1.0, 8/8 Wilcoxon 显著, gradient p=0.043\\n- **C1/C2/C3/C5/C6 confirmed**，C4 降级为 §6 supporting（D045/D046）\\n- **论文全文已完成**（§1-§8 + Abstract 均已填充 bf16 数据），待 figures + 编译\\n\\n## 近期任务\\n- [x] §5 Results 填充真实数字 — 已完成（5 subsection + 6 tables）\\n- [x] §6 Analysis 补直接证据 — 已完成（discrimination collapse + entropy）\\n- [x] §7 Discussion PENDING-BF16 更新 — 已完成\\n- [x] §8 Conclusion + Abstract 撰写 — 已完成\\n- [ ] **[P0]** 生成论文 Figures（fig1/fig3/fig4/fig5）— Worker 生成中\\n- [ ] **[P0]** 创建 main.tex + references.bib — Worker 生成中\\n- [ ] **[P0]** 全文数字一致性审查 — Worker 审查中\\n- [ ] **[P1]** 清理旧文件（results_5_1.tex, *_fc6d1d.tex, *_4cc5f3.tex）\\n- [ ] **[P1]** LaTeX 编译 + visual review\\n- [ ] 全部完成后 full review mode\\n\\n## GPU 预算\\n- RTX 6000 Pro ×4: westd-22162 cuda:0~3\\n- 当前：全部 standby（纯写作阶段，无实验需求）\\n- 已用: ~20h / ~250h 预算\\n\\n## 写作进度\\n| Section | Status | Notes |\\n|---------|--------|-------|\\n| §1 Introduction | ✅ 完成 | bf16 数字完整 |\\n| §2 Related Work | ✅ 完成 | |\\n| §3 Background | ✅ 完成 | |\\n| §4 Methodology | ✅ 完成 | |\\n| §5 R
+…[truncated 1676 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T12:09:53.727353+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T12:09:53.777975+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_paper_resync_compile_trim_20260514T120018\", \"task_type\": \"paper:resync_compile_trim\", \"project\": \"phase-gated-compound-sparse\", \"status\": \"running\", \"started_at\": \"2026-05-14T12:00:18.572123+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T12:10:23.889399+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T12:10:23.940903+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_8479ab51.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T12:10:27.308619+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T12:10:27.359319+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T12:10:30.674903+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T12:10:30.725746+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T12:10:33.540113+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T12:10:33.590973+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T12:10:44.703207+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_artifacts,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_artifacts,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T12:10:44.753955+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T12:10:47.918336+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_paper_resync_compile_trim_20260514T120018",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_paper_resync_compile_trim_20260514T120018",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T12:10:48.270904+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_resync_compile_trim_20260514T120018\", \"status\": \"running\", \"task_type\": \"paper:resync_compile_trim\", \"project\": \"phase-gated-compound-sparse\", \"started_at\": \"2026-05-14T12:00:18.572123+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"Bash\", \"Bash\", \"Bash\", \"Bash\", \"ssh_execute\"], \"last_text\": \"\", \"turn_count\": 5}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T12:10:48.271362+00:00_
+
+called mcp__agent-ml-research__list_artifacts
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_artifacts</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "type": "figure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__list_artifacts",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "type": "figure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T12:10:48.372119+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifacts\": [], \"count\": 0, \"scope\": \"project:phase-gated-compound-sparse\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__list_artifacts",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T12:10:54.152661+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "paper_framing.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "file": "paper_framing.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T12:10:54.203619+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/paper_framing.md\", \"content\": \"# Paper Framing — Phase-Gated Compound Sparsity\\n\\n> 最后更新: 2026-05-14 (Cohen's d 统一为 paired d_z) | 维护者: Director\\n\\n## Core Insight\\n\\nCompound sparsity（attention head pruning + KV cache eviction）的 severity 不是固定常数——它是 eviction strategy 和 reasoning phase 交互的涌现属性。Importance-based eviction 的 compound interaction severity（paired median difference: median(II_low_i − II_high_i)）随 sparsity 单调递增（DeepSeek: 0.32→1.15→3.97→9.94; Qwen: 0.048→0.208→1.109→2.619），而 random masking 三相 II 持平（7/8 FAIL; Qwen s030 PASS p=0.012 but d=-0.04 negligible）。Cohen's d（paired d_z, B=10000）从 small-medium 到 large（DeepSeek: 0.44→0.80; Qwen: 0.28→1.02，s015 边缘）。这一发现挑战了 compound degradation 均匀分布的隐含假设。\\n\\n**数字基准**：所有数字基于 bf16 per-problem paired 统计量（B=10000 bootstrap）。median_diff 定义为 median(II_low_i − II_high_i)（逐 problem 配对差的中位数）。fp16 旧数据已弃用。\\n\\n## Narrative Arc\\n\\nCompound sparsity 是高效 LLM 推理的实用部署需求，但 prior work（SparK, Ada-KV, SLiM）将 compound interaction 视为均匀超可加。我们发现 severity 是 strategy × phase 交互的涌现属性：importance eviction 的 compound interaction 在 low-sparsity phase 远大于 high-sparsity phase（paired median difference 单调递增 0.32→9.94），而 random eviction 在所有 phase 保持平坦（7/8 FAIL; 唯一例外 Qwen s030 p=0.012 效应量可忽略 d=-0.04）。Cross-model replication 方向一致（Qwen magnitude ~1/4 of DeepSeek，onset threshold s≥0.20）。我们通过 discrimination collapse 机制解释这一现象：head pruning → importance score 的判别力崩塌（Gini/CV 下降跨模型一致）→ importance eviction 退化为有偏伪随机。Attention entropy redistribution 作为 model-dependent secondary effect 在 DeepSeek 上观察到，但在 Qwen 上不稳健（D044）。\\n\\n**Framing 硬约束（D015）**：\\n- MUST: \\\"emergent phase-strategy interaction\\\"\\n- MUST NOT: \\\"importance metric limitation / importance is broken\\\"\\n- MUST NOT: claim \\\"importance masking produces super-additive interaction\\\" without qualifier — random masking also produces positive II. The d
+…[truncated 4439 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T12:10:58.577847+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/**/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T12:10:58.879491+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/background.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/analysis.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/methodology.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/main.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T12:10:58.980607+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/**/*.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T12:10:59.031188+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/citation_audit_report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T12:11:02.497381+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "fig5\\b|figure.*5\\b|Figure.*5\\b|\\\\\\\\ref\\{fig:.*5",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+  "output_mode": "content",
+  "-i": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "fig5\\b|figure.*5\\b|Figure.*5\\b|\\\\\\\\ref\\{fig:.*5",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+    "output_mode": "content",
+    "-i": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T12:11:02.548297+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex:68:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T12:11:05.666519+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+  "offset": "60",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+    "offset": "60",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T12:11:05.717466+00:00_
+
+60	0.25 & Random     & 0.818 & 0.932 & 1.363 & 0.54 & 1.7 \\ % exp_id: bf16_ds_rand_s025
+61	\addlinespace
+62	0.30 & Importance & 0.053 & 2.283 & 14.639 & 14.59 & $\mathbf{274}$ \\ % exp_id: bf16_importance_s030
+63	0.30 & Random     & 2.503 & 2.592 & 4.041 & 1.54 & 1.6 \\ % exp_id: bf16_ds_rand_s030
+64	\bottomrule
+65	\end{tabular}
+66	\end{table*}
+67	
+68	The gradient growth is sub-exponential: successive ratios of the median severity difference $\Delta$ between adjacent sparsity levels are $3.8{\times}$, $4.8{\times}$, and $2.0{\times}$---a decreasing terminal growth rate consistent with a ceiling effect as compound degradation in the low-sparsity phase approaches saturation. The severity gradient $G$ exhibits the same pattern, with consecutive ratios of $1.5{\times}$, $2.2{\times}$, and $1.2{\times}$. Figure~\ref{fig:hero} visualizes this trajectory, contrasting the steep importance-based curve against the flat random baseline. % exp_id: bf16_importance_s015..s030; source: experiment_summary_table.json median_diff
+69	
+70	\begin{figure}[t]
+71	\centering
+72	\includegraphics[width=\columnwidth]{fig1_dose_response.pdf}
+73	\caption{Severity gradient ($G$) as a function of sparsity level $s$. Importance-based eviction (solid) exhibits an increasing gradient from $69{\times}$ to $274{\times}$, while random eviction (dashed) remains flat near $1{\times}$. Shaded regions denote 95\% bootstrap confidence intervals.} % exp_id: bf16_importance_s015..s030, bf16_ds_rand_s015..s030
+74	\label{fig:hero}
+75	\end{figure}
+76	
+77	We report medians throughout because the II distribution is right-skewed: the mean severity difference exceeds the median by a factor of $1.6{:}1$ at $s{=}0.30$ under importance-based eviction (mean $\Delta = 22.94$ vs.\ median $\Delta = 14.59$). The median resists the influence of outlier problems with exceptionally long reasoning traces, while bootstrap confidence intervals (\S\ref{sec:stat-validation}) account for this skewness via the resampling distribution
+…[truncated 135 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T12:11:09.890766+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "fig.?5|figure.?5|\\\\\\\\ref\\{fig",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+  "output_mode": "content",
+  "-i": "True",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "fig.?5|figure.?5|\\\\\\\\ref\\{fig",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+    "output_mode": "content",
+    "-i": "True",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T12:11:09.942891+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex:18:\includegraphics[width=\columnwidth]{fig5_crossmodel.pdf}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T12:11:12.867920+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex",
+  "offset": "10",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex",
+    "offset": "10",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T12:11:12.918633+00:00_
+
+10	\paragraph{Per-problem concordance.}
+11	The per-problem concordance across models is not significant (mean $\rho = -0.11$, $p = 0.926$), indicating that while the aggregate gradient direction replicates, the specific problems driving severity differ between models---consistent with model-specific attention patterns rather than a universal per-problem vulnerability ranking. The Qwen effect is marginal at $s{=}0.15$ ($d_z{=}0.28$, bootstrap CI includes zero), becoming reliable at $s \geq 0.20$ ($d_z \geq 0.55$); this onset lag relative to DeepSeek is consistent with the lower overall compound severity in instruction-tuned models lacking explicit reasoning structure. % exp_id: cross_model_analysis.json (spearman_rho=1.0, gradient_permutation_p=0.043, per_problem_concordance_p=0.926, mean_rho=-0.107); cohens_d_bf16_qwen.json
+12	
+13	\paragraph{Random eviction control.}
+14	As a control, random eviction on Qwen yields no systematic phase gradient at three of four sparsity levels (3/4 FAIL), mirroring DeepSeek's 4/4 FAIL pattern. At $s{=}0.30$, Qwen random produces a borderline PASS (permutation $p = 0.012$) but with negligible effect size ($d_z = -0.04$, CI spans zero), indicating no meaningful phase modulation. % exp_id: bf16_qw_rand_s015..s030; source: experiment_summary_table.json
+15	
+16	\begin{figure}[t]
+17	\centering
+18	\includegraphics[width=\columnwidth]{fig5_crossmodel.pdf}
+19	\caption{Cross-model comparison of the median severity difference under importance-based eviction. Both DeepSeek (solid) and Qwen (dashed) exhibit monotonically increasing $\Delta$ with sparsity; Qwen's magnitude is approximately one-fifth of DeepSeek's.} % exp_id: bf16_importance_s015..s030, bf16_qw_imp_s015..s030
+20	\label{fig:cross-model}
+21	\end{figure}
+22	
+23	
+24	\section{Statistical Validation Details}
+25	\label{app:stat-validation-details}
+26	
+27	\paragraph{Permutation test.}
+28	For each problem $i$ and sparsity level $s$, we compute the compound severity difference $\Delta_i^{(\tex
+…[truncated 537 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T12:11:28.887704+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T12:11:29.390695+00:00_
+
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{inconsolata}
+11	
+12	\usepackage{amsmath}
+13	\usepackage{amssymb}
+14	\usepackage{graphicx}
+15	\usepackage{booktabs}
+16	\usepackage{enumitem}
+17	\usepackage{multirow}
+18	
+19	\graphicspath{{figures/}}
+20	
+21	\title{Phase-Modulated Compound Sparsity:\\Strategy-Dependent Severity Gradients in Reasoning Models}
+22	
+23	\author{Anonymous}
+24	
+25	\begin{document}
+26	
+27	\maketitle
+28	
+29	\input{abstract}
+30	
+31	\input{introduction}
+32	\input{related_work}
+33	\input{background}
+34	\input{methodology}
+35	\input{results}
+36	\input{analysis}
+37	\input{discussion}
+38	\input{conclusion}
+39	
+40	\bibliography{references}
+41	
+42	\appendix
+43	\input{appendix}
+44	\input{appendix_results}
+45	\input{appendix_disc_analysis}
+46	
+47	\end{document}
+48	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T12:11:30.043893+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\\\\\includegraphics|\\\\\\\\label\\{fig:",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\\\\\includegraphics|\\\\\\\\label\\{fig:",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+    "output_mode": "content",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T12:11:30.144863+00:00_
+
+No matches found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T12:11:34.582284+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "includegraphics",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+  "output_mode": "content",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "includegraphics",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+    "output_mode": "content",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T12:11:34.683269+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex:18:\includegraphics[width=\columnwidth]{fig5_crossmodel.pdf}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex:53:\includegraphics[width=\columnwidth]{fig4_bootstrap.pdf}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex:72:\includegraphics[width=\columnwidth]{fig1_dose_response.pdf}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex:89:\includegraphics[width=\columnwidth]{fig3_crossover.pdf}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T12:11:40.561390+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/figures/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/figures/**",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T12:11:40.813007+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T12:11:40.813510+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/fig*.pdf",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/fig*.pdf",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T12:11:40.864041+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-14T12:12:00.554137+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-14T12:12:00.605018+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T12:12:06.334803+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/artifacts/**/*fig*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/artifacts/**/*fig*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T12:12:06.787685+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/paper_figures_manifest.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/paper_figures_v1_manifest.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig1_dose_response_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig2_cohens_d_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig3_crossover_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig4_per_problem_dist_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig2_cohens_d_location.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig2_cohens_d_paired_b10000_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig2_segment_level_backup_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/paper_figures_v2_manifest.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig1_dose_response_info_0e54ee.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig3_crossover_info_f6c838.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig4_bootstrap_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig5_crossmodel_info.txt
+/home/ubuntu/.agent-ml-research-idea_ge
+…[truncated 507 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-14T12:12:06.788175+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/artifacts/**/*crossmodel*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/artifacts/**/*crossmodel*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T12:12:07.291287+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig5_crossmodel_info.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig5_crossmodel_bf16.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Glob",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-14T12:12:07.593061+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "experiment_summary_table|cohens_d_bf16|cross_model",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "experiment_summary_table|cohens_d_bf16|cross_model",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts",
+    "output_mode": "files_with_matches"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T12:12:07.644030+00:00_
+
+Found 12 files
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/consistency_audit_final.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/manifest.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig4_forest_paired_dz.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/consistency_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/cross_model_analysis_summary.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/experiment_summary_overview.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/cross_model_analysis_summary.txt
+/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/dream_reports/dream_20260514T054026/logs/phase2_best_attempt0.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Grep",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-14T12:12:10.408606+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig5_crossmodel_bf16.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig5_crossmodel_bf16.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T12:12:10.811263+00:00_
+
+1	Paired median diffs: DS=[0.351, 1.136, 4.017, 9.954], QW=[0.062, 0.286, 1.155, 2.594]. Spearman rho=1.0, gradient permutation p=0.043 (permute sparsity ordering). d_z annotated per point.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-14T12:12:10.862637+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig5_crossmodel_info.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/fig5_crossmodel_info.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-14T12:12:10.913309+00:00_
+
+1	PDF: /root/autodl-tmp/pacs/paper_figures/fig5_crossmodel.pdf
+2	Server: westd-22162
+3	Content: DeepSeek vs Qwen dual-model Δ comparison, Spearman ρ=1.0 annotated
+4	DeepSeek Δ: 0.39, 1.48, 7.16, 14.59
+5	Qwen Δ: 0.04, 0.23, 1.27, 2.94
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-14T12:13:11.698638+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "paper:fig5_crossmodel_bf16",
+  "project": "phase-gated-compound-sparse",
+  "task_prompt": "## 任务：生成 fig5_crossmodel.pdf（bf16 paired data）\n\n### 目标\n在服务器 westd-22162 上用 matplotlib 生成学术论文级别的 figure，输出为 `fig5_crossmodel.pdf`。\n\n### 服务器环境\n- 服务器：westd-22162\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python/matplotlib 已安装（conda base 环境）\n\n### 图表内容\nCross-model comparison of paired median severity difference (Δ) under importance-based eviction.\n\n**数据（bf16 paired median diffs，硬编码即可）**：\n- Sparsity levels: [0.15, 0.20, 0.25, 0.30]\n- DeepSeek Δ: [0.351, 1.136, 4.017, 9.954]\n- Qwen Δ: [0.062, 0.286, 1.155, 2.594]\n- Spearman ρ = 1.0（方向完全一致）\n- Gradient permutation p = 0.043\n\n### 图表规格\n- 单列宽度 figure（~3.25 inches wide, ~2.5 inches tall）\n- X 轴：Sparsity level s（标注 0.15, 0.20, 0.25, 0.30）\n- Y 轴：Paired median Δ（II_low − II_high）\n- DeepSeek：实线 + 圆形 marker，深蓝色\n- Qwen：虚线 + 方形 marker，深红/橙色\n- 在图中标注 \"Spearman ρ = 1.0, p = 0.043\"（右上或右下角 text box）\n- 图例：legend 标注 \"DeepSeek-R1-7B\" 和 \"Qwen2.5-7B\"\n- 字体大小：轴标签 9pt，tick labels 8pt，legend 8pt，annotation 7-8pt\n- 白色背景，无网格或轻网格\n- tight_layout，savefig dpi=300\n\n### 输出路径\n1. 先检查 paper 目录结构：`ls /root/autodl-tmp/pacs/paper/` 看是否有 `figures/` 子目录\n2. 如果没有 `figures/` 目录，创建它\n3. 保存到：`/root/autodl-tmp/pacs/paper/figures/fig5_crossmodel.pdf`\n4. 同时保存一份到：`/root/autodl-tmp/pacs/paper_figures/fig5_crossmodel.pdf`（备份路径）\n\n### 验证\n生成后用 `ls -la` 确认文件存在且大小合理（>10KB）。\n\n### 风格参考\n使用 matplotlib 的 paper-ready 配置：\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.size': 9,\n    'axes.labelsize': 9,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 8,\n    'figure.figsize': (3.25, 2.5),\n    'figure.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.02,\n})\n```",
+  "tool_groups": "['ssh']",
+  "context": "服务器 westd-22162，conda base 环境，pip/python 在 /root/miniconda3/bin/。代码路径 /root/autodl-tmp/pacs。这是一个 EMNLP 论文的 appendix figure，需要学术论文质量。"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper:fig5_crossmodel_bf16",
+    "project": "phase-gated-compound-sparse",
+    "task_prompt": "## 任务：生成 fig5_crossmodel.pdf（bf16 paired data）\n\n### 目标\n在服务器 westd-22162 上用 matplotlib 生成学术论文级别的 figure，输出为 `fig5_crossmodel.pdf`。\n\n### 服务器环境\n- 服务器：westd-22162\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python/matplotlib 已安装（conda base 环境）\n\n### 图表内容\nCross-model comparison of paired median severity difference (Δ) under importance-based eviction.\n\n**数据（bf16 paired median diffs，硬编码即可）**：\n- Sparsity levels: [0.15, 0.20, 0.25, 0.30]\n- DeepSeek Δ: [0.351, 1.136, 4.017, 9.954]\n- Qwen Δ: [0.062, 0.286, 1.155, 2.594]\n- Spearman ρ = 1.0（方向完全一致）\n- Gradient permutation p = 0.043\n\n### 图表规格\n- 单列宽度 figure（~3.25 inches wide, ~2.5 inches tall）\n- X 轴：Sparsity level s（标注 0.15, 0.20, 0.25, 0.30）\n- Y 轴：Paired median Δ（II_low − II_high）\n- DeepSeek：实线 + 圆形 marker，深蓝色\n- Qwen：虚线 + 方形 marker，深红/橙色\n- 在图中标注 \"Spearman ρ = 1.0, p = 0.043\"（右上或右下角 text box）\n- 图例：legend 标注 \"DeepSeek-R1-7B\" 和 \"Qwen2.5-7B\"\n- 字体大小：轴标签 9pt，tick labels 8pt，legend 8pt，annotation 7-8pt\n- 白色背景，无网格或轻网格\n- tight_layout，savefig dpi=300\n\n### 输出路径\n1. 先检查 paper 目录结构：`ls /root/autodl-tmp/pacs/paper/` 看是否有 `figures/` 子目录\n2. 如果没有 `figures/` 目录，创建它\n3. 保存到：`/root/autodl-tmp/pacs/paper/figures/fig5_crossmodel.pdf`\n4. 同时保存一份到：`/root/autodl-tmp/pacs/paper_figures/fig5_crossmodel.pdf`（备份路径）\n\n### 验证\n生成后用 `ls -la` 确认文件存在且大小合理（>10KB）。\n\n### 风格参考\n使用 matplotlib 的 paper-ready 配置：\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.size': 9,\n    'axes.labelsize': 9,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 8,\n    'figure.figsize': (3.25, 2.5),\n    'figure.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.02,\n})\n```",
+    "tool_groups": "['ssh']",
+    "context": "服务器 westd-22162，conda base 环境，pip/python 在 /root/miniconda3/bin/。代码路径 /root/autodl-tmp/pacs。这是一个 EMNLP 论文的 appendix figure，需要学术论文质量。"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-14T12:13:21.022919+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_fig5_crossmodel_bf16_20260514T121312\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/logs/workers/worker_paper_fig5_crossmodel_bf16_20260514T121312.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_fig5_crossmodel_bf16_20260514T121312 started. Use get_worker_status('worker_paper_fig5_crossmodel_bf16_20260514T121312') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 9324
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-14T12:13:21.073659+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 4 / 实际跑 0（纯写作阶段） | Worker 池 2 (GPU 0 / CPU 2)\n\n**Loop #6 启动汇报**\n\n状态：论文最终编译冲刺。76 实验全部 DONE，无训练进程。\n\n当前 Worker：\n1. `resync_compile_trim`（running, turn 5）— 正在做 tex 文件同步到服务器 + 编译 + 页数裁剪。页数从 ~15 页需降到 8 页（EMNLP 限制），这是当前唯一阻塞项。\n2. `fig5_crossmodel_bf16`（刚 spawn）— 用 bf16 paired data 生成 appendix 中的 fig5_crossmodel.pdf。与 trim 工作独立，并行进行。\n\n等待中：\n- resync_compile_trim Worker 回调 → 检查编译后 PDF 页数 → 若仍 >8 页继续裁剪\n- fig5 Worker 回调 → 确认 figure 生成成功\n\n距截稿 11 天，核心工作为页数裁剪 + figure 补全 + 一致性审查 + visual review。",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 4 / 实际跑 0（纯写作阶段） | Worker 池 2 (GPU 0 / CPU 2)\n\n**Loop #6 启动汇报**\n\n状态：论文最终编译冲刺。76 实验全部 DONE，无训练进程。\n\n当前 Worker：\n1. `resync_compile_trim`（running, turn 5）— 正在做 tex 文件同步到服务器 + 编译 + 页数裁剪。页数从 ~15 页需降到 8 页（EMNLP 限制），这是当前唯一阻塞项。\n2. `fig5_crossmodel_bf16`（刚 spawn）— 用 bf16 paired data 生成 appendix 中的 fig5_crossmodel.pdf。与 trim 工作独立，并行进行。\n\n等待中：\n- resync_compile_trim Worker 回调 → 检查编译后 PDF 页数 → 若仍 >8 页继续裁剪\n- fig5 Worker 回调 → 确认 figure 生成成功\n\n距截稿 11 天，核心工作为页数裁剪 + figure 补全 + 一致性审查 + visual review。",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-14T12:13:25.471345+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_fdc656be1c7fe17c11ab639cdbce3710:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4397
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-14T12:13:33.998340+00:00_
+
+初始化完成。当前状态：
+
+- **Worker 池 = 2**（满足 ≥2 要求）
+  1. `resync_compile_trim` — running（页数裁剪 + 编译）
+  2. `fig5_crossmodel_bf16` — 刚 spawn（生成 appendix figure）
+- **Director 已汇报**
+- **无 RUNNING/PREPARING 实验**（纯写作阶段）
+- **0 活跃 cron**
+
+等待两个 Worker 回调。resync_compile_trim 的结果将决定后续是否需要继续裁剪（目标 ≤8 页）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_interaction_index_profiling"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+26 recorded events
+
+### User
+
+_source line 71 · 2026-05-14T15:14:50.122071+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-14T15:14:59.913599+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T15:14:59.964370+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-14T15:15:02.997573+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T15:15:03.400534+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T15:15:03.856506+00:00_
+
+Error: result (148,719 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-8479ab51/6f76f4e8-8361-4038-8df7-bacec3d7e9e4/tool-results/mcp-agent-ml-research-read_registry-1778771703800.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-8479ab51/6f76f4e8-8361-4038-8df7-bacec3d7e9e4/tool-results/mcp-agent-ml-research-read_registry-1778771703800.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-8479ab51/6f76f4e8-8361-4038-8df7-bacec3d7e9e4/tool-results/mcp-agent-ml-research-read_registry-1778771703800.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 858
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T15:15:03.859699+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-14T15:15:04.413753+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-14T15:15:04.715835+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T15:15:10.629950+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 3, \"results\": [{\"exp_id\": \"c2_n500_deepseek\", \"success\": true, \"actions\": [\"Job still running (pid=c2_n500_gpu0)\"]}, {\"exp_id\": \"c2_qw_n500\", \"success\": true, \"actions\": [\"Job still running (pid=131864)\"]}, {\"exp_id\": \"c3_llama\", \"success\": true, \"actions\": [\"Job still running (pid=138393)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 7229
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-14T15:15:10.681446+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| c3_llama | C3: LLaMA 架构验证。用 DeepSeek-R1-Distill-Llama-8B 验证 phase-modulated compound severity 是否跨架构复现（Qwen2ForCausalLM → LlamaForCausalLM），回应审稿人\\\"cross-model ≠ cross-architecture\\\"质疑。 | — | — | — |\\n| c2_qw_n500 | C2: Qwen n=500 统计功效提升。将 Qwen 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500，与 DeepSeek 对称验证。 | — | — | — |\\n| c2_n500_deepseek | C2 statistical power boost: 将 DeepSeek 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500，提升统计功效。预注册：若 QW s015 在 n=500 后 CI 仍跨零，论文叙事改为 \\\"compound effect emerges above a threshold sparsity level (~s020)\\\" | — | — | — |\\n\\n## 待处理\\n- c3_llama_arch: C3 architecture validation: 在 DeepSeek-R1-Distill-Llama-8B 上复现 phase-modulated compound severity，验证 finding 不限于 Qwen2 架构（等待人工审批）\\n- c2_ds_n500: C2: n=500 统计功效提升。将 DeepSeek 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500 (full MATH-500)，验证现有结论在大样本下是否稳健。预注册：若 QW s015 CI 仍跨零，改叙事为 threshold sparsity ~s020。（等待人工审批）\\n- c5b_pilot（排队等待 GPU）\\n\\n## 近期结论\\n- **bf16_qw_imp_s035** (success): —\\n- **bf16_qw_imp_s010** (success): —\\n- **bf16_ds_imp_s035** (success): —\\n\\n## 趋势\\n成功 35 / 负向 9 / 失败 13 / 共 76\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-22162: 无 GPU 信息\\n\\n## 告警\\n- mvp_interaction_index_profiling: 训练失败 — unknown\\n- mvp_ii_profiling_v4: 训练失败 — unknown\\n- mvp_ii_profiling_v4b: 训练失败 — unknown\\n- mvp_ii_profiling_v4c: 训练失败 — unknown\\n- mvp_ii_profiling_v4d: 训练失败 — unknown\\n- mvp_ii_profiling_v4-random: 训练失败 — unknown\\n- mvp_v4a_r2: 训练失败 — unknown\\n- mvp_v4b_r2: 训练失败 — unknown\\n- mvp_v4c_r2: 训练失败 — unknown\\n- mvp_v4_legacy_s025: 训练失败 — unknown\\n- mvp_v4_legacy_s035: 训练失败 — unknown\\n- mvp_v4_float32_s030: 已被终止 —
+…[truncated 890 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 6821
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T15:15:10.682245+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/ROADMAP.md\", \"content\": \"# phase-gated-compound-sparse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 13:50 UTC | 更新原因: Session #6 启动：更新 GPU 实际分配状态（非 standby）、补充实验进度、清理已完成任务\\n\\n> 核心文档链: paper_framing.md → experiment_plan.yaml → 本 ROADMAP\\n\\n## 核心方向\\n**Phase-modulated compound sparsity severity**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DeepSeek: 0.39→1.48→7.16→14.59; Qwen: 0.039→0.235→1.268→2.943），random masking 全 FAIL。Cross-model replication 方向一致（Cohen's d ρ=1.0, gradient permutation p=0.043）。详见 paper_framing.md。\\n\\n## 目标会议\\nEMNLP 2026 ARR — **截稿 2026-05-25（距今 11 天）**\\n\\n## 当前进展\\n- 阶段：**论文完成 + 补充实验冲刺**（审稿由 Group C 并行）\\n- 81 实验（35 success / 9 negative / 13 failed / 19 killed / 1 running / 4 pending）\\n- bf16 全量实验完成：DeepSeek imp/rand ×4 + Qwen imp/rand ×4 + 6-point dose-response\\n- Cross-model 统计分析完成：Cohen's d ρ=1.0, 8/8 Wilcoxon 显著, gradient p=0.043\\n- **C1/C2/C3/C5/C6 confirmed**，C4 降级为 §6 supporting（D045/D046）\\n- **论文全文已完成**（§1-§8 + Abstract + Figures + main.tex + references.bib），PDF 可编译\\n- **补充实验进行中**：C2 n=500 统计功效提升 + C3 LLaMA 跨架构验证\\n\\n## 近期任务\\n- [ ] **[P0]** c2_n500_deepseek — cuda:0+1 RUNNING，DeepSeek 8 conditions n=500（~18h）\\n- [ ] **[P0]** c2_qw_n500 — cuda:2+3 准备中，Qwen 8 conditions n=500（分钟级提交）\\n- [ ] **[P1]** c3_llama — LLaMA-8B 模型下载中（CPU），GPU 释放后立即启动\\n- [ ] C2/C3 实验完成后更新论文对应 tables/figures\\n- [ ] 全部完成后提交 Group C full review\\n\\n## GPU 预算\\n- RTX 6000 Pro ×4: westd-22162 cuda:0~3\\n- 当前分配：cuda:0+1 → c2_n500_deepseek | cuda:2+3 → c2_qw_n500\\n- 已用: ~20h / ~250h 预算\\n\\n## 写作进度\\n| Section | Status |\\n|---------|--------|\\n| §1-§8 + Abstract | ✅ 全部完成（bf16 数据） |\\n| Figures 1-5 | ✅ 全部生成 |\\n| main.tex + .bib | ✅ 可编译 |\\n| 数字一致性审查 | ✅ 完成 |\\n| Group C 审稿 | 🔶 并行进行中 |\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D053 | 2026-05-1
+…[truncated 1107 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 6268
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-14T15:15:10.835020+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 6119
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-14T15:15:15.507777+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-14T15:15:15.859901+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"c3_llama\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:34:06.637Z\", \"updated_at\": \"2026-05-14T14:53:13.248Z\", \"hypothesis\": \"C3: LLaMA 架构验证。用 DeepSeek-R1-Distill-Llama-8B 验证 phase-modulated compound severity 是否跨架构复现（Qwen2ForCausalLM → LlamaForCausalLM），回应审稿人\\\"cross-model ≠ cross-architecture\\\"质疑。\", \"spec\": {\"command\": \"bash run_c3_llama_full.sh\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Llama-8B\", \"seed\": null, \"gpu\": \"cuda:2,cuda:3\", \"pid\": \"138393 (parent), 138408 (importance gpu2), 138410 (random gpu3)\", \"note\": \"sp_str bug fixed: bc unavailable → python3. Old s000 output deleted (12/50 incomplete). All 8 conditions restarting from scratch.\", \"pids\": {\"importance_gpu2\": 138408, \"random_gpu3\": 138410, \"parent\": 138398}, \"conditions\": \"importance×{0.15,0.20,0.25,0.30} + random×{0.15,0.20,0.25,0.30}\", \"gpu_allocation\": \"GPU2=importance, GPU3=random\"}, \"notes\": \"2026-05-14: 已验证 run_profiling.py 默认值 max_new_tokens=2048, min_phase_length=10，与 bf16 实验一致。run_c3_llama_full.sh 虽未显式传参，但默认值匹配，无需修复。pdflatex PID 124224 已自行退出。\"}, \"c2_qw_n500\": {\"status\": \"RUNNING\", \"retry_count\": 2, \"created_at\": \"2026-05-14T13:34:05.213Z\", \"updated_at\": \"2026-05-14T14:39:09.568Z\", \"hypothesis\": \"C2: Qwen n=500 统计功效提升。将 Qwen 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500，与 DeepSeek 对称验证。\", \"notes\": \"3rd cron false positive corrected (2026-05-14 22:38 CST). Profiling无W&B/sentinel，cron反复误判。进程从未中断。PID 131864 (imp, SCREEN c2_qw_gpu2) / 132002 (rand, SCREEN c2_qw_gpu3) 100% CPU active。进度: imp 93/500 s015, rand 98/500 s015。8 conditions total (imp/rand × s015/s020/s025/s030)。每condition ~500 problems，预计总运行时间较长。\", \"reproduce\": {\"finished_at\": \"2026-05-14T14:36:36.371Z\"}, \"failure_reason\": \"process dead 5× with no
+…[truncated 2274 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-14T15:15:16.363237+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "filters": "{'status': 'PREPARING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "filters": "{'status': 'PREPARING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-14T15:15:16.816669+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2722}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-14T15:15:16.817124+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "filters": "{'status': 'PENDING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "filters": "{'status': 'PENDING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-14T15:15:17.369700+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"c3_llama_arch\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:33:52.384Z\", \"updated_at\": \"2026-05-14T13:50:49.509Z\", \"hypothesis\": \"C3 architecture validation: 在 DeepSeek-R1-Distill-Llama-8B 上复现 phase-modulated compound severity，验证 finding 不限于 Qwen2 架构\", \"conclusion\": \"killed\", \"notes\": \"DUPLICATE — 勿跑。实际实验在 c3_llama (PREPARING)。Director 指令清理。\"}, \"c2_ds_n500\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:34:03.705Z\", \"updated_at\": \"2026-05-14T13:50:48.535Z\", \"hypothesis\": \"C2: n=500 统计功效提升。将 DeepSeek 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500 (full MATH-500)，验证现有结论在大样本下是否稳健。预注册：若 QW s015 CI 仍跨零，改叙事为 threshold sparsity ~s020。\", \"notes\": \"DUPLICATE — 勿跑。实际实验在 c2_n500_deepseek (RUNNING)。Director 指令清理。\", \"conclusion\": \"killed\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2879}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-14T15:15:17.621262+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-14T15:15:17.672811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/memory.md\", \"content\": \"# c2_qw_n500 诊断报告 (2026-05-14 21:57 CST)\\n\\n## 状态: RUNNING（非已退出）\\n\\n实验正在运行中，进程活跃，日志持续更新。初始报告\\\"进程已退出\\\"不准确。\\n\\n## 关键发现\\n\\n### 1. 重复进程（严重）\\n每个 GPU 上有 **2 个相同进程**，写入同一输出目录和日志文件：\\n\\n| GPU | 条件 | PID 1 (tmux) | PID 2 (重复) | 输出目录 |\\n|-----|------|-------------|-------------|---------|\\n| GPU 2 | Qwen imp s015 | 131864 (pts/2) | 132389 (pts/4) | profiling_output_n500_bf16_qw_imp_s015 |\\n| GPU 3 | Qwen rand s015 | 132002 (pts/3) | 132392 (pts/5) | profiling_output_n500_bf16_qw_rand_s015 |\\n\\n**后果**：\\n- 日志时间戳交错（问题 8 的时间比问题 7 早）\\n- 输出文件可能被并发写入覆盖/损坏\\n- GPU 显存双倍占用（~40GB/GPU，96GB GPU 可容纳但浪费资源）\\n\\n### 2. 当前进度\\n- 进度: ~8/500 (s015 条件，每 GPU 跑 4 个 sparsity 串行)\\n- 速率: ~1.5 problems/min（受重复进程拖累）\\n- 预计完成 s015: ~5.5 小时\\n- 全部 4 个 sparsity: ~22 小时（每 GPU）\\n\\n### 3. 环境\\n- 服务器: westd-22162 (4× RTX PRO 6000 Blackwell 96GB)\\n- GPU 2: 40010/97887 MiB, 90% util\\n- GPU 3: 41234/97887 MiB, 90% util\\n- tmux sessions: c2_qw_n500_gpu2, c2_qw_n500_gpu3\\n\\n### 4. 日志路径\\n- `/root/autodl-tmp/pacs/logs/c2_qw_n500_gpu2_full.log` (tmux 全量)\\n- `/root/autodl-tmp/pacs/logs/c2_qw_n500_gpu3_full.log` (tmux 全量)\\n- `/root/autodl-tmp/pacs/logs/n500_qw_imp_s015.log` (tee, 活跃)\\n- `/root/autodl-tmp/pacs/logs/n500_qw_rand_s015.log` (tee, 活跃)\\n\\n## 建议操作\\n**必须杀掉重复进程**（PID 132389, 132392），否则输出数据会被损坏。保留原始 tmux 进程（131864, 132002）。\\n\\n如果 s015 的输出目录已有部分写入，可能需要清空后重启该条件。\\n\", \"total_chars\": 1284, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-14T15:15:21.793337+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-14T15:15:21.844006+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-14T15:15:24.356039+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "phase-gated-compound-sparse",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "phase-gated-compound-sparse",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-14T15:15:24.406819+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"phase-gated-compound-sparse\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"westd-22162:cuda:0\", \"westd-22162:cuda:1\", \"westd-22162:cuda:2\", \"westd-22162:cuda:3\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/pacs\", \"servers\": [\"westd-22162\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:mvp_interaction_index_profiling",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96 · 2026-05-14T15:16:28.232388+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：仅 westd-22162 cuda:0/1/2/3，四卡全部已分配，不可用白名单外 GPU
+- c3_llama_arch 和 c2_ds_n500 是 **DUPLICATE（已 killed）**，勿跑、勿重建，实际实验分别是 c3_llama 和 c2_n500_deepseek
+- c2_qw_n500 跑在 SCREEN（非 tmux），cron 已 3 次误判 failed（profiling 无 W&B/sentinel）——收到 cron 回调先 SSH 验 PID 再决策，不要自动信任 "process dead"
+- c2_qw_n500 曾有重复进程问题（PID 132389/132392 与 131864/132002 并发写同一目录），memory.md 建议杀重复进程——**接手后第一件事确认是否已清理**，否则输出数据可能损坏
+- c3_llama 和 c2_qw_n500 **均声明 cuda:2+3**，需确认是否存在 GPU 争用（c3_llama PIDs > c2_qw_n500 PIDs，可能是 c2_qw_n500 已完成后启动）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：**westd-22162**（4× RTX PRO 6000 Blackwell 96GB）
+- 工作目录：`/root/autodl-tmp/pacs`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 数据：`/root/autodl-tmp/pacs/data/math500.json`（MATH-500，500 题）
+- 日志目录：`/root/autodl-tmp/pacs/logs/`
+- 活跃进程：
+  - c2_n500_deepseek：tmux `c2_n500_gpu0` + `c2_n500_gpu1`，cuda:0+1，PID 见 tmux
+  - c2_qw_n500：SCREEN `c2_qw_gpu2` + `c2_qw_gpu3`，cuda:2+3，PID 131864 / 132002
+  - c3_llama：PID 138393(parent) / 138408(imp gpu2) / 138410(rand gpu3)，cuda:2+3
+- Cron 监控：3 个 active（c2_n500_deepseek / c2_qw_n500 / c3_llama）
+
+### 3. 📊 当前状态
+**刚做完**：Session #6 全程在处理论文完善 + 补充实验提交。论文全文（§1-§8 + Abstract + Figures）已完成且 PDF 可编译。bf16 canonical 数据已替换全部旧数据。
+
+**RUNNING（3 个）**：
+- **c2_n500_deepseek**（cuda:0+1）：DeepSeek 8 conditions n=500 统计功效提升，预计 ~20h
+- **c2_qw_n500**（cuda:2+3）：Qwen 8 conditions n=500，进度 ~93/500 s015（截至 22:37 CST），8 conditions 串行，总估 ~22h/GPU
+- **c3_llama**（cuda:2+3）：LLaMA-8B 跨架构验证，8 conditions (imp/rand × 4 sparsity)，n=50
+
+**PENDING（2 个，均为 DUPLICATE killed）**：c3_llama_arch、c2_ds_n500——忽略。
+
+**等待中**：c5b_pilot 排队等 GPU；Group C 审稿并行进行中。
+
+**Worker 池 = 0**（全部实验已提交，无 CPU 任务在跑）。
+
+### 4. 📋 待办（条件触发式）
+- c2_n500_deepseek cron 回调（完成/失败）→ spawn worker 分析结果 + 更新论文 Table/Figure + 汇报 Director
+- c2_qw_n500 cron 回调 → **先 SSH 确认非误判**（历史 3 次 false positive），确认完成后分析 + 更新论文
+- c3_llama cron 回调 → 分析 LLaMA 架构复现结果；若 compound severity 趋势一致 → C3 claim 加强为 cross-architecture；若不一致 → red-section framing 提案
+- GPU 释放（任一实验完成）→ 立即提交 c5b_pilot（s_trans cap 实验，D053 澄清 cap ≤0.50）
+- C2 + C3 全部完成 → 更新论文对应 tables/figures → 提交 Group C full review
+- **接手后立即**：SSH 确认 c2_qw_n500 重复进程是否已清理（PID 132389/132392）；确认 cuda:2+3 上 c3_llama 与 c2_qw_n500 是否有 GPU 争用
+
+### 5. 🎯 战略上下文
+- **EMNLP 2026 ARR 截稿 2026-05-25（距今 11 天）**，论文主体已完成，当前是补充实验冲刺
+- 核心发现：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DeepSeek: 0.39→1.48→7.16→14.59; Qwen: 0.039→0.235→1.268→2.943），random masking 全 FAIL，cross-model Cohen's d ρ=1.0
+- **C1/C2/C3/C5/C6 confirmed，C4 降级为 §6 supporting**（D045/D046：entropy-discrimination collapse 在 Qwen s025 符号反转）
+- C2 n=500 的预注册：若 QW s015 CI 仍跨零 → 改叙事为 "compound effect emerges above threshold sparsity ~s020"
+- 关键决策链：D045-D053（今天全部产生），最重要的是 D048（统一 paired d_z 替换 independent d）和 D047（纳入 6-point dose-response）
+- **最容易判断错的事**：c2_qw_n500 的 cron 回调——profiling 脚本无 W&B/sentinel，cron 反复误判进程退出。收到 failed 回调一定先 SSH 查 PID 存活
+- **cuda:2+3 争用风险**：c3_llama 和 c2_qw_n500 都声明用 cuda:2+3，如果两者真的同时在跑会互相拖慢。接手后必须第一时间 SSH 用 nvidia-smi 确认实际 GPU 占用
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:mvp_interaction_index_profiling"
+}
+```
+
+</details>
+
+---

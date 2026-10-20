@@ -1,0 +1,1439 @@
+# analyze acc batch analyzing
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_analyze_acc_batch_analyzing_20260515T232621.jsonl`
+- **Structured JSON:** [`02c6d5936b59949c735e.json`](../../sessions/02/02c6d5936b59949c735e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T23:28:30.379295+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T23:28:30.379899+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T23:28:30.380215+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'ANALYZING'}",
+  "project": "phase-gated-compound-sparse",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'ANALYZING'}",
+    "project": "phase-gated-compound-sparse",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T23:28:30.382661+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"acc_ds_dense_8k_v2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:27:00.640Z\", \"updated_at\": \"2026-05-15T23:17:23.757Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"submitted_at\": \"2026-05-15T22:28:53.194Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"DS dense 8k 重跑：原 acc_ds_dense_8k 进程被 kill 后输出丢失，需重跑获取完整 dense baseline accuracy (max_new_tokens=8192)。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T22:28:10.491Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:17:23.198Z\", \"training_hours\": 0.82}, \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:17:26.372428+00:00\"}]}}, \"acc_qw_s025_n100_b2_fix\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:22:57.057Z\", \"updated_at\": \"2026-05
+…[truncated 1624 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T23:28:30.383027+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "find /root/autodl-tmp/pacs/ -maxdepth 2 -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.log\" -o -name \"*.txt\" -mmin -180",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "find /root/autodl-tmp/pacs/ -maxdepth 2 -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.log\" -o -name \"*.txt\" -mmin -180",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T23:28:30.383267+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -la /root/autodl-tmp/pacs/accuracy_eval_output*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "ls -la /root/autodl-tmp/pacs/accuracy_eval_output*/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T23:28:30.383677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/data/math500.json\\n/root/autodl-tmp/pacs/data/gsm8k.json\\n/root/autodl-tmp/pacs/data/gsm8k_test.json\\n/root/autodl-tmp/pacs/data/math500_stratified50.json\\n/root/autodl-tmp/pacs/logs/bf16_ds_imp_s010.log\\n/root/autodl-tmp/pacs/logs/bf16_ds_imp_s035.log\\n/root/autodl-tmp/pacs/logs/bf16_qw_imp_s010.log\\n/root/autodl-tmp/pacs/logs/c2_n500_gpu0_full.log\\n/root/autodl-tmp/pacs/logs/n500_ds_imp_s015.log\\n/root/autodl-tmp/pacs/logs/c2_n500_gpu1_full.log\\n/root/autodl-tmp/pacs/logs/n500_ds_rand_s015.log\\n/root/autodl-tmp/pacs/logs/n500_qw_imp_s015.log\\n/root/autodl-tmp/pacs/logs/n500_qw_rand_s015.log\\n/root/autodl-tmp/pacs/logs/c2_qw_n500_gpu2_full.log\\n/root/autodl-tmp/pacs/logs/c2_qw_n500_gpu3_full.log\\n/root/autodl-tmp/pacs/logs/n500_qw_rand_s020.log\\n/root/autodl-tmp/pacs/logs/n500_qw_imp_s020.log\\n/root/autodl-tmp/pacs/logs/c3_llama_random_s015.log\\n/root/autodl-tmp/pacs/logs/c3_llama_importance_s015.log\\n/root/autodl-tmp/pacs/logs/c3_llama_random_s020.log\\n/root/autodl-tmp/pacs/logs/c3_llama_importance_s020.log\\n/root/autodl-tmp/pacs/logs/c3_llama_random_s025.log\\n/root/autodl-tmp/pacs/logs/c3_llama_importance_s025.log\\n/root/autodl-tmp/pacs/logs/c3_llama_random_s030.log\\n/root/autodl-tmp/pacs/logs/c3_llama_importance_s030.log\\n/root/autodl-tmp/pacs/logs/c5b_pilot_full.log\\n/root/autodl-tmp/pacs/logs/c5b_pilot_s025.log\\n/root/autodl-tmp/pacs/logs/c5b_pilot_s030.log\\n/root/autodl-tmp/pacs/logs/n500_ds_rand_s020.log\\n/root/autodl-tmp/pacs/logs/c5b_pilot_gpu3.log\\n/root/autodl-tmp/pacs/logs/n500_ds_imp_s020.log\\n/root/autodl-tmp/pacs/logs/n500_qw_imp_s025.log\\n/root/autodl-tmp/pacs/logs/n500_ds_rand_s025.log\\n/root/autodl-tmp/pacs/logs/n500_qw_rand_s025.log\\n/root/autodl-tmp/pacs/logs/n500_ds_imp_s025.log\\n/root/autodl-tmp/pacs/logs/n500_qw_imp_s030.log\\n/root/autodl-tmp/pacs/logs/n500_qw_rand_s030.log\\n/root/autodl-tmp/pacs/logs/n500_ds_rand_s030.log\\n/roo
+…[truncated 6460 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T23:28:30.383970+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/pacs/accuracy_eval_output*/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T23:28:30.384247+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "find /root/autodl-tmp/pacs -name \"*ds_dense_8k_v2*\" -o -name \"*qw_s025_b2_fix*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "find /root/autodl-tmp/pacs -name \"*ds_dense_8k_v2*\" -o -name \"*qw_s025_b2_fix*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T23:28:30.385843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json\\n/root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T23:28:30.386112+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -50 /root/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "tail -50 /root/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T23:28:30.386432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n  [dense] ✗ pred=None ref=17 (155.3s) running=30/42\\n\\n[Problem 43/50] prompt_len=64\\nThe attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n  [dense] ✓ pred=4 ref=4 (24.8s) running=31/43\\n\\n[Problem 44/50] prompt_len=110\\nThe attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n  [dense] ✗ pred=None ref=70 \\\\sqrt{2} (155.6s) running=31/44\\n\\n[Problem 45/50] prompt_len=89\\nThe attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n  [dense] ✓ pred=1.25 ref=1.25 (36.7s) running=32/45\\n\\n[Problem 46/50] prompt_len=62\\nThe attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n  [dense] ✓ pred=2 ref=2 (34.4s) running=33/46\\n\\n[Problem 47/50] prompt_len=69\\nThe attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\nSetting `pad_token_id` to `eos_tok
+…[truncated 1516 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T23:28:30.386699+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -50 /root/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "tail -50 /root/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T23:28:30.386975+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Importance collected (0.0s)\\n  [importance_s025] heads_pruned=196, kv_evicted=22/91\\n  [importance_s025] ✗ pred=3 ref=1 (12.4s) running=16/42\\n\\n[Problem 43/50] prompt_len=88\\n  Importance collected (0.0s)\\n  [importance_s025] heads_pruned=196, kv_evicted=22/88\\n  [importance_s025] ✗ pred=\\\\frac{224}{625} ref=\\\\frac{448}{15625} (12.6s) running=16/43\\n\\n[Problem 44/50] prompt_len=91\\n  Importance collected (0.0s)\\n  [importance_s025] heads_pruned=196, kv_evicted=22/91\\n  [importance_s025] ✗ pred=34 ref=33 (13.2s) running=16/44\\n\\n[Problem 45/50] prompt_len=396\\n  Importance collected (0.0s)\\n  [importance_s025] heads_pruned=196, kv_evicted=99/396\\n  [importance_s025] ✗ pred=111^\\\\circ ref=80 (8.0s) running=16/45\\n\\n[Problem 46/50] prompt_len=127\\n  Importance collected (0.0s)\\n  [importance_s025] heads_pruned=196, kv_evicted=31/127\\n  [importance_s025] ✗ pred=1 ref=-4 (13.5s) running=16/46\\n\\n[Problem 47/50] prompt_len=156\\n  Importance collected (0.0s)\\n  [importance_s025] heads_pruned=196, kv_evicted=39/156\\n  [importance_s025] ✗ pred=3 ref=1 \\\\pm \\\\sqrt{19} (15.5s) running=16/47\\n\\n[Problem 48/50] prompt_len=93\\n  Importance collected (0.0s)\\n  [importance_s025] heads_pruned=196, kv_evicted=23/93\\n  [importance_s025] ✗ pred=None ref=\\\\text{east} (8.6s) running=16/48\\n\\n[Problem 49/50] prompt_len=66\\n  Importance collected (0.0s)\\n  [importance_s025] heads_pruned=196, kv_evicted=16/66\\n  [importance_s025] ✓ pred=2k + 2 ref=2k+2 (4.5s) running=17/49\\n\\n[Problem 50/50] prompt_len=144\\n  Importance collected (0.0s)\\n  [importance_s025] heads_pruned=196, kv_evicted=36/144\\n  [importance_s025] ✗ pred=\\\\begin{pmatrix} v_2 + 1 \\\\\\\\ v_2 \\\\\\\\ v_3 ref=\\\\begin{pmatrix} -1/3 \\\\\\\\ 2/3 \\\\\\\\ 5/3 \\\\end{pmatrix} (20.7s) running=17/50\\n\\n============================================================\\nRESULTS SAVED: /root/autodl-tmp/pacs/analysis_outp
+…[truncated 277 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T23:28:30.387282+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T23:28:30.388599+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T23:28:30.389243+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"num_problems\\\": 50,\\n    \\\"max_new_tokens\\\": 8192,\\n    \\\"device\\\": \\\"cuda:0\\\",\\n    \\\"conditions\\\": [\\n      \\\"dense\\\"\\n    ],\\n    \\\"seed\\\": 42\\n  },\\n  \\\"conditions\\\": {\\n    \\\"dense\\\": {\\n      \\\"accuracy\\\": 0.74,\\n      \\\"correct\\\": 37,\\n      \\\"n_problems\\\": 50,\\n      \\\"details\\\": [\\n        {\\n          \\\"id\\\": \\\"test/precalculus/807.json\\\",\\n          \\\"pred_answer\\\": \\\"(3, \\\\\\\\dfrac{\\\\\\\\pi}{2})\\\",\\n          \\\"ref_answer\\\": \\\"\\\\\\\\left( 3, \\\\\\\\frac{\\\\\\\\pi}{2} \\\\\\\\right)\\\",\\n          \\\"match\\\": true,\\n          \\\"gen_length\\\": 1114,\\n          \\\"time_seconds\\\": 20.1\\n        },\\n        {\\n          \\\"id\\\": \\\"test/intermediate_algebra/1994.json\\\",\\n          \\\"pred_answer\\\": \\\"p - q\\\",\\n          \\\"ref_answer\\\": \\\"p - q\\\",\\n          \\\"match\\\": true,\\n          \\\"gen_length\\\": 5203,\\n          \\\"time_seconds\\\": 106.8\\n        },\\n        {\\n          \\\"id\\\": \\\"test/algebra/2584.json\\\",\\n          \\\"pred_answer\\\": \\\"\\\\\\\\dfrac{14}{3}\\\",\\n          \\\"ref_answer\\\": \\\"\\\\\\\\frac{14}{3}\\\",\\n          \\\"match\\\": true,\\n          \\\"gen_length\\\": 2553,\\n          \\\"time_seconds\\\": 56.1\\n        },\\n        {\\n          \\\"id\\\": \\\"test/number_theory/572.json\\\",\\n          \\\"pred_answer\\\": \\\"9\\\",\\n          \\\"ref_answer\\\": \\\"9\\\",\\n          \\\"match\\\": true,\\n          \\\"gen_length\\\": 1124,\\n          \\\"time_seconds\\\": 19.4\\n        },\\n        {\\n          \\\"id\\\": \\\"test/algebra/1349.json\\\",\\n          \\\"pred_answer\\\": \\\"Evelyn\\\",\\n          \\\"ref_answer\\\": \\\"\\\\\\\\text{Evelyn}\\\",\\n          \\\"match\\\": true,\\n   
+…[truncated 8838 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T23:28:30.392048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"checkpoints/Qwen2.5-7B-Instruct\\\",\\n    \\\"num_problems\\\": 50,\\n    \\\"max_new_tokens\\\": 8192,\\n    \\\"device\\\": \\\"cuda:0\\\",\\n    \\\"conditions\\\": [\\n      \\\"importance_s025\\\"\\n    ],\\n    \\\"seed\\\": 42\\n  },\\n  \\\"conditions\\\": {\\n    \\\"importance_s025\\\": {\\n      \\\"accuracy\\\": 0.34,\\n      \\\"correct\\\": 17,\\n      \\\"n_problems\\\": 50,\\n      \\\"details\\\": [\\n        {\\n          \\\"id\\\": \\\"test/number_theory/1055.json\\\",\\n          \\\"pred_answer\\\": \\\"1863\\\",\\n          \\\"ref_answer\\\": \\\"203\\\",\\n          \\\"match\\\": false,\\n          \\\"gen_length\\\": 489,\\n          \\\"time_seconds\\\": 10.0\\n        },\\n        {\\n          \\\"id\\\": \\\"test/intermediate_algebra/1217.json\\\",\\n          \\\"pred_answer\\\": \\\"x^5 - x^4 + x^3 -x^2 + x - 1\\\",\\n          \\\"ref_answer\\\": \\\"x^5 - x^4 + x^3 - x^2 + x - 1\\\",\\n          \\\"match\\\": true,\\n          \\\"gen_length\\\": 807,\\n          \\\"time_seconds\\\": 16.5\\n        },\\n        {\\n          \\\"id\\\": \\\"test/prealgebra/951.json\\\",\\n          \\\"pred_answer\\\": null,\\n          \\\"ref_answer\\\": \\\"12\\\",\\n          \\\"match\\\": false,\\n          \\\"gen_length\\\": 388,\\n          \\\"time_seconds\\\": 7.9\\n        },\\n        {\\n          \\\"id\\\": \\\"test/precalculus/1105.json\\\",\\n          \\\"pred_answer\\\": \\\"-\\\\\\\\frac{\\\\\\\\pi}{6}\\\",\\n          \\\"ref_answer\\\": \\\"-\\\\\\\\frac{\\\\\\\\pi}{6}\\\",\\n          \\\"match\\\": true,\\n          \\\"gen_length\\\": 216,\\n          \\\"time_seconds\\\": 4.3\\n        },\\n        {\\n          \\\"id\\\": \\\"test/prealgebra/572.json\\\",\\n          \\\"pred_answer\\\": null,\\n          \\\"ref_answer\\\": \\\"0.15\\\",\\n          \\\"match\\\": false,\\n          \\\"gen_length\\\": 8192,\\n  
+…[truncated 8875 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T23:28:30.392377+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "find /root/autodl-tmp/pacs -name \"*qw_s025*\" -name \"*.json\" -not -path \"*/analysis_output_pre_v2_backup/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "find /root/autodl-tmp/pacs -name \"*qw_s025*\" -name \"*.json\" -not -path \"*/analysis_output_pre_v2_backup/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T23:28:30.392656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025.json\\n/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_n51_100.json\\n/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T23:28:30.392928+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json')); details=d['conditions']['dense']['details']; trunc=sum(1 for x in details if x['gen_length']>=8192); avg_tok=sum(x['gen_length'] for x in details)/len(details); print(f'n={len(details)}, correct={d[\\\"conditions\\\"][\\\"dense\\\"][\\\"correct\\\"]}, acc={d[\\\"conditions\\\"][\\\"dense\\\"][\\\"accuracy\\\"]}, trunc={trunc}/{len(details)}={trunc/len(details):.2%}, avg_tokens={avg_tok:.0f}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json')); details=d['conditions']['dense']['details']; trunc=sum(1 for x in details if x['gen_length']>=8192); avg_tok=sum(x['gen_length'] for x in details)/len(details); print(f'n={len(details)}, correct={d[\\\"conditions\\\"][\\\"dense\\\"][\\\"correct\\\"]}, acc={d[\\\"conditions\\\"][\\\"dense\\\"][\\\"accuracy\\\"]}, trunc={trunc}/{len(details)}={trunc/len(details):.2%}, avg_tokens={avg_tok:.0f}')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T23:28:30.393164+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T23:28:30.393387+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json')); details=d['conditions']['importance_s025']['details']; trunc=sum(1 for x in details if x['gen_length']>=8192); avg_tok=sum(x['gen_length'] for x in details)/len(details); print(f'n={len(details)}, correct={d[\\\"conditions\\\"][\\\"importance_s025\\\"][\\\"correct\\\"]}, acc={d[\\\"conditions\\\"][\\\"importance_s025\\\"][\\\"accuracy\\\"]}, trunc={trunc}/{len(details)}={trunc/len(details):.2%}, avg_tokens={avg_tok:.0f}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json')); details=d['conditions']['importance_s025']['details']; trunc=sum(1 for x in details if x['gen_length']>=8192); avg_tok=sum(x['gen_length'] for x in details)/len(details); print(f'n={len(details)}, correct={d[\\\"conditions\\\"][\\\"importance_s025\\\"][\\\"correct\\\"]}, acc={d[\\\"conditions\\\"][\\\"importance_s025\\\"][\\\"accuracy\\\"]}, trunc={trunc}/{len(details)}={trunc/len(details):.2%}, avg_tokens={avg_tok:.0f}')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T23:28:30.395734+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T23:28:30.395987+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025.json')); c=d['conditions']['importance_s025']; print(f'batch1: n={c[\\\"n_problems\\\"]}, correct={c[\\\"correct\\\"]}, acc={c[\\\"accuracy\\\"]}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025.json')); c=d['conditions']['importance_s025']; print(f'batch1: n={c[\\\"n_problems\\\"]}, correct={c[\\\"correct\\\"]}, acc={c[\\\"accuracy\\\"]}')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T23:28:30.396211+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T23:28:30.396538+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\n# DS dense\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json'))\ndetails=d['conditions']['dense']['details']\ntrunc=sum(1 for x in details if x['gen_length']>=8192)\navg_tok=sum(x['gen_length'] for x in details)/len(details)\nprint(f'DS_DENSE: n={len(details)}, correct={d[\\\"conditions\\\"][\\\"dense\\\"][\\\"correct\\\"]}, acc={d[\\\"conditions\\\"][\\\"dense\\\"][\\\"accuracy\\\"]}, trunc={trunc}/{len(details)} ({trunc/len(details):.1%}), avg_tokens={avg_tok:.0f}')\n\n# QW s025 b2 fix\nd2=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json'))\ndetails2=d2['conditions']['importance_s025']['details']\ntrunc2=sum(1 for x in details2 if x['gen_length']>=8192)\navg_tok2=sum(x['gen_length'] for x in details2)/len(details2)\nprint(f'QW_S025_B2: n={len(details2)}, correct={d2[\\\"conditions\\\"][\\\"importance_s025\\\"][\\\"correct\\\"]}, acc={d2[\\\"conditions\\\"][\\\"importance_s025\\\"][\\\"accuracy\\\"]}, trunc={trunc2}/{len(details2)} ({trunc2/len(details2):.1%}), avg_tokens={avg_tok2:.0f}')\n\n# Batch1\nd3=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025.json'))\nc3=d3['conditions']['importance_s025']\nprint(f'QW_S025_B1: n={c3[\\\"n_problems\\\"]}, correct={c3[\\\"correct\\\"]}, acc={c3[\\\"accuracy\\\"]}')\n\n# Also check the old n51-100 file\nd4=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_n51_100.json'))\nc4=d4['conditions']['importance_s025']\nprint(f'QW_S025_OLD_B2: n={c4[\\\"n_problems\\\"]}, correct={c4[\\\"correct\\\"]}, acc={c4[\\\"accuracy\\\"]}')\n\n# Merged n=100\nb1_correct = c3['correct']\nb2_correct = d2['conditions']['importance_s025']['correct']\ntotal = c3['n_problems'] + len(details2)\nmerged_acc = (b1_correct + b2_correct) / total\nprint(f'MERGED_N100: correct={b1_correct}+{b2_correct}={b1_correct+b2_correct}, n={total}, acc={merged_acc:.2%}')\n\n# Check batch1 config\nprint(f'B1_config: max_new_tokens={d3[\\\"config\\\"][\\\"max_new_tokens\\\"]}, start_index={d3[\\\"config\\\"].get(\\\"start_index\\\",\\\"N/A\\\")}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\n# DS dense\nd=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json'))\ndetails=d['conditions']['dense']['details']\ntrunc=sum(1 for x in details if x['gen_length']>=8192)\navg_tok=sum(x['gen_length'] for x in details)/len(details)\nprint(f'DS_DENSE: n={len(details)}, correct={d[\\\"conditions\\\"][\\\"dense\\\"][\\\"correct\\\"]}, acc={d[\\\"conditions\\\"][\\\"dense\\\"][\\\"accuracy\\\"]}, trunc={trunc}/{len(details)} ({trunc/len(details):.1%}), avg_tokens={avg_tok:.0f}')\n\n# QW s025 b2 fix\nd2=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json'))\ndetails2=d2['conditions']['importance_s025']['details']\ntrunc2=sum(1 for x in details2 if x['gen_length']>=8192)\navg_tok2=sum(x['gen_length'] for x in details2)/len(details2)\nprint(f'QW_S025_B2: n={len(details2)}, correct={d2[\\\"conditions\\\"][\\\"importance_s025\\\"][\\\"correct\\\"]}, acc={d2[\\\"conditions\\\"][\\\"importance_s025\\\"][\\\"accuracy\\\"]}, trunc={trunc2}/{len(details2)} ({trunc2/len(details2):.1%}), avg_tokens={avg_tok2:.0f}')\n\n# Batch1\nd3=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025.json'))\nc3=d3['conditions']['importance_s025']\nprint(f'QW_S025_B1: n={c3[\\\"n_problems\\\"]}, correct={c3[\\\"correct\\\"]}, acc={c3[\\\"accuracy\\\"]}')\n\n# Also check the old n51-100 file\nd4=json.load(open('/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_n51_100.json'))\nc4=d4['conditions']['importance_s025']\nprint(f'QW_S025_OLD_B2: n={c4[\\\"n_problems\\\"]}, correct={c4[\\\"correct\\\"]}, acc={c4[\\\"accuracy\\\"]}')\n\n# Merged n=100\nb1_correct = c3['correct']\nb2_correct = d2['conditions']['importance_s025']['correct']\ntotal = c3['n_problems'] + len(details2)\nmerged_acc = (b1_correct + b2_correct) / total\nprint(f'MERGED_N100: correct={b1_correct}+{b2_correct}={b1_correct+b2_correct}, n={total}, acc={merged_acc:.2%}')\n\n# Check batch1 config\nprint(f'B1_config: max_new_tokens={d3[\\\"config\\\"][\\\"max_new_tokens\\\"]}, start_index={d3[\\\"config\\\"].get(\\\"start_index\\\",\\\"N/A\\\")}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T23:28:30.396800+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DS_DENSE: n=50, correct=37, acc=0.74, trunc=8/50 (16.0%), avg_tokens=3126\\nQW_S025_B2: n=50, correct=17, acc=0.34, trunc=3/50 (6.0%), avg_tokens=1044\\nQW_S025_B1: n=50, correct=16, acc=0.32\\nQW_S025_OLD_B2: n=50, correct=17, acc=0.34\\nMERGED_N100: correct=16+17=33, n=100, acc=33.00%\\nB1_config: max_new_tokens=2048, start_index=N/A\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T23:28:30.397080+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acc_ds_dense_8k_v2",
+  "field": "metrics",
+  "value": "{'accuracy': 0.74, 'correct': 37, 'n_problems': 50, 'truncation_rate': 0.16, 'truncated_count': 8, 'avg_tokens': 3126, 'max_new_tokens': 8192, 'total_time_seconds': 2882}",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acc_ds_dense_8k_v2",
+    "field": "metrics",
+    "value": "{'accuracy': 0.74, 'correct': 37, 'n_problems': 50, 'truncation_rate': 0.16, 'truncated_count': 8, 'avg_tokens': 3126, 'max_new_tokens': 8192, 'total_time_seconds': 2882}",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T23:28:30.397387+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"acc_ds_dense_8k_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:27:00.640Z\", \"updated_at\": \"2026-05-15T23:27:52.427Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"submitted_at\": \"2026-05-15T22:28:53.194Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"DS dense 8k 重跑：原 acc_ds_dense_8k 进程被 kill 后输出丢失，需重跑获取完整 dense baseline accuracy (max_new_tokens=8192)。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T22:28:10.491Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:17:23.198Z\", \"training_hours\": 0.82}, \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:17:26.372428+00:00\"}]}, \"metrics\": {\"accuracy\": 0.74, \"correct\": 37, \"n_problems\": 50, \"truncation_rate\": 0.16, \"truncated_count\": 8, \"avg_tokens\": 3
+…[truncated 126 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T23:28:30.399778+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acc_qw_s025_n100_b2_fix",
+  "field": "metrics",
+  "value": "{'accuracy': 0.34, 'correct': 17, 'n_problems': 50, 'truncation_rate': 0.06, 'truncated_count': 3, 'avg_tokens': 1044, 'max_new_tokens': 8192, 'total_time_seconds': 1099, 'batch': 'b2 (problems 51-100)', 'merged_n100_accuracy': 0.33, 'merged_n100_correct': 33, 'merged_n100_note': 'batch1 used max_new_tokens=2048, batch2_fix used 8192 — mismatch'}",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acc_qw_s025_n100_b2_fix",
+    "field": "metrics",
+    "value": "{'accuracy': 0.34, 'correct': 17, 'n_problems': 50, 'truncation_rate': 0.06, 'truncated_count': 3, 'avg_tokens': 1044, 'max_new_tokens': 8192, 'total_time_seconds': 1099, 'batch': 'b2 (problems 51-100)', 'merged_n100_accuracy': 0.33, 'merged_n100_correct': 33, 'merged_n100_note': 'batch1 used max_new_tokens=2048, batch2_fix used 8192 — mismatch'}",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T23:28:30.400148+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"acc_qw_s025_n100_b2_fix\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:22:57.057Z\", \"updated_at\": \"2026-05-15T23:27:56.402Z\", \"spec\": {\"data_path\": \"MATH-500\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"description\": \"QW importance_s025 batch2 (problems 51-100) accuracy eval with max_new_tokens=8192, fixing original batch2 which used 2048\", \"checkpoint_source\": \"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\", \"eval_data\": \"MATH-500 problems 51-100\", \"checkpoint_path\": \"N/A (eval only)\"}, \"hypothesis\": \"重跑 QW s025 batch2 (problems 51-100) with max_new_tokens=8192，修复原 batch2 使用 2048 的不一致问题。\", \"parent\": \"acc_qw_s025_n100\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:43:13.237Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50 --start-index 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s025_b2_fix.json\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:02:06.320Z\", \"training_hours\": 0.31}, \"pid\": \"285337\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:02:09.471595+00:00\"}]}, \"metrics\": {\"accuracy\": 0.34, \"correct\": 17, \"n_problems\": 50, \"truncation_rate\": 0.06, \"truncated_count\": 3, \"avg_tokens\": 1044, \"max_new_tokens\": 8192, \"total_time_seconds\": 1099, \"batch\": \"b2 (problems 51-100)\", \"merged_n100_accuracy\": 0.33, \"m
+…[truncated 184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T23:28:30.400465+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acc_ds_dense_8k_v2",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acc_ds_dense_8k_v2",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T23:28:30.400699+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acc_qw_s025_n100_b2_fix",
+  "field": "log_path",
+  "value": "/root/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acc_qw_s025_n100_b2_fix",
+    "field": "log_path",
+    "value": "/root/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T23:28:30.400988+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"acc_ds_dense_8k_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:27:00.640Z\", \"updated_at\": \"2026-05-15T23:28:02.445Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"submitted_at\": \"2026-05-15T22:28:53.194Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"DS dense 8k 重跑：原 acc_ds_dense_8k 进程被 kill 后输出丢失，需重跑获取完整 dense baseline accuracy (max_new_tokens=8192)。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T22:28:10.491Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:17:23.198Z\", \"training_hours\": 0.82}, \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:17:26.372428+00:00\"}]}, \"metrics\": {\"accuracy\": 0.74, \"correct\": 37, \"n_problems\": 50, \"truncation_rate\": 0.16, \"truncated_count\": 8, \"avg_tokens\": 3
+…[truncated 220 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T23:28:30.401323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"acc_qw_s025_n100_b2_fix\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:22:57.057Z\", \"updated_at\": \"2026-05-15T23:28:03.915Z\", \"spec\": {\"data_path\": \"MATH-500\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"description\": \"QW importance_s025 batch2 (problems 51-100) accuracy eval with max_new_tokens=8192, fixing original batch2 which used 2048\", \"checkpoint_source\": \"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\", \"eval_data\": \"MATH-500 problems 51-100\", \"checkpoint_path\": \"N/A (eval only)\"}, \"hypothesis\": \"重跑 QW s025 batch2 (problems 51-100) with max_new_tokens=8192，修复原 batch2 使用 2048 的不一致问题。\", \"parent\": \"acc_qw_s025_n100\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:43:13.237Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50 --start-index 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s025_b2_fix.json\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:02:06.320Z\", \"training_hours\": 0.31}, \"pid\": \"285337\", \"log_path\": \"/root/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:02:09.471595+00:00\"}]}, \"metrics\": {\"accuracy\": 0.34, \"correct\": 17, \"n_problems\": 50, \"truncation_rate\": 0.06, \"truncated_count\": 3, \"avg_tokens\": 1044, \"max_new_tokens\": 8192, \"total_time_seconds\": 1099, \"batch\": \"b2 (problems 51-100)\", \"merged_n100_accuracy\": 0.33,
+…[truncated 188 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T23:28:30.403602+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acc_ds_dense_8k_v2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acc_ds_dense_8k_v2",
+    "field": "conclusion",
+    "value": "success",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T23:28:30.403868+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acc_qw_s025_n100_b2_fix",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acc_qw_s025_n100_b2_fix",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T23:28:30.404186+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"acc_ds_dense_8k_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:27:00.640Z\", \"updated_at\": \"2026-05-15T23:28:07.760Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"submitted_at\": \"2026-05-15T22:28:53.194Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"DS dense 8k 重跑：原 acc_ds_dense_8k 进程被 kill 后输出丢失，需重跑获取完整 dense baseline accuracy (max_new_tokens=8192)。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T22:28:10.491Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:17:23.198Z\", \"training_hours\": 0.82}, \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:17:26.372428+00:00\"}]}, \"metrics\": {\"accuracy\": 0.74, \"correct\": 37, \"n_problems\": 50, \"truncation_rate\": 0.16, \"truncated_count\": 8, \"avg_tokens\": 3
+…[truncated 249 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T23:28:30.404538+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"acc_qw_s025_n100_b2_fix\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:22:57.057Z\", \"updated_at\": \"2026-05-15T23:28:08.626Z\", \"spec\": {\"data_path\": \"MATH-500\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"description\": \"QW importance_s025 batch2 (problems 51-100) accuracy eval with max_new_tokens=8192, fixing original batch2 which used 2048\", \"checkpoint_source\": \"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\", \"eval_data\": \"MATH-500 problems 51-100\", \"checkpoint_path\": \"N/A (eval only)\"}, \"hypothesis\": \"重跑 QW s025 batch2 (problems 51-100) with max_new_tokens=8192，修复原 batch2 使用 2048 的不一致问题。\", \"parent\": \"acc_qw_s025_n100\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:43:13.237Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50 --start-index 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s025_b2_fix.json\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:02:06.320Z\", \"training_hours\": 0.31}, \"pid\": \"285337\", \"log_path\": \"/root/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:02:09.471595+00:00\"}]}, \"metrics\": {\"accuracy\": 0.34, \"correct\": 17, \"n_problems\": 50, \"truncation_rate\": 0.06, \"truncated_count\": 3, \"avg_tokens\": 1044, \"max_new_tokens\": 8192, \"total_time_seconds\": 1099, \"batch\": \"b2 (problems 51-100)\", \"merged_n100_accuracy\": 0.33,
+…[truncated 286 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T23:28:30.406840+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acc_ds_dense_8k_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acc_ds_dense_8k_v2",
+    "field": "status",
+    "value": "DONE",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T23:28:30.407082+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acc_qw_s025_n100_b2_fix",
+  "field": "conclusion",
+  "value": "success",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acc_qw_s025_n100_b2_fix",
+    "field": "conclusion",
+    "value": "success",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T23:28:30.407444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"acc_ds_dense_8k_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:27:00.640Z\", \"updated_at\": \"2026-05-15T23:28:12.650Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"submitted_at\": \"2026-05-15T22:28:53.194Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3559.5, \"gpu_hours\": 0.99}, \"hypothesis\": \"DS dense 8k 重跑：原 acc_ds_dense_8k 进程被 kill 后输出丢失，需重跑获取完整 dense baseline accuracy (max_new_tokens=8192)。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T22:28:10.491Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/DeepSeek-R1-Distill-Qwen-7B --conditions dense --num-problems 50 --max-new-tokens 8192 --output-name accuracy_ds_dense_8k_v2.json --gpu cuda:0\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:17:23.198Z\", \"training_hours\": 0.82}, \"pid\": \"283843\", \"log_path\": \"~/runs/phase-gated-compound-sparse/acc_ds_dense_8k_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:17:26.372428+00:00\"}]}, \"metrics\": {\"accuracy\": 0.74, \"correct\": 37, \"n_problems\": 50, \"truncation_rate\":
+…[truncated 395 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T23:28:30.407820+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"acc_qw_s025_n100_b2_fix\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:22:57.057Z\", \"updated_at\": \"2026-05-15T23:28:14.055Z\", \"spec\": {\"data_path\": \"MATH-500\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"description\": \"QW importance_s025 batch2 (problems 51-100) accuracy eval with max_new_tokens=8192, fixing original batch2 which used 2048\", \"checkpoint_source\": \"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\", \"eval_data\": \"MATH-500 problems 51-100\", \"checkpoint_path\": \"N/A (eval only)\"}, \"hypothesis\": \"重跑 QW s025 batch2 (problems 51-100) with max_new_tokens=8192，修复原 batch2 使用 2048 的不一致问题。\", \"parent\": \"acc_qw_s025_n100\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:43:13.237Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50 --start-index 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s025_b2_fix.json\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:02:06.320Z\", \"training_hours\": 0.31}, \"pid\": \"285337\", \"log_path\": \"/root/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:02:09.471595+00:00\"}]}, \"metrics\": {\"accuracy\": 0.34, \"correct\": 17, \"n_problems\": 50, \"truncation_rate\": 0.06, \"truncated_count\": 3, \"avg_tokens\": 1044, \"max_new_tokens\": 8192, \"total_time_seconds\": 1099, \"batch\": \"b2 (problems 51-100)\", \"merged_n100_accuracy\": 0.33,
+…[truncated 315 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T23:28:30.408082+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "acc_qw_s025_n100_b2_fix",
+  "field": "status",
+  "value": "DONE",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "acc_qw_s025_n100_b2_fix",
+    "field": "status",
+    "value": "DONE",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T23:28:30.408400+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"acc_qw_s025_n100_b2_fix\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:22:57.057Z\", \"updated_at\": \"2026-05-15T23:28:18.012Z\", \"spec\": {\"data_path\": \"MATH-500\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"description\": \"QW importance_s025 batch2 (problems 51-100) accuracy eval with max_new_tokens=8192, fixing original batch2 which used 2048\", \"checkpoint_source\": \"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\", \"eval_data\": \"MATH-500 problems 51-100\", \"checkpoint_path\": \"N/A (eval only)\"}, \"hypothesis\": \"重跑 QW s025 batch2 (problems 51-100) with max_new_tokens=8192，修复原 batch2 使用 2048 的不一致问题。\", \"parent\": \"acc_qw_s025_n100\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:43:13.237Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50 --start-index 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s025_b2_fix.json\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-15T23:02:06.320Z\", \"training_hours\": 0.31}, \"pid\": \"285337\", \"log_path\": \"/root/runs/phase-gated-compound-sparse/acc_qw_s025_n100_b2_fix.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:02:09.471595+00:00\"}]}, \"metrics\": {\"accuracy\": 0.34, \"correct\": 17, \"n_problems\": 50, \"truncation_rate\": 0.06, \"truncated_count\": 3, \"avg_tokens\": 1044, \"max_new_tokens\": 8192, \"total_time_seconds\": 1099, \"batch\": \"b2 (problems 51-100)\", \"merged_n100_accuracy\": 0.33, \"me
+…[truncated 409 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-15T23:28:30.410833+00:00_
+
+两个实验均已更新为 DONE。
+
+---
+
+## 结果汇总
+
+### 1. acc_ds_dense_8k_v2 (DS dense baseline)
+
+| 指标 | 值 |
+|------|-----|
+| Accuracy | **74.0%** (37/50) |
+| Truncation rate | 16.0% (8/50) |
+| Avg tokens | 3126 |
+| max_new_tokens | 8192 |
+| 数据文件 | `/root/autodl-tmp/pacs/analysis_output/accuracy_ds_dense_8k_v2.json` |
+
+### 2. acc_qw_s025_n100_b2_fix (QW s025 batch2)
+
+| 指标 | 值 |
+|------|-----|
+| Accuracy | **34.0%** (17/50) |
+| Truncation rate | 6.0% (3/50) |
+| Avg tokens | 1044 |
+| max_new_tokens | 8192 |
+| 数据文件 | `/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s025_b2_fix.json` |
+
+### 3. QW s025 合并 n=100
+
+| 部分 | Correct | N | Accuracy | max_new_tokens |
+|------|---------|---|----------|----------------|
+| Batch1 (problems 1-50) | 16 | 50 | 32.0% | **2048** |
+| Batch2_fix (problems 51-100) | 17 | 50 | 34.0% | **8192** |
+| **合并** | **33** | **100** | **33.0%** | — |
+
+**⚠️ 注意：** Batch1 的 `max_new_tokens=2048`，batch2_fix 的 `max_new_tokens=8192`，两批参数不一致。如果要用于论文 dose-response curve，batch1 可能也需要用 8192 重跑以保持一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analyze_acc_batch_analyzing_20260515T232621"
+}
+```
+
+</details>
+
+---

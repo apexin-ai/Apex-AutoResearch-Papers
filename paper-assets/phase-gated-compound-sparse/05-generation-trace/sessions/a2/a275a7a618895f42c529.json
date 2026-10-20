@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a275a7a618895f42c529",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra sync v3 submit",
+  "task_key": "worker_infra_sync-v3-submit_20260513T212836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync-v3-submit_20260513T212836_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "ddde34c6a79b6231d74f0e6d7a5fd588da916b9400f0825e436a6a357f0bd33b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n| 项目 | 状态 |\n|------|------|\n| 文件同步 — `profiling/run_profiling.py` | 已写入 |\n| 文件同步 — `pacs/profiling/run_profiling.py` | 已写入 |\n| Import 验证 — `SPARSITY_LEVELS=[0.1, 0.2]` + `alt_segmentation` | 通过 |\n| NaN guard 验证 — Inf CI → FAIL | 通过 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-v3-submit.md"
+}

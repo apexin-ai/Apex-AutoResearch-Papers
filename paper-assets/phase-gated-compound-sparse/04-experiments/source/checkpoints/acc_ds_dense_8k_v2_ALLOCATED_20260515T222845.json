@@ -1,0 +1,26 @@
+{
+  "exp_id": "acc_ds_dense_8k_v2",
+  "project": "phase-gated-compound-sparse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:27:00.640Z",
+    "updated_at": "2026-05-15T22:28:45.513Z",
+    "spec": {
+      "hypothesis": "DS dense 8k 重跑：原 acc_ds_dense_8k 进程被 kill 后输出丢失，需重跑获取完整 dense baseline accuracy (max_new_tokens=8192)。"
+    },
+    "hypothesis": "DS dense 8k 重跑：原 acc_ds_dense_8k 进程被 kill 后输出丢失，需重跑获取完整 dense baseline accuracy (max_new_tokens=8192)。",
+    "server": "westd-22162",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T22:28:10.491Z"
+    }
+  },
+  "timestamp": "2026-05-15T22:28:45.742208+00:00",
+  "trigger": "update_registry"
+}

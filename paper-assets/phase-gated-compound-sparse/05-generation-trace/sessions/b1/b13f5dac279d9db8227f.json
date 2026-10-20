@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b13f5dac279d9db8227f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diag bf16 qw imp s010",
+  "task_key": "worker_diag_bf16_qw_imp_s010_20260514T093254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_bf16_qw_imp_s010_20260514T093254_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "9e2f2e007c65428a46ed8faf6cd0ea3bfb5d3f925e183fa8a3e81ab0a5aa4717"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能在之前的 session 中已清理或过期）。\n\n---\n\n**诊断结论：bf16_qw_imp_s010 — SUCCESS**\n\n- 50/50 problems 全部完成，无 error\n- Overall verdict: **PASS**（ci_overlap_test 通过：high_sparsity vs mid_sparsity CI 不重叠）\n- 关键 metrics（II @ s=0.1）：\n\n| Phase | II median | II mean | PPL dense→both |\n|-------|-----------|---------|----------------|\n| high_sparsity | +0.0001 | -0.089 | 1.074→1.228 |\n| mid_sparsity | -0.036 | -0.084 | 1.133→1.741 |\n| low_sparsity | -0.044 | -0.243 | 1.152→3.204 |\n\n- Registry 已更新：status=DONE, conclusion=success, metrics 已填入\n- Cron 无需删除（当前 session 无活跃 cron）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-bf16-qw-imp-s010.md"
+}

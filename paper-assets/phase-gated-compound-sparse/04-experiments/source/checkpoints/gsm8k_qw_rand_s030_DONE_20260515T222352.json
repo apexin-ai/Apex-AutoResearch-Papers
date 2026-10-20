@@ -1,0 +1,46 @@
+{
+  "exp_id": "gsm8k_qw_rand_s030",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:37:39.530Z",
+    "updated_at": "2026-05-15T22:23:52.155Z",
+    "hypothesis": "C10: QW random masking s=0.30 在 GSM8K 上的 compound interaction，作为 importance masking 的对照组。gsm8k_profiling_qw 中此条件结果 INVALID，需重跑。",
+    "parent": "gsm8k_profiling_qw",
+    "spec": {
+      "command": "python run_profiling_gsm8k.py --model_path checkpoints/Qwen2.5-7B-Instruct --masking_method random --data_path data/gsm8k_test.json --max_problems 50 --seed 42 --min_phase_length 10 --save_generations --sparsity_levels 0.30 --device cuda:0 --output_dir ./gsm8k_profiling/qw_rand_s030",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "281443",
+      "log_path": "~/runs/phase-gated-compound-sparse/gsm8k_qw_rand_s030.log",
+      "submitted_at": "2026-05-15T21:59:10.598Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/gsm8k_test.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/Qwen2.5-7B-Instruct",
+      "eval_data": "data/gsm8k_test.json (50 problems)",
+      "wall_clock_seconds": 1475.8,
+      "gpu_hours": 0.41
+    },
+    "server": "westd-22162",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "finished_at": "2026-05-15T22:23:43.826Z"
+    },
+    "failure_reason": "Traceback → wargs) ^^^^^^^^^^^^^^^^^^^^^ File \"/root/autodl-tmp/pacs/run_profiling_gsm8k.py\", line 459, in run_profiling \"mean\": bs[\"mean\"], \"ci_low\": bs[\"ci_low\"], \"ci_high\": bs[\"ci_high\"], ~~^^^^^^^^ TypeError: tuple indices must be integers or slices, not str",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T22:23:46.370Z"
+  },
+  "timestamp": "2026-05-15T22:23:52.921076+00:00",
+  "trigger": "update_registry"
+}

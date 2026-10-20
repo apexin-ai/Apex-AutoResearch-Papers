@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c476e56ae8953d65f38",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops kill c10 and check data",
+  "task_key": "worker_ops_kill_c10_and_check_data_20260516T025832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_c10_and_check_data_20260516T025832_result.json",
+    "occurrence": 1,
+    "bytes": 2147,
+    "sha256": "121dc1939bc9d03d16aff784e9ebefad0dcdc1d7b087a3f549f46dddb2560067"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. PID 304288\n已不存在（`No such process`），之前已终止。\n\n### 2. c8_llama_n250 (PID 301187)\n**已不在运行**——进程未找到，应已正常完成。当前 GPU 0,1 上跑的是 `analysis_c5_gini.py`（PID 307021/307022，已运行 ~2.5 分钟），GPU 2,3 空闲。\n\n### 3. 可复用的 DS MATH-500 generated text\n\n找到以下文件，均在 `/root/autodl-tmp/pacs/analysis_output/`：\n\n| 文件 | 条目数 | 有 gen_snippet | 说明 |\n|------|--------|---------------|------|\n| `accuracy_eval_ds_dense_n50.json` | 50 | **是** | dense baseline |\n| `accuracy_eval_ds_s015.json` | 100 | **是** (sparse+dense各50) | sparsity=0.15 |\n| `accuracy_eval_ds_s020.json` | 50 | **否** | 只有 gen_length/time |\n| `accuracy_eval_ds_s025.json` | 50 | **否** | 只有 gen_length/time |\n| `accuracy_eval_ds_s030.json` | 50 | **是** | sparsity=0.30 |\n\n**数据结构**（有 gen_snippet 的文件）：每个 result 包含 `id`, `pred_answer`, `ref_answer`, `match`, `gen_length`, `prompt_length`, `time_seconds`, `gen_snippet`。\n\n`gen_snippet` 截断约 200-300 字符，但**足够检测响应语言**——数据中已清晰可见 language switching：\n- 英文开头: `\"Okay, so I have this math problem here...\"`, `\"First, I need to recall the correct formula...\"`\n- 中文开头: `\"首先，我需要解这个方程...\"`, `\"嗯，我现在遇到了一个问题...\"`, `\"好，我现在要解决这个问题...\"`\n\n### 4. CPU-only language switching 分析方案\n\n可直接用这些数据做 CPU 分析：\n- **可分析**: 响应初始语言（中/英/混合）、语言选择 vs sparsity 的相关性、语言 vs 正确率交叉分析\n- **可用条件**: dense、s015、s030（共 ~200 条有 gen_snippet 的记录，同一组 50 道题的不同 sparsity 版本）\n- **限制**: gen_snippet 截断，无法分析中途 language switch；s020/s025 无 snippet\n\n如果需要完整生成文本，需要重新跑 eval（用 `--save_full_text` 之类的选项）。但仅做\"哪个 sparsity 下更容易用中文回答\"这种分析，现有 snippet 足够。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-c10-and-check-data.md"
+}

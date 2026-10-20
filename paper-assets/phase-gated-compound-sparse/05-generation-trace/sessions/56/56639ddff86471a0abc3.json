@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56639ddff86471a0abc3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_6_1778775977.md",
+  "task_key": "loop_6_1778775977",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778775977.md",
+    "occurrence": 1,
+    "bytes": 4601,
+    "sha256": "12de131e26200e1057250bca65877077f8e2aa99d978cff9f0ef68713a3be7a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T16:25:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，**不得用其他服务器或 GPU 编号**\n- c2_qw_n500 有**重复进程问题**：GPU2 上 PID 131864（正确）+ 132389（重复），GPU3 上 PID 132002（正确）+ 132392（重复）。下一个 session 接手后**第一件事确认重复进程是否已杀**，否则输出数据可能被并发写入损坏\n- c3_llama 和 c2_qw_n500 都声明使用 cuda:2+3，存在资源冲突风险——接手后立即 SSH 确认两者是否真的同时跑在同一 GPU 上\n- EMNLP 2026 截稿 **2026-05-25**，距今 11 天，所有行动以此 deadline 为锚\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，4× RTX PRO 6000 Blackwell **96GB**\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型路径：DeepSeek-R1-Distill-Qwen-7B + DeepSeek-R1-Distill-Llama-8B 在 `/root/autodl-tmp/` 下（具体子目录需 SSH 确认）\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（500 题）\n- 日志：`/root/autodl-tmp/pacs/logs/`（c2_qw_n500_gpu2_full.log, c2_qw_n500_gpu3_full.log 等）\n- 活跃进程（cron 监控中）：\n  - c2_n500_deepseek: pid=c2_n500_gpu0, cuda:0+1\n  - c2_qw_n500: pid=131864 (imp, SCREEN c2_qw_gpu2) / 132002 (rand, SCREEN c2_qw_gpu3), cuda:2+3\n  - c3_llama: pid=138393 (parent), 138408 (imp gpu2), 138410 (rand gpu3), cuda:2+3\n- Cron：3 条活跃 cron（来自前 session，reconcile 确认均在监控中），本 session 无新建 cron\n- W&B：profiling 类实验无 W&B/sentinel，cron 靠进程存活检测\n\n### 3. 📊 当前状态\n**刚接手即收到 WRITE HANDOFF，未执行任何操作。** 以下为前 session 遗留状态：\n\n| exp_id | 状态 | GPU | 摘要 |\n|--------|------|-----|------|\n| c2_n500_deepseek | RUNNING | cuda:0+1 | DeepSeek 8 conditions n=500，预计 ~18h |\n| c2_qw_n500 | RUNNING | cuda:2+3 | Qwen 8 conditions n=500，进度 ~93/500 s015，**有重复进程问题** |\n| c3_llama | RUNNING | cuda:2+3（冲突？） | LLaMA-8B 跨架构验证，50 题 ×8 conditions，bug 修复后全部重跑 |\n| c5b_pilot | QUEUED | 无 | Mitigation pilot，代码已完成+dry-run 通过，等 GPU 释放 |\n\n- Worker 池：**0**（失职状态，接手后需立即评估并铺 Worker）\n- 等待中：3 个 cron 回调（实验完成时触发）；无 Director 待决策项\n- 论文：§1-§8 + Abstract + Figures + main.tex 全部完成，PDF 可编译，Group C 审稿并行中\n\n### 4. 📋 待办（条件触发式）\n- **接手后立即** → SSH 确认 c2_qw_n500 重复进程是否仍在 + c3_llama 与 c2_qw_n500 的 GPU 冲突状态；若重复进程仍在，杀掉 PID 132389/132392\n- c2_n500_deepseek cron 回调 → spawn worker 分析结果 + 更新 registry(metrics/conclusion) + 更新论文 Table 2/3 + 汇报 Director\n- c2_qw_n500 cron 回调 → 同上，与 DeepSeek 对称分析，bootstrap CI 检验\n- c3_llama cron 回调 → 分析跨架构复现性，Cohen's d 对比，更新论文 §5\n- C2+C3 全部完成 → c5b_pilot 获得 GPU → 提交 mitigation pilot\n- c5b_pilot 完成 → oracle recovery ≥30% at s025/s030 → 写入论文 §6；<30% → Framing 调整提案\n- 所有补充实验完成 → 更新全部 tables/figures → 提交 Group C full review → 准备投稿\n\n### 5. 🎯 战略上下文\n- **核心发现**：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（DeepSeek: 0.39→14.59, Qwen: 0.04→2.94），random masking 全 FAIL。Cross-model Cohen's d ρ=1.0。\n- **C1-C6 状态**：C1/C2/C3/C5/C6 confirmed，C4 降级为 §6 supporting（D045/D046）。C2 n=500 和 C3 LLaMA 是补充实验，强化统计功效和跨架构 claim。\n- **决策链关键节点**：D048 统一用 paired d_z 替换 independent d；D047 纳入 6-point dose-response；D045/D046 C4 降级\n- **易错点**：\n  - c2_qw_n500 的 cron 已 3 次误判 false positive（进程从未中断但被标记 failed），retry_count=2。**不要再重启这个实验**，确认进程活着就行\n  - profiling 实验无 W&B/sentinel，cron 只能靠进程存活检测，完成判断不可靠——需 SSH 确认输出完整性\n  - 不要把 GC4-par 和 GC4-seq 直接对比（不同实验范式）\n  - 论文数字必须来自 bf16 canonical 数据（D051：所有图表基于过时数据已重新生成，不要回退到旧数据）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778775977.md"
+}

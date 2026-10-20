@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bd13d2506cea3eedce5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "sync artifacts download",
+  "task_key": "worker_sync_artifacts_download_20260515T084423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_artifacts_download_20260515T084423_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "a45df569259c0d437838d1393b0393fa25bcb82e08212f69e2e49fbf212c0bba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成，所有文件已验证通过：\n\n| 文件 | 大小 | 行数 | 状态 |\n|------|------|------|------|\n| `n500_unified_final.csv` | 8,125 B | 完整5节（16条件 + within_dz + imp_vs_rand + cross_model + ratio） | OK |\n| `n500_unified_final.json` | 33,207 B | 1,094 行 | OK，JSON 合法 |\n| `n500_full_statistics.md` | 6,700 B | — | OK（之前已下载） |\n| `supplementary_stats.json` | 26,435 B | 1,000 行 | OK，含 ci_shrinkage/jt_test/g_ratio |\n\n验证结果：\n- CSV 有 16 条数据行，含 `bonf_p_k4` 列 ✓\n- DS imp s030 行存在，median=8.481, bonf_p_k4=4.35e-79 ✓\n- JSON 与 CSV 16 条数据完全一致 ✓\n- `qwen_midphase_null_analysis.md` 不存在于服务器 ✓\n- `ci_shrinkage.json`/`jt_test_results.json`/`g_ratio_ci.json` 已包含在 `supplementary_stats.json` 中，跳过 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-artifacts-download.md"
+}

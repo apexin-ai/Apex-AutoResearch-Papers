@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a72088fd1f7b3aa9c44",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "check exp progress s015 s030",
+  "task_key": "worker_check_exp_progress_s015_s030_20260516T002327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_progress_s015_s030_20260516T002327_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "99e454ace841ca2587ed793b083424911995183d9f3a8beb125f4f3010e91cf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 实验 | 进度 | Accuracy | 状态 |\n|------|------|----------|------|\n| acc_ds_s015_8k_v2 | 47/50 | 20/46 = 43.5% | 运行中，~5-15 min 完成 |\n| acc_ds_s030_8k_v2 | 25/50 | 2/24 = 8.3% | 运行中，~50-70 min 完成 |\n| acc_qw_dense_n100 | 50/50 | 24/50 = 48.0% | ✅ 已完成 |\n\n**GPU 状态**: cuda:0 和 cuda:2 在用（各 ~70% 利用率，~16GB 显存），**cuda:1 和 cuda:3 完全空闲**，无任何进程。\n\n**异常**: s030 准确率极低（8.3%），Problem 18-24 连续 7 题全部超时（pred=None），224 heads pruned 后模型推理链严重退化。报告已写入 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-progress-s015-s030.md"
+}

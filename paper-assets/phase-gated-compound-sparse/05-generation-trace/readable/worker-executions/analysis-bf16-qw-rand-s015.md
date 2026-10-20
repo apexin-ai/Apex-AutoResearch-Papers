@@ -1,0 +1,1789 @@
+# analysis bf16 qw rand s015
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/workers/worker_analysis_bf16_qw_rand_s015_20260514T081651.log`
+- **Structured JSON:** [`cddb2518f6cfa57a7244.json`](../../sessions/cd/cddb2518f6cfa57a7244.json)
+
+## Before a recorded user message
+
+34 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "12161e22-8b63-43a5-957d-72fa203ff649",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778760000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ff2e2694-a1d8-4c26-ac49-04c2afeb3dac",
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to analyze the results of experiment `bf16_qw_rand_s015`. Let me start by checking the log file and output directory on the server.
+
+Let me first load the necessary MCP tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "2c8bb453-4cd0-45d3-a871-7f6723ca85f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4Bok3Hh5WiaVBSqUXbvbW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13000,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13000
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FFMzd4zM1AUhwogJ5N7SQN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "60d9d5a3-0f43-4a35-9f42-4e188c3245c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M4Bok3Hh5WiaVBSqUXbvbW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13000,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13000
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T08:34:28.832Z_
+
+<details><summary>↩ Tool result · `toolu_01FFMzd4zM1AUhwogJ5N7SQN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "806ebee1-2c74-4bef-821e-1dd63f2db1ef",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6_
+
+检查日志和输出目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "d9e026c6-de9e-430e-b548-668e970dff9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4JJYVaXPbRYLJ9ARQmEf3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1689,
+      "cache_read_input_tokens": 24447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1689
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SbvjPCTG6MtcCf18h2GfXW`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -30 ~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "5ea85e16-b9f1-4093-8911-f05417a3658f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4JJYVaXPbRYLJ9ARQmEf3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1689,
+      "cache_read_input_tokens": 24447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1689
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LSzm1socWS8MfgSNi5ueqg`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -la /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "0eba7ee0-bb24-4c54-b0f3-3cd8be6a595a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4JJYVaXPbRYLJ9ARQmEf3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1689,
+      "cache_read_input_tokens": 24447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1689
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T08:34:35.108Z_
+
+<details><summary>↩ Tool result · `toolu_01SbvjPCTG6MtcCf18h2GfXW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 16:11:56,186 [INFO] run_profiling:   -> 16 phases, boundaries at [23, 46, 132, 148, 190, 212, 242, 630, 649, 751, 805, 975, 1191, 1261, 1288]\\n2026-05-14 16:11:56,186 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\n2026-05-14 16:12:10,230 [INFO] run_profiling:   -> 12 phases, boundaries at [14, 112, 132, 149, 178, 497, 558, 578, 594, 610, 670]\\n2026-05-14 16:12:10,230 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\n2026-05-14 16:12:22,577 [INFO] run_profiling:   -> 13 phases, boundaries at [27, 68, 135, 264, 399, 427, 455, 477, 505, 534, 549, 571]\\n2026-05-14 16:12:22,577 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\n2026-05-14 16:13:10,786 [INFO] run_profiling:   -> 28 phases, boundaries at [25, 165, 201, 217, 245, 269, 325, 342, 380, 506, 603, 1057, 1144, 1422, 1451, 1472, 1499, 1525, 1538, 1570, 1596, 1627, 1721, 1743, 1782, 1851, 2036]\\n2026-05-14 16:13:10,786 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\n2026-05-14 16:13:19,213 [INFO] run_profiling:   -> 6 phases, boundaries at [99, 136, 222, 346, 429]\\n2026-05-14 16:13:19,214 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\n2026-05-14 16:13:50,335 [INFO] run_profiling:   -> 20 phases, boundaries at [25, 87, 141, 164, 282, 337, 927, 954, 971, 982, 1010, 1059, 1101, 1134, 1177, 1311, 1342, 1386, 1412]\\n2026-05-14 16:13:50,335 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\n2026-05-14 16:14:06,806 [INFO] run_profiling:   -> 9 phases, boundaries at [47, 108, 181, 583, 596, 641, 661, 791]\\n2026-05-14 16:14:06,912 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 16289 tokens, 295 segments\\n  low_sparsity: 32227 tokens, 276 segments\\n  mid_sparsity: 4372 tokens, 26 segments\\n\\n  II[high_sparsity, 0.15]: median=+0.1381  95%CI=[+0.1025, +0.2074]  mean=+1.6652  95%CI=[+1.0986, +2.4042]\\n  II[low_sparsity, 0.15]: median=+0.1878  95%CI=[+0.0962, +0.3139]  mean=+1.4082  95%CI=[+0.8358, +2.0600]\\n  II[mid_sparsity, 0.15]: median=+0.2194  95%CI=[-0.0048, +0.6621]  mean=+1.6975  95%CI=[+0.4473, +3.4612]\\n\\nVerdict: FAIL\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "54013412-68fb-470b-8297-1beeb56e7b5a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 16:11:56,186 [INFO] run_profiling:   -> 16 phases, boundaries at [23, 46, 132, 148, 190, 212, 242, 630, 649, 751, 805, 975, 1191, 1261, 1288]\\\\n2026-05-14 16:11:56,186 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\\\n2026-05-14 16:12:10,230 [INFO] run_profiling:   -> 12 phases, boundaries at [14, 112, 132, 149, 178, 497, 558, 578, 594, 610, 670]\\\\n2026-05-14 16:12:10,230 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\\\n2026-05-14 16:12:22,577 [INFO] run_profiling:   -> 13 phases, boundaries at [27, 68, 135, 264, 399, 427, 455, 477, 505, 534, 549, 571]\\\\n2026-05-14 16:12:22,577 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\\\n2026-05-14 16:13:10,786 [INFO] run_profiling:   -> 28 phases, boundaries at [25, 165, 201, 217, 245, 269, 325, 342, 380, 506, 603, 1057, 1144, 1422, 1451, 1472, 1499, 1525, 1538, 1570, 1596, 1627, 1721, 1743, 1782, 1851, 2036]\\\\n2026-05-14 16:13:10,786 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\\\n2026-05-14 16:13:19,213 [INFO] run_profiling:   -> 6 phases, boundaries at [99, 136, 222, 346, 429]\\\\n2026-05-14 16:13:19,214 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\\\n2026-05-14 16:13:50,335 [INFO] run_profiling:   -> 20 phases, boundaries at [25, 87, 141, 164, 282, 337, 927, 954, 971, 982, 1010, 1059, 1101, 1134, 1177, 1311, 1342, 1386, 1412]\\\\n2026-05-14 16:13:50,335 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\\\n2026-05-14 16:14:06,806 [INFO] run_profiling:   -> 9 phases, boundaries at [47, 108, 181, 583, 596, 641, 661, 791]\\\\n2026-05-14 16:14:06,912 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015/profiling_results.json\\\\n\\\\n============================================================\\\\nPACS Profiling Complete — 50 problems\\\\n============================================================\\\\n  high_sparsity: 16289 tokens, 295 segments\\\\n  low_sparsity: 32227 tokens, 276 segments\\\\n  mid_sparsity: 4372 tokens, 26 segments\\\\n\\\\n  II[high_sparsity, 0.15]: median=+0.1381  95%CI=[+0.1025, +0.2074]  mean=+1.6652  95%CI=[+1.0986, +2.4042]\\\\n  II[low_sparsity, 0.15]: median=+0.1878  95%CI=[+0.0962, +0.3139]  mean=+1.4082  95%CI=[+0.8358, +2.0600]\\\\n  II[mid_sparsity, 0.15]: median=+0.2194  95%CI=[-0.0048, +0.6621]  mean=+1.6975  95%CI=[+0.4473, +3.4612]\\\\n\\\\nVerdict: FAIL\\\\n============================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 16:11:56,186 [INFO] run_profiling:   -> 16 phases, boundaries at [23, 46, 132, 148, 190, 212, 242, 630, 649, 751, 805, 975, 1191, 1261, 1288]\\n2026-05-14 16:11:56,186 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\n2026-05-14 16:12:10,230 [INFO] run_profiling:   -> 12 phases, boundaries at [14, 112, 132, 149, 178, 497, 558, 578, 594, 610, 670]\\n2026-05-14 16:12:10,230 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\n2026-05-14 16:12:22,577 [INFO] run_profiling:   -> 13 phases, boundaries at [27, 68, 135, 264, 399, 427, 455, 477, 505, 534, 549, 571]\\n2026-05-14 16:12:22,577 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\n2026-05-14 16:13:10,786 [INFO] run_profiling:   -> 28 phases, boundaries at [25, 165, 201, 217, 245, 269, 325, 342, 380, 506, 603, 1057, 1144, 1422, 1451, 1472, 1499, 1525, 1538, 1570, 1596, 1627, 1721, 1743, 1782, 1851, 2036]\\n2026-05-14 16:13:10,786 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\n2026-05-14 16:13:19,213 [INFO] run_profiling:   -> 6 phases, boundaries at [99, 136, 222, 346, 429]\\n2026-05-14 16:13:19,214 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\n2026-05-14 16:13:50,335 [INFO] run_profiling:   -> 20 phases, boundaries at [25, 87, 141, 164, 282, 337, 927, 954, 971, 982, 1010, 1059, 1101, 1134, 1177, 1311, 1342, 1386, 1412]\\n2026-05-14 16:13:50,335 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\n2026-05-14 16:14:06,806 [INFO] run_profiling:   -> 9 phases, boundaries at [47, 108, 181, 583, 596, 641, 661, 791]\\n2026-05-14 16:14:06,912 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 16289 tokens, 295 segments\\n  low_sparsity: 32227 tokens, 276 segments\\n  mid_sparsity: 4372 tokens, 26 segments\\n\\n  II[high_sparsity, 0.15]: median=+0.1381  95%CI=[+0.1025, +0.2074]  mean=+1.6652  95%CI=[+1.0986, +2.4042]\\n  II[low_sparsity, 0.15]: median=+0.1878  95%CI=[+0.0962, +0.3139]  mean=+1.4082  95%CI=[+0.8358, +2.0600]\\n  II[mid_sparsity, 0.15]: median=+0.2194  95%CI=[-0.0048, +0.6621]  mean=+1.6975  95%CI=[+0.4473, +3.4612]\\n\\nVerdict: FAIL\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T08:34:35.639Z_
+
+<details><summary>↩ Tool result · `toolu_01LSzm1socWS8MfgSNi5ueqg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1672\\ndrwxr-xr-x  2 root root      44 May 14 16:14 .\\ndrwxr-xr-x 77 root root    8192 May 14 16:30 ..\\n-rw-r--r--  1 root root 1696194 May 14 16:14 profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "ae69c1a9-107b-46fe-9d10-1449016d5ccb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1672\\\\ndrwxr-xr-x  2 root root      44 May 14 16:14 .\\\\ndrwxr-xr-x 77 root root    8192 May 14 16:30 ..\\\\n-rw-r--r--  1 root root 1696194 May 14 16:14 profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1672\\ndrwxr-xr-x  2 root root      44 May 14 16:14 .\\ndrwxr-xr-x 77 root root    8192 May 14 16:30 ..\\n-rw-r--r--  1 root root 1696194 May 14 16:14 profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+实验已完成（50/50 problems, EXIT_CODE=0）。输出只有一个 `profiling_results.json`，没有预聚合的 summary。日志中已有部分汇总指标，但需要完整 metrics。让我从 JSON 文件提取完整数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "17409efd-1ec1-424f-afa3-6b728c4f5239",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Z9YKWEzU4noS4sqvgJvt5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1729,
+      "cache_read_input_tokens": 26136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1729
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013qcVDgmncWRFgEQ68FAiLK`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015/profiling_results.json') as f:\n    d = json.load(f)\nprint(type(d))\nif isinstance(d, dict):\n    print(list(d.keys())[:20])\nelif isinstance(d, list):\n    print(f'list len={len(d)}')\n    if len(d)>0:\n        print(type(d[0]))\n        if isinstance(d[0], dict):\n            print(list(d[0].keys())[:20])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "1ee013d4-5450-41bd-a5ca-fd0e43034ca2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Z9YKWEzU4noS4sqvgJvt5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1729,
+      "cache_read_input_tokens": 26136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1729
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T08:34:43.508Z_
+
+<details><summary>↩ Tool result · `toolu_013qcVDgmncWRFgEQ68FAiLK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "604b75f2-67b5-4163-bbd0-2311844689ce",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RsnkHnM2UuZ7zhXyDTB8BR`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cd /root/autodl-tmp/pacs && python3 -c \"\nimport json\nwith open('profiling_output_bf16_qw_rand_s015/profiling_results.json') as f:\n    d = json.load(f)\nprint(type(d).__name__)\nif isinstance(d, dict):\n    print(list(d.keys())[:20])\nelif isinstance(d, list):\n    print(f'list len={len(d)}')\n    if len(d) > 0:\n        print(type(d[0]).__name__)\n        if isinstance(d[0], dict):\n            print(list(d[0].keys())[:20])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "7e5177c3-1749-4566-aefb-c44614062bff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019i3gWLrQuocd4owrFM4rx8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 432,
+      "cache_read_input_tokens": 27865,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 432
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T08:34:47.914Z_
+
+<details><summary>↩ Tool result · `toolu_01RsnkHnM2UuZ7zhXyDTB8BR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/pacs && python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'profiling_output_bf16_qw_rand_s015/profiling_results.json\\\\') as f:\\\\n    d = json.load(f)\\\\nprint(type(d).__name__)\\\\nif isinstance(d, dict):\\\\n    print(list(d.keys())[:20])\\\\nelif isinstance(d, list):\\\\n    print(f\\\\'list len={len(d)}\\\\')\\\\n    if len(d) > 0:\\\\n        print(type(d[0]).__name__)\\\\n        if isinstance(d[0], dict):\\\\n            print(list(d[0].keys())[:20])\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "1d59b8e7-7270-40df-8bb6-6a0ca503cf1d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/pacs && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nwith open(\\\\\\\\'profiling_output_bf16_qw_rand_s015/profiling_results.json\\\\\\\\') as f:\\\\\\\\n    d = json.load(f)\\\\\\\\nprint(type(d).__name__)\\\\\\\\nif isinstance(d, dict):\\\\\\\\n    print(list(d.keys())[:20])\\\\\\\\nelif isinstance(d, list):\\\\\\\\n    print(f\\\\\\\\'list len={len(d)}\\\\\\\\')\\\\\\\\n    if len(d) > 0:\\\\\\\\n        print(type(d[0]).__name__)\\\\\\\\n        if isinstance(d[0], dict):\\\\\\\\n            print(list(d[0].keys())[:20])\\\\\\\\n\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/pacs && python3 -c \\\"\\\\nimport json\\\\nwith open(\\\\'profiling_output_bf16_qw_rand_s015/profiling_results.json\\\\') as f:\\\\n    d = json.load(f)\\\\nprint(type(d).__name__)\\\\nif isinstance(d, dict):\\\\n    print(list(d.keys())[:20])\\\\nelif isinstance(d, list):\\\\n    print(f\\\\'list len={len(d)}\\\\')\\\\n    if len(d) > 0:\\\\n        print(type(d[0]).__name__)\\\\n        if isinstance(d[0], dict):\\\\n            print(list(d[0].keys())[:20])\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+需要用 conda 环境的 python。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "7fd30aa8-2ac5-41a2-9333-3f9439b72412",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1BRv2hKizjvmVfAzdjsym",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 581,
+      "cache_read_input_tokens": 28297,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 581
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BupT6sD6WDP49Wt7kbwX22`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -c \"\nimport json\nwith open('profiling_output_bf16_qw_rand_s015/profiling_results.json') as f:\n    d = json.load(f)\nprint(type(d).__name__)\nif isinstance(d, dict):\n    print(list(d.keys())[:20])\nelif isinstance(d, list):\n    print('list len=%d' % len(d))\n    if len(d) > 0:\n        print(type(d[0]).__name__)\n        if isinstance(d[0], dict):\n            print(list(d[0].keys())[:20])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "054ee67a-b1f6-4543-9a9e-d73a6ca786ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1BRv2hKizjvmVfAzdjsym",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 581,
+      "cache_read_input_tokens": 28297,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 581
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T08:34:55.560Z_
+
+<details><summary>↩ Tool result · `toolu_01BupT6sD6WDP49Wt7kbwX22`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dict\\n['config', 'phase_stats', 'perplexity', 'interaction_index', 'pass_fail', 'warnings', 'diagnostics', 'per_problem_ii']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "953d084b-5e25-4eed-896a-8032ddabcaec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dict\\\\n['config', 'phase_stats', 'perplexity', 'interaction_index', 'pass_fail', 'warnings', 'diagnostics', 'per_problem_ii']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"dict\\n['config', 'phase_stats', 'perplexity', 'interaction_index', 'pass_fail', 'warnings', 'diagnostics', 'per_problem_ii']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+有结构化结果。提取完整 metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "2d43d12b-30e3-4c64-960f-67145ed8123a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DExj2yeyABs4XDCSh7pd5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 421,
+      "cache_read_input_tokens": 28878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 421
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018yjpT7HdDrZBUpbMf3r8Bi`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -c \"\nimport json\nwith open('profiling_output_bf16_qw_rand_s015/profiling_results.json') as f:\n    d = json.load(f)\n# Extract everything except per_problem_ii (too large)\nout = {}\nfor k in ['config', 'phase_stats', 'perplexity', 'interaction_index', 'pass_fail', 'warnings', 'diagnostics']:\n    if k in d:\n        out[k] = d[k]\nout['n_problems'] = len(d.get('per_problem_ii', []))\nprint(json.dumps(out, indent=2))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "f0838f0c-64d3-4a46-baa4-dfb13445508f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DExj2yeyABs4XDCSh7pd5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 421,
+      "cache_read_input_tokens": 28878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 421
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T08:35:01.652Z_
+
+<details><summary>↩ Tool result · `toolu_018yjpT7HdDrZBUpbMf3r8Bi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.15\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.0737,\\n        \\\"attn\\\": 1.3939,\\n        \\\"kv\\\": 2.0487,\\n        \\\"both\\\": 4.2076\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1517,\\n        \\\"attn\\\": 1.7177,\\n        \\\"kv\\\": 3.3253,\\n        \\\"both\\\": 5.4788\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1322,\\n        \\\"attn\\\": 1.4175,\\n        \\\"kv\\\": 2.3709,\\n        \\\"both\\\": 4.6105\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 1.665213,\\n        \\\"ci_low\\\": 1.098566,\\n        \\\"ci_high\\\": 2.404194,\\n        \\\"median\\\": 0.138132,\\n        \\\"median_ci_low\\\": 0.102537,\\n        \\\"median_ci_high\\\": 0.207418,\\n        \\\"winsorized_mean\\\": 1.004447,\\n        \\\"skewness\\\": 7.1842,\\n        \\\"outlier_count\\\": 6\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 1.408189,\\n        \\\"ci_low\\\": 0.835819,\\n        \\\"ci_high\\\": 2.060023,\\n        \\\"median\\\": 0.187842,\\n        \\\"median_ci_low\\\": 0.096196,\\n        \\\"median_ci_high\\\": 0.313935,\\n        \\\"winsorized_mean\\\": 0.940326,\\n        \\\"skewness\\\": 7.1113,\\n        \\\"outlier_count\\\": 5\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 1.697467,\\n        \\\"ci_low\\\": 0.447329,\\n        \\\"ci_high\\\": 3.461161,\\n        \\\"median\\\": 0.219399,\\n        \\\"median_ci_low\\\": -0.004845,\\n        \\\"median_ci_high\\\": 0.662126,\\n        \\\"winsorized_mean\\\": 1.403836,\\n        \\\"skewness\\\": 3.2101,\\n        \\\"outlier_count\\\": 1\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"overall\\\": \\\"FAIL\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.6880466341972351,\\n          0.6271428465843201,\\n          0.6456583142280579,\\n          0.639423131942749,\\n          0.6597035527229309,\\n          0.7142857313156128,\\n          0.5935065150260925,\\n          0.48852044343948364,\\n          0.5275689363479614,\\n          0.6052955389022827,\\n          0.6428571939468384,\\n          0.7267858386039734,\\n          0.6861826777458191,\\n          0.5725806355476379,\\n          0.5051020979881287,\\n          0.762276828289032,\\n          0.7296703457832336,\\n          0.7938311696052551,\\n          0.8784648180007935,\\n          0.5850839614868164,\\n          0.7971015572547913,\\n          0.623469352722168,\\n          0.8118712306022644,\\n          0.7549603581428528,\\n          0.6159490942955017,\\n          0.6361004114151001,\\n          0.7861904501914978,\\n          0.864661693572998,\\n          0.8557514548301697,\\n          0.6730769276618958,\\n          0.7852622866630554,\\n          0.7611607313156128,\\n          0.6322752237319946,\\n          0.6646341681480408,\\n          0.7973321676254272,\\n          0.8073980212211609,\\n          0.5579832196235657,\\n          0.5386213064193726,\\n          0.7294746041297913,\\n          0.6594967246055603,\\n          0.7451846599578857,\\n          0.8075397610664368,\\n          0.7766876816749573,\\n          0.7600932717323303,\\n          0.8133640885353088,\\n          0.6022036671638489,\\n          0.6586467027664185,\\n          0.6324405074119568,\\n          0.5990427136421204,\\n          0.6064140200614929,\\n          0.5955989360809326,\\n          0.44035714864730835,\\n          0.712517678737\\n\\n... [截断: 输出过长，省略 1673645 字符] ...\\n\\n961473941803,\\n          0.9406819343566895,\\n          0.9737247228622437\\n        ],\\n        \\\"n_tokens\\\": 826,\\n        \\\"sparsity_mean\\\": 0.8553376345022539,\\n        \\\"sparsity_std\\\": 0.06162092079703038,\\n        \\\"sparsity_min\\\": 0.6231751441955566,\\n        \\\"sparsity_max\\\": 0.9837346076965332,\\n        \\\"n_phases_detected\\\": 9,\\n        \\\"phase_sizes\\\": [\\n          47,\\n          61,\\n          73,\\n          402,\\n          13,\\n          45,\\n          20,\\n          130,\\n          35\\n        ],\\n        \\\"phase_names\\\": [\\n          \\\"low_sparsity\\\",\\n          \\\"low_sparsity\\\",\\n          \\\"low_sparsity\\\",\\n          \\\"low_sparsity\\\",\\n          \\\"high_sparsity\\\",\\n          \\\"high_sparsity\\\",\\n          \\\"high_sparsity\\\",\\n          \\\"high_sparsity\\\",\\n          \\\"high_sparsity\\\"\\n        ],\\n        \\\"segmentation_method\\\": \\\"quantile\\\",\\n        \\\"quantile_boundaries\\\": [\\n          0.8342391848564148,\\n          0.8850197792053223\\n        ],\\n        \\\"quantile_group_stats\\\": [\\n          {\\n            \\\"mean\\\": 0.7858935375647111,\\n            \\\"std\\\": 0.037263869452886234,\\n            \\\"count\\\": 275,\\n            \\\"ratio\\\": 0.33292978208232443,\\n            \\\"sparsity_range\\\": [\\n              0.6231751441955566,\\n              0.8341790437698364\\n            ]\\n          },\\n          {\\n            \\\"mean\\\": 0.8586562614007429,\\n            \\\"std\\\": 0.014135511953926273,\\n            \\\"count\\\": 275,\\n            \\\"ratio\\\": 0.33292978208232443,\\n            \\\"sparsity_range\\\": [\\n              0.8342391848564148,\\n              0.8849256038665771\\n            ]\\n          },\\n          {\\n            \\\"mean\\\": 0.9212235195049341,\\n            \\\"std\\\": 0.02498622673579971,\\n            \\\"count\\\": 276,\\n            \\\"ratio\\\": 0.3341404358353511,\\n            \\\"sparsity_range\\\": [\\n              0.8850197792053223,\\n              0.9837346076965332\\n            ]\\n          }\\n        ]\\n      }\\n    ],\\n    \\\"global_sparsity_histogram\\\": {\\n      \\\"bins\\\": [\\n        0.4271978437900543,\\n        0.4385728281736374,\\n        0.44994781255722044,\\n        0.4613227969408035,\\n        0.4726977813243866,\\n        0.48407276570796964,\\n        0.49544775009155273,\\n        0.5068227344751358,\\n        0.5181977188587189,\\n        0.529572703242302,\\n        0.540947687625885,\\n        0.552322672009468,\\n        0.5636976563930511,\\n        0.5750726407766342,\\n        0.5864476251602173,\\n        0.5978226095438004,\\n        0.6091975939273835,\\n        0.6205725783109665,\\n        0.6319475626945495,\\n        0.6433225470781326,\\n        0.6546975314617157,\\n        0.6660725158452988,\\n        0.6774475002288818,\\n        0.6888224846124649,\\n        0.700197468996048,\\n        0.711572453379631,\\n        0.7229474377632141,\\n        0.7343224221467972,\\n        0.7456974065303803,\\n        0.7570723909139634,\\n        0.7684473752975465,\\n        0.7798223596811295,\\n        0.7911973440647125,\\n        0.8025723284482956,\\n        0.8139473128318786,\\n        0.8253222972154617,\\n        0.8366972815990448,\\n        0.8480722659826279,\\n        0.859447250366211,\\n        0.870822234749794,\\n        0.8821972191333771,\\n        0.8935722035169602,\\n        0.9049471879005433,\\n        0.9163221722841264,\\n        0.9276971566677094,\\n        0.9390721410512924,\\n        0.9504471254348755,\\n        0.9618221098184586,\\n        0.9731970942020416,\\n        0.9845720785856247,\\n        0.9959470629692078\\n      ],\\n      \\\"counts\\\": [\\n        6,\\n        2,\\n        1,\\n        5,\\n        3,\\n        9,\\n        12,\\n        11,\\n        17,\\n        15,\\n        20,\\n        28,\\n        32,\\n        37,\\n        51,\\n        51,\\n        79,\\n        74,\\n        114,\\n        110,\\n        173,\\n        198,\\n        227,\\n        212,\\n        253,\\n        305,\\n        375,\\n        384,\\n        490,\\n        491,\\n        585,\\n        705,\\n        784,\\n        880,\\n        1044,\\n        1284,\\n        1481,\\n        1754,\\n        1950,\\n        2164,\\n        2544,\\n        2756,\\n        3177,\\n        3497,\\n        4014,\\n        4501,\\n        5005,\\n        5432,\\n        4437,\\n        1109\\n      ]\\n    }\\n  },\\n  \\\"n_problems\\\": 1\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "449f8061-8bc7-4bc9-b7bc-53070a971435",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.15\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 16289,\\\\n      \\\\\\\"n_segments\\\\\\\": 295\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 32227,\\\\n      \\\\\\\"n_segments\\\\\\\": 276\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 4372,\\\\n      \\\\\\\"n_segments\\\\\\\": 26\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.0737,\\\\n        \\\\\\\"attn\\\\\\\": 1.3939,\\\\n        \\\\\\\"kv\\\\\\\": 2.0487,\\\\n        \\\\\\\"both\\\\\\\": 4.2076\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1517,\\\\n        \\\\\\\"attn\\\\\\\": 1.7177,\\\\n        \\\\\\\"kv\\\\\\\": 3.3253,\\\\n        \\\\\\\"both\\\\\\\": 5.4788\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1322,\\\\n        \\\\\\\"attn\\\\\\\": 1.4175,\\\\n        \\\\\\\"kv\\\\\\\": 2.3709,\\\\n        \\\\\\\"both\\\\\\\": 4.6105\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.665213,\\\\n        \\\\\\\"ci_low\\\\\\\": 1.098566,\\\\n        \\\\\\\"ci_high\\\\\\\": 2.404194,\\\\n        \\\\\\\"median\\\\\\\": 0.138132,\\\\n        \\\\\\\"median_ci_low\\\\\\\": 0.102537,\\\\n        \\\\\\\"median_ci_high\\\\\\\": 0.207418,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 1.004447,\\\\n        \\\\\\\"skewness\\\\\\\": 7.1842,\\\\n        \\\\\\\"outlier_count\\\\\\\": 6\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.408189,\\\\n        \\\\\\\"ci_low\\\\\\\": 0.835819,\\\\n        \\\\\\\"ci_high\\\\\\\": 2.060023,\\\\n        \\\\\\\"median\\\\\\\": 0.187842,\\\\n        \\\\\\\"median_ci_low\\\\\\\": 0.096196,\\\\n        \\\\\\\"median_ci_high\\\\\\\": 0.313935,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.940326,\\\\n        \\\\\\\"skewness\\\\\\\": 7.1113,\\\\n        \\\\\\\"outlier_count\\\\\\\": 5\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.697467,\\\\n        \\\\\\\"ci_low\\\\\\\": 0.447329,\\\\n        \\\\\\\"ci_high\\\\\\\": 3.461161,\\\\n        \\\\\\\"median\\\\\\\": 0.219399,\\\\n        \\\\\\\"median_ci_low\\\\\\\": -0.004845,\\\\n        \\\\\\\"median_ci_high\\\\\\\": 0.662126,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 1.403836,\\\\n        \\\\\\\"skewness\\\\\\\": 3.2101,\\\\n        \\\\\\\"outlier_count\\\\\\\": 1\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": false,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": false,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"FAIL\\\\\\\"\\\\n  },\\\\n  \\\\\\\"warnings\\\\\\\": [],\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"per_problem_sparsity\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2470.json\\\\\\\",\\\\n        \\\\\\\"sparsity_values\\\\\\\": [\\\\n          0.6880466341972351,\\\\n          0.6271428465843201,\\\\n          0.6456583142280579,\\\\n          0.639423131942749,\\\\n          0.6597035527229309,\\\\n          0.7142857313156128,\\\\n          0.5935065150260925,\\\\n          0.48852044343948364,\\\\n          0.5275689363479614,\\\\n          0.6052955389022827,\\\\n          0.6428571939468384,\\\\n          0.7267858386039734,\\\\n          0.6861826777458191,\\\\n          0.5725806355476379,\\\\n          0.5051020979881287,\\\\n          0.762276828289032,\\\\n          0.7296703457832336,\\\\n          0.7938311696052551,\\\\n          0.8784648180007935,\\\\n          0.5850839614868164,\\\\n          0.7971015572547913,\\\\n          0.623469352722168,\\\\n          0.8118712306022644,\\\\n          0.7549603581428528,\\\\n          0.6159490942955017,\\\\n          0.6361004114151001,\\\\n          0.7861904501914978,\\\\n          0.864661693572998,\\\\n          0.8557514548301697,\\\\n          0.6730769276618958,\\\\n          0.7852622866630554,\\\\n          0.7611607313156128,\\\\n          0.6322752237319946,\\\\n          0.6646341681480408,\\\\n          0.7973321676254272,\\\\n          0.8073980212211609,\\\\n          0.5579832196235657,\\\\n          0.5386213064193726,\\\\n          0.7294746041297913,\\\\n          0.6594967246055603,\\\\n          0.7451846599578857,\\\\n          0.8075397610664368,\\\\n          0.7766876816749573,\\\\n          0.7600932717323303,\\\\n          0.8133640885353088,\\\\n          0.6022036671638489,\\\\n          0.6586467027664185,\\\\n          0.6324405074119568,\\\\n          0.5990427136421204,\\\\n          0.6064140200614929,\\\\n          0.5955989360809326,\\\\n          0.44035714864730835,\\\\n          0.712517678737\\\\n\\\\n... [截断: 输出过长，省略 1673645 字符] ...\\\\n\\\\n961473941803,\\\\n          0.9406819343566895,\\\\n          0.9737247228622437\\\\n        ],\\\\n        \\\\\\\"n_tokens\\\\\\\": 826,\\\\n        \\\\\\\"sparsity_mean\\\\\\\": 0.8553376345022539,\\\\n        \\\\\\\"sparsity_std\\\\\\\": 0.06162092079703038,\\\\n        \\\\\\\"sparsity_min\\\\\\\": 0.6231751441955566,\\\\n        \\\\\\\"sparsity_max\\\\\\\": 0.9837346076965332,\\\\n        \\\\\\\"n_phases_detected\\\\\\\": 9,\\\\n        \\\\\\\"phase_sizes\\\\\\\": [\\\\n          47,\\\\n          61,\\\\n          73,\\\\n          402,\\\\n          13,\\\\n          45,\\\\n          20,\\\\n          130,\\\\n          35\\\\n        ],\\\\n        \\\\\\\"phase_names\\\\\\\": [\\\\n          \\\\\\\"low_sparsity\\\\\\\",\\\\n          \\\\\\\"low_sparsity\\\\\\\",\\\\n          \\\\\\\"low_sparsity\\\\\\\",\\\\n          \\\\\\\"low_sparsity\\\\\\\",\\\\n          \\\\\\\"high_sparsity\\\\\\\",\\\\n          \\\\\\\"high_sparsity\\\\\\\",\\\\n          \\\\\\\"high_sparsity\\\\\\\",\\\\n          \\\\\\\"high_sparsity\\\\\\\",\\\\n          \\\\\\\"high_sparsity\\\\\\\"\\\\n        ],\\\\n        \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n        \\\\\\\"quantile_boundaries\\\\\\\": [\\\\n          0.8342391848564148,\\\\n          0.8850197792053223\\\\n        ],\\\\n        \\\\\\\"quantile_group_stats\\\\\\\": [\\\\n          {\\\\n            \\\\\\\"mean\\\\\\\": 0.7858935375647111,\\\\n            \\\\\\\"std\\\\\\\": 0.037263869452886234,\\\\n            \\\\\\\"count\\\\\\\": 275,\\\\n            \\\\\\\"ratio\\\\\\\": 0.33292978208232443,\\\\n            \\\\\\\"sparsity_range\\\\\\\": [\\\\n              0.6231751441955566,\\\\n              0.8341790437698364\\\\n            ]\\\\n          },\\\\n          {\\\\n            \\\\\\\"mean\\\\\\\": 0.8586562614007429,\\\\n            \\\\\\\"std\\\\\\\": 0.014135511953926273,\\\\n            \\\\\\\"count\\\\\\\": 275,\\\\n            \\\\\\\"ratio\\\\\\\": 0.33292978208232443,\\\\n            \\\\\\\"sparsity_range\\\\\\\": [\\\\n              0.8342391848564148,\\\\n              0.8849256038665771\\\\n            ]\\\\n          },\\\\n          {\\\\n            \\\\\\\"mean\\\\\\\": 0.9212235195049341,\\\\n            \\\\\\\"std\\\\\\\": 0.02498622673579971,\\\\n            \\\\\\\"count\\\\\\\": 276,\\\\n            \\\\\\\"ratio\\\\\\\": 0.3341404358353511,\\\\n            \\\\\\\"sparsity_range\\\\\\\": [\\\\n              0.8850197792053223,\\\\n              0.9837346076965332\\\\n            ]\\\\n          }\\\\n        ]\\\\n      }\\\\n    ],\\\\n    \\\\\\\"global_sparsity_histogram\\\\\\\": {\\\\n      \\\\\\\"bins\\\\\\\": [\\\\n        0.4271978437900543,\\\\n        0.4385728281736374,\\\\n        0.44994781255722044,\\\\n        0.4613227969408035,\\\\n        0.4726977813243866,\\\\n        0.48407276570796964,\\\\n        0.49544775009155273,\\\\n        0.5068227344751358,\\\\n        0.5181977188587189,\\\\n        0.529572703242302,\\\\n        0.540947687625885,\\\\n        0.552322672009468,\\\\n        0.5636976563930511,\\\\n        0.5750726407766342,\\\\n        0.5864476251602173,\\\\n        0.5978226095438004,\\\\n        0.6091975939273835,\\\\n        0.6205725783109665,\\\\n        0.6319475626945495,\\\\n        0.6433225470781326,\\\\n        0.6546975314617157,\\\\n        0.6660725158452988,\\\\n        0.6774475002288818,\\\\n        0.6888224846124649,\\\\n        0.700197468996048,\\\\n        0.711572453379631,\\\\n        0.7229474377632141,\\\\n        0.7343224221467972,\\\\n        0.7456974065303803,\\\\n        0.7570723909139634,\\\\n        0.7684473752975465,\\\\n        0.7798223596811295,\\\\n        0.7911973440647125,\\\\n        0.8025723284482956,\\\\n        0.8139473128318786,\\\\n        0.8253222972154617,\\\\n        0.8366972815990448,\\\\n        0.8480722659826279,\\\\n        0.859447250366211,\\\\n        0.870822234749794,\\\\n        0.8821972191333771,\\\\n        0.8935722035169602,\\\\n        0.9049471879005433,\\\\n        0.9163221722841264,\\\\n        0.9276971566677094,\\\\n        0.9390721410512924,\\\\n        0.9504471254348755,\\\\n        0.9618221098184586,\\\\n        0.9731970942020416,\\\\n        0.9845720785856247,\\\\n        0.9959470629692078\\\\n      ],\\\\n      \\\\\\\"counts\\\\\\\": [\\\\n        6,\\\\n        2,\\\\n        1,\\\\n        5,\\\\n        3,\\\\n        9,\\\\n        12,\\\\n        11,\\\\n        17,\\\\n        15,\\\\n        20,\\\\n        28,\\\\n        32,\\\\n        37,\\\\n        51,\\\\n        51,\\\\n        79,\\\\n        74,\\\\n        114,\\\\n        110,\\\\n        173,\\\\n        198,\\\\n        227,\\\\n        212,\\\\n        253,\\\\n        305,\\\\n        375,\\\\n        384,\\\\n        490,\\\\n        491,\\\\n        585,\\\\n        705,\\\\n        784,\\\\n        880,\\\\n        1044,\\\\n        1284,\\\\n        1481,\\\\n        1754,\\\\n        1950,\\\\n        2164,\\\\n        2544,\\\\n        2756,\\\\n        3177,\\\\n        3497,\\\\n        4014,\\\\n        4501,\\\\n        5005,\\\\n        5432,\\\\n        4437,\\\\n        1109\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"n_problems\\\\\\\": 1\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.15\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.0737,\\n        \\\"attn\\\": 1.3939,\\n        \\\"kv\\\": 2.0487,\\n        \\\"both\\\": 4.2076\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1517,\\n        \\\"attn\\\": 1.7177,\\n        \\\"kv\\\": 3.3253,\\n        \\\"both\\\": 5.4788\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1322,\\n        \\\"attn\\\": 1.4175,\\n        \\\"kv\\\": 2.3709,\\n        \\\"both\\\": 4.6105\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 1.665213,\\n        \\\"ci_low\\\": 1.098566,\\n        \\\"ci_high\\\": 2.404194,\\n        \\\"median\\\": 0.138132,\\n        \\\"median_ci_low\\\": 0.102537,\\n        \\\"median_ci_high\\\": 0.207418,\\n        \\\"winsorized_mean\\\": 1.004447,\\n        \\\"skewness\\\": 7.1842,\\n        \\\"outlier_count\\\": 6\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 1.408189,\\n        \\\"ci_low\\\": 0.835819,\\n        \\\"ci_high\\\": 2.060023,\\n        \\\"median\\\": 0.187842,\\n        \\\"median_ci_low\\\": 0.096196,\\n        \\\"median_ci_high\\\": 0.313935,\\n        \\\"winsorized_mean\\\": 0.940326,\\n        \\\"skewness\\\": 7.1113,\\n        \\\"outlier_count\\\": 5\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 1.697467,\\n        \\\"ci_low\\\": 0.447329,\\n        \\\"ci_high\\\": 3.461161,\\n        \\\"median\\\": 0.219399,\\n        \\\"median_ci_low\\\": -0.004845,\\n        \\\"median_ci_high\\\": 0.662126,\\n        \\\"winsorized_mean\\\": 1.403836,\\n        \\\"skewness\\\": 3.2101,\\n        \\\"outlier_count\\\": 1\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"overall\\\": \\\"FAIL\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.6880466341972351,\\n          0.6271428465843201,\\n          0.6456583142280579,\\n          0.639423131942749,\\n          0.6597035527229309,\\n          0.7142857313156128,\\n          0.5935065150260925,\\n          0.48852044343948364,\\n          0.5275689363479614,\\n          0.6052955389022827,\\n          0.6428571939468384,\\n          0.7267858386039734,\\n          0.6861826777458191,\\n          0.5725806355476379,\\n          0.5051020979881287,\\n          0.762276828289032,\\n          0.7296703457832336,\\n          0.7938311696052551,\\n          0.8784648180007935,\\n          0.5850839614868164,\\n          0.7971015572547913,\\n          0.623469352722168,\\n          0.8118712306022644,\\n          0.7549603581428528,\\n          0.6159490942955017,\\n          0.6361004114151001,\\n          0.7861904501914978,\\n          0.864661693572998,\\n          0.8557514548301697,\\n          0.6730769276618958,\\n          0.7852622866630554,\\n          0.7611607313156128,\\n          0.6322752237319946,\\n          0.6646341681480408,\\n          0.7973321676254272,\\n          0.8073980212211609,\\n          0.5579832196235657,\\n          0.5386213064193726,\\n          0.7294746041297913,\\n          0.6594967246055603,\\n          0.7451846599578857,\\n          0.8075397610664368,\\n          0.7766876816749573,\\n          0.7600932717323303,\\n          0.8133640885353088,\\n          0.6022036671638489,\\n          0.6586467027664185,\\n          0.6324405074119568,\\n          0.5990427136421204,\\n          0.6064140200614929,\\n          0.5955989360809326,\\n          0.44035714864730835,\\n          0.712517678737\\n\\n... [截断: 输出过长，省略 1673645 字符] ...\\n\\n961473941803,\\n          0.9406819343566895,\\n          0.9737247228622437\\n        ],\\n        \\\"n_tokens\\\": 826,\\n        \\\"sparsity_mean\\\": 0.8553376345022539,\\n        \\\"sparsity_std\\\": 0.06162092079703038,\\n        \\\"sparsity_min\\\": 0.6231751441955566,\\n        \\\"sparsity_max\\\": 0.9837346076965332,\\n        \\\"n_phases_detected\\\": 9,\\n        \\\"phase_sizes\\\": [\\n          47,\\n          61,\\n          73,\\n          402,\\n          13,\\n          45,\\n          20,\\n          130,\\n          35\\n        ],\\n        \\\"phase_names\\\": [\\n          \\\"low_sparsity\\\",\\n          \\\"low_sparsity\\\",\\n          \\\"low_sparsity\\\",\\n          \\\"low_sparsity\\\",\\n          \\\"high_sparsity\\\",\\n          \\\"high_sparsity\\\",\\n          \\\"high_sparsity\\\",\\n          \\\"high_sparsity\\\",\\n          \\\"high_sparsity\\\"\\n        ],\\n        \\\"segmentation_method\\\": \\\"quantile\\\",\\n        \\\"quantile_boundaries\\\": [\\n          0.8342391848564148,\\n          0.8850197792053223\\n        ],\\n        \\\"quantile_group_stats\\\": [\\n          {\\n            \\\"mean\\\": 0.7858935375647111,\\n            \\\"std\\\": 0.037263869452886234,\\n            \\\"count\\\": 275,\\n            \\\"ratio\\\": 0.33292978208232443,\\n            \\\"sparsity_range\\\": [\\n              0.6231751441955566,\\n              0.8341790437698364\\n            ]\\n          },\\n          {\\n            \\\"mean\\\": 0.8586562614007429,\\n            \\\"std\\\": 0.014135511953926273,\\n            \\\"count\\\": 275,\\n            \\\"ratio\\\": 0.33292978208232443,\\n            \\\"sparsity_range\\\": [\\n              0.8342391848564148,\\n              0.8849256038665771\\n            ]\\n          },\\n          {\\n            \\\"mean\\\": 0.9212235195049341,\\n            \\\"std\\\": 0.02498622673579971,\\n            \\\"count\\\": 276,\\n            \\\"ratio\\\": 0.3341404358353511,\\n            \\\"sparsity_range\\\": [\\n              0.8850197792053223,\\n              0.9837346076965332\\n            ]\\n          }\\n        ]\\n      }\\n    ],\\n    \\\"global_sparsity_histogram\\\": {\\n      \\\"bins\\\": [\\n        0.4271978437900543,\\n        0.4385728281736374,\\n        0.44994781255722044,\\n        0.4613227969408035,\\n        0.4726977813243866,\\n        0.48407276570796964,\\n        0.49544775009155273,\\n        0.5068227344751358,\\n        0.5181977188587189,\\n        0.529572703242302,\\n        0.540947687625885,\\n        0.552322672009468,\\n        0.5636976563930511,\\n        0.5750726407766342,\\n        0.5864476251602173,\\n        0.5978226095438004,\\n        0.6091975939273835,\\n        0.6205725783109665,\\n        0.6319475626945495,\\n        0.6433225470781326,\\n        0.6546975314617157,\\n        0.6660725158452988,\\n        0.6774475002288818,\\n        0.6888224846124649,\\n        0.700197468996048,\\n        0.711572453379631,\\n        0.7229474377632141,\\n        0.7343224221467972,\\n        0.7456974065303803,\\n        0.7570723909139634,\\n        0.7684473752975465,\\n        0.7798223596811295,\\n        0.7911973440647125,\\n        0.8025723284482956,\\n        0.8139473128318786,\\n        0.8253222972154617,\\n        0.8366972815990448,\\n        0.8480722659826279,\\n        0.859447250366211,\\n        0.870822234749794,\\n        0.8821972191333771,\\n        0.8935722035169602,\\n        0.9049471879005433,\\n        0.9163221722841264,\\n        0.9276971566677094,\\n        0.9390721410512924,\\n        0.9504471254348755,\\n        0.9618221098184586,\\n        0.9731970942020416,\\n        0.9845720785856247,\\n        0.9959470629692078\\n      ],\\n      \\\"counts\\\": [\\n        6,\\n        2,\\n        1,\\n        5,\\n        3,\\n        9,\\n        12,\\n        11,\\n        17,\\n        15,\\n        20,\\n        28,\\n        32,\\n        37,\\n        51,\\n        51,\\n        79,\\n        74,\\n        114,\\n        110,\\n        173,\\n        198,\\n        227,\\n        212,\\n        253,\\n        305,\\n        375,\\n        384,\\n        490,\\n        491,\\n        585,\\n        705,\\n        784,\\n        880,\\n        1044,\\n        1284,\\n        1481,\\n        1754,\\n        1950,\\n        2164,\\n        2544,\\n        2756,\\n        3177,\\n        3497,\\n        4014,\\n        4501,\\n        5005,\\n        5432,\\n        4437,\\n        1109\\n      ]\\n    }\\n  },\\n  \\\"n_problems\\\": 1\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have all the data I need. Let me now construct the metrics in the expected format and update the registry.
+
+Let me parse the key metrics:
+
+**interaction_index:**
+- high_sparsity (0.15): mean=1.665213, median=0.138132, ci=[1.098566, 2.404194], median_ci=[0.102537, 0.207418], winsorized_mean=1.004447, skewness=7.1842
+- low_sparsity (0.15): mean=1.408189, median=0.187842, ci=[0.835819, 2.060023], median_ci=[0.096196, 0.313935], winsorized_mean=0.940326, skewness=7.1113
+
+
+- mid_sparsity (0.15): mean=1.697467, median=0.219399, ci=[0.447329, 3.461161], median_ci=[-0.004845, 0.662126], winsorized_mean=1.403836, skewness=3.2101
+
+Now I'm looking at the perplexity metrics across the different sparsity configurations, with varying combinations of dense, attention, and key-value cache optimizations.
+
+Looking at the phase statistics, I can see the token and segment counts vary significantly across sparsity levels, with high sparsity having the most tokens but mid sparsity having far fewer segments. The pass/fail tests are showing failures on both the confidence interval overlap and sign reversal checks, which means the overall result is failing the validation criteria. Looking at the confidence intervals for high and low phases, they clearly overlap—the high range of 0.1025 to 0.2074 intersects with the low range of 0.0962 to 0.3139. The low median is slightly higher than the high median (0.1878 vs 0.1381), so there's no sign reversal, which aligns with the FAIL result since we need non-overlapping CIs with a clear structured gradient across phases.
+
+Now I'm formatting the metrics into the registry structure with the mean, median, confidence intervals, and other statistical measures for each phase. Looking at the performance metrics across different complexity levels and masking strategies, the results confirm what I expected — random masking fails to produce the structured, phase-dependent compound interactions we're looking for, with confidence intervals overlapping and no sign reversal in the expected direction.
+
+Now I'm updating the registry to mark this experiment as successful.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "e0afd7b2-ccd0-4901-a61a-88e7cadec9a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJR2WXMrTGwTv2LbZ1hQTo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4425,
+      "cache_read_input_tokens": 29299,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4425
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+数据齐全。结果概要：
+
+- **Overall: FAIL**（符合预期 — random masking 无结构化 phase gradient）
+- high median II = 0.1381, CI [0.1025, 0.2074]
+- low median II = 0.1878, CI [0.0962, 0.3139]
+- CIs 重叠 → ci_overlap=true → FAIL
+- low > high（无 sign reversal），但差异不显著
+
+更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "bee8d3a8-6fbe-4e30-9cc1-d61b6dc7bbed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJR2WXMrTGwTv2LbZ1hQTo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4425,
+      "cache_read_input_tokens": 29299,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4425
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015qnJmMo1VsTPUbsbvnPjdE`</summary>
+
+```json
+{
+  "exp_id": "bf16_qw_rand_s015",
+  "field": "metrics",
+  "value": {
+    "interaction_index": {
+      "high": {
+        "mean": 1.6652,
+        "median": 0.1381,
+        "ci": [
+          1.0986,
+          2.4042
+        ],
+        "median_ci": [
+          0.1025,
+          0.2074
+        ],
+        "winsorized_mean": 1.0044,
+        "skewness": 7.1842
+      },
+      "mid": {
+        "mean": 1.6975,
+        "median": 0.2194,
+        "ci": [
+          0.4473,
+          3.4612
+        ],
+        "median_ci": [
+          -0.0048,
+          0.6621
+        ],
+        "winsorized_mean": 1.4038,
+        "skewness": 3.2101
+      },
+      "low": {
+        "mean": 1.4082,
+        "median": 0.1878,
+        "ci": [
+          0.8358,
+          2.06
+        ],
+        "median_ci": [
+          0.0962,
+          0.3139
+        ],
+        "winsorized_mean": 0.9403,
+        "skewness": 7.1113
+      }
+    },
+    "perplexity": {
+      "high": {
+        "dense": 1.0737,
+        "attn": 1.3939,
+        "kv": 2.0487,
+        "both": 4.2076
+      },
+      "mid": {
+        "dense": 1.1322,
+        "attn": 1.4175,
+        "kv": 2.3709,
+        "both": 4.6105
+      },
+      "low": {
+        "dense": 1.1517,
+        "attn": 1.7177,
+        "kv": 3.3253,
+        "both": 5.4788
+      }
+    },
+    "phase_stats": {
+      "high": {
+        "n_tokens": 16289,
+        "n_segments": 295
+      },
+      "mid": {
+        "n_tokens": 4372,
+        "n_segments": 26
+      },
+      "low": {
+        "n_tokens": 32227,
+        "n_segments": 276
+      }
+    },
+    "n_problems": 50,
+    "pass_fail": {
+      "ci_overlap": true,
+      "sign_reversal": false,
+      "overall": "FAIL"
+    }
+  },
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "b0a621af-16bd-49db-a433-7202811bd792",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJR2WXMrTGwTv2LbZ1hQTo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4425,
+      "cache_read_input_tokens": 29299,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4425
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T08:35:52.069Z_
+
+<details><summary>↩ Tool result · `toolu_015qnJmMo1VsTPUbsbvnPjdE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s015\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T08:35:51.721Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"95899\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\", \"submitted_at\": \"2026-05-14T07:55:27.130Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null, \"wall_clock_seconds\": 1790.5, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:14:18.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:14:20.510775+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\", \"completed_at\": \"2026-05-14T08:25:17.665Z\", \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 1.6652, \"median\": 0.1381, \"ci\": [1.0986, 2.4042], \"median_ci\": [0.1025, 0.2074], \"winsorized_mean\": 1.0044, \"skewness\": 7.1842}, \"mid\": {\"mean\": 1.6975, \"median\": 0.2194, \"ci\": [0.4473, 3.4612], \"median_ci\": [-0.0048, 0.6621], \"winsorized_mean\": 1.4038, \"skewness\": 3.2101}, \"low\": {\"mean\": 1.4082, \"median\": 0.1878, \"ci\": [0.8358, 2.06], \"median_ci\": [0.0962, 0.3139], \"winsorized_mean\": 0.9403, \"skewness\": 7.1113}}, \"perplexity\": {\"high\": {\"dense\": 1.0737, \"attn\": 1.3939, \"kv\": 2.0487, \"both\": 4.2076}, \"mid\": {\"dense\": 1.1322, \"attn\": 1.4175, \"kv\": 2.3709, \"both\": 4.6105}, \"low\": {\"dense\": 1.1517, \"attn\": 1.7177, \"kv\": 3.3253, \"both\": 5.4788}}, \"phase_stats\": {\"high\": {\"n_tokens\": 16289, \"n_segments\": 295}, \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26}, \"low\": {\"n_tokens\": 32227, \"n_segments\": 276}}, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"FAIL\"}}, \"notes\": \"Verdict=FAIL（预期）。三 phase median II 在 0.14-0.22 范围（high=0.138, mid=0.219, low=0.188），median CI 完全重叠，无结构化 gradient。PPL(both) 跨 phase 几乎持平（4.21/4.61/5.48），与 importance masking 的强 phase gradient 形成鲜明对照。n_bootstrap=1000（论文需 B=10000 时需重算）。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9968}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "e19454f4-f930-46ac-a4dd-0482e3abac87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_qw_rand_s015\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:34.607Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:35:51.721Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"95899\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T07:55:27.130Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": null, \\\"wall_clock_seconds\\\": 1790.5, \\\"gpu_hours\\\": 0.5}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T08:14:18.084Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T08:14:20.510775+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\\\", \\\"completed_at\\\": \\\"2026-05-14T08:25:17.665Z\\\", \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": 1.6652, \\\"median\\\": 0.1381, \\\"ci\\\": [1.0986, 2.4042], \\\"median_ci\\\": [0.1025, 0.2074], \\\"winsorized_mean\\\": 1.0044, \\\"skewness\\\": 7.1842}, \\\"mid\\\": {\\\"mean\\\": 1.6975, \\\"median\\\": 0.2194, \\\"ci\\\": [0.4473, 3.4612], \\\"median_ci\\\": [-0.0048, 0.6621], \\\"winsorized_mean\\\": 1.4038, \\\"skewness\\\": 3.2101}, \\\"low\\\": {\\\"mean\\\": 1.4082, \\\"median\\\": 0.1878, \\\"ci\\\": [0.8358, 2.06], \\\"median_ci\\\": [0.0962, 0.3139], \\\"winsorized_mean\\\": 0.9403, \\\"skewness\\\": 7.1113}}, \\\"perplexity\\\": {\\\"high\\\": {\\\"dense\\\": 1.0737, \\\"attn\\\": 1.3939, \\\"kv\\\": 2.0487, \\\"both\\\": 4.2076}, \\\"mid\\\": {\\\"dense\\\": 1.1322, \\\"attn\\\": 1.4175, \\\"kv\\\": 2.3709, \\\"both\\\": 4.6105}, \\\"low\\\": {\\\"dense\\\": 1.1517, \\\"attn\\\": 1.7177, \\\"kv\\\": 3.3253, \\\"both\\\": 5.4788}}, \\\"phase_stats\\\": {\\\"high\\\": {\\\"n_tokens\\\": 16289, \\\"n_segments\\\": 295}, \\\"mid\\\": {\\\"n_tokens\\\": 4372, \\\"n_segments\\\": 26}, \\\"low\\\": {\\\"n_tokens\\\": 32227, \\\"n_segments\\\": 276}}, \\\"n_problems\\\": 50, \\\"pass_fail\\\": {\\\"ci_overlap\\\": true, \\\"sign_reversal\\\": false, \\\"overall\\\": \\\"FAIL\\\"}}, \\\"notes\\\": \\\"Verdict=FAIL（预期）。三 phase median II 在 0.14-0.22 范围（high=0.138, mid=0.219, low=0.188），median CI 完全重叠，无结构化 gradient。PPL(both) 跨 phase 几乎持平（4.21/4.61/5.48），与 importance masking 的强 phase gradient 形成鲜明对照。n_bootstrap=1000（论文需 B=10000 时需重算）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9968}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s015\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T08:35:51.721Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"95899\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\", \"submitted_at\": \"2026-05-14T07:55:27.130Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null, \"wall_clock_seconds\": 1790.5, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:14:18.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:14:20.510775+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\", \"completed_at\": \"2026-05-14T08:25:17.665Z\", \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 1.6652, \"median\": 0.1381, \"ci\": [1.0986, 2.4042], \"median_ci\": [0.1025, 0.2074], \"winsorized_mean\": 1.0044, \"skewness\": 7.1842}, \"mid\": {\"mean\": 1.6975, \"median\": 0.2194, \"ci\": [0.4473, 3.4612], \"median_ci\": [-0.0048, 0.6621], \"winsorized_mean\": 1.4038, \"skewness\": 3.2101}, \"low\": {\"mean\": 1.4082, \"median\": 0.1878, \"ci\": [0.8358, 2.06], \"median_ci\": [0.0962, 0.3139], \"winsorized_mean\": 0.9403, \"skewness\": 7.1113}}, \"perplexity\": {\"high\": {\"dense\": 1.0737, \"attn\": 1.3939, \"kv\": 2.0487, \"both\": 4.2076}, \"mid\": {\"dense\": 1.1322, \"attn\": 1.4175, \"kv\": 2.3709, \"both\": 4.6105}, \"low\": {\"dense\": 1.1517, \"attn\": 1.7177, \"kv\": 3.3253, \"both\": 5.4788}}, \"phase_stats\": {\"high\": {\"n_tokens\": 16289, \"n_segments\": 295}, \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26}, \"low\": {\"n_tokens\": 32227, \"n_segments\": 276}}, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"FAIL\"}}, \"notes\": \"Verdict=FAIL（预期）。三 phase median II 在 0.14-0.22 范围（high=0.138, mid=0.219, low=0.188），median CI 完全重叠，无结构化 gradient。PPL(both) 跨 phase 几乎持平（4.21/4.61/5.48），与 importance masking 的强 phase gradient 形成鲜明对照。n_bootstrap=1000（论文需 B=10000 时需重算）。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9968}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WCwYMSpRJja9zrBMhUxZBL`</summary>
+
+```json
+{
+  "exp_id": "bf16_qw_rand_s015",
+  "field": "conclusion",
+  "value": "success",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "6efc852f-d8da-451d-a9ba-3b76a029b61e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJR2WXMrTGwTv2LbZ1hQTo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4425,
+      "cache_read_input_tokens": 29299,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4425
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T08:35:52.663Z_
+
+<details><summary>↩ Tool result · `toolu_01WCwYMSpRJja9zrBMhUxZBL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s015\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T08:35:52.446Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"95899\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\", \"submitted_at\": \"2026-05-14T07:55:27.130Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null, \"wall_clock_seconds\": 1790.5, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:14:18.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:14:20.510775+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\", \"completed_at\": \"2026-05-14T08:25:17.665Z\", \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 1.6652, \"median\": 0.1381, \"ci\": [1.0986, 2.4042], \"median_ci\": [0.1025, 0.2074], \"winsorized_mean\": 1.0044, \"skewness\": 7.1842}, \"mid\": {\"mean\": 1.6975, \"median\": 0.2194, \"ci\": [0.4473, 3.4612], \"median_ci\": [-0.0048, 0.6621], \"winsorized_mean\": 1.4038, \"skewness\": 3.2101}, \"low\": {\"mean\": 1.4082, \"median\": 0.1878, \"ci\": [0.8358, 2.06], \"median_ci\": [0.0962, 0.3139], \"winsorized_mean\": 0.9403, \"skewness\": 7.1113}}, \"perplexity\": {\"high\": {\"dense\": 1.0737, \"attn\": 1.3939, \"kv\": 2.0487, \"both\": 4.2076}, \"mid\": {\"dense\": 1.1322, \"attn\": 1.4175, \"kv\": 2.3709, \"both\": 4.6105}, \"low\": {\"dense\": 1.1517, \"attn\": 1.7177, \"kv\": 3.3253, \"both\": 5.4788}}, \"phase_stats\": {\"high\": {\"n_tokens\": 16289, \"n_segments\": 295}, \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26}, \"low\": {\"n_tokens\": 32227, \"n_segments\": 276}}, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"FAIL\"}}, \"notes\": \"Verdict=FAIL（预期）。三 phase median II 在 0.14-0.22 范围（high=0.138, mid=0.219, low=0.188），median CI 完全重叠，无结构化 gradient。PPL(both) 跨 phase 几乎持平（4.21/4.61/5.48），与 importance masking 的强 phase gradient 形成鲜明对照。n_bootstrap=1000（论文需 B=10000 时需重算）。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4716}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "6406e082-4bb4-4125-a364-03550529bc87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_qw_rand_s015\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:34.607Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:35:52.446Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"95899\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T07:55:27.130Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": null, \\\"wall_clock_seconds\\\": 1790.5, \\\"gpu_hours\\\": 0.5}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T08:14:18.084Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T08:14:20.510775+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\\\", \\\"completed_at\\\": \\\"2026-05-14T08:25:17.665Z\\\", \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": 1.6652, \\\"median\\\": 0.1381, \\\"ci\\\": [1.0986, 2.4042], \\\"median_ci\\\": [0.1025, 0.2074], \\\"winsorized_mean\\\": 1.0044, \\\"skewness\\\": 7.1842}, \\\"mid\\\": {\\\"mean\\\": 1.6975, \\\"median\\\": 0.2194, \\\"ci\\\": [0.4473, 3.4612], \\\"median_ci\\\": [-0.0048, 0.6621], \\\"winsorized_mean\\\": 1.4038, \\\"skewness\\\": 3.2101}, \\\"low\\\": {\\\"mean\\\": 1.4082, \\\"median\\\": 0.1878, \\\"ci\\\": [0.8358, 2.06], \\\"median_ci\\\": [0.0962, 0.3139], \\\"winsorized_mean\\\": 0.9403, \\\"skewness\\\": 7.1113}}, \\\"perplexity\\\": {\\\"high\\\": {\\\"dense\\\": 1.0737, \\\"attn\\\": 1.3939, \\\"kv\\\": 2.0487, \\\"both\\\": 4.2076}, \\\"mid\\\": {\\\"dense\\\": 1.1322, \\\"attn\\\": 1.4175, \\\"kv\\\": 2.3709, \\\"both\\\": 4.6105}, \\\"low\\\": {\\\"dense\\\": 1.1517, \\\"attn\\\": 1.7177, \\\"kv\\\": 3.3253, \\\"both\\\": 5.4788}}, \\\"phase_stats\\\": {\\\"high\\\": {\\\"n_tokens\\\": 16289, \\\"n_segments\\\": 295}, \\\"mid\\\": {\\\"n_tokens\\\": 4372, \\\"n_segments\\\": 26}, \\\"low\\\": {\\\"n_tokens\\\": 32227, \\\"n_segments\\\": 276}}, \\\"n_problems\\\": 50, \\\"pass_fail\\\": {\\\"ci_overlap\\\": true, \\\"sign_reversal\\\": false, \\\"overall\\\": \\\"FAIL\\\"}}, \\\"notes\\\": \\\"Verdict=FAIL（预期）。三 phase median II 在 0.14-0.22 范围（high=0.138, mid=0.219, low=0.188），median CI 完全重叠，无结构化 gradient。PPL(both) 跨 phase 几乎持平（4.21/4.61/5.48），与 importance masking 的强 phase gradient 形成鲜明对照。n_bootstrap=1000（论文需 B=10000 时需重算）。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4716}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s015\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T08:35:52.446Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"95899\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\", \"submitted_at\": \"2026-05-14T07:55:27.130Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null, \"wall_clock_seconds\": 1790.5, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:14:18.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:14:20.510775+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\", \"completed_at\": \"2026-05-14T08:25:17.665Z\", \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 1.6652, \"median\": 0.1381, \"ci\": [1.0986, 2.4042], \"median_ci\": [0.1025, 0.2074], \"winsorized_mean\": 1.0044, \"skewness\": 7.1842}, \"mid\": {\"mean\": 1.6975, \"median\": 0.2194, \"ci\": [0.4473, 3.4612], \"median_ci\": [-0.0048, 0.6621], \"winsorized_mean\": 1.4038, \"skewness\": 3.2101}, \"low\": {\"mean\": 1.4082, \"median\": 0.1878, \"ci\": [0.8358, 2.06], \"median_ci\": [0.0962, 0.3139], \"winsorized_mean\": 0.9403, \"skewness\": 7.1113}}, \"perplexity\": {\"high\": {\"dense\": 1.0737, \"attn\": 1.3939, \"kv\": 2.0487, \"both\": 4.2076}, \"mid\": {\"dense\": 1.1322, \"attn\": 1.4175, \"kv\": 2.3709, \"both\": 4.6105}, \"low\": {\"dense\": 1.1517, \"attn\": 1.7177, \"kv\": 3.3253, \"both\": 5.4788}}, \"phase_stats\": {\"high\": {\"n_tokens\": 16289, \"n_segments\": 295}, \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26}, \"low\": {\"n_tokens\": 32227, \"n_segments\": 276}}, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"FAIL\"}}, \"notes\": \"Verdict=FAIL（预期）。三 phase median II 在 0.14-0.22 范围（high=0.138, mid=0.219, low=0.188），median CI 完全重叠，无结构化 gradient。PPL(both) 跨 phase 几乎持平（4.21/4.61/5.48），与 importance masking 的强 phase gradient 形成鲜明对照。n_bootstrap=1000（论文需 B=10000 时需重算）。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4716}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0133fExy5X7wgSaeJL5vxti4`</summary>
+
+```json
+{
+  "exp_id": "bf16_qw_rand_s015",
+  "field": "notes",
+  "value": "Random masking (s=0.15) on Qwen2.5-7B-Instruct produces FAIL as expected. Median II: high=0.138, mid=0.219, low=0.188 — no structured gradient across phases. CIs heavily overlap (high [0.10,0.21] vs low [0.10,0.31]). All phases show high positive skewness (3.2-7.2), indicating heavy-tailed II distributions dominated by outliers. Perplexity impact is mild at s=0.15 (both-masked ppl ~4-5.5x dense). Confirms hypothesis: random masking does not produce phase-dependent compound interaction.",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "4a06f2a7-22e5-46df-acd2-8ec8c5c7d157",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJR2WXMrTGwTv2LbZ1hQTo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4425,
+      "cache_read_input_tokens": 29299,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4425
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T08:35:57.444Z_
+
+<details><summary>↩ Tool result · `toolu_0133fExy5X7wgSaeJL5vxti4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s015\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T08:35:57.262Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"95899\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\", \"submitted_at\": \"2026-05-14T07:55:27.130Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null, \"wall_clock_seconds\": 1790.5, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:14:18.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:14:20.510775+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\", \"completed_at\": \"2026-05-14T08:25:17.665Z\", \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 1.6652, \"median\": 0.1381, \"ci\": [1.0986, 2.4042], \"median_ci\": [0.1025, 0.2074], \"winsorized_mean\": 1.0044, \"skewness\": 7.1842}, \"mid\": {\"mean\": 1.6975, \"median\": 0.2194, \"ci\": [0.4473, 3.4612], \"median_ci\": [-0.0048, 0.6621], \"winsorized_mean\": 1.4038, \"skewness\": 3.2101}, \"low\": {\"mean\": 1.4082, \"median\": 0.1878, \"ci\": [0.8358, 2.06], \"median_ci\": [0.0962, 0.3139], \"winsorized_mean\": 0.9403, \"skewness\": 7.1113}}, \"perplexity\": {\"high\": {\"dense\": 1.0737, \"attn\": 1.3939, \"kv\": 2.0487, \"both\": 4.2076}, \"mid\": {\"dense\": 1.1322, \"attn\": 1.4175, \"kv\": 2.3709, \"both\": 4.6105}, \"low\": {\"dense\": 1.1517, \"attn\": 1.7177, \"kv\": 3.3253, \"both\": 5.4788}}, \"phase_stats\": {\"high\": {\"n_tokens\": 16289, \"n_segments\": 295}, \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26}, \"low\": {\"n_tokens\": 32227, \"n_segments\": 276}}, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"FAIL\"}}, \"notes\": \"Random masking (s=0.15) on Qwen2.5-7B-Instruct produces FAIL as expected. Median II: high=0.138, mid=0.219, low=0.188 — no structured gradient across phases. CIs heavily overlap (high [0.10,0.21] vs low [0.10,0.31]). All phases show high positive skewness (3.2-7.2), indicating heavy-tailed II distributions dominated by outliers. Perplexity impact is mild at s=0.15 (both-masked ppl ~4-5.5x dense). Confirms hypothesis: random masking does not produce phase-dependent compound interaction.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4267}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "bb325ee9-0247-4932-93c2-6ac9228a1a9b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_qw_rand_s015\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:34.607Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:35:57.262Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"95899\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T07:55:27.130Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": null, \\\"wall_clock_seconds\\\": 1790.5, \\\"gpu_hours\\\": 0.5}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T08:14:18.084Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T08:14:20.510775+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\\\", \\\"completed_at\\\": \\\"2026-05-14T08:25:17.665Z\\\", \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": 1.6652, \\\"median\\\": 0.1381, \\\"ci\\\": [1.0986, 2.4042], \\\"median_ci\\\": [0.1025, 0.2074], \\\"winsorized_mean\\\": 1.0044, \\\"skewness\\\": 7.1842}, \\\"mid\\\": {\\\"mean\\\": 1.6975, \\\"median\\\": 0.2194, \\\"ci\\\": [0.4473, 3.4612], \\\"median_ci\\\": [-0.0048, 0.6621], \\\"winsorized_mean\\\": 1.4038, \\\"skewness\\\": 3.2101}, \\\"low\\\": {\\\"mean\\\": 1.4082, \\\"median\\\": 0.1878, \\\"ci\\\": [0.8358, 2.06], \\\"median_ci\\\": [0.0962, 0.3139], \\\"winsorized_mean\\\": 0.9403, \\\"skewness\\\": 7.1113}}, \\\"perplexity\\\": {\\\"high\\\": {\\\"dense\\\": 1.0737, \\\"attn\\\": 1.3939, \\\"kv\\\": 2.0487, \\\"both\\\": 4.2076}, \\\"mid\\\": {\\\"dense\\\": 1.1322, \\\"attn\\\": 1.4175, \\\"kv\\\": 2.3709, \\\"both\\\": 4.6105}, \\\"low\\\": {\\\"dense\\\": 1.1517, \\\"attn\\\": 1.7177, \\\"kv\\\": 3.3253, \\\"both\\\": 5.4788}}, \\\"phase_stats\\\": {\\\"high\\\": {\\\"n_tokens\\\": 16289, \\\"n_segments\\\": 295}, \\\"mid\\\": {\\\"n_tokens\\\": 4372, \\\"n_segments\\\": 26}, \\\"low\\\": {\\\"n_tokens\\\": 32227, \\\"n_segments\\\": 276}}, \\\"n_problems\\\": 50, \\\"pass_fail\\\": {\\\"ci_overlap\\\": true, \\\"sign_reversal\\\": false, \\\"overall\\\": \\\"FAIL\\\"}}, \\\"notes\\\": \\\"Random masking (s=0.15) on Qwen2.5-7B-Instruct produces FAIL as expected. Median II: high=0.138, mid=0.219, low=0.188 — no structured gradient across phases. CIs heavily overlap (high [0.10,0.21] vs low [0.10,0.31]). All phases show high positive skewness (3.2-7.2), indicating heavy-tailed II distributions dominated by outliers. Perplexity impact is mild at s=0.15 (both-masked ppl ~4-5.5x dense). Confirms hypothesis: random masking does not produce phase-dependent compound interaction.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4267}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s015\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T08:35:57.262Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"95899\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\", \"submitted_at\": \"2026-05-14T07:55:27.130Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null, \"wall_clock_seconds\": 1790.5, \"gpu_hours\": 0.5}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:14:18.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:14:20.510775+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\", \"completed_at\": \"2026-05-14T08:25:17.665Z\", \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 1.6652, \"median\": 0.1381, \"ci\": [1.0986, 2.4042], \"median_ci\": [0.1025, 0.2074], \"winsorized_mean\": 1.0044, \"skewness\": 7.1842}, \"mid\": {\"mean\": 1.6975, \"median\": 0.2194, \"ci\": [0.4473, 3.4612], \"median_ci\": [-0.0048, 0.6621], \"winsorized_mean\": 1.4038, \"skewness\": 3.2101}, \"low\": {\"mean\": 1.4082, \"median\": 0.1878, \"ci\": [0.8358, 2.06], \"median_ci\": [0.0962, 0.3139], \"winsorized_mean\": 0.9403, \"skewness\": 7.1113}}, \"perplexity\": {\"high\": {\"dense\": 1.0737, \"attn\": 1.3939, \"kv\": 2.0487, \"both\": 4.2076}, \"mid\": {\"dense\": 1.1322, \"attn\": 1.4175, \"kv\": 2.3709, \"both\": 4.6105}, \"low\": {\"dense\": 1.1517, \"attn\": 1.7177, \"kv\": 3.3253, \"both\": 5.4788}}, \"phase_stats\": {\"high\": {\"n_tokens\": 16289, \"n_segments\": 295}, \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26}, \"low\": {\"n_tokens\": 32227, \"n_segments\": 276}}, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"FAIL\"}}, \"notes\": \"Random masking (s=0.15) on Qwen2.5-7B-Instruct produces FAIL as expected. Median II: high=0.138, mid=0.219, low=0.188 — no structured gradient across phases. CIs heavily overlap (high [0.10,0.21] vs low [0.10,0.31]). All phases show high positive skewness (3.2-7.2), indicating heavy-tailed II distributions dominated by outliers. Perplexity impact is mild at s=0.15 (both-masked ppl ~4-5.5x dense). Confirms hypothesis: random masking does not produce phase-dependent compound interaction.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4267}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+Notes 已被之前的 hook 更新覆盖了一部分，但内容正确。最后更新 status 为 DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "fead04cc-5db7-468e-a907-7c36189f5048",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rzr4eD4nmquxebLs23F7qJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7141,
+      "cache_read_input_tokens": 33724,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7141
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FJax4eoPQrkaqX3tbcNTyK`</summary>
+
+```json
+{
+  "exp_id": "bf16_qw_rand_s015",
+  "field": "status",
+  "value": "DONE",
+  "project": "phase-gated-compound-sparse",
+  "spec": {
+    "checkpoint_path": "N/A (profiling)",
+    "log_path": "~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "87809599-d33b-4a54-b059-cf04b0e1372f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rzr4eD4nmquxebLs23F7qJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7141,
+      "cache_read_input_tokens": 33724,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7141
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T08:36:03.943Z_
+
+<details><summary>↩ Tool result · `toolu_01FJax4eoPQrkaqX3tbcNTyK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s015\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T08:36:03.452Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"95899\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\", \"submitted_at\": \"2026-05-14T07:55:27.130Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null, \"wall_clock_seconds\": 1790.5, \"gpu_hours\": 0.5, \"checkpoint_path\": \"N/A (profiling)\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:14:18.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:14:20.510775+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\", \"completed_at\": \"2026-05-14T08:25:17.665Z\", \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 1.6652, \"median\": 0.1381, \"ci\": [1.0986, 2.4042], \"median_ci\": [0.1025, 0.2074], \"winsorized_mean\": 1.0044, \"skewness\": 7.1842}, \"mid\": {\"mean\": 1.6975, \"median\": 0.2194, \"ci\": [0.4473, 3.4612], \"median_ci\": [-0.0048, 0.6621], \"winsorized_mean\": 1.4038, \"skewness\": 3.2101}, \"low\": {\"mean\": 1.4082, \"median\": 0.1878, \"ci\": [0.8358, 2.06], \"median_ci\": [0.0962, 0.3139], \"winsorized_mean\": 0.9403, \"skewness\": 7.1113}}, \"perplexity\": {\"high\": {\"dense\": 1.0737, \"attn\": 1.3939, \"kv\": 2.0487, \"both\": 4.2076}, \"mid\": {\"dense\": 1.1322, \"attn\": 1.4175, \"kv\": 2.3709, \"both\": 4.6105}, \"low\": {\"dense\": 1.1517, \"attn\": 1.7177, \"kv\": 3.3253, \"both\": 5.4788}}, \"phase_stats\": {\"high\": {\"n_tokens\": 16289, \"n_segments\": 295}, \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26}, \"low\": {\"n_tokens\": 32227, \"n_segments\": 276}}, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"FAIL\"}}, \"notes\": \"Random masking (s=0.15) on Qwen2.5-7B-Instruct produces FAIL as expected. Median II: high=0.138, mid=0.219, low=0.188 — no structured gradient across phases. CIs heavily overlap (high [0.10,0.21] vs low [0.10,0.31]). All phases show high positive skewness (3.2-7.2), indicating heavy-tailed II distributions dominated by outliers. Perplexity impact is mild at s=0.15 (both-masked ppl ~4-5.5x dense). Confirms hypothesis: random masking does not produce phase-dependent compound interaction.\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.767}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "9f12edad-482b-4ab8-b2c7-04ed2b1565d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"bf16_qw_rand_s015\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:39:34.607Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:36:03.452Z\\\", \\\"hypothesis\\\": \\\"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"95899\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T07:55:27.130Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct\\\", \\\"seed\\\": null, \\\"wall_clock_seconds\\\": 1790.5, \\\"gpu_hours\\\": 0.5, \\\"checkpoint_path\\\": \\\"N/A (profiling)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T08:14:18.084Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T08:14:20.510775+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\\\", \\\"completed_at\\\": \\\"2026-05-14T08:25:17.665Z\\\", \\\"metrics\\\": {\\\"interaction_index\\\": {\\\"high\\\": {\\\"mean\\\": 1.6652, \\\"median\\\": 0.1381, \\\"ci\\\": [1.0986, 2.4042], \\\"median_ci\\\": [0.1025, 0.2074], \\\"winsorized_mean\\\": 1.0044, \\\"skewness\\\": 7.1842}, \\\"mid\\\": {\\\"mean\\\": 1.6975, \\\"median\\\": 0.2194, \\\"ci\\\": [0.4473, 3.4612], \\\"median_ci\\\": [-0.0048, 0.6621], \\\"winsorized_mean\\\": 1.4038, \\\"skewness\\\": 3.2101}, \\\"low\\\": {\\\"mean\\\": 1.4082, \\\"median\\\": 0.1878, \\\"ci\\\": [0.8358, 2.06], \\\"median_ci\\\": [0.0962, 0.3139], \\\"winsorized_mean\\\": 0.9403, \\\"skewness\\\": 7.1113}}, \\\"perplexity\\\": {\\\"high\\\": {\\\"dense\\\": 1.0737, \\\"attn\\\": 1.3939, \\\"kv\\\": 2.0487, \\\"both\\\": 4.2076}, \\\"mid\\\": {\\\"dense\\\": 1.1322, \\\"attn\\\": 1.4175, \\\"kv\\\": 2.3709, \\\"both\\\": 4.6105}, \\\"low\\\": {\\\"dense\\\": 1.1517, \\\"attn\\\": 1.7177, \\\"kv\\\": 3.3253, \\\"both\\\": 5.4788}}, \\\"phase_stats\\\": {\\\"high\\\": {\\\"n_tokens\\\": 16289, \\\"n_segments\\\": 295}, \\\"mid\\\": {\\\"n_tokens\\\": 4372, \\\"n_segments\\\": 26}, \\\"low\\\": {\\\"n_tokens\\\": 32227, \\\"n_segments\\\": 276}}, \\\"n_problems\\\": 50, \\\"pass_fail\\\": {\\\"ci_overlap\\\": true, \\\"sign_reversal\\\": false, \\\"overall\\\": \\\"FAIL\\\"}}, \\\"notes\\\": \\\"Random masking (s=0.15) on Qwen2.5-7B-Instruct produces FAIL as expected. Median II: high=0.138, mid=0.219, low=0.188 — no structured gradient across phases. CIs heavily overlap (high [0.10,0.21] vs low [0.10,0.31]). All phases show high positive skewness (3.2-7.2), indicating heavy-tailed II distributions dominated by outliers. Perplexity impact is mild at s=0.15 (both-masked ppl ~4-5.5x dense). Confirms hypothesis: random masking does not produce phase-dependent compound interaction.\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.767}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s015\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:34.607Z\", \"updated_at\": \"2026-05-14T08:36:03.452Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.15, bf16 dtype. Cross-model 配对对照。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"95899\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s015.log\", \"submitted_at\": \"2026-05-14T07:55:27.130Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null, \"wall_clock_seconds\": 1790.5, \"gpu_hours\": 0.5, \"checkpoint_path\": \"N/A (profiling)\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:14:18.084Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:14:20.510775+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\", \"completed_at\": \"2026-05-14T08:25:17.665Z\", \"metrics\": {\"interaction_index\": {\"high\": {\"mean\": 1.6652, \"median\": 0.1381, \"ci\": [1.0986, 2.4042], \"median_ci\": [0.1025, 0.2074], \"winsorized_mean\": 1.0044, \"skewness\": 7.1842}, \"mid\": {\"mean\": 1.6975, \"median\": 0.2194, \"ci\": [0.4473, 3.4612], \"median_ci\": [-0.0048, 0.6621], \"winsorized_mean\": 1.4038, \"skewness\": 3.2101}, \"low\": {\"mean\": 1.4082, \"median\": 0.1878, \"ci\": [0.8358, 2.06], \"median_ci\": [0.0962, 0.3139], \"winsorized_mean\": 0.9403, \"skewness\": 7.1113}}, \"perplexity\": {\"high\": {\"dense\": 1.0737, \"attn\": 1.3939, \"kv\": 2.0487, \"both\": 4.2076}, \"mid\": {\"dense\": 1.1322, \"attn\": 1.4175, \"kv\": 2.3709, \"both\": 4.6105}, \"low\": {\"dense\": 1.1517, \"attn\": 1.7177, \"kv\": 3.3253, \"both\": 5.4788}}, \"phase_stats\": {\"high\": {\"n_tokens\": 16289, \"n_segments\": 295}, \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26}, \"low\": {\"n_tokens\": 32227, \"n_segments\": 276}}, \"n_problems\": 50, \"pass_fail\": {\"ci_overlap\": true, \"sign_reversal\": false, \"overall\": \"FAIL\"}}, \"notes\": \"Random masking (s=0.15) on Qwen2.5-7B-Instruct produces FAIL as expected. Median II: high=0.138, mid=0.219, low=0.188 — no structured gradient across phases. CIs heavily overlap (high [0.10,0.21] vs low [0.10,0.31]). All phases show high positive skewness (3.2-7.2), indicating heavy-tailed II distributions dominated by outliers. Perplexity impact is mild at s=0.15 (both-masked ppl ~4-5.5x dense). Confirms hypothesis: random masking does not produce phase-dependent compound interaction.\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.767}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+分析完成。Registry 已全部更新。
+
+**bf16_qw_rand_s015 结果总结：**
+
+| Phase | Median II | Median CI | PPL(both) |
+|-------|-----------|-----------|-----------|
+| high  | 0.138     | [0.10, 0.21] | 4.21 |
+| mid   | 0.219     | [-0.00, 0.66] | 4.61 |
+| low   | 0.188     | [0.10, 0.31] | 5.48 |
+
+- **Verdict: FAIL** — median CIs 完全重叠，无结构化 phase gradient
+- **Conclusion: success** — 确认假设：random masking 不产生 phase-dependent compound interaction
+- 50 problems, 52888 tokens, 0.5 GPU-hours
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "uuid": "891a6601-7122-4c65-b13b-d4192407f3fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NcA8G1rDXQ4myUVwLNDPas",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1740,
+      "cache_read_input_tokens": 40865,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1740
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 34_
+
+分析完成。Registry 已全部更新。
+
+**bf16_qw_rand_s015 结果总结：**
+
+| Phase | Median II | Median CI | PPL(both) |
+|-------|-----------|-----------|-----------|
+| high  | 0.138     | [0.10, 0.21] | 4.21 |
+| mid   | 0.219     | [-0.00, 0.66] | 4.61 |
+| low   | 0.188     | [0.10, 0.31] | 5.48 |
+
+- **Verdict: FAIL** — median CIs 完全重叠，无结构化 phase gradient
+- **Conclusion: success** — 确认假设：random masking 不产生 phase-dependent compound interaction
+- 50 problems, 52888 tokens, 0.5 GPU-hours
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 107246,
+  "duration_api_ms": 103713,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "6f882f26-96a5-4287-b776-38fca8a12112",
+  "total_cost_usd": 0.4445105,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 31158,
+    "cache_read_input_tokens": 250958,
+    "output_tokens": 4869,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31158,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 223,
+        "cache_read_input_tokens": 40865,
+        "cache_creation_input_tokens": 1740,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1740
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2394,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002509,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 4869,
+      "cacheReadInputTokens": 250958,
+      "cacheCreationInputTokens": 31158,
+      "webSearchRequests": 0,
+      "costUSD": 0.4420015,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "770fe1f4-3bec-4e65-a2b1-66018d3cb6b3"
+}
+```
+
+</details>
+
+---

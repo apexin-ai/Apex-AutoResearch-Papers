@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53adc3377fc15e93aa2c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis c8 llama n250 metrics",
+  "task_key": "worker_analysis_c8_llama_n250_metrics_20260516T215823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c8_llama_n250_metrics_20260516T215823_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "e2c6f0eb1541fceadf254eb05a106cbf1a437aa45c4b9a60491bfabd186726be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`c8_llama_n250_fixed` 已标记为 DONE，全部指标已写入 registry。\n\n**汇总**：\n\n| 条件 | median gradient | 95% CI | Wilcoxon p | Cohen's dz | Monotonic |\n|------|----:|----:|----:|----:|:---:|\n| imp s015 | 0.0501 | [0.0455, 0.0588] | 1.4e-29 | 0.81 | ✓ |\n| imp s020 | 0.1587 | [0.1412, 0.1819] | 8.9e-35 | 1.01 | ✓ |\n| imp s025 | 0.3761 | [0.3157, 0.4029] | 4.3e-39 | 1.12 | ✓ |\n| imp s030 | 0.6954 | [0.6394, 0.7701] | 1.5e-40 | 1.15 | ✓ |\n| rnd s015 | 0.0255 | [0.0199, 0.0333] | 9.3e-13 | 0.44 | ✓ |\n| rnd s020 | 0.0650 | [0.0523, 0.0882] | 3.6e-15 | 0.46 | ✓ |\n| rnd s025 | 0.1842 | [0.1127, 0.2471] | 3.8e-13 | 0.42 | ✓ |\n| rnd s030 | 0.2707 | [0.1935, 0.3681] | 6.0e-12 | 0.41 | ✓ |\n\n- Importance/Random ratio: **1.97x-2.57x**\n- Dose-response: 两组均**单调递增**\n- Hypothesis confirmed: importance-based 效应量 large (0.81-1.15), random medium (0.41-0.46)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c8-llama-n250-metrics.md"
+}

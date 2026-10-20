@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d9e9bf2b5ab637e26a1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis c10 result prep",
+  "task_key": "worker_analysis_c10_result_prep_20260516T060318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c10_result_prep_20260516T060318_result.json",
+    "occurrence": 1,
+    "bytes": 3061,
+    "sha256": "4c678d9f866df03eccaaf22442c5e6452b79056002eebadb39a26d7c15406b13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**实验进度**：c10_lang_s020_s025 正在运行，当前 Problem 42/50，预计还需 ~45 分钟完成（每题约 350s × 8题）。\n\n---\n\n## 输出 JSON 结构（来自脚本分析）\n\n```\n{\n  \"config\": {\n    \"model\": str,\n    \"num_problems\": int,\n    \"max_new_tokens\": int,\n    \"seed\": int,\n    \"conditions\": [\"importance_s020\", \"importance_s025\"]\n  },\n  \"summary\": {\n    \"s020\": {\n      \"n\", \"switch_rate\", \"switch_count\", \"mean_cn_ratio\", \"max_cn_ratio\",\n      \"accuracy\", \"cn_count\", \"en_count\", \"cn_acc\", \"en_acc\"\n    },\n    \"s025\": { ... same ... }\n  },\n  \"total_time_seconds\": float,\n  \"details_s020\": [  // per-problem, excludes gen_text\n    {\"id\", \"gen_length\", \"cn_ratio\", \"is_switch\", \"is_truncated\",\n     \"pred_answer\", \"match\", \"elapsed\", \"language\"}\n  ],\n  \"details_s025\": [ ... same ... ]\n}\n```\n\n另存一份 `results_c10_lang_s020_s025_raw_text.json`：含每题完整 gen_text。\n\n---\n\n## Language Switching 检测方法\n\n| 函数 | 逻辑 |\n|------|------|\n| `chinese_ratio(text)` | `len(re.findall(r'[一-鿿]', text)) / len(text)` |\n| `has_language_switch(text, threshold=0.05)` | `chinese_ratio > 0.05` → 判定为 switch |\n| `detect_language(text)` | 取前100字符，cn/(cn+en)：>0.3→chinese, >0.05→mixed, else→english |\n\n阈值：**5% 中文字符即判定发生 language switching**。\n\n---\n\n## 已有 CPU 版参考数据（dense / s015 / s030）\n\n| Sparsity | Switch Rate | CN Count | EN Count | CN Acc | EN Acc |\n|----------|------------|----------|----------|--------|--------|\n| dense    | 0%         | 0        | 50       | N/A    | 52%    |\n| s015     | 4%         | 2        | 48       | 0%     | 37.5%  |\n| s030     | 40%        | 20       | 30       | 10%    | —      |\n\n---\n\n## 从日志初步观察（s020 vs s025，截至 Problem 41）\n\n- **s020**：日志中绝大多数显示 `cn_ratio=0.000`（EN），极少切换\n- **s025**：偶见高 cn_ratio（如 Problem 39 的 `cn_ratio=0.601`），但多数仍为 EN\n- 大量 `trunc=True`：8192 token 上限不够，两个条件都频繁截断\n\n初步推断：s020 的 switching rate 接近 dense（~0%），s025 开始出现零星 switching 但远低于 s030 的 40%。**存在明显的 threshold 效应：language switching 在 s020→s025 之间开始启动。**\n\n---\n\n## 后续正式分析的关键指标清单\n\n1. **Switch Rate**：s020 vs s025 的 switching 比例（核心指标）\n2. **Mean/Max CN Ratio**：中文渗透程度\n3. **Accuracy by Language**：cn_acc vs en_acc —— switching 是否伤害 accuracy\n4. **Truncation Rate**：两个条件的 trunc 比例，影响结果可信度\n5. **Per-problem Concordance**：同一题在 s020 和 s025 下是否一致 switch\n6. **Phase Transition Curve**：结合 CPU 版数据（dense/s015/s030），绘制 sparsity vs switch_rate 曲线，定位 critical threshold\n\n实验完成后可直接基于这些指标做正式分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c10-result-prep.md"
+}

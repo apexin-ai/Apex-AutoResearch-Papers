@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77e9f300fbfb60aec911",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "util download figure1",
+  "task_key": "worker_util_download_figure1_20260516T033954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_download_figure1_20260516T033954_result.json",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "fee150bf11357e6f9ec125aef0d168bf0d5f966b81c4a62cf7f31b0ff352bc7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成：\n- `fig1_ii_scatter.pdf` — 28 KB\n- `fig1_ii_scatter.png` — 191 KB\n\n两个文件大小合理，已保存到 `docs/paper/` 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/util-download-figure1.md"
+}

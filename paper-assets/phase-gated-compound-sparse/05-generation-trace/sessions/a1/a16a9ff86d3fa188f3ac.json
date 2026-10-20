@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a16a9ff86d3fa188f3ac",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "code permutation test median fix",
+  "task_key": "worker_code_permutation-test-median-fix_20260514T065914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_permutation-test-median-fix_20260514T065914.log",
+    "occurrence": 1,
+    "bytes": 617163,
+    "sha256": "ec89f402a54adfd1eecf1429c8b1f94047088329e215c17704d31f8be1590a37"
+  },
+  "statistics": {
+    "messages": 148,
+    "user_turns": 0,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 42,
+      "tool_call": 50,
+      "tool_result": 50,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "a16a9ff86d3fa188f3ac-part-0001.json",
+          "message_count": 137
+        },
+        {
+          "path": "a16a9ff86d3fa188f3ac-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-permutation-test-median-fix.md"
+}

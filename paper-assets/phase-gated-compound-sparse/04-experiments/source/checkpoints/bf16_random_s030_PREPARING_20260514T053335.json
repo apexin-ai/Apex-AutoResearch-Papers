@@ -1,0 +1,14 @@
+{
+  "exp_id": "bf16_random_s030",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:33:35.665Z",
+    "updated_at": "2026-05-14T05:33:35.665Z"
+  },
+  "timestamp": "2026-05-14T05:33:35.821002+00:00",
+  "trigger": "update_registry"
+}

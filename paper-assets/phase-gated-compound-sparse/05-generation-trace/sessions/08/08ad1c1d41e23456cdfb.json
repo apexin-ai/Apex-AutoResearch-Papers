@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08ad1c1d41e23456cdfb",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_6_1778772769.md",
+  "task_key": "loop_6_1778772769",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778772769.md",
+    "occurrence": 1,
+    "bytes": 4973,
+    "sha256": "9c6c2dbbd76e1ed2f917510490d5af066b48c228e3af3d5e468857cfce903e51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T15:32:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-22162 的 cuda:0/1/2/3（config gpu_constraint 明确），白名单外 GPU 即使 Director 指令也必须 push back\n- c2_qw_n500 有重复进程问题（memory.md 记录）：GPU2 PID 131864+132389，GPU3 PID 132002+132392。重复进程可能导致输出损坏，需优先处理\n- c2_n500_deepseek 和 c2_qw_n500 共享 GPU 分配存在冲突：c2_n500_deepseek 占 cuda:0+1，c2_qw_n500 占 cuda:2+3，c3_llama 也声明 cuda:2+3——c3_llama 与 c2_qw_n500 在 GPU 2/3 上并行跑（profiling 非训练，交替使用）\n- 截稿 2026-05-25（距今 11 天），所有实验优先级服从这个 deadline\n- c3_llama_arch (PENDING) 与 c3_llama (RUNNING) 可能重复——c3_llama_arch 假设与 c3_llama 几乎一致，提交前需确认是否真正需要两个\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，4× RTX PRO 6000 Blackwell 96GB\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python 环境：`/root/miniconda3/bin/python`（conda base，非 venv）\n- 模型路径：DeepSeek-R1-Distill-Qwen-7B + Qwen 在服务器上已缓存；DeepSeek-R1-Distill-Llama-8B 已下载（c3_llama 在跑）\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（MATH-500，500 题）\n- 日志：`/root/autodl-tmp/pacs/logs/` 下 c2_qw_n500_gpu{2,3}_full.log、n500_qw_{imp,rand}_s015.log\n- 活跃进程：\n  - c2_n500_deepseek: cuda:0+1, tmux=c2_n500_gpu0/c2_n500_gpu1, PID 见 spec\n  - c2_qw_n500: cuda:2+3, screen=c2_qw_gpu2/c2_qw_gpu3, PID 131864/132002（+重复 132389/132392）\n  - c3_llama: cuda:2+3, PID 138393(parent)/138408(imp)/138410(rand)\n- Cron：3 个活跃（c2_n500_deepseek, c2_qw_n500, c3_llama），reconcile 确认均 still running\n- W&B：无 wandb 集成（profiling 实验，非训练）\n\n### 3. 📊 当前状态\n82 个实验：76 DONE / 3 RUNNING / 2 PENDING / 1 QUEUED。\n\n**RUNNING（3 个）**：\n- **c2_n500_deepseek** (cuda:0+1)：DeepSeek 8 conditions n=500 profiling，~18h 预估，started ~13:42 UTC 5/14\n- **c2_qw_n500** (cuda:2+3)：Qwen 8 conditions n=500 profiling，进度 ~93-98/500 (s015)，有重复进程问题待处理\n- **c3_llama** (cuda:2+3)：LLaMA-8B 跨架构验证，8 conditions n=50，sp_str bug 修复后重启\n\n**PENDING（2 个）**：\n- c3_llama_arch：与 c3_llama 高度重叠，可能是冗余条目\n- c2_ds_n500：与 c2_n500_deepseek 高度重叠，可能是冗余条目\n\n**QUEUED（1 个）**：\n- c5b_pilot：mitigation pilot，等 GPU 释放\n\n论文全文已完成（§1-§8 + Abstract + Figures + main.tex），PDF 可编译。Group C 审稿并行进行中。\n\n**无 Worker 在运行**（Worker 池 = 0，违反 L1 红线 #4，但因为在写 handoff 所以暂不派发）。\n\n### 4. 📋 待办（条件触发式）\n- c2_qw_n500 重复进程问题 → spawn Worker kill 重复 PID (132389, 132392)，检查 s015 输出是否损坏，损坏则清空重跑\n- c2_qw_n500 cron 回调（完成）→ spawn Worker 跑 n=500 统计分析（Cohen's d / CI / Wilcoxon），更新论文 Table 2/3\n- c2_n500_deepseek cron 回调（完成）→ spawn Worker 跑 n=500 统计分析，更新论文对应 tables\n- c3_llama cron 回调（完成）→ spawn Worker 分析 LLaMA 结果，验证 cross-architecture claim，更新论文 §5.3\n- C2+C3 全部完成 → 更新 figures（dose-response、cross-model comparison）→ 提交 Group C full review\n- GPU 释放后 → 提交 c5b_pilot（mitigation pilot），这是 C5 claim 的唯一实验支撑\n- c3_llama_arch / c2_ds_n500 PENDING → 确认是否与 c3_llama / c2_n500_deepseek 冗余，冗余则 kill\n\n### 5. 🎯 战略上下文\n**核心发现**：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（DeepSeek: 0.39→14.59, Qwen: 0.039→2.943），random masking 无此效应。Cross-model replication 方向一致（Cohen's d ρ=1.0, gradient permutation p=0.043）。\n\n**决策链**：\n- D045/D046: C4 entropy-collapse 从 Core Claim 降为 §6 supporting（Qwen s025 符号反转）\n- D047: 纳入 6-point dose-response（s=0.10~0.35）\n- D048: 统一 paired d_z 替换全文 independent Cohen's d\n- D051: 所有图表需用 bf16 canonical 数据重新生成\n- D052: C5 采用 pilot-first + heuristic baseline\n- D053: c5b_pilot s_trans cap 作用于 s_trans 本身（≤0.50）\n\n**易错点**：\n- c2_qw_n500 的重复进程是最紧急的数据完整性风险——不处理可能导致 n=500 数据需要全部重跑\n- c3_llama 与 c2_qw_n500 共享 cuda:2+3——它们是交替使用（profiling 非持续占用），但需确认不会 OOM 冲突\n- PENDING 的 c3_llama_arch 和 c2_ds_n500 看起来与 RUNNING 实验重复，不要重复提交\n- 论文数字一致性审查已做过，但 C2 n=500 和 C3 LLaMA 结果回来后所有 statistical claims 需要重新验证\n- c5b_pilot 是唯一还没跑的 Core Claim 实验（C5 mitigation），deadline 前必须完成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778772769.md"
+}

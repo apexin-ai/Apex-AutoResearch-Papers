@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7a2fe55a1c3765108fe",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_7_1778783936.md",
+  "task_key": "loop_7_1778783936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778783936.md",
+    "occurrence": 1,
+    "bytes": 5963,
+    "sha256": "f3b77e38e0dfe36ecc1c0ac6eda6c2c9e9f379096305d7f3822e187a9b56d3ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T18:38:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 **westd-22162 cuda:0~3**。c5b_pilot 曾因 CVD override bug 入侵 cuda:0（PID 153367），已修复并重启到 cuda:3。不要信任脚本内的 `os.environ[\"CUDA_VISIBLE_DEVICES\"]`，必须通过 shell 级 CVD 控制\n- 论文数字基准：**bf16 per-problem paired 统计量（B=10000 bootstrap）**，fp16 旧数据已弃用。median_diff = median(II_low_i − II_high_i)（逐 problem 配对差中位数），Cohen's d 统一 paired d_z（D048）\n- C4 entropy-collapse 已降级 §6 supporting（D045/D046），**不是 Core Claim**\n- 两模型共享 Qwen2ForCausalLM 架构，论文称 **cross-model** 不是 cross-architecture（D022）。C3 LLaMA（LlamaForCausalLM）才是真正的 cross-architecture\n- c2_qw_n500 曾有**重复进程事故**（PID 131864/132002 vs 132389/132392），重复 PID 已死亡，但最终分析时需验证 profiling_results.json 无交叉写入（时间戳单调性、问题数=500）\n- D050：fix-cohens-d-notation Worker 产出已全部回退，不要使用\n- c2_qw_n500 用的是 **screen** sessions（不是 tmux）：c2_qw_gpu2 / c2_qw_gpu3\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，4× RTX PRO 6000 Blackwell 96GB\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：\n  - DeepSeek-R1-Distill-Qwen-7B: `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`\n  - Qwen2.5-7B-Instruct: `/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct`\n  - DeepSeek-R1-Distill-Llama-8B: 在服务器上（c3_llama 已完成，路径需确认）\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（500 problems）\n- 分析脚本：`/root/autodl-tmp/pacs/analysis/rebootstrap_importance_b10000.py`\n- c3_llama 分析产出：`/root/autodl-tmp/pacs/analysis_output/c3_llama_{results,cohens_d,report}.*`\n- 活跃进程：\n  - **c2_n500_deepseek**: PID 130124 (gpu0 imp) + 130263 (gpu1 rand)，tmux sessions: c2_n500_gpu0 / c2_n500_gpu1\n  - **c2_qw_n500**: PID 131864 (gpu2 imp) + 132002 (gpu3 rand)，screen sessions: c2_qw_gpu2 / c2_qw_gpu3\n  - **c5b_pilot**: DONE(failed)，已无活跃进程\n\n### 3. 📊 当前状态\n82 实验：80 DONE（36 success / 9 negative / 14 failed / 21 killed），**2 RUNNING**。\n\n**RUNNING 实验**：\n- **c2_n500_deepseek** (cuda:0+1): DeepSeek 8 conditions n=500。最新进度（02:01 UTC）：imp_s015 470/500(94%), rand_s015 495/500(99%)。第一条 condition 即将完成，每个后续 condition ~4.5h。**8-condition 完成 ETA: ~2026-05-15 16:10 UTC**\n- **c2_qw_n500** (cuda:2+3): Qwen 8 conditions n=500。最新进度（02:01 UTC）：imp_s015 357/500(71%), rand_s015 374/500(75%)。Qwen 比 DeepSeek 慢 ~25%。**8-condition 完成 ETA: ~2026-05-15 21:08 UTC**\n\n**c5b_pilot** (failed): 5× process dead auto-resolved。此前因 CVD bug 入侵 GPU 0 被 kill，重启到 GPU 3（PID 154645）后再次判定失败。需要 Director 决策是否重试或放弃（C5b 可降为 future work）。\n\n**c3_llama** (success): 已完成分析，phase gradient d_z 单调递增 0.19→0.34，跨架构 pattern confirmed。论文需更新 tables 纳入 LLaMA 数据。\n\n**论文全文已完成**（§1-§8 + Abstract + Figures + main.tex + references.bib），PDF 可编译。截稿 2026-05-25（距今 11 天）。\n\n等待中：c2_n500_deepseek / c2_qw_n500 的 cron 完成回调。无 pending Worker。\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调（ETA ~16:10 UTC） → spawn Worker 跑 rebootstrap 分析 + paired Cohen's d 计算 → 更新 registry metrics → 对比 n=50 结果（CI 是否收窄、Bonferroni p 值变化）\n- c2_qw_n500 cron 回调（ETA ~21:08 UTC） → 同上分析 + **关键判断**：Qwen s015 在 n=500 下 CI 是否仍跨零 → 跨零则执行预注册叙事调整 \"compound effect emerges above threshold sparsity ~s020\"；不跨零则 Qwen s015 从 \"marginal\" 升级为 \"significant\"\n- 验证 c2_qw_n500 数据完整性：检查 profiling_results.json 时间戳单调性 + 问题数=500（重复进程可能导致交叉写入）\n- 两个 C2 实验都完成 → spawn Worker 更新论文 tables/figures（n=500 数据替换 n=50）→ 重新编译 PDF → 一致性审查\n- c5b_pilot failed → 汇报 Director 请求决策（重试 vs 降为 future work）\n- c3_llama 数据已就绪 → 纳入论文（Table + §5 cross-architecture paragraph + abstract 更新），可与 C2 分析并行\n- 全部更新完成 → Group C full review → visual review → S3 备份 → 提交\n\n### 5. 🎯 战略上下文\n**核心发现**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DS: 0.32→9.94; QW: 0.048→2.619），random masking 7/8 FAIL。C3 LLaMA 跨架构验证 confirmed（d_z 单调递增 0.19→0.34）。这是 empirical finding paper，目标 EMNLP 2026 ARR（5/25 截稿）。\n\n**决策链关键**：D015 framing 硬约束 / D023 区分信号是 gradient 不是 super-additivity 本身 / D032 Bonferroni p<0.005 / D044 Qwen entropy 反转导致 C4 降级 / D048 统一 paired d_z / D054 II 主指标切 median\n\n**易判断错的事**：\n- Qwen s015 是全项目最关键的 pending 数据点。n=500 后如果 CI 仍跨零，不是 negative——已预注册为 \"onset threshold model-dependent\"，narrative 变更小（D037/D038）\n- c5b_pilot 连续失败但不是方法论问题——是 CVD bug + cron 误判。Director 可能要求重试\n- DeepSeek compound severity ~4× Qwen 是 model-dependent onset，不是 bug——比较趋势（ρ=1.0）不比较绝对值\n- LLaMA d_z（0.19→0.34）比 DeepSeek/Qwen 小 ~40×，frame 为 \"consistent qualitative pattern with architecture-dependent severity\"\n- 论文图表曾全部基于过时数据（D051），已用 bf16 canonical 重新生成，但 C2 n=500 完成后需要再次更新\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778783936.md"
+}

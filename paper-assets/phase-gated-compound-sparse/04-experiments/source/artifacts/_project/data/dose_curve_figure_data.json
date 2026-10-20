@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-16",
+    "max_new_tokens": 8192,
+    "dataset": "MATH-500",
+    "seed": 42,
+    "notes": {
+      "ds_sample_size": "n=50 (problems 1-50)",
+      "qw_sample_size": "n=100 (problems 1-100, two batches of 50)",
+      "ii_bf16_sample_size": "n=50",
+      "ii_n500_sample_size": "n=500 (DS effective=496, QW effective=475)",
+      "ds_non_truncated_acc_dense": "computed from round10 summary: 37/42=0.881, not in registry",
+      "ds_non_truncated_acc_s025": "computed from round10 summary: 4/12=0.333, not in registry"
+    }
+  },
+  "ds_accuracy": {
+    "sparsities": [0, 0.15, 0.20, 0.25, 0.30],
+    "accuracy": [0.74, 0.48, 0.30, 0.08, 0.04],
+    "correct": [37, 24, 15, 4, 2],
+    "total": [50, 50, 50, 50, 50],
+    "truncation_rate": [0.16, 0.32, 0.56, 0.76, 0.76],
+    "truncated_count": [8, 16, 28, 38, 38],
+    "non_truncated_accuracy": [0.881, 0.706, 0.682, 0.333, 0.167],
+    "non_truncated_correct": [37, 24, 15, 4, 2],
+    "non_truncated_total": [42, 34, 22, 12, 12],
+    "extraction_failures": [null, null, 1, null, 3],
+    "exp_ids": [
+      "acc_ds_dense_8k_v2",
+      "acc_ds_s015_8k_v2",
+      "acc_ds_s020_8k_v2",
+      "acc_ds_s025_8k_v2",
+      "acc_ds_s030_8k_v2"
+    ]
+  },
+  "qw_accuracy": {
+    "sparsities": [0, 0.15, 0.20, 0.25, 0.30],
+    "accuracy": [0.46, 0.42, 0.36, 0.33, 0.19],
+    "batch1_correct": [22, 23, 13, 16, 7],
+    "batch1_total": [50, 50, 50, 50, 50],
+    "batch1_accuracy": [0.44, 0.46, 0.26, 0.32, 0.14],
+    "batch2_correct": [24, 19, 23, 17, 12],
+    "batch2_total": [50, 50, 50, 50, 50],
+    "batch2_accuracy": [0.48, 0.38, 0.46, 0.34, 0.24],
+    "combined_correct": [46, 42, 36, 33, 19],
+    "combined_total": [100, 100, 100, 100, 100],
+    "truncation_rate": [0.02, 0.02, 0.02, 0.04, 0.04],
+    "exp_ids_b1": [
+      "acc_qw_dense_b1_8k",
+      "acc_qw_s015_b1_8k",
+      "acc_qw_s020_b1_8k",
+      "acc_qw_s025_b1_8k",
+      "acc_qw_s030_b1_8k"
+    ],
+    "exp_ids_b2": [
+      "acc_qw_dense_b1_8k (batch2 in metrics)",
+      "acc_qw_s015_n100",
+      "acc_qw_s020_n100_b2_fix",
+      "acc_qw_s025_n100_b2_fix",
+      "acc_qw_s030_n100"
+    ],
+    "exp_ids_combined": [
+      "acc_qw_dense_n100",
+      "acc_qw_s015_n100",
+      "acc_qw_s020_n100",
+      "acc_qw_s025_n100",
+      "acc_qw_s030_n100"
+    ]
+  },
+  "ii_dose_curves": {
+    "ds_n50_bf16": {
+      "description": "DS importance-pruning II dose curve, n=50, bf16 precision",
+      "sparsities": [0.15, 0.20, 0.25, 0.30],
+      "median_difference": [0.323579, 1.15202, 3.968568, 9.943595],
+      "cohens_d": [0.6068, 0.725, 0.9534, 1.1263],
+      "bootstrap_ci_95_low": [0.198824, 0.655454, 2.829037, 8.391554],
+      "bootstrap_ci_95_high": [0.471566, 1.256001, 5.291756, 16.652865],
+      "permutation_p": [0, 0, 0, 0],
+      "wilcoxon_p": [0, 0, 0, 0],
+      "n_paired": [49, 49, 49, 49],
+      "exp_ids": [
+        "bf16_ds_imp_s015",
+        "bf16_ds_imp_s020",
+        "bf16_ds_imp_s025",
+        "bf16_ds_imp_s030"
+      ],
+      "random_baseline": {
+        "sparsities": [0.15, 0.20, 0.25, 0.30],
+        "median_difference": [0.0095, -0.0155, 0.5445, 1.5383],
+        "pass_fail": ["FAIL", "FAIL", "FAIL", "FAIL"],
+        "exp_ids": [
+          "bf16_ds_rand_s015",
+          "bf16_ds_rand_s020",
+          "bf16_ds_rand_s025",
+          "bf16_ds_rand_s030"
+        ]
+      },
+      "endpoints": {
+        "s010": {
+          "exp_id": "bf16_ds_imp_s010",
+          "verdict": "FAIL",
+          "II_low_sparsity_median": 0.0151,
+          "II_high_sparsity_median": 0.0027
+        },
+        "s035": {
+          "exp_id": "bf16_ds_imp_s035",
+          "verdict": "PASS",
+          "II_low_sparsity_median": 28.7649,
+          "II_high_sparsity_median": 0.1051
+        }
+      }
+    },
+    "qw_n50_bf16": {
+      "description": "QW importance-pruning II dose curve, n=50, bf16 precision",
+      "sparsities": [0.15, 0.20, 0.25, 0.30],
+      "median_difference": [0.047619, 0.207511, 1.108706, 2.619385],
+      "cohens_d": [0.3705, 0.7224, 1.2329, 1.4394],
+      "bootstrap_ci_95_low": [-0.005077, 0.067222, 0.609247, 1.722281],
+      "bootstrap_ci_95_high": [0.109517, 0.40226, 1.469002, 3.651063],
+      "permutation_p": [0.0001, 0, 0, 0],
+      "wilcoxon_p": [0.02958, 0.000034, 0, 0],
+      "n_paired": [46, 46, 46, 46],
+      "exp_ids": [
+        "bf16_qw_imp_s015",
+        "bf16_qw_imp_s020",
+        "bf16_qw_imp_s025",
+        "bf16_qw_imp_s030"
+      ],
+      "random_baseline": {
+        "sparsities": [0.15, 0.20, 0.25, 0.30],
+        "median_difference": [-0.029401, 0.128948, 1.144074, 2.418272],
+        "pass_fail": ["FAIL", "FAIL", "FAIL", null],
+        "permutation_p": [0.7657, 0.352, 0.1679, 0.012],
+        "exp_ids": [
+          "bf16_qw_rand_s015",
+          "bf16_qw_rand_s020",
+          "bf16_qw_rand_s025",
+          "bf16_qw_rand_s030"
+        ]
+      },
+      "endpoints": {
+        "s010": {
+          "exp_id": "bf16_qw_imp_s010",
+          "overall_verdict": "PASS",
+          "sign_reversal_test": "FAIL",
+          "low_sparsity_II_median": -0.0444,
+          "high_sparsity_II_median": 0.0001
+        },
+        "s035": {
+          "exp_id": "bf16_qw_imp_s035",
+          "overall_verdict": "PASS",
+          "low_sparsity_II_median": 8.2358,
+          "high_sparsity_II_median": 0.0232
+        }
+      }
+    },
+    "ds_n500": {
+      "description": "DS importance-pruning II dose curve, n=500 (effective=496), large-scale validation",
+      "n_problems": 500,
+      "effective_n": 496,
+      "mid_null_rate": 0.102,
+      "sparsities": [0.15, 0.20, 0.25, 0.30],
+      "importance_median_ii": [0.3907, 1.2149, 3.9857, 8.4813],
+      "importance_ci_low": [0.3496, 1.1072, 3.5272, 7.7543],
+      "importance_ci_high": [0.4431, 1.3365, 4.3588, 9.6919],
+      "importance_wilcoxon_p": [1.27e-70, 3.98e-75, 1.99e-78, 1.09e-79],
+      "random_median_ii": [0.0139, 0.0315, 0.2574, 0.5096],
+      "random_wilcoxon_p": [0.863, 0.28, null, null],
+      "random_bonf_p": [null, null, 0.005839, 0.005903],
+      "imp_rand_ratio_range": "15.5-38.6x",
+      "dz_pairs": {
+        "s015_s020": -0.925,
+        "s020_s025": -0.824,
+        "s025_s030": -0.773,
+        "s015_s030": -0.944
+      },
+      "all_dz_reliable": true,
+      "dose_response_monotonic": true,
+      "dose_response_spearman_rho": 1,
+      "dose_response_perm_p": 0.0417,
+      "bonferroni_k": 4,
+      "exp_id": "c2_n500_deepseek"
+    },
+    "qw_n500": {
+      "description": "QW importance-pruning II dose curve, n=500 (effective=475), large-scale validation",
+      "n_problems": 500,
+      "effective_n": 475,
+      "mid_null_rate": 0.452,
+      "sparsities": [0.15, 0.20, 0.25, 0.30],
+      "importance_median_ii": [0.0659, 0.3073, 1.0745, 3.155],
+      "importance_ci_low": [0.0492, 0.2612, 0.9766, 2.7834],
+      "importance_ci_high": [0.0925, 0.3564, 1.1787, 3.5582],
+      "importance_wilcoxon_p": [8.66e-15, 6.84e-42, 1.06e-68, 9.21e-74],
+      "importance_bonf_p": [3.46e-14, 2.74e-41, 4.25e-68, 3.69e-73],
+      "random_median_ii": [-0.0111, 0.0153, 0.3931, 0.9127],
+      "random_wilcoxon_p": [0.172, 0.2, 1.59e-11, 2.92e-15],
+      "random_bonf_p": [0.687, 0.8, 6.37e-11, 1.17e-14],
+      "imp_rand_ratio_range": "2.7-20.1x",
+      "dz_pairs": {
+        "s015_s020": -0.629,
+        "s020_s025": -0.865,
+        "s025_s030": -0.767,
+        "s015_s030": -0.923
+      },
+      "all_dz_reliable": true,
+      "dose_response_monotonic": true,
+      "dose_response_spearman_rho": 1,
+      "dose_response_perm_p": 0.0417,
+      "bonferroni_k": 4,
+      "exp_id": "c2_qw_n500_r3"
+    }
+  }
+}

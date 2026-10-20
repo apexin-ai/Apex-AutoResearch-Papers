@@ -1,0 +1,15 @@
+{
+  "exp_id": "c3_llama",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:34:06.637Z",
+    "updated_at": "2026-05-14T14:37:30.731Z",
+    "hypothesis": "C3: LLaMA 架构验证。用 DeepSeek-R1-Distill-Llama-8B 验证 phase-modulated compound severity 是否跨架构复现（Qwen2ForCausalLM → LlamaForCausalLM），回应审稿人\"cross-model ≠ cross-architecture\"质疑。"
+  },
+  "timestamp": "2026-05-14T14:37:30.978364+00:00",
+  "trigger": "update_registry"
+}

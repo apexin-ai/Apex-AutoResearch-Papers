@@ -1,0 +1,3 @@
+Remote path: /root/autodl-tmp/pacs/figures/fig4_per_problem_dist.pdf (.png also available)
+Server: westd-22162
+Note: ~1-4 None values per experiment filtered. 65KB PDF / 228KB PNG.

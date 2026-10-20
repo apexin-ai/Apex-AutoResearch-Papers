@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a288581142649f5365a5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_9_1778813640.md",
+  "task_key": "loop_9_1778813640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778813640.md",
+    "occurrence": 1,
+    "bytes": 3792,
+    "sha256": "7a4dec427f991329770d061906fa03ae312f3f2aae7c10cefa73f65fac5f877c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T02:53:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，严禁用其他设备\n- d_z 报告规则 (D059)：within-importance 对比可报 d_z，涉及 random 的对比只报 Wilcoxon + median_diff，**不报 d_z**\n- II 主指标 (D054)：**median** + median bootstrap CI (B=10000)，不是 mean\n- random s030 措辞：若 n=500 确认 random high sparsity 显著，措辞从\"random 无 compound effect\"改为\"moderate sparsity 下特异于 importance，high sparsity 下 random 也显著但幅度更小\"\n- Qwen imp-vs-rand paired 对比 n=50 全部不显著 (D058)，n=500 结果决定论文叙事走向——不要提前改论文\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据：`/root/autodl-tmp/pacs/data/MATH-500/`（Qwen）、`/root/autodl-tmp/pacs/data/math500.json`（DeepSeek）\n- 分析脚本：`python3 analyze_n500_unified.py --csv --latex`\n- 活跃进程：\n  - c2_n500_deepseek: screen c2_n500_gpu0 / c2_n500_gpu1, cuda:0+1\n  - c2_qw_n500_r3: screen c2_qw_gpu2 / c2_qw_gpu3 (PID 159269, 159794), cuda:2+3\n- 活跃 cron：2 个（c2_n500_deepseek, c2_qw_n500_r3）\n\n### 3. 📊 当前状态\n两个 n=500 统计功效实验是论文最后的数据补充，今天内完成：\n- **c2_n500_deepseek** (cuda:0+1): s015✅ s020✅ s025 运行中(imp 233/500, rand 285/500) s030 待启动。ETA 全部完成 ~15:30 UTC+8\n- **c2_qw_n500_r3** (cuda:2+3): s015✅ s020✅ s025 运行中(imp 362/500, rand 337/500) s030 待启动。ETA 全部完成 ~13:27 UTC+8\n\n论文 §1-§8 + Abstract + Figures 1-5 全部完成（基于 n=50 数据），PDF 可编译。等 n=500 数据更新后还需：更新 tables/figures、加 C5b §8 future work、C8 限定语、Qwen caveat（若仍不显著）。\n\nWorker 池 = 0（当前无 CPU 任务需要并行）。Group C 审稿并行进行中。\n\n### 4. 📋 待办（条件触发式）\n- cron 回调 c2_qw_n500_r3 完成 → spawn worker 跑 `analyze_n500_unified.py --csv --latex`（Qwen 部分）\n- cron 回调 c2_n500_deepseek 完成 → spawn worker 跑分析（DeepSeek 部分）；若 Qwen 也已完成则跑统一全量分析\n- 全量分析完成 → **第一时间检查 random s025/s030 显著性**（memory.md 有 Reviewer 要求），汇报 Director\n- Director 审阅分析结果 → 派 Paper Agent 统一更新论文（n=500 tables, figures, C5b §8, C8 限定语, Qwen caveat）\n- 论文更新完 → 提交 Group C full review\n- **截稿 2026-05-25**，距今 10 天\n\n### 5. 🎯 战略上下文\n- 核心发现：importance-based compound sparsity severity 随 sparsity 单调递增（DeepSeek d 0.32→9.94, Qwen 0.048→2.619），random 全 FAIL。n=50 数据已确认，n=500 是统计功效加固\n- C8 (LLaMA 跨架构) partially_confirmed (D060)：qualitative consistent 但 quantitative interaction 弱于 Qwen2 架构，论文需加限定语\n- C5b (mitigation) negative (D056)：oracle recovery 18% < 30% gate，降为 future work\n- **最易判断错的事**：Qwen mid-phase (s015) 有 58% null rate + imp vs rand paired 全部不显著。n=500 结果可能仍不显著——此时论文叙事应改为\"compound effect emerges above a threshold sparsity level (~s020)\"，不要试图强行 claim s015 显著\n- **干预陷阱**：两个实验都是 screen 里自动推进（s025→s030），不要 SSH 进去手动操作，等 cron 回调即可\n- 决策链关键节点：D054(median指标)→D058(Qwen不显著)→D059(d_z分场景)→D060(C8降级)→D061(n=500 paired gradient)→D062(cron sentinel机制)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778813640.md"
+}

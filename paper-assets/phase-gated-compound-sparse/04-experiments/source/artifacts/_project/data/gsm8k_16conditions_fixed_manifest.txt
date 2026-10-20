@@ -1,0 +1,7 @@
+Files on server westd-22162:
+- CSV: /root/autodl-tmp/pacs/analysis_output/gsm8k_16conditions_fixed.csv
+- JSON: /root/autodl-tmp/pacs/analysis_output/gsm8k_16conditions_fixed.json
+- Script: /root/autodl-tmp/pacs/aggregate_gsm8k_fixed.py
+
+Fixes applied: NaN/Inf filtering, np.nanmean, proper bootstrap CI unpacking (10k iterations), float64 accumulation.
+QW rand_s030 flagged as data_quality_issue (2048-token truncation artifact).

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fd1e457d2bbcb8db9a2",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra sync p0 fix",
+  "task_key": "worker_infra_sync-p0-fix_20260513T202043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync-p0-fix_20260513T202043_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "ea1c8cac1dda89a2230a09e1c08dc45dce6cfdc71020f04b37324942384902da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。汇报：\n\n**同步状态**：8 个文件全部写入 westd-22162，同时更新了 flat 结构（`/root/autodl-tmp/pacs/profiling/`）和 package 结构（`/root/autodl-tmp/pacs/pacs/profiling/`），因为服务器存在两套目录，Python 实际加载的是 flat 结构。\n\n**Import 验证**：3/3 通过\n- `InteractionIndexCalculator` — OK\n- `PhaseAnnotation` metadata 字段 — OK\n- `run_profiling` — OK\n\n**P0 KV eviction mask 修复验证**：通过\n- `_select_kv_to_evict` 返回 **1D tensor `(seq_len,)`**，不再是 per-layer 2D mask\n- BOS (position 0) 始终保留\n- 2D importance input 正确 mean→1D\n\n**清理**：`__pycache__` 已清除，旧 profiling_results.json 已备份为 `_m1_failed.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-p0-fix.md"
+}

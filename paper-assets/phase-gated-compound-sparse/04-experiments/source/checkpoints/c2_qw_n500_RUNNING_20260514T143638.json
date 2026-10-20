@@ -1,0 +1,46 @@
+{
+  "exp_id": "c2_qw_n500",
+  "project": "phase-gated-compound-sparse",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T13:34:05.213Z",
+    "updated_at": "2026-05-14T14:36:37.856Z",
+    "hypothesis": "C2: Qwen n=500 统计功效提升。将 Qwen 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500，与 DeepSeek 对称验证。",
+    "notes": "Status corrected: cron false positive (profiling无W&B/sentinel, 输出在完成后才写盘). 实验从未中断. PID 131864/132002 正常运行, 进度~49/500 s015. SEED=42 hardcoded. ETA ~02:00 CST.",
+    "reproduce": {
+      "finished_at": "2026-05-14T14:36:36.371Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-14T14:13:26.223Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T14:13:28.582987+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "重复进程已清理(2026-05-14 14:03). GPU0烟雾测试(PID 129684)已清理(14:06). SEED=42 hardcoded in run_profiling.py:53. 进度~15/500."
+      }
+    },
+    "spec": {
+      "seed": 42,
+      "command": "run_profiling.py via screen c2_qw_gpu2/gpu3",
+      "server": "westd-22162",
+      "gpu": "cuda:2,cuda:3",
+      "pid": "131864,132002",
+      "data_path": "MATH-500",
+      "data_count": 500,
+      "model_name": "Qwen",
+      "note": "SEED=42 hardcoded in run_profiling.py:53. PID 131864 (gpu2 imp) / 132002 (gpu3 rand). Progress ~49/500 s015. ETA ~3.8h."
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T14:36:38.163559+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "113d4bdf96e70a85fb8b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose mvp ii profiling v4 batch",
+  "task_key": "worker_diagnose_mvp_ii_profiling_v4_batch_20260513T232137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp_ii_profiling_v4_batch_20260513T232137_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "d346391fc46ec976199f454c46aa4fc607ad060384179b6a291a1f30c4eda471"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论明确。\n\n```json\n{\"root_cause\":\"run_profiling.py: error: unrecognized arguments: --masking_method importance\",\"error_type\":\"hyperparameter\",\"fix_steps\":[\"在 pacs/profiling/run_profiling.py 的 argparse 中添加 --masking_method 参数\"],\"can_auto_fix\":true,\"affects_all_v4\":true}\n```\n\n`run_profiling.py` 的 argparse 定义了 `--sparsity_levels` 但没有 `--masking_method`。v4 全部命令都传了 `--masking_method importance`，所以全部以 EXIT_CODE=2 崩溃。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "run_profiling.py: error: unrecognized arguments: --masking_method importance",
+              "error_type": "hyperparameter",
+              "fix_steps": [
+                "在 pacs/profiling/run_profiling.py 的 argparse 中添加 --masking_method 参数"
+              ],
+              "can_auto_fix": true,
+              "affects_all_v4": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp-ii-profiling-v4-batch.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_v4_legacy_s01",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:53:19.548Z",
+    "updated_at": "2026-05-13T23:53:39.573Z",
+    "hypothesis": "v4 legacy: importance-based masking (hardcoded), sparsity=0.1, cuda:0. 从 corrected-submit worker 启动，代码无 --masking_method CLI 但 hardcoded importance。max_new_tokens=2048, min_phase_length=10。"
+  },
+  "timestamp": "2026-05-13T23:53:39.626237+00:00",
+  "trigger": "update_registry"
+}

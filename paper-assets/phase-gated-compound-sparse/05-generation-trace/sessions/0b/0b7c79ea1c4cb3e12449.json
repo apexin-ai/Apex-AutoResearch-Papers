@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b7c79ea1c4cb3e12449",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis median audit",
+  "task_key": "worker_analysis_median_audit_20260514T182536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_median_audit_20260514T182536_result.json",
+    "occurrence": 1,
+    "bytes": 2765,
+    "sha256": "9cdf21e156c24e919775c19d718bd665e98395d3fdb20b49c405eb928bd857e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。汇报如下：\n\n---\n\n## 1. Median 字段已存在\n\n**所有 profiling_results.json** 的 `interaction_index` 区块已包含：\n- `median`, `median_ci_low`, `median_ci_high` — 由 `bootstrap_interaction_index()` 计算\n- 同时有 `mean`, `winsorized_mean`, `skewness`, `outlier_count`\n\n**分析输出**（c2_n500, c3_llama, cross_model_analysis）也已同时报告 `median_diff` 和 `mean_diff`。`cross_model_analysis.json` 主指标即 `importance_median_diffs` / `random_median_diffs`。\n\n**结论：不需要重跑实验，median 数据已齐全。**\n\n## 2. Raw Data 结构\n\n`per_problem_ii` 存储每个 problem 的 `ii_high/ii_mid/ii_low` + segment 数，可事后重算任意统计量。**不存储 per-problem perplexity**（只有聚合 ppl）。\n\n## 3. Outlier 调查\n\n### n500 rand s015 ii_low 统计\n\n| 指标 | 值 |\n|------|-----|\n| n | 500 |\n| mean | **-8,681.25** |\n| median | **0.0889** |\n| std | 193,244.97 |\n| min | **-4,325,437.55** |\n| max | 65.60 |\n| 3×IQR outliers | 71 (14.2%) |\n\n### 前 5 极端 outlier\n\n| problem_idx | ii_low | problem_id |\n|-------------|--------|------------|\n| 392 | -4,325,437.55 | test/precalculus/902.json |\n| 75 | -6,858.83 | test/counting_and_probability/1114.json |\n| 26 | -5,578.73 | test/counting_and_probability/525.json |\n| 462 | -1,526.80 | test/number_theory/679.json |\n| 97 | -407.82 | test/prealgebra/105.json |\n\n### Outlier 根源\n\n**不是分母为零的问题。** Dense ppl 始终 ≈ 1.2，分母安全。\n\n根源是 **II 公式 `II = R_both - R_attn - R_kv + 1`** 中，random pruning 对某些 problem 造成了灾难性失败：\n- 聚合 ppl 可见端倪：low_sparsity 的 `attn_ppl = 236,196`（正常应为个位数）\n- 单个 problem（#392）的 random head masking 恰好破坏了关键 attention 路径，导致 ppl_attn 爆炸到数百万级别，`R_attn` 远大于 `R_both`，II 变成巨大负数\n- Importance-based 条件下同一问题不出现此现象（importance 保留关键 head，避免灾难性失败）\n\n**n=50 vs n=500 对比：** n=50 时 mean=-1.90 / median=0.103（偏差已有但可控），n=500 采样到更多极端 problem 后 mean 彻底崩溃到 -185,738。\n\n## 4. 分析脚本 Mean/Median 使用\n\n**analyze_c2_n500.py** 和 **analyze_c3_llama.py** 都已同时计算 median 和 mean：\n- `bootstrap_ci_median()` + `bootstrap_ci_mean()` 并行\n- 输出中 `median_diff` 和 `mean_diff` 双轨\n- 报告表同时展示 median 和 mean 列\n\n**但 Cohen's d_z 仍用 mean-based 公式**（`mean(D)/SD(D)`，`analyze_c2_n500.py:76`），同样会被 outlier 摧毁。如果要全面切 median，d_z 需替换为 robust 效应量（如基于 median 的非参数替代）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-median-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f100ae61bc9ee6884fd",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper n500 number fix comprehensive",
+  "task_key": "worker_paper_n500_number_fix_comprehensive_20260516T043514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_n500_number_fix_comprehensive_20260516T043514_result.json",
+    "occurrence": 1,
+    "bytes": 1604,
+    "sha256": "585d296ea995a395ae272024cd1888c4360549e5dbee06e77cbdda7cb1d1ee9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终结论\n\n论文**已经完成了所有 n=50 → n=500 数字替换**。所有任务项的当前状态：\n\n### 全部已完成 ✅\n\n| 项目 | 验证 |\n|------|------|\n| A. DS s030: 14.59→8.48 | 主文全部用 8.48；14.59 仅在 appendix profiling subset 表（正确标注） |\n| B. DS 中间值: 1.48→1.21, 7.16→3.99 | 同上 |\n| C. QW 四值: 0.07, 0.31, 1.07, 3.16 | Table 2 + Table 3 ✅ |\n| D. d_z 值 | 旧值(0.44/0.80/0.28/1.02) **不在任何 .tex 文件中**；论文改用 within-importance d_z=0.94/0.92 (n=500 数据) |\n| E. n=50→n=500 | methodology 用 \"500 problems\"，表 caption 用 n=496/475 |\n| F. 37×→22× | results.tex \"$22{\\times}$ amplification\" ✅ |\n| G. Table 1 | 0.39 & 1.21 & 3.99 & 8.48 ✅ |\n| H. Table 2 + G ratios | 完整 n=496/475 数据 + Appendix V G表含 bootstrap CI |\n| I. Permutation test | 保留 n=49 profiling subset，正确标注，主文改用 n=496 Wilcoxon |\n\n### 服务器数据验证\n\nSSH 到 `westd-22162` 确认 `/root/autodl-tmp/pacs/analysis_output/n500_full_statistics.md` 中的数值与论文一致：\n- DS: 0.3907, 1.2149, 3.9857, 8.4813 ✅\n- QW: 0.0659, 0.3073, 1.0745, 3.1550 ✅\n- Within-importance d_z: DS -0.944, QW -0.923（论文报告 0.94/0.92）✅\n\n### 唯一微小 inconsistency\n\n`conclusion.tex` 写 \"DeepSeek, $n{=}500$\"，而其他地方用有效样本量 $n{=}496$。这是简化写法（500=总问题数），不算错误，但如果要严格统一可改为 $n{=}496$。\n\n**无需执行任何编辑。** 论文在本次任务之前已经被完整更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-n500-number-fix-comprehensive.md"
+}

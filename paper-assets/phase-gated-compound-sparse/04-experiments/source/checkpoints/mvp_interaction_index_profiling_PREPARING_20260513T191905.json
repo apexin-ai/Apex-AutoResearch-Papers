@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_interaction_index_profiling",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:19:05.209Z",
+    "updated_at": "2026-05-13T19:19:05.209Z"
+  },
+  "timestamp": "2026-05-13T19:19:05.216161+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "69c17fd08fbd32033782",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper appendix fixes r10",
+  "task_key": "worker_paper_appendix_fixes_r10_20260516T035040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_fixes_r10_20260516T035040.log",
+    "occurrence": 1,
+    "bytes": 865795,
+    "sha256": "de54e20de3df91c934ecae5a7c3978c9232a4329d487da180de7da2619f86b00"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 212,
+      "chunks": [
+        {
+          "path": "69c17fd08fbd32033782-part-0001.json",
+          "message_count": 136
+        },
+        {
+          "path": "69c17fd08fbd32033782-part-0002.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-appendix-fixes-r10.md"
+}

@@ -1,0 +1,187 @@
+# experiment_plan.yaml — EC-HTE internal research plan-to-claim mapping
+# Generated 2026-05-31 | project: ec_hte_codex_a
+
+experiments:
+- id: plan_001_h1_cpu_mvp
+  claim: C_H1_GLOBAL_CORRECTION_WORSE
+  description: >
+    CPU-only semi-synthetic MVP for H1. Compare uncorrected, oracle global
+    confusion correction, estimated global confusion correction, and
+    stratified/subgroup correction on the positive-correlation worst-case DGP.
+    This isolates structural global-correction bias from finite-sample confusion
+    estimation noise.
+  registry_id: exp_001_bias_bound_mvp
+  role: primary
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  matrix_targets:
+  - target_id: C_H1_GLOBAL_CORRECTION_WORSE
+    cells:
+    - row: exp_001_bias_bound_mvp
+      col: uncorrected_vs_oracle_global
+    - row: exp_001_bias_bound_mvp
+      col: uncorrected_vs_estimated_global
+  - target_id: T_STAGE0_DGP_GRID
+    cells:
+    - row: positive_corr_high_mis_high_cate
+      col: uncorrected_gate_rmse
+    - row: positive_corr_high_mis_high_cate
+      col: oracle_global_gate_rmse
+    - row: positive_corr_high_mis_high_cate
+      col: estimated_global_gate_rmse
+    - row: positive_corr_high_mis_high_cate
+      col: stratified_gate_rmse
+  operational_criteria:
+    primary_metric: gate_rmse
+    secondary_metrics:
+    - mean_subgroup_cate_bias
+    - max_subgroup_cate_bias
+    minimum_replications: 200
+    success_rule: >
+      In the positive-correlation high-misclassification/high-CATE-heterogeneity
+      setting, oracle_global - uncorrected must be greater than 0 on the primary
+      metric gate_rmse, with a bootstrap 95% CI lower bound above 0. Estimated global
+      is reported separately; estimated_global - oracle_global quantifies
+      finite-sample confusion-estimation noise.
+    diagnostic_rule: >
+      mean_subgroup_cate_bias and max_subgroup_cate_bias must be reported for all
+      methods as secondary diagnostics. If gate_rmse supports H1 but either bias
+      diagnostic points in the opposite direction, the result is marked mixed and
+      requires Director review before Stage 1.
+    negative_rule: >
+      If oracle_global is not worse than uncorrected under the positive-correlation
+      worst-case setting, H1 is not supported and the next step is to audit DGP
+      construction, correction algebra, metric definitions, and subgroup weighting
+      before running Stage 1.
+
+- id: plan_002_h1_gpu_dgp_grid
+  claim: C_H1_GLOBAL_CORRECTION_WORSE
+  description: >
+    GPU-vectorized DGP grid for H1. Systematically vary misclassification
+    heterogeneity, CATE heterogeneity, subgroup count, and correlation direction;
+    compare oracle global and estimated global correction against uncorrected and
+    stratified/subgroup correction.
+  registry_id: exp_002_gpu_dgp_grid
+  role: primary
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - plan_001_h1_cpu_mvp
+  matrix_targets:
+  - target_id: C_H1_GLOBAL_CORRECTION_WORSE
+    cells:
+    - row: exp_002_gpu_dgp_grid
+      col: grid_oracle_vs_estimated_mechanism_split
+  - target_id: T_STAGE0_DGP_GRID
+    cells:
+    - row: grid_all_conditions
+      col: bias_bound_auc_or_rank_corr
+    - row: grid_all_conditions
+      col: oracle_estimated_gap
+  operational_criteria:
+    primary_metric: global_worse_rate_difference_positive_minus_negative
+    secondary_metrics:
+    - bias_bound_vs_global_worse_spearman
+    - estimated_global_minus_oracle_global_gate_rmse
+    minimum_replications_per_condition: 200
+    success_rule: >
+      Positive-correlation conditions must have at least a 20 percentage-point
+      higher oracle-global-worse rate than negative-correlation controls, with a
+      bootstrap 95% CI lower bound above 0. The bias-bound diagnostic must rank
+      oracle-global-worse conditions with Spearman rho >= 0.50 and bootstrap 95%
+      CI lower bound above 0. Estimated-global results must be reported separately
+      from oracle global to avoid conflating structural bias with
+      confusion-estimation noise.
+    launch_gate: >
+      This experiment may only run after Director approval and GPU allocation.
+      Before allocation it may only prepare code, configs, dry-runs, and proposal
+      artifacts.
+
+- id: plan_003_stage1_correction_ablation
+  claim: C_PARTIAL_POOLING_BETTER_LOW_BUDGET
+  description: >
+    Stage 1 correction ablation comparing global, arm-specific, per-subgroup
+    independent, and hierarchical/partial-pooling correction under matched expert
+    label budgets.
+  role: follow_up
+  priority: P1
+  gpu_budget_hours: 4
+  registry_id: exp_003_stage1_correction_ablation
+  deps:
+  - plan_001_h1_cpu_mvp
+  - plan_002_h1_gpu_dgp_grid
+  matrix_targets:
+  - target_id: C_PARTIAL_POOLING_BETTER_LOW_BUDGET
+    cells:
+    - row: low_budget
+      col: partial_pooling_vs_global
+    - row: low_budget
+      col: partial_pooling_vs_per_subgroup
+  - target_id: T_STAGE1_CORRECTION_ABLATION
+    cells:
+    - row: budget_low
+      col: global
+    - row: budget_low
+      col: arm_specific
+    - row: budget_low
+      col: per_subgroup_independent
+    - row: budget_low
+      col: partial_pooling
+    - row: budget_mid
+      col: global
+    - row: budget_mid
+      col: arm_specific
+    - row: budget_mid
+      col: per_subgroup_independent
+    - row: budget_mid
+      col: partial_pooling
+  operational_criteria:
+    primary_metric: gate_rmse
+    secondary_metrics:
+    - pehe
+    - mean_subgroup_cate_bias
+    success_rule: >
+      At low expert-label budget, partial pooling must beat global correction on
+      gate_rmse with bootstrap 95% CI upper bound below 0 for
+      partial_pooling_minus_global. Partial pooling must be non-inferior to
+      per-subgroup independent correction with a 5% relative gate_rmse margin;
+      PEHE and mean subgroup CATE bias are secondary diagnostics.
+
+- id: plan_004_realdata_feasibility
+  claim: C_REALDATA_FEASIBILITY
+  description: >
+    Rohingya real-data validation feasibility check. Confirm corpus availability,
+    fields, LLM annotation, expert label source, subgroup variables, split
+    availability, and reproduction permissions before treating real-data
+    validation as an executable result track.
+  role: feasibility
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  registry_id: exp_004_realdata_feasibility
+  status: done
+  result: >
+    Partial support. Public paper/code support schema, interview/text processing,
+    expert-coded sample, LLM annotation method, and subgroup variables; public-only
+    unit-level confusion-matrix experiment is not currently supported because
+    anonymized transcripts, record-level expert/LLM labels, and split IDs require
+    author/World Bank access request. Artifact:
+    projects/ec_hte_codex_a/artifacts/research/rohingya_realdata_feasibility_20260531.md.
+    Worker status was failed due to transient manifest YAML validation, fixed;
+    deliverables present.
+  matrix_targets:
+  - target_id: C_REALDATA_FEASIBILITY
+    cells:
+    - row: rohingya_corpus
+      col: fields_and_label_sources
+    - row: rohingya_corpus
+      col: expert_split_available
+    - row: rohingya_corpus
+      col: subgroup_variables_available
+  operational_criteria:
+    success_rule: >
+      Feasibility is positive only if the available data include human/expert
+      labels or an auditable gold-standard proxy, LLM annotations or a reproducible
+      annotation path, and subgroup variables sufficient for differential
+      misclassification analysis.

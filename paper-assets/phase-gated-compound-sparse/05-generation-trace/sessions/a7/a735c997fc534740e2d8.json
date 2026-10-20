@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a735c997fc534740e2d8",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "cpu analysis pipeline dryrun",
+  "task_key": "worker_cpu_analysis_pipeline_dryrun_20260515T044046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_analysis_pipeline_dryrun_20260515T044046_result.json",
+    "occurrence": 1,
+    "bytes": 2547,
+    "sha256": "9369b052702b923fe9c4891a8113af53142cf73a06c9aa08484f73bcb686b124"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析 Pipeline Dry-Run 结果\n\n### 1. 脚本运行状态：正常\n\n`analyze_n500_unified.py --csv --latex` 运行成功，零报错，无 import error，无路径问题。输出文件已生成：\n- `analysis_output/n500_unified.json` (23KB)\n- `analysis_output/n500_unified.csv` (2.9KB)\n- LaTeX 表格正常输出到 stdout\n\ns030 缺失数据被优雅处理（显示 \"missing data\"），不影响其他 condition 的分析。\n\n### 2. 已完成 condition 的 Median II 值\n\n| Model | Condition | n | Median II | 95% CI | p_bonf |\n|-------|-----------|---|-----------|--------|--------|\n| DeepSeek | imp_s015 | 496 | +0.3907 | [0.3496, 0.4431] | <0.001 |\n| DeepSeek | imp_s020 | 496 | +1.2149 | [1.1072, 1.3365] | <0.001 |\n| DeepSeek | imp_s025 | 496 | +3.9857 | [3.5272, 4.3588] | <0.001 |\n| DeepSeek | rand_s015 | 496 | +0.0139 | [-0.0167, 0.0389] | 1.000 |\n| DeepSeek | rand_s020 | 496 | +0.0315 | [-0.0112, 0.0767] | 1.000 |\n| DeepSeek | rand_s025 | 496 | +0.2574 | [0.1265, 0.3498] | 0.019 |\n| Qwen | imp_s015 | 475 | +0.0659 | [0.0492, 0.0925] | <0.001 |\n| Qwen | imp_s020 | 475 | +0.3073 | [0.2612, 0.3564] | <0.001 |\n| Qwen | imp_s025 | 475 | +1.0745 | [0.9766, 1.1787] | <0.001 |\n| Qwen | rand_s015 | 475 | -0.0111 | [-0.0390, 0.0124] | 1.000 |\n| Qwen | rand_s020 | 475 | +0.0153 | [-0.0145, 0.0684] | 1.000 |\n| Qwen | rand_s025 | 475 | +0.3931 | [0.2360, 0.5529] | <0.001 |\n\n### 3. 潜在问题（2 个值得关注）\n\n**A) DeepSeek s020→s025 d_z CI 严重不对称**：d_z=-0.1565，CI=[-0.6425, -0.1351]。点估计几乎贴着 CI 上界，说明 bootstrap 分布高度右偏。这在统计上可能合理（如果底层差值分布有长尾），但值得在代码里确认 bootstrap d_z 的实现是否正确。\n\n**B) 所有 dose-response perm_p 都是 0.165**：这不是 bug——只有 3 个 sparsity level 时，排列检验只有 3!=6 种可能排列，理论最小 p≈1/6≈0.167。这意味着单调性检验**必须等 s030 数据到齐**后才有统计效力（4!=24 种排列，最小 p≈0.042）。\n\n### 4. s025/s030 进度\n\n- **s025：已全部完成**。4 个 condition 的 profiling_results.json 均已生成（DS ~22MB, QW ~18MB），数据完整。\n- **s030：尚未开始**。4 个目录均为空（无 JSON 文件）。实验当前应已进入 s030 阶段。\n\n### 5. 结论\n\n分析 pipeline 无 bug，可放心等 s030 数据到齐后直接出完整报告。唯一建议在最终分析前复查的是 DeepSeek s020→s025 d_z 的 bootstrap CI 实现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-analysis-pipeline-dryrun.md"
+}

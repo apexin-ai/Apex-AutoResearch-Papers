@@ -1,0 +1,23 @@
+{
+  "exp_id": "acc_ds_s025_8k_v2",
+  "project": "phase-gated-compound-sparse",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:35:01.085Z",
+    "updated_at": "2026-05-15T21:53:47.530Z",
+    "hypothesis": "DS s025 accuracy eval with max_new_tokens=8192，补全 5-point dose curve。4096 版截断率 76%，8k 目标 <20%。",
+    "server": "westd-22162",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-15T21:52:58.562Z"
+    }
+  },
+  "timestamp": "2026-05-15T21:53:47.747793+00:00",
+  "trigger": "update_registry"
+}

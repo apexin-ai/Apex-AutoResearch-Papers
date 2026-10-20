@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7069ae6b53a27c4bf5ed",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_3_1778738531.md",
+  "task_key": "loop_3_1778738531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778738531.md",
+    "occurrence": 1,
+    "bytes": 5099,
+    "sha256": "de7a3376f3ae2330f7db86877b3230a5b4b8090220316be51579c061d7da3317"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T05:58:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，4 卡全部。禁止用其他服务器或 GPU\n- bf16 全量重跑是论文数据源（D020）：**论文所有数值必须来自 bf16 实验**。fp16 结果仅作 cross-validation reference，不可引用到 paper claims\n- 术语已修正（D022）：写 \"cross-model replication\" 不是 \"cross-architecture replication\"——两模型共享 Qwen2ForCausalLM，区别在训练方式\n- v6_random_s030 已失败两次（被误杀 + tmux 冲突），r3 正在跑，如果再失败需要排查根因而不是盲目重试\n- Permutation test 必须用 median（不是 mean）作为 test statistic（Reviewer flagged）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162, 4× RTX 6000 Pro 96G\n- **工作目录**: `/root/autodl-tmp/pacs`\n- **Python**: `/root/miniconda3/bin/python`，环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: DeepSeek-R1-Distill-Qwen-7B → `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`; Qwen2.5-7B-Instruct → `/root/autodl-tmp/models/Qwen2.5-7B-Instruct/`\n- **数据**: `/root/autodl-tmp/pacs/data/math500.json`（每次跑 50 problems）\n- **代码 commit**: `5488041765f165e4e64323cfda552de868351f86`\n- **活跃进程**:\n  - `v6_random_s030_r3`: PID 77560, cuda:2, tmux session, cron 监控中\n  - `bf16_importance_s015`: PID 79406, cuda:1, cron 监控中\n  - `bf16_importance_s025`: PID 80207, cuda:3, cron 监控中\n  - `bf16_importance_s030`: PID 80495, cuda:0, cron 监控中\n- **Cron**: 5 个活跃（上述 4 个 RUNNING + bf16_importance_s020 刚创建）\n\n### 3. 📊 当前状态\n**刚完成**: v6_random_s015 和 v6_random_s025 已完成，状态 ANALYZING，有 2 个 Worker 正在分析结果：\n- `worker_analysis_v6_random_s015_20260514T055245` (running)\n- `worker_analysis_v6_random_s025_20260514T055406` (running)\n\n**正在跑**: 4 个实验占满 4 GPU（Batch 1 的 3 个 bf16 importance + fp16 v6_random_s030_r3）\n\n**等待中**:\n- bf16_importance_s020 (QUEUED) — 需等一张 GPU 空出\n- D020 bf16 全量重跑剩余 13 个实验 (QUEUED): bf16_ds_imp ×4 + bf16_ds_rand ×4 + bf16_qw_rand ×4 + bf16_qw_imp ×4（减去已跑的 3 个）\n- 8 个 PREPARING（bf16_qwen_importance ×4 + bf16_random ×4，与 QUEUED 有重叠命名，可能需要去重）\n- 4 个 fp16 Qwen importance (QUEUED，qwen_importance_s015/020/025/030)——这些可能已被 D020 bf16 重跑计划取代\n\n**Registry 统计**: DONE 35 / RUNNING 4 / ANALYZING 2 / QUEUED 21 / PREPARING 8\n\n### 4. 📋 待办（条件触发式）\n- **v6_random_s015/s025 分析 Worker 完成** → 读 Worker 产出，更新 registry，把结果移至 `results_fp16_ref/`。这些是 fp16 数据，仅作 reference\n- **v6_random_s030_r3 完成** → 分析结果 → cuda:2 空出 → 立即提交 bf16_importance_s020（Batch 1 第 4 个）\n- **bf16_importance ×3 (s015/s025/s030) 完成** → 各 GPU 空出 → 启动 Batch 2: bf16 DeepSeek random ×4（bf16_ds_rand_s015/020/025/030）\n- **Batch 2 完成** → 立即启动 permutation test（median test statistic）+ 启动 Batch 3: Qwen importance ×4\n- **Batch 3 完成** → 启动 Batch 4: Qwen random ×4\n- **Batch 4 完成** → 全量统计分析 + 用 bf16 数据填充 §5 Results 的 placeholder 数字\n- **任何 bf16 实验 conclusion=negative** → 按 red-section 出 Framing 提案，不默默继续\n- **论文写作并行**: §5 Results 骨架 Worker 应在进行中（数字用 `\\placeholder{}`），§1 Intro / §7 Discussion / §8 Conclusion 可在 bf16 数据到手前起草框架\n\n### 5. 🎯 战略上下文\n- **核心发现**: importance-based eviction 的 compound interaction 在 low-sparsity phase 急剧放大（gradient 11-42×），random 保持 ~1×。Crossover 现象：high-sparsity phase importance 优于 random，low-sparsity phase 反转\n- **机制解释**: Entropy-Discrimination Collapse——head pruning → 注意力均匀化 → importance score 区分度崩溃 → importance eviction 退化为有偏伪随机\n- **截稿**: EMNLP 2026 ARR，2026-05-25（距今 11 天）\n- **关键风险**: fp16 数据因 Layer 27 NaN 偏差（15.3% 不一致）不可用于论文。bf16 重跑是唯一数据源，必须全部完成\n- **决策链**: D012(暂停审查指标) → D013(cumulative_attention 根因) → D014(pivot 到 phase-modulated) → D015(GO) → D017(bootstrap CI 确认) → D019(NaN 偏差发现) → D020(bf16 全量重跑) → D022(cross-model 术语修正)\n- **易错点**:\n  - QUEUED 里有命名重叠（bf16_importance vs bf16_ds_imp, bf16_random vs bf16_ds_rand），需要理清哪些是同一实验不同命名、哪些是不同实验\n  - 不要把 fp16 v6_* 数据和 bf16_* 数据混用到论文\n  - Qwen 实验无需代码修改，但必须等 DeepSeek bf16 先跑完（Batch 3/4 排在 Batch 1/2 之后，D020 决策）\n  - §3 Background 正在 patch（bootstrap B、multiplicative null、gradient 定义域），Writer Worker 可能还在改\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778738531.md"
+}

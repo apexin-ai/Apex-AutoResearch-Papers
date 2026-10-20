@@ -1,0 +1,17 @@
+{
+  "exp_id": "bf16_ds_imp_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:39:24.195Z",
+    "updated_at": "2026-05-14T06:38:51.579Z",
+    "hypothesis": "D020 bf16 全量重跑: DeepSeek-R1-Distill-Qwen-7B importance masking s=0.15, bf16 dtype. 核心 claim 数据源——论文所有数值来自此批实验。",
+    "notes": "已被 bf16_importance_s015 覆盖（DONE, success）。本 ID 不再单独跑。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T06:38:51.770730+00:00",
+  "trigger": "update_registry"
+}

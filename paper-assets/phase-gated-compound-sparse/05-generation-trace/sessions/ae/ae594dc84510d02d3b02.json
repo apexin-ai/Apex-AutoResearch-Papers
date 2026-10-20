@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae594dc84510d02d3b02",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose gsm8k profiling ds",
+  "task_key": "worker_diagnose_gsm8k_profiling_ds_20260515T163742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gsm8k_profiling_ds_20260515T163742_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "2f08c263556d785ec8777de44b823ee39680bedc307e383b38c951f590cc4e57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：gsm8k_profiling_ds 实验实际成功完成，Cron 误报 failed。**\n\n- **DS importance**: 50/50 完成，Verdict PASS — importance masking 在 high/mid sparsity phase 的 II 显著正向（sparsity 0.3 时 II=+73.8 / +291.4），low_sparsity II≈0（符合预期）\n- **DS random**: 50/50 完成，Verdict FAIL — random masking 无法区分 phase 类型，所有 phase 均有正 II（非选择性损失）\n- **误报原因**: 进程正常退出后 PID 消失，Cron 检测到 \"process dead\" 但未检查 exit code（exit code = 0）；该脚本不使用 W&B，\"无 W&B metrics\" 判定也是误判\n- **gsm8k_profiling_qw**: PID 245313/245314 健康运行中，GPU 利用率 96-97%，预计 ~1-2h 完成\n\nRegistry 已更新为 DONE/success。诊断报告已写入 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gsm8k-profiling-ds.md"
+}

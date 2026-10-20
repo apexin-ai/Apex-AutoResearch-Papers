@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7c3a3733011e56955d3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis qwen imp registry update",
+  "task_key": "worker_analysis_qwen-imp-registry-update_20260514T075546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen-imp-registry-update_20260514T075546_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "07dfded6ba3cc51b09283ae750f5c01cc997db1709d9964f373c74ce9db21e63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验 registry 全部更新完毕，status=DONE, conclusion=success, failure_reason 已清除。\n\n## Qwen2.5-7B Importance Masking 结果对比\n\n| Metric | s=0.15 | s=0.20 | s=0.25 | s=0.30 |\n|--------|--------|--------|--------|--------|\n| **Verdict** | PASS | PASS | PASS | PASS |\n| **Median II (high)** | 0.001 | -0.000 | 0.003 | 0.010 |\n| **Median II (mid)** | -0.011 | 0.002 | 0.114 | 0.688 |\n| **Median II (low)** | 0.039 | 0.235 | 1.271 | 2.953 |\n| **PPL both (high)** | 1.31 | 1.37 | 1.54 | 1.86 |\n| **PPL both (mid)** | 2.20 | 3.43 | 5.36 | 9.48 |\n| **PPL both (low)** | 5.44 | 9.20 | 16.96 | 35.32 |\n| **Low/High PPL ratio** | 4.2x | 6.7x | 11.0x | 19.0x |\n| **Low/High II ratio** | ~45x | ~2000x | ~371x | ~295x |\n\n趋势清晰：随 sparsity 增加，low phase 的 II 和 PPL 均爆炸式增长，high phase 几乎不受影响。Qwen2.5-7B 完全复现了 DeepSeek 的 phase-dependent interaction pattern。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-imp-registry-update.md"
+}

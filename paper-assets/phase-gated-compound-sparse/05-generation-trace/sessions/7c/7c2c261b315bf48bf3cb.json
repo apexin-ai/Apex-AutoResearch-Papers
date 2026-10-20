@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c2c261b315bf48bf3cb",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper cleanup old files",
+  "task_key": "worker_paper_cleanup_old_files_20260514T100856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cleanup_old_files_20260514T100856_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "e1611245d1488d464dd6208761770f1125bf39d0c0ff1ab4a8febda82fa93891"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### 旧文件清理\n\n**未发现需要清理的文件。** paper/ 目录下共 10 个 .tex 文件，全部被 main.tex 的 `\\input{}` 引用（appendix 被注释掉但无对应文件）：\n\n| 文件 | 状态 |\n|------|------|\n| abstract.tex | ✓ 被引用 |\n| introduction.tex | ✓ 被引用 |\n| related_work.tex | ✓ 被引用 |\n| background.tex | ✓ 被引用 |\n| methodology.tex | ✓ 被引用 |\n| results.tex | ✓ 被引用 |\n| analysis.tex | ✓ 被引用 |\n| discussion.tex | ✓ 被引用 |\n| conclusion.tex | ✓ 被引用 |\n| main.tex | 主文件 |\n\nROADMAP 提到的 `results_5_1.tex`、`*_fc6d1d.tex`、`*_4cc5f3.tex` 文件均不存在，可能已在之前的迭代中被清理。`deprecated/` 目录也不存在。\n\n### main.tex 模板状态\n\n**使用的是 standard article class，不是 EMNLP/ACL 模板。** main.tex 第 7 行：`\\documentclass[11pt]{article}`。文件顶部有 TODO 注释提示需要替换为 `acl2023.sty` 或 ACL 2025 style files，但尚未执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cleanup-old-files-copy-2.md"
+}

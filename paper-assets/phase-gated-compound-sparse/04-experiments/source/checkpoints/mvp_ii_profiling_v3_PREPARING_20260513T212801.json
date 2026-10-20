@@ -1,0 +1,23 @@
+{
+  "exp_id": "mvp_ii_profiling_v3",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:28:01.393Z",
+    "updated_at": "2026-05-13T21:28:01.393Z",
+    "spec": {
+      "command": "python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v3 --max_new_tokens 2048 --min_phase_length 10",
+      "server": "westd-22162",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "changes": "v3: sparsity 10%/20%, quantile segmentation, NaN guard"
+    }
+  },
+  "timestamp": "2026-05-13T21:28:01.405786+00:00",
+  "trigger": "update_registry"
+}

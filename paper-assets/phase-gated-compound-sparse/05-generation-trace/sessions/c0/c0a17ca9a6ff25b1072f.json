@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0a17ca9a6ff25b1072f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose bf16 qw imp failures",
+  "task_key": "worker_diagnose_bf16_qw_imp_failures_20260514T070415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_bf16_qw_imp_failures_20260514T070415_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "041db90021705ec13193a4b65bfdfc8ee35705a3c94ce9eefc0067b867c84ada"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**根因：模型未下载。** `/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct` 目录不存在。\n\n三个实验传入 `--model_path checkpoints/Qwen2.5-7B-Instruct`，但服务器上只有：\n- `Qwen2.5-7B`（base 模型）\n- `DeepSeek-R1-Distill-Qwen-7B`（symlink）\n\ntransformers 找不到本地目录后回退 HuggingFace Hub，绝对路径不是合法 repo_id → `HFValidationError` → 立即 crash。\n\n**修复二选一：**\n\n| 方案 | 操作 | 适用场景 |\n|------|------|----------|\n| A | 下载 Qwen2.5-7B-Instruct（ModelScope CDN，~10min） | 实验需要 Instruct 模型 |\n| B | 改 `--model_path` 为 `checkpoints/Qwen2.5-7B` | base 模型即可 |\n\n需要我执行哪个方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-bf16-qw-imp-failures.md"
+}

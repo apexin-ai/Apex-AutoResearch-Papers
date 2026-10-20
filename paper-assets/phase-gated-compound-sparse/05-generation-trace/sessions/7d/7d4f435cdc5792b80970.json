@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d4f435cdc5792b80970",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_2_1778735618.md",
+  "task_key": "loop_2_1778735618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778735618.md",
+    "occurrence": 1,
+    "bytes": 3746,
+    "sha256": "ae52082972a12b376c8e88a54639820bbd30d5aebc7d6536988b8fe01a666959"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T04:52:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅** westd-22162 cuda:0/1/2/3，其他 GPU 一律拒绝（即使 Director 指定）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不存在 .venv\n- v6 profiling 脚本用 `python -m pacs.profiling.run_profiling`，工作目录 `/root/autodl-tmp/pacs`\n- 截稿 **2026-05-25**（11 天），时间极紧，不允许 fallback 思维\n- Framing 必须描述为 \"emergent phase-strategy interaction\"，不是 \"importance metric limitation\"（Director D015 明确要求）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162, 4× RTX 6000 Pro 96GB\n- **工作目录**: `/root/autodl-tmp/pacs`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: DeepSeek-R1-Distill-Qwen-7B at `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`\n- **Cross-model**: Qwen2.5-7B-Instruct at `/root/autodl-tmp/models/Qwen2.5-7B/`（已下载）\n- **数据**: `/root/autodl-tmp/pacs/data/math500.json`（50 problems）\n- **分析脚本**: `analyze_v6_complete.py` 就绪\n- **活跃进程**: 无（全部实验已完成）\n- **活跃 Cron**: 无（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**全部 32 个实验已完成**，无 RUNNING。\n\nv6 importance 4 组全部 success，bootstrap CI 结果：\n- s=0.15: gradient=11.53, CI=[3.49, 23.78], p=0\n- s=0.20: gradient=11.05, CI=[5.42, 69.27], p=0\n- s=0.25: gradient=35.72, CI=[9.52, 101.54], p=0\n- s=0.30: gradient=41.92, CI=[19.14, 299.76], p=0\n\n**D017 已确认**: Bootstrap CI confirms importance gradient >> random。\n\n两个 Worker 仍标记 running（可能已过期/卡住）：\n- `worker_code_p0-per-problem-ii-fix` — 始于 03:24 UTC\n- `worker_ops_roadmap-update-v2` — 始于 04:48 UTC\n\n**未完成关键任务**（ROADMAP checklist）：\n- v6 random 4 组**尚未提交**（registry 中无 v6_random_* 实验）\n- Cross-model replication (Qwen2.5-7B) 未开始\n- 论文写作未启动\n\n### 4. 📋 待办（条件触发式）\n- Session 启动 → 立即提交 v6_random_s015/s020/s025/s030（4 GPU 并行，命令模板同 v6_importance 但 `--masking_method random`）\n- v6 random 4 组完成 → spawn Worker 用 `analyze_v6_complete.py` 做 importance vs random 对比分析 + bootstrap CI\n- 分析完成且 importance gradient >> random gradient confirmed → 启动 cross-model replication（Qwen2.5-7B，同样 8 组: 4 importance + 4 random）\n- Cross-model 也确认 → 汇报 Director，启动论文写作（paper_framing.md 已有 story arc）\n- 任何 v6_random 结果与 v5_random 不一致 → 立即汇报 Director，不自行决策\n\n### 5. 🎯 战略上下文\n**核心发现**: Importance-based eviction 的 compound interaction 在 low-sparsity phase 急剧放大（gradient 12-75×），而 random 保持平坦（~1×）。这是 phase-modulated, strategy-dependent 的。Crossover 现象（s=0.25 时 high phase importance 优于 random，但 low phase 反转）是 novelty 支柱。\n\n**决策链**: D008→D009→D010(pivot)→D011(NaN fix)→D012→D013→D014→D015(GO)→D016→D017(bootstrap confirmed)\n\n**易错点**:\n- v6 random 实验**必须**用 v6 代码（含 per_problem_ii 输出），不是 v5 代码。对比必须同版本\n- Qwen2.5-7B 路径是 `/root/autodl-tmp/models/Qwen2.5-7B/`，不是 HF cache\n- 不要把 v5 metrics 和 v6 metrics 直接对比（v6 有位置归一化修复，数值不同）\n- 两个挂起的 Worker 可能需要 cancel 后重新调度\n- 11 天截稿，v6 random + cross-model + 论文必须高度并行推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778735618.md"
+}

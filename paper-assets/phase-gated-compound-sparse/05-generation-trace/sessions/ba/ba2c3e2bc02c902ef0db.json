@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba2c3e2bc02c902ef0db",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "research round10 data prep",
+  "task_key": "worker_research_round10_data_prep_20260516T013334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_round10_data_prep_20260516T013334_result.json",
+    "occurrence": 1,
+    "bytes": 1142,
+    "sha256": "43b75e9bd532e13725e31de8d708a8b1065bfa5dabe4cc0164df15740f352ed3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据编译和一致性检查完成。Artifact 已注册: `art_20260516_2f776c`。\n\n## 结果摘要\n\n**数据规模**: 120 个实验全部 DONE，覆盖 13 个 claims。\n\n### 关键发现\n\n**数据就绪度 85% — 条件性可进入 Round 10**\n\n3 个需关注的一致性问题:\n\n| # | 问题 | 严重度 |\n|---|------|--------|\n| P1 | Batch1 v2 rescore 未完成，QW accuracy 可能变化 | 🟡 |\n| P2 | DS n=50 引用值与 PPI_low_median 差 ≤0.03（s020: 1.15 vs 1.13, s030: 9.94 vs 9.97），需确认计算方式 | 🟡 |\n| P3 | G× 21-64× 的 appendix_b_precise_gx 不在 registry，数据源不可追溯 | 🟡 |\n\n4 个非阻塞微调项:\n- \"3-15×\" 范围下界应为 ~2.7×（QW s025 n=500）\n- Cohen's d_z QW s015: framing 引 0.28 vs registry 0.37\n- DS 8k s030 缺失（已降为定性 D086）\n- GSM8K QW rand s030 gradient > importance（已在 framing 中处理）\n\n**Claim-Evidence Matrix**: 11/13 claims 数据完整（C8 LLaMA 受限于 n=50 功效，C9 仅需 §2 引用），所有 negative results 正确归类。\n\n**建议**: 可以开始 Round 10，并行解决 P1-P3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-round10-data-prep.md"
+}

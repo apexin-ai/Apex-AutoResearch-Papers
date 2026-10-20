@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a8e4194e589cc9eb828",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper abstract intro rewrite",
+  "task_key": "worker_paper_abstract-intro-rewrite_20260516T034917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract-intro-rewrite_20260516T034917_result.json",
+    "occurrence": 1,
+    "bytes": 1311,
+    "sha256": "700aba4e39b41750516d8df68ab8f7ce2be19b50ab7a150acb04477b95b4a48d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。主要变更总结：\n\n**Abstract:**\n- \"We present a systematic empirical investigation\" → \"We find that ... is not a fixed constant but an emergent property\"\n- 数字对齐 registry：DS 0.39→8.48 改为 0.32→9.94；QW 补全 0.048→2.619\n- 15–17× 修正为 2.7–15×（含低 sparsity random NS 的情况）\n- 新增 GSM8K 跨 benchmark + LLaMA 跨架构（含 strategy×phase 弱化限定）\n- 结尾从 \"actionable insights\" 改为 \"reveal ... challenging the assumption\"\n- 全文无 \"novel\"/\"first\"/\"propose\"，用 \"find\"/\"identify\"/\"reveal\"\n\n**Introduction:**\n- 删除 \"What does compound interaction add\" 独立段落和自我标签段（\"This work is a systematic empirical investigation\"）\n- Finding 段明确 \"three-way interaction among eviction strategy, reasoning phase, and sparsity level\"\n- 新增 GSM8K 交叉验证段落（DS 0.241→4.682; QW 0.039→2.092; specificity 衰减 15–36× → 2.3–3.8×）\n- Contributions 从 3 条扩为 4 条：(1) phase-modulated gradient, (2) cross-model/architecture, (3) discrimination collapse, (4) GSM8K validation\n- LLaMA 加限定：consistent direction, weaker strategy×phase contrast\n- 引用新增 HIES `\\cite{hies-2025}` 替换 `\\cite{retentivekv-2026}` 在 gap 段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abstract-intro-rewrite.md"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "c2_qw_n500",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 2,
+    "created_at": "2026-05-14T13:34:05.213Z",
+    "updated_at": "2026-05-14T14:38:39.210Z",
+    "hypothesis": "C2: Qwen n=500 统计功效提升。将 Qwen 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500，与 DeepSeek 对称验证。",
+    "notes": "Status corrected: cron false positive (profiling无W&B/sentinel, 输出在完成后才写盘). 实验从未中断. PID 131864/132002 正常运行, 进度~49/500 s015. SEED=42 hardcoded. ETA ~02:00 CST.",
+    "reproduce": {
+      "finished_at": "2026-05-14T14:36:36.371Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-14T14:13:26.223Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T14:13:28.582987+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T14:36:44.123761+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Status corrected: cron false positive (profiling无W&B/sentinel, 输出在完成后才写盘). 实验从未中断. PID 131864/132002 正常运行, 进度~49/500 s015. SEED=42 hardcoded. ETA ~02:00 CST."
+      }
+    }
+  },
+  "timestamp": "2026-05-14T14:38:39.897506+00:00",
+  "trigger": "update_registry"
+}

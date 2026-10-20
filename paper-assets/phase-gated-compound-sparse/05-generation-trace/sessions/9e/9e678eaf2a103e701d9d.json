@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e678eaf2a103e701d9d",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis acc ds s015 8k v2",
+  "task_key": "worker_analysis_acc_ds_s015_8k_v2_20260516T002941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_acc_ds_s015_8k_v2_20260516T002941_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "7ecfc36e165e5200ab208907933c7de476e055ba1671d7bce83a1652ea8d8fcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 指标 | s015 (本次) | dense | s020 | s025 |\n|------|------------|-------|------|------|\n| accuracy | **0.48** | 0.74 | 0.30 | 0.08 |\n| truncation_rate | **0.32** | 0.16 | 0.58 | 0.76 |\n| avg_tokens | **3750.5** | — | — | — |\n\n关键发现：\n- **truncated_count=16**（32%），全部产生 null 预测\n- 额外 1 个 null 预测来自非截断问题（algebra/2584, gen_length=5290，答案提取失败）\n- heads_pruned=112 在所有问题上一致\n- s015 的截断率是 dense 的 2 倍，但远好于 s020/s025，accuracy 也处于 dense 和 s020 之间的合理位置\n\n产出已写入 `artifacts/acc_ds_s015_8k_v2_analysis.json` 并注册（`art_20260516_9f8bf8`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-acc-ds-s015-8k-v2.md"
+}

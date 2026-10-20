@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa6e2d4aa8a3153badb2",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper download pdf",
+  "task_key": "worker_paper_download_pdf_20260514T103321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_download_pdf_20260514T103321_result.json",
+    "occurrence": 1,
+    "bytes": 235,
+    "sha256": "5acb104e251851555d60b51e013df2ff3630201beb98b0aa6adca44b8cd85cb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已下载到本地，验证结果：\n- 大小：334624 字节（与远程一致）\n- MD5：`6a72f2fb4a265cd460cf75b85c5bc0d1`（与远程一致）\n\n临时 SSH 密钥和服务器上的临时文件均已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-download-pdf.md"
+}

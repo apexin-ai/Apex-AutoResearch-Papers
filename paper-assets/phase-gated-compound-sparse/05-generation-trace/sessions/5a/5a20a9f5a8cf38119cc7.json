@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a20a9f5a8cf38119cc7",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper reference bib audit",
+  "task_key": "worker_paper_reference_bib_audit_20260514T122828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference_bib_audit_20260514T122828_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "ba905ff952ecf2b454130e8c6965d3a67b62605cb6bea50cbdef3790d3200c2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用，报告已直接写入产出目录。\n\n审计结果：\n\n- **30 条目 / 30 被引用 / 0 缺失 / 0 孤立**\n- **0 条疑似虚构引用** — 全部 30 条通过 web search 验证真实\n- **3 个格式问题：**\n  1. `h2o2024` key 含 \"2024\" 但实际是 NeurIPS 2023 (year=2023)，建议改为 `h2o-neurips2023`\n  2. Key 命名风格混用三种约定（`name-venue-year` / `name-year` / `authorYear`），建议统一\n  3. `deepseek-r1` 的 title 用了 arXiv 版本，但 journal 字段标注为 Nature，应改用 Nature 发表标题\n\n报告路径：`artifacts/reference_audit.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-bib-audit.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1d78fb12fad25fba3bba",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "diagnose gsm8k ds ii zero",
+  "task_key": "worker_diagnose_gsm8k_ds_ii_zero_20260515T164837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gsm8k_ds_ii_zero_20260515T164837.log",
+    "occurrence": 1,
+    "bytes": 723139,
+    "sha256": "36736640154e45884b17c1e2ecb3ad2394868e70e135a9a82fd939c5bf3046f0"
+  },
+  "statistics": {
+    "messages": 169,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 169,
+      "chunks": [
+        {
+          "path": "1d78fb12fad25fba3bba-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "1d78fb12fad25fba3bba-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-gsm8k-ds-ii-zero.md"
+}

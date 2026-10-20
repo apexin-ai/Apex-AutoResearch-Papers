@@ -1,0 +1,14 @@
+{
+  "exp_id": "bf16_ds_imp_s030",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:39:27.121Z",
+    "updated_at": "2026-05-14T05:39:27.121Z"
+  },
+  "timestamp": "2026-05-14T05:39:27.233652+00:00",
+  "trigger": "update_registry"
+}

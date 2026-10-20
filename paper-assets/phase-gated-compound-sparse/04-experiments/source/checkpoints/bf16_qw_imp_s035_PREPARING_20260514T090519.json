@@ -1,0 +1,26 @@
+{
+  "exp_id": "bf16_qw_imp_s035",
+  "project": "phase-gated-compound-sparse",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:05:19.126Z",
+    "updated_at": "2026-05-14T09:05:19.126Z",
+    "spec": {
+      "hypothesis": "Extended sparsity range: Qwen importance s=0.35, 扩展 dose-response 到 [0.10, 0.35]，加固 C2+C5 cross-model",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "server": "westd-22162",
+      "parent": "bf16_qw_imp_s030",
+      "claims": [
+        "C2",
+        "C5"
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T09:05:19.470893+00:00",
+  "trigger": "update_registry"
+}

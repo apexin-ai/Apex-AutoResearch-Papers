@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae7a0b5665f28df982ba",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "viz hero figure and crossover",
+  "task_key": "worker_viz_hero-figure-and-crossover_20260514T054344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_hero-figure-and-crossover_20260514T054344_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "f23b92ce991c9c863dbcf40ccef7779f6a4aa0df692f3e44fe72cae6ade808cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。文件路径：\n\n| 图表 | PDF | PNG |\n|------|-----|-----|\n| Fig 1: Severity Gradient | `/root/autodl-tmp/pacs/figures/fig1_severity_gradient.pdf` (24KB) | `/root/autodl-tmp/pacs/figures/fig1_severity_gradient.png` (141KB) |\n| Fig 2: Crossover Heatmap | `/root/autodl-tmp/pacs/figures/fig2_crossover_heatmap.pdf` (31KB) | `/root/autodl-tmp/pacs/figures/fig2_crossover_heatmap.png` (146KB) |\n\n规格：\n- Fig 1: 6.75in 双栏宽，左=grouped bar (log scale, 3 phase bins per sparsity)，右=gradient ratio 折线图 (importance 12.8→74.9× vs random ~1×)\n- Fig 2: 4.5in 单栏+宽，6×4 heatmap (log color scale)，绿框标注 crossover cells (imp>rnd)，蓝框标注 imp safer cells\n- serif 字体，8-9pt，无 grid，300dpi，colorblind-friendly 配色"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-hero-figure-and-crossover.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9969198da4999e8903ef",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code sf5 asymmetric spot",
+  "task_key": "worker_code_sf5_asymmetric_spot_20260515T173319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sf5_asymmetric_spot_20260515T173319_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "bcf61123684ceee4afad55d9d1a07383b8cac7069434ae64c873f250d93429cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 job 都在正常运行：\n- **Config A** (GPU 0): 已到第 4/50 题\n- **Config B** (GPU 1): 已到第 3/50 题\n\n## 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| 代码 | `run_sf5_asymmetric.py` 已部署，dry-run 通过 |\n| 数据 | math500.json 就绪，n=50 stratified sample |\n| 模型 | DeepSeek-R1-Distill-Qwen-7B 本地就位 |\n| Registry | sf5_asymmetric_spot → RUNNING |\n| Config A (h=0.20, kv=0.30) | GPU 0, PID 259632, 运行中 |\n| Config B (h=0.30, kv=0.20) | GPU 1, PID 259884, 运行中 |\n| 输出目录 | `profiling_output_sf5_h020_kv030/` 和 `profiling_output_sf5_h030_kv020/` |\n| 日志 | `logs/sf5_config_A.log` 和 `logs/sf5_config_B.log` |\n| 预计完成 | 每 config ~15-20 分钟（每题 ~10-20s × 50 题） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sf5-asymmetric-spot.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28cd1bb1b1bfbe84c47b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_9_1778814035.md",
+  "task_key": "loop_9_1778814035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778814035.md",
+    "occurrence": 1,
+    "bytes": 5030,
+    "sha256": "bb22414429d378b49a0fd9ff6fa76d360fbc6661d1c877ca00da9236fdaedacd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T02:54:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，不得使用其他 GPU\n- 当前分配：cuda:0+1 → c2_n500_deepseek | cuda:2+3 → c2_qw_n500_r3，不可中断或抢占\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv，不是 source activate）\n- II 主指标是 **median**（不是 mean），bootstrap B=10000，d_z 只在 within-importance 比较中报告，涉及 random 的比较只报 Wilcoxon + median_diff（D054/D059）\n- 论文 framing 硬约束（D015）：MUST \"emergent phase-strategy interaction\"；MUST NOT \"importance is broken\"；MUST NOT claim importance super-additive without qualifier\n- C5b 已判定 future_work（D056），不再跑 mitigation 实验\n- C8 是 partially_confirmed（D060），论文中 LLaMA 相关必须用 \"suggests\"/\"partial support\"，禁用 \"confirms\"\n- n=500 分析命令已固定：`cd /root/autodl-tmp/pacs && python3 analyze_n500_unified.py --csv --latex`，不要改脚本或参数\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据集：`/root/autodl-tmp/pacs/data/MATH-500/`（n=500）\n- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen（具体路径在服务器上，profiling 实验不需要额外模型路径）\n- 活跃进程：\n  - c2_n500_deepseek: tmux `c2_n500_gpu0` + `c2_n500_gpu1`（cuda:0+1），cron ID `c2_n500_deepseek`\n  - c2_qw_n500_r3: screen `c2_qw_gpu2` + `c2_qw_gpu3`（cuda:2+3），cron ID `c2_qw_n500_r3`，PID 159269/159794\n- Cron 监控：两个实验均 reconcile 确认 still running\n\n### 3. 📊 当前状态\n**刚做完**：session-start 初始化，reconcile crons 确认两个实验仍在运行。\n\n**RUNNING 实验**：\n- `c2_n500_deepseek`（cuda:0+1）：DeepSeek n=500 统计功效提升。s015/s020 DONE，s025 RUNNING（imp 233/500, rand 285/500），s030 PENDING。ETA 全部完成 ~15:30 UTC+8（约 2026-05-15）\n- `c2_qw_n500_r3`（cuda:2+3）：Qwen n=500 continuation。s015/s020 DONE，s025 RUNNING（imp 362/500, rand 337/500），s030 PENDING。ETA 全部完成 ~13:27 UTC+8\n\n**等待中**：\n- 两个实验的 cron 完成回调\n- 无 Worker 在运行（Worker 池 = 0）\n- 无 Director 待决策事项\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调到达 → spawn Worker 跑 `analyze_n500_unified.py --csv --latex`（DeepSeek 部分），**第一时间检查 random s025/s030 是否显著**（memory.md 标注的 Reviewer 重点关注项）\n- c2_qw_n500_r3 cron 回调到达 → spawn Worker 跑统一分析（Qwen 部分），重点关注 Qwen s015 CI 是否仍跨零\n- 两个实验都完成 → 汇总分析汇报 Director，内容包括：\n  - median II + bootstrap CI 全表\n  - random s025/s030 显著性判定（若显著 → 论文措辞从 \"random 无 compound effect\" 调整为 \"moderate sparsity 下特异于 importance，high sparsity 下 random 也显著但幅度更小\"）\n  - Qwen s015 判定（CI 仍跨零 → 叙事改为 \"compound effect emerges above threshold sparsity ~s020\"）\n  - d_z within-importance only 报告\n- Director 确认分析后 → 派 Paper Agent 统一更新论文（n=500 tables/figures + C5b §8 future work + C8 限定语 + Qwen caveat）\n- 论文更新完成 → 提交 Group C full review\n- **截稿 2026-05-25（距今 10 天）**\n\n### 5. 🎯 战略上下文\n**项目核心结论**：Importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（phase-modulated），random masking 无此梯度（7/8 FAIL）。机制是 discrimination collapse（Gini/CV 下降）。跨模型（DeepSeek/Qwen）方向一致，跨架构（LLaMA）qualitative consistent 但 quantitative interaction weaker。\n\n**决策链关键节点**：\n- D054: II 主指标 mean→median\n- D056: C5b gate_failed → future_work\n- D059: d_z 分场景报告规则\n- D060: C8 降级 partially_confirmed\n- D061: n=500 paired gradient 设计\n- D062: Cron shell PID + sentinel 双机制\n\n**最容易判断错的事**：\n1. **不要把 n=50 旧数据和 n=500 新数据混用**——论文更新必须全部用 n=500 数据替换 n=50\n2. **Qwen s015 可能仍不显著**——这不是 failure，预注册方案已有（D058：叙事改为 threshold ~s020）\n3. **random s030 可能变显著**（n=50 dryrun 信号：DS CI [0.198,1.885], QW CI [0.242,3.488]）——这会改变论文措辞，但不改变核心 claim（区分信号是 phase gradient 而非 super-additivity 本身）\n4. **Worker 池当前 = 0**，实验在跑不代表没事做——接手后应考虑并行铺分析脚本验证、论文更新准备等 CPU 任务\n5. **两个实验 ETA 接近但不同步**（DeepSeek ~15:30, Qwen ~13:27 UTC+8），可能分批回调，需分别处理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778814035.md"
+}

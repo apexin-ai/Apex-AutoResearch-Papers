@@ -1,0 +1,145 @@
+{
+  "exp_id": "c8_llama_n250_fixed",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:20:55.979Z",
+    "updated_at": "2026-05-16T22:01:07.073Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && bash run_c8_llama_n250_fixed.sh\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "310712",
+      "log_path": "~/runs/phase-gated-compound-sparse/c8_llama_n250_fixed.log",
+      "submitted_at": "2026-05-16T03:20:55.549Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/math500.json",
+      "data_count": 250,
+      "model_name": "DeepSeek-R1-Distill-Llama-8B",
+      "seed": 42,
+      "hypothesis": "C8 LLaMA n=250 cross-architecture validation (fixed OOM + exit code handling): 8 conditions (imp/rand x 4 sparsity), MATH-500, max_new_tokens=8192",
+      "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_c8_llama_*/",
+      "wall_clock_seconds": 67211.5,
+      "gpu_hours": 37.34
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T21:47:17.867Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T21:47:22.491275+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "n_problems": 250,
+      "model": "DeepSeek-R1-Distill-Llama-8B",
+      "conditions_completed": "8/8",
+      "importance": {
+        "s015": {
+          "median_gradient": 0.050099,
+          "ci": [
+            0.045477,
+            0.058804
+          ],
+          "wilcoxon_p": 1.44e-29,
+          "cohens_dz": 0.814,
+          "monotonic": true
+        },
+        "s020": {
+          "median_gradient": 0.158708,
+          "ci": [
+            0.141193,
+            0.181937
+          ],
+          "wilcoxon_p": 8.94e-35,
+          "cohens_dz": 1.01,
+          "monotonic": true
+        },
+        "s025": {
+          "median_gradient": 0.376131,
+          "ci": [
+            0.315704,
+            0.402861
+          ],
+          "wilcoxon_p": 4.3e-39,
+          "cohens_dz": 1.1151,
+          "monotonic": true
+        },
+        "s030": {
+          "median_gradient": 0.695435,
+          "ci": [
+            0.639426,
+            0.770102
+          ],
+          "wilcoxon_p": 1.48e-40,
+          "cohens_dz": 1.15,
+          "monotonic": true
+        }
+      },
+      "random": {
+        "s015": {
+          "median_gradient": 0.025489,
+          "ci": [
+            0.019942,
+            0.033342
+          ],
+          "wilcoxon_p": 9.28e-13,
+          "cohens_dz": 0.4359,
+          "monotonic": true
+        },
+        "s020": {
+          "median_gradient": 0.065003,
+          "ci": [
+            0.052258,
+            0.088191
+          ],
+          "wilcoxon_p": 3.63e-15,
+          "cohens_dz": 0.4588,
+          "monotonic": true
+        },
+        "s025": {
+          "median_gradient": 0.184201,
+          "ci": [
+            0.112738,
+            0.247119
+          ],
+          "wilcoxon_p": 3.75e-13,
+          "cohens_dz": 0.4239,
+          "monotonic": true
+        },
+        "s030": {
+          "median_gradient": 0.270653,
+          "ci": [
+            0.193489,
+            0.368089
+          ],
+          "wilcoxon_p": 6e-12,
+          "cohens_dz": 0.4104,
+          "monotonic": true
+        }
+      },
+      "dose_response_monotonic": true,
+      "imp_rand_ratio_range": "1.97-2.57x",
+      "all_conditions_significant": true,
+      "importance_effect_size_range": "0.81-1.15 (large)",
+      "random_effect_size_range": "0.41-0.46 (medium)"
+    },
+    "hypothesis": "Phase-gated compound sparsity produces a monotonically increasing interaction index gradient (low > mid > high phase) in LLaMA-8B on MATH-500, with importance-based masking yielding at least 1.5x larger gradients than random masking across all sparsity levels (0.15-0.30), because importance-based selection preferentially removes redundant heads in exploration phases while preserving critical computation in verification phases.",
+    "completed_at": "2026-05-16T22:01:07.073Z"
+  },
+  "timestamp": "2026-05-16T22:01:07.541984+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ab30238bb1fa370f8f4",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis acc ds s020",
+  "task_key": "worker_analysis_acc_ds_s020_20260515T211728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_acc_ds_s020_20260515T211728_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "5f1d69fb420f3d5df1a987f3e84fee0bfeaafcd9540c453c6253422fd8fcb91d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nMETRICS:\nds_s020_acc = 0.26\nds_s020_correct = 13\nds_s020_total = 50\nds_s020_delta_vs_dense = -0.26\nnull_count = 31\nnull_rate = 0.62\ntrunc_count = 32\ntrunc_rate = 0.64\nwrong_count = 6\nwrong_rate = 0.12\nheads_pruned = 140\ntotal_time_s = 1560\n```\n\n**Conclusion: success**\n\n剂量曲线严格单调递减：\n\n| condition | accuracy | Δ vs dense |\n|-----------|----------|------------|\n| dense     | 0.52     | —          |\n| s015      | 0.34     | -0.18      |\n| **s020**  | **0.26** | **-0.26**  |\n| s025      | (pending)|            |\n| s030      | 0.10     | -0.42      |\n\ns020 (0.26) 精确落在 s015 (0.34) 和 s030 (0.10) 之间，支持 dose-dependent degradation 假说。\n\n注意点：null_rate 高达 62%（31/50 题模型未能提取答案，其中 32 题触发 2048 token 截断），说明 s020 剪枝强度下模型推理链路已严重受损，大量问题陷入无效循环直到截断。仅 6 题给出了错误答案（wrong_rate=12%），多数失败模式是「无输出」而非「错误输出」。\n\nW&B：日志中无 wandb run ID。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-acc-ds-s020.md"
+}

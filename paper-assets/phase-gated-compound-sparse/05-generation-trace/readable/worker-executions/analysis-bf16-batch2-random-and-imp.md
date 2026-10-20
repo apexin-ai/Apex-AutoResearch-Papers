@@ -1,0 +1,2703 @@
+# analysis bf16 batch2 random and imp
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/workers/worker_analysis_bf16_batch2_random_and_imp_20260514T064655.log`
+- **Structured JSON:** [`5b14f3e791270328d334.json`](../../sessions/5b/5b14f3e791270328d334.json)
+
+## Before a recorded user message
+
+49 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "953ae8f7-8156-4f36-a77e-37813240b84f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778757000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3abbeb54-403f-442d-8b79-b88bbd7ea905",
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the 5 experiments. I'll start by checking logs and output directories on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "dc920a63-7a22-4da0-bcff-263566b1a412",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TrKsxKhCHffykx7qa1SdKY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12320,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12320
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始分析 5 个实验。先批量检查 log 和输出目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "11993ecc-2685-4321-887e-694c1f03abe5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TrKsxKhCHffykx7qa1SdKY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12320,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12320
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ASjXSccKq13qNkxH1b8VgX`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "cd51c7c2-c4f0-4b22-b0b2-8a01563ff551",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TrKsxKhCHffykx7qa1SdKY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12320,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12320
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T06:47:06.665Z_
+
+<details><summary>↩ Tool result · `toolu_01ASjXSccKq13qNkxH1b8VgX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "44b1767a-32cc-404f-a1e5-e06d4239859a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BkiX8nBtnGfdFtrfDF9pcn`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -50 ~/runs/phase-gated-compound-sparse/bf16_ds_rand_s015.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "88b9891a-2656-4615-8819-6a714302c694",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012P5GTTvTMHeFpyykw8zCD7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BzZ663Ei4MigKhrY6egMW1`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -50 ~/runs/phase-gated-compound-sparse/bf16_ds_rand_s020.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "ca1fa729-dd4d-4b04-b2af-f064b5a2cbe7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012P5GTTvTMHeFpyykw8zCD7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T06:47:11.294Z_
+
+<details><summary>↩ Tool result · `toolu_01BkiX8nBtnGfdFtrfDF9pcn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:36:17,900 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:36:17,900 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:10,578 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:37:10,579 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:59,095 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:37:59,095 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:38:13,127 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:38:13,128 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:04,794 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:39:04,795 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:55,728 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:39:55,728 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:40:46,237 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:40:46,238 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:41:28,308 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:41:28,308 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:42:15,012 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:42:15,013 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:05,246 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:43:05,246 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:58,004 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:43:58,087 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.15]: mean=+0.3849  95%CI=[-0.5409, +1.3147]\\n  II[low_sparsity, 0.15]: mean=-5.7326  95%CI=[-10.9283, -1.4391]\\n  II[mid_sparsity, 0.15]: mean=-172.6626  95%CI=[-427.0058, -9.0687]\\n\\nVerdict: PASS\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.15\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "cad51116-79a5-4461-a5f7-9720b9973fcf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:36:17,900 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\\\n2026-05-14 14:36:17,900 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:37:10,578 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\\\n2026-05-14 14:37:10,579 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:37:59,095 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\\\n2026-05-14 14:37:59,095 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:38:13,127 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\\\n2026-05-14 14:38:13,128 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:39:04,794 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\\\n2026-05-14 14:39:04,795 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:39:55,728 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\\\n2026-05-14 14:39:55,728 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:40:46,237 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\\\n2026-05-14 14:40:46,238 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:41:28,308 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\\\n2026-05-14 14:41:28,308 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:42:15,012 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\\\n2026-05-14 14:42:15,013 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:43:05,246 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\\\n2026-05-14 14:43:05,246 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:43:58,004 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\\\n2026-05-14 14:43:58,087 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json\\\\n\\\\n============================================================\\\\nPACS Profiling Complete — 50 problems\\\\n============================================================\\\\n  high_sparsity: 21086 tokens, 387 segments\\\\n  low_sparsity: 27748 tokens, 397 segments\\\\n  mid_sparsity: 13306 tokens, 191 segments\\\\n\\\\n  II[high_sparsity, 0.15]: mean=+0.3849  95%CI=[-0.5409, +1.3147]\\\\n  II[low_sparsity, 0.15]: mean=-5.7326  95%CI=[-10.9283, -1.4391]\\\\n  II[mid_sparsity, 0.15]: mean=-172.6626  95%CI=[-427.0058, -9.0687]\\\\n\\\\nVerdict: PASS\\\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\\n============================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:36:17,900 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:36:17,900 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:10,578 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:37:10,579 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:59,095 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:37:59,095 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:38:13,127 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:38:13,128 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:04,794 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:39:04,795 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:55,728 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:39:55,728 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:40:46,237 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:40:46,238 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:41:28,308 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:41:28,308 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:42:15,012 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:42:15,013 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:05,246 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:43:05,246 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:58,004 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:43:58,087 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.15]: mean=+0.3849  95%CI=[-0.5409, +1.3147]\\n  II[low_sparsity, 0.15]: mean=-5.7326  95%CI=[-10.9283, -1.4391]\\n  II[mid_sparsity, 0.15]: mean=-172.6626  95%CI=[-427.0058, -9.0687]\\n\\nVerdict: PASS\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.15\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YY1ac9dseCuxXYnwQP6G2w`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -50 ~/runs/phase-gated-compound-sparse/bf16_ds_rand_s025.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "5a4283bd-afb0-44bd-9db6-c77875ce61c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012P5GTTvTMHeFpyykw8zCD7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T06:47:11.796Z_
+
+<details><summary>↩ Tool result · `toolu_01BzZ663Ei4MigKhrY6egMW1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 14:36:18,607 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:36:18,608 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:11,015 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:37:11,016 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:59,283 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:37:59,284 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:38:13,223 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:38:13,224 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:04,671 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:39:04,672 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:55,457 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:39:55,458 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:40:45,887 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:40:45,888 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:41:28,062 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:41:28,062 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:42:14,628 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:42:14,629 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:04,764 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:43:04,764 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:57,234 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:43:57,307 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.2]: mean=+2.5259  95%CI=[+1.2546, +4.2356]\\n  II[low_sparsity, 0.2]: mean=-2.4805  95%CI=[-5.6296, +0.1128]\\n  II[mid_sparsity, 0.2]: mean=-36.0516  95%CI=[-93.2484, -2.2016]\\n\\nVerdict: PASS\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.2\\n  Sign reversal:   high_sparsity II>0, mid_sparsity II<0 at 0.2\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "087ca899-8f72-49ec-a01a-96420d6b73c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 14:36:18,607 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\\\n2026-05-14 14:36:18,608 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:37:11,015 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\\\n2026-05-14 14:37:11,016 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:37:59,283 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\\\n2026-05-14 14:37:59,284 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:38:13,223 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\\\n2026-05-14 14:38:13,224 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:39:04,671 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\\\n2026-05-14 14:39:04,672 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:39:55,457 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\\\n2026-05-14 14:39:55,458 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:40:45,887 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\\\n2026-05-14 14:40:45,888 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:41:28,062 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\\\n2026-05-14 14:41:28,062 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:42:14,628 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\\\n2026-05-14 14:42:14,629 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:43:04,764 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\\\n2026-05-14 14:43:04,764 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:43:57,234 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\\\n2026-05-14 14:43:57,307 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json\\\\n\\\\n============================================================\\\\nPACS Profiling Complete — 50 problems\\\\n============================================================\\\\n  high_sparsity: 21086 tokens, 387 segments\\\\n  low_sparsity: 27748 tokens, 397 segments\\\\n  mid_sparsity: 13306 tokens, 191 segments\\\\n\\\\n  II[high_sparsity, 0.2]: mean=+2.5259  95%CI=[+1.2546, +4.2356]\\\\n  II[low_sparsity, 0.2]: mean=-2.4805  95%CI=[-5.6296, +0.1128]\\\\n  II[mid_sparsity, 0.2]: mean=-36.0516  95%CI=[-93.2484, -2.2016]\\\\n\\\\nVerdict: PASS\\\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.2\\\\n  Sign reversal:   high_sparsity II>0, mid_sparsity II<0 at 0.2\\\\n============================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 14:36:18,607 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:36:18,608 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:11,015 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:37:11,016 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:59,283 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:37:59,284 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:38:13,223 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:38:13,224 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:04,671 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:39:04,672 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:55,457 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:39:55,458 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:40:45,887 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:40:45,888 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:41:28,062 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:41:28,062 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:42:14,628 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:42:14,629 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:04,764 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:43:04,764 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:57,234 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:43:57,307 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.2]: mean=+2.5259  95%CI=[+1.2546, +4.2356]\\n  II[low_sparsity, 0.2]: mean=-2.4805  95%CI=[-5.6296, +0.1128]\\n  II[mid_sparsity, 0.2]: mean=-36.0516  95%CI=[-93.2484, -2.2016]\\n\\nVerdict: PASS\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.2\\n  Sign reversal:   high_sparsity II>0, mid_sparsity II<0 at 0.2\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T06:47:12.322Z_
+
+<details><summary>↩ Tool result · `toolu_01YY1ac9dseCuxXYnwQP6G2w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 14:36:25,990 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:36:25,990 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:18,598 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:37:18,599 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:38:06,951 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:38:06,952 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:38:20,936 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:38:20,936 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:12,562 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:39:12,563 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:40:03,499 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:40:03,499 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:40:53,603 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:40:53,603 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:41:35,595 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:41:35,595 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:42:21,882 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:42:21,883 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:12,159 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:43:12,159 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:44:04,646 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:44:04,717 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.25]: mean=+5.5906  95%CI=[+1.1716, +9.4656]\\n  II[low_sparsity, 0.25]: mean=-9.1062  95%CI=[-25.8045, +2.5166]\\n  II[mid_sparsity, 0.25]: mean=-514.2418  95%CI=[-1361.4741, -24.9357]\\n\\nVerdict: PASS\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.25\\n  Sign reversal:   high_sparsity II>0, mid_sparsity II<0 at 0.25\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "a6701289-33c9-454b-b8a7-97b992583f77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 14:36:25,990 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\\\n2026-05-14 14:36:25,990 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:37:18,598 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\\\n2026-05-14 14:37:18,599 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:38:06,951 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\\\n2026-05-14 14:38:06,952 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:38:20,936 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\\\n2026-05-14 14:38:20,936 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:39:12,562 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\\\n2026-05-14 14:39:12,563 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:40:03,499 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\\\n2026-05-14 14:40:03,499 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:40:53,603 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\\\n2026-05-14 14:40:53,603 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:41:35,595 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\\\n2026-05-14 14:41:35,595 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:42:21,882 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\\\n2026-05-14 14:42:21,883 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:43:12,159 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\\\n2026-05-14 14:43:12,159 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:44:04,646 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\\\n2026-05-14 14:44:04,717 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json\\\\n\\\\n============================================================\\\\nPACS Profiling Complete — 50 problems\\\\n============================================================\\\\n  high_sparsity: 21086 tokens, 387 segments\\\\n  low_sparsity: 27748 tokens, 397 segments\\\\n  mid_sparsity: 13306 tokens, 191 segments\\\\n\\\\n  II[high_sparsity, 0.25]: mean=+5.5906  95%CI=[+1.1716, +9.4656]\\\\n  II[low_sparsity, 0.25]: mean=-9.1062  95%CI=[-25.8045, +2.5166]\\\\n  II[mid_sparsity, 0.25]: mean=-514.2418  95%CI=[-1361.4741, -24.9357]\\\\n\\\\nVerdict: PASS\\\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.25\\\\n  Sign reversal:   high_sparsity II>0, mid_sparsity II<0 at 0.25\\\\n============================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 14:36:25,990 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:36:25,990 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:18,598 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:37:18,599 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:38:06,951 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:38:06,952 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:38:20,936 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:38:20,936 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:39:12,562 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:39:12,563 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:40:03,499 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:40:03,499 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:40:53,603 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:40:53,603 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:41:35,595 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:41:35,595 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:42:21,882 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:42:21,883 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:43:12,159 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:43:12,159 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:44:04,646 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:44:04,717 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.25]: mean=+5.5906  95%CI=[+1.1716, +9.4656]\\n  II[low_sparsity, 0.25]: mean=-9.1062  95%CI=[-25.8045, +2.5166]\\n  II[mid_sparsity, 0.25]: mean=-514.2418  95%CI=[-1361.4741, -24.9357]\\n\\nVerdict: PASS\\n  CI overlap test: high_sparsity vs mid_sparsity CI non-overlapping at 0.25\\n  Sign reversal:   high_sparsity II>0, mid_sparsity II<0 at 0.25\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019iAnVhvaxYfGryesyZwPvF`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -50 ~/runs/phase-gated-compound-sparse/bf16_importance_s020.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "0deb752f-2edf-4979-b7e2-c6c0896cc0f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012P5GTTvTMHeFpyykw8zCD7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W6qTfYkev5tgXntbmN4cXZ`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -50 ~/runs/phase-gated-compound-sparse/bf16_importance_s030.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "9c96094d-235b-4207-bac5-8f212753bbb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012P5GTTvTMHeFpyykw8zCD7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 24161,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T06:47:13.005Z_
+
+<details><summary>↩ Tool result · `toolu_019iAnVhvaxYfGryesyZwPvF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:19:16,852 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:19:16,852 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:20:57,582 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:20:57,582 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:22:29,342 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:22:29,342 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:22:56,336 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:22:56,336 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:24:36,741 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:24:36,742 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:26:15,713 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:26:15,714 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:27:53,878 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:27:53,879 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:29:15,991 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:29:15,991 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:30:43,488 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:30:43,489 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:32:21,337 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:32:21,338 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:34:03,055 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:34:03,127 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.2]: mean=+0.1289  95%CI=[-0.1975, +0.6647]\\n  II[low_sparsity, 0.2]: mean=+6.0288  95%CI=[+4.4671, +7.9237]\\n  II[mid_sparsity, 0.2]: mean=+1.2604  95%CI=[+0.7466, +1.8962]\\n\\nVerdict: PASS\\n  CI overlap test: low_sparsity vs mid_sparsity CI non-overlapping at 0.2\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "388e498c-db10-41da-87b0-2f90ba803271",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:19:16,852 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\\\n2026-05-14 14:19:16,852 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:20:57,582 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\\\n2026-05-14 14:20:57,582 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:22:29,342 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\\\n2026-05-14 14:22:29,342 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:22:56,336 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\\\n2026-05-14 14:22:56,336 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:24:36,741 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\\\n2026-05-14 14:24:36,742 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:26:15,713 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\\\n2026-05-14 14:26:15,714 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:27:53,878 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\\\n2026-05-14 14:27:53,879 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:29:15,991 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\\\n2026-05-14 14:29:15,991 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:30:43,488 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\\\n2026-05-14 14:30:43,489 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:32:21,337 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\\\n2026-05-14 14:32:21,338 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:34:03,055 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\\\n2026-05-14 14:34:03,127 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json\\\\n\\\\n============================================================\\\\nPACS Profiling Complete — 50 problems\\\\n============================================================\\\\n  high_sparsity: 21086 tokens, 387 segments\\\\n  low_sparsity: 27748 tokens, 397 segments\\\\n  mid_sparsity: 13306 tokens, 191 segments\\\\n\\\\n  II[high_sparsity, 0.2]: mean=+0.1289  95%CI=[-0.1975, +0.6647]\\\\n  II[low_sparsity, 0.2]: mean=+6.0288  95%CI=[+4.4671, +7.9237]\\\\n  II[mid_sparsity, 0.2]: mean=+1.2604  95%CI=[+0.7466, +1.8962]\\\\n\\\\nVerdict: PASS\\\\n  CI overlap test: low_sparsity vs mid_sparsity CI non-overlapping at 0.2\\\\n============================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:19:16,852 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:19:16,852 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:20:57,582 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:20:57,582 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:22:29,342 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:22:29,342 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:22:56,336 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:22:56,336 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:24:36,741 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:24:36,742 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:26:15,713 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:26:15,714 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:27:53,878 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:27:53,879 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:29:15,991 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:29:15,991 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:30:43,488 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:30:43,489 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:32:21,337 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:32:21,338 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:34:03,055 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:34:03,127 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.2]: mean=+0.1289  95%CI=[-0.1975, +0.6647]\\n  II[low_sparsity, 0.2]: mean=+6.0288  95%CI=[+4.4671, +7.9237]\\n  II[mid_sparsity, 0.2]: mean=+1.2604  95%CI=[+0.7466, +1.8962]\\n\\nVerdict: PASS\\n  CI overlap test: low_sparsity vs mid_sparsity CI non-overlapping at 0.2\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T06:47:13.534Z_
+
+<details><summary>↩ Tool result · `toolu_01W6qTfYkev5tgXntbmN4cXZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:25:58,742 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:25:58,742 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:27:42,201 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:27:42,202 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:29:17,575 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:29:17,575 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:29:44,209 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:29:44,209 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:31:23,313 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:31:23,315 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:33:01,817 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:33:01,818 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:34:22,579 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:34:22,580 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:35:06,120 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:35:06,120 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:35:57,041 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:35:57,041 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:36:52,093 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:36:52,093 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:49,691 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:37:49,773 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.3]: mean=+0.5547  95%CI=[+0.2773, +0.9198]\\n  II[low_sparsity, 0.3]: mean=+57.7946  95%CI=[+41.4416, +77.0467]\\n  II[mid_sparsity, 0.3]: mean=+11.3000  95%CI=[+6.8650, +17.2633]\\n\\nVerdict: PASS\\n  CI overlap test: low_sparsity vs mid_sparsity CI non-overlapping at 0.3\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "b04e5ae6-bbce-44e7-a341-78ddc72ff32a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:25:58,742 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\\\n2026-05-14 14:25:58,742 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:27:42,201 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\\\n2026-05-14 14:27:42,202 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:29:17,575 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\\\n2026-05-14 14:29:17,575 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:29:44,209 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\\\n2026-05-14 14:29:44,209 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:31:23,313 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\\\n2026-05-14 14:31:23,315 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:33:01,817 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\\\n2026-05-14 14:33:01,818 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:34:22,579 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\\\n2026-05-14 14:34:22,580 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:35:06,120 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\\\n2026-05-14 14:35:06,120 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:35:57,041 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\\\n2026-05-14 14:35:57,041 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:36:52,093 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\\\n2026-05-14 14:36:52,093 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\\\n2026-05-14 14:37:49,691 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\\\n2026-05-14 14:37:49,773 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json\\\\n\\\\n============================================================\\\\nPACS Profiling Complete — 50 problems\\\\n============================================================\\\\n  high_sparsity: 21086 tokens, 387 segments\\\\n  low_sparsity: 27748 tokens, 397 segments\\\\n  mid_sparsity: 13306 tokens, 191 segments\\\\n\\\\n  II[high_sparsity, 0.3]: mean=+0.5547  95%CI=[+0.2773, +0.9198]\\\\n  II[low_sparsity, 0.3]: mean=+57.7946  95%CI=[+41.4416, +77.0467]\\\\n  II[mid_sparsity, 0.3]: mean=+11.3000  95%CI=[+6.8650, +17.2633]\\\\n\\\\nVerdict: PASS\\\\n  CI overlap test: low_sparsity vs mid_sparsity CI non-overlapping at 0.3\\\\n============================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Setting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:25:58,742 [INFO] run_profiling:   -> 35 phases, boundaries at [8, 48, 98, 135, 193, 234, 246, 271, 314, 340, 384, 405, 442, 489, 520, 542, 581, 929, 1009, 1039, 1274, 1287, 1428, 1715, 1795, 1815, 1844, 1885, 1909, 1933, 1946, 1963, 1978, 2021]\\n2026-05-14 14:25:58,742 [INFO] run_profiling: [41/50] Processing problem test/algebra/2277.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:27:42,201 [INFO] run_profiling:   -> 41 phases, boundaries at [17, 37, 171, 241, 352, 397, 456, 502, 526, 550, 567, 628, 670, 746, 845, 857, 901, 913, 924, 1040, 1077, 1102, 1136, 1164, 1231, 1248, 1298, 1440, 1497, 1518, 1716, 1727, 1765, 1801, 1818, 1875, 1897, 1928, 1946, 1993]\\n2026-05-14 14:27:42,202 [INFO] run_profiling: [42/50] Processing problem test/intermediate_algebra/582.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:29:17,575 [INFO] run_profiling:   -> 28 phases, boundaries at [15, 153, 189, 221, 234, 257, 294, 342, 381, 401, 443, 471, 556, 869, 902, 1573, 1592, 1632, 1680, 1692, 1745, 1833, 1856, 1871, 1915, 1937, 1966]\\n2026-05-14 14:29:17,575 [INFO] run_profiling: [43/50] Processing problem test/number_theory/427.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:29:44,209 [INFO] run_profiling:   -> 5 phases, boundaries at [140, 355, 557, 707]\\n2026-05-14 14:29:44,209 [INFO] run_profiling: [44/50] Processing problem test/number_theory/820.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:31:23,313 [INFO] run_profiling:   -> 39 phases, boundaries at [104, 132, 167, 181, 211, 223, 244, 263, 285, 323, 342, 364, 401, 422, 454, 567, 588, 631, 642, 676, 828, 905, 965, 1110, 1147, 1420, 1475, 1542, 1656, 1702, 1741, 1833, 1852, 1889, 1922, 1961, 1974, 2027]\\n2026-05-14 14:31:23,315 [INFO] run_profiling: [45/50] Processing problem test/precalculus/768.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:33:01,817 [INFO] run_profiling:   -> 37 phases, boundaries at [121, 236, 287, 317, 361, 390, 419, 451, 562, 591, 605, 734, 806, 822, 904, 988, 1089, 1108, 1145, 1159, 1194, 1345, 1451, 1513, 1570, 1586, 1672, 1688, 1702, 1723, 1755, 1791, 1803, 1818, 1857, 2029]\\n2026-05-14 14:33:01,818 [INFO] run_profiling: [46/50] Processing problem test/prealgebra/1558.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:34:22,579 [INFO] run_profiling:   -> 34 phases, boundaries at [91, 137, 155, 185, 248, 276, 319, 378, 396, 437, 453, 492, 533, 565, 577, 629, 798, 884, 915, 942, 965, 1262, 1339, 1491, 1611, 1660, 1748, 1822, 1833, 1893, 1911, 1962, 1993]\\n2026-05-14 14:34:22,580 [INFO] run_profiling: [47/50] Processing problem test/precalculus/323.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:35:06,120 [INFO] run_profiling:   -> 37 phases, boundaries at [92, 116, 133, 232, 263, 315, 335, 486, 566, 596, 696, 710, 722, 747, 776, 862, 921, 943, 986, 1001, 1047, 1108, 1120, 1160, 1188, 1271, 1289, 1332, 1357, 1373, 1428, 1439, 1471, 1514, 1541, 1598]\\n2026-05-14 14:35:06,120 [INFO] run_profiling: [48/50] Processing problem test/counting_and_probability/159.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:35:57,041 [INFO] run_profiling:   -> 25 phases, boundaries at [167, 275, 343, 403, 479, 625, 641, 675, 903, 924, 945, 1032, 1143, 1210, 1242, 1272, 1304, 1338, 1434, 1786, 1914, 1946, 1978, 2010]\\n2026-05-14 14:35:57,041 [INFO] run_profiling: [49/50] Processing problem test/algebra/853.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:36:52,093 [INFO] run_profiling:   -> 37 phases, boundaries at [264, 302, 339, 364, 377, 416, 467, 539, 557, 587, 607, 634, 656, 868, 920, 971, 1006, 1039, 1108, 1119, 1179, 1215, 1240, 1294, 1383, 1589, 1603, 1641, 1687, 1702, 1767, 1814, 1850, 1946, 1996, 2008]\\n2026-05-14 14:36:52,093 [INFO] run_profiling: [50/50] Processing problem test/algebra/892.json\\nSetting `pad_token_id` to `eos_token_id`:151643 for open-end generation.\\n2026-05-14 14:37:49,691 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\n2026-05-14 14:37:49,773 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json\\n\\n============================================================\\nPACS Profiling Complete — 50 problems\\n============================================================\\n  high_sparsity: 21086 tokens, 387 segments\\n  low_sparsity: 27748 tokens, 397 segments\\n  mid_sparsity: 13306 tokens, 191 segments\\n\\n  II[high_sparsity, 0.3]: mean=+0.5547  95%CI=[+0.2773, +0.9198]\\n  II[low_sparsity, 0.3]: mean=+57.7946  95%CI=[+41.4416, +77.0467]\\n  II[mid_sparsity, 0.3]: mean=+11.3000  95%CI=[+6.8650, +17.2633]\\n\\nVerdict: PASS\\n  CI overlap test: low_sparsity vs mid_sparsity CI non-overlapping at 0.3\\n============================================================\\n\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 5 experiments completed successfully (EXIT_CODE=0, no errors). Now I need to read the JSON results files. Let me read all 5 profiling_results.json files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "03a6fe81-7aac-4ef7-8727-23507bb2f5ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8dH56BJFYECpbspaVFJeo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14230,
+      "cache_read_input_tokens": 24650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+全部 5 个实验正常完成，EXIT_CODE=0。现在读取 JSON 结果文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "091a8bf8-6683-423d-8408-0fc7154be005",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8dH56BJFYECpbspaVFJeo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14230,
+      "cache_read_input_tokens": 24650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nz7tBj35fGkihpZj7SESGc`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "ba9b7cd1-e66b-44a4-8691-9bb53cb2707f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8dH56BJFYECpbspaVFJeo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14230,
+      "cache_read_input_tokens": 24650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KZY8Aoj3meXkds1MAUXvaX`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "7bd4e0b5-396e-4d46-9051-9a726b64aeeb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8dH56BJFYECpbspaVFJeo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14230,
+      "cache_read_input_tokens": 24650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T06:47:21.885Z_
+
+<details><summary>↩ Tool result · `toolu_01Nz7tBj35fGkihpZj7SESGc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.15\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1687,\\n        \\\"attn\\\": 3.5947,\\n        \\\"kv\\\": 2.9239,\\n        \\\"both\\\": 5.7569\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2284,\\n        \\\"attn\\\": 11.3419,\\n        \\\"kv\\\": 3.6161,\\n        \\\"both\\\": 6.2886\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 297.7957,\\n        \\\"kv\\\": 2.915,\\n        \\\"both\\\": 11.3156\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 0.384934,\\n        \\\"ci_low\\\": -0.540924,\\n        \\\"ci_high\\\": 1.314665,\\n        \\\"median\\\": 0.114695,\\n        \\\"winsorized_mean\\\": 0.316098,\\n        \\\"skewness\\\": -5.4014,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": -5.732553,\\n        \\\"ci_low\\\": -10.92833,\\n        \\\"ci_high\\\": -1.439139,\\n        \\\"median\\\": 0.112103,\\n        \\\"winsorized_mean\\\": 0.052138,\\n        \\\"skewness\\\": -11.5715,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": -172.662648,\\n        \\\"ci_low\\\": -427.005832,\\n        \\\"ci_high\\\": -9.068692,\\n        \\\"median\\\": 0.096869,\\n        \\\"winsorized_mean\\\": -0.636624,\\n        \\\"skewness\\\": -10.5634,\\n        \\\"outlier_count\\\": 2\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n          0.4037415087223053,\\n          0.292\\n\\n... [截断: 输出过长，省略 1982517 字符] ...\\n\\nii_low\\\": 0.19861858090661233,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": -0.005519820961210509,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": -0.013000804525582943,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": -0.11235746099145372,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": 1.2752113099310813,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 0.09452671791190537,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 2.059052427092314,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 2.687404551404588,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 2.6774502989488416,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 1.3187549745196103,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 0.13950822053132228,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 0.34562905629475904,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 0.19720632824308693,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": -0.06044429496482573,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 0.8413167174588848,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 0.04395294388949189,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": -0.03470178860336959,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 0.10861067401663749,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.16457779012261886,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.030959528306557016,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 0.025864442473004567,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": -17.479697311816572,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": -61.86535241468897,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": -59.73110485441867,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": 0.09307577712507298,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 0.03277146885160742,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 0.40971072990737323,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": 0.23154512563146157,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 0.20550809973871842,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 0.18070630417126998,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 22.51455967351582,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 6.249470764580651,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 5.041493165426415,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 0.18751048456671748,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.11170982418203734,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.03323176287222607,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": 0.15068171979340284,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": -0.0012658208394222825,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.10564431084526904,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "fad669e6-ef89-48ec-b543-7a4238b28430",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.15\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1687,\\\\n        \\\\\\\"attn\\\\\\\": 3.5947,\\\\n        \\\\\\\"kv\\\\\\\": 2.9239,\\\\n        \\\\\\\"both\\\\\\\": 5.7569\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2284,\\\\n        \\\\\\\"attn\\\\\\\": 11.3419,\\\\n        \\\\\\\"kv\\\\\\\": 3.6161,\\\\n        \\\\\\\"both\\\\\\\": 6.2886\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 297.7957,\\\\n        \\\\\\\"kv\\\\\\\": 2.915,\\\\n        \\\\\\\"both\\\\\\\": 11.3156\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.384934,\\\\n        \\\\\\\"ci_low\\\\\\\": -0.540924,\\\\n        \\\\\\\"ci_high\\\\\\\": 1.314665,\\\\n        \\\\\\\"median\\\\\\\": 0.114695,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.316098,\\\\n        \\\\\\\"skewness\\\\\\\": -5.4014,\\\\n        \\\\\\\"outlier_count\\\\\\\": 4\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -5.732553,\\\\n        \\\\\\\"ci_low\\\\\\\": -10.92833,\\\\n        \\\\\\\"ci_high\\\\\\\": -1.439139,\\\\n        \\\\\\\"median\\\\\\\": 0.112103,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.052138,\\\\n        \\\\\\\"skewness\\\\\\\": -11.5715,\\\\n        \\\\\\\"outlier_count\\\\\\\": 4\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -172.662648,\\\\n        \\\\\\\"ci_low\\\\\\\": -427.005832,\\\\n        \\\\\\\"ci_high\\\\\\\": -9.068692,\\\\n        \\\\\\\"median\\\\\\\": 0.096869,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": -0.636624,\\\\n        \\\\\\\"skewness\\\\\\\": -10.5634,\\\\n        \\\\\\\"outlier_count\\\\\\\": 2\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": false,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"PASS\\\\\\\"\\\\n  },\\\\n  \\\\\\\"warnings\\\\\\\": [],\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"per_problem_sparsity\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2470.json\\\\\\\",\\\\n        \\\\\\\"sparsity_values\\\\\\\": [\\\\n          0.36500003933906555,\\\\n          0.29131656885147095,\\\\n          0.317307710647583,\\\\n          0.46226418018341064,\\\\n          0.3432539701461792,\\\\n          0.3246753215789795,\\\\n          0.2621173858642578,\\\\n          0.29511281847953796,\\\\n          0.3091133236885071,\\\\n          0.2669491767883301,\\\\n          0.32559528946876526,\\\\n          0.2816159129142761,\\\\n          0.41705068945884705,\\\\n          0.51133793592453,\\\\n          0.357700914144516,\\\\n          0.3280220031738281,\\\\n          0.386904776096344,\\\\n          0.33315563201904297,\\\\n          0.37342438101768494,\\\\n          0.3115942180156708,\\\\n          0.315306156873703,\\\\n          0.37826961278915405,\\\\n          0.4255952537059784,\\\\n          0.3659491240978241,\\\\n          0.3889961540699005,\\\\n          0.37857145071029663,\\\\n          0.30686092376708984,\\\\n          0.3789425194263458,\\\\n          0.3896520435810089,\\\\n          0.445298433303833,\\\\n          0.36919644474983215,\\\\n          0.3690476715564728,\\\\n          0.37935537099838257,\\\\n          0.3399311602115631,\\\\n          0.2687074840068817,\\\\n          0.33361348509788513,\\\\n          0.38413622975349426,\\\\n          0.41912972927093506,\\\\n          0.4131493866443634,\\\\n          0.4650883078575134,\\\\n          0.5079365968704224,\\\\n          0.45682892203330994,\\\\n          0.38664597272872925,\\\\n          0.45468512177467346,\\\\n          0.4300912022590637,\\\\n          0.48308271169662476,\\\\n          0.4479166865348816,\\\\n          0.38512519001960754,\\\\n          0.4056122899055481,\\\\n          0.43037518858909607,\\\\n          0.3774999976158142,\\\\n          0.5367751121520996,\\\\n          0.6186975240707397,\\\\n          0.5176838040351868,\\\\n          0.41929948329925537,\\\\n          0.4037415087223053,\\\\n          0.292\\\\n\\\\n... [截断: 输出过长，省略 1982517 字符] ...\\\\n\\\\nii_low\\\\\\\": 0.19861858090661233,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 37,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/geometry/465.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.005519820961210509,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": -0.013000804525582943,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 1,\\\\n        \\\\\\\"ii_low\\\\\\\": -0.11235746099145372,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 38,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/972.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 1.2752113099310813,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 5,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.09452671791190537,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 5,\\\\n        \\\\\\\"ii_low\\\\\\\": 2.059052427092314,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 39,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/345.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 2.687404551404588,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 2.6774502989488416,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 4,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.3187549745196103,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 18\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 40,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2277.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.13950822053132228,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 20,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.34562905629475904,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.19720632824308693,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 41,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/582.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.06044429496482573,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 12,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.8413167174588848,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.04395294388949189,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 42,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/427.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.03470178860336959,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 0,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.10861067401663749,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 2\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 43,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/820.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.16457779012261886,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.030959528306557016,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 6,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.025864442473004567,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 20\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 44,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/768.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -17.479697311816572,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": -61.86535241468897,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": -59.73110485441867,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 12\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 45,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/prealgebra/1558.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.09307577712507298,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 10,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.03277146885160742,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.40971072990737323,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 17\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 46,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/323.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.23154512563146157,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 17,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.20550809973871842,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 10,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.18070630417126998,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 10\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 47,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/counting_and_probability/159.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 22.51455967351582,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 6.249470764580651,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 5.041493165426415,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 9\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 48,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/853.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.18751048456671748,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.11170982418203734,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.03323176287222607,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 13\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 49,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/892.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.15068171979340284,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 16,\\\\n        \\\\\\\"ii_mid\\\\\\\": -0.0012658208394222825,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.10564431084526904,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.15\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1687,\\n        \\\"attn\\\": 3.5947,\\n        \\\"kv\\\": 2.9239,\\n        \\\"both\\\": 5.7569\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2284,\\n        \\\"attn\\\": 11.3419,\\n        \\\"kv\\\": 3.6161,\\n        \\\"both\\\": 6.2886\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 297.7957,\\n        \\\"kv\\\": 2.915,\\n        \\\"both\\\": 11.3156\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 0.384934,\\n        \\\"ci_low\\\": -0.540924,\\n        \\\"ci_high\\\": 1.314665,\\n        \\\"median\\\": 0.114695,\\n        \\\"winsorized_mean\\\": 0.316098,\\n        \\\"skewness\\\": -5.4014,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": -5.732553,\\n        \\\"ci_low\\\": -10.92833,\\n        \\\"ci_high\\\": -1.439139,\\n        \\\"median\\\": 0.112103,\\n        \\\"winsorized_mean\\\": 0.052138,\\n        \\\"skewness\\\": -11.5715,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": -172.662648,\\n        \\\"ci_low\\\": -427.005832,\\n        \\\"ci_high\\\": -9.068692,\\n        \\\"median\\\": 0.096869,\\n        \\\"winsorized_mean\\\": -0.636624,\\n        \\\"skewness\\\": -10.5634,\\n        \\\"outlier_count\\\": 2\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n          0.4037415087223053,\\n          0.292\\n\\n... [截断: 输出过长，省略 1982517 字符] ...\\n\\nii_low\\\": 0.19861858090661233,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": -0.005519820961210509,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": -0.013000804525582943,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": -0.11235746099145372,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": 1.2752113099310813,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 0.09452671791190537,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 2.059052427092314,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 2.687404551404588,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 2.6774502989488416,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 1.3187549745196103,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 0.13950822053132228,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 0.34562905629475904,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 0.19720632824308693,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": -0.06044429496482573,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 0.8413167174588848,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 0.04395294388949189,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": -0.03470178860336959,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 0.10861067401663749,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.16457779012261886,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.030959528306557016,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 0.025864442473004567,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": -17.479697311816572,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": -61.86535241468897,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": -59.73110485441867,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": 0.09307577712507298,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 0.03277146885160742,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 0.40971072990737323,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": 0.23154512563146157,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 0.20550809973871842,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 0.18070630417126998,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 22.51455967351582,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 6.249470764580651,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 5.041493165426415,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 0.18751048456671748,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.11170982418203734,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.03323176287222607,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": 0.15068171979340284,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": -0.0012658208394222825,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.10564431084526904,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T06:47:22.606Z_
+
+<details><summary>↩ Tool result · `toolu_01KZY8Aoj3meXkds1MAUXvaX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.2\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.1687,\\n        \\\"attn\\\": 3.1905,\\n        \\\"kv\\\": 3.8002,\\n        \\\"both\\\": 8.8129\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.2284,\\n        \\\"attn\\\": 8.592,\\n        \\\"kv\\\": 5.0078,\\n        \\\"both\\\": 9.2001\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 67.8504,\\n        \\\"kv\\\": 3.788,\\n        \\\"both\\\": 11.4974\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": 2.525895,\\n        \\\"ci_low\\\": 1.254586,\\n        \\\"ci_high\\\": 4.235625,\\n        \\\"median\\\": 0.327821,\\n        \\\"winsorized_mean\\\": 1.766381,\\n        \\\"skewness\\\": 9.5932,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": -2.480513,\\n        \\\"ci_low\\\": -5.629591,\\n        \\\"ci_high\\\": 0.112826,\\n        \\\"median\\\": 0.390877,\\n        \\\"winsorized_mean\\\": 0.994198,\\n        \\\"skewness\\\": -10.0661,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": -36.051618,\\n        \\\"ci_low\\\": -93.24844,\\n        \\\"ci_high\\\": -2.201642,\\n        \\\"median\\\": 0.297699,\\n        \\\"winsorized_mean\\\": 0.583939,\\n        \\\"skewness\\\": -12.3126,\\n        \\\"outlier_count\\\": 2\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.2\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity II>0, mid_sparsity II<0 at 0.2\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n          0.40374150\\n\\n... [截断: 输出过长，省略 1982461 字符] ...\\n\\nments_mid\\\": 2,\\n        \\\"ii_low\\\": 0.1402038321817729,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": 0.08981365229340088,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.041653331697296014,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": -0.009120122300394051,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": 1.1203428732382283,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 0.43423579289363,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 3.0305424293588645,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 3.6992230450665513,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 4.593983085816465,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 1.7028433293407679,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 6.434747982211048,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 9.412647526438642,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 4.780989811044381,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": -0.08388761632582742,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 0.6786066946573914,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 0.2563496518595012,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": 0.5063069661458335,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 0.19506155084151788,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.247174929949193,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.183129627830104,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 0.09757281785027239,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": -3.6499699531802317,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": -26.475066178999604,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": -31.180029642014276,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": 0.3468500161001462,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 0.10156364661420714,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 0.7158620685874348,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": 0.2918440874885111,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 0.35774992582581744,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 0.557392328435725,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 29.400290654263053,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 11.071677732201124,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 8.353200149536132,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 0.23179877144949845,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.2984830255377786,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.22198401557074687,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": -0.003851093627788349,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": 0.3212352465557795,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.21944389343261728,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "6523d0b1-005d-4979-a242-e8a063e1760c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.2\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1687,\\\\n        \\\\\\\"attn\\\\\\\": 3.1905,\\\\n        \\\\\\\"kv\\\\\\\": 3.8002,\\\\n        \\\\\\\"both\\\\\\\": 8.8129\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2284,\\\\n        \\\\\\\"attn\\\\\\\": 8.592,\\\\n        \\\\\\\"kv\\\\\\\": 5.0078,\\\\n        \\\\\\\"both\\\\\\\": 9.2001\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 67.8504,\\\\n        \\\\\\\"kv\\\\\\\": 3.788,\\\\n        \\\\\\\"both\\\\\\\": 11.4974\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 2.525895,\\\\n        \\\\\\\"ci_low\\\\\\\": 1.254586,\\\\n        \\\\\\\"ci_high\\\\\\\": 4.235625,\\\\n        \\\\\\\"median\\\\\\\": 0.327821,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 1.766381,\\\\n        \\\\\\\"skewness\\\\\\\": 9.5932,\\\\n        \\\\\\\"outlier_count\\\\\\\": 4\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -2.480513,\\\\n        \\\\\\\"ci_low\\\\\\\": -5.629591,\\\\n        \\\\\\\"ci_high\\\\\\\": 0.112826,\\\\n        \\\\\\\"median\\\\\\\": 0.390877,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.994198,\\\\n        \\\\\\\"skewness\\\\\\\": -10.0661,\\\\n        \\\\\\\"outlier_count\\\\\\\": 4\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -36.051618,\\\\n        \\\\\\\"ci_low\\\\\\\": -93.24844,\\\\n        \\\\\\\"ci_high\\\\\\\": -2.201642,\\\\n        \\\\\\\"median\\\\\\\": 0.297699,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.583939,\\\\n        \\\\\\\"skewness\\\\\\\": -12.3126,\\\\n        \\\\\\\"outlier_count\\\\\\\": 2\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.2\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity II>0, mid_sparsity II<0 at 0.2\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"PASS\\\\\\\"\\\\n  },\\\\n  \\\\\\\"warnings\\\\\\\": [],\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"per_problem_sparsity\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2470.json\\\\\\\",\\\\n        \\\\\\\"sparsity_values\\\\\\\": [\\\\n          0.36500003933906555,\\\\n          0.29131656885147095,\\\\n          0.317307710647583,\\\\n          0.46226418018341064,\\\\n          0.3432539701461792,\\\\n          0.3246753215789795,\\\\n          0.2621173858642578,\\\\n          0.29511281847953796,\\\\n          0.3091133236885071,\\\\n          0.2669491767883301,\\\\n          0.32559528946876526,\\\\n          0.2816159129142761,\\\\n          0.41705068945884705,\\\\n          0.51133793592453,\\\\n          0.357700914144516,\\\\n          0.3280220031738281,\\\\n          0.386904776096344,\\\\n          0.33315563201904297,\\\\n          0.37342438101768494,\\\\n          0.3115942180156708,\\\\n          0.315306156873703,\\\\n          0.37826961278915405,\\\\n          0.4255952537059784,\\\\n          0.3659491240978241,\\\\n          0.3889961540699005,\\\\n          0.37857145071029663,\\\\n          0.30686092376708984,\\\\n          0.3789425194263458,\\\\n          0.3896520435810089,\\\\n          0.445298433303833,\\\\n          0.36919644474983215,\\\\n          0.3690476715564728,\\\\n          0.37935537099838257,\\\\n          0.3399311602115631,\\\\n          0.2687074840068817,\\\\n          0.33361348509788513,\\\\n          0.38413622975349426,\\\\n          0.41912972927093506,\\\\n          0.4131493866443634,\\\\n          0.4650883078575134,\\\\n          0.5079365968704224,\\\\n          0.45682892203330994,\\\\n          0.38664597272872925,\\\\n          0.45468512177467346,\\\\n          0.4300912022590637,\\\\n          0.48308271169662476,\\\\n          0.4479166865348816,\\\\n          0.38512519001960754,\\\\n          0.4056122899055481,\\\\n          0.43037518858909607,\\\\n          0.3774999976158142,\\\\n          0.5367751121520996,\\\\n          0.6186975240707397,\\\\n          0.5176838040351868,\\\\n          0.41929948329925537,\\\\n          0.40374150\\\\n\\\\n... [截断: 输出过长，省略 1982461 字符] ...\\\\n\\\\nments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.1402038321817729,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 37,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/geometry/465.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.08981365229340088,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.041653331697296014,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 1,\\\\n        \\\\\\\"ii_low\\\\\\\": -0.009120122300394051,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 38,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/972.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 1.1203428732382283,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 5,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.43423579289363,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 5,\\\\n        \\\\\\\"ii_low\\\\\\\": 3.0305424293588645,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 39,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/345.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 3.6992230450665513,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 4.593983085816465,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 4,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.7028433293407679,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 18\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 40,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2277.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 6.434747982211048,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 20,\\\\n        \\\\\\\"ii_mid\\\\\\\": 9.412647526438642,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 4.780989811044381,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 41,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/582.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.08388761632582742,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 12,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.6786066946573914,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.2563496518595012,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 42,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/427.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.5063069661458335,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 0,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.19506155084151788,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 2\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 43,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/820.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.247174929949193,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.183129627830104,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 6,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.09757281785027239,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 20\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 44,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/768.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -3.6499699531802317,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": -26.475066178999604,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": -31.180029642014276,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 12\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 45,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/prealgebra/1558.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.3468500161001462,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 10,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.10156364661420714,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.7158620685874348,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 17\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 46,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/323.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.2918440874885111,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 17,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.35774992582581744,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 10,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.557392328435725,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 10\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 47,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/counting_and_probability/159.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 29.400290654263053,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 11.071677732201124,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 8.353200149536132,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 9\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 48,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/853.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.23179877144949845,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.2984830255377786,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.22198401557074687,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 13\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 49,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/892.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.003851093627788349,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 16,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.3212352465557795,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.21944389343261728,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.2\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.1687,\\n        \\\"attn\\\": 3.1905,\\n        \\\"kv\\\": 3.8002,\\n        \\\"both\\\": 8.8129\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.2284,\\n        \\\"attn\\\": 8.592,\\n        \\\"kv\\\": 5.0078,\\n        \\\"both\\\": 9.2001\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 67.8504,\\n        \\\"kv\\\": 3.788,\\n        \\\"both\\\": 11.4974\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": 2.525895,\\n        \\\"ci_low\\\": 1.254586,\\n        \\\"ci_high\\\": 4.235625,\\n        \\\"median\\\": 0.327821,\\n        \\\"winsorized_mean\\\": 1.766381,\\n        \\\"skewness\\\": 9.5932,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": -2.480513,\\n        \\\"ci_low\\\": -5.629591,\\n        \\\"ci_high\\\": 0.112826,\\n        \\\"median\\\": 0.390877,\\n        \\\"winsorized_mean\\\": 0.994198,\\n        \\\"skewness\\\": -10.0661,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": -36.051618,\\n        \\\"ci_low\\\": -93.24844,\\n        \\\"ci_high\\\": -2.201642,\\n        \\\"median\\\": 0.297699,\\n        \\\"winsorized_mean\\\": 0.583939,\\n        \\\"skewness\\\": -12.3126,\\n        \\\"outlier_count\\\": 2\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.2\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity II>0, mid_sparsity II<0 at 0.2\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n          0.40374150\\n\\n... [截断: 输出过长，省略 1982461 字符] ...\\n\\nments_mid\\\": 2,\\n        \\\"ii_low\\\": 0.1402038321817729,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": 0.08981365229340088,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.041653331697296014,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": -0.009120122300394051,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": 1.1203428732382283,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 0.43423579289363,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 3.0305424293588645,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 3.6992230450665513,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 4.593983085816465,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 1.7028433293407679,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 6.434747982211048,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 9.412647526438642,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 4.780989811044381,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": -0.08388761632582742,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 0.6786066946573914,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 0.2563496518595012,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": 0.5063069661458335,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 0.19506155084151788,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.247174929949193,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.183129627830104,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 0.09757281785027239,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": -3.6499699531802317,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": -26.475066178999604,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": -31.180029642014276,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": 0.3468500161001462,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 0.10156364661420714,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 0.7158620685874348,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": 0.2918440874885111,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 0.35774992582581744,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 0.557392328435725,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 29.400290654263053,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 11.071677732201124,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 8.353200149536132,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 0.23179877144949845,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.2984830255377786,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.22198401557074687,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": -0.003851093627788349,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": 0.3212352465557795,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.21944389343261728,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kwj1pBnPzh8UNE53Lgbhv5`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "c9ab5e42-fe3e-46b4-b8e7-88df2b1f38a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8dH56BJFYECpbspaVFJeo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14230,
+      "cache_read_input_tokens": 24650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PdKmVYhrgysZM6HJ64GRjp`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "c996cde1-94ee-42b2-a2f9-53149f5df9e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8dH56BJFYECpbspaVFJeo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14230,
+      "cache_read_input_tokens": 24650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VS7ysZrurHEiQqfVpqAMeW`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "46e6edea-d105-44e4-964e-2ce1661e1fb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8dH56BJFYECpbspaVFJeo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14230,
+      "cache_read_input_tokens": 24650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14230
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T06:47:23.443Z_
+
+<details><summary>↩ Tool result · `toolu_01Kwj1pBnPzh8UNE53Lgbhv5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.25\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"dense\\\": 1.1687,\\n        \\\"attn\\\": 7.237,\\n        \\\"kv\\\": 4.9751,\\n        \\\"both\\\": 17.7423\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"dense\\\": 1.2284,\\n        \\\"attn\\\": 24.3571,\\n        \\\"kv\\\": 6.7993,\\n        \\\"both\\\": 17.9694\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 868.3199,\\n        \\\"kv\\\": 5.1165,\\n        \\\"both\\\": 29.4661\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"mean\\\": 5.590551,\\n        \\\"ci_low\\\": 1.171567,\\n        \\\"ci_high\\\": 9.465606,\\n        \\\"median\\\": 1.554497,\\n        \\\"winsorized_mean\\\": 6.396533,\\n        \\\"skewness\\\": -7.566,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"mean\\\": -9.106223,\\n        \\\"ci_low\\\": -25.804467,\\n        \\\"ci_high\\\": 2.516641,\\n        \\\"median\\\": 1.893747,\\n        \\\"winsorized_mean\\\": 4.186623,\\n        \\\"skewness\\\": -15.8457,\\n        \\\"outlier_count\\\": 2\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"mean\\\": -514.241804,\\n        \\\"ci_low\\\": -1361.474097,\\n        \\\"ci_high\\\": -24.935724,\\n        \\\"median\\\": 1.020212,\\n        \\\"winsorized_mean\\\": 3.101442,\\n        \\\"skewness\\\": -12.7601,\\n        \\\"outlier_count\\\": 1\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.25\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity II>0, mid_sparsity II<0 at 0.25\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n\\n\\n... [截断: 输出过长，省略 1982421 字符] ...\\n\\n644334,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 3.357674949473904,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": 0.5191544775858055,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.21749759338062669,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": 0.8729341349024682,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": 4.859607442220052,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 1.6779443594125598,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 3.942072940162957,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 15.80924652316046,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 18.719764839067853,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 7.506027498838114,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 11.325028807004804,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 17.370638416071607,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 8.234389298128121,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": 0.48419226186638087,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 1.0327162386778237,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 1.17790665430703,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": 0.8039080006207606,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 0.43532825356104654,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.7169178631288791,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 1.1713241294578267,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 0.9214309535882412,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": -13.59681405058957,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": -101.06037221464722,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": -91.23441291577889,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": 1.1670790323605473,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 1.1821963661595394,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 1.373898900197652,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": 2.668176407204535,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 0.8945108368961033,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 1.4207124551010235,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 44.5263382419445,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 15.88140412428189,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 15.300526142120361,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 1.14295755518545,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.5120781371312111,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.9933536753934975,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": 0.6714060016376644,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": 0.8130293545657654,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.6430670738220221,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "819c769f-55a9-4552-8e77-6498f335d1ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.25\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.25\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1687,\\\\n        \\\\\\\"attn\\\\\\\": 7.237,\\\\n        \\\\\\\"kv\\\\\\\": 4.9751,\\\\n        \\\\\\\"both\\\\\\\": 17.7423\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.25\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2284,\\\\n        \\\\\\\"attn\\\\\\\": 24.3571,\\\\n        \\\\\\\"kv\\\\\\\": 6.7993,\\\\n        \\\\\\\"both\\\\\\\": 17.9694\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.25\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 868.3199,\\\\n        \\\\\\\"kv\\\\\\\": 5.1165,\\\\n        \\\\\\\"both\\\\\\\": 29.4661\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.25\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 5.590551,\\\\n        \\\\\\\"ci_low\\\\\\\": 1.171567,\\\\n        \\\\\\\"ci_high\\\\\\\": 9.465606,\\\\n        \\\\\\\"median\\\\\\\": 1.554497,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 6.396533,\\\\n        \\\\\\\"skewness\\\\\\\": -7.566,\\\\n        \\\\\\\"outlier_count\\\\\\\": 4\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.25\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -9.106223,\\\\n        \\\\\\\"ci_low\\\\\\\": -25.804467,\\\\n        \\\\\\\"ci_high\\\\\\\": 2.516641,\\\\n        \\\\\\\"median\\\\\\\": 1.893747,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 4.186623,\\\\n        \\\\\\\"skewness\\\\\\\": -15.8457,\\\\n        \\\\\\\"outlier_count\\\\\\\": 2\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.25\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -514.241804,\\\\n        \\\\\\\"ci_low\\\\\\\": -1361.474097,\\\\n        \\\\\\\"ci_high\\\\\\\": -24.935724,\\\\n        \\\\\\\"median\\\\\\\": 1.020212,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 3.101442,\\\\n        \\\\\\\"skewness\\\\\\\": -12.7601,\\\\n        \\\\\\\"outlier_count\\\\\\\": 1\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.25\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity II>0, mid_sparsity II<0 at 0.25\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"PASS\\\\\\\"\\\\n  },\\\\n  \\\\\\\"warnings\\\\\\\": [],\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"per_problem_sparsity\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2470.json\\\\\\\",\\\\n        \\\\\\\"sparsity_values\\\\\\\": [\\\\n          0.36500003933906555,\\\\n          0.29131656885147095,\\\\n          0.317307710647583,\\\\n          0.46226418018341064,\\\\n          0.3432539701461792,\\\\n          0.3246753215789795,\\\\n          0.2621173858642578,\\\\n          0.29511281847953796,\\\\n          0.3091133236885071,\\\\n          0.2669491767883301,\\\\n          0.32559528946876526,\\\\n          0.2816159129142761,\\\\n          0.41705068945884705,\\\\n          0.51133793592453,\\\\n          0.357700914144516,\\\\n          0.3280220031738281,\\\\n          0.386904776096344,\\\\n          0.33315563201904297,\\\\n          0.37342438101768494,\\\\n          0.3115942180156708,\\\\n          0.315306156873703,\\\\n          0.37826961278915405,\\\\n          0.4255952537059784,\\\\n          0.3659491240978241,\\\\n          0.3889961540699005,\\\\n          0.37857145071029663,\\\\n          0.30686092376708984,\\\\n          0.3789425194263458,\\\\n          0.3896520435810089,\\\\n          0.445298433303833,\\\\n          0.36919644474983215,\\\\n          0.3690476715564728,\\\\n          0.37935537099838257,\\\\n          0.3399311602115631,\\\\n          0.2687074840068817,\\\\n          0.33361348509788513,\\\\n          0.38413622975349426,\\\\n          0.41912972927093506,\\\\n          0.4131493866443634,\\\\n          0.4650883078575134,\\\\n          0.5079365968704224,\\\\n          0.45682892203330994,\\\\n          0.38664597272872925,\\\\n          0.45468512177467346,\\\\n          0.4300912022590637,\\\\n          0.48308271169662476,\\\\n          0.4479166865348816,\\\\n          0.38512519001960754,\\\\n          0.4056122899055481,\\\\n          0.43037518858909607,\\\\n          0.3774999976158142,\\\\n          0.5367751121520996,\\\\n          0.6186975240707397,\\\\n          0.5176838040351868,\\\\n          0.41929948329925537,\\\\n\\\\n\\\\n... [截断: 输出过长，省略 1982421 字符] ...\\\\n\\\\n644334,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 3.357674949473904,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 37,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/geometry/465.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.5191544775858055,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.21749759338062669,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 1,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.8729341349024682,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 38,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/972.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 4.859607442220052,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 5,\\\\n        \\\\\\\"ii_mid\\\\\\\": 1.6779443594125598,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 5,\\\\n        \\\\\\\"ii_low\\\\\\\": 3.942072940162957,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 39,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/345.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 15.80924652316046,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 18.719764839067853,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 4,\\\\n        \\\\\\\"ii_low\\\\\\\": 7.506027498838114,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 18\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 40,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2277.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 11.325028807004804,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 20,\\\\n        \\\\\\\"ii_mid\\\\\\\": 17.370638416071607,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 8.234389298128121,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 41,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/582.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.48419226186638087,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 12,\\\\n        \\\\\\\"ii_mid\\\\\\\": 1.0327162386778237,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.17790665430703,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 42,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/427.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.8039080006207606,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 0,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.43532825356104654,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 2\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 43,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/820.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.7169178631288791,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 1.1713241294578267,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 6,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.9214309535882412,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 20\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 44,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/768.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -13.59681405058957,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": -101.06037221464722,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": -91.23441291577889,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 12\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 45,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/prealgebra/1558.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 1.1670790323605473,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 10,\\\\n        \\\\\\\"ii_mid\\\\\\\": 1.1821963661595394,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.373898900197652,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 17\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 46,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/323.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 2.668176407204535,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 17,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.8945108368961033,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 10,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.4207124551010235,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 10\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 47,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/counting_and_probability/159.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 44.5263382419445,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 15.88140412428189,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 15.300526142120361,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 9\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 48,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/853.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 1.14295755518545,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.5120781371312111,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.9933536753934975,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 13\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 49,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/892.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.6714060016376644,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 16,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.8130293545657654,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.6430670738220221,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.25\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"dense\\\": 1.1687,\\n        \\\"attn\\\": 7.237,\\n        \\\"kv\\\": 4.9751,\\n        \\\"both\\\": 17.7423\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"dense\\\": 1.2284,\\n        \\\"attn\\\": 24.3571,\\n        \\\"kv\\\": 6.7993,\\n        \\\"both\\\": 17.9694\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 868.3199,\\n        \\\"kv\\\": 5.1165,\\n        \\\"both\\\": 29.4661\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"mean\\\": 5.590551,\\n        \\\"ci_low\\\": 1.171567,\\n        \\\"ci_high\\\": 9.465606,\\n        \\\"median\\\": 1.554497,\\n        \\\"winsorized_mean\\\": 6.396533,\\n        \\\"skewness\\\": -7.566,\\n        \\\"outlier_count\\\": 4\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"mean\\\": -9.106223,\\n        \\\"ci_low\\\": -25.804467,\\n        \\\"ci_high\\\": 2.516641,\\n        \\\"median\\\": 1.893747,\\n        \\\"winsorized_mean\\\": 4.186623,\\n        \\\"skewness\\\": -15.8457,\\n        \\\"outlier_count\\\": 2\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.25\\\": {\\n        \\\"mean\\\": -514.241804,\\n        \\\"ci_low\\\": -1361.474097,\\n        \\\"ci_high\\\": -24.935724,\\n        \\\"median\\\": 1.020212,\\n        \\\"winsorized_mean\\\": 3.101442,\\n        \\\"skewness\\\": -12.7601,\\n        \\\"outlier_count\\\": 1\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity vs mid_sparsity CI non-overlapping at 0.25\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity II>0, mid_sparsity II<0 at 0.25\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n\\n\\n... [截断: 输出过长，省略 1982421 字符] ...\\n\\n644334,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 3.357674949473904,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": 0.5191544775858055,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.21749759338062669,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": 0.8729341349024682,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": 4.859607442220052,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 1.6779443594125598,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 3.942072940162957,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 15.80924652316046,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 18.719764839067853,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 7.506027498838114,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 11.325028807004804,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 17.370638416071607,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 8.234389298128121,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": 0.48419226186638087,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 1.0327162386778237,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 1.17790665430703,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": 0.8039080006207606,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 0.43532825356104654,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.7169178631288791,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 1.1713241294578267,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 0.9214309535882412,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": -13.59681405058957,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": -101.06037221464722,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": -91.23441291577889,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": 1.1670790323605473,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 1.1821963661595394,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 1.373898900197652,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": 2.668176407204535,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 0.8945108368961033,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 1.4207124551010235,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 44.5263382419445,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 15.88140412428189,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 15.300526142120361,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 1.14295755518545,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.5120781371312111,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.9933536753934975,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": 0.6714060016376644,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": 0.8130293545657654,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 0.6430670738220221,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T06:47:24.185Z_
+
+<details><summary>↩ Tool result · `toolu_01PdKmVYhrgysZM6HJ64GRjp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.2\\n    ],\\n    \\\"masking_method\\\": \\\"importance\\\",\\n    \\\"head_importance_metric\\\": \\\"attention_frobenius_norm\\\",\\n    \\\"kv_importance_metric\\\": \\\"cumulative_attention_received\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.1689,\\n        \\\"attn\\\": 1.5233,\\n        \\\"kv\\\": 1.6191,\\n        \\\"both\\\": 2.1047\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.2286,\\n        \\\"attn\\\": 1.6486,\\n        \\\"kv\\\": 15.7987,\\n        \\\"both\\\": 23.74\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 1.5375,\\n        \\\"kv\\\": 3.5164,\\n        \\\"both\\\": 5.4246\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": 0.128925,\\n        \\\"ci_low\\\": -0.197532,\\n        \\\"ci_high\\\": 0.664714,\\n        \\\"median\\\": 0.014513,\\n        \\\"winsorized_mean\\\": -0.029682,\\n        \\\"skewness\\\": 16.6701,\\n        \\\"outlier_count\\\": 2\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": 6.028786,\\n        \\\"ci_low\\\": 4.467148,\\n        \\\"ci_high\\\": 7.923745,\\n        \\\"median\\\": 1.496254,\\n        \\\"winsorized_mean\\\": 4.342575,\\n        \\\"skewness\\\": 6.012,\\n        \\\"outlier_count\\\": 8\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": 1.260449,\\n        \\\"ci_low\\\": 0.746581,\\n        \\\"ci_high\\\": 1.896165,\\n        \\\"median\\\": 0.202695,\\n        \\\"winsorized_mean\\\": 0.76597,\\n        \\\"skewness\\\": 7.0541,\\n        \\\"outlier_count\\\": 4\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.2\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n          0.403741508722\\n\\n... [截断: 输出过长，省略 1982513 字符] ...\\n\\n    \\\"ii_low\\\": 1.2090961573205412,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": -0.011463477607693173,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.1553388813862866,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": 2.2753407100725607,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": -0.03336557596344991,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 0.0026384254347160407,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 3.047096582220939,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 0.4196001200894399,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 8.69694327178742,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 22.687474611215023,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 0.11825933158922547,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 0.20105126764078396,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 1.2545582346394988,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": 0.033338881925561115,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 0.25120981633478423,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 3.185590385772614,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": 0.008493087551082024,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 1.2629214563402873,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.019686203876729813,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.05060501638007964,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 0.9278624771737451,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": 0.037278536593557066,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 4.0701464975474755,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 20.399688831530888,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": -0.027040047801089595,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 0.11872543992268869,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 1.3611471172338936,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": -0.006492914811758066,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 0.7956842120649272,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 9.215837068626527,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 0.04184689432689975,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.34105927922051804,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 4.9088395715077535,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 0.016666741880484226,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.07828308488048563,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 1.582657377618732,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": 0.011902144864087916,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": -0.00621859956286519,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 1.1003391064907628,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "64db32b6-f7d0-4b50-935f-d5e42566f8fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.2\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"importance\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"attention_frobenius_norm\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"cumulative_attention_received\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1689,\\\\n        \\\\\\\"attn\\\\\\\": 1.5233,\\\\n        \\\\\\\"kv\\\\\\\": 1.6191,\\\\n        \\\\\\\"both\\\\\\\": 2.1047\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2286,\\\\n        \\\\\\\"attn\\\\\\\": 1.6486,\\\\n        \\\\\\\"kv\\\\\\\": 15.7987,\\\\n        \\\\\\\"both\\\\\\\": 23.74\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 1.5375,\\\\n        \\\\\\\"kv\\\\\\\": 3.5164,\\\\n        \\\\\\\"both\\\\\\\": 5.4246\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.128925,\\\\n        \\\\\\\"ci_low\\\\\\\": -0.197532,\\\\n        \\\\\\\"ci_high\\\\\\\": 0.664714,\\\\n        \\\\\\\"median\\\\\\\": 0.014513,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": -0.029682,\\\\n        \\\\\\\"skewness\\\\\\\": 16.6701,\\\\n        \\\\\\\"outlier_count\\\\\\\": 2\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 6.028786,\\\\n        \\\\\\\"ci_low\\\\\\\": 4.467148,\\\\n        \\\\\\\"ci_high\\\\\\\": 7.923745,\\\\n        \\\\\\\"median\\\\\\\": 1.496254,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 4.342575,\\\\n        \\\\\\\"skewness\\\\\\\": 6.012,\\\\n        \\\\\\\"outlier_count\\\\\\\": 8\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.260449,\\\\n        \\\\\\\"ci_low\\\\\\\": 0.746581,\\\\n        \\\\\\\"ci_high\\\\\\\": 1.896165,\\\\n        \\\\\\\"median\\\\\\\": 0.202695,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.76597,\\\\n        \\\\\\\"skewness\\\\\\\": 7.0541,\\\\n        \\\\\\\"outlier_count\\\\\\\": 4\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.2\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": false,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"PASS\\\\\\\"\\\\n  },\\\\n  \\\\\\\"warnings\\\\\\\": [],\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"per_problem_sparsity\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2470.json\\\\\\\",\\\\n        \\\\\\\"sparsity_values\\\\\\\": [\\\\n          0.36500003933906555,\\\\n          0.29131656885147095,\\\\n          0.317307710647583,\\\\n          0.46226418018341064,\\\\n          0.3432539701461792,\\\\n          0.3246753215789795,\\\\n          0.2621173858642578,\\\\n          0.29511281847953796,\\\\n          0.3091133236885071,\\\\n          0.2669491767883301,\\\\n          0.32559528946876526,\\\\n          0.2816159129142761,\\\\n          0.41705068945884705,\\\\n          0.51133793592453,\\\\n          0.357700914144516,\\\\n          0.3280220031738281,\\\\n          0.386904776096344,\\\\n          0.33315563201904297,\\\\n          0.37342438101768494,\\\\n          0.3115942180156708,\\\\n          0.315306156873703,\\\\n          0.37826961278915405,\\\\n          0.4255952537059784,\\\\n          0.3659491240978241,\\\\n          0.3889961540699005,\\\\n          0.37857145071029663,\\\\n          0.30686092376708984,\\\\n          0.3789425194263458,\\\\n          0.3896520435810089,\\\\n          0.445298433303833,\\\\n          0.36919644474983215,\\\\n          0.3690476715564728,\\\\n          0.37935537099838257,\\\\n          0.3399311602115631,\\\\n          0.2687074840068817,\\\\n          0.33361348509788513,\\\\n          0.38413622975349426,\\\\n          0.41912972927093506,\\\\n          0.4131493866443634,\\\\n          0.4650883078575134,\\\\n          0.5079365968704224,\\\\n          0.45682892203330994,\\\\n          0.38664597272872925,\\\\n          0.45468512177467346,\\\\n          0.4300912022590637,\\\\n          0.48308271169662476,\\\\n          0.4479166865348816,\\\\n          0.38512519001960754,\\\\n          0.4056122899055481,\\\\n          0.43037518858909607,\\\\n          0.3774999976158142,\\\\n          0.5367751121520996,\\\\n          0.6186975240707397,\\\\n          0.5176838040351868,\\\\n          0.41929948329925537,\\\\n          0.403741508722\\\\n\\\\n... [截断: 输出过长，省略 1982513 字符] ...\\\\n\\\\n    \\\\\\\"ii_low\\\\\\\": 1.2090961573205412,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 37,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/geometry/465.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.011463477607693173,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.1553388813862866,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 1,\\\\n        \\\\\\\"ii_low\\\\\\\": 2.2753407100725607,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 38,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/972.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.03336557596344991,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 5,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.0026384254347160407,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 5,\\\\n        \\\\\\\"ii_low\\\\\\\": 3.047096582220939,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 39,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/345.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.4196001200894399,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 8.69694327178742,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 4,\\\\n        \\\\\\\"ii_low\\\\\\\": 22.687474611215023,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 18\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 40,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2277.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.11825933158922547,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 20,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.20105126764078396,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.2545582346394988,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 41,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/582.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.033338881925561115,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 12,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.25120981633478423,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 3.185590385772614,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 42,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/427.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.008493087551082024,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 0,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.2629214563402873,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 2\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 43,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/820.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.019686203876729813,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.05060501638007964,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 6,\\\\n        \\\\\\\"ii_low\\\\\\\": 0.9278624771737451,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 20\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 44,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/768.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.037278536593557066,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 4.0701464975474755,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 20.399688831530888,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 12\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 45,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/prealgebra/1558.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.027040047801089595,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 10,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.11872543992268869,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.3611471172338936,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 17\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 46,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/323.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.006492914811758066,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 17,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.7956842120649272,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 10,\\\\n        \\\\\\\"ii_low\\\\\\\": 9.215837068626527,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 10\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 47,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/counting_and_probability/159.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.04184689432689975,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.34105927922051804,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 4.9088395715077535,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 9\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 48,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/853.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.016666741880484226,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.07828308488048563,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.582657377618732,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 13\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 49,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/892.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.011902144864087916,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 16,\\\\n        \\\\\\\"ii_mid\\\\\\\": -0.00621859956286519,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 1.1003391064907628,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.2\\n    ],\\n    \\\"masking_method\\\": \\\"importance\\\",\\n    \\\"head_importance_metric\\\": \\\"attention_frobenius_norm\\\",\\n    \\\"kv_importance_metric\\\": \\\"cumulative_attention_received\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.1689,\\n        \\\"attn\\\": 1.5233,\\n        \\\"kv\\\": 1.6191,\\n        \\\"both\\\": 2.1047\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.2286,\\n        \\\"attn\\\": 1.6486,\\n        \\\"kv\\\": 15.7987,\\n        \\\"both\\\": 23.74\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 1.5375,\\n        \\\"kv\\\": 3.5164,\\n        \\\"both\\\": 5.4246\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": 0.128925,\\n        \\\"ci_low\\\": -0.197532,\\n        \\\"ci_high\\\": 0.664714,\\n        \\\"median\\\": 0.014513,\\n        \\\"winsorized_mean\\\": -0.029682,\\n        \\\"skewness\\\": 16.6701,\\n        \\\"outlier_count\\\": 2\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": 6.028786,\\n        \\\"ci_low\\\": 4.467148,\\n        \\\"ci_high\\\": 7.923745,\\n        \\\"median\\\": 1.496254,\\n        \\\"winsorized_mean\\\": 4.342575,\\n        \\\"skewness\\\": 6.012,\\n        \\\"outlier_count\\\": 8\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.2\\\": {\\n        \\\"mean\\\": 1.260449,\\n        \\\"ci_low\\\": 0.746581,\\n        \\\"ci_high\\\": 1.896165,\\n        \\\"median\\\": 0.202695,\\n        \\\"winsorized_mean\\\": 0.76597,\\n        \\\"skewness\\\": 7.0541,\\n        \\\"outlier_count\\\": 4\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.2\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n          0.403741508722\\n\\n... [截断: 输出过长，省略 1982513 字符] ...\\n\\n    \\\"ii_low\\\": 1.2090961573205412,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": -0.011463477607693173,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.1553388813862866,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": 2.2753407100725607,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": -0.03336557596344991,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 0.0026384254347160407,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 3.047096582220939,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 0.4196001200894399,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 8.69694327178742,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 22.687474611215023,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 0.11825933158922547,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 0.20105126764078396,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 1.2545582346394988,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": 0.033338881925561115,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 0.25120981633478423,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 3.185590385772614,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": 0.008493087551082024,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 1.2629214563402873,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.019686203876729813,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.05060501638007964,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 0.9278624771737451,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": 0.037278536593557066,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 4.0701464975474755,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 20.399688831530888,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": -0.027040047801089595,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 0.11872543992268869,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 1.3611471172338936,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": -0.006492914811758066,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 0.7956842120649272,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 9.215837068626527,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 0.04184689432689975,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.34105927922051804,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 4.9088395715077535,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 0.016666741880484226,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.07828308488048563,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 1.582657377618732,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": 0.011902144864087916,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": -0.00621859956286519,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 1.1003391064907628,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T06:47:24.908Z_
+
+<details><summary>↩ Tool result · `toolu_01VS7ysZrurHEiQqfVpqAMeW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.3\\n    ],\\n    \\\"masking_method\\\": \\\"importance\\\",\\n    \\\"head_importance_metric\\\": \\\"attention_frobenius_norm\\\",\\n    \\\"kv_importance_metric\\\": \\\"cumulative_attention_received\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.1689,\\n        \\\"attn\\\": 1.7123,\\n        \\\"kv\\\": 2.0544,\\n        \\\"both\\\": 3.2372\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.2286,\\n        \\\"attn\\\": 1.9347,\\n        \\\"kv\\\": 51.6485,\\n        \\\"both\\\": 122.609\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 1.7894,\\n        \\\"kv\\\": 9.4821,\\n        \\\"both\\\": 24.2847\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": 0.554708,\\n        \\\"ci_low\\\": 0.277272,\\n        \\\"ci_high\\\": 0.919782,\\n        \\\"median\\\": 0.053399,\\n        \\\"winsorized_mean\\\": 0.336673,\\n        \\\"skewness\\\": 10.622,\\n        \\\"outlier_count\\\": 6\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": 57.794625,\\n        \\\"ci_low\\\": 41.441645,\\n        \\\"ci_high\\\": 77.046663,\\n        \\\"median\\\": 14.639463,\\n        \\\"winsorized_mean\\\": 39.314331,\\n        \\\"skewness\\\": 8.3142,\\n        \\\"outlier_count\\\": 6\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": 11.300022,\\n        \\\"ci_low\\\": 6.865018,\\n        \\\"ci_high\\\": 17.263338,\\n        \\\"median\\\": 2.283268,\\n        \\\"winsorized_mean\\\": 8.175236,\\n        \\\"skewness\\\": 9.1908,\\n        \\\"outlier_count\\\": 2\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.3\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n          0.403\\n\\n... [截断: 输出过长，省略 1982440 字符] ...\\n\\n\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 8.601687173576856,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": 0.024542846454281952,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.7873093041633845,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": 8.839045070222392,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": 0.0342542856952055,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 0.03821178128089464,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 10.098495368832669,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 1.4729604884848513,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 30.17109895851291,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 51.26112492962257,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 4.445711396568467,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 5.630568272268898,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 59.48392003798331,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": 0.13803555269029788,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 5.561002154597148,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 40.145476605442255,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": 0.05448562671973911,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 5.641214195002513,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.054933213973488604,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.07349191573920355,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 9.977849648827418,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": 0.05241690705876095,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 20.370107717534957,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 94.68142721556899,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": -0.026780600301005264,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 0.5744208026455633,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 11.125063334409106,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": 0.010472542257369044,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 3.321979968091771,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 37.38614598243865,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 0.19387986071008417,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 1.759131362304692,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 9.961110666982286,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 0.8967412180473178,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 6.137755930125087,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 71.54160720246682,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": 0.24418650790766816,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": 9.33773345779217,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 53.22740778263275,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "4be07f31-e4a5-4bfd-9953-aa1b674b3c37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.3\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"importance\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"attention_frobenius_norm\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"cumulative_attention_received\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1689,\\\\n        \\\\\\\"attn\\\\\\\": 1.7123,\\\\n        \\\\\\\"kv\\\\\\\": 2.0544,\\\\n        \\\\\\\"both\\\\\\\": 3.2372\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2286,\\\\n        \\\\\\\"attn\\\\\\\": 1.9347,\\\\n        \\\\\\\"kv\\\\\\\": 51.6485,\\\\n        \\\\\\\"both\\\\\\\": 122.609\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 1.7894,\\\\n        \\\\\\\"kv\\\\\\\": 9.4821,\\\\n        \\\\\\\"both\\\\\\\": 24.2847\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.554708,\\\\n        \\\\\\\"ci_low\\\\\\\": 0.277272,\\\\n        \\\\\\\"ci_high\\\\\\\": 0.919782,\\\\n        \\\\\\\"median\\\\\\\": 0.053399,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.336673,\\\\n        \\\\\\\"skewness\\\\\\\": 10.622,\\\\n        \\\\\\\"outlier_count\\\\\\\": 6\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 57.794625,\\\\n        \\\\\\\"ci_low\\\\\\\": 41.441645,\\\\n        \\\\\\\"ci_high\\\\\\\": 77.046663,\\\\n        \\\\\\\"median\\\\\\\": 14.639463,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 39.314331,\\\\n        \\\\\\\"skewness\\\\\\\": 8.3142,\\\\n        \\\\\\\"outlier_count\\\\\\\": 6\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 11.300022,\\\\n        \\\\\\\"ci_low\\\\\\\": 6.865018,\\\\n        \\\\\\\"ci_high\\\\\\\": 17.263338,\\\\n        \\\\\\\"median\\\\\\\": 2.283268,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 8.175236,\\\\n        \\\\\\\"skewness\\\\\\\": 9.1908,\\\\n        \\\\\\\"outlier_count\\\\\\\": 2\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.3\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": false,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"PASS\\\\\\\"\\\\n  },\\\\n  \\\\\\\"warnings\\\\\\\": [],\\\\n  \\\\\\\"diagnostics\\\\\\\": {\\\\n    \\\\\\\"per_problem_sparsity\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2470.json\\\\\\\",\\\\n        \\\\\\\"sparsity_values\\\\\\\": [\\\\n          0.36500003933906555,\\\\n          0.29131656885147095,\\\\n          0.317307710647583,\\\\n          0.46226418018341064,\\\\n          0.3432539701461792,\\\\n          0.3246753215789795,\\\\n          0.2621173858642578,\\\\n          0.29511281847953796,\\\\n          0.3091133236885071,\\\\n          0.2669491767883301,\\\\n          0.32559528946876526,\\\\n          0.2816159129142761,\\\\n          0.41705068945884705,\\\\n          0.51133793592453,\\\\n          0.357700914144516,\\\\n          0.3280220031738281,\\\\n          0.386904776096344,\\\\n          0.33315563201904297,\\\\n          0.37342438101768494,\\\\n          0.3115942180156708,\\\\n          0.315306156873703,\\\\n          0.37826961278915405,\\\\n          0.4255952537059784,\\\\n          0.3659491240978241,\\\\n          0.3889961540699005,\\\\n          0.37857145071029663,\\\\n          0.30686092376708984,\\\\n          0.3789425194263458,\\\\n          0.3896520435810089,\\\\n          0.445298433303833,\\\\n          0.36919644474983215,\\\\n          0.3690476715564728,\\\\n          0.37935537099838257,\\\\n          0.3399311602115631,\\\\n          0.2687074840068817,\\\\n          0.33361348509788513,\\\\n          0.38413622975349426,\\\\n          0.41912972927093506,\\\\n          0.4131493866443634,\\\\n          0.4650883078575134,\\\\n          0.5079365968704224,\\\\n          0.45682892203330994,\\\\n          0.38664597272872925,\\\\n          0.45468512177467346,\\\\n          0.4300912022590637,\\\\n          0.48308271169662476,\\\\n          0.4479166865348816,\\\\n          0.38512519001960754,\\\\n          0.4056122899055481,\\\\n          0.43037518858909607,\\\\n          0.3774999976158142,\\\\n          0.5367751121520996,\\\\n          0.6186975240707397,\\\\n          0.5176838040351868,\\\\n          0.41929948329925537,\\\\n          0.403\\\\n\\\\n... [截断: 输出过长，省略 1982440 字符] ...\\\\n\\\\n\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 8.601687173576856,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 37,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/geometry/465.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.024542846454281952,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.7873093041633845,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 1,\\\\n        \\\\\\\"ii_low\\\\\\\": 8.839045070222392,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 38,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/972.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.0342542856952055,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 5,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.03821178128089464,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 5,\\\\n        \\\\\\\"ii_low\\\\\\\": 10.098495368832669,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 6\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 39,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/345.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 1.4729604884848513,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 30.17109895851291,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 4,\\\\n        \\\\\\\"ii_low\\\\\\\": 51.26112492962257,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 18\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 40,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/2277.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 4.445711396568467,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 20,\\\\n        \\\\\\\"ii_mid\\\\\\\": 5.630568272268898,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 59.48392003798331,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 41,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/intermediate_algebra/582.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.13803555269029788,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 12,\\\\n        \\\\\\\"ii_mid\\\\\\\": 5.561002154597148,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 40.145476605442255,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 14\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 42,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/427.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.05448562671973911,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 3,\\\\n        \\\\\\\"ii_mid\\\\\\\": null,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 0,\\\\n        \\\\\\\"ii_low\\\\\\\": 5.641214195002513,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 2\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 43,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/number_theory/820.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.054933213973488604,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.07349191573920355,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 6,\\\\n        \\\\\\\"ii_low\\\\\\\": 9.977849648827418,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 20\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 44,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/768.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.05241690705876095,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 20.370107717534957,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 94.68142721556899,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 12\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 45,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/prealgebra/1558.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": -0.026780600301005264,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 10,\\\\n        \\\\\\\"ii_mid\\\\\\\": 0.5744208026455633,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 7,\\\\n        \\\\\\\"ii_low\\\\\\\": 11.125063334409106,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 17\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 46,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/precalculus/323.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.010472542257369044,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 17,\\\\n        \\\\\\\"ii_mid\\\\\\\": 3.321979968091771,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 10,\\\\n        \\\\\\\"ii_low\\\\\\\": 37.38614598243865,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 10\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 47,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/counting_and_probability/159.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.19387986071008417,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 14,\\\\n        \\\\\\\"ii_mid\\\\\\\": 1.759131362304692,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 2,\\\\n        \\\\\\\"ii_low\\\\\\\": 9.961110666982286,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 9\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 48,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/853.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.8967412180473178,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 13,\\\\n        \\\\\\\"ii_mid\\\\\\\": 6.137755930125087,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 71.54160720246682,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 13\\\\n      },\\\\n      {\\\\n        \\\\\\\"problem_idx\\\\\\\": 49,\\\\n        \\\\\\\"problem_id\\\\\\\": \\\\\\\"test/algebra/892.json\\\\\\\",\\\\n        \\\\\\\"ii_high\\\\\\\": 0.24418650790766816,\\\\n        \\\\\\\"n_segments_high\\\\\\\": 16,\\\\n        \\\\\\\"ii_mid\\\\\\\": 9.33773345779217,\\\\n        \\\\\\\"n_segments_mid\\\\\\\": 11,\\\\n        \\\\\\\"ii_low\\\\\\\": 53.22740778263275,\\\\n        \\\\\\\"n_segments_low\\\\\\\": 15\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.3\\n    ],\\n    \\\"masking_method\\\": \\\"importance\\\",\\n    \\\"head_importance_metric\\\": \\\"attention_frobenius_norm\\\",\\n    \\\"kv_importance_metric\\\": \\\"cumulative_attention_received\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.1689,\\n        \\\"attn\\\": 1.7123,\\n        \\\"kv\\\": 2.0544,\\n        \\\"both\\\": 3.2372\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.2286,\\n        \\\"attn\\\": 1.9347,\\n        \\\"kv\\\": 51.6485,\\n        \\\"both\\\": 122.609\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 1.7894,\\n        \\\"kv\\\": 9.4821,\\n        \\\"both\\\": 24.2847\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": 0.554708,\\n        \\\"ci_low\\\": 0.277272,\\n        \\\"ci_high\\\": 0.919782,\\n        \\\"median\\\": 0.053399,\\n        \\\"winsorized_mean\\\": 0.336673,\\n        \\\"skewness\\\": 10.622,\\n        \\\"outlier_count\\\": 6\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": 57.794625,\\n        \\\"ci_low\\\": 41.441645,\\n        \\\"ci_high\\\": 77.046663,\\n        \\\"median\\\": 14.639463,\\n        \\\"winsorized_mean\\\": 39.314331,\\n        \\\"skewness\\\": 8.3142,\\n        \\\"outlier_count\\\": 6\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"mean\\\": 11.300022,\\n        \\\"ci_low\\\": 6.865018,\\n        \\\"ci_high\\\": 17.263338,\\n        \\\"median\\\": 2.283268,\\n        \\\"winsorized_mean\\\": 8.175236,\\n        \\\"skewness\\\": 9.1908,\\n        \\\"outlier_count\\\": 2\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.3\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": false,\\n      \\\"details\\\": \\\"\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n  \\\"warnings\\\": [],\\n  \\\"diagnostics\\\": {\\n    \\\"per_problem_sparsity\\\": [\\n      {\\n        \\\"problem_id\\\": \\\"test/algebra/2470.json\\\",\\n        \\\"sparsity_values\\\": [\\n          0.36500003933906555,\\n          0.29131656885147095,\\n          0.317307710647583,\\n          0.46226418018341064,\\n          0.3432539701461792,\\n          0.3246753215789795,\\n          0.2621173858642578,\\n          0.29511281847953796,\\n          0.3091133236885071,\\n          0.2669491767883301,\\n          0.32559528946876526,\\n          0.2816159129142761,\\n          0.41705068945884705,\\n          0.51133793592453,\\n          0.357700914144516,\\n          0.3280220031738281,\\n          0.386904776096344,\\n          0.33315563201904297,\\n          0.37342438101768494,\\n          0.3115942180156708,\\n          0.315306156873703,\\n          0.37826961278915405,\\n          0.4255952537059784,\\n          0.3659491240978241,\\n          0.3889961540699005,\\n          0.37857145071029663,\\n          0.30686092376708984,\\n          0.3789425194263458,\\n          0.3896520435810089,\\n          0.445298433303833,\\n          0.36919644474983215,\\n          0.3690476715564728,\\n          0.37935537099838257,\\n          0.3399311602115631,\\n          0.2687074840068817,\\n          0.33361348509788513,\\n          0.38413622975349426,\\n          0.41912972927093506,\\n          0.4131493866443634,\\n          0.4650883078575134,\\n          0.5079365968704224,\\n          0.45682892203330994,\\n          0.38664597272872925,\\n          0.45468512177467346,\\n          0.4300912022590637,\\n          0.48308271169662476,\\n          0.4479166865348816,\\n          0.38512519001960754,\\n          0.4056122899055481,\\n          0.43037518858909607,\\n          0.3774999976158142,\\n          0.5367751121520996,\\n          0.6186975240707397,\\n          0.5176838040351868,\\n          0.41929948329925537,\\n          0.403\\n\\n... [截断: 输出过长，省略 1982440 字符] ...\\n\\n\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 8.601687173576856,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 37,\\n        \\\"problem_id\\\": \\\"test/geometry/465.json\\\",\\n        \\\"ii_high\\\": 0.024542846454281952,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 0.7873093041633845,\\n        \\\"n_segments_mid\\\": 1,\\n        \\\"ii_low\\\": 8.839045070222392,\\n        \\\"n_segments_low\\\": 15\\n      },\\n      {\\n        \\\"problem_idx\\\": 38,\\n        \\\"problem_id\\\": \\\"test/algebra/972.json\\\",\\n        \\\"ii_high\\\": 0.0342542856952055,\\n        \\\"n_segments_high\\\": 5,\\n        \\\"ii_mid\\\": 0.03821178128089464,\\n        \\\"n_segments_mid\\\": 5,\\n        \\\"ii_low\\\": 10.098495368832669,\\n        \\\"n_segments_low\\\": 6\\n      },\\n      {\\n        \\\"problem_idx\\\": 39,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/345.json\\\",\\n        \\\"ii_high\\\": 1.4729604884848513,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 30.17109895851291,\\n        \\\"n_segments_mid\\\": 4,\\n        \\\"ii_low\\\": 51.26112492962257,\\n        \\\"n_segments_low\\\": 18\\n      },\\n      {\\n        \\\"problem_idx\\\": 40,\\n        \\\"problem_id\\\": \\\"test/algebra/2277.json\\\",\\n        \\\"ii_high\\\": 4.445711396568467,\\n        \\\"n_segments_high\\\": 20,\\n        \\\"ii_mid\\\": 5.630568272268898,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 59.48392003798331,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 41,\\n        \\\"problem_id\\\": \\\"test/intermediate_algebra/582.json\\\",\\n        \\\"ii_high\\\": 0.13803555269029788,\\n        \\\"n_segments_high\\\": 12,\\n        \\\"ii_mid\\\": 5.561002154597148,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 40.145476605442255,\\n        \\\"n_segments_low\\\": 14\\n      },\\n      {\\n        \\\"problem_idx\\\": 42,\\n        \\\"problem_id\\\": \\\"test/number_theory/427.json\\\",\\n        \\\"ii_high\\\": 0.05448562671973911,\\n        \\\"n_segments_high\\\": 3,\\n        \\\"ii_mid\\\": null,\\n        \\\"n_segments_mid\\\": 0,\\n        \\\"ii_low\\\": 5.641214195002513,\\n        \\\"n_segments_low\\\": 2\\n      },\\n      {\\n        \\\"problem_idx\\\": 43,\\n        \\\"problem_id\\\": \\\"test/number_theory/820.json\\\",\\n        \\\"ii_high\\\": 0.054933213973488604,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 0.07349191573920355,\\n        \\\"n_segments_mid\\\": 6,\\n        \\\"ii_low\\\": 9.977849648827418,\\n        \\\"n_segments_low\\\": 20\\n      },\\n      {\\n        \\\"problem_idx\\\": 44,\\n        \\\"problem_id\\\": \\\"test/precalculus/768.json\\\",\\n        \\\"ii_high\\\": 0.05241690705876095,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 20.370107717534957,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 94.68142721556899,\\n        \\\"n_segments_low\\\": 12\\n      },\\n      {\\n        \\\"problem_idx\\\": 45,\\n        \\\"problem_id\\\": \\\"test/prealgebra/1558.json\\\",\\n        \\\"ii_high\\\": -0.026780600301005264,\\n        \\\"n_segments_high\\\": 10,\\n        \\\"ii_mid\\\": 0.5744208026455633,\\n        \\\"n_segments_mid\\\": 7,\\n        \\\"ii_low\\\": 11.125063334409106,\\n        \\\"n_segments_low\\\": 17\\n      },\\n      {\\n        \\\"problem_idx\\\": 46,\\n        \\\"problem_id\\\": \\\"test/precalculus/323.json\\\",\\n        \\\"ii_high\\\": 0.010472542257369044,\\n        \\\"n_segments_high\\\": 17,\\n        \\\"ii_mid\\\": 3.321979968091771,\\n        \\\"n_segments_mid\\\": 10,\\n        \\\"ii_low\\\": 37.38614598243865,\\n        \\\"n_segments_low\\\": 10\\n      },\\n      {\\n        \\\"problem_idx\\\": 47,\\n        \\\"problem_id\\\": \\\"test/counting_and_probability/159.json\\\",\\n        \\\"ii_high\\\": 0.19387986071008417,\\n        \\\"n_segments_high\\\": 14,\\n        \\\"ii_mid\\\": 1.759131362304692,\\n        \\\"n_segments_mid\\\": 2,\\n        \\\"ii_low\\\": 9.961110666982286,\\n        \\\"n_segments_low\\\": 9\\n      },\\n      {\\n        \\\"problem_idx\\\": 48,\\n        \\\"problem_id\\\": \\\"test/algebra/853.json\\\",\\n        \\\"ii_high\\\": 0.8967412180473178,\\n        \\\"n_segments_high\\\": 13,\\n        \\\"ii_mid\\\": 6.137755930125087,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 71.54160720246682,\\n        \\\"n_segments_low\\\": 13\\n      },\\n      {\\n        \\\"problem_idx\\\": 49,\\n        \\\"problem_id\\\": \\\"test/algebra/892.json\\\",\\n        \\\"ii_high\\\": 0.24418650790766816,\\n        \\\"n_segments_high\\\": 16,\\n        \\\"ii_mid\\\": 9.33773345779217,\\n        \\\"n_segments_mid\\\": 11,\\n        \\\"ii_low\\\": 53.22740778263275,\\n        \\\"n_segments_low\\\": 15\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to compute the gradient_paired_aggregate for each experiment. Let me also extract per_problem_ii_stats. The JSON files are very large with per-problem diagnostics. Let me extract the key metrics I need.
+
+Let me now compute the gradient for each experiment. The gradient is defined as low_median / high_median ratio.
+
+For random experiments, the "gradient" concept is about whether II increases from high-sparsity phases to low-sparsity phases. For importance masking, low_sparsity phases should have much higher II than high_sparsity phases.
+
+
+I'm organizing the per-problem II statistics I've extracted, looking at the mean, median, confidence intervals, and skewness values across different sparsity levels for each experiment. Looking at the bf16_ds_rand_s020 results, the high condition shows a mean of 2.5259 with a median of 0.3278 and confidence interval spanning 1.2546 to 4.2356, while the low condition has a negative mean of -2.4805 but similar median at 0.3909, and the mid condition drops significantly to -36.0516. The gradient between low and high medians is 1.192×, and this configuration passes validation despite showing sign reversal between conditions. Moving into bf16_ds_rand_s025 now. Looking at the bf16_importance_s020 metrics, I'm seeing a massive gradient of 103.19× between the low and high importance levels, with the low condition showing a mean of 6.0288 compared to the high's 0.1289—this passes validation despite no sign reversal. Moving into bf16_importance_s030 now. Now I'm looking for the per_problem_ii_stats section in the JSON output to see if it contains aggregated statistics across individual problems, but the structure seems to have the per-problem data scattered across different fields rather than consolidated in one place.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "cd8a8ba0-1fe5-4e4b-aff9-53ca746dee71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186M3YszTgSd9sVG18qnLs7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22885,
+      "cache_read_input_tokens": 38880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+数据已收到。现在提取 per_problem_ii_stats 汇总（JSON 被截断了中间部分）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "4aac6a92-9de7-49b0-8cc2-67aefe258d30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186M3YszTgSd9sVG18qnLs7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22885,
+      "cache_read_input_tokens": 38880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MJGmUNuz7jHLRqqVn4sTHs`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"\nimport json\nfiles = {\n  'bf16_ds_rand_s015': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json',\n  'bf16_ds_rand_s020': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json',\n  'bf16_ds_rand_s025': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json',\n  'bf16_imp_s020': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json',\n  'bf16_imp_s030': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json',\n}\nimport statistics\nfor name, path in files.items():\n    d = json.load(open(path))\n    diag = d['diagnostics']\n    # Check if per_problem_ii_stats exists as a key\n    print(f'=== {name} ===')\n    print('Keys in diagnostics:', list(diag.keys()))\n    # Compute per-problem stats from raw data\n    pp = diag.get('per_problem_ii', diag.get('per_problem_ii_stats', []))\n    if not pp:\n        pp = [p for p in diag.get('per_problem_sparsity', []) if 'ii_high' in (p if isinstance(p, dict) else {})]\n        if not pp:\n            # Try the other structure\n            for k in diag:\n                if 'ii' in k.lower():\n                    print(f'  Found key: {k}')\n    # Get ii values per phase\n    highs = [p['ii_high'] for p in pp if p.get('ii_high') is not None]\n    mids = [p['ii_mid'] for p in pp if p.get('ii_mid') is not None]\n    lows = [p['ii_low'] for p in pp if p.get('ii_low') is not None]\n    print(f'  high: n={len(highs)}, min={min(highs):.4f}, max={max(highs):.4f}, mean={statistics.mean(highs):.4f}, median={statistics.median(highs):.4f}, std={statistics.stdev(highs):.4f}')\n    print(f'  mid:  n={len(mids)}, min={min(mids):.4f}, max={max(mids):.4f}, mean={statistics.mean(mids):.4f}, median={statistics.median(mids):.4f}, std={statistics.stdev(mids):.4f}')\n    print(f'  low:  n={len(lows)}, min={min(lows):.4f}, max={max(lows):.4f}, mean={statistics.mean(lows):.4f}, median={statistics.median(lows):.4f}, std={statistics.stdev(lows):.4f}')\n    # Gradient\n    med_low = statistics.median(lows)\n    med_high = statistics.median(highs)\n    grad = med_low / med_high if med_high != 0 else float('inf')\n    print(f'  gradient(low_median/high_median) = {grad:.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "39bfba20-ad2a-44a6-898f-283a9f4987df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0186M3YszTgSd9sVG18qnLs7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22885,
+      "cache_read_input_tokens": 38880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22885
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T06:48:09.683Z_
+
+<details><summary>↩ Tool result · `toolu_01MJGmUNuz7jHLRqqVn4sTHs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "5c4383ef-fd7c-4e6b-b885-ca583cccd6a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to use ssh_execute for python -c with open(). Or I can use a different approach - pipe cat through python. Actually let me try using ssh_execute.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "7b0195db-bdc5-48e8-a6b5-7f4cc9868124",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfQfoH2ggHAATHk13Fp813",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2701,
+      "cache_read_input_tokens": 61765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RSKv9pEE7yy8kp3v56JPuY`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "4f4301c4-b74d-4a30-91bf-6729fd2a5383",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfQfoH2ggHAATHk13Fp813",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2701,
+      "cache_read_input_tokens": 61765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2701
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T06:48:13.747Z_
+
+<details><summary>↩ Tool result · `toolu_01RSKv9pEE7yy8kp3v56JPuY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "0c927e29-a2b1-4208-8d8c-f3c08860ecaf",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LxvdirP5i5iZeLxV7QYJPu`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, statistics\n\nfiles = {\n  'bf16_ds_rand_s015': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json',\n  'bf16_ds_rand_s020': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json',\n  'bf16_ds_rand_s025': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json',\n  'bf16_imp_s020': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json',\n  'bf16_imp_s030': '/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json',\n}\n\nfor name, path in files.items():\n    d = json.load(open(path))\n    diag = d['diagnostics']\n    pp = diag.get('per_problem_ii', [])\n    if not pp:\n        # fallback: look in per_problem_sparsity which has ii_high/ii_mid/ii_low\n        pp = [p for p in diag.get('per_problem_sparsity', []) if 'ii_high' in p]\n    \n    highs = [p['ii_high'] for p in pp if p.get('ii_high') is not None]\n    mids = [p['ii_mid'] for p in pp if p.get('ii_mid') is not None]\n    lows = [p['ii_low'] for p in pp if p.get('ii_low') is not None]\n    \n    print(f'=== {name} ===')\n    for label, vals in [('high', highs), ('mid', mids), ('low', lows)]:\n        if vals:\n            print(f'  {label}: n={len(vals)}, min={min(vals):.4f}, max={max(vals):.4f}, mean={statistics.mean(vals):.4f}, median={statistics.median(vals):.4f}, std={statistics.stdev(vals):.4f}')\n    \n    med_low = statistics.median(lows) if lows else 0\n    med_high = statistics.median(highs) if highs else 0\n    if med_high != 0:\n        grad = med_low / med_high\n    else:\n        grad = float('inf')\n    print(f'  gradient(low_med/high_med) = {grad:.4f}')\n    print()\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "2c29f521-93f4-4496-a35e-f70a9ed00242",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165UtkNu8s4PWwKxAYsTo7d",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 396,
+      "cache_read_input_tokens": 64466,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 396
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T06:48:23.865Z_
+
+<details><summary>↩ Tool result · `toolu_01LxvdirP5i5iZeLxV7QYJPu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== bf16_ds_rand_s015 ===\\n  gradient(low_med/high_med) = inf\\n\\n=== bf16_ds_rand_s020 ===\\n  gradient(low_med/high_med) = inf\\n\\n=== bf16_ds_rand_s025 ===\\n  gradient(low_med/high_med) = inf\\n\\n=== bf16_imp_s020 ===\\n  gradient(low_med/high_med) = inf\\n\\n=== bf16_imp_s030 ===\\n  gradient(low_med/high_med) = inf\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "85c174d8-2994-4b46-abe6-3417d245f07a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== bf16_ds_rand_s015 ===\\\\n  gradient(low_med/high_med) = inf\\\\n\\\\n=== bf16_ds_rand_s020 ===\\\\n  gradient(low_med/high_med) = inf\\\\n\\\\n=== bf16_ds_rand_s025 ===\\\\n  gradient(low_med/high_med) = inf\\\\n\\\\n=== bf16_imp_s020 ===\\\\n  gradient(low_med/high_med) = inf\\\\n\\\\n=== bf16_imp_s030 ===\\\\n  gradient(low_med/high_med) = inf\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== bf16_ds_rand_s015 ===\\n  gradient(low_med/high_med) = inf\\n\\n=== bf16_ds_rand_s020 ===\\n  gradient(low_med/high_med) = inf\\n\\n=== bf16_ds_rand_s025 ===\\n  gradient(low_med/high_med) = inf\\n\\n=== bf16_imp_s020 ===\\n  gradient(low_med/high_med) = inf\\n\\n=== bf16_imp_s030 ===\\n  gradient(low_med/high_med) = inf\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The per_problem data doesn't have ii_high/ii_mid/ii_low fields in per_problem_sparsity. Let me check the actual structure of the diagnostics section more carefully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "f9f383e1-97e8-4406-bb49-e88f7f327392",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ASomJ7Wyw6ni3jMRnasMLs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 64862,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01K9pAjy7zjrCZLUyes271yZ`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json'))\ndiag = d['diagnostics']\nprint('diagnostics keys:', list(diag.keys()))\nfor k in diag:\n    v = diag[k]\n    if isinstance(v, list):\n        print(f'  {k}: list of {len(v)} items')\n        if v:\n            print(f'    first item keys: {list(v[0].keys()) if isinstance(v[0], dict) else type(v[0])}')\n    elif isinstance(v, dict):\n        print(f'  {k}: dict with keys {list(v.keys())}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "8d59d8ca-dcf5-4c2f-85a1-ecea84accd66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ASomJ7Wyw6ni3jMRnasMLs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 64862,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T06:48:30.190Z_
+
+<details><summary>↩ Tool result · `toolu_01K9pAjy7zjrCZLUyes271yZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"diagnostics keys: ['per_problem_sparsity', 'global_sparsity_histogram']\\n  per_problem_sparsity: list of 50 items\\n    first item keys: ['problem_id', 'sparsity_values', 'n_tokens', 'sparsity_mean', 'sparsity_std', 'sparsity_min', 'sparsity_max', 'n_phases_detected', 'phase_sizes', 'phase_names', 'segmentation_method', 'quantile_boundaries', 'quantile_group_stats']\\n  global_sparsity_histogram: dict with keys ['bins', 'counts']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "d1a3fd0d-d547-45ba-b517-a3e547297c55",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"diagnostics keys: ['per_problem_sparsity', 'global_sparsity_histogram']\\\\n  per_problem_sparsity: list of 50 items\\\\n    first item keys: ['problem_id', 'sparsity_values', 'n_tokens', 'sparsity_mean', 'sparsity_std', 'sparsity_min', 'sparsity_max', 'n_phases_detected', 'phase_sizes', 'phase_names', 'segmentation_method', 'quantile_boundaries', 'quantile_group_stats']\\\\n  global_sparsity_histogram: dict with keys ['bins', 'counts']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"diagnostics keys: ['per_problem_sparsity', 'global_sparsity_histogram']\\n  per_problem_sparsity: list of 50 items\\n    first item keys: ['problem_id', 'sparsity_values', 'n_tokens', 'sparsity_mean', 'sparsity_std', 'sparsity_min', 'sparsity_max', 'n_phases_detected', 'phase_sizes', 'phase_names', 'segmentation_method', 'quantile_boundaries', 'quantile_group_stats']\\n  global_sparsity_histogram: dict with keys ['bins', 'counts']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The per_problem data is different from what I expected. The ii_high/ii_mid/ii_low are not there. The per-problem II data is in the truncated part of the output. Let me look at the JSON more carefully - the per_problem_ii data was in the tail of the output. Let me search for it.
+
+Actually wait, looking back at the first JSON outputs, I can see near the end there are entries like:
+```
+"problem_idx": 49,
+"problem_id": "test/algebra/892.json",
+"ii_high": 0.15068171979340284,
+
+
+```
+
+So these are NOT in per_problem_sparsity but in a different array. Let me check what other top-level keys are in diagnostics or elsewhere.
+
+Actually wait, these entries in the output I saw earlier were at the bottom of the file output, and they seem to be part of a different section. Let me look for what section they belong to. Looking at the earlier output more carefully, after `per_problem_sparsity` with its data, I'm seeing these II metrics appear in what looks like a separate per-problem array with the segment counts included.
+
+```
+
+I need to trace back through the output structure more carefully—these II and segment values are appearing outside the diagnostics section I initially identified, so they must be part of a different top-level key or nested structure I haven't fully mapped yet.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "fb9af9c1-4844-427b-8a5a-74f4d530b764",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUwvXxUPBFJRHuZqurwtcB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 611,
+      "cache_read_input_tokens": 65898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 611
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014gsk3qkFRU98yFswFUTvYn`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json'))\nprint('Top-level keys:', list(d.keys()))\n# Check for per_problem_ii anywhere\nfor k in d:\n    if 'ii' in k.lower() or 'problem' in k.lower():\n        v = d[k]\n        if isinstance(v, list) and v:\n            print(f'{k}: list[{len(v)}], first keys={list(v[0].keys()) if isinstance(v[0],dict) else type(v[0])}')\n        elif isinstance(v, dict):\n            print(f'{k}: dict keys={list(v.keys())[:5]}...')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "073b305e-8bc4-439c-97d1-6e30b8dd7439",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUwvXxUPBFJRHuZqurwtcB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 611,
+      "cache_read_input_tokens": 65898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 611
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T06:48:43.990Z_
+
+<details><summary>↩ Tool result · `toolu_014gsk3qkFRU98yFswFUTvYn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Top-level keys: ['config', 'phase_stats', 'perplexity', 'interaction_index', 'pass_fail', 'warnings', 'diagnostics', 'per_problem_ii']\\nper_problem_ii: dict keys=['0.15']...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "1b9e34f6-4758-4973-905c-6455a90c505e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Top-level keys: ['config', 'phase_stats', 'perplexity', 'interaction_index', 'pass_fail', 'warnings', 'diagnostics', 'per_problem_ii']\\\\nper_problem_ii: dict keys=['0.15']...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Top-level keys: ['config', 'phase_stats', 'perplexity', 'interaction_index', 'pass_fail', 'warnings', 'diagnostics', 'per_problem_ii']\\nper_problem_ii: dict keys=['0.15']...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AMcKpxbKC5WwV5RDiNgS5C`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, statistics\n\nfiles = {\n  'bf16_ds_rand_s015': ('/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/profiling_results.json', '0.15'),\n  'bf16_ds_rand_s020': ('/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/profiling_results.json', '0.2'),\n  'bf16_ds_rand_s025': ('/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/profiling_results.json', '0.25'),\n  'bf16_imp_s020': ('/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/profiling_results.json', '0.2'),\n  'bf16_imp_s030': ('/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/profiling_results.json', '0.3'),\n}\n\nfor name, (path, sp) in files.items():\n    d = json.load(open(path))\n    pp = d['per_problem_ii'][sp]\n    \n    highs = [p['ii_high'] for p in pp if p.get('ii_high') is not None]\n    mids = [p['ii_mid'] for p in pp if p.get('ii_mid') is not None]\n    lows = [p['ii_low'] for p in pp if p.get('ii_low') is not None]\n    \n    print(f'=== {name} (s={sp}) ===')\n    for label, vals in [('high', highs), ('mid', mids), ('low', lows)]:\n        if vals:\n            print(f'  {label}: n={len(vals)}, min={min(vals):.4f}, max={max(vals):.4f}, mean={statistics.mean(vals):.4f}, median={statistics.median(vals):.4f}, std={statistics.stdev(vals):.4f}')\n    \n    med_low = statistics.median(lows)\n    med_high = statistics.median(highs)\n    if med_high != 0:\n        grad = med_low / med_high\n    else:\n        grad = float('inf')\n    print(f'  gradient(low_med/high_med) = {grad:.4f}')\n    print()\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "90b6f6f3-026b-4309-93b5-47146b97763b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfP1EhWQ4a3Z2RGUmwhq3L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 881,
+      "cache_read_input_tokens": 66509,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 881
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T06:48:53.221Z_
+
+<details><summary>↩ Tool result · `toolu_01AMcKpxbKC5WwV5RDiNgS5C`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== bf16_ds_rand_s015 (s=0.15) ===\\n  high: n=49, min=-17.4797, max=22.5146, mean=0.2208, median=0.0931, std=4.1856\\n  mid: n=40, min=-75.8992, max=6.2495, mean=-3.3604, median=0.0967, std=15.4282\\n  low: n=50, min=-59.7311, max=5.0415, mean=-1.8952, median=0.1026, std=10.2205\\n  gradient(low_med/high_med) = 1.1028\\n\\n=== bf16_ds_rand_s020 (s=0.2) ===\\n  high: n=49, min=-4.5854, max=29.4003, mean=1.1216, median=0.2918, std=4.6109\\n  mid: n=40, min=-80.8773, max=11.0717, mean=-1.5827, median=0.3504, std=13.8427\\n  low: n=50, min=-38.3425, max=8.3532, mean=-0.4116, median=0.2763, std=7.3481\\n  gradient(low_med/high_med) = 0.9467\\n\\n=== bf16_ds_rand_s025 (s=0.25) ===\\n  high: n=49, min=-13.5968, max=44.5263, mean=3.5900, median=0.8182, std=8.6725\\n  mid: n=40, min=-126.2488, max=18.7198, mean=-1.8455, median=0.9324, std=26.7996\\n  low: n=50, min=-91.2344, max=25.7084, mean=0.7212, median=1.3627, std=16.9395\\n  gradient(low_med/high_med) = 1.6655\\n\\n=== bf16_imp_s020 (s=0.2) ===\\n  high: n=49, min=-0.1884, max=0.4196, mean=0.0025, median=0.0036, std=0.0976\\n  mid: n=40, min=-0.0519, max=8.6969, mean=0.6795, median=0.1977, std=1.5189\\n  low: n=50, min=-1.6151, max=22.6875, mean=2.2301, median=1.1280, std=4.4202\\n  gradient(low_med/high_med) = 314.0331\\n\\n=== bf16_imp_s030 (s=0.3) ===\\n  high: n=49, min=-0.5095, max=4.4457, mean=0.1976, median=0.0343, std=0.6864\\n  mid: n=40, min=-0.1989, max=34.0258, mean=5.2585, median=1.5173, std=8.0394\\n  low: n=50, min=-7.3027, max=126.7985, mean=22.6601, median=9.9731, std=28.6981\\n  gradient(low_med/high_med) = 291.1489\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "672c0940-3887-43a9-a5cc-dbebe9f37776",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== bf16_ds_rand_s015 (s=0.15) ===\\\\n  high: n=49, min=-17.4797, max=22.5146, mean=0.2208, median=0.0931, std=4.1856\\\\n  mid: n=40, min=-75.8992, max=6.2495, mean=-3.3604, median=0.0967, std=15.4282\\\\n  low: n=50, min=-59.7311, max=5.0415, mean=-1.8952, median=0.1026, std=10.2205\\\\n  gradient(low_med/high_med) = 1.1028\\\\n\\\\n=== bf16_ds_rand_s020 (s=0.2) ===\\\\n  high: n=49, min=-4.5854, max=29.4003, mean=1.1216, median=0.2918, std=4.6109\\\\n  mid: n=40, min=-80.8773, max=11.0717, mean=-1.5827, median=0.3504, std=13.8427\\\\n  low: n=50, min=-38.3425, max=8.3532, mean=-0.4116, median=0.2763, std=7.3481\\\\n  gradient(low_med/high_med) = 0.9467\\\\n\\\\n=== bf16_ds_rand_s025 (s=0.25) ===\\\\n  high: n=49, min=-13.5968, max=44.5263, mean=3.5900, median=0.8182, std=8.6725\\\\n  mid: n=40, min=-126.2488, max=18.7198, mean=-1.8455, median=0.9324, std=26.7996\\\\n  low: n=50, min=-91.2344, max=25.7084, mean=0.7212, median=1.3627, std=16.9395\\\\n  gradient(low_med/high_med) = 1.6655\\\\n\\\\n=== bf16_imp_s020 (s=0.2) ===\\\\n  high: n=49, min=-0.1884, max=0.4196, mean=0.0025, median=0.0036, std=0.0976\\\\n  mid: n=40, min=-0.0519, max=8.6969, mean=0.6795, median=0.1977, std=1.5189\\\\n  low: n=50, min=-1.6151, max=22.6875, mean=2.2301, median=1.1280, std=4.4202\\\\n  gradient(low_med/high_med) = 314.0331\\\\n\\\\n=== bf16_imp_s030 (s=0.3) ===\\\\n  high: n=49, min=-0.5095, max=4.4457, mean=0.1976, median=0.0343, std=0.6864\\\\n  mid: n=40, min=-0.1989, max=34.0258, mean=5.2585, median=1.5173, std=8.0394\\\\n  low: n=50, min=-7.3027, max=126.7985, mean=22.6601, median=9.9731, std=28.6981\\\\n  gradient(low_med/high_med) = 291.1489\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== bf16_ds_rand_s015 (s=0.15) ===\\n  high: n=49, min=-17.4797, max=22.5146, mean=0.2208, median=0.0931, std=4.1856\\n  mid: n=40, min=-75.8992, max=6.2495, mean=-3.3604, median=0.0967, std=15.4282\\n  low: n=50, min=-59.7311, max=5.0415, mean=-1.8952, median=0.1026, std=10.2205\\n  gradient(low_med/high_med) = 1.1028\\n\\n=== bf16_ds_rand_s020 (s=0.2) ===\\n  high: n=49, min=-4.5854, max=29.4003, mean=1.1216, median=0.2918, std=4.6109\\n  mid: n=40, min=-80.8773, max=11.0717, mean=-1.5827, median=0.3504, std=13.8427\\n  low: n=50, min=-38.3425, max=8.3532, mean=-0.4116, median=0.2763, std=7.3481\\n  gradient(low_med/high_med) = 0.9467\\n\\n=== bf16_ds_rand_s025 (s=0.25) ===\\n  high: n=49, min=-13.5968, max=44.5263, mean=3.5900, median=0.8182, std=8.6725\\n  mid: n=40, min=-126.2488, max=18.7198, mean=-1.8455, median=0.9324, std=26.7996\\n  low: n=50, min=-91.2344, max=25.7084, mean=0.7212, median=1.3627, std=16.9395\\n  gradient(low_med/high_med) = 1.6655\\n\\n=== bf16_imp_s020 (s=0.2) ===\\n  high: n=49, min=-0.1884, max=0.4196, mean=0.0025, median=0.0036, std=0.0976\\n  mid: n=40, min=-0.0519, max=8.6969, mean=0.6795, median=0.1977, std=1.5189\\n  low: n=50, min=-1.6151, max=22.6875, mean=2.2301, median=1.1280, std=4.4202\\n  gradient(low_med/high_med) = 314.0331\\n\\n=== bf16_imp_s030 (s=0.3) ===\\n  high: n=49, min=-0.5095, max=4.4457, mean=0.1976, median=0.0343, std=0.6864\\n  mid: n=40, min=-0.1989, max=34.0258, mean=5.2585, median=1.5173, std=8.0394\\n  low: n=50, min=-7.3027, max=126.7985, mean=22.6601, median=9.9731, std=28.6981\\n  gradient(low_med/high_med) = 291.1489\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me compile the results.
+
+### Summary of all 5 experiments:
+
+#### bf16_ds_rand_s015
+- masking: random, sparsity: 0.15
+- interaction_index:
+  - high: mean=0.3849, CI=[-0.5409, 1.3147], median=0.1147, winsorized_mean=0.3161, skewness=-5.4014
+  - mid: mean=-172.6626, CI=[-427.0058, -9.0687], median=0.0969, winsorized_mean=-0.6366, skewness=-10.5634
+  - low: mean=-5.7326, CI=[-10.9283, -1.4391], median=0.1121, winsorized_mean=0.0521, skewness=-11.5715
+- per_problem_ii_stats:
+  - high: n=49, min=-17.4797, max=22.5146, mean=0.2208, median=0.0931, std=4.1856
+  - mid: n=40, min=-75.8992, max=6.2495, mean=-3.3604, median=0.0967, std=15.4282
+  - low: n=50, min=-59.7311, max=5.0415, mean=-1.8952, median=0.1026, std=10.2205
+
+Compiling the per-problem statistics across the different interaction index levels...
+
+Now I'm looking at the aggregate paired results showing a 1.10× gradient ratio between low and high medians, with the confidence intervals overlapping as expected but high versus mid showing clear separation. The phase statistics reveal token and segment counts across conditions, and the perplexity metrics show substantial variation especially in attention components—the mid condition's attention perplexity is notably elevated at nearly 298. The gradient appears flat as anticipated for random conditions, confirming the test passes.
+
+Moving into the next experiment with random masking at 0.20 sparsity, I'm examining the interaction index distributions across conditions. The high condition shows a mean of 2.53 with a wide confidence interval and extreme positive skewness, while both mid and low conditions have negative means with large negative skewness values, suggesting asymmetric distributions with outliers pulling in opposite directions. Looking at the perplexity metrics across the three groups and seeing the conclusion that the gradient is approximately 0.95x as expected for random data—this test passes. Now I'm moving into the bf16_ds_rand_s025 configuration with random masking at 0.25 sparsity, examining the interaction index values across the high, mid, and low groups. Looking at the perplexity metrics across the different attention mechanisms, the gradient ratio of 1.67× falls just above the baseline but well under the 3× threshold, so this configuration passes. Now I'm moving into the bf16_importance_s020 analysis with a 0.20 sparsity level, examining how the interaction indices vary across difficulty tiers. Looking at the gradient paired aggregate results, the 314× improvement is well above the 10× threshold and the confidence interval doesn't cross zero for the low condition, so this is a clear success. Now I'm moving into the bf16 importance analysis with sparsity at 0.30, starting to examine the interaction indices across different conditions. Now I'm looking at the per-problem statistics broken down by difficulty level, where the low-difficulty problems show much higher mean values (22.66) compared to mid (5.26) and high (0.20), along with perplexity metrics across different attention mechanisms that reveal significant variation, particularly in the key-value cache performance between difficulty levels.
+
+The gradient effect is substantial at roughly 291×, well above the 10× threshold, with confidence intervals that don't overlap zero for the low-difficulty group—indicating a clear success. I'm now compiling the trend across the importance experiments to see how the gradient scales with the intermediate importance metric, checking my reference values against the new results to ensure consistency.
+
+Looking at the data, s020's gradient of 314× appears inflated compared to s025's 222× because the high_median denominator for s020 is extremely small, which artificially inflates the ratio. The more reliable signal is the intermediate importance low median, which shows a clean monotonic progression: 0.398 → 1.496 → 7.196 → 14.639. I should clarify what "gradient" actually represents in the context of these experiments—it likely refers to the interaction index aggregate rather than the per-problem metric.
+
+Let me verify by checking the interaction index values directly. For s020, the interaction index gives a gradient of about 103, while the per-problem calculation yields 314. Since the reference value for s015 is 69.24, I need to determine which metric was used there. The interaction index approach provides a single mean and confidence interval per phase, whereas per-problem gives individual values. I'll stick with the interaction index median for consistency. values for the gradient calculation, since those are what was reported for the reference experiments.
+
+For bf16_importance_s020:
+- II high median = 0.014513
+- II low median = 1.496254
+- gradient = 1.496254 / 0.014513 = 103.10
+
+For bf16_importance_s030:
+- II high median = 0.053399
+- II low median = 14.639463
+- gradient = 14.639463 / 0.053399 = 274.24
+
+I'm noticing there are two different sets of median values here—the aggregated ones from the interaction_index section and the per-problem medians I calculated separately. The interaction_index values give gradients of 103.10 and 274.24, while the per-problem approach yields 314.03 and 291.15. Since the reference experiment (bf16_importance_s015) reported a gradient of 69.24 with an II low median of 0.398, I should stick with the interaction_index section for consistency and verify that the reference values match what's actually in that section. The gradient values show a clear monotonic increase across the samples, which is reassuring. Now I'm checking the random dataset gradients by computing the ratio of low to high median interaction indices, and I'm noticing some discrepancies between what I calculated and the per-problem values, so I need to recalculate using the JSON medians directly. I've compiled all the gradient ratios from the interaction index medians across the different configurations, and now I'm ready to format and output the structured results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "18ccb8e2-1af7-46e6-9385-ad08b6453fb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EscWmsz5BKdCKXmjiz3wTq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1679,
+      "cache_read_input_tokens": 67390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1679
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+数据齐全。以下是 5 个实验的完整分析结果。
+
+---
+
+## 1. bf16_ds_rand_s015
+
+```json
+{
+  "exp_id": "bf16_ds_rand_s015",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 0.3849, "ci": [-0.5409, 1.3147], "median": 0.1147, "winsorized_mean": 0.3161, "skewness": -5.4014},
+      "mid":  {"mean": -172.6626, "ci": [-427.0058, -9.0687], "median": 0.0969, "winsorized_mean": -0.6366, "skewness": -10.5634},
+      "low":  {"mean": -5.7326, "ci": [-10.9283, -1.4391], "median": 0.1121, "winsorized_mean": 0.0521, "skewness": -11.5715}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -17.4797, "max": 22.5146, "mean": 0.2208, "median": 0.0931, "std": 4.1856},
+      "mid":  {"n": 40, "min": -75.8992, "max": 6.2495, "mean": -3.3604, "median": 0.0967, "std": 15.4282},
+      "low":  {"n": 50, "min": -59.7311, "max": 5.0415, "mean": -1.8952, "median": 0.1026, "std": 10.2205}
+    },
+    "gradient_paired_aggregate": 0.98,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": false, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1687, "attn": 3.5947, "kv": 2.9239, "both": 5.7569},
+      "low":  {"dense": 1.2284, "attn": 11.3419, "kv": 3.6161, "both": 6.2886},
+      "mid":  {"dense": 1.2269, "attn": 297.7957, "kv": 2.915, "both": 11.3156}
+    }
+  }
+}
+```
+
+---
+
+## 2. bf16_ds_rand_s020
+
+```json
+{
+  "exp_id": "bf16_ds_rand_s020",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 2.5259, "ci": [1.2546, 4.2356], "median": 0.3278, "winsorized_mean": 1.7664, "skewness": 9.5932},
+      "mid":  {"mean": -36.0516, "ci": [-93.2484, -2.2016], "median": 0.2977, "winsorized_mean": 0.5839, "skewness": -12.3126},
+      "low":  {"mean": -2.4805, "ci": [-5.6296, 0.1128], "median": 0.3909, "winsorized_mean": 0.9942, "skewness": -10.0661}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -4.5854, "max": 29.4003, "mean": 1.1216, "median": 0.2918, "std": 4.6109},
+      "mid":  {"n": 40, "min": -80.8773, "max": 11.0717, "mean": -1.5827, "median": 0.3504, "std": 13.8427},
+      "low":  {"n": 50, "min": -38.3425, "max": 8.3532, "mean": -0.4116, "median": 0.2763, "std": 7.3481}
+    },
+    "gradient_paired_aggregate": 1.19,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": true, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1687, "attn": 3.1905, "kv": 3.8002, "both": 8.8129},
+      "low":  {"dense": 1.2284, "attn": 8.592, "kv": 5.0078, "both": 9.2001},
+      "mid":  {"dense": 1.2269, "attn": 67.8504, "kv": 3.788, "both": 11.4974}
+    }
+  }
+}
+```
+
+---
+
+## 3. bf16_ds_rand_s025
+
+```json
+{
+  "exp_id": "bf16_ds_rand_s025",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 5.5906, "ci": [1.1716, 9.4656], "median": 1.5545, "winsorized_mean": 6.3965, "skewness": -7.566},
+      "mid":  {"mean": -514.2418, "ci": [-1361.4741, -24.9357], "median": 1.0202, "winsorized_mean": 3.1014, "skewness": -12.7601},
+      "low":  {"mean": -9.1062, "ci": [-25.8045, 2.5166], "median": 1.8937, "winsorized_mean": 4.1866, "skewness": -15.8457}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -13.5968, "max": 44.5263, "mean": 3.5900, "median": 0.8182, "std": 8.6725},
+      "mid":  {"n": 40, "min": -126.2488, "max": 18.7198, "mean": -1.8455, "median": 0.9324, "std": 26.7996},
+      "low":  {"n": 50, "min": -91.2344, "max": 25.7084, "mean": 0.7212, "median": 1.3627, "std": 16.9395}
+    },
+    "gradient_paired_aggregate": 1.22,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": true, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1687, "attn": 7.237, "kv": 4.9751, "both": 17.7423},
+      "low":  {"dense": 1.2284, "attn": 24.3571, "kv": 6.7993, "both": 17.9694},
+      "mid":  {"dense": 1.2269, "attn": 868.3199, "kv": 5.1165, "both": 29.4661}
+    }
+  }
+}
+```
+
+---
+
+## 4. bf16_importance_s020
+
+```json
+{
+  "exp_id": "bf16_importance_s020",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 0.1289, "ci": [-0.1975, 0.6647], "median": 0.0145, "winsorized_mean": -0.0297, "skewness": 16.6701},
+      "mid":  {"mean": 1.2604, "ci": [0.7466, 1.8962], "median": 0.2027, "winsorized_mean": 0.7660, "skewness": 7.0541},
+      "low":  {"mean": 6.0288, "ci": [4.4671, 7.9237], "median": 1.4963, "winsorized_mean": 4.3426, "skewness": 6.012}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -0.1884, "max": 0.4196, "mean": 0.0025, "median": 0.0036, "std": 0.0976},
+      "mid":  {"n": 40, "min": -0.0519, "max": 8.6969, "mean": 0.6795, "median": 0.1977, "std": 1.5189},
+      "low":  {"n": 50, "min": -1.6151, "max": 22.6875, "mean": 2.2301, "median": 1.1280, "std": 4.4202}
+    },
+    "gradient_paired_aggregate": 103.10,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": false, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1689, "attn": 1.5233, "kv": 1.6191, "both": 2.1047},
+      "low":  {"dense": 1.2286, "attn": 1.6486, "kv": 15.7987, "both": 23.74},
+      "mid":  {"dense": 1.2269, "attn": 1.5375, "kv": 3.5164, "both": 5.4246}
+    }
+  }
+}
+```
+
+---
+
+## 5. bf16_importance_s030
+
+```json
+{
+  "exp_id": "bf16_importance_s030",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 0.5547, "ci": [0.2773, 0.9198], "median": 0.0534, "winsorized_mean": 0.3367, "skewness": 10.622},
+      "mid":  {"mean": 11.3000, "ci": [6.8650, 17.2633], "median": 2.2833, "winsorized_mean": 8.1752, "skewness": 9.1908},
+      "low":  {"mean": 57.7946, "ci": [41.4416, 77.0467], "median": 14.6395, "winsorized_mean": 39.3143, "skewness": 8.3142}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -0.5095, "max": 4.4457, "mean": 0.1976, "median": 0.0343, "std": 0.6864},
+      "mid":  {"n": 40, "min": -0.1989, "max": 34.0258, "mean": 5.2585, "median": 1.5173, "std": 8.0394},
+      "low":  {"n": 50, "min": -7.3027, "max": 126.7985, "mean": 22.6601, "median": 9.9731, "std": 28.6981}
+    },
+    "gradient_paired_aggregate": 274.24,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": false, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1689, "attn": 1.7123, "kv": 2.0544, "both": 3.2372},
+      "low":  {"dense": 1.2286, "attn": 1.9347, "kv": 51.6485, "both": 122.609},
+      "mid":  {"dense": 1.2269, "attn": 1.7894, "kv": 9.4821, "both": 24.2847}
+    }
+  }
+}
+```
+
+---
+
+## 汇总表
+
+| exp_id | masking | sparsity | gradient | II_low_median | conclusion |
+|--------|---------|----------|----------|---------------|------------|
+| bf16_ds_rand_s015 | random | 0.15 | **0.98×** | 0.112 | success |
+| bf16_ds_rand_s020 | random | 0.20 | **1.19×** | 0.391 | success |
+| bf16_ds_rand_s025 | random | 0.25 | **1.22×** | 1.894 | success |
+| bf16_importance_s020 | importance | 0.20 | **103.10×** | 1.496 | success |
+| bf16_importance_s030 | importance | 0.30 | **274.24×** | 14.639 | success |
+
+**Random 对照组**：3 个 sparsity 级别的 gradient 均在 0.98×–1.22× 范围内（< 3× 阈值），确认 random masking 无 compound effect。
+
+**Importance 完整趋势**（含已完成参考值）：
+
+| sparsity | gradient | II_low_median |
+|----------|----------|---------------|
+| 0.15 | 69.24× | 0.398 |
+| 0.20 | 103.10× | 1.496 |
+| 0.25 | 222.35× | 7.196 |
+| 0.30 | 274.24× | 14.639 |
+
+Gradient 和 II_low_median 均随 sparsity 单调递增，compound sparsity effect 在 importance masking 下持续增强。全部 5 个实验 conclusion = **success**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "uuid": "830fbd04-ece0-476e-8b50-bd9746a5a3c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EscWmsz5BKdCKXmjiz3wTq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1679,
+      "cache_read_input_tokens": 67390,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1679
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 49_
+
+数据齐全。以下是 5 个实验的完整分析结果。
+
+---
+
+## 1. bf16_ds_rand_s015
+
+```json
+{
+  "exp_id": "bf16_ds_rand_s015",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 0.3849, "ci": [-0.5409, 1.3147], "median": 0.1147, "winsorized_mean": 0.3161, "skewness": -5.4014},
+      "mid":  {"mean": -172.6626, "ci": [-427.0058, -9.0687], "median": 0.0969, "winsorized_mean": -0.6366, "skewness": -10.5634},
+      "low":  {"mean": -5.7326, "ci": [-10.9283, -1.4391], "median": 0.1121, "winsorized_mean": 0.0521, "skewness": -11.5715}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -17.4797, "max": 22.5146, "mean": 0.2208, "median": 0.0931, "std": 4.1856},
+      "mid":  {"n": 40, "min": -75.8992, "max": 6.2495, "mean": -3.3604, "median": 0.0967, "std": 15.4282},
+      "low":  {"n": 50, "min": -59.7311, "max": 5.0415, "mean": -1.8952, "median": 0.1026, "std": 10.2205}
+    },
+    "gradient_paired_aggregate": 0.98,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": false, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1687, "attn": 3.5947, "kv": 2.9239, "both": 5.7569},
+      "low":  {"dense": 1.2284, "attn": 11.3419, "kv": 3.6161, "both": 6.2886},
+      "mid":  {"dense": 1.2269, "attn": 297.7957, "kv": 2.915, "both": 11.3156}
+    }
+  }
+}
+```
+
+---
+
+## 2. bf16_ds_rand_s020
+
+```json
+{
+  "exp_id": "bf16_ds_rand_s020",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 2.5259, "ci": [1.2546, 4.2356], "median": 0.3278, "winsorized_mean": 1.7664, "skewness": 9.5932},
+      "mid":  {"mean": -36.0516, "ci": [-93.2484, -2.2016], "median": 0.2977, "winsorized_mean": 0.5839, "skewness": -12.3126},
+      "low":  {"mean": -2.4805, "ci": [-5.6296, 0.1128], "median": 0.3909, "winsorized_mean": 0.9942, "skewness": -10.0661}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -4.5854, "max": 29.4003, "mean": 1.1216, "median": 0.2918, "std": 4.6109},
+      "mid":  {"n": 40, "min": -80.8773, "max": 11.0717, "mean": -1.5827, "median": 0.3504, "std": 13.8427},
+      "low":  {"n": 50, "min": -38.3425, "max": 8.3532, "mean": -0.4116, "median": 0.2763, "std": 7.3481}
+    },
+    "gradient_paired_aggregate": 1.19,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": true, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1687, "attn": 3.1905, "kv": 3.8002, "both": 8.8129},
+      "low":  {"dense": 1.2284, "attn": 8.592, "kv": 5.0078, "both": 9.2001},
+      "mid":  {"dense": 1.2269, "attn": 67.8504, "kv": 3.788, "both": 11.4974}
+    }
+  }
+}
+```
+
+---
+
+## 3. bf16_ds_rand_s025
+
+```json
+{
+  "exp_id": "bf16_ds_rand_s025",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 5.5906, "ci": [1.1716, 9.4656], "median": 1.5545, "winsorized_mean": 6.3965, "skewness": -7.566},
+      "mid":  {"mean": -514.2418, "ci": [-1361.4741, -24.9357], "median": 1.0202, "winsorized_mean": 3.1014, "skewness": -12.7601},
+      "low":  {"mean": -9.1062, "ci": [-25.8045, 2.5166], "median": 1.8937, "winsorized_mean": 4.1866, "skewness": -15.8457}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -13.5968, "max": 44.5263, "mean": 3.5900, "median": 0.8182, "std": 8.6725},
+      "mid":  {"n": 40, "min": -126.2488, "max": 18.7198, "mean": -1.8455, "median": 0.9324, "std": 26.7996},
+      "low":  {"n": 50, "min": -91.2344, "max": 25.7084, "mean": 0.7212, "median": 1.3627, "std": 16.9395}
+    },
+    "gradient_paired_aggregate": 1.22,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": true, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1687, "attn": 7.237, "kv": 4.9751, "both": 17.7423},
+      "low":  {"dense": 1.2284, "attn": 24.3571, "kv": 6.7993, "both": 17.9694},
+      "mid":  {"dense": 1.2269, "attn": 868.3199, "kv": 5.1165, "both": 29.4661}
+    }
+  }
+}
+```
+
+---
+
+## 4. bf16_importance_s020
+
+```json
+{
+  "exp_id": "bf16_importance_s020",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 0.1289, "ci": [-0.1975, 0.6647], "median": 0.0145, "winsorized_mean": -0.0297, "skewness": 16.6701},
+      "mid":  {"mean": 1.2604, "ci": [0.7466, 1.8962], "median": 0.2027, "winsorized_mean": 0.7660, "skewness": 7.0541},
+      "low":  {"mean": 6.0288, "ci": [4.4671, 7.9237], "median": 1.4963, "winsorized_mean": 4.3426, "skewness": 6.012}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -0.1884, "max": 0.4196, "mean": 0.0025, "median": 0.0036, "std": 0.0976},
+      "mid":  {"n": 40, "min": -0.0519, "max": 8.6969, "mean": 0.6795, "median": 0.1977, "std": 1.5189},
+      "low":  {"n": 50, "min": -1.6151, "max": 22.6875, "mean": 2.2301, "median": 1.1280, "std": 4.4202}
+    },
+    "gradient_paired_aggregate": 103.10,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": false, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1689, "attn": 1.5233, "kv": 1.6191, "both": 2.1047},
+      "low":  {"dense": 1.2286, "attn": 1.6486, "kv": 15.7987, "both": 23.74},
+      "mid":  {"dense": 1.2269, "attn": 1.5375, "kv": 3.5164, "both": 5.4246}
+    }
+  }
+}
+```
+
+---
+
+## 5. bf16_importance_s030
+
+```json
+{
+  "exp_id": "bf16_importance_s030",
+  "conclusion": "success",
+  "metrics": {
+    "interaction_index": {
+      "high": {"mean": 0.5547, "ci": [0.2773, 0.9198], "median": 0.0534, "winsorized_mean": 0.3367, "skewness": 10.622},
+      "mid":  {"mean": 11.3000, "ci": [6.8650, 17.2633], "median": 2.2833, "winsorized_mean": 8.1752, "skewness": 9.1908},
+      "low":  {"mean": 57.7946, "ci": [41.4416, 77.0467], "median": 14.6395, "winsorized_mean": 39.3143, "skewness": 8.3142}
+    },
+    "per_problem_ii_stats": {
+      "high": {"n": 49, "min": -0.5095, "max": 4.4457, "mean": 0.1976, "median": 0.0343, "std": 0.6864},
+      "mid":  {"n": 40, "min": -0.1989, "max": 34.0258, "mean": 5.2585, "median": 1.5173, "std": 8.0394},
+      "low":  {"n": 50, "min": -7.3027, "max": 126.7985, "mean": 22.6601, "median": 9.9731, "std": 28.6981}
+    },
+    "gradient_paired_aggregate": 274.24,
+    "n_problems": 50,
+    "pass_fail": {"ci_overlap": true, "sign_reversal": false, "overall": "PASS"},
+    "phase_stats": {"high": {"n_tokens": 21086, "n_segments": 387}, "low": {"n_tokens": 27748, "n_segments": 397}, "mid": {"n_tokens": 13306, "n_segments": 191}},
+    "perplexity": {
+      "high": {"dense": 1.1689, "attn": 1.7123, "kv": 2.0544, "both": 3.2372},
+      "low":  {"dense": 1.2286, "attn": 1.9347, "kv": 51.6485, "both": 122.609},
+      "mid":  {"dense": 1.2269, "attn": 1.7894, "kv": 9.4821, "both": 24.2847}
+    }
+  }
+}
+```
+
+---
+
+## 汇总表
+
+| exp_id | masking | sparsity | gradient | II_low_median | conclusion |
+|--------|---------|----------|----------|---------------|------------|
+| bf16_ds_rand_s015 | random | 0.15 | **0.98×** | 0.112 | success |
+| bf16_ds_rand_s020 | random | 0.20 | **1.19×** | 0.391 | success |
+| bf16_ds_rand_s025 | random | 0.25 | **1.22×** | 1.894 | success |
+| bf16_importance_s020 | importance | 0.20 | **103.10×** | 1.496 | success |
+| bf16_importance_s030 | importance | 0.30 | **274.24×** | 14.639 | success |
+
+**Random 对照组**：3 个 sparsity 级别的 gradient 均在 0.98×–1.22× 范围内（< 3× 阈值），确认 random masking 无 compound effect。
+
+**Importance 完整趋势**（含已完成参考值）：
+
+| sparsity | gradient | II_low_median |
+|----------|----------|---------------|
+| 0.15 | 69.24× | 0.398 |
+| 0.20 | 103.10× | 1.496 |
+| 0.25 | 222.35× | 7.196 |
+| 0.30 | 274.24× | 14.639 |
+
+Gradient 和 II_low_median 均随 sparsity 单调递增，compound sparsity effect 在 importance masking 下持续增强。全部 5 个实验 conclusion = **success**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 215246,
+  "duration_api_ms": 212056,
+  "num_turns": 18,
+  "stop_reason": "end_turn",
+  "session_id": "5d15a71a-3b68-44b8-b2c1-db082421904b",
+  "total_cost_usd": 0.987715,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 57228,
+    "cache_read_input_tokens": 490422,
+    "output_tokens": 15301,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 57228,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 8478,
+        "cache_read_input_tokens": 67390,
+        "cache_creation_input_tokens": 1679,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1679
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2129,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002224,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 15301,
+      "cacheReadInputTokens": 490422,
+      "cacheCreationInputTokens": 57228,
+      "webSearchRequests": 0,
+      "costUSD": 0.985491,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1614a9c5-432e-48c7-8f25-9c29ae1dd79d"
+}
+```
+
+</details>
+
+---

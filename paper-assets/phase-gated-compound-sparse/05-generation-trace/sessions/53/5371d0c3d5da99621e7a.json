@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5371d0c3d5da99621e7a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "fix llama truncated hf cleanup",
+  "task_key": "worker_fix_llama-truncated-hf-cleanup_20260514T135427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_llama-truncated-hf-cleanup_20260514T135427_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "6681e2c811583d05a0b540fc81fdca734242e96b95cefb147b4ab331bd76eb6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ModelScope 下载正在进行中，速度约 8-10 MB/s。两个 safetensors 文件（8.07GB + 6.89GB ≈ 14.96GB）按当前速度预计还需约 25 分钟。\n\n### 当前状态汇报\n\n| 项目 | 状态 |\n|------|------|\n| 截断 HF 目录 | 已重命名为 `DeepSeek-R1-Distill-Llama-8B-TRUNCATED` |\n| 原始 HF 下载 | 只有元数据文件 + 两个 `.incomplete` 碎片（共 182MB），权重完全缺失 |\n| ModelScope 下载 | 进行中（PID=133184），下载到 `/root/autodl-tmp/models/DeepSeek-R1-Distill-Llama-8B-ms/deepseek-ai/DeepSeek-R1-Distill-Llama-8B/`，速度 ~8-10MB/s |\n| 预计完成 | ~25 分钟后 |\n\n下载完成后需要：\n1. 验证 safetensors 文件大小（应 ≈15GB）\n2. 用 `AutoConfig.from_pretrained` 验证可加载\n3. 可选：创建符号链接 `/root/autodl-tmp/models/DeepSeek-R1-Distill-Llama-8B` → ModelScope 下载路径，保持项目代码路径不变\n\n要我过会儿轮询下载进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-llama-truncated-hf-cleanup.md"
+}

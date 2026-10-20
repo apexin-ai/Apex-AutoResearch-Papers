@@ -1,0 +1,57 @@
+{
+  "exp_id": "mvp_v5_fixed_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:31:09.055Z",
+    "updated_at": "2026-05-14T02:15:26.953Z",
+    "spec": {
+      "hypothesis": "v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.15的II应为负(sub-additive)",
+      "server": "westd-22162",
+      "gpu": "cuda:2",
+      "command": "python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.15 --output_dir profiling_output_v5_s015 --max_problems 50",
+      "data_path": "MATH-500 (embedded)",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "pid": 48262
+    },
+    "metrics": {
+      "ii_high": 0.306,
+      "ii_mid": 1.274,
+      "ii_low": 8.786,
+      "ii_high_ci": [
+        0.256,
+        0.359
+      ],
+      "ii_mid_ci": [
+        0.895,
+        1.749
+      ],
+      "ii_low_ci": [
+        5.294,
+        12.684
+      ],
+      "ii_high_median": 0.205,
+      "ii_mid_median": 0.696,
+      "ii_low_median": 2.627,
+      "ii_high_winsorized": 0.289,
+      "ii_mid_winsorized": 1.139,
+      "ii_low_winsorized": 8.408,
+      "kv_ppl_high": 1.2147,
+      "kv_ppl_mid": 2.1276,
+      "kv_ppl_low": 6.7451,
+      "both_ppl_high": 2.2835,
+      "both_ppl_mid": 3.9408,
+      "both_ppl_low": 16.9987,
+      "problems": 50,
+      "segments": 1356
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T02:15:27.006537+00:00",
+  "trigger": "update_registry"
+}

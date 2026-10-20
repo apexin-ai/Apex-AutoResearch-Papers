@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "abc4ccd3caeed216e25a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "analysis min phase length",
+  "task_key": "worker_analysis_min_phase_length_20260515T092040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_min_phase_length_20260515T092040.log",
+    "occurrence": 1,
+    "bytes": 919754,
+    "sha256": "05f102ba7f3825350085fec8368a6790fbb73748034c5238aba5ea1163221a9d"
+  },
+  "statistics": {
+    "messages": 351,
+    "user_turns": 1,
+    "tool_calls": 131,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 131,
+      "tool_result": 131,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 331,
+      "chunks": [
+        {
+          "path": "abc4ccd3caeed216e25a-part-0001.json",
+          "message_count": 139
+        },
+        {
+          "path": "abc4ccd3caeed216e25a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "abc4ccd3caeed216e25a-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "abc4ccd3caeed216e25a-part-0003.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-min-phase-length.md"
+}

@@ -1,0 +1,25 @@
+Median Difference Unification Results (2026-05-14)
+====================================================
+Method: interaction_index.low.median - interaction_index.high.median
+
+Updates performed (11 experiments):
+  bf16_importance_s025: median_difference=7.1636, legacy=222.35
+  bf16_importance_s030: median_difference=14.5861, legacy=57.24
+  bf16_qw_imp_s015: median_difference=0.038565
+  bf16_qw_imp_s020: median_difference=0.234979
+  bf16_qw_imp_s025: median_difference=1.267732
+  bf16_qw_imp_s030: median_difference=2.943093
+  bf16_qw_rand_s020: median_difference=0.128948
+  bf16_ds_imp_s015: median_difference=0.392539
+  bf16_ds_imp_s020: median_difference=1.481741
+  bf16_ds_imp_s025: median_difference=7.163595
+  bf16_ds_imp_s030: median_difference=14.586064
+
+Already set (4 experiments):
+  bf16_importance_s015: 0.3925
+  bf16_importance_s020: 1.4818
+  bf16_qw_rand_s015: 0.04971
+  bf16_qw_rand_s025: 0.659798
+
+Skipped:
+  bf16_qw_rand_s030: RUNNING, no profiling output

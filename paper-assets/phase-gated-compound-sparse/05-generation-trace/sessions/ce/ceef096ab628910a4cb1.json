@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ceef096ab628910a4cb1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code fix accuracy eval matcher and metrics",
+  "task_key": "worker_code_fix_accuracy_eval_matcher_and_metrics_20260515T211056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_accuracy_eval_matcher_and_metrics_20260515T211056_result.json",
+    "occurrence": 1,
+    "bytes": 1881,
+    "sha256": "965f5371693902d9efbfdce1c8dba758ad92b184583ef808afbba83dda01bcc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果汇总\n\n### 1. Matcher 修复\n\n**修改文件**：`run_accuracy_eval.py` (行 61-140), `rescore_accuracy.py` (新文件)\n\n改动内容：\n- **`normalize_answer()`**: 添加 degree symbol 剥离 (`^\\circ`, `\\circ`, `°`, `\\degree`) 和 `\\sqrt` 无括号标准化 (`\\sqrtN` → `\\sqrt{N}`)\n- **`_parse_radical()`**: 新函数，解析 `\\sqrt{N}` / `c\\sqrt{d}` 并做质因子分解化简\n- **`answers_match()`**: 在 fraction 比较之后增加 radical 化简比较路径\n\n### 2. 单元测试：14/14 ALL PASS\n\n### 3. 重新评分对比表\n\n| File | Section | Old Acc | New Acc | Changed | Trunc | ExtFail |\n|------|---------|---------|---------|---------|-------|---------|\n| ds_s015 | dense | 0.52 | 0.52 | 0 | 28 | 0 |\n| ds_s015 | sparse (s=0.15) | 0.34 | **0.36** | 1 | 26 | 1 |\n| ds_s030 | sparse (s=0.30) | 0.10 | 0.10 | 0 | 33 | 2 |\n| ds_dense_n50 | top-level | 0.52 | 0.52 | 0 | 28 | 0 |\n| qw_s015 | dense | 0.32 | 0.32 | 0 | 5 | 0 |\n| qw_s015 | sparse (s=0.15) | 0.32 | **0.34** | 1 | 4 | 1 |\n| qw_s030 | sparse (s=0.30) | 0.14 | 0.14 | 0 | 3 | 7 |\n| qw_s020 | importance_s020 | 0.24 | **0.26** | 1 | 2 | 0 |\n| qw_s025 | importance_s025 | 0.26 | **0.32** | 3 | 2 | 6 |\n\n**翻转的具体 case (全部 False→True)**：\n- `120^\\circ` vs `120` (ds_s015 sparse)\n- `30` vs `30^\\circ` (qw_s015 sparse)\n- `11\\sqrt{2}` vs `11\\sqrt2` (qw_s020, qw_s025)\n- `\\sqrt{117}` vs `3\\sqrt{13}` (qw_s025)\n- `72^\\circ` vs `72` (qw_s025)\n\n### 4. 总体影响\n\n修正共影响 5 个 problem-condition 对（跨 4 个文件），均为 false negative 翻正。最大影响在 qw_s025（+6pp, 0.26→0.32, 3 题翻转）。Dense baseline 不变，因此 **dose-response 趋势不变** — sparse 条件下的 accuracy 略微上升，但各 sparsity 级别间的相对排序和衰减方向保持一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-accuracy-eval-matcher-and-metrics.md"
+}

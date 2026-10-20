@@ -1,0 +1,52 @@
+{
+  "exp_id": "mvp_ii_profiling_v2",
+  "project": "phase-gated-compound-sparse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:41:50.875Z",
+    "updated_at": "2026-05-13T21:22:40.409Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v2 --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "11977",
+      "log_path": "~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v2.log",
+      "submitted_at": "2026-05-13T20:42:13.499Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "P0修复后重跑: Phase-dependent interaction direction reversal — compound sparsity exhibits qualitatively different interaction patterns across reasoning phases. KV eviction mask已修复为1D共享(原P0 bug导致指数级token丢失). 同时启用P1诊断dump验证phase segmentation.",
+    "parent": "mvp_interaction_index_profiling",
+    "server": "westd-22162",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-13T20:42:12.028Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v2 --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\"",
+      "finished_at": "2026-05-13T21:14:37.912Z",
+      "training_hours": 0.54
+    },
+    "pid": "11977",
+    "log_path": "~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v2.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T21:14:38.613199+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-13T21:22:40.445862+00:00",
+  "trigger": "update_registry"
+}

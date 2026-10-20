@@ -1,0 +1,39 @@
+{
+  "exp_id": "gsm8k_profiling_qw",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:09:43.081Z",
+    "updated_at": "2026-05-15T17:10:57.646Z",
+    "hypothesis": "GSM8K profiling 验证 compound sparsity severity 的可迁移性：Qwen 在 GSM8K n=50 上是否复现 MATH-500 的 phase-gated II pattern（importance > random, 单调递增）",
+    "server": "westd-22162",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T14:12:04.466Z",
+      "finished_at": "2026-05-15T17:10:55.383Z",
+      "training_hours": 2.98
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2,3 python run_profiling_gsm8k.py --model_path checkpoints/Qwen2.5-7B-Instruct --masking_method importance/random --data_path data/gsm8k_test.json --max_problems 50 --seed 42 --min_phase_length 10 --save_generations --sparsity_levels 0.15 0.20 0.25 0.30",
+      "server": "westd-22162",
+      "data_path": "/root/autodl-tmp/pacs/data/gsm8k_test.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "gpu": "cuda:2 (importance), cuda:3 (random)",
+      "pid": "245313,245314"
+    },
+    "conclusion": "failed",
+    "checkpoint_path": "/root/autodl-tmp/pacs/analysis_output/gsm8k/",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-15T17:10:55.866Z"
+  },
+  "timestamp": "2026-05-15T17:10:58.061686+00:00",
+  "trigger": "update_registry"
+}

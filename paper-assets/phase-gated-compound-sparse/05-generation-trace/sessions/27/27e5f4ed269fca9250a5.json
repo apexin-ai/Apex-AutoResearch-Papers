@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27e5f4ed269fca9250a5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops restore sentinel files",
+  "task_key": "worker_ops_restore_sentinel_files_20260516T062824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restore_sentinel_files_20260516T062824_result.json",
+    "occurrence": 1,
+    "bytes": 381,
+    "sha256": "224f14dd0d274e54f076f3cbc69709b4a69eacac9f954e8e32ef1230ae4c5015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复完成，确认结果：\n\n| 项目 | 状态 |\n|------|------|\n| s025 sentinel | 已恢复 |\n| s030 sentinel | 已恢复 |\n| GPU 0 进程 (PID 315052) | 运行中，已 2h23m，正在跑 importance s025 |\n| 主进程 (PID 310712) | 运行中，已 3h07m，仍在 Round 1 |\n\n竞争条件防护已就位，Round 1 结束后主脚本会跳过 s025/s030。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restore-sentinel-files.md"
+}

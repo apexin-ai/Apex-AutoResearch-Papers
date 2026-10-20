@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a219c1b3569a3131e9a3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper s6 analysis rewrite c4",
+  "task_key": "worker_paper_s6_analysis_rewrite_c4_20260514T092438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_s6_analysis_rewrite_c4_20260514T092438_result.json",
+    "occurrence": 1,
+    "bytes": 1808,
+    "sha256": "dc04adf2e5b525640b8282e73de7ae74d02dc75807c7d76ed187329eaa69bf67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件均已验证，内容正确。\n\n---\n\n### §6 Analysis 重写摘要\n\n**结构变化**: 原来的 \"Entropy-Discrimination Collapse\" 单一机制 → 两层机制框架：\n\n- **§6.1 Discrimination Collapse** (primary) — Gini/CV 下降，16/16 条件方向一致（两模型×4 sparsity×2 策略）。新增 Table `discrimination-metrics`（8 行：importance-based eviction 下的 Gini Δ 和 CV Δ）。文中额外引用 random eviction 的 Gini 一致性作为\"head pruning per se\"证据。\n- **§6.2 Entropy Redistribution** (secondary, model-dependent) — DeepSeek 4/4 一致负值，Qwen 2/4 负值 + s025 反转 (+0.045, 22/30 positive) + s030 近零。新增 Table `entropy-deltas`（8 行）。s025 反转的三 phase 一致性（+0.042/+0.034/+0.017）诚实报告，mid-phase power 作为 confound 之一但非唯一解释。\n- **§6.3 Implications** — \"Architecture generality\" 加了 entropy 模型依赖的 qualifier；\"Reframing\" 保留 \"emergent phase-strategy interaction\" 必用短语。\n\n**移除**: 两个 `\\placeholder{}` 全部替换为实际数据表格。原 §6.1 理论叙述（\"high-sparsity phase, attention is concentrated...\"）删除，由实证数据直接支撑。\n\n### Conclusion 修改\n\n1. **C4 条目** (line 18): \"Entropy-discrimination collapse...partially confirmed\" → discrimination collapse robustly confirmed (Gini/CV 16 conditions) + entropy redistribution partially replicates (2/4 Qwen)\n2. **Limitations 段** (line 25-26): 原\"entropy-discrimination\"→\"discrimination\"；新增一句显式承认 Qwen 跨模型不一致\n\n### Placeholder 状态\n\n§6 **零 placeholder**。所有数字均追溯到 `c4_entropy_deepseek` / `c4_entropy_qwen` exp_id，24 个 table cell 已注册 provenance。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-s6-analysis-rewrite-c4.md"
+}

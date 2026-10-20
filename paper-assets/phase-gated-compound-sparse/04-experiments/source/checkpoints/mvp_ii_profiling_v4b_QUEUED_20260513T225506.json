@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_ii_profiling_v4b",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:54:53.810Z",
+    "updated_at": "2026-05-13T22:55:06.536Z",
+    "hypothesis": "M1v4 importance-based masking (cuda:1, levels 0.3/0.4/0.5): 高 sparsity regime，30% 是预验证中符号反转最强的点。测试 per-phase II 差异是否在高 sparsity 下更显著。",
+    "parent": "mvp_ii_profiling_v3"
+  },
+  "timestamp": "2026-05-13T22:55:06.597940+00:00",
+  "trigger": "update_registry"
+}

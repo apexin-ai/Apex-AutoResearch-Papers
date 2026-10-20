@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f9cb3d929670368f8f0",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_4_1778751637.md",
+  "task_key": "loop_4_1778751637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778751637.md",
+    "occurrence": 1,
+    "bytes": 4804,
+    "sha256": "bb1eb06ec92435fb1f00c3d08ed03d07a4339ab32842ee9a778288088c54f9db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T09:40:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0~3，共 4 张 RTX 6000 Pro Blackwell 96GB\n- bf16 重跑是论文核心数据源——fp16 数据因 Layer 27 NaN 选择偏差（15.3% 不一致，D019）已废弃，论文所有定量 claim 必须用 bf16 数据\n- Bootstrap B=10000（D024 修正，fp16 实际用了 B=1000 是 bug）\n- Cross-model 是 cross-model 非 cross-architecture（D022：DeepSeek 和 Qwen 共享 Qwen2ForCausalLM）\n- problem-level gradient 数字是 11-42×（非 layer-level），论文措辞已锚定\n- C2 非严格单调（s015→s020 下降），论文用 \"increases with sparsity\" 而非 \"monotonically increases\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs/`\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`，Qwen 模型同目录下 `Qwen2.5-7B-Instruct`\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（50 problems）\n- 产出格式：`/root/autodl-tmp/pacs/profiling_output_{实验名}/profiling_results.json`（~2MB JSON）\n- 活跃进程（截至 handoff 时刻）：\n  - bf16_importance_s030: PID 80495, cuda:0, tmux session\n  - bf16_ds_rand_s015: PID 83111, cuda:1\n  - bf16_ds_rand_s020: PID 83260, cuda:2\n  - bf16_ds_rand_s025: PID 83421, cuda:3\n- 4 个 cron 监控上述 4 个实验\n\n### 3. 📊 当前状态\n**刚做完**：收到 bf16_importance_s020 完成回调，派出 Worker `worker_analysis_bf16_importance_s020_20260514T063748` 读取结果（Worker 正在 SSH 探查 JSON 结构，turn_count=11）。同时将遗留的 v6_random_s030_r3 从 ANALYZING 推到 DONE(success)。\n\n**RUNNING 实验（4 个，4 GPU 全满）**：\n- bf16_importance_s030 (cuda:0) — DeepSeek importance s=0.30，bf16 Batch 1 最后一个\n- bf16_ds_rand_s015/s020/s025 (cuda:1/2/3) — DeepSeek random s=0.15/0.20/0.25，bf16 Batch 2\n\n**ANALYZING（1 个）**：\n- bf16_importance_s020 — Worker 正在提取指标，尚未回调\n\n**等待中**：\n- Worker 回调：`worker_analysis_bf16_importance_s020_20260514T063748`（分析结果）\n- Worker 回调：`worker_code_permutation-test-fix_20260514T063612`（修复 permutation test mean→median）\n- Worker 回调：`worker_writing_related-work-discussion_20260514T063639`（Related Work + Discussion 写作）\n- Cron 回调：bf16_importance_s030 完成后 → 分析 → Batch 1 全部完成\n- Cron 回调：bf16_ds_rand_s015/s020/s025 完成后 → 分析 → Batch 2 全部完成 → 立即启动 permutation test\n\n**QUEUED（等 GPU 释放）**：bf16_ds_rand_s030, bf16_ds_imp_s015~s030, bf16_qw_rand_s015~s030, bf16_qw_imp_s015~s030 等 ~17 个\n\n### 4. 📋 待办（条件触发式）\n- Worker `analysis:bf16_importance_s020` 回调 → 更新 registry metrics/conclusion/checkpoint_path → 推 DONE → 与 s015/s025 对比确认趋势\n- bf16_importance_s030 cron 回调 → spawn analysis Worker → Batch 1（DeepSeek importance ×4）全部完成 → 可生成 importance gradient 完整曲线\n- bf16_ds_rand_s015/s020/s025 cron 回调 → 分析 → Batch 2 完成后立即用修复后的 permutation test 代码跑 importance vs random 配对检验\n- Batch 1+2 全完 → 释放 4 GPU → 启动 Batch 3（bf16_qw_imp_s015~s030，Qwen importance ×4）\n- Batch 3+4 全完 → C5 cross-model claim 可 confirm\n- permutation-test-fix Worker 回调 → 验证 mean→median 统一 + EPS edge case → 代码就绪等 bf16 random 数据\n- writing Worker 回调 → 审查 Related Work（补 SnapKV/NACL）+ Discussion（trivially expected 攻防 + limitations）\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25（距今 11 天）**，EMNLP 2026 ARR\n- 核心 story：importance-based eviction 的 compound interaction 在 low-sparsity phase 急剧放大（gradient 11-42×），random 保持平坦（~1×）\n- bf16 重跑是关键路径——16 实验分 4 batch 串行（每 batch ~45min），预计 ~3h 全完。当前 Batch 1 剩 1 个（s030），Batch 2 剩 3 个\n- 已确认的 bf16 importance 数据：s015 II_low=+2.41, s025 II_low=+25.85。s020 结果即将出炉，s030 在跑\n- **易错点**：\n  - profiling_results.json 的结构可能和脚本版本有关（Worker 正在探查），不要假设固定 schema\n  - v6_random_s030 数据极端 noisy（mid_sparsity mean=-230.76 但 median=2.43），论文用 median 更稳健——这是 D025/D026 的决策背景\n  - bf16_importance_s020 和 bf16_importance_s030 共享 cuda:0（两进程 60GB/97GB），s020 先完成释放显存，s030 继续跑\n  - 论文证据策略已从 gradient ratio 转为 CI non-overlap + 绝对 II 值（D026）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778751637.md"
+}

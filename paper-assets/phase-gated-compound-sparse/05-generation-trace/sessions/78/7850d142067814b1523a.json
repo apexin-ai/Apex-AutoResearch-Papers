@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7850d142067814b1523a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "exp c2 n500 setup",
+  "task_key": "worker_exp_c2-n500-setup_20260514T133447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_c2-n500-setup_20260514T133447_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "2cfa86ff33512598757d66d0477e91ffbc9f25c83c8c59c5f8a63b1c42ce21dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments running and processing problems:\n- **GPU 0** (importance): [2/500], 36GB VRAM used  \n- **GPU 1** (random): [4/500], 18GB VRAM used\n\nSummary of what was done:\n\n1. **Code exploration**: Found actual package at `pacs/pacs/profiling/run_profiling.py` (not the outer copy). Already has bf16, `per_problem_ii`, `--max_problems`.\n\n2. **Code modifications** to `pacs/pacs/profiling/run_profiling.py`:\n   - Fixed data loading: when `--max_problems > 50`, bypasses `stratified_sample_math500()` and uses all 500 problems\n   - Added `--gpu` arg for CUDA device selection\n   - Device selection uses `cuda:{gpu}` when specified\n\n3. **Pre-registration** created at `PRE_REGISTRATION_C2.md` with hypothesis, decision rule (QW s015 CI crossing zero → threshold narrative), and analysis plan.\n\n4. **Launched 8 conditions** across 2 GPUs:\n   - tmux `c2_n500_gpu0`: importance × {s015, s020, s025, s030} sequential on cuda:0\n   - tmux `c2_n500_gpu1`: random × {s015, s020, s025, s030} sequential on cuda:1\n\n5. **Registry** updated: `c2_n500_deepseek` → RUNNING\n\nEstimated wall clock: ~20 hours total (4 conditions × ~5h each per GPU, 2 GPUs parallel)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-c2-n500-setup.md"
+}

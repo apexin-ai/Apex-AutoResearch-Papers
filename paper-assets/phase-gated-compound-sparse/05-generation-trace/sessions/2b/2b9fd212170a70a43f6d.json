@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "2b9fd212170a70a43f6d",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper latex compile visual review",
+  "task_key": "worker_paper_latex-compile-visual-review_20260514T130719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_latex-compile-visual-review_20260514T130719.log",
+    "occurrence": 1,
+    "bytes": 11415549,
+    "sha256": "ea15f756e8ccf1ffcab17149da98f24167a8333318a735fbbb3df2682118d52f"
+  },
+  "statistics": {
+    "messages": 160,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 56,
+      "tool_result": 56
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 160,
+      "chunks": [
+        {
+          "path": "2b9fd212170a70a43f6d-part-0001.json",
+          "message_count": 116
+        },
+        {
+          "path": "2b9fd212170a70a43f6d-part-0002.json",
+          "message_count": 16
+        },
+        {
+          "path": "2b9fd212170a70a43f6d-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-latex-compile-visual-review.md"
+}

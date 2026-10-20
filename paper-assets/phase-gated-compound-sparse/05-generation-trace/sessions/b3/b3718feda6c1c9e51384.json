@@ -1,0 +1,1018 @@
+{
+  "schema_version": "1.0",
+  "id": "b3718feda6c1c9e51384",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "fix c5b bootstrap ci",
+  "task_key": "worker_fix_c5b_bootstrap_ci_20260514T150812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_c5b_bootstrap_ci_20260514T150812.log",
+    "occurrence": 1,
+    "bytes": 79712,
+    "sha256": "1325589b32c52d46c9f98f4cf3130ee684950b8f44301010fdc33736bce47e9c"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+                "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "a240d980-6655-46c7-b756-b0e9d1974b86",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779267600,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.52,
+                  "isUsingOverage": false
+                },
+                "uuid": "2f229751-7a5b-4edd-9395-9b1130e36f1f",
+                "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the bootstrap code section first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "b05f9c9b-7ae0-4799-97d7-a9c169badb96",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DBVHT3DeTZFQAAybmWMaLM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11234,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11234
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A4JK9Q1kF8UYvJc7LGQEoK",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "e01d70fa-edd2-4e5e-b447-16d9247265e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DBVHT3DeTZFQAAybmWMaLM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11234,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11234
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T15:08:27.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01A4JK9Q1kF8UYvJc7LGQEoK",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "be47c4b1-d83e-4d55-b48d-4e0ab5bf8bda",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the relevant section of the file to understand the bootstrap code.",
+              "signature": "EokCClkIDRgCKkBcebRVz77TPr0B624QQiWeY5fFgSJ4dVnUzFWDE3Jfsx2XcA4RWz1Txz1MF2/5i/EWJCKYey51LEklAQOZqTaUMg9jbGF1ZGUtb3B1cy00LTY4ABIMx3lOi899wNp2v/FsGgxDciphF19viejV/DYiMCcvgTYZ1y+gKDVN09+jQkwil0pT02lwnsshMFqhz+R0Hh1lWgrRSdh9R3wKArXe5ypeNEk/foGnoZCnqsmeCz2I0IZ3xLhdD4AYylMe0oWOFunLImJ3jJPt0qzZ7GkVLefmx8WZGvfGNmPlhSHyhh2rgfHac2MA/nKOi61Bi3/GMBXyFUN4d0or5GDG8B8kghgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "72e3b3ec-4096-43b5-a2c2-b7cabd96d226",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Twbo1LzBmMhnfsKT51Y5rq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 681,
+                "cache_read_input_tokens": 23075,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 681
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016FWK98RYujgRivh9UncpGn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "sed -n '460,530p' /root/autodl-tmp/pacs/profiling/run_mitigation_pilot.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "95c46624-f948-4712-80fc-459ed86f9398",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Twbo1LzBmMhnfsKT51Y5rq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 681,
+                "cache_read_input_tokens": 23075,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 681
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T15:08:31.223Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016FWK98RYujgRivh9UncpGn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "6579e9c2-f868-4e9b-beb7-95f863fca9e1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0152Q2F3hJLp5FQ5Ko5uRQWu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "head -530 /root/autodl-tmp/pacs/profiling/run_mitigation_pilot.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "22e6d552-7148-4d80-85ea-c18ebc99ee70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EUELEtUDuAMYJXFucrrG4Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 256,
+                "cache_read_input_tokens": 23756,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 256
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T15:08:35.499Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0152Q2F3hJLp5FQ5Ko5uRQWu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# C5b Mitigation Pilot — Phase-Aware Sparsity Allocation\\\\n#\\\\n# Tests whether reallocating sparsity budget across reasoning phases can\\\\n# recover compound interaction degradation. Three conditions:\\\\n#   A) Uniform baseline — same importance-based compound sparsity across all phases\\\\n#   B) Oracle phase-aware — true quantile-based phase labels, δ=0.10\\\\n#   C) Heuristic baseline — token position ratio phase assignment, δ=0.10\\\\n#\\\\n# Inputs:\\\\n#   - DeepSeek-R1-Distill-Qwen-7B (local checkpoint)\\\\n#   - MATH-500 (stratified sample, first 30 problems, seed=42)\\\\n#\\\\n# Outputs:\\\\n#   - mitigation_pilot_results.json: per-problem II + aggregate recovery metrics\\\\n#\\\\n# Dependencies: pacs.profiling.{interaction_index, phase_segmentation, alt_segmentation}\\\\n#               pacs.utils.{data_utils, metrics}, scipy.stats\\\\n#\\\\n# Usage:\\\\n#   python -m pacs.profiling.run_mitigation_pilot\\\\n#   python run_mitigation_pilot.py --gpu 2\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\n# Standalone execution: add project root to sys.path so pacs.* imports resolve\\\\nif __name__ == \\\\\\\"__main__\\\\\\\" or not __package__:\\\\n    _project_root = str(Path(__file__).resolve().parents[2])\\\\n    if _project_root not in sys.path:\\\\n        sys.path.insert(0, _project_root)\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy.stats import wilcoxon\\\\n\\\\nfrom pacs.profiling.run_profiling import (\\\\n    load_model_and_tokenizer,\\\\n    load_data,\\\\n    compute_conditioned_perplexities,\\\\n)\\\\nfrom pacs.profiling.interaction_index import (\\\\n    InteractionIndexCalculator,\\\\n    _HeadMaskHook,\\\\n    bootstrap_interaction_index,\\\\n)\\\\nfrom pacs.profiling.phase_segmentation import Phase, PhaseSegmenter\\\\nfrom pacs.profiling.alt_segmentation import segment_by_quantile, to_phase_annotation\\\\nfrom pacs.utils.data_utils import stratified_sample_math500\\\\nfrom pacs.utils.metrics import ppl_from_cached_losses\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"mitigation_pilot\\\\\\\")\\\\n\\\\n# --- Constants (from C5b pilot design doc §2, §3.2) ---\\\\n# δ=0.10: execution phase sparsity reduction, chosen to give ~10pp shift\\\\nDELTA = 0.10\\\\n# s_trans cap: prevent degenerate masking when n_trans << n_exec\\\\nS_TRANS_CAP = 0.50\\\\n# n=30: sufficient for paired Wilcoxon (design doc §2)\\\\nN_PROBLEMS = 30\\\\n# B=10000: consistent with bf16 canonical bootstrap (design doc §4.4)\\\\nN_BOOTSTRAP = 10000\\\\nSEED = 42\\\\n# Quantile segmentation names → canonical phase names\\\\nPHASE_MAP = {\\\\n    \\\\\\\"low_sparsity\\\\\\\": \\\\\\\"execution\\\\\\\",\\\\n    \\\\\\\"mid_sparsity\\\\\\\": \\\\\\\"reasoning\\\\\\\",\\\\n    \\\\\\\"high_sparsity\\\\\\\": \\\\\\\"transition\\\\\\\",\\\\n}\\\\n# Heuristic phase boundaries (fraction of generation length, design doc §3.3)\\\\nHEURISTIC_BOUNDS = (0.33, 0.67)\\\\n\\\\nDEFAULT_MODEL = \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\"\\\\nDEFAULT_DATA = \\\\\\\"/root/autodl-tmp/pacs/data/math500.json\\\\\\\"\\\\nDEFAULT_OUTPUT = \\\\\\\"/root/autodl-tmp/pacs/profiling_output_c5b_pilot\\\\\\\"\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Phase-aware sparsity allocation\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_phase_aware_sparsity(\\\\n    target_s: float,\\\\n    delta: float,\\\\n    phase_token_counts: Dict[str, int],\\\\n) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute per-phase sparsity levels under compute-matched constraint.\\\\n\\\\n    Allocation rule (design doc §3.2):\\\\n        s_exec  = s - δ\\\\n        s_reas  = s\\\\n        s_trans = s + δ'  where δ' = δ × (n_exec / n_trans)\\\\n\\\\n    Compute-match constraint:\\\\n        n_exec × s_exec + n_reas × s_reas + n_trans × s_trans = N_total × s\\\\n\\\\n    s_trans capped at S_TRANS_CAP; surplus redistributed to s_reas.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_exec = phase_token_counts.get(\\\\\\\"execution\\\\\\\", 0)\\\\n    n_reas = phase_token_counts.get(\\\\\\\"reasoning\\\\\\\", 0)\\\\n    n_trans = phase_token_counts.get(\\\\\\\"transition\\\\\\\", 0)\\\\n    n_total = n_exec + n_reas + n_trans\\\\n\\\\n    # n_trans=0 or n_total=0 → fallback to unifo\\\\n\\\\n... [截断: 输出过长，省略 12373 字符] ...\\\\n\\\\nond][s_key].append(val)\\\\n\\\\n        per_problem_results.append(prob)\\\\n        logger.info(\\\\\\\"  done — %d phases (oracle), gen_len=%d\\\\\\\", len(oracle_phases), gen_len)\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Aggregate: recovery, Wilcoxon, bootstrap CI\\\\n    # ------------------------------------------------------------------\\\\n    summary: Dict[str, Any] = {}\\\\n    for s_key in [\\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]:\\\\n        u = np.array(agg[\\\\\\\"uniform\\\\\\\"].get(s_key, []))\\\\n        o = np.array(agg[\\\\\\\"oracle\\\\\\\"].get(s_key, []))\\\\n        h = np.array(agg[\\\\\\\"heuristic\\\\\\\"].get(s_key, []))\\\\n\\\\n        u_med = float(np.median(u)) if len(u) else float(\\\\\\\"nan\\\\\\\")\\\\n        o_med = float(np.median(o)) if len(o) else float(\\\\\\\"nan\\\\\\\")\\\\n        h_med = float(np.median(h)) if len(h) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        rec_oracle = (1 - o_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\\\\\"nan\\\\\\\")\\\\n        rec_heur = (1 - h_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        # Paired Wilcoxon (uniform > oracle/heuristic)\\\\n        n_pair = min(len(u), len(o), len(h))\\\\n        p_oracle = p_heur = float(\\\\\\\"nan\\\\\\\")\\\\n        if n_pair >= 5:\\\\n            try:\\\\n                _, p_oracle = wilcoxon(u[:n_pair], o[:n_pair], alternative=\\\\\\\"greater\\\\\\\")\\\\n            except ValueError:\\\\n                pass\\\\n            try:\\\\n                _, p_heur = wilcoxon(u[:n_pair], h[:n_pair], alternative=\\\\\\\"greater\\\\\\\")\\\\n            except ValueError:\\\\n                pass\\\\n\\\\n        # Bootstrap 95% CI for recovery percentage\\\\n        ci_o = ci_h = (float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"))\\\\n        if len(u) >= 5 and len(o) >= 5:\\\\n            rng = np.random.RandomState(SEED)\\\\n            boot_o, boot_h = [], []\\\\n            for _ in range(N_BOOTSTRAP):\\\\n                bu = np.median(u[rng.randint(0, len(u), len(u))])\\\\n                bo = np.median(o[rng.randint(0, len(o), len(o))])\\\\n                bh = np.median(h[rng.randint(0, len(h), len(h))]) if len(h) else float(\\\\\\\"nan\\\\\\\")\\\\n                if bu != 0:\\\\n                    boot_o.append(1 - bo / bu)\\\\n                    boot_h.append(1 - bh / bu)\\\\n            if boot_o:\\\\n                ci_o = (float(np.percentile(boot_o, 2.5)), float(np.percentile(boot_o, 97.5)))\\\\n            if boot_h:\\\\n                ci_h = (float(np.percentile(boot_h, 2.5)), float(np.percentile(boot_h, 97.5)))\\\\n\\\\n        summary[s_key] = {\\\\n            \\\\\\\"n_problems\\\\\\\": n_pair,\\\\n            \\\\\\\"uniform_median_ii\\\\\\\": u_med,\\\\n            \\\\\\\"oracle_median_ii\\\\\\\": o_med,\\\\n            \\\\\\\"heuristic_median_ii\\\\\\\": h_med,\\\\n            \\\\\\\"recovery_oracle\\\\\\\": rec_oracle,\\\\n            \\\\\\\"recovery_oracle_ci95\\\\\\\": list(ci_o),\\\\n            \\\\\\\"recovery_heuristic\\\\\\\": rec_heur,\\\\n            \\\\\\\"recovery_heuristic_ci95\\\\\\\": list(ci_h),\\\\n            \\\\\\\"wilcoxon_p_oracle\\\\\\\": float(p_oracle),\\\\n            \\\\\\\"wilcoxon_p_heuristic\\\\\\\": float(p_heur),\\\\n        }\\\\n\\\\n    # Gate: >30% oracle II recovery at either s025 or s030\\\\n    gate_pass = any(\\\\n        summary.get(s, {}).get(\\\\\\\"recovery_oracle\\\\\\\", 0) > 0.30\\\\n        for s in [\\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]\\\\n    )\\\\n\\\\n    output = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model\\\\\\\": args.model_path,\\\\n            \\\\\\\"sparsity_levels\\\\\\\": sparsity_levels,\\\\n            \\\\\\\"delta\\\\\\\": DELTA,\\\\n            \\\\\\\"s_trans_cap\\\\\\\": S_TRANS_CAP,\\\\n            \\\\\\\"n_problems\\\\\\\": len(per_problem_results),\\\\n            \\\\\\\"n_problems_target\\\\\\\": N_PROBLEMS,\\\\n            \\\\\\\"n_bootstrap\\\\\\\": N_BOOTSTRAP,\\\\n            \\\\\\\"seed\\\\\\\": SEED,\\\\n            \\\\\\\"heuristic_boundaries\\\\\\\": list(HEURISTIC_BOUNDS),\\\\n            \\\\\\\"phase_assignment_oracle\\\\\\\": \\\\\\\"quantile_3groups\\\\\\\",\\\\n            \\\\\\\"phase_assignment_heuristic\\\\\\\": \\\\\\\"token_position_ratio\\\\\\\",\\\\n        },\\\\n        \\\\\\\"per_problem\\\\\\\": per_problem_results,\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"recovery_oracle_s025\\\\\\\": summary.get(\\\\\\\"s025\\\\\\\", {}).get(\\\\\\\"recovery_oracle\\\\\\\"),\\\\n            \\\\\\\"recovery_oracle_s030\\\\\\\": summary.get(\\\\\\\"s030\\\\\\\", {}).get(\\\\\\\"recovery_oracle\\\\\\\"),\\\\n            \\\\\\\"recovery_heuristic_s025\\\\\\\": summary.get(\\\\\\\"s025\\\\\\\", {}).get(\\\\\\\"recovery_heuristic\\\\\\\"),\\\\n            \\\\\\\"recovery_heuristic_s030\\\\\\\": summary.get(\\\\\\\"s030\\\\\\\", {}).get(\\\\\\\"recovery_heuristic\\\\\\\"),\\\\n            \\\\\\\"gate_pass\\\\\\\": gate_pass,\\\\n            \\\\\\\"detailed\\\\\\\": summary,\\\\n        },\\\\n    }\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "0b0909d5-bf1b-4b4a-9666-7ca02824c80e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# C5b Mitigation Pilot — Phase-Aware Sparsity Allocation\\\\n#\\\\n# Tests whether reallocating sparsity budget across reasoning phases can\\\\n# recover compound interaction degradation. Three conditions:\\\\n#   A) Uniform baseline — same importance-based compound sparsity across all phases\\\\n#   B) Oracle phase-aware — true quantile-based phase labels, δ=0.10\\\\n#   C) Heuristic baseline — token position ratio phase assignment, δ=0.10\\\\n#\\\\n# Inputs:\\\\n#   - DeepSeek-R1-Distill-Qwen-7B (local checkpoint)\\\\n#   - MATH-500 (stratified sample, first 30 problems, seed=42)\\\\n#\\\\n# Outputs:\\\\n#   - mitigation_pilot_results.json: per-problem II + aggregate recovery metrics\\\\n#\\\\n# Dependencies: pacs.profiling.{interaction_index, phase_segmentation, alt_segmentation}\\\\n#               pacs.utils.{data_utils, metrics}, scipy.stats\\\\n#\\\\n# Usage:\\\\n#   python -m pacs.profiling.run_mitigation_pilot\\\\n#   python run_mitigation_pilot.py --gpu 2\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\n# Standalone execution: add project root to sys.path so pacs.* imports resolve\\\\nif __name__ == \\\\\\\"__main__\\\\\\\" or not __package__:\\\\n    _project_root = str(Path(__file__).resolve().parents[2])\\\\n    if _project_root not in sys.path:\\\\n        sys.path.insert(0, _project_root)\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy.stats import wilcoxon\\\\n\\\\nfrom pacs.profiling.run_profiling import (\\\\n    load_model_and_tokenizer,\\\\n    load_data,\\\\n    compute_conditioned_perplexities,\\\\n)\\\\nfrom pacs.profiling.interaction_index import (\\\\n    InteractionIndexCalculator,\\\\n    _HeadMaskHook,\\\\n    bootstrap_interaction_index,\\\\n)\\\\nfrom pacs.profiling.phase_segmentation import Phase, PhaseSegmenter\\\\nfrom pacs.profiling.alt_segmentation import segment_by_quantile, to_phase_annotation\\\\nfrom pacs.utils.data_utils import stratified_sample_math500\\\\nfrom pacs.utils.metrics import ppl_from_cached_losses\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"mitigation_pilot\\\\\\\")\\\\n\\\\n# --- Constants (from C5b pilot design doc §2, §3.2) ---\\\\n# δ=0.10: execution phase sparsity reduction, chosen to give ~10pp shift\\\\nDELTA = 0.10\\\\n# s_trans cap: prevent degenerate masking when n_trans << n_exec\\\\nS_TRANS_CAP = 0.50\\\\n# n=30: sufficient for paired Wilcoxon (design doc §2)\\\\nN_PROBLEMS = 30\\\\n# B=10000: consistent with bf16 canonical bootstrap (design doc §4.4)\\\\nN_BOOTSTRAP = 10000\\\\nSEED = 42\\\\n# Quantile segmentation names → canonical phase names\\\\nPHASE_MAP = {\\\\n    \\\\\\\"low_sparsity\\\\\\\": \\\\\\\"execution\\\\\\\",\\\\n    \\\\\\\"mid_sparsity\\\\\\\": \\\\\\\"reasoning\\\\\\\",\\\\n    \\\\\\\"high_sparsity\\\\\\\": \\\\\\\"transition\\\\\\\",\\\\n}\\\\n# Heuristic phase boundaries (fraction of generation length, design doc §3.3)\\\\nHEURISTIC_BOUNDS = (0.33, 0.67)\\\\n\\\\nDEFAULT_MODEL = \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\"\\\\nDEFAULT_DATA = \\\\\\\"/root/autodl-tmp/pacs/data/math500.json\\\\\\\"\\\\nDEFAULT_OUTPUT = \\\\\\\"/root/autodl-tmp/pacs/profiling_output_c5b_pilot\\\\\\\"\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Phase-aware sparsity allocation\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_phase_aware_sparsity(\\\\n    target_s: float,\\\\n    delta: float,\\\\n    phase_token_counts: Dict[str, int],\\\\n) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute per-phase sparsity levels under compute-matched constraint.\\\\n\\\\n    Allocation rule (design doc §3.2):\\\\n        s_exec  = s - δ\\\\n        s_reas  = s\\\\n        s_trans = s + δ'  where δ' = δ × (n_exec / n_trans)\\\\n\\\\n    Compute-match constraint:\\\\n        n_exec × s_exec + n_reas × s_reas + n_trans × s_trans = N_total × s\\\\n\\\\n    s_trans capped at S_TRANS_CAP; surplus redistributed to s_reas.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_exec = phase_token_counts.get(\\\\\\\"execution\\\\\\\", 0)\\\\n    n_reas = phase_token_counts.get(\\\\\\\"reasoning\\\\\\\", 0)\\\\n    n_trans = phase_token_counts.get(\\\\\\\"transition\\\\\\\", 0)\\\\n    n_total = n_exec + n_reas + n_trans\\\\n\\\\n    # n_trans=0 or n_total=0 → fallback to unifo\\\\n\\\\n... [截断: 输出过长，省略 12373 字符] ...\\\\n\\\\nond][s_key].append(val)\\\\n\\\\n        per_problem_results.append(prob)\\\\n        logger.info(\\\\\\\"  done — %d phases (oracle), gen_len=%d\\\\\\\", len(oracle_phases), gen_len)\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Aggregate: recovery, Wilcoxon, bootstrap CI\\\\n    # ------------------------------------------------------------------\\\\n    summary: Dict[str, Any] = {}\\\\n    for s_key in [\\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]:\\\\n        u = np.array(agg[\\\\\\\"uniform\\\\\\\"].get(s_key, []))\\\\n        o = np.array(agg[\\\\\\\"oracle\\\\\\\"].get(s_key, []))\\\\n        h = np.array(agg[\\\\\\\"heuristic\\\\\\\"].get(s_key, []))\\\\n\\\\n        u_med = float(np.median(u)) if len(u) else float(\\\\\\\"nan\\\\\\\")\\\\n        o_med = float(np.median(o)) if len(o) else float(\\\\\\\"nan\\\\\\\")\\\\n        h_med = float(np.median(h)) if len(h) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        rec_oracle = (1 - o_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\\\\\"nan\\\\\\\")\\\\n        rec_heur = (1 - h_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        # Paired Wilcoxon (uniform > oracle/heuristic)\\\\n        n_pair = min(len(u), len(o), len(h))\\\\n        p_oracle = p_heur = float(\\\\\\\"nan\\\\\\\")\\\\n        if n_pair >= 5:\\\\n            try:\\\\n                _, p_oracle = wilcoxon(u[:n_pair], o[:n_pair], alternative=\\\\\\\"greater\\\\\\\")\\\\n            except ValueError:\\\\n                pass\\\\n            try:\\\\n                _, p_heur = wilcoxon(u[:n_pair], h[:n_pair], alternative=\\\\\\\"greater\\\\\\\")\\\\n            except ValueError:\\\\n                pass\\\\n\\\\n        # Bootstrap 95% CI for recovery percentage\\\\n        ci_o = ci_h = (float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"))\\\\n        if len(u) >= 5 and len(o) >= 5:\\\\n            rng = np.random.RandomState(SEED)\\\\n            boot_o, boot_h = [], []\\\\n            for _ in range(N_BOOTSTRAP):\\\\n                bu = np.median(u[rng.randint(0, len(u), len(u))])\\\\n                bo = np.median(o[rng.randint(0, len(o), len(o))])\\\\n                bh = np.median(h[rng.randint(0, len(h), len(h))]) if len(h) else float(\\\\\\\"nan\\\\\\\")\\\\n                if bu != 0:\\\\n                    boot_o.append(1 - bo / bu)\\\\n                    boot_h.append(1 - bh / bu)\\\\n            if boot_o:\\\\n                ci_o = (float(np.percentile(boot_o, 2.5)), float(np.percentile(boot_o, 97.5)))\\\\n            if boot_h:\\\\n                ci_h = (float(np.percentile(boot_h, 2.5)), float(np.percentile(boot_h, 97.5)))\\\\n\\\\n        summary[s_key] = {\\\\n            \\\\\\\"n_problems\\\\\\\": n_pair,\\\\n            \\\\\\\"uniform_median_ii\\\\\\\": u_med,\\\\n            \\\\\\\"oracle_median_ii\\\\\\\": o_med,\\\\n            \\\\\\\"heuristic_median_ii\\\\\\\": h_med,\\\\n            \\\\\\\"recovery_oracle\\\\\\\": rec_oracle,\\\\n            \\\\\\\"recovery_oracle_ci95\\\\\\\": list(ci_o),\\\\n            \\\\\\\"recovery_heuristic\\\\\\\": rec_heur,\\\\n            \\\\\\\"recovery_heuristic_ci95\\\\\\\": list(ci_h),\\\\n            \\\\\\\"wilcoxon_p_oracle\\\\\\\": float(p_oracle),\\\\n            \\\\\\\"wilcoxon_p_heuristic\\\\\\\": float(p_heur),\\\\n        }\\\\n\\\\n    # Gate: >30% oracle II recovery at either s025 or s030\\\\n    gate_pass = any(\\\\n        summary.get(s, {}).get(\\\\\\\"recovery_oracle\\\\\\\", 0) > 0.30\\\\n        for s in [\\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]\\\\n    )\\\\n\\\\n    output = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model\\\\\\\": args.model_path,\\\\n            \\\\\\\"sparsity_levels\\\\\\\": sparsity_levels,\\\\n            \\\\\\\"delta\\\\\\\": DELTA,\\\\n            \\\\\\\"s_trans_cap\\\\\\\": S_TRANS_CAP,\\\\n            \\\\\\\"n_problems\\\\\\\": len(per_problem_results),\\\\n            \\\\\\\"n_problems_target\\\\\\\": N_PROBLEMS,\\\\n            \\\\\\\"n_bootstrap\\\\\\\": N_BOOTSTRAP,\\\\n            \\\\\\\"seed\\\\\\\": SEED,\\\\n            \\\\\\\"heuristic_boundaries\\\\\\\": list(HEURISTIC_BOUNDS),\\\\n            \\\\\\\"phase_assignment_oracle\\\\\\\": \\\\\\\"quantile_3groups\\\\\\\",\\\\n            \\\\\\\"phase_assignment_heuristic\\\\\\\": \\\\\\\"token_position_ratio\\\\\\\",\\\\n        },\\\\n        \\\\\\\"per_problem\\\\\\\": per_problem_results,\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"recovery_oracle_s025\\\\\\\": summary.get(\\\\\\\"s025\\\\\\\", {}).get(\\\\\\\"recovery_oracle\\\\\\\"),\\\\n            \\\\\\\"recovery_oracle_s030\\\\\\\": summary.get(\\\\\\\"s030\\\\\\\", {}).get(\\\\\\\"recovery_oracle\\\\\\\"),\\\\n            \\\\\\\"recovery_heuristic_s025\\\\\\\": summary.get(\\\\\\\"s025\\\\\\\", {}).get(\\\\\\\"recovery_heuristic\\\\\\\"),\\\\n            \\\\\\\"recovery_heuristic_s030\\\\\\\": summary.get(\\\\\\\"s030\\\\\\\", {}).get(\\\\\\\"recovery_heuristic\\\\\\\"),\\\\n            \\\\\\\"gate_pass\\\\\\\": gate_pass,\\\\n            \\\\\\\"detailed\\\\\\\": summary,\\\\n        },\\\\n    }\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# C5b Mitigation Pilot — Phase-Aware Sparsity Allocation\\n#\\n# Tests whether reallocating sparsity budget across reasoning phases can\\n# recover compound interaction degradation. Three conditions:\\n#   A) Uniform baseline — same importance-based compound sparsity across all phases\\n#   B) Oracle phase-aware — true quantile-based phase labels, δ=0.10\\n#   C) Heuristic baseline — token position ratio phase assignment, δ=0.10\\n#\\n# Inputs:\\n#   - DeepSeek-R1-Distill-Qwen-7B (local checkpoint)\\n#   - MATH-500 (stratified sample, first 30 problems, seed=42)\\n#\\n# Outputs:\\n#   - mitigation_pilot_results.json: per-problem II + aggregate recovery metrics\\n#\\n# Dependencies: pacs.profiling.{interaction_index, phase_segmentation, alt_segmentation}\\n#               pacs.utils.{data_utils, metrics}, scipy.stats\\n#\\n# Usage:\\n#   python -m pacs.profiling.run_mitigation_pilot\\n#   python run_mitigation_pilot.py --gpu 2\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\n# Standalone execution: add project root to sys.path so pacs.* imports resolve\\nif __name__ == \\\"__main__\\\" or not __package__:\\n    _project_root = str(Path(__file__).resolve().parents[2])\\n    if _project_root not in sys.path:\\n        sys.path.insert(0, _project_root)\\n\\nimport numpy as np\\nimport torch\\nfrom scipy.stats import wilcoxon\\n\\nfrom pacs.profiling.run_profiling import (\\n    load_model_and_tokenizer,\\n    load_data,\\n    compute_conditioned_perplexities,\\n)\\nfrom pacs.profiling.interaction_index import (\\n    InteractionIndexCalculator,\\n    _HeadMaskHook,\\n    bootstrap_interaction_index,\\n)\\nfrom pacs.profiling.phase_segmentation import Phase, PhaseSegmenter\\nfrom pacs.profiling.alt_segmentation import segment_by_quantile, to_phase_annotation\\nfrom pacs.utils.data_utils import stratified_sample_math500\\nfrom pacs.utils.metrics import ppl_from_cached_losses\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\",\\n)\\nlogger = logging.getLogger(\\\"mitigation_pilot\\\")\\n\\n# --- Constants (from C5b pilot design doc §2, §3.2) ---\\n# δ=0.10: execution phase sparsity reduction, chosen to give ~10pp shift\\nDELTA = 0.10\\n# s_trans cap: prevent degenerate masking when n_trans << n_exec\\nS_TRANS_CAP = 0.50\\n# n=30: sufficient for paired Wilcoxon (design doc §2)\\nN_PROBLEMS = 30\\n# B=10000: consistent with bf16 canonical bootstrap (design doc §4.4)\\nN_BOOTSTRAP = 10000\\nSEED = 42\\n# Quantile segmentation names → canonical phase names\\nPHASE_MAP = {\\n    \\\"low_sparsity\\\": \\\"execution\\\",\\n    \\\"mid_sparsity\\\": \\\"reasoning\\\",\\n    \\\"high_sparsity\\\": \\\"transition\\\",\\n}\\n# Heuristic phase boundaries (fraction of generation length, design doc §3.3)\\nHEURISTIC_BOUNDS = (0.33, 0.67)\\n\\nDEFAULT_MODEL = \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\"\\nDEFAULT_DATA = \\\"/root/autodl-tmp/pacs/data/math500.json\\\"\\nDEFAULT_OUTPUT = \\\"/root/autodl-tmp/pacs/profiling_output_c5b_pilot\\\"\\n\\n\\n# ---------------------------------------------------------------------------\\n# Phase-aware sparsity allocation\\n# ---------------------------------------------------------------------------\\n\\ndef compute_phase_aware_sparsity(\\n    target_s: float,\\n    delta: float,\\n    phase_token_counts: Dict[str, int],\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"Compute per-phase sparsity levels under compute-matched constraint.\\n\\n    Allocation rule (design doc §3.2):\\n        s_exec  = s - δ\\n        s_reas  = s\\n        s_trans = s + δ'  where δ' = δ × (n_exec / n_trans)\\n\\n    Compute-match constraint:\\n        n_exec × s_exec + n_reas × s_reas + n_trans × s_trans = N_total × s\\n\\n    s_trans capped at S_TRANS_CAP; surplus redistributed to s_reas.\\n    \\\"\\\"\\\"\\n    n_exec = phase_token_counts.get(\\\"execution\\\", 0)\\n    n_reas = phase_token_counts.get(\\\"reasoning\\\", 0)\\n    n_trans = phase_token_counts.get(\\\"transition\\\", 0)\\n    n_total = n_exec + n_reas + n_trans\\n\\n    # n_trans=0 or n_total=0 → fallback to unifo\\n\\n... [截断: 输出过长，省略 12373 字符] ...\\n\\nond][s_key].append(val)\\n\\n        per_problem_results.append(prob)\\n        logger.info(\\\"  done — %d phases (oracle), gen_len=%d\\\", len(oracle_phases), gen_len)\\n\\n    # ------------------------------------------------------------------\\n    # Aggregate: recovery, Wilcoxon, bootstrap CI\\n    # ------------------------------------------------------------------\\n    summary: Dict[str, Any] = {}\\n    for s_key in [\\\"s025\\\", \\\"s030\\\"]:\\n        u = np.array(agg[\\\"uniform\\\"].get(s_key, []))\\n        o = np.array(agg[\\\"oracle\\\"].get(s_key, []))\\n        h = np.array(agg[\\\"heuristic\\\"].get(s_key, []))\\n\\n        u_med = float(np.median(u)) if len(u) else float(\\\"nan\\\")\\n        o_med = float(np.median(o)) if len(o) else float(\\\"nan\\\")\\n        h_med = float(np.median(h)) if len(h) else float(\\\"nan\\\")\\n\\n        rec_oracle = (1 - o_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\"nan\\\")\\n        rec_heur = (1 - h_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\"nan\\\")\\n\\n        # Paired Wilcoxon (uniform > oracle/heuristic)\\n        n_pair = min(len(u), len(o), len(h))\\n        p_oracle = p_heur = float(\\\"nan\\\")\\n        if n_pair >= 5:\\n            try:\\n                _, p_oracle = wilcoxon(u[:n_pair], o[:n_pair], alternative=\\\"greater\\\")\\n            except ValueError:\\n                pass\\n            try:\\n                _, p_heur = wilcoxon(u[:n_pair], h[:n_pair], alternative=\\\"greater\\\")\\n            except ValueError:\\n                pass\\n\\n        # Bootstrap 95% CI for recovery percentage\\n        ci_o = ci_h = (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n        if len(u) >= 5 and len(o) >= 5:\\n            rng = np.random.RandomState(SEED)\\n            boot_o, boot_h = [], []\\n            for _ in range(N_BOOTSTRAP):\\n                bu = np.median(u[rng.randint(0, len(u), len(u))])\\n                bo = np.median(o[rng.randint(0, len(o), len(o))])\\n                bh = np.median(h[rng.randint(0, len(h), len(h))]) if len(h) else float(\\\"nan\\\")\\n                if bu != 0:\\n                    boot_o.append(1 - bo / bu)\\n                    boot_h.append(1 - bh / bu)\\n            if boot_o:\\n                ci_o = (float(np.percentile(boot_o, 2.5)), float(np.percentile(boot_o, 97.5)))\\n            if boot_h:\\n                ci_h = (float(np.percentile(boot_h, 2.5)), float(np.percentile(boot_h, 97.5)))\\n\\n        summary[s_key] = {\\n            \\\"n_problems\\\": n_pair,\\n            \\\"uniform_median_ii\\\": u_med,\\n            \\\"oracle_median_ii\\\": o_med,\\n            \\\"heuristic_median_ii\\\": h_med,\\n            \\\"recovery_oracle\\\": rec_oracle,\\n            \\\"recovery_oracle_ci95\\\": list(ci_o),\\n            \\\"recovery_heuristic\\\": rec_heur,\\n            \\\"recovery_heuristic_ci95\\\": list(ci_h),\\n            \\\"wilcoxon_p_oracle\\\": float(p_oracle),\\n            \\\"wilcoxon_p_heuristic\\\": float(p_heur),\\n        }\\n\\n    # Gate: >30% oracle II recovery at either s025 or s030\\n    gate_pass = any(\\n        summary.get(s, {}).get(\\\"recovery_oracle\\\", 0) > 0.30\\n        for s in [\\\"s025\\\", \\\"s030\\\"]\\n    )\\n\\n    output = {\\n        \\\"config\\\": {\\n            \\\"model\\\": args.model_path,\\n            \\\"sparsity_levels\\\": sparsity_levels,\\n            \\\"delta\\\": DELTA,\\n            \\\"s_trans_cap\\\": S_TRANS_CAP,\\n            \\\"n_problems\\\": len(per_problem_results),\\n            \\\"n_problems_target\\\": N_PROBLEMS,\\n            \\\"n_bootstrap\\\": N_BOOTSTRAP,\\n            \\\"seed\\\": SEED,\\n            \\\"heuristic_boundaries\\\": list(HEURISTIC_BOUNDS),\\n            \\\"phase_assignment_oracle\\\": \\\"quantile_3groups\\\",\\n            \\\"phase_assignment_heuristic\\\": \\\"token_position_ratio\\\",\\n        },\\n        \\\"per_problem\\\": per_problem_results,\\n        \\\"summary\\\": {\\n            \\\"recovery_oracle_s025\\\": summary.get(\\\"s025\\\", {}).get(\\\"recovery_oracle\\\"),\\n            \\\"recovery_oracle_s030\\\": summary.get(\\\"s030\\\", {}).get(\\\"recovery_oracle\\\"),\\n            \\\"recovery_heuristic_s025\\\": summary.get(\\\"s025\\\", {}).get(\\\"recovery_heuristic\\\"),\\n            \\\"recovery_heuristic_s030\\\": summary.get(\\\"s030\\\", {}).get(\\\"recovery_heuristic\\\"),\\n            \\\"gate_pass\\\": gate_pass,\\n            \\\"detailed\\\": summary,\\n        },\\n    }\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I found the bug. In the bootstrap loop around line 490-495, each of `u`, `o`, and `h` uses independent `rng.randint` calls:\n\n```python\nbu = np.median(u[rng.randint(0, len(u), len(u))])\nbo = np.median(o[rng.randint(0, len(o), len(o))])\nbh = np.median(h[rng.randint(0, len(h), len(h))]) if len(h) else float(\"nan\")\n```\n\nSince these are paired data (same problems), they should share the same resampling index. \n\nI'm refactoring the resampling to use a single index array across all three arrays, but I need to verify that `u`, `o`, and `h` are actually the same length since they're built from the same problem set. Fixing the bootstrap sampling logic...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "d1018f45-7ae1-4a88-a1ed-aaa93ed0d8c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019niSLb5hbuWMLdojpEGZPC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3436,
+                "cache_read_input_tokens": 24012,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3436
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the bug. Lines ~490-492 use independent `rng.randint` for each condition. Fixing now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "5f7f68af-f224-46c6-8cfc-0907c47878b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019niSLb5hbuWMLdojpEGZPC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3436,
+                "cache_read_input_tokens": 24012,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3436
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016UFbXMM3UgbrUzKjhUwkJ8",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-22162",
+                "command": "cd /root/autodl-tmp/pacs && python3 -c \"\nimport re\n\nwith open('profiling/run_mitigation_pilot.py', 'r') as f:\n    content = f.read()\n\nold = '''            for _ in range(N_BOOTSTRAP):\n                bu = np.median(u[rng.randint(0, len(u), len(u))])\n                bo = np.median(o[rng.randint(0, len(o), len(o))])\n                bh = np.median(h[rng.randint(0, len(h), len(h))]) if len(h) else float(\\\"nan\\\")'''\n\nnew = '''            for _ in range(N_BOOTSTRAP):\n                idx = rng.randint(0, n_pair, n_pair)\n                bu = np.median(u[idx])\n                bo = np.median(o[idx])\n                bh = np.median(h[idx]) if len(h) >= n_pair else float(\\\"nan\\\")'''\n\nassert old in content, 'OLD BLOCK NOT FOUND'\ncontent = content.replace(old, new)\nassert new in content\n\nwith open('profiling/run_mitigation_pilot.py', 'w') as f:\n    f.write(content)\n\nprint('PATCHED OK')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "ddc4e06f-fb4b-47fa-a233-4b1284739edf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019niSLb5hbuWMLdojpEGZPC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3436,
+                "cache_read_input_tokens": 24012,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3436
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T15:08:53.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016UFbXMM3UgbrUzKjhUwkJ8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PATCHED OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "756b8456-b8b6-41c1-835a-2a87c3a4078e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PATCHED OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"PATCHED OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verifying no remaining independent `randint` calls in bootstrap loops:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "1dc4d305-5e4b-4465-bd74-4ad6f7912577",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PfCfHEyNgrPcc5wEArmTTk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 27448,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1228
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EUAQ6rGRGpwKcjeQQHxajt",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "grep -n \"rng.randint\" /root/autodl-tmp/pacs/profiling/run_mitigation_pilot.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "36004d64-a230-4147-8a02-ce6080c9df7e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PfCfHEyNgrPcc5wEArmTTk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 27448,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1228
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T15:08:58.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EUAQ6rGRGpwKcjeQQHxajt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"476:                idx = rng.randint(0, n_pair, n_pair)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "b4e25fd7-c364-49b4-b32b-80acb1044669",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"476:                idx = rng.randint(0, n_pair, n_pair)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"476:                idx = rng.randint(0, n_pair, n_pair)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Only one `rng.randint` call remains — the shared `idx`. Let me verify the patched block in context:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "be23d7eb-0778-442b-bb17-09329e165fe3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W5KX65Typwo6r9dNNVwZM4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 245,
+                "cache_read_input_tokens": 28676,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 245
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AqyCzCtGt84RokfXL58nru",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-22162",
+                "command": "head -500 /root/autodl-tmp/pacs/profiling/run_mitigation_pilot.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "f46a6e9b-2124-4104-9719-9555c91644ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W5KX65Typwo6r9dNNVwZM4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 245,
+                "cache_read_input_tokens": 28676,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 245
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T15:09:02.298Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AqyCzCtGt84RokfXL58nru",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# C5b Mitigation Pilot — Phase-Aware Sparsity Allocation\\\\n#\\\\n# Tests whether reallocating sparsity budget across reasoning phases can\\\\n# recover compound interaction degradation. Three conditions:\\\\n#   A) Uniform baseline — same importance-based compound sparsity across all phases\\\\n#   B) Oracle phase-aware — true quantile-based phase labels, δ=0.10\\\\n#   C) Heuristic baseline — token position ratio phase assignment, δ=0.10\\\\n#\\\\n# Inputs:\\\\n#   - DeepSeek-R1-Distill-Qwen-7B (local checkpoint)\\\\n#   - MATH-500 (stratified sample, first 30 problems, seed=42)\\\\n#\\\\n# Outputs:\\\\n#   - mitigation_pilot_results.json: per-problem II + aggregate recovery metrics\\\\n#\\\\n# Dependencies: pacs.profiling.{interaction_index, phase_segmentation, alt_segmentation}\\\\n#               pacs.utils.{data_utils, metrics}, scipy.stats\\\\n#\\\\n# Usage:\\\\n#   python -m pacs.profiling.run_mitigation_pilot\\\\n#   python run_mitigation_pilot.py --gpu 2\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\n# Standalone execution: add project root to sys.path so pacs.* imports resolve\\\\nif __name__ == \\\\\\\"__main__\\\\\\\" or not __package__:\\\\n    _project_root = str(Path(__file__).resolve().parents[2])\\\\n    if _project_root not in sys.path:\\\\n        sys.path.insert(0, _project_root)\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy.stats import wilcoxon\\\\n\\\\nfrom pacs.profiling.run_profiling import (\\\\n    load_model_and_tokenizer,\\\\n    load_data,\\\\n    compute_conditioned_perplexities,\\\\n)\\\\nfrom pacs.profiling.interaction_index import (\\\\n    InteractionIndexCalculator,\\\\n    _HeadMaskHook,\\\\n    bootstrap_interaction_index,\\\\n)\\\\nfrom pacs.profiling.phase_segmentation import Phase, PhaseSegmenter\\\\nfrom pacs.profiling.alt_segmentation import segment_by_quantile, to_phase_annotation\\\\nfrom pacs.utils.data_utils import stratified_sample_math500\\\\nfrom pacs.utils.metrics import ppl_from_cached_losses\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"mitigation_pilot\\\\\\\")\\\\n\\\\n# --- Constants (from C5b pilot design doc §2, §3.2) ---\\\\n# δ=0.10: execution phase sparsity reduction, chosen to give ~10pp shift\\\\nDELTA = 0.10\\\\n# s_trans cap: prevent degenerate masking when n_trans << n_exec\\\\nS_TRANS_CAP = 0.50\\\\n# n=30: sufficient for paired Wilcoxon (design doc §2)\\\\nN_PROBLEMS = 30\\\\n# B=10000: consistent with bf16 canonical bootstrap (design doc §4.4)\\\\nN_BOOTSTRAP = 10000\\\\nSEED = 42\\\\n# Quantile segmentation names → canonical phase names\\\\nPHASE_MAP = {\\\\n    \\\\\\\"low_sparsity\\\\\\\": \\\\\\\"execution\\\\\\\",\\\\n    \\\\\\\"mid_sparsity\\\\\\\": \\\\\\\"reasoning\\\\\\\",\\\\n    \\\\\\\"high_sparsity\\\\\\\": \\\\\\\"transition\\\\\\\",\\\\n}\\\\n# Heuristic phase boundaries (fraction of generation length, design doc §3.3)\\\\nHEURISTIC_BOUNDS = (0.33, 0.67)\\\\n\\\\nDEFAULT_MODEL = \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\"\\\\nDEFAULT_DATA = \\\\\\\"/root/autodl-tmp/pacs/data/math500.json\\\\\\\"\\\\nDEFAULT_OUTPUT = \\\\\\\"/root/autodl-tmp/pacs/profiling_output_c5b_pilot\\\\\\\"\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Phase-aware sparsity allocation\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_phase_aware_sparsity(\\\\n    target_s: float,\\\\n    delta: float,\\\\n    phase_token_counts: Dict[str, int],\\\\n) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute per-phase sparsity levels under compute-matched constraint.\\\\n\\\\n    Allocation rule (design doc §3.2):\\\\n        s_exec  = s - δ\\\\n        s_reas  = s\\\\n        s_trans = s + δ'  where δ' = δ × (n_exec / n_trans)\\\\n\\\\n    Compute-match constraint:\\\\n        n_exec × s_exec + n_reas × s_reas + n_trans × s_trans = N_total × s\\\\n\\\\n    s_trans capped at S_TRANS_CAP; surplus redistributed to s_reas.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_exec = phase_token_counts.get(\\\\\\\"execution\\\\\\\", 0)\\\\n    n_reas = phase_token_counts.get(\\\\\\\"reasoning\\\\\\\", 0)\\\\n    n_trans = phase_token_counts.get(\\\\\\\"transition\\\\\\\", 0)\\\\n    n_total = n_exec + n_reas + n_trans\\\\n\\\\n    # n_trans=0 or n_total=0 → fallback to unifo\\\\n\\\\n... [截断: 输出过长，省略 11126 字符] ...\\\\n\\\\nd u_ii != 0) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n            prob[\\\\\\\"per_sparsity\\\\\\\"][s_key] = {\\\\n                \\\\\\\"target_s\\\\\\\": target_s,\\\\n                \\\\\\\"uniform\\\\\\\": {\\\\n                    \\\\\\\"weighted_ii\\\\\\\": u_ii,\\\\n                    \\\\\\\"per_phase_ii\\\\\\\": res_u[\\\\\\\"per_phase_ii\\\\\\\"],\\\\n                    \\\\\\\"per_phase_sparsity\\\\\\\": res_u[\\\\\\\"per_phase_sparsity\\\\\\\"],\\\\n                    \\\\\\\"phase_token_counts\\\\\\\": res_u[\\\\\\\"phase_token_counts\\\\\\\"],\\\\n                },\\\\n                \\\\\\\"oracle\\\\\\\": {\\\\n                    \\\\\\\"weighted_ii\\\\\\\": o_ii,\\\\n                    \\\\\\\"per_phase_ii\\\\\\\": res_o[\\\\\\\"per_phase_ii\\\\\\\"],\\\\n                    \\\\\\\"per_phase_sparsity\\\\\\\": res_o[\\\\\\\"per_phase_sparsity\\\\\\\"],\\\\n                    \\\\\\\"phase_token_counts\\\\\\\": res_o[\\\\\\\"phase_token_counts\\\\\\\"],\\\\n                },\\\\n                \\\\\\\"heuristic\\\\\\\": {\\\\n                    \\\\\\\"weighted_ii\\\\\\\": h_ii,\\\\n                    \\\\\\\"per_phase_ii\\\\\\\": res_h[\\\\\\\"per_phase_ii\\\\\\\"],\\\\n                    \\\\\\\"per_phase_sparsity\\\\\\\": res_h[\\\\\\\"per_phase_sparsity\\\\\\\"],\\\\n                    \\\\\\\"phase_token_counts\\\\\\\": res_h[\\\\\\\"phase_token_counts\\\\\\\"],\\\\n                },\\\\n                \\\\\\\"recovery_pct_oracle\\\\\\\": rec_o,\\\\n                \\\\\\\"recovery_pct_heuristic\\\\\\\": rec_h,\\\\n            }\\\\n\\\\n            for cond, val in [(\\\\\\\"uniform\\\\\\\", u_ii), (\\\\\\\"oracle\\\\\\\", o_ii), (\\\\\\\"heuristic\\\\\\\", h_ii)]:\\\\n                if not np.isnan(val):\\\\n                    agg[cond][s_key].append(val)\\\\n\\\\n        per_problem_results.append(prob)\\\\n        logger.info(\\\\\\\"  done — %d phases (oracle), gen_len=%d\\\\\\\", len(oracle_phases), gen_len)\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Aggregate: recovery, Wilcoxon, bootstrap CI\\\\n    # ------------------------------------------------------------------\\\\n    summary: Dict[str, Any] = {}\\\\n    for s_key in [\\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]:\\\\n        u = np.array(agg[\\\\\\\"uniform\\\\\\\"].get(s_key, []))\\\\n        o = np.array(agg[\\\\\\\"oracle\\\\\\\"].get(s_key, []))\\\\n        h = np.array(agg[\\\\\\\"heuristic\\\\\\\"].get(s_key, []))\\\\n\\\\n        u_med = float(np.median(u)) if len(u) else float(\\\\\\\"nan\\\\\\\")\\\\n        o_med = float(np.median(o)) if len(o) else float(\\\\\\\"nan\\\\\\\")\\\\n        h_med = float(np.median(h)) if len(h) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        rec_oracle = (1 - o_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\\\\\"nan\\\\\\\")\\\\n        rec_heur = (1 - h_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        # Paired Wilcoxon (uniform > oracle/heuristic)\\\\n        n_pair = min(len(u), len(o), len(h))\\\\n        p_oracle = p_heur = float(\\\\\\\"nan\\\\\\\")\\\\n        if n_pair >= 5:\\\\n            try:\\\\n                _, p_oracle = wilcoxon(u[:n_pair], o[:n_pair], alternative=\\\\\\\"greater\\\\\\\")\\\\n            except ValueError:\\\\n                pass\\\\n            try:\\\\n                _, p_heur = wilcoxon(u[:n_pair], h[:n_pair], alternative=\\\\\\\"greater\\\\\\\")\\\\n            except ValueError:\\\\n                pass\\\\n\\\\n        # Bootstrap 95% CI for recovery percentage\\\\n        ci_o = ci_h = (float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"))\\\\n        if len(u) >= 5 and len(o) >= 5:\\\\n            rng = np.random.RandomState(SEED)\\\\n            boot_o, boot_h = [], []\\\\n            for _ in range(N_BOOTSTRAP):\\\\n                idx = rng.randint(0, n_pair, n_pair)\\\\n                bu = np.median(u[idx])\\\\n                bo = np.median(o[idx])\\\\n                bh = np.median(h[idx]) if len(h) >= n_pair else float(\\\\\\\"nan\\\\\\\")\\\\n                if bu != 0:\\\\n                    boot_o.append(1 - bo / bu)\\\\n                    boot_h.append(1 - bh / bu)\\\\n            if boot_o:\\\\n                ci_o = (float(np.percentile(boot_o, 2.5)), float(np.percentile(boot_o, 97.5)))\\\\n            if boot_h:\\\\n                ci_h = (float(np.percentile(boot_h, 2.5)), float(np.percentile(boot_h, 97.5)))\\\\n\\\\n        summary[s_key] = {\\\\n            \\\\\\\"n_problems\\\\\\\": n_pair,\\\\n            \\\\\\\"uniform_median_ii\\\\\\\": u_med,\\\\n            \\\\\\\"oracle_median_ii\\\\\\\": o_med,\\\\n            \\\\\\\"heuristic_median_ii\\\\\\\": h_med,\\\\n            \\\\\\\"recovery_oracle\\\\\\\": rec_oracle,\\\\n            \\\\\\\"recovery_oracle_ci95\\\\\\\": list(ci_o),\\\\n            \\\\\\\"recovery_heuristic\\\\\\\": rec_heur,\\\\n            \\\\\\\"recovery_heuristic_ci95\\\\\\\": list(ci_h),\\\\n            \\\\\\\"wilcoxon_p_oracle\\\\\\\": float(p_oracle),\\\\n            \\\\\\\"wilcoxon_p_heuristic\\\\\\\": float(p_heur),\\\\n        }\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "516a5634-abc6-492a-953c-d74e59f142b5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# C5b Mitigation Pilot — Phase-Aware Sparsity Allocation\\\\n#\\\\n# Tests whether reallocating sparsity budget across reasoning phases can\\\\n# recover compound interaction degradation. Three conditions:\\\\n#   A) Uniform baseline — same importance-based compound sparsity across all phases\\\\n#   B) Oracle phase-aware — true quantile-based phase labels, δ=0.10\\\\n#   C) Heuristic baseline — token position ratio phase assignment, δ=0.10\\\\n#\\\\n# Inputs:\\\\n#   - DeepSeek-R1-Distill-Qwen-7B (local checkpoint)\\\\n#   - MATH-500 (stratified sample, first 30 problems, seed=42)\\\\n#\\\\n# Outputs:\\\\n#   - mitigation_pilot_results.json: per-problem II + aggregate recovery metrics\\\\n#\\\\n# Dependencies: pacs.profiling.{interaction_index, phase_segmentation, alt_segmentation}\\\\n#               pacs.utils.{data_utils, metrics}, scipy.stats\\\\n#\\\\n# Usage:\\\\n#   python -m pacs.profiling.run_mitigation_pilot\\\\n#   python run_mitigation_pilot.py --gpu 2\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\n# Standalone execution: add project root to sys.path so pacs.* imports resolve\\\\nif __name__ == \\\\\\\"__main__\\\\\\\" or not __package__:\\\\n    _project_root = str(Path(__file__).resolve().parents[2])\\\\n    if _project_root not in sys.path:\\\\n        sys.path.insert(0, _project_root)\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy.stats import wilcoxon\\\\n\\\\nfrom pacs.profiling.run_profiling import (\\\\n    load_model_and_tokenizer,\\\\n    load_data,\\\\n    compute_conditioned_perplexities,\\\\n)\\\\nfrom pacs.profiling.interaction_index import (\\\\n    InteractionIndexCalculator,\\\\n    _HeadMaskHook,\\\\n    bootstrap_interaction_index,\\\\n)\\\\nfrom pacs.profiling.phase_segmentation import Phase, PhaseSegmenter\\\\nfrom pacs.profiling.alt_segmentation import segment_by_quantile, to_phase_annotation\\\\nfrom pacs.utils.data_utils import stratified_sample_math500\\\\nfrom pacs.utils.metrics import ppl_from_cached_losses\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"mitigation_pilot\\\\\\\")\\\\n\\\\n# --- Constants (from C5b pilot design doc §2, §3.2) ---\\\\n# δ=0.10: execution phase sparsity reduction, chosen to give ~10pp shift\\\\nDELTA = 0.10\\\\n# s_trans cap: prevent degenerate masking when n_trans << n_exec\\\\nS_TRANS_CAP = 0.50\\\\n# n=30: sufficient for paired Wilcoxon (design doc §2)\\\\nN_PROBLEMS = 30\\\\n# B=10000: consistent with bf16 canonical bootstrap (design doc §4.4)\\\\nN_BOOTSTRAP = 10000\\\\nSEED = 42\\\\n# Quantile segmentation names → canonical phase names\\\\nPHASE_MAP = {\\\\n    \\\\\\\"low_sparsity\\\\\\\": \\\\\\\"execution\\\\\\\",\\\\n    \\\\\\\"mid_sparsity\\\\\\\": \\\\\\\"reasoning\\\\\\\",\\\\n    \\\\\\\"high_sparsity\\\\\\\": \\\\\\\"transition\\\\\\\",\\\\n}\\\\n# Heuristic phase boundaries (fraction of generation length, design doc §3.3)\\\\nHEURISTIC_BOUNDS = (0.33, 0.67)\\\\n\\\\nDEFAULT_MODEL = \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\"\\\\nDEFAULT_DATA = \\\\\\\"/root/autodl-tmp/pacs/data/math500.json\\\\\\\"\\\\nDEFAULT_OUTPUT = \\\\\\\"/root/autodl-tmp/pacs/profiling_output_c5b_pilot\\\\\\\"\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Phase-aware sparsity allocation\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef compute_phase_aware_sparsity(\\\\n    target_s: float,\\\\n    delta: float,\\\\n    phase_token_counts: Dict[str, int],\\\\n) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute per-phase sparsity levels under compute-matched constraint.\\\\n\\\\n    Allocation rule (design doc §3.2):\\\\n        s_exec  = s - δ\\\\n        s_reas  = s\\\\n        s_trans = s + δ'  where δ' = δ × (n_exec / n_trans)\\\\n\\\\n    Compute-match constraint:\\\\n        n_exec × s_exec + n_reas × s_reas + n_trans × s_trans = N_total × s\\\\n\\\\n    s_trans capped at S_TRANS_CAP; surplus redistributed to s_reas.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n_exec = phase_token_counts.get(\\\\\\\"execution\\\\\\\", 0)\\\\n    n_reas = phase_token_counts.get(\\\\\\\"reasoning\\\\\\\", 0)\\\\n    n_trans = phase_token_counts.get(\\\\\\\"transition\\\\\\\", 0)\\\\n    n_total = n_exec + n_reas + n_trans\\\\n\\\\n    # n_trans=0 or n_total=0 → fallback to unifo\\\\n\\\\n... [截断: 输出过长，省略 11126 字符] ...\\\\n\\\\nd u_ii != 0) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n            prob[\\\\\\\"per_sparsity\\\\\\\"][s_key] = {\\\\n                \\\\\\\"target_s\\\\\\\": target_s,\\\\n                \\\\\\\"uniform\\\\\\\": {\\\\n                    \\\\\\\"weighted_ii\\\\\\\": u_ii,\\\\n                    \\\\\\\"per_phase_ii\\\\\\\": res_u[\\\\\\\"per_phase_ii\\\\\\\"],\\\\n                    \\\\\\\"per_phase_sparsity\\\\\\\": res_u[\\\\\\\"per_phase_sparsity\\\\\\\"],\\\\n                    \\\\\\\"phase_token_counts\\\\\\\": res_u[\\\\\\\"phase_token_counts\\\\\\\"],\\\\n                },\\\\n                \\\\\\\"oracle\\\\\\\": {\\\\n                    \\\\\\\"weighted_ii\\\\\\\": o_ii,\\\\n                    \\\\\\\"per_phase_ii\\\\\\\": res_o[\\\\\\\"per_phase_ii\\\\\\\"],\\\\n                    \\\\\\\"per_phase_sparsity\\\\\\\": res_o[\\\\\\\"per_phase_sparsity\\\\\\\"],\\\\n                    \\\\\\\"phase_token_counts\\\\\\\": res_o[\\\\\\\"phase_token_counts\\\\\\\"],\\\\n                },\\\\n                \\\\\\\"heuristic\\\\\\\": {\\\\n                    \\\\\\\"weighted_ii\\\\\\\": h_ii,\\\\n                    \\\\\\\"per_phase_ii\\\\\\\": res_h[\\\\\\\"per_phase_ii\\\\\\\"],\\\\n                    \\\\\\\"per_phase_sparsity\\\\\\\": res_h[\\\\\\\"per_phase_sparsity\\\\\\\"],\\\\n                    \\\\\\\"phase_token_counts\\\\\\\": res_h[\\\\\\\"phase_token_counts\\\\\\\"],\\\\n                },\\\\n                \\\\\\\"recovery_pct_oracle\\\\\\\": rec_o,\\\\n                \\\\\\\"recovery_pct_heuristic\\\\\\\": rec_h,\\\\n            }\\\\n\\\\n            for cond, val in [(\\\\\\\"uniform\\\\\\\", u_ii), (\\\\\\\"oracle\\\\\\\", o_ii), (\\\\\\\"heuristic\\\\\\\", h_ii)]:\\\\n                if not np.isnan(val):\\\\n                    agg[cond][s_key].append(val)\\\\n\\\\n        per_problem_results.append(prob)\\\\n        logger.info(\\\\\\\"  done — %d phases (oracle), gen_len=%d\\\\\\\", len(oracle_phases), gen_len)\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Aggregate: recovery, Wilcoxon, bootstrap CI\\\\n    # ------------------------------------------------------------------\\\\n    summary: Dict[str, Any] = {}\\\\n    for s_key in [\\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]:\\\\n        u = np.array(agg[\\\\\\\"uniform\\\\\\\"].get(s_key, []))\\\\n        o = np.array(agg[\\\\\\\"oracle\\\\\\\"].get(s_key, []))\\\\n        h = np.array(agg[\\\\\\\"heuristic\\\\\\\"].get(s_key, []))\\\\n\\\\n        u_med = float(np.median(u)) if len(u) else float(\\\\\\\"nan\\\\\\\")\\\\n        o_med = float(np.median(o)) if len(o) else float(\\\\\\\"nan\\\\\\\")\\\\n        h_med = float(np.median(h)) if len(h) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        rec_oracle = (1 - o_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\\\\\"nan\\\\\\\")\\\\n        rec_heur = (1 - h_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        # Paired Wilcoxon (uniform > oracle/heuristic)\\\\n        n_pair = min(len(u), len(o), len(h))\\\\n        p_oracle = p_heur = float(\\\\\\\"nan\\\\\\\")\\\\n        if n_pair >= 5:\\\\n            try:\\\\n                _, p_oracle = wilcoxon(u[:n_pair], o[:n_pair], alternative=\\\\\\\"greater\\\\\\\")\\\\n            except ValueError:\\\\n                pass\\\\n            try:\\\\n                _, p_heur = wilcoxon(u[:n_pair], h[:n_pair], alternative=\\\\\\\"greater\\\\\\\")\\\\n            except ValueError:\\\\n                pass\\\\n\\\\n        # Bootstrap 95% CI for recovery percentage\\\\n        ci_o = ci_h = (float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"))\\\\n        if len(u) >= 5 and len(o) >= 5:\\\\n            rng = np.random.RandomState(SEED)\\\\n            boot_o, boot_h = [], []\\\\n            for _ in range(N_BOOTSTRAP):\\\\n                idx = rng.randint(0, n_pair, n_pair)\\\\n                bu = np.median(u[idx])\\\\n                bo = np.median(o[idx])\\\\n                bh = np.median(h[idx]) if len(h) >= n_pair else float(\\\\\\\"nan\\\\\\\")\\\\n                if bu != 0:\\\\n                    boot_o.append(1 - bo / bu)\\\\n                    boot_h.append(1 - bh / bu)\\\\n            if boot_o:\\\\n                ci_o = (float(np.percentile(boot_o, 2.5)), float(np.percentile(boot_o, 97.5)))\\\\n            if boot_h:\\\\n                ci_h = (float(np.percentile(boot_h, 2.5)), float(np.percentile(boot_h, 97.5)))\\\\n\\\\n        summary[s_key] = {\\\\n            \\\\\\\"n_problems\\\\\\\": n_pair,\\\\n            \\\\\\\"uniform_median_ii\\\\\\\": u_med,\\\\n            \\\\\\\"oracle_median_ii\\\\\\\": o_med,\\\\n            \\\\\\\"heuristic_median_ii\\\\\\\": h_med,\\\\n            \\\\\\\"recovery_oracle\\\\\\\": rec_oracle,\\\\n            \\\\\\\"recovery_oracle_ci95\\\\\\\": list(ci_o),\\\\n            \\\\\\\"recovery_heuristic\\\\\\\": rec_heur,\\\\n            \\\\\\\"recovery_heuristic_ci95\\\\\\\": list(ci_h),\\\\n            \\\\\\\"wilcoxon_p_oracle\\\\\\\": float(p_oracle),\\\\n            \\\\\\\"wilcoxon_p_heuristic\\\\\\\": float(p_heur),\\\\n        }\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# C5b Mitigation Pilot — Phase-Aware Sparsity Allocation\\n#\\n# Tests whether reallocating sparsity budget across reasoning phases can\\n# recover compound interaction degradation. Three conditions:\\n#   A) Uniform baseline — same importance-based compound sparsity across all phases\\n#   B) Oracle phase-aware — true quantile-based phase labels, δ=0.10\\n#   C) Heuristic baseline — token position ratio phase assignment, δ=0.10\\n#\\n# Inputs:\\n#   - DeepSeek-R1-Distill-Qwen-7B (local checkpoint)\\n#   - MATH-500 (stratified sample, first 30 problems, seed=42)\\n#\\n# Outputs:\\n#   - mitigation_pilot_results.json: per-problem II + aggregate recovery metrics\\n#\\n# Dependencies: pacs.profiling.{interaction_index, phase_segmentation, alt_segmentation}\\n#               pacs.utils.{data_utils, metrics}, scipy.stats\\n#\\n# Usage:\\n#   python -m pacs.profiling.run_mitigation_pilot\\n#   python run_mitigation_pilot.py --gpu 2\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\n# Standalone execution: add project root to sys.path so pacs.* imports resolve\\nif __name__ == \\\"__main__\\\" or not __package__:\\n    _project_root = str(Path(__file__).resolve().parents[2])\\n    if _project_root not in sys.path:\\n        sys.path.insert(0, _project_root)\\n\\nimport numpy as np\\nimport torch\\nfrom scipy.stats import wilcoxon\\n\\nfrom pacs.profiling.run_profiling import (\\n    load_model_and_tokenizer,\\n    load_data,\\n    compute_conditioned_perplexities,\\n)\\nfrom pacs.profiling.interaction_index import (\\n    InteractionIndexCalculator,\\n    _HeadMaskHook,\\n    bootstrap_interaction_index,\\n)\\nfrom pacs.profiling.phase_segmentation import Phase, PhaseSegmenter\\nfrom pacs.profiling.alt_segmentation import segment_by_quantile, to_phase_annotation\\nfrom pacs.utils.data_utils import stratified_sample_math500\\nfrom pacs.utils.metrics import ppl_from_cached_losses\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\",\\n)\\nlogger = logging.getLogger(\\\"mitigation_pilot\\\")\\n\\n# --- Constants (from C5b pilot design doc §2, §3.2) ---\\n# δ=0.10: execution phase sparsity reduction, chosen to give ~10pp shift\\nDELTA = 0.10\\n# s_trans cap: prevent degenerate masking when n_trans << n_exec\\nS_TRANS_CAP = 0.50\\n# n=30: sufficient for paired Wilcoxon (design doc §2)\\nN_PROBLEMS = 30\\n# B=10000: consistent with bf16 canonical bootstrap (design doc §4.4)\\nN_BOOTSTRAP = 10000\\nSEED = 42\\n# Quantile segmentation names → canonical phase names\\nPHASE_MAP = {\\n    \\\"low_sparsity\\\": \\\"execution\\\",\\n    \\\"mid_sparsity\\\": \\\"reasoning\\\",\\n    \\\"high_sparsity\\\": \\\"transition\\\",\\n}\\n# Heuristic phase boundaries (fraction of generation length, design doc §3.3)\\nHEURISTIC_BOUNDS = (0.33, 0.67)\\n\\nDEFAULT_MODEL = \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\"\\nDEFAULT_DATA = \\\"/root/autodl-tmp/pacs/data/math500.json\\\"\\nDEFAULT_OUTPUT = \\\"/root/autodl-tmp/pacs/profiling_output_c5b_pilot\\\"\\n\\n\\n# ---------------------------------------------------------------------------\\n# Phase-aware sparsity allocation\\n# ---------------------------------------------------------------------------\\n\\ndef compute_phase_aware_sparsity(\\n    target_s: float,\\n    delta: float,\\n    phase_token_counts: Dict[str, int],\\n) -> Dict[str, float]:\\n    \\\"\\\"\\\"Compute per-phase sparsity levels under compute-matched constraint.\\n\\n    Allocation rule (design doc §3.2):\\n        s_exec  = s - δ\\n        s_reas  = s\\n        s_trans = s + δ'  where δ' = δ × (n_exec / n_trans)\\n\\n    Compute-match constraint:\\n        n_exec × s_exec + n_reas × s_reas + n_trans × s_trans = N_total × s\\n\\n    s_trans capped at S_TRANS_CAP; surplus redistributed to s_reas.\\n    \\\"\\\"\\\"\\n    n_exec = phase_token_counts.get(\\\"execution\\\", 0)\\n    n_reas = phase_token_counts.get(\\\"reasoning\\\", 0)\\n    n_trans = phase_token_counts.get(\\\"transition\\\", 0)\\n    n_total = n_exec + n_reas + n_trans\\n\\n    # n_trans=0 or n_total=0 → fallback to unifo\\n\\n... [截断: 输出过长，省略 11126 字符] ...\\n\\nd u_ii != 0) else float(\\\"nan\\\")\\n\\n            prob[\\\"per_sparsity\\\"][s_key] = {\\n                \\\"target_s\\\": target_s,\\n                \\\"uniform\\\": {\\n                    \\\"weighted_ii\\\": u_ii,\\n                    \\\"per_phase_ii\\\": res_u[\\\"per_phase_ii\\\"],\\n                    \\\"per_phase_sparsity\\\": res_u[\\\"per_phase_sparsity\\\"],\\n                    \\\"phase_token_counts\\\": res_u[\\\"phase_token_counts\\\"],\\n                },\\n                \\\"oracle\\\": {\\n                    \\\"weighted_ii\\\": o_ii,\\n                    \\\"per_phase_ii\\\": res_o[\\\"per_phase_ii\\\"],\\n                    \\\"per_phase_sparsity\\\": res_o[\\\"per_phase_sparsity\\\"],\\n                    \\\"phase_token_counts\\\": res_o[\\\"phase_token_counts\\\"],\\n                },\\n                \\\"heuristic\\\": {\\n                    \\\"weighted_ii\\\": h_ii,\\n                    \\\"per_phase_ii\\\": res_h[\\\"per_phase_ii\\\"],\\n                    \\\"per_phase_sparsity\\\": res_h[\\\"per_phase_sparsity\\\"],\\n                    \\\"phase_token_counts\\\": res_h[\\\"phase_token_counts\\\"],\\n                },\\n                \\\"recovery_pct_oracle\\\": rec_o,\\n                \\\"recovery_pct_heuristic\\\": rec_h,\\n            }\\n\\n            for cond, val in [(\\\"uniform\\\", u_ii), (\\\"oracle\\\", o_ii), (\\\"heuristic\\\", h_ii)]:\\n                if not np.isnan(val):\\n                    agg[cond][s_key].append(val)\\n\\n        per_problem_results.append(prob)\\n        logger.info(\\\"  done — %d phases (oracle), gen_len=%d\\\", len(oracle_phases), gen_len)\\n\\n    # ------------------------------------------------------------------\\n    # Aggregate: recovery, Wilcoxon, bootstrap CI\\n    # ------------------------------------------------------------------\\n    summary: Dict[str, Any] = {}\\n    for s_key in [\\\"s025\\\", \\\"s030\\\"]:\\n        u = np.array(agg[\\\"uniform\\\"].get(s_key, []))\\n        o = np.array(agg[\\\"oracle\\\"].get(s_key, []))\\n        h = np.array(agg[\\\"heuristic\\\"].get(s_key, []))\\n\\n        u_med = float(np.median(u)) if len(u) else float(\\\"nan\\\")\\n        o_med = float(np.median(o)) if len(o) else float(\\\"nan\\\")\\n        h_med = float(np.median(h)) if len(h) else float(\\\"nan\\\")\\n\\n        rec_oracle = (1 - o_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\"nan\\\")\\n        rec_heur = (1 - h_med / u_med) if u_med != 0 and not np.isnan(u_med) else float(\\\"nan\\\")\\n\\n        # Paired Wilcoxon (uniform > oracle/heuristic)\\n        n_pair = min(len(u), len(o), len(h))\\n        p_oracle = p_heur = float(\\\"nan\\\")\\n        if n_pair >= 5:\\n            try:\\n                _, p_oracle = wilcoxon(u[:n_pair], o[:n_pair], alternative=\\\"greater\\\")\\n            except ValueError:\\n                pass\\n            try:\\n                _, p_heur = wilcoxon(u[:n_pair], h[:n_pair], alternative=\\\"greater\\\")\\n            except ValueError:\\n                pass\\n\\n        # Bootstrap 95% CI for recovery percentage\\n        ci_o = ci_h = (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n        if len(u) >= 5 and len(o) >= 5:\\n            rng = np.random.RandomState(SEED)\\n            boot_o, boot_h = [], []\\n            for _ in range(N_BOOTSTRAP):\\n                idx = rng.randint(0, n_pair, n_pair)\\n                bu = np.median(u[idx])\\n                bo = np.median(o[idx])\\n                bh = np.median(h[idx]) if len(h) >= n_pair else float(\\\"nan\\\")\\n                if bu != 0:\\n                    boot_o.append(1 - bo / bu)\\n                    boot_h.append(1 - bh / bu)\\n            if boot_o:\\n                ci_o = (float(np.percentile(boot_o, 2.5)), float(np.percentile(boot_o, 97.5)))\\n            if boot_h:\\n                ci_h = (float(np.percentile(boot_h, 2.5)), float(np.percentile(boot_h, 97.5)))\\n\\n        summary[s_key] = {\\n            \\\"n_problems\\\": n_pair,\\n            \\\"uniform_median_ii\\\": u_med,\\n            \\\"oracle_median_ii\\\": o_med,\\n            \\\"heuristic_median_ii\\\": h_med,\\n            \\\"recovery_oracle\\\": rec_oracle,\\n            \\\"recovery_oracle_ci95\\\": list(ci_o),\\n            \\\"recovery_heuristic\\\": rec_heur,\\n            \\\"recovery_heuristic_ci95\\\": list(ci_h),\\n            \\\"wilcoxon_p_oracle\\\": float(p_oracle),\\n            \\\"wilcoxon_p_heuristic\\\": float(p_heur),\\n        }\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。Bootstrap loop（第476行）现在使用共享 `idx = rng.randint(0, n_pair, n_pair)` 对 `u`, `o`, `h` 做 paired resampling，文件中无其他独立 `randint` 残留。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "uuid": "ebeada38-4596-47de-92c2-0f6ec4927bfb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XVD83xamVkvSNWfq9ZmENs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3533,
+                "cache_read_input_tokens": 28921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3533
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。Bootstrap loop（第476行）现在使用共享 `idx = rng.randint(0, n_pair, n_pair)` 对 `u`, `o`, `h` 做 paired resampling，文件中无其他独立 `randint` 残留。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 41800,
+            "duration_api_ms": 40731,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "f808aac0-5eab-4475-9c67-d20b25c6b5d8",
+            "total_cost_usd": 0.26229475,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 20613,
+              "cache_read_input_tokens": 167729,
+              "output_tokens": 1934,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20613,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 79,
+                  "cache_read_input_tokens": 28921,
+                  "cache_creation_input_tokens": 3533,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3533
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1079,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0011940000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 1934,
+                "cacheReadInputTokens": 167729,
+                "cacheCreationInputTokens": 20613,
+                "webSearchRequests": 0,
+                "costUSD": 0.26110075000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "85e7a1dd-69ba-4e36-9b05-712eae2678fa"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-c5b-bootstrap-ci.md"
+}

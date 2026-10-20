@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "329108461e679bc91676",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis qw accuracy batch1 v2 rescore",
+  "task_key": "worker_analysis_qw_accuracy_batch1_v2_rescore_20260516T002516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qw_accuracy_batch1_v2_rescore_20260516T002516_result.json",
+    "occurrence": 1,
+    "bytes": 1258,
+    "sha256": "e763f402e6d65b2438c6d253352002da59cbabb61309a547b5a9555ce3daad9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### v2 rescore 影响\n**v2 matcher 对所有文件的评分结果零变化。** 对 batch1（dense/s015/s020/s025/s030）和 batch2（dense/s015/s030 的 `_n51_100` 文件）全部重新跑了 v2 answer matcher，0 个答案判定翻转。\n\n注意：s020 batch2 的 `_n51_100` 原始文件（22/50=0.44）和 `_b2_fix` 文件（23/50=0.46）的差异不是 matcher 造成的——是 re-evaluation（重新生成）导致的。最终数字用 `_b2_fix`。\n\n### 完整 QW accuracy dose curve (n=100)\n\n| condition | batch1 (n=50) | batch2 (n=50) | combined (n=100) |\n|-----------|--------------|--------------|-----------------|\n| dense     | 16/50 = 0.32 | 24/50 = 0.48 | **40/100 = 0.40** |\n| s015      | 17/50 = 0.34 | 19/50 = 0.38 | **36/100 = 0.36** |\n| s020      | 13/50 = 0.26 | 23/50 = 0.46 | **36/100 = 0.36** |\n| s025      | 16/50 = 0.32 | 17/50 = 0.34 | **33/100 = 0.33** |\n| s030      |  7/50 = 0.14 | 12/50 = 0.24 | **19/100 = 0.19** |\n\n### 单调性\nCombined dose curve **非严格单调递减**：s015 和 s020 并列 0.36。从 s020 开始严格递减（0.36 → 0.33 → 0.19）。整体趋势是 non-increasing。\n\nJSON 已保存到服务器 `analysis_output/qw_accuracy_dose_curve_final.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qw-accuracy-batch1-v2-rescore.md"
+}

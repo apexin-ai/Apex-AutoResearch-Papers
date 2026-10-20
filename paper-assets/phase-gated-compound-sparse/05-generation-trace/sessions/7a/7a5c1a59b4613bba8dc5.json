@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a5c1a59b4613bba8dc5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_5_1778770051.md",
+  "task_key": "loop_5_1778770051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778770051.md",
+    "occurrence": 1,
+    "bytes": 5372,
+    "sha256": "932ccf2f3b3ad5fc899e8a6a47ca18e5f7c6a9871d9eaa358abb667379090142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T14:40:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cuda:0~3 @ westd-22162，无其他服务器/GPU 可用\n- c2_qw_n500 的 cron 反复误判失败（profiling 脚本无 W&B/sentinel，cron 检测不到存活信号）——**不要信 cron 的 failed 状态**，必须 SSH 验证 PID 存活再判断\n- c2_qw_n500 曾出现重复进程（同 GPU 两个相同 python 进程写同一目录），需确认重复进程已被清理（PID 132389, 132392），否则输出数据会损坏\n- c3_llama 与 c2_qw_n500 共享 GPU2+3（98GB 显存够用），但完成时间不同——c3_llama n=50 先完成，c2_qw_n500 n=500 后完成，分析时注意区分\n- 论文截稿 **2026-05-25**（距今 11 天），所有实验必须在 ~05-22 前出结果以留论文更新时间\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162, 4× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/autodl-tmp/pacs/`\n- **Python**: conda base (`/root/miniconda3/bin/python`)，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: DeepSeek `/root/autodl-tmp/pacs/models/`（具体子目录需 SSH 确认），LLaMA-8B 已下载到同目录\n- **数据**: `/root/autodl-tmp/pacs/data/math500.json` (MATH-500, n=500)\n- **日志**: `/root/autodl-tmp/pacs/logs/` (c2_n500_gpu{0,1}_full.log, c2_qw_n500_gpu{2,3}_full.log, /tmp/c3_llama_full.log)\n- **活跃进程**:\n  - c2_n500_deepseek: tmux `c2_n500_gpu0` + `c2_n500_gpu1`, cuda:0+1\n  - c2_qw_n500: screen `c2_qw_gpu2` + `c2_qw_gpu3`, PID 131864 (gpu2) + 132002 (gpu3), cuda:2+3\n  - c3_llama: PID 137204, cuda:2+3（与 c2_qw_n500 共存）\n- **Cron**: c2_n500_deepseek 有 1 个活跃 cron（reconcile 确认 still running）；c2_qw_n500 的 cron 已多次误判——retry_count=2\n\n### 3. 📊 当前状态\n**刚做完**: Session #6 大量工作——bf16 全量数据重生成图表(D051)、Cohen's d 统一为 paired d_z(D048)、C4 降级为 §6 supporting(D045/D046)、D052 采纳 Reviewer 审查建议、提交 c2_n500_deepseek + c2_qw_n500 + c3_llama 三个实验、论文压缩页数、修复 c2_qw_n500 重复进程和 cron 误判问题。\n\n**RUNNING 实验**:\n| exp_id | GPU | 进度 | 预计完成 |\n|--------|-----|------|---------|\n| c2_n500_deepseek | cuda:0+1 | 未知（需 SSH 查） | ~18h from 13:42 UTC → ~07:42 UTC 05-15 |\n| c2_qw_n500 | cuda:2+3 | ~93-98/500 on s015（8 conditions 串行，s015 是第 1 个） | ~22h total → ETA ~02:00 CST |\n| c3_llama | cuda:2+3 | 刚启动 | n=50 应数小时内完成 |\n\n**运行中 Worker** (3 个):\n- `worker_prep_c2-n500-analysis-scripts` — 准备 n=500 分析脚本\n- `worker_knowledge_d052-framing-update` — 更新 paper_framing.md 反映 D052\n- `worker_diagnose_c2_qw_n500` — 第 3 次诊断 c2_qw_n500 状态（前两次确认进程存活但 cron 误判）\n\n**论文状态**: §1-§8 + Abstract + Figures 1-5 + main.tex + references.bib 全部完成可编译。Group C 审稿并行中。数字一致性审查已完成。\n\n### 4. 📋 待办（条件触发式）\n- c3_llama 完成（n=50，预计数小时）→ spawn worker 分析结果：检查 LLaMA 架构 compound severity 是否单调递增 → 更新 Table/Figure → 若 confirm 则强化 C3 claim，若 fail 则走 red-section framing 提案\n- c2_n500_deepseek 完成（~07:42 UTC 05-15）→ spawn worker 跑 n=500 统计分析（bootstrap CI, Cohen's d, Wilcoxon）→ 对比 n=50 结论是否稳健\n- c2_qw_n500 完成（~18:00 UTC 05-15）→ 同上分析 → 重点检查预注册：QW s015 CI 是否仍跨零 → 跨零则改叙事为 \"threshold sparsity ~s020\"\n- 三个实验全部完成 → 更新论文 Tables 3-4 + Figures → 提交 Group C full review → 准备 camera-ready\n- 任何实验 negative → 走 red-section framing 提案，禁止默默跑下一个\n- cron 再次误判 c2_qw_n500 failed → SSH 验证 PID 存活后 update_registry 纠正状态，不要重启\n\n### 5. 🎯 战略上下文\n- **核心发现**: importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（DeepSeek: 0.39→1.48→7.16→14.59; Qwen: 0.039→0.235→1.268→2.943），random masking 全 FAIL。Cross-model Cohen's d ρ=1.0, gradient permutation p=0.043。\n- **Claims 状态**: C1/C2/C3/C5/C6 confirmed，C4 已降级为 §6 supporting（D045/D046，entropy-collapse 在 Qwen s025 符号反转）\n- **关键决策链**: D043(rand_s030 仍 fail) → D044(C4 entropy 符号反转) → D045/D046(C4 降级) → D047(6-point dose-response) → D048(paired d_z 全文统一) → D049(Table 4 caption) → D050(回退错误 Worker) → D051(bf16 数据重生图表) → D052(Reviewer 建议: C5 pilot-first + heuristic baseline)\n- **易踩的坑**:\n  1. c2_qw_n500 用的是 **screen** session（不是 tmux），cron 检测不到存活信号会反复误判 failed——已发生 3 次\n  2. c3_llama 和 c2_qw_n500 共享 GPU2+3，不要以为 GPU 冲突\n  3. 预注册了 QW s015 CI 跨零的应对方案（改叙事为 threshold ~s020），n=500 结果出来后必须按预注册执行\n  4. 论文已完成但数据来自 n=50，n=500 结果可能需要更新大量 tables/figures——预留 2-3 天论文更新时间\n  5. D052 要求 C5 加 pilot-first 实验 + heuristic baseline，这是 Reviewer 要求，完成 C2/C3 后如有 GPU 空闲应启动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778770051.md"
+}

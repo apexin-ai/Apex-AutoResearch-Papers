@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d75d90bb321df74640a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops deprecate old script",
+  "task_key": "worker_ops_deprecate_old_script_20260514T224904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deprecate_old_script_20260514T224904_result.json",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "9637b439f0a38cd05dc95a4342d0492290155250632aa1288c84b16870c662e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重命名完成。\n\n- `analyze_c2_n500.py` → `analyze_c2_n500_DEPRECATED.py` (29924 bytes)\n- 另有一个 `analyze_c2_n500.py.bak` 仍存在 (24127 bytes)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deprecate-old-script.md"
+}

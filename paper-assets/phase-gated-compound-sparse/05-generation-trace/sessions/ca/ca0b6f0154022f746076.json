@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "ca0b6f0154022f746076",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "analysis seg spot check",
+  "task_key": "worker_analysis_seg_spot_check_20260515T095920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seg_spot_check_20260515T095920.log",
+    "occurrence": 1,
+    "bytes": 1098206,
+    "sha256": "4999706dc753127feec0c3bf9c639c7e4a3c528c962fa54e086a49b6ea606a5b"
+  },
+  "statistics": {
+    "messages": 553,
+    "user_turns": 1,
+    "tool_calls": 223,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 98,
+      "tool_call": 223,
+      "tool_result": 223,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 537,
+      "chunks": [
+        {
+          "path": "ca0b6f0154022f746076-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ca0b6f0154022f746076-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ca0b6f0154022f746076-part-0003.json",
+          "message_count": 177
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "ca0b6f0154022f746076-part-0003.json",
+          "message_count": 3
+        },
+        {
+          "path": "ca0b6f0154022f746076-part-0004.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-seg-spot-check.md"
+}

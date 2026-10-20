@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a74a3d06f00eb0177569",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "writing results skeleton",
+  "task_key": "worker_writing_results-skeleton_20260514T054846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_results-skeleton_20260514T054846_result.json",
+    "occurrence": 1,
+    "bytes": 1117,
+    "sha256": "61f5d085db0eade00906a6127cb4ee741a19a8986f2a75bd5eb2696a2c7a52ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§5 Results 骨架已写入 `docs/paper/results.tex`（v12, provenance 15/15 coverage）。\n\n结构：\n- **§5.1 Experimental Overview** — 模型/数据/指标简要 recap，指向 §4\n- **§5.2 Strategy-Dependent Severity (C1)** — aggregate II 对比表 + \"emergent phase-strategy interaction\" framing\n- **§5.3 Phase-Modulated Amplification (C2)** — 8行主表（4 sparsity × 2 strategy），per-phase median II + gradient + CI；sub-exponential growth rate\n- **§5.4 Phase-Strategy Crossover (C3)** — crossover 现象独立 subsection，heatmap 图引用，framing 用 attention redistribution 解释而非 \"importance limitation\"\n- **§5.5 Cross-Model Replication (C5)** — Qwen 对比表 + placeholder 叙述段落，措辞用 \"qualitatively reproduces\"，明确声明同架构限制\n- **§5.6 Statistical Validation** — bootstrap CI 表 + forest plot + permutation test，引用 Appendix\n\n所有数值用 `\\placeholder{exp_id: xxx, metric: yyy}` 标记，bf16 数据到手后可批量替换。保留了 `sec:crossover`、`tab:bootstrap` 等跨文件引用的 label。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-results-skeleton-copy-2.md"
+}

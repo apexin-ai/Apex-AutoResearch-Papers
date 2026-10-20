@@ -1,0 +1,58 @@
+{
+  "exp_id": "c10_lang_s020_s025",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:42:58.878Z",
+    "updated_at": "2026-05-16T07:41:05.133Z",
+    "spec": {
+      "command": "python scripts/gen_c10_s020_s025.py",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "312143",
+      "log_path": "~/runs/phase-gated-compound-sparse/c10_lang_s020_s025.log",
+      "submitted_at": "2026-05-16T03:42:58.420Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MATH-500 subset",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-0528-Qwen3-8B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/pacs/results_c10_lang_s020_s025.json",
+      "wall_clock_seconds": 14286.7,
+      "gpu_hours": 3.97
+    },
+    "conclusion": "success",
+    "metrics": {
+      "s020": {
+        "n": 50,
+        "accuracy": 0.26,
+        "switch_rate": 0.14,
+        "switch_count": 7,
+        "mean_cn_ratio": 0.066,
+        "cn_acc": 0.333,
+        "en_acc": 0.25
+      },
+      "s025": {
+        "n": 50,
+        "accuracy": 0.1,
+        "switch_rate": 0.32,
+        "switch_count": 16,
+        "mean_cn_ratio": 0.152,
+        "cn_acc": 0.2,
+        "en_acc": 0.057
+      },
+      "wall_time_s": 11680.6,
+      "output_path": "/root/autodl-tmp/pacs/results_c10_lang_s020_s025.json"
+    },
+    "completed_at": "2026-05-16T07:41:05.133Z"
+  },
+  "timestamp": "2026-05-16T07:41:05.444390+00:00",
+  "trigger": "update_registry"
+}

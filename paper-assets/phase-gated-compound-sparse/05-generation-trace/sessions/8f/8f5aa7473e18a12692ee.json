@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f5aa7473e18a12692ee",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "fix c5b gpu assignment",
+  "task_key": "worker_fix_c5b_gpu_assignment_20260514T180158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_c5b_gpu_assignment_20260514T180158_result.json",
+    "occurrence": 1,
+    "bytes": 1730,
+    "sha256": "d77e470b242e44d4b9e05a68778f9bc861aa5c06791414cb6b18bab5891dd254"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. 根因：`run_c5b_pilot.py:581` 覆盖了 `CUDA_VISIBLE_DEVICES`\n\n启动命令：`CUDA_VISIBLE_DEVICES=3 bash run_c5b_pilot.sh 0`\n\n执行链路：\n- `run_c5b_pilot.sh` 接收参数 `0`，设 `GPU=0`，传 `--gpu 0` 给 Python\n- **`run_c5b_pilot.py:581`**：`os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)` → 将 shell 级别的 `CVD=3` 覆盖为 `0`\n- 结果：进程跑在 **物理 GPU 0**，不是预期的 GPU 3\n\n`profiling/run_mitigation_pilot.py:573` 有同样的逻辑，是代码来源。\n\n### 2. c5b 实际在 GPU 0\n\n```\nPID 153367 → GPU-183f7d18 = GPU 0（与 c2_n500_deepseek imp 条件 PID 130124 共享）\n```\n\nGPU 0 显存占用：c2 imp 33374 MiB + c5b 20888 MiB = 54262 MiB（96GB 卡不爆显存，但算力争抢）\n\n### 3. c2 throughput 受影响\n\n| GPU | 条件 | 进度 | 平均速率 |\n|-----|------|------|----------|\n| GPU 0（共享）| c2 imp | 471/500 s015 | **~63s/problem** |\n| GPU 1（独占）| c2 rand | 496/500 s015 | **~41s/problem** |\n\nGPU 0 比 GPU 1 慢 **~54%**。c2 imp 还剩 ~1530 problems（s015 剩 29 + s020/s025/s030 各 500），如果继续共享，额外耗时约 9.5 小时。\n\n### 4. c5b 进度\n\ns025 阶段 12/30，s030 尚未开始。总进度 12/60 = 20%。\n\n### 建议修复方案\n\n**Kill c5b，修复后重启到 GPU 3：**\n\n1. Kill PID 153367\n2. 修复 `run_c5b_pilot.sh`：改为 `bash run_c5b_pilot.sh 3`（或直接去掉 shell 级 `CUDA_VISIBLE_DEVICES`，让 Python 内部的 `--gpu 3` 生效）\n3. 重启：`nohup bash run_c5b_pilot.sh 3 &`\n4. 损失 s025 前 12 个 problem 的进度（~10 分钟重跑），换来 c2 imp 恢复正常速率 + c5b 独占 GPU 3\n\n是否执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-c5b-gpu-assignment.md"
+}

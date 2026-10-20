@@ -1,0 +1,535 @@
+{
+  "schema_version": "1.0",
+  "session_id": "aee93c69853a811e3f02",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_12",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"sed -n '1,140p' experiment_plan.yaml\"",
+                  "aggregated_output": "",
+                  "exit_code": null,
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_12",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"sed -n '1,140p' experiment_plan.yaml\"",
+                  "aggregated_output": "# experiment_plan.yaml — EC-HTE internal research plan-to-claim mapping\n# Generated 2026-05-31 | project: ec_hte_codex_a\n\nexperiments:\n- id: plan_001_h1_cpu_mvp\n  claim: C_H1_GLOBAL_CORRECTION_WORSE\n  description: >\n    CPU-only semi-synthetic MVP for H1. Compare uncorrected, oracle global\n    confusion correction, estimated global confusion correction, and\n    stratified/subgroup correction on the positive-correlation worst-case DGP.\n    This isolates structural global-correction bias from finite-sample confusion\n    estimation noise.\n  registry_id: exp_001_bias_bound_mvp\n  role: primary\n  priority: P0\n  gpu_budget_hours: 0\n  deps: []\n  matrix_targets:\n  - target_id: C_H1_GLOBAL_CORRECTION_WORSE\n    cells:\n    - row: exp_001_bias_bound_mvp\n      col: uncorrected_vs_oracle_global\n    - row: exp_001_bias_bound_mvp\n      col: uncorrected_vs_estimated_global\n  - target_id: T_STAGE0_DGP_GRID\n    cells:\n    - row: positive_corr_high_mis_high_cate\n      col: uncorrected_gate_rmse\n    - row: positive_corr_high_mis_high_cate\n      col: oracle_global_gate_rmse\n    - row: positive_corr_high_mis_high_cate\n      col: estimated_global_gate_rmse\n    - row: positive_corr_high_mis_high_cate\n      col: stratified_gate_rmse\n  operational_criteria:\n    primary_metric: gate_rmse\n    secondary_metrics:\n    - mean_subgroup_cate_bias\n    - max_subgroup_cate_bias\n    minimum_replications: 200\n    success_rule: >\n      In the positive-correlation high-misclassification/high-CATE-heterogeneity\n      setting, oracle_global - uncorrected must be greater than 0 on the primary\n      metric gate_rmse, with a bootstrap 95% CI lower bound above 0. Estimated global\n      is reported separately; estimated_global - oracle_global quantifies\n      finite-sample confusion-estimation noise.\n    diagnostic_rule: >\n      mean_subgroup_cate_bias and max_subgroup_cate_bias must be reported for all\n      methods as secondary diagnostics. If gate_rmse supports H1 but either bias\n      diagnostic points in the opposite direction, the result is marked mixed and\n      requires Director review before Stage 1.\n    negative_rule: >\n      If oracle_global is not worse than uncorrected under the positive-correlation\n      worst-case setting, H1 is not supported and the next step is to audit DGP\n      construction, correction algebra, metric definitions, and subgroup weighting\n      before running Stage 1.\n\n- id: plan_002_h1_gpu_dgp_grid\n  claim: C_H1_GLOBAL_CORRECTION_WORSE\n  description: >\n    GPU-vectorized DGP grid for H1. Systematically vary misclassification\n    heterogeneity, CATE heterogeneity, subgroup count, and correlation direction;\n    compare oracle global and estimated global correction against uncorrected and\n    stratified/subgroup correction.\n  registry_id: exp_002_gpu_dgp_grid\n  role: primary\n  priority: P0\n  gpu_budget_hours: 2\n  deps:\n  - plan_001_h1_cpu_mvp\n  matrix_targets:\n  - target_id: C_H1_GLOBAL_CORRECTION_WORSE\n    cells:\n    - row: exp_002_gpu_dgp_grid\n      col: grid_oracle_vs_estimated_mechanism_split\n  - target_id: T_STAGE0_DGP_GRID\n    cells:\n    - row: grid_all_conditions\n      col: bias_bound_auc_or_rank_corr\n    - row: grid_all_conditions\n      col: oracle_estimated_gap\n  operational_criteria:\n    primary_metric: global_worse_rate_difference_positive_minus_negative\n    secondary_metrics:\n    - bias_bound_vs_global_worse_spearman\n    - estimated_global_minus_oracle_global_gate_rmse\n    minimum_replications_per_condition: 200\n    success_rule: >\n      Positive-correlation conditions must have at least a 20 percentage-point\n      higher oracle-global-worse rate than negative-correlation controls, with a\n      bootstrap 95% CI lower bound above 0. The bias-bound diagnostic must rank\n      oracle-global-worse conditions with Spearman rho >= 0.50 and bootstrap 95%\n      CI lower bound above 0. Estimated-global results must be reported separately\n      from oracle global to avoid conflating structural bias with\n      confusion-estimation noise.\n    launch_gate: >\n      This experiment may only run after Director approval and GPU allocation.\n      Before allocation it may only prepare code, configs, dry-runs, and proposal\n      artifacts.\n\n- id: plan_003_stage1_correction_ablation\n  claim: C_PARTIAL_POOLING_BETTER_LOW_BUDGET\n  description: >\n    Stage 1 correction ablation comparing global, arm-specific, per-subgroup\n    independent, and hierarchical/partial-pooling correction under matched expert\n    label budgets.\n  role: follow_up\n  priority: P1\n  gpu_budget_hours: 4\n  registry_id: exp_003_stage1_correction_ablation\n  deps:\n  - plan_001_h1_cpu_mvp\n  - plan_002_h1_gpu_dgp_grid\n  matrix_targets:\n  - target_id: C_PARTIAL_POOLING_BETTER_LOW_BUDGET\n    cells:\n    - row: low_budget\n      col: partial_pooling_vs_global\n    - row: low_budget\n      col: partial_pooling_vs_per_subgroup\n  - target_id: T_STAGE1_CORRECTION_ABLATION\n    cells:\n    - row: budget_low\n      col: global\n    - row: budget_low\n      col: arm_specific\n    - row: budget_low\n      col: per_subgroup_independent\n    - row: budget_low\n      col: partial_pooling\n    - row: budget_mid\n      col: global\n    - row: budget_mid\n      col: arm_specific\n    - row: budget_mid\n      col: per_subgroup_independent\n    - row: budget_mid\n      col: partial_pooling\n  operational_criteria:\n    primary_metric: gate_rmse\n",
+                  "exit_code": 0,
+                  "status": "completed"
+                }
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_13",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"sed -n '1,260p' configs/exp_002_gpu_dgp_grid.json\"",
+                  "aggregated_output": "",
+                  "exit_code": null,
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_13",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"sed -n '1,260p' configs/exp_002_gpu_dgp_grid.json\"",
+                  "aggregated_output": "{\n  \"exp_id\": \"exp_002_gpu_dgp_grid\",\n  \"plan_id\": \"plan_002_h1_gpu_dgp_grid\",\n  \"seed\": 20260531,\n  \"replications_per_condition\": 200,\n  \"bootstrap_iterations\": 1000,\n  \"bootstrap_seed\": 20260601,\n  \"n_values\": [2000, 5000, 10000],\n  \"subgroup_counts\": [3, 6],\n  \"expert_budgets\": [100, 500, 1000, 2000],\n  \"misclassification_heterogeneity\": [\"low\", \"high\"],\n  \"cate_heterogeneity\": [\"low\", \"high\"],\n  \"correlation_directions\": [\"positive\", \"negative\"],\n  \"methods\": [\n    \"uncorrected\",\n    \"oracle_global_confusion_correction\",\n    \"estimated_global_confusion_correction\",\n    \"stratified_subgroup_correction\"\n  ],\n  \"noise_sd\": 1.0,\n  \"treatment_probability\": 0.5,\n  \"global_correction_ridge\": 0.000001,\n  \"expected_runtime\": \"Formal grid expected <= 2 GPU-hours on seetacloud-38274/root/cuda:0; dry-run expected < 2 minutes.\",\n  \"disk_estimate\": \"Formal artifacts expected < 250 MB; no external dataset or model checkpoint is downloaded.\",\n  \"output_contract\": {\n    \"required_provenance_fields\": [\n      \"target_id\",\n      \"row\",\n      \"col\",\n      \"metric_key\",\n      \"exp_id\",\n      \"source\"\n    ],\n    \"primary_metric\": \"global_worse_rate_difference_positive_minus_negative\",\n    \"secondary_metrics\": [\n      \"bias_bound_vs_global_worse_spearman\",\n      \"estimated_global_minus_oracle_global_gate_rmse\"\n    ]\n  },\n  \"matrix_target_mapping\": [\n    {\n      \"target_id\": \"C_H1_GLOBAL_CORRECTION_WORSE\",\n      \"row\": \"exp_002_gpu_dgp_grid\",\n      \"col\": \"grid_oracle_vs_estimated_mechanism_split\",\n      \"metric_key\": \"bias_bound_predicts_global_worse_rate_by_correction_type\"\n    },\n    {\n      \"target_id\": \"T_STAGE0_DGP_GRID\",\n      \"row\": \"grid_all_conditions\",\n      \"col\": \"bias_bound_auc_or_rank_corr\",\n      \"metric_key\": \"bias_bound_vs_global_worse_rank_corr\"\n    },\n    {\n      \"target_id\": \"T_STAGE0_DGP_GRID\",\n      \"row\": \"grid_all_conditions\",\n      \"col\": \"oracle_estimated_gap\",\n      \"metric_key\": \"estimated_global_minus_oracle_global_gate_rmse\"\n    }\n  ],\n  \"operational_criteria\": {\n    \"primary_metric\": \"global_worse_rate_difference_positive_minus_negative\",\n    \"success_rule\": \"Positive-correlation conditions must have at least a 20 percentage-point higher oracle-global-worse rate than negative-correlation controls, with bootstrap 95% CI lower bound above 0. Bias-bound diagnostic Spearman rho must be >= 0.50 with bootstrap 95% CI lower bound above 0.\",\n    \"minimum_replications_per_condition\": 200,\n    \"estimated_global_reporting\": \"Report estimated-global separately from oracle-global; estimated_global_minus_oracle_global_gate_rmse quantifies finite-sample confusion-estimation noise.\"\n  }\n}\n",
+                  "exit_code": 0,
+                  "status": "completed"
+                }
+              }
+            }
+          ],
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_14",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"sed -n '1,180p' artifacts/manifest.yaml\"",
+                  "aggregated_output": "",
+                  "exit_code": null,
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_14",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"sed -n '1,180p' artifacts/manifest.yaml\"",
+                  "aggregated_output": "- id: art_20260531_baseline_protocol\n  name: baseline_protocol_research\n  type: report\n  description: EC-HTE 首批实验领域参考与 baseline protocol；覆盖 HTE/CATE metrics、PPI/DSL/StratPPI/AM-PPI/Mozer\n    适用边界、categorical misclassification correction baselines 和实验矩阵。\n  path: projects/ec_hte_codex_a/artifacts/research/baseline_protocol_20260531.md\n  url: null\n  project: ec_hte_codex_a\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-31T00:00:00+00:00'\n  tags:\n  - research\n  - protocol\n  - baseline\n  - cate\n  - misclassification\n- id: art_20260531_rohingya_realdata_feasibility\n  name: rohingya_realdata_feasibility\n  type: report\n  description: 'plan_004 / C_REALDATA_FEASIBILITY: Rohingya corpus 数据可得性、schema、文本、LLM\n    annotation、expert labels、subgroup variables、split、license/IRB 可行性核验；判定为部分可支撑。'\n  path: projects/ec_hte_codex_a/artifacts/research/rohingya_realdata_feasibility_20260531.md\n  url: null\n  project: ec_hte_codex_a\n  exp_id: null\n  skill: ''\n  created_at: '2026-05-31T16:31:36+00:00'\n  tags:\n  - research\n  - realdata\n  - feasibility\n  - rohingya\n  - llm-annotation\n- id: art_20260531_1b54e6\n  name: exp_002_gpu_dgp_grid_pending_proposal\n  type: intermediate\n  description: Pending-only proposal/spec for plan_002_h1_gpu_dgp_grid with formal\n    command, environment, grid hyperparameters, operational criteria, matrix target\n    mapping, and guardrails.\n  path: projects/ec_hte_codex_a/artifacts/exp_002_gpu_dgp_grid/intermediate/exp_002_gpu_dgp_grid_pending_proposal.md\n  url: null\n  project: ec_hte_codex_a\n  exp_id: exp_002_gpu_dgp_grid\n  skill: ml-experiment-guide\n  created_at: '2026-05-31T16:37:57.371260+00:00'\n  tags:\n  - plan_002\n  - pending_only\n  - gpu_dgp_grid\n  - proposal\n- id: art_20260531_0a40d1\n  name: exp_001_bias_bound_mvp_summary\n  type: data\n  description: Formal 200-rep CPU-only exp_001 summary.json with gate_rmse primary\n    metric and success-rule evaluation.\n  path: projects/ec_hte_codex_a/artifacts/exp_001_bias_bound_mvp/data/summary.json\n  url: null\n  project: ec_hte_codex_a\n  exp_id: exp_001_bias_bound_mvp\n  skill: ml-experiment-guide\n  created_at: '2026-05-31T16:37:58.639666+00:00'\n  tags:\n  - exp_001\n  - plan_001_h1_cpu_mvp\n  - gate_rmse\n- id: art_20260531_7f7db3\n  name: exp_001_bias_bound_mvp_matrix_metrics\n  type: data\n  description: Matrix/provenance JSONL for required C_H1_GLOBAL_CORRECTION_WORSE and\n    T_STAGE0_DGP_GRID cells.\n  path: projects/ec_hte_codex_a/artifacts/exp_001_bias_bound_mvp/data/matrix_metrics.jsonl\n  url: null\n  project: ec_hte_codex_a\n  exp_id: exp_001_bias_bound_mvp\n  skill: ml-experiment-guide\n  created_at: '2026-05-31T16:37:58.665586+00:00'\n  tags:\n  - exp_001\n  - matrix\n  - provenance\n- id: art_20260531_823648\n  name: exp_001_bias_bound_mvp_artifact_report\n  type: report\n  description: Concise report for formal exp_001 CPU-only MVP run, including primary\n    gate_rmse result, estimated-global noise, and secondary diagnostics.\n  path: projects/ec_hte_codex_a/artifacts/exp_001_bias_bound_mvp/report/artifact_report.md\n  url: null\n  project: ec_hte_codex_a\n  exp_id: exp_001_bias_bound_mvp\n  skill: ml-experiment-guide\n  created_at: '2026-05-31T16:37:58.695907+00:00'\n  tags:\n  - exp_001\n  - report\n  - plan_001_h1_cpu_mvp\n- id: art_20260531_a1d09b\n  name: exp_001_h1_findings_update_points\n  type: report\n  description: Director-facing findings update points for exp_001 H1 CPU MVP after\n    registry/artifact/matrix consistency audit; does not modify findings.md.\n  path: projects/ec_hte_codex_a/artifacts/exp_001_bias_bound_mvp/report/exp_001_h1_findings_update_points.md\n  url: null\n  project: ec_hte_codex_a\n  exp_id: exp_001_bias_bound_mvp\n  skill: ml-experiment-guide\n  created_at: '2026-05-31T16:48:01.221689+00:00'\n  tags:\n  - exp_001\n  - h1\n  - findings-update\n  - audit\n  - gate_rmse\n- id: art_20260531_fa4ae1\n  name: exp_003_stage1_correction_ablation_proposal\n  type: intermediate\n  description: Proposal/spec for plan_003 Stage1 H2 correction ablation; includes\n    dependency gate, methods, low/mid budget config, operational criteria, provenance\n    contract, smoke and formal commands.\n  path: projects/ec_hte_codex_a/artifacts/exp_003_stage1_correction_ablation/intermediate/exp_003_stage1_correction_ablation_proposal.md\n  url: null\n  project: ec_hte_codex_a\n  exp_id: exp_003_stage1_correction_ablation\n  skill: ml-experiment-guide\n  created_at: '2026-05-31T16:51:18.655691+00:00'\n  tags:\n  - plan_003\n  - stage1\n  - h2\n  - proposal\n  - pending_only\n- id: art_20260531_05d6f7\n  name: exp_003_stage1_correction_ablation_code_skeleton\n  type: intermediate\n  description: Code skeleton for Stage1 correction ablation CLI implementing global,\n    arm-specific, per-subgroup independent, and partial-pooling methods with matrix\n    provenance output and formal-run guard.\n  path: projects/ec_hte_codex_a/artifacts/exp_003_stage1_correction_ablation/intermediate/run_stage1_ablation.py\n  url: null\n  project: ec_hte_codex_a\n  exp_id: exp_003_stage1_correction_ablation\n  skill: ml-experiment-guide\n  created_at: '2026-05-31T16:51:18.685751+00:00'\n  tags:\n  - plan_003\n  - stage1\n  - h2\n  - code\n  - ablation\n- id: art_20260531_cef631\n  name: exp_003_stage1_correction_ablation_config\n  type: intermediate\n  description: 'JSON config for Stage1 H2 ablation: low/mid budgets, primary gate_rmse,\n    5% non-inferiority rule, secondary PEHE and mean subgroup CATE bias, and matrix\n    target mapping.'\n  path: projects/ec_hte_codex_a/artifacts/exp_003_stage1_correction_ablation/intermediate/exp_003_stage1_correction_ablation.json\n  url: null\n  project: ec_hte_codex_a\n  exp_id: exp_003_stage1_correction_ablation\n  skill: ml-experiment-guide\n  created_at: '2026-05-31T16:51:18.806504+00:00'\n  tags:\n  - plan_003\n  - stage1\n  - h2\n  - config\n- id: art_20260531_0e5bc8\n  name: exp002_negative_literature_solutions_20260531\n  type: report\n  description: Solution memo linking exp_002_gpu_dgp_grid negative result to literature-backed\n    correction paths, failure modes, and falsifiable next hypotheses.\n  path: projects/ec_hte_codex_a/artifacts/exp_002_gpu_dgp_grid/report/exp002_negative_literature_solutions_20260531.md\n  url: null\n  project: ec_hte_codex_a\n  exp_id: exp_002_gpu_dgp_grid\n  skill: codex\n  created_at: '2026-05-31T17:20:19.192494+00:00'\n  tags:\n  - exp002\n  - literature\n",
+                  "exit_code": 0,
+                  "status": "completed"
+                }
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_15",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"sed -n '1,220p' configs/exp_003_stage1_correction_ablation.json\"",
+                  "aggregated_output": "",
+                  "exit_code": null,
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_15",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"sed -n '1,220p' configs/exp_003_stage1_correction_ablation.json\"",
+                  "aggregated_output": "{\n  \"exp_id\": \"exp_003_stage1_correction_ablation\",\n  \"plan_id\": \"plan_003_stage1_correction_ablation\",\n  \"requires_exp002_done\": true,\n  \"seed\": 20260603,\n  \"replications_per_condition\": 200,\n  \"minimum_formal_replications\": 200,\n  \"bootstrap_iterations\": 1000,\n  \"bootstrap_seed\": 20260604,\n  \"n_values\": [2000, 5000],\n  \"subgroup_counts\": [3, 6],\n  \"budget_tiers\": {\n    \"low\": {\n      \"expert_budget\": 100,\n      \"description\": \"low expert-label budget for H2 primary claim\"\n    },\n    \"mid\": {\n      \"expert_budget\": 500,\n      \"description\": \"mid expert-label budget diagnostic\"\n    }\n  },\n  \"low_budget_label\": \"low\",\n  \"misclassification_heterogeneity\": [\"high\"],\n  \"cate_heterogeneity\": [\"high\"],\n  \"correlation_directions\": [\"positive\", \"negative\"],\n  \"group_probs\": {\n    \"3\": [0.5, 0.3, 0.2],\n    \"6\": [0.3, 0.22, 0.16, 0.13, 0.11, 0.08]\n  },\n  \"methods\": [\n    \"global\",\n    \"arm_specific\",\n    \"per_subgroup_independent\",\n    \"partial_pooling\"\n  ],\n  \"noise_sd\": 1.0,\n  \"treatment_probability\": 0.5,\n  \"arm_specific_error_delta\": 0.04,\n  \"smoothing_alpha\": 1.0,\n  \"partial_pooling_shrinkage_strength\": 25.0,\n  \"noninferiority_relative_margin\": 0.05,\n  \"expected_runtime\": \"Formal Stage1 grid expected to run after exp_002 completion and approval; CPU/Numpy baseline should be low-to-mid cost, GPU not required by this skeleton.\",\n  \"disk_estimate\": \"Formal JSON/CSV artifacts expected < 500 MB; no model checkpoint or external dataset download.\",\n  \"output_contract\": {\n    \"required_provenance_fields\": [\n      \"target_id\",\n      \"row\",\n      \"col\",\n      \"metric_key\",\n      \"exp_id\",\n      \"source\"\n    ],\n    \"primary_metric\": \"gate_rmse\",\n    \"primary_comparison\": \"partial_pooling_minus_global\",\n    \"noninferiority_comparison\": \"partial_pooling_minus_per_subgroup_independent\",\n    \"secondary_metrics\": [\n      \"pehe\",\n      \"mean_subgroup_cate_bias\"\n    ]\n  },\n  \"matrix_target_mapping\": [\n    {\n      \"target_id\": \"C_PARTIAL_POOLING_BETTER_LOW_BUDGET\",\n      \"row\": \"low_budget\",\n      \"col\": \"partial_pooling_vs_global\",\n      \"metric_key\": \"low_budget.partial_pooling_minus_global_gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    },\n    {\n      \"target_id\": \"C_PARTIAL_POOLING_BETTER_LOW_BUDGET\",\n      \"row\": \"low_budget\",\n      \"col\": \"partial_pooling_vs_per_subgroup\",\n      \"metric_key\": \"low_budget.partial_pooling_minus_per_subgroup_gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    },\n    {\n      \"target_id\": \"T_STAGE1_CORRECTION_ABLATION\",\n      \"row\": \"budget_low\",\n      \"col\": \"global\",\n      \"metric_key\": \"budget_low.global.gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    },\n    {\n      \"target_id\": \"T_STAGE1_CORRECTION_ABLATION\",\n      \"row\": \"budget_low\",\n      \"col\": \"arm_specific\",\n      \"metric_key\": \"budget_low.arm_specific.gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    },\n    {\n      \"target_id\": \"T_STAGE1_CORRECTION_ABLATION\",\n      \"row\": \"budget_low\",\n      \"col\": \"per_subgroup_independent\",\n      \"metric_key\": \"budget_low.per_subgroup_independent.gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    },\n    {\n      \"target_id\": \"T_STAGE1_CORRECTION_ABLATION\",\n      \"row\": \"budget_low\",\n      \"col\": \"partial_pooling\",\n      \"metric_key\": \"budget_low.partial_pooling.gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    },\n    {\n      \"target_id\": \"T_STAGE1_CORRECTION_ABLATION\",\n      \"row\": \"budget_mid\",\n      \"col\": \"global\",\n      \"metric_key\": \"budget_mid.global.gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    },\n    {\n      \"target_id\": \"T_STAGE1_CORRECTION_ABLATION\",\n      \"row\": \"budget_mid\",\n      \"col\": \"arm_specific\",\n      \"metric_key\": \"budget_mid.arm_specific.gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    },\n    {\n      \"target_id\": \"T_STAGE1_CORRECTION_ABLATION\",\n      \"row\": \"budget_mid\",\n      \"col\": \"per_subgroup_independent\",\n      \"metric_key\": \"budget_mid.per_subgroup_independent.gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    },\n    {\n      \"target_id\": \"T_STAGE1_CORRECTION_ABLATION\",\n      \"row\": \"budget_mid\",\n      \"col\": \"partial_pooling\",\n      \"metric_key\": \"budget_mid.partial_pooling.gate_rmse\",\n      \"exp_id\": \"exp_003_stage1_correction_ablation\",\n      \"source\": \"artifacts/exp_003_stage1_correction_ablation/formal/metrics.csv\"\n    }\n  ],\n  \"operational_criteria\": {\n    \"claim\": \"H2 low-budget partial pooling better\",\n    \"primary_metric\": \"gate_rmse\",\n    \"success_rule\": \"At low expert-label budget, partial pooling must beat global correction on gate_rmse: partial_pooling_minus_global bootstrap 95% CI upper bound < 0.\",\n    \"noninferiority_rule\": \"Partial pooling must be non-inferior to per-subgroup independent correction with a 5% relative GATE RMSE margin.\",\n    \"secondary_metrics\": [\n      \"pehe\",\n      \"mean_subgroup_cate_bias\"\n    ],\n    \"minimum_replications_per_condition\": 200,\n    \"formal_launch_gate\": \"Do not run formal experiment until exp_002_gpu_dgp_grid is DONE and Director approval/allocation is present.\"\n  }\n}\n",
+                  "exit_code": 0,
+                  "status": "completed"
+                }
+              }
+            }
+          ],
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_16",
+                  "type": "agent_message",
+                  "text": "设计边界已足够清楚：新方案要继承 exp002 的 grid 维度，但重命名成 matched pairs 与 directional observed conditions，并把 operator/prior/diagnostic 作为三条可单独证伪的机制子假设。我现在写 proposal 和 JSON spec skeleton，只记录待审批命令文本。"
+                }
+              }
+            }
+          ],
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_17",
+                  "type": "file_change",
+                  "changes": [
+                    {
+                      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/ec_hte_codex_a/artifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md",
+                      "kind": "add"
+                    },
+                    {
+                      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/ec_hte_codex_a/artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json",
+                      "kind": "add"
+                    }
+                  ],
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_17",
+                  "type": "file_change",
+                  "changes": [
+                    {
+                      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/ec_hte_codex_a/artifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md",
+                      "kind": "add"
+                    },
+                    {
+                      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/ec_hte_codex_a/artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json",
+                      "kind": "add"
+                    }
+                  ],
+                  "status": "completed"
+                }
+              }
+            }
+          ],
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_18",
+                  "type": "agent_message",
+                  "text": "Proposal/spec 文件已写完，内容只包含设计和待审批命令草案。接下来做本地结构校验、JSON 校验、artifact 注册，并把 exp005 registry 限定在 `PREPARING`。"
+                }
+              }
+            }
+          ],
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.updated",
+                "item": {
+                  "id": "item_1",
+                  "type": "todo_list",
+                  "items": [
+                    {
+                      "text": "Read audit/memo/registry context",
+                      "completed": true
+                    },
+                    {
+                      "text": "Draft proposal and optional JSON spec",
+                      "completed": true
+                    },
+                    {
+                      "text": "Register artifacts and verify constraints",
+                      "completed": false
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_19",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc 'rg -n \"''^## (H1a|H1b|H1c|planned_conditions vs conditions|registry/matrix mapping|success rules|negative rules|stop conditions|commands '\"\\\\(not executed\\\\))\\\" artifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md\"",
+                  "aggregated_output": "",
+                  "exit_code": null,
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_19",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc 'rg -n \"''^## (H1a|H1b|H1c|planned_conditions vs conditions|registry/matrix mapping|success rules|negative rules|stop conditions|commands '\"\\\\(not executed\\\\))\\\" artifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md\"",
+                  "aggregated_output": "26:## H1a\n52:## H1b\n82:## H1c\n111:## planned_conditions vs conditions\n143:## registry/matrix mapping\n168:## success rules\n196:## negative rules\n218:## stop conditions\n248:## commands (not executed)\n",
+                  "exit_code": 0,
+                  "status": "completed"
+                }
+              }
+            }
+          ],
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_20",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"test -f artifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md && test -f artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json && printf 'files_present\\\\n'\"",
+                  "aggregated_output": "",
+                  "exit_code": null,
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_20",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"test -f artifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md && test -f artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json && printf 'files_present\\\\n'\"",
+                  "aggregated_output": "files_present\n",
+                  "exit_code": 0,
+                  "status": "completed"
+                }
+              }
+            }
+          ],
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_21",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"python -m json.tool artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json >/tmp/exp005_spec_validated.json && printf 'json_valid\\\\n'\"",
+                  "aggregated_output": "",
+                  "exit_code": null,
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_21",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"python -m json.tool artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json >/tmp/exp005_spec_validated.json && printf 'json_valid\\\\n'\"",
+                  "aggregated_output": "/bin/bash: line 1: python: command not found\n",
+                  "exit_code": 127,
+                  "status": "failed"
+                }
+              }
+            }
+          ],
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_22",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"rg -n \\\"submit_training_job|tmux|nohup|findings\\\\.md|RUNNING|PENDING\\\" artifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json\"",
+                  "aggregated_output": "",
+                  "exit_code": null,
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_22",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"rg -n \\\"submit_training_job|tmux|nohup|findings\\\\.md|RUNNING|PENDING\\\" artifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json\"",
+                  "aggregated_output": "artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json:10:    \"no_submit_training_job\": true,\nartifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json:11:    \"no_tmux\": true,\nartifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json:12:    \"no_nohup\": true,\nartifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json:111:    \"command would launch submit_training_job, tmux, nohup, or GPU allocation\",\nartifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md:8:This is a proposal/spec only. Do not run a formal experiment, do not launch `submit_training_job`, do not use `tmux` or `nohup`, do not occupy GPU, and do not modify `findings.md`.\nartifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md:24:No `PENDING`, `RUNNING`, `DONE`, metric completion, or claim update should be recorded before Director approval and a later formal run.\nartifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md:224:- Any command would use `submit_training_job`, `tmux`, `nohup`, or GPU allocation before approval.\nartifacts/proposals/exp_005_stage0_h1_operator_repair_proposal_20260531.md:344:- `findings.md` must not be modified.\n",
+                  "exit_code": 0,
+                  "status": "completed"
+                }
+              }
+            }
+          ],
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.started",
+                "item": {
+                  "id": "item_23",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"python3 -m json.tool artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json >/tmp/exp005_spec_validated.json && printf 'json_valid\\\\n'\"",
+                  "aggregated_output": "",
+                  "exit_code": null,
+                  "status": "in_progress"
+                }
+              }
+            }
+          ],
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "item.completed",
+                "item": {
+                  "id": "item_23",
+                  "type": "command_execution",
+                  "command": "/bin/bash -lc \"python3 -m json.tool artifacts/proposals/exp_005_stage0_h1_operator_repair_spec.json >/tmp/exp005_spec_validated.json && printf 'json_valid\\\\n'\"",
+                  "aggregated_output": "json_valid\n",
+                  "exit_code": 0,
+                  "status": "completed"
+                }
+              }
+            }
+          ],
+          "id": "event-000047"
+        }
+      ]
+    }
+  ]
+}

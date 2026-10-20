@@ -1,0 +1,64 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{spark2024,slim2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{spark2024}
+\citation{slim2024}
+\citation{thinkv2025}
+\citation{rkv2025}
+\citation{hies2025}
+\citation{physics_kv2026}
+\citation{lethe2026}
+\citation{adakv2024}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compound Sparsity.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase-Aware KV Compression.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Importance Score Dynamics.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adaptive Eviction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup: Compound Sparsity}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Interaction Index}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Phase Segmentation}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Phase Gradient Quantification}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Triple Dissociation Design}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sparsity levels.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical methodology.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Recency Control: Full Sparsity Range Validation}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Triple dissociation across full sparsity range on MATH-500 (DeepSeek-R1-Distill-Qwen-7B, $n=100$). Only importance-based eviction produces significant phase gradients. Recency (scoring-independent) and random (structure-independent) are consistently non-significant.}}{5}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:triple_dissociation}{{1}{5}{Triple dissociation across full sparsity range on MATH-500 (DeepSeek-R1-Distill-Qwen-7B, $n=100$). Only importance-based eviction produces significant phase gradients. Recency (scoring-independent) and random (structure-independent) are consistently non-significant}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Recency control at $s=0.25$ (DeepSeek-R1-Distill-Qwen-7B, $n=100$). Phase gradient is negligible despite high absolute interaction values. The importance-to-recency effect size ratio of $36\times $ confirms scoring-pathway specificity.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:recency_s025}{{2}{5}{Recency control at $s=0.25$ (DeepSeek-R1-Distill-Qwen-7B, $n=100$). Phase gradient is negligible despite high absolute interaction values. The importance-to-recency effect size ratio of $36\times $ confirms scoring-pathway specificity}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Benchmark Validation: GPQA-Diamond}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Recency control at $s=0.30$ (DeepSeek-R1-Distill-Qwen-7B, $n=100$). Even at maximum sparsity, recency phase gradient remains negligible ($d_z = 0.15$) while importance reaches $d_z = 1.13$.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:recency_s030}{{3}{6}{Recency control at $s=0.30$ (DeepSeek-R1-Distill-Qwen-7B, $n=100$). Even at maximum sparsity, recency phase gradient remains negligible ($d_z = 0.15$) while importance reaches $d_z = 1.13$}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces GPQA-Diamond dose-response (DeepSeek-R1-Distill-Qwen-7B, importance eviction, $n=198$). Phase gradient increases monotonically with sparsity. Strategy specificity ratio $\geq 3\times $ across all levels.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:gpqa_dose_response}{{4}{6}{GPQA-Diamond dose-response (DeepSeek-R1-Distill-Qwen-7B, importance eviction, $n=198$). Phase gradient increases monotonically with sparsity. Strategy specificity ratio $\geq 3\times $ across all levels}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Perplexity Analysis}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Summary of Evidence}{6}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-benchmark strategy specificity comparison. The importance/random phase gradient ratio varies by task, reflecting differences in reasoning chain structure and attention routing demands.}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:cross_benchmark_specificity}{{5}{7}{Cross-benchmark strategy specificity comparison. The importance/random phase gradient ratio varies by task, reflecting differences in reasoning chain structure and attention routing demands}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Discrimination Collapse Mechanism}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Architecture-Dependent Strategy Specificity}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implications for Efficient Inference}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Limitations}{7}{subsection.5.4}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{adakv2024}{{1}{2024}{{Ada-KV}}{{}}}
+\bibcite{h2o2023}{{2}{2023}{{H2O}}{{}}}
+\bibcite{hies2025}{{3}{2025}{{HIES}}{{}}}
+\bibcite{lethe2026}{{4}{2026}{{Lethe}}{{}}}
+\bibcite{physics_kv2026}{{5}{2026}{{Physics-KV}}{{}}}
+\bibcite{rkv2025}{{6}{2025}{{R-KV}}{{}}}
+\bibcite{slim2024}{{7}{2024}{{SLiM}}{{}}}
+\bibcite{spark2024}{{8}{2024}{{SparK}}{{}}}
+\bibcite{streaminllm2024}{{9}{2024}{{StreamingLLM}}{{}}}
+\bibcite{thinkv2025}{{10}{2025}{{ThinKV}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\gdef \@abspage@last{8}

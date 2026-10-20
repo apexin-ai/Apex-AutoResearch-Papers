@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_v4_legacy_s035",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:12:54.211Z",
+    "updated_at": "2026-05-14T00:13:19.182Z",
+    "hypothesis": "importance(hardcoded) sparsity=0.35, crossover characterization: 验证 0.3 以上 sub-additive 趋势是否延续。与 s03(0.3, II=-224.5) 对比确认高 sparsity 方向。"
+  },
+  "timestamp": "2026-05-14T00:13:19.224475+00:00",
+  "trigger": "update_registry"
+}

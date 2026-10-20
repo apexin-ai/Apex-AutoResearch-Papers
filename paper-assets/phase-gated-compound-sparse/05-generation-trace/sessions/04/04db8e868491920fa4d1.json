@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04db8e868491920fa4d1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis bf16 ds imp vs rand",
+  "task_key": "worker_analysis_bf16-ds-imp-vs-rand_20260514T071001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bf16-ds-imp-vs-rand_20260514T071001_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "f36cfc6e6764900363549ca04925a98b90bea976dc27c28a33858406f0cc9325"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，结果非常清晰。\n\n## 结果摘要\n\n### Per-Sparsity 对比\n\n| Sparsity | Imp 梯度 (median) | Rand 梯度 (median) | Imp 单调性 | Rand 单调性 | Perm p | Wilcox p | imp>rand |\n|----------|-------------------|-------------------|-----------|-----------|--------|----------|----------|\n| **s015** | 0.3508 | 0.0110 | 50% | 10% | 0.0001 | 3.1e-05 | 36/49 |\n| **s020** | 1.1363 | 0.0434 | 72% | 18% | 0.0001 | 8.0e-07 | 39/49 |\n| **s025** | 4.0174 | 0.3032 | 82% | 25% | 0.0001 | 2.4e-08 | 42/49 |\n\n**Pooled** (147 problems): Perm p=0.0001, Wilcox p=2.8e-15\n\n### 关键发现\n\n1. **Importance masking 梯度随 sparsity 强单调递增**：0.35 → 1.14 → 4.02 → 9.95 (s030)\n2. **Random masking 梯度几乎平坦**：0.01 → 0.04 → 0.30（仅 s025 略有上升）\n3. **Importance 单调性远高于 random**：50%→72%→82%→90% vs 10%→18%→25%\n4. **所有 sparsity level 的 permutation test 和 Wilcoxon test 均高度显著**（p < 0.001）\n5. 每个 sparsity level 中，>73% 的 problem 的 importance 梯度大于 random 梯度\n\n结果已保存至 `/root/autodl-tmp/pacs/analysis_bf16_ds_comparison.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bf16-ds-imp-vs-rand.md"
+}

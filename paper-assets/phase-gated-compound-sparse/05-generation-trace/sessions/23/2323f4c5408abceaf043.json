@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2323f4c5408abceaf043",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis recompute random verdict",
+  "task_key": "worker_analysis_recompute-random-verdict_20260514T072533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_recompute-random-verdict_20260514T072533_result.json",
+    "occurrence": 1,
+    "bytes": 1117,
+    "sha256": "2e81d3698e82709b0a096e3cac7e3d53f4df6320a6c80f75c203869530bd000c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 重算结果\n\n| 实验 | 旧 verdict | 新 verdict | median II (high/mid/low) | median CI 重叠 |\n|------|-----------|-----------|--------------------------|---------------|\n| **s015** | PASS | **FAIL** | +0.093 / +0.097 / +0.103 | 完全重叠 |\n| **s020** | PASS | **FAIL** | +0.292 / +0.350 / +0.276 | 完全重叠 |\n| **s025** | PASS | **FAIL** | +0.818 / +0.932 / +1.363 | 完全重叠 |\n| **s030** | N/A(新) | **FAIL** | +2.503 / +2.592 / +4.041 | 完全重叠 |\n\n**根因**：旧 verdict 基于 mean CI，而 random masking 数据极端偏斜（skewness -5 到 -16），少数 outlier segment 将 mean 拉偏导致虚假 CI non-overlap。切换到 median CI 后，三个 phase 的 median II 值高度接近（无结构化 gradient），CI 完全重叠 → 正确判定 FAIL。\n\n**注意**：首次重算脚本将 JSON 中的 mean/ci_low/ci_high 从 segment-level bootstrap 更新为了 problem-level bootstrap。median/median_ci_low/median_ci_high 和 pass_fail verdict 均正确。perplexity、phase_stats、per_problem_ii 原始数据未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-recompute-random-verdict.md"
+}

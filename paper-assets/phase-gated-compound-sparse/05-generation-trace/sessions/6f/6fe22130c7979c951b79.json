@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fe22130c7979c951b79",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper section corrections",
+  "task_key": "worker_paper_section-corrections_20260516T034937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section-corrections_20260516T034937_result.json",
+    "occurrence": 1,
+    "bytes": 1863,
+    "sha256": "50aa098fc0ca653d33b8e03c674b1965c200b6acf099a75b4901dad67dbdbc19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Here's a summary of changes made:\n\n**R10-W1 Overclaiming (全文):**\n- `confirm/confirmed/confirming` → `support/supporting/indicate/show` — 25+ instances across 11 files\n- `demonstrates/demonstrating` → `shows/showing` — 4 instances\n- `significantly` → `substantially` — 1 instance (related_work.tex, about prior work without test)\n- `exponentially increasing` → `monotonically increasing` — 1 instance (results.tex fig caption)\n- `establishes` → `suggests/supports` — 2 instances (appendix files)\n\n**R10-W3 H2O Confound:**\n- Expanded \"Eviction strategy scope\" paragraph in limitations.tex to explicitly frame H2O-style scoring as a confound, noting the circular dependency between pruning and scoring, naming SnapKV/PyramidKV as sharing the same confound, and calling for eviction methods with score independence\n\n**R10-W4 GPU Anonymization:**\n- Only reference found: methodology.tex footnote \"4× professional GPUs with 48 GB memory\" — already anonymized, no GPU model names anywhere\n\n**R10-W5 Statistical Gaps:**\n- Fixed \"exponentially increasing\" (unsupported functional form) → \"monotonically increasing\"\n- All quantitative claims have p-values, CIs, or effect sizes; no critical gaps found\n\n**R10-W6 Terminology:**\n- Fixed `sparsity rates` → `sparsity levels` (limitations.tex)\n- \"Interaction Index\" capitalization follows standard convention (capitalized at definition, lowercase descriptively)\n- \"Phase gradient\" vs \"phase-severity gradient\" follows systematic usage (formal in abstract, shorthand elsewhere)\n\n**Appendix fixes:**\n- G× values already correct (21-64×) in all files\n- Added NT sample sizes: n_NT=34 at s=0.15, n_NT=22 at s=0.20 in the NT sensitivity analysis\n- Pilot CI already complete (oracle: [-39%, 45.8%]; heuristic: [-22.8%, 66%])"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section-corrections.md"
+}

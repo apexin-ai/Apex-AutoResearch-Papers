@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cffc877cb2e652f9edd",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops paper update plan",
+  "task_key": "worker_ops_paper-update-plan_20260514T235803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper-update-plan_20260514T235803_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "2794a0b28558af1c614cb78294a0b4caec2488642fd65a219987f7c86f072e2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计划已写入 `artifacts/n500_paper_update_plan.md`。\n\n汇总：\n- **15 个 tex 文件**全部扫描，其中 **12 个**需要修改（background.tex、related_work.tex、main.tex 无需改动）\n- **~150+ 个独立数值**需替换（含表格单元格）\n- **30+ 个 `\\placeholder{}`** 需填入\n- **4 个图表 PDF** 需重新生成\n- **\"marginal at s=0.15\"** 出现 4 处，全部需删除\n- 2 组重复段落（appendix_results ↔ appendix_moved）需同步修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-update-plan.md"
+}

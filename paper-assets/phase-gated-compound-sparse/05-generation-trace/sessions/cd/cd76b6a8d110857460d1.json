@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd76b6a8d110857460d1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops paper readiness check",
+  "task_key": "worker_ops_paper_readiness_check_20260516T061040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper_readiness_check_20260516T061040_result.json",
+    "occurrence": 1,
+    "bytes": 1905,
+    "sha256": "e0473d4ccdc0b0a58fadece502967df5afad628cbeb57e03a6724a962b580844"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整编译后 \"Label(s) may have changed\" 警告已消失，equation dest 警告也消除了。\n\n---\n\n## 论文提交就绪度报告\n\n### 1. TeX 编译：**通过**\n- 完整编译 (pdflatex×3 + bibtex) 成功，24 页，507 KB\n- 无 fatal error，无 undefined reference，无 multiply defined label\n- 剩余警告（均非 blocking）：\n  - 2× float specifier `h` → `ht`（LaTeX 自动调整）\n  - 2× hyperref token warning（PDF bookmark 中的数学符号）\n  - 4× Overfull hbox（最大 89pt，需要在提交前修复宽度溢出）\n\n### 2. 图表文件：**全部存在**\n| 引用 | 文件位置 | 状态 |\n|------|----------|------|\n| `fig1_ii_scatter.pdf` (results.tex) | `paper/fig1_ii_scatter.pdf` | 存在 (28KB, 今天更新) |\n| `fig3_crossover.pdf` (appendix_moved.tex) | `paper/figures/` | 存在 (10.7KB) |\n| `fig4_bootstrap.pdf` (appendix_moved.tex) | `paper/figures/` | 存在 (8.5KB) |\n| `fig5_crossmodel.pdf` (appendix_moved.tex) | `paper/figures/` | 存在 (11KB) |\n\n注：`figures/fig1_dose_response.pdf` 存在但未被任何 tex 引用（废弃文件，不影响编译）。\n\n### 3. Figure 1 状态：**已更新**\n- `fig1_ii_scatter.pdf` 于今天 (May 16 11:44) 更新，为最新版本。\n\n### 4. Headline 数字一致性：**通过**\n- 主体文本中 MATH-500/n=500 引用一致（abstract、methodology）\n- 主体中无残留旧数字 n=250 或 n=48\n- Appendix 中的 n=48（GSM8K κ 验证）和 n=50（profiling/accuracy）引用均在正确上下文中\n\n### 5. 引用：**完整**\n- references.bib: 341 行\n- bibtex 编译无错误/警告\n\n### Blocking Issues\n**无 blocking issue。** \n\n### 建议修复（非 blocking）\n1. **4 处 Overfull hbox**（最大 89pt）— 排版溢出，审稿人可能注意到\n2. **2 处 hyperref token warning** — PDF bookmark 中数学符号显示问题，纯美观"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-readiness-check.md"
+}

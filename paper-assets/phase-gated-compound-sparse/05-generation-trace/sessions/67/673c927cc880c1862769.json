@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "673c927cc880c1862769",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops full status and action",
+  "task_key": "worker_ops_full_status_and_action_20260514T173506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_status_and_action_20260514T173506_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "5ceb5ad6fe3ef6b6cefd1d24300a0da78fa9737548d4592fa4d5c50ef91852e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 解析完成。完整状态汇总：\n\n## Registry 总览\n| 状态 | 数量 |\n|------|------|\n| RUNNING | 3 (c2_qw_n500, c3_llama, c2_n500_deepseek) |\n| QUEUED | 1 (c5b_pilot) |\n| DONE/success | 36 |\n| DONE/negative | 8 |\n| DONE/killed | 20 |\n| DONE/failed | 14 |\n\n## 当前进度\n\n**c3_llama** — s030 是最后 2 个 condition：\n- importance_s030: **36/50**（PID 149238，~30 min ago 启动）\n- random_s030: **38/50**（PID 148980）\n- 预计 **20-40 分钟**内全部完成\n\n**c2_n500_deepseek** — GPU 0,1：\n- ds_imp: 424/500 (85%)\n- ds_rand: 446/500 (89%)\n- 预计 **1-2 小时**完成\n\n**c2_qw_n500** — GPU 2,3：\n- qw_imp: 318/500 (64%)\n- qw_rand: 326/500 (65%)\n- 预计 **3-4 小时**完成\n\n## 阻塞情况\n\n| 任务 | 阻塞原因 |\n|------|----------|\n| analyze_c3_llama.py | 等 s030 x2 完成 |\n| c5b_pilot 启动 | 等 GPU 释放（c3_llama 完成后 GPU 2/3 仍有 c2_qw 占用，但内存可能够用） |\n\n## 建议\n\nc3_llama s030 预计 20-40 分钟内完成。可以设一个轮询，完成后自动：\n1. 运行 `analyze_c3_llama.py` \n2. 检查 GPU 2/3 剩余内存是否够启动 c5b_pilot（Llama-8B 释放后约释放 ~20GB）\n3. 更新 registry\n\n要我启动轮询吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-and-action.md"
+}

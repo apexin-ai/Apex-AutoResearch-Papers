@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a9da203312f13853a4e",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "writing paper related work",
+  "task_key": "worker_writing_paper-related-work_20260514T052830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-related-work_20260514T052830_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "057ae3d2d32a51f2b2a9fd96593aebdd3a12b0115da62d6f3bf686a3a14303b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Section 2 已写入** `artifacts/_project/paper/related_work.tex`\n\n| 指标 | 值 |\n|---|---|\n| Word count | ~606 (含 LaTeX markup，正文约 540 词，≈0.75 page double-column) |\n| Citations | 18 篇 |\n| Subsections | 3 |\n\n**18 citations needed (按 `\\cite{}` key):**\n\n| Subsection | Citations |\n|---|---|\n| 2.1 Compound | `spark-aaai2026`, `slim-icml2025`, `unicomp-2026`, `compression-ordering-2025`, `phase-transition-compression-2026`, `graspune-acl2026` |\n| 2.2 KV Eviction | `defensivekv-iclr2026`, `obcache-2025`, `mustafar-neurips2025`, `retentivekv-2026`, `greedy-bias-kvcache-2026` |\n| 2.3 Phase-Aware | `thinkv-iclr2026`, `pagedeviction-eacl2026`, `decision-repr-transition-2026`, `doing-more-with-less-2026`, `rac-neurips2025`, `raas-acl2025`, `sparse-frontier-2025` |\n\n**Notes:**\n- Concurrent work 显式标注：GRASPrune、RetentiveKV、ThinKV、Decision Repr Transitions、Doing More With Less 均在文中以 \"concurrent\" 标识\n- 每个 subsection 末尾有明确 gap statement，最后收束到 \"compound × phase × strategy\" 三维交叉的唯一性\n- 未使用 \"to the best of our knowledge\" 或 \"we are the first\"\n- 需要补充完整 `.bib` 条目才能编译"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-paper-related-work-copy-2.md"
+}

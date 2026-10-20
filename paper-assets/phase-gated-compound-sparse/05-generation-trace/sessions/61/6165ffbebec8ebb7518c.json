@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6165ffbebec8ebb7518c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis gradient ratio provenance",
+  "task_key": "worker_analysis_gradient-ratio-provenance_20260514T072731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient-ratio-provenance_20260514T072731_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "b2bdf552555960c2941d6a0f4f94d0d541d6c401179efba91de9aabefe9a2d7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。核心发现：\n\n**问题 1：** \"47-104×\" 由 Reviewer agent 用 `low_mean/high_mean` 计算（s015 因负值替换为 median ratio 69×），Director 直接采纳进 D028，未注明公式混用。\n\n**问题 2：** s020=5.90 根因——Worker 2 存的是 `low_mean - high_mean`（**差值**），不是比值。同一字段名 `gradient_paired_aggregate` 在 s015/s025 存 median ratio，在 s020/s030 存 mean difference。\n\n**问题 3：** s025=222.35 根因——使用 `low_median/high_median`，high_median=0.032 极小导致 ratio 膨胀。D028 的 85× 用的是 mean ratio（high_mean=0.303 大 10 倍）。\n\n**问题 4 推荐：**\n- **主指标**：segment median difference → 0.39, 1.48, 7.16, 14.59（单调、无除法、完全可复现）\n- **补充**：Cohen's d → 0.60, 0.72, 0.95, 1.12（标准效应量，审稿人熟知）\n- **弃用所有 ratio 指标**：high-phase II 中 29-49% 样本 < 0.01，ratio 本质不稳定\n\n报告已注册为 artifact `gradient_ratio_provenance_report`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-ratio-provenance.md"
+}

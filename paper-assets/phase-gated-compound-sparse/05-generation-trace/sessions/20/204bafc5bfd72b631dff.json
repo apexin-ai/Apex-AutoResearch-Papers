@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "204bafc5bfd72b631dff",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis v6 random s015 s025",
+  "task_key": "worker_analysis_v6_random_s015_s025_20260514T055544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v6_random_s015_s025_20260514T055544_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "ddaaf39e10056f8de96defa1fc2c1ed2c7b6125c3e0936d221ef36eb15700b45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已 DONE。汇总对比：\n\n### v6_random_s015 vs v6_importance_s015 (sparsity=0.15)\n\n| 指标 | random | importance |\n|------|--------|------------|\n| ii_high_median | 0.161 | 0.227 |\n| ii_mid_median | 0.252 | 0.743 |\n| ii_low_median | 0.183 | 2.876 |\n| bootstrap_gradient_paired | **-0.27** (p=0.90) | **11.53** (p=0) |\n| gradient CI | [-0.70, 0.15] | [3.49, 23.78] |\n\n### v6_random_s025 vs v6_importance_s025 (sparsity=0.25)\n\n| 指标 | random | importance |\n|------|--------|------------|\n| ii_high_median | 3.002 | 0.664 |\n| ii_mid_median | 2.985 | 5.307 |\n| ii_low_median | 2.915 | 24.162 |\n| bootstrap_gradient_paired | **-0.12** (p=0.56) | **35.72** (p=0) |\n| gradient CI | [-1.52, 1.25] | [9.52, 101.54] |\n\n**结论**：Random masking 的 II gradient ≈ 0（三组 phase 无显著差异），importance masking 有强烈的 phase-dependent gradient（low_sparsity phase II 远高于 high_sparsity）。Phase-dependent interaction 是 importance-based masking 的特异效应，非注意力结构的 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v6-random-s015-s025.md"
+}

@@ -1,0 +1,2604 @@
+# analysis cross model prep
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 79
+- **Recorded user turns:** 0
+- **Tool calls:** 39
+- **Original source:** `logs/chats/worker_analysis_cross_model_prep_20260514T084917.jsonl`
+- **Structured JSON:** [`629546376ebd51ac0857.json`](../../sessions/62/629546376ebd51ac0857.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+79 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T08:56:37.533829+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T08:56:37.534203+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T08:56:37.534678+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "fields": "['*']",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "phase-gated-compound-sparse",
+    "fields": "['*']",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T08:56:37.535713+00:00_
+
+Error: result (137,578 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T08:56:37.535949+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -la /root/autodl-tmp/pacs/analysis_output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "ls -la /root/autodl-tmp/pacs/analysis_output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T08:56:37.536359+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "find /root/autodl-tmp/pacs/ -name \"cross_model*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "find /root/autodl-tmp/pacs/ -name \"cross_model*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T08:56:37.536551+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 36\\ndrwxr-xr-x  5 root root 4096 May 14 16:44 .\\ndrwxr-xr-x 77 root root 8192 May 14 16:30 ..\\ndrwxr-xr-x  2 root root   43 May 14 16:44 bf16_qw_rand_s015\\ndrwxr-xr-x  2 root root   43 May 14 16:24 bf16_qw_rand_s020\\ndrwxr-xr-x  2 root root   43 May 14 16:44 bf16_qw_rand_s025\\n-rw-r--r--  1 root root  788 May 14 16:00 cohens_d_bf16.json\\n-rw-r--r--  1 root root  815 May 14 16:04 cohens_d_bf16_qwen.json\\n-rw-r--r--  1 root root 8570 May 14 15:26 permutation_test_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T08:56:37.536707+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T08:56:37.536873+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Extract bf16 registry data",
+  "prompt": "I need you to extract specific experiment data from a large registry JSON file. The file is at:\n/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt\n\nThe file format is JSON with schema: {result: string} where result is itself a JSON string.\n\nI need you to extract ALL fields for experiments whose exp_id starts with \"bf16_\". Specifically these 15 experiments:\n- bf16_importance_s015, bf16_importance_s020, bf16_importance_s025, bf16_importance_s030\n- bf16_ds_rand_s015, bf16_ds_rand_s020, bf16_ds_rand_s025, bf16_ds_rand_s030\n- bf16_qw_imp_s015, bf16_qw_imp_s020, bf16_qw_imp_s025, bf16_qw_imp_s030\n- bf16_qw_rand_s015, bf16_qw_rand_s020, bf16_qw_rand_s025 (skip bf16_qw_rand_s030 if it exists)\n\nFor each experiment, I need:\n- exp_id\n- status\n- conclusion (pass/fail)\n- All metrics (especially: median_high, median_low, median_diff, permutation_p_value, cohens_d, or any similar metric names)\n\nUse jq or python to parse the file. First probe the structure, then extract. Return the results as a clean JSON-like summary with all numeric values preserved exactly. Be thorough - check what metric field names are actually used.",
+  "model": "sonnet"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Extract bf16 registry data",
+    "prompt": "I need you to extract specific experiment data from a large registry JSON file. The file is at:\n/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt\n\nThe file format is JSON with schema: {result: string} where result is itself a JSON string.\n\nI need you to extract ALL fields for experiments whose exp_id starts with \"bf16_\". Specifically these 15 experiments:\n- bf16_importance_s015, bf16_importance_s020, bf16_importance_s025, bf16_importance_s030\n- bf16_ds_rand_s015, bf16_ds_rand_s020, bf16_ds_rand_s025, bf16_ds_rand_s030\n- bf16_qw_imp_s015, bf16_qw_imp_s020, bf16_qw_imp_s025, bf16_qw_imp_s030\n- bf16_qw_rand_s015, bf16_qw_rand_s020, bf16_qw_rand_s025 (skip bf16_qw_rand_s030 if it exists)\n\nFor each experiment, I need:\n- exp_id\n- status\n- conclusion (pass/fail)\n- All metrics (especially: median_high, median_low, median_diff, permutation_p_value, cohens_d, or any similar metric names)\n\nUse jq or python to parse the file. First probe the structure, then extract. Return the results as a clean JSON-like summary with all numeric values preserved exactly. Be thorough - check what metric field names are actually used.",
+    "model": "sonnet"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T08:56:37.537033+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/permutation_test_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/permutation_test_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T08:56:37.537159+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/cohens_d_bf16.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/cohens_d_bf16.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T08:56:37.537276+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/cohens_d_bf16_qwen.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/cohens_d_bf16_qwen.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T08:56:37.537392+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "find /root/autodl-tmp/pacs/analysis_output/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "find /root/autodl-tmp/pacs/analysis_output/ -name \"*.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T08:56:37.537549+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nprint('Top-level keys:', list(data.keys())[:10])\nprint('Type:', type(data))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nprint('Top-level keys:', list(data.keys())[:10])\nprint('Type:', type(data))\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T08:56:37.537680+00:00_
+
+Top-level keys: ['success', 'data', 'error', 'metadata']
+Type: &lt;class 'dict'>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T08:56:37.537810+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\ninner_data = data['data']\nprint('data type:', type(inner_data))\nif isinstance(inner_data, dict):\n    print('data keys:', list(inner_data.keys())[:10])\nelif isinstance(inner_data, list):\n    print('list len:', len(inner_data))\n    print('first item keys:', list(inner_data[0].keys()) if inner_data else 'empty')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\ninner_data = data['data']\nprint('data type:', type(inner_data))\nif isinstance(inner_data, dict):\n    print('data keys:', list(inner_data.keys())[:10])\nelif isinstance(inner_data, list):\n    print('list len:', len(inner_data))\n    print('first item keys:', list(inner_data[0].keys()) if inner_data else 'empty')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T08:56:37.537956+00:00_
+
+data type: &lt;class 'dict'>
+data keys: ['experiments', 'count', 'total', 'baseline']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T08:56:37.538084+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\nprint('experiments type:', type(experiments))\nprint('Total experiments:', len(experiments) if isinstance(experiments, list) else 'dict')\n\nif isinstance(experiments, list):\n    # Show first bf16 experiment structure\n    for exp in experiments:\n        if str(exp.get('exp_id','')).startswith('bf16_'):\n            print('Sample bf16 exp keys:', list(exp.keys()))\n            print('Sample bf16 exp:', json.dumps(exp, indent=2))\n            break\nelif isinstance(experiments, dict):\n    bf16_keys = [k for k in experiments.keys() if k.startswith('bf16_')]\n    print('bf16 keys:', bf16_keys[:5])\n    if bf16_keys:\n        sample = experiments[bf16_keys[0]]\n        print('Sample keys:', list(sample.keys()))\n        print('Sample:', json.dumps(sample, indent=2))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\nprint('experiments type:', type(experiments))\nprint('Total experiments:', len(experiments) if isinstance(experiments, list) else 'dict')\n\nif isinstance(experiments, list):\n    # Show first bf16 experiment structure\n    for exp in experiments:\n        if str(exp.get('exp_id','')).startswith('bf16_'):\n            print('Sample bf16 exp keys:', list(exp.keys()))\n            print('Sample bf16 exp:', json.dumps(exp, indent=2))\n            break\nelif isinstance(experiments, dict):\n    bf16_keys = [k for k in experiments.keys() if k.startswith('bf16_')]\n    print('bf16 keys:', bf16_keys[:5])\n    if bf16_keys:\n        sample = experiments[bf16_keys[0]]\n        print('Sample keys:', list(sample.keys()))\n        print('Sample:', json.dumps(sample, indent=2))\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T08:56:37.538228+00:00_
+
+experiments type: &lt;class 'dict'>
+Total experiments: dict
+bf16 keys: ['bf16_qw_rand_s030', 'bf16_qw_rand_s025', 'bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_ds_imp_s030']
+Sample keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'server', 'gpu', 'account', 'reproduce', 'spec', 'pid', 'log_path', 'extra', 'conclusion', 'checkpoint_path', 'metrics', 'completed_at']
+Sample: {
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-14T05:39:37.271Z",
+  "updated_at": "2026-05-14T08:46:56.207Z",
+  "hypothesis": "D020 bf16 \u5168\u91cf\u91cd\u8dd1: Qwen2.5-7B-Instruct random masking s=0.30, bf16 dtype. Cross-model \u914d\u5bf9\u5bf9\u7167\u3002",
+  "server": "westd-22162",
+  "gpu": "cuda:0",
+  "account": "root",
+  "reproduce": {
+    "server": "westd-22162",
+    "gpu": "cuda:0",
+    "started_at": "2026-05-14T08:22:08.391Z",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+    "code_commit": "1b4f61aa366a9fe320f8563c8f7acb5af58d78b7",
+    "finished_at": "2026-05-14T08:42:12.294Z",
+    "training_hours": 0.33
+  },
+  "spec": {
+    "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+    "data_count": 50,
+    "model_name": "Qwen2.5-7B-Instruct",
+    "seed": null
+  },
+  "pid": "98285",
+  "log_path": "~/runs/phase-gated-compound-sparse/bf16_qw_rand_s030.log",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_complete",
+        "action": "agent",
+        "ts": "2026-05-14T08:42:18.234440+00:00"
+      }
+    ]
+  },
+  "conclusion": "success",
+  "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030",
+  
+…[truncated 763 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T08:56:37.538746+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\n# List all bf16_ keys\nbf16_keys = sorted([k for k in experiments.keys() if k.startswith('bf16_')])\nprint('All bf16_ experiment IDs:', bf16_keys)\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\n# List all bf16_ keys\nbf16_keys = sorted([k for k in experiments.keys() if k.startswith('bf16_')])\nprint('All bf16_ experiment IDs:', bf16_keys)\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T08:56:37.538887+00:00_
+
+All bf16_ experiment IDs: ['bf16_ds_imp_s015', 'bf16_ds_imp_s020', 'bf16_ds_imp_s025', 'bf16_ds_imp_s030', 'bf16_ds_rand_s015', 'bf16_ds_rand_s020', 'bf16_ds_rand_s025', 'bf16_ds_rand_s030', 'bf16_importance_s015', 'bf16_importance_s020', 'bf16_importance_s025', 'bf16_importance_s030', 'bf16_qw_imp_s015', 'bf16_qw_imp_s020', 'bf16_qw_imp_s025', 'bf16_qw_imp_s030', 'bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_qw_rand_s025', 'bf16_qw_rand_s030', 'bf16_qwen_importance_s015', 'bf16_qwen_importance_s020', 'bf16_qwen_importance_s025', 'bf16_qwen_importance_s030', 'bf16_random_s015', 'bf16_random_s020', 'bf16_random_s025', 'bf16_random_s030']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T08:56:37.539028+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\ntarget_ids = [\n    'bf16_importance_s015', 'bf16_importance_s020', 'bf16_importance_s025', 'bf16_importance_s030',\n    'bf16_ds_rand_s015', 'bf16_ds_rand_s020', 'bf16_ds_rand_s025', 'bf16_ds_rand_s030',\n    'bf16_qw_imp_s015', 'bf16_qw_imp_s020', 'bf16_qw_imp_s025', 'bf16_qw_imp_s030',\n    'bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_qw_rand_s025',\n]\n\nresults = {}\nfor eid in target_ids:\n    if eid in experiments:\n        exp = experiments[eid]\n        m = exp.get('metrics', {})\n        ii = m.get('interaction_index', {})\n        \n        # Extract phase medians\n        high_median = ii.get('high', {}).get('median') if 'high' in ii else None\n        low_median = ii.get('low', {}).get('median') if 'low' in ii else None\n        mid_median = ii.get('mid', {}).get('median') if 'mid' in ii else None\n        \n        results[eid] = {\n            'exp_id': eid,\n            'status': exp.get('status'),\n            'conclusion': exp.get('conclusion'),\n            'pass_fail': m.get('pass_fail'),\n            'pass_fail_detail': m.get('pass_fail_detail'),\n            'sparsity': m.get('sparsity'),\n            'masking': m.get('masking'),\n            'model': m.get('model'),\n            'n_problems': m.get('n_problems'),\n            'median_high': high_median,\n            'median_mid': mid_median,\n            'median_low': low_median,\n            'median_diff': m.get('median_diff'),\n            'permutation_p_value': m.get('permutation_p_value'),\n            'cohens_d': m.get('cohens_d'),\n            'high_ci': ii.get('high', {}).get('ci') if 'high' in ii else None,\n            'mid_ci': ii.get('mid', {}).get('ci') if 'mid' in ii else None,\n            'low_ci': ii.get('low', {}).get('ci') if 'low' in ii else None,\n            'high_mean': ii.get('high', {}).get('mean') if 'high' in ii else None,\n            'mid_mean': ii.get('mid', {}).get('mean') if 'mid' in ii else None,\n            'low_mean': ii.get('low', {}).get('mean') if 'low' in ii else None,\n            # Capture any extra metric keys\n            'extra_metric_keys': [k for k in m.keys() if k not in ('interaction_index','pass_fail','pass_fail_detail','sparsity','masking','model','n_problems','median_diff','permutation_p_value','cohens_d')],\n        }\n    else:\n        results[eid] = {'exp_id': eid, 'status': 'NOT_FOUND'}\n\nprint(json.dumps(results, indent=2))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\ntarget_ids = [\n    'bf16_importance_s015', 'bf16_importance_s020', 'bf16_importance_s025', 'bf16_importance_s030',\n    'bf16_ds_rand_s015', 'bf16_ds_rand_s020', 'bf16_ds_rand_s025', 'bf16_ds_rand_s030',\n    'bf16_qw_imp_s015', 'bf16_qw_imp_s020', 'bf16_qw_imp_s025', 'bf16_qw_imp_s030',\n    'bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_qw_rand_s025',\n]\n\nresults = {}\nfor eid in target_ids:\n    if eid in experiments:\n        exp = experiments[eid]\n        m = exp.get('metrics', {})\n        ii = m.get('interaction_index', {})\n        \n        # Extract phase medians\n        high_median = ii.get('high', {}).get('median') if 'high' in ii else None\n        low_median = ii.get('low', {}).get('median') if 'low' in ii else None\n        mid_median = ii.get('mid', {}).get('median') if 'mid' in ii else None\n        \n        results[eid] = {\n            'exp_id': eid,\n            'status': exp.get('status'),\n            'conclusion': exp.get('conclusion'),\n            'pass_fail': m.get('pass_fail'),\n            'pass_fail_detail': m.get('pass_fail_detail'),\n            'sparsity': m.get('sparsity'),\n            'masking': m.get('masking'),\n            'model': m.get('model'),\n            'n_problems': m.get('n_problems'),\n            'median_high': high_median,\n            'median_mid': mid_median,\n            'median_low': low_median,\n            'median_diff': m.get('median_diff'),\n            'permutation_p_value': m.get('permutation_p_value'),\n            'cohens_d': m.get('cohens_d'),\n            'high_ci': ii.get('high', {}).get('ci') if 'high' in ii else None,\n            'mid_ci': ii.get('mid', {}).get('ci') if 'mid' in ii else None,\n            'low_ci': ii.get('low', {}).get('ci') if 'low' in ii else None,\n            'high_mean': ii.get('high', {}).get('mean') if 'high' in ii else None,\n            'mid_mean': ii.get('mid', {}).get('mean') if 'mid' in ii else None,\n            'low_mean': ii.get('low', {}).get('mean') if 'low' in ii else None,\n            # Capture any extra metric keys\n            'extra_metric_keys': [k for k in m.keys() if k not in ('interaction_index','pass_fail','pass_fail_detail','sparsity','masking','model','n_problems','median_diff','permutation_p_value','cohens_d')],\n        }\n    else:\n        results[eid] = {'exp_id': eid, 'status': 'NOT_FOUND'}\n\nprint(json.dumps(results, indent=2))\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T08:56:37.539239+00:00_
+
+{
+  "bf16_importance_s015": {
+    "exp_id": "bf16_importance_s015",
+    "status": "DONE",
+    "conclusion": "success",
+    "pass_fail": {
+      "ci_overlap": true,
+      "sign_reversal": true,
+      "overall": "PASS"
+    },
+    "pass_fail_detail": null,
+    "sparsity": null,
+    "masking": null,
+    "model": null,
+    "n_problems": 50,
+    "median_high": 0.005752,
+    "median_mid": 0.080738,
+    "median_low": 0.398291,
+    "median_diff": null,
+    "permutation_p_value": null,
+    "cohens_d": null,
+    "high_ci": [
+      -0.294614,
+      -0.055385
+    ],
+    "mid_ci": [
+      0.267993,
+      0.668749
+    ],
+    "low_ci": [
+      1.478784,
+      3.667675
+    ],
+    "high_mean": -0.150213,
+    "mid_mean": 0.447301,
+    "low_mean": 2.405837,
+    "extra_metric_keys": [
+      "per_problem_ii_stats",
+      "gradient_paired_aggregate_legacy",
+      "median_difference",
+      "phase_stats",
+      "perplexity"
+    ]
+  },
+  "bf16_importance_s020": {
+    "exp_id": "bf16_importance_s020",
+    "status": "DONE",
+    "conclusion": "success",
+    "pass_fail": {
+      "ci_overlap": true,
+      "sign_reversal": false,
+      "overall": "PASS"
+    },
+    "pass_fail_detail": null,
+    "sparsity": null,
+    "masking": null,
+    "model": null,
+    "n_problems": 50,
+    "median_high": 0.0145,
+    "median_mid": 0.2027,
+    "median_low": 1.4963,
+    "median_diff": null,
+    "permutation_p_value": null,
+    "cohens_d": null,
+    "high_ci": [
+      -0.1975,
+      0.6647
+    ],
+    "mid_ci": [
+      0.7466,
+      1.8962
+    ],
+    "low_ci": [
+      4.4671,
+      7.9237
+    ],
+    "high_mean": 0.1289,
+    "mid_mean": 1.2604,
+    "low_mean": 6.0288,
+    "extra_metric_keys": [
+      "per_problem_ii_stats",
+      "gradient_paired_aggregate_legacy",
+      "median_difference",
+      "phase_stats",
+      "perplexity"
+    ]
+  },
+  "bf16_importance_s025": {
+    "exp_id": "bf16_importance_s025",
+    "status": "DONE",
+    "conclusion": "success",
+    "pass_fail": {
+      "ci_overlap": true,
+      "sign_rev
+…[truncated 11097 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T08:56:37.539445+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\n# Get extra metric details for experiments that have them\ntarget_extra = ['bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_qw_rand_s025']\nfor eid in target_extra:\n    exp = experiments[eid]\n    m = exp.get('metrics', {})\n    print(f'=== {eid} ===')\n    for k in ['permutation_test', 'bootstrap_ci_95', 'wilcoxon_p', 'phase_median_ii', 'median_difference']:\n        if k in m:\n            print(f'  {k}: {json.dumps(m[k])}')\n    print()\n\n# Also check one importance exp for median_difference\neid = 'bf16_importance_s015'\nexp = experiments[eid]\nm = exp.get('metrics', {})\nprint(f'=== {eid} median_difference ===')\nprint(json.dumps(m.get('median_difference'), indent=2))\nprint('gradient_paired_aggregate_legacy snippet:')\ngpa = m.get('gradient_paired_aggregate_legacy', {})\nif isinstance(gpa, dict):\n    print('  keys:', list(gpa.keys()))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\n# Get extra metric details for experiments that have them\ntarget_extra = ['bf16_qw_rand_s015', 'bf16_qw_rand_s020', 'bf16_qw_rand_s025']\nfor eid in target_extra:\n    exp = experiments[eid]\n    m = exp.get('metrics', {})\n    print(f'=== {eid} ===')\n    for k in ['permutation_test', 'bootstrap_ci_95', 'wilcoxon_p', 'phase_median_ii', 'median_difference']:\n        if k in m:\n            print(f'  {k}: {json.dumps(m[k])}')\n    print()\n\n# Also check one importance exp for median_difference\neid = 'bf16_importance_s015'\nexp = experiments[eid]\nm = exp.get('metrics', {})\nprint(f'=== {eid} median_difference ===')\nprint(json.dumps(m.get('median_difference'), indent=2))\nprint('gradient_paired_aggregate_legacy snippet:')\ngpa = m.get('gradient_paired_aggregate_legacy', {})\nif isinstance(gpa, dict):\n    print('  keys:', list(gpa.keys()))\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T08:56:37.539605+00:00_
+
+=== bf16_qw_rand_s015 ===
+  permutation_test: {"p_value": 0.7657, "B": 10000}
+  bootstrap_ci_95: [-0.2106, 0.2124]
+  wilcoxon_p: 0.862554
+  phase_median_ii: {"high": 0.1381, "mid": 0.2194, "low": 0.1878}
+  median_difference: -0.029401
+
+=== bf16_qw_rand_s020 ===
+  permutation_test: {"p_value": 0.352, "B": 10000}
+  bootstrap_ci_95: [-0.139, 0.215]
+  wilcoxon_p: 0.149
+  phase_median_ii: {"high": 0.4739, "mid": 0.8757, "low": 0.4847}
+  median_difference: 0.128948
+
+=== bf16_qw_rand_s025 ===
+  permutation_test: {"p_value": 0.1679, "B": 10000}
+  bootstrap_ci_95: [-0.3166, 4.1645]
+  wilcoxon_p: 0.010313
+  phase_median_ii: {"high": 1.6043, "mid": 2.2225, "low": 2.2641}
+  median_difference: 1.144074
+
+=== bf16_importance_s015 median_difference ===
+0.3925
+gradient_paired_aggregate_legacy snippet:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T08:56:37.539747+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\n# Get median_difference for all target experiments (ds_rand and importance)\ntarget_ids = [\n    'bf16_importance_s015', 'bf16_importance_s020', 'bf16_importance_s025', 'bf16_importance_s030',\n    'bf16_ds_rand_s015', 'bf16_ds_rand_s020', 'bf16_ds_rand_s025', 'bf16_ds_rand_s030',\n    'bf16_qw_imp_s015', 'bf16_qw_imp_s020', 'bf16_qw_imp_s025', 'bf16_qw_imp_s030',\n]\nfor eid in target_ids:\n    exp = experiments[eid]\n    m = exp.get('metrics', {})\n    md = m.get('median_difference')\n    pt = m.get('permutation_test')\n    wp = m.get('wilcoxon_p')\n    print(f'{eid}: median_difference={md}, permutation_test={pt}, wilcoxon_p={wp}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/b5a52f8e-0dc5-481f-828e-b6f3697b314e/tool-results/mcp-agent-ml-research-read_registry-1778748575031.txt') as f:\n    outer = json.load(f)\n\nresult_str = outer['result']\ndata = json.loads(result_str)\nexperiments = data['data']['experiments']\n\n# Get median_difference for all target experiments (ds_rand and importance)\ntarget_ids = [\n    'bf16_importance_s015', 'bf16_importance_s020', 'bf16_importance_s025', 'bf16_importance_s030',\n    'bf16_ds_rand_s015', 'bf16_ds_rand_s020', 'bf16_ds_rand_s025', 'bf16_ds_rand_s030',\n    'bf16_qw_imp_s015', 'bf16_qw_imp_s020', 'bf16_qw_imp_s025', 'bf16_qw_imp_s030',\n]\nfor eid in target_ids:\n    exp = experiments[eid]\n    m = exp.get('metrics', {})\n    md = m.get('median_difference')\n    pt = m.get('permutation_test')\n    wp = m.get('wilcoxon_p')\n    print(f'{eid}: median_difference={md}, permutation_test={pt}, wilcoxon_p={wp}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T08:56:37.539913+00:00_
+
+bf16_importance_s015: median_difference=0.3925, permutation_test=None, wilcoxon_p=None
+bf16_importance_s020: median_difference=1.4818, permutation_test=None, wilcoxon_p=None
+bf16_importance_s025: median_difference=7.1636, permutation_test=None, wilcoxon_p=None
+bf16_importance_s030: median_difference=14.5861, permutation_test=None, wilcoxon_p=None
+bf16_ds_rand_s015: median_difference=0.0095, permutation_test=None, wilcoxon_p=None
+bf16_ds_rand_s020: median_difference=-0.0155, permutation_test=None, wilcoxon_p=None
+bf16_ds_rand_s025: median_difference=0.5445, permutation_test=None, wilcoxon_p=None
+bf16_ds_rand_s030: median_difference=1.5383, permutation_test=None, wilcoxon_p=None
+bf16_qw_imp_s015: median_difference=0.038565, permutation_test=None, wilcoxon_p=None
+bf16_qw_imp_s020: median_difference=0.234979, permutation_test=None, wilcoxon_p=None
+bf16_qw_imp_s025: median_difference=1.267732, permutation_test=None, wilcoxon_p=None
+bf16_qw_imp_s030: median_difference=2.943093, permutation_test=None, wilcoxon_p=None
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T08:56:37.540129+00:00_
+
+Here is the complete extracted data for all 15 requested experiments:
+
+---
+
+## Extracted bf16_ Experiment Data
+
+**Note on metric naming:** Experiments use `median_difference` (not `median_diff`), `pass_fail` is a dict with sub-fields `ci_overlap`, `sign_reversal`, `overall`. The `permutation_p_value` and `cohens_d` fields only appear in `bf16_qw_rand_*` experiments; `permutation_test` contains `{p_value, B}` and `wilcoxon_p` is also present in those.
+
+---
+
+### Group 1: bf16_importance (DeepSeek-R1, importance masking)
+
+| exp_id | status | conclusion | pass_fail.overall | ci_overlap | sign_reversal | median_high | median_mid | median_low | median_difference | n_problems |
+|--------|--------|------------|-------------------|------------|---------------|-------------|------------|------------|-------------------|------------|
+| bf16_importance_s015 | DONE | success | PASS | true | true | 0.005752 | 0.080738 | 0.398291 | 0.3925 | 50 |
+| bf16_importance_s020 | DONE | success | PASS | true | false | 0.0145 | 0.2027 | 1.4963 | 1.4818 | 50 |
+| bf16_importance_s025 | DONE | success | PASS | true | false | 0.032363 | 1.118069 | 7.195958 | 7.1636 | 50 |
+| bf16_importance_s030 | DONE | success | PASS | true | false | 0.0534 | 2.2833 | 14.6395 | 14.5861 | 50 |
+
+Phase means (high/mid/low): s015=(-0.150213, 0.447301, 2.405837), s020=(0.1289, 1.2604, 6.0288), s025=(0.302756, 5.729665, 25.852951), s030=(0.5547, 11.3, 57.7946)
+
+Phase CIs 95%:
+- s015: high=[-0.294614, -0.055385], mid=[0.267993, 0.668749], low=[1.478784, 3.667675]
+- s020: high=[-0.1975, 0.6647], mid=[0.7466, 1.8962], low=[4.4671, 7.9237]
+- s025: high=[0.083714, 0.543977], mid=[3.455574, 8.471799], low=[19.077082, 33.497293]
+- s030: high=[0.2773, 0.9198], mid=[6.865, 17.2633], low=[41.4416, 77.0467]
+
+Extra metric fields present: `per_problem_ii_stats`, `gradient_paired_aggregate_legacy`, `median_difference`, `phase_stats`, `perplexity`
+
+---
+
+### Group 2: bf16_ds_rand (DeepSeek-R1, random masking)
+
+| exp_id | status | co
+…[truncated 4895 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "Agent",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T08:56:37.540663+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Paired permutation test: importance vs random masking II gradients\\\",\\n  \\\"config\\\": {\\n    \\\"seed\\\": 42,\\n    \\\"n_permutations\\\": 10000,\\n    \\\"epsilon\\\": 0.01,\\n    \\\"statistics\\\": [\\n      \\\"ratio\\\",\\n      \\\"difference\\\"\\n    ],\\n    \\\"primary_statistic\\\": \\\"median\\\",\\n    \\\"auxiliary_statistic\\\": \\\"mean\\\"\\n  },\\n  \\\"sparsity_levels\\\": {\\n    \\\"s015\\\": {\\n      \\\"n_problems_importance\\\": 50,\\n      \\\"n_problems_random\\\": 50,\\n      \\\"n_common\\\": 50,\\n      \\\"n_filtered_eps\\\": 17,\\n      \\\"n_paired\\\": 32,\\n      \\\"importance_gradient_median\\\": 0.596768832028174,\\n      \\\"importance_gradient_mean\\\": 9.787015626368108,\\n      \\\"importance_gradient_std\\\": 43.53400222124559,\\n      \\\"random_gradient_median\\\": 0.5565379302334723,\\n      \\\"random_gradient_mean\\\": 0.9930012122830651,\\n      \\\"random_gradient_std\\\": 3.1961680899723275,\\n      \\\"gradient_ratio\\\": 1.0722877985653636,\\n      \\\"gradient_ratio_mean\\\": 9.85599564764501,\\n      \\\"permutation_test\\\": {\\n        \\\"statistic\\\": \\\"ratio\\\",\\n        \\\"n_permutations\\\": 10000,\\n        \\\"observed_median_diff\\\": 0.23465156166529522,\\n        \\\"p_value\\\": 0.8704129587041296,\\n        \\\"ci_95_low\\\": -2.7500759776627635,\\n        \\\"ci_95_high\\\": 5.508591798034095,\\n        \\\"observed_mean_diff\\\": 8.794014414085042,\\n        \\\"p_value_mean\\\": 0.2920707929207079,\\n        \\\"bonferroni_p\\\": 1.0,\\n        \\\"bonferroni_p_mean\\\": 1.0\\n      },\\n      \\\"wilcoxon_test\\\": {\\n        \\\"statistic\\\": 237.0,\\n        \\\"p_value\\\": 0.6247301651164889,\\n        \\\"effect_size_r\\\": 0.08924949315246573\\n      },\\n      \\\"n_paired_difference\\\": 49,\\n      \\\"importance_difference_median\\\": 0.35075673366298554,\\n      \\\"importance_diff
+…[truncated 7844 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T08:56:37.540896+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"s015\\\": {\\n    \\\"d\\\": 0.4416,\\n    \\\"ci_low\\\": 0.3548,\\n    \\\"ci_high\\\": 0.7836,\\n    \\\"n\\\": 49,\\n    \\\"n_skipped\\\": 1,\\n    \\\"mean_diff\\\": 0.756804,\\n    \\\"std_diff\\\": 1.713645,\\n    \\\"interpretation\\\": \\\"small\\\"\\n  },\\n  \\\"s020\\\": {\\n    \\\"d\\\": 0.5195,\\n    \\\"ci_low\\\": 0.4319,\\n    \\\"ci_high\\\": 0.9011,\\n    \\\"n\\\": 49,\\n    \\\"n_skipped\\\": 1,\\n    \\\"mean_diff\\\": 2.281612,\\n    \\\"std_diff\\\": 4.391892,\\n    \\\"interpretation\\\": \\\"medium\\\"\\n  },\\n  \\\"s025\\\": {\\n    \\\"d\\\": 0.6831,\\n    \\\"ci_low\\\": 0.5576,\\n    \\\"ci_high\\\": 0.8634,\\n    \\\"n\\\": 49,\\n    \\\"n_skipped\\\": 1,\\n    \\\"mean_diff\\\": 11.386171,\\n    \\\"std_diff\\\": 16.667836,\\n    \\\"interpretation\\\": \\\"medium\\\"\\n  },\\n  \\\"s030\\\": {\\n    \\\"d\\\": 0.8031,\\n    \\\"ci_low\\\": 0.6659,\\n    \\\"ci_high\\\": 1.0191,\\n    \\\"n\\\": 49,\\n    \\\"n_skipped\\\": 1,\\n    \\\"mean_diff\\\": 22.939045,\\n    \\\"std_diff\\\": 28.561912,\\n    \\\"interpretation\\\": \\\"large\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T08:56:37.541068+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"s015\\\": {\\n    \\\"d\\\": 0.2811,\\n    \\\"ci_low\\\": -0.0063,\\n    \\\"ci_high\\\": 0.5967,\\n    \\\"n\\\": 46,\\n    \\\"n_skipped\\\": 4,\\n    \\\"mean_diff\\\": 0.081723,\\n    \\\"std_diff\\\": 0.290711,\\n    \\\"interpretation\\\": \\\"small\\\"\\n  },\\n  \\\"s020\\\": {\\n    \\\"d\\\": 0.5494,\\n    \\\"ci_low\\\": 0.2263,\\n    \\\"ci_high\\\": 1.0204,\\n    \\\"n\\\": 46,\\n    \\\"n_skipped\\\": 4,\\n    \\\"mean_diff\\\": 0.282519,\\n    \\\"std_diff\\\": 0.514196,\\n    \\\"interpretation\\\": \\\"medium\\\"\\n  },\\n  \\\"s025\\\": {\\n    \\\"d\\\": 0.8894,\\n    \\\"ci_low\\\": 0.6906,\\n    \\\"ci_high\\\": 1.1981,\\n    \\\"n\\\": 46,\\n    \\\"n_skipped\\\": 4,\\n    \\\"mean_diff\\\": 1.51605,\\n    \\\"std_diff\\\": 1.704563,\\n    \\\"interpretation\\\": \\\"large\\\"\\n  },\\n  \\\"s030\\\": {\\n    \\\"d\\\": 1.022,\\n    \\\"ci_low\\\": 0.8639,\\n    \\\"ci_high\\\": 1.3275,\\n    \\\"n\\\": 46,\\n    \\\"n_skipped\\\": 4,\\n    \\\"mean_diff\\\": 4.01389,\\n    \\\"std_diff\\\": 3.927559,\\n    \\\"interpretation\\\": \\\"large\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T08:56:37.541218+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/analysis_output/permutation_test_results.json\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_bf16.json\\n/root/autodl-tmp/pacs/analysis_output/cohens_d_bf16_qwen.json\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s020/analysis_results.json\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s015/analysis_results.json\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s025/analysis_results.json\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/analysis_results.json\\n/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T08:56:37.541384+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s015/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s015/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T08:56:37.541636+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"bf16_qw_rand_s015\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"masking_method\\\": \\\"random\\\",\\n  \\\"sparsity\\\": 0.15,\\n  \\\"phase_stats\\\": {\\n    \\\"high\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295,\\n      \\\"median_II\\\": 0.138132\\n    },\\n    \\\"mid\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26,\\n      \\\"median_II\\\": 0.219399\\n    },\\n    \\\"low\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276,\\n      \\\"median_II\\\": 0.187842\\n    }\\n  },\\n  \\\"n_problems\\\": 50,\\n  \\\"n_paired\\\": 46,\\n  \\\"difference_statistic\\\": {\\n    \\\"median_diff\\\": -0.029401,\\n    \\\"mean_diff\\\": -0.292082\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"B\\\": 10000,\\n    \\\"p_value\\\": 0.7657,\\n    \\\"observed_median_diff\\\": -0.029401\\n  },\\n  \\\"effect_size\\\": {\\n    \\\"cohen_d\\\": -0.050663,\\n    \\\"interpretation\\\": \\\"negligible\\\"\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"low\\\": -0.210625,\\n    \\\"high\\\": 0.212386,\\n    \\\"contains_zero\\\": true\\n  },\\n  \\\"wilcoxon_test\\\": {\\n    \\\"statistic\\\": 524.0,\\n    \\\"p_value\\\": 0.862554\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"expected_verdict\\\": \\\"FAIL\\\",\\n  \\\"conclusion\\\": \\\"Random masking at s=0.15 shows no significant phase-dependent II gradient. This confirms random masking as a valid negative control.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T08:56:37.541789+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s020/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s020/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T08:56:37.541948+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"bf16_qw_rand_s020\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"masking_method\\\": \\\"random\\\",\\n  \\\"sparsity\\\": 0.2,\\n  \\\"phase_stats\\\": {\\n    \\\"high\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295,\\n      \\\"median_II\\\": 0.473905\\n    },\\n    \\\"mid\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26,\\n      \\\"median_II\\\": 0.875724\\n    },\\n    \\\"low\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276,\\n      \\\"median_II\\\": 0.484725\\n    }\\n  },\\n  \\\"n_problems\\\": 50,\\n  \\\"n_paired\\\": 46,\\n  \\\"difference_statistic\\\": {\\n    \\\"median_diff\\\": 0.057619,\\n    \\\"mean_diff\\\": 0.544916\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"B\\\": 10000,\\n    \\\"p_value\\\": 0.352,\\n    \\\"observed_median_diff\\\": 0.057619\\n  },\\n  \\\"effect_size\\\": {\\n    \\\"cohen_d\\\": 0.247396,\\n    \\\"interpretation\\\": \\\"small\\\"\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"low\\\": -0.138561,\\n    \\\"high\\\": 0.214695,\\n    \\\"contains_zero\\\": true\\n  },\\n  \\\"wilcoxon_test\\\": {\\n    \\\"statistic\\\": 637.0,\\n    \\\"p_value\\\": 0.148639\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"expected_verdict\\\": \\\"FAIL\\\",\\n  \\\"conclusion\\\": \\\"Random masking at s=0.20 shows no significant phase-dependent II gradient. This confirms random masking as a valid negative control.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T08:56:37.542089+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s025/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s025/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T08:56:37.542243+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"bf16_qw_rand_s025\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"masking_method\\\": \\\"random\\\",\\n  \\\"sparsity\\\": 0.25,\\n  \\\"phase_stats\\\": {\\n    \\\"high\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295,\\n      \\\"median_II\\\": 1.604343\\n    },\\n    \\\"mid\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26,\\n      \\\"median_II\\\": 2.222455\\n    },\\n    \\\"low\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276,\\n      \\\"median_II\\\": 2.264141\\n    }\\n  },\\n  \\\"n_problems\\\": 50,\\n  \\\"n_paired\\\": 46,\\n  \\\"difference_statistic\\\": {\\n    \\\"median_diff\\\": 1.144074,\\n    \\\"mean_diff\\\": 2.711057\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"B\\\": 10000,\\n    \\\"p_value\\\": 0.1679,\\n    \\\"observed_median_diff\\\": 1.144074\\n  },\\n  \\\"effect_size\\\": {\\n    \\\"cohen_d\\\": 0.15739,\\n    \\\"interpretation\\\": \\\"negligible\\\"\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"low\\\": -0.316572,\\n    \\\"high\\\": 4.164522,\\n    \\\"contains_zero\\\": true\\n  },\\n  \\\"wilcoxon_test\\\": {\\n    \\\"statistic\\\": 308.0,\\n    \\\"p_value\\\": 0.010313\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"expected_verdict\\\": \\\"FAIL\\\",\\n  \\\"conclusion\\\": \\\"Random masking at s=0.25 shows no significant phase-dependent II gradient. This confirms random masking as a valid negative control.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T08:56:37.542377+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T08:56:37.542559+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"bf16_qw_rand_s030\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"masking_method\\\": \\\"random\\\",\\n  \\\"sparsity\\\": 0.3,\\n  \\\"phase_stats\\\": {\\n    \\\"high\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295,\\n      \\\"median_II\\\": 4.200557\\n    },\\n    \\\"mid\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26,\\n      \\\"median_II\\\": 6.477036\\n    },\\n    \\\"low\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276,\\n      \\\"median_II\\\": 8.065662\\n    }\\n  },\\n  \\\"n_problems\\\": 50,\\n  \\\"n_paired\\\": 46,\\n  \\\"difference_statistic\\\": {\\n    \\\"median_diff\\\": 2.418272,\\n    \\\"mean_diff\\\": -1.134897\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"B\\\": 10000,\\n    \\\"p_value\\\": 0.012,\\n    \\\"observed_median_diff\\\": 2.418272\\n  },\\n  \\\"effect_size\\\": {\\n    \\\"cohen_d\\\": -0.03513,\\n    \\\"ci_low\\\": -0.2248,\\n    \\\"ci_high\\\": 0.4898,\\n    \\\"interpretation\\\": \\\"negligible\\\"\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"low\\\": 0.241897,\\n    \\\"high\\\": 3.314824,\\n    \\\"contains_zero\\\": false\\n  },\\n  \\\"wilcoxon_test\\\": {\\n    \\\"statistic\\\": 737.0,\\n    \\\"p_value\\\": 0.01566\\n  },\\n  \\\"verdict\\\": \\\"PASS\\\",\\n  \\\"expected_verdict\\\": \\\"FAIL\\\",\\n  \\\"conclusion\\\": \\\"Random masking at s=0.30: PASS. Permutation p=0.0120 < 0.05 and monotonic gradient confirmed\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T08:56:37.542734+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T08:56:37.542964+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"bf16_qw_rand_s030\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"masking_method\\\": \\\"random\\\",\\n  \\\"sparsity\\\": 0.3,\\n  \\\"phase_stats\\\": {\\n    \\\"high\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295,\\n      \\\"median_II\\\": 4.200557\\n    },\\n    \\\"mid\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26,\\n      \\\"median_II\\\": 6.477036\\n    },\\n    \\\"low\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276,\\n      \\\"median_II\\\": 8.065662\\n    }\\n  },\\n  \\\"n_problems\\\": 50,\\n  \\\"n_paired\\\": 46,\\n  \\\"difference_statistic\\\": {\\n    \\\"median_diff\\\": 2.418272,\\n    \\\"mean_diff\\\": -1.134897\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"B\\\": 10000,\\n    \\\"p_value\\\": 0.012,\\n    \\\"observed_median_diff\\\": 2.418272\\n  },\\n  \\\"effect_size\\\": {\\n    \\\"cohen_d\\\": -0.03513,\\n    \\\"ci_low\\\": -0.2248,\\n    \\\"ci_high\\\": 0.4898,\\n    \\\"interpretation\\\": \\\"negligible\\\"\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"low\\\": 0.241897,\\n    \\\"high\\\": 3.314824,\\n    \\\"contains_zero\\\": false\\n  },\\n  \\\"wilcoxon_test\\\": {\\n    \\\"statistic\\\": 737.0,\\n    \\\"p_value\\\": 0.01566\\n  },\\n  \\\"verdict\\\": \\\"PASS\\\",\\n  \\\"expected_verdict\\\": \\\"FAIL\\\",\\n  \\\"conclusion\\\": \\\"Random masking at s=0.30: PASS. Permutation p=0.0120 < 0.05 and monotonic gradient confirmed\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T08:56:37.543133+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls /root/autodl-tmp/pacs/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "ls /root/autodl-tmp/pacs/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T08:56:37.543339+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/pacs/scripts/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T08:56:37.543561+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "find /root/autodl-tmp/pacs/ -maxdepth 2 -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "find /root/autodl-tmp/pacs/ -maxdepth 2 -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T08:56:37.543726+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling/__init__.py\\n/root/autodl-tmp/pacs/profiling/phase_segmentation.py\\n/root/autodl-tmp/pacs/profiling/interaction_index.py\\n/root/autodl-tmp/pacs/profiling/run_profiling.py\\n/root/autodl-tmp/pacs/profiling/alt_segmentation.py\\n/root/autodl-tmp/pacs/profiling/analyze_results.py\\n/root/autodl-tmp/pacs/utils/__init__.py\\n/root/autodl-tmp/pacs/utils/data_utils.py\\n/root/autodl-tmp/pacs/utils/metrics.py\\n/root/autodl-tmp/pacs/__init__.py\\n/root/autodl-tmp/pacs/pacs/__init__.py\\n/root/autodl-tmp/pacs/compound/__init__.py\\n/root/autodl-tmp/pacs/compound/head_selector.py\\n/root/autodl-tmp/pacs/compound/kv_evictor.py\\n/root/autodl-tmp/pacs/compound/compound_forward.py\\n/root/autodl-tmp/pacs/compound/test_compound.py\\n/root/autodl-tmp/pacs/validate_compound_e2e.py\\n/root/autodl-tmp/pacs/validate_compound_e2e_diag.py\\n/root/autodl-tmp/pacs/validate_compound_e2e_v2.py\\n/root/autodl-tmp/pacs/importance_vs_random.py\\n/root/autodl-tmp/pacs/analyze_v4_comparison.py\\n/root/autodl-tmp/pacs/run_profiling_qwen.py\\n/root/autodl-tmp/pacs/sanity_check_v5.py\\n/root/autodl-tmp/pacs/analysis/analyze_strategy_phase_crossover.py\\n/root/autodl-tmp/pacs/analysis/bootstrap_median_gradient.py\\n/root/autodl-tmp/pacs/analysis/bootstrap_phase_gradient.py\\n/root/autodl-tmp/pacs/analysis/bootstrap_per_problem.py\\n/root/autodl-tmp/pacs/analysis/analyze_v6_complete.py\\n/root/autodl-tmp/pacs/analysis/mid_sparsity_gap_analysis.py\\n/root/autodl-tmp/pacs/analysis/stat_test_qw_rand.py\\n/root/autodl-tmp/pacs/diagnose_nan.py\\n/root/autodl-tmp/pacs/diagnose_nan2.py\\n/root/autodl-tmp/pacs/verify_median_fix.py\\n/root/autodl-tmp/pacs/run_bf16_ds_comparison.py\\n/root/autodl-tmp/pacs/c4_attention_entropy.py\\n/root/autodl-tmp/pacs/recompute_verdict.py\\n/root/autodl-tmp/pacs/recompute_verdict_v2.py\\n/root/autodl-tmp/pacs/compute_cohens_d.py\\n/root/autodl-tmp/pacs/compute_cohens_d_qwen.py\\n/root/a
+…[truncated 150 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T08:56:37.543955+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -80 /root/autodl-tmp/pacs/analysis/stat_test_qw_rand.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -80 /root/autodl-tmp/pacs/analysis/stat_test_qw_rand.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T08:56:37.544089+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -50 /root/autodl-tmp/pacs/compute_cohens_d.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -50 /root/autodl-tmp/pacs/compute_cohens_d.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T08:56:37.544261+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nStatistical tests for bf16_qw_rand_s015 and bf16_qw_rand_s025.\\nReplicates the same 4-test battery done for s020.\\n\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nfrom scipy import stats\\nfrom pathlib import Path\\n\\nBASE = Path(\\\"/root/autodl-tmp/pacs\\\")\\nOUTPUT_DIR = BASE / \\\"analysis_output\\\"\\n\\nEXPERIMENTS = {\\n    \\\"bf16_qw_rand_s015\\\": {\\n        \\\"path\\\": BASE / \\\"profiling_output_bf16_qw_rand_s015\\\" / \\\"profiling_results.json\\\",\\n        \\\"sparsity\\\": 0.15,\\n        \\\"level_key\\\": \\\"0.15\\\",\\n    },\\n    \\\"bf16_qw_rand_s025\\\": {\\n        \\\"path\\\": BASE / \\\"profiling_output_bf16_qw_rand_s025\\\" / \\\"profiling_results.json\\\",\\n        \\\"sparsity\\\": 0.25,\\n        \\\"level_key\\\": \\\"0.25\\\",\\n    },\\n}\\n\\nB = 10000\\nSEED = 42\\n\\n\\ndef load_per_problem(path, level_key):\\n    with open(path) as f:\\n        data = json.load(f)\\n    ppi = data[\\\"per_problem_ii\\\"][level_key]\\n    phase_stats_raw = data[\\\"phase_stats\\\"]\\n    ii_agg = data[\\\"interaction_index\\\"]\\n    return ppi, phase_stats_raw, ii_agg\\n\\n\\ndef extract_paired(ppi):\\n    ii_high, ii_low = [], []\\n    for p in ppi:\\n        h, l = p.get(\\\"ii_high\\\"), p.get(\\\"ii_low\\\")\\n        if h is not None and l is not None:\\n            ii_high.append(h)\\n            ii_low.append(l)\\n    return np.array(ii_high), np.array(ii_low)\\n\\n\\ndef permutation_test(ii_high, ii_low, B=10000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    obs_diff = np.median(ii_low) - np.median(ii_high)\\n    pooled = np.concatenate([ii_high, ii_low])\\n    n_h = len(ii_high)\\n    count = 0\\n    for _ in range(B):\\n        rng.shuffle(pooled)\\n        perm_diff = np.median(pooled[n_h:]) - np.median(pooled[:n_h])\\n        if abs(perm_diff) >= abs(obs_diff):\\n            count += 1\\n    p_value = count / B\\n    return {\\\"B\\\": B, \\\
+…[truncated 849 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T08:56:37.544468+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport os\\n\\nnp.random.seed(42)\\n\\nBASE = \\\"/root/autodl-tmp/pacs\\\"\\nSPARSITY_MAP = {\\n    \\\"s015\\\": (\\\"profiling_output_bf16_ds_imp_s015\\\", \\\"0.15\\\"),\\n    \\\"s020\\\": (\\\"profiling_output_bf16_ds_imp_s020\\\", \\\"0.2\\\"),\\n    \\\"s025\\\": (\\\"profiling_output_bf16_ds_imp_s025\\\", \\\"0.25\\\"),\\n    \\\"s030\\\": (\\\"profiling_output_bf16_ds_imp_s030\\\", \\\"0.3\\\"),\\n}\\n\\nB = 10000\\n\\ndef interpret(d):\\n    ad = abs(d)\\n    if ad < 0.2:\\n        return \\\"negligible\\\"\\n    elif ad < 0.5:\\n        return \\\"small\\\"\\n    elif ad < 0.8:\\n        return \\\"medium\\\"\\n    else:\\n        return \\\"large\\\"\\n\\ndef bootstrap_ci(diffs, B=10000, alpha=0.05):\\n    n = len(diffs)\\n    boot_ds = np.empty(B)\\n    for i in range(B):\\n        sample = diffs[np.random.randint(0, n, size=n)]\\n        s = sample.std(ddof=1)\\n        if s == 0:\\n            boot_ds[i] = np.nan\\n        else:\\n            boot_ds[i] = sample.mean() / s\\n    boot_ds = boot_ds[~np.isnan(boot_ds)]\\n    lo = np.percentile(boot_ds, 100 * alpha / 2)\\n    hi = np.percentile(boot_ds, 100 * (1 - alpha / 2))\\n    return lo, hi\\n\\nresults = {}\\n\\nfor label, (dirname, sp_key) in SPARSITY_MAP.items():\\n    fpath = os.path.join(BASE, dirname, \\\"profiling_results.json\\\")\\n    with open(fpath) as f:\\n        data = json.load(f)\\n\\n    # Try the exact key first, then search\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T08:56:37.544718+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -d /root/autodl-tmp/pacs/profiling_output_bf16_*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "ls -d /root/autodl-tmp/pacs/profiling_output_bf16_*/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T08:56:37.544868+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020/\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025/\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030/\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015/\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020/\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025/\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030/\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s015/\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s020/\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s025/\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s030/\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015/\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s020/\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s025/\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T08:56:37.545014+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json')); print(list(d.keys())); ppi=d['per_problem_ii']['0.15']; print(f'n_problems={len(ppi)}'); print('keys per problem:', list(ppi[0].keys())); print('example:', {k:round(v,4) if isinstance(v,float) else v for k,v in ppi[0].items()})\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json')); print(list(d.keys())); ppi=d['per_problem_ii']['0.15']; print(f'n_problems={len(ppi)}'); print('keys per problem:', list(ppi[0].keys())); print('example:', {k:round(v,4) if isinstance(v,float) else v for k,v in ppi[0].items()})\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T08:56:37.545140+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T08:56:37.545261+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json'))\nprint(list(d.keys()))\nppi=d['per_problem_ii']['0.15']\nprint(f'n_problems={len(ppi)}')\nprint('keys:', list(ppi[0].keys()))\nprint('example:', ppi[0])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"\nimport json\nd=json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json'))\nprint(list(d.keys()))\nppi=d['per_problem_ii']['0.15']\nprint(f'n_problems={len(ppi)}')\nprint('keys:', list(ppi[0].keys()))\nprint('example:', ppi[0])\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T08:56:37.545644+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T08:56:37.545780+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -100 /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -100 /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T08:56:37.545962+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.15\\n    ],\\n    \\\"masking_method\\\": \\\"importance\\\",\\n    \\\"head_importance_metric\\\": \\\"attention_frobenius_norm\\\",\\n    \\\"kv_importance_metric\\\": \\\"cumulative_attention_received\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1689,\\n        \\\"attn\\\": 1.4861,\\n        \\\"kv\\\": 1.4481,\\n        \\\"both\\\": 1.5911\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2286,\\n        \\\"attn\\\": 1.6147,\\n        \\\"kv\\\": 8.9201,\\n        \\\"both\\\": 12.5084\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 1.5137,\\n        \\\"kv\\\": 2.5971,\\n        \\\"both\\\": 3.4541\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": -0.150213,\\n        \\\"ci_low\\\": -0.294614,\\n        \\\"ci_high\\\": -0.055385,\\n        \\\"median\\\": 0.005752,\\n        \\\"winsorized_mean\\\": -0.062378,\\n        \\\"skewness\\\": -14.9912,\\n        \\\"outlier_count\\\": 2\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 2.4
+…[truncated 1074 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T08:56:37.546183+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat > /root/autodl-tmp/pacs/analysis/cross_model_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom scipy import stats\nfrom pathlib import Path\n\nBASE = Path(\"/root/autodl-tmp/pacs\")\nOUTPUT_DIR = BASE / \"analysis_output\"\nB = 10000\nSEED = 42\n\nSPARSITY_LEVELS = [\"s015\", \"s020\", \"s025\", \"s030\"]\nSPARSITY_VALUES = {\"s015\": \"0.15\", \"s020\": \"0.2\", \"s025\": \"0.25\", \"s030\": \"0.3\"}\n\nDEEPSEEK_IMP = {s: BASE / f\"profiling_output_bf16_ds_imp_{s}\" / \"profiling_results.json\" for s in SPARSITY_LEVELS}\nDEEPSEEK_RAND = {s: BASE / f\"profiling_output_bf16_ds_rand_{s}\" / \"profiling_results.json\" for s in SPARSITY_LEVELS}\nQWEN_IMP = {s: BASE / f\"profiling_output_bf16_qw_imp_{s}\" / \"profiling_results.json\" for s in SPARSITY_LEVELS}\nQWEN_RAND = {s: BASE / f\"profiling_output_bf16_qw_rand_{s}\" / \"profiling_results.json\" for s in SPARSITY_LEVELS}\n\nCOHENS_D_DS = json.loads((OUTPUT_DIR / \"cohens_d_bf16.json\").read_text())\nCOHENS_D_QW = json.loads((OUTPUT_DIR / \"cohens_d_bf16_qwen.json\").read_text())\n\n\ndef load_per_problem_diffs(path, sp_key):\n    with open(path) as f:\n        data = json.load(f)\n    ppi = data[\"per_problem_ii\"][sp_key]\n    diffs = []\n    for p in ppi:\n        h, l = p.get(\"ii_high\"), p.get(\"ii_low\")\n        if h is not None and l is not None:\n            diffs.append(l - h)\n    return np.array(diffs)\n\n\ndef compute_median_diff(path, sp_key):\n    with open(path) as f:\n        data = json.load(f)\n    ii = data[\"interaction_index\"]\n    med_high = ii[\"high_sparsity\"][sp_key][\"median\"]\n    med_low = ii[\"low_sparsity\"][sp_key][\"median\"]\n    return med_low - med_high\n\n\ndef monotonicity_test(values):\n    n = len(values)\n    increasing = all(values[i] <= values[i+1] for i in range(n-1))\n    strictly = all(values[i] < values[i+1] for i in range(n-1))\n    return {\"monotonic_increasing\": increasing, \"strictly_increasing\": strictly}\n\n\ndef cross_model_permutation_test_concordance(ds_diffs_by_sp, qw_diffs_by_sp, B=10000, seed=42):\n    \"\"\"Test concordance of per-problem importance effects across models.\n    \n    For each sparsity level, we have paired per-problem diffs from both models.\n    Test statistic: sum of Spearman correlations across sparsity levels.\n    H0: model labels are exchangeable (no cross-model concordance).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    \n    observed_corrs = []\n    for s in SPARSITY_LEVELS:\n        ds = ds_diffs_by_sp[s]\n        qw = qw_diffs_by_sp[s]\n        n = min(len(ds), len(qw))\n        r, _ = stats.spearmanr(ds[:n], qw[:n])\n        observed_corrs.append(r)\n    \n    observed_stat = np.mean(observed_corrs)\n    \n    count = 0\n    for _ in range(B):\n        perm_corrs = []\n        for s in SPARSITY_LEVELS:\n            ds = ds_diffs_by_sp[s]\n            qw = qw_diffs_by_sp[s]\n            n = min(len(ds), len(qw))\n            perm_qw = rng.permutation(qw[:n])\n            r, _ = stats.spearmanr(ds[:n], perm_qw)\n            perm_corrs.append(r)\n        perm_stat = np.mean(perm_corrs)\n        if perm_stat >= observed_stat:\n            count += 1\n    \n    p_value = (count + 1) / (B + 1)\n    return {\n        \"test\": \"cross_model_permutation_concordance\",\n        \"statistic\": \"mean_spearman_rho\",\n        \"observed_rhos\": {s: round(r, 6) for s, r in zip(SPARSITY_LEVELS, observed_corrs)},\n        \"observed_mean_rho\": round(observed_stat, 6),\n        \"B\": B,\n        \"p_value\": round(p_value, 6),\n    }\n\n\ndef cross_model_gradient_permutation_test(ds_median_diffs, qw_median_diffs, B=10000, seed=42):\n    \"\"\"Test whether both models show the same monotonic gradient direction.\n    \n    Test statistic: Spearman correlation of median_diffs across sparsity levels.\n    H0: the sparsity ordering is exchangeable between models.\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    ds_arr = np.array(ds_median_diffs)\n    qw_arr = np.array(qw_median_diffs)\n    \n    observed_rho, _ = stats.spearmanr(ds_arr, qw_arr)\n    \n    count = 0\n    for _ in range(B):\n        perm_qw = rng.permutation(qw_arr)\n        r, _ = stats.spearmanr(ds_arr, perm_qw)\n        if r >= observed_rho:\n            count += 1\n    \n    p_value = (count + 1) / (B + 1)\n    return {\n        \"test\": \"cross_model_gradient_permutation\",\n        \"statistic\": \"spearman_rho_of_median_diffs\",\n        \"observed_rho\": round(observed_rho, 6),\n        \"B\": B,\n        \"p_value\": round(p_value, 6),\n    }\n\n\ndef main():\n    rng = np.random.RandomState(SEED)\n    results = {\n        \"description\": \"Cross-model analysis: concordance of compound interaction severity across DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct\",\n        \"note\": \"cross-model (shared Qwen2ForCausalLM architecture), not cross-architecture\",\n    }\n\n    # 1. Collect median_diffs for importance masking\n    ds_imp_median_diffs = []\n    qw_imp_median_diffs = []\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_imp_median_diffs.append(compute_median_diff(DEEPSEEK_IMP[s], sp_key))\n        qw_imp_median_diffs.append(compute_median_diff(QWEN_IMP[s], sp_key))\n\n    ds_rand_median_diffs = []\n    qw_rand_median_diffs = []\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_rand_median_diffs.append(compute_median_diff(DEEPSEEK_RAND[s], sp_key))\n        qw_rand_median_diffs.append(compute_median_diff(QWEN_RAND[s], sp_key))\n\n    results[\"importance_median_diffs\"] = {\n        \"deepseek\": {s: round(v, 6) for s, v in zip(SPARSITY_LEVELS, ds_imp_median_diffs)},\n        \"qwen\": {s: round(v, 6) for s, v in zip(SPARSITY_LEVELS, qw_imp_median_diffs)},\n    }\n    results[\"random_median_diffs\"] = {\n        \"deepseek\": {s: round(v, 6) for s, v in zip(SPARSITY_LEVELS, ds_rand_median_diffs)},\n        \"qwen\": {s: round(v, 6) for s, v in zip(SPARSITY_LEVELS, qw_rand_median_diffs)},\n    }\n\n    # 2. Cohen's d trends\n    ds_cohens = [COHENS_D_DS[s][\"d\"] for s in SPARSITY_LEVELS]\n    qw_cohens = [COHENS_D_QW[s][\"d\"] for s in SPARSITY_LEVELS]\n    \n    results[\"cohens_d_trend\"] = {\n        \"deepseek\": {s: COHENS_D_DS[s][\"d\"] for s in SPARSITY_LEVELS},\n        \"qwen\": {s: COHENS_D_QW[s][\"d\"] for s in SPARSITY_LEVELS},\n        \"deepseek_monotonic\": monotonicity_test(ds_cohens),\n        \"qwen_monotonic\": monotonicity_test(qw_cohens),\n        \"spearman_rho\": round(stats.spearmanr(ds_cohens, qw_cohens).correlation, 6),\n        \"spearman_p\": round(stats.spearmanr(ds_cohens, qw_cohens).pvalue, 6),\n    }\n\n    # 3. Monotonicity of importance median_diffs\n    results[\"importance_monotonicity\"] = {\n        \"deepseek\": monotonicity_test(ds_imp_median_diffs),\n        \"qwen\": monotonicity_test(qw_imp_median_diffs),\n    }\n    results[\"random_monotonicity\"] = {\n        \"deepseek\": monotonicity_test(ds_rand_median_diffs),\n        \"qwen\": monotonicity_test(qw_rand_median_diffs),\n    }\n\n    # 4. Cross-model gradient permutation test (aggregate level)\n    results[\"gradient_permutation_test\"] = cross_model_gradient_permutation_test(\n        ds_imp_median_diffs, qw_imp_median_diffs, B=B, seed=SEED\n    )\n\n    # 5. Per-problem cross-model concordance test\n    ds_diffs_by_sp = {}\n    qw_diffs_by_sp = {}\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_diffs_by_sp[s] = load_per_problem_diffs(DEEPSEEK_IMP[s], sp_key)\n        qw_diffs_by_sp[s] = load_per_problem_diffs(QWEN_IMP[s], sp_key)\n\n    results[\"per_problem_concordance\"] = cross_model_permutation_test_concordance(\n        ds_diffs_by_sp, qw_diffs_by_sp, B=B, seed=SEED\n    )\n\n    # 6. Per-sparsity Wilcoxon signed-rank: importance diff > 0 for both models\n    wilcoxon_results = {}\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_d = load_per_problem_diffs(DEEPSEEK_IMP[s], sp_key)\n        qw_d = load_per_problem_diffs(QWEN_IMP[s], sp_key)\n        ds_w = stats.wilcoxon(ds_d, alternative=\"greater\")\n        qw_w = stats.wilcoxon(qw_d, alternative=\"greater\")\n        wilcoxon_results[s] = {\n            \"deepseek\": {\"statistic\": float(ds_w.statistic), \"p_value\": float(ds_w.pvalue), \"n\": len(ds_d), \"median_diff\": round(float(np.median(ds_d)), 6)},\n            \"qwen\": {\"statistic\": float(qw_w.statistic), \"p_value\": float(qw_w.pvalue), \"n\": len(qw_d), \"median_diff\": round(float(np.median(qw_d)), 6)},\n        }\n    results[\"wilcoxon_one_sided\"] = wilcoxon_results\n\n    # 7. Effect size scaling ratio\n    results[\"effect_scaling\"] = {\n        \"description\": \"Ratio of effect sizes at consecutive sparsity levels\",\n        \"deepseek_cohens_d_ratios\": {\n            f\"{SPARSITY_LEVELS[i]}_to_{SPARSITY_LEVELS[i+1]}\": round(ds_cohens[i+1] / ds_cohens[i], 4) if ds_cohens[i] != 0 else None\n            for i in range(3)\n        },\n        \"qwen_cohens_d_ratios\": {\n            f\"{SPARSITY_LEVELS[i]}_to_{SPARSITY_LEVELS[i+1]}\": round(qw_cohens[i+1] / qw_cohens[i], 4) if qw_cohens[i] != 0 else None\n            for i in range(3)\n        },\n    }\n\n    # Save\n    out_path = OUTPUT_DIR / \"cross_model_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved to {out_path}\")\n    print(json.dumps(results, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat > /root/autodl-tmp/pacs/analysis/cross_model_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom scipy import stats\nfrom pathlib import Path\n\nBASE = Path(\"/root/autodl-tmp/pacs\")\nOUTPUT_DIR = BASE / \"analysis_output\"\nB = 10000\nSEED = 42\n\nSPARSITY_LEVELS = [\"s015\", \"s020\", \"s025\", \"s030\"]\nSPARSITY_VALUES = {\"s015\": \"0.15\", \"s020\": \"0.2\", \"s025\": \"0.25\", \"s030\": \"0.3\"}\n\nDEEPSEEK_IMP = {s: BASE / f\"profiling_output_bf16_ds_imp_{s}\" / \"profiling_results.json\" for s in SPARSITY_LEVELS}\nDEEPSEEK_RAND = {s: BASE / f\"profiling_output_bf16_ds_rand_{s}\" / \"profiling_results.json\" for s in SPARSITY_LEVELS}\nQWEN_IMP = {s: BASE / f\"profiling_output_bf16_qw_imp_{s}\" / \"profiling_results.json\" for s in SPARSITY_LEVELS}\nQWEN_RAND = {s: BASE / f\"profiling_output_bf16_qw_rand_{s}\" / \"profiling_results.json\" for s in SPARSITY_LEVELS}\n\nCOHENS_D_DS = json.loads((OUTPUT_DIR / \"cohens_d_bf16.json\").read_text())\nCOHENS_D_QW = json.loads((OUTPUT_DIR / \"cohens_d_bf16_qwen.json\").read_text())\n\n\ndef load_per_problem_diffs(path, sp_key):\n    with open(path) as f:\n        data = json.load(f)\n    ppi = data[\"per_problem_ii\"][sp_key]\n    diffs = []\n    for p in ppi:\n        h, l = p.get(\"ii_high\"), p.get(\"ii_low\")\n        if h is not None and l is not None:\n            diffs.append(l - h)\n    return np.array(diffs)\n\n\ndef compute_median_diff(path, sp_key):\n    with open(path) as f:\n        data = json.load(f)\n    ii = data[\"interaction_index\"]\n    med_high = ii[\"high_sparsity\"][sp_key][\"median\"]\n    med_low = ii[\"low_sparsity\"][sp_key][\"median\"]\n    return med_low - med_high\n\n\ndef monotonicity_test(values):\n    n = len(values)\n    increasing = all(values[i] <= values[i+1] for i in range(n-1))\n    strictly = all(values[i] < values[i+1] for i in range(n-1))\n    return {\"monotonic_increasing\": increasing, \"strictly_increasing\": strictly}\n\n\ndef cross_model_permutation_test_concordance(ds_diffs_by_sp, qw_diffs_by_sp, B=10000, seed=42):\n    \"\"\"Test concordance of per-problem importance effects across models.\n    \n    For each sparsity level, we have paired per-problem diffs from both models.\n    Test statistic: sum of Spearman correlations across sparsity levels.\n    H0: model labels are exchangeable (no cross-model concordance).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    \n    observed_corrs = []\n    for s in SPARSITY_LEVELS:\n        ds = ds_diffs_by_sp[s]\n        qw = qw_diffs_by_sp[s]\n        n = min(len(ds), len(qw))\n        r, _ = stats.spearmanr(ds[:n], qw[:n])\n        observed_corrs.append(r)\n    \n    observed_stat = np.mean(observed_corrs)\n    \n    count = 0\n    for _ in range(B):\n        perm_corrs = []\n        for s in SPARSITY_LEVELS:\n            ds = ds_diffs_by_sp[s]\n            qw = qw_diffs_by_sp[s]\n            n = min(len(ds), len(qw))\n            perm_qw = rng.permutation(qw[:n])\n            r, _ = stats.spearmanr(ds[:n], perm_qw)\n            perm_corrs.append(r)\n        perm_stat = np.mean(perm_corrs)\n        if perm_stat >= observed_stat:\n            count += 1\n    \n    p_value = (count + 1) / (B + 1)\n    return {\n        \"test\": \"cross_model_permutation_concordance\",\n        \"statistic\": \"mean_spearman_rho\",\n        \"observed_rhos\": {s: round(r, 6) for s, r in zip(SPARSITY_LEVELS, observed_corrs)},\n        \"observed_mean_rho\": round(observed_stat, 6),\n        \"B\": B,\n        \"p_value\": round(p_value, 6),\n    }\n\n\ndef cross_model_gradient_permutation_test(ds_median_diffs, qw_median_diffs, B=10000, seed=42):\n    \"\"\"Test whether both models show the same monotonic gradient direction.\n    \n    Test statistic: Spearman correlation of median_diffs across sparsity levels.\n    H0: the sparsity ordering is exchangeable between models.\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    ds_arr = np.array(ds_median_diffs)\n    qw_arr = np.array(qw_median_diffs)\n    \n    observed_rho, _ = stats.spearmanr(ds_arr, qw_arr)\n    \n    count = 0\n    for _ in range(B):\n        perm_qw = rng.permutation(qw_arr)\n        r, _ = stats.spearmanr(ds_arr, perm_qw)\n        if r >= observed_rho:\n            count += 1\n    \n    p_value = (count + 1) / (B + 1)\n    return {\n        \"test\": \"cross_model_gradient_permutation\",\n        \"statistic\": \"spearman_rho_of_median_diffs\",\n        \"observed_rho\": round(observed_rho, 6),\n        \"B\": B,\n        \"p_value\": round(p_value, 6),\n    }\n\n\ndef main():\n    rng = np.random.RandomState(SEED)\n    results = {\n        \"description\": \"Cross-model analysis: concordance of compound interaction severity across DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct\",\n        \"note\": \"cross-model (shared Qwen2ForCausalLM architecture), not cross-architecture\",\n    }\n\n    # 1. Collect median_diffs for importance masking\n    ds_imp_median_diffs = []\n    qw_imp_median_diffs = []\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_imp_median_diffs.append(compute_median_diff(DEEPSEEK_IMP[s], sp_key))\n        qw_imp_median_diffs.append(compute_median_diff(QWEN_IMP[s], sp_key))\n\n    ds_rand_median_diffs = []\n    qw_rand_median_diffs = []\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_rand_median_diffs.append(compute_median_diff(DEEPSEEK_RAND[s], sp_key))\n        qw_rand_median_diffs.append(compute_median_diff(QWEN_RAND[s], sp_key))\n\n    results[\"importance_median_diffs\"] = {\n        \"deepseek\": {s: round(v, 6) for s, v in zip(SPARSITY_LEVELS, ds_imp_median_diffs)},\n        \"qwen\": {s: round(v, 6) for s, v in zip(SPARSITY_LEVELS, qw_imp_median_diffs)},\n    }\n    results[\"random_median_diffs\"] = {\n        \"deepseek\": {s: round(v, 6) for s, v in zip(SPARSITY_LEVELS, ds_rand_median_diffs)},\n        \"qwen\": {s: round(v, 6) for s, v in zip(SPARSITY_LEVELS, qw_rand_median_diffs)},\n    }\n\n    # 2. Cohen's d trends\n    ds_cohens = [COHENS_D_DS[s][\"d\"] for s in SPARSITY_LEVELS]\n    qw_cohens = [COHENS_D_QW[s][\"d\"] for s in SPARSITY_LEVELS]\n    \n    results[\"cohens_d_trend\"] = {\n        \"deepseek\": {s: COHENS_D_DS[s][\"d\"] for s in SPARSITY_LEVELS},\n        \"qwen\": {s: COHENS_D_QW[s][\"d\"] for s in SPARSITY_LEVELS},\n        \"deepseek_monotonic\": monotonicity_test(ds_cohens),\n        \"qwen_monotonic\": monotonicity_test(qw_cohens),\n        \"spearman_rho\": round(stats.spearmanr(ds_cohens, qw_cohens).correlation, 6),\n        \"spearman_p\": round(stats.spearmanr(ds_cohens, qw_cohens).pvalue, 6),\n    }\n\n    # 3. Monotonicity of importance median_diffs\n    results[\"importance_monotonicity\"] = {\n        \"deepseek\": monotonicity_test(ds_imp_median_diffs),\n        \"qwen\": monotonicity_test(qw_imp_median_diffs),\n    }\n    results[\"random_monotonicity\"] = {\n        \"deepseek\": monotonicity_test(ds_rand_median_diffs),\n        \"qwen\": monotonicity_test(qw_rand_median_diffs),\n    }\n\n    # 4. Cross-model gradient permutation test (aggregate level)\n    results[\"gradient_permutation_test\"] = cross_model_gradient_permutation_test(\n        ds_imp_median_diffs, qw_imp_median_diffs, B=B, seed=SEED\n    )\n\n    # 5. Per-problem cross-model concordance test\n    ds_diffs_by_sp = {}\n    qw_diffs_by_sp = {}\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_diffs_by_sp[s] = load_per_problem_diffs(DEEPSEEK_IMP[s], sp_key)\n        qw_diffs_by_sp[s] = load_per_problem_diffs(QWEN_IMP[s], sp_key)\n\n    results[\"per_problem_concordance\"] = cross_model_permutation_test_concordance(\n        ds_diffs_by_sp, qw_diffs_by_sp, B=B, seed=SEED\n    )\n\n    # 6. Per-sparsity Wilcoxon signed-rank: importance diff > 0 for both models\n    wilcoxon_results = {}\n    for s in SPARSITY_LEVELS:\n        sp_key = SPARSITY_VALUES[s]\n        ds_d = load_per_problem_diffs(DEEPSEEK_IMP[s], sp_key)\n        qw_d = load_per_problem_diffs(QWEN_IMP[s], sp_key)\n        ds_w = stats.wilcoxon(ds_d, alternative=\"greater\")\n        qw_w = stats.wilcoxon(qw_d, alternative=\"greater\")\n        wilcoxon_results[s] = {\n            \"deepseek\": {\"statistic\": float(ds_w.statistic), \"p_value\": float(ds_w.pvalue), \"n\": len(ds_d), \"median_diff\": round(float(np.median(ds_d)), 6)},\n            \"qwen\": {\"statistic\": float(qw_w.statistic), \"p_value\": float(qw_w.pvalue), \"n\": len(qw_d), \"median_diff\": round(float(np.median(qw_d)), 6)},\n        }\n    results[\"wilcoxon_one_sided\"] = wilcoxon_results\n\n    # 7. Effect size scaling ratio\n    results[\"effect_scaling\"] = {\n        \"description\": \"Ratio of effect sizes at consecutive sparsity levels\",\n        \"deepseek_cohens_d_ratios\": {\n            f\"{SPARSITY_LEVELS[i]}_to_{SPARSITY_LEVELS[i+1]}\": round(ds_cohens[i+1] / ds_cohens[i], 4) if ds_cohens[i] != 0 else None\n            for i in range(3)\n        },\n        \"qwen_cohens_d_ratios\": {\n            f\"{SPARSITY_LEVELS[i]}_to_{SPARSITY_LEVELS[i+1]}\": round(qw_cohens[i+1] / qw_cohens[i], 4) if qw_cohens[i] != 0 else None\n            for i in range(3)\n        },\n    }\n\n    # Save\n    out_path = OUTPUT_DIR / \"cross_model_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved to {out_path}\")\n    print(json.dumps(results, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T08:56:37.546424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T08:56:37.546619+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python analysis/cross_model_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python analysis/cross_model_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T08:56:37.546848+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\\n{\\n  \\\"description\\\": \\\"Cross-model analysis: concordance of compound interaction severity across DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct\\\",\\n  \\\"note\\\": \\\"cross-model (shared Qwen2ForCausalLM architecture), not cross-architecture\\\",\\n  \\\"importance_median_diffs\\\": {\\n    \\\"deepseek\\\": {\\n      \\\"s015\\\": 0.392539,\\n      \\\"s020\\\": 1.481741,\\n      \\\"s025\\\": 7.163595,\\n      \\\"s030\\\": 14.586064\\n    },\\n    \\\"qwen\\\": {\\n      \\\"s015\\\": 0.038565,\\n      \\\"s020\\\": 0.234979,\\n      \\\"s025\\\": 1.267732,\\n      \\\"s030\\\": 2.943093\\n    }\\n  },\\n  \\\"random_median_diffs\\\": {\\n    \\\"deepseek\\\": {\\n      \\\"s015\\\": 0.009572,\\n      \\\"s020\\\": -0.01555,\\n      \\\"s025\\\": 0.544512,\\n      \\\"s030\\\": 1.538314\\n    },\\n    \\\"qwen\\\": {\\n      \\\"s015\\\": 0.04971,\\n      \\\"s020\\\": 0.128948,\\n      \\\"s025\\\": 0.659798,\\n      \\\"s030\\\": 4.24103\\n    }\\n  },\\n  \\\"cohens_d_trend\\\": {\\n    \\\"deepseek\\\": {\\n      \\\"s015\\\": 0.4416,\\n      \\\"s020\\\": 0.5195,\\n      \\\"s025\\\": 0.6831,\\n      \\\"s030\\\": 0.8031\\n    },\\n    \\\"qwen\\\": {\\n      \\\"s015\\\": 0.2811,\\n      \\\"s020\\\": 0.5494,\\n      \\\"s025\\\": 0.8894,\\n      \\\"s030\\\": 1.022\\n    },\\n    \\\"deepseek_monotonic\\\": {\\n      \\\"monotonic_increasing\\\": true,\\n      \\\"strictly_increasing\\\": true\\n    },\\n    \\\"qwen_monotonic\\\": {\\n      \\\"monotonic_increasing\\\": true,\\n      \\\"strictly_increasing\\\": true\\n    },\\n    \\\"spearman_rho\\\": 1.0,\\n    \\\"spearman_p\\\": 0.0\\n  },\\n  \\\"importance_monotonicity\\\": {\\n    \\\"deepseek\\\": {\\n      \\\"monotonic_increasing\\\": true,\\n      \\\"strictly_increasing\\\": true\\n    },\\n    \\\"qwen\\\": {\\n      \\\"monotonic_increasing\\\":
+…[truncated 3271 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T08:56:37.547072+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat > /root/autodl-tmp/pacs/analysis/generate_summary_table.py << 'PYEOF'\nimport json\nfrom pathlib import Path\n\nBASE = Path(\"/root/autodl-tmp/pacs\")\nOUTPUT_DIR = BASE / \"analysis_output\"\nSPARSITY_LEVELS = [\"s015\", \"s020\", \"s025\", \"s030\"]\nSPARSITY_VALUES = {\"s015\": \"0.15\", \"s020\": \"0.2\", \"s025\": \"0.25\", \"s030\": \"0.3\"}\n\nCOHENS_D_DS = json.loads((OUTPUT_DIR / \"cohens_d_bf16.json\").read_text())\nCOHENS_D_QW = json.loads((OUTPUT_DIR / \"cohens_d_bf16_qwen.json\").read_text())\n\nEXPERIMENTS = {\n    \"bf16_importance\": {\"model\": \"DeepSeek-R1-Distill-Qwen-7B\", \"masking\": \"importance\", \"dir_prefix\": \"profiling_output_bf16_ds_imp\"},\n    \"bf16_ds_rand\": {\"model\": \"DeepSeek-R1-Distill-Qwen-7B\", \"masking\": \"random\", \"dir_prefix\": \"profiling_output_bf16_ds_rand\"},\n    \"bf16_qw_imp\": {\"model\": \"Qwen2.5-7B-Instruct\", \"masking\": \"importance\", \"dir_prefix\": \"profiling_output_bf16_qw_imp\"},\n    \"bf16_qw_rand\": {\"model\": \"Qwen2.5-7B-Instruct\", \"masking\": \"random\", \"dir_prefix\": \"profiling_output_bf16_qw_rand\"},\n}\n\n\ndef load_experiment(dir_prefix, sparsity):\n    sp_key = SPARSITY_VALUES[sparsity]\n    path = BASE / f\"{dir_prefix}_{sparsity}\" / \"profiling_results.json\"\n    with open(path) as f:\n        data = json.load(f)\n    ii = data[\"interaction_index\"]\n    med_high = ii[\"high_sparsity\"][sp_key][\"median\"]\n    med_mid = ii[\"mid_sparsity\"][sp_key][\"median\"]\n    med_low = ii[\"low_sparsity\"][sp_key][\"median\"]\n    med_diff = med_low - med_high\n    pf = data[\"pass_fail\"][\"overall\"]\n    return {\n        \"median_high\": round(med_high, 6),\n        \"median_mid\": round(med_mid, 6),\n        \"median_low\": round(med_low, 6),\n        \"median_diff\": round(med_diff, 6),\n        \"pass_fail\": pf,\n    }\n\n\ndef main():\n    table = {\n        \"description\": \"4x4 experiment summary: 2 models x 2 masking methods x 4 sparsity levels\",\n        \"models\": [\"DeepSeek-R1-Distill-Qwen-7B\", \"Qwen2.5-7B-Instruct\"],\n        \"masking_methods\": [\"importance\", \"random\"],\n        \"sparsity_levels\": SPARSITY_LEVELS,\n        \"experiments\": {},\n    }\n\n    # QW rand analysis results (have permutation p and cohen's d)\n    qw_rand_analyses = {}\n    for s in SPARSITY_LEVELS:\n        p = OUTPUT_DIR / f\"bf16_qw_rand_{s}\" / \"analysis_results.json\"\n        if p.exists():\n            qw_rand_analyses[s] = json.loads(p.read_text())\n\n    # DS permutation test results (importance vs random paired)\n    ds_perm = json.loads((OUTPUT_DIR / \"permutation_test_results.json\").read_text())\n\n    for group, cfg in EXPERIMENTS.items():\n        for s in SPARSITY_LEVELS:\n            exp_id = f\"{group}_{s}\"\n            row = load_experiment(cfg[\"dir_prefix\"], s)\n            row[\"model\"] = cfg[\"model\"]\n            row[\"masking\"] = cfg[\"masking\"]\n            row[\"sparsity\"] = float(SPARSITY_VALUES[s])\n\n            # Add Cohen's d from paired importance-random comparison\n            if group == \"bf16_importance\":\n                row[\"cohens_d_imp_vs_rand\"] = COHENS_D_DS[s][\"d\"]\n                row[\"cohens_d_interpretation\"] = COHENS_D_DS[s][\"interpretation\"]\n                # Permutation test from DS importance-vs-random\n                if s in ds_perm[\"sparsity_levels\"]:\n                    sp_data = ds_perm[\"sparsity_levels\"][s]\n                    row[\"permutation_p_diff\"] = sp_data[\"permutation_test_difference\"][\"p_value\"]\n            elif group == \"bf16_qw_imp\":\n                row[\"cohens_d_imp_vs_rand\"] = COHENS_D_QW[s][\"d\"]\n                row[\"cohens_d_interpretation\"] = COHENS_D_QW[s][\"interpretation\"]\n            elif group == \"bf16_qw_rand\" and s in qw_rand_analyses:\n                a = qw_rand_analyses[s]\n                row[\"permutation_p\"] = a[\"permutation_test\"][\"p_value\"]\n                row[\"cohens_d\"] = a[\"effect_size\"][\"cohen_d\"]\n                row[\"cohens_d_interpretation\"] = a[\"effect_size\"][\"interpretation\"]\n                row[\"bootstrap_ci_contains_zero\"] = a[\"bootstrap_ci_95\"][\"contains_zero\"]\n            elif group == \"bf16_ds_rand\":\n                if s in ds_perm[\"sparsity_levels\"]:\n                    sp_data = ds_perm[\"sparsity_levels\"][s]\n                    row[\"gradient_ratio\"] = sp_data[\"gradient_ratio\"]\n\n            table[\"experiments\"][exp_id] = row\n\n    # Summary statistics\n    table[\"summary\"] = {\n        \"total_experiments\": 16,\n        \"importance_pass\": sum(1 for k, v in table[\"experiments\"].items() if \"imp\" in k and v[\"pass_fail\"] == \"PASS\"),\n        \"importance_fail\": sum(1 for k, v in table[\"experiments\"].items() if \"imp\" in k and v[\"pass_fail\"] == \"FAIL\"),\n        \"random_pass\": sum(1 for k, v in table[\"experiments\"].items() if \"rand\" in k and v[\"pass_fail\"] == \"PASS\"),\n        \"random_fail\": sum(1 for k, v in table[\"experiments\"].items() if \"rand\" in k and v[\"pass_fail\"] == \"FAIL\"),\n        \"deepseek_importance_all_pass\": all(table[\"experiments\"][f\"bf16_importance_{s}\"][\"pass_fail\"] == \"PASS\" for s in SPARSITY_LEVELS),\n        \"qwen_importance_all_pass\": all(table[\"experiments\"][f\"bf16_qw_imp_{s}\"][\"pass_fail\"] == \"PASS\" for s in SPARSITY_LEVELS),\n        \"deepseek_random_all_fail\": all(table[\"experiments\"][f\"bf16_ds_rand_{s}\"][\"pass_fail\"] == \"FAIL\" for s in SPARSITY_LEVELS),\n        \"qwen_random_all_fail\": all(table[\"experiments\"][f\"bf16_qw_rand_{s}\"][\"pass_fail\"] == \"FAIL\" for s in SPARSITY_LEVELS),\n        \"qwen_random_s030_unexpected_pass\": table[\"experiments\"].get(\"bf16_qw_rand_s030\", {}).get(\"pass_fail\") == \"PASS\",\n    }\n\n    out_path = OUTPUT_DIR / \"experiment_summary_table.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(table, f, indent=2)\n    print(f\"Saved to {out_path}\")\n\n    # Print concise table\n    print(\"\\n=== EXPERIMENT SUMMARY TABLE ===\")\n    print(f\"{'exp_id':<25} {'model':<15} {'mask':<10} {'s':>5} {'med_H':>10} {'med_L':>10} {'med_diff':>10} {'verdict':>7}\")\n    print(\"-\" * 95)\n    for exp_id in sorted(table[\"experiments\"].keys()):\n        e = table[\"experiments\"][exp_id]\n        model_short = \"DS-R1\" if \"DeepSeek\" in e[\"model\"] else \"Qwen\"\n        print(f\"{exp_id:<25} {model_short:<15} {e['masking']:<10} {e['sparsity']:>5.2f} {e['median_high']:>10.4f} {e['median_low']:>10.4f} {e['median_diff']:>10.4f} {e['pass_fail']:>7}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat > /root/autodl-tmp/pacs/analysis/generate_summary_table.py << 'PYEOF'\nimport json\nfrom pathlib import Path\n\nBASE = Path(\"/root/autodl-tmp/pacs\")\nOUTPUT_DIR = BASE / \"analysis_output\"\nSPARSITY_LEVELS = [\"s015\", \"s020\", \"s025\", \"s030\"]\nSPARSITY_VALUES = {\"s015\": \"0.15\", \"s020\": \"0.2\", \"s025\": \"0.25\", \"s030\": \"0.3\"}\n\nCOHENS_D_DS = json.loads((OUTPUT_DIR / \"cohens_d_bf16.json\").read_text())\nCOHENS_D_QW = json.loads((OUTPUT_DIR / \"cohens_d_bf16_qwen.json\").read_text())\n\nEXPERIMENTS = {\n    \"bf16_importance\": {\"model\": \"DeepSeek-R1-Distill-Qwen-7B\", \"masking\": \"importance\", \"dir_prefix\": \"profiling_output_bf16_ds_imp\"},\n    \"bf16_ds_rand\": {\"model\": \"DeepSeek-R1-Distill-Qwen-7B\", \"masking\": \"random\", \"dir_prefix\": \"profiling_output_bf16_ds_rand\"},\n    \"bf16_qw_imp\": {\"model\": \"Qwen2.5-7B-Instruct\", \"masking\": \"importance\", \"dir_prefix\": \"profiling_output_bf16_qw_imp\"},\n    \"bf16_qw_rand\": {\"model\": \"Qwen2.5-7B-Instruct\", \"masking\": \"random\", \"dir_prefix\": \"profiling_output_bf16_qw_rand\"},\n}\n\n\ndef load_experiment(dir_prefix, sparsity):\n    sp_key = SPARSITY_VALUES[sparsity]\n    path = BASE / f\"{dir_prefix}_{sparsity}\" / \"profiling_results.json\"\n    with open(path) as f:\n        data = json.load(f)\n    ii = data[\"interaction_index\"]\n    med_high = ii[\"high_sparsity\"][sp_key][\"median\"]\n    med_mid = ii[\"mid_sparsity\"][sp_key][\"median\"]\n    med_low = ii[\"low_sparsity\"][sp_key][\"median\"]\n    med_diff = med_low - med_high\n    pf = data[\"pass_fail\"][\"overall\"]\n    return {\n        \"median_high\": round(med_high, 6),\n        \"median_mid\": round(med_mid, 6),\n        \"median_low\": round(med_low, 6),\n        \"median_diff\": round(med_diff, 6),\n        \"pass_fail\": pf,\n    }\n\n\ndef main():\n    table = {\n        \"description\": \"4x4 experiment summary: 2 models x 2 masking methods x 4 sparsity levels\",\n        \"models\": [\"DeepSeek-R1-Distill-Qwen-7B\", \"Qwen2.5-7B-Instruct\"],\n        \"masking_methods\": [\"importance\", \"random\"],\n        \"sparsity_levels\": SPARSITY_LEVELS,\n        \"experiments\": {},\n    }\n\n    # QW rand analysis results (have permutation p and cohen's d)\n    qw_rand_analyses = {}\n    for s in SPARSITY_LEVELS:\n        p = OUTPUT_DIR / f\"bf16_qw_rand_{s}\" / \"analysis_results.json\"\n        if p.exists():\n            qw_rand_analyses[s] = json.loads(p.read_text())\n\n    # DS permutation test results (importance vs random paired)\n    ds_perm = json.loads((OUTPUT_DIR / \"permutation_test_results.json\").read_text())\n\n    for group, cfg in EXPERIMENTS.items():\n        for s in SPARSITY_LEVELS:\n            exp_id = f\"{group}_{s}\"\n            row = load_experiment(cfg[\"dir_prefix\"], s)\n            row[\"model\"] = cfg[\"model\"]\n            row[\"masking\"] = cfg[\"masking\"]\n            row[\"sparsity\"] = float(SPARSITY_VALUES[s])\n\n            # Add Cohen's d from paired importance-random comparison\n            if group == \"bf16_importance\":\n                row[\"cohens_d_imp_vs_rand\"] = COHENS_D_DS[s][\"d\"]\n                row[\"cohens_d_interpretation\"] = COHENS_D_DS[s][\"interpretation\"]\n                # Permutation test from DS importance-vs-random\n                if s in ds_perm[\"sparsity_levels\"]:\n                    sp_data = ds_perm[\"sparsity_levels\"][s]\n                    row[\"permutation_p_diff\"] = sp_data[\"permutation_test_difference\"][\"p_value\"]\n            elif group == \"bf16_qw_imp\":\n                row[\"cohens_d_imp_vs_rand\"] = COHENS_D_QW[s][\"d\"]\n                row[\"cohens_d_interpretation\"] = COHENS_D_QW[s][\"interpretation\"]\n            elif group == \"bf16_qw_rand\" and s in qw_rand_analyses:\n                a = qw_rand_analyses[s]\n                row[\"permutation_p\"] = a[\"permutation_test\"][\"p_value\"]\n                row[\"cohens_d\"] = a[\"effect_size\"][\"cohen_d\"]\n                row[\"cohens_d_interpretation\"] = a[\"effect_size\"][\"interpretation\"]\n                row[\"bootstrap_ci_contains_zero\"] = a[\"bootstrap_ci_95\"][\"contains_zero\"]\n            elif group == \"bf16_ds_rand\":\n                if s in ds_perm[\"sparsity_levels\"]:\n                    sp_data = ds_perm[\"sparsity_levels\"][s]\n                    row[\"gradient_ratio\"] = sp_data[\"gradient_ratio\"]\n\n            table[\"experiments\"][exp_id] = row\n\n    # Summary statistics\n    table[\"summary\"] = {\n        \"total_experiments\": 16,\n        \"importance_pass\": sum(1 for k, v in table[\"experiments\"].items() if \"imp\" in k and v[\"pass_fail\"] == \"PASS\"),\n        \"importance_fail\": sum(1 for k, v in table[\"experiments\"].items() if \"imp\" in k and v[\"pass_fail\"] == \"FAIL\"),\n        \"random_pass\": sum(1 for k, v in table[\"experiments\"].items() if \"rand\" in k and v[\"pass_fail\"] == \"PASS\"),\n        \"random_fail\": sum(1 for k, v in table[\"experiments\"].items() if \"rand\" in k and v[\"pass_fail\"] == \"FAIL\"),\n        \"deepseek_importance_all_pass\": all(table[\"experiments\"][f\"bf16_importance_{s}\"][\"pass_fail\"] == \"PASS\" for s in SPARSITY_LEVELS),\n        \"qwen_importance_all_pass\": all(table[\"experiments\"][f\"bf16_qw_imp_{s}\"][\"pass_fail\"] == \"PASS\" for s in SPARSITY_LEVELS),\n        \"deepseek_random_all_fail\": all(table[\"experiments\"][f\"bf16_ds_rand_{s}\"][\"pass_fail\"] == \"FAIL\" for s in SPARSITY_LEVELS),\n        \"qwen_random_all_fail\": all(table[\"experiments\"][f\"bf16_qw_rand_{s}\"][\"pass_fail\"] == \"FAIL\" for s in SPARSITY_LEVELS),\n        \"qwen_random_s030_unexpected_pass\": table[\"experiments\"].get(\"bf16_qw_rand_s030\", {}).get(\"pass_fail\") == \"PASS\",\n    }\n\n    out_path = OUTPUT_DIR / \"experiment_summary_table.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(table, f, indent=2)\n    print(f\"Saved to {out_path}\")\n\n    # Print concise table\n    print(\"\\n=== EXPERIMENT SUMMARY TABLE ===\")\n    print(f\"{'exp_id':<25} {'model':<15} {'mask':<10} {'s':>5} {'med_H':>10} {'med_L':>10} {'med_diff':>10} {'verdict':>7}\")\n    print(\"-\" * 95)\n    for exp_id in sorted(table[\"experiments\"].keys()):\n        e = table[\"experiments\"][exp_id]\n        model_short = \"DS-R1\" if \"DeepSeek\" in e[\"model\"] else \"Qwen\"\n        print(f\"{exp_id:<25} {model_short:<15} {e['masking']:<10} {e['sparsity']:>5.2f} {e['median_high']:>10.4f} {e['median_low']:>10.4f} {e['median_diff']:>10.4f} {e['pass_fail']:>7}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T08:56:37.547267+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T08:56:37.547398+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python analysis/generate_summary_table.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python analysis/generate_summary_table.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T08:56:37.547611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\\n\\n=== EXPERIMENT SUMMARY TABLE ===\\nexp_id                    model           mask           s      med_H      med_L   med_diff verdict\\n-----------------------------------------------------------------------------------------------\\nbf16_ds_rand_s015         DS-R1           random      0.15     0.0931     0.1026     0.0096    FAIL\\nbf16_ds_rand_s020         DS-R1           random      0.20     0.2918     0.2763    -0.0155    FAIL\\nbf16_ds_rand_s025         DS-R1           random      0.25     0.8182     1.3627     0.5445    FAIL\\nbf16_ds_rand_s030         DS-R1           random      0.30     2.5031     4.0414     1.5383    FAIL\\nbf16_importance_s015      DS-R1           importance  0.15     0.0058     0.3983     0.3925    PASS\\nbf16_importance_s020      DS-R1           importance  0.20     0.0145     1.4963     1.4817    PASS\\nbf16_importance_s025      DS-R1           importance  0.25     0.0324     7.1960     7.1636    PASS\\nbf16_importance_s030      DS-R1           importance  0.30     0.0534    14.6395    14.5861    PASS\\nbf16_qw_imp_s015          Qwen            importance  0.15     0.0009     0.0394     0.0386    PASS\\nbf16_qw_imp_s020          Qwen            importance  0.20    -0.0001     0.2349     0.2350    PASS\\nbf16_qw_imp_s025          Qwen            importance  0.25     0.0034     1.2712     1.2677    PASS\\nbf16_qw_imp_s030          Qwen            importance  0.30     0.0095     2.9526     2.9431    PASS\\nbf16_qw_rand_s015         Qwen            random      0.15     0.1381     0.1878     0.0497    FAIL\\nbf16_qw_rand_s020         Qwen            random      0.20     0.4855     0.6144     0.1289    FAIL\\nbf16_qw_rand_s025         Qwen            random      0.25     1.6043     2.2641     0.6598    FAIL\\nbf16_qw_rand_s030         Qwen            random      0.30     3.9550     8.1960     4.2410    PA
+…[truncated 109 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T08:56:37.547881+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "cross_model_analysis",
+  "type": "data",
+  "description": "Cross-model permutation test and concordance analysis: DeepSeek vs Qwen importance/random masking compound interaction gradients",
+  "project": "phase-gated-compound-sparse",
+  "content_filename": "cross_model_analysis.json",
+  "content": "{\n  \"description\": \"Cross-model analysis: concordance of compound interaction severity across DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct\",\n  \"note\": \"cross-model (shared Qwen2ForCausalLM architecture), not cross-architecture\",\n  \"key_results\": {\n    \"gradient_permutation_test_p\": 0.043296,\n    \"cohens_d_spearman_rho\": 1.0,\n    \"both_models_strictly_monotonic\": true,\n    \"per_problem_concordance_p\": 0.926007,\n    \"all_8_wilcoxon_significant\": true\n  },\n  \"server_path\": \"/root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\",\n  \"script_path\": \"/root/autodl-tmp/pacs/analysis/cross_model_analysis.py\"\n}",
+  "tags": "['cross-model', 'permutation-test', 'concordance', 'bf16']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "cross_model_analysis",
+    "type": "data",
+    "description": "Cross-model permutation test and concordance analysis: DeepSeek vs Qwen importance/random masking compound interaction gradients",
+    "project": "phase-gated-compound-sparse",
+    "content_filename": "cross_model_analysis.json",
+    "content": "{\n  \"description\": \"Cross-model analysis: concordance of compound interaction severity across DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct\",\n  \"note\": \"cross-model (shared Qwen2ForCausalLM architecture), not cross-architecture\",\n  \"key_results\": {\n    \"gradient_permutation_test_p\": 0.043296,\n    \"cohens_d_spearman_rho\": 1.0,\n    \"both_models_strictly_monotonic\": true,\n    \"per_problem_concordance_p\": 0.926007,\n    \"all_8_wilcoxon_significant\": true\n  },\n  \"server_path\": \"/root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\",\n  \"script_path\": \"/root/autodl-tmp/pacs/analysis/cross_model_analysis.py\"\n}",
+    "tags": "['cross-model', 'permutation-test', 'concordance', 'bf16']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T08:56:37.548052+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'description': 'Cross-mo...ross_model_analysis.py'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T08:56:37.548184+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "experiment_summary_table",
+  "type": "data",
+  "description": "4x4 experiment summary table: 16 experiments (2 models x 2 masking x 4 sparsity) with all key metrics",
+  "project": "phase-gated-compound-sparse",
+  "content_filename": "experiment_summary_table_overview.json",
+  "content": "{\n  \"total\": 16,\n  \"importance_pass\": 8,\n  \"importance_fail\": 0,\n  \"random_pass\": 1,\n  \"random_fail\": 7,\n  \"unexpected\": \"bf16_qw_rand_s030 PASS (expected FAIL)\",\n  \"server_path\": \"/root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\",\n  \"script_path\": \"/root/autodl-tmp/pacs/analysis/generate_summary_table.py\"\n}",
+  "tags": "['summary', 'bf16', 'all-experiments']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "experiment_summary_table",
+    "type": "data",
+    "description": "4x4 experiment summary table: 16 experiments (2 models x 2 masking x 4 sparsity) with all key metrics",
+    "project": "phase-gated-compound-sparse",
+    "content_filename": "experiment_summary_table_overview.json",
+    "content": "{\n  \"total\": 16,\n  \"importance_pass\": 8,\n  \"importance_fail\": 0,\n  \"random_pass\": 1,\n  \"random_fail\": 7,\n  \"unexpected\": \"bf16_qw_rand_s030 PASS (expected FAIL)\",\n  \"server_path\": \"/root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\",\n  \"script_path\": \"/root/autodl-tmp/pacs/analysis/generate_summary_table.py\"\n}",
+    "tags": "['summary', 'bf16', 'all-experiments']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T08:56:37.548315+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'total': 16, 'importance...erate_summary_table.py'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-14T08:56:37.548462+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "cross_model_analysis",
+  "type": "data",
+  "description": "Cross-model permutation test and concordance analysis: DeepSeek vs Qwen importance/random masking compound interaction gradients",
+  "project": "phase-gated-compound-sparse",
+  "content_filename": "cross_model_analysis.json",
+  "content": "{\"description\":\"Cross-model analysis\",\"gradient_permutation_test_p\":0.043296,\"cohens_d_spearman_rho\":1.0,\"both_models_strictly_monotonic\":true,\"per_problem_concordance_p\":0.926007,\"all_8_wilcoxon_significant\":true,\"server_path\":\"/root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\",\"script_path\":\"/root/autodl-tmp/pacs/analysis/cross_model_analysis.py\"}",
+  "tags": "['cross-model', 'permutation-test', 'bf16']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "cross_model_analysis",
+    "type": "data",
+    "description": "Cross-model permutation test and concordance analysis: DeepSeek vs Qwen importance/random masking compound interaction gradients",
+    "project": "phase-gated-compound-sparse",
+    "content_filename": "cross_model_analysis.json",
+    "content": "{\"description\":\"Cross-model analysis\",\"gradient_permutation_test_p\":0.043296,\"cohens_d_spearman_rho\":1.0,\"both_models_strictly_monotonic\":true,\"per_problem_concordance_p\":0.926007,\"all_8_wilcoxon_significant\":true,\"server_path\":\"/root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\",\"script_path\":\"/root/autodl-tmp/pacs/analysis/cross_model_analysis.py\"}",
+    "tags": "['cross-model', 'permutation-test', 'bf16']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T08:56:37.548594+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'description': 'Cross-mo...ross_model_analysis.py'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T08:56:37.548714+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "experiment_summary_table",
+  "type": "data",
+  "description": "4x4 experiment summary table: 16 experiments (2 models x 2 masking x 4 sparsity) with all key metrics",
+  "project": "phase-gated-compound-sparse",
+  "content_filename": "experiment_summary_table_overview.json",
+  "content": "{\"total\":16,\"importance_pass\":8,\"importance_fail\":0,\"random_pass\":1,\"random_fail\":7,\"unexpected\":\"bf16_qw_rand_s030 PASS (expected FAIL)\",\"server_path\":\"/root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\",\"script_path\":\"/root/autodl-tmp/pacs/analysis/generate_summary_table.py\"}",
+  "tags": "['summary', 'bf16']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "experiment_summary_table",
+    "type": "data",
+    "description": "4x4 experiment summary table: 16 experiments (2 models x 2 masking x 4 sparsity) with all key metrics",
+    "project": "phase-gated-compound-sparse",
+    "content_filename": "experiment_summary_table_overview.json",
+    "content": "{\"total\":16,\"importance_pass\":8,\"importance_fail\":0,\"random_pass\":1,\"random_fail\":7,\"unexpected\":\"bf16_qw_rand_s030 PASS (expected FAIL)\",\"server_path\":\"/root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\",\"script_path\":\"/root/autodl-tmp/pacs/analysis/generate_summary_table.py\"}",
+    "tags": "['summary', 'bf16']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T08:56:37.548841+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'total': 16, 'importance...erate_summary_table.py'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T08:56:37.548974+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "cross_model_analysis",
+  "type": "data",
+  "description": "Cross-model permutation test and concordance analysis: DeepSeek vs Qwen compound interaction gradients",
+  "project": "phase-gated-compound-sparse",
+  "content_filename": "cross_model_analysis_summary.txt",
+  "content": "Cross-model analysis results\nServer path: /root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\nScript: /root/autodl-tmp/pacs/analysis/cross_model_analysis.py\n\nKey results:\n- Gradient permutation test p=0.043 (significant at alpha=0.05)\n- Cohen's d Spearman rho=1.0 (perfect rank concordance)\n- Both models strictly monotonically increasing\n- Per-problem concordance p=0.926 (not significant - different problems affected)\n- All 8 Wilcoxon one-sided tests significant (importance diff > 0)",
+  "tags": "['cross-model', 'permutation-test', 'bf16']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "cross_model_analysis",
+    "type": "data",
+    "description": "Cross-model permutation test and concordance analysis: DeepSeek vs Qwen compound interaction gradients",
+    "project": "phase-gated-compound-sparse",
+    "content_filename": "cross_model_analysis_summary.txt",
+    "content": "Cross-model analysis results\nServer path: /root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\nScript: /root/autodl-tmp/pacs/analysis/cross_model_analysis.py\n\nKey results:\n- Gradient permutation test p=0.043 (significant at alpha=0.05)\n- Cohen's d Spearman rho=1.0 (perfect rank concordance)\n- Both models strictly monotonically increasing\n- Per-problem concordance p=0.926 (not significant - different problems affected)\n- All 8 Wilcoxon one-sided tests significant (importance diff > 0)",
+    "tags": "['cross-model', 'permutation-test', 'bf16']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T08:56:37.549114+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_4de0f8\", \"name\": \"cross_model_analysis\", \"type\": \"data\", \"description\": \"Cross-model permutation test and concordance analysis: DeepSeek vs Qwen compound interaction gradients\", \"path\": \"projects/phase-gated-compound-sparse/artifacts/_project/data/cross_model_analysis_summary.txt\", \"url\": null, \"project\": \"phase-gated-compound-sparse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T08:56:06.619076+00:00\", \"tags\": [\"cross-model\", \"permutation-test\", \"bf16\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T08:56:37.549239+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "experiment_summary_table",
+  "type": "data",
+  "description": "4x4 experiment summary table with all 16 experiments key metrics",
+  "project": "phase-gated-compound-sparse",
+  "content_filename": "experiment_summary_overview.txt",
+  "content": "Experiment summary: 16 experiments (2 models x 2 masking x 4 sparsity)\nServer path: /root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\nScript: /root/autodl-tmp/pacs/analysis/generate_summary_table.py\n\nResults: importance 8/8 PASS, random 7/8 FAIL + 1 unexpected PASS (bf16_qw_rand_s030)",
+  "tags": "['summary', 'bf16']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "experiment_summary_table",
+    "type": "data",
+    "description": "4x4 experiment summary table with all 16 experiments key metrics",
+    "project": "phase-gated-compound-sparse",
+    "content_filename": "experiment_summary_overview.txt",
+    "content": "Experiment summary: 16 experiments (2 models x 2 masking x 4 sparsity)\nServer path: /root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\nScript: /root/autodl-tmp/pacs/analysis/generate_summary_table.py\n\nResults: importance 8/8 PASS, random 7/8 FAIL + 1 unexpected PASS (bf16_qw_rand_s030)",
+    "tags": "['summary', 'bf16']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T08:56:37.549380+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_26a151\", \"name\": \"experiment_summary_table\", \"type\": \"data\", \"description\": \"4x4 experiment summary table with all 16 experiments key metrics\", \"path\": \"projects/phase-gated-compound-sparse/artifacts/_project/data/experiment_summary_overview.txt\", \"url\": null, \"project\": \"phase-gated-compound-sparse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T08:56:09.060769+00:00\", \"tags\": [\"summary\", \"bf16\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_cross_model_prep_20260514T084917",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-14T08:56:37.549584+00:00_
+
+全部完成。以下是结果汇总：
+
+---
+
+## 实验总结表（16 实验）
+
+| exp_id | 模型 | Masking | s | med_H | med_L | med_diff | Verdict |
+|--------|------|---------|-----|-------|-------|----------|---------|
+| bf16_importance_s015 | DS-R1 | importance | 0.15 | 0.0058 | 0.3983 | 0.3925 | **PASS** |
+| bf16_importance_s020 | DS-R1 | importance | 0.20 | 0.0145 | 1.4963 | 1.4817 | **PASS** |
+| bf16_importance_s025 | DS-R1 | importance | 0.25 | 0.0324 | 7.1960 | 7.1636 | **PASS** |
+| bf16_importance_s030 | DS-R1 | importance | 0.30 | 0.0534 | 14.6395 | 14.5861 | **PASS** |
+| bf16_ds_rand_s015 | DS-R1 | random | 0.15 | 0.0931 | 0.1026 | 0.0096 | FAIL |
+| bf16_ds_rand_s020 | DS-R1 | random | 0.20 | 0.2918 | 0.2763 | -0.0155 | FAIL |
+| bf16_ds_rand_s025 | DS-R1 | random | 0.25 | 0.8182 | 1.3627 | 0.5445 | FAIL |
+| bf16_ds_rand_s030 | DS-R1 | random | 0.30 | 2.5031 | 4.0414 | 1.5383 | FAIL |
+| bf16_qw_imp_s015 | Qwen | importance | 0.15 | 0.0009 | 0.0394 | 0.0386 | **PASS** |
+| bf16_qw_imp_s020 | Qwen | importance | 0.20 | -0.0001 | 0.2349 | 0.2350 | **PASS** |
+| bf16_qw_imp_s025 | Qwen | importance | 0.25 | 0.0034 | 1.2712 | 1.2677 | **PASS** |
+| bf16_qw_imp_s030 | Qwen | importance | 0.30 | 0.0095 | 2.9526 | 2.9431 | **PASS** |
+| bf16_qw_rand_s015 | Qwen | random | 0.15 | 0.1381 | 0.1878 | 0.0497 | FAIL |
+| bf16_qw_rand_s020 | Qwen | random | 0.20 | 0.4855 | 0.6144 | 0.1289 | FAIL |
+| bf16_qw_rand_s025 | Qwen | random | 0.25 | 1.6043 | 2.2641 | 0.6598 | FAIL |
+| bf16_qw_rand_s030 | Qwen | random | 0.30 | 3.9550 | 8.1960 | 4.2410 | **PASS** ⚠️ |
+
+**Importance: 8/8 PASS | Random: 7/8 FAIL + 1 unexpected PASS (qw_rand_s030)**
+
+---
+
+## Cross-model 分析核心结果
+
+| 指标 | 值 | 含义 |
+|------|-----|------|
+| Cohen's d Spearman ρ | **1.0** | 两模型效应量趋势完美一致 |
+| 两模型均严格单调递增 | ✅ | importance median_diff 随 sparsity 严格递增 |
+| Gradient permutation test p | **0.043** | 显著（α=0.05），两模型梯度方向一致非偶然 |
+| Per-problem concordance p | 0.926 | 不显著——具体受影响的 problem 不同，但 aggregate 趋势一致 |
+| Wilcoxon one-sided | 8/8 显著 | 两模型所有 sparsity 下 importance diff > 0 |
+
+**Cohen's d 趋势**：
+- DeepSeek: 0.44 → 0.52 → 0.68 → 0.80 (small → medium → large)
+- Qwen: 0.28 → 0.55 → 0.89 → 1.02 (small → medium → large)
+
+---
+
+## ⚠️ 需要关注：bf16_qw_rand_s030 意外 PASS
+
+该实验 verdict=PASS（expected FAIL）：permutation p=0.012, bootstrap CI 不包含零 [0.24, 3.31]。但 Cohen's d=-0.035（negligible），mean_diff=-1.13（负值）与 median_diff=2.42（正值）方向不一致，暗示这可能是 outlier 驱动的伪阳性。
+
+---
+
+**服务器文件**：
+- `analysis_output/cross_model_analysis.json` — cross-model 完整结果
+- `analysis_output/experiment_summary_table.json` — 16 实验总结
+- `analysis/cross_model_analysis.py` — cross-model 分析脚本
+- `analysis/generate_summary_table.py` — 总结表生成脚本
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_cross_model_prep_20260514T084917"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4604ec32168b62836975",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_14_1778902159.md",
+  "task_key": "loop_14_1778902159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778902159.md",
+    "occurrence": 1,
+    "bytes": 3211,
+    "sha256": "b02913df96ad5baf34baabcd63e0ba214ac99e6b6697014597a9d016d521c59d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T03:20:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0, cuda:1, cuda:2, cuda:3（仅此 4 张）\n- DS accuracy eval 输出文件在 `/root/autodl-tmp/pacs/` 下，文件名格式 `accuracy_ds_*.json`\n- 8k token 系列实验用 `--max-new-tokens 8192`，不能用 4096（4096 版截断率过高已被 D086 降为定性观察）\n- EMNLP 2026 ARR 截稿 2026-05-25，距今 9 天，所有操作优先级以此为锚\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs/`\n- Python：`/root/miniconda3/bin/python`，环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`（DS 系列）；QW 模型同目录下\n- 活跃进程：\n  - acc_ds_s015_8k_v2: PID 287691, cuda:0, cron 监控中\n  - acc_ds_s030_8k_v2: PID 288901, cuda:2, cron 监控中\n- cuda:1, cuda:3 空闲（分配了没跑）\n\n### 3. 📊 当前状态\n- **刚做完**：session-start 初始化（registry 同步 + reconcile crons + 读 report/ROADMAP）\n- **正在做**：acc_ds_s025_8k_v2 完成回调处理——已 spawn Worker `worker_analysis_acc_ds_s025_8k_v2_20260516T001835` 去 SSH 读取结果 JSON 和日志，**尚未收到回调**\n- RUNNING：acc_ds_s015_8k_v2 (cuda:0), acc_ds_s030_8k_v2 (cuda:2)\n- ANALYZING：acc_ds_s025_8k_v2 (cuda:3，进程已结束，等 Worker 分析)\n- 116 个实验总计，54 success / 14 negative / 16 failed / 29 killed\n\n### 4. 📋 待办\n- Worker `worker_analysis_acc_ds_s025_8k_v2` 回调到达 → 读 metrics → update_registry(conclusion, metrics, checkpoint_path, log_path) → 更新 report.md → 向 Director 汇报（带 [资源] 行 + DS 8k dose curve 进展）\n- acc_ds_s015_8k_v2 cron 回调 → 同样流程分析 + 更新\n- acc_ds_s030_8k_v2 cron 回调 → 同样流程分析 + 更新\n- 5-point DS 8k dose curve 全部完成（dense + s015 + s020 + s025 + s030）→ 编译完整 dose-response 表 → 向 Director 汇报是否支持 paper claim → 推进 Round 10\n- cuda:1 和 cuda:3 空闲 → 应立即检查 ROADMAP 近期任务中是否有可跑的实验（C10 GSM8K QW random s025+s030 已完成，检查是否还有空缺）\n\n### 5. 🎯 战略上下文\n- 核心方向：Phase-modulated compound sparsity severity——importance-based pruning 的 compound interaction 随 sparsity 单调递增\n- D088：DS 8k token budget 验证性重跑（5-point dose curve：dense/s015/s020/s025/s030），确认截断效应与定性观察边界\n- 已有 DS 8k 数据：dense=0.74(trunc 16%), s020=0.30(trunc 58%)。4096 版 s025=0.08(trunc 76%)，8k 版预期截断率大幅下降但 accuracy 可能仍低\n- DS accuracy 数据已被 D086 降为**定性观察**，QW 是 accuracy dose-response 的主证据。DS 8k 重跑是 D088 补充验证\n- 易错点：不要把 DS 和 QW 的 accuracy 直接对比（模型不同、n 不同、截断率差异大）；DS 的 truncation 即使在 8k 下仍可能偏高（s020 仍有 58%）\n- C10 GSM8K QW random s025_v2 和 s030_v2 已完成（success），Round 10 的最后缺失可能只是这批 DS 8k accuracy 了\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778902159.md"
+}

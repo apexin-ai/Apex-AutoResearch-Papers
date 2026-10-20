@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2058ec5b1f8966ea1ea5",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops gpu0 s030 progress",
+  "task_key": "worker_ops_gpu0_s030_progress_20260516T144327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu0_s030_progress_20260516T144327_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "d54979a84e50b5c3c5b4e08caa21c99542a0a053f90eb7c5082a1307f6c675a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## c8_llama_importance_s030 chain 进度报告\n\n| 指标 | 值 |\n|------|-----|\n| **PID 562663** | 存活，运行 4h28m，CPU 100% |\n| **GPU 0** | 利用率 79%，显存 50341/97887 MiB (51%) |\n| **当前进度** | **180/250** problems (72%) |\n| **s025 状态** | 已完成（21MB 真实数据，750 problems） |\n| **s030 输出文件** | 仍为 sentinel（chain 尚未写入最终结果，运行中积累在内存/临时文件） |\n\n**速度估算**: 从日志看 171→180 耗时 ~8min（22:36→22:44），约 1.1 problem/min。剩余 70 problems ≈ **64 min**，预计 ~23:48 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu0-s030-progress.md"
+}

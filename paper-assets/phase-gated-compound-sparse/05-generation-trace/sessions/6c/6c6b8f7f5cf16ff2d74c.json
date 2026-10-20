@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c6b8f7f5cf16ff2d74c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis qw truncation explanation r9",
+  "task_key": "worker_analysis_qw_truncation_explanation_r9_20260515T193550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qw_truncation_explanation_r9_20260515T193550_result.json",
+    "occurrence": 1,
+    "bytes": 2879,
+    "sha256": "a228e0d5a5824262e7c7a4bf21208d3a61c5cde847cd27f139910d0e7ea07192"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整了。以下是完整分析结果。\n\n---\n\n## Truncation 统计表\n\n**GSM8K (n=50, 用于 gradient 分析的数据)**:\n\n| Model | Strategy | N | Truncated | Rate | Avg Length |\n|-------|----------|---|-----------|------|------------|\n| DS    | importance | 50 | 15/50 | 30.0% | 1332.5 |\n| DS    | random     | 50 | 15/50 | 30.0% | 1332.5 |\n| **QW** | **importance** | **50** | **50/50** | **100.0%** | **2047.0** |\n| **QW** | **random**     | **50** | **50/50** | **100.0%** | **2047.0** |\n\n**MATH-500 (n=50, bf16)**:\n\n| Model | Strategy | N | Truncated | Rate | Avg Length |\n|-------|----------|---|-----------|------|------------|\n| DS    | importance | 50 | 19/50 | 38.0% | 1242.8 |\n| DS    | random     | 50 | 19/50 | 38.0% | 1242.8 |\n| QW    | importance | 50 | 12/50 | 24.0% | 1057.8 |\n| QW    | random     | 50 | 12/50 | 24.0% | 1057.8 |\n\n**MATH-500 (n=500, bf16)**:\n\n| Model | Strategy | N | Truncated | Rate | Avg Length |\n|-------|----------|---|-----------|------|------------|\n| DS    | importance | 500 | 205/500 | 41.0% | 1396.8 |\n| DS    | random     | 500 | 205/500 | 41.0% | 1396.8 |\n| QW    | importance | 500 | 139/500 | 27.8% | 1174.0 |\n| QW    | random     | 500 | 139/500 | 27.8% | 1174.0 |\n\n> 注：同一 (model, dataset, n_problems) 组内，所有 sparsity level 和 masking strategy 的截断数完全一致——因为生成由 dense 模型完成，sparsity masking 仅影响 PPL 评估。\n\n---\n\n## DS importance 的截断情况\n\n**DS importance 有截断，但远低于 QW。** GSM8K 上 DS 为 15/50 (30%)，MATH-500 上为 19/50 (38%)。不存在\"DS 无截断\"的情况。\n\n---\n\n## 技术解释\n\n**GSM8K 上 QW 100% 截断而 DS 仅 30% 的原因：**\n\nQwen2.5-7B-Instruct 是通用 chat 模型，缺乏 `<think>→answer` 的结构化推理模式。面对 GSM8K 算术题时，它生成冗长的格式化步骤说明（markdown 标题、重复验算、详细排版），没有自然终止信号，100% 填满 2047 token 预算。DeepSeek-R1-Distill-Qwen-7B 作为推理模型，产生紧凑的思维链，简单算术题在 300–700 token 内完成，仅复杂题才截断。\n\n反向模式出现在 MATH-500 上（DS 38% > QW 24%）：竞赛数学对推理深度要求更高，DS 的深度推理链更容易超长；QW 对难题往往生成较浅但较短的响应。\n\n---\n\n## 论文脚注\n\n**QW random s030 GSM8K 数据因系统性生成截断被标记为不可靠：Qwen2.5-7B-Instruct 作为非推理模型缺乏自然生成终止点，在全部 50 个 GSM8K 问题上均达到 max\\_new\\_tokens=2047 上限（截断率 100%，对比 DeepSeek-R1-Distill 的 30%），导致相位分割在人为等长的截断序列上运行，产生伪相位结构，使 interaction index 出现极端离群值（gradient=92.9，95% CI: [3.8, 258.8]）并包含 NaN 值。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qw-truncation-explanation-r9.md"
+}

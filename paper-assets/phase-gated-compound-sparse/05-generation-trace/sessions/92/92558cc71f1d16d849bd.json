@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92558cc71f1d16d849bd",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778799113.md",
+  "task_key": "loop_8_1778799113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778799113.md",
+    "occurrence": 1,
+    "bytes": 4941,
+    "sha256": "7a069d50abf51c1cf1b7b80f7e46b8d115e493a0e15d8d16438b1ec1994f084a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T22:46:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅** westd-22162 cuda:0/1/2/3，任何其他设备号（即使 Director 指令）必须 push back\n- cuda:0+1 分配给 c2_n500_deepseek，cuda:2+3 分配给 c2_qw_n500_r3——在这两个实验完成前不能挪用\n- **D054 median 硬切**：论文所有指标只能引用 median + median bootstrap CI，禁止引用 mean（random pruning 14.2% outlier 导致 mean 爆炸到 -185,738）\n- **D059 d_z 分场景**：仅报 within-importance d_z（不同 sparsity 之间），涉及 imp vs rand 比较的 d_z 不报\n- **W3 CRITICAL**：conclusion.tex L11 和 appendix_disc_analysis.tex L33-35 仍写 \"cross-architecture validation is needed/future work\"，但 c3_llama 数据已有——有数据却说 \"untested\" = integrity 问题，n=500 论文更新时必须最优先修复\n- 截稿 **2026-05-25**，距今 11 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，工作目录 `/root/autodl-tmp/pacs`\n- Python：通过 conda（aml-train 镜像），`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：服务器上 `/root/autodl-tmp/pacs` 内（DeepSeek-R1-Distill-Qwen-7B, DeepSeek-R1-Distill-Llama-8B 等）\n- W&B：已配置（但当前 c2 实验无 W&B metrics，依赖 profiling_results.json）\n- 活跃进程：\n  - c2_n500_deepseek: screen session, cuda:0+1, shell PID `c2_n500_gpu0`（cron 活跃，reconcile 确认 still running）\n  - c2_qw_n500_r3: screen session, cuda:2+3, PID 131858（cron 活跃，reconcile 确认 still running）\n  - 两个 cron 均使用 shell PID + sentinel `/tmp/agent-ml-exit/{exp_id}.exit` 双机制（D062 修复 cron 误报）\n- Worker 池：**0 running**（违反 L1 红线 #4，但当前确实全阻塞等 GPU 实验完成）\n\n### 3. 📊 当前状态\n**刚完成**：session-start 初始化（registry 同步 + cron reconcile）。本 session 是 WRITE HANDOFF 触发，未做实质工作。\n\n**Registry 活跃实验**：\n- `c2_n500_deepseek` — RUNNING, cuda:0+1, DeepSeek 8 conditions n=500 统计功效提升。ETA ~2026-05-15 15-17h UTC\n- `c2_qw_n500_r3` — RUNNING, cuda:2+3, Qwen n=500 continuation（s015 完成，s020-s030 remaining）。ETA ~2026-05-15 21h UTC\n\n**等待中**：\n- 两个实验的 cron 完成回调（进程退出 → ANALYZING/DONE）\n- 无 pending Worker 回调\n- 无 pending Director 决策\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调 (DONE) → spawn Worker 跑分析 pipeline（median II + bootstrap CI + d_z within-importance only）→ 更新 registry metrics → 汇报 Director\n- c2_qw_n500_r3 cron 回调 (DONE) → 同上分析 pipeline → 与 DeepSeek 结果交叉验证\n- **两个 n=500 分析都完成** → spawn Worker 统一更新论文：\n  1. n=500 tables/figures 替换 n=50 数据\n  2. 修复 W3（conclusion.tex + appendix LLaMA framing 矛盾，最优先）\n  3. 修复 W2（§5.5 LLaMA selective reporting：每个 sparsity 同时报 CI 和 Bonferroni Wilcoxon）\n  4. 修复 W4（Bootstrap B 值声明不一致）\n  5. 修复 W5（Qwen mid-phase null rate 披露）\n  6. C5b → §8 Future Work\n  7. C8 限定语（partially_confirmed）\n  8. Qwen caveat（若 n=500 仍有高 null rate）\n- 论文更新完成 → 同步 tex 到 westd-22162（W1：远程 tex 是旧版）→ 编译 PDF → 提交 Group C full review\n- 任一实验 cron 报 failed → 读 on-experiment-failed skill → 诊断 root cause\n\n### 5. 🎯 战略上下文\n**项目核心结论**：Importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（phase-modulated），random 保持平坦。这是 \"emergent phase-strategy interaction\"，不是 \"importance is broken\"（D015 framing 硬约束）。\n\n**决策链关键节点**：\n- D054: mean→median 全面切换（outlier 根源是 random pruning 破坏关键 attention path）\n- D058→已解决: Qwen n=500 s015 显著（median_D=-0.0991, Bonferroni p<0.0001）\n- D059: d_z 分场景报告\n- D060: C8 partially_confirmed（LLaMA qualitative consistent，quantitative weaker）\n- D062: cron 监控改为 shell PID + sentinel 双机制\n\n**易踩的坑**：\n- c2_qw_n500 已被 cron 5 次误判为 failed（memory.md 有记录），c2_qw_n500_r3 是修复后的 continuation——如果再收到 cron failed 回调，先验证 sentinel 文件 `/tmp/agent-ml-exit/c2_qw_n500_r3.exit` 是否存在，再判断真假\n- 远程 tex 文件是旧版，编译前必须先从本地同步——直接在远程编译会产出过时 PDF\n- Qwen 效应量始终比 DeepSeek 小 ~4×，这是已知的 model-dependent 特征（S3→C confirmed），不是 bug\n- LLaMA random 也显示 phase gradient（与 DeepSeek/Qwen random 7/8 FAIL 不同）——C8 只能说 partially_confirmed，不能说 confirmed\n- 论文 framing 是 \"emergent interaction\"，绝不能滑向 \"importance metric is flawed\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778799113.md"
+}

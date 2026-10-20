@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be77d40ad36ef0c5099c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "monitor c2 n500 progress check",
+  "task_key": "worker_monitor_c2_n500_progress_check_20260515T013500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_c2_n500_progress_check_20260515T013500_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "e29e9fed775213b4eb81e9df87202923760599bf7d85bec3f6160d7b8d90a206"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n```\nDeepSeek (GPU 0,1 — RTX PRO 6000 Blackwell):\n  s015: 500/500 (imp) + 500/500 (rand) [DONE]\n  s020: 500/500 (imp) + 500/500 (rand) [DONE]\n  s025: 310/500 (imp) + 357/500 (rand) [RUNNING]\n  s030: NOT_STARTED (auto-chains after s025)\n\nQwen (GPU 2,3 — RTX PRO 6000 Blackwell):\n  s015: 500/500 (imp) + 500/500 (rand) [DONE]\n  s020: 500/500 (imp) + 500/500 (rand) [DONE]\n  s025: 468/500 (imp) + 451/500 (rand) [RUNNING]\n  s030: NOT_STARTED (auto-chains after s025)\n\nGPU utilization:\n  GPU 0: 80%, 33.4/97.9 GB\n  GPU 1: 77%, 33.9/97.9 GB\n  GPU 2: 77%, 34.1/97.9 GB\n  GPU 3: 77%, 34.7/97.9 GB\n\nETA (based on ~4.4h/run DeepSeek, ~3.4h/run Qwen):\n  Qwen s025 finish:   ~15-20 min\n  Qwen s030 finish:   ~3.5h from now\n  DeepSeek s025 finish: ~1.3-1.7h\n  DeepSeek s030 finish: ~6h from now (bottleneck)\n\nAll 16 conditions complete: ~6h from now (~15:37 UTC)\n```\n\nScripts auto-chain s015→s020→s025→s030 sequentially per GPU, so s030 will start automatically once s025 finishes on each GPU. No manual intervention needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-c2-n500-progress-check-copy-2.md"
+}

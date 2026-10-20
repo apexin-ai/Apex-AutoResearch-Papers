@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "261fce52a0cad6cfe28c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops sync paper local to remote",
+  "task_key": "worker_ops_sync_paper_local_to_remote_20260516T043453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_paper_local_to_remote_20260516T043453_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "ef7f4cde1cfab56d948e476b864ce7764682f478904c027ce43914071ba08ce9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。\n\n- **传输文件数**: 74 个（15 .tex + figures + PDF + 辅助文件）\n- **验证结果**:\n  - `14.59` 仅在 `appendix_moved.tex` 的数据表中出现（表格原始数据，非旧版错误值）\n  - `abstract.tex` 第 4 行包含 `8.48` 和 `0.39` — n=500 版本数字正确\n- 临时 SSH key 已清理（本地和远程）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-paper-local-to-remote.md"
+}

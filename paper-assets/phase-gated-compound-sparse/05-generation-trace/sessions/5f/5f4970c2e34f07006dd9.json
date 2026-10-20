@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5f4970c2e34f07006dd9",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper consistency audit final",
+  "task_key": "worker_paper_consistency_audit_final_20260514T112604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_consistency_audit_final_20260514T112604.log",
+    "occurrence": 1,
+    "bytes": 910390,
+    "sha256": "8c85cd9155866732fb6d88a053d87f9ba36d5d21ec8053f43a97658e985a9d0c"
+  },
+  "statistics": {
+    "messages": 136,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 136,
+      "chunks": [
+        {
+          "path": "5f4970c2e34f07006dd9-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "5f4970c2e34f07006dd9-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-consistency-audit-final.md"
+}

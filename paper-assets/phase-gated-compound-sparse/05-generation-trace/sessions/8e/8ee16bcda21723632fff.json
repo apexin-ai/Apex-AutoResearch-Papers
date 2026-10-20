@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8ee16bcda21723632fff",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "code gsm8k profiling prep",
+  "task_key": "worker_code_gsm8k_profiling_prep_20260515T141031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gsm8k_profiling_prep_20260515T141031.log",
+    "occurrence": 1,
+    "bytes": 957734,
+    "sha256": "e04dfb6d03f569690604437219c79618b98c9b050eeb2f3529874ea97cebfdd9"
+  },
+  "statistics": {
+    "messages": 282,
+    "user_turns": 0,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 74,
+      "tool_call": 101,
+      "tool_result": 101,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 282,
+      "chunks": [
+        {
+          "path": "8ee16bcda21723632fff-part-0001.json",
+          "message_count": 117
+        },
+        {
+          "path": "8ee16bcda21723632fff-part-0002.json",
+          "message_count": 165
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-gsm8k-profiling-prep.md"
+}

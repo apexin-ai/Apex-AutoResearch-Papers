@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1c8ba76a862cce5dd4",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "writing paper methodology",
+  "task_key": "worker_writing_paper-methodology_20260514T052759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-methodology_20260514T052759_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "2130b916b0591eaf5ec3986fd4d33cb0ec996c331dac45b75544b520e2d8746c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/_project/paper/methodology.tex`。\n\n---\n\n**Word count:** ~962 words (approx. 1 page in double-column ACL format)\n\n**Citations needed (7 placeholders):**\n| Placeholder | Target |\n|---|---|\n| `\\cite{deepseek-r1}` | DeepSeek-R1 tech report (2025) |\n| `\\cite{qwen2.5}` | Qwen2.5 tech report (2024) |\n| `\\cite{math500}` | MATH-500 / Hendrycks et al. MATH benchmark |\n| `\\cite{efron1993bootstrap}` | Efron & Tibshirani, *An Introduction to the Bootstrap* (1993) |\n\n**Notes:**\n- II 公式使用了代码中的归一化形式 `r_both - r_attn - r_kv + 1`（其中 `r_x = PPL_x / PPL_d`），与 Section 3 的 `II = PPL_b - PPL_a - PPL_k + PPL_d` 等价于 scaling by `1/PPL_d`。如果 Section 3 用的是未归一化形式，需要统一。\n- Bootstrap B=10000 按要求写入，但代码 `N_BOOTSTRAP` 默认值为 1000——确认实际运行值。\n- Hardware 放在了 footnote（Section 4.5 末尾），GPU 型号写为 RTX 6000 Ada 96GB。如需改为 \"RTX 6000 Pro\" 请告知。\n- `bfloat16` 作为实际实验 dtype 写入，fp16 NaN 问题作为 footnote 说明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-paper-methodology.md"
+}

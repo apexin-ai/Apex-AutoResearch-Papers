@@ -1,0 +1,2628 @@
+# code permutation test fix v2
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/workers/worker_code_permutation-test-fix-v2_20260514T065952.log`
+- **Structured JSON:** [`39760561d98665776ae9.json`](../../sessions/39/39760561d98665776ae9.json)
+
+## Before a recorded user message
+
+56 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b9e0883e-cfa0-4e3d-9e80-b174c11da45f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779267600,
+    "rateLimitType": "seven_day",
+    "utilization": 0.31,
+    "isUsingOverage": false
+  },
+  "uuid": "ac960c56-0901-45da-a7f3-3a2f67d1a7ad",
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current permutation_test.py file on the server to understand the existing structure before making changes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "312ad2d6-2b1b-4ecc-ab86-c3dd3109d9b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0192eeCFenWoseRqsibRGzkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11696,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11696
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取当前文件内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "1765194e-260f-4e21-8ce8-91db817ef666",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0192eeCFenWoseRqsibRGzkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11696,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11696
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01R6mpqsgnwtmvsnGEdtK3rh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "7d2f9618-7c08-42aa-bd40-d5577d919dde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0192eeCFenWoseRqsibRGzkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11696,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11696
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T07:00:07.057Z_
+
+<details><summary>↩ Tool result · `toolu_01R6mpqsgnwtmvsnGEdtK3rh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "1ca235e0-055a-4e4f-9c72-20783a23251a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RBXSuQHLfX5zGzSWj8H42B`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "7a468588-93e5-4bea-ab93-0b99515e338a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RzGh25JTiiVmtcsJNpC5BP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 723,
+      "cache_read_input_tokens": 23537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 723
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T07:00:10.853Z_
+
+<details><summary>↩ Tool result · `toolu_01RBXSuQHLfX5zGzSWj8H42B`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Paired permutation test: importance vs random masking II gradients.\\n\\nInputs:\\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json\\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\\n\\nOutputs:\\n  analysis_output/permutation_test_results.json   — structured results\\n  stdout                                          — human-readable summary\\n\\nGradient = ii_low / ii_high (skip if |ii_high| < eps). For each sparsity level, a paired\\npermutation test (B=10000) and Wilcoxon signed-rank test compare importance\\nvs random gradients across matched problems.\\n\\nPrimary test statistic: median of paired differences (robust to heavy tails).\\nMean-based results kept as auxiliary output with _mean suffix.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nBASE_DIR = Path(\\\"/root/autodl-tmp/pacs\\\")\\nSPARSITY_LEVELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_MAP = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\nEPS = 1e-10\\nDEFAULT_N_PERM = 10000\\nDEFAULT_SEED = 42\\n\\n\\ndef _find_result_file(method: str, slevel: str) -> Path | None:\\n    method_short = {\\\"importance\\\": \\\"imp\\\", \\\"random\\\": \\\"rand\\\"}.get(method, method)\\n    candidates = [\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r3\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r2\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_bf16_ds_{method_short}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n    ]\\n    for c in candidates:\\n        if c.is_file():\\n            return c\\n    return None\\n\\n\\ndef _load_per_problem(path: Path, slevel: str) -> dict[str, dict]:\\n    with open(path) as f:\\n        data = json.load(f)\\n\\n    skey = SPARSITY_MAP[slevel]\\n    per_problem = data.get(\\\"per_problem_ii\\\", {})\\n\\n    if isinstance(per_problem, dict):\\n        entries = per_problem.get(skey, [])\\n        if isinstance(entries, dict):\\n            return entries\\n    elif isinstance(per_problem, list):\\n        entries = per_problem\\n    else:\\n        return {}\\n\\n    if not isinstance(entries, list):\\n        return {}\\n\\n    result = {}\\n    for item in entries:\\n        pid = item.get(\\\"problem_id\\\", item.get(\\\"problem_file\\\", f\\\"P{item.get('problem_idx', '?')}\\\"))\\n        result[pid] = item\\n    return result\\n\\n\\ndef compute_gradient(item: dict) -> float | None:\\n    \\\"\\\"\\\"Compute II gradient = ii_low / ii_high.\\n\\n    Returns None if either value is missing or |ii_high| < EPS (gradient undefined).\\n    \\\"\\\"\\\"\\n    ii_high = item.get(\\\"ii_high\\\")\\n    ii_low = item.get(\\\"ii_low\\\")\\n    if ii_high is None or ii_low is None:\\n        return None\\n    h, l = float(ii_high), float(ii_low)\\n    if abs(h) < EPS:  # near-zero denominator\\n        return None\\n    return l / h\\n\\n\\ndef paired_permutation_test(\\n    imp_grads: np.ndarray, rnd_grads: np.ndarray, n_perm: int, rng: np.random.Generator\\n) -> dict:\\n    \\\"\\\"\\\"Paired sign-flip permutation test with both median and mean statistics.\\n\\n    Primary: median of paired differences (robust to heavy tails).\\n    Auxiliary: mean of paired differences.\\n    \\\"\\\"\\\"\\n    n = len(imp_grads)\\n    diffs = imp_grads - rnd_grads\\n    observed_median = float(np.median(diffs))\\n    observed_mean = float(np.mean(diffs))\\n\\n    count_ge_median = 0\\n    count_ge_mean = 0\\n    for _ in range(n_perm):\\n        signs = rng.choice([-1, 1], size=n)\\n        perm_diffs = diffs * signs\\n        if abs(np.median(perm_diffs)) >= abs(observed_median):\\n            count_ge_median += 1\\n        if abs(np.mean(perm_diffs)) >= abs(observed_mean):\\n            count_ge_mean += 1\\n\\n    p_value = (count_ge_median + 1) / (n_perm + 1)\\n    p_value_mean = (count_ge_mean + 1) / (n_perm + 1)\\n\\n    # 95% CI via bootstrap on median of diffs\\n    boot_medians = np.array([\\n        np.median(rng.choice(diffs, size=n, replace=True)) for _ in range(2000)\\n    ])\\n    ci_low = float(np.percentile(boot_medians, 2.5))\\n    ci_high = float(np.percentile\\n\\n... [截断: 输出过长，省略 3345 字符] ...\\n\\nmedian_diff\\\"],\\n            \\\"p_value\\\": perm_result[\\\"p_value\\\"],\\n            \\\"ci_95_low\\\": perm_result[\\\"ci_95_low\\\"],\\n            \\\"ci_95_high\\\": perm_result[\\\"ci_95_high\\\"],\\n            \\\"observed_mean_diff\\\": perm_result[\\\"observed_mean_diff\\\"],\\n            \\\"p_value_mean\\\": perm_result[\\\"p_value_mean\\\"],\\n        },\\n        \\\"wilcoxon_test\\\": wilc_result,\\n    }\\n\\n    ratio_str = f\\\"{result['gradient_ratio']:.1f}x\\\" if result['gradient_ratio'] is not None else \\\"N/A\\\"\\n    print(f\\\"  [{slevel}] n_paired={n_paired}, \\\"\\n          f\\\"imp_median={imp_median:.2f}, rnd_median={rnd_median:.2f}, \\\"\\n          f\\\"ratio={ratio_str}, \\\"\\n          f\\\"perm_p(median)={perm_result['p_value']:.6f}, \\\"\\n          f\\\"perm_p(mean)={perm_result['p_value_mean']:.6f}, \\\"\\n          f\\\"wilcoxon_p={wilc_result.get('p_value', 'N/A')}\\\")\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Paired permutation test: importance vs random II gradients\\\"\\n    )\\n    parser.add_argument(\\\"--output-dir\\\", default=str(BASE_DIR / \\\"analysis_output\\\"),\\n                        help=\\\"Output directory for results JSON\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=DEFAULT_SEED)\\n    parser.add_argument(\\\"--n-perm\\\", type=int, default=DEFAULT_N_PERM)\\n    args = parser.parse_args()\\n\\n    rng = np.random.default_rng(args.seed)\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Paired Permutation Test: Importance vs Random II Gradients\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\\\")\\n    print(f\\\"Primary statistic: median | Auxiliary: mean\\\")\\n    print()\\n\\n    results = {}\\n    for sl in SPARSITY_LEVELS:\\n        r = analyze_one_level(sl, args.n_perm, rng)\\n        if r is not None:\\n            results[sl] = r\\n\\n    if not results:\\n        print(\\\"\\\\nNo sparsity levels had paired data. Exiting.\\\")\\n        sys.exit(0)\\n\\n    print()\\n    print(\\\"-\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 60)\\n    all_perm_p = [r[\\\"permutation_test\\\"][\\\"p_value\\\"] for r in results.values()]\\n    all_perm_p_mean = [r[\\\"permutation_test\\\"][\\\"p_value_mean\\\"] for r in results.values()]\\n\\n    for sl, r in results.items():\\n        p_med = r[\\\"permutation_test\\\"][\\\"p_value\\\"]\\n        p_mean = r[\\\"permutation_test\\\"][\\\"p_value_mean\\\"]\\n        sig = \\\"***\\\" if p_med < 0.001 else \\\"**\\\" if p_med < 0.01 else \\\"*\\\" if p_med < 0.05 else \\\"n.s.\\\"\\n        gr_str = f\\\"{r['gradient_ratio']:.1f}x\\\" if r['gradient_ratio'] is not None else \\\"N/A\\\"\\n        print(f\\\"  {sl}: gradient_ratio={gr_str}  \\\"\\n              f\\\"perm_p(median)={p_med:.6f} {sig}  \\\"\\n              f\\\"perm_p(mean)={p_mean:.6f}  \\\"\\n              f\\\"wilcoxon_p={r['wilcoxon_test'].get('p_value', 'N/A')}\\\")\\n\\n    if all_perm_p:\\n        print(f\\\"\\\\n  Median-based p-values: {[f'{p:.6f}' for p in all_perm_p]}\\\")\\n        print(f\\\"  Mean-based p-values:   {[f'{p:.6f}' for p in all_perm_p_mean]}\\\")\\n\\n    n_tests = len(all_perm_p)\\n    if n_tests > 1:\\n        bonf = [min(p * n_tests, 1.0) for p in all_perm_p]\\n        bonf_mean = [min(p * n_tests, 1.0) for p in all_perm_p_mean]\\n        print(f\\\"  Bonferroni (median, k={n_tests}): {[f'{p:.6f}' for p in bonf]}\\\")\\n        print(f\\\"  Bonferroni (mean,   k={n_tests}): {[f'{p:.6f}' for p in bonf_mean]}\\\")\\n        for sl, bp, bpm in zip(results.keys(), bonf, bonf_mean):\\n            results[sl][\\\"permutation_test\\\"][\\\"bonferroni_p\\\"] = bp\\n            results[sl][\\\"permutation_test\\\"][\\\"bonferroni_p_mean\\\"] = bpm\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"permutation_test_results.json\\\"\\n\\n    output = {\\n        \\\"description\\\": \\\"Paired permutation test: importance vs random masking II gradients\\\",\\n        \\\"config\\\": {\\n            \\\"seed\\\": args.seed,\\n            \\\"n_permutations\\\": args.n_perm,\\n            \\\"epsilon\\\": EPS,\\n            \\\"primary_statistic\\\": \\\"median\\\",\\n            \\\"auxiliary_statistic\\\": \\\"mean\\\",\\n        },\\n        \\\"sparsity_levels\\\": results,\\n    }\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "e9b952a8-4d7a-40b5-8866-5d508300a3bd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Paired permutation test: importance vs random masking II gradients.\\\\n\\\\nInputs:\\\\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json\\\\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\\\\n\\\\nOutputs:\\\\n  analysis_output/permutation_test_results.json   — structured results\\\\n  stdout                                          — human-readable summary\\\\n\\\\nGradient = ii_low / ii_high (skip if |ii_high| < eps). For each sparsity level, a paired\\\\npermutation test (B=10000) and Wilcoxon signed-rank test compare importance\\\\nvs random gradients across matched problems.\\\\n\\\\nPrimary test statistic: median of paired differences (robust to heavy tails).\\\\nMean-based results kept as auxiliary output with _mean suffix.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/autodl-tmp/pacs\\\\\\\")\\\\nSPARSITY_LEVELS = [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]\\\\nSPARSITY_MAP = {\\\\\\\"s015\\\\\\\": \\\\\\\"0.15\\\\\\\", \\\\\\\"s020\\\\\\\": \\\\\\\"0.2\\\\\\\", \\\\\\\"s025\\\\\\\": \\\\\\\"0.25\\\\\\\", \\\\\\\"s030\\\\\\\": \\\\\\\"0.3\\\\\\\"}\\\\nEPS = 1e-10\\\\nDEFAULT_N_PERM = 10000\\\\nDEFAULT_SEED = 42\\\\n\\\\n\\\\ndef _find_result_file(method: str, slevel: str) -> Path | None:\\\\n    method_short = {\\\\\\\"importance\\\\\\\": \\\\\\\"imp\\\\\\\", \\\\\\\"random\\\\\\\": \\\\\\\"rand\\\\\\\"}.get(method, method)\\\\n    candidates = [\\\\n        BASE_DIR / f\\\\\\\"profiling_output_v6_{method}_{slevel}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n        BASE_DIR / f\\\\\\\"profiling_output_v6_{method}_{slevel}_r3\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n        BASE_DIR / f\\\\\\\"profiling_output_v6_{method}_{slevel}_r2\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n        BASE_DIR / f\\\\\\\"profiling_output_bf16_ds_{method_short}_{slevel}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n    ]\\\\n    for c in candidates:\\\\n        if c.is_file():\\\\n            return c\\\\n    return None\\\\n\\\\n\\\\ndef _load_per_problem(path: Path, slevel: str) -> dict[str, dict]:\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n\\\\n    skey = SPARSITY_MAP[slevel]\\\\n    per_problem = data.get(\\\\\\\"per_problem_ii\\\\\\\", {})\\\\n\\\\n    if isinstance(per_problem, dict):\\\\n        entries = per_problem.get(skey, [])\\\\n        if isinstance(entries, dict):\\\\n            return entries\\\\n    elif isinstance(per_problem, list):\\\\n        entries = per_problem\\\\n    else:\\\\n        return {}\\\\n\\\\n    if not isinstance(entries, list):\\\\n        return {}\\\\n\\\\n    result = {}\\\\n    for item in entries:\\\\n        pid = item.get(\\\\\\\"problem_id\\\\\\\", item.get(\\\\\\\"problem_file\\\\\\\", f\\\\\\\"P{item.get('problem_idx', '?')}\\\\\\\"))\\\\n        result[pid] = item\\\\n    return result\\\\n\\\\n\\\\ndef compute_gradient(item: dict) -> float | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute II gradient = ii_low / ii_high.\\\\n\\\\n    Returns None if either value is missing or |ii_high| < EPS (gradient undefined).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ii_high = item.get(\\\\\\\"ii_high\\\\\\\")\\\\n    ii_low = item.get(\\\\\\\"ii_low\\\\\\\")\\\\n    if ii_high is None or ii_low is None:\\\\n        return None\\\\n    h, l = float(ii_high), float(ii_low)\\\\n    if abs(h) < EPS:  # near-zero denominator\\\\n        return None\\\\n    return l / h\\\\n\\\\n\\\\ndef paired_permutation_test(\\\\n    imp_grads: np.ndarray, rnd_grads: np.ndarray, n_perm: int, rng: np.random.Generator\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Paired sign-flip permutation test with both median and mean statistics.\\\\n\\\\n    Primary: median of paired differences (robust to heavy tails).\\\\n    Auxiliary: mean of paired differences.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(imp_grads)\\\\n    diffs = imp_grads - rnd_grads\\\\n    observed_median = float(np.median(diffs))\\\\n    observed_mean = float(np.mean(diffs))\\\\n\\\\n    count_ge_median = 0\\\\n    count_ge_mean = 0\\\\n    for _ in range(n_perm):\\\\n        signs = rng.choice([-1, 1], size=n)\\\\n        perm_diffs = diffs * signs\\\\n        if abs(np.median(perm_diffs)) >= abs(observed_median):\\\\n            count_ge_median += 1\\\\n        if abs(np.mean(perm_diffs)) >= abs(observed_mean):\\\\n            count_ge_mean += 1\\\\n\\\\n    p_value = (count_ge_median + 1) / (n_perm + 1)\\\\n    p_value_mean = (count_ge_mean + 1) / (n_perm + 1)\\\\n\\\\n    # 95% CI via bootstrap on median of diffs\\\\n    boot_medians = np.array([\\\\n        np.median(rng.choice(diffs, size=n, replace=True)) for _ in range(2000)\\\\n    ])\\\\n    ci_low = float(np.percentile(boot_medians, 2.5))\\\\n    ci_high = float(np.percentile\\\\n\\\\n... [截断: 输出过长，省略 3345 字符] ...\\\\n\\\\nmedian_diff\\\\\\\"],\\\\n            \\\\\\\"p_value\\\\\\\": perm_result[\\\\\\\"p_value\\\\\\\"],\\\\n            \\\\\\\"ci_95_low\\\\\\\": perm_result[\\\\\\\"ci_95_low\\\\\\\"],\\\\n            \\\\\\\"ci_95_high\\\\\\\": perm_result[\\\\\\\"ci_95_high\\\\\\\"],\\\\n            \\\\\\\"observed_mean_diff\\\\\\\": perm_result[\\\\\\\"observed_mean_diff\\\\\\\"],\\\\n            \\\\\\\"p_value_mean\\\\\\\": perm_result[\\\\\\\"p_value_mean\\\\\\\"],\\\\n        },\\\\n        \\\\\\\"wilcoxon_test\\\\\\\": wilc_result,\\\\n    }\\\\n\\\\n    ratio_str = f\\\\\\\"{result['gradient_ratio']:.1f}x\\\\\\\" if result['gradient_ratio'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n    print(f\\\\\\\"  [{slevel}] n_paired={n_paired}, \\\\\\\"\\\\n          f\\\\\\\"imp_median={imp_median:.2f}, rnd_median={rnd_median:.2f}, \\\\\\\"\\\\n          f\\\\\\\"ratio={ratio_str}, \\\\\\\"\\\\n          f\\\\\\\"perm_p(median)={perm_result['p_value']:.6f}, \\\\\\\"\\\\n          f\\\\\\\"perm_p(mean)={perm_result['p_value_mean']:.6f}, \\\\\\\"\\\\n          f\\\\\\\"wilcoxon_p={wilc_result.get('p_value', 'N/A')}\\\\\\\")\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Paired permutation test: importance vs random II gradients\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=str(BASE_DIR / \\\\\\\"analysis_output\\\\\\\"),\\\\n                        help=\\\\\\\"Output directory for results JSON\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=DEFAULT_SEED)\\\\n    parser.add_argument(\\\\\\\"--n-perm\\\\\\\", type=int, default=DEFAULT_N_PERM)\\\\n    args = parser.parse_args()\\\\n\\\\n    rng = np.random.default_rng(args.seed)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Paired Permutation Test: Importance vs Random II Gradients\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\\\\\\\")\\\\n    print(f\\\\\\\"Primary statistic: median | Auxiliary: mean\\\\\\\")\\\\n    print()\\\\n\\\\n    results = {}\\\\n    for sl in SPARSITY_LEVELS:\\\\n        r = analyze_one_level(sl, args.n_perm, rng)\\\\n        if r is not None:\\\\n            results[sl] = r\\\\n\\\\n    if not results:\\\\n        print(\\\\\\\"\\\\\\\\nNo sparsity levels had paired data. Exiting.\\\\\\\")\\\\n        sys.exit(0)\\\\n\\\\n    print()\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    all_perm_p = [r[\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"p_value\\\\\\\"] for r in results.values()]\\\\n    all_perm_p_mean = [r[\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"p_value_mean\\\\\\\"] for r in results.values()]\\\\n\\\\n    for sl, r in results.items():\\\\n        p_med = r[\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"p_value\\\\\\\"]\\\\n        p_mean = r[\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"p_value_mean\\\\\\\"]\\\\n        sig = \\\\\\\"***\\\\\\\" if p_med < 0.001 else \\\\\\\"**\\\\\\\" if p_med < 0.01 else \\\\\\\"*\\\\\\\" if p_med < 0.05 else \\\\\\\"n.s.\\\\\\\"\\\\n        gr_str = f\\\\\\\"{r['gradient_ratio']:.1f}x\\\\\\\" if r['gradient_ratio'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        print(f\\\\\\\"  {sl}: gradient_ratio={gr_str}  \\\\\\\"\\\\n              f\\\\\\\"perm_p(median)={p_med:.6f} {sig}  \\\\\\\"\\\\n              f\\\\\\\"perm_p(mean)={p_mean:.6f}  \\\\\\\"\\\\n              f\\\\\\\"wilcoxon_p={r['wilcoxon_test'].get('p_value', 'N/A')}\\\\\\\")\\\\n\\\\n    if all_perm_p:\\\\n        print(f\\\\\\\"\\\\\\\\n  Median-based p-values: {[f'{p:.6f}' for p in all_perm_p]}\\\\\\\")\\\\n        print(f\\\\\\\"  Mean-based p-values:   {[f'{p:.6f}' for p in all_perm_p_mean]}\\\\\\\")\\\\n\\\\n    n_tests = len(all_perm_p)\\\\n    if n_tests > 1:\\\\n        bonf = [min(p * n_tests, 1.0) for p in all_perm_p]\\\\n        bonf_mean = [min(p * n_tests, 1.0) for p in all_perm_p_mean]\\\\n        print(f\\\\\\\"  Bonferroni (median, k={n_tests}): {[f'{p:.6f}' for p in bonf]}\\\\\\\")\\\\n        print(f\\\\\\\"  Bonferroni (mean,   k={n_tests}): {[f'{p:.6f}' for p in bonf_mean]}\\\\\\\")\\\\n        for sl, bp, bpm in zip(results.keys(), bonf, bonf_mean):\\\\n            results[sl][\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"bonferroni_p\\\\\\\"] = bp\\\\n            results[sl][\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"bonferroni_p_mean\\\\\\\"] = bpm\\\\n\\\\n    out_dir = Path(args.output_dir)\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    out_path = out_dir / \\\\\\\"permutation_test_results.json\\\\\\\"\\\\n\\\\n    output = {\\\\n        \\\\\\\"description\\\\\\\": \\\\\\\"Paired permutation test: importance vs random masking II gradients\\\\\\\",\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"seed\\\\\\\": args.seed,\\\\n            \\\\\\\"n_permutations\\\\\\\": args.n_perm,\\\\n            \\\\\\\"epsilon\\\\\\\": EPS,\\\\n            \\\\\\\"primary_statistic\\\\\\\": \\\\\\\"median\\\\\\\",\\\\n            \\\\\\\"auxiliary_statistic\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n        },\\\\n        \\\\\\\"sparsity_levels\\\\\\\": results,\\\\n    }\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Paired permutation test: importance vs random masking II gradients.\\n\\nInputs:\\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json\\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\\n\\nOutputs:\\n  analysis_output/permutation_test_results.json   — structured results\\n  stdout                                          — human-readable summary\\n\\nGradient = ii_low / ii_high (skip if |ii_high| < eps). For each sparsity level, a paired\\npermutation test (B=10000) and Wilcoxon signed-rank test compare importance\\nvs random gradients across matched problems.\\n\\nPrimary test statistic: median of paired differences (robust to heavy tails).\\nMean-based results kept as auxiliary output with _mean suffix.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nBASE_DIR = Path(\\\"/root/autodl-tmp/pacs\\\")\\nSPARSITY_LEVELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_MAP = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\nEPS = 1e-10\\nDEFAULT_N_PERM = 10000\\nDEFAULT_SEED = 42\\n\\n\\ndef _find_result_file(method: str, slevel: str) -> Path | None:\\n    method_short = {\\\"importance\\\": \\\"imp\\\", \\\"random\\\": \\\"rand\\\"}.get(method, method)\\n    candidates = [\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r3\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r2\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_bf16_ds_{method_short}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n    ]\\n    for c in candidates:\\n        if c.is_file():\\n            return c\\n    return None\\n\\n\\ndef _load_per_problem(path: Path, slevel: str) -> dict[str, dict]:\\n    with open(path) as f:\\n        data = json.load(f)\\n\\n    skey = SPARSITY_MAP[slevel]\\n    per_problem = data.get(\\\"per_problem_ii\\\", {})\\n\\n    if isinstance(per_problem, dict):\\n        entries = per_problem.get(skey, [])\\n        if isinstance(entries, dict):\\n            return entries\\n    elif isinstance(per_problem, list):\\n        entries = per_problem\\n    else:\\n        return {}\\n\\n    if not isinstance(entries, list):\\n        return {}\\n\\n    result = {}\\n    for item in entries:\\n        pid = item.get(\\\"problem_id\\\", item.get(\\\"problem_file\\\", f\\\"P{item.get('problem_idx', '?')}\\\"))\\n        result[pid] = item\\n    return result\\n\\n\\ndef compute_gradient(item: dict) -> float | None:\\n    \\\"\\\"\\\"Compute II gradient = ii_low / ii_high.\\n\\n    Returns None if either value is missing or |ii_high| < EPS (gradient undefined).\\n    \\\"\\\"\\\"\\n    ii_high = item.get(\\\"ii_high\\\")\\n    ii_low = item.get(\\\"ii_low\\\")\\n    if ii_high is None or ii_low is None:\\n        return None\\n    h, l = float(ii_high), float(ii_low)\\n    if abs(h) < EPS:  # near-zero denominator\\n        return None\\n    return l / h\\n\\n\\ndef paired_permutation_test(\\n    imp_grads: np.ndarray, rnd_grads: np.ndarray, n_perm: int, rng: np.random.Generator\\n) -> dict:\\n    \\\"\\\"\\\"Paired sign-flip permutation test with both median and mean statistics.\\n\\n    Primary: median of paired differences (robust to heavy tails).\\n    Auxiliary: mean of paired differences.\\n    \\\"\\\"\\\"\\n    n = len(imp_grads)\\n    diffs = imp_grads - rnd_grads\\n    observed_median = float(np.median(diffs))\\n    observed_mean = float(np.mean(diffs))\\n\\n    count_ge_median = 0\\n    count_ge_mean = 0\\n    for _ in range(n_perm):\\n        signs = rng.choice([-1, 1], size=n)\\n        perm_diffs = diffs * signs\\n        if abs(np.median(perm_diffs)) >= abs(observed_median):\\n            count_ge_median += 1\\n        if abs(np.mean(perm_diffs)) >= abs(observed_mean):\\n            count_ge_mean += 1\\n\\n    p_value = (count_ge_median + 1) / (n_perm + 1)\\n    p_value_mean = (count_ge_mean + 1) / (n_perm + 1)\\n\\n    # 95% CI via bootstrap on median of diffs\\n    boot_medians = np.array([\\n        np.median(rng.choice(diffs, size=n, replace=True)) for _ in range(2000)\\n    ])\\n    ci_low = float(np.percentile(boot_medians, 2.5))\\n    ci_high = float(np.percentile\\n\\n... [截断: 输出过长，省略 3345 字符] ...\\n\\nmedian_diff\\\"],\\n            \\\"p_value\\\": perm_result[\\\"p_value\\\"],\\n            \\\"ci_95_low\\\": perm_result[\\\"ci_95_low\\\"],\\n            \\\"ci_95_high\\\": perm_result[\\\"ci_95_high\\\"],\\n            \\\"observed_mean_diff\\\": perm_result[\\\"observed_mean_diff\\\"],\\n            \\\"p_value_mean\\\": perm_result[\\\"p_value_mean\\\"],\\n        },\\n        \\\"wilcoxon_test\\\": wilc_result,\\n    }\\n\\n    ratio_str = f\\\"{result['gradient_ratio']:.1f}x\\\" if result['gradient_ratio'] is not None else \\\"N/A\\\"\\n    print(f\\\"  [{slevel}] n_paired={n_paired}, \\\"\\n          f\\\"imp_median={imp_median:.2f}, rnd_median={rnd_median:.2f}, \\\"\\n          f\\\"ratio={ratio_str}, \\\"\\n          f\\\"perm_p(median)={perm_result['p_value']:.6f}, \\\"\\n          f\\\"perm_p(mean)={perm_result['p_value_mean']:.6f}, \\\"\\n          f\\\"wilcoxon_p={wilc_result.get('p_value', 'N/A')}\\\")\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Paired permutation test: importance vs random II gradients\\\"\\n    )\\n    parser.add_argument(\\\"--output-dir\\\", default=str(BASE_DIR / \\\"analysis_output\\\"),\\n                        help=\\\"Output directory for results JSON\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=DEFAULT_SEED)\\n    parser.add_argument(\\\"--n-perm\\\", type=int, default=DEFAULT_N_PERM)\\n    args = parser.parse_args()\\n\\n    rng = np.random.default_rng(args.seed)\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Paired Permutation Test: Importance vs Random II Gradients\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\\\")\\n    print(f\\\"Primary statistic: median | Auxiliary: mean\\\")\\n    print()\\n\\n    results = {}\\n    for sl in SPARSITY_LEVELS:\\n        r = analyze_one_level(sl, args.n_perm, rng)\\n        if r is not None:\\n            results[sl] = r\\n\\n    if not results:\\n        print(\\\"\\\\nNo sparsity levels had paired data. Exiting.\\\")\\n        sys.exit(0)\\n\\n    print()\\n    print(\\\"-\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 60)\\n    all_perm_p = [r[\\\"permutation_test\\\"][\\\"p_value\\\"] for r in results.values()]\\n    all_perm_p_mean = [r[\\\"permutation_test\\\"][\\\"p_value_mean\\\"] for r in results.values()]\\n\\n    for sl, r in results.items():\\n        p_med = r[\\\"permutation_test\\\"][\\\"p_value\\\"]\\n        p_mean = r[\\\"permutation_test\\\"][\\\"p_value_mean\\\"]\\n        sig = \\\"***\\\" if p_med < 0.001 else \\\"**\\\" if p_med < 0.01 else \\\"*\\\" if p_med < 0.05 else \\\"n.s.\\\"\\n        gr_str = f\\\"{r['gradient_ratio']:.1f}x\\\" if r['gradient_ratio'] is not None else \\\"N/A\\\"\\n        print(f\\\"  {sl}: gradient_ratio={gr_str}  \\\"\\n              f\\\"perm_p(median)={p_med:.6f} {sig}  \\\"\\n              f\\\"perm_p(mean)={p_mean:.6f}  \\\"\\n              f\\\"wilcoxon_p={r['wilcoxon_test'].get('p_value', 'N/A')}\\\")\\n\\n    if all_perm_p:\\n        print(f\\\"\\\\n  Median-based p-values: {[f'{p:.6f}' for p in all_perm_p]}\\\")\\n        print(f\\\"  Mean-based p-values:   {[f'{p:.6f}' for p in all_perm_p_mean]}\\\")\\n\\n    n_tests = len(all_perm_p)\\n    if n_tests > 1:\\n        bonf = [min(p * n_tests, 1.0) for p in all_perm_p]\\n        bonf_mean = [min(p * n_tests, 1.0) for p in all_perm_p_mean]\\n        print(f\\\"  Bonferroni (median, k={n_tests}): {[f'{p:.6f}' for p in bonf]}\\\")\\n        print(f\\\"  Bonferroni (mean,   k={n_tests}): {[f'{p:.6f}' for p in bonf_mean]}\\\")\\n        for sl, bp, bpm in zip(results.keys(), bonf, bonf_mean):\\n            results[sl][\\\"permutation_test\\\"][\\\"bonferroni_p\\\"] = bp\\n            results[sl][\\\"permutation_test\\\"][\\\"bonferroni_p_mean\\\"] = bpm\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"permutation_test_results.json\\\"\\n\\n    output = {\\n        \\\"description\\\": \\\"Paired permutation test: importance vs random masking II gradients\\\",\\n        \\\"config\\\": {\\n            \\\"seed\\\": args.seed,\\n            \\\"n_permutations\\\": args.n_perm,\\n            \\\"epsilon\\\": EPS,\\n            \\\"primary_statistic\\\": \\\"median\\\",\\n            \\\"auxiliary_statistic\\\": \\\"mean\\\",\\n        },\\n        \\\"sparsity_levels\\\": results,\\n    }\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me get the full file by reading it in parts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "3b3fc50f-3318-4be2-9dc0-00baa2f6c769",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CCXURiSpzr3rGDuyK8WVJY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3765,
+      "cache_read_input_tokens": 24260,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3765
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+输出被截断了，读取中间部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "77ddba86-9953-4c7a-b05b-b3290704ffe2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CCXURiSpzr3rGDuyK8WVJY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3765,
+      "cache_read_input_tokens": 24260,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3765
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AXW2B6oiHwwrRtF6ZvGyma`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "wc -l /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "fcffdfaf-d29b-4b62-87ca-2403a07d0fb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CCXURiSpzr3rGDuyK8WVJY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3765,
+      "cache_read_input_tokens": 24260,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3765
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T07:00:16.611Z_
+
+<details><summary>↩ Tool result · `toolu_01AXW2B6oiHwwrRtF6ZvGyma`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"309 /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "b1e16cd5-1b20-4ce9-8857-373454d120a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"309 /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"309 /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xzi4ZW7yZWzKa7gTeRn4Q9`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -155 /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "52837c82-aedf-42d8-a882-15ea3dcce58b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012JbbNEhQ94EXviFe6nww77",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 274,
+      "cache_read_input_tokens": 28025,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 274
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T07:00:20.599Z_
+
+<details><summary>↩ Tool result · `toolu_01Xzi4ZW7yZWzKa7gTeRn4Q9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Paired permutation test: importance vs random masking II gradients.\\n\\nInputs:\\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json\\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\\n\\nOutputs:\\n  analysis_output/permutation_test_results.json   — structured results\\n  stdout                                          — human-readable summary\\n\\nGradient = ii_low / ii_high (skip if |ii_high| < eps). For each sparsity level, a paired\\npermutation test (B=10000) and Wilcoxon signed-rank test compare importance\\nvs random gradients across matched problems.\\n\\nPrimary test statistic: median of paired differences (robust to heavy tails).\\nMean-based results kept as auxiliary output with _mean suffix.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nBASE_DIR = Path(\\\"/root/autodl-tmp/pacs\\\")\\nSPARSITY_LEVELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_MAP = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\nEPS = 1e-10\\nDEFAULT_N_PERM = 10000\\nDEFAULT_SEED = 42\\n\\n\\ndef _find_result_file(method: str, slevel: str) -> Path | None:\\n    method_short = {\\\"importance\\\": \\\"imp\\\", \\\"random\\\": \\\"rand\\\"}.get(method, method)\\n    candidates = [\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r3\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r2\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_bf16_ds_{method_short}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n    ]\\n    for c in candidates:\\n        if c.is_file():\\n            return c\\n    return None\\n\\n\\ndef _load_per_problem(path: Path, slevel: str) -> dict[str, dict]:\\n    with open(path) as f:\\n        data = json.load(f)\\n\\n    skey = SPARSITY_MAP[slevel]\\n    per_problem = data.get(\\\"per_problem_ii\\\", {})\\n\\n    if isinstance(per_problem, dict):\\n        entries = per_problem.get(skey, [])\\n        if isinstance(entries, dict):\\n            return entries\\n    elif isinstance(per_problem, list):\\n        entries = per_problem\\n    else:\\n        return {}\\n\\n    if not isinstance(entries, list):\\n        return {}\\n\\n    result = {}\\n    for item in entries:\\n        pid = item.get(\\\"problem_id\\\", item.get(\\\"problem_file\\\", f\\\"P{item.get('problem_idx', '?')}\\\"))\\n        result[pid] = item\\n    return result\\n\\n\\ndef compute_gradient(item: dict) -> float | None:\\n    \\\"\\\"\\\"Compute II gradient = ii_low / ii_high.\\n\\n    Returns None if either value is missing or |ii_high| < EPS (gradient undefined).\\n    \\\"\\\"\\\"\\n    ii_high = item.get(\\\"ii_high\\\")\\n    ii_low = item.get(\\\"ii_low\\\")\\n    if ii_high is None or ii_low is None:\\n        return None\\n    h, l = float(ii_high), float(ii_low)\\n    if abs(h) < EPS:  # near-zero denominator\\n        return None\\n    return l / h\\n\\n\\ndef paired_permutation_test(\\n    imp_grads: np.ndarray, rnd_grads: np.ndarray, n_perm: int, rng: np.random.Generator\\n) -> dict:\\n    \\\"\\\"\\\"Paired sign-flip permutation test with both median and mean statistics.\\n\\n    Primary: median of paired differences (robust to heavy tails).\\n    Auxiliary: mean of paired differences.\\n    \\\"\\\"\\\"\\n    n = len(imp_grads)\\n    diffs = imp_grads - rnd_grads\\n    observed_median = float(np.median(diffs))\\n    observed_mean = float(np.mean(diffs))\\n\\n    count_ge_median = 0\\n    count_ge_mean = 0\\n    for _ in range(n_perm):\\n        signs = rng.choice([-1, 1], size=n)\\n        perm_diffs = diffs * signs\\n        if abs(np.median(perm_diffs)) >= abs(observed_median):\\n            count_ge_median += 1\\n        if abs(np.mean(perm_diffs)) >= abs(observed_mean):\\n            count_ge_mean += 1\\n\\n    p_value = (count_ge_median + 1) / (n_perm + 1)\\n    p_value_mean = (count_ge_mean + 1) / (n_perm + 1)\\n\\n    # 95% CI via bootstrap on median of diffs\\n    boot_medians = np.array([\\n        np.median(rng.choice(diffs, size=n, replace=True)) for _ in range(2000)\\n    ])\\n    ci_low = float(np.percentile(boot_medians, 2.5))\\n    ci_high = float(np.percentile(boot_medians, 97.5))\\n\\n    return {\\n        \\\"observed_median_diff\\\": observed_median,\\n        \\\"p_value\\\": p_value,\\n        \\\"ci_95_low\\\": ci_low,\\n        \\\"ci_95_high\\\": ci_high,\\n        \\\"observed_mean_diff\\\": observed_mean,\\n        \\\"p_value_mean\\\": p_value_mean,\\n    }\\n\\n\\ndef wilcoxon_test(imp_grads: np.ndarray, rnd_grads: np.ndarray) -> dict:\\n    try:\\n        from scipy.stats import wilcoxon as _wilcoxon\\n\\n        diffs = imp_grads - rnd_grads\\n        if np.all(diffs == 0):\\n            return {\\\"statistic\\\": None, \\\"p_value\\\": 1.0, \\\"error\\\": \\\"all diffs zero\\\"}\\n        stat, p = _wilcoxon(diffs, alternative=\\\"two-sided\\\")\\n        n = len(diffs)\\n        z = (stat - n * (n + 1) / 4) / np.sqrt(n * (n + 1) * (2 * n + 1) / 24)\\n        r = abs(z) / np.sqrt(n)\\n        return {\\\"statistic\\\": float(stat), \\\"p_value\\\": float(p), \\\"effect_size_r\\\": float(r)}\\n    except ImportError:\\n        return {\\\"statistic\\\": None, \\\"p_value\\\": None, \\\"error\\\": \\\"scipy not installed\\\"}\\n    except Exception as e:\\n        return {\\\"statistic\\\": None, \\\"p_value\\\": None, \\\"error\\\": str(e)}\\n\\n\\ndef analyze_one_level(slevel: str, n_perm: int, rng: np.random.Generator) -> dict | None:\\n    imp_path = _find_result_file(\\\"importance\\\", slevel)\\n    rnd_path = _find_result_file(\\\"random\\\", slevel)\\n\\n    if imp_path is None:\\n        print(f\\\"  [{slevel}] importance results not found, skipping\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "068538a6-33f3-4b5a-aeb7-5c287372ba2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Paired permutation test: importance vs random masking II gradients.\\\\n\\\\nInputs:\\\\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json\\\\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\\\\n\\\\nOutputs:\\\\n  analysis_output/permutation_test_results.json   — structured results\\\\n  stdout                                          — human-readable summary\\\\n\\\\nGradient = ii_low / ii_high (skip if |ii_high| < eps). For each sparsity level, a paired\\\\npermutation test (B=10000) and Wilcoxon signed-rank test compare importance\\\\nvs random gradients across matched problems.\\\\n\\\\nPrimary test statistic: median of paired differences (robust to heavy tails).\\\\nMean-based results kept as auxiliary output with _mean suffix.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/autodl-tmp/pacs\\\\\\\")\\\\nSPARSITY_LEVELS = [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]\\\\nSPARSITY_MAP = {\\\\\\\"s015\\\\\\\": \\\\\\\"0.15\\\\\\\", \\\\\\\"s020\\\\\\\": \\\\\\\"0.2\\\\\\\", \\\\\\\"s025\\\\\\\": \\\\\\\"0.25\\\\\\\", \\\\\\\"s030\\\\\\\": \\\\\\\"0.3\\\\\\\"}\\\\nEPS = 1e-10\\\\nDEFAULT_N_PERM = 10000\\\\nDEFAULT_SEED = 42\\\\n\\\\n\\\\ndef _find_result_file(method: str, slevel: str) -> Path | None:\\\\n    method_short = {\\\\\\\"importance\\\\\\\": \\\\\\\"imp\\\\\\\", \\\\\\\"random\\\\\\\": \\\\\\\"rand\\\\\\\"}.get(method, method)\\\\n    candidates = [\\\\n        BASE_DIR / f\\\\\\\"profiling_output_v6_{method}_{slevel}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n        BASE_DIR / f\\\\\\\"profiling_output_v6_{method}_{slevel}_r3\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n        BASE_DIR / f\\\\\\\"profiling_output_v6_{method}_{slevel}_r2\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n        BASE_DIR / f\\\\\\\"profiling_output_bf16_ds_{method_short}_{slevel}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n    ]\\\\n    for c in candidates:\\\\n        if c.is_file():\\\\n            return c\\\\n    return None\\\\n\\\\n\\\\ndef _load_per_problem(path: Path, slevel: str) -> dict[str, dict]:\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n\\\\n    skey = SPARSITY_MAP[slevel]\\\\n    per_problem = data.get(\\\\\\\"per_problem_ii\\\\\\\", {})\\\\n\\\\n    if isinstance(per_problem, dict):\\\\n        entries = per_problem.get(skey, [])\\\\n        if isinstance(entries, dict):\\\\n            return entries\\\\n    elif isinstance(per_problem, list):\\\\n        entries = per_problem\\\\n    else:\\\\n        return {}\\\\n\\\\n    if not isinstance(entries, list):\\\\n        return {}\\\\n\\\\n    result = {}\\\\n    for item in entries:\\\\n        pid = item.get(\\\\\\\"problem_id\\\\\\\", item.get(\\\\\\\"problem_file\\\\\\\", f\\\\\\\"P{item.get('problem_idx', '?')}\\\\\\\"))\\\\n        result[pid] = item\\\\n    return result\\\\n\\\\n\\\\ndef compute_gradient(item: dict) -> float | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute II gradient = ii_low / ii_high.\\\\n\\\\n    Returns None if either value is missing or |ii_high| < EPS (gradient undefined).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ii_high = item.get(\\\\\\\"ii_high\\\\\\\")\\\\n    ii_low = item.get(\\\\\\\"ii_low\\\\\\\")\\\\n    if ii_high is None or ii_low is None:\\\\n        return None\\\\n    h, l = float(ii_high), float(ii_low)\\\\n    if abs(h) < EPS:  # near-zero denominator\\\\n        return None\\\\n    return l / h\\\\n\\\\n\\\\ndef paired_permutation_test(\\\\n    imp_grads: np.ndarray, rnd_grads: np.ndarray, n_perm: int, rng: np.random.Generator\\\\n) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Paired sign-flip permutation test with both median and mean statistics.\\\\n\\\\n    Primary: median of paired differences (robust to heavy tails).\\\\n    Auxiliary: mean of paired differences.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(imp_grads)\\\\n    diffs = imp_grads - rnd_grads\\\\n    observed_median = float(np.median(diffs))\\\\n    observed_mean = float(np.mean(diffs))\\\\n\\\\n    count_ge_median = 0\\\\n    count_ge_mean = 0\\\\n    for _ in range(n_perm):\\\\n        signs = rng.choice([-1, 1], size=n)\\\\n        perm_diffs = diffs * signs\\\\n        if abs(np.median(perm_diffs)) >= abs(observed_median):\\\\n            count_ge_median += 1\\\\n        if abs(np.mean(perm_diffs)) >= abs(observed_mean):\\\\n            count_ge_mean += 1\\\\n\\\\n    p_value = (count_ge_median + 1) / (n_perm + 1)\\\\n    p_value_mean = (count_ge_mean + 1) / (n_perm + 1)\\\\n\\\\n    # 95% CI via bootstrap on median of diffs\\\\n    boot_medians = np.array([\\\\n        np.median(rng.choice(diffs, size=n, replace=True)) for _ in range(2000)\\\\n    ])\\\\n    ci_low = float(np.percentile(boot_medians, 2.5))\\\\n    ci_high = float(np.percentile(boot_medians, 97.5))\\\\n\\\\n    return {\\\\n        \\\\\\\"observed_median_diff\\\\\\\": observed_median,\\\\n        \\\\\\\"p_value\\\\\\\": p_value,\\\\n        \\\\\\\"ci_95_low\\\\\\\": ci_low,\\\\n        \\\\\\\"ci_95_high\\\\\\\": ci_high,\\\\n        \\\\\\\"observed_mean_diff\\\\\\\": observed_mean,\\\\n        \\\\\\\"p_value_mean\\\\\\\": p_value_mean,\\\\n    }\\\\n\\\\n\\\\ndef wilcoxon_test(imp_grads: np.ndarray, rnd_grads: np.ndarray) -> dict:\\\\n    try:\\\\n        from scipy.stats import wilcoxon as _wilcoxon\\\\n\\\\n        diffs = imp_grads - rnd_grads\\\\n        if np.all(diffs == 0):\\\\n            return {\\\\\\\"statistic\\\\\\\": None, \\\\\\\"p_value\\\\\\\": 1.0, \\\\\\\"error\\\\\\\": \\\\\\\"all diffs zero\\\\\\\"}\\\\n        stat, p = _wilcoxon(diffs, alternative=\\\\\\\"two-sided\\\\\\\")\\\\n        n = len(diffs)\\\\n        z = (stat - n * (n + 1) / 4) / np.sqrt(n * (n + 1) * (2 * n + 1) / 24)\\\\n        r = abs(z) / np.sqrt(n)\\\\n        return {\\\\\\\"statistic\\\\\\\": float(stat), \\\\\\\"p_value\\\\\\\": float(p), \\\\\\\"effect_size_r\\\\\\\": float(r)}\\\\n    except ImportError:\\\\n        return {\\\\\\\"statistic\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"error\\\\\\\": \\\\\\\"scipy not installed\\\\\\\"}\\\\n    except Exception as e:\\\\n        return {\\\\\\\"statistic\\\\\\\": None, \\\\\\\"p_value\\\\\\\": None, \\\\\\\"error\\\\\\\": str(e)}\\\\n\\\\n\\\\ndef analyze_one_level(slevel: str, n_perm: int, rng: np.random.Generator) -> dict | None:\\\\n    imp_path = _find_result_file(\\\\\\\"importance\\\\\\\", slevel)\\\\n    rnd_path = _find_result_file(\\\\\\\"random\\\\\\\", slevel)\\\\n\\\\n    if imp_path is None:\\\\n        print(f\\\\\\\"  [{slevel}] importance results not found, skipping\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Paired permutation test: importance vs random masking II gradients.\\n\\nInputs:\\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json\\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\\n\\nOutputs:\\n  analysis_output/permutation_test_results.json   — structured results\\n  stdout                                          — human-readable summary\\n\\nGradient = ii_low / ii_high (skip if |ii_high| < eps). For each sparsity level, a paired\\npermutation test (B=10000) and Wilcoxon signed-rank test compare importance\\nvs random gradients across matched problems.\\n\\nPrimary test statistic: median of paired differences (robust to heavy tails).\\nMean-based results kept as auxiliary output with _mean suffix.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nBASE_DIR = Path(\\\"/root/autodl-tmp/pacs\\\")\\nSPARSITY_LEVELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_MAP = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\nEPS = 1e-10\\nDEFAULT_N_PERM = 10000\\nDEFAULT_SEED = 42\\n\\n\\ndef _find_result_file(method: str, slevel: str) -> Path | None:\\n    method_short = {\\\"importance\\\": \\\"imp\\\", \\\"random\\\": \\\"rand\\\"}.get(method, method)\\n    candidates = [\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r3\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r2\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_bf16_ds_{method_short}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n    ]\\n    for c in candidates:\\n        if c.is_file():\\n            return c\\n    return None\\n\\n\\ndef _load_per_problem(path: Path, slevel: str) -> dict[str, dict]:\\n    with open(path) as f:\\n        data = json.load(f)\\n\\n    skey = SPARSITY_MAP[slevel]\\n    per_problem = data.get(\\\"per_problem_ii\\\", {})\\n\\n    if isinstance(per_problem, dict):\\n        entries = per_problem.get(skey, [])\\n        if isinstance(entries, dict):\\n            return entries\\n    elif isinstance(per_problem, list):\\n        entries = per_problem\\n    else:\\n        return {}\\n\\n    if not isinstance(entries, list):\\n        return {}\\n\\n    result = {}\\n    for item in entries:\\n        pid = item.get(\\\"problem_id\\\", item.get(\\\"problem_file\\\", f\\\"P{item.get('problem_idx', '?')}\\\"))\\n        result[pid] = item\\n    return result\\n\\n\\ndef compute_gradient(item: dict) -> float | None:\\n    \\\"\\\"\\\"Compute II gradient = ii_low / ii_high.\\n\\n    Returns None if either value is missing or |ii_high| < EPS (gradient undefined).\\n    \\\"\\\"\\\"\\n    ii_high = item.get(\\\"ii_high\\\")\\n    ii_low = item.get(\\\"ii_low\\\")\\n    if ii_high is None or ii_low is None:\\n        return None\\n    h, l = float(ii_high), float(ii_low)\\n    if abs(h) < EPS:  # near-zero denominator\\n        return None\\n    return l / h\\n\\n\\ndef paired_permutation_test(\\n    imp_grads: np.ndarray, rnd_grads: np.ndarray, n_perm: int, rng: np.random.Generator\\n) -> dict:\\n    \\\"\\\"\\\"Paired sign-flip permutation test with both median and mean statistics.\\n\\n    Primary: median of paired differences (robust to heavy tails).\\n    Auxiliary: mean of paired differences.\\n    \\\"\\\"\\\"\\n    n = len(imp_grads)\\n    diffs = imp_grads - rnd_grads\\n    observed_median = float(np.median(diffs))\\n    observed_mean = float(np.mean(diffs))\\n\\n    count_ge_median = 0\\n    count_ge_mean = 0\\n    for _ in range(n_perm):\\n        signs = rng.choice([-1, 1], size=n)\\n        perm_diffs = diffs * signs\\n        if abs(np.median(perm_diffs)) >= abs(observed_median):\\n            count_ge_median += 1\\n        if abs(np.mean(perm_diffs)) >= abs(observed_mean):\\n            count_ge_mean += 1\\n\\n    p_value = (count_ge_median + 1) / (n_perm + 1)\\n    p_value_mean = (count_ge_mean + 1) / (n_perm + 1)\\n\\n    # 95% CI via bootstrap on median of diffs\\n    boot_medians = np.array([\\n        np.median(rng.choice(diffs, size=n, replace=True)) for _ in range(2000)\\n    ])\\n    ci_low = float(np.percentile(boot_medians, 2.5))\\n    ci_high = float(np.percentile(boot_medians, 97.5))\\n\\n    return {\\n        \\\"observed_median_diff\\\": observed_median,\\n        \\\"p_value\\\": p_value,\\n        \\\"ci_95_low\\\": ci_low,\\n        \\\"ci_95_high\\\": ci_high,\\n        \\\"observed_mean_diff\\\": observed_mean,\\n        \\\"p_value_mean\\\": p_value_mean,\\n    }\\n\\n\\ndef wilcoxon_test(imp_grads: np.ndarray, rnd_grads: np.ndarray) -> dict:\\n    try:\\n        from scipy.stats import wilcoxon as _wilcoxon\\n\\n        diffs = imp_grads - rnd_grads\\n        if np.all(diffs == 0):\\n            return {\\\"statistic\\\": None, \\\"p_value\\\": 1.0, \\\"error\\\": \\\"all diffs zero\\\"}\\n        stat, p = _wilcoxon(diffs, alternative=\\\"two-sided\\\")\\n        n = len(diffs)\\n        z = (stat - n * (n + 1) / 4) / np.sqrt(n * (n + 1) * (2 * n + 1) / 24)\\n        r = abs(z) / np.sqrt(n)\\n        return {\\\"statistic\\\": float(stat), \\\"p_value\\\": float(p), \\\"effect_size_r\\\": float(r)}\\n    except ImportError:\\n        return {\\\"statistic\\\": None, \\\"p_value\\\": None, \\\"error\\\": \\\"scipy not installed\\\"}\\n    except Exception as e:\\n        return {\\\"statistic\\\": None, \\\"p_value\\\": None, \\\"error\\\": str(e)}\\n\\n\\ndef analyze_one_level(slevel: str, n_perm: int, rng: np.random.Generator) -> dict | None:\\n    imp_path = _find_result_file(\\\"importance\\\", slevel)\\n    rnd_path = _find_result_file(\\\"random\\\", slevel)\\n\\n    if imp_path is None:\\n        print(f\\\"  [{slevel}] importance results not found, skipping\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E27VToigYaYfKMk7MQLLMc`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "tail -n +150 /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "880a0f96-6b40-4ce5-aa7b-37dee3ad59db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WxuWGiWcrZAXBVr2YJnpER",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2478,
+      "cache_read_input_tokens": 28299,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2478
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T07:00:25.750Z_
+
+<details><summary>↩ Tool result · `toolu_01E27VToigYaYfKMk7MQLLMc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def analyze_one_level(slevel: str, n_perm: int, rng: np.random.Generator) -> dict | None:\\n    imp_path = _find_result_file(\\\"importance\\\", slevel)\\n    rnd_path = _find_result_file(\\\"random\\\", slevel)\\n\\n    if imp_path is None:\\n        print(f\\\"  [{slevel}] importance results not found, skipping\\\")\\n        return None\\n    if rnd_path is None:\\n        print(f\\\"  [{slevel}] random results not found, skipping\\\")\\n        return None\\n\\n    print(f\\\"  [{slevel}] imp={imp_path.parent.name}, rnd={rnd_path.parent.name}\\\")\\n\\n    imp_data = _load_per_problem(imp_path, slevel)\\n    rnd_data = _load_per_problem(rnd_path, slevel)\\n\\n    if not imp_data or not rnd_data:\\n        print(f\\\"  [{slevel}] empty per_problem_ii, skipping\\\")\\n        return None\\n\\n    common_pids = sorted(set(imp_data.keys()) & set(rnd_data.keys()))\\n    imp_grads, rnd_grads = [], []\\n    for pid in common_pids:\\n        ig = compute_gradient(imp_data[pid])\\n        rg = compute_gradient(rnd_data[pid])\\n        if ig is not None and rg is not None:\\n            imp_grads.append(ig)\\n            rnd_grads.append(rg)\\n\\n    n_paired = len(imp_grads)\\n    if n_paired < 5:\\n        print(f\\\"  [{slevel}] only {n_paired} paired problems (need >=5), skipping\\\")\\n        return None\\n\\n    imp_arr = np.array(imp_grads)\\n    rnd_arr = np.array(rnd_grads)\\n\\n    perm_result = paired_permutation_test(imp_arr, rnd_arr, n_perm, rng)\\n    wilc_result = wilcoxon_test(imp_arr, rnd_arr)\\n\\n    imp_median = float(np.median(imp_arr))\\n    rnd_median = float(np.median(rnd_arr))\\n\\n    result = {\\n        \\\"n_problems_importance\\\": len(imp_data),\\n        \\\"n_problems_random\\\": len(rnd_data),\\n        \\\"n_paired\\\": n_paired,\\n        \\\"importance_gradient_median\\\": imp_median,\\n        \\\"importance_gradient_mean\\\": float(np.mean(imp_arr)),\\n        \\\"importance_gradient_std\\\": float(np.std(imp_arr)),\\n        \\\"random_gradient_median\\\": rnd_median,\\n        \\\"random_gradient_mean\\\": float(np.mean(rnd_arr)),\\n        \\\"random_gradient_std\\\": float(np.std(rnd_arr)),\\n        \\\"gradient_ratio\\\": float(imp_median / rnd_median) if abs(rnd_median) >= EPS else None,\\n        \\\"gradient_ratio_mean\\\": float(np.mean(imp_arr) / np.mean(rnd_arr)) if abs(np.mean(rnd_arr)) >= EPS else None,\\n        \\\"permutation_test\\\": {\\n            \\\"n_permutations\\\": n_perm,\\n            \\\"observed_median_diff\\\": perm_result[\\\"observed_median_diff\\\"],\\n            \\\"p_value\\\": perm_result[\\\"p_value\\\"],\\n            \\\"ci_95_low\\\": perm_result[\\\"ci_95_low\\\"],\\n            \\\"ci_95_high\\\": perm_result[\\\"ci_95_high\\\"],\\n            \\\"observed_mean_diff\\\": perm_result[\\\"observed_mean_diff\\\"],\\n            \\\"p_value_mean\\\": perm_result[\\\"p_value_mean\\\"],\\n        },\\n        \\\"wilcoxon_test\\\": wilc_result,\\n    }\\n\\n    ratio_str = f\\\"{result['gradient_ratio']:.1f}x\\\" if result['gradient_ratio'] is not None else \\\"N/A\\\"\\n    print(f\\\"  [{slevel}] n_paired={n_paired}, \\\"\\n          f\\\"imp_median={imp_median:.2f}, rnd_median={rnd_median:.2f}, \\\"\\n          f\\\"ratio={ratio_str}, \\\"\\n          f\\\"perm_p(median)={perm_result['p_value']:.6f}, \\\"\\n          f\\\"perm_p(mean)={perm_result['p_value_mean']:.6f}, \\\"\\n          f\\\"wilcoxon_p={wilc_result.get('p_value', 'N/A')}\\\")\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Paired permutation test: importance vs random II gradients\\\"\\n    )\\n    parser.add_argument(\\\"--output-dir\\\", default=str(BASE_DIR / \\\"analysis_output\\\"),\\n                        help=\\\"Output directory for results JSON\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=DEFAULT_SEED)\\n    parser.add_argument(\\\"--n-perm\\\", type=int, default=DEFAULT_N_PERM)\\n    args = parser.parse_args()\\n\\n    rng = np.random.default_rng(args.seed)\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Paired Permutation Test: Importance vs Random II Gradients\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\\\")\\n    print(f\\\"Primary statistic: median | Auxiliary: mean\\\")\\n    print()\\n\\n    results = {}\\n    for sl in SPARSITY_LEVELS:\\n        r = analyze_one_level(sl, args.n_perm, rng)\\n        if r is not None:\\n            results[sl] = r\\n\\n    if not results:\\n        print(\\\"\\\\nNo sparsity levels had paired data. Exiting.\\\")\\n        sys.exit(0)\\n\\n    print()\\n    print(\\\"-\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 60)\\n    all_perm_p = [r[\\\"permutation_test\\\"][\\\"p_value\\\"] for r in results.values()]\\n    all_perm_p_mean = [r[\\\"permutation_test\\\"][\\\"p_value_mean\\\"] for r in results.values()]\\n\\n    for sl, r in results.items():\\n        p_med = r[\\\"permutation_test\\\"][\\\"p_value\\\"]\\n        p_mean = r[\\\"permutation_test\\\"][\\\"p_value_mean\\\"]\\n        sig = \\\"***\\\" if p_med < 0.001 else \\\"**\\\" if p_med < 0.01 else \\\"*\\\" if p_med < 0.05 else \\\"n.s.\\\"\\n        gr_str = f\\\"{r['gradient_ratio']:.1f}x\\\" if r['gradient_ratio'] is not None else \\\"N/A\\\"\\n        print(f\\\"  {sl}: gradient_ratio={gr_str}  \\\"\\n              f\\\"perm_p(median)={p_med:.6f} {sig}  \\\"\\n              f\\\"perm_p(mean)={p_mean:.6f}  \\\"\\n              f\\\"wilcoxon_p={r['wilcoxon_test'].get('p_value', 'N/A')}\\\")\\n\\n    if all_perm_p:\\n        print(f\\\"\\\\n  Median-based p-values: {[f'{p:.6f}' for p in all_perm_p]}\\\")\\n        print(f\\\"  Mean-based p-values:   {[f'{p:.6f}' for p in all_perm_p_mean]}\\\")\\n\\n    n_tests = len(all_perm_p)\\n    if n_tests > 1:\\n        bonf = [min(p * n_tests, 1.0) for p in all_perm_p]\\n        bonf_mean = [min(p * n_tests, 1.0) for p in all_perm_p_mean]\\n        print(f\\\"  Bonferroni (median, k={n_tests}): {[f'{p:.6f}' for p in bonf]}\\\")\\n        print(f\\\"  Bonferroni (mean,   k={n_tests}): {[f'{p:.6f}' for p in bonf_mean]}\\\")\\n        for sl, bp, bpm in zip(results.keys(), bonf, bonf_mean):\\n            results[sl][\\\"permutation_test\\\"][\\\"bonferroni_p\\\"] = bp\\n            results[sl][\\\"permutation_test\\\"][\\\"bonferroni_p_mean\\\"] = bpm\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"permutation_test_results.json\\\"\\n\\n    output = {\\n        \\\"description\\\": \\\"Paired permutation test: importance vs random masking II gradients\\\",\\n        \\\"config\\\": {\\n            \\\"seed\\\": args.seed,\\n            \\\"n_permutations\\\": args.n_perm,\\n            \\\"epsilon\\\": EPS,\\n            \\\"primary_statistic\\\": \\\"median\\\",\\n            \\\"auxiliary_statistic\\\": \\\"mean\\\",\\n        },\\n        \\\"sparsity_levels\\\": results,\\n    }\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "d120e947-542f-48eb-a8a7-6d827b8363e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def analyze_one_level(slevel: str, n_perm: int, rng: np.random.Generator) -> dict | None:\\\\n    imp_path = _find_result_file(\\\\\\\"importance\\\\\\\", slevel)\\\\n    rnd_path = _find_result_file(\\\\\\\"random\\\\\\\", slevel)\\\\n\\\\n    if imp_path is None:\\\\n        print(f\\\\\\\"  [{slevel}] importance results not found, skipping\\\\\\\")\\\\n        return None\\\\n    if rnd_path is None:\\\\n        print(f\\\\\\\"  [{slevel}] random results not found, skipping\\\\\\\")\\\\n        return None\\\\n\\\\n    print(f\\\\\\\"  [{slevel}] imp={imp_path.parent.name}, rnd={rnd_path.parent.name}\\\\\\\")\\\\n\\\\n    imp_data = _load_per_problem(imp_path, slevel)\\\\n    rnd_data = _load_per_problem(rnd_path, slevel)\\\\n\\\\n    if not imp_data or not rnd_data:\\\\n        print(f\\\\\\\"  [{slevel}] empty per_problem_ii, skipping\\\\\\\")\\\\n        return None\\\\n\\\\n    common_pids = sorted(set(imp_data.keys()) & set(rnd_data.keys()))\\\\n    imp_grads, rnd_grads = [], []\\\\n    for pid in common_pids:\\\\n        ig = compute_gradient(imp_data[pid])\\\\n        rg = compute_gradient(rnd_data[pid])\\\\n        if ig is not None and rg is not None:\\\\n            imp_grads.append(ig)\\\\n            rnd_grads.append(rg)\\\\n\\\\n    n_paired = len(imp_grads)\\\\n    if n_paired < 5:\\\\n        print(f\\\\\\\"  [{slevel}] only {n_paired} paired problems (need >=5), skipping\\\\\\\")\\\\n        return None\\\\n\\\\n    imp_arr = np.array(imp_grads)\\\\n    rnd_arr = np.array(rnd_grads)\\\\n\\\\n    perm_result = paired_permutation_test(imp_arr, rnd_arr, n_perm, rng)\\\\n    wilc_result = wilcoxon_test(imp_arr, rnd_arr)\\\\n\\\\n    imp_median = float(np.median(imp_arr))\\\\n    rnd_median = float(np.median(rnd_arr))\\\\n\\\\n    result = {\\\\n        \\\\\\\"n_problems_importance\\\\\\\": len(imp_data),\\\\n        \\\\\\\"n_problems_random\\\\\\\": len(rnd_data),\\\\n        \\\\\\\"n_paired\\\\\\\": n_paired,\\\\n        \\\\\\\"importance_gradient_median\\\\\\\": imp_median,\\\\n        \\\\\\\"importance_gradient_mean\\\\\\\": float(np.mean(imp_arr)),\\\\n        \\\\\\\"importance_gradient_std\\\\\\\": float(np.std(imp_arr)),\\\\n        \\\\\\\"random_gradient_median\\\\\\\": rnd_median,\\\\n        \\\\\\\"random_gradient_mean\\\\\\\": float(np.mean(rnd_arr)),\\\\n        \\\\\\\"random_gradient_std\\\\\\\": float(np.std(rnd_arr)),\\\\n        \\\\\\\"gradient_ratio\\\\\\\": float(imp_median / rnd_median) if abs(rnd_median) >= EPS else None,\\\\n        \\\\\\\"gradient_ratio_mean\\\\\\\": float(np.mean(imp_arr) / np.mean(rnd_arr)) if abs(np.mean(rnd_arr)) >= EPS else None,\\\\n        \\\\\\\"permutation_test\\\\\\\": {\\\\n            \\\\\\\"n_permutations\\\\\\\": n_perm,\\\\n            \\\\\\\"observed_median_diff\\\\\\\": perm_result[\\\\\\\"observed_median_diff\\\\\\\"],\\\\n            \\\\\\\"p_value\\\\\\\": perm_result[\\\\\\\"p_value\\\\\\\"],\\\\n            \\\\\\\"ci_95_low\\\\\\\": perm_result[\\\\\\\"ci_95_low\\\\\\\"],\\\\n            \\\\\\\"ci_95_high\\\\\\\": perm_result[\\\\\\\"ci_95_high\\\\\\\"],\\\\n            \\\\\\\"observed_mean_diff\\\\\\\": perm_result[\\\\\\\"observed_mean_diff\\\\\\\"],\\\\n            \\\\\\\"p_value_mean\\\\\\\": perm_result[\\\\\\\"p_value_mean\\\\\\\"],\\\\n        },\\\\n        \\\\\\\"wilcoxon_test\\\\\\\": wilc_result,\\\\n    }\\\\n\\\\n    ratio_str = f\\\\\\\"{result['gradient_ratio']:.1f}x\\\\\\\" if result['gradient_ratio'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n    print(f\\\\\\\"  [{slevel}] n_paired={n_paired}, \\\\\\\"\\\\n          f\\\\\\\"imp_median={imp_median:.2f}, rnd_median={rnd_median:.2f}, \\\\\\\"\\\\n          f\\\\\\\"ratio={ratio_str}, \\\\\\\"\\\\n          f\\\\\\\"perm_p(median)={perm_result['p_value']:.6f}, \\\\\\\"\\\\n          f\\\\\\\"perm_p(mean)={perm_result['p_value_mean']:.6f}, \\\\\\\"\\\\n          f\\\\\\\"wilcoxon_p={wilc_result.get('p_value', 'N/A')}\\\\\\\")\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Paired permutation test: importance vs random II gradients\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=str(BASE_DIR / \\\\\\\"analysis_output\\\\\\\"),\\\\n                        help=\\\\\\\"Output directory for results JSON\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=DEFAULT_SEED)\\\\n    parser.add_argument(\\\\\\\"--n-perm\\\\\\\", type=int, default=DEFAULT_N_PERM)\\\\n    args = parser.parse_args()\\\\n\\\\n    rng = np.random.default_rng(args.seed)\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Paired Permutation Test: Importance vs Random II Gradients\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\\\\\\\")\\\\n    print(f\\\\\\\"Primary statistic: median | Auxiliary: mean\\\\\\\")\\\\n    print()\\\\n\\\\n    results = {}\\\\n    for sl in SPARSITY_LEVELS:\\\\n        r = analyze_one_level(sl, args.n_perm, rng)\\\\n        if r is not None:\\\\n            results[sl] = r\\\\n\\\\n    if not results:\\\\n        print(\\\\\\\"\\\\\\\\nNo sparsity levels had paired data. Exiting.\\\\\\\")\\\\n        sys.exit(0)\\\\n\\\\n    print()\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    all_perm_p = [r[\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"p_value\\\\\\\"] for r in results.values()]\\\\n    all_perm_p_mean = [r[\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"p_value_mean\\\\\\\"] for r in results.values()]\\\\n\\\\n    for sl, r in results.items():\\\\n        p_med = r[\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"p_value\\\\\\\"]\\\\n        p_mean = r[\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"p_value_mean\\\\\\\"]\\\\n        sig = \\\\\\\"***\\\\\\\" if p_med < 0.001 else \\\\\\\"**\\\\\\\" if p_med < 0.01 else \\\\\\\"*\\\\\\\" if p_med < 0.05 else \\\\\\\"n.s.\\\\\\\"\\\\n        gr_str = f\\\\\\\"{r['gradient_ratio']:.1f}x\\\\\\\" if r['gradient_ratio'] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        print(f\\\\\\\"  {sl}: gradient_ratio={gr_str}  \\\\\\\"\\\\n              f\\\\\\\"perm_p(median)={p_med:.6f} {sig}  \\\\\\\"\\\\n              f\\\\\\\"perm_p(mean)={p_mean:.6f}  \\\\\\\"\\\\n              f\\\\\\\"wilcoxon_p={r['wilcoxon_test'].get('p_value', 'N/A')}\\\\\\\")\\\\n\\\\n    if all_perm_p:\\\\n        print(f\\\\\\\"\\\\\\\\n  Median-based p-values: {[f'{p:.6f}' for p in all_perm_p]}\\\\\\\")\\\\n        print(f\\\\\\\"  Mean-based p-values:   {[f'{p:.6f}' for p in all_perm_p_mean]}\\\\\\\")\\\\n\\\\n    n_tests = len(all_perm_p)\\\\n    if n_tests > 1:\\\\n        bonf = [min(p * n_tests, 1.0) for p in all_perm_p]\\\\n        bonf_mean = [min(p * n_tests, 1.0) for p in all_perm_p_mean]\\\\n        print(f\\\\\\\"  Bonferroni (median, k={n_tests}): {[f'{p:.6f}' for p in bonf]}\\\\\\\")\\\\n        print(f\\\\\\\"  Bonferroni (mean,   k={n_tests}): {[f'{p:.6f}' for p in bonf_mean]}\\\\\\\")\\\\n        for sl, bp, bpm in zip(results.keys(), bonf, bonf_mean):\\\\n            results[sl][\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"bonferroni_p\\\\\\\"] = bp\\\\n            results[sl][\\\\\\\"permutation_test\\\\\\\"][\\\\\\\"bonferroni_p_mean\\\\\\\"] = bpm\\\\n\\\\n    out_dir = Path(args.output_dir)\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    out_path = out_dir / \\\\\\\"permutation_test_results.json\\\\\\\"\\\\n\\\\n    output = {\\\\n        \\\\\\\"description\\\\\\\": \\\\\\\"Paired permutation test: importance vs random masking II gradients\\\\\\\",\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"seed\\\\\\\": args.seed,\\\\n            \\\\\\\"n_permutations\\\\\\\": args.n_perm,\\\\n            \\\\\\\"epsilon\\\\\\\": EPS,\\\\n            \\\\\\\"primary_statistic\\\\\\\": \\\\\\\"median\\\\\\\",\\\\n            \\\\\\\"auxiliary_statistic\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n        },\\\\n        \\\\\\\"sparsity_levels\\\\\\\": results,\\\\n    }\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def analyze_one_level(slevel: str, n_perm: int, rng: np.random.Generator) -> dict | None:\\n    imp_path = _find_result_file(\\\"importance\\\", slevel)\\n    rnd_path = _find_result_file(\\\"random\\\", slevel)\\n\\n    if imp_path is None:\\n        print(f\\\"  [{slevel}] importance results not found, skipping\\\")\\n        return None\\n    if rnd_path is None:\\n        print(f\\\"  [{slevel}] random results not found, skipping\\\")\\n        return None\\n\\n    print(f\\\"  [{slevel}] imp={imp_path.parent.name}, rnd={rnd_path.parent.name}\\\")\\n\\n    imp_data = _load_per_problem(imp_path, slevel)\\n    rnd_data = _load_per_problem(rnd_path, slevel)\\n\\n    if not imp_data or not rnd_data:\\n        print(f\\\"  [{slevel}] empty per_problem_ii, skipping\\\")\\n        return None\\n\\n    common_pids = sorted(set(imp_data.keys()) & set(rnd_data.keys()))\\n    imp_grads, rnd_grads = [], []\\n    for pid in common_pids:\\n        ig = compute_gradient(imp_data[pid])\\n        rg = compute_gradient(rnd_data[pid])\\n        if ig is not None and rg is not None:\\n            imp_grads.append(ig)\\n            rnd_grads.append(rg)\\n\\n    n_paired = len(imp_grads)\\n    if n_paired < 5:\\n        print(f\\\"  [{slevel}] only {n_paired} paired problems (need >=5), skipping\\\")\\n        return None\\n\\n    imp_arr = np.array(imp_grads)\\n    rnd_arr = np.array(rnd_grads)\\n\\n    perm_result = paired_permutation_test(imp_arr, rnd_arr, n_perm, rng)\\n    wilc_result = wilcoxon_test(imp_arr, rnd_arr)\\n\\n    imp_median = float(np.median(imp_arr))\\n    rnd_median = float(np.median(rnd_arr))\\n\\n    result = {\\n        \\\"n_problems_importance\\\": len(imp_data),\\n        \\\"n_problems_random\\\": len(rnd_data),\\n        \\\"n_paired\\\": n_paired,\\n        \\\"importance_gradient_median\\\": imp_median,\\n        \\\"importance_gradient_mean\\\": float(np.mean(imp_arr)),\\n        \\\"importance_gradient_std\\\": float(np.std(imp_arr)),\\n        \\\"random_gradient_median\\\": rnd_median,\\n        \\\"random_gradient_mean\\\": float(np.mean(rnd_arr)),\\n        \\\"random_gradient_std\\\": float(np.std(rnd_arr)),\\n        \\\"gradient_ratio\\\": float(imp_median / rnd_median) if abs(rnd_median) >= EPS else None,\\n        \\\"gradient_ratio_mean\\\": float(np.mean(imp_arr) / np.mean(rnd_arr)) if abs(np.mean(rnd_arr)) >= EPS else None,\\n        \\\"permutation_test\\\": {\\n            \\\"n_permutations\\\": n_perm,\\n            \\\"observed_median_diff\\\": perm_result[\\\"observed_median_diff\\\"],\\n            \\\"p_value\\\": perm_result[\\\"p_value\\\"],\\n            \\\"ci_95_low\\\": perm_result[\\\"ci_95_low\\\"],\\n            \\\"ci_95_high\\\": perm_result[\\\"ci_95_high\\\"],\\n            \\\"observed_mean_diff\\\": perm_result[\\\"observed_mean_diff\\\"],\\n            \\\"p_value_mean\\\": perm_result[\\\"p_value_mean\\\"],\\n        },\\n        \\\"wilcoxon_test\\\": wilc_result,\\n    }\\n\\n    ratio_str = f\\\"{result['gradient_ratio']:.1f}x\\\" if result['gradient_ratio'] is not None else \\\"N/A\\\"\\n    print(f\\\"  [{slevel}] n_paired={n_paired}, \\\"\\n          f\\\"imp_median={imp_median:.2f}, rnd_median={rnd_median:.2f}, \\\"\\n          f\\\"ratio={ratio_str}, \\\"\\n          f\\\"perm_p(median)={perm_result['p_value']:.6f}, \\\"\\n          f\\\"perm_p(mean)={perm_result['p_value_mean']:.6f}, \\\"\\n          f\\\"wilcoxon_p={wilc_result.get('p_value', 'N/A')}\\\")\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Paired permutation test: importance vs random II gradients\\\"\\n    )\\n    parser.add_argument(\\\"--output-dir\\\", default=str(BASE_DIR / \\\"analysis_output\\\"),\\n                        help=\\\"Output directory for results JSON\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=DEFAULT_SEED)\\n    parser.add_argument(\\\"--n-perm\\\", type=int, default=DEFAULT_N_PERM)\\n    args = parser.parse_args()\\n\\n    rng = np.random.default_rng(args.seed)\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Paired Permutation Test: Importance vs Random II Gradients\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\\\")\\n    print(f\\\"Primary statistic: median | Auxiliary: mean\\\")\\n    print()\\n\\n    results = {}\\n    for sl in SPARSITY_LEVELS:\\n        r = analyze_one_level(sl, args.n_perm, rng)\\n        if r is not None:\\n            results[sl] = r\\n\\n    if not results:\\n        print(\\\"\\\\nNo sparsity levels had paired data. Exiting.\\\")\\n        sys.exit(0)\\n\\n    print()\\n    print(\\\"-\\\" * 60)\\n    print(\\\"SUMMARY\\\")\\n    print(\\\"-\\\" * 60)\\n    all_perm_p = [r[\\\"permutation_test\\\"][\\\"p_value\\\"] for r in results.values()]\\n    all_perm_p_mean = [r[\\\"permutation_test\\\"][\\\"p_value_mean\\\"] for r in results.values()]\\n\\n    for sl, r in results.items():\\n        p_med = r[\\\"permutation_test\\\"][\\\"p_value\\\"]\\n        p_mean = r[\\\"permutation_test\\\"][\\\"p_value_mean\\\"]\\n        sig = \\\"***\\\" if p_med < 0.001 else \\\"**\\\" if p_med < 0.01 else \\\"*\\\" if p_med < 0.05 else \\\"n.s.\\\"\\n        gr_str = f\\\"{r['gradient_ratio']:.1f}x\\\" if r['gradient_ratio'] is not None else \\\"N/A\\\"\\n        print(f\\\"  {sl}: gradient_ratio={gr_str}  \\\"\\n              f\\\"perm_p(median)={p_med:.6f} {sig}  \\\"\\n              f\\\"perm_p(mean)={p_mean:.6f}  \\\"\\n              f\\\"wilcoxon_p={r['wilcoxon_test'].get('p_value', 'N/A')}\\\")\\n\\n    if all_perm_p:\\n        print(f\\\"\\\\n  Median-based p-values: {[f'{p:.6f}' for p in all_perm_p]}\\\")\\n        print(f\\\"  Mean-based p-values:   {[f'{p:.6f}' for p in all_perm_p_mean]}\\\")\\n\\n    n_tests = len(all_perm_p)\\n    if n_tests > 1:\\n        bonf = [min(p * n_tests, 1.0) for p in all_perm_p]\\n        bonf_mean = [min(p * n_tests, 1.0) for p in all_perm_p_mean]\\n        print(f\\\"  Bonferroni (median, k={n_tests}): {[f'{p:.6f}' for p in bonf]}\\\")\\n        print(f\\\"  Bonferroni (mean,   k={n_tests}): {[f'{p:.6f}' for p in bonf_mean]}\\\")\\n        for sl, bp, bpm in zip(results.keys(), bonf, bonf_mean):\\n            results[sl][\\\"permutation_test\\\"][\\\"bonferroni_p\\\"] = bp\\n            results[sl][\\\"permutation_test\\\"][\\\"bonferroni_p_mean\\\"] = bpm\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"permutation_test_results.json\\\"\\n\\n    output = {\\n        \\\"description\\\": \\\"Paired permutation test: importance vs random masking II gradients\\\",\\n        \\\"config\\\": {\\n            \\\"seed\\\": args.seed,\\n            \\\"n_permutations\\\": args.n_perm,\\n            \\\"epsilon\\\": EPS,\\n            \\\"primary_statistic\\\": \\\"median\\\",\\n            \\\"auxiliary_statistic\\\": \\\"mean\\\",\\n        },\\n        \\\"sparsity_levels\\\": results,\\n    }\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full file. Let me also check which data directories exist on the server to understand the available data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "12b2a444-d9ac-4166-a0e8-e0c13a0332de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKtbQueUhhykiiUGWqroDo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3040,
+      "cache_read_input_tokens": 30777,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+确认一下可用的数据目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "85162e46-c830-44ab-95b9-61b24661936a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKtbQueUhhykiiUGWqroDo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3040,
+      "cache_read_input_tokens": 30777,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HfK7ZLypsqu6ntmMKq4fwR`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -d /root/autodl-tmp/pacs/profiling_output_*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "1326ce28-0768-48d4-9b4e-8e251a5637c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKtbQueUhhykiiUGWqroDo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3040,
+      "cache_read_input_tokens": 30777,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3040
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T07:00:31.688Z_
+
+<details><summary>↩ Tool result · `toolu_01HfK7ZLypsqu6ntmMKq4fwR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify\\n/root/autodl-tmp/pacs/profiling_output_dryrun\\n/root/autodl-tmp/pacs/profiling_output_float32_s030\\n/root/autodl-tmp/pacs/profiling_output_qwen_dryrun\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_qwen_pilot\\n/root/autodl-tmp/pacs/profiling_output_sanity_check\\n/root/autodl-tmp/pacs/profiling_output_v2\\n/root/autodl-tmp/pacs/profiling_output_v3\\n/root/autodl-tmp/pacs/profiling_output_v4_random_r2\\n/root/autodl-tmp/pacs/profiling_output_v4_s025\\n/root/autodl-tmp/pacs/profiling_output_v4_s025.log\\n/root/autodl-tmp/pacs/profiling_output_v4_s035\\n/root/autodl-tmp/pacs/profiling_output_v4_s035.log\\n/root/autodl-tmp/pacs/profiling_output_v4_s040\\n/root/autodl-tmp/pacs/profiling_output_v4_s040.log\\n/root/autodl-tmp/pacs/profiling_output_v4a\\n/root/autodl-tmp/pacs/profiling_output_v4a.log\\n/root/autodl-tmp/pacs/profiling_output_v4a_r2\\n/root/autodl-tmp/pacs/profiling_output_v4b\\n/root/autodl-tmp/pacs/profiling_output_v4b.log\\n/root/autodl-tmp/pacs/profiling_output_v4b_r2\\n/root/autodl-tmp/pacs/profiling_output_v4c\\n/root/autodl-tmp/pacs/profiling_output_v4c.log\\n/root/autodl-tmp/pacs/profiling_output_v4c_r2\\n/root/autodl-tmp/pacs/profiling_output_v4d\\n/root/autodl-tmp/pacs/profiling_output_v4d.log\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s015\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s020\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s025\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s030\\n/root/autodl-tmp/pacs/profiling_output_v5_s015\\n/root/autodl-tmp/pacs/profiling_output_v5_s020\\n/root/autodl-tmp/pacs/profiling_output_v5_s020.log\\n/root/autodl-tmp/pacs/profiling_output_v5_s020_r2\\n/root/autodl-tmp/pacs/profiling_output_v5_s025\\n/root/autodl-tmp/pacs/profiling_output_v5_s030\\n/root/autodl-tmp/pacs/profiling_output_v5_s030.log\\n/root/autodl-tmp/pacs/profiling_output_v5_s030_r2\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s015\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s020\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s025\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "ee80c0f5-ff27-45fe-a90c-f31cf232e339",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify\\\\n/root/autodl-tmp/pacs/profiling_output_dryrun\\\\n/root/autodl-tmp/pacs/profiling_output_float32_s030\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_dryrun\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s015\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s020\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s025\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s030\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_pilot\\\\n/root/autodl-tmp/pacs/profiling_output_sanity_check\\\\n/root/autodl-tmp/pacs/profiling_output_v2\\\\n/root/autodl-tmp/pacs/profiling_output_v3\\\\n/root/autodl-tmp/pacs/profiling_output_v4_random_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s025.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s035\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s035.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s040\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s040.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4a\\\\n/root/autodl-tmp/pacs/profiling_output_v4a.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4a_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v4b\\\\n/root/autodl-tmp/pacs/profiling_output_v4b.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4b_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v4c\\\\n/root/autodl-tmp/pacs/profiling_output_v4c.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4c_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v4d\\\\n/root/autodl-tmp/pacs/profiling_output_v4d.log\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s015\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s020\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s030\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s015\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s020\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s020.log\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s020_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s030\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s030.log\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s030_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s015\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s020\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s030\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s015\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s020\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify\\n/root/autodl-tmp/pacs/profiling_output_dryrun\\n/root/autodl-tmp/pacs/profiling_output_float32_s030\\n/root/autodl-tmp/pacs/profiling_output_qwen_dryrun\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_qwen_pilot\\n/root/autodl-tmp/pacs/profiling_output_sanity_check\\n/root/autodl-tmp/pacs/profiling_output_v2\\n/root/autodl-tmp/pacs/profiling_output_v3\\n/root/autodl-tmp/pacs/profiling_output_v4_random_r2\\n/root/autodl-tmp/pacs/profiling_output_v4_s025\\n/root/autodl-tmp/pacs/profiling_output_v4_s025.log\\n/root/autodl-tmp/pacs/profiling_output_v4_s035\\n/root/autodl-tmp/pacs/profiling_output_v4_s035.log\\n/root/autodl-tmp/pacs/profiling_output_v4_s040\\n/root/autodl-tmp/pacs/profiling_output_v4_s040.log\\n/root/autodl-tmp/pacs/profiling_output_v4a\\n/root/autodl-tmp/pacs/profiling_output_v4a.log\\n/root/autodl-tmp/pacs/profiling_output_v4a_r2\\n/root/autodl-tmp/pacs/profiling_output_v4b\\n/root/autodl-tmp/pacs/profiling_output_v4b.log\\n/root/autodl-tmp/pacs/profiling_output_v4b_r2\\n/root/autodl-tmp/pacs/profiling_output_v4c\\n/root/autodl-tmp/pacs/profiling_output_v4c.log\\n/root/autodl-tmp/pacs/profiling_output_v4c_r2\\n/root/autodl-tmp/pacs/profiling_output_v4d\\n/root/autodl-tmp/pacs/profiling_output_v4d.log\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s015\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s020\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s025\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s030\\n/root/autodl-tmp/pacs/profiling_output_v5_s015\\n/root/autodl-tmp/pacs/profiling_output_v5_s020\\n/root/autodl-tmp/pacs/profiling_output_v5_s020.log\\n/root/autodl-tmp/pacs/profiling_output_v5_s020_r2\\n/root/autodl-tmp/pacs/profiling_output_v5_s025\\n/root/autodl-tmp/pacs/profiling_output_v5_s030\\n/root/autodl-tmp/pacs/profiling_output_v5_s030.log\\n/root/autodl-tmp/pacs/profiling_output_v5_s030_r2\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s015\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s020\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s025\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me prepare the modified file. Let me understand the changes needed:
+
+### Bug 1: _find_result_file - bf16 paths first
+
+Current order:
+1. `profiling_output_v6_{method}_{slevel}` (fp16)
+2. `profiling_output_v6_{method}_{slevel}_r3` (fp16)
+3. `profiling_output_v6_{method}_{slevel}_r2` (fp16)
+4. `profiling_output_bf16_ds_{method_short}_{slevel}` (bf16)
+
+
+5. 
+I need to reorder the path search so bf16 files are checked first before falling back to fp16 variants.
+
+### Bug 2: EPS edge case
+
+I also need to adjust the epsilon threshold from 1e-10 to 0.01 and handle the case when the absolute value of ii_high falls below this new threshold.
+
+I should track how many samples get filtered out due to the EPS condition and include that count in the output, plus add the difference between ii_low and ii_high as an alternative test statistic.
+
+The user's verification command references --sparsity_levels and --masking_methods arguments that don't currently exist in the CLI, so I should add those to match what they're trying to run.
+
+Actually, wait—the task is specifically about fixing those two bugs, not expanding the CLI. Let me stick to addressing the EPS threshold change and the path ordering issue.
+
+Now I'll write out the modified file with the key fixes: reordering the result file candidates to prioritize bf16, changing EPS from 1e-10 to 0.01 with a comment explaining why, tracking the filtered count in the analysis output, and adding a difference-based test statistic alongside the existing one.
+
+Writing the updated script... I'm also computing the difference statistic directly as ii_low minus ii_high to sidestep division-by-zero issues entirely. Now I'm setting up the script with argument parsing and initializing the key constants—sparsity levels, the epsilon threshold for filtering unstable gradients, and the permutation test parameters.
+
+I'm defining a helper function that searches for result files across different method naming conventions and output directory variations, checking for bf16 results first since they're more reliable than fp16.
+
+Now I need to add a `compute_difference` function alongside the existing ratio calculation, then modify `analyze_one_level` to collect differences for each problem and run the same paired permutation test on them. The key insight is that the difference statistic is `ii_low - ii_high`, which avoids division-by-zero issues, so I'll output both ratio and difference p-values in the final results. I need to track which gradients were filtered out due to the EPS threshold versus missing data. I'll count the total common problems, then separately track how many got filtered by EPS, and finally count the valid paired gradients that remain. I'm defining a helper function to check if an item is filtered by the EPS threshold, looking at the ii_high and ii_low values and returning true if the absolute difference is below EPS. Now I'm planning to write out the complete modified file with all the changes—reordering the result file candidates to prioritize bf16, adding the new compute_difference and _is_eps_filtered functions, and updating the analyze_one_level function to track filtered items properly. I'll add the `--sparsity-levels` argument to make the verification easier, then draft out the complete implementation.
+
+Writing the module... Setting the EPS threshold to filter out statistically unstable cases, then defining a helper function to locate the profiling results files across different experimental configurations and precision formats.
+
+Now I'm writing a loader that parses the JSON data and extracts per-problem metrics, handling various data structure formats that might appear in the results.
+
+Defining utility functions... Implementing the permutation test logic... Now I'm implementing the Wilcoxon signed-rank test, computing the test statistic and p-value from scipy, then calculating the effect size as the standardized z-score divided by the sample size, and returning all these metrics along with handling the edge case where all differences are zero.
+
+I'm also wrapping this in error handling for missing scipy and other exceptions, then defining a function to analyze results at a specific level by locating the importance and random result files, checking they exist, and logging the file paths. I'm filtering out problems where gradient computation failed due to epsilon constraints, then separately computing differences for all common problems without that filtering. I'm tracking how many paired samples I have for each metric to decide if there's enough data to proceed with the comparison.
+
+Now I'm checking if we have sufficient paired samples for either analysis, and if not, returning early. Otherwise, I'm setting up the result dictionary with counts of problems from each dataset and how many were filtered, then moving into the statistical tests—running a permutation test and Wilcoxon test on the gradient ratios if we have enough paired samples.
+
+Computing statistical summaries... Compiling statistical test results... Still writing analysis code... Finishing the output formatting and then setting up the argument parser for the main function... Now I'm iterating through each sparsity level to analyze the paired data, collecting results for those that have valid comparisons. After gathering all the results, I'm printing a summary section that extracts the permutation test p-values across all levels to compute aggregate statistics.
+
+Formatting the ratio statistics output... Writing statistical output... Applying Bonferroni correction to adjust the p-values for multiple comparisons, then storing those corrected values alongside the original permutation test results before saving everything to a JSON file. I'm working through different approaches to write this file to the server safely—shell escaping with heredocs gets messy with the special characters, so I'm settling on base64 encoding the content and using Python to decode and write it on the server side. I'm realizing the file contains triple-quoted docstrings, so a heredoc approach won't work cleanly. I'll encode the content in base64 instead, then decode and write it on the server to avoid escaping issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "84f5c7b8-a0fb-4209-b6ad-ac08a8a48072",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FUFTWnD63uEarK94PG6WF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1675,
+      "cache_read_input_tokens": 33817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1675
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+现在我有了完整的文件内容。准备写入修改后的版本。先在本地生成 base64 编码的内容，再发送到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "87ce8122-9806-43bb-a955-42d12a21d279",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FUFTWnD63uEarK94PG6WF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1675,
+      "cache_read_input_tokens": 33817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1675
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01898DFMDSPouwaQUJR7EmBw`</summary>
+
+```json
+{
+  "command": "cat << 'LOCALEOF' | base64 -w0\n\"\"\"Paired permutation test: importance vs random masking II gradients.\n\nInputs:\n  profiling_output_bf16_ds_{imp,rand}_s{015,020,025,030}/profiling_results.json  (preferred)\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json  (fp16 fallback)\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\n\nOutputs:\n  analysis_output/permutation_test_results.json   — structured results\n  stdout                                          — human-readable summary\n\nRatio gradient = ii_low / ii_high (skip if |ii_high| < EPS).\nDifference = ii_low - ii_high (no EPS filtering needed).\n\nFor each sparsity level, a paired permutation test (B=10000) and Wilcoxon signed-rank\ntest compare importance vs random across matched problems.\n\nPrimary test statistic: median of paired differences (robust to heavy tails).\nMean-based results kept as auxiliary output with _mean suffix.\nBoth ratio and difference statistics are reported.\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\n\nBASE_DIR = Path(\"/root/autodl-tmp/pacs\")\nSPARSITY_LEVELS = [\"s015\", \"s020\", \"s025\", \"s030\"]\nSPARSITY_MAP = {\"s015\": \"0.15\", \"s020\": \"0.2\", \"s025\": \"0.25\", \"s030\": \"0.3\"}\n# EPS=0.01: filter problems where |ii_high| < 0.01 — high-phase II too small\n# to be statistically meaningful, ratio gradient becomes numerically unstable\nEPS = 0.01\nDEFAULT_N_PERM = 10000\nDEFAULT_SEED = 42\n\n\ndef _find_result_file(method: str, slevel: str) -> Path | None:\n    method_short = {\"importance\": \"imp\", \"random\": \"rand\"}.get(method, method)\n    candidates = [\n        # bf16 preferred — fp16 has NaN filtering bias (D019)\n        BASE_DIR / f\"profiling_output_bf16_ds_{method_short}_{slevel}\" / \"profiling_results.json\",\n        # fp16 fallback\n        BASE_DIR / f\"profiling_output_v6_{method}_{slevel}\" / \"profiling_results.json\",\n        BASE_DIR / f\"profiling_output_v6_{method}_{slevel}_r3\" / \"profiling_results.json\",\n        BASE_DIR / f\"profiling_output_v6_{method}_{slevel}_r2\" / \"profiling_results.json\",\n    ]\n    for c in candidates:\n        if c.is_file():\n            return c\n    return None\n\n\ndef _load_per_problem(path: Path, slevel: str) -> dict[str, dict]:\n    with open(path) as f:\n        data = json.load(f)\n\n    skey = SPARSITY_MAP[slevel]\n    per_problem = data.get(\"per_problem_ii\", {})\n\n    if isinstance(per_problem, dict):\n        entries = per_problem.get(skey, [])\n        if isinstance(entries, dict):\n            return entries\n    elif isinstance(per_problem, list):\n        entries = per_problem\n    else:\n        return {}\n\n    if not isinstance(entries, list):\n        return {}\n\n    result = {}\n    for item in entries:\n        pid = item.get(\"problem_id\", item.get(\"problem_file\", f\"P{item.get('problem_idx', '?')}\"))\n        result[pid] = item\n    return result\n\n\ndef compute_gradient(item: dict) -> float | None:\n    \"\"\"Ratio gradient = ii_low / ii_high. Returns None if |ii_high| < EPS.\"\"\"\n    ii_high = item.get(\"ii_high\")\n    ii_low = item.get(\"ii_low\")\n    if ii_high is None or ii_low is None:\n        return None\n    h, l = float(ii_high), float(ii_low)\n    if abs(h) < EPS:\n        return None\n    return l / h\n\n\ndef compute_difference(item: dict) -> float | None:\n    \"\"\"Difference = ii_low - ii_high. No EPS filtering needed.\"\"\"\n    ii_high = item.get(\"ii_high\")\n    ii_low = item.get(\"ii_low\")\n    if ii_high is None or ii_low is None:\n        return None\n    return float(ii_low) - float(ii_high)\n\n\ndef _is_eps_filtered(item: dict) -> bool:\n    \"\"\"True if the item has valid ii values but |ii_high| < EPS.\"\"\"\n    ii_high = item.get(\"ii_high\")\n    ii_low = item.get(\"ii_low\")\n    if ii_high is None or ii_low is None:\n        return False\n    return abs(float(ii_high)) < EPS\n\n\ndef paired_permutation_test(\n    imp_vals: np.ndarray, rnd_vals: np.ndarray, n_perm: int, rng: np.random.Generator\n) -> dict:\n    \"\"\"Paired sign-flip permutation test with both median and mean statistics.\"\"\"\n    n = len(imp_vals)\n    diffs = imp_vals - rnd_vals\n    observed_median = float(np.median(diffs))\n    observed_mean = float(np.mean(diffs))\n\n    count_ge_median = 0\n    count_ge_mean = 0\n    for _ in range(n_perm):\n        signs = rng.choice([-1, 1], size=n)\n        perm_diffs = diffs * signs\n        if abs(np.median(perm_diffs)) >= abs(observed_median):\n            count_ge_median += 1\n        if abs(np.mean(perm_diffs)) >= abs(observed_mean):\n            count_ge_mean += 1\n\n    p_value = (count_ge_median + 1) / (n_perm + 1)\n    p_value_mean = (count_ge_mean + 1) / (n_perm + 1)\n\n    # 95% CI via bootstrap on median of diffs\n    boot_medians = np.array([\n        np.median(rng.choice(diffs, size=n, replace=True)) for _ in range(2000)\n    ])\n    ci_low = float(np.percentile(boot_medians, 2.5))\n    ci_high = float(np.percentile(boot_medians, 97.5))\n\n    return {\n        \"observed_median_diff\": observed_median,\n        \"p_value\": p_value,\n        \"ci_95_low\": ci_low,\n        \"ci_95_high\": ci_high,\n        \"observed_mean_diff\": observed_mean,\n        \"p_value_mean\": p_value_mean,\n    }\n\n\ndef wilcoxon_test(imp_vals: np.ndarray, rnd_vals: np.ndarray) -> dict:\n    try:\n        from scipy.stats import wilcoxon as _wilcoxon\n\n        diffs = imp_vals - rnd_vals\n        if np.all(diffs == 0):\n            return {\"statistic\": None, \"p_value\": 1.0, \"error\": \"all diffs zero\"}\n        stat, p = _wilcoxon(diffs, alternative=\"two-sided\")\n        n = len(diffs)\n        z = (stat - n * (n + 1) / 4) / np.sqrt(n * (n + 1) * (2 * n + 1) / 24)\n        r = abs(z) / np.sqrt(n)\n        return {\"statistic\": float(stat), \"p_value\": float(p), \"effect_size_r\": float(r)}\n    except ImportError:\n        return {\"statistic\": None, \"p_value\": None, \"error\": \"scipy not installed\"}\n    except Exception as e:\n        return {\"statistic\": None, \"p_value\": None, \"error\": str(e)}\n\n\ndef analyze_one_level(slevel: str, n_perm: int, rng: np.random.Generator) -> dict | None:\n    imp_path = _find_result_file(\"importance\", slevel)\n    rnd_path = _find_result_file(\"random\", slevel)\n\n    if imp_path is None:\n        print(f\"  [{slevel}] importance results not found, skipping\")\n        return None\n    if rnd_path is None:\n        print(f\"  [{slevel}] random results not found, skipping\")\n        return None\n\n    print(f\"  [{slevel}] imp={imp_path.parent.name}, rnd={rnd_path.parent.name}\")\n\n    imp_data = _load_per_problem(imp_path, slevel)\n    rnd_data = _load_per_problem(rnd_path, slevel)\n\n    if not imp_data or not rnd_data:\n        print(f\"  [{slevel}] empty per_problem_ii, skipping\")\n        return None\n\n    common_pids = sorted(set(imp_data.keys()) & set(rnd_data.keys()))\n\n    # Ratio gradients (subject to EPS filtering)\n    imp_grads, rnd_grads = [], []\n    n_filtered_eps = 0\n    for pid in common_pids:\n        ig = compute_gradient(imp_data[pid])\n        rg = compute_gradient(rnd_data[pid])\n        if ig is not None and rg is not None:\n            imp_grads.append(ig)\n            rnd_grads.append(rg)\n        elif _is_eps_filtered(imp_data[pid]) or _is_eps_filtered(rnd_data[pid]):\n            n_filtered_eps += 1\n\n    # Difference statistic (no EPS filtering)\n    imp_diffs, rnd_diffs = [], []\n    for pid in common_pids:\n        id_ = compute_difference(imp_data[pid])\n        rd = compute_difference(rnd_data[pid])\n        if id_ is not None and rd is not None:\n            imp_diffs.append(id_)\n            rnd_diffs.append(rd)\n\n    n_paired_ratio = len(imp_grads)\n    n_paired_diff = len(imp_diffs)\n\n    if n_paired_ratio < 5 and n_paired_diff < 5:\n        print(f\"  [{slevel}] too few paired problems (ratio={n_paired_ratio}, diff={n_paired_diff}), skipping\")\n        return None\n\n    result = {\n        \"n_problems_importance\": len(imp_data),\n        \"n_problems_random\": len(rnd_data),\n        \"n_common\": len(common_pids),\n        \"n_filtered_eps\": n_filtered_eps,\n    }\n\n    # --- Ratio-based analysis ---\n    if n_paired_ratio >= 5:\n        imp_arr = np.array(imp_grads)\n        rnd_arr = np.array(rnd_grads)\n\n        perm_result = paired_permutation_test(imp_arr, rnd_arr, n_perm, rng)\n        wilc_result = wilcoxon_test(imp_arr, rnd_arr)\n\n        imp_median = float(np.median(imp_arr))\n        rnd_median = float(np.median(rnd_arr))\n\n        result.update({\n            \"n_paired\": n_paired_ratio,\n            \"importance_gradient_median\": imp_median,\n            \"importance_gradient_mean\": float(np.mean(imp_arr)),\n            \"importance_gradient_std\": float(np.std(imp_arr)),\n            \"random_gradient_median\": rnd_median,\n            \"random_gradient_mean\": float(np.mean(rnd_arr)),\n            \"random_gradient_std\": float(np.std(rnd_arr)),\n            \"gradient_ratio\": float(imp_median / rnd_median) if abs(rnd_median) >= EPS else None,\n            \"gradient_ratio_mean\": float(np.mean(imp_arr) / np.mean(rnd_arr)) if abs(np.mean(rnd_arr)) >= EPS else None,\n            \"permutation_test\": {\n                \"statistic\": \"ratio\",\n                \"n_permutations\": n_perm,\n                \"observed_median_diff\": perm_result[\"observed_median_diff\"],\n                \"p_value\": perm_result[\"p_value\"],\n                \"ci_95_low\": perm_result[\"ci_95_low\"],\n                \"ci_95_high\": perm_result[\"ci_95_high\"],\n                \"observed_mean_diff\": perm_result[\"observed_mean_diff\"],\n                \"p_value_mean\": perm_result[\"p_value_mean\"],\n            },\n            \"wilcoxon_test\": wilc_result,\n        })\n\n        ratio_str = f\"{result['gradient_ratio']:.1f}x\" if result['gradient_ratio'] is not None else \"N/A\"\n        print(f\"  [{slevel}] ratio: n_paired={n_paired_ratio}, eps_filtered={n_filtered_eps}, \"\n              f\"imp_median={imp_median:.2f}, rnd_median={rnd_median:.2f}, \"\n              f\"ratio={ratio_str}, \"\n              f\"perm_p(median)={perm_result['p_value']:.6f}, \"\n              f\"perm_p(mean)={perm_result['p_value_mean']:.6f}, \"\n              f\"wilcoxon_p={wilc_result.get('p_value', 'N/A')}\")\n    else:\n        print(f\"  [{slevel}] ratio: only {n_paired_ratio} paired (need >=5), skipped\")\n\n    # --- Difference-based analysis ---\n    if n_paired_diff >= 5:\n        imp_diff_arr = np.array(imp_diffs)\n        rnd_diff_arr = np.array(rnd_diffs)\n\n        perm_diff_result = paired_permutation_test(imp_diff_arr, rnd_diff_arr, n_perm, rng)\n        wilc_diff_result = wilcoxon_test(imp_diff_arr, rnd_diff_arr)\n\n        imp_diff_median = float(np.median(imp_diff_arr))\n        rnd_diff_median = float(np.median(rnd_diff_arr))\n\n        result.update({\n            \"n_paired_difference\": n_paired_diff,\n            \"importance_difference_median\": imp_diff_median,\n            \"importance_difference_mean\": float(np.mean(imp_diff_arr)),\n            \"random_difference_median\": rnd_diff_median,\n            \"random_difference_mean\": float(np.mean(rnd_diff_arr)),\n            \"permutation_test_difference\": {\n                \"statistic\": \"difference\",\n                \"n_permutations\": n_perm,\n                \"observed_median_diff\": perm_diff_result[\"observed_median_diff\"],\n                \"p_value\": perm_diff_result[\"p_value\"],\n                \"ci_95_low\": perm_diff_result[\"ci_95_low\"],\n                \"ci_95_high\": perm_diff_result[\"ci_95_high\"],\n                \"observed_mean_diff\": perm_diff_result[\"observed_mean_diff\"],\n                \"p_value_mean\": perm_diff_result[\"p_value_mean\"],\n            },\n            \"wilcoxon_test_difference\": wilc_diff_result,\n        })\n\n        print(f\"  [{slevel}] diff: n_paired={n_paired_diff}, \"\n              f\"imp_median={imp_diff_median:.4f}, rnd_median={rnd_diff_median:.4f}, \"\n              f\"perm_p(median)={perm_diff_result['p_value']:.6f}, \"\n              f\"perm_p(mean)={perm_diff_result['p_value_mean']:.6f}\")\n    else:\n        print(f\"  [{slevel}] diff: only {n_paired_diff} paired (need >=5), skipped\")\n\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Paired permutation test: importance vs random II gradients\"\n    )\n    parser.add_argument(\"--output-dir\", default=str(BASE_DIR / \"analysis_output\"),\n                        help=\"Output directory for results JSON\")\n    parser.add_argument(\"--seed\", type=int, default=DEFAULT_SEED)\n    parser.add_argument(\"--n-perm\", type=int, default=DEFAULT_N_PERM)\n    parser.add_argument(\"--sparsity-levels\", nargs=\"+\",\n                        help=\"Sparsity levels to test (e.g. 0.30 or s030)\")\n    args = parser.parse_args()\n\n    # Parse sparsity levels\n    if args.sparsity_levels:\n        levels = []\n        for s in args.sparsity_levels:\n            if s.startswith(\"s\"):\n                levels.append(s)\n            else:\n                key = f\"s{int(float(s)*100):03d}\"\n                levels.append(key)\n    else:\n        levels = SPARSITY_LEVELS\n\n    rng = np.random.default_rng(args.seed)\n\n    print(\"=\" * 60)\n    print(\"Paired Permutation Test: Importance vs Random II Gradients\")\n    print(\"=\" * 60)\n    print(f\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\")\n    print(f\"Statistics: ratio (ii_low/ii_high) + difference (ii_low-ii_high)\")\n    print()\n\n    results = {}\n    for sl in levels:\n        r = analyze_one_level(sl, args.n_perm, rng)\n        if r is not None:\n            results[sl] = r\n\n    if not results:\n        print(\"\\nNo sparsity levels had paired data. Exiting.\")\n        sys.exit(0)\n\n    print()\n    print(\"-\" * 60)\n    print(\"SUMMARY\")\n    print(\"-\" * 60)\n\n    # Ratio summary\n    ratio_results = {sl: r for sl, r in results.items() if \"permutation_test\" in r}\n    if ratio_results:\n        all_perm_p = [r[\"permutation_test\"][\"p_value\"] for r in ratio_results.values()]\n        all_perm_p_mean = [r[\"permutation_test\"][\"p_value_mean\"] for r in ratio_results.values()]\n\n        print(\"  [Ratio statistic]\")\n        for sl, r in ratio_results.items():\n            p_med = r[\"permutation_test\"][\"p_value\"]\n            p_mean = r[\"permutation_test\"][\"p_value_mean\"]\n            sig = \"***\" if p_med < 0.001 else \"**\" if p_med < 0.01 else \"*\" if p_med < 0.05 else \"n.s.\"\n            gr_str = f\"{r['gradient_ratio']:.1f}x\" if r['gradient_ratio'] is not None else \"N/A\"\n            print(f\"    {sl}: ratio={gr_str}  \"\n                  f\"perm_p(median)={p_med:.6f} {sig}  \"\n                  f\"perm_p(mean)={p_mean:.6f}  \"\n                  f\"wilcoxon_p={r['wilcoxon_test'].get('p_value', 'N/A')}  \"\n                  f\"eps_filtered={r['n_filtered_eps']}\")\n\n        if len(all_perm_p) > 1:\n            n_tests = len(all_perm_p)\n            bonf = [min(p * n_tests, 1.0) for p in all_perm_p]\n            bonf_mean = [min(p * n_tests, 1.0) for p in all_perm_p_mean]\n            print(f\"    Bonferroni (median, k={n_tests}): {[f'{p:.6f}' for p in bonf]}\")\n            print(f\"    Bonferroni (mean,   k={n_tests}): {[f'{p:.6f}' for p in bonf_mean]}\")\n            for sl, bp, bpm in zip(ratio_results.keys(), bonf, bonf_mean):\n                results[sl][\"permutation_test\"][\"bonferroni_p\"] = bp\n                results[sl][\"permutation_test\"][\"bonferroni_p_mean\"] = bpm\n\n    # Difference summary\n    diff_results = {sl: r for sl, r in results.items() if \"permutation_test_difference\" in r}\n    if diff_results:\n        all_diff_p = [r[\"permutation_test_difference\"][\"p_value\"] for r in diff_results.values()]\n        all_diff_p_mean = [r[\"permutation_test_difference\"][\"p_value_mean\"] for r in diff_results.values()]\n\n        print(\"  [Difference statistic]\")\n        for sl, r in diff_results.items():\n            p_med = r[\"permutation_test_difference\"][\"p_value\"]\n            p_mean = r[\"permutation_test_difference\"][\"p_value_mean\"]\n            sig = \"***\" if p_med < 0.001 else \"**\" if p_med < 0.01 else \"*\" if p_med < 0.05 else \"n.s.\"\n            print(f\"    {sl}: imp_diff_med={r['importance_difference_median']:.4f}  \"\n                  f\"rnd_diff_med={r['random_difference_median']:.4f}  \"\n                  f\"perm_p(median)={p_med:.6f} {sig}  \"\n                  f\"perm_p(mean)={p_mean:.6f}\")\n\n        if len(all_diff_p) > 1:\n            n_tests = len(all_diff_p)\n            bonf_diff = [min(p * n_tests, 1.0) for p in all_diff_p]\n            bonf_diff_mean = [min(p * n_tests, 1.0) for p in all_diff_p_mean]\n            print(f\"    Bonferroni (median, k={n_tests}): {[f'{p:.6f}' for p in bonf_diff]}\")\n            print(f\"    Bonferroni (mean,   k={n_tests}): {[f'{p:.6f}' for p in bonf_diff_mean]}\")\n            for sl, bp, bpm in zip(diff_results.keys(), bonf_diff, bonf_diff_mean):\n                results[sl][\"permutation_test_difference\"][\"bonferroni_p\"] = bp\n                results[sl][\"permutation_test_difference\"][\"bonferroni_p_mean\"] = bpm\n\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    out_path = out_dir / \"permutation_test_results.json\"\n\n    output = {\n        \"description\": \"Paired permutation test: importance vs random masking II gradients\",\n        \"config\": {\n            \"seed\": args.seed,\n            \"n_permutations\": args.n_perm,\n            \"epsilon\": EPS,\n            \"statistics\": [\"ratio\", \"difference\"],\n            \"primary_statistic\": \"median\",\n            \"auxiliary_statistic\": \"mean\",\n        },\n        \"sparsity_levels\": results,\n    }\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nLOCALEOF\n",
+  "description": "Base64 encode the modified permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "ea51bde9-2c88-4120-aab5-007075eede19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FUFTWnD63uEarK94PG6WF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1675,
+      "cache_read_input_tokens": 33817,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1675
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T07:03:47.692Z_
+
+<details><summary>↩ Tool result · `toolu_01898DFMDSPouwaQUJR7EmBw`</summary>
+
+```text
+[ATTACHMENT_DATA_REDACTED]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "8746f291-79cd-4086-8b2d-79829e540fce",
+  "tool_use_result": {
+    "stdout": "[ATTACHMENT_DATA_REDACTED]",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the base64 encoded content. Now let me write it to the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "ba01da60-7def-426c-90b7-88a7dab12cb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HBfvqEsGReJm6Bd4NGQKD2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 34376,
+      "cache_read_input_tokens": 35492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 34376
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+写入修改后的文件到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "e159df12-f603-4a07-9df5-17bb859310de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HBfvqEsGReJm6Bd4NGQKD2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 34376,
+      "cache_read_input_tokens": 35492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 34376
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015swB1T8KDqwFt1BHBbBQ4e`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "echo 'IiIiUGFpcmVkIHBlcm11dGF0aW9uIHRlc3Q6IGltcG9ydGFuY2UgdnMgcmFuZG9tIG1hc2tpbmcgSUkgZ3JhZGllbnRzLgoKSW5wdXRzOgogIHByb2ZpbGluZ19vdXRwdXRfYmYxNl9kc197aW1wLHJhbmR9X3N7MDE1LDAyMCwwMjUsMDMwfS9wcm9maWxpbmdfcmVzdWx0cy5qc29uICAocHJlZmVycmVkKQogIHByb2ZpbGluZ19vdXRwdXRfdjZfe2ltcG9ydGFuY2UscmFuZG9tfV9zezAxNSwwMjAsMDI1LDAzMH0vcHJvZmlsaW5nX3Jlc3VsdHMuanNvbiAgKGZwMTYgZmFsbGJhY2spCiAgRWFjaCBjb250YWlucyBwZXJfcHJvYmxlbV9paVtzcGFyc2l0eV9sZXZlbF0gd2l0aCBpaV9oaWdoLCBpaV9sb3cgcGVyIHByb2JsZW0uCgpPdXRwdXRzOgogIGFuYWx5c2lzX291dHB1dC9wZXJtdXRhdGlvbl90ZXN0X3Jlc3VsdHMuanNvbiAgIOKAlCBzdHJ1Y3R1cmVkIHJlc3VsdHMKICBzdGRvdXQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICDigJQgaHVtYW4tcmVhZGFibGUgc3VtbWFyeQoKUmF0aW8gZ3JhZGllbnQgPSBpaV9sb3cgLyBpaV9oaWdoIChza2lwIGlmIHxpaV9oaWdofCA8IEVQUykuCkRpZmZlcmVuY2UgPSBpaV9sb3cgLSBpaV9oaWdoIChubyBFUFMgZmlsdGVyaW5nIG5lZWRlZCkuCgpGb3IgZWFjaCBzcGFyc2l0eSBsZXZlbCwgYSBwYWlyZWQgcGVybXV0YXRpb24gdGVzdCAoQj0xMDAwMCkgYW5kIFdpbGNveG9uIHNpZ25lZC1yYW5rCnRlc3QgY29tcGFyZSBpbXBvcnRhbmNlIHZzIHJhbmRvbSBhY3Jvc3MgbWF0Y2hlZCBwcm9ibGVtcy4KClByaW1hcnkgdGVzdCBzdGF0aXN0aWM6IG1lZGlhbiBvZiBwYWlyZWQgZGlmZmVyZW5jZXMgKHJvYnVzdCB0byBoZWF2eSB0YWlscykuCk1lYW4tYmFzZWQgcmVzdWx0cyBrZXB0IGFzIGF1eGlsaWFyeSBvdXRwdXQgd2l0aCBfbWVhbiBzdWZmaXguCkJvdGggcmF0aW8gYW5kIGRpZmZlcmVuY2Ugc3RhdGlzdGljcyBhcmUgcmVwb3J0ZWQuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBzeXMKZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCgppbXBvcnQgbnVtcHkgYXMgbnAKCkJBU0VfRElSID0gUGF0aCgiL3Jvb3QvYXV0b2RsLXRtcC9wYWNzIikKU1BBUlNJVFlfTEVWRUxTID0gWyJzMDE1IiwgInMwMjAiLCAiczAyNSIsICJzMDMwIl0KU1BBUlNJVFlfTUFQID0geyJzMDE1IjogIjAuMTUiLCAiczAyMCI6ICIwLjIiLCAiczAyNSI6ICIwLjI1IiwgInMwMzAiOiAiMC4zIn0KIyBFUFM9MC4wMTogZmlsdGVyIHByb2JsZW1zIHdoZXJlIHxpaV9oaWdofCA8IDAuMDEg4oCUIGhpZ2gtcGhhc2UgSUkgdG9vIHNtYWxsCiMgdG8gYmUgc3RhdGlzdGljYWxseSBtZWFuaW5nZnVsLCByYXRpbyBncmFkaWVudCBiZWNvbWVzIG51bWVyaWNhbGx5IHVuc3RhYmxlCkVQUyA9IDAuMDEKREVGQVVMVF9OX1BFUk0gPSAxMDAwMApERUZBVUxUX1NFRUQgPSA0MgoKCmRlZiBfZmluZF9yZXN1bHRfZmlsZShtZXRob2Q6IHN0ciwgc2xldmVsOiBzdHIpIC0+IFBhdGggfCBOb25lOgogICAgbWV0aG9kX3Nob3J0ID0geyJpbXBvcnRhbmNlIjogImltcCIsICJyYW5kb20iOiAicmFuZCJ9LmdldChtZXRob2QsIG1ldGhvZCkKICAgIGNhbmRpZGF0ZXMgPSBbCiAgICAgICAgIyBiZjE2IHByZWZlcnJlZCDigJQgZnAxNiBoYXMgTmFOIGZpbHRlcmluZyBiaWFzIChEMDE5KQogICAgICAgIEJBU0VfRElSIC8gZiJwcm9maWxpbmdfb3V0cHV0X2JmMTZfZHNfe21ldGhvZF9zaG9ydH1fe3NsZXZlbH0iIC8gInByb2ZpbGluZ19yZXN1bHRzLmpzb24iLAogICAgICAgICMgZnAxNiBmYWxsYmFjawogICAgICAgIEJBU0VfRElSIC8gZiJwcm9maWxpbmdfb3V0cHV0X3Y2X3ttZXRob2R9X3tzbGV2ZWx9IiAvICJwcm9maWxpbmdfcmVzdWx0cy5qc29uIiwKICAgICAgICBCQVNFX0RJUiAvIGYicHJvZmlsaW5nX291dHB1dF92Nl97bWV0aG9kfV97c2xldmVsfV9yMyIgLyAicHJvZmlsaW5nX3Jlc3VsdHMuanNvbiIsCiAgICAgICAgQkFTRV9ESVIgLyBmInByb2ZpbGluZ19vdXRwdXRfdjZfe21ldGhvZH1fe3NsZXZlbH1fcjIiIC8gInByb2ZpbGluZ19yZXN1bHRzLmpzb24iLAogICAgXQogICAgZm9yIGMgaW4gY2FuZGlkYXRlczoKICAgICAgICBpZiBjLmlzX2ZpbGUoKToKICAgICAgICAgICAgcmV0dXJuIGMKICAgIHJldHVybiBOb25lCgoKZGVmIF9sb2FkX3Blcl9wcm9ibGVtKHBhdGg6IFBhdGgsIHNsZXZlbDogc3RyKSAtPiBkaWN0W3N0ciwgZGljdF06CiAgICB3aXRoIG9wZW4ocGF0aCkgYXMgZjoKICAgICAgICBkYXRhID0ganNvbi5sb2FkKGYpCgogICAgc2tleSA9IFNQQVJTSVRZX01BUFtzbGV2ZWxdCiAgICBwZXJfcHJvYmxlbSA9IGRhdGEuZ2V0KCJwZXJfcHJvYmxlbV9paSIsIHt9KQoKICAgIGlmIGlzaW5zdGFuY2UocGVyX3Byb2JsZW0sIGRpY3QpOgogICAgICAgIGVudHJpZXMgPSBwZXJfcHJvYmxlbS5nZXQoc2tleSwgW10pCiAgICAgICAgaWYgaXNpbnN0YW5jZShlbnRyaWVzLCBkaWN0KToKICAgICAgICAgICAgcmV0dXJuIGVudHJpZXMKICAgIGVsaWYgaXNpbnN0YW5jZShwZXJfcHJvYmxlbSwgbGlzdCk6CiAgICAgICAgZW50cmllcyA9IHBlcl9wcm9ibGVtCiAgICBlbHNlOgogICAgICAgIHJldHVybiB7fQoKICAgIGlmIG5vdCBpc2luc3RhbmNlKGVudHJpZXMsIGxpc3QpOgogICAgICAgIHJldHVybiB7fQoKICAgIHJlc3VsdCA9IHt9CiAgICBmb3IgaXRlbSBpbiBlbnRyaWVzOgogICAgICAgIHBpZCA9IGl0ZW0uZ2V0KCJwcm9ibGVtX2lkIiwgaXRlbS5nZXQoInByb2JsZW1fZmlsZSIsIGYiUHtpdGVtLmdldCgncHJvYmxlbV9pZHgnLCAnPycpfSIpKQogICAgICAgIHJlc3VsdFtwaWRdID0gaXRlbQogICAgcmV0dXJuIHJlc3VsdAoKCmRlZiBjb21wdXRlX2dyYWRpZW50KGl0ZW06IGRpY3QpIC0+IGZsb2F0IHwgTm9uZToKICAgICIiIlJhdGlvIGdyYWRpZW50ID0gaWlfbG93IC8gaWlfaGlnaC4gUmV0dXJucyBOb25lIGlmIHxpaV9oaWdofCA8IEVQUy4iIiIKICAgIGlpX2hpZ2ggPSBpdGVtLmdldCgiaWlfaGlnaCIpCiAgICBpaV9sb3cgPSBpdGVtLmdldCgiaWlfbG93IikKICAgIGlmIGlpX2hpZ2ggaXMgTm9uZSBvciBpaV9sb3cgaXMgTm9uZToKICAgICAgICByZXR1cm4gTm9uZQogICAgaCwgbCA9IGZsb2F0KGlpX2hpZ2gpLCBmbG9hdChpaV9sb3cpCiAgICBpZiBhYnMoaCkgPCBFUFM6CiAgICAgICAgcmV0dXJuIE5vbmUKICAgIHJldHVybiBsIC8gaAoKCmRlZiBjb21wdXRlX2RpZmZlcmVuY2UoaXRlbTogZGljdCkgLT4gZmxvYXQgfCBOb25lOgogICAgIiIiRGlmZmVyZW5jZSA9IGlpX2xvdyAtIGlpX2hpZ2guIE5vIEVQUyBmaWx0ZXJpbmcgbmVlZGVkLiIiIgogICAgaWlfaGlnaCA9IGl0ZW0uZ2V0KCJpaV9oaWdoIikKICAgIGlpX2xvdyA9IGl0ZW0uZ2V0KCJpaV9sb3ciKQogICAgaWYgaWlfaGlnaCBpcyBOb25lIG9yIGlpX2xvdyBpcyBOb25lOgogICAgICAgIHJldHVybiBOb25lCiAgICByZXR1cm4gZmxvYXQoaWlfbG93KSAtIGZsb2F0KGlpX2hpZ2gpCgoKZGVmIF9pc19lcHNfZmlsdGVyZWQoaXRlbTogZGljdCkgLT4gYm9vbDoKICAgICIiIlRydWUgaWYgdGhlIGl0ZW0gaGFzIHZhbGlkIGlpIHZhbHVlcyBidXQgfGlpX2hpZ2h8IDwgRVBTLiIiIgogICAgaWlfaGlnaCA9IGl0ZW0uZ2V0KCJpaV9oaWdoIikKICAgIGlpX2xvdyA9IGl0ZW0uZ2V0KCJpaV9sb3ciKQogICAgaWYgaWlfaGlnaCBpcyBOb25lIG9yIGlpX2xvdyBpcyBOb25lOgogICAgICAgIHJldHVybiBGYWxzZQogICAgcmV0dXJuIGFicyhmbG9hdChpaV9oaWdoKSkgPCBFUFMKCgpkZWYgcGFpcmVkX3Blcm11dGF0aW9uX3Rlc3QoCiAgICBpbXBfdmFsczogbnAubmRhcnJheSwgcm5kX3ZhbHM6IG5wLm5kYXJyYXksIG5fcGVybTogaW50LCBybmc6IG5wLnJhbmRvbS5HZW5lcmF0b3IKKSAtPiBkaWN0OgogICAgIiIiUGFpcmVkIHNpZ24tZmxpcCBwZXJtdXRhdGlvbiB0ZXN0IHdpdGggYm90aCBtZWRpYW4gYW5kIG1lYW4gc3RhdGlzdGljcy4iIiIKICAgIG4gPSBsZW4oaW1wX3ZhbHMpCiAgICBkaWZmcyA9IGltcF92YWxzIC0gcm5kX3ZhbHMKICAgIG9ic2VydmVkX21lZGlhbiA9IGZsb2F0KG5wLm1lZGlhbihkaWZmcykpCiAgICBvYnNlcnZlZF9tZWFuID0gZmxvYXQobnAubWVhbihkaWZmcykpCgogICAgY291bnRfZ2VfbWVkaWFuID0gMAogICAgY291bnRfZ2VfbWVhbiA9IDAKICAgIGZvciBfIGluIHJhbmdlKG5fcGVybSk6CiAgICAgICAgc2lnbnMgPSBybmcuY2hvaWNlKFstMSwgMV0sIHNpemU9bikKICAgICAgICBwZXJtX2RpZmZzID0gZGlmZnMgKiBzaWducwogICAgICAgIGlmIGFicyhucC5tZWRpYW4ocGVybV9kaWZmcykpID49IGFicyhvYnNlcnZlZF9tZWRpYW4pOgogICAgICAgICAgICBjb3VudF9nZV9tZWRpYW4gKz0gMQogICAgICAgIGlmIGFicyhucC5tZWFuKHBlcm1fZGlmZnMpKSA+PSBhYnMob2JzZXJ2ZWRfbWVhbik6CiAgICAgICAgICAgIGNvdW50X2dlX21lYW4gKz0gMQoKICAgIHBfdmFsdWUgPSAoY291bnRfZ2VfbWVkaWFuICsgMSkgLyAobl9wZXJtICsgMSkKICAgIHBfdmFsdWVfbWVhbiA9IChjb3VudF9nZV9tZWFuICsgMSkgLyAobl9wZXJtICsgMSkKCiAgICAjIDk1JSBDSSB2aWEgYm9vdHN0cmFwIG9uIG1lZGlhbiBvZiBkaWZmcwogICAgYm9vdF9tZWRpYW5zID0gbnAuYXJyYXkoWwogICAgICAgIG5wLm1lZGlhbihybmcuY2hvaWNlKGRpZmZzLCBzaXplPW4sIHJlcGxhY2U9VHJ1ZSkpIGZvciBfIGluIHJhbmdlKDIwMDApCiAgICBdKQogICAgY2lfbG93ID0gZmxvYXQobnAucGVyY2VudGlsZShib290X21lZGlhbnMsIDIuNSkpCiAgICBjaV9oaWdoID0gZmxvYXQobnAucGVyY2VudGlsZShib290X21lZGlhbnMsIDk3LjUpKQoKICAgIHJldHVybiB7CiAgICAgICAgIm9ic2VydmVkX21lZGlhbl9kaWZmIjogb2JzZXJ2ZWRfbWVkaWFuLAogICAgICAgICJwX3ZhbHVlIjogcF92YWx1ZSwKICAgICAgICAiY2lfOTVfbG93IjogY2lfbG93LAogICAgICAgICJjaV85NV9oaWdoIjogY2lfaGlnaCwKICAgICAgICAib2JzZXJ2ZWRfbWVhbl9kaWZmIjogb2JzZXJ2ZWRfbWVhbiwKICAgICAgICAicF92YWx1ZV9tZWFuIjogcF92YWx1ZV9tZWFuLAogICAgfQoKCmRlZiB3aWxjb3hvbl90ZXN0KGltcF92YWxzOiBucC5uZGFycmF5LCBybmRfdmFsczogbnAubmRhcnJheSkgLT4gZGljdDoKICAgIHRyeToKICAgICAgICBmcm9tIHNjaXB5LnN0YXRzIGltcG9ydCB3aWxjb3hvbiBhcyBfd2lsY294b24KCiAgICAgICAgZGlmZnMgPSBpbXBfdmFscyAtIHJuZF92YWxzCiAgICAgICAgaWYgbnAuYWxsKGRpZmZzID09IDApOgogICAgICAgICAgICByZXR1cm4geyJzdGF0aXN0aWMiOiBOb25lLCAicF92YWx1ZSI6IDEuMCwgImVycm9yIjogImFsbCBkaWZmcyB6ZXJvIn0KICAgICAgICBzdGF0LCBwID0gX3dpbGNveG9uKGRpZmZzLCBhbHRlcm5hdGl2ZT0idHdvLXNpZGVkIikKICAgICAgICBuID0gbGVuKGRpZmZzKQogICAgICAgIHogPSAoc3RhdCAtIG4gKiAobiArIDEpIC8gNCkgLyBucC5zcXJ0KG4gKiAobiArIDEpICogKDIgKiBuICsgMSkgLyAyNCkKICAgICAgICByID0gYWJzKHopIC8gbnAuc3FydChuKQogICAgICAgIHJldHVybiB7InN0YXRpc3RpYyI6IGZsb2F0KHN0YXQpLCAicF92YWx1ZSI6IGZsb2F0KHApLCAiZWZmZWN0X3NpemVfciI6IGZsb2F0KHIpfQogICAgZXhjZXB0IEltcG9ydEVycm9yOgogICAgICAgIHJldHVybiB7InN0YXRpc3RpYyI6IE5vbmUsICJwX3ZhbHVlIjogTm9uZSwgImVycm9yIjogInNjaXB5IG5vdCBpbnN0YWxsZWQifQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIHJldHVybiB7InN0YXRpc3RpYyI6IE5vbmUsICJwX3ZhbHVlIjogTm9uZSwgImVycm9yIjogc3RyKGUpfQoKCmRlZiBhbmFseXplX29uZV9sZXZlbChzbGV2ZWw6IHN0ciwgbl9wZXJtOiBpbnQsIHJuZzogbnAucmFuZG9tLkdlbmVyYXRvcikgLT4gZGljdCB8IE5vbmU6CiAgICBpbXBfcGF0aCA9IF9maW5kX3Jlc3VsdF9maWxlKCJpbXBvcnRhbmNlIiwgc2xldmVsKQogICAgcm5kX3BhdGggPSBfZmluZF9yZXN1bHRfZmlsZSgicmFuZG9tIiwgc2xldmVsKQoKICAgIGlmIGltcF9wYXRoIGlzIE5vbmU6CiAgICAgICAgcHJpbnQoZiIgIFt7c2xldmVsfV0gaW1wb3J0YW5jZSByZXN1bHRzIG5vdCBmb3VuZCwgc2tpcHBpbmciKQogICAgICAgIHJldHVybiBOb25lCiAgICBpZiBybmRfcGF0aCBpcyBOb25lOgogICAgICAgIHByaW50KGYiICBbe3NsZXZlbH1dIHJhbmRvbSByZXN1bHRzIG5vdCBmb3VuZCwgc2tpcHBpbmciKQogICAgICAgIHJldHVybiBOb25lCgogICAgcHJpbnQoZiIgIFt7c2xldmVsfV0gaW1wPXtpbXBfcGF0aC5wYXJlbnQubmFtZX0sIHJuZD17cm5kX3BhdGgucGFyZW50Lm5hbWV9IikKCiAgICBpbXBfZGF0YSA9IF9sb2FkX3Blcl9wcm9ibGVtKGltcF9wYXRoLCBzbGV2ZWwpCiAgICBybmRfZGF0YSA9IF9sb2FkX3Blcl9wcm9ibGVtKHJuZF9wYXRoLCBzbGV2ZWwpCgogICAgaWYgbm90IGltcF9kYXRhIG9yIG5vdCBybmRfZGF0YToKICAgICAgICBwcmludChmIiAgW3tzbGV2ZWx9XSBlbXB0eSBwZXJfcHJvYmxlbV9paSwgc2tpcHBpbmciKQogICAgICAgIHJldHVybiBOb25lCgogICAgY29tbW9uX3BpZHMgPSBzb3J0ZWQoc2V0KGltcF9kYXRhLmtleXMoKSkgJiBzZXQocm5kX2RhdGEua2V5cygpKSkKCiAgICAjIFJhdGlvIGdyYWRpZW50cyAoc3ViamVjdCB0byBFUFMgZmlsdGVyaW5nKQogICAgaW1wX2dyYWRzLCBybmRfZ3JhZHMgPSBbXSwgW10KICAgIG5fZmlsdGVyZWRfZXBzID0gMAogICAgZm9yIHBpZCBpbiBjb21tb25fcGlkczoKICAgICAgICBpZyA9IGNvbXB1dGVfZ3JhZGllbnQoaW1wX2RhdGFbcGlkXSkKICAgICAgICByZyA9IGNvbXB1dGVfZ3JhZGllbnQocm5kX2RhdGFbcGlkXSkKICAgICAgICBpZiBpZyBpcyBub3QgTm9uZSBhbmQgcmcgaXMgbm90IE5vbmU6CiAgICAgICAgICAgIGltcF9ncmFkcy5hcHBlbmQoaWcpCiAgICAgICAgICAgIHJuZF9ncmFkcy5hcHBlbmQocmcpCiAgICAgICAgZWxpZiBfaXNfZXBzX2ZpbHRlcmVkKGltcF9kYXRhW3BpZF0pIG9yIF9pc19lcHNfZmlsdGVyZWQocm5kX2RhdGFbcGlkXSk6CiAgICAgICAgICAgIG5fZmlsdGVyZWRfZXBzICs9IDEKCiAgICAjIERpZmZlcmVuY2Ugc3RhdGlzdGljIChubyBFUFMgZmlsdGVyaW5nKQogICAgaW1wX2RpZmZzLCBybmRfZGlmZnMgPSBbXSwgW10KICAgIGZvciBwaWQgaW4gY29tbW9uX3BpZHM6CiAgICAgICAgaWRfID0gY29tcHV0ZV9kaWZmZXJlbmNlKGltcF9kYXRhW3BpZF0pCiAgICAgICAgcmQgPSBjb21wdXRlX2RpZmZlcmVuY2Uocm5kX2RhdGFbcGlkXSkKICAgICAgICBpZiBpZF8gaXMgbm90IE5vbmUgYW5kIHJkIGlzIG5vdCBOb25lOgogICAgICAgICAgICBpbXBfZGlmZnMuYXBwZW5kKGlkXykKICAgICAgICAgICAgcm5kX2RpZmZzLmFwcGVuZChyZCkKCiAgICBuX3BhaXJlZF9yYXRpbyA9IGxlbihpbXBfZ3JhZHMpCiAgICBuX3BhaXJlZF9kaWZmID0gbGVuKGltcF9kaWZmcykKCiAgICBpZiBuX3BhaXJlZF9yYXRpbyA8IDUgYW5kIG5fcGFpcmVkX2RpZmYgPCA1OgogICAgICAgIHByaW50KGYiICBbe3NsZXZlbH1dIHRvbyBmZXcgcGFpcmVkIHByb2JsZW1zIChyYXRpbz17bl9wYWlyZWRfcmF0aW99LCBkaWZmPXtuX3BhaXJlZF9kaWZmfSksIHNraXBwaW5nIikKICAgICAgICByZXR1cm4gTm9uZQoKICAgIHJlc3VsdCA9IHsKICAgICAgICAibl9wcm9ibGVtc19pbXBvcnRhbmNlIjogbGVuKGltcF9kYXRhKSwKICAgICAgICAibl9wcm9ibGVtc19yYW5kb20iOiBsZW4ocm5kX2RhdGEpLAogICAgICAgICJuX2NvbW1vbiI6IGxlbihjb21tb25fcGlkcyksCiAgICAgICAgIm5fZmlsdGVyZWRfZXBzIjogbl9maWx0ZXJlZF9lcHMsCiAgICB9CgogICAgIyAtLS0gUmF0aW8tYmFzZWQgYW5hbHlzaXMgLS0tCiAgICBpZiBuX3BhaXJlZF9yYXRpbyA+PSA1OgogICAgICAgIGltcF9hcnIgPSBucC5hcnJheShpbXBfZ3JhZHMpCiAgICAgICAgcm5kX2FyciA9IG5wLmFycmF5KHJuZF9ncmFkcykKCiAgICAgICAgcGVybV9yZXN1bHQgPSBwYWlyZWRfcGVybXV0YXRpb25fdGVzdChpbXBfYXJyLCBybmRfYXJyLCBuX3Blcm0sIHJuZykKICAgICAgICB3aWxjX3Jlc3VsdCA9IHdpbGNveG9uX3Rlc3QoaW1wX2Fyciwgcm5kX2FycikKCiAgICAgICAgaW1wX21lZGlhbiA9IGZsb2F0KG5wLm1lZGlhbihpbXBfYXJyKSkKICAgICAgICBybmRfbWVkaWFuID0gZmxvYXQobnAubWVkaWFuKHJuZF9hcnIpKQoKICAgICAgICByZXN1bHQudXBkYXRlKHsKICAgICAgICAgICAgIm5fcGFpcmVkIjogbl9wYWlyZWRfcmF0aW8sCiAgICAgICAgICAgICJpbXBvcnRhbmNlX2dyYWRpZW50X21lZGlhbiI6IGltcF9tZWRpYW4sCiAgICAgICAgICAgICJpbXBvcnRhbmNlX2dyYWRpZW50X21lYW4iOiBmbG9hdChucC5tZWFuKGltcF9hcnIpKSwKICAgICAgICAgICAgImltcG9ydGFuY2VfZ3JhZGllbnRfc3RkIjogZmxvYXQobnAuc3RkKGltcF9hcnIpKSwKICAgICAgICAgICAgInJhbmRvbV9ncmFkaWVudF9tZWRpYW4iOiBybmRfbWVkaWFuLAogICAgICAgICAgICAicmFuZG9tX2dyYWRpZW50X21lYW4iOiBmbG9hdChucC5tZWFuKHJuZF9hcnIpKSwKICAgICAgICAgICAgInJhbmRvbV9ncmFkaWVudF9zdGQiOiBmbG9hdChucC5zdGQocm5kX2FycikpLAogICAgICAgICAgICAiZ3JhZGllbnRfcmF0aW8iOiBmbG9hdChpbXBfbWVkaWFuIC8gcm5kX21lZGlhbikgaWYgYWJzKHJuZF9tZWRpYW4pID49IEVQUyBlbHNlIE5vbmUsCiAgICAgICAgICAgICJncmFkaWVudF9yYXRpb19tZWFuIjogZmxvYXQobnAubWVhbihpbXBfYXJyKSAvIG5wLm1lYW4ocm5kX2FycikpIGlmIGFicyhucC5tZWFuKHJuZF9hcnIpKSA+PSBFUFMgZWxzZSBOb25lLAogICAgICAgICAgICAicGVybXV0YXRpb25fdGVzdCI6IHsKICAgICAgICAgICAgICAgICJzdGF0aXN0aWMiOiAicmF0aW8iLAogICAgICAgICAgICAgICAgIm5fcGVybXV0YXRpb25zIjogbl9wZXJtLAogICAgICAgICAgICAgICAgIm9ic2VydmVkX21lZGlhbl9kaWZmIjogcGVybV9yZXN1bHRbIm9ic2VydmVkX21lZGlhbl9kaWZmIl0sCiAgICAgICAgICAgICAgICAicF92YWx1ZSI6IHBlcm1fcmVzdWx0WyJwX3ZhbHVlIl0sCiAgICAgICAgICAgICAgICAiY2lfOTVfbG93IjogcGVybV9yZXN1bHRbImNpXzk1X2xvdyJdLAogICAgICAgICAgICAgICAgImNpXzk1X2hpZ2giOiBwZXJtX3Jlc3VsdFsiY2lfOTVfaGlnaCJdLAogICAgICAgICAgICAgICAgIm9ic2VydmVkX21lYW5fZGlmZiI6IHBlcm1fcmVzdWx0WyJvYnNlcnZlZF9tZWFuX2RpZmYiXSwKICAgICAgICAgICAgICAgICJwX3ZhbHVlX21lYW4iOiBwZXJtX3Jlc3VsdFsicF92YWx1ZV9tZWFuIl0sCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgICJ3aWxjb3hvbl90ZXN0Ijogd2lsY19yZXN1bHQsCiAgICAgICAgfSkKCiAgICAgICAgcmF0aW9fc3RyID0gZiJ7cmVzdWx0WydncmFkaWVudF9yYXRpbyddOi4xZn14IiBpZiByZXN1bHRbJ2dyYWRpZW50X3JhdGlvJ10gaXMgbm90IE5vbmUgZWxzZSAiTi9BIgogICAgICAgIHByaW50KGYiICBbe3NsZXZlbH1dIHJhdGlvOiBuX3BhaXJlZD17bl9wYWlyZWRfcmF0aW99LCBlcHNfZmlsdGVyZWQ9e25fZmlsdGVyZWRfZXBzfSwgIgogICAgICAgICAgICAgIGYiaW1wX21lZGlhbj17aW1wX21lZGlhbjouMmZ9LCBybmRfbWVkaWFuPXtybmRfbWVkaWFuOi4yZn0sICIKICAgICAgICAgICAgICBmInJhdGlvPXtyYXRpb19zdHJ9LCAiCiAgICAgICAgICAgICAgZiJwZXJtX3AobWVkaWFuKT17cGVybV9yZXN1bHRbJ3BfdmFsdWUnXTouNmZ9LCAiCiAgICAgICAgICAgICAgZiJwZXJtX3AobWVhbik9e3Blcm1fcmVzdWx0WydwX3ZhbHVlX21lYW4nXTouNmZ9LCAiCiAgICAgICAgICAgICAgZiJ3aWxjb3hvbl9wPXt3aWxjX3Jlc3VsdC5nZXQoJ3BfdmFsdWUnLCAnTi9BJyl9IikKICAgIGVsc2U6CiAgICAgICAgcHJpbnQoZiIgIFt7c2xldmVsfV0gcmF0aW86IG9ubHkge25fcGFpcmVkX3JhdGlvfSBwYWlyZWQgKG5lZWQgPj01KSwgc2tpcHBlZCIpCgogICAgIyAtLS0gRGlmZmVyZW5jZS1iYXNlZCBhbmFseXNpcyAtLS0KICAgIGlmIG5fcGFpcmVkX2RpZmYgPj0gNToKICAgICAgICBpbXBfZGlmZl9hcnIgPSBucC5hcnJheShpbXBfZGlmZnMpCiAgICAgICAgcm5kX2RpZmZfYXJyID0gbnAuYXJyYXkocm5kX2RpZmZzKQoKICAgICAgICBwZXJtX2RpZmZfcmVzdWx0ID0gcGFpcmVkX3Blcm11dGF0aW9uX3Rlc3QoaW1wX2RpZmZfYXJyLCBybmRfZGlmZl9hcnIsIG5fcGVybSwgcm5nKQogICAgICAgIHdpbGNfZGlmZl9yZXN1bHQgPSB3aWxjb3hvbl90ZXN0KGltcF9kaWZmX2Fyciwgcm5kX2RpZmZfYXJyKQoKICAgICAgICBpbXBfZGlmZl9tZWRpYW4gPSBmbG9hdChucC5tZWRpYW4oaW1wX2RpZmZfYXJyKSkKICAgICAgICBybmRfZGlmZl9tZWRpYW4gPSBmbG9hdChucC5tZWRpYW4ocm5kX2RpZmZfYXJyKSkKCiAgICAgICAgcmVzdWx0LnVwZGF0ZSh7CiAgICAgICAgICAgICJuX3BhaXJlZF9kaWZmZXJlbmNlIjogbl9wYWlyZWRfZGlmZiwKICAgICAgICAgICAgImltcG9ydGFuY2VfZGlmZmVyZW5jZV9tZWRpYW4iOiBpbXBfZGlmZl9tZWRpYW4sCiAgICAgICAgICAgICJpbXBvcnRhbmNlX2RpZmZlcmVuY2VfbWVhbiI6IGZsb2F0KG5wLm1lYW4oaW1wX2RpZmZfYXJyKSksCiAgICAgICAgICAgICJyYW5kb21fZGlmZmVyZW5jZV9tZWRpYW4iOiBybmRfZGlmZl9tZWRpYW4sCiAgICAgICAgICAgICJyYW5kb21fZGlmZmVyZW5jZV9tZWFuIjogZmxvYXQobnAubWVhbihybmRfZGlmZl9hcnIpKSwKICAgICAgICAgICAgInBlcm11dGF0aW9uX3Rlc3RfZGlmZmVyZW5jZSI6IHsKICAgICAgICAgICAgICAgICJzdGF0aXN0aWMiOiAiZGlmZmVyZW5jZSIsCiAgICAgICAgICAgICAgICAibl9wZXJtdXRhdGlvbnMiOiBuX3Blcm0sCiAgICAgICAgICAgICAgICAib2JzZXJ2ZWRfbWVkaWFuX2RpZmYiOiBwZXJtX2RpZmZfcmVzdWx0WyJvYnNlcnZlZF9tZWRpYW5fZGlmZiJdLAogICAgICAgICAgICAgICAgInBfdmFsdWUiOiBwZXJtX2RpZmZfcmVzdWx0WyJwX3ZhbHVlIl0sCiAgICAgICAgICAgICAgICAiY2lfOTVfbG93IjogcGVybV9kaWZmX3Jlc3VsdFsiY2lfOTVfbG93Il0sCiAgICAgICAgICAgICAgICAiY2lfOTVfaGlnaCI6IHBlcm1fZGlmZl9yZXN1bHRbImNpXzk1X2hpZ2giXSwKICAgICAgICAgICAgICAgICJvYnNlcnZlZF9tZWFuX2RpZmYiOiBwZXJtX2RpZmZfcmVzdWx0WyJvYnNlcnZlZF9tZWFuX2RpZmYiXSwKICAgICAgICAgICAgICAgICJwX3ZhbHVlX21lYW4iOiBwZXJtX2RpZmZfcmVzdWx0WyJwX3ZhbHVlX21lYW4iXSwKICAgICAgICAgICAgfSwKICAgICAgICAgICAgIndpbGNveG9uX3Rlc3RfZGlmZmVyZW5jZSI6IHdpbGNfZGlmZl9yZXN1bHQsCiAgICAgICAgfSkKCiAgICAgICAgcHJpbnQoZiIgIFt7c2xldmVsfV0gZGlmZjogbl9wYWlyZWQ9e25fcGFpcmVkX2RpZmZ9LCAiCiAgICAgICAgICAgICAgZiJpbXBfbWVkaWFuPXtpbXBfZGlmZl9tZWRpYW46LjRmfSwgcm5kX21lZGlhbj17cm5kX2RpZmZfbWVkaWFuOi40Zn0sICIKICAgICAgICAgICAgICBmInBlcm1fcChtZWRpYW4pPXtwZXJtX2RpZmZfcmVzdWx0WydwX3ZhbHVlJ106LjZmfSwgIgogICAgICAgICAgICAgIGYicGVybV9wKG1lYW4pPXtwZXJtX2RpZmZfcmVzdWx0WydwX3ZhbHVlX21lYW4nXTouNmZ9IikKICAgIGVsc2U6CiAgICAgICAgcHJpbnQoZiIgIFt7c2xldmVsfV0gZGlmZjogb25seSB7bl9wYWlyZWRfZGlmZn0gcGFpcmVkIChuZWVkID49NSksIHNraXBwZWQiKQoKICAgIHJldHVybiByZXN1bHQKCgpkZWYgbWFpbigpOgogICAgcGFyc2VyID0gYXJncGFyc2UuQXJndW1lbnRQYXJzZXIoCiAgICAgICAgZGVzY3JpcHRpb249IlBhaXJlZCBwZXJtdXRhdGlvbiB0ZXN0OiBpbXBvcnRhbmNlIHZzIHJhbmRvbSBJSSBncmFkaWVudHMiCiAgICApCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW91dHB1dC1kaXIiLCBkZWZhdWx0PXN0cihCQVNFX0RJUiAvICJhbmFseXNpc19vdXRwdXQiKSwKICAgICAgICAgICAgICAgICAgICAgICAgaGVscD0iT3V0cHV0IGRpcmVjdG9yeSBmb3IgcmVzdWx0cyBKU09OIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tc2VlZCIsIHR5cGU9aW50LCBkZWZhdWx0PURFRkFVTFRfU0VFRCkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tbi1wZXJtIiwgdHlwZT1pbnQsIGRlZmF1bHQ9REVGQVVMVF9OX1BFUk0pCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLXNwYXJzaXR5LWxldmVscyIsIG5hcmdzPSIrIiwKICAgICAgICAgICAgICAgICAgICAgICAgaGVscD0iU3BhcnNpdHkgbGV2ZWxzIHRvIHRlc3QgKGUuZy4gMC4zMCBvciBzMDMwKSIpCiAgICBhcmdzID0gcGFyc2VyLnBhcnNlX2FyZ3MoKQoKICAgICMgUGFyc2Ugc3BhcnNpdHkgbGV2ZWxzCiAgICBpZiBhcmdzLnNwYXJzaXR5X2xldmVsczoKICAgICAgICBsZXZlbHMgPSBbXQogICAgICAgIGZvciBzIGluIGFyZ3Muc3BhcnNpdHlfbGV2ZWxzOgogICAgICAgICAgICBpZiBzLnN0YXJ0c3dpdGgoInMiKToKICAgICAgICAgICAgICAgIGxldmVscy5hcHBlbmQocykKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIGtleSA9IGYic3tpbnQoZmxvYXQocykqMTAwKTowM2R9IgogICAgICAgICAgICAgICAgbGV2ZWxzLmFwcGVuZChrZXkpCiAgICBlbHNlOgogICAgICAgIGxldmVscyA9IFNQQVJTSVRZX0xFVkVMUwoKICAgIHJuZyA9IG5wLnJhbmRvbS5kZWZhdWx0X3JuZyhhcmdzLnNlZWQpCgogICAgcHJpbnQoIj0iICogNjApCiAgICBwcmludCgiUGFpcmVkIFBlcm11dGF0aW9uIFRlc3Q6IEltcG9ydGFuY2UgdnMgUmFuZG9tIElJIEdyYWRpZW50cyIpCiAgICBwcmludCgiPSIgKiA2MCkKICAgIHByaW50KGYiU2VlZD17YXJncy5zZWVkfSwgQj17YXJncy5uX3Blcm19LCBFUFM9e0VQU30iKQogICAgcHJpbnQoZiJTdGF0aXN0aWNzOiByYXRpbyAoaWlfbG93L2lpX2hpZ2gpICsgZGlmZmVyZW5jZSAoaWlfbG93LWlpX2hpZ2gpIikKICAgIHByaW50KCkKCiAgICByZXN1bHRzID0ge30KICAgIGZvciBzbCBpbiBsZXZlbHM6CiAgICAgICAgciA9IGFuYWx5emVfb25lX2xldmVsKHNsLCBhcmdzLm5fcGVybSwgcm5nKQogICAgICAgIGlmIHIgaXMgbm90IE5vbmU6CiAgICAgICAgICAgIHJlc3VsdHNbc2xdID0gcgoKICAgIGlmIG5vdCByZXN1bHRzOgogICAgICAgIHByaW50KCJcbk5vIHNwYXJzaXR5IGxldmVscyBoYWQgcGFpcmVkIGRhdGEuIEV4aXRpbmcuIikKICAgICAgICBzeXMuZXhpdCgwKQoKICAgIHByaW50KCkKICAgIHByaW50KCItIiAqIDYwKQogICAgcHJpbnQoIlNVTU1BUlkiKQogICAgcHJpbnQoIi0iICogNjApCgogICAgIyBSYXRpbyBzdW1tYXJ5CiAgICByYXRpb19yZXN1bHRzID0ge3NsOiByIGZvciBzbCwgciBpbiByZXN1bHRzLml0ZW1zKCkgaWYgInBlcm11dGF0aW9uX3Rlc3QiIGluIHJ9CiAgICBpZiByYXRpb19yZXN1bHRzOgogICAgICAgIGFsbF9wZXJtX3AgPSBbclsicGVybXV0YXRpb25fdGVzdCJdWyJwX3ZhbHVlIl0gZm9yIHIgaW4gcmF0aW9fcmVzdWx0cy52YWx1ZXMoKV0KICAgICAgICBhbGxfcGVybV9wX21lYW4gPSBbclsicGVybXV0YXRpb25fdGVzdCJdWyJwX3ZhbHVlX21lYW4iXSBmb3IgciBpbiByYXRpb19yZXN1bHRzLnZhbHVlcygpXQoKICAgICAgICBwcmludCgiICBbUmF0aW8gc3RhdGlzdGljXSIpCiAgICAgICAgZm9yIHNsLCByIGluIHJhdGlvX3Jlc3VsdHMuaXRlbXMoKToKICAgICAgICAgICAgcF9tZWQgPSByWyJwZXJtdXRhdGlvbl90ZXN0Il1bInBfdmFsdWUiXQogICAgICAgICAgICBwX21lYW4gPSByWyJwZXJtdXRhdGlvbl90ZXN0Il1bInBfdmFsdWVfbWVhbiJdCiAgICAgICAgICAgIHNpZyA9ICIqKioiIGlmIHBfbWVkIDwgMC4wMDEgZWxzZSAiKioiIGlmIHBfbWVkIDwgMC4wMSBlbHNlICIqIiBpZiBwX21lZCA8IDAuMDUgZWxzZSAibi5zLiIKICAgICAgICAgICAgZ3Jfc3RyID0gZiJ7clsnZ3JhZGllbnRfcmF0aW8nXTouMWZ9eCIgaWYgclsnZ3JhZGllbnRfcmF0aW8nXSBpcyBub3QgTm9uZSBlbHNlICJOL0EiCiAgICAgICAgICAgIHByaW50KGYiICAgIHtzbH06IHJhdGlvPXtncl9zdHJ9ICAiCiAgICAgICAgICAgICAgICAgIGYicGVybV9wKG1lZGlhbik9e3BfbWVkOi42Zn0ge3NpZ30gICIKICAgICAgICAgICAgICAgICAgZiJwZXJtX3AobWVhbik9e3BfbWVhbjouNmZ9ICAiCiAgICAgICAgICAgICAgICAgIGYid2lsY294b25fcD17clsnd2lsY294b25fdGVzdCddLmdldCgncF92YWx1ZScsICdOL0EnKX0gICIKICAgICAgICAgICAgICAgICAgZiJlcHNfZmlsdGVyZWQ9e3JbJ25fZmlsdGVyZWRfZXBzJ119IikKCiAgICAgICAgaWYgbGVuKGFsbF9wZXJtX3ApID4gMToKICAgICAgICAgICAgbl90ZXN0cyA9IGxlbihhbGxfcGVybV9wKQogICAgICAgICAgICBib25mID0gW21pbihwICogbl90ZXN0cywgMS4wKSBmb3IgcCBpbiBhbGxfcGVybV9wXQogICAgICAgICAgICBib25mX21lYW4gPSBbbWluKHAgKiBuX3Rlc3RzLCAxLjApIGZvciBwIGluIGFsbF9wZXJtX3BfbWVhbl0KICAgICAgICAgICAgcHJpbnQoZiIgICAgQm9uZmVycm9uaSAobWVkaWFuLCBrPXtuX3Rlc3RzfSk6IHtbZid7cDouNmZ9JyBmb3IgcCBpbiBib25mXX0iKQogICAgICAgICAgICBwcmludChmIiAgICBCb25mZXJyb25pIChtZWFuLCAgIGs9e25fdGVzdHN9KToge1tmJ3twOi42Zn0nIGZvciBwIGluIGJvbmZfbWVhbl19IikKICAgICAgICAgICAgZm9yIHNsLCBicCwgYnBtIGluIHppcChyYXRpb19yZXN1bHRzLmtleXMoKSwgYm9uZiwgYm9uZl9tZWFuKToKICAgICAgICAgICAgICAgIHJlc3VsdHNbc2xdWyJwZXJtdXRhdGlvbl90ZXN0Il1bImJvbmZlcnJvbmlfcCJdID0gYnAKICAgICAgICAgICAgICAgIHJlc3VsdHNbc2xdWyJwZXJtdXRhdGlvbl90ZXN0Il1bImJvbmZlcnJvbmlfcF9tZWFuIl0gPSBicG0KCiAgICAjIERpZmZlcmVuY2Ugc3VtbWFyeQogICAgZGlmZl9yZXN1bHRzID0ge3NsOiByIGZvciBzbCwgciBpbiByZXN1bHRzLml0ZW1zKCkgaWYgInBlcm11dGF0aW9uX3Rlc3RfZGlmZmVyZW5jZSIgaW4gcn0KICAgIGlmIGRpZmZfcmVzdWx0czoKICAgICAgICBhbGxfZGlmZl9wID0gW3JbInBlcm11dGF0aW9uX3Rlc3RfZGlmZmVyZW5jZSJdWyJwX3ZhbHVlIl0gZm9yIHIgaW4gZGlmZl9yZXN1bHRzLnZhbHVlcygpXQogICAgICAgIGFsbF9kaWZmX3BfbWVhbiA9IFtyWyJwZXJtdXRhdGlvbl90ZXN0X2RpZmZlcmVuY2UiXVsicF92YWx1ZV9tZWFuIl0gZm9yIHIgaW4gZGlmZl9yZXN1bHRzLnZhbHVlcygpXQoKICAgICAgICBwcmludCgiICBbRGlmZmVyZW5jZSBzdGF0aXN0aWNdIikKICAgICAgICBmb3Igc2wsIHIgaW4gZGlmZl9yZXN1bHRzLml0ZW1zKCk6CiAgICAgICAgICAgIHBfbWVkID0gclsicGVybXV0YXRpb25fdGVzdF9kaWZmZXJlbmNlIl1bInBfdmFsdWUiXQogICAgICAgICAgICBwX21lYW4gPSByWyJwZXJtdXRhdGlvbl90ZXN0X2RpZmZlcmVuY2UiXVsicF92YWx1ZV9tZWFuIl0KICAgICAgICAgICAgc2lnID0gIioqKiIgaWYgcF9tZWQgPCAwLjAwMSBlbHNlICIqKiIgaWYgcF9tZWQgPCAwLjAxIGVsc2UgIioiIGlmIHBfbWVkIDwgMC4wNSBlbHNlICJuLnMuIgogICAgICAgICAgICBwcmludChmIiAgICB7c2x9OiBpbXBfZGlmZl9tZWQ9e3JbJ2ltcG9ydGFuY2VfZGlmZmVyZW5jZV9tZWRpYW4nXTouNGZ9ICAiCiAgICAgICAgICAgICAgICAgIGYicm5kX2RpZmZfbWVkPXtyWydyYW5kb21fZGlmZmVyZW5jZV9tZWRpYW4nXTouNGZ9ICAiCiAgICAgICAgICAgICAgICAgIGYicGVybV9wKG1lZGlhbik9e3BfbWVkOi42Zn0ge3NpZ30gICIKICAgICAgICAgICAgICAgICAgZiJwZXJtX3AobWVhbik9e3BfbWVhbjouNmZ9IikKCiAgICAgICAgaWYgbGVuKGFsbF9kaWZmX3ApID4gMToKICAgICAgICAgICAgbl90ZXN0cyA9IGxlbihhbGxfZGlmZl9wKQogICAgICAgICAgICBib25mX2RpZmYgPSBbbWluKHAgKiBuX3Rlc3RzLCAxLjApIGZvciBwIGluIGFsbF9kaWZmX3BdCiAgICAgICAgICAgIGJvbmZfZGlmZl9tZWFuID0gW21pbihwICogbl90ZXN0cywgMS4wKSBmb3IgcCBpbiBhbGxfZGlmZl9wX21lYW5dCiAgICAgICAgICAgIHByaW50KGYiICAgIEJvbmZlcnJvbmkgKG1lZGlhbiwgaz17bl90ZXN0c30pOiB7W2Yne3A6LjZmfScgZm9yIHAgaW4gYm9uZl9kaWZmXX0iKQogICAgICAgICAgICBwcmludChmIiAgICBCb25mZXJyb25pIChtZWFuLCAgIGs9e25fdGVzdHN9KToge1tmJ3twOi42Zn0nIGZvciBwIGluIGJvbmZfZGlmZl9tZWFuXX0iKQogICAgICAgICAgICBmb3Igc2wsIGJwLCBicG0gaW4gemlwKGRpZmZfcmVzdWx0cy5rZXlzKCksIGJvbmZfZGlmZiwgYm9uZl9kaWZmX21lYW4pOgogICAgICAgICAgICAgICAgcmVzdWx0c1tzbF1bInBlcm11dGF0aW9uX3Rlc3RfZGlmZmVyZW5jZSJdWyJib25mZXJyb25pX3AiXSA9IGJwCiAgICAgICAgICAgICAgICByZXN1bHRzW3NsXVsicGVybXV0YXRpb25fdGVzdF9kaWZmZXJlbmNlIl1bImJvbmZlcnJvbmlfcF9tZWFuIl0gPSBicG0KCiAgICBvdXRfZGlyID0gUGF0aChhcmdzLm91dHB1dF9kaXIpCiAgICBvdXRfZGlyLm1rZGlyKHBhcmVudHM9VHJ1ZSwgZXhpc3Rfb2s9VHJ1ZSkKICAgIG91dF9wYXRoID0gb3V0X2RpciAvICJwZXJtdXRhdGlvbl90ZXN0X3Jlc3VsdHMuanNvbiIKCiAgICBvdXRwdXQgPSB7CiAgICAgICAgImRlc2NyaXB0aW9uIjogIlBhaXJlZCBwZXJtdXRhdGlvbiB0ZXN0OiBpbXBvcnRhbmNlIHZzIHJhbmRvbSBtYXNraW5nIElJIGdyYWRpZW50cyIsCiAgICAgICAgImNvbmZpZyI6IHsKICAgICAgICAgICAgInNlZWQiOiBhcmdzLnNlZWQsCiAgICAgICAgICAgICJuX3Blcm11dGF0aW9ucyI6IGFyZ3Mubl9wZXJtLAogICAgICAgICAgICAiZXBzaWxvbiI6IEVQUywKICAgICAgICAgICAgInN0YXRpc3RpY3MiOiBbInJhdGlvIiwgImRpZmZlcmVuY2UiXSwKICAgICAgICAgICAgInByaW1hcnlfc3RhdGlzdGljIjogIm1lZGlhbiIsCiAgICAgICAgICAgICJhdXhpbGlhcnlfc3RhdGlzdGljIjogIm1lYW4iLAogICAgICAgIH0sCiAgICAgICAgInNwYXJzaXR5X2xldmVscyI6IHJlc3VsdHMsCiAgICB9CiAgICB3aXRoIG9wZW4ob3V0X3BhdGgsICJ3IikgYXMgZjoKICAgICAgICBqc29uLmR1bXAob3V0cHV0LCBmLCBpbmRlbnQ9MikKICAgIHByaW50KGYiXG5SZXN1bHRzIHNhdmVkIHRvIHtvdXRfcGF0aH0iKQoKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6CiAgICBtYWluKCkK' | base64 -d > /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "a94fd140-71be-47b9-ad58-b57d37793cd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HBfvqEsGReJm6Bd4NGQKD2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 34376,
+      "cache_read_input_tokens": 35492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 34376
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779267600,
+    "rateLimitType": "seven_day",
+    "utilization": 0.32,
+    "isUsingOverage": false
+  },
+  "uuid": "ad112df4-6600-44d8-8c37-134836d24f91",
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1"
+}
+```
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T07:09:57.035Z_
+
+<details><summary>↩ Tool result · `toolu_015swB1T8KDqwFt1BHBbBQ4e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "1705e30d-921c-42f6-ad8f-8c92213e834c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+文件写入成功。验证关键改动点。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "69d82011-b122-4a99-b579-b6ce8dbdc1e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gY5LH9qzvXcQ9iddqVT4i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19149,
+      "cache_read_input_tokens": 69868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19149
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rne1tV3pPUEPM8qBnBAwxv`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -50 /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "654299b1-f092-442f-aa41-225258b90195",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gY5LH9qzvXcQ9iddqVT4i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19149,
+      "cache_read_input_tokens": 69868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19149
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T07:10:03.648Z_
+
+<details><summary>↩ Tool result · `toolu_01Rne1tV3pPUEPM8qBnBAwxv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Paired permutation test: importance vs random masking II gradients.\\n\\nInputs:\\n  profiling_output_bf16_ds_{imp,rand}_s{015,020,025,030}/profiling_results.json  (preferred)\\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json  (fp16 fallback)\\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\\n\\nOutputs:\\n  analysis_output/permutation_test_results.json   — structured results\\n  stdout                                          — human-readable summary\\n\\nRatio gradient = ii_low / ii_high (skip if |ii_high| < EPS).\\nDifference = ii_low - ii_high (no EPS filtering needed).\\n\\nFor each sparsity level, a paired permutation test (B=10000) and Wilcoxon signed-rank\\ntest compare importance vs random across matched problems.\\n\\nPrimary test statistic: median of paired differences (robust to heavy tails).\\nMean-based results kept as auxiliary output with _mean suffix.\\nBoth ratio and difference statistics are reported.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nBASE_DIR = Path(\\\"/root/autodl-tmp/pacs\\\")\\nSPARSITY_LEVELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_MAP = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\n# EPS=0.01: filter problems where |ii_high| < 0.01 — high-phase II too small\\n# to be statistically meaningful, ratio gradient becomes numerically unstable\\nEPS = 0.01\\nDEFAULT_N_PERM = 10000\\nDEFAULT_SEED = 42\\n\\n\\ndef _find_result_file(method: str, slevel: str) -> Path | None:\\n    method_short = {\\\"importance\\\": \\\"imp\\\", \\\"random\\\": \\\"rand\\\"}.get(method, method)\\n    candidates = [\\n        # bf16 preferred — fp16 has NaN filtering bias (D019)\\n        BASE_DIR / f\\\"profiling_output_bf16_ds_{method_short}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n        # fp16 fallback\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r3\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r2\\\" / \\\"profiling_results.json\\\",\\n    ]\\n    for c in candidates:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "ee875e5f-ce10-4d5b-8c4b-07828006269f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Paired permutation test: importance vs random masking II gradients.\\\\n\\\\nInputs:\\\\n  profiling_output_bf16_ds_{imp,rand}_s{015,020,025,030}/profiling_results.json  (preferred)\\\\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json  (fp16 fallback)\\\\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\\\\n\\\\nOutputs:\\\\n  analysis_output/permutation_test_results.json   — structured results\\\\n  stdout                                          — human-readable summary\\\\n\\\\nRatio gradient = ii_low / ii_high (skip if |ii_high| < EPS).\\\\nDifference = ii_low - ii_high (no EPS filtering needed).\\\\n\\\\nFor each sparsity level, a paired permutation test (B=10000) and Wilcoxon signed-rank\\\\ntest compare importance vs random across matched problems.\\\\n\\\\nPrimary test statistic: median of paired differences (robust to heavy tails).\\\\nMean-based results kept as auxiliary output with _mean suffix.\\\\nBoth ratio and difference statistics are reported.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/autodl-tmp/pacs\\\\\\\")\\\\nSPARSITY_LEVELS = [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]\\\\nSPARSITY_MAP = {\\\\\\\"s015\\\\\\\": \\\\\\\"0.15\\\\\\\", \\\\\\\"s020\\\\\\\": \\\\\\\"0.2\\\\\\\", \\\\\\\"s025\\\\\\\": \\\\\\\"0.25\\\\\\\", \\\\\\\"s030\\\\\\\": \\\\\\\"0.3\\\\\\\"}\\\\n# EPS=0.01: filter problems where |ii_high| < 0.01 — high-phase II too small\\\\n# to be statistically meaningful, ratio gradient becomes numerically unstable\\\\nEPS = 0.01\\\\nDEFAULT_N_PERM = 10000\\\\nDEFAULT_SEED = 42\\\\n\\\\n\\\\ndef _find_result_file(method: str, slevel: str) -> Path | None:\\\\n    method_short = {\\\\\\\"importance\\\\\\\": \\\\\\\"imp\\\\\\\", \\\\\\\"random\\\\\\\": \\\\\\\"rand\\\\\\\"}.get(method, method)\\\\n    candidates = [\\\\n        # bf16 preferred — fp16 has NaN filtering bias (D019)\\\\n        BASE_DIR / f\\\\\\\"profiling_output_bf16_ds_{method_short}_{slevel}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n        # fp16 fallback\\\\n        BASE_DIR / f\\\\\\\"profiling_output_v6_{method}_{slevel}\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n        BASE_DIR / f\\\\\\\"profiling_output_v6_{method}_{slevel}_r3\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n        BASE_DIR / f\\\\\\\"profiling_output_v6_{method}_{slevel}_r2\\\\\\\" / \\\\\\\"profiling_results.json\\\\\\\",\\\\n    ]\\\\n    for c in candidates:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Paired permutation test: importance vs random masking II gradients.\\n\\nInputs:\\n  profiling_output_bf16_ds_{imp,rand}_s{015,020,025,030}/profiling_results.json  (preferred)\\n  profiling_output_v6_{importance,random}_s{015,020,025,030}/profiling_results.json  (fp16 fallback)\\n  Each contains per_problem_ii[sparsity_level] with ii_high, ii_low per problem.\\n\\nOutputs:\\n  analysis_output/permutation_test_results.json   — structured results\\n  stdout                                          — human-readable summary\\n\\nRatio gradient = ii_low / ii_high (skip if |ii_high| < EPS).\\nDifference = ii_low - ii_high (no EPS filtering needed).\\n\\nFor each sparsity level, a paired permutation test (B=10000) and Wilcoxon signed-rank\\ntest compare importance vs random across matched problems.\\n\\nPrimary test statistic: median of paired differences (robust to heavy tails).\\nMean-based results kept as auxiliary output with _mean suffix.\\nBoth ratio and difference statistics are reported.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nBASE_DIR = Path(\\\"/root/autodl-tmp/pacs\\\")\\nSPARSITY_LEVELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_MAP = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\n# EPS=0.01: filter problems where |ii_high| < 0.01 — high-phase II too small\\n# to be statistically meaningful, ratio gradient becomes numerically unstable\\nEPS = 0.01\\nDEFAULT_N_PERM = 10000\\nDEFAULT_SEED = 42\\n\\n\\ndef _find_result_file(method: str, slevel: str) -> Path | None:\\n    method_short = {\\\"importance\\\": \\\"imp\\\", \\\"random\\\": \\\"rand\\\"}.get(method, method)\\n    candidates = [\\n        # bf16 preferred — fp16 has NaN filtering bias (D019)\\n        BASE_DIR / f\\\"profiling_output_bf16_ds_{method_short}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n        # fp16 fallback\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r3\\\" / \\\"profiling_results.json\\\",\\n        BASE_DIR / f\\\"profiling_output_v6_{method}_{slevel}_r2\\\" / \\\"profiling_results.json\\\",\\n    ]\\n    for c in candidates:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BhUQgzQmFgxbDZMutcK6D6`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"EPS\\|_find_result_file\\|compute_difference\\|_is_eps_filtered\\|n_filtered_eps\\|sparsity.levels\" /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "6d67a1da-7994-4dc2-9a35-53800f375239",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gY5LH9qzvXcQ9iddqVT4i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19149,
+      "cache_read_input_tokens": 69868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19149
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T07:10:04.930Z_
+
+<details><summary>↩ Tool result · `toolu_01BhUQgzQmFgxbDZMutcK6D6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "b8a28c00-8ab0-4abb-a96f-56855e661da3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779267600,
+    "rateLimitType": "seven_day",
+    "utilization": 0.33,
+    "isUsingOverage": false
+  },
+  "uuid": "1b53b9f9-a9be-4a61-a6e4-9a5369f01b5a",
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1"
+}
+```
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GCvWkxm5NS2NNM1BKC8koG`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"EPS\\|compute_difference\\|_is_eps_filtered\\|n_filtered_eps\\|sparsity.levels\" /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "a4f998de-1914-47fb-8d27-36fc388f43b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CMFwkuTcG6d7WG63dptKTs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1385,
+      "cache_read_input_tokens": 89017,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1385
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T07:10:17.065Z_
+
+<details><summary>↩ Tool result · `toolu_01GCvWkxm5NS2NNM1BKC8koG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "4722a044-80d4-44b3-b4d9-5f220c7cbfab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013ZbWBD9cMDTLzZGkfMcgrK`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"EPS\" /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "7e467920-4a81-40cc-bf91-42c46b4e7b9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RaXvqN978AXrTN6BqdGiti",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 90402,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 250
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T07:10:24.631Z_
+
+<details><summary>↩ Tool result · `toolu_013ZbWBD9cMDTLzZGkfMcgrK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12:Ratio gradient = ii_low / ii_high (skip if |ii_high| < EPS).\\n13:Difference = ii_low - ii_high (no EPS filtering needed).\\n33:# EPS=0.01: filter problems where |ii_high| < 0.01 — high-phase II too small\\n35:EPS = 0.01\\n83:    \\\"\\\"\\\"Ratio gradient = ii_low / ii_high. Returns None if |ii_high| < EPS.\\\"\\\"\\\"\\n89:    if abs(h) < EPS:\\n95:    \\\"\\\"\\\"Difference = ii_low - ii_high. No EPS filtering needed.\\\"\\\"\\\"\\n104:    \\\"\\\"\\\"True if the item has valid ii values but |ii_high| < EPS.\\\"\\\"\\\"\\n109:    return abs(float(ii_high)) < EPS\\n191:    # Ratio gradients (subject to EPS filtering)\\n203:    # Difference statistic (no EPS filtering)\\n245:            \\\"gradient_ratio\\\": float(imp_median / rnd_median) if abs(rnd_median) >= EPS else None,\\n246:            \\\"gradient_ratio_mean\\\": float(np.mean(imp_arr) / np.mean(rnd_arr)) if abs(np.mean(rnd_arr)) >= EPS else None,\\n339:    print(f\\\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\\\")\\n421:            \\\"epsilon\\\": EPS,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "293f3ec8-82d9-4108-b969-b3bf1ea8e4cd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"12:Ratio gradient = ii_low / ii_high (skip if |ii_high| < EPS).\\\\n13:Difference = ii_low - ii_high (no EPS filtering needed).\\\\n33:# EPS=0.01: filter problems where |ii_high| < 0.01 — high-phase II too small\\\\n35:EPS = 0.01\\\\n83:    \\\\\\\"\\\\\\\"\\\\\\\"Ratio gradient = ii_low / ii_high. Returns None if |ii_high| < EPS.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n89:    if abs(h) < EPS:\\\\n95:    \\\\\\\"\\\\\\\"\\\\\\\"Difference = ii_low - ii_high. No EPS filtering needed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n104:    \\\\\\\"\\\\\\\"\\\\\\\"True if the item has valid ii values but |ii_high| < EPS.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n109:    return abs(float(ii_high)) < EPS\\\\n191:    # Ratio gradients (subject to EPS filtering)\\\\n203:    # Difference statistic (no EPS filtering)\\\\n245:            \\\\\\\"gradient_ratio\\\\\\\": float(imp_median / rnd_median) if abs(rnd_median) >= EPS else None,\\\\n246:            \\\\\\\"gradient_ratio_mean\\\\\\\": float(np.mean(imp_arr) / np.mean(rnd_arr)) if abs(np.mean(rnd_arr)) >= EPS else None,\\\\n339:    print(f\\\\\\\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\\\\\\\")\\\\n421:            \\\\\\\"epsilon\\\\\\\": EPS,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"12:Ratio gradient = ii_low / ii_high (skip if |ii_high| < EPS).\\n13:Difference = ii_low - ii_high (no EPS filtering needed).\\n33:# EPS=0.01: filter problems where |ii_high| < 0.01 — high-phase II too small\\n35:EPS = 0.01\\n83:    \\\"\\\"\\\"Ratio gradient = ii_low / ii_high. Returns None if |ii_high| < EPS.\\\"\\\"\\\"\\n89:    if abs(h) < EPS:\\n95:    \\\"\\\"\\\"Difference = ii_low - ii_high. No EPS filtering needed.\\\"\\\"\\\"\\n104:    \\\"\\\"\\\"True if the item has valid ii values but |ii_high| < EPS.\\\"\\\"\\\"\\n109:    return abs(float(ii_high)) < EPS\\n191:    # Ratio gradients (subject to EPS filtering)\\n203:    # Difference statistic (no EPS filtering)\\n245:            \\\"gradient_ratio\\\": float(imp_median / rnd_median) if abs(rnd_median) >= EPS else None,\\n246:            \\\"gradient_ratio_mean\\\": float(np.mean(imp_arr) / np.mean(rnd_arr)) if abs(np.mean(rnd_arr)) >= EPS else None,\\n339:    print(f\\\"Seed={args.seed}, B={args.n_perm}, EPS={EPS}\\\")\\n421:            \\\"epsilon\\\": EPS,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0196NEiipzDscX3V9W2dWNFR`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -n \"compute_difference\\|_is_eps_filtered\\|n_filtered_eps\" /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "c94ba636-1948-4fbf-b1e6-5fa6076fdfd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RaXvqN978AXrTN6BqdGiti",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 90402,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 250
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T07:10:25.168Z_
+
+<details><summary>↩ Tool result · `toolu_0196NEiipzDscX3V9W2dWNFR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "2159b0b7-3c85-4787-beb2-8296f95b3ae6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019ytMN1ryaY2kCLnnQpmzNy`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "wc -l /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "52edd5b9-568e-4d84-995f-8edcb0112cbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RaXvqN978AXrTN6BqdGiti",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 90402,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 250
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T07:10:26.077Z_
+
+<details><summary>↩ Tool result · `toolu_019ytMN1ryaY2kCLnnQpmzNy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"434 /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "81ee897e-98c8-4547-803b-4805283f8a32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"434 /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"434 /root/autodl-tmp/pacs/pacs/analysis/permutation_test.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The file is written and verified:
+- EPS = 0.01 (line 35) ✓
+- _find_result_file has bf16 first (line 42-49) ✓
+- compute_difference function exists (line 95) ✓
+- _is_eps_filtered function exists (line 104) ✓
+- n_filtered_eps tracking ✓
+- 434 lines total ✓
+
+Now let me run the verification. The task says to run:
+```bash
+cd /root/autodl-tmp/pacs
+
+
+python -m pacs.analysis.permutation_test --sparsity-levels 0.30 --n-perm 10000
+```
+
+I need to double-check the argument syntax — argparse converts hyphens to underscores internally, so `--sparsity-levels` on the command line should map correctly to `args.sparsity_levels` in the code. I'm realizing that with the bf16 fix in place, the code will prioritize bf16 data over v6 data for s030, so even though the user expected v6 (fp16) random data to show FAIL, the test will actually use bf16 data instead. Let me just run the test and see what happens.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "1af40335-92dc-4aeb-b334-c7943ac60e66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gKQrALzShgvEFS81QGqHe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1129,
+      "cache_read_input_tokens": 90652,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1129
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+关键改动已确认：EPS=0.01, bf16 优先, compute_difference/n_filtered_eps 新增。运行验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "f3ef9a31-ddef-4f81-b53e-81182240bd63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gKQrALzShgvEFS81QGqHe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1129,
+      "cache_read_input_tokens": 90652,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1129
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Ff87T7Ba3TPRCFDDbDsWT1`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cd /root/autodl-tmp/pacs && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -m pacs.analysis.permutation_test --sparsity-levels 0.30 --n-perm 10000",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "f5914cf3-2a7e-43d5-b9df-2b597d430da5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013gKQrALzShgvEFS81QGqHe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1129,
+      "cache_read_input_tokens": 90652,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1129
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T07:10:51.535Z_
+
+<details><summary>↩ Tool result · `toolu_01Ff87T7Ba3TPRCFDDbDsWT1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nPaired Permutation Test: Importance vs Random II Gradients\\n============================================================\\nSeed=42, B=10000, EPS=0.01\\nStatistics: ratio (ii_low/ii_high) + difference (ii_low-ii_high)\\n\\n  [s030] imp=profiling_output_bf16_ds_imp_s030, rnd=profiling_output_v6_random_s030_r3\\n  [s030] ratio: n_paired=44, eps_filtered=5, imp_median=102.20, rnd_median=1.38, ratio=74.1x, perm_p(median)=0.000300, perm_p(mean)=0.000700, wilcoxon_p=0.000274112673196214\\n  [s030] diff: n_paired=49, imp_median=9.9538, rnd_median=1.0569, perm_p(median)=0.000100, perm_p(mean)=0.000100\\n\\n------------------------------------------------------------\\nSUMMARY\\n------------------------------------------------------------\\n  [Ratio statistic]\\n    s030: ratio=74.1x  perm_p(median)=0.000300 ***  perm_p(mean)=0.000700  wilcoxon_p=0.000274112673196214  eps_filtered=5\\n  [Difference statistic]\\n    s030: imp_diff_med=9.9538  rnd_diff_med=1.0569  perm_p(median)=0.000100 ***  perm_p(mean)=0.000100\\n\\nResults saved to /root/autodl-tmp/pacs/analysis_output/permutation_test_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "b6fcbe5d-1214-48ea-bdb8-aa6809d50f29",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nPaired Permutation Test: Importance vs Random II Gradients\\\\n============================================================\\\\nSeed=42, B=10000, EPS=0.01\\\\nStatistics: ratio (ii_low/ii_high) + difference (ii_low-ii_high)\\\\n\\\\n  [s030] imp=profiling_output_bf16_ds_imp_s030, rnd=profiling_output_v6_random_s030_r3\\\\n  [s030] ratio: n_paired=44, eps_filtered=5, imp_median=102.20, rnd_median=1.38, ratio=74.1x, perm_p(median)=0.000300, perm_p(mean)=0.000700, wilcoxon_p=0.000274112673196214\\\\n  [s030] diff: n_paired=49, imp_median=9.9538, rnd_median=1.0569, perm_p(median)=0.000100, perm_p(mean)=0.000100\\\\n\\\\n------------------------------------------------------------\\\\nSUMMARY\\\\n------------------------------------------------------------\\\\n  [Ratio statistic]\\\\n    s030: ratio=74.1x  perm_p(median)=0.000300 ***  perm_p(mean)=0.000700  wilcoxon_p=0.000274112673196214  eps_filtered=5\\\\n  [Difference statistic]\\\\n    s030: imp_diff_med=9.9538  rnd_diff_med=1.0569  perm_p(median)=0.000100 ***  perm_p(mean)=0.000100\\\\n\\\\nResults saved to /root/autodl-tmp/pacs/analysis_output/permutation_test_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nPaired Permutation Test: Importance vs Random II Gradients\\n============================================================\\nSeed=42, B=10000, EPS=0.01\\nStatistics: ratio (ii_low/ii_high) + difference (ii_low-ii_high)\\n\\n  [s030] imp=profiling_output_bf16_ds_imp_s030, rnd=profiling_output_v6_random_s030_r3\\n  [s030] ratio: n_paired=44, eps_filtered=5, imp_median=102.20, rnd_median=1.38, ratio=74.1x, perm_p(median)=0.000300, perm_p(mean)=0.000700, wilcoxon_p=0.000274112673196214\\n  [s030] diff: n_paired=49, imp_median=9.9538, rnd_median=1.0569, perm_p(median)=0.000100, perm_p(mean)=0.000100\\n\\n------------------------------------------------------------\\nSUMMARY\\n------------------------------------------------------------\\n  [Ratio statistic]\\n    s030: ratio=74.1x  perm_p(median)=0.000300 ***  perm_p(mean)=0.000700  wilcoxon_p=0.000274112673196214  eps_filtered=5\\n  [Difference statistic]\\n    s030: imp_diff_med=9.9538  rnd_diff_med=1.0569  perm_p(median)=0.000100 ***  perm_p(mean)=0.000100\\n\\nResults saved to /root/autodl-tmp/pacs/analysis_output/permutation_test_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+验证通过。结果摘要：
+
+**Bug 1 (文件发现顺序)**：bf16 已优先。importance 使用了 `profiling_output_bf16_ds_imp_s030`，random 回退到 `profiling_output_v6_random_s030_r3`（因 bf16 random s030 不存在 r3 变体，找到了 bf16 的 rand 目录）。
+
+等一下，random 使用的是 v6 而不是 bf16，让我确认一下。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "2e4f6385-7110-4a13-8295-efe3248461a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6x5Vu7jbY6GrtpSBLbk5Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1554,
+      "cache_read_input_tokens": 91781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1554
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DgDrnTwVomZPRkskBZ9bSF`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "4af10c25-20a5-4b28-ac2c-fa95ee720008",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6x5Vu7jbY6GrtpSBLbk5Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1554,
+      "cache_read_input_tokens": 91781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1554
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T07:11:00.295Z_
+
+<details><summary>↩ Tool result · `toolu_01DgDrnTwVomZPRkskBZ9bSF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030/profiling_results.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "93499d6a-5d14-4605-b3da-ce98e95d5cc7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030/profiling_results.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030/profiling_results.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JsWtfBKRs6DvsqBTh455TA`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls /root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "a4de107a-ac00-4d24-ba2e-e24edbb23442",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJ8xCktrzwuert2BKL5oLb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 401,
+      "cache_read_input_tokens": 93335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 401
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T07:11:08.749Z_
+
+<details><summary>↩ Tool result · `toolu_01JsWtfBKRs6DvsqBTh455TA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "2d5ddd91-1964-48e1-b076-1d39aefeabf3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The bf16 rand s030 directory exists but is empty (no profiling_results.json). So it falls back to v6_random_s030, but that has no _r3 suffix... wait, looking at the output, it found `profiling_output_v6_random_s030_r3`. That means the v6_random_s030 directory didn't have a profiling_results.json file either, or the _r3 one was found first... no wait, the code checks in order:
+1. bf16_ds_rand_s030 → no file
+
+
+2. v6_random_s030 → no file
+3. v6_random_s030_r3 → found
+
+So the fallback chain worked as expected, landing on the _r3 variant. The results show imp correctly using bf16, rnd falling back to v6, and EPS filtering out 5 problems based on the epsilon threshold.
+
+The statistical analysis is solid: 74.1x ratio with p < 0.001 across both paired tests, and permutation tests confirming significance at p ≈ 0.0001-0.0007. This clearly demonstrates that importance masking produces substantially higher gradients than random masking, so importance passes while random fails.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "352f5950-0a97-4eba-893a-46b1bb01aff6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzUHNRoDyfFpeLCqmAqgkY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 201,
+      "cache_read_input_tokens": 93736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 201
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+bf16 rand s030 目录为空，所以 random 正确地回退到了 `v6_random_s030_r3`（fp16 fallback）。importance 使用了 bf16 数据。这符合预期的优先级逻辑。
+
+**验证结果**：
+
+| 修复项 | 验证 |
+|--------|------|
+| Bug 1: bf16 优先 | imp 使用 `bf16_ds_imp_s030`，bf16 无数据时回退 v6 |
+| Bug 2: EPS=0.01 | 5 个 problem 被 EPS 过滤（ratio n=44 vs diff n=49） |
+| n_filtered_eps | 输出中已报告 `eps_filtered=5` |
+| difference statistic | p=0.0001 (median/mean)，与 ratio 统计量一致 |
+| ratio statistic | 74.1x, p=0.0003 (***) |
+| CLI --sparsity-levels | 支持 `0.30` 格式，正确转换为 `s030` |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "uuid": "84c88621-4910-49f0-9d03-e8ff32040850",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzUHNRoDyfFpeLCqmAqgkY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 201,
+      "cache_read_input_tokens": 93736,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 201
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 56_
+
+bf16 rand s030 目录为空，所以 random 正确地回退到了 `v6_random_s030_r3`（fp16 fallback）。importance 使用了 bf16 数据。这符合预期的优先级逻辑。
+
+**验证结果**：
+
+| 修复项 | 验证 |
+|--------|------|
+| Bug 1: bf16 优先 | imp 使用 `bf16_ds_imp_s030`，bf16 无数据时回退 v6 |
+| Bug 2: EPS=0.01 | 5 个 problem 被 EPS 过滤（ratio n=44 vs diff n=49） |
+| n_filtered_eps | 输出中已报告 `eps_filtered=5` |
+| difference statistic | p=0.0001 (median/mean)，与 ratio 统计量一致 |
+| ratio statistic | 74.1x, p=0.0003 (***) |
+| CLI --sparsity-levels | 支持 `0.30` 格式，正确转换为 `s030` |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 686404,
+  "duration_api_ms": 681234,
+  "num_turns": 18,
+  "stop_reason": "end_turn",
+  "session_id": "58996e7d-30bc-4f67-a44f-0da9d72c09d1",
+  "total_cost_usd": 1.8891455,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 82096,
+    "cache_read_input_tokens": 834839,
+    "output_tokens": 38276,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 82096,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 762,
+        "cache_read_input_tokens": 93736,
+        "cache_creation_input_tokens": 201,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 201
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1541,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001631,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 38276,
+      "cacheReadInputTokens": 834839,
+      "cacheCreationInputTokens": 82096,
+      "webSearchRequests": 0,
+      "costUSD": 1.8875144999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e1fb9b92-bb74-4037-83c6-d17b020c0c85"
+}
+```
+
+</details>
+
+---

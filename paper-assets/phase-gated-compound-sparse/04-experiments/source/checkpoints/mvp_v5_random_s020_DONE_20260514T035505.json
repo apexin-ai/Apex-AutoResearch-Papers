@@ -1,0 +1,47 @@
+{
+  "exp_id": "mvp_v5_random_s020",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:01:33.304Z",
+    "updated_at": "2026-05-14T03:55:04.983Z",
+    "hypothesis": "v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "59323",
+      "log_path": "~/runs/phase-gated-compound-sparse/mvp_v5_random_s020.log",
+      "submitted_at": "2026-05-14T03:29:59.607Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1504.3,
+      "gpu_hours": 0.42
+    },
+    "server": "westd-22162",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T03:29:57.757Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10\"",
+      "code_commit": "5488041765f165e4e64323cfda552de868351f86",
+      "finished_at": "2026-05-14T03:55:03.243Z",
+      "training_hours": 0.42
+    },
+    "pid": "59323",
+    "log_path": "~/runs/phase-gated-compound-sparse/mvp_v5_random_s020.log",
+    "failure_reason": "EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T03:55:03.880Z"
+  },
+  "timestamp": "2026-05-14T03:55:05.065373+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90b7953b1a1ac449d92d",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops check all exp status",
+  "task_key": "worker_ops_check-all-exp-status_20260514T024814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-all-exp-status_20260514T024814_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "e91889cefdabddc50f6aed9a9e37cc76bc85fd6358fa526db5f394478db9b597"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n**4 个实验全部在运行中，无一完成。**\n\n| 实验 | GPU | PID | 运行时间 | 进度 | GPU 显存 | GPU 利用率 |\n|------|-----|-----|----------|------|----------|-----------|\n| mvp_v5_fixed_s020_r2 | cuda:0 | 51024 | 36min | **48/50** | 38905 MiB | 99% |\n| mvp_v5_fixed_s030_r2 | cuda:1 | 51161 | 36min | **48/50** | 38905 MiB | 97% |\n| mvp_v5_random_s015 | cuda:2 | 51961 | 29min | **40/50** | 31961 MiB | 99% |\n| mvp_v5_random_s025 | cuda:3 | 52103 | 29min | **41/50** | 31961 MiB | 99% |\n\n**关键信息：**\n- 所有进程状态均为 `Rl`（Running），正常执行中\n- 4 个输出目录均为空，尚无 `profiling_results.json`\n- fixed 组 (s020/s030) 进度接近完成（48/50），预计几分钟内跑完\n- random 组 (s015/s025) 稍慢（40-41/50），GPU 显存占用较少（31.9G vs 38.9G）\n- 所有实验均有 layer 27 的 NaN attention warning，非致命"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-exp-status.md"
+}

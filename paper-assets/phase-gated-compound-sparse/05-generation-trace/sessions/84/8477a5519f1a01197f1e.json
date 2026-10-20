@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8477a5519f1a01197f1e",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_9_1778817308.md",
+  "task_key": "loop_9_1778817308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778817308.md",
+    "occurrence": 1,
+    "bytes": 4417,
+    "sha256": "8e8bd2509bf3351a2a88cba375f8a8ae9eec044e3b1c68d57733a31cf832c1d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T03:00:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0~3，绝不用其他设备\n- 当前分配：cuda:0+1 → c2_n500_deepseek | cuda:2+3 → c2_qw_n500_r3，不可交叉\n- 截稿 2026-05-25（距今 10 天），所有决策以此为锚\n- Qwen imp-vs-rand paired 对比 n=50 全部不显著——n=500 结果出来前不能在论文中 claim Qwen random 无 compound effect\n- d_z 报告规则（D059）：within-importance 对比报 d_z，涉及 random 的只报 Wilcoxon + median_diff\n- II 主指标已切换为 median + median bootstrap CI (B=10000)，不要用 mean\n- random s025/s030 显著性是 Reviewer 重点关注项，分析时必须第一时间单独检查并在汇报中标注\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据集：`/root/autodl-tmp/pacs/data/MATH-500/`（Qwen）、`/root/autodl-tmp/pacs/data/math500.json`（DeepSeek）\n- 分析一键命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 analyze_n500_unified.py --csv --latex`\n- 活跃进程：\n  - c2_n500_deepseek: cuda:0+1, screen c2_n500_gpu0/gpu1, s025 RUNNING\n  - c2_qw_n500_r3: cuda:2+3, PID 159269/159794, screen c2_qw_gpu2/gpu3, s025 RUNNING\n- Cron 监控：2 个 active（c2_n500_deepseek, c2_qw_n500_r3），reconcile 确认 still running\n- Worker 池：0 running（实验是 screen 进程，不是 Worker）\n\n### 3. 📊 当前状态\n两个 n=500 profiling 实验同时跑，都在 s025 阶段：\n- **c2_n500_deepseek**：s015✅ s020✅ s025 running (imp 233/500, rand 285/500), s030 pending. ETA 全部完成 ~15:30 UTC+8 (约 2026-05-15 07:30 UTC)\n- **c2_qw_n500_r3**：s015✅ s020✅ s025 running (imp 362/500, rand 337/500), s030 pending. ETA 全部完成 ~13:27 UTC+8 (约 2026-05-15 05:27 UTC)\n\n上一轮 session 做了：s015+s020 dry-run 分析确认方向与 n=50 一致、CI 显著收窄。统计方法保持 Wilcoxon（Director D061 决策）。\n\n无待处理 Worker 回调。无 pending 审批。\n\n### 4. 📋 待办（条件触发式）\n- c2_qw_n500_r3 cron 回调（进程退出）→ 检查 8 conditions 全部完成 → 若 s030 还没跑则可能需要手动触发 auto-advance\n- c2_n500_deepseek cron 回调（进程退出）→ 同上检查\n- **两个实验都完成** → spawn Worker 跑 `analyze_n500_unified.py --csv --latex` → 重点检查：\n  1. random s025/s030 是否显著（若显著，论文措辞从\"random 无 compound effect\"调整为\"moderate sparsity 下特异于 importance，high sparsity 下 random 也显著但幅度更小\"）\n  2. Qwen imp-vs-rand paired 在 n=500 下是否显著（若仍不显著，论文加 Qwen caveat）\n  3. within-importance d_z 是否与 n=50 方向一致\n- 分析完成 → 汇报 Director（事实+对比+建议），附 [资源] 行\n- Director 确认后 → 派 Paper Agent 统一更新论文（n=500 tables/figures + c5b §8 future_work + C8 限定语 + Qwen caveat if needed）\n- 论文更新完 → 提交 Group C full review\n\n### 5. 🎯 战略上下文\n- **核心发现**：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（DeepSeek Cohen's d 0.32→9.94），random masking 在 moderate sparsity 下无此效应。跨模型（DeepSeek/Qwen）方向一致，跨架构（LLaMA）qualitative consistent 但 quantitative weaker\n- **n=500 是收官实验**，不是探索——目的是把 n=50 的 CI 收窄到可发表水平。方向不会变，只看统计显著性是否 hold\n- **最容易判断错的事**：\n  1. Qwen mid-phase 58% null rate 是已知问题，不要因此 panic——等 n=500 结果定论\n  2. c2_qw_n500_r3 是 c2_qw_n500 的 continuation（cron false positive 导致前者被标 failed），s015 数据已在前一轮完成，不要重跑\n  3. screen session 名是 c2_qw_gpu2/gpu3 和 c2_n500_gpu0/gpu1，不是 tmux\n- **决策链关键节点**：D054(median指标) → D058(Qwen paired不显著) → D059(d_z分场景) → D060(C8降级partially_confirmed) → D061(n=500 paired gradient) → D062(cron改shell PID+sentinel)\n- C5b mitigation 已判定 future_work（oracle recovery 18% < 30% gate），不再跑实验，只需在 §8 写一段\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778817308.md"
+}

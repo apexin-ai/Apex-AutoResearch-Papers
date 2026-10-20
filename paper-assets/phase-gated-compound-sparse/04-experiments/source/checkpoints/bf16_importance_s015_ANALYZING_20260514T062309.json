@@ -1,0 +1,102 @@
+{
+  "exp_id": "bf16_importance_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:33:13.858Z",
+    "updated_at": "2026-05-14T06:23:08.980Z",
+    "hypothesis": "bf16 重跑 DeepSeek importance masking s=0.15。消除 fp16 Layer 27 NaN 偏差，获取完整 per_problem_ii 数据。",
+    "server": "westd-22162",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T05:49:55.770Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+      "code_commit": "5488041765f165e4e64323cfda552de868351f86",
+      "finished_at": "2026-05-14T06:15:15.053Z",
+      "training_hours": 0.42
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015 --sparsity_levels 0.15 --masking_method importance --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "79406",
+      "log_path": "~/runs/phase-gated-compound-sparse/bf16_importance_s015.log",
+      "submitted_at": "2026-05-14T05:49:58.070Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "79406",
+    "log_path": "~/runs/phase-gated-compound-sparse/bf16_importance_s015.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T06:15:22.371858+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ii_high_mean": -0.150213,
+      "ii_high_median": 0.005752,
+      "ii_high_ci": [
+        -0.294614,
+        -0.055385
+      ],
+      "ii_high_winsorized_mean": -0.062378,
+      "ii_high_skewness": -14.9912,
+      "ii_high_outliers": 2,
+      "ii_mid_mean": 0.447301,
+      "ii_mid_median": 0.080738,
+      "ii_mid_ci": [
+        0.267993,
+        0.668749
+      ],
+      "ii_mid_winsorized_mean": 0.324751,
+      "ii_mid_skewness": 4.7221,
+      "ii_mid_outliers": 5,
+      "ii_low_mean": 2.405837,
+      "ii_low_median": 0.398291,
+      "ii_low_ci": [
+        1.478784,
+        3.667675
+      ],
+      "ii_low_winsorized_mean": 1.278857,
+      "ii_low_skewness": 9.5402,
+      "ii_low_outliers": 5,
+      "gradient_low_over_mid": 5.3786,
+      "gradient_low_over_abs_high": 16.0162,
+      "n_problems": 50,
+      "ii_high_valid": 49,
+      "ii_high_none": 1,
+      "ii_mid_valid": 40,
+      "ii_mid_none": 10,
+      "ii_low_valid": 50,
+      "ii_low_none": 0,
+      "nan_count": 0,
+      "phase_tokens": {
+        "high_sparsity": 21086,
+        "low_sparsity": 27748,
+        "mid_sparsity": 13306
+      },
+      "phase_segments": {
+        "high_sparsity": 387,
+        "low_sparsity": 397,
+        "mid_sparsity": 191
+      },
+      "verdict": "PASS"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T06:23:09.114843+00:00",
+  "trigger": "update_registry"
+}

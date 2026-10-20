@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05dfd408b34205e00f43",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_4_1778758869.md",
+  "task_key": "loop_4_1778758869",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778758869.md",
+    "occurrence": 1,
+    "bytes": 4194,
+    "sha256": "606f3f4a3b786903ebb0f2cafed8d0158c06eaed439fb3b1e7166e10adaecf0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T11:37:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-22162 cuda:0~3，当前全部 standby（纯写作阶段无实验需求）\n- 论文数字基准：**bf16 per-problem paired 统计量（B=10000 bootstrap）**，fp16 旧数据已弃用，绝不混用\n- Cohen's d 统一用 **paired d_z**（D048），segment-level 旧值只放 supplementary，正文禁用\n- median_diff 定义：**median(II_low_i − II_high_i)**（逐 problem 配对差的中位数），不是 median(II_low) - median(II_high)\n- C4 entropy-collapse 已降级为 §6 supporting（D045/D046），**不是 Core Claim**，不要在 abstract/intro/conclusion 中作为主要贡献\n- Framing 硬约束（D015）：必须说 \"emergent phase-strategy interaction\"，禁止说 \"importance is broken\"\n- 两模型共享 Qwen2ForCausalLM 架构，论文称 **cross-model** 而非 cross-architecture（D022）\n- D050：fix-cohens-d-notation Worker 的修改已全部回退，不要再用那个 Worker 的产出\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，4× RTX PRO 6000 Blackwell 96GB\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，不是 venv）\n- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct（路径在服务器上）\n- 数据：math500.json（50 problems）\n- 分析脚本：`/root/autodl-tmp/pacs/analysis/rebootstrap_importance_b10000.py`\n- W&B：项目有 wandb 配置（具体 project name 需 SSH 确认）\n- 活跃进程：无训练进程，GPU 全部 standby\n- 活跃 Worker：\n  - `worker_paper_unified_figures_recompile_20260514T104911`（生成 fig1/3/4/5）\n  - `worker_paper_consistency_audit_final_20260514T112604`（全文数字一致性审查）\n- Cron：reconcile 返回 0 条，无活跃 cron\n\n### 3. 📊 当前状态\n76 实验全部 DONE（35 success / 9 negative / 13 failed / 19 killed），无 RUNNING/PREPARING 实验。\n\n**论文全文已完成**（§1-§8 + Abstract），bf16 数据已填充。当前处于**最终编译冲刺**：\n- 2 个 Worker 正在运行：figures 生成 + 一致性审查\n- 等待这两个 Worker 回调后进入 LaTeX 编译 + visual review\n\n**截稿 2026-05-25，距今 11 天。**\n\n### 4. 📋 待办（条件触发式）\n- `worker_paper_unified_figures_recompile` 回调 → 检查 fig1/fig3/fig4/fig5 产出质量，注册 artifacts，确认数字与 bf16 canonical 数据一致\n- `worker_paper_consistency_audit_final` 回调 → 读审查报告，修复发现的不一致，更新 report.md\n- 两个 Worker 都完成 → spawn Worker 创建 main.tex + references.bib（如果 figures Worker 未一并完成）→ LaTeX 编译 → spawn Worker 做 visual review（paper-visual-review skill）\n- LaTeX 编译成功 → 进入 full review mode（全文通读 + reference-audit）\n- 编译产出 PDF → 备份到 S3（s3-backup skill）\n- Director 要求最终提交 → 确认 checklist 全部 ✅ → 打包提交\n\n### 5. 🎯 战略上下文\n**核心发现**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DS: 0.32→9.94; QW: 0.048→2.619），random masking 7/8 FAIL。这是 empirical finding paper，不是 method paper。\n\n**决策链关键节点**：\n- D015: Framing 硬约束（emergent interaction，不是 importance is broken）\n- D023: 不能 claim importance 独有 super-additivity，区分信号是 phase-dependent gradient\n- D032: Permutation test Bonferroni p<0.005\n- D044: Qwen entropy s025 反转 → C4 降级\n- D045/D046: C4 从 Core Claim 降为 §6 supporting\n- D048: 统一 paired d_z\n- D051: 图表需用 bf16 canonical 数据重新生成\n\n**易踩的坑**：\n- 不要把 paired median diff（论文图表用）和 unpaired median diff（summary table 用）混淆——两者数值略有差异\n- Qwen s015 Cohen's d CI 含 0，标注 \"marginal\"，不要说 \"significant\"\n- Qwen random s030 是唯一 PASS（p=0.012），但 d=-0.04 negligible——论文说 \"7/8 FAIL; 唯一例外效应量可忽略\"\n- 图表曾基于过时数据（D051），确认新 Worker 用的是 bf16 canonical 数据源\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778758869.md"
+}

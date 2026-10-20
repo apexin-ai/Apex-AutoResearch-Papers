@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b2e7ccc969534c18970",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops c2 qw n500 r3 cron check",
+  "task_key": "worker_ops_c2_qw_n500_r3_cron_check_20260514T193048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c2_qw_n500_r3_cron_check_20260514T193048_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "750fe8d8ff1c19b1e75accf4e4e9d1c60c5b26a52789fa779864f51909f958eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**进程活着，又是 cron 误判。**\n\n### Qwen c2 进程 (GPU2/3)\n| GPU | PID | Condition | 进度 | 状态 |\n|-----|-----|-----------|------|------|\n| GPU2 | 159269 | qw_imp_s020 | **67/500** | 运行中 |\n| GPU3 | 159794 | qw_rand_s020 | **48/500** | 运行中 |\n\nScreen sessions `c2_qw_gpu2` (PID 131857) 和 `c2_qw_gpu3` (PID 131995) 都在。\n\n### 8 Conditions 完成情况\n| Condition | 状态 |\n|-----------|------|\n| qw_imp_s015 | **DONE** (profiling_results.json 18.7MB, 03:02完成) |\n| qw_rand_s015 | **DONE** (profiling_results.json 18.7MB, 03:11完成) |\n| qw_imp_s020 | **运行中** 67/500 |\n| qw_rand_s020 | **运行中** 48/500 |\n| qw_imp_s025 | 未开始（目录不存在） |\n| qw_rand_s025 | 未开始 |\n| qw_imp_s030 | 未开始 |\n| qw_rand_s030 | 未开始 |\n\ns020 输出目录虽然存在但内容为空——profiling 数据看起来只在完成整个 condition 后一次性写入 profiling_results.json。\n\n另外 GPU0/1 上还在跑 DeepSeek 的 ds_imp_s020 (PID 156554) 和 ds_rand_s020 (PID 154305)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c2-qw-n500-r3-cron-check.md"
+}

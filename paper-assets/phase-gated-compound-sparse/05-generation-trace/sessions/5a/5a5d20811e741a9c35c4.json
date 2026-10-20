@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a5d20811e741a9c35c4",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis n500 pipeline prep",
+  "task_key": "worker_analysis_n500-pipeline-prep_20260515T015720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_n500-pipeline-prep_20260515T015720_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "e27af1fe3a937ff228cb2c4df8bb25393581dcabce505f2dd88c42ba300f9702"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n- **进度**: 9/16 conditions 已完成，4 个正在跑，3 个自动排队。全部完成 ETA **~15:45 CST** (瓶颈是 DeepSeek s030)\n- **Pipeline READY**: `analyze_n500_unified.py` 已通过 dry-run 和部分 n500 数据验证，D054 (median) 和 D059 (d_z within-importance only) 均合规，完成后直接 `python analyze_n500_unified.py --latex --csv` 即可\n- **无阻塞**: s030 会自动接力启动，无需手动干预"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n500-pipeline-prep.md"
+}

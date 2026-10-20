@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad0f8e25831a3e3f48b0",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops check all experiments",
+  "task_key": "worker_ops_check_all_experiments_20260514T180905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_all_experiments_20260514T180905_result.json",
+    "occurrence": 1,
+    "bytes": 2278,
+    "sha256": "f5b268333c5fc661c550556a1fcca2d4df76088a88e09925d45dcabefbeb1fbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the status report:\n\n---\n\n## 实验状态汇总 (2026-05-15 02:09 服务器时间)\n\n### 1. c5b_pilot\n\n**PID 154645** — 存活，GPU 3，运行 `run_c5b_pilot.py --sparsity 0.25 --strategy all`\n\n另外还有 **PID 154166** — GPU 0，运行 `run_c5b_pilot.py --sparsity 0.30 --strategy all --model DeepSeek`\n\n三个输出目录均为**空**（刚创建不久）：\n- `profiling_output_c5b_pilot_s025` — 创建于 01:56\n- `profiling_output_c5b_pilot_s030` — 创建于 02:05\n- `profiling_output_c5b_all_s025` — 创建于 02:06\n\n**结论：c5b_pilot 未完成，尚未产出任何结果文件。**\n\n---\n\n### 2. c2_n500_deepseek (GPU 0+1)\n\n实际结果目录命名为 `profiling_output_n500_bf16_ds_{method}_s{sparsity}`（而非 `profiling/results_n500_deepseek/`）。\n\n| Condition | 状态 | PID |\n|-----------|------|-----|\n| `ds_rand_s015` | **已完成** ✓ (profiling_results.json 存在) | — |\n| `ds_imp_s015` | 运行中，输出为空 | 130124 (GPU 0) |\n| `ds_rand_s020` | 运行中，输出为空 | 154305 (GPU 1) |\n\n旧版（非 n500）的 `bf16_ds_imp_s015` 和 `bf16_ds_rand_s015` 均已完成。\n\n**结论：n500 版本 s015 完成了 random，importance 仍在跑。s020 random 也在跑。**\n\n---\n\n### 3. c2_qw_n500 (GPU 2+3)\n\n**PID 131864** — 存活，GPU 2，Qwen importance s015 → `profiling_output_n500_bf16_qw_imp_s015`（空）\n**PID 132002** — 存活，GPU 3，Qwen random s015 → `profiling_output_n500_bf16_qw_rand_s015`（空）\n\n另有空目录：`qw_rand_s020`、`qw_imp_s020`（已创建但无进程写入）\n\n**结论：两个进程都在运行，尚无输出。**\n\n---\n\n### 4. GPU 利用率\n\n| GPU | 型号 | 利用率 | 显存 | 进程 |\n|-----|------|--------|------|------|\n| 0 | RTX PRO 6000 Blackwell | **97%** | 54.3/97.9 GB | PID 130124 (ds_imp_s015) + PID 154166 (c5b s030) |\n| 1 | RTX PRO 6000 Blackwell | **79%** | 21.4/97.9 GB | PID 154305 (ds_rand_s020) |\n| 2 | RTX PRO 6000 Blackwell | **71%** | 34.1/97.9 GB | PID 131864 (qw_imp_s015) |\n| 3 | RTX PRO 6000 Blackwell | **97%** | 55.6/97.9 GB | PID 132002 (qw_rand_s015) + PID 154645 (c5b s025) |\n\n4 块 GPU 全部在用，GPU 0 和 GPU 3 各跑了 2 个进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-experiments.md"
+}

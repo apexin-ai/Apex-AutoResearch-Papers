@@ -1,0 +1,163 @@
+\section{Importance Discrimination Collapse Details}
+\label{app:discrimination-collapse-details}
+
+This cross-model consistency (Table~\ref{tab:discrimination-metrics-full}) supports importance discrimination collapse as a robust consequence of compound sparsity. When importance scores lose discriminative power, thresholding the bottom-$s$ fraction becomes noise-sensitive: small perturbations change which positions cross the eviction boundary. In the limit of perfectly uniform scores, importance-based eviction degenerates into an arbitrary selection functionally equivalent to biased random eviction. The same pattern holds under random eviction (DeepSeek: $-0.031$ to $-0.071$; Qwen: $-0.019$ to $-0.046$), indicating that importance discrimination collapse is a consequence of head pruning \emph{per se}, not of the eviction strategy.
+
+
+\section{Extended Discussion}
+\label{app:extended-discussion}
+
+\paragraph{On the predictability of phase-modulated severity.}
+The compound interaction is not uniformly fragile---it is selectively fragile in a phase-dependent manner ($\widetilde{\mathrm{II}}_{\text{high}} < 0.06$ at $s \leq 0.30$).
+
+\paragraph{Random masking as falsification control.}
+At $n{=}500$, random eviction develops a detectable but weak phase gradient above $s \approx 0.20$: non-significant at $s \leq 0.20$ for both models, but significant at $s \geq 0.25$ (DS: $\Delta{=}0.26$--$0.51$, $p_{\text{Bonf}} < 0.006$; QW: $\Delta{=}0.39$--$0.91$, $p_{\text{Bonf}} < 10^{-10}$). Where significant, the random phase gradient is $2.7$--$17{\times}$ weaker than importance-based (restricted to conditions where both strategies are significant, $s \geq 0.25$), supporting that the dominant amplification is strategy-specific.
+
+\paragraph{Entropy mechanism boundary conditions.}
+Directly measuring per-head entropy shifts across architecturally distinct models---and identifying what training-time properties determine whether entropy concentrates or disperses under head pruning---would clarify the boundary conditions of the full mechanism.
+
+
+\section{Pilot Mitigation Experiment}
+\label{app:pilot-mitigation}
+
+We explored oracle phase-aware budget reallocation, shifting sparsity budget from high-severity low-sparsity phases to low-severity high-sparsity phases ($n{=}30$ problems at $s{=}0.25$). Oracle recovery---the fraction of compound interaction eliminated by phase-aware allocation---reached 18\% (95\% CI: $[-39\%, 45.8\%]$; Wilcoxon $p = 0.002$), below the pre-registered 30\% gate for claiming practical mitigation. A heuristic variant achieved 32\% recovery (95\% CI: $[-22.8\%, 66\%]$; $p = 0.024$). \textbf{Critically, 95\% bootstrap CIs for both conditions span zero}, meaning neither recovery estimate is statistically distinguishable from no improvement. \textbf{Gate status: FAIL}---neither oracle nor heuristic recovery meets the pre-registered threshold, and neither is statistically distinguishable from zero improvement. These results indicate that phase-aware budget reallocation alone is insufficient to neutralize the severity gradient; effective mitigation likely requires joint optimization of budget allocation and eviction strategy selection across phases.
+
+
+\section{Extended Limitations}
+\label{app:limitations}
+
+\paragraph{Model scale.}
+All experiments are conducted at the 7B parameter scale.
+Whether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested.
+Larger models may exhibit different attention redundancy structures that alter the importance discrimination collapse dynamics (and the model-dependent entropy component may behave differently at scale).
+
+
+\paragraph{Architectural scope.}
+Our two models---DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct---share the Qwen2ForCausalLM architecture.
+The cross-training-paradigm replication (\S\ref{sec:cross-model}) suggests that the findings are not artifacts of a single model's weights, though both models share the same Qwen2ForCausalLM architecture.
+Cross-architecture validation on DeepSeek-R1-Distill-Llama-8B (LlamaForCausalLM, $n{=}250$, \S\ref{sec:cross-arch}, Appendix~\ref{app:cross-arch}) confirms qualitatively consistent within-importance phase gradients ($d_z{=}0.81$--$1.15$; all $p < 10^{-29}$) but a substantially weaker strategy${\times}$phase interaction than in Qwen2-based architectures: random eviction also exhibits significant phase gradients on LLaMA ($d_z{=}0.41$--$0.46$; all $p < 10^{-12}$), reducing the importance/random ratio to $2.0$--$2.6{\times}$ (vs.\ $15$--$17{\times}$ on DeepSeek). The phase gradient direction and dose-response monotonicity are architecture-general; quantitative strategy specificity is architecture-dependent. Comprehensive cross-architecture validation across more diverse designs (e.g., Mistral, multi-latent attention architectures) and scales remains an important next step.
+
+
+\paragraph{Task coverage.}
+We evaluate exclusively on MATH-500, a mathematical reasoning benchmark.
+Different reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.
+Generalizing the phase-strategy interaction to broader reasoning domains is an important next step.
+
+
+\paragraph{Statistical scope.}
+Bootstrap confidence intervals use $B{=}10{,}000$ resamples (seed$=$42). The primary analysis uses $n{=}496$ paired problems for DeepSeek (4 excluded) and $n{=}475$ for Qwen (25 excluded); the permutation test (Table~\ref{tab:permutation}) uses $n{=}49$ from an initial profiling subset.
+The severity difference distribution is right-skewed (mean/median ratios up to $43{:}1$), motivating our use of medians and nonparametric tests rather than parametric alternatives.
+All four profiling-subset permutation tests reject $H_0$ after Bonferroni correction ($p_{\text{Bonf}} < 0.005$; Table~\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---supporting the effect direction at every sparsity level. At $n{=}496$, Wilcoxon signed-rank tests support all conditions with $p_{\text{Bonf}} < 10^{-13}$ (Table~\ref{tab:cohens-d}). The permutation CIs at higher sparsity are wider (e.g., $[6.70,\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification.
+
+At $n{=}500$, random eviction on both models becomes significant at $s \geq 0.25$ (Qwen: $\Delta{=}0.39$, $p_{\text{Bonf}} < 10^{-10}$ at $s{=}0.25$; $\Delta{=}0.91$, $p_{\text{Bonf}} < 10^{-13}$ at $s{=}0.30$; bootstrap CIs exclude zero).
+These effects are genuine but $2.7$--$17{\times}$ weaker than importance-based eviction at the same sparsity levels, consistent with a weak phase gradient that is detectable at sufficient sample size but not the primary driver of compound severity.
+
+\paragraph{Sparsity range.}
+Our primary analysis spans $s \in \{0.15, 0.20, 0.25, 0.30\}$; pilot data at $s{=}0.10$ and $s{=}0.35$ exist (6 total sparsity levels) but are not included in the main analysis due to limited sample size at these boundary conditions. Monotonicity is established at the tested sparsity levels (JT test $p \ll 10^{-10}$); the functional form of $G(s)$ between and beyond these levels is not characterized.
+More extreme sparsity ($s > 0.50$) may exhibit qualitatively different interaction dynamics---the sub-exponential growth pattern suggests the severity gradient may plateau, but this remains unverified.
+
+
+\paragraph{No throughput evaluation.}
+We do not report inference throughput or latency, which are necessary for deployment analysis but orthogonal to our severity characterization.
+
+
+
+\section{Cross-Benchmark Validation: GSM8K}
+\label{app:gsm8k}
+
+Tables~\ref{tab:gsm8k-ds} and \ref{tab:gsm8k-qw} report the per-phase II breakdown on GSM8K ($n{=}50$) for DeepSeek and Qwen, respectively. All statistics use medians, Wilcoxon signed-rank tests, and bootstrap median CIs ($B{=}10{,}000$), matching the MATH-500 methodology. DeepSeek importance-based eviction replicates the MATH-500 phase gradient across all four sparsity levels (all $p \leq 0.0003$) with a strict dose-response ($\Delta$: $0.24 \to 4.68$). Qwen importance-based eviction is significant at $s \geq 0.25$ ($p < 10^{-4}$). Random eviction is non-significant across all conditions for both models; Qwen random $s{=}0.30$ is excluded due to data quality concerns (output truncation producing extreme II values).
+
+\paragraph{Power analysis for random conditions.}
+Post-hoc power analysis indicates that at $n{=}50$, the minimum detectable effect size is $d \geq 0.40$ ($\alpha{=}0.05$, power${=}0.80$). All 8 random conditions (2 models $\times$ 4 sparsity levels) show $|d| \leq 0.164$, well below the detectability threshold; their non-significance should therefore be interpreted as absence of evidence rather than evidence of absence. By contrast, Qwen importance-based eviction at $s \geq 0.25$ is adequately powered ($d \approx 0.63$, power ${>}\,0.99$), indicating that the observed significance reflects a genuine effect.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Per-phase interaction index on GSM8K: DeepSeek-R1-Distill-Qwen-7B ($n{=}50$). $\Delta$: paired median difference ($\widetilde{\mathrm{II}}_{\textit{low}} - \widetilde{\mathrm{II}}_{\textit{high}}$) with bootstrap 95\% CI ($B{=}10{,}000$, median statistic). $p$: Wilcoxon signed-rank, Bonferroni-corrected ($k{=}4$).}
+\label{tab:gsm8k-ds}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+$s$ & Strategy & $\widetilde{\mathrm{II}}_{\textit{high}}$ & $\widetilde{\mathrm{II}}_{\textit{low}}$ & $\Delta$\; [95\% CI] & $p_{\text{Bonf}}$ \\
+\midrule
+0.15 & Importance & $-$0.001 & 0.241 & 0.24\; $[0.08,\; 0.48]$ & 0.0003 \\
+0.15 & Random     & 0.036 & 0.105 & $-$0.04\textsuperscript{ns} & 0.90 \\
+\addlinespace
+0.20 & Importance & $-$0.002 & 0.740 & 0.74\; $[0.31,\; 1.12]$ & ${<}\,10^{-4}$ \\
+0.20 & Random     & 0.143 & 0.423 & 0.28\textsuperscript{ns} & 0.96 \\
+\addlinespace
+0.25 & Importance & 0.009 & 1.992 & 1.99\; $[0.93,\; 2.82]$ & ${<}\,10^{-4}$ \\
+0.25 & Random     & 0.619 & 1.603 & 0.98\textsuperscript{ns} & 0.83 \\
+\addlinespace
+0.30 & Importance & 0.024 & 4.682 & 4.68\; $[2.12,\; 10.56]$ & ${<}\,10^{-4}$ \\
+0.30 & Random     & 1.837 & 4.683 & 2.85\textsuperscript{ns} & 0.54 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Per-phase interaction index on GSM8K: Qwen2.5-7B-Instruct ($n{=}50$). Outputs truncated at \texttt{max\_new\_tokens}${=}$2047; absolute values should be interpreted with this limitation. $^{\ddagger}$Excluded: extreme II values from truncation artifacts render this condition invalid.}
+\label{tab:gsm8k-qw}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+$s$ & Strategy & $\widetilde{\mathrm{II}}_{\textit{high}}$ & $\widetilde{\mathrm{II}}_{\textit{low}}$ & $\Delta$\; [95\% CI] & $p_{\text{Bonf}}$ \\
+\midrule
+0.15 & Importance & 0.000 & 0.029 & 0.03\textsuperscript{ns} & 0.39 \\
+0.15 & Random     & 0.089 & 0.033 & $-$1.58\textsuperscript{ns} & 0.69 \\
+\addlinespace
+0.20 & Importance & 0.004 & 0.180 & 0.09\textsuperscript{ns} & 0.62 \\
+0.20 & Random     & 0.201 & 0.356 & 4.88\textsuperscript{ns} & 0.57 \\
+\addlinespace
+0.25 & Importance & 0.009 & 1.064 & 1.14\; $[0.62,\; 1.66]$ & ${<}\,10^{-4}$ \\
+0.25 & Random     & 0.802 & 1.213 & 11.1\textsuperscript{ns} & 0.39 \\
+\addlinespace
+0.30 & Importance & 0.023 & 2.140 & 4.62\; $[2.88,\; 6.92]$ & ${<}\,10^{-4}$ \\
+0.30 & Random$^{\ddagger}$     & \multicolumn{4}{c}{\textit{excluded (data quality)}} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\section{Downstream Accuracy Validation Details}
+\label{app:accuracy-details}
+
+Table~\ref{tab:accuracy} reports MATH-500 accuracy under compound sparsity (importance-based eviction) at $s \in \{0.15, 0.20, 0.25, 0.30\}$ with \texttt{max\_new\_tokens}${=}$8192, complementing the PPL-based analysis in \S\ref{sec:accuracy-validation}. Qwen ($n{=}100$; truncation $\leq 4\%$ across all conditions) provides the cleanest dose-response evidence: accuracy declines gradually from $46\%$ (dense) through $s{=}0.25$ ($\delta{=}-4$ to $-13$\,pp) before a sharp cliff at $s{=}0.30$ ($19\%$, $\delta{=}-27$\,pp). DeepSeek ($n{=}50$) shows steeper overall degradation ($74\% \to 4\%$), confounded by rising truncation ($16\% \to 76\%$); non-truncated analysis (\S\ref{app:accuracy-nt}) reveals a dual-regime structure.
+
+\begin{table}[h]
+\centering
+\small
+\caption{MATH-500 accuracy under compound sparsity (importance-based eviction, \texttt{max\_new\_tokens}${=}$8192). $\delta$: accuracy change vs.\ dense. Trunc: truncation rate under sparse condition. DS: $n{=}50$ (dense truncation $16\%$); QW: $n{=}100$ (truncation $\leq 4\%$ all conditions).}
+\label{tab:accuracy}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Model & $s$ & Dense & Sparse & $\delta$ & Trunc \\
+\midrule
+DS & 0.15 & 74\% & 48\% & $-$26\,pp & 32\% \\
+DS & 0.20 & 74\% & 30\% & $-$44\,pp & 56\% \\
+DS & 0.25 & 74\% & 8\% & $-$66\,pp & 76\% \\
+DS & 0.30 & 74\% & 4\% & $-$70\,pp & 76\% \\
+\addlinespace
+QW & 0.15 & 46\% & 42\% & $-$4\,pp & $\leq$4\% \\
+QW & 0.20 & 46\% & 36\% & $-$10\,pp & $\leq$4\% \\
+QW & 0.25 & 46\% & 33\% & $-$13\,pp & $\leq$4\% \\
+QW & 0.30 & 46\% & 19\% & $-$27\,pp & $\leq$4\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Failure mode divergence.}
+DeepSeek and Qwen exhibit qualitatively distinct failure modes under compound sparsity. DeepSeek failures are \emph{truncation-dominated}: compound sparsity is associated with verbose, repetitive chain-of-thought that exceeds the token limit (truncation rises from $16\%$ at dense to $32\%$ at $s{=}0.15$ and $76\%$ at $s{=}0.30$, even with \texttt{max\_new\_tokens}${=}$8192). Qwen failures are \emph{wrong-answer-dominated}: outputs complete within the token limit (truncation $\leq 4\%$) but produce incorrect answers, indicating that compound sparsity disrupts reasoning quality directly. This divergence likely reflects training-paradigm differences: DeepSeek's distillation from DeepSeek-R1 produces extended CoT traces susceptible to truncation under degraded conditions.
+
+\paragraph{Language switching under high sparsity.}
+DeepSeek problems exhibit language switching to Chinese mid-generation at the following observed rates: 0\% at dense, 4\% at $s{=}0.15$, and 40\% at $s{=}0.30$ (intermediate sparsity levels not yet measured).\footnote{Language switching rates were detected from \texttt{gen\_snippet} fields in 2048-token evaluations, not from the independent 8192-token generations used in Table~\ref{tab:accuracy}. Rates under the 8192-token budget were not re-measured.} This qualitative pathology---absent in Qwen---is a \emph{symptom} of compound-sparsity-induced degradation rather than a cause of accuracy loss: at $s{=}0.30$, Chinese-language and English-language outputs achieve comparable accuracy ($\sim$10\%), indicating that the accuracy decline reflects pruning-induced reasoning corruption regardless of output language. The switching pattern is consistent with the model's Chinese-language pretraining corpus surfacing under degraded attention in distillation-trained models.
+
+
+\section{Non-Truncated Sensitivity Analysis}
+\label{app:accuracy-nt}
+
+With \texttt{max\_new\_tokens}${=}$8192, Qwen truncation remains $\leq 4\%$ across all sparsity levels, so the full-sample accuracy decline ($\delta{=}-4$ to $-27$\,pp; Table~\ref{tab:accuracy}) reflects pure reasoning quality degradation without truncation confound.
+
+DeepSeek exhibits substantial truncation ($16\%$ at dense to $76\%$ at $s{=}0.25$--$0.30$). Restricting to non-truncated outputs reveals a \emph{dual-regime} structure. At $s \leq 0.20$, non-truncated accuracy remains $68$--$71\%$ (vs.\ $88\%$ dense; $n_{\text{NT}}{=}34$ at $s{=}0.15$, $n_{\text{NT}}{=}22$ at $s{=}0.20$), while full-sample accuracy drops to $30$--$48\%$---indicating that degradation at low sparsity is primarily truncation-driven rather than reflecting reasoning quality loss. At $s \geq 0.25$, non-truncated accuracy itself collapses: $33\%$ at $s{=}0.25$ and $17\%$ at $s{=}0.30$ ($n_{\text{NT}}{=}12$ for both; reported as reference values given small samples), showing that high-dose compound sparsity degrades both generation length \emph{and} reasoning quality simultaneously. The NT accuracy cliff from $68\%$ ($s{=}0.20$) to $33\%$ ($s{=}0.25$) localizes the transition between truncation-driven and dual-collapse regimes.
+
+This dual-regime structure complements the importance discrimination collapse analysis (\S\ref{sec:analysis}): at low sparsity, compound interaction primarily manifests as increased verbosity (degraded attention produces repetitive CoT); at high sparsity, the interaction additionally corrupts reasoning-critical computations.

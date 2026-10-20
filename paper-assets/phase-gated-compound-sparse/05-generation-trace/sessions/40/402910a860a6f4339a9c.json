@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "402910a860a6f4339a9c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops post restart gpu check",
+  "task_key": "worker_ops_post_restart_gpu_check_20260516T051659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post_restart_gpu_check_20260516T051659_result.json",
+    "occurrence": 1,
+    "bytes": 1739,
+    "sha256": "4037954afd987859f22da11501b61df7ce8b295d8379728aa5a6c644a31c5480"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器 westd-22162 状态总结\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| 0 | 73.3/97.9 GB | 76% | c8 importance s025 profiling |\n| 1 | 15.5/97.9 GB | 72% | c10 lang s020+s025 生成 |\n| 2 | 73.3/97.9 GB | 100% | c8 main Round 1 (s015) |\n| 3 | 73.3/97.9 GB | 100% | c8 main Round 1 (s020) |\n\n### 进程状态\n\n| PID | 任务 | 状态 | 运行时间 | 进度 | 预估剩余 |\n|-----|------|------|---------|------|----------|\n| **315052** | c8 GPU0 s025 importance | Running | 1h12m | 56/250 (22%) | ~4h |\n| **310712** | c8 main (GPU 2+3) | Running | 1h56m | Round 1/4 (s015+s020), 输出目录为空 | ~16-20h（4轮串行） |\n| **312143** | c10 s020/s025 gen | Running | 1h38m | 31/50 (62%) | ~1h |\n| **318170** | 14B 模型下载 | Running | 27m | shard 8/8: 99%, shard 5/8: 62%, 仅1个shard落盘 | ~30-60min |\n| **317541** | s030 chain monitor | Waiting | 38m | 等 s025 (PID 315052) 完成 | 跟随 s025 |\n| **316993** | s025 guardian | Watching | 47m | 监控 GPU0 正常 | 跟随 s025 |\n| **317716** | s030 guardian | Watching | 35m | 监控 chain 正常 | 跟随 chain |\n\n### Sentinel 状态\n- **s025**: placeholder（GPU 0 尚未写入真实结果）\n- **s030**: placeholder（等待 chain 触发）\n\n### 磁盘\n`/root/autodl-tmp`: 106G/250G used, **145G 可用**\n\n### 要点\n1. **全部 7 个进程存活**，服务器重启未影响任何任务\n2. c10 最快完成（~1h 后），可释放 GPU 1\n3. 14B 下载接近完成，但速度慢（~2MB/s），多数 shard 尚未落盘\n4. c8 main 是最耗时任务——4 轮串行×250 题×2 GPU，预计还需 16-20h\n5. GPU 0 的 s025 完成后会自动触发 s030 chain"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-gpu-check.md"
+}

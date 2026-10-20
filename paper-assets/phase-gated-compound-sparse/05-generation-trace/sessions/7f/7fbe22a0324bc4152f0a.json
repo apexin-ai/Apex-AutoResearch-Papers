@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fbe22a0324bc4152f0a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "check final progress",
+  "task_key": "worker_check_final-progress_20260514T023542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_final-progress_20260514T023542_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "b3a2a4f4a10b6ae6f03acbb8287e99f6806eeb35852b84d50fe9b4b03f84e963"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验均**未完成**，全部仍在运行中。\n\n| 实验 | 状态 | 进度 | GPU |\n|------|------|------|-----|\n| `mvp_v5_fixed_s020_r2` | 运行中 | 35/50 | GPU 0 (36GB used, 77%) |\n| `mvp_v5_fixed_s030_r2` | 运行中 | ~同步 (有 NaN attention warning) | GPU 1 (36GB used, 99%) |\n| `mvp_v5_random_s015` | 运行中 | 26/50 | GPU 2 (26GB used, 79%) |\n| `mvp_v5_random_s025` | 运行中 | 26/50 | GPU 3 (26GB used, 79%) |\n\n所有日志时间戳都是 `2026-05-14 10:35-36`，说明正在活跃处理。fixed 组进度约 70%，random 组约 52%。注意 `s030_r2` 有一个 NaN attention layer (layer 27) 的 warning。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-final-progress.md"
+}

@@ -1,0 +1,6 @@
+Figure 1: fig1_dose_response.pdf/png (23KB/154KB) - Dose-Response, 4 lines, symlog Y, bootstrap CI
+Figure 2: fig2_cohens_d.pdf/png (21KB/104KB) - Cohen's d trend, DS 0.44→0.80, QW 0.28→1.02, effect size thresholds
+Figure 3: fig3_crossover.pdf/png (22KB/79KB) - s=0.25 crossover, importance vs random per phase, dual model
+Figure 4: fig4_per_problem_dist.pdf/png (65KB/228KB) - 8-panel violin+scatter, 2x4 (model x sparsity)
+Script: /root/autodl-tmp/pacs/analysis/generate_paper_figures.py
+NOTE: Fig 1 uses median(ii_low - ii_high) = paired difference median, vs summary table median(ii_low) - median(ii_high). Paired version is statistically more rigorous.

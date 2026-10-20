@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "310dd96bed42521426c6",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper figure fig1 scatter",
+  "task_key": "worker_paper_figure_fig1_scatter_20260516T025638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_scatter_20260516T025638_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "39b578489901e3d33bb41e5aaf2c48e78de290b841f03738a832e2f2d4cd154f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 已重新生成并注册。\n\n- **PDF**: `artifacts/_project/paper/figures/fig1_dose_response.pdf` (16KB)\n- **PNG**: `artifacts/_project/paper/figures/fig1_dose_response.png` (59KB, 1013×795px)\n- Scatter + error bar 格式，symlog Y 轴，Okabe-Ito 配色，bootstrap 95% CI"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-scatter.md"
+}

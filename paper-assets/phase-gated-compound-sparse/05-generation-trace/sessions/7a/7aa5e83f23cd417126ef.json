@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7aa5e83f23cd417126ef",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "research analysis pipeline prep",
+  "task_key": "worker_research_analysis-pipeline-prep_20260514T023111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_analysis-pipeline-prep_20260514T023111_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "bf7d29757559e50585d5f2c45b603b45f16728d783dde0b5359055f777f62143"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功。结果摘要：\n\n**Table 2 — Phase Gradient (II_low/II_high)**:\n| Sparsity | Importance | Random |\n|----------|-----------|--------|\n| 0.15 | 28.7× | 0.49× |\n| 0.20 | 63.2× | 0.97× |\n| 0.25 | 113.7× | 1.48× |\n| 0.30 | 1628× | 1.82× |\n\n**Table 4 — Bootstrap test** (importance gradient > random gradient):\n- s=0.15: p=0.0002 ***\n- s=0.20: p=0.0029 **\n- s=0.25: p=0.0020 **\n- s=0.30: p=0.0265 *\n\n所有 sparsity levels 下 importance 的 phase gradient 显著大于 random（全部 p<0.05）。Strategy divergence 在 low phase 尤其大（s=0.30 时 importance II 是 random 的 111 倍）。\n\n产出文件：\n- 脚本：`/root/autodl-tmp/pacs/analysis/analyze_strategy_phase_crossover.py`\n- CSV：`/root/autodl-tmp/pacs/analysis/crossover_summary.csv`\n\n脚本已设计为容忍缺失目录——v5 random 和 v5 importance restart 完成后会自动纳入，v5 random 数据会优先于 v4 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-analysis-pipeline-prep.md"
+}

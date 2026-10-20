@@ -1,0 +1,11 @@
+experiment: acc_qw_dense_b1_8k
+model: Qwen2.5-7B-Instruct
+condition: dense
+n_problems: 50
+max_new_tokens: 8192
+accuracy: 0.44 (22/50)
+avg_gen_length: 759.7
+max_gen_length: 8192
+truncation_rate: 2% (1/50)
+total_time: 681.8s
+server_path: /root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_dense_b1_8k.json

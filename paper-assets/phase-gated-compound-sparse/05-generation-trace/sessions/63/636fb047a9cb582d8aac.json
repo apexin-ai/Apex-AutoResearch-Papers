@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "636fb047a9cb582d8aac",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper w3 w4 d059 appendix meth lim",
+  "task_key": "worker_paper_w3-w4-d059-appendix-meth-lim_20260514T233825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w3-w4-d059-appendix-meth-lim_20260514T233825_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "2b91b4759128beaaa57e38b660cb15e69eaea47d2573e6d735dc143b13e2356c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 处修改全部完成，验证通过：\n\n- **appendix_disc_analysis.tex**：D9 (line 14) `\\placeholder{}` 替换 ✓、W3 (line 33) LLaMA 重写 ✓、W4 (line 45) bootstrap 披露 ✓、D10 (line 49) `\\placeholder{}` 替换 ✓\n- **methodology.tex**：W4 (line 22) bootstrap B=1000→10000 披露 ✓\n- **limitations.tex**：W3 (line 2) LLaMA framing 重写 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w3-w4-d059-appendix-meth-lim.md"
+}

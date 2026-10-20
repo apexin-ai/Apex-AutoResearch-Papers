@@ -1,0 +1,1522 @@
+# code analysis pipeline final
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_code_analysis_pipeline_final_20260514T214825.log`
+- **Structured JSON:** [`b0d11bd961bcd2ccb146.json`](../../sessions/b0/b0d11bd961bcd2ccb146.json)
+
+## Before a recorded user message
+
+30 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6dfc4858-955a-4cd2-8922-a880b6f07bb4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778812800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "bc37f97e-cc4d-495e-a4ed-1df84550755b",
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the existing scripts on the server to understand what we're working with.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "59076482-177c-4a6b-b9f5-028325ce3a96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PADfgiFXyW2SspNEUTyZi6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12215,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12215
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取服务器上的两个现有脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "9efcb878-a05f-4be4-8e20-ec8b0ab57bd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PADfgiFXyW2SspNEUTyZi6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12215,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12215
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PZuP5oR8pFMBu2SaTLNxgY`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "348b2756-385f-4611-9cd4-3f8d2aa842bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PADfgiFXyW2SspNEUTyZi6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12215,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12215
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T21:48:38.997Z_
+
+<details><summary>↩ Tool result · `toolu_01PZuP5oR8pFMBu2SaTLNxgY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "405c6a4e-3877-4021-9c17-0fc737d9a2f9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FdWeXEKfH3coZXVDXXPRXw`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analyze_n500_unified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "95f66f8a-8a0f-4a06-9608-eb1bb70da4a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VQJS38gNGAwFDwkwnhtZ31",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 23662,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 923
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QWjmeDeKPA5vKHQ4F5Y1wv`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/scripts/analyze_c2_n500.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "42125a79-f493-4c48-8338-3ec318f359a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VQJS38gNGAwFDwkwnhtZ31",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 23662,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 923
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T21:48:43.737Z_
+
+<details><summary>↩ Tool result · `toolu_01FdWeXEKfH3coZXVDXXPRXw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nUnified n=500 analysis for phase-gated compound sparsity.\\n\\nConstraints:\\n  - II: median + median bootstrap CI (1000 resamples), NO mean\\n  - d_z: within-importance only (same strategy, different sparsity pairs)\\n  - Dose-response: Spearman rho + permutation p-value\\n  - 95% percentile bootstrap, 1000 resamples\\n\\nUsage:\\n  python analyze_n500_unified.py --model deepseek\\n  python analyze_n500_unified.py --model qwen\\n  python analyze_n500_unified.py --model all\\n  python analyze_n500_unified.py --model all --dry-run   # use n=50 data\\n\\\"\\\"\\\"\\n\\nimport json\\nimport argparse\\nimport sys\\nfrom pathlib import Path\\nimport numpy as np\\nfrom scipy import stats\\n\\nBASE = Path(\\\"/root/autodl-tmp/pacs\\\")\\n\\nMODEL_MAP = {\\\"deepseek\\\": \\\"ds\\\", \\\"qwen\\\": \\\"qw\\\"}\\nMASKING_TYPES = [\\\"imp\\\", \\\"rand\\\"]\\nSPARSITY_LABELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_VALUES = {\\\"s015\\\": 0.15, \\\"s020\\\": 0.20, \\\"s025\\\": 0.25, \\\"s030\\\": 0.30}\\nSPARSITY_KEY_MAP = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\n\\nWITHIN_PAIRS = [\\n    (\\\"s015\\\", \\\"s020\\\"),\\n    (\\\"s020\\\", \\\"s025\\\"),\\n    (\\\"s025\\\", \\\"s030\\\"),\\n    (\\\"s015\\\", \\\"s030\\\"),\\n]\\n\\nB_BOOT = 1000\\nSEED = 42\\nALPHA = 0.05\\nN_PERM = 5000\\n\\n\\ndef dir_name(model_short, masking, slabel, n500=True):\\n    prefix = \\\"n500_\\\" if n500 else \\\"\\\"\\n    return f\\\"profiling_output_{prefix}bf16_{model_short}_{masking}_{slabel}\\\"\\n\\n\\ndef load_per_problem_ii(dirpath):\\n    fpath = Path(dirpath) / \\\"profiling_results.json\\\"\\n    if not fpath.exists():\\n        return None\\n    with open(fpath) as f:\\n        data = json.load(f)\\n    ppi = data.get(\\\"per_problem_ii\\\", {})\\n    keys = list(ppi.keys())\\n    if not keys:\\n        return None\\n    return ppi[keys[0]]\\n\\n\\ndef extract_diffs(problems, phase_a=\\\"low\\\", phase_b=\\\"high\\\"):\\n    diffs = []\\n    for p in problems:\\n        va = p.get(f\\\"ii_{phase_a}\\\")\\n        vb = p.get(f\\\"ii_{phase_b}\\\")\\n        if va is not None and vb is not None:\\n            diffs.append(va - vb)\\n    return np.array(diffs)\\n\\n\\ndef bootstrap_median_ci(arr, B=B_BOOT, alpha=ALPHA, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(arr)\\n    boot = np.array([np.median(arr[rng.randint(0, n, size=n)]) for _ in range(B)])\\n    lo = float(np.percentile(boot, 100 * alpha / 2))\\n    hi = float(np.percentile(boot, 100 * (1 - alpha / 2)))\\n    return lo, hi\\n\\n\\ndef paired_cohens_dz(diffs):\\n    if len(diffs) < 2:\\n        return float(\\\"nan\\\")\\n    s = np.std(diffs, ddof=1)\\n    if s == 0:\\n        return float(\\\"nan\\\")\\n    return float(np.mean(diffs) / s)\\n\\n\\ndef bootstrap_dz_ci(diffs, B=B_BOOT, alpha=ALPHA, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(diffs)\\n    boot = np.empty(B)\\n    for i in range(B):\\n        sample = diffs[rng.randint(0, n, size=n)]\\n        s = sample.std(ddof=1)\\n        boot[i] = sample.mean() / s if s > 0 else np.nan\\n    boot = boot[~np.isnan(boot)]\\n    if len(boot) == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    return float(np.percentile(boot, 100 * alpha / 2)), float(np.percentile(boot, 100 * (1 - alpha / 2)))\\n\\n\\ndef interpret_d(d):\\n    ad = abs(d)\\n    if ad < 0.2:\\n        return \\\"negligible\\\"\\n    elif ad < 0.5:\\n        return \\\"small\\\"\\n    elif ad < 0.8:\\n        return \\\"medium\\\"\\n    return \\\"large\\\"\\n\\n\\ndef spearman_permutation_test(x, y, n_perm=N_PERM, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    rho_obs, _ = stats.spearmanr(x, y)\\n    count = 0\\n    for _ in range(n_perm):\\n        y_perm = rng.permutation(y)\\n        rho_perm, _ = stats.spearmanr(x, y_perm)\\n        if rho_perm >= rho_obs:\\n            count += 1\\n    p = (count + 1) / (n_perm + 1)\\n    return float(rho_obs), float(p)\\n\\n\\ndef analyze_one_condition(problems):\\n    diffs = extract_diffs(problems, \\\"low\\\", \\\"high\\\")\\n    n_valid = len(diffs)\\n    if n_valid < 5:\\n        return {\\\"error\\\": f\\\"too few valid: {n_valid}\\\", \\\"n_valid\\\": n_valid}\\n\\n    med = float(np.median(diffs))\\n    med_ci_lo, med_ci_hi = bootstrap_median_ci(diffs)\\n\\n    per_phase = {}\\n    for ph in [\\\"high\\\", \\\"mid\\\", \\\"low\\\"]:\\n        vals = [p[f\\\"ii_{ph}\\\"] for p in problems if p.get(f\\\"ii_{ph}\\\") is not None]\\n        if vals:\\n            arr = np.array(\\n\\n... [截断: 输出过长，省略 5128 字符] ...\\n\\n      \\\"conditions\\\": cond_out,\\n        \\\"within_dz\\\": {\\n            \\\"importance\\\": dz_imp,\\n            \\\"random\\\": dz_rand,\\n        },\\n        \\\"dose_response\\\": {\\n            \\\"importance\\\": dr_imp,\\n            \\\"random\\\": dr_rand,\\n        },\\n        \\\"available_conditions\\\": {k: v for k, v in available.items()},\\n    }\\n\\n\\ndef sanitize(obj):\\n    if isinstance(obj, dict):\\n        return {k: sanitize(v) for k, v in obj.items()}\\n    elif isinstance(obj, list):\\n        return [sanitize(v) for v in obj]\\n    elif isinstance(obj, (np.integer,)):\\n        return int(obj)\\n    elif isinstance(obj, (np.floating,)):\\n        return float(obj)\\n    elif isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    elif isinstance(obj, (np.bool_,)):\\n        return bool(obj)\\n    return obj\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--model\\\", choices=[\\\"deepseek\\\", \\\"qwen\\\", \\\"all\\\"], default=\\\"all\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Use n=50 data\\\")\\n    parser.add_argument(\\\"--csv\\\", action=\\\"store_true\\\", help=\\\"Also output CSV\\\")\\n    args = parser.parse_args()\\n\\n    n500 = not args.dry_run\\n    models = list(MODEL_MAP.keys()) if args.model == \\\"all\\\" else [args.model]\\n\\n    full_output = {\\n        \\\"meta\\\": {\\n            \\\"analysis\\\": \\\"n500_unified\\\",\\n            \\\"bootstrap_resamples\\\": B_BOOT,\\n            \\\"bootstrap_alpha\\\": ALPHA,\\n            \\\"permutation_resamples\\\": N_PERM,\\n            \\\"seed\\\": SEED,\\n            \\\"ii_statistic\\\": \\\"median\\\",\\n            \\\"dz_scope\\\": \\\"within-strategy (same masking, different sparsity)\\\",\\n        },\\n        \\\"models\\\": {},\\n    }\\n\\n    for m in models:\\n        result = analyze_model(m, n500=n500)\\n        full_output[\\\"models\\\"][m] = sanitize(result)\\n\\n    out_dir = BASE / \\\"analysis_output\\\"\\n    out_dir.mkdir(exist_ok=True)\\n    suffix = \\\"_dryrun\\\" if args.dry_run else \\\"\\\"\\n\\n    json_path = out_dir / f\\\"n500_unified{suffix}.json\\\"\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(full_output, f, indent=2)\\n    print(f\\\"\\\\nSaved: {json_path}\\\")\\n\\n    if args.csv:\\n        csv_path = out_dir / f\\\"n500_unified{suffix}.csv\\\"\\n        with open(csv_path, \\\"w\\\") as f:\\n            f.write(\\\"model,masking,sparsity,n,median_ii_diff,ci_lo,ci_hi,ci_excludes_zero\\\\n\\\")\\n            for m_name, m_data in full_output[\\\"models\\\"].items():\\n                for cond_key, cond in m_data.get(\\\"conditions\\\", {}).items():\\n                    if \\\"error\\\" in cond:\\n                        continue\\n                    parts = cond_key.split(\\\"_\\\")\\n                    masking, sl = parts[0], parts[1]\\n                    ci = cond[\\\"median_ii_diff_ci\\\"]\\n                    f.write(f\\\"{m_name},{masking},{sl},{cond['n_valid']},\\\"\\n                            f\\\"{cond['median_ii_diff']},{ci[0]},{ci[1]},\\\"\\n                            f\\\"{cond['ci_excludes_zero']}\\\\n\\\")\\n\\n            f.write(\\\"\\\\n\\\")\\n            f.write(\\\"model,masking,pair,d_z,dz_ci_lo,dz_ci_hi,interpretation,n_paired\\\\n\\\")\\n            for m_name, m_data in full_output[\\\"models\\\"].items():\\n                for scope in [\\\"importance\\\", \\\"random\\\"]:\\n                    dz_data = m_data.get(\\\"within_dz\\\", {}).get(scope, {})\\n                    for pair, v in dz_data.items():\\n                        f.write(f\\\"{m_name},{scope},{pair},{v['d_z']},\\\"\\n                                f\\\"{v['d_z_ci'][0]},{v['d_z_ci'][1]},\\\"\\n                                f\\\"{v['interpretation']},{v['n_paired']}\\\\n\\\")\\n\\n            f.write(\\\"\\\\n\\\")\\n            f.write(\\\"model,masking,spearman_rho,perm_p,monotonic,significant\\\\n\\\")\\n            for m_name, m_data in full_output[\\\"models\\\"].items():\\n                for scope in [\\\"importance\\\", \\\"random\\\"]:\\n                    dr = m_data.get(\\\"dose_response\\\", {}).get(scope, {})\\n                    if \\\"error\\\" not in dr:\\n                        f.write(f\\\"{m_name},{scope},{dr['spearman_rho']},\\\"\\n                                f\\\"{dr['permutation_p']},{dr['monotonic_increasing']},\\\"\\n                                f\\\"{dr['significant_005']}\\\\n\\\")\\n        print(f\\\"Saved: {csv_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "9bbdabaa-a85e-4159-b312-41f7daa7b1e8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nUnified n=500 analysis for phase-gated compound sparsity.\\\\n\\\\nConstraints:\\\\n  - II: median + median bootstrap CI (1000 resamples), NO mean\\\\n  - d_z: within-importance only (same strategy, different sparsity pairs)\\\\n  - Dose-response: Spearman rho + permutation p-value\\\\n  - 95% percentile bootstrap, 1000 resamples\\\\n\\\\nUsage:\\\\n  python analyze_n500_unified.py --model deepseek\\\\n  python analyze_n500_unified.py --model qwen\\\\n  python analyze_n500_unified.py --model all\\\\n  python analyze_n500_unified.py --model all --dry-run   # use n=50 data\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport argparse\\\\nimport sys\\\\nfrom pathlib import Path\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/pacs\\\\\\\")\\\\n\\\\nMODEL_MAP = {\\\\\\\"deepseek\\\\\\\": \\\\\\\"ds\\\\\\\", \\\\\\\"qwen\\\\\\\": \\\\\\\"qw\\\\\\\"}\\\\nMASKING_TYPES = [\\\\\\\"imp\\\\\\\", \\\\\\\"rand\\\\\\\"]\\\\nSPARSITY_LABELS = [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]\\\\nSPARSITY_VALUES = {\\\\\\\"s015\\\\\\\": 0.15, \\\\\\\"s020\\\\\\\": 0.20, \\\\\\\"s025\\\\\\\": 0.25, \\\\\\\"s030\\\\\\\": 0.30}\\\\nSPARSITY_KEY_MAP = {\\\\\\\"s015\\\\\\\": \\\\\\\"0.15\\\\\\\", \\\\\\\"s020\\\\\\\": \\\\\\\"0.2\\\\\\\", \\\\\\\"s025\\\\\\\": \\\\\\\"0.25\\\\\\\", \\\\\\\"s030\\\\\\\": \\\\\\\"0.3\\\\\\\"}\\\\n\\\\nWITHIN_PAIRS = [\\\\n    (\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\"),\\\\n    (\\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\"),\\\\n    (\\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"),\\\\n    (\\\\\\\"s015\\\\\\\", \\\\\\\"s030\\\\\\\"),\\\\n]\\\\n\\\\nB_BOOT = 1000\\\\nSEED = 42\\\\nALPHA = 0.05\\\\nN_PERM = 5000\\\\n\\\\n\\\\ndef dir_name(model_short, masking, slabel, n500=True):\\\\n    prefix = \\\\\\\"n500_\\\\\\\" if n500 else \\\\\\\"\\\\\\\"\\\\n    return f\\\\\\\"profiling_output_{prefix}bf16_{model_short}_{masking}_{slabel}\\\\\\\"\\\\n\\\\n\\\\ndef load_per_problem_ii(dirpath):\\\\n    fpath = Path(dirpath) / \\\\\\\"profiling_results.json\\\\\\\"\\\\n    if not fpath.exists():\\\\n        return None\\\\n    with open(fpath) as f:\\\\n        data = json.load(f)\\\\n    ppi = data.get(\\\\\\\"per_problem_ii\\\\\\\", {})\\\\n    keys = list(ppi.keys())\\\\n    if not keys:\\\\n        return None\\\\n    return ppi[keys[0]]\\\\n\\\\n\\\\ndef extract_diffs(problems, phase_a=\\\\\\\"low\\\\\\\", phase_b=\\\\\\\"high\\\\\\\"):\\\\n    diffs = []\\\\n    for p in problems:\\\\n        va = p.get(f\\\\\\\"ii_{phase_a}\\\\\\\")\\\\n        vb = p.get(f\\\\\\\"ii_{phase_b}\\\\\\\")\\\\n        if va is not None and vb is not None:\\\\n            diffs.append(va - vb)\\\\n    return np.array(diffs)\\\\n\\\\n\\\\ndef bootstrap_median_ci(arr, B=B_BOOT, alpha=ALPHA, seed=SEED):\\\\n    rng = np.random.RandomState(seed)\\\\n    n = len(arr)\\\\n    boot = np.array([np.median(arr[rng.randint(0, n, size=n)]) for _ in range(B)])\\\\n    lo = float(np.percentile(boot, 100 * alpha / 2))\\\\n    hi = float(np.percentile(boot, 100 * (1 - alpha / 2)))\\\\n    return lo, hi\\\\n\\\\n\\\\ndef paired_cohens_dz(diffs):\\\\n    if len(diffs) < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    s = np.std(diffs, ddof=1)\\\\n    if s == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    return float(np.mean(diffs) / s)\\\\n\\\\n\\\\ndef bootstrap_dz_ci(diffs, B=B_BOOT, alpha=ALPHA, seed=SEED):\\\\n    rng = np.random.RandomState(seed)\\\\n    n = len(diffs)\\\\n    boot = np.empty(B)\\\\n    for i in range(B):\\\\n        sample = diffs[rng.randint(0, n, size=n)]\\\\n        s = sample.std(ddof=1)\\\\n        boot[i] = sample.mean() / s if s > 0 else np.nan\\\\n    boot = boot[~np.isnan(boot)]\\\\n    if len(boot) == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    return float(np.percentile(boot, 100 * alpha / 2)), float(np.percentile(boot, 100 * (1 - alpha / 2)))\\\\n\\\\n\\\\ndef interpret_d(d):\\\\n    ad = abs(d)\\\\n    if ad < 0.2:\\\\n        return \\\\\\\"negligible\\\\\\\"\\\\n    elif ad < 0.5:\\\\n        return \\\\\\\"small\\\\\\\"\\\\n    elif ad < 0.8:\\\\n        return \\\\\\\"medium\\\\\\\"\\\\n    return \\\\\\\"large\\\\\\\"\\\\n\\\\n\\\\ndef spearman_permutation_test(x, y, n_perm=N_PERM, seed=SEED):\\\\n    rng = np.random.RandomState(seed)\\\\n    rho_obs, _ = stats.spearmanr(x, y)\\\\n    count = 0\\\\n    for _ in range(n_perm):\\\\n        y_perm = rng.permutation(y)\\\\n        rho_perm, _ = stats.spearmanr(x, y_perm)\\\\n        if rho_perm >= rho_obs:\\\\n            count += 1\\\\n    p = (count + 1) / (n_perm + 1)\\\\n    return float(rho_obs), float(p)\\\\n\\\\n\\\\ndef analyze_one_condition(problems):\\\\n    diffs = extract_diffs(problems, \\\\\\\"low\\\\\\\", \\\\\\\"high\\\\\\\")\\\\n    n_valid = len(diffs)\\\\n    if n_valid < 5:\\\\n        return {\\\\\\\"error\\\\\\\": f\\\\\\\"too few valid: {n_valid}\\\\\\\", \\\\\\\"n_valid\\\\\\\": n_valid}\\\\n\\\\n    med = float(np.median(diffs))\\\\n    med_ci_lo, med_ci_hi = bootstrap_median_ci(diffs)\\\\n\\\\n    per_phase = {}\\\\n    for ph in [\\\\\\\"high\\\\\\\", \\\\\\\"mid\\\\\\\", \\\\\\\"low\\\\\\\"]:\\\\n        vals = [p[f\\\\\\\"ii_{ph}\\\\\\\"] for p in problems if p.get(f\\\\\\\"ii_{ph}\\\\\\\") is not None]\\\\n        if vals:\\\\n            arr = np.array(\\\\n\\\\n... [截断: 输出过长，省略 5128 字符] ...\\\\n\\\\n      \\\\\\\"conditions\\\\\\\": cond_out,\\\\n        \\\\\\\"within_dz\\\\\\\": {\\\\n            \\\\\\\"importance\\\\\\\": dz_imp,\\\\n            \\\\\\\"random\\\\\\\": dz_rand,\\\\n        },\\\\n        \\\\\\\"dose_response\\\\\\\": {\\\\n            \\\\\\\"importance\\\\\\\": dr_imp,\\\\n            \\\\\\\"random\\\\\\\": dr_rand,\\\\n        },\\\\n        \\\\\\\"available_conditions\\\\\\\": {k: v for k, v in available.items()},\\\\n    }\\\\n\\\\n\\\\ndef sanitize(obj):\\\\n    if isinstance(obj, dict):\\\\n        return {k: sanitize(v) for k, v in obj.items()}\\\\n    elif isinstance(obj, list):\\\\n        return [sanitize(v) for v in obj]\\\\n    elif isinstance(obj, (np.integer,)):\\\\n        return int(obj)\\\\n    elif isinstance(obj, (np.floating,)):\\\\n        return float(obj)\\\\n    elif isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    elif isinstance(obj, (np.bool_,)):\\\\n        return bool(obj)\\\\n    return obj\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--model\\\\\\\", choices=[\\\\\\\"deepseek\\\\\\\", \\\\\\\"qwen\\\\\\\", \\\\\\\"all\\\\\\\"], default=\\\\\\\"all\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Use n=50 data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--csv\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Also output CSV\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    n500 = not args.dry_run\\\\n    models = list(MODEL_MAP.keys()) if args.model == \\\\\\\"all\\\\\\\" else [args.model]\\\\n\\\\n    full_output = {\\\\n        \\\\\\\"meta\\\\\\\": {\\\\n            \\\\\\\"analysis\\\\\\\": \\\\\\\"n500_unified\\\\\\\",\\\\n            \\\\\\\"bootstrap_resamples\\\\\\\": B_BOOT,\\\\n            \\\\\\\"bootstrap_alpha\\\\\\\": ALPHA,\\\\n            \\\\\\\"permutation_resamples\\\\\\\": N_PERM,\\\\n            \\\\\\\"seed\\\\\\\": SEED,\\\\n            \\\\\\\"ii_statistic\\\\\\\": \\\\\\\"median\\\\\\\",\\\\n            \\\\\\\"dz_scope\\\\\\\": \\\\\\\"within-strategy (same masking, different sparsity)\\\\\\\",\\\\n        },\\\\n        \\\\\\\"models\\\\\\\": {},\\\\n    }\\\\n\\\\n    for m in models:\\\\n        result = analyze_model(m, n500=n500)\\\\n        full_output[\\\\\\\"models\\\\\\\"][m] = sanitize(result)\\\\n\\\\n    out_dir = BASE / \\\\\\\"analysis_output\\\\\\\"\\\\n    out_dir.mkdir(exist_ok=True)\\\\n    suffix = \\\\\\\"_dryrun\\\\\\\" if args.dry_run else \\\\\\\"\\\\\\\"\\\\n\\\\n    json_path = out_dir / f\\\\\\\"n500_unified{suffix}.json\\\\\\\"\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(full_output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {json_path}\\\\\\\")\\\\n\\\\n    if args.csv:\\\\n        csv_path = out_dir / f\\\\\\\"n500_unified{suffix}.csv\\\\\\\"\\\\n        with open(csv_path, \\\\\\\"w\\\\\\\") as f:\\\\n            f.write(\\\\\\\"model,masking,sparsity,n,median_ii_diff,ci_lo,ci_hi,ci_excludes_zero\\\\\\\\n\\\\\\\")\\\\n            for m_name, m_data in full_output[\\\\\\\"models\\\\\\\"].items():\\\\n                for cond_key, cond in m_data.get(\\\\\\\"conditions\\\\\\\", {}).items():\\\\n                    if \\\\\\\"error\\\\\\\" in cond:\\\\n                        continue\\\\n                    parts = cond_key.split(\\\\\\\"_\\\\\\\")\\\\n                    masking, sl = parts[0], parts[1]\\\\n                    ci = cond[\\\\\\\"median_ii_diff_ci\\\\\\\"]\\\\n                    f.write(f\\\\\\\"{m_name},{masking},{sl},{cond['n_valid']},\\\\\\\"\\\\n                            f\\\\\\\"{cond['median_ii_diff']},{ci[0]},{ci[1]},\\\\\\\"\\\\n                            f\\\\\\\"{cond['ci_excludes_zero']}\\\\\\\\n\\\\\\\")\\\\n\\\\n            f.write(\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n            f.write(\\\\\\\"model,masking,pair,d_z,dz_ci_lo,dz_ci_hi,interpretation,n_paired\\\\\\\\n\\\\\\\")\\\\n            for m_name, m_data in full_output[\\\\\\\"models\\\\\\\"].items():\\\\n                for scope in [\\\\\\\"importance\\\\\\\", \\\\\\\"random\\\\\\\"]:\\\\n                    dz_data = m_data.get(\\\\\\\"within_dz\\\\\\\", {}).get(scope, {})\\\\n                    for pair, v in dz_data.items():\\\\n                        f.write(f\\\\\\\"{m_name},{scope},{pair},{v['d_z']},\\\\\\\"\\\\n                                f\\\\\\\"{v['d_z_ci'][0]},{v['d_z_ci'][1]},\\\\\\\"\\\\n                                f\\\\\\\"{v['interpretation']},{v['n_paired']}\\\\\\\\n\\\\\\\")\\\\n\\\\n            f.write(\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n            f.write(\\\\\\\"model,masking,spearman_rho,perm_p,monotonic,significant\\\\\\\\n\\\\\\\")\\\\n            for m_name, m_data in full_output[\\\\\\\"models\\\\\\\"].items():\\\\n                for scope in [\\\\\\\"importance\\\\\\\", \\\\\\\"random\\\\\\\"]:\\\\n                    dr = m_data.get(\\\\\\\"dose_response\\\\\\\", {}).get(scope, {})\\\\n                    if \\\\\\\"error\\\\\\\" not in dr:\\\\n                        f.write(f\\\\\\\"{m_name},{scope},{dr['spearman_rho']},\\\\\\\"\\\\n                                f\\\\\\\"{dr['permutation_p']},{dr['monotonic_increasing']},\\\\\\\"\\\\n                                f\\\\\\\"{dr['significant_005']}\\\\\\\\n\\\\\\\")\\\\n        print(f\\\\\\\"Saved: {csv_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nUnified n=500 analysis for phase-gated compound sparsity.\\n\\nConstraints:\\n  - II: median + median bootstrap CI (1000 resamples), NO mean\\n  - d_z: within-importance only (same strategy, different sparsity pairs)\\n  - Dose-response: Spearman rho + permutation p-value\\n  - 95% percentile bootstrap, 1000 resamples\\n\\nUsage:\\n  python analyze_n500_unified.py --model deepseek\\n  python analyze_n500_unified.py --model qwen\\n  python analyze_n500_unified.py --model all\\n  python analyze_n500_unified.py --model all --dry-run   # use n=50 data\\n\\\"\\\"\\\"\\n\\nimport json\\nimport argparse\\nimport sys\\nfrom pathlib import Path\\nimport numpy as np\\nfrom scipy import stats\\n\\nBASE = Path(\\\"/root/autodl-tmp/pacs\\\")\\n\\nMODEL_MAP = {\\\"deepseek\\\": \\\"ds\\\", \\\"qwen\\\": \\\"qw\\\"}\\nMASKING_TYPES = [\\\"imp\\\", \\\"rand\\\"]\\nSPARSITY_LABELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_VALUES = {\\\"s015\\\": 0.15, \\\"s020\\\": 0.20, \\\"s025\\\": 0.25, \\\"s030\\\": 0.30}\\nSPARSITY_KEY_MAP = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\n\\nWITHIN_PAIRS = [\\n    (\\\"s015\\\", \\\"s020\\\"),\\n    (\\\"s020\\\", \\\"s025\\\"),\\n    (\\\"s025\\\", \\\"s030\\\"),\\n    (\\\"s015\\\", \\\"s030\\\"),\\n]\\n\\nB_BOOT = 1000\\nSEED = 42\\nALPHA = 0.05\\nN_PERM = 5000\\n\\n\\ndef dir_name(model_short, masking, slabel, n500=True):\\n    prefix = \\\"n500_\\\" if n500 else \\\"\\\"\\n    return f\\\"profiling_output_{prefix}bf16_{model_short}_{masking}_{slabel}\\\"\\n\\n\\ndef load_per_problem_ii(dirpath):\\n    fpath = Path(dirpath) / \\\"profiling_results.json\\\"\\n    if not fpath.exists():\\n        return None\\n    with open(fpath) as f:\\n        data = json.load(f)\\n    ppi = data.get(\\\"per_problem_ii\\\", {})\\n    keys = list(ppi.keys())\\n    if not keys:\\n        return None\\n    return ppi[keys[0]]\\n\\n\\ndef extract_diffs(problems, phase_a=\\\"low\\\", phase_b=\\\"high\\\"):\\n    diffs = []\\n    for p in problems:\\n        va = p.get(f\\\"ii_{phase_a}\\\")\\n        vb = p.get(f\\\"ii_{phase_b}\\\")\\n        if va is not None and vb is not None:\\n            diffs.append(va - vb)\\n    return np.array(diffs)\\n\\n\\ndef bootstrap_median_ci(arr, B=B_BOOT, alpha=ALPHA, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(arr)\\n    boot = np.array([np.median(arr[rng.randint(0, n, size=n)]) for _ in range(B)])\\n    lo = float(np.percentile(boot, 100 * alpha / 2))\\n    hi = float(np.percentile(boot, 100 * (1 - alpha / 2)))\\n    return lo, hi\\n\\n\\ndef paired_cohens_dz(diffs):\\n    if len(diffs) < 2:\\n        return float(\\\"nan\\\")\\n    s = np.std(diffs, ddof=1)\\n    if s == 0:\\n        return float(\\\"nan\\\")\\n    return float(np.mean(diffs) / s)\\n\\n\\ndef bootstrap_dz_ci(diffs, B=B_BOOT, alpha=ALPHA, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(diffs)\\n    boot = np.empty(B)\\n    for i in range(B):\\n        sample = diffs[rng.randint(0, n, size=n)]\\n        s = sample.std(ddof=1)\\n        boot[i] = sample.mean() / s if s > 0 else np.nan\\n    boot = boot[~np.isnan(boot)]\\n    if len(boot) == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    return float(np.percentile(boot, 100 * alpha / 2)), float(np.percentile(boot, 100 * (1 - alpha / 2)))\\n\\n\\ndef interpret_d(d):\\n    ad = abs(d)\\n    if ad < 0.2:\\n        return \\\"negligible\\\"\\n    elif ad < 0.5:\\n        return \\\"small\\\"\\n    elif ad < 0.8:\\n        return \\\"medium\\\"\\n    return \\\"large\\\"\\n\\n\\ndef spearman_permutation_test(x, y, n_perm=N_PERM, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    rho_obs, _ = stats.spearmanr(x, y)\\n    count = 0\\n    for _ in range(n_perm):\\n        y_perm = rng.permutation(y)\\n        rho_perm, _ = stats.spearmanr(x, y_perm)\\n        if rho_perm >= rho_obs:\\n            count += 1\\n    p = (count + 1) / (n_perm + 1)\\n    return float(rho_obs), float(p)\\n\\n\\ndef analyze_one_condition(problems):\\n    diffs = extract_diffs(problems, \\\"low\\\", \\\"high\\\")\\n    n_valid = len(diffs)\\n    if n_valid < 5:\\n        return {\\\"error\\\": f\\\"too few valid: {n_valid}\\\", \\\"n_valid\\\": n_valid}\\n\\n    med = float(np.median(diffs))\\n    med_ci_lo, med_ci_hi = bootstrap_median_ci(diffs)\\n\\n    per_phase = {}\\n    for ph in [\\\"high\\\", \\\"mid\\\", \\\"low\\\"]:\\n        vals = [p[f\\\"ii_{ph}\\\"] for p in problems if p.get(f\\\"ii_{ph}\\\") is not None]\\n        if vals:\\n            arr = np.array(\\n\\n... [截断: 输出过长，省略 5128 字符] ...\\n\\n      \\\"conditions\\\": cond_out,\\n        \\\"within_dz\\\": {\\n            \\\"importance\\\": dz_imp,\\n            \\\"random\\\": dz_rand,\\n        },\\n        \\\"dose_response\\\": {\\n            \\\"importance\\\": dr_imp,\\n            \\\"random\\\": dr_rand,\\n        },\\n        \\\"available_conditions\\\": {k: v for k, v in available.items()},\\n    }\\n\\n\\ndef sanitize(obj):\\n    if isinstance(obj, dict):\\n        return {k: sanitize(v) for k, v in obj.items()}\\n    elif isinstance(obj, list):\\n        return [sanitize(v) for v in obj]\\n    elif isinstance(obj, (np.integer,)):\\n        return int(obj)\\n    elif isinstance(obj, (np.floating,)):\\n        return float(obj)\\n    elif isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    elif isinstance(obj, (np.bool_,)):\\n        return bool(obj)\\n    return obj\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--model\\\", choices=[\\\"deepseek\\\", \\\"qwen\\\", \\\"all\\\"], default=\\\"all\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Use n=50 data\\\")\\n    parser.add_argument(\\\"--csv\\\", action=\\\"store_true\\\", help=\\\"Also output CSV\\\")\\n    args = parser.parse_args()\\n\\n    n500 = not args.dry_run\\n    models = list(MODEL_MAP.keys()) if args.model == \\\"all\\\" else [args.model]\\n\\n    full_output = {\\n        \\\"meta\\\": {\\n            \\\"analysis\\\": \\\"n500_unified\\\",\\n            \\\"bootstrap_resamples\\\": B_BOOT,\\n            \\\"bootstrap_alpha\\\": ALPHA,\\n            \\\"permutation_resamples\\\": N_PERM,\\n            \\\"seed\\\": SEED,\\n            \\\"ii_statistic\\\": \\\"median\\\",\\n            \\\"dz_scope\\\": \\\"within-strategy (same masking, different sparsity)\\\",\\n        },\\n        \\\"models\\\": {},\\n    }\\n\\n    for m in models:\\n        result = analyze_model(m, n500=n500)\\n        full_output[\\\"models\\\"][m] = sanitize(result)\\n\\n    out_dir = BASE / \\\"analysis_output\\\"\\n    out_dir.mkdir(exist_ok=True)\\n    suffix = \\\"_dryrun\\\" if args.dry_run else \\\"\\\"\\n\\n    json_path = out_dir / f\\\"n500_unified{suffix}.json\\\"\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(full_output, f, indent=2)\\n    print(f\\\"\\\\nSaved: {json_path}\\\")\\n\\n    if args.csv:\\n        csv_path = out_dir / f\\\"n500_unified{suffix}.csv\\\"\\n        with open(csv_path, \\\"w\\\") as f:\\n            f.write(\\\"model,masking,sparsity,n,median_ii_diff,ci_lo,ci_hi,ci_excludes_zero\\\\n\\\")\\n            for m_name, m_data in full_output[\\\"models\\\"].items():\\n                for cond_key, cond in m_data.get(\\\"conditions\\\", {}).items():\\n                    if \\\"error\\\" in cond:\\n                        continue\\n                    parts = cond_key.split(\\\"_\\\")\\n                    masking, sl = parts[0], parts[1]\\n                    ci = cond[\\\"median_ii_diff_ci\\\"]\\n                    f.write(f\\\"{m_name},{masking},{sl},{cond['n_valid']},\\\"\\n                            f\\\"{cond['median_ii_diff']},{ci[0]},{ci[1]},\\\"\\n                            f\\\"{cond['ci_excludes_zero']}\\\\n\\\")\\n\\n            f.write(\\\"\\\\n\\\")\\n            f.write(\\\"model,masking,pair,d_z,dz_ci_lo,dz_ci_hi,interpretation,n_paired\\\\n\\\")\\n            for m_name, m_data in full_output[\\\"models\\\"].items():\\n                for scope in [\\\"importance\\\", \\\"random\\\"]:\\n                    dz_data = m_data.get(\\\"within_dz\\\", {}).get(scope, {})\\n                    for pair, v in dz_data.items():\\n                        f.write(f\\\"{m_name},{scope},{pair},{v['d_z']},\\\"\\n                                f\\\"{v['d_z_ci'][0]},{v['d_z_ci'][1]},\\\"\\n                                f\\\"{v['interpretation']},{v['n_paired']}\\\\n\\\")\\n\\n            f.write(\\\"\\\\n\\\")\\n            f.write(\\\"model,masking,spearman_rho,perm_p,monotonic,significant\\\\n\\\")\\n            for m_name, m_data in full_output[\\\"models\\\"].items():\\n                for scope in [\\\"importance\\\", \\\"random\\\"]:\\n                    dr = m_data.get(\\\"dose_response\\\", {}).get(scope, {})\\n                    if \\\"error\\\" not in dr:\\n                        f.write(f\\\"{m_name},{scope},{dr['spearman_rho']},\\\"\\n                                f\\\"{dr['permutation_p']},{dr['monotonic_increasing']},\\\"\\n                                f\\\"{dr['significant_005']}\\\\n\\\")\\n        print(f\\\"Saved: {csv_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T21:48:44.345Z_
+
+<details><summary>↩ Tool result · `toolu_01QWjmeDeKPA5vKHQ4F5Y1wv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nC2 n=500 Median Bootstrap Analysis (D054-compliant).\\n\\nPrimary metric: median II + median bootstrap 95% CI (not mean).\\nReason: DeepSeek II skewness ~9.5, mean unreliable.\\n\\nInput:  {base}/profiling_output_n500_bf16_{ds,qw}_{imp,rand}_s{015,020,025,030}/profiling_results.json\\nOutput: {out}/c2_n500_results.json, {out}/c2_n500_report.md\\n\\nUsage:\\n  python scripts/analyze_c2_n500.py\\n  python scripts/analyze_c2_n500.py --base-dir /root/autodl-tmp/pacs --output-dir ./analysis_output\\n  python scripts/analyze_c2_n500.py --model deepseek\\n  python scripts/analyze_c2_n500.py --n50-only          # dry-run with n=50 reference data\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom collections import Counter\\nfrom datetime import datetime\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport numpy as np\\nfrom scipy import stats\\n\\n# ── Constants ──────────────────────────────────────────���─────────────\\n\\nMODELS = {\\\"deepseek\\\": \\\"ds\\\", \\\"qwen\\\": \\\"qw\\\"}\\nMETHODS = [\\\"imp\\\", \\\"rand\\\"]\\nSPARSITY_LABELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_VALUES = {\\\"s015\\\": 0.15, \\\"s020\\\": 0.20, \\\"s025\\\": 0.25, \\\"s030\\\": 0.30}\\nSPARSITY_KEYS = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\nPHASES = [\\\"high\\\", \\\"mid\\\", \\\"low\\\"]\\n\\nB_BOOTSTRAP = 10000\\nSEED = 42\\nALPHA = 0.05\\nN_BONFERRONI = 4  # 4 sparsity levels per model\\n\\n\\n# ── Path helpers ─────────────────────────────────────────────────────\\n\\ndef result_dir(base: Path, model_short: str, method: str, slabel: str, n500: bool) -> Path:\\n    prefix = \\\"n500_bf16\\\" if n500 else \\\"bf16\\\"\\n    return base / f\\\"profiling_output_{prefix}_{model_short}_{method}_{slabel}\\\"\\n\\n\\ndef load_json(dirpath: Path) -> Optional[dict]:\\n    fpath = dirpath / \\\"profiling_results.json\\\"\\n    if not fpath.exists():\\n        return None\\n    with open(fpath) as f:\\n        return json.load(f)\\n\\n\\ndef get_problems(data: dict) -> Optional[List[dict]]:\\n    ppi = data.get(\\\"per_problem_ii\\\", {})\\n    levels = list(ppi.keys())\\n    if not levels:\\n        return None\\n    return ppi[levels[0]]\\n\\n\\n# ── Data integrity ───────────────────────────────────────────────────\\n\\ndef check_integrity(data: dict, expected_n: int, label: str) -> dict:\\n    report = {\\\"label\\\": label, \\\"status\\\": \\\"OK\\\", \\\"warnings\\\": [], \\\"errors\\\": []}\\n\\n    config_n = data.get(\\\"config\\\", {}).get(\\\"n_problems\\\", None)\\n    problems = get_problems(data)\\n    if not problems:\\n        report[\\\"status\\\"] = \\\"ERROR\\\"\\n        report[\\\"errors\\\"].append(\\\"No per_problem_ii data found\\\")\\n        return report\\n\\n    actual_n = len(problems)\\n\\n    if actual_n != expected_n:\\n        report[\\\"errors\\\"].append(f\\\"Expected {expected_n} problems, got {actual_n}\\\")\\n        report[\\\"status\\\"] = \\\"ERROR\\\"\\n\\n    if config_n is not None and config_n != expected_n:\\n        report[\\\"warnings\\\"].append(f\\\"Config n_problems={config_n}, expected {expected_n}\\\")\\n\\n    # problem_idx monotonicity\\n    indices = [p[\\\"problem_idx\\\"] for p in problems]\\n    non_monotonic = []\\n    for i in range(1, len(indices)):\\n        if indices[i] <= indices[i - 1]:\\n            non_monotonic.append((i, indices[i - 1], indices[i]))\\n    if non_monotonic:\\n        if report[\\\"status\\\"] == \\\"OK\\\":\\n            report[\\\"status\\\"] = \\\"WARNING\\\"\\n        report[\\\"warnings\\\"].append(\\n            f\\\"Non-monotonic problem_idx at {len(non_monotonic)} positions \\\"\\n            f\\\"(first: pos {non_monotonic[0][0]}, \\\"\\n            f\\\"{non_monotonic[0][1]} -> {non_monotonic[0][2]}). \\\"\\n            f\\\"Possible duplicate-process contamination.\\\"\\n        )\\n\\n    # duplicate problem_id\\n    pids = [p[\\\"problem_id\\\"] for p in problems]\\n    pid_counts = Counter(pids)\\n    duplicates = {k: v for k, v in pid_counts.items() if v > 1}\\n    if duplicates:\\n        report[\\\"status\\\"] = \\\"ERROR\\\"\\n        report[\\\"errors\\\"].append(\\n            f\\\"Duplicate problem_ids: {len(duplicates)} IDs appear >1 time. \\\"\\n            f\\\"First: {list(duplicates.items())[:3]}\\\"\\n        )\\n\\n    # NaN/None in II values\\n    nan_count = sum(1 for p in problems if p.get(\\\"ii_low\\\") is None or p.get(\\\"ii_high\\\") is None)\\n    if nan_count > 0:\\n        report[\\\"w\\n\\n... [截断: 输出过长，省略 21086 字符] ...\\n\\n    print(f\\\"  {model_name} {sl}: median_D={r['median_D']:+.4f}, \\\"\\n                              f\\\"CI=[{r['ci_low']:.4f}, {r['ci_high']:.4f}], \\\"\\n                              f\\\"Wilcoxon p={r['wilcoxon_p']:.4f}, \\\"\\n                              f\\\"Bonferroni p={r['bonferroni_p']:.4f}\\\")\\n                    else:\\n                        print(f\\\"  {model_name} {sl}: {r['error']}\\\")\\n            else:\\n                avail = []\\n                if imp_key not in all_data:\\n                    avail.append(f\\\"missing {imp_key}\\\")\\n                if rand_key not in all_data:\\n                    avail.append(f\\\"missing {rand_key}\\\")\\n                model_results[sl] = {\\\"error\\\": \\\", \\\".join(avail)}\\n                print(f\\\"  {model_name} {sl}: {model_results[sl]['error']}\\\")\\n        paired_gradient[model_name] = model_results\\n    print()\\n\\n    # 5. Pre-registration: Qwen s015 CI crosses zero?\\n    preregistration = {}\\n    qw_s015_key = \\\"qw_imp_s015\\\"\\n    if qw_s015_key in all_results and \\\"error\\\" not in all_results[qw_s015_key]:\\n        r = all_results[qw_s015_key]\\n        md = r[\\\"median_diff\\\"]\\n        w = r[\\\"wilcoxon\\\"]\\n        pg = r[\\\"phase_gradient\\\"]\\n        verdict = \\\"threshold_s020\\\" if md[\\\"ci_crosses_zero\\\"] else \\\"effect_at_s015\\\"\\n        preregistration[\\\"qwen_s015\\\"] = {\\n            \\\"median_diff\\\": md[\\\"value\\\"],\\n            \\\"median_ci_lo\\\": md[\\\"ci\\\"][0],\\n            \\\"median_ci_hi\\\": md[\\\"ci\\\"][1],\\n            \\\"crosses_zero\\\": md[\\\"ci_crosses_zero\\\"],\\n            \\\"d_z\\\": pg[\\\"d_z\\\"],\\n            \\\"d_z_ci\\\": pg[\\\"d_z_ci\\\"],\\n            \\\"wilcoxon_p\\\": w[\\\"p_value\\\"],\\n            \\\"verdict\\\": verdict,\\n        }\\n        print(\\\"=\\\" * 70)\\n        print(\\\"PRE-REGISTRATION VERDICT: Qwen s015\\\")\\n        print(\\\"=\\\" * 70)\\n        print(f\\\"  Median diff = {md['value']:.6f}\\\")\\n        print(f\\\"  Median 95% CI = [{md['ci'][0]:.4f}, {md['ci'][1]:.4f}]\\\")\\n        print(f\\\"  CI crosses zero: {md['ci_crosses_zero']}\\\")\\n        if md[\\\"ci_crosses_zero\\\"]:\\n            print(\\\"  -> VERDICT: Change narrative to threshold ~s020\\\")\\n        else:\\n            print(\\\"  -> VERDICT: Compound effect confirmed at s015\\\")\\n        print()\\n\\n    # 6. Generate markdown report\\n    metadata = {\\n        \\\"data_source\\\": data_tag,\\n        \\\"n_bootstrap\\\": B_BOOTSTRAP,\\n        \\\"seed\\\": SEED,\\n        \\\"missing_conditions\\\": missing,\\n        \\\"timestamp\\\": datetime.now().isoformat(),\\n    }\\n    report = format_report(all_results, paired, integrity_reports, preregistration, metadata,\\n                           midphase_null=midphase_null, paired_gradient=paired_gradient)\\n\\n    # 7. Save outputs\\n    suffix = \\\"_dryrun\\\" if args.n50_only else \\\"\\\"\\n\\n    results_path = out_dir / f\\\"c2_n500_results{suffix}.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump({\\n            \\\"conditions\\\": {k: _sanitize(v) for k, v in all_results.items()},\\n            \\\"paired_imp_vs_rand\\\": {k: _sanitize(v) for k, v in paired.items()},\\n            \\\"imp_vs_rand_paired_gradient\\\": {k: {sk: _sanitize(sv) for sk, sv in v.items()} for k, v in paired_gradient.items()},\\n            \\\"midphase_null_rate\\\": {k: _sanitize(v) for k, v in midphase_null.items()},\\n            \\\"preregistration\\\": preregistration,\\n            \\\"integrity\\\": [_sanitize(r) for r in integrity_reports],\\n            \\\"metadata\\\": metadata,\\n        }, f, indent=2)\\n    print(f\\\"Saved results: {results_path}\\\")\\n\\n    report_path = out_dir / f\\\"c2_n500_report{suffix}.md\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        f.write(report)\\n    print(f\\\"Saved report: {report_path}\\\")\\n\\n    print(f\\\"\\\\nDone. {len(all_results)} conditions analyzed.\\\")\\n\\n\\ndef _sanitize(obj):\\n    if isinstance(obj, dict):\\n        return {k: _sanitize(v) for k, v in obj.items()}\\n    if isinstance(obj, list):\\n        return [_sanitize(v) for v in obj]\\n    if isinstance(obj, (np.integer,)):\\n        return int(obj)\\n    if isinstance(obj, (np.floating,)):\\n        return float(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, (np.bool_,)):\\n        return bool(obj)\\n    return obj\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "ffa1396f-4879-4c20-970d-3f0762ddea42",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nC2 n=500 Median Bootstrap Analysis (D054-compliant).\\\\n\\\\nPrimary metric: median II + median bootstrap 95% CI (not mean).\\\\nReason: DeepSeek II skewness ~9.5, mean unreliable.\\\\n\\\\nInput:  {base}/profiling_output_n500_bf16_{ds,qw}_{imp,rand}_s{015,020,025,030}/profiling_results.json\\\\nOutput: {out}/c2_n500_results.json, {out}/c2_n500_report.md\\\\n\\\\nUsage:\\\\n  python scripts/analyze_c2_n500.py\\\\n  python scripts/analyze_c2_n500.py --base-dir /root/autodl-tmp/pacs --output-dir ./analysis_output\\\\n  python scripts/analyze_c2_n500.py --model deepseek\\\\n  python scripts/analyze_c2_n500.py --n50-only          # dry-run with n=50 reference data\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nfrom collections import Counter\\\\nfrom datetime import datetime\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\n# ── Constants ──────────────────────────────────────────���─────────────\\\\n\\\\nMODELS = {\\\\\\\"deepseek\\\\\\\": \\\\\\\"ds\\\\\\\", \\\\\\\"qwen\\\\\\\": \\\\\\\"qw\\\\\\\"}\\\\nMETHODS = [\\\\\\\"imp\\\\\\\", \\\\\\\"rand\\\\\\\"]\\\\nSPARSITY_LABELS = [\\\\\\\"s015\\\\\\\", \\\\\\\"s020\\\\\\\", \\\\\\\"s025\\\\\\\", \\\\\\\"s030\\\\\\\"]\\\\nSPARSITY_VALUES = {\\\\\\\"s015\\\\\\\": 0.15, \\\\\\\"s020\\\\\\\": 0.20, \\\\\\\"s025\\\\\\\": 0.25, \\\\\\\"s030\\\\\\\": 0.30}\\\\nSPARSITY_KEYS = {\\\\\\\"s015\\\\\\\": \\\\\\\"0.15\\\\\\\", \\\\\\\"s020\\\\\\\": \\\\\\\"0.2\\\\\\\", \\\\\\\"s025\\\\\\\": \\\\\\\"0.25\\\\\\\", \\\\\\\"s030\\\\\\\": \\\\\\\"0.3\\\\\\\"}\\\\nPHASES = [\\\\\\\"high\\\\\\\", \\\\\\\"mid\\\\\\\", \\\\\\\"low\\\\\\\"]\\\\n\\\\nB_BOOTSTRAP = 10000\\\\nSEED = 42\\\\nALPHA = 0.05\\\\nN_BONFERRONI = 4  # 4 sparsity levels per model\\\\n\\\\n\\\\n# ── Path helpers ─────────────────────────────────────────────────────\\\\n\\\\ndef result_dir(base: Path, model_short: str, method: str, slabel: str, n500: bool) -> Path:\\\\n    prefix = \\\\\\\"n500_bf16\\\\\\\" if n500 else \\\\\\\"bf16\\\\\\\"\\\\n    return base / f\\\\\\\"profiling_output_{prefix}_{model_short}_{method}_{slabel}\\\\\\\"\\\\n\\\\n\\\\ndef load_json(dirpath: Path) -> Optional[dict]:\\\\n    fpath = dirpath / \\\\\\\"profiling_results.json\\\\\\\"\\\\n    if not fpath.exists():\\\\n        return None\\\\n    with open(fpath) as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef get_problems(data: dict) -> Optional[List[dict]]:\\\\n    ppi = data.get(\\\\\\\"per_problem_ii\\\\\\\", {})\\\\n    levels = list(ppi.keys())\\\\n    if not levels:\\\\n        return None\\\\n    return ppi[levels[0]]\\\\n\\\\n\\\\n# ── Data integrity ───────────────────────────────────────────────────\\\\n\\\\ndef check_integrity(data: dict, expected_n: int, label: str) -> dict:\\\\n    report = {\\\\\\\"label\\\\\\\": label, \\\\\\\"status\\\\\\\": \\\\\\\"OK\\\\\\\", \\\\\\\"warnings\\\\\\\": [], \\\\\\\"errors\\\\\\\": []}\\\\n\\\\n    config_n = data.get(\\\\\\\"config\\\\\\\", {}).get(\\\\\\\"n_problems\\\\\\\", None)\\\\n    problems = get_problems(data)\\\\n    if not problems:\\\\n        report[\\\\\\\"status\\\\\\\"] = \\\\\\\"ERROR\\\\\\\"\\\\n        report[\\\\\\\"errors\\\\\\\"].append(\\\\\\\"No per_problem_ii data found\\\\\\\")\\\\n        return report\\\\n\\\\n    actual_n = len(problems)\\\\n\\\\n    if actual_n != expected_n:\\\\n        report[\\\\\\\"errors\\\\\\\"].append(f\\\\\\\"Expected {expected_n} problems, got {actual_n}\\\\\\\")\\\\n        report[\\\\\\\"status\\\\\\\"] = \\\\\\\"ERROR\\\\\\\"\\\\n\\\\n    if config_n is not None and config_n != expected_n:\\\\n        report[\\\\\\\"warnings\\\\\\\"].append(f\\\\\\\"Config n_problems={config_n}, expected {expected_n}\\\\\\\")\\\\n\\\\n    # problem_idx monotonicity\\\\n    indices = [p[\\\\\\\"problem_idx\\\\\\\"] for p in problems]\\\\n    non_monotonic = []\\\\n    for i in range(1, len(indices)):\\\\n        if indices[i] <= indices[i - 1]:\\\\n            non_monotonic.append((i, indices[i - 1], indices[i]))\\\\n    if non_monotonic:\\\\n        if report[\\\\\\\"status\\\\\\\"] == \\\\\\\"OK\\\\\\\":\\\\n            report[\\\\\\\"status\\\\\\\"] = \\\\\\\"WARNING\\\\\\\"\\\\n        report[\\\\\\\"warnings\\\\\\\"].append(\\\\n            f\\\\\\\"Non-monotonic problem_idx at {len(non_monotonic)} positions \\\\\\\"\\\\n            f\\\\\\\"(first: pos {non_monotonic[0][0]}, \\\\\\\"\\\\n            f\\\\\\\"{non_monotonic[0][1]} -> {non_monotonic[0][2]}). \\\\\\\"\\\\n            f\\\\\\\"Possible duplicate-process contamination.\\\\\\\"\\\\n        )\\\\n\\\\n    # duplicate problem_id\\\\n    pids = [p[\\\\\\\"problem_id\\\\\\\"] for p in problems]\\\\n    pid_counts = Counter(pids)\\\\n    duplicates = {k: v for k, v in pid_counts.items() if v > 1}\\\\n    if duplicates:\\\\n        report[\\\\\\\"status\\\\\\\"] = \\\\\\\"ERROR\\\\\\\"\\\\n        report[\\\\\\\"errors\\\\\\\"].append(\\\\n            f\\\\\\\"Duplicate problem_ids: {len(duplicates)} IDs appear >1 time. \\\\\\\"\\\\n            f\\\\\\\"First: {list(duplicates.items())[:3]}\\\\\\\"\\\\n        )\\\\n\\\\n    # NaN/None in II values\\\\n    nan_count = sum(1 for p in problems if p.get(\\\\\\\"ii_low\\\\\\\") is None or p.get(\\\\\\\"ii_high\\\\\\\") is None)\\\\n    if nan_count > 0:\\\\n        report[\\\\\\\"w\\\\n\\\\n... [截断: 输出过长，省略 21086 字符] ...\\\\n\\\\n    print(f\\\\\\\"  {model_name} {sl}: median_D={r['median_D']:+.4f}, \\\\\\\"\\\\n                              f\\\\\\\"CI=[{r['ci_low']:.4f}, {r['ci_high']:.4f}], \\\\\\\"\\\\n                              f\\\\\\\"Wilcoxon p={r['wilcoxon_p']:.4f}, \\\\\\\"\\\\n                              f\\\\\\\"Bonferroni p={r['bonferroni_p']:.4f}\\\\\\\")\\\\n                    else:\\\\n                        print(f\\\\\\\"  {model_name} {sl}: {r['error']}\\\\\\\")\\\\n            else:\\\\n                avail = []\\\\n                if imp_key not in all_data:\\\\n                    avail.append(f\\\\\\\"missing {imp_key}\\\\\\\")\\\\n                if rand_key not in all_data:\\\\n                    avail.append(f\\\\\\\"missing {rand_key}\\\\\\\")\\\\n                model_results[sl] = {\\\\\\\"error\\\\\\\": \\\\\\\", \\\\\\\".join(avail)}\\\\n                print(f\\\\\\\"  {model_name} {sl}: {model_results[sl]['error']}\\\\\\\")\\\\n        paired_gradient[model_name] = model_results\\\\n    print()\\\\n\\\\n    # 5. Pre-registration: Qwen s015 CI crosses zero?\\\\n    preregistration = {}\\\\n    qw_s015_key = \\\\\\\"qw_imp_s015\\\\\\\"\\\\n    if qw_s015_key in all_results and \\\\\\\"error\\\\\\\" not in all_results[qw_s015_key]:\\\\n        r = all_results[qw_s015_key]\\\\n        md = r[\\\\\\\"median_diff\\\\\\\"]\\\\n        w = r[\\\\\\\"wilcoxon\\\\\\\"]\\\\n        pg = r[\\\\\\\"phase_gradient\\\\\\\"]\\\\n        verdict = \\\\\\\"threshold_s020\\\\\\\" if md[\\\\\\\"ci_crosses_zero\\\\\\\"] else \\\\\\\"effect_at_s015\\\\\\\"\\\\n        preregistration[\\\\\\\"qwen_s015\\\\\\\"] = {\\\\n            \\\\\\\"median_diff\\\\\\\": md[\\\\\\\"value\\\\\\\"],\\\\n            \\\\\\\"median_ci_lo\\\\\\\": md[\\\\\\\"ci\\\\\\\"][0],\\\\n            \\\\\\\"median_ci_hi\\\\\\\": md[\\\\\\\"ci\\\\\\\"][1],\\\\n            \\\\\\\"crosses_zero\\\\\\\": md[\\\\\\\"ci_crosses_zero\\\\\\\"],\\\\n            \\\\\\\"d_z\\\\\\\": pg[\\\\\\\"d_z\\\\\\\"],\\\\n            \\\\\\\"d_z_ci\\\\\\\": pg[\\\\\\\"d_z_ci\\\\\\\"],\\\\n            \\\\\\\"wilcoxon_p\\\\\\\": w[\\\\\\\"p_value\\\\\\\"],\\\\n            \\\\\\\"verdict\\\\\\\": verdict,\\\\n        }\\\\n        print(\\\\\\\"=\\\\\\\" * 70)\\\\n        print(\\\\\\\"PRE-REGISTRATION VERDICT: Qwen s015\\\\\\\")\\\\n        print(\\\\\\\"=\\\\\\\" * 70)\\\\n        print(f\\\\\\\"  Median diff = {md['value']:.6f}\\\\\\\")\\\\n        print(f\\\\\\\"  Median 95% CI = [{md['ci'][0]:.4f}, {md['ci'][1]:.4f}]\\\\\\\")\\\\n        print(f\\\\\\\"  CI crosses zero: {md['ci_crosses_zero']}\\\\\\\")\\\\n        if md[\\\\\\\"ci_crosses_zero\\\\\\\"]:\\\\n            print(\\\\\\\"  -> VERDICT: Change narrative to threshold ~s020\\\\\\\")\\\\n        else:\\\\n            print(\\\\\\\"  -> VERDICT: Compound effect confirmed at s015\\\\\\\")\\\\n        print()\\\\n\\\\n    # 6. Generate markdown report\\\\n    metadata = {\\\\n        \\\\\\\"data_source\\\\\\\": data_tag,\\\\n        \\\\\\\"n_bootstrap\\\\\\\": B_BOOTSTRAP,\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"missing_conditions\\\\\\\": missing,\\\\n        \\\\\\\"timestamp\\\\\\\": datetime.now().isoformat(),\\\\n    }\\\\n    report = format_report(all_results, paired, integrity_reports, preregistration, metadata,\\\\n                           midphase_null=midphase_null, paired_gradient=paired_gradient)\\\\n\\\\n    # 7. Save outputs\\\\n    suffix = \\\\\\\"_dryrun\\\\\\\" if args.n50_only else \\\\\\\"\\\\\\\"\\\\n\\\\n    results_path = out_dir / f\\\\\\\"c2_n500_results{suffix}.json\\\\\\\"\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump({\\\\n            \\\\\\\"conditions\\\\\\\": {k: _sanitize(v) for k, v in all_results.items()},\\\\n            \\\\\\\"paired_imp_vs_rand\\\\\\\": {k: _sanitize(v) for k, v in paired.items()},\\\\n            \\\\\\\"imp_vs_rand_paired_gradient\\\\\\\": {k: {sk: _sanitize(sv) for sk, sv in v.items()} for k, v in paired_gradient.items()},\\\\n            \\\\\\\"midphase_null_rate\\\\\\\": {k: _sanitize(v) for k, v in midphase_null.items()},\\\\n            \\\\\\\"preregistration\\\\\\\": preregistration,\\\\n            \\\\\\\"integrity\\\\\\\": [_sanitize(r) for r in integrity_reports],\\\\n            \\\\\\\"metadata\\\\\\\": metadata,\\\\n        }, f, indent=2)\\\\n    print(f\\\\\\\"Saved results: {results_path}\\\\\\\")\\\\n\\\\n    report_path = out_dir / f\\\\\\\"c2_n500_report{suffix}.md\\\\\\\"\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(report)\\\\n    print(f\\\\\\\"Saved report: {report_path}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nDone. {len(all_results)} conditions analyzed.\\\\\\\")\\\\n\\\\n\\\\ndef _sanitize(obj):\\\\n    if isinstance(obj, dict):\\\\n        return {k: _sanitize(v) for k, v in obj.items()}\\\\n    if isinstance(obj, list):\\\\n        return [_sanitize(v) for v in obj]\\\\n    if isinstance(obj, (np.integer,)):\\\\n        return int(obj)\\\\n    if isinstance(obj, (np.floating,)):\\\\n        return float(obj)\\\\n    if isinstance(obj, np.ndarray):\\\\n        return obj.tolist()\\\\n    if isinstance(obj, (np.bool_,)):\\\\n        return bool(obj)\\\\n    return obj\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nC2 n=500 Median Bootstrap Analysis (D054-compliant).\\n\\nPrimary metric: median II + median bootstrap 95% CI (not mean).\\nReason: DeepSeek II skewness ~9.5, mean unreliable.\\n\\nInput:  {base}/profiling_output_n500_bf16_{ds,qw}_{imp,rand}_s{015,020,025,030}/profiling_results.json\\nOutput: {out}/c2_n500_results.json, {out}/c2_n500_report.md\\n\\nUsage:\\n  python scripts/analyze_c2_n500.py\\n  python scripts/analyze_c2_n500.py --base-dir /root/autodl-tmp/pacs --output-dir ./analysis_output\\n  python scripts/analyze_c2_n500.py --model deepseek\\n  python scripts/analyze_c2_n500.py --n50-only          # dry-run with n=50 reference data\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nfrom collections import Counter\\nfrom datetime import datetime\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport numpy as np\\nfrom scipy import stats\\n\\n# ── Constants ──────────────────────────────────────────���─────────────\\n\\nMODELS = {\\\"deepseek\\\": \\\"ds\\\", \\\"qwen\\\": \\\"qw\\\"}\\nMETHODS = [\\\"imp\\\", \\\"rand\\\"]\\nSPARSITY_LABELS = [\\\"s015\\\", \\\"s020\\\", \\\"s025\\\", \\\"s030\\\"]\\nSPARSITY_VALUES = {\\\"s015\\\": 0.15, \\\"s020\\\": 0.20, \\\"s025\\\": 0.25, \\\"s030\\\": 0.30}\\nSPARSITY_KEYS = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\nPHASES = [\\\"high\\\", \\\"mid\\\", \\\"low\\\"]\\n\\nB_BOOTSTRAP = 10000\\nSEED = 42\\nALPHA = 0.05\\nN_BONFERRONI = 4  # 4 sparsity levels per model\\n\\n\\n# ── Path helpers ─────────────────────────────────────────────────────\\n\\ndef result_dir(base: Path, model_short: str, method: str, slabel: str, n500: bool) -> Path:\\n    prefix = \\\"n500_bf16\\\" if n500 else \\\"bf16\\\"\\n    return base / f\\\"profiling_output_{prefix}_{model_short}_{method}_{slabel}\\\"\\n\\n\\ndef load_json(dirpath: Path) -> Optional[dict]:\\n    fpath = dirpath / \\\"profiling_results.json\\\"\\n    if not fpath.exists():\\n        return None\\n    with open(fpath) as f:\\n        return json.load(f)\\n\\n\\ndef get_problems(data: dict) -> Optional[List[dict]]:\\n    ppi = data.get(\\\"per_problem_ii\\\", {})\\n    levels = list(ppi.keys())\\n    if not levels:\\n        return None\\n    return ppi[levels[0]]\\n\\n\\n# ── Data integrity ───────────────────────────────────────────────────\\n\\ndef check_integrity(data: dict, expected_n: int, label: str) -> dict:\\n    report = {\\\"label\\\": label, \\\"status\\\": \\\"OK\\\", \\\"warnings\\\": [], \\\"errors\\\": []}\\n\\n    config_n = data.get(\\\"config\\\", {}).get(\\\"n_problems\\\", None)\\n    problems = get_problems(data)\\n    if not problems:\\n        report[\\\"status\\\"] = \\\"ERROR\\\"\\n        report[\\\"errors\\\"].append(\\\"No per_problem_ii data found\\\")\\n        return report\\n\\n    actual_n = len(problems)\\n\\n    if actual_n != expected_n:\\n        report[\\\"errors\\\"].append(f\\\"Expected {expected_n} problems, got {actual_n}\\\")\\n        report[\\\"status\\\"] = \\\"ERROR\\\"\\n\\n    if config_n is not None and config_n != expected_n:\\n        report[\\\"warnings\\\"].append(f\\\"Config n_problems={config_n}, expected {expected_n}\\\")\\n\\n    # problem_idx monotonicity\\n    indices = [p[\\\"problem_idx\\\"] for p in problems]\\n    non_monotonic = []\\n    for i in range(1, len(indices)):\\n        if indices[i] <= indices[i - 1]:\\n            non_monotonic.append((i, indices[i - 1], indices[i]))\\n    if non_monotonic:\\n        if report[\\\"status\\\"] == \\\"OK\\\":\\n            report[\\\"status\\\"] = \\\"WARNING\\\"\\n        report[\\\"warnings\\\"].append(\\n            f\\\"Non-monotonic problem_idx at {len(non_monotonic)} positions \\\"\\n            f\\\"(first: pos {non_monotonic[0][0]}, \\\"\\n            f\\\"{non_monotonic[0][1]} -> {non_monotonic[0][2]}). \\\"\\n            f\\\"Possible duplicate-process contamination.\\\"\\n        )\\n\\n    # duplicate problem_id\\n    pids = [p[\\\"problem_id\\\"] for p in problems]\\n    pid_counts = Counter(pids)\\n    duplicates = {k: v for k, v in pid_counts.items() if v > 1}\\n    if duplicates:\\n        report[\\\"status\\\"] = \\\"ERROR\\\"\\n        report[\\\"errors\\\"].append(\\n            f\\\"Duplicate problem_ids: {len(duplicates)} IDs appear >1 time. \\\"\\n            f\\\"First: {list(duplicates.items())[:3]}\\\"\\n        )\\n\\n    # NaN/None in II values\\n    nan_count = sum(1 for p in problems if p.get(\\\"ii_low\\\") is None or p.get(\\\"ii_high\\\") is None)\\n    if nan_count > 0:\\n        report[\\\"w\\n\\n... [截断: 输出过长，省略 21086 字符] ...\\n\\n    print(f\\\"  {model_name} {sl}: median_D={r['median_D']:+.4f}, \\\"\\n                              f\\\"CI=[{r['ci_low']:.4f}, {r['ci_high']:.4f}], \\\"\\n                              f\\\"Wilcoxon p={r['wilcoxon_p']:.4f}, \\\"\\n                              f\\\"Bonferroni p={r['bonferroni_p']:.4f}\\\")\\n                    else:\\n                        print(f\\\"  {model_name} {sl}: {r['error']}\\\")\\n            else:\\n                avail = []\\n                if imp_key not in all_data:\\n                    avail.append(f\\\"missing {imp_key}\\\")\\n                if rand_key not in all_data:\\n                    avail.append(f\\\"missing {rand_key}\\\")\\n                model_results[sl] = {\\\"error\\\": \\\", \\\".join(avail)}\\n                print(f\\\"  {model_name} {sl}: {model_results[sl]['error']}\\\")\\n        paired_gradient[model_name] = model_results\\n    print()\\n\\n    # 5. Pre-registration: Qwen s015 CI crosses zero?\\n    preregistration = {}\\n    qw_s015_key = \\\"qw_imp_s015\\\"\\n    if qw_s015_key in all_results and \\\"error\\\" not in all_results[qw_s015_key]:\\n        r = all_results[qw_s015_key]\\n        md = r[\\\"median_diff\\\"]\\n        w = r[\\\"wilcoxon\\\"]\\n        pg = r[\\\"phase_gradient\\\"]\\n        verdict = \\\"threshold_s020\\\" if md[\\\"ci_crosses_zero\\\"] else \\\"effect_at_s015\\\"\\n        preregistration[\\\"qwen_s015\\\"] = {\\n            \\\"median_diff\\\": md[\\\"value\\\"],\\n            \\\"median_ci_lo\\\": md[\\\"ci\\\"][0],\\n            \\\"median_ci_hi\\\": md[\\\"ci\\\"][1],\\n            \\\"crosses_zero\\\": md[\\\"ci_crosses_zero\\\"],\\n            \\\"d_z\\\": pg[\\\"d_z\\\"],\\n            \\\"d_z_ci\\\": pg[\\\"d_z_ci\\\"],\\n            \\\"wilcoxon_p\\\": w[\\\"p_value\\\"],\\n            \\\"verdict\\\": verdict,\\n        }\\n        print(\\\"=\\\" * 70)\\n        print(\\\"PRE-REGISTRATION VERDICT: Qwen s015\\\")\\n        print(\\\"=\\\" * 70)\\n        print(f\\\"  Median diff = {md['value']:.6f}\\\")\\n        print(f\\\"  Median 95% CI = [{md['ci'][0]:.4f}, {md['ci'][1]:.4f}]\\\")\\n        print(f\\\"  CI crosses zero: {md['ci_crosses_zero']}\\\")\\n        if md[\\\"ci_crosses_zero\\\"]:\\n            print(\\\"  -> VERDICT: Change narrative to threshold ~s020\\\")\\n        else:\\n            print(\\\"  -> VERDICT: Compound effect confirmed at s015\\\")\\n        print()\\n\\n    # 6. Generate markdown report\\n    metadata = {\\n        \\\"data_source\\\": data_tag,\\n        \\\"n_bootstrap\\\": B_BOOTSTRAP,\\n        \\\"seed\\\": SEED,\\n        \\\"missing_conditions\\\": missing,\\n        \\\"timestamp\\\": datetime.now().isoformat(),\\n    }\\n    report = format_report(all_results, paired, integrity_reports, preregistration, metadata,\\n                           midphase_null=midphase_null, paired_gradient=paired_gradient)\\n\\n    # 7. Save outputs\\n    suffix = \\\"_dryrun\\\" if args.n50_only else \\\"\\\"\\n\\n    results_path = out_dir / f\\\"c2_n500_results{suffix}.json\\\"\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump({\\n            \\\"conditions\\\": {k: _sanitize(v) for k, v in all_results.items()},\\n            \\\"paired_imp_vs_rand\\\": {k: _sanitize(v) for k, v in paired.items()},\\n            \\\"imp_vs_rand_paired_gradient\\\": {k: {sk: _sanitize(sv) for sk, sv in v.items()} for k, v in paired_gradient.items()},\\n            \\\"midphase_null_rate\\\": {k: _sanitize(v) for k, v in midphase_null.items()},\\n            \\\"preregistration\\\": preregistration,\\n            \\\"integrity\\\": [_sanitize(r) for r in integrity_reports],\\n            \\\"metadata\\\": metadata,\\n        }, f, indent=2)\\n    print(f\\\"Saved results: {results_path}\\\")\\n\\n    report_path = out_dir / f\\\"c2_n500_report{suffix}.md\\\"\\n    with open(report_path, \\\"w\\\") as f:\\n        f.write(report)\\n    print(f\\\"Saved report: {report_path}\\\")\\n\\n    print(f\\\"\\\\nDone. {len(all_results)} conditions analyzed.\\\")\\n\\n\\ndef _sanitize(obj):\\n    if isinstance(obj, dict):\\n        return {k: _sanitize(v) for k, v in obj.items()}\\n    if isinstance(obj, list):\\n        return [_sanitize(v) for v in obj]\\n    if isinstance(obj, (np.integer,)):\\n        return int(obj)\\n    if isinstance(obj, (np.floating,)):\\n        return float(obj)\\n    if isinstance(obj, np.ndarray):\\n        return obj.tolist()\\n    if isinstance(obj, (np.bool_,)):\\n        return bool(obj)\\n    return obj\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze both scripts and understand what needs to be done:
+
+**Current `analyze_n500_unified.py`:**
+- B_BOOT = 1000 (needs to be 10000)
+- Has median + bootstrap CI
+- Has paired Cohen's d_z but reports it for BOTH importance AND random (should only be within-importance per D059)
+- Has dose-response with Spearman rho + permutation test
+- No Bonferroni correction
+- No mid-phase null rate
+- No LaTeX output
+- No Wilcoxon p + median_diff for imp-vs-rand comparisons
+
+
+**Current `scripts/analyze_c2_n500.py`:**
+- B_BOOTSTRAP = 10000 (correct)
+- Has mid-phase null rate
+- Has paired gradient
+- Has Bonferroni correction
+- Has imp-vs-rand comparisons with Wilcoxon + median_diff
+- No LaTeX output
+- More comprehensive integrity checks
+
+So I need to update the unified script by increasing the bootstrap iterations to 10000, adding mid-phase null rate reporting, restricting Cohen's d_z to within-importance comparisons only while using Wilcoxon tests with median differences for the random comparisons, and incorporating the Bonferroni correction that's already in the c2 version.
+
+I also need to add a LaTeX flag for outputting table rows, implement the permutation difference statistic for paired gradient comparisons across sparsity levels, and update the file header. Let me check what data's available for n=50 to understand the full scope.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "c9ac3ff3-8817-439b-b1ae-fcf6d1a1f0e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PGpGXmx1ksLWSrCi2ycUiX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7636,
+      "cache_read_input_tokens": 24585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+查看可用数据目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "40a221cb-79a4-4c2b-9db6-5f0d46ffc420",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PGpGXmx1ksLWSrCi2ycUiX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7636,
+      "cache_read_input_tokens": 24585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WXJTpSCcB7fHCXR4x7fasi`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -d /root/autodl-tmp/pacs/profiling_output_*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "61ab32c8-44a4-4121-b0b4-8d52af792f49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PGpGXmx1ksLWSrCi2ycUiX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7636,
+      "cache_read_input_tokens": 24585,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T21:48:56.378Z_
+
+<details><summary>↩ Tool result · `toolu_01WXJTpSCcB7fHCXR4x7fasi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s010\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s035\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s010\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s035\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_dryrun\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s015\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s020\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s025\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s030\\n/root/autodl-tmp/pacs/profiling_output_c5b_all_s025\\n/root/autodl-tmp/pacs/profiling_output_c5b_pilot_s025\\n/root/autodl-tmp/pacs/profiling_output_c5b_pilot_s030\\n/root/autodl-tmp/pacs/profiling_output_dryrun\\n/root/autodl-tmp/pacs/profiling_output_float32_s030\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_qwen_dryrun\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_qwen_pilot\\n/root/autodl-tmp/pacs/profiling_output_sanity_check\\n/root/autodl-tmp/pacs/profiling_output_v2\\n/root/autodl-tmp/pacs/profiling_output_v3\\n/root/autodl-tmp/pacs/profiling_output_v4_random_r2\\n/root/autodl-tmp/pacs/profiling_output_v4_s025\\n/root/autodl-tmp/pacs/profiling_output_v4_s025.log\\n/root/autodl-tmp/pacs/profiling_output_v4_s035\\n/root/autodl-tmp/pacs/profiling_output_v4_s035.log\\n/root/autodl-tmp/pacs/profiling_output_v4_s040\\n/root/autodl-tmp/pacs/profiling_output_v4_s040.log\\n/root/autodl-tmp/pacs/profiling_output_v4a\\n/root/autodl-tmp/pacs/profiling_output_v4a.log\\n/root/autodl-tmp/pacs/profiling_output_v4a_r2\\n/root/autodl-tmp/pacs/profiling_output_v4b\\n/root/autodl-tmp/pacs/profiling_output_v4b.log\\n/root/autodl-tmp/pacs/profiling_output_v4b_r2\\n/root/autodl-tmp/pacs/profiling_output_v4c\\n/root/autodl-tmp/pacs/profiling_output_v4c.log\\n/root/autodl-tmp/pacs/profiling_output_v4c_r2\\n/root/autodl-tmp/pacs/profiling_output_v4d\\n/root/autodl-tmp/pacs/profiling_output_v4d.log\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s015\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s020\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s025\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s030\\n/root/autodl-tmp/pacs/profiling_output_v5_s015\\n/root/autodl-tmp/pacs/profiling_output_v5_s020\\n/root/autodl-tmp/pacs/profiling_output_v5_s020.log\\n/root/autodl-tmp/pacs/profiling_output_v5_s020_r2\\n/root/autodl-tmp/pacs/profiling_output_v5_s025\\n/root/autodl-tmp/pacs/profiling_output_v5_s030\\n/root/autodl-tmp/pacs/profiling_output_v5_s030.log\\n/root/autodl-tmp/pacs/profiling_output_v5_s030_r2\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s015\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s020\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s025\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "571ee201-a971-4a9c-9327-9776295fe504",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s010\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s035\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s010\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s035\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s020\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s025\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030\\\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify\\\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_dryrun\\\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s015\\\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s020\\\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s025\\\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s030\\\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s015\\\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s020\\\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s025\\\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s030\\\\n/root/autodl-tmp/pacs/profiling_output_c5b_all_s025\\\\n/root/autodl-tmp/pacs/profiling_output_c5b_pilot_s025\\\\n/root/autodl-tmp/pacs/profiling_output_c5b_pilot_s030\\\\n/root/autodl-tmp/pacs/profiling_output_dryrun\\\\n/root/autodl-tmp/pacs/profiling_output_float32_s030\\\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_imp_s015\\\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_imp_s020\\\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_rand_s015\\\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_rand_s020\\\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_imp_s015\\\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_imp_s020\\\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_rand_s015\\\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_rand_s020\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_dryrun\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s015\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s020\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s025\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s030\\\\n/root/autodl-tmp/pacs/profiling_output_qwen_pilot\\\\n/root/autodl-tmp/pacs/profiling_output_sanity_check\\\\n/root/autodl-tmp/pacs/profiling_output_v2\\\\n/root/autodl-tmp/pacs/profiling_output_v3\\\\n/root/autodl-tmp/pacs/profiling_output_v4_random_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s025.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s035\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s035.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s040\\\\n/root/autodl-tmp/pacs/profiling_output_v4_s040.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4a\\\\n/root/autodl-tmp/pacs/profiling_output_v4a.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4a_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v4b\\\\n/root/autodl-tmp/pacs/profiling_output_v4b.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4b_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v4c\\\\n/root/autodl-tmp/pacs/profiling_output_v4c.log\\\\n/root/autodl-tmp/pacs/profiling_output_v4c_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v4d\\\\n/root/autodl-tmp/pacs/profiling_output_v4d.log\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s015\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s020\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s030\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s015\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s020\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s020.log\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s020_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s030\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s030.log\\\\n/root/autodl-tmp/pacs/profiling_output_v5_s030_r2\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s015\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s020\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s030\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s015\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s020\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s025\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030\\\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s010\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s035\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s010\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s035\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s025\\n/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030\\n/root/autodl-tmp/pacs/profiling_output_bf16_verify\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_dryrun\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s015\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s020\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s025\\n/root/autodl-tmp/pacs/profiling_output_c3_llama_random_s030\\n/root/autodl-tmp/pacs/profiling_output_c5b_all_s025\\n/root/autodl-tmp/pacs/profiling_output_c5b_pilot_s025\\n/root/autodl-tmp/pacs/profiling_output_c5b_pilot_s030\\n/root/autodl-tmp/pacs/profiling_output_dryrun\\n/root/autodl-tmp/pacs/profiling_output_float32_s030\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_ds_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_imp_s015\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_imp_s020\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_rand_s015\\n/root/autodl-tmp/pacs/profiling_output_n500_bf16_qw_rand_s020\\n/root/autodl-tmp/pacs/profiling_output_qwen_dryrun\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_qwen_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_qwen_pilot\\n/root/autodl-tmp/pacs/profiling_output_sanity_check\\n/root/autodl-tmp/pacs/profiling_output_v2\\n/root/autodl-tmp/pacs/profiling_output_v3\\n/root/autodl-tmp/pacs/profiling_output_v4_random_r2\\n/root/autodl-tmp/pacs/profiling_output_v4_s025\\n/root/autodl-tmp/pacs/profiling_output_v4_s025.log\\n/root/autodl-tmp/pacs/profiling_output_v4_s035\\n/root/autodl-tmp/pacs/profiling_output_v4_s035.log\\n/root/autodl-tmp/pacs/profiling_output_v4_s040\\n/root/autodl-tmp/pacs/profiling_output_v4_s040.log\\n/root/autodl-tmp/pacs/profiling_output_v4a\\n/root/autodl-tmp/pacs/profiling_output_v4a.log\\n/root/autodl-tmp/pacs/profiling_output_v4a_r2\\n/root/autodl-tmp/pacs/profiling_output_v4b\\n/root/autodl-tmp/pacs/profiling_output_v4b.log\\n/root/autodl-tmp/pacs/profiling_output_v4b_r2\\n/root/autodl-tmp/pacs/profiling_output_v4c\\n/root/autodl-tmp/pacs/profiling_output_v4c.log\\n/root/autodl-tmp/pacs/profiling_output_v4c_r2\\n/root/autodl-tmp/pacs/profiling_output_v4d\\n/root/autodl-tmp/pacs/profiling_output_v4d.log\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s015\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s020\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s025\\n/root/autodl-tmp/pacs/profiling_output_v5_random_s030\\n/root/autodl-tmp/pacs/profiling_output_v5_s015\\n/root/autodl-tmp/pacs/profiling_output_v5_s020\\n/root/autodl-tmp/pacs/profiling_output_v5_s020.log\\n/root/autodl-tmp/pacs/profiling_output_v5_s020_r2\\n/root/autodl-tmp/pacs/profiling_output_v5_s025\\n/root/autodl-tmp/pacs/profiling_output_v5_s030\\n/root/autodl-tmp/pacs/profiling_output_v5_s030.log\\n/root/autodl-tmp/pacs/profiling_output_v5_s030_r2\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s015\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s020\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s025\\n/root/autodl-tmp/pacs/profiling_output_v6_importance_s030\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s015\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s020\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s025\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030\\n/root/autodl-tmp/pacs/profiling_output_v6_random_s030_r3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I can see the n=50 data directories (profiling_output_bf16_*) and n=500 directories (profiling_output_n500_bf16_*). Let me also quickly check the data structure of one file to understand the per_problem_ii format.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "8c7b1378-ed6e-4599-8748-77df8aed0fe6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BKRwVYAqdgsYeP89UQDfzA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2947,
+      "cache_read_input_tokens": 32221,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2947
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Let me check the data structure of one file to understand the format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "26ecd079-d168-469a-994c-b747ee608d35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BKRwVYAqdgsYeP89UQDfzA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2947,
+      "cache_read_input_tokens": 32221,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2947
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017hihhrUsK1ErTVaaqQVjzw`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -100 /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "6d3d2148-a079-41a7-aa4f-0a91f072bc10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BKRwVYAqdgsYeP89UQDfzA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2947,
+      "cache_read_input_tokens": 32221,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2947
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T21:49:01.772Z_
+
+<details><summary>↩ Tool result · `toolu_017hihhrUsK1ErTVaaqQVjzw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.15\\n    ],\\n    \\\"masking_method\\\": \\\"importance\\\",\\n    \\\"head_importance_metric\\\": \\\"attention_frobenius_norm\\\",\\n    \\\"kv_importance_metric\\\": \\\"cumulative_attention_received\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1689,\\n        \\\"attn\\\": 1.4861,\\n        \\\"kv\\\": 1.4481,\\n        \\\"both\\\": 1.5911\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2286,\\n        \\\"attn\\\": 1.6147,\\n        \\\"kv\\\": 8.9201,\\n        \\\"both\\\": 12.5084\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 1.5137,\\n        \\\"kv\\\": 2.5971,\\n        \\\"both\\\": 3.4541\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": -0.150213,\\n        \\\"ci_low\\\": -0.294614,\\n        \\\"ci_high\\\": -0.055385,\\n        \\\"median\\\": 0.005752,\\n        \\\"winsorized_mean\\\": -0.062378,\\n        \\\"skewness\\\": -14.9912,\\n        \\\"outlier_count\\\": 2\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 2.405837,\\n        \\\"ci_low\\\": 1.478784,\\n        \\\"ci_high\\\": 3.667675,\\n        \\\"median\\\": 0.398291,\\n        \\\"winsorized_mean\\\": 1.278857,\\n        \\\"skewness\\\": 9.5402,\\n        \\\"outlier_count\\\": 5\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 0.447301,\\n        \\\"ci_low\\\": 0.267993,\\n        \\\"ci_high\\\": 0.668749,\\n        \\\"median\\\": 0.080738,\\n        \\\"winsorized_mean\\\": 0.324751,\\n        \\\"skewness\\\": 4.7221,\\n        \\\"outlier_count\\\": 5\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity II<0, mid_sparsity II>0 at 0.15\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "342fa32f-0803-424e-ae9c-9f4a613f25c5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.15\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"importance\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"attention_frobenius_norm\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"cumulative_attention_received\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1689,\\\\n        \\\\\\\"attn\\\\\\\": 1.4861,\\\\n        \\\\\\\"kv\\\\\\\": 1.4481,\\\\n        \\\\\\\"both\\\\\\\": 1.5911\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2286,\\\\n        \\\\\\\"attn\\\\\\\": 1.6147,\\\\n        \\\\\\\"kv\\\\\\\": 8.9201,\\\\n        \\\\\\\"both\\\\\\\": 12.5084\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 1.5137,\\\\n        \\\\\\\"kv\\\\\\\": 2.5971,\\\\n        \\\\\\\"both\\\\\\\": 3.4541\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.150213,\\\\n        \\\\\\\"ci_low\\\\\\\": -0.294614,\\\\n        \\\\\\\"ci_high\\\\\\\": -0.055385,\\\\n        \\\\\\\"median\\\\\\\": 0.005752,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": -0.062378,\\\\n        \\\\\\\"skewness\\\\\\\": -14.9912,\\\\n        \\\\\\\"outlier_count\\\\\\\": 2\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 2.405837,\\\\n        \\\\\\\"ci_low\\\\\\\": 1.478784,\\\\n        \\\\\\\"ci_high\\\\\\\": 3.667675,\\\\n        \\\\\\\"median\\\\\\\": 0.398291,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 1.278857,\\\\n        \\\\\\\"skewness\\\\\\\": 9.5402,\\\\n        \\\\\\\"outlier_count\\\\\\\": 5\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.447301,\\\\n        \\\\\\\"ci_low\\\\\\\": 0.267993,\\\\n        \\\\\\\"ci_high\\\\\\\": 0.668749,\\\\n        \\\\\\\"median\\\\\\\": 0.080738,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": 0.324751,\\\\n        \\\\\\\"skewness\\\\\\\": 4.7221,\\\\n        \\\\\\\"outlier_count\\\\\\\": 5\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pass_fail\\\\\\\": {\\\\n    \\\\\\\"ci_overlap_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\\\\\"\\\\n    },\\\\n    \\\\\\\"sign_reversal_test\\\\\\\": {\\\\n      \\\\\\\"pass\\\\\\\": true,\\\\n      \\\\\\\"details\\\\\\\": \\\\\\\"high_sparsity II<0, mid_sparsity II>0 at 0.15\\\\\\\"\\\\n    },\\\\n    \\\\\\\"overall\\\\\\\": \\\\\\\"PASS\\\\\\\"\\\\n  },\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.15\\n    ],\\n    \\\"masking_method\\\": \\\"importance\\\",\\n    \\\"head_importance_metric\\\": \\\"attention_frobenius_norm\\\",\\n    \\\"kv_importance_metric\\\": \\\"cumulative_attention_received\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 21086,\\n      \\\"n_segments\\\": 387\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 27748,\\n      \\\"n_segments\\\": 397\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 13306,\\n      \\\"n_segments\\\": 191\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.1689,\\n        \\\"attn\\\": 1.4861,\\n        \\\"kv\\\": 1.4481,\\n        \\\"both\\\": 1.5911\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2286,\\n        \\\"attn\\\": 1.6147,\\n        \\\"kv\\\": 8.9201,\\n        \\\"both\\\": 12.5084\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"dense\\\": 1.2269,\\n        \\\"attn\\\": 1.5137,\\n        \\\"kv\\\": 2.5971,\\n        \\\"both\\\": 3.4541\\n      }\\n    }\\n  },\\n  \\\"interaction_index\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": -0.150213,\\n        \\\"ci_low\\\": -0.294614,\\n        \\\"ci_high\\\": -0.055385,\\n        \\\"median\\\": 0.005752,\\n        \\\"winsorized_mean\\\": -0.062378,\\n        \\\"skewness\\\": -14.9912,\\n        \\\"outlier_count\\\": 2\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 2.405837,\\n        \\\"ci_low\\\": 1.478784,\\n        \\\"ci_high\\\": 3.667675,\\n        \\\"median\\\": 0.398291,\\n        \\\"winsorized_mean\\\": 1.278857,\\n        \\\"skewness\\\": 9.5402,\\n        \\\"outlier_count\\\": 5\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.15\\\": {\\n        \\\"mean\\\": 0.447301,\\n        \\\"ci_low\\\": 0.267993,\\n        \\\"ci_high\\\": 0.668749,\\n        \\\"median\\\": 0.080738,\\n        \\\"winsorized_mean\\\": 0.324751,\\n        \\\"skewness\\\": 4.7221,\\n        \\\"outlier_count\\\": 5\\n      }\\n    }\\n  },\\n  \\\"pass_fail\\\": {\\n    \\\"ci_overlap_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"low_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\"\\n    },\\n    \\\"sign_reversal_test\\\": {\\n      \\\"pass\\\": true,\\n      \\\"details\\\": \\\"high_sparsity II<0, mid_sparsity II>0 at 0.15\\\"\\n    },\\n    \\\"overall\\\": \\\"PASS\\\"\\n  },\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KjAFVf3kkZP614h7F3B13b`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -c \"problem_idx\" /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "f6dc714e-41e0-4222-9a11-7b36e9f42eaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSAzbasJGDw3ZLu1ohzfHn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1676,
+      "cache_read_input_tokens": 35168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1676
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T21:49:05.291Z_
+
+<details><summary>↩ Tool result · `toolu_01KjAFVf3kkZP614h7F3B13b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "7a5b9d41-6276-45b6-a04c-56a7629b3f2d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of both scripts and the data. Let me write the enhanced `analyze_n500_unified.py`. Key changes needed:
+
+1. **B_BOOT = 10000** (was 1000)
+2. **Mid-phase null rate** - from `analyze_c2_n500.py`
+3. **d_z within-importance only** (D059) - random comparisons get Wilcoxon p + median_diff instead
+4. **Bonferroni correction** for all p-values
+5. **LaTeX table rows** output with `--latex` flag
+
+
+6. **Permutation difference statistic** for paired gradient across sparsity levels
+7. **Updated file header**
+
+I'm merging the best parts of both scripts and need to examine the per_problem_ii structure more carefully to understand how to integrate the new statistics.
+
+Writing the unified analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "6b073361-044b-48ff-a293-eb78e53770a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxApCrcfS5sG5q2CErZdXS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 36844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Now I have a clear picture. Let me write the enhanced script. Key gaps in the existing `analyze_n500_unified.py`:
+- B_BOOT=1000 (needs 10000)
+- No mid-phase null rate
+- d_z reported for random too (D059 violation)
+- No Bonferroni correction
+- No LaTeX output
+- No imp-vs-rand Wilcoxon comparisons
+
+Writing the enhanced script now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "0c8a6110-14e6-4240-99d0-4a3804110721",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxApCrcfS5sG5q2CErZdXS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 36844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UagAbja21crGMphUusAhmF`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat > /root/autodl-tmp/pacs/analyze_n500_unified.py << 'PYEOF'\n\"\"\"\nUnified n=500 analysis for phase-gated compound sparsity (PACS).\n\nAnalyses performed:\n  1. Median II (low-high) + bootstrap 95% CI (B=10000, percentile method)\n  2. Mid-phase null rate per condition\n  3. Within-importance paired Cohen's d_z across sparsity levels (D059)\n     - imp-vs-rand: Wilcoxon p + median_diff only, NO d_z\n  4. Permutation monotonicity test across sparsity gradient\n  5. Bonferroni correction on all reported p-values\n\nInput:  profiling_output_{n500_,}bf16_{ds,qw}_{imp,rand}_s{015..030}/profiling_results.json\nOutput: analysis_output/n500_unified{_dryrun}.json\n        analysis_output/n500_unified{_dryrun}.csv  (--csv)\n        LaTeX table rows to stdout (--latex)\n\nConstraints:\n  D054: median only, no mean\n  D059: d_z within-importance only; imp-vs-rand gets Wilcoxon + median_diff\n\"\"\"\n\nimport json\nimport argparse\nimport sys\nfrom pathlib import Path\nfrom typing import Optional, List, Dict, Tuple, Any\n\nimport numpy as np\nfrom scipy import stats\n\nBASE = Path(\"/root/autodl-tmp/pacs\")\n\nMODEL_MAP = {\"deepseek\": \"ds\", \"qwen\": \"qw\"}\nMASKING_TYPES = [\"imp\", \"rand\"]\nSPARSITY_LABELS = [\"s015\", \"s020\", \"s025\", \"s030\"]\nSPARSITY_VALUES = {\"s015\": 0.15, \"s020\": 0.20, \"s025\": 0.25, \"s030\": 0.30}\nSPARSITY_KEY_MAP = {\"s015\": \"0.15\", \"s020\": \"0.2\", \"s025\": \"0.25\", \"s030\": \"0.3\"}\n\nWITHIN_IMP_PAIRS = [\n    (\"s015\", \"s020\"),\n    (\"s020\", \"s025\"),\n    (\"s025\", \"s030\"),\n    (\"s015\", \"s030\"),\n]\n\nB_BOOT = 10000\nSEED = 42\nALPHA = 0.05\nN_PERM = 5000\n\n\n# ── Path / IO ────────────────────────────────────────────────────────\n\ndef dir_name(model_short: str, masking: str, slabel: str, n500: bool = True) -> str:\n    prefix = \"n500_\" if n500 else \"\"\n    return f\"profiling_output_{prefix}bf16_{model_short}_{masking}_{slabel}\"\n\n\ndef load_problems(dirpath: Path) -> Optional[List[dict]]:\n    fpath = dirpath / \"profiling_results.json\"\n    if not fpath.exists():\n        return None\n    with open(fpath) as f:\n        data = json.load(f)\n    ppi = data.get(\"per_problem_ii\", {})\n    keys = list(ppi.keys())\n    if not keys:\n        return None\n    return ppi[keys[0]]\n\n\n# ── Statistics ────────────────────────────────────────────────────────\n\ndef extract_diffs(problems: List[dict], pa: str = \"low\", pb: str = \"high\") -> np.ndarray:\n    diffs = []\n    for p in problems:\n        va, vb = p.get(f\"ii_{pa}\"), p.get(f\"ii_{pb}\")\n        if va is not None and vb is not None:\n            diffs.append(va - vb)\n    return np.array(diffs)\n\n\ndef bootstrap_median_ci(arr: np.ndarray, B: int = B_BOOT,\n                        alpha: float = ALPHA, seed: int = SEED) -> Tuple[float, float]:\n    rng = np.random.RandomState(seed)\n    n = len(arr)\n    medians = np.empty(B)\n    for i in range(B):\n        medians[i] = np.median(arr[rng.randint(0, n, size=n)])\n    lo = float(np.percentile(medians, 100 * alpha / 2))\n    hi = float(np.percentile(medians, 100 * (1 - alpha / 2)))\n    return lo, hi\n\n\ndef paired_cohens_dz(diffs: np.ndarray) -> float:\n    if len(diffs) < 2:\n        return float(\"nan\")\n    s = np.std(diffs, ddof=1)\n    if s == 0:\n        return float(\"nan\")\n    return float(np.mean(diffs) / s)\n\n\ndef bootstrap_dz_ci(diffs: np.ndarray, B: int = B_BOOT,\n                     alpha: float = ALPHA, seed: int = SEED) -> Tuple[float, float]:\n    rng = np.random.RandomState(seed)\n    n = len(diffs)\n    boot = np.empty(B)\n    for i in range(B):\n        sample = diffs[rng.randint(0, n, size=n)]\n        s = sample.std(ddof=1)\n        boot[i] = sample.mean() / s if s > 0 else np.nan\n    boot = boot[~np.isnan(boot)]\n    if len(boot) == 0:\n        return float(\"nan\"), float(\"nan\")\n    return (float(np.percentile(boot, 100 * alpha / 2)),\n            float(np.percentile(boot, 100 * (1 - alpha / 2))))\n\n\ndef interpret_d(d: float) -> str:\n    ad = abs(d)\n    if ad < 0.2:\n        return \"negligible\"\n    elif ad < 0.5:\n        return \"small\"\n    elif ad < 0.8:\n        return \"medium\"\n    return \"large\"\n\n\ndef midphase_null_rate(problems: List[dict]) -> Dict[str, Any]:\n    total = len(problems)\n    null_mid = sum(1 for p in problems if p.get(\"ii_mid\") is None)\n    null_low = sum(1 for p in problems if p.get(\"ii_low\") is None)\n    null_high = sum(1 for p in problems if p.get(\"ii_high\") is None)\n    return {\n        \"n_total\": total,\n        \"null_mid\": null_mid,\n        \"null_mid_rate\": round(null_mid / total, 4) if total > 0 else None,\n        \"null_low\": null_low,\n        \"null_high\": null_high,\n    }\n\n\ndef permutation_monotonicity_test(medians_by_sparsity: Dict[str, float],\n                                   n_perm: int = N_PERM, seed: int = SEED) -> Dict[str, Any]:\n    \"\"\"Test whether median II diffs are monotonically increasing with sparsity.\"\"\"\n    ordered = sorted(medians_by_sparsity.items(), key=lambda x: SPARSITY_VALUES.get(x[0], 0))\n    if len(ordered) < 3:\n        return {\"error\": f\"need >=3 sparsity levels, got {len(ordered)}\"}\n\n    labels = [o[0] for o in ordered]\n    vals = np.array([o[1] for o in ordered])\n\n    diffs_consecutive = np.diff(vals)\n    n_increasing = int(np.sum(diffs_consecutive > 0))\n    is_monotonic = bool(n_increasing == len(diffs_consecutive))\n\n    observed_stat = float(np.sum(diffs_consecutive))\n\n    rng = np.random.RandomState(seed)\n    count = 0\n    for _ in range(n_perm):\n        perm_vals = rng.permutation(vals)\n        perm_stat = float(np.sum(np.diff(perm_vals)))\n        if perm_stat >= observed_stat:\n            count += 1\n    p = (count + 1) / (n_perm + 1)\n\n    return {\n        \"sparsity_order\": labels,\n        \"medians\": vals.tolist(),\n        \"consecutive_diffs\": diffs_consecutive.tolist(),\n        \"n_increasing_steps\": n_increasing,\n        \"is_monotonic\": is_monotonic,\n        \"sum_gradient_stat\": observed_stat,\n        \"permutation_p\": float(p),\n        \"n_perm\": n_perm,\n    }\n\n\ndef bonferroni(p: float, n_tests: int) -> float:\n    return min(p * n_tests, 1.0)\n\n\n# ── Per-condition analysis ────────────────────────────────────────────\n\ndef analyze_condition(problems: List[dict]) -> Dict[str, Any]:\n    diffs = extract_diffs(problems, \"low\", \"high\")\n    n_valid = len(diffs)\n    if n_valid < 5:\n        return {\"error\": f\"too few valid: {n_valid}\", \"n_valid\": n_valid}\n\n    med = float(np.median(diffs))\n    ci_lo, ci_hi = bootstrap_median_ci(diffs)\n    crosses_zero = (ci_lo <= 0 <= ci_hi)\n\n    per_phase = {}\n    for ph in [\"high\", \"mid\", \"low\"]:\n        vals = [p[f\"ii_{ph}\"] for p in problems if p.get(f\"ii_{ph}\") is not None]\n        if vals:\n            arr = np.array(vals)\n            per_phase[ph] = {\n                \"n\": len(arr),\n                \"median\": float(np.median(arr)),\n                \"iqr\": float(np.percentile(arr, 75) - np.percentile(arr, 25)),\n            }\n\n    null_info = midphase_null_rate(problems)\n\n    wilcoxon_stat, wilcoxon_p = stats.wilcoxon(diffs, alternative=\"two-sided\")\n\n    return {\n        \"n_valid\": n_valid,\n        \"median_ii_diff\": med,\n        \"median_ii_diff_ci\": [ci_lo, ci_hi],\n        \"ci_excludes_zero\": not crosses_zero,\n        \"wilcoxon_stat\": float(wilcoxon_stat),\n        \"wilcoxon_p\": float(wilcoxon_p),\n        \"per_phase_median\": per_phase,\n        \"midphase_null\": null_info,\n    }\n\n\n# ── Model-level analysis ─────────────────────────────────────────────\n\ndef analyze_model(model_name: str, n500: bool = True) -> Dict[str, Any]:\n    ms = MODEL_MAP[model_name]\n    all_problems = {}\n    available = {}\n\n    for masking in MASKING_TYPES:\n        for sl in SPARSITY_LABELS:\n            key = f\"{masking}_{sl}\"\n            dname = dir_name(ms, masking, sl, n500=n500)\n            dpath = BASE / dname\n            problems = load_problems(dpath)\n            if problems is not None:\n                all_problems[key] = problems\n                available[key] = len(problems)\n            else:\n                available[key] = 0\n\n    # 1. Per-condition: median II diff + CI + midphase null\n    cond_out = {}\n    for key, problems in all_problems.items():\n        cond_out[key] = analyze_condition(problems)\n\n    # 2. Within-importance d_z (D059: only imp pairs)\n    dz_importance = {}\n    for sl_a, sl_b in WITHIN_IMP_PAIRS:\n        pair_key = f\"{sl_a}_vs_{sl_b}\"\n        key_a = f\"imp_{sl_a}\"\n        key_b = f\"imp_{sl_b}\"\n        if key_a not in all_problems or key_b not in all_problems:\n            dz_importance[pair_key] = {\"error\": \"missing data\"}\n            continue\n\n        probs_a = all_problems[key_a]\n        probs_b = all_problems[key_b]\n        diffs_a = extract_diffs(probs_a, \"low\", \"high\")\n        diffs_b = extract_diffs(probs_b, \"low\", \"high\")\n\n        n_paired = min(len(diffs_a), len(diffs_b))\n        if n_paired < 5:\n            dz_importance[pair_key] = {\"error\": f\"too few paired: {n_paired}\"}\n            continue\n\n        paired_diffs = diffs_a[:n_paired] - diffs_b[:n_paired]\n        dz = paired_cohens_dz(paired_diffs)\n        dz_ci = bootstrap_dz_ci(paired_diffs)\n        w_stat, w_p = stats.wilcoxon(paired_diffs, alternative=\"two-sided\")\n\n        dz_importance[pair_key] = {\n            \"d_z\": dz,\n            \"d_z_ci\": list(dz_ci),\n            \"interpretation\": interpret_d(dz),\n            \"n_paired\": n_paired,\n            \"median_diff\": float(np.median(paired_diffs)),\n            \"wilcoxon_stat\": float(w_stat),\n            \"wilcoxon_p\": float(w_p),\n        }\n\n    # 3. Random within-pairs: Wilcoxon + median_diff only (D059: no d_z)\n    rand_comparisons = {}\n    for sl_a, sl_b in WITHIN_IMP_PAIRS:\n        pair_key = f\"{sl_a}_vs_{sl_b}\"\n        key_a = f\"rand_{sl_a}\"\n        key_b = f\"rand_{sl_b}\"\n        if key_a not in all_problems or key_b not in all_problems:\n            rand_comparisons[pair_key] = {\"error\": \"missing data\"}\n            continue\n\n        diffs_a = extract_diffs(all_problems[key_a], \"low\", \"high\")\n        diffs_b = extract_diffs(all_problems[key_b], \"low\", \"high\")\n        n_paired = min(len(diffs_a), len(diffs_b))\n        if n_paired < 5:\n            rand_comparisons[pair_key] = {\"error\": f\"too few paired: {n_paired}\"}\n            continue\n\n        paired_diffs = diffs_a[:n_paired] - diffs_b[:n_paired]\n        w_stat, w_p = stats.wilcoxon(paired_diffs, alternative=\"two-sided\")\n        rand_comparisons[pair_key] = {\n            \"median_diff\": float(np.median(paired_diffs)),\n            \"wilcoxon_stat\": float(w_stat),\n            \"wilcoxon_p\": float(w_p),\n            \"n_paired\": n_paired,\n        }\n\n    # 4. Imp-vs-rand comparisons: Wilcoxon + median_diff (D059: no d_z)\n    imp_vs_rand = {}\n    for sl in SPARSITY_LABELS:\n        key_imp = f\"imp_{sl}\"\n        key_rand = f\"rand_{sl}\"\n        if key_imp not in all_problems or key_rand not in all_problems:\n            imp_vs_rand[sl] = {\"error\": \"missing data\"}\n            continue\n\n        diffs_imp = extract_diffs(all_problems[key_imp], \"low\", \"high\")\n        diffs_rand = extract_diffs(all_problems[key_rand], \"low\", \"high\")\n        n_paired = min(len(diffs_imp), len(diffs_rand))\n        if n_paired < 5:\n            imp_vs_rand[sl] = {\"error\": f\"too few paired: {n_paired}\"}\n            continue\n\n        paired_diffs = diffs_imp[:n_paired] - diffs_rand[:n_paired]\n        w_stat, w_p = stats.wilcoxon(paired_diffs, alternative=\"two-sided\")\n        imp_vs_rand[sl] = {\n            \"median_diff\": float(np.median(paired_diffs)),\n            \"wilcoxon_stat\": float(w_stat),\n            \"wilcoxon_p\": float(w_p),\n            \"n_paired\": n_paired,\n        }\n\n    # 5. Permutation monotonicity test\n    dose_imp = {}\n    dose_rand = {}\n    for masking, dose_dict in [(\"imp\", dose_imp), (\"rand\", dose_rand)]:\n        medians = {}\n        for sl in SPARSITY_LABELS:\n            key = f\"{masking}_{sl}\"\n            if key in cond_out and \"error\" not in cond_out[key]:\n                medians[sl] = cond_out[key][\"median_ii_diff\"]\n        if len(medians) >= 3:\n            dose_dict.update(permutation_monotonicity_test(medians))\n        else:\n            dose_dict[\"error\"] = f\"need >=3 levels, got {len(medians)}\"\n\n    # 6. Bonferroni correction\n    all_p_values = []\n    p_registry = []\n\n    for key, c in cond_out.items():\n        if \"wilcoxon_p\" in c:\n            p_registry.append((\"condition\", key, \"wilcoxon_p\"))\n            all_p_values.append(c[\"wilcoxon_p\"])\n\n    for pair_key, v in dz_importance.items():\n        if \"wilcoxon_p\" in v:\n            p_registry.append((\"dz_imp\", pair_key, \"wilcoxon_p\"))\n            all_p_values.append(v[\"wilcoxon_p\"])\n\n    for pair_key, v in rand_comparisons.items():\n        if \"wilcoxon_p\" in v:\n            p_registry.append((\"rand_within\", pair_key, \"wilcoxon_p\"))\n            all_p_values.append(v[\"wilcoxon_p\"])\n\n    for sl, v in imp_vs_rand.items():\n        if \"wilcoxon_p\" in v:\n            p_registry.append((\"imp_vs_rand\", sl, \"wilcoxon_p\"))\n            all_p_values.append(v[\"wilcoxon_p\"])\n\n    n_tests = len(all_p_values)\n\n    for i, (category, key, field) in enumerate(p_registry):\n        raw_p = all_p_values[i]\n        corrected = bonferroni(raw_p, n_tests)\n        if category == \"condition\":\n            cond_out[key][\"bonferroni_p\"] = corrected\n            cond_out[key][\"n_tests_bonferroni\"] = n_tests\n        elif category == \"dz_imp\":\n            dz_importance[key][\"bonferroni_p\"] = corrected\n        elif category == \"rand_within\":\n            rand_comparisons[key][\"bonferroni_p\"] = corrected\n        elif category == \"imp_vs_rand\":\n            imp_vs_rand[key][\"bonferroni_p\"] = corrected\n\n    return {\n        \"conditions\": cond_out,\n        \"within_dz_importance\": dz_importance,\n        \"within_rand_comparisons\": rand_comparisons,\n        \"imp_vs_rand\": imp_vs_rand,\n        \"dose_response\": {\n            \"importance\": dose_imp,\n            \"random\": dose_rand,\n        },\n        \"bonferroni_n_tests\": n_tests,\n        \"available_conditions\": available,\n    }\n\n\n# ── LaTeX output ──────────────────────────────────────────────────────\n\ndef fmt(v: float, decimals: int = 4) -> str:\n    return f\"{v:.{decimals}f}\"\n\n\ndef fmt_p(p: float) -> str:\n    if p < 0.001:\n        return \"$<$0.001\"\n    return f\"{p:.3f}\"\n\n\ndef latex_output(full_output: dict):\n    print(\"\\n\" + \"=\" * 70)\n    print(\"LATEX TABLE ROWS\")\n    print(\"=\" * 70)\n\n    # Table 1: Per-condition median II diff + CI\n    print(\"\\n% Table: Median II (low-high) by condition\")\n    print(\"% Model & Masking & Sparsity & n & Median & CI_low & CI_high & p & p_bonf \\\\\\\\\")\n    for m_name, m_data in full_output[\"models\"].items():\n        for masking in MASKING_TYPES:\n            for sl in SPARSITY_LABELS:\n                key = f\"{masking}_{sl}\"\n                c = m_data.get(\"conditions\", {}).get(key, {})\n                if \"error\" in c:\n                    continue\n                s_val = SPARSITY_VALUES[sl]\n                mask_label = \"Importance\" if masking == \"imp\" else \"Random\"\n                ci = c[\"median_ii_diff_ci\"]\n                p_raw = c[\"wilcoxon_p\"]\n                p_bonf = c.get(\"bonferroni_p\", p_raw)\n                null_mid = c.get(\"midphase_null\", {}).get(\"null_mid_rate\", \"\")\n                print(f\"{m_name.capitalize()} & {mask_label} & {s_val:.0%} & \"\n                      f\"{c['n_valid']} & {fmt(c['median_ii_diff'])} & \"\n                      f\"{fmt(ci[0])} & {fmt(ci[1])} & \"\n                      f\"{fmt_p(p_raw)} & {fmt_p(p_bonf)} \\\\\\\\\")\n\n    # Table 2: Mid-phase null rates\n    print(\"\\n% Table: Mid-phase null rates\")\n    print(\"% Model & Masking & Sparsity & n_total & null_mid & null_rate \\\\\\\\\")\n    for m_name, m_data in full_output[\"models\"].items():\n        for masking in MASKING_TYPES:\n            for sl in SPARSITY_LABELS:\n                key = f\"{masking}_{sl}\"\n                c = m_data.get(\"conditions\", {}).get(key, {})\n                null_info = c.get(\"midphase_null\", {})\n                if not null_info or \"n_total\" not in null_info:\n                    continue\n                mask_label = \"Importance\" if masking == \"imp\" else \"Random\"\n                s_val = SPARSITY_VALUES[sl]\n                rate = null_info[\"null_mid_rate\"]\n                rate_str = f\"{rate:.1%}\" if rate is not None else \"N/A\"\n                print(f\"{m_name.capitalize()} & {mask_label} & {s_val:.0%} & \"\n                      f\"{null_info['n_total']} & {null_info['null_mid']} & \"\n                      f\"{rate_str} \\\\\\\\\")\n\n    # Table 3: Within-importance d_z\n    print(\"\\n% Table: Within-importance paired d_z (D059)\")\n    print(\"% Model & Pair & d_z & CI_low & CI_high & Interp & p & p_bonf \\\\\\\\\")\n    for m_name, m_data in full_output[\"models\"].items():\n        dz_data = m_data.get(\"within_dz_importance\", {})\n        for pair_key, v in dz_data.items():\n            if \"error\" in v:\n                continue\n            p_bonf = v.get(\"bonferroni_p\", v[\"wilcoxon_p\"])\n            print(f\"{m_name.capitalize()} & {pair_key} & \"\n                  f\"{fmt(v['d_z'])} & {fmt(v['d_z_ci'][0])} & {fmt(v['d_z_ci'][1])} & \"\n                  f\"{v['interpretation']} & {fmt_p(v['wilcoxon_p'])} & {fmt_p(p_bonf)} \\\\\\\\\")\n\n    # Table 4: Random within-sparsity (Wilcoxon only, no d_z per D059)\n    print(\"\\n% Table: Random within-sparsity (Wilcoxon + median_diff, no d_z)\")\n    print(\"% Model & Pair & median_diff & p & p_bonf \\\\\\\\\")\n    for m_name, m_data in full_output[\"models\"].items():\n        rand_data = m_data.get(\"within_rand_comparisons\", {})\n        for pair_key, v in rand_data.items():\n            if \"error\" in v:\n                continue\n            p_bonf = v.get(\"bonferroni_p\", v[\"wilcoxon_p\"])\n            print(f\"{m_name.capitalize()} & {pair_key} & \"\n                  f\"{fmt(v['median_diff'])} & {fmt_p(v['wilcoxon_p'])} & {fmt_p(p_bonf)} \\\\\\\\\")\n\n    # Table 5: Imp vs rand\n    print(\"\\n% Table: Importance vs Random (Wilcoxon + median_diff, no d_z)\")\n    print(\"% Model & Sparsity & median_diff & p & p_bonf \\\\\\\\\")\n    for m_name, m_data in full_output[\"models\"].items():\n        ivr = m_data.get(\"imp_vs_rand\", {})\n        for sl in SPARSITY_LABELS:\n            v = ivr.get(sl, {})\n            if \"error\" in v:\n                continue\n            s_val = SPARSITY_VALUES[sl]\n            p_bonf = v.get(\"bonferroni_p\", v[\"wilcoxon_p\"])\n            print(f\"{m_name.capitalize()} & {s_val:.0%} & \"\n                  f\"{fmt(v['median_diff'])} & {fmt_p(v['wilcoxon_p'])} & {fmt_p(p_bonf)} \\\\\\\\\")\n\n    # Table 6: Dose-response monotonicity\n    print(\"\\n% Table: Dose-response permutation monotonicity test\")\n    print(\"% Model & Masking & rho_sum & monotonic & perm_p \\\\\\\\\")\n    for m_name, m_data in full_output[\"models\"].items():\n        for scope in [\"importance\", \"random\"]:\n            dr = m_data.get(\"dose_response\", {}).get(scope, {})\n            if \"error\" in dr:\n                continue\n            mask_label = \"Importance\" if scope == \"importance\" else \"Random\"\n            print(f\"{m_name.capitalize()} & {mask_label} & \"\n                  f\"{fmt(dr['sum_gradient_stat'])} & \"\n                  f\"{'Yes' if dr['is_monotonic'] else 'No'} & \"\n                  f\"{fmt_p(dr['permutation_p'])} \\\\\\\\\")\n\n\n# ── Serialization ─────────────────────────────────────────────────────\n\ndef sanitize(obj):\n    if isinstance(obj, dict):\n        return {k: sanitize(v) for k, v in obj.items()}\n    elif isinstance(obj, list):\n        return [sanitize(v) for v in obj]\n    elif isinstance(obj, (np.integer,)):\n        return int(obj)\n    elif isinstance(obj, (np.floating,)):\n        return float(obj)\n    elif isinstance(obj, np.ndarray):\n        return obj.tolist()\n    elif isinstance(obj, (np.bool_,)):\n        return bool(obj)\n    return obj\n\n\n# ── Main ──────────────────────────────────────────────────────────────\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Unified n=500 PACS analysis\")\n    parser.add_argument(\"--model\", choices=[\"deepseek\", \"qwen\", \"all\"], default=\"all\")\n    parser.add_argument(\"--dry-run\", action=\"store_true\", help=\"Use n=50 data\")\n    parser.add_argument(\"--csv\", action=\"store_true\", help=\"Also output CSV\")\n    parser.add_argument(\"--latex\", action=\"store_true\", help=\"Print LaTeX table rows\")\n    args = parser.parse_args()\n\n    n500 = not args.dry_run\n    models = list(MODEL_MAP.keys()) if args.model == \"all\" else [args.model]\n\n    full_output = {\n        \"meta\": {\n            \"analysis\": \"n500_unified_v2\",\n            \"data\": \"n500\" if n500 else \"n50_dryrun\",\n            \"bootstrap_B\": B_BOOT,\n            \"alpha\": ALPHA,\n            \"permutation_N\": N_PERM,\n            \"seed\": SEED,\n            \"statistic\": \"median (D054)\",\n            \"dz_scope\": \"within-importance only (D059)\",\n            \"imp_vs_rand_scope\": \"Wilcoxon + median_diff only (D059)\",\n        },\n        \"models\": {},\n    }\n\n    for m in models:\n        print(f\"\\n{'='*70}\")\n        print(f\"  {m.upper()}\")\n        print(f\"{'='*70}\")\n        result = analyze_model(m, n500=n500)\n        full_output[\"models\"][m] = sanitize(result)\n\n        # Print summary\n        for key, c in result[\"conditions\"].items():\n            if \"error\" in c:\n                print(f\"  {key}: {c['error']}\")\n            else:\n                ci = c[\"median_ii_diff_ci\"]\n                p_bonf = c.get(\"bonferroni_p\", c[\"wilcoxon_p\"])\n                null_rate = c.get(\"midphase_null\", {}).get(\"null_mid_rate\", \"?\")\n                print(f\"  {key}: median={c['median_ii_diff']:+.4f} \"\n                      f\"CI=[{ci[0]:.4f},{ci[1]:.4f}] \"\n                      f\"p_bonf={p_bonf:.4f} \"\n                      f\"mid_null={null_rate}\")\n\n        print(f\"\\n  Within-imp d_z:\")\n        for pk, v in result[\"within_dz_importance\"].items():\n            if \"error\" in v:\n                print(f\"    {pk}: {v['error']}\")\n            else:\n                print(f\"    {pk}: d_z={v['d_z']:+.3f} [{v['d_z_ci'][0]:.3f},{v['d_z_ci'][1]:.3f}] \"\n                      f\"({v['interpretation']})\")\n\n        print(f\"\\n  Imp-vs-rand:\")\n        for sl, v in result[\"imp_vs_rand\"].items():\n            if \"error\" in v:\n                print(f\"    {sl}: {v['error']}\")\n            else:\n                print(f\"    {sl}: median_diff={v['median_diff']:+.4f} \"\n                      f\"p_bonf={v.get('bonferroni_p', v['wilcoxon_p']):.4f}\")\n\n        print(f\"\\n  Dose-response:\")\n        for scope in [\"importance\", \"random\"]:\n            dr = result[\"dose_response\"].get(scope, {})\n            if \"error\" in dr:\n                print(f\"    {scope}: {dr['error']}\")\n            else:\n                print(f\"    {scope}: monotonic={dr['is_monotonic']} \"\n                      f\"gradient_sum={dr['sum_gradient_stat']:.4f} \"\n                      f\"perm_p={dr['permutation_p']:.4f}\")\n\n    # Save JSON\n    out_dir = BASE / \"analysis_output\"\n    out_dir.mkdir(exist_ok=True)\n    suffix = \"_dryrun\" if args.dry_run else \"\"\n\n    json_path = out_dir / f\"n500_unified{suffix}.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(full_output, f, indent=2)\n    print(f\"\\nSaved: {json_path}\")\n\n    # CSV\n    if args.csv:\n        csv_path = out_dir / f\"n500_unified{suffix}.csv\"\n        with open(csv_path, \"w\") as f:\n            f.write(\"model,masking,sparsity,n,median_ii_diff,ci_lo,ci_hi,\"\n                    \"ci_excludes_zero,wilcoxon_p,bonferroni_p,mid_null_rate\\n\")\n            for m_name, m_data in full_output[\"models\"].items():\n                for key, c in m_data.get(\"conditions\", {}).items():\n                    if \"error\" in c:\n                        continue\n                    parts = key.split(\"_\")\n                    masking, sl = parts[0], parts[1]\n                    ci = c[\"median_ii_diff_ci\"]\n                    null_rate = c.get(\"midphase_null\", {}).get(\"null_mid_rate\", \"\")\n                    f.write(f\"{m_name},{masking},{sl},{c['n_valid']},\"\n                            f\"{c['median_ii_diff']},{ci[0]},{ci[1]},\"\n                            f\"{c['ci_excludes_zero']},{c['wilcoxon_p']},\"\n                            f\"{c.get('bonferroni_p', '')},{null_rate}\\n\")\n\n            f.write(\"\\n# Within-importance d_z\\n\")\n            f.write(\"model,pair,d_z,dz_ci_lo,dz_ci_hi,interpretation,wilcoxon_p,bonferroni_p,n_paired\\n\")\n            for m_name, m_data in full_output[\"models\"].items():\n                for pk, v in m_data.get(\"within_dz_importance\", {}).items():\n                    if \"error\" in v:\n                        continue\n                    f.write(f\"{m_name},{pk},{v['d_z']},\"\n                            f\"{v['d_z_ci'][0]},{v['d_z_ci'][1]},\"\n                            f\"{v['interpretation']},{v['wilcoxon_p']},\"\n                            f\"{v.get('bonferroni_p', '')},{v['n_paired']}\\n\")\n\n            f.write(\"\\n# Imp vs Rand (Wilcoxon only)\\n\")\n            f.write(\"model,sparsity,median_diff,wilcoxon_p,bonferroni_p,n_paired\\n\")\n            for m_name, m_data in full_output[\"models\"].items():\n                for sl, v in m_data.get(\"imp_vs_rand\", {}).items():\n                    if \"error\" in v:\n                        continue\n                    f.write(f\"{m_name},{sl},{v['median_diff']},\"\n                            f\"{v['wilcoxon_p']},{v.get('bonferroni_p', '')},\"\n                            f\"{v['n_paired']}\\n\")\n        print(f\"Saved: {csv_path}\")\n\n    # LaTeX\n    if args.latex:\n        latex_output(full_output)\n\n    print(\"\\nDone.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"WRITTEN OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "4ed5bab4-7c7e-41ee-9d1d-70b362583582",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxApCrcfS5sG5q2CErZdXS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 36844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T21:51:10.139Z_
+
+<details><summary>↩ Tool result · `toolu_01UagAbja21crGMphUusAhmF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WRITTEN OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "5cf6928e-c660-4591-8332-0e55e595a596",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WRITTEN OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"WRITTEN OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+脚本已写入。现在执行 dry-run。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "04893d1f-674d-4785-949b-3f0e00c30ff6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JruBrW15uiWc661DGc57cs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9535,
+      "cache_read_input_tokens": 37061,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9535
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XKruADugtQid3hQbtzGCNQ`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python analyze_n500_unified.py --model all --dry-run --latex --csv 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "926e7de5-e395-41a3-9d50-da564e50e454",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JruBrW15uiWc661DGc57cs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9535,
+      "cache_read_input_tokens": 37061,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9535
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T21:51:19.031Z_
+
+<details><summary>↩ Tool result · `toolu_01XKruADugtQid3hQbtzGCNQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\n  DEEPSEEK\\n======================================================================\\n  imp_s015: median=+0.3508 CI=[0.2490,0.4443] p_bonf=0.0000 mid_null=0.2\\n  imp_s020: median=+1.1363 CI=[0.7408,1.2544] p_bonf=0.0000 mid_null=0.2\\n  imp_s025: median=+4.0174 CI=[3.0049,5.3896] p_bonf=0.0000 mid_null=0.2\\n  imp_s030: median=+9.9538 CI=[8.4241,16.7013] p_bonf=0.0000 mid_null=0.2\\n  rand_s015: median=+0.0110 CI=[-0.1002,0.1044] p_bonf=1.0000 mid_null=0.2\\n  rand_s020: median=+0.0434 CI=[-0.0989,0.2835] p_bonf=1.0000 mid_null=0.2\\n  rand_s025: median=+0.3032 CI=[-0.0810,0.6550] p_bonf=1.0000 mid_null=0.2\\n  rand_s030: median=+1.0569 CI=[0.1977,1.8848] p_bonf=0.4358 mid_null=0.2\\n\\n  Within-imp d_z:\\n    s015_vs_s020: d_z=-0.520 [-0.758,-0.389] (medium)\\n    s020_vs_s025: d_z=-0.620 [-0.817,-0.487] (medium)\\n    s025_vs_s030: d_z=-0.770 [-0.973,-0.637] (medium)\\n    s015_vs_s030: d_z=-0.798 [-1.012,-0.657] (medium)\\n\\n  Imp-vs-rand:\\n    s015: median_diff=+0.3678 p_bonf=0.0012\\n    s020: median_diff=+0.9652 p_bonf=0.0000\\n    s025: median_diff=+3.3362 p_bonf=0.0000\\n    s030: median_diff=+9.8527 p_bonf=0.0000\\n\\n  Dose-response:\\n    importance: monotonic=True gradient_sum=9.6030 perm_p=0.0848\\n    random: monotonic=True gradient_sum=1.0459 perm_p=0.0848\\n\\n======================================================================\\n  QWEN\\n======================================================================\\n  imp_s015: median=+0.0623 CI=[0.0100,0.1226] p_bonf=0.5916 mid_null=0.58\\n  imp_s020: median=+0.2860 CI=[0.0953,0.4780] p_bonf=0.0007 mid_null=0.58\\n  imp_s025: median=+1.1545 CI=[0.7260,1.4716] p_bonf=0.0000 mid_null=0.58\\n  imp_s030: median=+2.5936 CI=[1.7190,3.8969] p_bonf=0.0000 mid_null=0.58\\n  rand_s015: median=-0.0172 CI=[-0.1774,0.1264] p_bonf=1.0000 mid_null=0.58\\n  rand_s020: median=+0.0576 CI=[-0.1386,0.2147] p_bonf=1.0000 mid_null=0.58\\n  rand_s025: median=+0.6276 CI=[-0.2821,1.3399] p_bonf=0.2063 mid_null=0.58\\n  rand_s030: median=+2.4183 CI=[0.2419,3.4878] p_bonf=0.6264 mid_null=0.58\\n\\n  Within-imp d_z:\\n    s015_vs_s020: d_z=-0.394 [-0.789,-0.098] (small)\\n    s020_vs_s025: d_z=-0.838 [-1.117,-0.681] (large)\\n    s025_vs_s030: d_z=-0.802 [-1.061,-0.650] (large)\\n    s015_vs_s030: d_z=-0.999 [-1.285,-0.841] (large)\\n\\n  Imp-vs-rand:\\n    s015: median_diff=+0.0786 p_bonf=1.0000\\n    s020: median_diff=+0.2100 p_bonf=1.0000\\n    s025: median_diff=+0.4478 p_bonf=1.0000\\n    s030: median_diff=+0.7456 p_bonf=1.0000\\n\\n  Dose-response:\\n    importance: monotonic=True gradient_sum=2.5313 perm_p=0.0848\\n    random: monotonic=True gradient_sum=2.4355 perm_p=0.0416\\n\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_unified_dryrun.json\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_unified_dryrun.csv\\n\\n======================================================================\\nLATEX TABLE ROWS\\n======================================================================\\n\\n% Table: Median II (low-high) by condition\\n% Model & Masking & Sparsity & n & Median & CI_low & CI_high & p & p_bonf \\\\\\\\\\nDeepseek & Importance & 15% & 49 & 0.3508 & 0.2490 & 0.4443 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & Importance & 20% & 49 & 1.1363 & 0.7408 & 1.2544 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & Importance & 25% & 49 & 4.0174 & 3.0049 & 5.3896 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & Importance & 30% & 49 & 9.9538 & 8.4241 & 16.7013 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & Random & 15% & 49 & 0.0110 & -0.1002 & 0.1044 & 0.882 & 1.000 \\\\\\\\\\nDeepseek & Random & 20% & 49 & 0.0434 & -0.0989 & 0.2835 & 0.502 & 1.000 \\\\\\\\\\nDeepseek & Random & 25% & 49 & 0.3032 & -0.0810 & 0.6550 & 0.379 & 1.000 \\\\\\\\\\nDeepseek & Random & 30% & 49 & 1.0569 & 0.1977 & 1.8848 & 0.022 & 0.436 \\\\\\\\\\nQwen & Importance & 15% & 46 & 0.0623 & 0.0100 & 0.1226 & 0.030 & 0.592 \\\\\\\\\\nQwen & Importance & 20% & 46 & 0.2860 & 0.0953 & 0.4780 & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & Importance & 25% & 46 & 1.1545 & 0.7260 & 1.4716 & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & Importance & 30% & 46 & 2.5936 & 1.7190 & 3.8969 & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & Random & 15% & 46 & -0.0172 & -0.1774 & 0.1264 & 0.863 & 1.000 \\\\\\\\\\nQwen & Random & 20% & 46 & 0.0576 & -0.1386 & 0.2147 & 0.297 & 1.000 \\\\\\\\\\nQwen & Random & 25% & 46 & 0.6276 & -0.2821 & 1.3399 & 0.010 & 0.206 \\\\\\\\\\nQwen & Random & 30% & 46 & 2.4183 & 0.2419 & 3.4878 & 0.031 & 0.626 \\\\\\\\\\n\\n% Table: Mid-phase null rates\\n% Model & Masking & Sparsity & n_total & null_mid & null_rate \\\\\\\\\\nDeepseek & Importance & 15% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Importance & 20% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Importance & 25% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Importance & 30% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Random & 15% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Random & 20% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Random & 25% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Random & 30% & 50 & 10 & 20.0% \\\\\\\\\\nQwen & Importance & 15% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Importance & 20% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Importance & 25% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Importance & 30% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Random & 15% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Random & 20% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Random & 25% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Random & 30% & 50 & 29 & 58.0% \\\\\\\\\\n\\n% Table: Within-importance paired d_z (D059)\\n% Model & Pair & d_z & CI_low & CI_high & Interp & p & p_bonf \\\\\\\\\\nDeepseek & s015_vs_s020 & -0.5197 & -0.7583 & -0.3894 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & s020_vs_s025 & -0.6200 & -0.8171 & -0.4870 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & s025_vs_s030 & -0.7695 & -0.9734 & -0.6372 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & s015_vs_s030 & -0.7980 & -1.0117 & -0.6568 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & s015_vs_s020 & -0.3938 & -0.7890 & -0.0976 & small & $<$0.001 & 0.019 \\\\\\\\\\nQwen & s020_vs_s025 & -0.8376 & -1.1173 & -0.6807 & large & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & s025_vs_s030 & -0.8016 & -1.0613 & -0.6502 & large & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & s015_vs_s030 & -0.9989 & -1.2846 & -0.8408 & large & $<$0.001 & $<$0.001 \\\\\\\\\\n\\n% Table: Random within-sparsity (Wilcoxon + median_diff, no d_z)\\n% Model & Pair & median_diff & p & p_bonf \\\\\\\\\\nDeepseek & s015_vs_s020 & -0.0750 & 0.045 & 0.898 \\\\\\\\\\nDeepseek & s020_vs_s025 & -0.2083 & 0.441 & 1.000 \\\\\\\\\\nDeepseek & s025_vs_s030 & -0.9390 & 0.007 & 0.142 \\\\\\\\\\nDeepseek & s015_vs_s030 & -1.3653 & 0.010 & 0.200 \\\\\\\\\\nQwen & s015_vs_s020 & -0.1131 & 0.119 & 1.000 \\\\\\\\\\nQwen & s020_vs_s025 & -0.5143 & 0.026 & 0.512 \\\\\\\\\\nQwen & s025_vs_s030 & -0.6093 & 0.263 & 1.000 \\\\\\\\\\nQwen & s015_vs_s030 & -2.0729 & 0.030 & 0.592 \\\\\\\\\\n\\n% Table: Importance vs Random (Wilcoxon + median_diff, no d_z)\\n% Model & Sparsity & median_diff & p & p_bonf \\\\\\\\\\nDeepseek & 15% & 0.3678 & $<$0.001 & 0.001 \\\\\\\\\\nDeepseek & 20% & 0.9652 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & 25% & 3.3362 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & 30% & 9.8527 & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & 15% & 0.0786 & 0.077 & 1.000 \\\\\\\\\\nQwen & 20% & 0.2100 & 0.854 & 1.000 \\\\\\\\\\nQwen & 25% & 0.4478 & 0.673 & 1.000 \\\\\\\\\\nQwen & 30% & 0.7456 & 0.398 & 1.000 \\\\\\\\\\n\\n% Table: Dose-response permutation monotonicity test\\n% Model & Masking & rho_sum & monotonic & perm_p \\\\\\\\\\nDeepseek & Importance & 9.6030 & Yes & 0.085 \\\\\\\\\\nDeepseek & Random & 1.0459 & Yes & 0.085 \\\\\\\\\\nQwen & Importance & 2.5313 & Yes & 0.085 \\\\\\\\\\nQwen & Random & 2.4355 & Yes & 0.042 \\\\\\\\\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "587e333d-b8dc-4a70-a391-a640fc0de602",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n======================================================================\\\\n  DEEPSEEK\\\\n======================================================================\\\\n  imp_s015: median=+0.3508 CI=[0.2490,0.4443] p_bonf=0.0000 mid_null=0.2\\\\n  imp_s020: median=+1.1363 CI=[0.7408,1.2544] p_bonf=0.0000 mid_null=0.2\\\\n  imp_s025: median=+4.0174 CI=[3.0049,5.3896] p_bonf=0.0000 mid_null=0.2\\\\n  imp_s030: median=+9.9538 CI=[8.4241,16.7013] p_bonf=0.0000 mid_null=0.2\\\\n  rand_s015: median=+0.0110 CI=[-0.1002,0.1044] p_bonf=1.0000 mid_null=0.2\\\\n  rand_s020: median=+0.0434 CI=[-0.0989,0.2835] p_bonf=1.0000 mid_null=0.2\\\\n  rand_s025: median=+0.3032 CI=[-0.0810,0.6550] p_bonf=1.0000 mid_null=0.2\\\\n  rand_s030: median=+1.0569 CI=[0.1977,1.8848] p_bonf=0.4358 mid_null=0.2\\\\n\\\\n  Within-imp d_z:\\\\n    s015_vs_s020: d_z=-0.520 [-0.758,-0.389] (medium)\\\\n    s020_vs_s025: d_z=-0.620 [-0.817,-0.487] (medium)\\\\n    s025_vs_s030: d_z=-0.770 [-0.973,-0.637] (medium)\\\\n    s015_vs_s030: d_z=-0.798 [-1.012,-0.657] (medium)\\\\n\\\\n  Imp-vs-rand:\\\\n    s015: median_diff=+0.3678 p_bonf=0.0012\\\\n    s020: median_diff=+0.9652 p_bonf=0.0000\\\\n    s025: median_diff=+3.3362 p_bonf=0.0000\\\\n    s030: median_diff=+9.8527 p_bonf=0.0000\\\\n\\\\n  Dose-response:\\\\n    importance: monotonic=True gradient_sum=9.6030 perm_p=0.0848\\\\n    random: monotonic=True gradient_sum=1.0459 perm_p=0.0848\\\\n\\\\n======================================================================\\\\n  QWEN\\\\n======================================================================\\\\n  imp_s015: median=+0.0623 CI=[0.0100,0.1226] p_bonf=0.5916 mid_null=0.58\\\\n  imp_s020: median=+0.2860 CI=[0.0953,0.4780] p_bonf=0.0007 mid_null=0.58\\\\n  imp_s025: median=+1.1545 CI=[0.7260,1.4716] p_bonf=0.0000 mid_null=0.58\\\\n  imp_s030: median=+2.5936 CI=[1.7190,3.8969] p_bonf=0.0000 mid_null=0.58\\\\n  rand_s015: median=-0.0172 CI=[-0.1774,0.1264] p_bonf=1.0000 mid_null=0.58\\\\n  rand_s020: median=+0.0576 CI=[-0.1386,0.2147] p_bonf=1.0000 mid_null=0.58\\\\n  rand_s025: median=+0.6276 CI=[-0.2821,1.3399] p_bonf=0.2063 mid_null=0.58\\\\n  rand_s030: median=+2.4183 CI=[0.2419,3.4878] p_bonf=0.6264 mid_null=0.58\\\\n\\\\n  Within-imp d_z:\\\\n    s015_vs_s020: d_z=-0.394 [-0.789,-0.098] (small)\\\\n    s020_vs_s025: d_z=-0.838 [-1.117,-0.681] (large)\\\\n    s025_vs_s030: d_z=-0.802 [-1.061,-0.650] (large)\\\\n    s015_vs_s030: d_z=-0.999 [-1.285,-0.841] (large)\\\\n\\\\n  Imp-vs-rand:\\\\n    s015: median_diff=+0.0786 p_bonf=1.0000\\\\n    s020: median_diff=+0.2100 p_bonf=1.0000\\\\n    s025: median_diff=+0.4478 p_bonf=1.0000\\\\n    s030: median_diff=+0.7456 p_bonf=1.0000\\\\n\\\\n  Dose-response:\\\\n    importance: monotonic=True gradient_sum=2.5313 perm_p=0.0848\\\\n    random: monotonic=True gradient_sum=2.4355 perm_p=0.0416\\\\n\\\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_unified_dryrun.json\\\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_unified_dryrun.csv\\\\n\\\\n======================================================================\\\\nLATEX TABLE ROWS\\\\n======================================================================\\\\n\\\\n% Table: Median II (low-high) by condition\\\\n% Model & Masking & Sparsity & n & Median & CI_low & CI_high & p & p_bonf \\\\\\\\\\\\\\\\\\\\nDeepseek & Importance & 15% & 49 & 0.3508 & 0.2490 & 0.4443 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & Importance & 20% & 49 & 1.1363 & 0.7408 & 1.2544 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & Importance & 25% & 49 & 4.0174 & 3.0049 & 5.3896 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & Importance & 30% & 49 & 9.9538 & 8.4241 & 16.7013 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & Random & 15% & 49 & 0.0110 & -0.1002 & 0.1044 & 0.882 & 1.000 \\\\\\\\\\\\\\\\\\\\nDeepseek & Random & 20% & 49 & 0.0434 & -0.0989 & 0.2835 & 0.502 & 1.000 \\\\\\\\\\\\\\\\\\\\nDeepseek & Random & 25% & 49 & 0.3032 & -0.0810 & 0.6550 & 0.379 & 1.000 \\\\\\\\\\\\\\\\\\\\nDeepseek & Random & 30% & 49 & 1.0569 & 0.1977 & 1.8848 & 0.022 & 0.436 \\\\\\\\\\\\\\\\\\\\nQwen & Importance & 15% & 46 & 0.0623 & 0.0100 & 0.1226 & 0.030 & 0.592 \\\\\\\\\\\\\\\\\\\\nQwen & Importance & 20% & 46 & 0.2860 & 0.0953 & 0.4780 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nQwen & Importance & 25% & 46 & 1.1545 & 0.7260 & 1.4716 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nQwen & Importance & 30% & 46 & 2.5936 & 1.7190 & 3.8969 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nQwen & Random & 15% & 46 & -0.0172 & -0.1774 & 0.1264 & 0.863 & 1.000 \\\\\\\\\\\\\\\\\\\\nQwen & Random & 20% & 46 & 0.0576 & -0.1386 & 0.2147 & 0.297 & 1.000 \\\\\\\\\\\\\\\\\\\\nQwen & Random & 25% & 46 & 0.6276 & -0.2821 & 1.3399 & 0.010 & 0.206 \\\\\\\\\\\\\\\\\\\\nQwen & Random & 30% & 46 & 2.4183 & 0.2419 & 3.4878 & 0.031 & 0.626 \\\\\\\\\\\\\\\\\\\\n\\\\n% Table: Mid-phase null rates\\\\n% Model & Masking & Sparsity & n_total & null_mid & null_rate \\\\\\\\\\\\\\\\\\\\nDeepseek & Importance & 15% & 50 & 10 & 20.0% \\\\\\\\\\\\\\\\\\\\nDeepseek & Importance & 20% & 50 & 10 & 20.0% \\\\\\\\\\\\\\\\\\\\nDeepseek & Importance & 25% & 50 & 10 & 20.0% \\\\\\\\\\\\\\\\\\\\nDeepseek & Importance & 30% & 50 & 10 & 20.0% \\\\\\\\\\\\\\\\\\\\nDeepseek & Random & 15% & 50 & 10 & 20.0% \\\\\\\\\\\\\\\\\\\\nDeepseek & Random & 20% & 50 & 10 & 20.0% \\\\\\\\\\\\\\\\\\\\nDeepseek & Random & 25% & 50 & 10 & 20.0% \\\\\\\\\\\\\\\\\\\\nDeepseek & Random & 30% & 50 & 10 & 20.0% \\\\\\\\\\\\\\\\\\\\nQwen & Importance & 15% & 50 & 29 & 58.0% \\\\\\\\\\\\\\\\\\\\nQwen & Importance & 20% & 50 & 29 & 58.0% \\\\\\\\\\\\\\\\\\\\nQwen & Importance & 25% & 50 & 29 & 58.0% \\\\\\\\\\\\\\\\\\\\nQwen & Importance & 30% & 50 & 29 & 58.0% \\\\\\\\\\\\\\\\\\\\nQwen & Random & 15% & 50 & 29 & 58.0% \\\\\\\\\\\\\\\\\\\\nQwen & Random & 20% & 50 & 29 & 58.0% \\\\\\\\\\\\\\\\\\\\nQwen & Random & 25% & 50 & 29 & 58.0% \\\\\\\\\\\\\\\\\\\\nQwen & Random & 30% & 50 & 29 & 58.0% \\\\\\\\\\\\\\\\\\\\n\\\\n% Table: Within-importance paired d_z (D059)\\\\n% Model & Pair & d_z & CI_low & CI_high & Interp & p & p_bonf \\\\\\\\\\\\\\\\\\\\nDeepseek & s015_vs_s020 & -0.5197 & -0.7583 & -0.3894 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & s020_vs_s025 & -0.6200 & -0.8171 & -0.4870 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & s025_vs_s030 & -0.7695 & -0.9734 & -0.6372 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & s015_vs_s030 & -0.7980 & -1.0117 & -0.6568 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nQwen & s015_vs_s020 & -0.3938 & -0.7890 & -0.0976 & small & $<$0.001 & 0.019 \\\\\\\\\\\\\\\\\\\\nQwen & s020_vs_s025 & -0.8376 & -1.1173 & -0.6807 & large & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nQwen & s025_vs_s030 & -0.8016 & -1.0613 & -0.6502 & large & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nQwen & s015_vs_s030 & -0.9989 & -1.2846 & -0.8408 & large & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\n\\\\n% Table: Random within-sparsity (Wilcoxon + median_diff, no d_z)\\\\n% Model & Pair & median_diff & p & p_bonf \\\\\\\\\\\\\\\\\\\\nDeepseek & s015_vs_s020 & -0.0750 & 0.045 & 0.898 \\\\\\\\\\\\\\\\\\\\nDeepseek & s020_vs_s025 & -0.2083 & 0.441 & 1.000 \\\\\\\\\\\\\\\\\\\\nDeepseek & s025_vs_s030 & -0.9390 & 0.007 & 0.142 \\\\\\\\\\\\\\\\\\\\nDeepseek & s015_vs_s030 & -1.3653 & 0.010 & 0.200 \\\\\\\\\\\\\\\\\\\\nQwen & s015_vs_s020 & -0.1131 & 0.119 & 1.000 \\\\\\\\\\\\\\\\\\\\nQwen & s020_vs_s025 & -0.5143 & 0.026 & 0.512 \\\\\\\\\\\\\\\\\\\\nQwen & s025_vs_s030 & -0.6093 & 0.263 & 1.000 \\\\\\\\\\\\\\\\\\\\nQwen & s015_vs_s030 & -2.0729 & 0.030 & 0.592 \\\\\\\\\\\\\\\\\\\\n\\\\n% Table: Importance vs Random (Wilcoxon + median_diff, no d_z)\\\\n% Model & Sparsity & median_diff & p & p_bonf \\\\\\\\\\\\\\\\\\\\nDeepseek & 15% & 0.3678 & $<$0.001 & 0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & 20% & 0.9652 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & 25% & 3.3362 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nDeepseek & 30% & 9.8527 & $<$0.001 & $<$0.001 \\\\\\\\\\\\\\\\\\\\nQwen & 15% & 0.0786 & 0.077 & 1.000 \\\\\\\\\\\\\\\\\\\\nQwen & 20% & 0.2100 & 0.854 & 1.000 \\\\\\\\\\\\\\\\\\\\nQwen & 25% & 0.4478 & 0.673 & 1.000 \\\\\\\\\\\\\\\\\\\\nQwen & 30% & 0.7456 & 0.398 & 1.000 \\\\\\\\\\\\\\\\\\\\n\\\\n% Table: Dose-response permutation monotonicity test\\\\n% Model & Masking & rho_sum & monotonic & perm_p \\\\\\\\\\\\\\\\\\\\nDeepseek & Importance & 9.6030 & Yes & 0.085 \\\\\\\\\\\\\\\\\\\\nDeepseek & Random & 1.0459 & Yes & 0.085 \\\\\\\\\\\\\\\\\\\\nQwen & Importance & 2.5313 & Yes & 0.085 \\\\\\\\\\\\\\\\\\\\nQwen & Random & 2.4355 & Yes & 0.042 \\\\\\\\\\\\\\\\\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n======================================================================\\n  DEEPSEEK\\n======================================================================\\n  imp_s015: median=+0.3508 CI=[0.2490,0.4443] p_bonf=0.0000 mid_null=0.2\\n  imp_s020: median=+1.1363 CI=[0.7408,1.2544] p_bonf=0.0000 mid_null=0.2\\n  imp_s025: median=+4.0174 CI=[3.0049,5.3896] p_bonf=0.0000 mid_null=0.2\\n  imp_s030: median=+9.9538 CI=[8.4241,16.7013] p_bonf=0.0000 mid_null=0.2\\n  rand_s015: median=+0.0110 CI=[-0.1002,0.1044] p_bonf=1.0000 mid_null=0.2\\n  rand_s020: median=+0.0434 CI=[-0.0989,0.2835] p_bonf=1.0000 mid_null=0.2\\n  rand_s025: median=+0.3032 CI=[-0.0810,0.6550] p_bonf=1.0000 mid_null=0.2\\n  rand_s030: median=+1.0569 CI=[0.1977,1.8848] p_bonf=0.4358 mid_null=0.2\\n\\n  Within-imp d_z:\\n    s015_vs_s020: d_z=-0.520 [-0.758,-0.389] (medium)\\n    s020_vs_s025: d_z=-0.620 [-0.817,-0.487] (medium)\\n    s025_vs_s030: d_z=-0.770 [-0.973,-0.637] (medium)\\n    s015_vs_s030: d_z=-0.798 [-1.012,-0.657] (medium)\\n\\n  Imp-vs-rand:\\n    s015: median_diff=+0.3678 p_bonf=0.0012\\n    s020: median_diff=+0.9652 p_bonf=0.0000\\n    s025: median_diff=+3.3362 p_bonf=0.0000\\n    s030: median_diff=+9.8527 p_bonf=0.0000\\n\\n  Dose-response:\\n    importance: monotonic=True gradient_sum=9.6030 perm_p=0.0848\\n    random: monotonic=True gradient_sum=1.0459 perm_p=0.0848\\n\\n======================================================================\\n  QWEN\\n======================================================================\\n  imp_s015: median=+0.0623 CI=[0.0100,0.1226] p_bonf=0.5916 mid_null=0.58\\n  imp_s020: median=+0.2860 CI=[0.0953,0.4780] p_bonf=0.0007 mid_null=0.58\\n  imp_s025: median=+1.1545 CI=[0.7260,1.4716] p_bonf=0.0000 mid_null=0.58\\n  imp_s030: median=+2.5936 CI=[1.7190,3.8969] p_bonf=0.0000 mid_null=0.58\\n  rand_s015: median=-0.0172 CI=[-0.1774,0.1264] p_bonf=1.0000 mid_null=0.58\\n  rand_s020: median=+0.0576 CI=[-0.1386,0.2147] p_bonf=1.0000 mid_null=0.58\\n  rand_s025: median=+0.6276 CI=[-0.2821,1.3399] p_bonf=0.2063 mid_null=0.58\\n  rand_s030: median=+2.4183 CI=[0.2419,3.4878] p_bonf=0.6264 mid_null=0.58\\n\\n  Within-imp d_z:\\n    s015_vs_s020: d_z=-0.394 [-0.789,-0.098] (small)\\n    s020_vs_s025: d_z=-0.838 [-1.117,-0.681] (large)\\n    s025_vs_s030: d_z=-0.802 [-1.061,-0.650] (large)\\n    s015_vs_s030: d_z=-0.999 [-1.285,-0.841] (large)\\n\\n  Imp-vs-rand:\\n    s015: median_diff=+0.0786 p_bonf=1.0000\\n    s020: median_diff=+0.2100 p_bonf=1.0000\\n    s025: median_diff=+0.4478 p_bonf=1.0000\\n    s030: median_diff=+0.7456 p_bonf=1.0000\\n\\n  Dose-response:\\n    importance: monotonic=True gradient_sum=2.5313 perm_p=0.0848\\n    random: monotonic=True gradient_sum=2.4355 perm_p=0.0416\\n\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_unified_dryrun.json\\nSaved: /root/autodl-tmp/pacs/analysis_output/n500_unified_dryrun.csv\\n\\n======================================================================\\nLATEX TABLE ROWS\\n======================================================================\\n\\n% Table: Median II (low-high) by condition\\n% Model & Masking & Sparsity & n & Median & CI_low & CI_high & p & p_bonf \\\\\\\\\\nDeepseek & Importance & 15% & 49 & 0.3508 & 0.2490 & 0.4443 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & Importance & 20% & 49 & 1.1363 & 0.7408 & 1.2544 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & Importance & 25% & 49 & 4.0174 & 3.0049 & 5.3896 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & Importance & 30% & 49 & 9.9538 & 8.4241 & 16.7013 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & Random & 15% & 49 & 0.0110 & -0.1002 & 0.1044 & 0.882 & 1.000 \\\\\\\\\\nDeepseek & Random & 20% & 49 & 0.0434 & -0.0989 & 0.2835 & 0.502 & 1.000 \\\\\\\\\\nDeepseek & Random & 25% & 49 & 0.3032 & -0.0810 & 0.6550 & 0.379 & 1.000 \\\\\\\\\\nDeepseek & Random & 30% & 49 & 1.0569 & 0.1977 & 1.8848 & 0.022 & 0.436 \\\\\\\\\\nQwen & Importance & 15% & 46 & 0.0623 & 0.0100 & 0.1226 & 0.030 & 0.592 \\\\\\\\\\nQwen & Importance & 20% & 46 & 0.2860 & 0.0953 & 0.4780 & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & Importance & 25% & 46 & 1.1545 & 0.7260 & 1.4716 & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & Importance & 30% & 46 & 2.5936 & 1.7190 & 3.8969 & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & Random & 15% & 46 & -0.0172 & -0.1774 & 0.1264 & 0.863 & 1.000 \\\\\\\\\\nQwen & Random & 20% & 46 & 0.0576 & -0.1386 & 0.2147 & 0.297 & 1.000 \\\\\\\\\\nQwen & Random & 25% & 46 & 0.6276 & -0.2821 & 1.3399 & 0.010 & 0.206 \\\\\\\\\\nQwen & Random & 30% & 46 & 2.4183 & 0.2419 & 3.4878 & 0.031 & 0.626 \\\\\\\\\\n\\n% Table: Mid-phase null rates\\n% Model & Masking & Sparsity & n_total & null_mid & null_rate \\\\\\\\\\nDeepseek & Importance & 15% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Importance & 20% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Importance & 25% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Importance & 30% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Random & 15% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Random & 20% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Random & 25% & 50 & 10 & 20.0% \\\\\\\\\\nDeepseek & Random & 30% & 50 & 10 & 20.0% \\\\\\\\\\nQwen & Importance & 15% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Importance & 20% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Importance & 25% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Importance & 30% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Random & 15% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Random & 20% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Random & 25% & 50 & 29 & 58.0% \\\\\\\\\\nQwen & Random & 30% & 50 & 29 & 58.0% \\\\\\\\\\n\\n% Table: Within-importance paired d_z (D059)\\n% Model & Pair & d_z & CI_low & CI_high & Interp & p & p_bonf \\\\\\\\\\nDeepseek & s015_vs_s020 & -0.5197 & -0.7583 & -0.3894 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & s020_vs_s025 & -0.6200 & -0.8171 & -0.4870 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & s025_vs_s030 & -0.7695 & -0.9734 & -0.6372 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & s015_vs_s030 & -0.7980 & -1.0117 & -0.6568 & medium & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & s015_vs_s020 & -0.3938 & -0.7890 & -0.0976 & small & $<$0.001 & 0.019 \\\\\\\\\\nQwen & s020_vs_s025 & -0.8376 & -1.1173 & -0.6807 & large & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & s025_vs_s030 & -0.8016 & -1.0613 & -0.6502 & large & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & s015_vs_s030 & -0.9989 & -1.2846 & -0.8408 & large & $<$0.001 & $<$0.001 \\\\\\\\\\n\\n% Table: Random within-sparsity (Wilcoxon + median_diff, no d_z)\\n% Model & Pair & median_diff & p & p_bonf \\\\\\\\\\nDeepseek & s015_vs_s020 & -0.0750 & 0.045 & 0.898 \\\\\\\\\\nDeepseek & s020_vs_s025 & -0.2083 & 0.441 & 1.000 \\\\\\\\\\nDeepseek & s025_vs_s030 & -0.9390 & 0.007 & 0.142 \\\\\\\\\\nDeepseek & s015_vs_s030 & -1.3653 & 0.010 & 0.200 \\\\\\\\\\nQwen & s015_vs_s020 & -0.1131 & 0.119 & 1.000 \\\\\\\\\\nQwen & s020_vs_s025 & -0.5143 & 0.026 & 0.512 \\\\\\\\\\nQwen & s025_vs_s030 & -0.6093 & 0.263 & 1.000 \\\\\\\\\\nQwen & s015_vs_s030 & -2.0729 & 0.030 & 0.592 \\\\\\\\\\n\\n% Table: Importance vs Random (Wilcoxon + median_diff, no d_z)\\n% Model & Sparsity & median_diff & p & p_bonf \\\\\\\\\\nDeepseek & 15% & 0.3678 & $<$0.001 & 0.001 \\\\\\\\\\nDeepseek & 20% & 0.9652 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & 25% & 3.3362 & $<$0.001 & $<$0.001 \\\\\\\\\\nDeepseek & 30% & 9.8527 & $<$0.001 & $<$0.001 \\\\\\\\\\nQwen & 15% & 0.0786 & 0.077 & 1.000 \\\\\\\\\\nQwen & 20% & 0.2100 & 0.854 & 1.000 \\\\\\\\\\nQwen & 25% & 0.4478 & 0.673 & 1.000 \\\\\\\\\\nQwen & 30% & 0.7456 & 0.398 & 1.000 \\\\\\\\\\n\\n% Table: Dose-response permutation monotonicity test\\n% Model & Masking & rho_sum & monotonic & perm_p \\\\\\\\\\nDeepseek & Importance & 9.6030 & Yes & 0.085 \\\\\\\\\\nDeepseek & Random & 1.0459 & Yes & 0.085 \\\\\\\\\\nQwen & Importance & 2.5313 & Yes & 0.085 \\\\\\\\\\nQwen & Random & 2.4355 & Yes & 0.042 \\\\\\\\\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+Dry-run 成功。脚本路径：`/root/autodl-tmp/pacs/analyze_n500_unified.py`
+
+## Dry-run 结果总结 (n=50 数据)
+
+### Per-condition median II diff (low−high)
+
+| Model | Masking | 15% | 20% | 25% | 30% |
+|-------|---------|-----|-----|-----|-----|
+| DeepSeek | Importance | +0.35*** | +1.14*** | +4.02*** | +9.95*** |
+| DeepSeek | Random | +0.01 | +0.04 | +0.30 | +1.06 |
+| Qwen | Importance | +0.06 | +0.29*** | +1.15*** | +2.59*** |
+| Qwen | Random | −0.02 | +0.06 | +0.63 | +2.42 |
+
+(`***` = Bonferroni p < 0.001)
+
+### 关键发现
+
+1. **Mid-phase null rate**: DeepSeek 20%, Qwen **58%** — 符合预期（Qwen ~45% 会更高些在 n=50）
+2. **Within-imp d_z**: 单调递增，s015→s030 DeepSeek d_z=−0.80 (medium), Qwen d_z=−1.00 (large)
+3. **Imp-vs-rand**: DeepSeek 所有 sparsity 显著 (Bonferroni p<0.001 at s020+)；Qwen 全部不显著（n=50 power 不足）
+4. **Dose-response**: importance 和 random 均显示单调递增，但 permutation p=0.085（4 点排列只有 24 种，最小 p=1/25=0.04）
+5. **Qwen s015**: CI=[0.01, 0.12] 刚好不含 0，但 Bonferroni 校正后 p=0.59 不显著 → n=500 数据关键
+
+### 发现的问题
+- Permutation monotonicity test 只有 4 个 sparsity level，排列数仅 24，p 值分辨率有限（最小 ~0.04）。这是设计限制，n=500 不会改变。
+- Random masking 在 s030 也出现较大 II diff（DeepSeek +1.06, Qwen +2.42），Bonferroni 校正后不显著，但值得关注。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "uuid": "f42df541-2c79-4ad9-9294-4e06803c1070",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WqBfV4sMkpekW7K1sdbGke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4535,
+      "cache_read_input_tokens": 46596,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4535
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 30_
+
+Dry-run 成功。脚本路径：`/root/autodl-tmp/pacs/analyze_n500_unified.py`
+
+## Dry-run 结果总结 (n=50 数据)
+
+### Per-condition median II diff (low−high)
+
+| Model | Masking | 15% | 20% | 25% | 30% |
+|-------|---------|-----|-----|-----|-----|
+| DeepSeek | Importance | +0.35*** | +1.14*** | +4.02*** | +9.95*** |
+| DeepSeek | Random | +0.01 | +0.04 | +0.30 | +1.06 |
+| Qwen | Importance | +0.06 | +0.29*** | +1.15*** | +2.59*** |
+| Qwen | Random | −0.02 | +0.06 | +0.63 | +2.42 |
+
+(`***` = Bonferroni p < 0.001)
+
+### 关键发现
+
+1. **Mid-phase null rate**: DeepSeek 20%, Qwen **58%** — 符合预期（Qwen ~45% 会更高些在 n=50）
+2. **Within-imp d_z**: 单调递增，s015→s030 DeepSeek d_z=−0.80 (medium), Qwen d_z=−1.00 (large)
+3. **Imp-vs-rand**: DeepSeek 所有 sparsity 显著 (Bonferroni p<0.001 at s020+)；Qwen 全部不显著（n=50 power 不足）
+4. **Dose-response**: importance 和 random 均显示单调递增，但 permutation p=0.085（4 点排列只有 24 种，最小 p=1/25=0.04）
+5. **Qwen s015**: CI=[0.01, 0.12] 刚好不含 0，但 Bonferroni 校正后 p=0.59 不显著 → n=500 数据关键
+
+### 发现的问题
+- Permutation monotonicity test 只有 4 个 sparsity level，排列数仅 24，p 值分辨率有限（最小 ~0.04）。这是设计限制，n=500 不会改变。
+- Random masking 在 s030 也出现较大 II diff（DeepSeek +1.06, Qwen +2.42），Bonferroni 校正后不显著，但值得关注。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 180448,
+  "duration_api_ms": 174206,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "a1ce9c90-9de4-41b9-8d89-872de9494757",
+  "total_cost_usd": 0.661492,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 39684,
+    "cache_read_input_tokens": 247584,
+    "output_tokens": 11514,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 39684,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 678,
+        "cache_read_input_tokens": 46596,
+        "cache_creation_input_tokens": 4535,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4535
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1650,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001765,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 11514,
+      "cacheReadInputTokens": 247584,
+      "cacheCreationInputTokens": 39684,
+      "webSearchRequests": 0,
+      "costUSD": 0.659727,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "184924c2-a7f4-4b76-a1fd-f213737c6181"
+}
+```
+
+</details>
+
+---

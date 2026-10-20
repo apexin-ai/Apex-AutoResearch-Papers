@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cc16737f87331791829",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops gpqa analysis prep",
+  "task_key": "worker_ops_gpqa_analysis_prep_20260517T021841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpqa_analysis_prep_20260517T021841_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "834fb71398ed020103e0ce84136c906b884c511642105307336ed3fff43a171c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出**: `/root/autodl-tmp/pacs/scripts/analyze_gpqa_results.py`\n\n**功能**:\n- `--output_dir <dir>`: 单条件分析 (per-phase median + bootstrap CI, phase gradient, Wilcoxon p, Cohen's d_z)\n- `--compare_dir <dir>`: 两条件对比 (importance vs random, 含 d_z ratio 和 interpretation)\n- `--output <path>`: JSON 报告输出\n- `--dry-run`: 检查数据可用性\n\n**使用方式** (实验完成后):\n```bash\n# 单条件\n/root/miniconda3/bin/python3.12 scripts/analyze_gpqa_results.py --output_dir profiling_output_gpqa_ds_importance_s020\n\n# importance vs random 对比\n/root/miniconda3/bin/python3.12 scripts/analyze_gpqa_results.py \\\n  --output_dir profiling_output_gpqa_ds_importance_s020 \\\n  --compare_dir profiling_output_gpqa_ds_random_s020 \\\n  --output artifacts/gpqa_s020_comparison.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpqa-analysis-prep.md"
+}

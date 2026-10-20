@@ -1,0 +1,15 @@
+{
+  "exp_id": "acc_ds_s030_8k_v2",
+  "project": "phase-gated-compound-sparse",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:35:02.560Z",
+    "updated_at": "2026-05-15T21:52:05.272Z",
+    "hypothesis": "DS s030 accuracy eval with max_new_tokens=8192，补全 5-point dose curve。"
+  },
+  "timestamp": "2026-05-15T21:52:05.501365+00:00",
+  "trigger": "update_registry"
+}

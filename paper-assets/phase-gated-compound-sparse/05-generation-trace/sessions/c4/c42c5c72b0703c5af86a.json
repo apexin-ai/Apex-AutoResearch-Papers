@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c42c5c72b0703c5af86a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra gpu check",
+  "task_key": "worker_infra_gpu-check_20260514T061923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-check_20260514T061923_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "40f5ea5ec47b1574b81032564024f4e43410bb5d2c935b4987ed064d0abb1e2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 占用报告\n\n### GPU 状态\n\n| GPU | 显存占用 | 总显存 | 利用率 | 占用进程 |\n|-----|---------|--------|--------|---------|\n| cuda:0 | 60,178 MiB | 97,887 MiB | 90% | PID 79817 (31,438 MiB) + PID 80500 (28,726 MiB) |\n| cuda:1 | 0 MiB | 97,887 MiB | 0% | 空闲 |\n| cuda:2 | 0 MiB | 97,887 MiB | 0% | 空闲 |\n| cuda:3 | 0 MiB | 97,887 MiB | 0% | 空闲 |\n\n### 进程映射\n\n- **bf16_importance_s020**: bash wrapper PID 79812 → 实际 Python 进程 PID **79817**，在 **GPU 0**，占 31,438 MiB\n- **bf16_importance_s030**: bash wrapper PID 80495 → 实际 Python 进程 PID **80500**，在 **GPU 0**，占 28,726 MiB\n- **bf16_importance_s025 (PID 80207)**: **不存在**，ps 输出中未找到该进程\n\n### 结论\n\n1. **冲突确认**：两个实验（s020 和 s030）都设置了 `CUDA_VISIBLE_DEVICES=0`，共享 GPU 0。显存未溢出（60/98 GB），但 GPU 利用率 90%，存在计算资源争抢，会互相拖慢。\n2. **GPU 1/2/3 完全空闲**，白白浪费了 3 张卡。\n3. **s025 进程已不存在**，需要检查其日志确认是正常结束还是异常退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-check.md"
+}

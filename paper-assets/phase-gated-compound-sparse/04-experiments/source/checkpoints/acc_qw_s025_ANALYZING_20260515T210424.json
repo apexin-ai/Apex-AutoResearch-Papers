@@ -1,0 +1,57 @@
+{
+  "exp_id": "acc_qw_s025",
+  "project": "phase-gated-compound-sparse",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:49:29.416Z",
+    "updated_at": "2026-05-15T21:04:23.777Z",
+    "spec": {
+      "command": "python run_accuracy_eval.py --model Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "274766",
+      "log_path": "~/runs/phase-gated-compound-sparse/acc_qw_s025.log",
+      "submitted_at": "2026-05-15T20:50:05.362Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "type": "eval",
+      "checkpoint_source": "checkpoints/Qwen2.5-7B-Instruct",
+      "eval_data": "MATH-500 n=50"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T21:00:56.427Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T21:01:01.626822+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "qw_s025_acc": 0.26,
+      "qw_s025_correct": 13,
+      "qw_s025_total": 50,
+      "qw_s025_delta_vs_dense": -0.06,
+      "truncation_count": 8,
+      "truncation_rate": 0.16,
+      "heads_pruned": 196,
+      "total_time_s": 559
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T21:04:24.036776+00:00",
+  "trigger": "update_registry"
+}

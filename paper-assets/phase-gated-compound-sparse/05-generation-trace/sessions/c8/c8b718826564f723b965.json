@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8b718826564f723b965",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_4_1778755306.md",
+  "task_key": "loop_4_1778755306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778755306.md",
+    "occurrence": 1,
+    "bytes": 4435,
+    "sha256": "a413b690d2d1037ad8ffe73df60d5afce15b313a91cc6b355add568fe540509b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T10:20:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0~3，不可用其他设备\n- Cohen's d 全文统一 **paired d_z**（B=10000 per-problem bootstrap），segment-level 仅 supplementary。D048/D050 已确定，**不可回退到 independent d**\n- C4 entropy-collapse 已降级为 §6 supporting analysis（D045/D046），**不可作为 Core Claim**。Qwen s025 符号反转是已知事实\n- 论文 II 统计量统一用 **median**（skewness 6-17），辅 winsorized mean。不可切回 mean-based\n- Random masking 8/8 FAIL 已由 B=10000 re-bootstrap 确认（D042/D043），不可重新解读为 marginal success\n- 截稿 **2026-05-25**，距今 11 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，4× RTX PRO 6000 Blackwell 96GB\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python/conda：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct（路径在服务器本地，需 SSH 确认具体位置）\n- 数据：math500.json (50 problems)\n- 统计脚本：`/root/autodl-tmp/pacs/analysis/rebootstrap_importance_b10000.py`\n- 图表（服务器）：`/root/autodl-tmp/pacs/paper_figures/` (fig1~fig5) + `/root/autodl-tmp/pacs/figures/cohens_d_6point.pdf`\n- 本地 paper 目录：`artifacts/_project/paper/`（abstract.tex, introduction.tex, methodology.tex, results.tex, analysis.tex, discussion.tex, conclusion.tex, main.tex, references.bib）\n- GPU：全部 standby，无实验运行\n- 活跃 Cron：0（reconcile 确认）\n\n### 3. 📊 当前状态\n76 实验全部 DONE（35 success / 9 negative / 13 failed / 19 killed）。论文全文（§1-§8 + Abstract）已填充 bf16 canonical 数据。当前处于**最终编译冲刺阶段**。\n\n**5 个 Worker 正在运行**（均 2026-05-14 启动，可能已完成或卡住，需检查）：\n1. `worker_paper_compile_and_git_init_20260514T095535` — 创建 LaTeX 编译基础设施 + git init\n2. `worker_paper_sync_tex_to_remote_20260514T101158` — 同步 .tex 到服务器\n3. `worker_paper_generate_figures_20260514T101302` — 生成 fig1/3/4/5（部分图已在 artifacts 注册）\n4. `worker_paper_number_consistency_audit_20260514T101321` — 全文数字一致性审查\n5. `worker_paper_verify_remote_dz_sync_20260514T101450` — 验证服务器端 d_z 数据同步\n\n**未收到任何 Worker Done 回调**，这 5 个 Worker 是前一个 session 派发的，新 session 需要检查它们的实际状态。\n\n### 4. 📋 待办（条件触发式）\n- 5 个 Worker 状态确认 → 如已完成读取产出处理；如卡住则 cancel + 重新派发\n- figure Worker 完成 → 检查 fig1/fig3/fig4/fig5 是否用了 bf16 paired d_z 数据（D051 要求重新生成），确认图表内数字与 .tex 一致\n- consistency audit Worker 完成 → 读审查报告，修复不一致项\n- tex 同步 + 编译成功 → 派 Worker 做 `paper-visual-review`（PDF 视觉审查）\n- visual review 通过 → 派 Worker 做 `reference-audit`（引用验证）\n- 全部通过 → 向 Director 汇报 ready for full review，进入投稿准备\n- **P1**: 清理旧文件（results_5_1.tex, *_fc6d1d.tex, *_4cc5f3.tex）\n\n### 5. 🎯 战略上下文\n**核心结论**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DS: 0.39→14.59; QW: 0.039→2.943），random masking 8/8 FAIL。Cross-model replication ρ=1.0, gradient p=0.043。\n\n**决策链关键节点**：\n- D045/D046: C4 entropy 降级（Qwen s025 符号反转）→ 只有 C1/C2/C3/C5/C6 是 Core Claims\n- D047: 6-point dose-response 数据纳入（s=0.10~0.35）\n- D048: 全文统一 paired d_z → D050 回退了一个 Worker 的错误修改\n- D051: 图表需用 bf16 canonical 数据重新生成（旧图硬编码数据已过时）\n\n**最容易判断错的事**：\n- 不要混淆 paired median difference（`median(x_i - y_i)`）和 unpaired（`median(x) - median(y)`）——论文图表用 paired，summary table 用 unpaired，两者数值不同\n- 不要把 `cohens_d_6point.pdf`（旧版可能是 independent d）当成最终版——必须确认是 paired d_z\n- Qwen s015 的 Cohen's d CI 含 0，是 marginal——论文措辞必须标注 \"marginal at s=0.15\"\n- 服务器上可能有多版本图表文件，以 `paper_figures/` 目录下的为准，`figures/` 下的可能是中间版本\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778755306.md"
+}

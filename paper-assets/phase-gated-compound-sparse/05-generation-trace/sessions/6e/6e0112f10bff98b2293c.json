@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "6e0112f10bff98b2293c",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis segmentation sensitivity",
+  "task_key": "worker_analysis_segmentation_sensitivity_20260515T082448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_segmentation_sensitivity_20260515T082448_result.json",
+    "occurrence": 1,
+    "bytes": 2314522,
+    "sha256": "e023eedc5452c373116ef1daa3f707da894e2c0b4defb779c603bd5e4dab2cc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2314542,
+                "serialized_sha256": "40c54f46f41ff54ff70b0252ad13d0dbcd3a0764128ae38f039ad17e036fb343",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-segmentation-sensitivity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "654f8d773ac8dded8c95",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra sync fixed code",
+  "task_key": "worker_infra_sync-fixed-code_20260513T190525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync-fixed-code_20260513T190525_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "4945b788f6b0179b9a0f9f26fbf755a08a1ee30700bc05fc89afd3a82f2b2a61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，汇报：\n\n1. **文件同步**：8/8 全部成功\n2. **Import 验证**：4 个模块全部通过（phase_segmentation、interaction_index、metrics、data_utils）\n3. **关键修复验证**：5/5 全部确认\n   - C1: `segment_from_sparsity` 替代全 attention matrix\n   - C2: mask 在 phase 循环外生成\n   - C3: `generate()` 不传 `output_attentions`\n   - M1: `compute_dense_ce_losses` 缓存复用\n   - m4: `torch.manual_seed` 可复现性\n4. **无问题需处理**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-fixed-code.md"
+}

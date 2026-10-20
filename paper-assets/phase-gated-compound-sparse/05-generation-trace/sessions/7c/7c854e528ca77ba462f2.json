@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c854e528ca77ba462f2",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis acc qw s020 s025",
+  "task_key": "worker_analysis_acc_qw_s020_s025_20260515T210225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_acc_qw_s020_s025_20260515T210225_result.json",
+    "occurrence": 1,
+    "bytes": 1132,
+    "sha256": "cf6a678c8512f0cc98c3ff597ea0d0dd833ba802af28ad94044ef3e65f1869df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Qwen2.5-7B-Instruct MATH-500 (n=50)\n\n| Condition | Accuracy | 备注 |\n|-----------|----------|------|\n| dense | 32.0% (16/50) | baseline（来自 qw_s015 文件） |\n| importance_s015 | 32.0% (16/50) | 几乎无损 |\n| **importance_s020** | **24.0% (12/50)** | heads_pruned=140, kv_evict≈20% |\n| **importance_s025** | **26.0% (13/50)** | heads_pruned=196, kv_evict≈25% |\n| importance_s030 | 14.0% (7/50) | 断崖下跌 |\n\n### 注意事项\n\n- **s025 > s020 是采样噪声**：差异仅 1 题，n=50 下不显著。两者实质都在 24-26% 区间。\n- **degradation 拐点**：s015→s020 出现明显下降（32%→24%），s030 断崖（14%）。s020-s025 处于中间过渡区。\n- **无 c2_accuracy_eval 对比数据**：服务器上不存在该文件。\n- **两个实验均无异常**：EXIT_CODE=0，无错误。\n\n### 结果文件\n\n- JSON: `/root/autodl-tmp/pacs/analysis_output/accuracy_eval_qw_s020.json`, `accuracy_eval_qw_s025.json`\n- Log: `~/runs/phase-gated-compound-sparse/acc_qw_s020.log`, `acc_qw_s025.log`\n- 分析报告已注册: `art_20260515_b7ca16`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-acc-qw-s020-s025.md"
+}

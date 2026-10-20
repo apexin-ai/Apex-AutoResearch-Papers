@@ -1,0 +1,43 @@
+[
+  {
+    "col": "grid_oracle_vs_estimated_mechanism_split",
+    "exp_id": "exp_002_gpu_dgp_grid",
+    "metric_key": "bias_bound_predicts_global_worse_rate_by_correction_type",
+    "row": "exp_002_gpu_dgp_grid",
+    "source": "artifacts/exp_002_gpu_dgp_grid/formal/condition_metrics.jsonl",
+    "target_id": "C_H1_GLOBAL_CORRECTION_WORSE",
+    "value": {
+      "bootstrap_95_ci": [
+        -0.08526039123535156,
+        0.08000001311302185
+      ],
+      "estimated_global_reported_separately": true,
+      "global_worse_rate_difference_positive_minus_negative": -0.004999995231628418,
+      "oracle_global_reported_separately": true
+    }
+  },
+  {
+    "col": "bias_bound_auc_or_rank_corr",
+    "exp_id": "exp_002_gpu_dgp_grid",
+    "metric_key": "bias_bound_vs_global_worse_rank_corr",
+    "row": "grid_all_conditions",
+    "source": "artifacts/exp_002_gpu_dgp_grid/formal/condition_metrics.jsonl",
+    "target_id": "T_STAGE0_DGP_GRID",
+    "value": {
+      "bias_bound_vs_global_worse_spearman": -0.6201611161231995,
+      "bootstrap_95_ci": [
+        -0.6645349264144897,
+        -0.4831351935863495
+      ]
+    }
+  },
+  {
+    "col": "oracle_estimated_gap",
+    "exp_id": "exp_002_gpu_dgp_grid",
+    "metric_key": "estimated_global_minus_oracle_global_gate_rmse",
+    "row": "grid_all_conditions",
+    "source": "artifacts/exp_002_gpu_dgp_grid/formal/condition_metrics.jsonl",
+    "target_id": "T_STAGE0_DGP_GRID",
+    "value": 0.0007658914546482265
+  }
+]

@@ -1,0 +1,42 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Compound compression.}
+Combining multiple compression axes produces non-additive errors.
+\cite{spark-aaai2026} report super-additive degradation when combining channel pruning with token eviction; \cite{slim-icml2025} formalize compound error for quantization and sparsity.
+\cite{unicomp-2026} evaluate compound compression across 40+ benchmarks, revealing that reasoning capabilities degrade disproportionately.
+\cite{phase-transition-compression-2026} characterize independent phase transition points per compression dimension, implying the joint safe region is the intersection of per-dimension safe zones.
+GRASPrune~\cite{graspune-acl2026} learns global budget-constrained gates for joint pruning but treats decisions as static across generation.
+PM-KVQ~\cite{pmkvq-iclr2026} shows that progressive quantization---gradually reducing bit-width over the generation process---mitigates cumulative error in long-CoT reasoning, implicitly introducing a temporal dimension to compression severity that resonates with our finding that compound interaction is phase-dependent.
+
+\cite{kim2026pqqp} show that compression order (prune-then-quantize vs.\ quantize-then-prune) substantially affects joint quality, and their Progressive Intensity Hypothesis---that weaker perturbations should precede stronger ones---echoes our dose-response finding that interaction severity increases monotonically with sparsity.
+
+These works establish compound interaction but share an implicit assumption: interaction magnitude is constant across the generation process.
+
+\paragraph{Structured pruning.}
+Magnitude pruning~\cite{han-neurips2015} and the lottery ticket hypothesis~\cite{frankle-iclr2019} establish that neural networks contain sparse subnetworks preserving full-model performance.
+Movement pruning~\cite{sanh-neurips2020} extends this to fine-tuning, learning which weights to zero during task adaptation.
+For attention heads specifically, \cite{voita-acl2019} show most heads are prunable without degradation, and \cite{michel-neurips2019} demonstrate that head importance varies substantially across layers---findings our head pruning axis builds upon. These methods optimize a single pruning axis in isolation; we characterize the interaction when head pruning operates simultaneously with KV cache eviction.
+
+\paragraph{KV cache eviction.}
+StreamingLLM~\cite{streamingllm-iclr2024} establishes attention sinks as a foundational mechanism; DuoAttention~\cite{duoattention-2024} classifies heads into retrieval and streaming types, complementing our analysis of importance discrimination collapse (\S\ref{sec:discrimination-collapse-main}). Subsequent work improves eviction through per-head adaptive budgets \cite{adakv-neurips2025}, observation-window compression \cite{snapkv-neurips2024}, proxy-token strategies \cite{nacl-acl2024}, deferred importance \cite{retentivekv-2026}, and worst-case analysis \cite{defensivekv-iclr2026}; \cite{greedy-bias-kvcache-2026} show that single importance metrics exhibit systematic greedy bias. \cite{hies-2025} independently show that importance discrimination collapses under heavy single-axis pruning; our results extend this to the compound setting, revealing phase-modulated amplification and a strategy crossover (\S\ref{sec:crossover}) absent in single-axis analysis.
+Recent approaches target reasoning-aware eviction \cite{rlkv-2025, longflow-2026, dong2026foresightkv}, temporal adaptivity \cite{lethe-aaai2026}, channel-level pruning \cite{xu2025think, spark-aaai2026}, and learned budgets \cite{lkv-2026}. Concurrent work~\citep{hold-onto-thought-neurips2025} evaluates single-axis compression on mathematical reasoning; we extend to the compound setting.
+These methods each optimize a single pruning axis without characterizing compound interactions.
+
+\paragraph{Phase-aware inference and reasoning.}
+ThinKV~\cite{thinkv-iclr2026} applies different KV strategies per phase but without compound interaction.
+\cite{decision-repr-transition-2026} find pruning sensitivity depends on ``silent'' vs.\ ``decisive'' representation phases.
+\cite{doing-more-with-less-2026} show pruning combined with test-time scaling can exceed unpruned baselines; \cite{sparse-frontier-2025} find no universally optimal sparse attention strategy across generation stages.
+\cite{physics-kvcache-2026} identify a sharp phase transition in single-axis KV cache compression at high sparsity, characterizing the single-dimension failure mode that our compound analysis extends across multiple axes.
+R-KV~\cite{rkv-neurips2025} exploits reasoning-specific redundancy for aggressive cache compression, targeting per-axis optimization rather than characterizing compound degradation.
+Test-time compute scaling~\cite{snell-2024-scaling-test-time} shows that allocating more inference-time computation can substitute for model scale; this emphasizes the importance of preserving reasoning-phase fidelity, where our work shows compound sparsity is most destructive.
+ScissorHands~\cite{scissorhands-2023} leverages the persistence of importance hypothesis---that important tokens remain important across generation steps---a property our Gini analysis shows breaks down under compound stress.
+These works establish phase-dependent compression tolerance along single axes.
+
+\paragraph{Conditional computation.}
+Mixture-of-Experts architectures~\cite{shazeer-2017-moe, fedus-jmlr2022} achieve dynamic sparsity by routing tokens to a subset of parameters, providing a complementary paradigm to post-hoc pruning.
+MoE sparsity is \emph{designed} (experts are trained to specialize), whereas compound sparsity is \emph{imposed} (pruning removes capacity without retraining).
+Our phase-strategy interaction findings suggest that designed sparsity and imposed sparsity may interact differently across reasoning phases---a connection we leave to future work.
+
+\paragraph{Positioning.}
+Our work bridges the compound compression and phase-aware literatures by quantifying how compound severity varies across phases and eviction strategies. Key differentiators: SparK~\cite{spark-aaai2026} characterizes compound interaction magnitude but treats it as phase-invariant; ThinKV~\cite{thinkv-iclr2026} adapts per phase but considers only single-axis KV compression without compound interaction; HIES~\cite{hies-2025} identifies importance score collapse under single-axis pruning but does not quantify its role in compound settings or its phase dependence. Our strategy specificity finding---that random eviction produces near-zero phase gradients while importance-based eviction exhibits $15$--$17{\times}$ amplification---is non-obvious: the \emph{a priori} expectation is that any eviction strategy operating on phase-structured attention should produce some phase gradient, yet random eviction yields effectively none at $s \leq 0.20$. The quantitative dose-response characterization provides target operating points for phase-aware compression controllers.

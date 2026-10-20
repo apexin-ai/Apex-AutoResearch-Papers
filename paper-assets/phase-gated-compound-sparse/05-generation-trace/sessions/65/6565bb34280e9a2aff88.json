@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6565bb34280e9a2aff88",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code phase segmentation",
+  "task_key": "worker_code_phase_segmentation_20260513T174515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase_segmentation_20260513T174515_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "c2e480366385f3ed96e68ac9c4798dd2c1d8a71b134b303ef2e005b708027a06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已创建并注册：\n\n**`profiling/phase_segmentation.py`** — 核心模块：\n- `compute_attention_sparsity`: 逐 head 计算 row-wise max * 1% 阈值下的 sparse 比例，跨 head 平均\n- `fit_kde`: Gaussian KDE 拟合，bandwidth 支持 scott/silverman/自定义浮点\n- `find_phase_boundaries`: `argrelmin` 检测密度曲线 local minima，渐进式 order 扩大 (5→10→20)，失败时 fallback 等分\n- `segment`: 主入口，短序列 (<50) 直接返回单 phase，正常流程输出 `PhaseAnnotation`\n- 短 phase 合并逻辑 (`min_phase_length`)\n\n**`profiling/run_profiling.py`** — 流水线脚本：\n- `attn_implementation=\"eager\"` 确保拿到完整 attention weights\n- 取 prefill pass 的 last-layer attention 做 profiling（MVP 策略）\n- CLI 参数：`--model_path`, `--data_path`, `--output_dir`, `--max_new_tokens`, `--batch_size`, `--kde_bandwidth`, `--min_phase_length`\n- 输出 `profiling_results.json`，含 phase 标注 + sparsity 统计 + 生成文本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase-segmentation.md"
+}

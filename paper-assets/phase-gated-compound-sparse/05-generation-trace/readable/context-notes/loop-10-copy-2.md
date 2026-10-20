@@ -1,0 +1,68 @@
+# reviewer / loop_10.md
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_10.md`
+- **Structured JSON:** [`66f41e216cba7657e35c.json`](../../sessions/66/66f41e216cba7657e35c.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 10
+reason: max_wall_time
+updated: '2026-05-15T21:25:39+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- DS 模型 accuracy eval 在 max_new_tokens=2048 下数据不可靠（truncation 56%-76%），**不可用于论文定量 claim**——必须等 8k 重跑结果
+- answer matcher 已修复（radical simplification + degree symbol），所有 accuracy 数据以 "v2 rescored" 版本为准，旧版数字作废
+- QW 实验用 GPU 2,3；DS 实验用 GPU 0,1——这是当前并行分配方案，别交叉
+- acc_ds_s025 conclusion="success" 是错误标记（应为 negative，delta=-0.44），已提交 Director 但尚未修正
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-22162(root)，工作目录 /root/autodl-tmp/pacs
+- Python：/root/miniconda3/bin/python（conda base 环境）
+- 模型：/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct
+- 数据：/root/autodl-tmp/pacs/data/math500.json (MATH-500), data/gsm8k_test.json
+- 分析输出：/root/autodl-tmp/pacs/analysis_output/
+- 评估脚本：/root/autodl-tmp/pacs/run_accuracy_eval.py（已支持 --start-index, --max-new-tokens 待确认）
+- 4× GPU（~98GB each），无 W&B 配置
+
+### 3. 📊 当前状态
+我在本轮审查了 4 个 accuracy eval（acc_qw_s020, acc_qw_s025, acc_ds_s020, acc_ds_s025），提出 3 轮审查意见，Agent 均已响应：
+1. 修复了 answer matcher（radical+degree），全部已完成实验重新评分
+2. 分离了 output_truncated_count / extraction_failure_count
+3. 恢复了 QW 实验 conclusion 为 "negative"
+4. 启动 DS 8k-token 重跑计划
+
+**RUNNING**: acc_qw_s020_n100 (GPU 2), acc_qw_s025_n100 (GPU 3) — QW 补充实验 problems 51-100
+**PREPARING**: acc_ds_dense_8k, acc_ds_s015_8k, acc_ds_s020_8k, acc_ds_s025_8k, acc_ds_s030_8k — DS 8k 重跑
+
+### 4. 📋 待办
+- acc_qw_s020_n100 / acc_qw_s025_n100 完成 → 审查 n=100 合并准确率，判断 QW dose-response 是否单调（当前 n=50 高度非单调）
+- acc_ds_*_8k 系列完成 → 审查 DS 在足够 token budget 下的真实 accuracy dose-response，这次数据才可信
+- 8k 实验提交时 → 核查 run_accuracy_eval.py 是否已支持 --max-new-tokens 参数（上次读代码时 hardcoded 2048），以及 GPU 分配是否与 QW 补充实验冲突
+
+### 5. 🎯 战略上下文
+- 项目核心：phase-gated compound sparsity — importance-based pruning 在不同 phase 有不同 severity，dose-response 单调递增（PPL gradient 层面已确认，n=500 统计显著）
+- **accuracy eval 是 PPL→实际影响的关键桥梁**，但当前数据质量参差：QW 数据干净（truncation≤4%），DS 数据被 2048-token 截断严重污染
+- **下一个"你"最容易踩的坑**：
+  1. QW rescored 后 s025 accuracy=0.32（与 dense 持平），s015=0.34（超过 dense）——n=50 噪声，**不要**据此 claim "pruning improves accuracy"
+  2. DS accuracy 数字（0.52→0.36→0.26→0.08→0.10）看起来有 dose-response 但实质被截断率差异驱动，等 8k 结果才能下结论
+  3. c2_accuracy_eval metrics 已被 v2 rescored 更新（DS s015: 34→36, QW s015: 32→34），引用时注意用新版
+
+
+---

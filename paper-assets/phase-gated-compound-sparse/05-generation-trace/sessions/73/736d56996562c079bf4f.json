@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "736d56996562c079bf4f",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778802368.md",
+  "task_key": "loop_8_1778802368",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778802368.md",
+    "occurrence": 1,
+    "bytes": 4029,
+    "sha256": "c470228668caead245eaa5adf82339915901a1dcb11cfa7e92facfbb32681dcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T23:45:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-22162 cuda:0~3 only**。cuda:0+1 → c2_n500_deepseek，cuda:2+3 → c2_qw_n500_r3\n- **禁用 mean**——n=500 暴露 random s015 mean 从 -1.9 暴跌到 -185,738。论文全部用 **median + median bootstrap CI (B=10,000)**\n- d_z 只报 **within-importance**（不同 sparsity 之间），**禁报 imp vs rand d_z**（D059）\n- 分析脚本唯一有效：`analyze_n500_unified.py`。`analyze_c2_n500.py` 已废弃\n- tex 同步用 **rsync**（`bash artifacts/_project/sync_paper_to_remote.sh`），不是 git——本地和远程都无 git remote\n- LLaMA 论文措辞禁用 \"confirms\"，只能用 \"suggests\" / \"provides partial support\"（D060）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（DeepSeek）/ `/root/autodl-tmp/pacs/data/MATH-500/`（Qwen）\n- 活跃进程：\n  - c2_n500_deepseek: tmux `c2_n500_gpu0` + `c2_n500_gpu1`（cuda:0+1）\n  - c2_qw_n500_r3: screen `c2_qw_gpu2` + `c2_qw_gpu3`（cuda:2+3），shell PID 131858 + sentinel 机制\n- Cron：2 个 active（c2_n500_deepseek, c2_qw_n500_r3），reconcile 确认均 still running\n- 运行中 Worker：`worker_ops_rsync-compile-verify_20260514T234035` + `worker_ops_check-training-progress_20260514T234403`\n\n### 3. 📊 当前状态\n两个 n=500 统计功效实验正在跑，都完成了 s015（500/500），s020 约 50% 进度：\n- **c2_n500_deepseek**（DeepSeek 8 conditions）：s020 imp 256/500, rand 302/500。ETA 全部完成 ~May 15 16:00 UTC+8\n- **c2_qw_n500_r3**（Qwen 8 conditions，c2_qw_n500 的 continuation）：s020 imp 243/500, rand 226/500。ETA ~May 15 15:00 UTC+8\n\n论文 §1-§8 + abstract 全部完成（基于 bf16 n=50 数据），PDF 可编译。等 n=500 完成后统一更新 tables/figures。\n两个运维 Worker 在跑（rsync 编译验证 + 进度检查），等它们回调。\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调 DONE → spawn Worker 跑 `analyze_n500_unified.py`（DeepSeek 8 conditions，median + B=10,000 bootstrap CI + d_z within-importance only）\n- c2_qw_n500_r3 cron 回调 DONE → spawn Worker 跑同一分析 pipeline（Qwen 8 conditions）\n- 两组分析都完成 → spawn Paper Worker 统一更新论文：n=500 tables/figures + C5b §8 future work + C8 限定语 + Qwen caveat（若 n=500 某些 sparsity 仍不显著）\n- 论文更新完成 → rsync 到远程 + latexmk 编译验证 → 提交 Group C full review\n- **Qwen s015 n=500 已确认显著**（D058 resolved）：onset threshold 统一为 s≥0.15，删除 \"marginal at s=0.15\" 限定语\n- 若任一实验 cron 报 failed → 读日志诊断，参考 D062（cron 改 shell PID + sentinel 双机制）\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25（EMNLP ARR），距今 11 天**。n=500 是最后一批实验，之后纯论文更新+审稿\n- 核心结论链：importance-based compound severity 随 sparsity 单调递增（DeepSeek 0.32→9.94, Qwen 0.048→2.619），random 7/8 FAIL。跨模型 ρ=1.0，跨架构（LLaMA）qualitative consistent 但交互弱\n- C7（n=500 statistical power）是补齐 C2 证据的最后一块。D058 已部分解决（s015 显著），等全部 8 conditions 完成\n- **最容易判断错的事**：\n  1. 不要混用 n=50 和 n=500 的数字——n=500 分析必须从 per_problem_ii 原始数据重算（B=10,000），不能引用 profiling JSON 预计算值（那些是 B=1,000）\n  2. Qwen 的效应量始终是 DeepSeek 的 ~1/4，这是正常的跨模型差异，不是 bug\n  3. c2_qw_n500_r3 是 c2_qw_n500 的 continuation（cron 误报导致），parent=c2_qw_n500。s015 数据在 c2_qw_n500 产出目录里，s020+ 在 r3 产出目录\n  4. 82 个实验中大量 killed/failed 是早期 fp16/mvp 阶段的，全部已废弃，不要试图修复\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778802368.md"
+}

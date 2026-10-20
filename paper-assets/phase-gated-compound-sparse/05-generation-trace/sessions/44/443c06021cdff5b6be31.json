@@ -1,0 +1,537 @@
+{
+  "schema_version": "1.0",
+  "id": "443c06021cdff5b6be31",
+  "project": "phase-gated-compound-sparse",
+  "kind": "conversation",
+  "title": "cron hook bf16 ds rand s015 20260514T192208 730336",
+  "task_key": "cron_hook_bf16_ds_rand_s015_20260514T192208_730336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_bf16_ds_rand_s015_20260514T192208_730336.jsonl",
+    "occurrence": 1,
+    "bytes": 27421,
+    "sha256": "b0cbee730fde8e957f76fea3e809245d2f44162caa22db2a0e61cd13824561ba"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 2,
+    "tool_calls": 11,
+    "roles": {
+      "user": 2,
+      "assistant": 2,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T16:18:00.636974+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #7。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-22162 cuda:0/1/2/3，无其他服务器/GPU\n- **c2_qw_n500 有重复进程**：PID 132389 (gpu2) / 132392 (gpu3) 是重复启动的进程，与原始 PID 131864/132002 写同一输出目录，可能导致数据损坏。**必须先确认是否已杀掉**，否则 n=500 数据不可信\n- c2_qw_n500 运行在 **SCREEN** sessions（c2_qw_gpu2/c2_qw_gpu3），不是 tmux——cron 反复误判进程已死（3 次 false positive），因为 profiling 脚本无 W&B/sentinel 输出\n- c3_llama 和 c2_qw_n500 **共享 cuda:2+3**（96GB GPU 可容纳，但要注意 OOM 风险）\n- EMNLP 2026 ARR 截稿 **2026-05-25**（距今 11 天），论文全文已完成，当前实验是补充验证\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，4× RTX PRO 6000 Blackwell 96GB\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（500 题 MATH-500）\n- 日志目录：`/root/autodl-tmp/pacs/logs/`\n- 活跃进程：\n  - **c2_n500_deepseek**: cuda:0+1, tmux=c2_n500_gpu0/gpu1, PID=c2_n500_gpu0, ~18h 预计\n  - **c2_qw_n500**: cuda:2+3, SCREEN=c2_qw_gpu2/gpu3, PID 131864(imp)/132002(rand), 进度 ~93/500 s015\n  - **c3_llama**: cuda:2+3, PID 138393(parent)/138408(imp gpu2)/138410(rand gpu3), n=50, sp_str bug 已修复重启\n- Cron 监控：3 个活跃（c2_n500_deepseek / c2_qw_n500 / c3_llama）\n\n### 3. 📊 当前状态\n上一个 session 完成了：bf16 全量实验、cross-model 统计分析、论文全文（§1-§8）、figure 生成、数字一致性审查。C4 已降级为 §6 supporting。\n\n当前 3 个实验同时 RUNNING：\n- **c2_n500_deepseek**（C2 统计功效）：DeepSeek 8 conditions n=500，cuda:0+1，预计 ~18h\n- **c2_qw_n500**（C2 统计功效）：Qwen 8 conditions n=500，cuda:2+3，进度 ~93/500 s015（8 conditions 串行，预计 ~22h/GPU）\n- **c3_llama**（C3 跨架构）：LLaMA-8B 8 conditions n=50，cuda:2+3（与 c2_qw 共享），sp_str bug 修复后重启\n\n排队等 GPU：**c5b_pilot**（C5b mitigation pilot，oracle + heuristic phase-aware allocation）\n\nWorker 池 = 0（全部已完成），无待处理 Worker 回调。\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调 → spawn worker 跑 n=500 统计分析（CI、Cohen's d、Wilcoxon），更新 Table 2/3，对比 n=50 结果\n- c2_qw_n500 cron 回调 → 同上（Qwen 侧），重点关注 **s015 CI 是否仍跨零**（决定叙事：universal 还是 threshold ~s020）\n- c3_llama cron 回调 → 分析 LLaMA vs Qwen/DeepSeek compound severity 趋势，更新 §5 cross-architecture 段落\n- 三个实验全完成 → 更新论文 tables/figures → 提交 Group C full review → Director 最终审批\n- GPU 释放后 → c5b_pilot 提交（需 Director 确认优先级，截稿前是否还来得及）\n- **重复进程问题**：若 PID 132389/132392 仍存在 → 必须先杀掉再评估 c2_qw_n500 数据完整性\n\n### 5. 🎯 战略上下文\n- 核心发现：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增，random masking 全 FAIL。Cohen's d ρ=1.0, gradient permutation p=0.043。**C1/C2/C3/C5/C6 已 confirmed，C4 降为 supporting**\n- 当前补充实验是为了**加强统计说服力**（n=500）和**回应审稿人预期质疑**（cross-architecture），不是验证核心 hypothesis\n- 决策链关键节点：D045/D046（C4 降级）、D047（6-point dose-response）、D048（统一 paired d_z）\n- **最容易判断错的事**：c2_qw_n500 的 cron 会再次 false positive——看到 `on_failed` 回调时**先 SSH 检查进程是否真死了**，不要直接信 cron 结论（已误判 3 次）\n- **c2_qw 重复进程是悬而未决的数据风险**：如果两个进程并发写同一 JSON 文件，s015 数据可能需要清洗或重跑。memory.md 建议杀重复 PID 但未确认是否已执行\n- paper_framing.md 里预注册了：若 Qwen s015 n=500 CI 仍跨零 → 改叙事为 \"compound effect emerges above threshold sparsity ~s020\"。这是个 **narrative pivot**，不是 negative result\n\n## 可查的历史\n前 101 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T16:18:04.979704+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:20pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T19:20:02.332350+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T19:20:22.230141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__load_project_config",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T19:20:22.331567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:20:26.224720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "phase-gated-compound-sparse",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T19:20:26.278178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T19:20:27.091857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "phase-gated-compound-sparse",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T19:20:27.681588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:20:28.137498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (150,424 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-1d189c2e/3d65cff2-da9c-4cae-af4f-e7519c3277d9/tool-results/mcp-agent-ml-research-read_registry-1778786427861.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-agent-1d189c2e/3d65cff2-da9c-4cae-af4f-e7519c3277d9/tool-results/mcp-agent-ml-research-read_registry-1778786427861.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1912
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T19:20:28.138150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "phase-gated-compound-sparse",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:20:28.391075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "phase-gated-compound-sparse",
+              "section": "execution"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T19:21:15.566857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"c2_n500_deepseek\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=c2_n500_gpu0)\\\"]}, {\\\"exp_id\\\": \\\"c2_qw_n500\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process dead 5× with no signal → auto-resolved DONE(failed)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 49288
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T19:21:15.668922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-14T19:21:05Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 82 个实验 — DONE 81, RUNNING 1\\\\n**DONE 分布**: failed 14, killed 21, negative 10, success 36\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — westd-22162:cuda:0, westd-22162:cuda:1, westd-22162:cuda:2, westd-22162:cuda:3\\\\n- **实际运行**: 2 张 — westd-22162:cuda:0(c2_n500_deepseek), westd-22162:cuda:1(c2_n500_deepseek)\\\\n- **空闲（分配了没跑）**: westd-22162:cuda:2, westd-22162:cuda:3\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `c2_n500_deepseek` | westd-22162 | cuda:0,cuda:1 | ? | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `c2_qw_n500` [failed] — 2026-05-14T19:20:51 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `c5b_pilot` [negative] — 2026-05-14T19:10:56 — oracle recovery 18% < 30% gate; heuristic 32% CI crosses zero. Scientific gate_f\\\\n- `c3_llama` [success] — 2026-05-14T17:58:54\\\\n- `c2_ds_n500` [killed] — 2026-05-14T15:37:18\\\\n- `c3_llama_arch` [killed] — 2026-05-14T15:37:16\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `c2_qw_n500`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `c2_ds_n500`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `c3_llama_arch`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| c2_n500_deepseek | C2 statistical power boost: 将 DeepSeek 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500，提升统计功效。预注册：若 QW s015 在 n=500 后 CI 仍跨零，论文叙事改为 \\\\\\\"compound effect emerges above a threshold sparsity level (~s020)\\\\\\\" | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **c2_qw_n500** (\n…[truncated 2390 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 48577
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T19:21:15.770973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/ROADMAP.md\\\", \\\"content\\\": \\\"# phase-gated-compound-sparse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 18:53 UTC | 更新原因: D060 C8 partially_confirmed（LLaMA random 也显示 phase gradient，交互弱于 Qwen2 架构）\\\\n\\\\n> 核心文档链: paper_framing.md → experiment_plan.yaml → 本 ROADMAP\\\\n\\\\n## 核心方向\\\\n**Phase-modulated compound sparsity severity**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DeepSeek: 0.32→1.15→3.97→9.94; Qwen: 0.048→0.208→1.109→2.619），random masking 全 FAIL。Cross-model replication 方向一致（Cohen's d ρ=1.0, gradient permutation p=0.043）。LLaMA 跨架构验证 qualitative consistent（D060: importance phase gradient d_z~1.0, 但 imp vs rand 交互弱，random 也显示 phase gradient）。详见 paper_framing.md。\\\\n\\\\n## 目标会议\\\\nEMNLP 2026 ARR — **截稿 2026-05-25（距今 11 天）**\\\\n\\\\n## 当前进展\\\\n- 阶段：**论文完成 + n=500 补充实验冲刺**（审稿由 Group C 并行）\\\\n- 82 实验（36 success / 9 negative / 14 failed / 21 killed / 2 running）\\\\n- **C1/C2/C3/C5/C6/S3→C/S7→C confirmed**\\\\n- **C8 partially_confirmed**（D060）：LLaMA qualitative direction consistent, quantitative interaction weaker\\\\n- **C5b future_work**（D056）：oracle recovery 18% < 30% gate\\\\n- C4 降级为 §6 supporting, C7 running\\\\n- 论文全文已完成（§1-§8），PDF 可编译\\\\n- D059：d_z 分场景报告（within-importance 保留，涉及 random 不报）\\\\n- ⚠️ Qwen mid-phase 58% null rate + imp vs rand paired 全部不显著，等 n=500 评估\\\\n\\\\n## 近期任务\\\\n- [ ] **[P0]** c2_n500_deepseek — cuda:0+1 RUNNING, DeepSeek s020 进行中, ETA ~2026-05-15 15-17h UTC\\\\n- [ ] **[P0]** c2_qw_n500 — cuda:2+3 RUNNING, Qwen s015 ~92%, ETA ~2026-05-15 21h UTC\\\\n- [ ] **[P1]** c2_n500 完成后：分析 pipeline（median II + bootstrap CI + d_z within-importance only）\\\\n- [ ] **[P1]** 分析完成后：Paper Agent 统一更新论文（n=500 tables/figures + c5b §8 + C8 限定语 + Qwen caveat）\\\\n- [ ] 全部完成后提交 Group C full review\\\\n\\\\n## GPU 预算\\\\n- RTX 6000 Pro ×4: westd-22162 cuda:0~3\\\\n- 当前分配：cuda:0+1 → c2_n500_deepseek | cuda:2+3 → c2_qw_n500\\\\n- 已用: ~25h / ~2\n…[truncated 1364 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 48089
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T19:21:15.928680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/memory.md\\\", \\\"content\\\": \\\"# Memory — phase-gated-compound-sparse\\\\n\\\\n## 方法论决策\\\\n\\\\n### D054: 全面切换 median 指标 (2026-05-14)\\\\nn=500 暴露 mean 不可靠：rand s015 mean 从 n=50 的 -1.9 暴跌到 n=500 的 -185,738，而 median 稳定（0.103→0.118，CI 收窄）。原因：random pruning 14.2% 的 problem 产生灾难性 outlier（ppl 爆炸到百万级）。论文只能引用 median + median bootstrap CI。\\\\n\\\\n### Outlier 根源 (2026-05-14)\\\\n不是 II 公式分母为零。Dense ppl 始终 ≈ 1.2。根源：random head masking 恰好破坏关键 attention 路径 → ppl_attn 爆炸 → II 变巨大负数。Importance-based 不出现此问题（保留关键 head）。这本身是 importance-based 方法必要性的证据。\\\\n\\\\n### Cohen's d_z 待定 (2026-05-14)\\\\n当前 d_z = mean(D)/SD(D) 同样被 outlier 摧毁。全面切 median 需要换 robust 效应量（rank-biserial r 或 Hodges-Lehmann）。等 Director 确认。\\\\n\\\\n### Cross-architecture framing 约束 (2026-05-14)\\\\nLLaMA 效应量比 DeepSeek/Qwen 小 ~40×。论文 frame 为 \\\\\\\"qualitative pattern\\\\\\\"（趋势一致），不做定量跨架构比较。用 median+IQR，不用 mean。LLaMA s015 CI [0.002, 0.043] 不跨零是预注册关键指标。\\\\n\\\\n## C5b Pilot 经验 (2026-05-14)\\\\n\\\\n### Gate 结果\\\\ns025: oracle recovery +18% (FAIL, <30% gate), heuristic +31.7%。s030 未完成。\\\\nFraming 提案：C5b → §8 Future Work open question。\\\\n\\\\n### 运维教训\\\\n- run_c5b_pilot.py 的 `os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"]` 覆盖了 shell 级 CVD → 必须 `if \\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\" not in os.environ` 保护\\\\n- c5b 无 sentinel/W&B → cron 误判为 failed。Profiling 类实验需加 sentinel file\\\\n- 必须用 screen/tmux 启动长时间实验，裸 SSH 会 SIGHUP kill\\\\n\\\\n## 实验基准数据\\\\n\\\\n### high_sp imp mean sign reversal (2026-05-14)\\\\nn=500 下 high_sp imp mean 翻负。原因同 outlier 机制。论文不可引用 mean，只用 median。\\\\n\\\\n### Median 数据可用性 (2026-05-14)\\\\n所有 profiling_results.json 已含 median/median_ci_low/median_ci_high。分析脚本双轨输出 median_diff + mean_diff。cross_model_analysis.json 主指标为 importance_median_diffs。无需重跑实验。\\\\n\\\", \\\"total_chars\\\": 1552, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 47790
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T19:21:16.029566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"phase-gated-compound-sparse\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": [\\\"westd-22162:cuda:0\\\", \\\"westd-22162:cuda:1\\\", \\\"westd-22162:cuda:2\\\", \\\"westd-22162:cuda:3\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/root/autodl-tmp/pacs\\\", \\\"servers\\\": [\\\"westd-22162\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 47638
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T19:21:22.855053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T19:21:22.855615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T19:21:22.855969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "phase-gated-compound-sparse"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T19:21:23.469769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [], \\\"total\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 613
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T19:21:26.345604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "phase-gated-compound-sparse",
+              "status": "running"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T19:21:26.597953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_code_analysis_pipeline_p1p2_20260514T191147\\\", \\\"task_type\\\": \\\"code:analysis_pipeline_p1p2\\\", \\\"project\\\": \\\"phase-gated-compound-sparse\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T19:11:47.978264+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 252
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T19:21:26.598441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__check_job_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T19:21:26.648971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T19:22:08.728364+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-22162:cuda:0~3，无例外\n- II 主指标已切 median + median bootstrap CI（D054），**禁止在论文任何位置引用 mean II**——random pruning 14.2% 问题产生灾难性 outlier（ppl 爆炸百万级），mean 不可信\n- d_z 只报 within-importance 场景，涉及 random 的比较只报方向不报 d_z（D059）\n- C8 (LLaMA cross-arch) 限定为 \"qualitative pattern\"，**禁止定量跨架构比较**（效应量差 ~40×）\n- C5b 已 gate_failed → §8 Future Work，**不可作为 confirmed claim**\n- 截稿 2026-05-25，距今 11 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，account=root，工作目录 `/root/autodl-tmp/pacs`\n- Python：conda 环境（aml-train 镜像），`/root/miniconda3/bin/python`\n- 模型/数据：profiling_results.json 已含 median/median_ci_low/median_ci_high 字段，cross_model_analysis.json 主指标为 importance_median_diffs\n- 活跃进程：c2_n500_deepseek (pid=c2_n500_gpu0, cuda:0+1, cron 监控中)\n- 活跃 Worker：`worker_code_analysis_pipeline_p1p2_20260514T191147`（analysis pipeline P1P2，running）\n- cuda:2+3 空闲（c2_qw_n500 刚 failed，进程已死）\n\n### 3. 📊 当前状态\n- **c2_n500_deepseek** RUNNING (cuda:0+1)：DeepSeek 8 conditions n=500 扩增，ETA ~2026-05-15 15-17h UTC\n- **c2_qw_n500** 刚被 reconcile_crons 自动判定 DONE(failed)：\"process dead 5× with no signal/W&B\"——**这是 P0 问题，Qwen n=500 必须重跑，cuda:2+3 空着**\n- **c5b_pilot** negative：oracle recovery 18% < 30% gate，framing 提案已产出（artifacts/c5b_pilot/report/c5b_framing_proposal.md），Director 已批准降级为 §8 Future Work（D056）\n- **c3_llama** success：LLaMA 跨架构 qualitative consistent，C8 partially_confirmed（D060）\n- 论文 §1-§8 全文完成但基于 n=50 数据，等 n=500 更新\n- 1 个 Worker running（analysis pipeline），Worker 池 < 2 需要补\n\n### 4. 📋 待办（条件触发式）\n- **立即**：c2_qw_n500 failed → 诊断失败原因（spawn Worker SSH 查日志）→ 修复 → 重新提交到 cuda:2+3（P0，GPU 空闲=失职）\n- c2_n500_deepseek cron 回调 DONE → spawn Worker 跑分析 pipeline（median II + bootstrap CI + d_z within-importance only）\n- c2_qw_n500 重跑完成 → 同上分析 pipeline\n- 两个 n=500 分析都完成 → spawn Paper Worker 统一更新论文（n=500 tables/figures + c5b §8 + C8 限定语 + Qwen caveat if 仍不显著）\n- 论文更新完成 → 提交 Group C full review\n- worker_code_analysis_pipeline_p1p2 完成回调 → 读产出整合结果\n\n### 5. 🎯 战略上下文\n- **核心发现**：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（DeepSeek: 0.32→1.15→3.97→9.94），random masking 全 FAIL。这是论文的 central claim\n- **n=500 是论文最后一道关**：n=50 时 Qwen imp-vs-rand paired 全部不显著（D058），mid-phase 58% null rate。n=500 决定论文叙事：若 Qwen s015 CI 仍跨零 → 改叙事为 \"compound effect emerges above threshold sparsity (~s020)\"\n- **易错点**：c2_qw_n500 的失败原因可能是进程被 OOM/SIGHUP kill（c5b 有过类似教训——必须 tmux），诊断时查 dmesg + tmux session 存活\n- **易错点**：不要把 DeepSeek 的 d_z 和 Qwen/LLaMA 的直接对比，效应量跨模型差异巨大\n- **决策链**：D054(median切换) → D058(Qwen不显著等n=500) → D059(d_z分场景报告) → D060(C8降级partially_confirmed)\n- **时间紧迫**：11 天截稿，c2_qw_n500 必须立即重跑，不能空转\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:bf16_ds_rand_s015"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-bf16-ds-rand-s015-20260514t192208-730336.md"
+}

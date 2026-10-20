@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03240b43d46433a7d018",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code v4 analysis prep",
+  "task_key": "worker_code_v4-analysis-prep_20260513T225247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v4-analysis-prep_20260513T225247_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "01a898bc062306a237cc136aec43860d039d2ef74d07f5e4b5d34385bebff889"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `artifacts/pacs/profiling/analyze_v4_results.py`。\n\n功能：\n1. **Pass/Fail 判定** — 基于 CI 是否排除零，打印 overall verdict\n2. **Per-phase II 表格** — 每个 (phase, level) 的 mean、CI、sign、pass/fail\n3. **v3 对比** — `--v3_results` 传入后，逐 (phase, level) 对比 delta/方向/回归检测\n4. **Importance vs Random 信号** — 检测 masking_method 字段，扫描 phase pair 间 II 符号相反的强信号\n5. **Markdown 输出** — `--output_md` 生成 `.md` 文件，可直接贴入 report.md\n\nCLI：`python analyze_v4_results.py --results /path/to/profiling_results.json [--v3_results /path/to/v3.json] [--output_md /path/to/summary.md]`\n\n与 `analyze_results.py` 风格一致，无外部依赖（只用 stdlib + numpy），不导入项目内部模块。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v4-analysis-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb152167dce9c6bd95ab",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ssh c8 llama n250 progress check",
+  "task_key": "worker_ssh_c8_llama_n250_progress_check_20260516T150558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_c8_llama_n250_progress_check_20260516T150558_result.json",
+    "occurrence": 1,
+    "bytes": 1699,
+    "sha256": "d76e51b65cf63e81a1d71bed9f6c105e8dbfddc19905846e325ba6d1331813ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## c8_llama_n250_fixed 实验进度\n\n### 已完成 (3/8)\n\n| 条件 | 完成时间 (CST) | 结果文件大小 |\n|------|---------|------------|\n| importance_s015 | May 16 17:35 | 21MB ✓ |\n| importance_s020 | May 16 17:32 | 21MB ✓ |\n| importance_s025 | 预先完成 (GPU0 单跑) | 21MB ✓ |\n\n### 正在运行 (3/8)\n\n| 条件 | GPU | 已运行 | 预估剩余 |\n|------|-----|--------|----------|\n| random_s015 | GPU 2 (主脚本 Round 3) | 5h32m | ~45min |\n| random_s020 | GPU 3 (主脚本 Round 3) | 5h32m | ~45min |\n| importance_s030 | GPU 0 (chain 脚本) | 4h51m | ~1h25m |\n\n### 未开始 (2/8)\n\n| 条件 | 说明 |\n|------|------|\n| random_s025 | Round 4，等 Round 3 完成后启动 |\n| random_s030 | Round 4，等 Round 3 完成后启动 |\n\n### 时间估算\n\n- 基准：Round 1 跑了 ~6h15m（250 problems，importance s015+s020 并行）\n- **Round 3 完成**：约 May 17 00:10 CST\n- **Round 4 开始→完成**：约 00:10 → 06:25 CST\n- **importance_s030 完成**：约 00:30 CST（独立于主脚本）\n- **全部 8 条件完成**：约 **May 17 06:25 CST**（~7h 后）\n\n### 异常\n\n- importance_s030 的 `profiling_results.json` 目前是 116 字节的 sentinel 占位文件——主脚本 Round 2 误判为已完成而跳过。实际由 `chain_s030_after_s025.sh`（PID 562663）在 GPU 0 上跑，guardian 脚本监控中。chain 完成后会用真实数据覆盖 sentinel。\n- random_s015 和 random_s020 的输出目录目前为空——profiling 脚本在全部 250 个 problem 处理完后才一次性写出结果文件（非增量写入）。\n- 无 OOM 或错误迹象，4 个 python 进程均在 100% CPU 正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-c8-llama-n250-progress-check.md"
+}

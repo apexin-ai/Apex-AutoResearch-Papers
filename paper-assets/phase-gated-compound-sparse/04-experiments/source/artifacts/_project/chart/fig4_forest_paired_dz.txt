@@ -1,0 +1,1 @@
+DS d_z: 0.44/0.52/0.68/0.80. QW d_z: 0.28/0.55/0.89/1.02. All verified vs cohens_d_bf16.json. Paired sign-flip permutation test, all p<0.05 except QW s015 (p=0.0145).

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "4e72149cf4ced4778ca3",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "exp c3 llama setup",
+  "task_key": "worker_exp_c3-llama-setup_20260514T133515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_c3-llama-setup_20260514T133515.log",
+    "occurrence": 1,
+    "bytes": 1537264,
+    "sha256": "ee4b75c2cbef0fbf3dd906d1db1ee392544ab032a428a0a37fbaefe252c4e0bc"
+  },
+  "statistics": {
+    "messages": 874,
+    "user_turns": 1,
+    "tool_calls": 315,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 4,
+      "assistant": 232,
+      "tool_call": 315,
+      "tool_result": 315,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 568,
+      "chunks": [
+        {
+          "path": "4e72149cf4ced4778ca3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e72149cf4ced4778ca3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e72149cf4ced4778ca3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e72149cf4ced4778ca3-part-0004.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 306,
+      "chunks": [
+        {
+          "path": "4e72149cf4ced4778ca3-part-0004.json",
+          "message_count": 152
+        },
+        {
+          "path": "4e72149cf4ced4778ca3-part-0005.json",
+          "message_count": 154
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-c3-llama-setup.md"
+}

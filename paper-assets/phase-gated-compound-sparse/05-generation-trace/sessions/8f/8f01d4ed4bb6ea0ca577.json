@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8f01d4ed4bb6ea0ca577",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper fix all tex issues",
+  "task_key": "worker_paper_fix-all-tex-issues_20260514T102420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-all-tex-issues_20260514T102420.log",
+    "occurrence": 1,
+    "bytes": 616605,
+    "sha256": "6527ff4f8cc542fd7ff6912b10277b9de143ed1e3716d11e708cbc5b8d733774"
+  },
+  "statistics": {
+    "messages": 164,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "8f01d4ed4bb6ea0ca577-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "8f01d4ed4bb6ea0ca577-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-all-tex-issues.md"
+}

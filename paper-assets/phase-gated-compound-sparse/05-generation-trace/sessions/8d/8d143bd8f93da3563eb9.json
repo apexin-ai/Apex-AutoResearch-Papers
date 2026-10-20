@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d143bd8f93da3563eb9",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code m1 bootstrap ci prep",
+  "task_key": "worker_code_m1-bootstrap-ci-prep_20260514T030631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_m1-bootstrap-ci-prep_20260514T030631_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "d7289faecb231179bda56a1df8b58d547dff42f201beae4a339828b813b972e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**脚本**: `/root/autodl-tmp/pacs/analysis/bootstrap_phase_gradient.py`\n\n**Dry-run 结果** (s=0.15, importance + random):\n\n| 指标 | Importance | Random |\n|---|---|---|\n| Gradient (median_low/median_high) | **14.27** [11.97, 17.42] | **1.17** [0.93, 1.60] |\n| Cohen's d (low vs high) | 0.71 | 0.01 |\n| MW-U p (low vs high) | 2.98e-116 | 0.352 (ns) |\n| Imp vs Rnd gradient p | < 0.001 *** | |\n\n**关键发现**: Importance masking 下 low-sparsity phase 的 II 是 high-sparsity 的 ~14×，CI 远离 1；random masking gradient ~1（无相位依赖）。差异 p < 0.001，phase gradient 统计显著。\n\n**技术说明**: 因 profiling_results.json 不保存 per-segment 原始 II 值，脚本使用 log-normal 参数化重建（精确匹配存储的 mean 和 median），然后做 bootstrap resample。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-m1-bootstrap-ci-prep.md"
+}

@@ -1,0 +1,99 @@
+# ops analyze and launch
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_analyze_and_launch_20260514T174507_result.json`
+- **Structured JSON:** [`1a4e908938005d123c42.json`](../../sessions/1a/1a4e908938005d123c42.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+Registry updated: c3_llama=DONE/success, c5b_pilot=RUNNING. Here's the complete status and analysis.
+
+---
+
+## 实验状态总览
+
+| 实验 | 进度 | 状态 |
+|------|------|------|
+| **c3_llama** | 8/8 conditions | **DONE** ✓ 分析已完成 |
+| **c2_n500_deepseek** | 0/8 (s015 imp 447/500, rand 471/500) | RUNNING |
+| **c2_qw_n500** | 0/8 (s015 imp 332/500, rand 338/500) | RUNNING |
+| **c5b_pilot** | 刚启动 (1/30 @ s025) | RUNNING, PID 153367, GPU 3 |
+
+**GPU 分布**: GPU0=ds_imp, GPU1=ds_rand, GPU2=qw_imp, GPU3=qw_rand+c5b
+
+---
+
+## c3_llama 核心数字 (DeepSeek-R1-Distill-Llama-8B, n=50, 8/8 conditions)
+
+### 1. Importance vs Random Paired d_z + Wilcoxon
+
+| Sparsity | d_z | 95% CI | Wilcoxon p (Bonf.) | Sig. |
+|----------|-----|--------|---------------------|------|
+| s015 | 0.1923 | [-0.0862, 0.4960] | 0.2195 | No |
+| s020 | 0.2550 | [-0.0248, 0.5381] | 0.2527 | No |
+| s025 | 0.2902 | [0.0081, 0.6121] | 0.0834 | No |
+| **s030** | **0.3352** | **[0.0606, 0.6629]** | **0.0294** | **Yes** |
+
+### 2. Median Diff (importance - random) + Bootstrap CI
+
+| Sparsity | Median Diff | 95% CI | Crosses Zero |
+|----------|-------------|--------|--------------|
+| s015 | 0.020257 | [0.001649, 0.043479] | **No** |
+| s020 | 0.022135 | [-0.090492, 0.187002] | Yes |
+| s025 | 0.094734 | [-0.003660, 0.302884] | Yes |
+| s030 | 0.356166 | [-0.069057, 0.544225] | Yes |
+
+### 3. Phase Gradient Monotonicity
+
+d_z sequence: **0.1923 → 0.2550 → 0.2902 → 0.3352**
+**Monotonically increasing: Yes**
+
+### 4. Phase Gradient d_z (Importance Only)
+
+| Sparsity | d_z | 95% CI | Interpretation |
+|----------|-----|--------|----------------|
+| s015 | 1.0079 | [0.5930, 1.7025] | **large** |
+| s020 | 1.1080 | [0.8144, 1.5698] | **large** |
+| s025 | 1.1227 | [0.8735, 1.5768] | **large** |
+| s030 | 1.0038 | [0.8099, 1.3519] | **large** |
+
+### 5. 跨架构对比 (n=50 reference, phase gradient d_z)
+
+| Sparsity | DeepSeek-7B | LLaMA-8B | Qwen-7B | LLaMA-DS delta |
+|----------|-------------|----------|---------|----------------|
+| s015 | 0.44 [0.35, 0.78] | **1.01** [0.59, 1.70] | 0.28 [-0.01, 0.60] | +0.57 |
+| s020 | 0.52 [0.43, 0.90] | **1.11** [0.81, 1.57] | 0.55 [0.23, 1.02] | +0.59 |
+| s025 | 0.68 [0.56, 0.86] | **1.12** [0.87, 1.58] | 0.89 [0.69, 1.20] | +0.44 |
+| s030 | 0.80 [0.67, 1.02] | **1.00** [0.81, 1.35] | 1.02 [0.86, 1.33] | +0.20 |
+
+**趋势**: 三架构 d_z 均随 sparsity 递增。LLaMA 在低 sparsity 处效应最强 (d_z~1.0 全层级 "large")，高 sparsity (s030) 三者趋同 (DS=0.80, LLaMA=1.00, Qwen=1.02)。Qwen s015 CI 跨零 [-0.01, 0.60]，是预注册条件下的 boundary case。
+
+---
+
+## c2 (n=500)
+
+**无法分析** — 仅 s015 在跑，c2_ds_rand 预计 ~30min 完成 s015，c2_qw_imp 预计 ~3h。每个模型还需 s020/s025/s030 各 2 条件 (6 more conditions each)，预计分别需额外 ~12h (ds) / ~18h (qw)。
+
+---
+
+## 已完成操作
+
+1. c3_llama 8/8 → 全量分析完成，输出已保存到 `analysis_output/c3_llama_{results,cohens_d,report}.*`
+2. c5b_pilot 已启动: GPU 3, PID 153367, 30 problems × 3 strategies × 2 sparsity (s025 first, then s030)
+3. Registry 已更新: c3_llama → DONE/success, c5b_pilot → RUNNING
+
+---

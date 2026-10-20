@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "dc64e7de80fe24ebc622",
+  "project": "ec_hte_codex_a",
+  "kind": "result",
+  "title": "analysis exp002 negative mechanism audit v2",
+  "task_key": "worker_analysis_exp002_negative_mechanism_audit_v2_20260531T170911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp002_negative_mechanism_audit_v2_20260531T170911_result.json",
+    "occurrence": 1,
+    "bytes": 752849,
+    "sha256": "bb2b0a03add9389e91fc4491ed0b35a33bbaeb79310609a6e46216ddf0544d29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "dc64e7de80fe24ebc622-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp002-negative-mechanism-audit-v2.md"
+}

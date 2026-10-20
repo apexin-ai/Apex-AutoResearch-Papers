@@ -1,0 +1,14 @@
+{
+  "exp_id": "gpqa_ds_importance_s020",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:26:23.378Z",
+    "updated_at": "2026-05-16T15:26:23.378Z"
+  },
+  "timestamp": "2026-05-16T15:26:23.731186+00:00",
+  "trigger": "update_registry"
+}

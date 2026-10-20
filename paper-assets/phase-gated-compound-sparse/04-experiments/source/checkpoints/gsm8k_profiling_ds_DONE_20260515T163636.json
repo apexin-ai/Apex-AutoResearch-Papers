@@ -1,0 +1,38 @@
+{
+  "exp_id": "gsm8k_profiling_ds",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:09:41.908Z",
+    "updated_at": "2026-05-15T16:36:35.964Z",
+    "hypothesis": "GSM8K profiling 验证 compound sparsity severity 的可迁移性：DeepSeek 在 GSM8K n=50 上是否复现 MATH-500 的 phase-gated II pattern（importance > random, 单调递增）",
+    "server": "westd-22162",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T14:12:03.382Z",
+      "finished_at": "2026-05-15T16:36:34.184Z",
+      "training_hours": 2.41
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0,1 python run_profiling_gsm8k.py --model_path checkpoints/DeepSeek-R1-Distill-Qwen-7B --masking_method importance/random --data_path data/gsm8k_test.json --max_problems 50 --seed 42 --min_phase_length 10 --save_generations --sparsity_levels 0.15 0.20 0.25 0.30",
+      "server": "westd-22162",
+      "data_path": "/root/autodl-tmp/pacs/data/gsm8k_test.json",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "gpu": "cuda:0 (importance), cuda:1 (random)",
+      "pid": "245311,245312"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T16:36:35.964Z"
+  },
+  "timestamp": "2026-05-15T16:36:36.243134+00:00",
+  "trigger": "update_registry"
+}

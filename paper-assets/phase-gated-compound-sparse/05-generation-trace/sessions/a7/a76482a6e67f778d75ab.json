@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a76482a6e67f778d75ab",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper page compression",
+  "task_key": "worker_paper_page-compression_20260514T135337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_page-compression_20260514T135337_result.json",
+    "occurrence": 1,
+    "bytes": 1766,
+    "sha256": "87e33b58c2acfdb5b41dcaeb40e08400dd596d41ae1463b4cdcd3e77771f7855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes complete. Here's the summary:\n\n### Changes made\n\n**Structural fixes (main.tex):**\n- Added `\\input{related_work}` after introduction (§2)\n- Added `\\input{analysis}` after results (§6)\n- Moved `\\section*{Limitations}` to after `\\bibliography{references}`, before `\\appendix` (doesn't count toward page limit)\n- Section order: Introduction → Related Work → Background → Methodology → Results → Analysis → Discussion → Conclusion → [References] → [Limitations] → [Appendix]\n\n**analysis.tex — condensed from 571→196 words:**\n- Removed 2 tables and 1 equation (duplicated appendix_moved.tex labels)\n- Kept core findings: discrimination collapse + entropy redistribution summary\n- References appendix tables: `Table~\\ref{tab:discrimination-metrics-full}` and `Table~\\ref{tab:entropy-deltas}`\n\n**conclusion.tex — extracted Limitations into limitations.tex:**\n- Conclusion is now body-only (114 words)\n- Limitations (186 words) in separate file, placed after references\n\n**Cross-reference fixes:**\n- introduction.tex: `Appendix~\\ref{app:analysis}` → `\\S\\ref{sec:analysis}`\n- results.tex: `Appendix~\\ref{app:analysis}` → `\\S\\ref{sec:analysis}`\n\n**appendix_moved.tex — added header comment** documenting what's in body vs appendix.\n\n### Page estimate\n\n| Component | Words | Est. pages |\n|-----------|-------|-----------|\n| Body text (9 sections) | 2789 | ~4.0 |\n| Body floats (3 tables + 1 figure + 2 eqs) | — | ~1.1 |\n| Title + abstract | 292 | ~0.5 |\n| Spacing/headers | — | ~0.5 |\n| **Body total** | — | **~6.1** |\n| Limitations (not counted) | 186 | ~0.3 |\n| Appendix (not counted) | 2784 | ~5.0 |\n\n**Body ≈ 6 pages — well within the ≤8 page limit.**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-page-compression.md"
+}

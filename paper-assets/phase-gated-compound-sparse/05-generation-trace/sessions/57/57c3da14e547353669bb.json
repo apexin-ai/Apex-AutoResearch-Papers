@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57c3da14e547353669bb",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "research v2 rescore check",
+  "task_key": "worker_research_v2_rescore_check_20260515T225229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_v2_rescore_check_20260515T225229_result.json",
+    "occurrence": 1,
+    "bytes": 1636,
+    "sha256": "dc81a200a51d9f8c2b58448bddd76d966799e93f8e4394112c0b8a54c28ddc0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已经很清楚了。总结如下：\n\n---\n\n## 结论\n\n### v2 rescore 改了什么\n\n`rescore_accuracy.py` 是一个**纯离线重评分脚本**，改动内容：\n\n1. **增强 answer matcher**：增加了对 radical 简化（`\\sqrt{117}` → `3\\sqrt{13}`）、度数符号（`72^\\circ` = `72`）、分数与小数互转（`\\frac{1}{2}` = `0.5`）的匹配支持\n2. **新增 truncation 诊断指标**：`output_truncated_count/rate`、`extraction_failure_count/rate`\n3. 对已有 JSON 中的每个 item 重新执行 `answers_match(pred, ref)`，覆写 `match` 字段和 accuracy\n\n### 是否需要 GPU\n\n**不需要。** rescore 只读已有 generation JSON 中的 `pred_answer` 和 `ref_answer` 字段，重新做字符串匹配，完全是 CPU 离线操作。不需要加载模型，不需要重新推理。\n\n### batch1 需要 rescore 的文件\n\n脚本 `main()` 中硬编码的 target_files：\n\n| 文件 | 对应条件 |\n|------|----------|\n| `accuracy_eval_qw_s015.json` | Qwen s015 |\n| `accuracy_eval_qw_s020.json` | Qwen s020 |\n| `accuracy_eval_qw_s025.json` | Qwen s025 |\n| `accuracy_eval_qw_s030.json` | Qwen s030 |\n| `accuracy_eval_ds_s015.json` | DeepSeek s015 |\n| `accuracy_eval_ds_s030.json` | DeepSeek s030 |\n| `accuracy_eval_ds_dense_n50.json` | DeepSeek dense |\n\n这些文件全部存在于 `/root/autodl-tmp/pacs/analysis_output/`。\n\n### rescore 命令\n\n```bash\ncd /root/autodl-tmp/pacs && python rescore_accuracy.py\n```\n\n脚本会先跑 unit test 验证 matcher 正确性，然后逐文件 rescore 并 in-place 覆写 JSON，打印 accuracy 变化对比表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-v2-rescore-check.md"
+}

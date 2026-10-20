@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e4aa2ae70eb36fe1762",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "monitor qwen s015 completion",
+  "task_key": "worker_monitor_qwen_s015_completion_20260514T184826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_qwen_s015_completion_20260514T184826_result.json",
+    "occurrence": 1,
+    "bytes": 72,
+    "sha256": "f0c7f2c793993207184900f4c788e6a4f093fba6bd0bfbc848d32d95a42c0135"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4.5 分钟后自动回来检查 Qwen s015 是否完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-qwen-s015-completion.md"
+}

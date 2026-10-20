@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04117346362471622966",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose v4 legacy s02 s03",
+  "task_key": "worker_diagnose_v4_legacy_s02_s03_20260514T000438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v4_legacy_s02_s03_20260514T000438_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "ed91aa8994d4553d1a083c98b8d029d510e39b0ad1300fe3f2f4b96419b7a48d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**s02/s03 不是崩溃，是正常完成退出。** s01 也几乎同时完成。三组 legacy 实验全部 50/50 problems 跑完。\n\n### 结果摘要\n\n| 实验 | sparsity | ci_overlap | sign_reversal | 状态 |\n|------|----------|-----------|--------------|------|\n| s01 (v4a) | 0.1 | FAIL | FAIL | DONE ✓ |\n| s02 (v4b) | 0.2 | **PASS** | FAIL | DONE ✓ |\n| s03 (v4c) | 0.3 | FAIL | FAIL | DONE ✓ |\n| random_r2 | 0.1-0.3 | — | — | [27/50] 运行中 |\n\n### 关键发现\n\n1. **不是 OOM。** Legacy hardcoded importance path 不调用 `output_attentions=True`，避开了之前 v4a/b/c_r2 的 OOM 代码路径。GPU 1/2 空闲（0MiB）是因为进程正常退出释放了显存。\n\n2. **s02 (sparsity=0.2) 最有意义** — ci_overlap_test PASS，II 为正（~21，super-additive），KV eviction 是 perplexity 退化主因。\n\n3. **s03 (sparsity=0.3) 出现负 II (-224.5) 但 CI 跨零**，统计不显著。\n\n4. **下一步**：等 random_r2 完成后做 importance vs random 交互方向对比。\n\nRegistry 已全部更新为 DONE，memory.md 已追加诊断记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-v4-legacy-s02-s03.md"
+}

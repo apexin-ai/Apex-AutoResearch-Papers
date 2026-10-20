@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "1101c0810f89d7798eeb",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "code c10 s020 s025 gpu1",
+  "task_key": "worker_code_c10_s020_s025_gpu1_20260516T033637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c10_s020_s025_gpu1_20260516T033637.log",
+    "occurrence": 1,
+    "bytes": 678530,
+    "sha256": "bcaa071486b55f015df9ff3704d5c352b2d094161efa3bb74670a275681dfb9b"
+  },
+  "statistics": {
+    "messages": 540,
+    "user_turns": 0,
+    "tool_calls": 230,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 76,
+      "tool_call": 230,
+      "tool_result": 230,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 540,
+      "chunks": [
+        {
+          "path": "1101c0810f89d7798eeb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1101c0810f89d7798eeb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1101c0810f89d7798eeb-part-0003.json",
+          "message_count": 180
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-c10-s020-s025-gpu1.md"
+}

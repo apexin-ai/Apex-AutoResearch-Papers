@@ -1,0 +1,8 @@
+2026-05-16 16:58:35,627 WARNING core.tools.dream  [dream] Phase 2 worst parse failed (attempt 0): while parsing a block mapping
+  in "<unicode string>", line 96, column 5:
+      - name: "c2_think_phase_validation"
+        ^
+expected <block end>, but found '<scalar>'
+  in "<unicode string>", line 103, column 276:
+     ...  mechanistic story because the "phases" are statistical artifact ... 
+                                         ^

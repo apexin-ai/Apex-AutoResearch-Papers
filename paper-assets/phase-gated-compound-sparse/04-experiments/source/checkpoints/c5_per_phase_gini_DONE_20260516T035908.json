@@ -1,0 +1,145 @@
+{
+  "exp_id": "c5_per_phase_gini",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:32:42.922Z",
+    "updated_at": "2026-05-16T03:59:07.635Z",
+    "spec": {
+      "hypothesis": "计算 per-phase Gini delta（high_phase vs low_phase），验证低 sparsity 阶段 Gini collapse 更大，支撑 discrimination collapse 机制说明",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct",
+      "data_path": "existing c4_entropy profiling output",
+      "data_count": 30,
+      "server": "westd-22162",
+      "seed": 42,
+      "claims": [
+        "C4"
+      ],
+      "command": "python analysis_c5_gini.py (2 processes: DS on GPU 0, QW on GPU 1)",
+      "checkpoint_path": "/root/autodl-tmp/pacs/results_c5_gini.json",
+      "log_path": "/root/autodl-tmp/pacs/logs/c5_gini*.log"
+    },
+    "metrics": {
+      "qw_complete": true,
+      "ds_complete": true,
+      "n_problems": 30,
+      "qw_dense_gini_baselines": {
+        "low": 0.2675,
+        "mid": 0.2078,
+        "high": 0.2599
+      },
+      "qw_importance": {
+        "s015": {
+          "global_delta": -0.0103,
+          "low_delta": -0.0165,
+          "mid_delta": -0.0094,
+          "high_delta": -0.012
+        },
+        "s020": {
+          "global_delta": -0.0121,
+          "low_delta": -0.02,
+          "mid_delta": -0.0115,
+          "high_delta": -0.0143
+        },
+        "s025": {
+          "global_delta": -0.01,
+          "low_delta": -0.0286,
+          "mid_delta": -0.0168,
+          "high_delta": -0.0207
+        },
+        "s030": {
+          "global_delta": -0.0202,
+          "low_delta": -0.035,
+          "mid_delta": -0.0183,
+          "high_delta": -0.0239
+        }
+      },
+      "qw_random": {
+        "s015": {
+          "global_delta": -0.0186,
+          "low_delta": -0.0083,
+          "mid_delta": -0.0038,
+          "high_delta": -0.0036
+        },
+        "s020": {
+          "global_delta": -0.0229,
+          "low_delta": -0.0119,
+          "mid_delta": -0.0053,
+          "high_delta": -0.0067
+        },
+        "s025": {
+          "global_delta": -0.0337,
+          "low_delta": -0.0014,
+          "mid_delta": -0.0081,
+          "high_delta": 0.0045
+        },
+        "s030": {
+          "global_delta": -0.0447,
+          "low_delta": -0.0221,
+          "mid_delta": -0.0077,
+          "high_delta": -0.0061
+        }
+      },
+      "ds_importance": {
+        "s015": {
+          "global_delta": -0.0301,
+          "low_delta": -0.0163,
+          "mid_delta": -0.0073,
+          "high_delta": -0.0152
+        },
+        "s020": {
+          "global_delta": -0.0404,
+          "low_delta": -0.0209,
+          "mid_delta": -0.0092,
+          "high_delta": -0.02
+        },
+        "s025": {
+          "global_delta": -0.0647,
+          "low_delta": -0.0313,
+          "mid_delta": -0.0133,
+          "high_delta": -0.0267
+        },
+        "s030": {
+          "global_delta": -0.0806,
+          "low_delta": -0.0373,
+          "mid_delta": -0.0183,
+          "high_delta": -0.0314
+        }
+      },
+      "ds_random": {
+        "s015": {
+          "global_delta": -0.0309,
+          "low_delta": -0.0102,
+          "mid_delta": -0.0006,
+          "high_delta": -0.0062
+        },
+        "s020": {
+          "global_delta": -0.0403,
+          "low_delta": -0.012,
+          "mid_delta": -0.0007,
+          "high_delta": -0.0085
+        },
+        "s025": {
+          "global_delta": -0.062,
+          "low_delta": -0.015,
+          "mid_delta": -0.0096,
+          "high_delta": -0.0112
+        },
+        "s030": {
+          "global_delta": -0.0732,
+          "low_delta": -0.0183,
+          "mid_delta": -0.0093,
+          "high_delta": -0.0138
+        }
+      },
+      "key_finding": "Both models: importance pruning low-phase Gini delta consistently largest and monotonically increases with sparsity (DS: -0.016 to -0.037; QW: -0.017 to -0.035). Random pruning shows weaker per-phase structure. Supports discrimination collapse hypothesis."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T03:58:14.054Z"
+  },
+  "timestamp": "2026-05-16T03:59:08.220002+00:00",
+  "trigger": "update_registry"
+}

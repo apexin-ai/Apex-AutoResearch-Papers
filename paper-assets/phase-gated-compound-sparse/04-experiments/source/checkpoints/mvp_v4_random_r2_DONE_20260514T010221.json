@@ -1,0 +1,29 @@
+{
+  "exp_id": "mvp_v4_random_r2",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:22:56.521Z",
+    "updated_at": "2026-05-14T01:02:21.376Z",
+    "hypothesis": "v4 retry: random masking baseline, sparsity 0.1,0.15,0.2,0.25,0.3, cuda:3",
+    "spec": {
+      "command": "python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4_random_r2 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random",
+      "server": "westd-22162",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "gpu": "cuda:3",
+      "pid": "32187"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_v4_random_r2/profiling_results.json",
+    "log_path": "/tmp/mvp_v4_random_r2.log",
+    "completed_at": "2026-05-14T01:02:21.376Z"
+  },
+  "timestamp": "2026-05-14T01:02:21.449130+00:00",
+  "trigger": "update_registry"
+}

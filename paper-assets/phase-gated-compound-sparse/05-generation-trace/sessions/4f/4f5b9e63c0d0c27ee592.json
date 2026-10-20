@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f5b9e63c0d0c27ee592",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops ssh health check",
+  "task_key": "worker_ops_ssh-health-check_20260514T162709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ssh-health-check_20260514T162709_result.json",
+    "occurrence": 1,
+    "bytes": 1555,
+    "sha256": "de9301be876e83666851896a1b4d2d3dd0bd2eb8bd4e3e38dfdf35e9d5c099a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇总\n\n### GPU 使用情况\n\n| GPU | VRAM | 占比 | 利用率 | 进程 |\n|-----|------|------|--------|------|\n| 0 | 30071 / 97887 MiB | 31% | 79% | c2_n500_deepseek imp (PID 130124) |\n| 1 | 33919 / 97887 MiB | 35% | 78% | c2_n500_deepseek rand (PID 130263) |\n| 2 | 53054 / 97887 MiB | 54% | 89% | c2_qw_n500 imp (131864, 30752M) + c3_llama imp (146382, 22288M) |\n| 3 | 53824 / 97887 MiB | 55% | 89% | c2_qw_n500 rand (132002, 31364M) + c3_llama rand (146132, 22446M) |\n\n### 重复进程\nPID 132389、132392 **已死**。\n\n### 各实验进度\n\n| 实验 | GPU | Condition | 进度 | 状态 |\n|------|-----|-----------|------|------|\n| c2_n500_deepseek | 0 | imp s=0.15 | **300/500** (60%) | 正常 |\n| c2_n500_deepseek | 1 | rand s=0.15 | **319/500** (64%) | 正常 |\n| c2_qw_n500 | 2 | imp s=0.15 | **235/500** (47%) | 正常 |\n| c2_qw_n500 | 3 | rand s=0.15 | **240/500** (48%) | 正常 |\n| c3_llama | 2 | imp s=0.25 | **13/50** (26%) | 正常 |\n| c3_llama | 3 | rand s=0.25 | **15/50** (30%) | 正常 |\n\nc3_llama 已完成 s=0.15 和 s=0.20，当前在跑 s=0.25（最后一个 condition）。\n\n### GPU 2+3 共享情况\nc2_qw_n500 和 c3_llama **确实同时跑在 GPU 2/3 上**，但 96GB 显存充裕（54-55% 占用），**无 OOM 风险**。利用率 89% 比 GPU 0/1 的 78-79% 高，说明两个实验在共享计算资源，但运行正常无干扰。\n\n### 磁盘\n`/root/autodl-tmp`: 84G / 250G，剩余 167G (66%)。\n\n### 异常\n无。所有 6 个实验进程均正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ssh-health-check.md"
+}

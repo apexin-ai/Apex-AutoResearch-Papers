@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e32a2bb3b5083e4ffb4",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code gsm8k profiling prep",
+  "task_key": "worker_code_gsm8k_profiling_prep_20260515T141031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gsm8k_profiling_prep_20260515T141031_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "59fd5850a19e28bf8b174dfdf72b95450e73eb661466a92479ef408c1c7c2320"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**服务器上的文件** (`/root/autodl-tmp/pacs/`):\n- `run_profiling_gsm8k.py` — GSM8K profiling 脚本，基于 `run_profiling_qwen.py`，复用相同 II 计算和 phase segmentation\n- `data/gsm8k_test.json` — 预下载的 GSM8K test split (1319 题)\n- `run_gsm8k_ds_gpu0.sh` — DeepSeek 全部 8 conditions (GPU 0)\n- `run_gsm8k_qw_gpu1.sh` — Qwen 全部 8 conditions (GPU 1)\n\n**启动命令**:\n```bash\nnohup bash run_gsm8k_ds_gpu0.sh > gsm8k_profiling/ds_full.log 2>&1 &\nnohup bash run_gsm8k_qw_gpu1.sh > gsm8k_profiling/qw_full.log 2>&1 &\n```\n\n**Dry-run 验证通过**: 2 题 × 2048 tokens，phase 检测正常(18/11 phases)，II 计算正确，`per_problem_ii` 格式与 `extract_table2.py` 兼容。\n\n**预估运行时间**: ~5.5 小时 (两个模型并行在 GPU 0/1 上)。\n\n**与 MATH-500 的差异**: 仅数据加载方式不同（随机抽样 vs 分层抽样），prompt 模板、II 公式、phase segmentation、输出格式完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gsm8k-profiling-prep.md"
+}

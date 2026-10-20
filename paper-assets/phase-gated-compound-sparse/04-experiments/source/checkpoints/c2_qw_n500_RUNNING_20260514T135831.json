@@ -1,0 +1,33 @@
+{
+  "exp_id": "c2_qw_n500",
+  "project": "phase-gated-compound-sparse",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:34:05.213Z",
+    "updated_at": "2026-05-14T13:58:30.906Z",
+    "hypothesis": "C2: Qwen n=500 统计功效提升。将 Qwen 8 conditions (imp/rand × 4 sparsity) 从 n=50 扩到 n=500，与 DeepSeek 对称验证。",
+    "spec": {
+      "command": "bash run_c2_qw_n500_gpu2.sh + run_c2_qw_n500_gpu3.sh",
+      "server": "westd-22162",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 500,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 0,
+      "gpu_ids": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "dtype": "bfloat16",
+      "conditions": "8 conditions: importance×4 sparsity (gpu2) + random×4 sparsity (gpu3), sparsity=[0.15,0.20,0.25,0.30]",
+      "gpu2_conditions": "imp_s015, imp_s020, imp_s025, imp_s030",
+      "gpu3_conditions": "rand_s015, rand_s020, rand_s025, rand_s030",
+      "model_path": "/root/autodl-tmp/models/Qwen2.5-7B-Instruct",
+      "output_dirs": "profiling_output_n500_bf16_qw_{imp,rand}_s{015,020,025,030}"
+    }
+  },
+  "timestamp": "2026-05-14T13:58:31.092379+00:00",
+  "trigger": "update_registry"
+}

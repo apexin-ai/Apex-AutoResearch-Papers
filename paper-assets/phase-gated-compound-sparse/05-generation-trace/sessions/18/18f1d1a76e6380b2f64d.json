@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18f1d1a76e6380b2f64d",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code mvp protocol fix",
+  "task_key": "worker_code_mvp-protocol-fix_20260513T183157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-protocol-fix_20260513T183157_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "8dc115b5fd65df0273c48faf0b2ac86f6044afeead410b86d721975b8e5dc65f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes complete. Summary of what was done:\n\n**Bug #1 (II formula)**: Changed from `-ppl_both + ppl_attn + ppl_kv - ppl_dense` to `R_both - R_attn - R_kv + 1` where `R_x = ppl_x / ppl_dense`. Added `r_attn`, `r_kv`, `r_both` fields to `InteractionResult`. Updated all comments.\n\n**Bug #2 (token_indices)**: Added `@property token_indices` to `Phase` dataclass in `phase_segmentation.py:35-37`, returns `list(range(self.start, self.end))`.\n\n**Bug #3 (run_profiling.py)**: Complete rewrite — now runs full MVP pipeline: stratified sampling → generation → phase segmentation → per-phase × per-level (0.3, 0.5) × 4-condition perplexity → II computation → bootstrap 1000 resamples → CI → pass/fail (OR logic: CI non-overlap OR sign reversal) → structured JSON output.\n\n**Protocol #1-6**: All implemented:\n- Two sparsity levels (0.3, 0.5), unified `sparsity_level` parameter\n- Bootstrap with 1000 resamples, percentile CI, min-segment warning\n- OR-logic pass/fail (CI non-overlap or sign reversal across phase pairs)\n- `stratified_sample_math500` in new `pacs/utils/data_utils.py`\n- JSON output matches specified schema exactly\n- Directory structure preserved\n\n**No intermediate files** to delete (`_project/intermediate/` doesn't exist)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-protocol-fix.md"
+}

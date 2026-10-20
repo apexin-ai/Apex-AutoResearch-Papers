@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0515027dafb737ca126",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_10_1778846485.md",
+  "task_key": "loop_10_1778846485",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778846485.md",
+    "occurrence": 1,
+    "bytes": 4647,
+    "sha256": "77f78892017672377b56680d30b79c6fdf20870907e68dbea62432cbbd5f424a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T04:59:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-22162 cuda:0/1/2/3，无其他可用 GPU\n- 当前分配：cuda:0+1 → c2_n500_deepseek | cuda:2+3 → c2_qw_n500_r3，4 卡全占满\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，服务器无 .venv\n- n=500 分析必须用 Wilcoxon p + median_diff 为主指标，d_z 仅辅助（D064）；涉及 random 的对比不报 d_z（D059）\n- 论文叙事禁止说 \"random 无 compound effect\"——D063 已确认 random s025 跨模型显著，必须用 threshold story\n- C8 (LLaMA) 禁用 \"confirms\"，只能用 \"suggests\"/\"provides partial support\"（D060）\n- 截稿 2026-05-25，距今 10 天，n=500 是最后一批实验，完成后直接进论文更新+审稿流程\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，无 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据集：`/root/autodl-tmp/pacs/data/MATH-500/`（Qwen）和 `/root/autodl-tmp/pacs/data/math500.json`（DeepSeek）\n- 分析脚本：`/root/autodl-tmp/pacs/analyze_n500_unified.py --csv --latex`\n- 活跃进程：\n  - c2_n500_deepseek: screen `c2_n500_gpu0`/`c2_n500_gpu1`（cuda:0+1），PID 通过 screen 管理\n  - c2_qw_n500_r3: screen `c2_qw_gpu2`/`c2_qw_gpu3`（cuda:2+3），PID 159269/159794\n- Cron 监控：c2_n500_deepseek 和 c2_qw_n500_r3 两个 cron 活跃（reconcile 确认 still running）\n- W&B：无（profiling 实验，非训练）\n\n### 3. 📊 当前状态\n两个 n=500 profiling 实验均在 RUNNING：\n\n- **c2_qw_n500_r3**（Qwen, cuda:2+3）：s015 ✅ s020 ✅ s025 运行中（imp 362/500, rand 337/500），s030 待排队。ETA 全部完成 ~13:27 UTC+8（约 2026-05-15）\n- **c2_n500_deepseek**（DeepSeek, cuda:0+1）：s015 ✅ s020 ✅ s025 运行中（imp 233/500, rand 285/500），s030 待排队。ETA 全部完成 ~15:30 UTC+8（约 2026-05-15）\n\nQwen 预计先完成（~13:10-13:27），DeepSeek 后完成（~15:00-15:30）。\n\n当前无活跃 Worker（池=0）。论文 §1-§8 全文已完成（基于 n=50 数据），PDF 可编译。Group C 审稿并行进行中。\n\n### 4. 📋 待办（条件触发式）\n- **c2_qw_n500_r3 cron 回调（DONE/ANALYZING）** → spawn Worker 跑 `analyze_n500_unified.py` Qwen 部分，检查 random s030 显著性 + 4-level 排列检验\n- **c2_n500_deepseek cron 回调（DONE/ANALYZING）** → spawn Worker 跑全量分析（双模型），生成 n=500 完整统计表\n- **双模型分析全部完成** → 汇报 Director（事实+对比+建议），核心检查项：\n  1. random s030 是否显著（预期是）\n  2. 4-level dose-response 排列检验 p<0.05\n  3. Qwen s015 在 n=500 下是否仍显著（memory.md 已确认 p<0.001 ✅）\n  4. DeepSeek s020→s025 d_z variance anomaly 是否在 n=500 下缓解\n- **Director 确认分析结果** → 派 Paper Agent 统一更新论文：n=500 tables/figures + random threshold story (D063) + d_z methodology note (D064) + C5b §8 future work + C8 限定语\n- **论文更新完成** → 提交 Group C full review\n\n### 5. 🎯 战略上下文\n**核心结论链**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（这是主发现）。Random masking 存在 threshold ~s020-s025（D063），低于阈值 NS，高于阈值显著但幅度远小于 importance (3-15×)。这是 threshold story，不是 binary story。\n\n**关键决策**：\n- D063: random s025 n=500 跨模型显著 → 叙事从 \"7/8 FAIL\" 修正为 threshold story\n- D064: d_z 降为辅助指标（DS s020→s025 variance explosion），主用 Wilcoxon p + median_diff\n- D060: C8 LLaMA 降级 partially_confirmed（交互弱+random 也显著）\n- D056: C5b mitigation gate_failed → future work\n\n**易错点**：\n- 不要把 Qwen 和 DeepSeek 的绝对数值直接对比（Qwen magnitude ~1/4 of DeepSeek，但方向一致）\n- 分析时必须先检查 `analyze_n500_unified.py` 是否已更新为 median_diff 为主指标（D054 切换过）\n- random s025 已确认显著，但 s030 还没跑完——全量分析必须等 s030 到齐后再做 dose-response 排列检验（4!=24 排列，3!=6 无统计效力）\n- 论文更新是一次性统一改，不要分章节滚动（framing-reaudit skill 要求）\n- Worker 池当前=0 是因为 4 卡全在跑 profiling，无 GPU 可分配新实验——但 cron 回调后应立即 spawn 分析 Worker（CPU 任务），不要等\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778846485.md"
+}

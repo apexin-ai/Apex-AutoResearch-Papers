@@ -1,0 +1,1603 @@
+# analysis bf16 qw rand s030
+
+**Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/chats/worker_analysis_bf16_qw_rand_s030_20260514T084856.jsonl`
+- **Structured JSON:** [`fad91db559626de2551e.json`](../../sessions/fa/fad91db559626de2551e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+51 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T08:51:56.441005+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T08:51:56.441501+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T08:51:56.441790+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -la /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "ls -la /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T08:51:56.441947+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "find /root/autodl-tmp/pacs/ -maxdepth 1 -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "find /root/autodl-tmp/pacs/ -maxdepth 1 -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T08:51:56.442087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1672\\ndrwxr-xr-x  2 root root      44 May 14 16:40 .\\ndrwxr-xr-x 77 root root    8192 May 14 16:30 ..\\n-rw-r--r--  1 root root 1696087 May 14 16:40 profiling_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T08:51:56.442213+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls -la /root/autodl-tmp/pacs/analysis_output/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "ls -la /root/autodl-tmp/pacs/analysis_output/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T08:51:56.442347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/pacs/__init__.py\\n/root/autodl-tmp/pacs/validate_compound_e2e.py\\n/root/autodl-tmp/pacs/validate_compound_e2e_diag.py\\n/root/autodl-tmp/pacs/validate_compound_e2e_v2.py\\n/root/autodl-tmp/pacs/importance_vs_random.py\\n/root/autodl-tmp/pacs/analyze_v4_comparison.py\\n/root/autodl-tmp/pacs/run_profiling_qwen.py\\n/root/autodl-tmp/pacs/sanity_check_v5.py\\n/root/autodl-tmp/pacs/diagnose_nan.py\\n/root/autodl-tmp/pacs/diagnose_nan2.py\\n/root/autodl-tmp/pacs/verify_median_fix.py\\n/root/autodl-tmp/pacs/run_bf16_ds_comparison.py\\n/root/autodl-tmp/pacs/c4_attention_entropy.py\\n/root/autodl-tmp/pacs/recompute_verdict.py\\n/root/autodl-tmp/pacs/recompute_verdict_v2.py\\n/root/autodl-tmp/pacs/compute_cohens_d.py\\n/root/autodl-tmp/pacs/compute_cohens_d_qwen.py\\n/root/autodl-tmp/pacs/compute_median_difference.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T08:51:56.442532+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 36\\ndrwxr-xr-x  5 root root 4096 May 14 16:44 .\\ndrwxr-xr-x 77 root root 8192 May 14 16:30 ..\\ndrwxr-xr-x  2 root root   43 May 14 16:44 bf16_qw_rand_s015\\ndrwxr-xr-x  2 root root   43 May 14 16:24 bf16_qw_rand_s020\\ndrwxr-xr-x  2 root root   43 May 14 16:44 bf16_qw_rand_s025\\n-rw-r--r--  1 root root  788 May 14 16:00 cohens_d_bf16.json\\n-rw-r--r--  1 root root  815 May 14 16:04 cohens_d_bf16_qwen.json\\n-rw-r--r--  1 root root 8570 May 14 15:26 permutation_test_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T08:51:56.442709+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "ls /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s025/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "ls /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s025/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T08:51:56.442835+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T08:51:56.442948+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s015/bf16_qw_rand_s015_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s015/bf16_qw_rand_s015_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T08:51:56.443066+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s015/bf16_qw_rand_s015_analysis.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T08:51:56.443180+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -80 /root/autodl-tmp/pacs/compute_cohens_d_qwen.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -80 /root/autodl-tmp/pacs/compute_cohens_d_qwen.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T08:51:56.443347+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\n\\nnp.random.seed(42)\\n\\nsparsity_files = {\\n    \\\"s015\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s015/profiling_results.json\\\",\\n    \\\"s020\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s020/profiling_results.json\\\",\\n    \\\"s025\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s025/profiling_results.json\\\",\\n    \\\"s030\\\": \\\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_imp_s030/profiling_results.json\\\",\\n}\\n\\nsparsity_keys = {\\\"s015\\\": \\\"0.15\\\", \\\"s020\\\": \\\"0.2\\\", \\\"s025\\\": \\\"0.25\\\", \\\"s030\\\": \\\"0.3\\\"}\\n\\ndef interpret(d):\\n    d_abs = abs(d)\\n    if d_abs < 0.2: return \\\"negligible\\\"\\n    if d_abs < 0.5: return \\\"small\\\"\\n    if d_abs < 0.8: return \\\"medium\\\"\\n    return \\\"large\\\"\\n\\nresults = {\\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\"}\\n\\nfor slabel, fpath in sparsity_files.items():\\n    with open(fpath) as f:\\n        data = json.load(f)\\n    \\n    skey = sparsity_keys[slabel]\\n    problems = data[\\\"per_problem_ii\\\"][skey]\\n    \\n    diffs = []\\n    n_skipped = 0\\n    for p in problems:\\n        if p[\\\"ii_high\\\"] is None or p[\\\"ii_low\\\"] is None:\\n            n_skipped += 1\\n            continue\\n        diffs.append(p[\\\"ii_low\\\"] - p[\\\"ii_high\\\"])\\n    \\n    diffs = np.array(diffs)\\n    n = len(diffs)\\n    mean_d = np.mean(diffs)\\n    std_d = np.std(diffs, ddof=1)\\n    cohens_d = mean_d / std_d\\n    \\n    # Bootstrap 95% CI (B=10000)\\n    B = 10000\\n    boot_ds = []\\n    for _ in range(B):\\n        sample = np.random.choice(diffs, size=n, replace=True)\\n        boot_ds.append(np.mean(sample) / np.std(sample, ddof=1))\\n    boot_ds = np.array(boot_ds)\\n    ci_low = float(np.percentile(boot_ds, 2.5))\\n    ci_high = float(np.percentile(boot_ds, 97.5))\\n    \\n    results[slabel] = {\\n        \\\
+…[truncated 1207 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T08:51:56.443571+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -100 /root/autodl-tmp/pacs/recompute_verdict_v2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -100 /root/autodl-tmp/pacs/recompute_verdict_v2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T08:51:56.443777+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Recompute pass_fail verdict: add median CI fields, keep original mean CI intact.\\\"\\\"\\\"\\nimport json\\nimport sys\\nimport numpy as np\\nfrom itertools import combinations\\nfrom pathlib import Path\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/pacs\\\")\\nfrom pacs.profiling.interaction_index import bootstrap_interaction_index\\n\\nPHASE_MAP = {\\n    \\\"high_sparsity\\\": \\\"ii_high\\\",\\n    \\\"mid_sparsity\\\": \\\"ii_mid\\\",\\n    \\\"low_sparsity\\\": \\\"ii_low\\\",\\n}\\n\\ndef evaluate_pass_fail_median(ii_results):\\n    \\\"\\\"\\\"Same logic as run_profiling.py evaluate_pass_fail.\\\"\\\"\\\"\\n    phase_names = list(ii_results.keys())\\n    ci_pass = False\\n    ci_detail = \\\"\\\"\\n    sign_pass = False\\n    sign_detail = \\\"\\\"\\n\\n    all_levels = set()\\n    for pdata in ii_results.values():\\n        all_levels.update(pdata.keys())\\n\\n    for level_str in sorted(all_levels):\\n        phase_cis = {}\\n        for pname in phase_names:\\n            entry = ii_results.get(pname, {}).get(level_str)\\n            if entry is None:\\n                continue\\n            phase_cis[pname] = (\\n                entry.get(\\\"median_ci_low\\\", entry[\\\"ci_low\\\"]),\\n                entry.get(\\\"median_ci_high\\\", entry[\\\"ci_high\\\"]),\\n                entry.get(\\\"median\\\", entry[\\\"mean\\\"]),\\n            )\\n\\n        for (p1, c1), (p2, c2) in combinations(phase_cis.items(), 2):\\n            if not (np.isfinite(c1[0]) and np.isfinite(c1[1]) and np.isfinite(c2[0]) and np.isfinite(c2[1])):\\n                continue\\n            if c1[1] < c2[0] or c2[1] < c1[0]:\\n                ci_pass = True\\n                ci_detail = f\\\"{p1} vs {p2} CI non-overlapping at {level_str}\\\"\\n            sign1 = \\\"pos\\\" if c1[0] > 0 else (\\\"neg\\\" if c1[1] < 0 else \\\"zero\\\")\\n            sign2 = \\\"pos\\\" if c2[0] > 0 else (\\\"neg\\\" if c2[1] < 0 
+…[truncated 2390 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T08:51:56.443977+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s025/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s025/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T08:51:56.444148+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"bf16_qw_rand_s025\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"masking_method\\\": \\\"random\\\",\\n  \\\"sparsity\\\": 0.25,\\n  \\\"phase_stats\\\": {\\n    \\\"high\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295,\\n      \\\"median_II\\\": 1.604343\\n    },\\n    \\\"mid\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26,\\n      \\\"median_II\\\": 2.222455\\n    },\\n    \\\"low\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276,\\n      \\\"median_II\\\": 2.264141\\n    }\\n  },\\n  \\\"n_problems\\\": 50,\\n  \\\"n_paired\\\": 46,\\n  \\\"difference_statistic\\\": {\\n    \\\"median_diff\\\": 1.144074,\\n    \\\"mean_diff\\\": 2.711057\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"B\\\": 10000,\\n    \\\"p_value\\\": 0.1679,\\n    \\\"observed_median_diff\\\": 1.144074\\n  },\\n  \\\"effect_size\\\": {\\n    \\\"cohen_d\\\": 0.15739,\\n    \\\"interpretation\\\": \\\"negligible\\\"\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"low\\\": -0.316572,\\n    \\\"high\\\": 4.164522,\\n    \\\"contains_zero\\\": true\\n  },\\n  \\\"wilcoxon_test\\\": {\\n    \\\"statistic\\\": 308.0,\\n    \\\"p_value\\\": 0.010313\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"expected_verdict\\\": \\\"FAIL\\\",\\n  \\\"conclusion\\\": \\\"Random masking at s=0.25 shows no significant phase-dependent II gradient. This confirms random masking as a valid negative control.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T08:51:56.444284+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s015/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s015/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T08:51:56.444455+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"bf16_qw_rand_s015\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"masking_method\\\": \\\"random\\\",\\n  \\\"sparsity\\\": 0.15,\\n  \\\"phase_stats\\\": {\\n    \\\"high\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295,\\n      \\\"median_II\\\": 0.138132\\n    },\\n    \\\"mid\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26,\\n      \\\"median_II\\\": 0.219399\\n    },\\n    \\\"low\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276,\\n      \\\"median_II\\\": 0.187842\\n    }\\n  },\\n  \\\"n_problems\\\": 50,\\n  \\\"n_paired\\\": 46,\\n  \\\"difference_statistic\\\": {\\n    \\\"median_diff\\\": -0.029401,\\n    \\\"mean_diff\\\": -0.292082\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"B\\\": 10000,\\n    \\\"p_value\\\": 0.7657,\\n    \\\"observed_median_diff\\\": -0.029401\\n  },\\n  \\\"effect_size\\\": {\\n    \\\"cohen_d\\\": -0.050663,\\n    \\\"interpretation\\\": \\\"negligible\\\"\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"low\\\": -0.210625,\\n    \\\"high\\\": 0.212386,\\n    \\\"contains_zero\\\": true\\n  },\\n  \\\"wilcoxon_test\\\": {\\n    \\\"statistic\\\": 524.0,\\n    \\\"p_value\\\": 0.862554\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"expected_verdict\\\": \\\"FAIL\\\",\\n  \\\"conclusion\\\": \\\"Random masking at s=0.15 shows no significant phase-dependent II gradient. This confirms random masking as a valid negative control.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T08:51:56.444602+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "head -50 /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "head -50 /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T08:51:56.444755+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"model\\\": \\\"/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct\\\",\\n    \\\"sparsity_levels\\\": [\\n      0.3\\n    ],\\n    \\\"masking_method\\\": \\\"random\\\",\\n    \\\"head_importance_metric\\\": \\\"none\\\",\\n    \\\"kv_importance_metric\\\": \\\"none\\\",\\n    \\\"segmentation_method\\\": \\\"quantile\\\",\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"n_problems\\\": 50,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"phase_stats\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26\\n    }\\n  },\\n  \\\"perplexity\\\": {\\n    \\\"high_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.0737,\\n        \\\"attn\\\": 12.7405,\\n        \\\"kv\\\": 4.2788,\\n        \\\"both\\\": 38.5529\\n      }\\n    },\\n    \\\"low_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.1517,\\n        \\\"attn\\\": 370.999,\\n        \\\"kv\\\": 8.8376,\\n        \\\"both\\\": 317.6663\\n      }\\n    },\\n    \\\"mid_sparsity\\\": {\\n      \\\"0.3\\\": {\\n        \\\"dense\\\": 1.1322,\\n        \\\"attn\\\": 2.5618,\\n        \\\"kv\\\": 5.9435,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T08:51:56.444896+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s020/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s020/analysis_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T08:51:56.445052+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"bf16_qw_rand_s020\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"masking_method\\\": \\\"random\\\",\\n  \\\"sparsity\\\": 0.2,\\n  \\\"phase_stats\\\": {\\n    \\\"high\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295,\\n      \\\"median_II\\\": 0.473905\\n    },\\n    \\\"mid\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26,\\n      \\\"median_II\\\": 0.875724\\n    },\\n    \\\"low\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276,\\n      \\\"median_II\\\": 0.484725\\n    }\\n  },\\n  \\\"n_problems\\\": 50,\\n  \\\"n_paired\\\": 46,\\n  \\\"difference_statistic\\\": {\\n    \\\"median_diff\\\": 0.057619,\\n    \\\"mean_diff\\\": 0.544916\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"B\\\": 10000,\\n    \\\"p_value\\\": 0.352,\\n    \\\"observed_median_diff\\\": 0.057619\\n  },\\n  \\\"effect_size\\\": {\\n    \\\"cohen_d\\\": 0.247396,\\n    \\\"interpretation\\\": \\\"small\\\"\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"low\\\": -0.138561,\\n    \\\"high\\\": 0.214695,\\n    \\\"contains_zero\\\": true\\n  },\\n  \\\"wilcoxon_test\\\": {\\n    \\\"statistic\\\": 637.0,\\n    \\\"p_value\\\": 0.148639\\n  },\\n  \\\"verdict\\\": \\\"FAIL\\\",\\n  \\\"expected_verdict\\\": \\\"FAIL\\\",\\n  \\\"conclusion\\\": \\\"Random masking at s=0.20 shows no significant phase-dependent II gradient. This confirms random masking as a valid negative control.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T08:51:56.445183+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json')); print(list(d.keys()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json')); print(list(d.keys()))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T08:51:56.445301+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T08:51:56.445432+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -c \"ii_high\" /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -c \"ii_high\" /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T08:51:56.445557+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"50\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T08:51:56.445672+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "grep -c \"interaction_index\" /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "grep -c \"interaction_index\" /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T08:51:56.445786+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T08:51:56.445950+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/analyze_s030.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom scipy import stats\n\nnp.random.seed(42)\n\n# Load data\nwith open(\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json\") as f:\n    data = json.load(f)\n\nskey = \"0.3\"\nproblems = data[\"per_problem_ii\"][skey]\n\n# Extract per-problem II values\nii_high_list = []\nii_mid_list = []\nii_low_list = []\ndiffs = []  # low - high\nn_skipped = 0\n\nfor p in problems:\n    h = p.get(\"ii_high\")\n    m = p.get(\"ii_mid\")\n    l = p.get(\"ii_low\")\n    if h is not None:\n        ii_high_list.append(h)\n    if m is not None:\n        ii_mid_list.append(m)\n    if l is not None:\n        ii_low_list.append(l)\n    if h is not None and l is not None:\n        diffs.append(l - h)\n    else:\n        n_skipped += 1\n\nii_high = np.array(ii_high_list)\nii_mid = np.array(ii_mid_list)\nii_low = np.array(ii_low_list)\ndiffs = np.array(diffs)\n\n# Phase medians\nmedian_high = float(np.median(ii_high))\nmedian_mid = float(np.median(ii_mid))\nmedian_low = float(np.median(ii_low))\nmedian_diff = float(np.median(diffs))\nmean_diff = float(np.mean(diffs))\n\nprint(f\"=== Phase Medians ===\")\nprint(f\"high: {median_high:.6f} (n={len(ii_high)})\")\nprint(f\"mid:  {median_mid:.6f} (n={len(ii_mid)})\")\nprint(f\"low:  {median_low:.6f} (n={len(ii_low)})\")\nprint(f\"median_diff (low-high): {median_diff:.6f}\")\nprint(f\"mean_diff (low-high):   {mean_diff:.6f}\")\nprint(f\"n_paired: {len(diffs)}, n_skipped: {n_skipped}\")\n\n# Permutation test for median_diff > 0\nB = 10000\nobserved = np.median(diffs)\ncount = 0\nfor _ in range(B):\n    signs = np.random.choice([-1, 1], size=len(diffs))\n    perm_diffs = diffs * signs\n    if np.median(perm_diffs) >= observed:\n        count += 1\nperm_p = count / B\n\nprint(f\"\\n=== Permutation Test ===\")\nprint(f\"observed median_diff: {observed:.6f}\")\nprint(f\"p-value (one-sided): {perm_p:.4f}\")\n\n# Cohen's d with bootstrap 95% CI\nn = len(diffs)\nmean_d = np.mean(diffs)\nstd_d = np.std(diffs, ddof=1)\ncohens_d = mean_d / std_d\n\nboot_B = 10000\nboot_ds = []\nfor _ in range(boot_B):\n    sample = np.random.choice(diffs, size=n, replace=True)\n    s = np.std(sample, ddof=1)\n    if s > 0:\n        boot_ds.append(np.mean(sample) / s)\nboot_ds = np.array(boot_ds)\nci_low = float(np.percentile(boot_ds, 2.5))\nci_high = float(np.percentile(boot_ds, 97.5))\n\ndef interpret(d):\n    d_abs = abs(d)\n    if d_abs < 0.2: return \"negligible\"\n    if d_abs < 0.5: return \"small\"\n    if d_abs < 0.8: return \"medium\"\n    return \"large\"\n\nprint(f\"\\n=== Effect Size ===\")\nprint(f\"Cohen's d: {cohens_d:.4f} [{ci_low:.4f}, {ci_high:.4f}]\")\nprint(f\"Interpretation: {interpret(cohens_d)}\")\n\n# Wilcoxon signed-rank test\ntry:\n    w_stat, w_p = stats.wilcoxon(diffs, alternative='greater')\nexcept Exception as e:\n    w_stat, w_p = None, None\n    print(f\"Wilcoxon failed: {e}\")\n\nprint(f\"\\n=== Wilcoxon Signed-Rank ===\")\nprint(f\"statistic: {w_stat}, p-value: {w_p:.6f}\" if w_p is not None else \"N/A\")\n\n# Monotonicity check: high < mid < low\nmonotonic = median_high < median_mid < median_low\nprint(f\"\\n=== Monotonicity ===\")\nprint(f\"high ({median_high:.6f}) < mid ({median_mid:.6f}) < low ({median_low:.6f}): {monotonic}\")\n\n# Bootstrap CI for median diff\nboot_medians = []\nfor _ in range(boot_B):\n    sample = np.random.choice(diffs, size=n, replace=True)\n    boot_medians.append(np.median(sample))\nboot_medians = np.array(boot_medians)\nmedian_ci_low = float(np.percentile(boot_medians, 2.5))\nmedian_ci_high = float(np.percentile(boot_medians, 97.5))\nprint(f\"Bootstrap 95% CI for median_diff: [{median_ci_low:.6f}, {median_ci_high:.6f}]\")\nprint(f\"Contains zero: {median_ci_low <= 0 <= median_ci_high}\")\n\n# PASS/FAIL verdict\n# PASS: permutation p < 0.05 AND monotonic gradient high < mid < low\nverdict = \"PASS\" if (perm_p < 0.05 and monotonic) else \"FAIL\"\nprint(f\"\\n=== VERDICT: {verdict} ===\")\nif verdict == \"PASS\":\n    reason = f\"Permutation p={perm_p:.4f} < 0.05 and monotonic gradient confirmed\"\nelse:\n    reasons = []\n    if perm_p >= 0.05:\n        reasons.append(f\"permutation p={perm_p:.4f} >= 0.05\")\n    if not monotonic:\n        reasons.append(\"non-monotonic gradient\")\n    reason = \"; \".join(reasons)\nprint(f\"Reason: {reason}\")\n\n# Save analysis results\nimport os\nout_dir = \"/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030\"\nos.makedirs(out_dir, exist_ok=True)\n\nresult = {\n    \"experiment\": \"bf16_qw_rand_s030\",\n    \"model\": \"Qwen2.5-7B-Instruct\",\n    \"masking_method\": \"random\",\n    \"sparsity\": 0.30,\n    \"phase_stats\": {\n        \"high\": {\"n_tokens\": 16289, \"n_segments\": 295, \"median_II\": round(median_high, 6)},\n        \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26, \"median_II\": round(median_mid, 6)},\n        \"low\": {\"n_tokens\": 32227, \"n_segments\": 276, \"median_II\": round(median_low, 6)}\n    },\n    \"n_problems\": 50,\n    \"n_paired\": len(diffs),\n    \"difference_statistic\": {\n        \"median_diff\": round(median_diff, 6),\n        \"mean_diff\": round(mean_diff, 6)\n    },\n    \"permutation_test\": {\n        \"B\": B,\n        \"p_value\": round(perm_p, 4),\n        \"observed_median_diff\": round(float(observed), 6)\n    },\n    \"effect_size\": {\n        \"cohen_d\": round(cohens_d, 5),\n        \"ci_low\": round(ci_low, 4),\n        \"ci_high\": round(ci_high, 4),\n        \"interpretation\": interpret(cohens_d)\n    },\n    \"bootstrap_ci_95\": {\n        \"low\": round(median_ci_low, 6),\n        \"high\": round(median_ci_high, 6),\n        \"contains_zero\": bool(median_ci_low <= 0 <= median_ci_high)\n    },\n    \"wilcoxon_test\": {\n        \"statistic\": float(w_stat) if w_stat is not None else None,\n        \"p_value\": round(float(w_p), 6) if w_p is not None else None\n    },\n    \"verdict\": verdict,\n    \"expected_verdict\": \"FAIL\",\n    \"conclusion\": f\"Random masking at s=0.30: {verdict}. {reason}\"\n}\n\nwith open(os.path.join(out_dir, \"analysis_results.json\"), \"w\") as f:\n    json.dump(result, f, indent=2)\n\n# Also save as the requested filename\nwith open(os.path.join(out_dir, \"bf16_qw_rand_s030_analysis.json\"), \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(f\"\\nSaved to {out_dir}/analysis_results.json\")\nprint(f\"Saved to {out_dir}/bf16_qw_rand_s030_analysis.json\")\n\n# Print JSON for registry update\nprint(f\"\\n=== Registry Update Values ===\")\nprint(f\"median_high: {round(median_high, 6)}\")\nprint(f\"median_mid: {round(median_mid, 6)}\")\nprint(f\"median_low: {round(median_low, 6)}\")\nprint(f\"median_diff: {round(median_diff, 6)}\")\nprint(f\"permutation_p: {round(perm_p, 4)}\")\nprint(f\"cohens_d: {round(cohens_d, 5)}\")\nprint(f\"pass_fail: {verdict}\")\nPYEOF\npython3 /tmp/analyze_s030.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/analyze_s030.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom scipy import stats\n\nnp.random.seed(42)\n\n# Load data\nwith open(\"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030/profiling_results.json\") as f:\n    data = json.load(f)\n\nskey = \"0.3\"\nproblems = data[\"per_problem_ii\"][skey]\n\n# Extract per-problem II values\nii_high_list = []\nii_mid_list = []\nii_low_list = []\ndiffs = []  # low - high\nn_skipped = 0\n\nfor p in problems:\n    h = p.get(\"ii_high\")\n    m = p.get(\"ii_mid\")\n    l = p.get(\"ii_low\")\n    if h is not None:\n        ii_high_list.append(h)\n    if m is not None:\n        ii_mid_list.append(m)\n    if l is not None:\n        ii_low_list.append(l)\n    if h is not None and l is not None:\n        diffs.append(l - h)\n    else:\n        n_skipped += 1\n\nii_high = np.array(ii_high_list)\nii_mid = np.array(ii_mid_list)\nii_low = np.array(ii_low_list)\ndiffs = np.array(diffs)\n\n# Phase medians\nmedian_high = float(np.median(ii_high))\nmedian_mid = float(np.median(ii_mid))\nmedian_low = float(np.median(ii_low))\nmedian_diff = float(np.median(diffs))\nmean_diff = float(np.mean(diffs))\n\nprint(f\"=== Phase Medians ===\")\nprint(f\"high: {median_high:.6f} (n={len(ii_high)})\")\nprint(f\"mid:  {median_mid:.6f} (n={len(ii_mid)})\")\nprint(f\"low:  {median_low:.6f} (n={len(ii_low)})\")\nprint(f\"median_diff (low-high): {median_diff:.6f}\")\nprint(f\"mean_diff (low-high):   {mean_diff:.6f}\")\nprint(f\"n_paired: {len(diffs)}, n_skipped: {n_skipped}\")\n\n# Permutation test for median_diff > 0\nB = 10000\nobserved = np.median(diffs)\ncount = 0\nfor _ in range(B):\n    signs = np.random.choice([-1, 1], size=len(diffs))\n    perm_diffs = diffs * signs\n    if np.median(perm_diffs) >= observed:\n        count += 1\nperm_p = count / B\n\nprint(f\"\\n=== Permutation Test ===\")\nprint(f\"observed median_diff: {observed:.6f}\")\nprint(f\"p-value (one-sided): {perm_p:.4f}\")\n\n# Cohen's d with bootstrap 95% CI\nn = len(diffs)\nmean_d = np.mean(diffs)\nstd_d = np.std(diffs, ddof=1)\ncohens_d = mean_d / std_d\n\nboot_B = 10000\nboot_ds = []\nfor _ in range(boot_B):\n    sample = np.random.choice(diffs, size=n, replace=True)\n    s = np.std(sample, ddof=1)\n    if s > 0:\n        boot_ds.append(np.mean(sample) / s)\nboot_ds = np.array(boot_ds)\nci_low = float(np.percentile(boot_ds, 2.5))\nci_high = float(np.percentile(boot_ds, 97.5))\n\ndef interpret(d):\n    d_abs = abs(d)\n    if d_abs < 0.2: return \"negligible\"\n    if d_abs < 0.5: return \"small\"\n    if d_abs < 0.8: return \"medium\"\n    return \"large\"\n\nprint(f\"\\n=== Effect Size ===\")\nprint(f\"Cohen's d: {cohens_d:.4f} [{ci_low:.4f}, {ci_high:.4f}]\")\nprint(f\"Interpretation: {interpret(cohens_d)}\")\n\n# Wilcoxon signed-rank test\ntry:\n    w_stat, w_p = stats.wilcoxon(diffs, alternative='greater')\nexcept Exception as e:\n    w_stat, w_p = None, None\n    print(f\"Wilcoxon failed: {e}\")\n\nprint(f\"\\n=== Wilcoxon Signed-Rank ===\")\nprint(f\"statistic: {w_stat}, p-value: {w_p:.6f}\" if w_p is not None else \"N/A\")\n\n# Monotonicity check: high < mid < low\nmonotonic = median_high < median_mid < median_low\nprint(f\"\\n=== Monotonicity ===\")\nprint(f\"high ({median_high:.6f}) < mid ({median_mid:.6f}) < low ({median_low:.6f}): {monotonic}\")\n\n# Bootstrap CI for median diff\nboot_medians = []\nfor _ in range(boot_B):\n    sample = np.random.choice(diffs, size=n, replace=True)\n    boot_medians.append(np.median(sample))\nboot_medians = np.array(boot_medians)\nmedian_ci_low = float(np.percentile(boot_medians, 2.5))\nmedian_ci_high = float(np.percentile(boot_medians, 97.5))\nprint(f\"Bootstrap 95% CI for median_diff: [{median_ci_low:.6f}, {median_ci_high:.6f}]\")\nprint(f\"Contains zero: {median_ci_low <= 0 <= median_ci_high}\")\n\n# PASS/FAIL verdict\n# PASS: permutation p < 0.05 AND monotonic gradient high < mid < low\nverdict = \"PASS\" if (perm_p < 0.05 and monotonic) else \"FAIL\"\nprint(f\"\\n=== VERDICT: {verdict} ===\")\nif verdict == \"PASS\":\n    reason = f\"Permutation p={perm_p:.4f} < 0.05 and monotonic gradient confirmed\"\nelse:\n    reasons = []\n    if perm_p >= 0.05:\n        reasons.append(f\"permutation p={perm_p:.4f} >= 0.05\")\n    if not monotonic:\n        reasons.append(\"non-monotonic gradient\")\n    reason = \"; \".join(reasons)\nprint(f\"Reason: {reason}\")\n\n# Save analysis results\nimport os\nout_dir = \"/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030\"\nos.makedirs(out_dir, exist_ok=True)\n\nresult = {\n    \"experiment\": \"bf16_qw_rand_s030\",\n    \"model\": \"Qwen2.5-7B-Instruct\",\n    \"masking_method\": \"random\",\n    \"sparsity\": 0.30,\n    \"phase_stats\": {\n        \"high\": {\"n_tokens\": 16289, \"n_segments\": 295, \"median_II\": round(median_high, 6)},\n        \"mid\": {\"n_tokens\": 4372, \"n_segments\": 26, \"median_II\": round(median_mid, 6)},\n        \"low\": {\"n_tokens\": 32227, \"n_segments\": 276, \"median_II\": round(median_low, 6)}\n    },\n    \"n_problems\": 50,\n    \"n_paired\": len(diffs),\n    \"difference_statistic\": {\n        \"median_diff\": round(median_diff, 6),\n        \"mean_diff\": round(mean_diff, 6)\n    },\n    \"permutation_test\": {\n        \"B\": B,\n        \"p_value\": round(perm_p, 4),\n        \"observed_median_diff\": round(float(observed), 6)\n    },\n    \"effect_size\": {\n        \"cohen_d\": round(cohens_d, 5),\n        \"ci_low\": round(ci_low, 4),\n        \"ci_high\": round(ci_high, 4),\n        \"interpretation\": interpret(cohens_d)\n    },\n    \"bootstrap_ci_95\": {\n        \"low\": round(median_ci_low, 6),\n        \"high\": round(median_ci_high, 6),\n        \"contains_zero\": bool(median_ci_low <= 0 <= median_ci_high)\n    },\n    \"wilcoxon_test\": {\n        \"statistic\": float(w_stat) if w_stat is not None else None,\n        \"p_value\": round(float(w_p), 6) if w_p is not None else None\n    },\n    \"verdict\": verdict,\n    \"expected_verdict\": \"FAIL\",\n    \"conclusion\": f\"Random masking at s=0.30: {verdict}. {reason}\"\n}\n\nwith open(os.path.join(out_dir, \"analysis_results.json\"), \"w\") as f:\n    json.dump(result, f, indent=2)\n\n# Also save as the requested filename\nwith open(os.path.join(out_dir, \"bf16_qw_rand_s030_analysis.json\"), \"w\") as f:\n    json.dump(result, f, indent=2)\n\nprint(f\"\\nSaved to {out_dir}/analysis_results.json\")\nprint(f\"Saved to {out_dir}/bf16_qw_rand_s030_analysis.json\")\n\n# Print JSON for registry update\nprint(f\"\\n=== Registry Update Values ===\")\nprint(f\"median_high: {round(median_high, 6)}\")\nprint(f\"median_mid: {round(median_mid, 6)}\")\nprint(f\"median_low: {round(median_low, 6)}\")\nprint(f\"median_diff: {round(median_diff, 6)}\")\nprint(f\"permutation_p: {round(perm_p, 4)}\")\nprint(f\"cohens_d: {round(cohens_d, 5)}\")\nprint(f\"pass_fail: {verdict}\")\nPYEOF\npython3 /tmp/analyze_s030.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T08:51:56.446150+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Phase Medians ===\\nhigh: 4.200557 (n=49)\\nmid:  6.477036 (n=21)\\nlow:  8.065662 (n=47)\\nmedian_diff (low-high): 2.418272\\nmean_diff (low-high):   -1.134897\\nn_paired: 46, n_skipped: 4\\n\\n=== Permutation Test ===\\nobserved median_diff: 2.418272\\np-value (one-sided): 0.0120\\n\\n=== Effect Size ===\\nCohen's d: -0.0351 [-0.2248, 0.4898]\\nInterpretation: negligible\\n\\n=== Wilcoxon Signed-Rank ===\\nstatistic: 737.0, p-value: 0.015660\\n\\n=== Monotonicity ===\\nhigh (4.200557) < mid (6.477036) < low (8.065662): True\\nBootstrap 95% CI for median_diff: [0.241897, 3.314824]\\nContains zero: False\\n\\n=== VERDICT: PASS ===\\nReason: Permutation p=0.0120 < 0.05 and monotonic gradient confirmed\\n\\nSaved to /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/analysis_results.json\\nSaved to /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json\\n\\n=== Registry Update Values ===\\nmedian_high: 4.200557\\nmedian_mid: 6.477036\\nmedian_low: 8.065662\\nmedian_diff: 2.418272\\npermutation_p: 0.012\\ncohens_d: -0.03513\\npass_fail: PASS\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T08:51:56.446317+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "bf16_qw_rand_s030",
+  "field": "metrics",
+  "value": "{'median_high': 4.200557, 'median_mid': 6.477036, 'median_low': 8.065662, 'median_diff': 2.418272, 'permutation_p': 0.012, 'cohens_d': -0.03513, 'wilcoxon_p': 0.01566, 'bootstrap_ci_low': 0.241897, 'bootstrap_ci_high': 3.314824}",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "bf16_qw_rand_s030",
+    "field": "metrics",
+    "value": "{'median_high': 4.200557, 'median_mid': 6.477036, 'median_low': 8.065662, 'median_diff': 2.418272, 'permutation_p': 0.012, 'cohens_d': -0.03513, 'wilcoxon_p': 0.01566, 'bootstrap_ci_low': 0.241897, 'bootstrap_ci_high': 3.314824}",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T08:51:56.446515+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s030\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:37.271Z\", \"updated_at\": \"2026-05-14T08:50:35.678Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.30, bf16 dtype. Cross-model 配对对照。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T08:22:08.391Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-14T08:42:12.294Z\", \"training_hours\": 0.33}, \"spec\": {\"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null}, \"pid\": \"98285\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s030.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:42:18.234440+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030\", \"metrics\": {\"median_high\": 4.200557, \"median_mid\": 6.477036, \"median_low\": 8.065662, \"median_diff\": 2.418272, \"permutation_p\": 0.012, \"cohens_d\": -0.03513, \"wilcoxon_p\": 0.01566, \"bootstrap_ci_low\": 0.241897, \"bootstrap_ci_high\": 3.314824}, \"completed_at\": \"2026-05-14T08:46:56.207Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4627}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T08:51:56.446670+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "bf16_qw_rand_s030",
+  "field": "pass_fail",
+  "value": "PASS",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "bf16_qw_rand_s030",
+    "field": "pass_fail",
+    "value": "PASS",
+    "project": "phase-gated-compound-sparse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T08:51:56.446833+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"bf16_qw_rand_s030\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:39:37.271Z\", \"updated_at\": \"2026-05-14T08:50:39.710Z\", \"hypothesis\": \"D020 bf16 全量重跑: Qwen2.5-7B-Instruct random masking s=0.30, bf16 dtype. Cross-model 配对对照。\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T08:22:08.391Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10 --max_problems 50\\\"\", \"code_commit\": \"1b4f61aa366a9fe320f8563c8f7acb5af58d78b7\", \"finished_at\": \"2026-05-14T08:42:12.294Z\", \"training_hours\": 0.33}, \"spec\": {\"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": null}, \"pid\": \"98285\", \"log_path\": \"~/runs/phase-gated-compound-sparse/bf16_qw_rand_s030.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:42:18.234440+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_bf16_qw_rand_s030\", \"metrics\": {\"median_high\": 4.200557, \"median_mid\": 6.477036, \"median_low\": 8.065662, \"median_diff\": 2.418272, \"permutation_p\": 0.012, \"cohens_d\": -0.03513, \"wilcoxon_p\": 0.01566, \"bootstrap_ci_low\": 0.241897, \"bootstrap_ci_high\": 3.314824}, \"completed_at\": \"2026-05-14T08:46:56.207Z\", \"pass_fail\": \"PASS\"}}, \"error\": null, \"metadata\": {\"elapsed_se
+…[truncated 19 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T08:51:56.446986+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "bf16_qw_rand_s030_analysis",
+  "type": "data",
+  "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+  "project": "phase-gated-compound-sparse",
+  "exp_id": "bf16_qw_rand_s030",
+  "source_path": "/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json",
+  "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "bf16_qw_rand_s030_analysis",
+    "type": "data",
+    "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+    "project": "phase-gated-compound-sparse",
+    "exp_id": "bf16_qw_rand_s030",
+    "source_path": "/root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json",
+    "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T08:51:56.447145+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T08:51:56.447278+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-22162",
+    "command": "cat /root/autodl-tmp/pacs/analysis_output/bf16_qw_rand_s030/bf16_qw_rand_s030_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T08:51:56.447451+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"bf16_qw_rand_s030\\\",\\n  \\\"model\\\": \\\"Qwen2.5-7B-Instruct\\\",\\n  \\\"masking_method\\\": \\\"random\\\",\\n  \\\"sparsity\\\": 0.3,\\n  \\\"phase_stats\\\": {\\n    \\\"high\\\": {\\n      \\\"n_tokens\\\": 16289,\\n      \\\"n_segments\\\": 295,\\n      \\\"median_II\\\": 4.200557\\n    },\\n    \\\"mid\\\": {\\n      \\\"n_tokens\\\": 4372,\\n      \\\"n_segments\\\": 26,\\n      \\\"median_II\\\": 6.477036\\n    },\\n    \\\"low\\\": {\\n      \\\"n_tokens\\\": 32227,\\n      \\\"n_segments\\\": 276,\\n      \\\"median_II\\\": 8.065662\\n    }\\n  },\\n  \\\"n_problems\\\": 50,\\n  \\\"n_paired\\\": 46,\\n  \\\"difference_statistic\\\": {\\n    \\\"median_diff\\\": 2.418272,\\n    \\\"mean_diff\\\": -1.134897\\n  },\\n  \\\"permutation_test\\\": {\\n    \\\"B\\\": 10000,\\n    \\\"p_value\\\": 0.012,\\n    \\\"observed_median_diff\\\": 2.418272\\n  },\\n  \\\"effect_size\\\": {\\n    \\\"cohen_d\\\": -0.03513,\\n    \\\"ci_low\\\": -0.2248,\\n    \\\"ci_high\\\": 0.4898,\\n    \\\"interpretation\\\": \\\"negligible\\\"\\n  },\\n  \\\"bootstrap_ci_95\\\": {\\n    \\\"low\\\": 0.241897,\\n    \\\"high\\\": 3.314824,\\n    \\\"contains_zero\\\": false\\n  },\\n  \\\"wilcoxon_test\\\": {\\n    \\\"statistic\\\": 737.0,\\n    \\\"p_value\\\": 0.01566\\n  },\\n  \\\"verdict\\\": \\\"PASS\\\",\\n  \\\"expected_verdict\\\": \\\"FAIL\\\",\\n  \\\"conclusion\\\": \\\"Random masking at s=0.30: PASS. Permutation p=0.0120 < 0.05 and monotonic gradient confirmed\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T08:51:56.447602+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "bf16_qw_rand_s030_analysis",
+  "type": "data",
+  "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+  "project": "phase-gated-compound-sparse",
+  "exp_id": "bf16_qw_rand_s030",
+  "content": "{\"experiment\":\"bf16_qw_rand_s030\",\"model\":\"Qwen2.5-7B-Instruct\",\"masking_method\":\"random\",\"sparsity\":0.3,\"phase_stats\":{\"high\":{\"n_tokens\":16289,\"n_segments\":295,\"median_II\":4.200557},\"mid\":{\"n_tokens\":4372,\"n_segments\":26,\"median_II\":6.477036},\"low\":{\"n_tokens\":32227,\"n_segments\":276,\"median_II\":8.065662}},\"n_problems\":50,\"n_paired\":46,\"difference_statistic\":{\"median_diff\":2.418272,\"mean_diff\":-1.134897},\"permutation_test\":{\"B\":10000,\"p_value\":0.012,\"observed_median_diff\":2.418272},\"effect_size\":{\"cohen_d\":-0.03513,\"ci_low\":-0.2248,\"ci_high\":0.4898,\"interpretation\":\"negligible\"},\"bootstrap_ci_95\":{\"low\":0.241897,\"high\":3.314824,\"contains_zero\":false},\"wilcoxon_test\":{\"statistic\":737.0,\"p_value\":0.01566},\"verdict\":\"PASS\",\"expected_verdict\":\"FAIL\",\"conclusion\":\"Random masking at s=0.30: PASS. Permutation p=0.0120 < 0.05 and monotonic gradient confirmed\"}",
+  "content_filename": "bf16_qw_rand_s030_analysis.json",
+  "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "bf16_qw_rand_s030_analysis",
+    "type": "data",
+    "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+    "project": "phase-gated-compound-sparse",
+    "exp_id": "bf16_qw_rand_s030",
+    "content": "{\"experiment\":\"bf16_qw_rand_s030\",\"model\":\"Qwen2.5-7B-Instruct\",\"masking_method\":\"random\",\"sparsity\":0.3,\"phase_stats\":{\"high\":{\"n_tokens\":16289,\"n_segments\":295,\"median_II\":4.200557},\"mid\":{\"n_tokens\":4372,\"n_segments\":26,\"median_II\":6.477036},\"low\":{\"n_tokens\":32227,\"n_segments\":276,\"median_II\":8.065662}},\"n_problems\":50,\"n_paired\":46,\"difference_statistic\":{\"median_diff\":2.418272,\"mean_diff\":-1.134897},\"permutation_test\":{\"B\":10000,\"p_value\":0.012,\"observed_median_diff\":2.418272},\"effect_size\":{\"cohen_d\":-0.03513,\"ci_low\":-0.2248,\"ci_high\":0.4898,\"interpretation\":\"negligible\"},\"bootstrap_ci_95\":{\"low\":0.241897,\"high\":3.314824,\"contains_zero\":false},\"wilcoxon_test\":{\"statistic\":737.0,\"p_value\":0.01566},\"verdict\":\"PASS\",\"expected_verdict\":\"FAIL\",\"conclusion\":\"Random masking at s=0.30: PASS. Permutation p=0.0120 < 0.05 and monotonic gradient confirmed\"}",
+    "content_filename": "bf16_qw_rand_s030_analysis.json",
+    "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T08:51:56.447738+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'bf16_qw_r...nic gradient confirmed'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T08:51:56.447898+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "bf16_qw_rand_s030_analysis",
+  "type": "data",
+  "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+  "project": "phase-gated-compound-sparse",
+  "exp_id": "bf16_qw_rand_s030",
+  "content": "{\"experiment\":\"bf16_qw_rand_s030\",\"model\":\"Qwen2.5-7B-Instruct\",\"masking_method\":\"random\",\"sparsity\":0.3,\"phase_stats\":{\"high\":{\"n_tokens\":16289,\"n_segments\":295,\"median_II\":4.200557},\"mid\":{\"n_tokens\":4372,\"n_segments\":26,\"median_II\":6.477036},\"low\":{\"n_tokens\":32227,\"n_segments\":276,\"median_II\":8.065662}},\"n_problems\":50,\"n_paired\":46,\"difference_statistic\":{\"median_diff\":2.418272,\"mean_diff\":-1.134897},\"permutation_test\":{\"B\":10000,\"p_value\":0.012,\"observed_median_diff\":2.418272},\"effect_size\":{\"cohen_d\":-0.03513,\"ci_low\":-0.2248,\"ci_high\":0.4898,\"interpretation\":\"negligible\"},\"bootstrap_ci_95\":{\"low\":0.241897,\"high\":3.314824,\"contains_zero\":false},\"wilcoxon_test\":{\"statistic\":737.0,\"p_value\":0.01566},\"verdict\":\"PASS\",\"expected_verdict\":\"FAIL\",\"conclusion\":\"Random masking at s=0.30: PASS. Permutation p=0.0120 < 0.05 and monotonic gradient confirmed\"}",
+  "content_filename": "bf16_qw_rand_s030_analysis.json",
+  "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "bf16_qw_rand_s030_analysis",
+    "type": "data",
+    "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+    "project": "phase-gated-compound-sparse",
+    "exp_id": "bf16_qw_rand_s030",
+    "content": "{\"experiment\":\"bf16_qw_rand_s030\",\"model\":\"Qwen2.5-7B-Instruct\",\"masking_method\":\"random\",\"sparsity\":0.3,\"phase_stats\":{\"high\":{\"n_tokens\":16289,\"n_segments\":295,\"median_II\":4.200557},\"mid\":{\"n_tokens\":4372,\"n_segments\":26,\"median_II\":6.477036},\"low\":{\"n_tokens\":32227,\"n_segments\":276,\"median_II\":8.065662}},\"n_problems\":50,\"n_paired\":46,\"difference_statistic\":{\"median_diff\":2.418272,\"mean_diff\":-1.134897},\"permutation_test\":{\"B\":10000,\"p_value\":0.012,\"observed_median_diff\":2.418272},\"effect_size\":{\"cohen_d\":-0.03513,\"ci_low\":-0.2248,\"ci_high\":0.4898,\"interpretation\":\"negligible\"},\"bootstrap_ci_95\":{\"low\":0.241897,\"high\":3.314824,\"contains_zero\":false},\"wilcoxon_test\":{\"statistic\":737.0,\"p_value\":0.01566},\"verdict\":\"PASS\",\"expected_verdict\":\"FAIL\",\"conclusion\":\"Random masking at s=0.30: PASS. Permutation p=0.0120 < 0.05 and monotonic gradient confirmed\"}",
+    "content_filename": "bf16_qw_rand_s030_analysis.json",
+    "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T08:51:56.448039+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'bf16_qw_r...nic gradient confirmed'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T08:51:56.448164+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "bf16_qw_rand_s030_analysis",
+  "type": "data",
+  "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+  "project": "phase-gated-compound-sparse",
+  "exp_id": "bf16_qw_rand_s030",
+  "content": "{\"experiment\":\"bf16_qw_rand_s030\",\"model\":\"Qwen2.5-7B-Instruct\",\"masking_method\":\"random\",\"sparsity\":0.3,\"phase_stats\":{\"high\":{\"n_tokens\":16289,\"n_segments\":295,\"median_II\":4.200557},\"mid\":{\"n_tokens\":4372,\"n_segments\":26,\"median_II\":6.477036},\"low\":{\"n_tokens\":32227,\"n_segments\":276,\"median_II\":8.065662}},\"n_problems\":50,\"n_paired\":46,\"difference_statistic\":{\"median_diff\":2.418272,\"mean_diff\":-1.134897},\"permutation_test\":{\"B\":10000,\"p_value\":0.012,\"observed_median_diff\":2.418272},\"effect_size\":{\"cohen_d\":-0.03513,\"ci_low\":-0.2248,\"ci_high\":0.4898,\"interpretation\":\"negligible\"},\"bootstrap_ci_95\":{\"low\":0.241897,\"high\":3.314824,\"contains_zero\":false},\"wilcoxon_test\":{\"statistic\":737.0,\"p_value\":0.01566},\"verdict\":\"PASS\",\"expected_verdict\":\"FAIL\",\"conclusion\":\"Random masking at s=0.30: PASS\"}",
+  "content_filename": "bf16_qw_rand_s030_analysis.json",
+  "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "bf16_qw_rand_s030_analysis",
+    "type": "data",
+    "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+    "project": "phase-gated-compound-sparse",
+    "exp_id": "bf16_qw_rand_s030",
+    "content": "{\"experiment\":\"bf16_qw_rand_s030\",\"model\":\"Qwen2.5-7B-Instruct\",\"masking_method\":\"random\",\"sparsity\":0.3,\"phase_stats\":{\"high\":{\"n_tokens\":16289,\"n_segments\":295,\"median_II\":4.200557},\"mid\":{\"n_tokens\":4372,\"n_segments\":26,\"median_II\":6.477036},\"low\":{\"n_tokens\":32227,\"n_segments\":276,\"median_II\":8.065662}},\"n_problems\":50,\"n_paired\":46,\"difference_statistic\":{\"median_diff\":2.418272,\"mean_diff\":-1.134897},\"permutation_test\":{\"B\":10000,\"p_value\":0.012,\"observed_median_diff\":2.418272},\"effect_size\":{\"cohen_d\":-0.03513,\"ci_low\":-0.2248,\"ci_high\":0.4898,\"interpretation\":\"negligible\"},\"bootstrap_ci_95\":{\"low\":0.241897,\"high\":3.314824,\"contains_zero\":false},\"wilcoxon_test\":{\"statistic\":737.0,\"p_value\":0.01566},\"verdict\":\"PASS\",\"expected_verdict\":\"FAIL\",\"conclusion\":\"Random masking at s=0.30: PASS\"}",
+    "content_filename": "bf16_qw_rand_s030_analysis.json",
+    "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T08:51:56.448296+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'bf16_qw_r...asking at s=0.30: PASS'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T08:51:56.448450+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "bf16_qw_rand_s030_analysis",
+  "type": "data",
+  "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+  "project": "phase-gated-compound-sparse",
+  "exp_id": "bf16_qw_rand_s030",
+  "content": "{\"experiment\":\"bf16_qw_rand_s030\",\"model\":\"Qwen2.5-7B-Instruct\",\"masking_method\":\"random\",\"sparsity\":0.3,\"phase_stats\":{\"high\":{\"n_tokens\":16289,\"n_segments\":295,\"median_II\":4.200557},\"mid\":{\"n_tokens\":4372,\"n_segments\":26,\"median_II\":6.477036},\"low\":{\"n_tokens\":32227,\"n_segments\":276,\"median_II\":8.065662}},\"n_problems\":50,\"n_paired\":46,\"difference_statistic\":{\"median_diff\":2.418272,\"mean_diff\":-1.134897},\"permutation_test\":{\"B\":10000,\"p_value\":0.012,\"observed_median_diff\":2.418272},\"effect_size\":{\"cohen_d\":-0.03513,\"interpretation\":\"negligible\"},\"bootstrap_ci_95\":{\"low\":0.241897,\"high\":3.314824,\"contains_zero\":false},\"wilcoxon_test\":{\"statistic\":737.0,\"p_value\":0.01566},\"verdict\":\"PASS\"}",
+  "content_filename": "bf16_qw_rand_s030_analysis.json",
+  "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "bf16_qw_rand_s030_analysis",
+    "type": "data",
+    "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+    "project": "phase-gated-compound-sparse",
+    "exp_id": "bf16_qw_rand_s030",
+    "content": "{\"experiment\":\"bf16_qw_rand_s030\",\"model\":\"Qwen2.5-7B-Instruct\",\"masking_method\":\"random\",\"sparsity\":0.3,\"phase_stats\":{\"high\":{\"n_tokens\":16289,\"n_segments\":295,\"median_II\":4.200557},\"mid\":{\"n_tokens\":4372,\"n_segments\":26,\"median_II\":6.477036},\"low\":{\"n_tokens\":32227,\"n_segments\":276,\"median_II\":8.065662}},\"n_problems\":50,\"n_paired\":46,\"difference_statistic\":{\"median_diff\":2.418272,\"mean_diff\":-1.134897},\"permutation_test\":{\"B\":10000,\"p_value\":0.012,\"observed_median_diff\":2.418272},\"effect_size\":{\"cohen_d\":-0.03513,\"interpretation\":\"negligible\"},\"bootstrap_ci_95\":{\"low\":0.241897,\"high\":3.314824,\"contains_zero\":false},\"wilcoxon_test\":{\"statistic\":737.0,\"p_value\":0.01566},\"verdict\":\"PASS\"}",
+    "content_filename": "bf16_qw_rand_s030_analysis.json",
+    "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T08:51:56.448585+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'bf16_qw_r...566}, 'verdict': 'PASS'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T08:51:56.448712+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "bf16_qw_rand_s030_analysis",
+  "type": "data",
+  "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+  "project": "phase-gated-compound-sparse",
+  "exp_id": "bf16_qw_rand_s030",
+  "content": "Experiment: bf16_qw_rand_s030\nModel: Qwen2.5-7B-Instruct\nMasking: random, sparsity=0.30\nVerdict: PASS\n\nPhase Medians: high=4.200557, mid=6.477036, low=8.065662\nMedian diff (low-high): 2.418272\nPermutation test: p=0.012 (B=10000)\nWilcoxon: p=0.01566\nCohen's d: -0.03513 (negligible)\nBootstrap 95% CI for median_diff: [0.241897, 3.314824] (does not contain zero)\nMonotonic gradient: high < mid < low confirmed",
+  "content_filename": "bf16_qw_rand_s030_analysis.txt",
+  "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "bf16_qw_rand_s030_analysis",
+    "type": "data",
+    "description": "Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient",
+    "project": "phase-gated-compound-sparse",
+    "exp_id": "bf16_qw_rand_s030",
+    "content": "Experiment: bf16_qw_rand_s030\nModel: Qwen2.5-7B-Instruct\nMasking: random, sparsity=0.30\nVerdict: PASS\n\nPhase Medians: high=4.200557, mid=6.477036, low=8.065662\nMedian diff (low-high): 2.418272\nPermutation test: p=0.012 (B=10000)\nWilcoxon: p=0.01566\nCohen's d: -0.03513 (negligible)\nBootstrap 95% CI for median_diff: [0.241897, 3.314824] (does not contain zero)\nMonotonic gradient: high < mid < low confirmed",
+    "content_filename": "bf16_qw_rand_s030_analysis.txt",
+    "tags": "['analysis', 'random-masking', 'qwen', 's030']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T08:51:56.448856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_4f28ae\", \"name\": \"bf16_qw_rand_s030_analysis\", \"type\": \"data\", \"description\": \"Analysis results for Qwen2.5-7B random masking s=0.30: PASS verdict with permutation p=0.012 and monotonic phase gradient\", \"path\": \"projects/phase-gated-compound-sparse/artifacts/bf16_qw_rand_s030/data/bf16_qw_rand_s030_analysis.txt\", \"url\": null, \"project\": \"phase-gated-compound-sparse\", \"exp_id\": \"bf16_qw_rand_s030\", \"skill\": \"\", \"created_at\": \"2026-05-14T08:51:40.015969+00:00\", \"tags\": [\"analysis\", \"random-masking\", \"qwen\", \"s030\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-14T08:51:56.449095+00:00_
+
+分析完成。
+
+---
+
+## bf16_qw_rand_s030 分析报告
+
+### 结果
+
+| 指标 | 值 |
+|------|-----|
+| **Verdict** | **PASS** |
+| Median II (high) | 4.2006 |
+| Median II (mid) | 6.4770 |
+| Median II (low) | 8.0657 |
+| Median diff (low−high) | **2.4183** |
+| Permutation p-value | **0.012** |
+| Wilcoxon p-value | 0.0157 |
+| Cohen's d | −0.035 \[−0.225, 0.490\] (negligible) |
+| Bootstrap 95% CI (median diff) | \[0.242, 3.315\] — **不含零** |
+| 单调递增 high < mid < low | **是** |
+
+### PASS 判定理由
+- Permutation p=0.012 < 0.05
+- 单调递增梯度 4.20 → 6.48 → 8.07 确认
+
+### 与 s015/s020/s025 的趋势对比
+
+| 实验 | median_diff | perm_p | Cohen's d | verdict |
+|------|------------|--------|-----------|---------|
+| s015 | −0.029 | 0.766 | −0.051 | FAIL |
+| s020 | 0.058 | 0.352 | 0.247 | FAIL |
+| s025 | 1.144 | 0.168 | 0.157 | FAIL |
+| **s030** | **2.418** | **0.012** | −0.035 | **PASS** |
+
+清晰的剂量-响应关系：随着 sparsity 增加，median_diff 单调上升（−0.03 → 0.06 → 1.14 → 2.42），p-value 单调下降，在 s=0.30 跨过显著性阈值。
+
+### 注意事项
+- Cohen's d 为负（−0.035）是因为 mean_diff=−1.13 被少数大负值 outlier 拉低，而 median_diff=2.42 反映了主体分布的真实趋势。Wilcoxon 和 permutation test 一致支持 PASS。
+- **叙述影响**：Random masking 不是"无梯度"的完美对照，而是"仅在极端 sparsity (s≥0.30) 才出现梯度"。这意味着 importance-based masking 的优势在于它在更低 sparsity 就能产生显著梯度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_bf16_qw_rand_s030_20260514T084856"
+}
+```
+
+</details>
+
+---

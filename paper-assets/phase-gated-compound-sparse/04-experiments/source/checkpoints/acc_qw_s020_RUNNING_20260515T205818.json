@@ -1,0 +1,34 @@
+{
+  "exp_id": "acc_qw_s020",
+  "project": "phase-gated-compound-sparse",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:49:27.167Z",
+    "updated_at": "2026-05-15T20:58:17.850Z",
+    "spec": {
+      "command": "python run_accuracy_eval.py --model Qwen2.5-7B-Instruct --conditions importance_s020 --num-problems 50",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "274623",
+      "log_path": "~/runs/phase-gated-compound-sparse/acc_qw_s020.log",
+      "submitted_at": "2026-05-15T20:50:03.654Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "type": "eval",
+      "checkpoint_source": "checkpoints/Qwen2.5-7B-Instruct",
+      "eval_data": "MATH-500 n=50"
+    }
+  },
+  "timestamp": "2026-05-15T20:58:18.056780+00:00",
+  "trigger": "update_registry"
+}

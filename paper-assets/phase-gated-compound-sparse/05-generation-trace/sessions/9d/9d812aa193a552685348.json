@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d812aa193a552685348",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops cleanup and extract",
+  "task_key": "worker_ops_cleanup-and-extract_20260514T035244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-and-extract_20260514T035244_result.json",
+    "occurrence": 1,
+    "bytes": 1693,
+    "sha256": "aa0be057dd861a18078c18f936a7bbc55095d561cbf0dbcbadf85055f396bdc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part 1: GPU 清理 ✓\n\n| GPU | 清理前 | 清理后 |\n|-----|--------|--------|\n| cuda:0 | 57390 MiB (89%) | **0 MiB (0%)** |\n| cuda:1 | 57390 MiB (94%) | **0 MiB (0%)** |\n| cuda:2 | 27719 MiB (78%) | 27719 MiB (不动) |\n| cuda:3 | 27719 MiB (96%) | 27719 MiB (不动) |\n\n已 kill 的进程: 59328, 60514, 59616, 60915\n已 kill 的 tmux sessions: `mvp_v5_random_s020`, `mvp_v5_random_s030`\n保留: `v6_importance_s025`, `v6_importance_s030` (cuda:2/3)\n\n### Part 2: Random Metrics\n\n#### random_s020 (sparsity=0.2, 50 problems)\n\n| Phase | II mean | II median | CI low | CI high | outliers |\n|-------|---------|-----------|--------|---------|----------|\n| high_sparsity | 0.8556 | 0.3213 | -0.1241 | 1.6169 | 3 |\n| mid_sparsity | 1.2581 | 0.4557 | 0.6749 | 2.0756 | 1 |\n| low_sparsity | 0.9569 | 0.5919 | 0.5839 | 1.4134 | 1 |\n\nPerplexity (high/mid/low phase):\n- dense: 1.146 / 1.123 / 1.111\n- attn: 5.082 / 1.628 / 17.097\n- kv: 4.254 / 4.306 / 5.405\n- both: 7.975 / 6.855 / 22.587\n\nPass/fail: **FAIL** (ci_overlap + sign_reversal both fail)\n\n#### random_s030 (sparsity=0.3, 50 problems)\n\n| Phase | II mean | II median | CI low | CI high | outliers |\n|-------|---------|-----------|--------|---------|----------|\n| high_sparsity | 22.7345 | 5.3775 | 10.3521 | 42.5520 | 1 |\n| mid_sparsity | 10.9433 | 5.8865 | 7.3986 | 14.7653 | 2 |\n| low_sparsity | 11.8404 | 3.7768 | 4.0973 | 23.5453 | 1 |\n\nPerplexity (high/mid/low phase):\n- dense: 1.146 / 1.123 / 1.111\n- attn: 11.494 / 4.092 / 19.251\n- kv: 8.103 / 8.570 / 13.492\n- both: 41.345 / 24.199 / 68.530\n\nPass/fail: **FAIL** (ci_overlap + sign_reversal both fail)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-and-extract.md"
+}

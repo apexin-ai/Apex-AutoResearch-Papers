@@ -1,0 +1,79 @@
+{
+  "exp_id": "recency_s015",
+  "project": "phase-gated-compound-sparse",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T18:37:53.089Z",
+    "updated_at": "2026-05-16T23:13:26.504Z",
+    "hypothesis": "Recency-based (position-only) eviction as scoring-independent control to disentangle phase segmentation circularity and H2O confound from attention-score-specific compound interaction. s=0.15 condition.",
+    "server": "westd-22162",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-22162",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-16T20:11:42.167Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 -u -m pacs.profiling.run_profiling --model_path checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path data/math500.json --output_dir ./profiling_output_recency_s015 --raw_prompt --sparsity_levels 0.15 --masking_method recency --max_new_tokens 8192 --min_phase_length 10 --max_problems 100 --save_generations --gpu 0\"",
+      "code_commit": "1b4f61aa366a9fe320f8563c8f7acb5af58d78b7",
+      "finished_at": "2026-05-16T23:12:06.522Z",
+      "training_hours": 3.01
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python3 -u -m pacs.profiling.run_profiling --model_path checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path data/math500.json --output_dir ./profiling_output_recency_s015 --raw_prompt --sparsity_levels 0.15 --masking_method recency --max_new_tokens 8192 --min_phase_length 10 --max_problems 100 --save_generations --gpu 0\"",
+      "server": "westd-22162",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "588547",
+      "log_path": "~/runs/phase-gated-compound-sparse/recency_s015.log",
+      "data_path": "data/math500.json",
+      "data_count": 100,
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/pacs/profiling_output_recency_s015/"
+    },
+    "pid": "588547",
+    "log_path": "~/runs/phase-gated-compound-sparse/recency_s015.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T23:12:11.603295+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "n_problems": 100,
+      "model": "DeepSeek-R1-Distill-Qwen-7B",
+      "masking_method": "recency",
+      "sparsity": 0.15,
+      "phase_gradient": {
+        "median_diff": -0.0026,
+        "cohens_dz": 0.083,
+        "p_value": 0.77,
+        "significant": false
+      },
+      "comparison_importance_s015": {
+        "median_diff": 0.39,
+        "cohens_dz": 0.574,
+        "p_value": "< 1e-70",
+        "significant": true
+      },
+      "comparison_random_s015": {
+        "median_diff": 0.014,
+        "cohens_dz": -0.045,
+        "p_value": 0.86,
+        "significant": false
+      },
+      "interpretation": "Recency eviction shows NO phase gradient (NS, negligible effect), confirming phase-dependent severity is attention-score-specific"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T23:13:26.504Z"
+  },
+  "timestamp": "2026-05-16T23:13:26.904201+00:00",
+  "trigger": "update_registry"
+}

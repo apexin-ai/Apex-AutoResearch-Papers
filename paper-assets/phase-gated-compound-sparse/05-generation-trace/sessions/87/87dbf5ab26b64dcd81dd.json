@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87dbf5ab26b64dcd81dd",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops check v5 experiments",
+  "task_key": "worker_ops_check-v5-experiments_20260514T023043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-v5-experiments_20260514T023043_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "6ff8bcdd2cae1c625d1f9a9b3c800a617647547da7c2e3eb6257b83adf773c81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部存活，运行正常：\n\n| 实验 | 进度 | ETA |\n|------|------|-----|\n| mvp_v5_fixed_s020_r2 (GPU 0) | **29/50** | ~10:45 UTC |\n| mvp_v5_fixed_s030_r2 (GPU 1) | **29/50** | ~10:45 UTC |\n| mvp_v5_random_s015 (GPU 2) | **20/50** | ~10:49 UTC |\n| mvp_v5_random_s025 (GPU 3) | **20/50** | ~10:49 UTC |\n\nGPU 利用率正常。Importance 实验（GPU 0/1）VRAM 更高（33.5 GB vs 26.6 GB），GPU 利用率反而较低（76-78% vs 99%）。输出目录均为空，结果在 50/50 完成后一次性写入。预计全部完成时间约 10:49 UTC（~18 分钟后）。\n\n状态报告已写入 `artifacts/v5_status_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-v5-experiments.md"
+}

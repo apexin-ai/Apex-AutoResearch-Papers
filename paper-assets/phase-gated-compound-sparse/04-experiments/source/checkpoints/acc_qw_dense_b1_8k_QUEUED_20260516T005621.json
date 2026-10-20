@@ -1,0 +1,23 @@
+{
+  "exp_id": "acc_qw_dense_b1_8k",
+  "project": "phase-gated-compound-sparse",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:55:16.337Z",
+    "updated_at": "2026-05-16T00:56:21.615Z",
+    "hypothesis": "重跑 QW dense batch1 (problems 1-50) with max_new_tokens=8192，修复原 batch1 使用 2048 的 token 预算不匹配问题。",
+    "spec": {
+      "data_path": "MATH problems 1-50",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval only)",
+      "max_new_tokens": 8192
+    }
+  },
+  "timestamp": "2026-05-16T00:56:21.888822+00:00",
+  "trigger": "update_registry"
+}
