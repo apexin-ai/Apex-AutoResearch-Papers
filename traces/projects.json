@@ -408,6 +408,19 @@
       }
     },
     {
+      "project": "distrib_canary_collapse--export-20260712",
+      "title": "Characterizing the Detectability Landscape of Iterative Model Collapse (July export snapshot)",
+      "catalog": "../research-snapshots/distrib_canary_collapse/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1948,
+        "messages": 447459,
+        "user_turns": 22707,
+        "tool_calls": 112681,
+        "unparsed_lines": 17,
+        "conversation": 1948
+      }
+    },
+    {
       "project": "div_cal_verify",
       "title": "The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training",
       "catalog": "../paper-assets/div_cal_verify/05-generation-trace/catalog.json",

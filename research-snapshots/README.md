@@ -5,3 +5,4 @@ These snapshots preserve later project exports alongside the initial workspace r
 | Project | Snapshot | Manuscript | Assets and conversations |
 |---|---|---|---|
 | clkc_mech_interp | 2026-07-12 | No PDF in snapshot | [Assets](clkc_mech_interp/2026-07-12/README.md) · [Conversations](clkc_mech_interp/2026-07-12/05-generation-trace/readable/README.md) |
+| distrib_canary_collapse | 2026-07-12 | No PDF in snapshot | [Assets](distrib_canary_collapse/2026-07-12/README.md) · [Conversations](distrib_canary_collapse/2026-07-12/05-generation-trace/readable/README.md) |

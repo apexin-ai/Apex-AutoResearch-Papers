@@ -12,6 +12,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 287
+        },
+        "distrib_canary_collapse": {
+          "status": "uploaded",
+          "project": "distrib_canary_collapse",
+          "collection": "distrib_canary_collapse--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "c122c0859e7bf4dc118ecb4ce306f42e1bf1d3bfa24ebf31ca0287373f6bd5c9",
+          "indexed_members": 1953,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1948
         }
       },
       "status": "in_progress",
