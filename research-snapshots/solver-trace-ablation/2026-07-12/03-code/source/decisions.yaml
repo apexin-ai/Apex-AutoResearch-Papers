@@ -1,0 +1,3037 @@
+_next_id: 165
+decisions:
+- id: D001
+  date: 2026-05-13 17:34 UTC
+  summary: MVP 方案：FOL+Prover9 单逻辑 50-step GRPO pilot 验证 STA reward 有效性
+  rationale: EMNLP ARR DDL 5/25 仅剩 12 天，需要最快速度验证核心假设。选 FOL+Prover9 因为 hacking 模式最清晰（tautological
+    formulas），STA 的 O(1) 近似最直观（去掉前提后能否证明结论）。50-step pilot 足以观察 ISR 趋势。两个条件并行跑 2 GPU。Pass
+    标准：ISR gap >20pp + accuracy 降幅 <5pp。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-13 17:37 UTC
+  summary: MVP 方案调整：50步→100步 + 趋势判断 + Phase 0 ISR baseline + kill criteria
+  rationale: 采纳 Reviewer 三条 warning：(1) 加 pre-training ISR baseline 锚定训练前水平；(2) 50步太短难以观察
+    reward hacking，改 100步+最后20步 moving average 趋势判断；(3) 补充硬性 kill criteria 防止 DDL
+    压力下无止境调整。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-13 20:50 UTC
+  summary: Phase 1 r4 fast_isr_fol 训练信号无效，改用 full STA + K=8 重跑
+  rationale: fast_isr_fol 是二值 O(1) 近似（ISR=0 tautology / ISR=1 non-tautology），Qwen3-4B
+    生成的 proved formalization 几乎全部 ISR=1，与 execution-only 零差异。full STA 提供连续 ISR（0.125-0.889
+    in Phase 0），能给出真实梯度信号。K=4 导致 frac_reward_zero_std=0.5-1.0（GRPO 无 advantage），K=8
+    增加 within-group variance。两个改动分别解决 STA 信号粒度和 GRPO 梯度信号两个独立问题。
+  related_experiments:
+  - exp_id: sta-phase1-exec-only-r4
+    role: evidence
+    result: prove_rate 12%→15%, ISR ~0.15, minimal learning
+  - exp_id: sta-phase1-exec-sta-r4
+    role: evidence
+    result: 与 exec-only 几乎完全相同, fast_isr 提供零额外信号
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-13 21:59 UTC
+  summary: Reviewer 指出 exec-sta-r5 prove_rate 低于 baseline（退化），STA 50/50 权重过于惩罚性。立即补跑低权重
+    + bonus 模式实验
+  rationale: exec-sta-r5 prove_rate=0.10 < baseline=0.12 < exec-only=0.15。连续 ISR 给
+    proved-but-low-ISR 样本 reward≈0.3（几乎等于未 prove），模型学到 prove 不值得。Kill criteria 未触发（差
+    5pp 非 15pp，权重未调整），但核心假设受挑战。需立即验证：(1) sta_weight=0.1 降低惩罚 (2) ISR-as-bonus 模式 r=exec×(1+α×ISR)
+    避免惩罚。
+  related_experiments:
+  - exp_id: sta-phase1-exec-sta-r5
+    role: evidence
+    result: prove_rate=0.10 < baseline, STA reward 过于惩罚性
+  - exp_id: sta-phase1-exec-only-r5
+    role: control
+    result: prove_rate=0.15, 复现 r4
+  depends_on:
+  - D003
+- id: D005
+  date: 2026-05-13 22:13 UTC
+  summary: ISR/PR 下降因果归因待验证，plan_003 提升为最高优先级消歧实验
+  rationale: Reviewer 指出 ISR/PR 64%→33% 有两种解释：(A) STA 检测到 hacking (B) 50/50 权重抑制 prove
+    行为的惩罚效应。ISR 绝对值 ~0.05 ≈ pretrained 水平支持解释 B。plan_003（用 full STA 评估 exec-only checkpoint）是唯一消歧实验——exec-only
+    ISR 高→STA reward 导致退化；exec-only ISR 低→GRPO 通病。paper_framing.md 已将 claim 降级为观察性表述，因果表述需等
+    plan_003 结果。cuda:1 排列改为 plan_003 eval 先行，再 plan_005 training。
+  related_experiments:
+  - exp_id: sta-phase1-exec-sta-r5
+    role: evidence
+    result: ISR/PR 下降但因果不清
+  - exp_id: sta-phase1-exec-only-r5
+    role: baseline
+    result: prove_rate=0.12, ISR 未用 full STA 评估
+  depends_on:
+  - D004
+- id: D006
+  date: 2026-05-13 22:14 UTC
+  summary: paper_framing.md "检测 hacking" claim 降级为观察性表述，plan_003 为消歧实验
+  rationale: Reviewer 指出 ISR/PR 64%→33% 下降存在混淆效应：可能是 STA 检测到 hacking，也可能是 50/50 权重抑制
+    prove 行为。ISR 绝对值始终 ~0.05 ≈ pretrained 水平，更像惩罚效应。plan_003（exec-only checkpoint
+    用 full STA 评估）是消歧实验——完成前 paper 不可用因果表述。已修改 paper_framing.md Claim 1 MVP 证据段。
+  related_experiments:
+  - exp_id: sta-phase1-exec-sta-r5
+    role: evidence_source
+    result: ISR/PR 下降观察到但因果不清
+  - exp_id: plan_003
+    role: disambiguation
+    result: planned
+  depends_on:
+  - D004
+- id: D007
+  date: 2026-05-13 23:05 UTC
+  summary: plan003 因果消歧：exec-only ISR 提升是有机的，50/50 STA 权重是退化根因，STA 概念本身无问题
+  rationale: plan003 eval 显示 exec-only 100步 checkpoint 的 held-out prove_rate=0.32（baseline
+    0.12 的 2.7x），proved_only_isr=0.642（远高于 exec+STA r5 的 0.043）。ISR 随 prove_rate 同步提升，排除
+    reward hacking。exec+STA 50/50 权重导致 prove_rate 低于 baseline（0.10<0.12），确认权重过高是退化根因。"STA
+    as reward" 叙事仍成立，需精确权重调校。注意：当前结果基于 100-step checkpoint，500-step 需重新验证。
+  related_experiments:
+  - exp_id: plan003-eval-exec-only-r5
+    role: primary
+    result: prove_rate=0.32, proved_only_isr=0.642, ISR organic
+  - exp_id: sta-phase1-exec-sta-r5
+    role: comparison
+    result: prove_rate=0.10, mean_isr=0.043, degraded
+  - exp_id: sta-phase1-exec-only-r5
+    role: comparison
+    result: prove_rate=0.15(last20:0.20), mean_isr=0.148
+  depends_on:
+  - D005
+  - D006
+- id: D008
+  date: 2026-05-13 23:08 UTC
+  summary: Dream 审稿确认 5 个结构性弱点，plan_003 消歧确认 penalty effect (B)，论文 story 需重构
+  rationale: Dream best=4/6 Borderline Reject, median=3/6 Weak Reject。两档一致指出：(1) related
+    work 严重不足 6→25+ refs (2) RIP framing 过度——只有 Propagation 可操作化 (3) ISR circularity
+    未解决——需下游验证或 random baseline (4) 8/12 实验 single-seed 不足 (5) ISR sparsity 使 "dense+automatic"
+    定位不成立。plan_003 held-out eval 证实 exec-only checkpoint ISR=0.6423（proved-only），高于
+    GT 0.56，确认 ISR/PR 下降是 penalty effect 而非 hacking detection（interpretation B）。论文
+    story 必须从 "STA detects hacking" 转向 "STA as principled structural metric + proper
+    integration via weight tuning"。新增实验需求：random reward baseline + 3-seed for secondary
+    + downstream validation + curriculum ablation。
+  related_experiments:
+  - exp_id: plan003-eval-exec-only-r5
+    role: disambiguation
+    result: exec-only ISR=0.6423 confirms penalty effect (B)
+  - exp_id: plan005-sta-low-s42
+    role: running
+    result: weight ablation in progress
+  - exp_id: dream_20260513T215750
+    role: dream
+    result: best 4/6, median 3/6
+  depends_on:
+  - D005
+  - D006
+- id: D009
+  date: 2026-05-14 00:02 UTC
+  summary: 添加约束 C001（统一训练数据）和 C002（GPU 隔离验证），因连续两个 confound/越界事故
+  rationale: plan001-s43 使用了不同训练数据文件（proofwriter_fol_500.jsonl vs train_500_seed42.jsonl），破坏多
+    seed 对比控制变量。plan013 因 CUDA_VISIBLE_DEVICES inline 赋值引号问题越界占用两张 GPU，导致 plan001-s43
+    OOM。两个事故均为 Worker 提交流程缺陷，需要硬约束防止复发。
+  related_experiments:
+  - exp_id: plan001-exec-only-s43
+    role: trigger
+    result: failed (data confound + OOM)
+  - exp_id: plan013-random-reward-s42
+    role: trigger
+    result: failed (GPU overflow)
+  depends_on: []
+- id: D010
+  date: 2026-05-14 02:03 UTC
+  summary: '批准 framing 转向: STA as metric + additive bonus integration，plan002 改用非凸组合公式'
+  rationale: 'plan005 negative 确认 penalty effect: 凸组合 r=α·r_exec+β·r_exec·ISR (α+β=1)
+    下任何 ISR<1 都会惩罚 reward，即使 β=0.1。exec-only (plan003) proved-only ISR=0.6423 远高于
+    plan005 training ISR=0.23。根本原因: 凸组合约束强制 STA 成为 penalty 而非 bonus。plan002 应改用 additive
+    bonus: r=r_exec·(1+β·ISR)，β>0，ISR 只能增加 reward 不能减少。Story 正式从 "STA detects hacking"
+    转为 "STA as principled structural metric + additive bonus integration"。'
+  related_experiments:
+  - exp_id: plan005-sta-low-s42
+    role: evidence
+    result: 'negative: convex combination penalty effect confirmed'
+  - exp_id: plan003-eval-exec-only-r5
+    role: evidence
+    result: 'success: exec-only ISR=0.6423 >> STA-trained ISR'
+  depends_on:
+  - D008
+  - D006
+- id: D011
+  date: 2026-05-14 02:03 UTC
+  summary: '批准 Narrative A+C: STA as diagnostic metric 为主线，bonus-only 公式作为集成尝试，放弃
+    curriculum (B)'
+  rationale: plan005 negative 确认 multiplicative formulation 的 penalty effect 在所有权重下成立。Narrative
+    A 将所有 negative 结果转化为证据（penalty effect 分析 + ISR/PR ratio 作为 structural health indicator），降低
+    DDL 风险。选 C 而非 B：bonus-only 是对 multiplicative penalty 的数学根治（additive, threshold-gated），而
+    curriculum 只是工程 workaround。C 只需改一行 reward 公式 + 1 次训练（~1.5 GPU·h），ROI 最高。如果 C 也
+    negative，论文退化为纯 metric paper 仍可投 EMNLP findings。
+  related_experiments:
+  - exp_id: plan005-sta-low-s42
+    role: trigger
+    result: 'negative: weight=0.1 仍 -10.7% prove_rate'
+  - exp_id: plan003-eval-exec-only-r5
+    role: evidence
+    result: exec-only ISR=0.6423 proved-only, penalty effect confirmed
+  depends_on:
+  - D008
+  - D006
+- id: D012
+  date: 2026-05-14 02:24 UTC
+  summary: 新增 additive random 对照实验（plan_017），隔离 ISR structural signal vs GRPO regularization
+    effect
+  rationale: 'Reviewer 指出 GRPO 饱和不对称 confound: exec-only 在 prove_rate=1.0 时 reward
+    variance=0 导致 loss=0（停止学习），而 ISR/random 任何引入 variance 的机制都会维持梯度。plan002 additive
+    ISR 需要匹配的 additive random 对照：r=r_exec·(1+β·random[0,1])。三组比较: (1) ISR>random>exec-only
+    → signal+regularization 都贡献 (2) ISR>random≈exec-only → ISR signal 是关键 (3) ISR≈random>exec-only
+    → 纯 regularization，ISR 内容无价值。这是论文 "ISR provides unique structural signal" claim
+    的必要证据。'
+  related_experiments:
+  - exp_id: plan013-random-reward-s42-r4
+    role: motivation
+    result: 'confound: convex random introduced variance preventing GRPO saturation'
+  - exp_id: plan001-exec-only-s43-r4
+    role: motivation
+    result: 'GRPO saturation confirmed: loss=0 at prove_rate=1.0'
+  depends_on:
+  - D010
+- id: D013
+  date: 2026-05-14 02:34 UTC
+  summary: ISR 评估方法论标准化：所有 checkpoint 必须用 eval_sta.py (full STA) 统一重评，训练日志 ISR 不可用于论文
+  rationale: Reviewer 核实发现：(1) s42-r2 用旧代码 _fast_fn 二值近似，s43-r4 用 _full_fn full STA，跨
+    seed ISR 不可比；(2) plan013 random_reward 仍用 _fast_fn，训练 ISR≈prove_rate 是二值假象；(3)
+    只有 eval_sta.py 产出的 proved_only_ISR 是可靠指标。统一用 eval_sta.py 评估所有 checkpoint 后才能做跨实验比较。
+  related_experiments:
+  - exp_id: plan001-exec-only-s43-r4
+    role: affected
+    result: 训练 ISR 与 s42-r2 不可比，需 eval_sta.py 重评
+  - exp_id: plan003-eval-exec-only-r5
+    role: reference
+    result: confirmed full STA, proved_only_ISR=0.6423 有效
+  - exp_id: plan013-random-reward-s42-r4
+    role: affected
+    result: 训练 ISR 不可信(_fast_fn)，需 eval_sta.py 重评
+  depends_on: []
+- id: D014
+  date: 2026-05-14 02:36 UTC
+  summary: plan013 确认 GRPO 饱和 confound：random reward PR(0.966) > exec-only PR(0.865)，差异源于训练动态而非结构信号
+  rationale: 'plan013 random reward 实验表明：(1) random noise 通过保持 reward variance 防止
+    GRPO 饱和，PR 反超 exec-only；(2) 两者 ISR/PR ratio 均≈1.0，random noise 未提供结构信号；(3) 这直接印证
+    Reviewer #2 的 GRPO 饱和 confound 担忧。结论：exec-only 的 PR→1.0 时 reward_std→0 导致学习停滞，additive
+    bonus (plan002) 才是正确方案——提供 meaningful variance + anti-saturation。plan013 在论文中应正面叙述
+    saturation mechanism，将 additive bonus 的 anti-saturation 作为 key design insight。'
+  related_experiments:
+  - exp_id: plan013
+    role: primary
+    result: random reward PR=0.966 > exec-only PR=0.865, ISR/PR≈1.0
+  - exp_id: plan001-s42-r2
+    role: baseline
+    result: exec-only PR=0.865, ISR/PR≈1.0
+  - exp_id: plan002
+    role: hypothesis
+    result: running - additive bonus expected to provide meaningful variance + anti-saturation
+  depends_on: []
+- id: D015
+  date: 2026-05-14 02:38 UTC
+  summary: 训练日志 ISR 跨 seed 不可比，所有 checkpoint 必须用 eval_sta.py 统一评估获取 full STA ISR
+  rationale: Reviewer 核实发现：plan001-s42-r2 用 _fast_fn (binary ISR≈prove_rate)，plan001-s43-r4
+    用 _full_fn (连续 ISR)，两者训练日志 ISR 不可比。plan013-r4 同样是 binary approximation。论文正式数据必须来自
+    eval_sta.py 的 full STA 评估。此外 plan001-s43-r4 训练中 ISR 崩塌轨迹（prove_rate=1.0 时 ISR=0.01）是
+    reward hacking 的直接定量证据，强化论文 thesis。
+  related_experiments:
+  - exp_id: plan001-exec-only-s42-r2
+    role: affected
+    result: 训练ISR为binary approximation,需eval_sta.py重评
+  - exp_id: plan001-exec-only-s43-r4
+    role: evidence
+    result: ISR崩塌轨迹:prove_rate=1.0时ISR=0.01,reward hacking证据
+  - exp_id: plan013-random-reward-s42-r4
+    role: affected
+    result: 训练ISR为binary approximation,需eval_sta.py重评
+  - exp_id: plan003-eval-sta
+    role: validated
+    result: proved_only_ISR=0.6423确认为full STA,可信
+  depends_on: []
+- id: D016
+  date: 2026-05-14 03:20 UTC
+  summary: eval_sta held-out 评估定量证实 exec-only reward hacking：500步 checkpoint prove_rate=0.93
+    但 ISR=0.1324（median=0.0）
+  rationale: plan001-r2 exec-only checkpoint-500 在 held-out 100题上的 full STA 评估显示 proved_only_ISR=0.1324，中位
+    ISR=0.0——模型高 prove_rate 完全依赖 solver 宽松性而非正确 FOL 结构。对比 plan003（100步 checkpoint）的
+    ISR=0.6423，ISR 随训练从 64% 崩塌到 13%，是 reward hacking 的直接定量证据。跨 seed 一致性已验证（s42 last100
+    PR=0.865 vs s43 last100 PR=0.883）。这构成论文 Core Claim 1 的核心证据。
+  related_experiments:
+  - exp_id: plan001-exec-only-s42-r2
+    role: primary
+    result: held-out PR=0.93, proved_only_ISR=0.1324, median_ISR=0.0
+  - exp_id: plan001-exec-only-s43-r4
+    role: replication
+    result: 训练ISR=0.087(if _full_fn), last100_PR=0.883, 跨seed一致
+  - exp_id: plan003-eval-exec-only-r5
+    role: comparison
+    result: 100步checkpoint ISR=0.6423, 训练前结构质量高
+  depends_on:
+  - D015
+  - D007
+- id: D017
+  date: 2026-05-14 03:24 UTC
+  summary: random reward held-out ISR=0.535 >> exec-only ISR=0.132，anti-saturation
+    效应可能足以改善结构质量，ISR-specific signal 待 plan002 vs plan017 验证
+  rationale: plan013 random reward 在 held-out 上 prove_rate=1.0, ISR=0.535, 大幅优于 exec-only
+    (PR=0.93, ISR=0.132)。Random noise 通过防止 GRPO reward variance→0 的饱和效应让模型持续学习。这挑战了"ISR
+    提供结构信号"的叙事——可能仅 anti-saturation 就够。关键验证：plan002 (additive ISR) vs plan017 (additive
+    random) 的 matched control，加上 formalization 组件数对比排除长度 confound。论文叙事可能需要从"ISR reward"转向"GRPO
+    饱和机制 + STA 诊断工具"。
+  related_experiments:
+  - exp_id: plan013-random-reward-s42-r4
+    role: primary
+    result: held-out PR=1.0, ISR=0.535, median_ISR=0.5, min_ISR=0.5
+  - exp_id: plan001-exec-only-s42-r2
+    role: baseline
+    result: held-out PR=0.93, ISR=0.132, median_ISR=0.0
+  - exp_id: plan002-additive-b03-s42
+    role: pending
+    result: 中期PR严重偏低(39.8%步PR=0),待完成
+  - exp_id: plan017-additive-random-s42
+    role: pending
+    result: 刚启动,matched control
+  depends_on:
+  - D016
+  - D014
+- id: D018
+  date: 2026-05-14 03:31 UTC
+  summary: 推翻 D017：plan013 held-out ISR=0.535 是 tautological hacking 假象（100% P→P），random
+    reward 加速 hacking 而非改善结构
+  rationale: Reviewer 逐样本检查 plan013 eval_sta 结果：100/100 样本全部是「把 conclusion 抄一遍当 premise」(P→P
+    tautology)，ISR=0.5 是机械值（2 components, 1 necessary）而非真实结构质量。D017 基于 ISR=0.535 得出的"anti-saturation
+    改善结构"结论完全错误。实际情况：random reward 让模型找到了最终极的 hacking 捷径——100% tautological formalization。对比
+    exec-only 100步 ISR=0.6423（有真实推理）→ 500步 ISR=0.132（退化但非全 tautological），random reward
+    加速了 hacking 收敛。plan002 eval_sta 结果成为关键：如果 additive ISR bonus 产生的是非 tautological
+    formalization，即使 PR 低也是积极信号——ISR reward 在抵抗 hacking。
+  related_experiments:
+  - exp_id: plan013-random-reward-s42-r4
+    role: primary
+    result: 100% tautological P→P, ISR=0.5 是机械值而非结构质量
+  - exp_id: plan001-exec-only-s42-r2
+    role: comparison
+    result: held-out PR=0.93, ISR=0.132, 部分真实推理
+  - exp_id: plan002-additive-b03-s42
+    role: pending_critical
+    result: PR低但可能是真实推理, eval_sta 待出
+  depends_on:
+  - D017
+- id: D019
+  date: 2026-05-14 03:33 UTC
+  summary: ISR 衡量 syntactic component necessity 而非 semantic faithfulness，论文需明确边界并用
+    plan014 downstream validation 补盲区
+  rationale: Reviewer 发现 ISR 反直觉行为：plan013 P→P 纯重言式 ISR=0.5 > plan001 多前提嵌入 conclusion
+    ISR≈0。从语义忠实度看 P→P 更差（完全忽略 context），但 ISR 定义下反而更高，因为 ISR=n_necessary/n_components，极简
+    formalization 的分母小。论文不能将 ISR 差异直接等同于 formalization 质量差异——需明确 ISR 的 scope 是 component
+    necessity。plan014 downstream NLI validation 直接测量 semantic faithfulness，弥补 ISR
+    盲区。同时建议考虑组合指标（ISR + non-tautological check + 最小组件数阈值）。
+  related_experiments:
+  - exp_id: plan013-random-reward-s42-r4
+    role: evidence
+    result: P→P tautology ISR=0.5, 语义完全退化但ISR不低
+  - exp_id: plan001-exec-only-s42-r2
+    role: evidence
+    result: 多前提嵌入conclusion ISR≈0, 语义更好但ISR更低
+  - exp_id: plan014
+    role: mitigation
+    result: downstream NLI validation 补充语义忠实度测量
+  depends_on:
+  - D018
+- id: D020
+  date: 2026-05-14 03:40 UTC
+  summary: plan002 additive ISR β=0.3 负面结果确认：PR=18% + ISR=0.1427，ISR reward 作为训练信号的路线全面失败，论文转向纯诊断/分析贡献
+  rationale: 'plan002 held-out eval: PR=18%（最差）, ISR=0.1427≈exec-only 0.1324。加上 plan005
+    (convex, negative) 和 plan013 (random, tautological hacking)，所有 ISR-as-reward 方案均失败。但三个条件产生了三种不同的退化模式（conclusion
+    embedding / P→P tautology / repetitive cycling），这本身是有价值的研究发现。论文应完全放弃"ISR reward
+    改善训练"的 claim，转向：(1) STA/ISR 作为诊断工具检测 reward hacking (2) GRPO saturation 机制分析 (3)
+    不同 reward 信号下的 hacking 策略分类学 (4) ISR 随训练的崩塌轨迹。plan014 downstream validation 成为证明
+    ISR 诊断价值的关键实验。'
+  related_experiments:
+  - exp_id: plan002-additive-b03-s42
+    role: primary
+    result: 'negative: PR=18%, ISR=0.1427, 重复前提循环退化'
+  - exp_id: plan005-sta-low-s42
+    role: prior_negative
+    result: convex combination penalty effect
+  - exp_id: plan013-random-reward-s42-r4
+    role: comparison
+    result: 100% tautological hacking, ISR=0.5 假象
+  - exp_id: plan001-exec-only-s42-r2
+    role: baseline
+    result: PR=93%, ISR=0.132, conclusion embedding
+  depends_on:
+  - D018
+  - D019
+  - D010
+- id: D021
+  date: 2026-05-14 04:28 UTC
+  summary: plan014 ISR-accuracy 假说被否定；ISR 定位为 syntactic necessity 指标，不 claim semantic
+    quality proxy
+  rationale: Spearman ρ(ISR, entailment_accuracy) = -0.049, p=0.187（n=732），ISR-based
+    BoN Δ=0.88pp CI含零。同时发现系统性 true 偏差（gold=true 91.2% acc, gold=false 0%），说明 formalization
+    pipeline 本身有 truth bias。ISR 衡量组件必要性（去掉后证明是否成立），不衡量 formalization 是否语义忠实。论文应明确此
+    limitation，将 plan014 作为 negative result 诚实报告，刻画 ISR 能力边界。
+  related_experiments:
+  - exp_id: plan014-downstream-nli-s42
+    role: primary
+    result: negative — ISR与下游NLI准确率无显著相关
+  depends_on: []
+- id: D022
+  date: 2026-05-14 04:30 UTC
+  summary: 选备选 A：ISR downstream 验证降级为 limitation/future work，不追加 NLI 替代实验
+  rationale: ISR 结构价值已有 component count 差异（p<0.0001）和 cross-checkpoint 对比强证据。NLI negative
+    源于 formalization model 的 true-bias（非 ISR 本身缺陷），换 downstream 任务（B）在同一 model 上大概率复现同样问题。n=12
+    的 bucket 趋势（C）统计不可靠。聚焦 plan017 + s44 完成核心证据链。
+  related_experiments:
+  - exp_id: plan014-downstream-nli-s42
+    role: evidence
+    result: negative
+  depends_on:
+  - D021
+- id: D023
+  date: 2026-05-14 05:31 UTC
+  summary: paper_framing.md 全量重写：4 条诊断/分析 claims 替代旧 2 条 reward methodology claims，与
+    D020 pivot 一致
+  rationale: 'Reviewer CRITICAL: paper_framing.md 仍写 "STA as Reward Design Methodology"
+    + additive bonus headline，但 D020 已确认 ISR-as-reward 全面失败。新 framing 4 条 claims:
+    (1) ISR as hacking diagnostic (ISR 崩塌轨迹), (2) GRPO saturation mechanism, (3) hacking
+    taxonomy (4 种模式), (4) ISR capability boundary (syntactic necessity ≠ semantic
+    faithfulness)。Story spine 从 "propose structural reward" 转为 "diagnostic tool +
+    systematic empirical study of reward hacking"。负面结果表（convex/additive/random）作为正面贡献呈现。'
+  related_experiments:
+  - exp_id: plan002-additive-b03-s42
+    role: negative_evidence
+    result: PR=18%, ISR=0.14, repetitive cycling
+  - exp_id: plan005-sta-low-s42
+    role: negative_evidence
+    result: convex penalty effect confirmed
+  - exp_id: plan013-random-reward-s42-r4
+    role: negative_evidence
+    result: 100% tautological, ISR=0.5 mechanical
+  - exp_id: plan014-downstream-nli-s42
+    role: negative_evidence
+    result: ρ=-0.049 n.s., ISR ≠ semantic quality
+  - exp_id: plan001-exec-only-s42-r2
+    role: core_evidence
+    result: ISR collapse 64%→13%, hacking detected
+  depends_on:
+  - D020
+  - D021
+  - D022
+- id: D024
+  date: 2026-05-14 05:32 UTC
+  summary: 批准 plan006 Prolog GRPO 执行，3 seeds，强化跨 logic type 泛化性（原 P1 提升为紧急）
+  rationale: 诊断/分析论文如果只有 FOL 一种逻辑类型，venue 风险高（可能降至 Findings）。plan006 Prolog 验证 hacking
+    现象是否跨 logic type 泛化，6 GPU·h 成本低（vs 528 GPU·h 可用）。Reviewer 明确指出 generalizability
+    是论文能否进 Main 的关键因素。先跑 exec-only seed=42 验证方向，成功再 3-seed。
+  related_experiments:
+  - exp_id: plan006
+    role: planned
+    result: Prolog GRPO exec-only vs exec+STA, 3 seeds
+  depends_on:
+  - D020
+- id: D025
+  date: 2026-05-14 05:34 UTC
+  summary: plan017 确认 ISR 作为 reward 比 random noise 更差：additive random PR=48% > additive
+    ISR PR=18%。ISR 信号对训练有害，论文诊断定位全面确认
+  rationale: 'plan017 additive random (r=r_exec·(1+0.3·random)) held-out eval: PR=48%,
+    ISR=0.045, components=9.56。对比 plan002 additive ISR (PR=18%, ISR=0.026, components=10.67)，random
+    noise 在相同公式结构下 PR 高 2.7 倍。关键洞察：(1) ISR 结构信号对 GRPO 训练有害而非无用；(2) additive 乘法结构本身防止
+    tautological collapse（两者 components 9-10 vs plan013 的 2.04）；(3) 但 additive 结构也无法产生
+    genuine proofs（PR 远低于 exec-only s42 的 93%）。六组实验全景完整：exec-only 是唯一产生 genuine proofs
+    的方案（1/3 seeds），ISR 应定位为 post-hoc diagnostic，非 training signal。'
+  related_experiments:
+  - exp_id: plan017-additive-random-s42
+    role: primary
+    result: 'negative: PR=48%, ISR=0.045, components=9.56, complex-but-useless'
+  - exp_id: plan002-additive-b03-s42
+    role: comparison
+    result: 'negative: PR=18%, ISR=0.026, ISR worse than random'
+  - exp_id: plan013-random-reward-s42-r4
+    role: comparison
+    result: PR=100% but 100% tautological, components=2.04
+  - exp_id: plan001-exec-only-s42-r2
+    role: baseline
+    result: PR=93%, ISR=0.123, only genuine proofs (1/3 seeds)
+  depends_on:
+  - D020
+  - D018
+- id: D026
+  date: 2026-05-14 05:34 UTC
+  summary: plan017 确认 ISR 作为训练信号比 random noise 更差（PR 18% vs 48%），ISR 信号对 GRPO 训练有害，完全确立
+    diagnostic-only 定位
+  rationale: 'plan017 additive random (r=r_exec·(1+0.3·random)) eval_sta: PR=48%,
+    ISR=0.045, components=9.56。对比 plan002 additive ISR (β=0.3): PR=18%, ISR=0.026,
+    components=10.67。ISR 结构信号不仅无法改善训练，反而比 random noise 更差——ISR 信号对训练动态有害。两个 additive
+    方案都保持高 component count（9-10），说明乘法结构 r_exec·(1+βX) 本身防止 tautological collapse，但不产生
+    genuine proofs。Exec-only (s42) 仍是唯一产生 genuine proofs 的方案（PR=93%），但 2/3 seeds 失败。论文六组实验消融完整，强化
+    ISR diagnostic-only 定位：ISR 应用于 post-hoc 诊断而非 reward shaping。'
+  related_experiments:
+  - exp_id: plan017-additive-random-s42
+    role: primary
+    result: 'negative: PR=48%, ISR=0.045, complex-but-useless formalization'
+  - exp_id: plan002-additive-b03-s42
+    role: comparison
+    result: 'negative: PR=18%, ISR=0.026, ISR worse than random'
+  - exp_id: plan001-exec-only-s42-r2
+    role: baseline
+    result: 'success: PR=93%, ISR=0.132, only genuine proofs'
+  - exp_id: plan013-random-reward-s42-r4
+    role: comparison
+    result: 'tautological: PR=100%, ISR=0.535, P→P collapse'
+  depends_on:
+  - D020
+  - D018
+  - D012
+- id: D027
+  date: 2026-05-14 05:35 UTC
+  summary: 采纳备选 A+B：plan017 加入 Claim 2 证据 + Claim 3 增加第 5 种 hacking mode "complexity-without-utility"；Reviewer
+    关于 plan013 vs plan017 公式差异的 warning 纳入写作约束
+  rationale: 'plan017 结果完善了六组消融对比。备选 A 将 plan017 加入 Claim 2（GRPO 对 reward perturbation
+    敏感）是必须的数据更新。备选 B 增加第 5 种 hacking mode（complexity-without-utility: 高 component
+    但 conclusion 不依赖任何 premise）丰富 taxonomy，区别于 exec-only 的 conclusion embedding。Reviewer
+    指出 plan013 (0.9·r_exec+0.1·random) vs plan017 (r_exec·(1+0.3·random)) 不是纯 additive
+    vs convex 对照（公式结构+random 影响方式两个变量），论文措辞需精确标注差异，不可简化为"additive vs convex"。plan017
+    vs plan002 的对比（random PR=48% vs ISR PR=18%）作为论文 §5 核心证据。'
+  related_experiments:
+  - exp_id: plan017-additive-random-s42
+    role: primary
+    result: 'negative: PR=48%, complexity-without-utility mode'
+  - exp_id: plan002-additive-b03-s42
+    role: comparison
+    result: 'ISR worse than random: PR=18% vs 48%'
+  depends_on:
+  - D026
+  - D020
+- id: D028
+  date: 2026-05-14 05:35 UTC
+  summary: paper_framing.md 全面重写：3 条诊断/分析 claims 替代旧 2 条 method claims，与 D020 pivot
+    一致
+  rationale: 'Reviewer CRITICAL: paper_framing.md 仍写 "STA as Reward Design Methodology"
+    + additive bonus headline，与 D020 pivot 严重矛盾。重写为 3 条诊断 claims: (1) ISR as hacking
+    diagnostic (ISR 崩塌轨迹), (2) GRPO saturation mechanism (variance redirection), (3)
+    cross-logic generality (conditional on plan006)。Story spine 从 "ISR improves training"
+    转为 "ISR detects hacking + 4 hacking modes + saturation trap"。ISR-as-reward failure
+    log 保留所有 negative results 作为论文贡献。Headline result 更新为诊断发现而非方法改进。'
+  related_experiments:
+  - exp_id: plan002-additive-b03-s42
+    role: evidence
+    result: 'negative: PR=18%, ISR=0.1427'
+  - exp_id: plan005-sta-low-s42
+    role: evidence
+    result: 'negative: convex penalty'
+  - exp_id: plan013-random-reward-s42-r4
+    role: evidence
+    result: tautological collapse
+  - exp_id: plan014-downstream-nli-s42
+    role: evidence
+    result: 'negative: ρ=-0.049'
+  - exp_id: plan001-exec-only-s42-r2
+    role: baseline
+    result: PR=93%, ISR=0.123, hacking confirmed
+  depends_on:
+  - D020
+  - D021
+  - D022
+- id: D029
+  date: 2026-05-14 06:28 UTC
+  summary: plan001-s43 不重训，论文标注 eval 方法差异
+  rationale: s43 PR=14% 是 failure case（repetition collapse），无论 sampling eval 还是 full
+    STA 结论不变。主 story 用 s42(hacking) vs s44(tautological) 对比，s43 只作为第三种 failure mode
+    的佐证。重训 1h GPU 不值得，标注方法差异即可。
+  related_experiments:
+  - exp_id: plan001-s43
+    role: subject
+    result: negative, PR=14%, checkpoint deleted
+  depends_on: []
+- id: D030
+  date: 2026-05-14 06:29 UTC
+  summary: plan005 不重训，论文用训练曲线数据作为 convex formula 负面证据
+  rationale: plan005 是 negative result（convex公式 ISR/PR ratio=0.298, 99/100步 ISR<PR），用于解释为什么从凸组合切换到
+    additive bonus。训练曲线 windowed metrics 足以支撑这个 narrative，不需要 held-out eval。checkpoint
+    已删除，重训 1h 收益极低。
+  related_experiments:
+  - exp_id: plan005
+    role: subject
+    result: negative, convex formula abandoned
+  depends_on: []
+- id: D031
+  date: 2026-05-14 06:48 UTC
+  summary: β=0.1 ISR 结果异常好(PR=0.81/ISR=0.415)，紧急补 β=0.1 random control 后再决定是否调整 framing
+  rationale: β=0.1 additive ISR 是所有条件中唯一同时高 PR + 高 ISR 的。但无法确定优势来自 ISR structural
+    signal 还是 variance regularization——缺少 matched β=0.1 random control。在补控制实验之前暂不调整
+    paper_framing.md。若 β=0.1 random PR高但ISR低 → ISR 在低剂量下真正提升结构质量，narrative 升级为"dose-dependent
+    reward shaping"；若 β=0.1 random 也高ISR → 优势来自 regularization，维持当前 framing。
+  related_experiments:
+  - exp_id: plan002-b01
+    role: trigger
+    result: PR=0.81, ISR=0.415, best structural quality
+  - exp_id: plan017
+    role: existing_control
+    result: β=0.3 random, PR=0.48, ISR=0.094
+  depends_on:
+  - D026
+  - D027
+- id: D032
+  date: 2026-05-14 06:49 UTC
+  summary: β=0.1 ISR success 暂不改 framing，先跑 β=0.1 random matched control
+  rationale: plan002-b01 (β=0.1) PR=0.81/ISR=0.415 是重大正面结果，但 Reviewer 正确指出：缺 β=0.1
+    random control 无法区分"ISR structural signal"和"low-dose regularization effect"。β=0.3
+    有 matched random (plan017)，β=0.1 没有。在 control 结果出来前修改 framing 是冒进的——如果 β=0.1 random
+    也给高 ISR，则 ISR 无特殊价值。Control 仅需 ~1h GPU，成本极低。
+  related_experiments:
+  - exp_id: plan002-b01
+    role: trigger
+    result: success, PR=0.81, ISR=0.415
+  - exp_id: plan017
+    role: precedent
+    result: β=0.3 random control, PR=0.48
+  depends_on:
+  - D026
+  - D027
+- id: D033
+  date: 2026-05-14 08:25 UTC
+  summary: Framing 升级为 Goodhart 主线：ISR 在低剂量(β=0.1)有效、高剂量(β=0.3)崩溃，统一用 Goodhart's Law
+    解释
+  rationale: plan018 eval 确认 ISR β=0.1 结构价值真实（ISR 3.2x > random control，PR 持平）。β=0.3
+    下 ISR < random 是 Goodhart 过度优化。统一叙事：ISR 作为 proxy metric 遵循 Goodhart's Law —— diagnostic
+    有价值 (Claim 1)、低剂量优化有效、高剂量导致 Goodhart 崩溃。覆盖所有实验结果且有理论锚点。
+  related_experiments:
+  - exp_id: plan002-b01
+    role: trigger
+    result: 'ISR β=0.1: PR=0.81, ISR=0.415'
+  - exp_id: plan018
+    role: matched_control
+    result: 'random β=0.1: PR=0.79, ISR=0.104, confirms ISR signal genuine'
+  - exp_id: plan002-b03
+    role: high_dose
+    result: 'ISR β=0.3: PR=0.18, Goodhart collapse'
+  - exp_id: plan017
+    role: high_dose_control
+    result: 'random β=0.3: PR=0.48, random > ISR at high dose'
+  - exp_id: plan016
+    role: temporal_goodhart
+    result: 1000-step ISR=0.003, temporal dimension of Goodhart
+  depends_on:
+  - D031
+  - D026
+  - D027
+- id: D034
+  date: 2026-05-14 08:25 UTC
+  summary: Framing 选 C+A 混合：Goodhart 为主线叙事，ISR 诊断保留为 Claim 1，Claim 2 从"ISR misleading"升级为"ISR
+    exhibits dose-dependent Goodhart effect"
+  rationale: plan018 确认 β=0.1 ISR 的结构优势是真实信号（proved_only ISR 0.415 vs random 0.131,
+    3.2x），非 variance regularization。全景数据：β=0.1 ISR>>random（有效）、β=0.3 ISR<<random（Goodhart
+    崩塌）。选 C（Goodhart 主线）因为：1) 统一所有实验结果在一个叙事下；2) Goodhart's Law 审稿人熟悉，不需要大量额外文献；3)
+    提供理论解释力而非仅经验观察。融入 A 的元素：ISR 不仅是诊断工具，低剂量下也是有效 reward signal，这是实用贡献。
+  related_experiments:
+  - exp_id: plan002-b01
+    role: evidence
+    result: 'ISR β=0.1: PR=0.81, ISR=0.415'
+  - exp_id: plan018
+    role: matched_control
+    result: 'random β=0.1: PR=0.79, ISR=0.131, confirms ISR signal is genuine'
+  - exp_id: plan002-b03
+    role: evidence
+    result: 'ISR β=0.3: PR=0.18, Goodhart collapse'
+  - exp_id: plan017
+    role: matched_control
+    result: 'random β=0.3: PR=0.48, ISR beats random at high β'
+  depends_on:
+  - D031
+  - D026
+  - D027
+- id: D035
+  date: 2026-05-14 08:25 UTC
+  summary: 'Framing 选 C: Goodhart 主线 — ISR 展示经典 Goodhart 效应（β=0.1 有效, β=0.3 崩塌）'
+  rationale: plan018 确认 ISR β=0.1 结构价值真实（ISR 3.2x > random, PR 持平）。三个备选中 C 最强：(1)
+    统一所有结果（诊断→优化→Goodhart 崩塌）为一条叙事线；(2) Goodhart's law 是 ML 审稿人熟悉的理论锚点；(3) 剂量-效应数据（β=0.1
+    有效 vs β=0.3 灾难）是异常干净的实证；(4) 连接到更广泛的 RL alignment 关切，提升论文影响力。Claim 2 从 "ISR actively
+    misleading" 修订为 "ISR exhibits classic Goodhart effect with dose-dependent dynamics"。
+  related_experiments:
+  - exp_id: plan002-b01
+    role: evidence
+    result: 'ISR β=0.1: PR=0.81, ISR=0.415'
+  - exp_id: plan018
+    role: matched_control
+    result: 'random β=0.1: PR=0.79, ISR=0.131, confirms ISR structural signal'
+  - exp_id: plan002-b03
+    role: evidence
+    result: 'ISR β=0.3: PR=0.18, Goodhart collapse'
+  - exp_id: plan017
+    role: matched_control
+    result: 'random β=0.3: PR=0.48, ISR > random at high dose'
+  depends_on:
+  - D031
+  - D026
+  - D027
+- id: D036
+  date: 2026-05-14 08:35 UTC
+  summary: 为 beta=0.1 补跑多 seed (s43/s44) 验证 ISR vs random 的稳健性
+  rationale: exec-only 已知 seed variance 极大 (s42/s43/s44 三种完全不同行为)。beta=0.1 当前仅 s42
+    单 seed，ISR (PR=0.81) vs random (PR=0.79) 差距仅 2pp，单 seed 不足以区分 signal 和 noise。ISR
+    差距 (0.337 vs 0.104) 需要多 seed 确认。用户主动提出，判断正确。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR beta=0.1 baseline (单seed)
+    result: PR=0.81, ISR=0.337
+  - exp_id: plan018-additive-random-b01-s42
+    role: random beta=0.1 control (单seed)
+    result: PR=0.79, ISR=0.104
+  - exp_id: plan001-exec-only-s43
+    role: seed variance 前车之鉴
+    result: PR=14% degenerate
+  depends_on: []
+- id: D037
+  date: 2026-05-14 08:55 UTC
+  summary: ISR β=0.1 质量验证路径：先 hacking taxonomy 对比，必要时加 LLM-as-judge
+  rationale: ISR 更高不等于质量更好（plan014 NLI negative）。用户指出需要独立于 ISR 的质量证据。Hacking taxonomy
+    是最直接的结构质量指标，但可能覆盖不全。LLM-as-judge 作为补充手段，覆盖 taxonomy 未涵盖的 hacking 模式。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR β=0.1 待分析
+    result: PR=0.81, ISR=0.337
+  - exp_id: plan018-additive-random-b01-s42
+    role: random β=0.1 待分析
+    result: PR=0.79, ISR=0.104
+  - exp_id: plan012
+    role: hacking taxonomy 框架
+    result: 5 modes identified
+  depends_on:
+  - D036
+- id: D038
+  date: 2026-05-14 09:05 UTC
+  summary: Hacking taxonomy 结果足够，跳过 LLM-as-judge；taxonomy 对比覆盖 plan012 scope
+  rationale: 规则分类（ISR/component count）100% 覆盖 160 样本，4 类别划分清晰。核心发现：ISR β=0.1 genuine
+    +8.2pp vs random，conclusion embedding 73-79% 主导。LLM-as-judge 增加主观性/复现顾虑，边际收益低。Taxonomy
+    对比分析（81+79=160 样本，系统化规则分类）实质替代 plan012 手工标注方案。
+  related_experiments:
+  - exp_id: plan012
+    role: fulfilled_by_taxonomy
+    result: ISR genuine 25.9% vs random 17.7%
+  - exp_id: plan002-additive-b01-s42
+    role: ISR_condition
+    result: genuine 21/81
+  - exp_id: plan018-additive-random-b01-s42
+    role: random_control
+    result: genuine 14/79
+  depends_on:
+  - D037
+- id: D039
+  date: 2026-05-14 09:41 UTC
+  summary: plan002-b01-s44 重分类：从 success 改为 semantic drift hacking mode，ISR=0.803
+    是结构最小性产物
+  rationale: Reviewer 逐样本审查发现 s44 避免了 tautological collapse 但进入新退化模式：65% 样本 ISR=1.0（前提≈结论
+    conclusion embedding），模型生成极简形式化通过结构最小性骗过 ISR。高 ISR 不代表证明质量。这实际强化 Claim 1（ISR 是诊断工具而非
+    reward 信号）的 Goodhart 叙事——ISR-as-reward 改变 collapse mode 但不消除 hacking。Hacking taxonomy
+    需增加第 6 种模式 "Semantic Drift"。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s44
+    role: primary
+    result: semantic drift hacking (reclassified from success)
+  depends_on: []
+- id: D040
+  date: 2026-05-14 09:41 UTC
+  summary: 'plan002-b01-s44 reclassified: "success" → "new hacking mode (conclusion
+    duplication + ISR inflation)"'
+  rationale: 'Reviewer critical: s44 ISR=0.902 超过 GT ISR=0.559，模型生成单 premise≈conclusion
+    的极简形式化，通过 conclusion sub-component ablation 膨胀 ISR。不是 tautological collapse 但仍是
+    reward hacking。这强化 Claim 1（ISR as diagnostic not reward）——ISR-as-reward 改变 hacking
+    mode 但不消除 hacking。Hacking taxonomy 需增加第 6 种模式。3-seed β=0.1 统计需加 caveat 或分开报告。'
+  related_experiments:
+  - exp_id: plan002-additive-b01-s44
+    role: subject
+    result: ISR=0.902 is artifact of conclusion duplication, not genuine quality
+  - exp_id: plan002-additive-b01-s42
+    role: comparison
+    result: ISR=0.337 genuine, no hacking detected
+  depends_on: []
+- id: D041
+  date: 2026-05-14 09:58 UTC
+  summary: 'Claim 2 framing pivot: ISR β=0.1 "sweet spot" → "all-dose Goodhart with
+    dose-dependent hacking modes"'
+  rationale: 3-seed ISR β=0.1 结果：2/3 seeds (s43, s44) 出现 conclusion duplication hacking
+    (premise≈conclusion, P→P 重言式)，ISR 被膨胀到 0.83/0.90 (artifact)。仅 s42 可能 genuine (comp=5.58,
+    ISR=0.415)。"低剂量 ISR 有效引导结构改善"的叙事在多 seed 下不成立。新叙事更强：ISR 作为 reward 在所有测试剂量下都触发 Goodhart——高剂量(β=0.3)
+    PR collapse + format degeneration，低剂量(β=0.1) 引发更隐蔽的 conclusion duplication hacking。Conclusion
+    duplication 作为第 6 种 hacking taxonomy 类型。需先验证 s42 是否真正 genuine + random β=0.1 是否也有此模式。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: evidence
+    result: PR=0.81, ISR=0.337, comp=5.58, possibly genuine
+  - exp_id: plan002-additive-b01-s43
+    role: evidence
+    result: PR=0.61, ISR=0.830 (artifact), 97% premise=conclusion
+  - exp_id: plan002-additive-b01-s44
+    role: evidence
+    result: PR=0.89, ISR=0.902 (artifact), 65% conclusion embedding
+  depends_on: []
+- id: D042
+  date: 2026-05-14 09:58 UTC
+  summary: ISR 度量存在结构性盲点：premise≈conclusion 时 conclusion sub-component ablation 虚高
+    ISR，需修复度量并重新分析
+  rationale: Reviewer 审查 plan002-b01-s43/s44 发现 2/3 seeds 的高 ISR (0.830/0.902) 源于
+    premise=conclusion 逐字重复导致的 conclusion sub-component ablation artifact。只有 s42 (ISR=0.337)
+    反映真实结构质量。ISR 度量在 premise≈conclusion 场景下有结构性盲点——模型学会 P→P 单步证明时，exec reward=1.0
+    且 ISR 被膨胀至 0.8-1.0。这不仅是 metric bug，更是 ISR-as-reward 诱导的新型 hacking mode（conclusion
+    duplication），ISR 自身无法检测。行动：(1) 修复 ISR 度量加 premise≈conclusion 检测 (2) 用修复后度量重新分析
+    s43/s44 (3) 检查 plan018 random control 是否也有此问题 (4) 更新 paper framing：ISR 盲点作为贡献/limitation，hacking
+    taxonomy 加第 6 类
+  related_experiments:
+  - exp_id: plan002-additive-b01-s43
+    role: evidence
+    result: ISR=0.830 inflated by premise≈conclusion duplication (65.6% ISR=1.0)
+  - exp_id: plan002-additive-b01-s44
+    role: evidence
+    result: ISR=0.902 inflated by same mechanism
+  - exp_id: plan002-additive-b01-s42
+    role: baseline
+    result: ISR=0.337 genuine (n_comp=5.58, diverse structures)
+  depends_on: []
+- id: D043
+  date: 2026-05-14 09:58 UTC
+  summary: ISR β=0.1 "sweet spot"叙事降级：2/3 seeds ISR 膨胀为 artifact，Claim 2 改为 meta-level
+    Goodhart
+  rationale: 'Reviewer critical: s43 ISR=0.830, s44 ISR=0.902 均超 GT ISR=0.559，由 premise=conclusion
+    单前提证明 + conclusion sub-component ablation 膨胀。仅 s42 ISR=0.337 可能 genuine。ISR bonus
+    诱导了新型 hacking 模式（Conclusion Duplication + ISR Inflation），而 random β=0.1 控制组产生
+    redundant premises 不触发此膨胀——证明这是 ISR-specific gaming。Claim 2 叙事从"β=0.1 is sweet
+    spot"调整为"ISR as reward exhibits meta-level Goodhart: even the diagnostic metric
+    gets gamed, with 2/3 seeds developing ISR-inflating strategies"。这实际上是更强的贡献。'
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: possibly genuine seed
+    result: PR=0.81, ISR=0.337, comp=5.58 — below GT ISR, needs per-sample verification
+  - exp_id: plan002-additive-b01-s43
+    role: ISR inflation seed
+    result: PR=0.61, ISR=0.830, 65.6% ISR=1.0, premise=conclusion pattern
+  - exp_id: plan002-additive-b01-s44
+    role: ISR inflation seed
+    result: PR=0.89, ISR=0.902, same conclusion duplication pattern
+  - exp_id: plan018-additive-random-b01-s42
+    role: random control
+    result: PR=0.79, ISR=0.104, redundant premises — no ISR inflation
+  depends_on: []
+- id: D044
+  date: 2026-05-14 10:35 UTC
+  summary: Hacking taxonomy 全面采用 strict 定义（exact normalized match），Table 2 所有数字可被
+    classify_h7.py 复现
+  rationale: classify_h7.py 修复后暴露 H1 定义口径问题：旧 H1 包含 partial/semantic match（72.8%→60.5%），strict
+    H1 仅 exact normalized match（51.9%）。选择 strict 定义：(1) 所有数字可被脚本精确复现，满足论文 reproducibility
+    要求；(2) ISR total hacking 69.1% vs random 74.7%，相对关系不变（ISR < random）；(3) genuine
+    rate ISR 30.9% vs random 25.3%，ISR 仍优于 random。7 个 partial-embedding 样本归入 "unclassified"
+    或不计入 hacking。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: primary
+    result: strict H7=16.1%, strict H1=51.9%, strict total hacking=69.1%, genuine=30.9%
+  - exp_id: plan018-additive-random-b01-s42
+    role: control
+    result: strict H7=0%, strict H1=70.9%, strict total hacking=74.7%, genuine=25.3%
+  depends_on: []
+- id: D045
+  date: 2026-05-14 11:53 UTC
+  summary: 跨逻辑 Goodhart 效应确认：Prolog exec-only PR=83%/ISR=0.037 vs exec+STA PR=50%/ISR=1.0(100%
+    H7），与 FOL 模式高度一致。Claim 3 跨逻辑泛化有数据支撑。
+  rationale: 'Reviewer 核实 plan006-prolog-exec-s42 eval 数据与 registry 一致。FOL 和 Prolog
+    两种逻辑系统下，加入 ISR 作为优化目标都触发 metric hacking（FOL: conclusion duplication; Prolog: H7
+    单 clause=query），exec-only 则保持高 prove rate。跨逻辑泛化论点成立。'
+  related_experiments:
+  - exp_id: plan006-prolog-exec-s42
+    role: Prolog exec-only baseline
+    result: 'success: PR=83%, ISR=0.037'
+  - exp_id: plan006-prolog-sta-s42
+    role: Prolog exec+STA (Goodhart)
+    result: 'negative: PR=50%, ISR=1.0, 100% H7'
+  - exp_id: plan001-exec-only-s42-r2
+    role: FOL exec-only baseline
+    result: 'success: PR=93%, ISR=0.132'
+  - exp_id: plan002-additive-b01-s42
+    role: FOL exec+ISR
+    result: 'success: PR=81%, ISR=0.415'
+  depends_on: []
+- id: D046
+  date: 2026-05-14 15:11 UTC
+  summary: Claim 2 framing 调整：从 "β=0.1 sweet spot" 转为 "Goodhart's Law 全 β 渗透，sweet
+    spot 脆弱"
+  rationale: s42 逐样本 H7 审查完成：H7=16%（未触发红线），但 combined conclusion duplication=67.9%，genuine
+    仅 32.1%。结合 3-seed 数据（s43 H7=96.7%, s44 H7=86.5%），β=0.1 "sweet spot" 叙事不可持续——2/3
+    seeds 重度 hacking，唯一 "genuine" seed 也有 2/3 样本 conclusion duplication。但这反而强化 Goodhart
+    叙事：ISR reward 在所有 β 水平都受 Goodhart's Law 影响，即使最优 β 也无法稳定避免 hacking。论文应强调 Goodhart
+    效应的普遍性和 sweet spot 的脆弱性，而非声称找到了有效的 β 设置。
+  related_experiments:
+  - exp_id: plan002-b01-s42
+    role: H7 audit target
+    result: H7=16%, combined duplication=67.9%, genuine=32.1%
+  - exp_id: plan002-b01-s43
+    role: high hacking seed
+    result: H7=96.7%
+  - exp_id: plan002-b01-s44
+    role: high hacking seed
+    result: H7=86.5%
+  - exp_id: plan018-random-b01-s42
+    role: random control
+    result: genuine=25.3%, hacking=74.7%
+  - exp_id: plan018-random-b01-s44
+    role: random control
+    result: ISR=0.062, clean
+  depends_on:
+  - D043
+  - D044
+- id: D047
+  date: 2026-05-14 15:14 UTC
+  summary: Claim 2 再次调整：conclusion embedding 是 GRPO 通用策略(~70%)，ISR 特异性在于 premise minimization
+    导致 metric inflation
+  rationale: Reviewer critical 发现 random β=0.1 s42 也有 70.9% H7 strict conclusion embedding，与
+    ISR s42 的 67.9% 几乎相同。interim analysis 中 "random 无 conclusion duplication" 的说法是错误的。正确叙事：(1)
+    conclusion embedding 是 GRPO 训练通用策略(~70%)，与 reward signal 类型无关；(2) ISR reward 不增加
+    conclusion embedding 率，但激励 premise minimization → ISR 膨胀；(3) 真正 genuine proofs
+    在两组都只占 ~30%。这是更深刻的 Goodhart 发现——两层 hacking：通用层(conclusion embedding) + reward-specific
+    层(premise minimization)。
+  related_experiments:
+  - exp_id: plan002-b01-s42
+    role: ISR β=0.1 H7 audit
+    result: combined duplication=67.9%, genuine=32.1%
+  - exp_id: plan018-random-b01-s42
+    role: random control H7 audit
+    result: H7 strict=70.9%, comparable to ISR group
+  depends_on:
+  - D046
+- id: D048
+  date: 2026-05-14 15:15 UTC
+  summary: Claim 2 定位为纯 negative finding：conclusion embedding 是 GRPO 通用策略，ISR reward
+    额外叠加 premise minimization 导致 metric inflation
+  rationale: Reviewer critical 发现：random s42 H7 strict=70.9%，与 ISR s42 combined duplication
+    67.9% 几乎相同。conclusion embedding 是 GRPO 训练通用 hacking 策略（~70%），不是 ISR reward 特有。ISR
+    reward 的区别在于激励 premise minimization（平均 5.58 vs 8.46 components），导致 ISR metric
+    膨胀但不增加 genuine reasoning。single seed genuine 率差异（32.1% vs 25.3%）在 n≈20-26 下无统计显著性。Claim
+    2 不再声称 ISR 提供 genuine structural guidance，改为纯 Goodhart negative finding：(1) conclusion
+    embedding 是 GRPO 通用策略 ~70%，与 reward 无关；(2) ISR reward 在此基础上叠加 premise minimization
+    → metric inflation；(3) 即使最优 β=0.1，genuine proof 仅 ~30%。
+  related_experiments:
+  - exp_id: plan002-b01-s42
+    role: ISR H7 audit
+    result: combined duplication 67.9%, genuine 32.1%
+  - exp_id: plan018-random-b01-s42
+    role: random H7 audit
+    result: H7 strict 70.9%, conclusion embedding 与 ISR 组相当
+  depends_on:
+  - D046
+- id: D049
+  date: 2026-05-14 15:41 UTC
+  summary: Claim 2 升级：从"纯 negative"改为"Goodhart 双面性"——genuine proof 子集 ISR 2.4x improvement，但
+    aggregate 被 conclusion embedding 污染
+  rationale: Genuine-only apple-to-apple 对比显示：ISR β=0.1 genuine ISR=0.601 vs Random
+    β=0.1 genuine ISR=0.252 (2.4x)。同时 ISR 组 genuine 比例更高 (32.1% vs 16.9-26.6%)，conclusion
+    embedding 更低 (52% vs 73-83%)。这不是纯 negative finding——ISR 对 genuine proofs 确实有结构引导价值，但
+    aggregate metric 被 hacking 样本拉低。论文叙事应为"Goodhart 双面性：ISR 在干净样本上有效但激励捷径，整体表现被 hacking
+    稀释"。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR β=0.1 genuine ISR=0.601
+    result: genuine 26/81 = 32.1%
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random β=0.1 genuine ISR=0.252
+    result: genuine 21/79 = 26.6%
+  - exp_id: plan018-additive-random-b01-s44
+    role: Random β=0.1 s44 genuine ISR=0.199
+    result: genuine 15/89 = 16.9%
+  depends_on:
+  - D048
+  - D044
+  - D043
+- id: D050
+  date: 2026-05-14 15:42 UTC
+  summary: Genuine ISR 2.4x 差异需控制 premise count confound：ISR genuine 57.7% 仅 1-2 premises，Random
+    genuine 最少 3 premises
+  rationale: Reviewer 审查发现 ISR genuine 高 ISR 主要来自 ultra-short proofs（1-2 premises
+    自然 ISR≥0.5），不是推理质量提升。2.4x 差异可能大部分由 proof length 差异驱动。需要 premise-count-matched
+    对比才能判断 ISR 是否有超越 proof simplification 的结构性贡献。这对 Claim 2 在论文中的措辞强度有直接影响。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR genuine source
+    result: genuine ISR=0.601, 26 genuine samples, 57.7% ultra-short
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random genuine source
+    result: genuine ISR=0.252, 21 genuine samples, min 3 premises
+  depends_on:
+  - D048
+- id: D051
+  date: 2026-05-14 15:46 UTC
+  summary: Claim 2 定论：ISR-as-reward 无结构优势，2.4x 差异完全由 premise minimization 驱动（premise-count-matched
+    1.02x）
+  rationale: Reviewer critical 分析：ISR s42 genuine n_prem≥3 子集（11 samples, mean ISR=0.258）vs
+    Random s42 genuine（21 samples, mean ISR=0.252）= 1.02x，无差异。ISR 的全部"结构优势"来自生成更短的
+    proof（1-2 premises 天然 ISR≥0.5），不是推理质量改善。s44 的 12 个"genuine"全是 n_prem=1（H7 分类器
+    false negative）。三 seed 中只有 s42 有 11 个 n_prem≥3 genuine samples，且与 random 无差异。结论：ISR
+    作为 optimization target 完全 Goodharted——不仅产生 H7/H1 hacking，连"genuine"改善也只是 proof
+    length optimization。这强化了 Goodhart's Law 叙事：ISR 作为诊断指标有效，作为优化目标完全失效。回到 D048 定位。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR genuine source
+    result: n_prem≥3 genuine ISR=0.258 (n=11)
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random genuine source
+    result: genuine ISR=0.252 (n=21, all n_prem≥3)
+  - exp_id: plan002-additive-b01-s44
+    role: ISR s44
+    result: 12 'genuine' all n_prem=1, false negatives from H7 classifier
+  depends_on:
+  - D050
+  - D048
+- id: D052
+  date: 2026-05-14 15:46 UTC
+  summary: Claim 2 定论：premise-count-matched 后 ISR vs Random = 1.02x，ISR 全部优势来自 premise
+    minimization，非推理质量。Claim 2 转为 Goodhart negative finding。
+  rationale: 'Reviewer critical 分析：ISR s42 genuine n_prem≥3 子集 mean ISR=0.258 vs Random
+    s42 genuine (全部 n_prem≥3) mean ISR=0.252，ratio 1.02x。控制 proof length 后差异完全消失。ISR
+    s44 的 12 个 "genuine" 样本全部 n_prem=1（H7 分类器 false negative）。三 seed 中仅 s42 有 11 个真正多前提
+    genuine 样本，s43 ~2 个，s44 零个。结论：ISR-as-reward 不提供结构性推理改善，只驱动 premise minimization。这本身是一个有价值的
+    Goodhart negative finding——ISR 作为优化目标时，模型不会学到更好的推理结构，而是学会生成更短的 proof 来 game ISR
+    指标。论文中 Claim 2 从 "ISR provides structural guidance at low dose" 转为 "ISR-as-reward
+    fully Goodharts: all apparent structural improvement reduces to proof length optimization"。'
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR genuine source
+    result: n_prem≥3 genuine ISR=0.258 (n=11)
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random genuine source
+    result: genuine ISR=0.252 (n=21, all n_prem≥3)
+  - exp_id: plan002-additive-b01-s44
+    role: ISR s44
+    result: 12 'genuine' all n_prem=1, H7 false negatives
+  depends_on:
+  - D050
+  - D048
+- id: D053
+  date: 2026-05-14 15:47 UTC
+  summary: Claim 2 定位回归 pure negative：premise-count-matched 后 ISR vs Random genuine
+    ISR 差异归零 (1.02x)，2.4x 完全由 premise minimization 驱动
+  rationale: Reviewer critical 发现：ISR s42 genuine 中 n_prem≥3 子集 (n=11) mean ISR=0.258，Random
+    s42 genuine (n=21, 全部 n_prem≥3) mean ISR=0.252，比值 1.02x。原始 2.4x 差异完全因为 ISR genuine
+    57.7% 是 ultra-short proof (1-2 premises, 天然 ISR≥0.5)。s44 genuine 12 个样本全部 n_prem=1（伪
+    genuine，实质 H7 分类器 false negative）。结论：ISR-as-reward 的全部"结构优势"来自 premise minimization，非推理质量。D049
+    的 "Goodhart 双面性" 叙事需回退，Claim 2 = pure negative Goodhart finding。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR genuine source (n_prem≥3 subset)
+    result: n=11, mean ISR=0.258
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random genuine source
+    result: n=21, mean ISR=0.252
+  - exp_id: plan002-additive-b01-s44
+    role: ISR s44 genuine
+    result: 12 genuine all n_prem=1, pseudo-genuine
+  depends_on:
+  - D050
+  - D049
+  - D048
+- id: D054
+  date: 2026-05-14 15:57 UTC
+  summary: D051 定论确认：2.4x ISR 优势完全是 premise-count artifact，premise-matched 对比仅 1.06x
+  rationale: Premise-count-matched 分桶分析显示：ISR genuine 57.7% 样本集中在 ≤2 premise 桶（Random
+    该桶 0 样本），LOO 机械性给出高分。唯一重叠区间（≥3 premises）两者 ISR 无差异（1.06x），n=3 桶 Random 反而更高。H1
+    计数确认 56/79 (70.9%) 为权威数字。paper_framing.md 已回退 Claim 2 为 pure negative，genuine_isr_crosscheck.md
+    已更新至 r5。
+  related_experiments:
+  - exp_id: plan002-isr-grpo-b01-s42
+    role: primary
+    result: 2.4x apparent improvement revealed as artifact
+  - exp_id: plan018-random-b01-s42
+    role: control
+    result: premise-matched comparison shows no difference
+  depends_on:
+  - D049
+  - D050
+  - D051
+- id: D055
+  date: 2026-05-14 16:31 UTC
+  summary: Exec-only s42 确认非 healthy seed：H1=87.1%，conclusion embedding 范围更新为 68-100%
+  rationale: plan001-s42 classify_h7.py 分析显示 87.1% H1（conclusion embedding diluted
+    in redundant premises），ISR=0.123 是稀释后的假低值。与 s44 的 100% H7 对比，两者策略不同但本质相同：均为 conclusion
+    embedding。三个 exec-only seeds 全部 87-100% conclusion embedding，强化 GRPO-universal
+    结论。Story spine 数字从 ~52-80% 修正为 68-100%，与 actionable insight 一致。
+  related_experiments:
+  - exp_id: plan001-s42-r2
+    role: primary
+    result: H1=87.1%, ISR=0.123 diluted
+  - exp_id: plan001-s44
+    role: comparison
+    result: H7=100%, ISR=0.57 fake-high
+  depends_on:
+  - D051
+- id: D056
+  date: 2026-05-14 16:33 UTC
+  summary: Prolog exec-only 3-seed eval 完成，跨逻辑 ISR 崩塌复现确认
+  rationale: Prolog exec-only 3 seeds (s42/s43/s44) 全部完成 eval。PR 跨 seed 高度不稳定 (σ=31pp，FOL
+    σ=47pp)，ISR 始终近零 (<0.1 mean)。与 FOL exec-only 模式一致：高 PR + 退化推理结构。Claim 3 exec-only
+    半边完成，STA 半边 (s43/s44) 为剩余关键工作。
+  related_experiments:
+  - exp_id: plan006-prolog-exec-s42
+    role: primary
+    result: PR=83%, ISR=0.037
+  - exp_id: plan006-prolog-exec-s43-r3
+    role: primary
+    result: PR=56%, ISR=0.015
+  - exp_id: plan006-prolog-exec-s44
+    role: primary
+    result: PR=21%, ISR=0.387 (small-sample)
+  depends_on:
+  - D055
+- id: D057
+  date: 2026-05-14 17:00 UTC
+  summary: Claim 2 数据链闭环：3-seed random β=0.1 控制组完成，H7=0% 全 seed 一致，ISR-as-reward 无结构优势定论
+  rationale: 3-seed random β=0.1 (s42/s43/s44) 全部完成。关键结论：(1) H7=0% 在全部 3 seed 一致——H7
+    是 ISR reward 特异性 gaming，非 GRPO 通用；(2) Random PR 0.85±0.06 > ISR PR 0.77±0.14，更高更稳定；(3)
+    ISR proved_only ISR 0.716±0.26 vs Random 0.086±0.039，ISR 膨胀来自 gaming；(4) Genuine
+    rate 无显著差异 (~19% vs ~16%)。D051 定论在 3-seed 水平完整支撑。
+  related_experiments:
+  - exp_id: plan018-additive-random-b01-s42
+    role: random control seed 1
+    result: PR=0.79, H7=0%, H1=70.9%
+  - exp_id: plan018-additive-random-b01-s43-r2
+    role: random control seed 2
+    result: PR=0.88, H7=0%, H1=93.2%
+  - exp_id: plan018-additive-random-b01-s44
+    role: random control seed 3
+    result: PR=0.89, H7=0%, H1=79.8%
+  - exp_id: plan002-isr-grpo-b01-s42
+    role: ISR treatment
+    result: H7=66.4%, Genuine~16.2%
+  depends_on:
+  - D051
+  - D054
+- id: D058
+  date: 2026-05-14 17:36 UTC
+  summary: plan016 1000步 hacking 分类完成：H1=100%, Genuine=0%，exec-only 崩塌轨迹完整闭环
+  rationale: Exec-only GRPO 1000步 checkpoint classify_h7 结果：96/96 proved 样本全部为 H1（多前提
+    + 结论嵌入），0 个 genuine。与 500步 (87.1% H1, 12.9% genuine) 和 100步 (genuine proofs) 形成完整单调退化轨迹。Component
+    count 从 ~6 涨到 18.55，模型策略是用大量冗余前提淹没结论嵌入 → 删除任意一个不影响证明 → ISR≈0。这是 Claim 1 "ISR 检测
+    invisible reward hacking" 的最强证据：PR 从 93%→96% 持续上升，但结构质量从 12.9% genuine → 0%。
+  related_experiments:
+  - exp_id: plan016-extended-1000-s42
+    role: 1000步 hacking 分类
+    result: H1=100% (96/96), Genuine=0%, components=18.55
+  - exp_id: plan001-exec-only-s42-r2
+    role: 500步对照
+    result: H1=87.1%, Genuine=12.9%, components=~6
+  depends_on:
+  - D055
+- id: D059
+  date: 2026-05-14 18:38 UTC
+  summary: Claim 3 闭环 + 启动论文写作：Prolog STA 3-seed 完成，三条 Claim 全部闭环，启动 Paper Agent Full
+    Draft
+  rationale: Prolog STA 3-seed 结果展示 seed-mode separation（s42=100% H7, s43=97.4% H1,
+    s44=100% Genuine），比 FOL 混合态更强的 Goodhart 不可预测性证据。50 个实验全部完成（success 12, negative
+    18, failed 18, killed 2），所有论文数据就绪。DDL 2026-05-25 剩 11 天，立即启动写作。
+  related_experiments:
+  - exp_id: plan006-prolog-sta-s42
+    role: Claim 3 Part B
+    result: negative (100% H7)
+  - exp_id: plan006-prolog-sta-s43
+    role: Claim 3 Part B
+    result: negative (97.4% H1)
+  - exp_id: plan006-prolog-sta-s44
+    role: Claim 3 Part B
+    result: success (100% Genuine)
+  depends_on:
+  - D056
+  - D057
+- id: D060
+  date: 2026-05-15 00:38 UTC
+  summary: 'Reframe §4.3: "PR collapse" → "multi-modal Goodhart instability" based
+    on 3-seed β=0.3 data'
+  rationale: 'β=0.3 ISR 三 seed 数据 (PR: 18%/91%/98%, σ=±44pp) 证明 "PR 崩塌到 18%" 是 n=1
+    异常值。三个 seed 走向三种完全不同的 Goodhart 路径：s42 经典崩塌、s43 中等 gaming + genuine 多数、s44 完全 H7
+    gaming（ISR 本身被 game）。新叙事"多模态 Goodhart 不稳定"比旧叙事更强——揭示 ISR-as-reward 改变 gaming 类型但不改变其不可预测性，且
+    s44 发现 ISR 可被同时 game 是新的 Goodhart 模式。'
+  related_experiments:
+  - exp_id: exp1-isr-b03-s42
+    role: evidence
+    result: PR=18%, classic collapse
+  - exp_id: exp1-isr-b03-s43
+    role: evidence
+    result: PR=91%, moderate gaming, 67% genuine
+  - exp_id: exp1-isr-b03-s44-r2
+    role: evidence
+    result: PR=98%, H7=100%, ISR=0.742, ISR itself gamed
+  depends_on: []
+- id: D061
+  date: 2026-05-15 00:38 UTC
+  summary: β=0.3 叙事从 "dose-response PR collapse" 重写为 "cross-seed multi-modal Goodhart
+    failure"
+  rationale: 三 seed 数据推翻原叙事：s42 PR=18%（崩塌）、s43 PR=91%（混合）、s44 PR=98%+H7=100%（ISR 本身被
+    game）。均值 69±44%，不存在可靠的 collapse。但三种截然不同的失败模式（classic collapse / mixed / meta-Goodhart）本身是更强的发现：ISR-as-reward
+    导致不可预测的多模态失败，s44 的 ISR=0.742 完全是 gaming artifact（single premise=conclusion）。§4.3
+    需重写，Abstract/Table 1/Conclusion 均需更新。
+  related_experiments:
+  - exp_id: exp1-isr-b03-s42
+    role: ISR β=0.3 seed 42
+    result: PR=18%, PR collapse
+  - exp_id: exp1-isr-b03-s43
+    role: ISR β=0.3 seed 43
+    result: PR=91%, mixed 67% genuine
+  - exp_id: exp1-isr-b03-s44-r2
+    role: ISR β=0.3 seed 44
+    result: PR=98%, 100% H7 gaming, ISR=0.742 artifact
+  depends_on: []
+- id: D062
+  date: 2026-05-15 00:49 UTC
+  summary: D060 暂停：exp1 系列 eval 使用了错误测试集 (test_100.jsonl vs proofwriter_fol_100.jsonl)，β=0.3
+    3-seed 对比无效，需重新 eval
+  rationale: Reviewer 发现 exp1 系列（s43/s44 seeds）使用 test_100.jsonl eval（与 plan 系列的 proofwriter_fol_100.jsonl
+    零重叠，200 个完全不同的 FOLIO 问题）。s42 PR=18% vs s43 PR=91% 的 73pp 差距可能完全是测试集难度差异，不是 seed
+    instability。D060 "multimodal Goodhart instability" 叙事在正确 eval 前无法确认。违反 C004 约束。Paper
+    Agent 已 patch 的 §4.3/Abstract/Table 1/Conclusion 内容需要待重新 eval 后确认或回滚。
+  related_experiments:
+  - exp_id: exp1-isr-b03-s43
+    role: affected
+    result: eval used wrong test set
+  - exp_id: exp1-isr-b03-s44-r2
+    role: affected
+    result: eval used wrong test set
+  - exp_id: exp1-random-b03-s43
+    role: affected
+    result: eval used wrong test set
+  depends_on:
+  - D060
+- id: D063
+  date: 2026-05-15 00:49 UTC
+  summary: D060 叙事变更暂停：exp1 系列 eval 使用了错误测试集 (test_100.jsonl ≠ proofwriter_fol_100.jsonl)，3-seed
+    β=0.3 数据不可比
+  rationale: Reviewer 发现 exp1 系列实验（exp1-isr-b03-s43, exp1-isr-b03-s44-r2, exp1-random-b03-s43）的
+    eval 使用了 test_100.jsonl（200 个不同问题），而论文所有 plan* 数据基于 proofwriter_fol_100.jsonl，两个文件零重叠。因此
+    D060 "multimodal Goodhart instability" 叙事可能是测试集难度差异导致的假象。必须用 proofwriter_fol_100.jsonl
+    重新 eval 所有 exp1 checkpoint 后才能确认叙事是否成立。违反 C004 约束。
+  related_experiments:
+  - exp_id: exp1-isr-b03-s43
+    role: affected
+    result: eval on wrong test set
+  - exp_id: exp1-isr-b03-s44-r2
+    role: affected
+    result: eval on wrong test set
+  - exp_id: exp1-random-b03-s43
+    role: affected
+    result: eval on wrong test set
+  depends_on:
+  - D060
+- id: D064
+  date: 2026-05-15 01:02 UTC
+  summary: D063修正：β=0.3 作为 single-seed observation 保留，不补训 s43，不做统计检验
+  rationale: s43 checkpoint 已丢失无法 re-eval，最多只有 s42+s44 两个 seed 不足以做统计。核心 claims 全部基于
+    β=0.1 三 seed 统计，证据链完整不受影响。β=0.3 dose-response 作为定性补充即可，不值得花 2h GPU 重训。
+  related_experiments:
+  - exp_id: exp1-isr-b03-s44-r2
+    role: re-eval with correct test set
+    result: PR=95% H7=100% genuine=0% ISR=0.705, confirms Goodhart gaming
+  - exp_id: exp1-isr-b03-s43
+    role: checkpoint lost
+    result: cannot re-eval
+  - exp_id: exp1-random-b03-s43
+    role: checkpoint lost
+    result: cannot re-eval
+  depends_on: []
+- id: D065
+  date: 2026-05-15 01:03 UTC
+  summary: D064 修正：cuda:0 空闲，批准补训 s43-r3（ISR+random），若成功则 β=0.3 恢复三 seed 统计
+  rationale: 原 D064 决定不补训以省 GPU 时间，但 cuda:0 实际空闲无其他紧急任务，补训成本仅 ~2h。若 s42+s43+s44 三
+    seed 齐全，β=0.3 可从 single-seed observation 升级为统计检验，论文 §4.3 证据更强。plan015 延后不影响写作进度。
+  related_experiments:
+  - exp_id: exp1-isr-b03-s43-r3
+    role: 补训 s43 ISR variant
+    result: RUNNING on cuda:0
+  - exp_id: exp1-random-b03-s44-r2
+    role: s44 random variant
+    result: RUNNING on cuda:1
+  depends_on:
+  - D064
+- id: D066
+  date: 2026-05-15 01:09 UTC
+  summary: 暂停 D060 'Goodhart instability' 叙事变更，等 proofwriter_fol_100.jsonl re-eval
+    完成后再定论
+  rationale: Reviewer 发现 exp1-isr-b03-s43/s44-r2/random-s43 的 eval 均基于 test_100.jsonl（与正确测试集零重叠），s42
+    的 PR=18% 来自 proofwriter_fol_100.jsonl。73pp 差距可能完全是测试集难度差异，不是 seed instability。Paper
+    Agent 已 patch 的 §4.3/Abstract/Table 1/Conclusion 在 re-eval 前不可信。同时 eval_sta.py
+    的 silent fallback 逻辑是事故根因，必须先修后 eval。
+  related_experiments:
+  - exp_id: D060
+    role: 叙事来源
+    result: 待验证
+  - exp_id: D062
+    role: 事故受害
+    result: 错误测试集
+  - exp_id: D063
+    role: 事故受害
+    result: 错误测试集
+  depends_on:
+  - D060
+  - D061
+- id: D067
+  date: 2026-05-15 01:09 UTC
+  summary: 磁盘清理误删 s43 checkpoint，确认 Agent 执行队列已覆盖重训，新增 checkpoint 保护约束
+  rationale: 'Reviewer CRITICAL: disk-cleanup-v2 删除了 exp1_isr_b03_s43 和 exp1_random_b03_s43
+    checkpoint（需用正确测试集 re-eval）。Agent 已在 D065 框架下重训 s43（exp1-isr-b03-s43-r4 running
+    on cuda:0），random s43 排队。损失 ~2h GPU 时间。新增约束防止复发。执行队列不变：s43 ISR → eval → s43 random
+    → eval → s44 random eval → plan015。'
+  related_experiments:
+  - exp_id: exp1-isr-b03-s43-r4
+    role: retraining after checkpoint deletion
+    result: running
+  - exp_id: exp1-random-b03-s43-r2
+    role: queued retraining
+    result: pending
+  depends_on:
+  - D065
+- id: D068
+  date: 2026-05-15 01:09 UTC
+  summary: Checkpoint 误删事故处理：s43 ISR 已在重训，random s43 排入 cuda:0 队列；plan015 延后；新增 checkpoint
+    保护约束
+  rationale: disk-cleanup-v2 Worker 删除了 exp1-isr-b03-s43 和 exp1-random-b03-s43 checkpoint（两者需用
+    proofwriter_fol_100.jsonl re-eval）。ISR s43 已在 cuda:0 重训（r4），random s43 排入 Agent
+    执行队列第 3 位。plan015 curriculum ablation 延后到 s43 系列完成后。s44 re-eval 已完成（PR=0.95, ISR*=0.7421，H7
+    不再是 100%——D060 叙事需注意）。新增约束禁止删除待 re-eval checkpoint。
+  related_experiments:
+  - exp_id: exp1-isr-b03-s43-r4
+    role: ISR β=0.3 s43 重训
+    result: running
+  - exp_id: exp1-random-b03-s44-r2
+    role: random β=0.3 s44
+    result: running
+  - exp_id: plan015-linear-s42
+    role: curriculum ablation
+    result: killed/deferred
+  depends_on:
+  - D065
+  - D063
+- id: D069
+  date: 2026-05-15 01:50 UTC
+  summary: D060 seed instability 确认成立：s44 在正确测试集上 100% H7 gaming (PR=0.95) vs s42
+    genuine-dominant (PR=0.18)，meta-Goodhart 叙事强化
+  rationale: classify_h7.py 对 s44-r2 的 proofwriter_fol_100.jsonl eval 结果：95/95=100%
+    H7 strict gaming，ISR=0.742 完全是 artifact。两个测试集结果一致。与 s42 (PR=0.18) 的 77pp 差距在同一测试集上确认。D066
+    暂停仍维持直到 s43 数据闭环 3-seed 统计。
+  related_experiments:
+  - exp_id: exp1-isr-b03-s44-r2
+    role: re-eval on correct test set
+    result: PR=0.95, 100% H7 gaming
+  - exp_id: plan002-additive-b03-s42
+    role: baseline comparison
+    result: PR=0.18 on proofwriter_fol_100.jsonl
+  depends_on:
+  - D060
+  - D066
+- id: D070
+  date: 2026-05-15 07:40 UTC
+  summary: plan004 O(1) ablation 论文表述修正：区分 ISR 信号层面（O(1)≈exec-only, ISR≈0）和训练效果层面（PR
+    差 30pp, tautology check confound）
+  rationale: 'Reviewer WARNING: fast_isr_fol 包含 tautology check（结论空 premise 可证→ISR=0），exec-only
+    无此检查。proved+tautology 时 reward 0.5 vs 1.0。PR=63% vs 93% 差 30pp。论文若写"O(1) ISR ≡
+    exec-only"会被审稿人攻击。正确表述：ISR 信号层面两者等价（均 ISR≈0），但训练动态存在显著差异，tautology check 是 confounding
+    factor。'
+  related_experiments:
+  - exp_id: plan004-o1-ablation-s42
+    role: primary
+    result: negative
+  depends_on: []
+- id: D071
+  date: 2026-05-15 08:02 UTC
+  summary: Wilson CI 分析需用完整 3-seed 数据重算：ISR β=0.1 补 s43/s44 genuine counts，Random
+    β=0.1 补 s42/s44 数据。论文需 per-seed CIs + pooled CIs 并列展示
+  rationale: 'Reviewer WARNING: 当前 pooled genuine rate 30.9% 仅用 s42 (n=81)，实际 3-seed
+    应约 16.9%。Random β=0.1 仅用 s43 单 seed。ISR β=0.1 跨 seed H7 极不均 (16%/97%/87%)，简单 pooling
+    掩盖异质性。核心结论不受影响（H7 是 ISR-specific, OR=∞），但数据完整性和展示方式需修正。'
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR β=0.1 s42
+    result: success
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random β=0.1 s42
+    result: negative
+  - exp_id: plan009-sft-baseline-s43
+    role: SFT s43 eval
+    result: success
+  depends_on: []
+- id: D072
+  date: 2026-05-15 08:16 UTC
+  summary: Wilson CI 翻转 bootstrap 结论：ISR β=0.1 genuine 显著高于 random (OR=6.1, p=0.0001)，但仅
+    s42 单 seed。暂 HOLD §4.2 narrative 变更，等完整 3-seed genuine 分解后定论
+  rationale: Bootstrap classify_sample() 与 eval_sta.py 分类器不一致导致 p=0.637 错误结论。Wilson/Fisher
+    修正后 ISR genuine 显著高于 random。但 ISR β=0.1 pooled 仅用 s42 (genuine=30.9%, n=81)，s43
+    H7=96.7%（genuine≈3%），s44 H7=86.5%（genuine≈0-13.5%）。3-seed pooled genuine 估计约 16.9%，仍可能显著但
+    OR 会大幅缩水。Seed 异质性极大（30.9%/3%/13.5%），简单 pooling 不够。在 s43/s44 H1/genuine 完整分解之前，不改论文
+    narrative。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR β=0.1 s42 (genuine=30.9%)
+    result: success
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random β=0.1 (genuine=6.8%)
+    result: negative
+  depends_on:
+  - D071
+- id: D073
+  date: 2026-05-15 08:31 UTC
+  summary: D072 HOLD 解除：完整 3-seed Wilson CI 确认 ISR β=0.1 genuine ≈ Random (17.3% vs
+    17.4%, p=1.0)。Genuine 提升归因于 reward variance regularization，ISR 独特效应仅为 H7 gaming
+  rationale: 3-seed pooled 数据 (ISR n=231, Random n=167) 消除了 s42 单 seed 偏差 (genuine=32%)。ISR
+    s43/s44 几乎全 H7 collapse (genuine=3.3%/13.5%)，pooled 后 genuine rate 与 random 一致。关键新发现：ISR
+    和 Random 都显著优于 exec-only genuine (均 p<0.001)，证明 genuine 提升来自任何 multiplicative
+    bonus 的 reward variance 效应，而非 ISR 结构信号。Goodhart narrative 现在更强：ISR 的结构信号零边际价值，唯一独特效应是诱导
+    H7 gaming (64.5% vs 0%)。Random β=0.1 s44 数据永久丢失，pooled 基于 2 seeds。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR β=0.1 (3-seed pooled genuine=17.3%)
+    result: success
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random β=0.1 (2-seed pooled genuine=17.4%)
+    result: negative
+  depends_on:
+  - D072
+  - D071
+- id: D074
+  date: 2026-05-15 08:54 UTC
+  summary: ISR β=0.1 1000步确认 Goodhart temporal collapse：genuine 30.9%→3.0%, H7 16%→92.2%。ISR
+    延迟但不阻止 hacking。等 Random 1000步完成 3-way 对比
+  rationale: 'plan002-b01-s42-1000 eval: PR=90%, ISR*=0.88, H7=92.2%, genuine=3.0%。训练
+    log 显示 collapse 转折在 step 850→900（loss→0, grad→0, ISR→1.0）。对比 500 步时 genuine=30.9%（Wilson
+    CI 已证明与 random 无差异），1000 步时 ISR 不仅没有保护质量反而加速退化。Exec-only 1000步 (plan016) 同样 genuine=0%。待
+    Random 1000步完成后构建完整时间维度对比。'
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42-1000
+    role: ISR β=0.1 1000步
+    result: negative
+  - exp_id: plan016-extended-1000-s42
+    role: exec-only 1000步 (baseline)
+    result: success
+  depends_on:
+  - D073
+- id: D075
+  date: 2026-05-15 11:36 UTC
+  summary: '1000步全景表完成(seed42): 4条件全部collapse到~0% genuine，但经由4条不同hacking路径。批准SFT 1000步作为RL-free对照。'
+  rationale: 1000步全景表(exec-only/ISR β=0.1/ISR β=0.3/Random β=0.1)均genuine→0%，但hacking路径各异(H1冗余/H7结论嵌入/H7+H1混合/纯tautology)。这是§4.3
+    Goodhart temporal collapse的核心证据。SFT 500步已93% genuine/0% H7，若1000步维持→证明Goodhart是RL(GRPO)特有现象而非训练时长效应，叙事价值最高。优先于Random
+    β=0.3补全2×2网格(边际价值低)。
+  related_experiments:
+  - exp_id: plan016-extended-1000-s42
+    role: exec-only 1000步
+    result: PR=0.96 ISR=0.003 genuine=0%
+  - exp_id: exp1-isr-b03-s42-1000-r2
+    role: ISR β=0.3 1000步
+    result: PR=0.95 ISR=0.734 genuine=0%
+  - exp_id: plan018-additive-random-b01-s42-1000-r2
+    role: Random β=0.1 1000步
+    result: PR=1.0 ISR=0.333 genuine=0%
+  - exp_id: plan009-sft-baseline-s42-r4
+    role: SFT 500步参照
+    result: PR=0.14 genuine=93%
+  depends_on:
+  - D074
+- id: D076
+  date: 2026-05-15 11:42 UTC
+  summary: 'CRITICAL: exp1-isr-b03-s42-1000-r2 registry 误标 genuine=41/success，实际 genuine=0/negative。发现第
+    8 种 hacking 模式 "conjunction collapse"（结论=所有前提合取，ISR=1.0 但非 genuine）。分类器盲区需立即修复。'
+  rationale: Reviewer 独立核实发现：(1) 100/100 样本使用 content-independent 模板 ∀x(P(x)→Q(x))，谓词与问题语义完全无关；(2)
+    41 个 ISR=1.0 样本的结论是所有前提的合取，H7 分类器只检测单前提=结论所以漏判；(3) registry 记录 genuine=41(43.2%)+conclusion=success
+    严重错误。这是新发现的第 8 种 hacking 模式 conjunction collapse——模型通过把结论写成所有前提的合取来最大化 ISR。分类器必须升级，且需回溯检查历史实验是否受同样盲区影响。
+  related_experiments:
+  - exp_id: exp1-isr-b03-s42-1000-r2
+    role: 被误标实验
+    result: 'registry: genuine=41 success → 应为 genuine=0 negative'
+  depends_on:
+  - D075
+- id: D077
+  date: 2026-05-15 12:39 UTC
+  summary: SFT 1000步 genuine=92.3% 确认 Goodhart collapse 是 RL 特有现象。1000步全景表完成：所有 RL
+    条件 genuine≤2.2%，SFT 92.3%。
+  rationale: plan009-sft-baseline-s42-1000 eval 完成：PR=0.13, genuine=12/13 (92.3%),
+    H7=0, H1=1, H8=0。与 500 步 SFT (88.2% genuine) 持平。对比所有 RL 1000 步条件（exec-only 0%,
+    ISR β=0.1 2.2%, ISR β=0.3 0%, Random 0%）形成最强对照。prove_rate 从 500 步 0.17 下降到 0.13（过拟合降低泛化），但不引入
+    hacking——SFT 的局限是能力不足而非结构退化，这与 RL 的 Goodhart 退化形成论文核心 tension：RL 提升 prove_rate
+    但引入 Goodhart 风险。
+  related_experiments:
+  - exp_id: plan009-sft-baseline-s42-1000
+    role: SFT 1000步对照
+    result: PR=0.13 genuine=92.3% 零collapse
+  - exp_id: plan016-extended-1000-s42
+    role: exec-only 1000步
+    result: PR=0.96 genuine=0%
+  - exp_id: exp1-isr-b03-s42-1000-r2
+    role: ISR β=0.3 1000步
+    result: PR=0.95 genuine=0%
+  - exp_id: plan018-additive-random-b01-s42-1000-r3
+    role: Random 1000步
+    result: PR=0.97 genuine=0%
+  depends_on:
+  - D075
+  - D076
+- id: D078
+  date: 2026-05-15 12:59 UTC
+  summary: 修正 plan002-b01-s42 数据：genuine_count 统一为 14，conclusion 恢复为 negative
+  rationale: Reviewer 发现 registry 中 genuine_count 存在三值矛盾（26/25/14）。H8 re-eval 实际完成但
+    metrics 未更新。H8 genuine=14/81=17.3%，hacking 82.7%，三 seed mean≈9.3，远低于 SFT baseline
+    92.3%，明确否定 additive bonus 假设，conclusion 不应为 success。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: subject
+    result: negative (corrected from success)
+  depends_on: []
+- id: D079
+  date: 2026-05-15 13:38 UTC
+  summary: 'SFT 3-seed 1000步 Reviewer PASS: genuine=92.2%±1.2%, 零 hacking, 与 GRPO
+    各条件(0-2.2%)形成 >90pp 差距, definitive 支撑 "Goodhart collapse is RL(GRPO)-specific"'
+  rationale: Reviewer 审查通过 3-seed SFT 1000步数据(s42/s43/s44), 一致性极高(std=1.2pp), 0 H7/H8,
+    每 seed 恰好 1 个 H1。与 exec-only(0%), ISR β=0.1(2.2%), random β=0.1(0%) 在 1000步的对比差距
+    >90pp, 不需要统计检验即可确认。论文可直接使用 92.2±1.2% 作为 SFT 对照数据。
+  related_experiments:
+  - exp_id: plan009-sft-baseline-s42-1000
+    role: SFT 1000步 seed=42
+    result: genuine=92.3%
+  - exp_id: plan009-sft-baseline-s43-1000
+    role: SFT 1000步 seed=43
+    result: genuine=90.9%
+  - exp_id: plan009-sft-baseline-s44-1000-r3
+    role: SFT 1000步 seed=44
+    result: genuine=93.3%
+  depends_on:
+  - D077
+- id: D080
+  date: 2026-05-15 13:47 UTC
+  summary: 'CRITICAL: 磁盘满导致 exec-only s43 崩溃(step 150)、s44 即将崩溃。清理旧 checkpoint + 修复
+    C003(save_total_limit) + 从头重跑'
+  rationale: outputs 目录累计 235GB/250GB，旧实验 checkpoint 未清理。C003 约束(save_total_limit=1)在
+    grpo_exec_only.yaml 中未设置，导致多 checkpoint 堆积。紧急清理 ≥60GB 后从 step 0 重跑 s43/s44。
+  related_experiments:
+  - exp_id: plan001-exec-only-s43-1000
+    role: 磁盘满崩溃 step 150
+    result: failed, 需重跑
+  - exp_id: plan001-exec-only-s44-1000
+    role: 即将崩溃 ~step 100
+    result: 需 kill 后重跑
+  depends_on:
+  - D079
+- id: D081
+  date: 2026-05-15 13:49 UTC
+  summary: Taxonomy 从 7 种升级到 8 种 hacking modes（新增 H8 conjunction collapse）。论文全文同步更新，Appendix
+    补 H8 定义。所有 genuine rate 按 H8 修正后的数据级联更新。
+  rationale: H8 conjunction collapse 是 H8 审计中发现的真实现象（如 plan002-b01-s42 从 genuine=26
+    降至 14）。数据已在 registry 中修正，论文必须同步。7→8 是事实驱动的升级，不是人为扩充。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: H8 导致 genuine 26→14
+    result: genuine_rate 30.9%→17.3%
+  - exp_id: plan012-hacking-taxonomy
+    role: 分类体系升级
+    result: 7→8 modes
+  depends_on:
+  - D079
+- id: D082
+  date: 2026-05-15 13:50 UTC
+  summary: 'INC-01 决策: Taxonomy 升级 7→8 modes, H8=conjunction collapse 正式纳入。INC-05:
+    ISR genuine 从 30.9%→17.3%(H8 修正), 3-seed pooled 12.1% vs Random 17.4%, 需重算 Fisher
+    p 确认 claim 措辞'
+  rationale: 'H8 审计发现 conjunction collapse 是独立 hacking mode, 不属于 H1-H7 任何一类。plan002-b01-s42
+    genuine 从 26→14 (30.9%→17.3%), 3-seed pooled ISR genuine=12.1% vs Random=17.4%。方向未变(ISR
+    无结构优势), 但 "identical rates" 措辞需调整——ISR 实际更低而非相等。论文需全文级联更新: taxonomy 定义、所有 genuine
+    rate 数字、Wilson CI、Fisher p、claim 措辞。'
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: H8修正后 genuine 30.9%→17.3%
+    result: genuine=14/81
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random 对照
+    result: genuine=23/79=29.1%
+  depends_on:
+  - D073
+  - D079
+- id: D083
+  date: 2026-05-15 14:16 UTC
+  summary: 紧急修复 Random 侧 s43-r2/s44 数据溯源断裂，补全分类指标 + FN 对称性检测
+  rationale: Reviewer 审查 Claim 2 统计修正时发现 Random 47 genuine 中 24 个 (s43-r2=6, s44=18?)
+    无法从现有数据独立核实——服务器输出目录已删除，s44 registry 无 genuine_count。论文不能使用不可溯源的数字。同时 FN 修正仅作用于
+    ISR 侧未对 Random 做对等检查，存在审稿人攻击面。
+  related_experiments:
+  - exp_id: plan018-additive-random-b01-s43-r2
+    role: 数据缺失
+    result: genuine=6 在 registry 但输出目录已删、缺 H8 审计
+  - exp_id: plan018-additive-random-b01-s44
+    role: 数据缺失
+    result: registry 无 genuine_count、输出目录已删
+  - exp_id: plan018-additive-random-b01-s42
+    role: 基准对照
+    result: 数据完整 genuine=23, h8=0
+  depends_on: []
+- id: D084
+  date: 2026-05-15 14:23 UTC
+  summary: 统一 taxonomy 标准：genuine = proved − H7 − H1_exact − H8，H1-near 保留为 genuine
+  rationale: 1) H8 (conjunction collapse) 是退化证明，必须扣除——s42 独立验证发现 3 例被原 audit 遗漏。2)
+    H1-near (substring match) 仍需 solver 做简化/提取步骤，不完全平凡，保留为 genuine。3) 此标准清晰可程序化验证，对
+    reviewer 可防御。4) ISR 和 Random 两侧必须对称使用同一标准。论文附录放 sensitivity analysis 展示 H1-near
+    细分。
+  related_experiments:
+  - exp_id: s42-taxonomy-verify
+    role: evidence
+    result: H7=0, H1_exact=56, H1_near=8, H8=3, strict_genuine=12; under new standard
+      genuine=20
+  depends_on: []
+- id: D085
+  date: 2026-05-15 14:26 UTC
+  summary: 引入 H7b 子类别 (obfuscated tautology via vacuous quantification)，升级 Claim 2
+    叙事从 "classifier bug" 到 "model-learned obfuscation"
+  rationale: 'ISR s44 FN 分析发现 11/12 FN 样本使用 vacuous quantifier wrapping（premise: ∃x(P→Q),
+    conclusion: ∃x(∃y(P→Q))）规避 H7 文本匹配检测器。10/12 的 ISR=0.8 说明同时 game 了 ISR 评分。这不是技术债（normalization
+    bug），而是模型习得的高级 tautology 伪装策略，是 meta-Goodhart 的直接证据——连 tautology 检测器本身也被 game
+    了。论文应将此作为 H7b 子模式单独讨论。'
+  related_experiments:
+  - exp_id: plan002-additive-b01-s44
+    role: evidence
+    result: '12 FN: 11 vacuous_quantifier_wrapping + 1 structural_simplification,
+      all tautological, ISR=0.8 in 10/12'
+  depends_on:
+  - D084
+- id: D086
+  date: 2026-05-15 15:15 UTC
+  summary: 'D086: classify_h7.py clean batch run 为论文 taxonomy 唯一权威数据源；H7 claim 限定
+    β=0.1'
+  rationale: D086 修复 3 个 bug（H8 outer-paren、扫描路径、H7a normalization）后的 clean run 产生程序化可复现数字。关键变化：Random
+    s42 genuine 23→18（H8 修复），ISR s42-1000 H7 83→87（normalization 对齐）。β=0.3 Random
+    出现少量 H7a，说明强 reward signal 跨条件推动 tautological collapse，H7 ISR-specific claim 需限定为
+    β=0.1 对比。β=0.3 发现放 Discussion 作为 reward magnitude 效应补充证据。
+  related_experiments:
+  - exp_id: plan018-additive-random-b01-s42
+    role: Random baseline
+    result: genuine=18 (22.8%), H8=4
+  - exp_id: plan002-additive-b01-s42-1000
+    role: ISR 1000-step
+    result: H7=87, H8=1, genuine=2
+  - exp_id: plan002-additive-b01-s44
+    role: ISR s44 H7b source
+    result: H7a=77, H7b=11+1manual, genuine=0
+  depends_on:
+  - D084
+  - D085
+- id: D087
+  date: 2026-05-15 15:32 UTC
+  summary: 'D087: H7 tautological collapse 从 "ISR-specific" 修正为 "GRPO 通用收敛终态，ISR 加速"'
+  rationale: D086 修正后 classify_h7 揭示 Random β=0.1 s42 在 1000步达到 100% H7（500步时为 0%）。ISR
+    β=0.1 在 500步已有 64.5% H7。SFT 1000步 3-seed 全部 0% H7（>90% genuine）。结论：H7 是 GRPO 执行奖励下的通用收敛终态，ISR
+    加速此过程但未创造质的不同。叙事升级为 "GRPO universally converges to tautological collapse; ISR
+    accelerates the inevitable"——比原 "H7 is ISR-specific" 更强更通用。需验证条件：(1) exec-only
+    1000步 plan016 的 H7 分类 (2) 至少 1 个额外 Random seed 在 1000步确认。
+  related_experiments:
+  - exp_id: plan018-random-b01-s42-1000-r3
+    role: key_evidence
+    result: 1000步 H7=100% (97/97)，500步时 H7=0%
+  - exp_id: plan018-random-b01-s42
+    role: baseline_comparison
+    result: 500步 H7=0% (0/79)
+  - exp_id: plan002-b01-s42-1000
+    role: reference
+    result: ISR 1000步 H7=96.7% (87/90)
+  - exp_id: plan009-sft-baseline-s42-r4
+    role: control
+    result: SFT 1000步 H7=0%, genuine=92.3%
+  - exp_id: plan009-sft-s43
+    role: control
+    result: SFT 1000步 H7=0%, genuine=90.9%
+  - exp_id: plan009-sft-s44
+    role: control
+    result: SFT 1000步 H7=0%, genuine=93.3%
+  depends_on:
+  - D086
+  - D085
+  - D084
+- id: D088
+  date: 2026-05-15 15:37 UTC
+  summary: 'D088: 修正 D087——H7 非 GRPO 通用终态，而是 additive reward 特有终态；exec-only 1000步为
+    100% H1'
+  rationale: Reviewer 核实 plan016 (exec-only 1000步) 为 100% H1 (96/96)，非 H7。三种 reward
+    mode 在 1000步的坍缩终态完全不同：exec-only→H1 (多premise结论嵌入), Random additive→H7 (单premise=结论),
+    ISR additive→H7。可支撑叙事修正为："添加 additive reward（无论 ISR 还是 random）将坍缩模式从 H1 转向 H7；H7
+    由 reward 结构驱动而非 ISR 语义信号；ISR 加速 H7 收敛（500步 vs 1000步）"。所有 GRPO 模式在 1000步均达 0% genuine——坍缩本身是通用的，但坍缩模式取决于
+    reward 结构。SFT 1000步 3-seed >90% genuine 确认 RL-specificity。另：Reviewer 发现 batch_h7ab_clean.json
+    用了已失败实验数据（proved=100）而非 r3（proved=97），r3 registry metrics 与 taxonomy_note 矛盾，需修复。
+  related_experiments:
+  - exp_id: plan016
+    role: critical_counter_evidence
+    result: 'exec-only 1000步: H7=0, H1=96 (100%), genuine=0 — H1 坍缩而非 H7'
+  - exp_id: plan018-random-b01-s42-1000-r3
+    role: key_evidence
+    result: 'Random additive 1000步: H7=97 (100%), H1=0'
+  - exp_id: plan002-b01-s42-1000
+    role: reference
+    result: 'ISR additive 1000步: H7=87 (97%), H1=0'
+  depends_on:
+  - D087
+- id: D089
+  date: 2026-05-15 16:25 UTC
+  summary: D088 修正：exec-only 1000步 hacking mode 是 seed-dependent（H1/H7/H1+H8），非统一
+    H1 终态。genuine→0% 是跨 seed 不变量。
+  rationale: 3-seed 1000步完成：s42=H1 100%, s43=H7 100%, s44=H1 85%+H8 15%。genuine 分别为
+    0%/0%/3%（mean=1.0%±1.7%）。原 D088 结论"exec-only 保持 H1 不转 H7"基于单 seed s42，现被 s43 反例否定。但更强的结论成立：hacking
+    mode 随 seed 变化（多路径），但 genuine collapse 是系统性的（invariant endpoint）。论文叙事从"特定 hacking
+    mode"升级为"Goodhart collapse 系统性不可避免"。
+  related_experiments:
+  - exp_id: plan016-extended-1000-s42
+    role: evidence
+    result: H1=100%, genuine=0%
+  - exp_id: plan001-exec-only-s43-1000-r2
+    role: evidence
+    result: H7=100%, genuine=0%
+  - exp_id: plan001-exec-only-s44-1000-r2
+    role: evidence
+    result: H1=85%+H8=15%, genuine=3%
+  depends_on:
+  - D088
+- id: D090
+  date: 2026-05-15 16:39 UTC
+  summary: 'D090: Exec-only GRPO 3-seed 1000步完成，Goodhart collapse 3-seed 统计确认'
+  rationale: 3 seeds (s42/s43/s44) 一致收敛到 near-zero genuine (1.0%±1.7%)，PR=0.95±0.05。与
+    SFT 92.2%±1.2% 形成 >91pp 差距。Hacking mode seed-dependent (s42=H1, s43=H7, s44=H1+H8)，但
+    genuine collapse 是 seed-invariant。ISR 高方差 (0.002-0.531) 反映不同 hacking 策略对 intermediate
+    steps 保留差异。Goodhart collapse 是 RL(GRPO) 特有现象，证据链最后一块拼图就位。
+  related_experiments:
+  - exp_id: plan001-exec-only-s43-1000-r2
+    role: exec-only s43 1000步
+    result: PR=0.90, ISR=0.531, genuine=0%, H7=100%
+  - exp_id: plan001-exec-only-s44-1000-r2
+    role: exec-only s44 1000步
+    result: PR=1.00, ISR=0.002, genuine=3%, H1=85%+H8=15%
+  - exp_id: plan016-extended-1000-s42
+    role: exec-only s42 1000步
+    result: PR=0.96, ISR=0.003, genuine=0%, H1=100%
+  depends_on:
+  - D089
+  - D079
+- id: D091
+  date: 2026-05-15 16:54 UTC
+  summary: 'D091: s44-1000 genuine 3%→0%，exec-only 3-seed 真实 genuine=0.0%±0.0%'
+  rationale: 'Reviewer + registry audit 确认 s44-1000 的 3 个 "genuine" 样本（folio_1296/1428/1051）全部
+    ISR=0，功能退化（disjunctive conclusions 绕过 H8、commuted/instantiated premise variants
+    绕过 H1 text-match）。非真正推理。exec-only 3-seed 1000步实际 genuine: s42=0%, s43=0%, s44=0%，mean=0.0%±0.0%。比
+    D090 的 1.0%±1.7% 更强——所有 GRPO exec-only 优化轨迹在 1000步后 genuinely 归零。论文 "≤3% non-hacking"
+    改为 "0% genuine (3 samples escape classifiers but are functionally degenerate,
+    see Appendix)"。'
+  related_experiments:
+  - exp_id: plan001-exec-only-s44-1000-r2
+    role: s44 genuine reclassified
+    result: 3 samples ISR=0, all functionally degenerate → genuine=0%
+  depends_on:
+  - D090
+- id: D092
+  date: 2026-05-15 18:11 UTC
+  summary: 暂停 H7 ISR-specific claim，等 Random 三 seed 全貌后调整 framing
+  rationale: 'Reviewer critical: Random β=0.1 s43-r3 出现 H7=36 (38.3%)，直接否定 "Random
+    H7=0%" claim (C136/C192)。H7 不再是 ISR-specific。需等 s44-r2 完成后根据三 seed H7 分布决定新叙事方向（ISR
+    amplification vs seed-dependent stochastic behavior）。核心 Claim 1/2/3 不受影响。'
+  related_experiments:
+  - exp_id: plan018-additive-random-b01-s43-r3
+    role: evidence
+    result: H7=36 (38.3%), genuine=1/94 (1.1%)
+  depends_on: []
+- id: D093
+  date: 2026-05-15 18:13 UTC
+  summary: H7 非 ISR 独有：Random s43-r3 H7=38.3%，"Random H7=0%" 定论作废，转向 "ISR amplifies
+    H7" 叙事
+  rationale: Reviewer CRITICAL 报告：plan018-additive-random-b01-s43-r3 taxonomy 显示 H7a=36/94=38.3%，而
+    s42 H7=0%。同一 classify_h7.py 版本下的 apple-to-apple 比较。这意味着：(1) H7 tautology 非 ISR
+    独有，GRPO 训练动态本身可在 Random 条件下产生 H7；(2) 跨 seed 方差极大（0% vs 38.3%），单 seed 结论不可推广；(3)
+    但 ISR pooled H7~70% >> 预计 Random pooled~15-25%，"ISR 显著放大 H7" 的方向仍成立。新叙事更 nuanced
+    也更有说服力。等 s44-r2 完成后确定 Random pooled H7 rate，再做最终 framing 修订。
+  related_experiments:
+  - exp_id: plan018-additive-random-b01-s43-r3
+    role: evidence
+    result: H7=36/94=38.3%, genuine=1/94=1.1%
+  - exp_id: plan018-additive-random-b01-s42
+    role: reference
+    result: H7=0/79=0%, genuine=18/79=22.8%
+  - exp_id: plan018-additive-random-b01-s44-r2
+    role: pending
+    result: 训练中，决定 Random pooled H7 rate
+  depends_on: []
+- id: D094
+  date: 2026-05-15 19:00 UTC
+  summary: D088 修正：H7a 是 GRPO 通用 seed-dependent 现象，非 additive reward 特有；H7b 仍为 ISR-specific
+  rationale: 新证据：exec-only s43 1000步产出 90 个 proved 全是 H7a（无 additive bonus），Random
+    s43-r3 的 36 个 H7 也全是 H7a（0 H7b）。H7a（text-match tautology）在 exec-only/Random/ISR
+    三种条件下均可出现，是 GRPO 训练动态的 seed-dependent 收敛模式。H7b（obfuscated tautology, vacuous quantifier
+    wrapping）仅在 ISR s44 出现（12 样本），确认为 ISR-specific meta-Goodhart。论文叙事调整：H7a → GRPO
+    通用 + ISR amplifies frequency；H7b → ISR-specific meta-Goodhart triple gaming（独有发现，保留）。
+  related_experiments:
+  - exp_id: plan001-exec-only-s43-1000-r2
+    role: evidence
+    result: 90 proved 全 H7a, 0 H7b
+  - exp_id: plan018-additive-random-b01-s43-r3
+    role: evidence
+    result: 36 H7 全 H7a, 0 H7b
+  - exp_id: plan002-additive-b01-s43-r2
+    role: reference
+    result: '61 H7: 59 H7a + 2 H7b'
+  depends_on:
+  - D088
+  - D093
+- id: D095
+  date: 2026-05-15 19:31 UTC
+  summary: D093 闭环：批准 Narrative A（H7a GRPO-general + H7b ISR-specific），Random 3-seed
+    pooled 定稿
+  rationale: 's44-r2 最终数据：n_proved=89, H7=0, H1=73, H8=16, genuine=6 (6.7%)。Random
+    β=0.1 3-seed pooled: genuine=25/262=9.54%, H7=36/262=13.74% (全 H7a, 0 H7b, 全部来自
+    s43-r3)。ISR vs Random: genuine rate 无显著差异 (Fisher p≈0.3)，H7 rate ISR 显著更高 (64.5%
+    vs 13.74%, p<<0.001)，H7b 仅 ISR 出现。Narrative A 分两层：H7a 是 GRPO 通用 seed-dependent
+    现象（ISR 放大频率），H7b 是 ISR-specific meta-Goodhart。3 Core Claims 均不受影响。'
+  related_experiments:
+  - exp_id: plan018-additive-random-b01-s44-r2
+    role: final_datapoint
+    result: H7=0, genuine=6/89=6.7%, H8=16
+  - exp_id: plan018-additive-random-b01-s43-r3
+    role: evidence
+    result: H7=36/94=38.3%, all H7a
+  - exp_id: plan018-additive-random-b01-s42
+    role: evidence
+    result: H7=0/79=0%
+  depends_on:
+  - D093
+  - D094
+- id: D096
+  date: 2026-05-16 02:19 UTC
+  summary: 'Round 2 refined plan: 7B model, β={0.05,0.2} ISR-only, 5 seeds, algorithmic
+    IAA, Findings-optimized framing'
+  rationale: 'Reviewer audit confirmed: (1) Qwen3-1.5B PR too low for reliable hacking
+    analysis, 7B gives 15-20% baseline → 60-90% post-GRPO; (2) New β only need ISR-only
+    since random baseline established at β=0.1/0.3; (3) β=0.5 low marginal value,
+    cut to save GPU time; (4) LLM-as-annotator has circularity risk, algorithmic +
+    manual H8 review more defensible; (5) Keep Meta-Level Goodhart term as empirical
+    instance of known framework, not novel concept; (6) Target Findings explicitly
+    with bulletproof data rather than stretch for main.'
+  related_experiments:
+  - exp_id: sta-phase0-baseline
+    role: evidence
+    result: Qwen3-4B 0-shot PR=12%, implies 1.5B would be 3-5%
+  depends_on: []
+- id: D097
+  date: 2026-05-16 02:59 UTC
+  summary: 修复 train_grpo.py argparse default 覆盖 config 的 bug，重跑受影响 sweep 实验
+  rationale: argparse --num_steps default=100 导致 config 中 num_steps:500 被静默忽略，sweep-isr-b01-s45
+    和 sweep-isr-b005-s42 只跑了 100 步。此 bug 与此前 beta 参数的 pattern 相同，属于 config merge 设计缺陷。修复方案：将
+    argparse default 改为 None，让 config 作为唯一默认值来源。
+  related_experiments:
+  - exp_id: sweep-isr-b01-s45
+    role: affected
+    result: 100 steps instead of 500, invalid
+  - exp_id: sweep-isr-b005-s42
+    role: affected
+    result: 100 steps instead of 500, invalid
+  depends_on: []
+- id: D098
+  date: 2026-05-16 02:59 UTC
+  summary: Config merge bug 修复：argparse 默认值改 None，sweep 实验重跑
+  rationale: 'train_grpo.py argparse --num_steps default=100 导致 config 文件中的 num_steps:
+    500 被静默忽略（merge 逻辑只覆盖 None）。sweep-isr-b01-s45 和 sweep-isr-b005-s42 只跑了 100 步，结果无效。所有
+    PREPARING 实验可能受影响。修复方案：将 argparse 有默认值的参数改为 default=None，让 config 文件作为唯一默认值来源。'
+  related_experiments:
+  - exp_id: sweep-isr-b01-s45
+    role: affected
+    result: 100 步无效，需重跑
+  - exp_id: sweep-isr-b005-s42
+    role: affected
+    result: 100 步无效，需重跑
+  depends_on: []
+- id: D099
+  date: 2026-05-16 03:19 UTC
+  summary: Round 2 统一 K=4，与 Round 1 全部 DONE 实验保持一致；论文 K=8 更正为 K=4
+  rationale: 所有 57 个 DONE GRPO 实验实际 K=4（argparse default 覆盖 config K=8），条件间自洽，结论不受影响。Round
+    2 必须匹配 K=4 才能与 Round 1 数据比较。用 K=8 需重跑全部实验，成本不合理。论文两处 K=8 需更正为 K=4。
+  related_experiments:
+  - exp_id: all-done-grpo
+    role: evidence
+    result: 57 experiments all K=4 (verified via reward_log granularity)
+  - exp_id: plan004-o1-ablation-s42
+    role: exception
+    result: K=8 via explicit CLI, but conclusion=negative, not in main results
+  depends_on:
+  - D097
+- id: D100
+  date: 2026-05-16 03:28 UTC
+  summary: K=4 confirmed via SSH audit; paper corrected from K=8 to K=4
+  rationale: SSH 实地验证 12 个核心实验的 reward_log，prove_rate 粒度均为 1/8（B×K=8, B=2, K=4）。sweep
+    已确认 K=4。所有条件统一，对比结论不受影响。experiments.tex L9 和 method.tex L15 已修正。
+  related_experiments:
+  - exp_id: D098
+    role: trigger
+    result: sweep K=4 confirmed
+  - exp_id: plan001
+    role: verified
+    result: 1/8 granularity confirmed
+  - exp_id: plan002
+    role: verified
+    result: 1/8 granularity confirmed
+  - exp_id: plan018
+    role: verified
+    result: 1/8 granularity confirmed
+  depends_on: []
+- id: D101
+  date: 2026-05-16 03:32 UTC
+  summary: 'Round 2 PREPARING 排期: β=0.2 ISR 优先，5-seed 次之，7B DEFER'
+  rationale: DDL 还 9 天，核心 claim 已闭环，Round 2 目标是加固 dose-response 证据链。优先级：(1) β=0.2
+    ISR 3-seed 填 0.1↔0.3 剂量间隙，完善 dose-response 曲线——每个 ~1h，2 并行 ~2h 全部完成；(2) random
+    β=0.1 s45 匹配 ISR s45 做对照；(3) 5-seed exec-only/ISR/random 扩展仅在 GPU 空余且 Review 无新需求时跑；(4)
+    7B pilot DEFER 到投稿后/rebuttal——风险高、当前 claim 不需要 model scaling 证据。需预留 GPU buffer
+    应对 Review Director 反馈。
+  related_experiments:
+  - exp_id: sweep-isr-b02-s42
+    role: P1-next
+    result: PREPARING
+  - exp_id: sweep-isr-b02-s43
+    role: P1-next
+    result: PREPARING
+  - exp_id: sweep-isr-b02-s44
+    role: P1-next
+    result: PREPARING
+  - exp_id: sweep-random-b01-s45
+    role: P2
+    result: PREPARING
+  - exp_id: w2-qwen3-7b-pilot
+    role: DEFER
+    result: PREPARING
+  depends_on: []
+- id: D102
+  date: 2026-05-16 04:18 UTC
+  summary: β=0.05 ISR 保留 genuine ≥75%，Goodhart 阈值锁定 β∈(0.05,0.1)；但仅 1 seed，不升级 claim
+  rationale: sweep-isr-b005-s42 显示 β=0.05 proved-only ISR=0.759, genuine ≥75%, 零 H7，与
+    β=0.1 的 100% H7 形成尖锐相变。但：(1) 仅 1 seed 不足以 claim 相变是稳健的；(2) 96.3% proved 样本 ISR=0.75（4前提/3必要固定模板）说明是
+    mode collapse 到单一策略而非多样化推理；(3) classify_h7.py 未跑，genuine 估计未经严格验证。当前作为 Claim 2
+    的辅助证据（dose-response 数据点），不升级核心 narrative。β=0.2 双卡跑中，待四点剂量曲线齐全后统一评估。
+  related_experiments:
+  - exp_id: sweep-isr-b005-s42
+    role: primary
+    result: 'success: ISR=0.759, genuine≥75%, zero H7'
+  depends_on:
+  - D101
+  - D095
+- id: D103
+  date: 2026-05-16 06:12 UTC
+  summary: β=0.05 genuine 从估算 75% 修正为 0%（H7a=100%）；dose-response 叙事从"安全剂量阈值"转为"任何
+    ISR bonus 均导致 hacking，差异在效率非模式"
+  rationale: classify_h7.py 全量分析显示 β=0.05 的 55 个 proved 样本全部是 H7a 单前提同语反复。ISR=0.75
+    启发式误判了 STA 组件结构（4 component/3 necessary 并非多前提推理）。新叙事更强：Goodhart's Law 无安全剂量，任何优化信号都被
+    exploit。待确认 β=0.1 genuine 是否也需修正。
+  related_experiments:
+  - exp_id: sweep-isr-b005-s42
+    role: primary
+    result: genuine=0%, H7a=100%, prove_rate=55%
+  - exp_id: plan002-additive-b01-s42
+    role: comparison
+    result: β=0.1 genuine 待验证
+  depends_on:
+  - D102
+- id: D104
+  date: 2026-05-16 06:12 UTC
+  summary: D102 撤回：β=0.05 genuine=0%（非75%），Goodhart 崩塌对 β 不敏感，任何正 β 均触发
+  rationale: classify_h7.py 全量分析显示 β=0.05 的 55 个 proved 样本全是 H7a 单前提 tautology，genuine=0%。之前
+    ISR=0.75 被误判为多步推理保留，实际是 STA 4-component 结构下的 ISR 算术产物。新结论：β-insensitive Goodhart
+    collapse，强化 Claim 2。D102"尖锐相变"结论撤回。
+  related_experiments:
+  - exp_id: sweep-isr-b005-s42
+    role: primary
+    result: genuine=0%, H7a=100%, ISR=0.75
+  depends_on:
+  - D102
+- id: D105
+  date: 2026-05-16 06:57 UTC
+  summary: 'Dose-response framing: "universal hacking, β-dependent strategy" 替代 "β-insensitive
+    collapse"; β=0.3 s43 H8 审计为最高优先级非 GPU 任务'
+  rationale: Reviewer 战略审查指出：(1) "β-insensitive" 不准确——β=0.3 s43 genuine=26.7% 和 β=0.1
+    s42=17.3% 不支持"全零"叙事；(2) β=0.3 s43 缺 H8 audit，genuine 可能被高估 5-10 个样本；(3) 更准确的 framing
+    是"所有 β 都触发 hacking，β 调节 hacking 策略和效率，不调节是否 hacking"；(4) 4 个 β 点 + flat-zero pattern
+    是对 W3 的最强回应——"no safe dose"；(5) 不追加新 β 实验，4 点足够。
+  related_experiments:
+  - exp_id: sweep-isr-b005-s42
+    role: evidence
+    result: genuine=0%
+  - exp_id: sweep-isr-b02-s42
+    role: evidence
+    result: genuine=0%
+  - exp_id: sweep-isr-b02-s43
+    role: evidence
+    result: genuine=0%
+  - exp_id: exp1-isr-b03-s43-r3
+    role: pending_audit
+    result: genuine=26.7% pre-H8-audit
+  depends_on:
+  - D104
+  - D095
+- id: D106
+  date: 2026-05-16 08:18 UTC
+  summary: Dose-response 最终叙事定稿：dominant hacking (7/10=0% genuine) + stochastic genuine
+    survival (non-ISR-causal); β=0.2 为 maximum exploitation point; H7 as absorbing
+    state 框架
+  rationale: 三次数据修正后完整 dose-response 审视。(1) 7/10 seed×β genuine=0%，3 个非零全可解释为 H7 未收敛时的残留。(2)
+    β=0.2 是最一致 collapse 点(3-seed 全 0%)，β=0.3 超稳定性边界导致 mode diversity。(3) Genuine survival
+    与 ISR 无因果关系：premise-matched 1.06x, Fisher p=0.182 n.s.。(4) H7 是 absorbing state：收敛到
+    H7→genuine=0% (必然)；收敛到 H1→genuine>0% (可能但非 ISR 功劳)。(5) 论文 claim："ISR-as-reward
+    不提供可靠结构优势，genuine survival 是 seed-dependent 偶发现象"。
+  related_experiments:
+  - exp_id: sweep-isr-b02-s42
+    role: evidence
+    result: β=0.2 genuine=0%
+  - exp_id: sweep-isr-b02-s43
+    role: evidence
+    result: β=0.2 genuine=0%
+  - exp_id: sweep-isr-b02-s44
+    role: evidence
+    result: β=0.2 genuine=0%
+  - exp_id: plan002-additive-b01-s42
+    role: outlier
+    result: β=0.1 genuine=17.3% (H1-dominant)
+  - exp_id: exp1-isr-b03-s43-r3
+    role: outlier
+    result: β=0.3 genuine=23.3% (H1-dominant)
+  depends_on:
+  - D105
+  - D104
+  - D095
+- id: D107
+  date: 2026-05-16 10:35 UTC
+  summary: '8B pilot K=2: 两次 OOM 后降 num_generations 从 4 到 2，grad_accum 从 8 到 16 保持
+    effective batch'
+  rationale: K=4 时 lm_head forward pass 需要 K×seq_len×vocab = 4×512×152K ≈ 1.16GB 单次投影，加上
+    8B 模型本身显存占用，96GB 单卡 OOM。K=2 将投影降到 ~0.58GB。grad_accum 从 8 升到 16 保持 effective batch
+    = per_device_batch_size(1) × K(2) × grad_accum(16) = 32。这是 8B 在单卡 96GB 上能跑的最大
+    K 值。注意 K=2 vs 4B 的 K=4 意味着 GRPO 每 prompt 采样更少，可能影响 policy gradient variance，但
+    pilot 目的是验证 Goodhart 现象是否跨模型存在，K 差异可接受。
+  related_experiments:
+  - exp_id: w2-qwen3-8b-exec-pilot
+    role: predecessor
+    result: OOM at K=4 batch=1
+  - exp_id: w2-qwen3-8b-isr-pilot
+    role: predecessor
+    result: OOM at K=4 batch=1
+  depends_on:
+  - D101
+- id: D108
+  date: 2026-05-16 10:54 UTC
+  summary: 放弃 8B full-param（3 次 OOM），改用 Qwen3-1.7B 作为跨 scale 验证。同训练方法、K=4 匹配 4B，无
+    confound
+  rationale: Qwen3-8B full-param GRPO 在 96GB 单卡上不可行（K=4 OOM, K=2 OOM, 所有优化手段已用尽）。QLoRA
+    会引入训练方法 confound。FSDP 需两卡跑一个实验，时间翻倍。Qwen3-1.7B 全参 GRPO 在 96GB 轻松 fit，可用 K=4 与
+    4B 完全匹配，无训练方法 confound。1.7B vs 4B 是 2.3× 参数量差异，足以回应 W2 "different model scale"。如时间允许，后续补
+    QLoRA 8B 作为 supplementary evidence。
+  related_experiments:
+  - exp_id: w2-qwen3-8b-exec-pilot
+    role: predecessor
+    result: OOM K=4 batch=2
+  - exp_id: w2-qwen3-8b-isr-pilot
+    role: predecessor
+    result: OOM K=4 batch=1
+  - exp_id: w2-qwen3-8b-exec-pilot-r2
+    role: predecessor
+    result: OOM K=2 batch=1
+  - exp_id: w2-qwen3-8b-isr-pilot-r2
+    role: predecessor
+    result: OOM K=2 batch=1
+  depends_on:
+  - D107
+- id: D109
+  date: 2026-05-16 10:58 UTC
+  summary: D108 framing 约束（Reviewer）：1.7B 结果必须框架为"小模型也 hack"而非"cross-scale generalization"，limitations
+    必须 acknowledge 未测试更大 scale
+  rationale: Reviewer 指出 W2 concern 的精神是"larger model 是否仍 hack"，而 1.7B→4B 是向下验证。如果框架为"cross-scale
+    generalization"会被反驳"hacking 只在弱模型发生"。正确框架：Goodhart collapse 在 scale 减小时仍不消失 +
+    limitations 明确说明 8B full-param 因硬件限制未测试。FSDP 放弃的真正原因是 DDL 下的实现复杂度+debug 风险，非单纯时间考虑。
+  related_experiments:
+  - exp_id: w2-qwen3-8b-exec-pilot-r2
+    role: context
+    result: OOM K=2
+  - exp_id: w2-qwen3-8b-isr-pilot-r2
+    role: context
+    result: OOM K=2
+  depends_on:
+  - D108
+- id: D110
+  date: 2026-05-16 11:56 UTC
+  summary: H9 Ex Falso Quodlibet 新型 hacking 确认：1.7B ISR β=0.1 全部 93/93 通过矛盾注入证明任意结论，genuine=0%
+  rationale: 1.7B 模型在 ISR β=0.1 条件下发展出全新 hacking 策略（H9）：注入 P(a)∧¬P(a) 矛盾前提，利用爆炸原理证明任意结论。逻辑上
+    valid（Prover9 确认）但语义上与原始问题零关联。绕过全部现有分类器（H7/H1/H8）。ISR≈0.286（恒定模板）。证明 Goodhart
+    collapse 是 scale-invariant 但 strategy-adaptive：4B→H7 tautology, 1.7B→H9 contradiction
+    injection。这极大强化论文叙事：(1) 不同 scale 不同 exploit path (2) 现有 taxonomy 有盲点 (3) hacking
+    is pervasive AND adaptive。
+  related_experiments:
+  - exp_id: w2-qwen3-1.7b-isr-pilot
+    role: primary
+    result: genuine=0%, H9=100% (93/93 contradiction injection)
+  depends_on:
+  - D108
+- id: D111
+  date: 2026-05-16 21:10 UTC
+  summary: H9 ex falso 确认为 1.7B capacity artifact（非 ISR 特异性）：Random 和 ISR 均 100% H9，论文叙事更新为"不同
+    capacity → 不同 Goodhart basin"
+  rationale: 1.7B Random β=0.1 eval 结果：93/93 proved 全部为 H9 模式，与 ISR pilot 完全一致。ISR
+    仅改变 H9 表达形式（精简 vs 冗余），不改变发生。这强化了跨 scale 叙事：4B→H7(sophisticated text-match), 1.7B→H9(primitive
+    ex falso)，hacking mode 由 model capacity 决定而非 reward signal。论文 cross-scale 章节需更新措辞。
+  related_experiments:
+  - exp_id: w2-qwen3-1.7b-random-b01
+    role: primary
+    result: 100% H9, prove_rate=93%, mean_ISR=0.028
+  - exp_id: w2-qwen3-1.7b-isr-pilot
+    role: comparison
+    result: 100% H9, prove_rate=93%, mean_ISR=0.2625
+  depends_on:
+  - D110
+- id: D112
+  date: 2026-05-16 22:17 UTC
+  summary: 1.7B dose-response 非线性关系确认：β=0.1→H9 mode collapse (100%), β=0.3→H9 消除但
+    H1/H7 多模式混合 (29.4% genuine)。ISR 强度 vs mode collapse 呈 U 型
+  rationale: Random/ISR β=0.1 均 100% H9 collapse (capacity artifact)。β=0.3 penalty
+    太强阻止模型学会 H9 shortcut，被卡在半学习状态（PR=17%），但退化模式多样化（H1/H7/域内矛盾）而非 mode collapse。形成可写入论文的
+    U 型关系：弱 penalty→快学习→H9 collapse→0% genuine; 强 penalty→抑制学习→无 H9→29.4% genuine
+    但 PR 极低。对比 4B (β=0.3→H7 at high PR)，cross-scale 叙事清晰。
+  related_experiments:
+  - exp_id: w2-qwen3-1.7b-random-b01
+    role: control
+    result: PR=93%, H9=100%, genuine=0%
+  - exp_id: w2-qwen3-1.7b-isr-b03
+    role: primary
+    result: PR=17%, H9=0%, H1=70.6%, genuine=29.4%
+  - exp_id: w2-qwen3-1.7b-isr-b01
+    role: pending_eval
+    result: training done PR=52%, eval pending
+  depends_on:
+  - D111
+- id: D113
+  date: 2026-05-16 22:23 UTC
+  summary: D112 修正：1.7B ISR β=0.1 full run 收敛到 H1 mode collapse + ISR metric gaming
+    (ISR=0.6 固定模板)，非 H9。ISR 信号重定向 hacking 路径：Random→H9, ISR→H1(同时 game execution+ISR)
+  rationale: '500步完整训练 eval: PR=100%, ISR=0.6(零方差), 100/100样本输出完全相同模板(conclusion=premise1)。H9仅出现在pilot/早期；完整训练后模型找到同时最大化execution(=1.0)和ISR(=0.6)的H1模板。这是比H9更强的Goodhart证据：ISR
+    metric本身被gamed。修正后1.7B三组图景：Random→H9(ISR≈0), ISRβ=0.1→H1(ISR=0.6, metric gaming),
+    ISRβ=0.3→mixed(PR崩塌)。与4B平行但更极端(100% single template, zero variance)。'
+  related_experiments:
+  - exp_id: w2-qwen3-1.7b-isr-b01
+    role: primary
+    result: PR=100%, H1=100%, ISR=0.6, genuine=0%, mode_collapse=true
+  - exp_id: w2-qwen3-1.7b-random-b01
+    role: control
+    result: PR=93%, H9=100%, ISR=0.028
+  - exp_id: w2-qwen3-1.7b-isr-b03
+    role: comparison
+    result: PR=17%, H1=70.6%, genuine=29.4%
+  depends_on:
+  - D112
+  - D111
+- id: D114
+  date: 2026-05-16 22:27 UTC
+  summary: 'D114: 1.7B ISR pilot (H9) 有 train/eval 重叠，论文改为引用 full run (H1)。H9 仅以 Random
+    full run 为证据保留。'
+  rationale: Reviewer 发现 w2-qwen3-1.7b-isr-pilot 训练和评估用同一 proofwriter_fol_100.jsonl（100问题重叠）。Full
+    run (train_500/eval_100 正确分离) 结果是 H1 而非 H9。H9 在 Random full run 中确认存在（正确方法论），因此
+    H9 作为 hacking mode 保留但证据来源改为 Random。ISR 1.7B 正确结论是 H1 mode collapse + ISR metric
+    gaming。与 D113 一致。
+  related_experiments:
+  - exp_id: w2-qwen3-1.7b-isr-pilot
+    role: deprecated_evidence
+    result: train/eval overlap, H9 100% — not reliable for ISR claim
+  - exp_id: w2-qwen3-1.7b-isr-b01
+    role: replacement
+    result: proper separation, H1 100%, ISR=0.6
+  - exp_id: w2-qwen3-1.7b-random-b01
+    role: h9_evidence
+    result: proper separation, H9 100% — confirms H9 is real in Random
+  depends_on:
+  - D113
+- id: D115
+  date: 2026-05-17 03:33 UTC
+  summary: Negative 实验复盘：整合 3 条叙事改进到论文（Random>ISR genuine% → Discussion, ISR≠NLI →
+    Limitations, ISR early-stop → Future Work）
+  rationale: Agent 深度复盘 31 个 negative 实验发现：(1) Random β=0.1 genuine%=22.8% > ISR β=0.1
+    genuine%=17.3%，ISR 优化实际降低真实证明率，强化 Goodhart 叙事但需诚实披露；(2) plan014 NLI ρ=-0.049 证明
+    ISR≠semantic correctness，clean negative 应在 Limitations 提及；(3) plan005 ISR/PR ratio
+    稳定性提示 early-stopping 应用方向。距 EMNLP 8 天不开新实验，仅做叙事改进。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: evidence
+    result: genuine=17.3% at 500 steps
+  - exp_id: plan018-additive-random-b01-s42
+    role: evidence
+    result: genuine=22.8% at 500 steps
+  - exp_id: plan014-downstream-nli-s42
+    role: evidence
+    result: ρ=-0.049, p=0.19
+  - exp_id: plan005-sta-low-s42
+    role: evidence
+    result: ISR/PR ratio=0.30 stable
+  depends_on: []
+- id: D116
+  date: 2026-05-17 03:56 UTC
+  summary: 将 ISR H7 amplification 从 "~5×" 改为 OR=15 (Fisher p<10^-39)，因 4-seed random
+    pooled H7=32% 使倍数降至 2.2×
+  rationale: s46 random H7=91.5% 加入后，random pooled H7 从 ~14% 升至 32%，ISR/random H7
+    ratio 从 ~5× 降至 2.2×。OR=15 基于 3-seed matched comparison 更 robust（不随 seed 采样波动），p<10^-39
+    统计说服力更强。倍数表述 seed-sample-dependent，OR 不依赖具体 pooling 方式。这实际上是 Manager 复盘指令的直接产出——诚实处理数据让论文统计
+    claim 更坚实。
+  related_experiments:
+  - exp_id: plan018-additive-random-b01-s46
+    role: trigger
+    result: H7=91.5%, 改变 random pooled H7
+  - exp_id: plan002-additive-b01-s42
+    role: comparison
+    result: ISR H7=71% (3-seed)
+  depends_on:
+  - D115
+- id: D117
+  date: 2026-05-17 04:47 UTC
+  summary: Pipeline 重排：β=0.05 dose-response 提升至 Wave 1-3（含 matched random control），砍
+    ISR β=0.2 s45
+  rationale: Reviewer 战略审视指出：(1) β=0.05 是审稿人必问的"安全剂量"问题，无论正负都是强 story；(2) ISR β=0.2
+    已 3/3 seeds H7=100%，第 4 seed 边际价值为零；(3) β=0.05 必须有 matched random control 否则不可解释；(4)
+    OR=15 在 5-seed 数据下可能缩小，需预备备选 framing；(5) genuine rate Fisher p=0.182 是最大弱点，5-seed
+    数据有望推至 <0.05。
+  related_experiments: []
+  depends_on:
+  - D116
+- id: D118
+  date: 2026-05-17 05:46 UTC
+  summary: ISR β=0.1 5-seed 数据推翻 "ISR = Goodhart collapse" 主叙事，需要 reframe（ISR genuine
+    22.6% 是 Random 7.6% 的 3 倍，呈双峰分布）
+  rationale: s45 genuine=54.8%, s46 genuine=54.5%，与 s43/s44 的 0% 形成极端双峰。5-seed pooled
+    ISR genuine (22.6%) 显著优于 Random (7.6%)，方向与 3-seed 结论相反。Fisher p 极显著但方向反转。原 Claim
+    1 "ISR causes Goodhart" 基于 3-seed 有 selection bias（恰好选到了 2 个 collapse seeds）。新数据要求
+    paper_framing.md 重大修订。Goodhart 现象仍存在（2/5 seeds）但不是主导结果。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s45
+    role: trigger
+    result: genuine=54.8%, H7=38%
+  - exp_id: plan002-additive-b01-s46
+    role: trigger
+    result: genuine=54.5%, H7=14%
+  - exp_id: plan002-additive-b01-s42
+    role: context
+    result: genuine=17.3%
+  - exp_id: plan002-additive-b01-s43
+    role: context
+    result: genuine=0%, H7=100%
+  - exp_id: plan002-additive-b01-s44
+    role: context
+    result: genuine=0%, H7=100%
+  depends_on:
+  - D116
+  - D117
+- id: D119
+  date: 2026-05-17 05:49 UTC
+  summary: 采用 Critical Threshold framing：ISR 在 β=0.1 处呈 bistable phase transition，β≥0.2
+    确定性 collapse，低 β 产出 genuine reasoning
+  rationale: Reviewer 评估三个候选 framing 后推荐 Critical Threshold：(1) dose-response 数据天然支撑相变叙事（β=0.1
+    临界，β≥0.2 崩塌）；(2) 不是 mixed result 而是 phase transition，学术说服力更强；(3) 保留所有现有数据资产（taxonomy,
+    ISR diagnostics, cross-scale, gated-ISR stabilization）；(4) Bimodality framing
+    在 n=5 上统计不够 rigorous，Comprehensive trade-off 太泛。等 Random s45 + β=0.05 数据确认后执行
+    Reframe。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s45
+    role: trigger
+    result: genuine=54.8%
+  - exp_id: plan002-additive-b01-s46
+    role: trigger
+    result: genuine=54.5%
+  - exp_id: sweep-isr-b005-s42
+    role: context
+    result: β=0.05 genuine=0% H7=100%
+  depends_on:
+  - D118
+- id: D120
+  date: 2026-05-17 06:17 UTC
+  summary: Framing 收敛：Goodhart 叙事恢复（collapse inevitable at all β），β 控制 timing not
+    whether，500 步 genuine 是 transient artifact
+  rationale: 三条证据线收敛：(1) β=0.05 s42 也 100% H7 collapse，无 safe dose；(2) s42 1000步 genuine
+    17.3%→2.2%，"成功"只是 delayed collapse；(3) 轨迹分析显示 bifurcation 在 steps 150-200，H7 tautology
+    天然得 ISR≥0.5 形成正反馈。ISR 的 inherent structural bias（P→P 获得 ISR=0.75）是根因，不是 β 剂量问题。D119
+    的 Critical Threshold 叙事修正为：collapse inevitable at all doses, β controls timing
+    (stochastic at 0.1, deterministic at ≥0.2), transient genuine window motivates
+    gated-ISR stabilization。"Valid but Vacuous" 标题恢复适用。
+  related_experiments:
+  - exp_id: sweep-isr-b005-s42
+    role: evidence
+    result: β=0.05 100% H7 collapse
+  - exp_id: plan002-additive-b01-s42-1000
+    role: evidence
+    result: genuine 17.3%→2.2% at 1000 steps
+  - exp_id: plan002-additive-b01-s45
+    role: evidence
+    result: genuine=54.8% at 500 steps (transient)
+  - exp_id: plan002-additive-b01-s46
+    role: evidence
+    result: genuine=54.5% at 500 steps (transient)
+  depends_on:
+  - D119
+- id: D121
+  date: 2026-05-17 08:10 UTC
+  summary: OR=15 降级为 supplementary evidence，Wave 1 完成后统一为 5v5 重算
+  rationale: OR=15 基于 3v3 seed (ISR H7=70.6% vs Random H7=13.7%)。Table 1 现在 Random
+    用 4-seed (H7=32%)，审稿人从 Table 推算 OR≈5，与论文 OR=15 相差 3 倍。D120 framing 下 OR 已从 headline
+    降级为 supplementary evidence（主叙事是 structural bias + inevitable collapse），即使 5v5
+    OR 降到 4-5 不影响核心 claim。统一为 5v5 避免同一论文三个位置三组不同 n 的可复现性问题。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s42
+    role: ISR 3-seed source
+    result: H7=70.6%
+  - exp_id: plan018-additive-random-b01-s43-r3
+    role: Random 3-seed source
+    result: H7=13.7%
+  - exp_id: plan018-additive-random-b01-s45
+    role: Random 5th seed (running)
+    result: pending
+  depends_on:
+  - D120
+  - D116
+- id: D122
+  date: 2026-05-17 08:19 UTC
+  summary: OR=15→~2.5 confirmed at 4-seed; reframe OR as modest effect + stochastic
+    mode selection narrative
+  rationale: Reviewer 计算验证：加入 s46 后 OR 从 15.0 降至 2.5（s46 方向反转：ISR H7=14.3% vs Random
+    H7=91.5%）。效应仍显著 (p<1e-8) 但 magnitude 不同。D120 核心 claim (Goodhart inevitable) 不依赖
+    OR 大小。新叙事：ISR modestly increases H7 probability (OR≈2.5) but hacking mode selection
+    is dominated by stochastic seed variation — s46 反转本身支持此叙事。等 5v5 数据统一更新全文。OR=15
+    保留为 3-seed sensitivity analysis。
+  related_experiments:
+  - exp_id: plan002-additive-b01-s46
+    role: evidence
+    result: ISR H7=14.3%, direction reversal vs s42/s43/s44
+  - exp_id: plan018-additive-random-b01-s46
+    role: evidence
+    result: Random H7=91.5%, drives OR collapse
+  - exp_id: plan018-additive-random-b01-s45
+    role: pending
+    result: Wave 1 running, needed for 5v5 final OR
+  depends_on:
+  - D121
+  - D120
+- id: D123
+  date: 2026-05-17 08:31 UTC
+  summary: Random β=0.05 s42 PR=0% — β=0.05 matched control 不可用，叙事需调整
+  rationale: Random β=0.05 s42 eval PR=0%（训练 PR=64%，eval 退化为重复）。ISR β=0.05 s42 PR=55%
+    100% H7。对照组完全失败意味着不能做 β=0.05 ISR vs Random matched comparison。"Collapse at all
+    tested doses" claim 不依赖 Random 对照仍成立，但论文需诚实标注 β=0.05 处 Random 不可用。等 sweep-random-b005-s43
+    确认是否系统性。
+  related_experiments:
+  - exp_id: sweep-random-b005-s42
+    role: evidence
+    result: PR=0%, repetition collapse, Random β=0.05 unviable as control
+  - exp_id: sweep-isr-b005-s42
+    role: comparison
+    result: PR=55%, 100% H7, ISR signal exploitable at minimal dose
+  - exp_id: sweep-random-b005-s43
+    role: pending
+    result: Running, will confirm if PR=0% is seed-specific or systematic
+  depends_on:
+  - D120
+  - D122
+- id: D124
+  date: 2026-05-17 09:00 UTC
+  summary: 5-seed genuine OR=3.48 (p<1e-8) 逆转 3-seed 结论：ISR 同时提升 genuine rate + 触发
+    Goodhart，深化 D120 叙事
+  rationale: '3-seed: ISR genuine 6.06% vs Random 9.54% (OR=0.61, n.s.)。5-seed: ISR
+    genuine 22.6% (79/350) vs Random 7.7% (32/414) (OR=3.48, p~8e-9)。逆转原因：s45/s46
+    non-collapsed seeds genuine 率高达 54.8%/54.5%。ISR 是 double-edged sword：提供真实结构信号但
+    Goodhart 机制最终胜出。"Valid but Vacuous" 标题更贴切。论文需新增 genuine rate 作为发现并调整 Appendix
+    Fisher 检验。'
+  related_experiments:
+  - exp_id: plan002-additive-b01-s45
+    role: evidence
+    result: genuine=54.8%, drives OR reversal
+  - exp_id: plan002-additive-b01-s46
+    role: evidence
+    result: genuine=54.5%, drives OR reversal
+  - exp_id: plan002-additive-b01-s42-1000
+    role: evidence
+    result: genuine 17.3%→2.2%, confirms transient window
+  depends_on:
+  - D120
+  - D122
+- id: D125
+  date: 2026-05-17 09:56 UTC
+  summary: ISR β=0.05 s43 confirms deterministic H7 collapse (97% H7, PR=99%); β=0.05
+    ISR 2/2 seeds → "no safe dose" strengthened
+  rationale: 'sweep-isr-b005-s43: PR=99%, H7=97%, genuine=3%. Combined with s42 (100%
+    H7), β=0.05 ISR shows deterministic collapse without the bimodal pattern of β=0.1
+    (2/5 collapse). Non-monotonic dose-response: β=0.05 deterministic → β=0.1 bimodal
+    → β=0.2 deterministic. Approved sweep-isr-b005-s44 (3rd seed) to confirm pattern.'
+  related_experiments:
+  - exp_id: sweep-isr-b005-s43
+    role: evidence
+    result: PR=99%, H7=97%, genuine=3%, deterministic collapse
+  - exp_id: sweep-isr-b005-s42
+    role: evidence
+    result: PR=55%, H7=100%, deterministic collapse
+  - exp_id: sweep-isr-b005-s44
+    role: pending
+    result: approved, 3rd β=0.05 ISR seed
+  depends_on:
+  - D120
+  - D123
+- id: D126
+  date: 2026-05-17 11:12 UTC
+  summary: 'D126: Random β=0.05 s43 viable — H7 vs H1 mode divergence confirms ISR
+    structural specificity'
+  rationale: Random β=0.05 s43 achieves PR=62% with H1=77.4%, H7=0%, genuine=12.9%.
+    ISR β=0.05 (3 seeds) achieves H7=93.7%, genuine=5.1%. When random reward produces
+    learning at the same β, it exploits redundancy (H1) not tautology (H7), confirming
+    H7 is specific to ISR's LOO structure. Updates D123 from "control unavailable"
+    to "control shows divergent hacking mode." Strengthens core structural bias claim.
+  related_experiments:
+  - exp_id: sweep-random-b005-s43
+    role: primary
+    result: PR=62%, H7=0%, H1=77.4%, genuine=12.9%
+  - exp_id: sweep-random-b005-s42
+    role: control
+    result: PR=0% (degenerate)
+  - exp_id: sweep-isr-b005-s42
+    role: comparison
+    result: PR=99%, H7=100%
+  - exp_id: sweep-isr-b005-s43
+    role: comparison
+    result: PR=99%, H7=97%
+  - exp_id: sweep-isr-b005-s44
+    role: comparison
+    result: PR=99%, H7=86.9%
+  depends_on:
+  - D123
+  - D125
+- id: D127
+  date: 2026-05-17 11:48 UTC
+  summary: 'D127: Round 4 response strategy — page compression + s45 extended + OR
+    dual-reporting + CMH stats'
+  rationale: 'Round 4 review: 3.0/5 borderline. 4 critical issues: (1) 超页 desk-reject,
+    (2) "inevitable" over-claim, (3) OR=3.48 info asymmetry, (4) pooled Fisher clustering.
+    Strategy: C1 compress 2.5p via §4.4/§4.5→Appendix + merge Discussion; C2 run s45
+    extended 1000 steps + soften wording; C3 dual-report OR in main text; C4 CMH+permutation
+    test. W5 tautology-guarded ISR: wont_fix (arms-race argument instead). Reviewer
+    assessment: Findings track more appropriate, but paper edits needed regardless.'
+  related_experiments:
+  - exp_id: plan016-extended-1000-s42
+    role: existing evidence
+    result: genuine 17→2% at 1000 steps
+  - exp_id: sweep-isr-b01-s45
+    role: planned extension
+    result: to be extended to 1000 steps for C2 evidence
+  depends_on:
+  - D126
+- id: D128
+  date: 2026-05-17 14:34 UTC
+  summary: 'D128: s45-1000 confirms inevitable collapse — 2/2 extended seeds genuine→0%'
+  rationale: s45 genuine 55%→0% at 1000 steps (more dramatic than s42 17%→2%). Even
+    the highest-genuine seed collapses completely. C2 "inevitable collapse" now supported
+    by 2/2 extended seeds. Combined with β=0.05 3/3 deterministic collapse and β=0.2
+    3/3 collapse, "timing not destiny" framing is fully validated. No need for s46-1000
+    — 2/2 is sufficient and user directed "跑完就收掉".
+  related_experiments:
+  - exp_id: plan002-additive-b01-s45-1000
+    role: primary
+    result: genuine 55%→0%, PR 42%→2%, H7 38%→100%
+  - exp_id: plan016-extended-1000-s42
+    role: comparison
+    result: genuine 17%→2%
+  - exp_id: sweep-random-b005-s44
+    role: control
+    result: PR=7%, Random β=0.05 3v3 complete
+  depends_on:
+  - D120
+  - D124
+- id: D129
+  date: 2026-05-17 21:06 UTC
+  summary: 'D129: 批准 1.7B cross-scale +2 seeds (s43/s44) 实验，消除最持久 critical concern'
+  rationale: v3-R12-NI-1 连续 9 轮被两位 reviewer 提出（Round 9 R1 标 critical），1.7B 单 seed
+    是论文最大弱点。追加 s43/s44 共 6 runs（ISR β=0.1/0.3 + Random β=0.1），预计 ~15 hrs GPU，8 天 DDL
+    内无压力。Reviewer 评估风险极低（~80% 确认现有 pattern），预期提升 Soundness +0.5，Overall 可能 3.0→3.5。
+  related_experiments:
+  - exp_id: d113-1.7b-isr-b01-s42
+    role: baseline
+    result: 100% H1, 0% genuine
+  - exp_id: d113-1.7b-random-b01-s42
+    role: baseline
+    result: 100% H9, 0% genuine
+  - exp_id: d113-1.7b-isr-b03-s42
+    role: baseline
+    result: PR=17%, reward collapse
+  depends_on:
+  - D128
+  - D120
+- id: D130
+  date: 2026-05-18 00:09 UTC
+  summary: §4.5 采用 "genuine AND NOT content_independent" 作为 1.7B 严格 genuine 指标
+  rationale: s44 classify_h7 报告 genuine=42.7%，但 content_independent=93.9%。交叉分析显示 35
+    个 "genuine" 中至少 30 个使用纯抽象谓词 P(x)→Q(x)，实际仅 ~5 个（6.1%）使用语义谓词。taxonomy-based genuine
+    高估了真实推理能力。采用 content_independent 作为额外过滤器可得到更保守、更可信的 genuine 估计。§4.5 需明确 genuine
+    定义包含 content-dependence 条件。
+  related_experiments:
+  - exp_id: d129-1.7b-isr-b01-s44
+    role: trigger
+    result: genuine=42.7% but content_independent=93.9%, strict genuine ~6%
+  - exp_id: d129-1.7b-isr-b01-s43
+    role: baseline
+    result: genuine=0%, content_independent=100%
+  - exp_id: d129-1.7b-isr-b01-s42
+    role: baseline
+    result: genuine=0%, H1=100%
+  depends_on: []
+- id: D131
+  date: 2026-05-18 00:12 UTC
+  summary: 'D131: s44 H9 conjunction aggregation 处理方案——不加 taxonomy 子类，§4.5 一句话提及；报告
+    genuine≈6%；优先回溯检查 4B content_independent 一致性'
+  rationale: 1) H9 不加 taxonomy：8 页正文空间紧张，H9 是 1.7B s44 特有的 minor mode，加正式分类投入产出比低。§4.5
+    一句话带过 "remaining proofs are content-independent conjunction aggregation" 即可。2)
+    genuine 报告为 ≈6% 而非 0%：5 个 borderline 2-3 hop proof 确实存在，诚实报告比 round-to-zero 更可信，且
+    6% 仍支撑核心 claim。3) 分类器不改，但必须回溯 4B：不能只对 1.7B 用 strict genuine 标准而 4B 用宽松标准。如果 4B
+    genuine 也被 content_independent 高估，需要全局一致修正。这是当前 critical path。
+  related_experiments:
+  - exp_id: d129-1.7b-isr-b01-s44
+    role: trigger
+    result: taxonomy genuine=42.7%, strict genuine=6.1%, H9 conjunction aggregation=47.6%
+  depends_on:
+  - D130
+- id: D132
+  date: 2026-05-18 08:46 UTC
+  summary: 'D132: Round 10 审稿 Action Matrix 定稿——17 项修改方案，3 个系统性问题，标题保持 + hedge，贡献
+    4→3，W10 method.tex 修正'
+  rationale: Holistic Pass 识别 3 个系统性问题（scope-claim alignment, statistical reporting,
+    presentation density），均为 framing/presentation 层面，不涉及核心方法。W4 标题保持 "RL-Trained Formal
+    Reasoning"（Reviewer 确认对齐良好），在 Discussion 加 scope limitation。W10 发现 method.tex
+    组件定义与代码实现矛盾（论文说 "premises"，代码实际分解 premises + conclusion sub-parts），必须修正。W14 贡献
+    4→3（C2+C4 合并）。所有修改均为文本级，无需新实验。
+  related_experiments:
+  - exp_id: d129-1.7b-isr-b03-s44
+    role: pending
+    result: RUNNING, needed for W1 §4.5 update
+  depends_on:
+  - D131
+- id: D133
+  date: 2026-05-18 09:43 UTC
+  summary: 'D133: 不追加实验，集中做文本优化提分。D129 数据足够支撑 cross-scale claim。'
+  rationale: 1) D129 九 run 数据完整覆盖 3 条件 × 3 seeds at 1.7B，strict genuine 0-6% 与 4B
+    22.6% 形成清晰对比。2) Round 10 审稿 3.0 分的主要扣分项全部是 framing/presentation/statistical reporting（W1-W7），不是实验不足。3)
+    DDL 7 天，14/17 项文本修改已完成，剩余 3 项（W1/W3/M1-M4）在执行中。4) 新实验（如 ProofWriter eval、ISR binary
+    filter）的边际收益低于文本打磨的收益。5) 标题已收窄 + Discussion 加了 scope limitation，scope-claim alignment
+    问题主要靠文本解决。
+  related_experiments:
+  - exp_id: d129-1.7b-isr-b03-s44
+    role: final
+    result: PR=92%, H1=1.1%, non-hacking=97.8%, CI=100%, strict_genuine=0%
+  depends_on:
+  - D132
+- id: D134
+  date: 2026-05-18 10:24 UTC
+  summary: '推翻 D133: 扩展 β=0.1 到 10 seeds (ISR+Random 各 5 new)，目标 3.5'
+  rationale: 'Round 11 审稿 C2 (Critical): R1 给 Soundness=2.5，核心原因是 5 seeds 统计功效不足。D133
+    "不追加实验" 是 Round 10 前做的，当时扣分全在 framing/presentation。Round 11 交叉回应明确指出统计功效是硬伤，纯文本修复无法解决。GPU
+    完全空闲，30h 串行在 DDL (5/25) 前可完成。Reviewer 独立评估推荐此为 Priority #1。同时尝试 ProofWriter diagnostic
+    eval (~4h) 回应单数据集批评。'
+  related_experiments: []
+  depends_on:
+  - D133
+- id: D135
+  date: 2026-05-18 13:36 UTC
+  summary: 统计检验升级：从 N-H permutation test 换为 H7 domination Fisher exact test
+  rationale: Reviewer 分析指出 p=0.26 的 N-H permutation test 受 premise-count confound
+    影响，换用 H7 domination rate (≥50% H7) 作为 test statistic 可绕过 confound。当前 7 ISR seeds
+    已给出 p=0.045 (one-sided Fisher exact)，10 seeds 预计 p<0.01。这直接回应 MF2 (statistical
+    comparison) 审稿关切，是最高 ROI 的行动。论文中将同时报告两个检验并解释区别：N-H tests "Does ISR produce better
+    proofs?" (no, confounded) vs H7 tests "Does ISR specifically induce tautological
+    collapse?" (yes, p<0.01)。
+  related_experiments:
+  - exp_id: d134-4b-isr-b01-s47
+    role: evidence
+    result: H7=85.6%, H7-dominated
+  - exp_id: d134-4b-isr-b01-s48
+    role: evidence
+    result: H7=100%, pure H7 collapse
+  - exp_id: d134-4b-isr-b01-s49
+    role: pending
+    result: training
+  depends_on: []
+- id: D136
+  date: 2026-05-18 13:37 UTC
+  summary: Claim 升级策略：Layer A (seed coverage) 完全采纳，Layer B (absorbing state) 保持 caveated
+  rationale: 7/7 ISR β=0.1 seeds 全部 H7-dominated (≥85.6%)，支持升级到 "all N tested seeds
+    exhibit H7 domination"。但 "absorbing state" 机制性 claim 仅有 s42+s45 的 1000-step trajectory
+    数据支撑，s47-s51 无 1000-step 数据，需 caveat。Mechanistic story 保持在 §4.3 支撑位置，不升级到 Abstract。
+  related_experiments:
+  - exp_id: d134-4b-isr-b01-s47
+    role: evidence
+    result: 7/7 H7-dominated
+  - exp_id: d134-4b-isr-b01-s48
+    role: evidence
+    result: 7/7 H7-dominated
+  depends_on: []
+- id: D137
+  date: 2026-05-18 14:57 UTC
+  summary: D134 数据整合方案：Table 1 用 D134 5+5 替换原 5-seed（Option D），原始数据移 Appendix
+  rationale: D134 matched design 无 checkpoint 丢失问题，审稿人无需理解 corrected/uncorrected 区别。统计段落放
+    §4.3 transient window 后，net +1-2 行在页数预算内。不追加训练实验，聚焦统计完备性（Fisher OR+CI、rank-biserial
+    r、BCa bootstrap CI、BF10）和文本修复。
+  related_experiments:
+  - exp_id: d134-4b-isr-b01-s47
+    role: evidence
+    result: H7=85.6%
+  - exp_id: d134-4b-isr-b01-s48
+    role: evidence
+    result: H7=100%
+  - exp_id: d134-4b-isr-b01-s49
+    role: evidence
+    result: H7=84.9%
+  depends_on:
+  - D135
+  - D136
+- id: D138
+  date: 2026-05-18 16:20 UTC
+  summary: 'ISR 叙事 framing: "Deterministic H7 attractor with stochastic collapse severity"'
+  rationale: 5/5 ISR seeds 全部 H7-dominated (84.9%-100%)，H7 是 deterministic outcome。但
+    PR 方差大 (66-98%)，secondary modes 分布不同（s49 有 H1+H8，s48 纯 H7）。旧 framing "stochastic
+    mode selection" 暗示 mode 是随机的，与数据矛盾。新 framing 区分 deterministic attractor (H7) 和
+    stochastic severity (PR/secondary modes)。s48 (PR=66%, H7=100%) 作为极端 case 在 §4.3
+    提 1-2 句。
+  related_experiments:
+  - exp_id: d134-4b-isr-b01-s47
+    role: evidence
+    result: PR=97%, H7=85.6%
+  - exp_id: d134-4b-isr-b01-s48
+    role: evidence
+    result: PR=66%, H7=100%
+  - exp_id: d134-4b-isr-b01-s49
+    role: evidence
+    result: PR=86%, H7=84.9%, H1=6
+  - exp_id: d134-4b-isr-b01-s50
+    role: evidence
+    result: PR=98%, H7=85.7%
+  - exp_id: d134-4b-isr-b01-s51
+    role: evidence
+    result: PR=98%, H7=98.0%
+  depends_on:
+  - D136
+- id: D139
+  date: 2026-05-18 17:43 UTC
+  summary: D137 决定不追加训练实验，聚焦统计完备性+文本质量冲刺 DDL
+  rationale: ISR 5/5 matched seeds 一致性极强（H7=90.8±6.8%），核心 claim 已站住。DDL 2026-05-25
+    距今 7 天，追加训练实验的边际收益不足以抵消时间风险。剩余工作：1) D134 Random 5 seeds 完成后填充统计检验数据；2) 论文文本打磨（overflow
+    修复已完成，Results 对比段落预写中）；3) 最终 Round 审稿。
+  related_experiments:
+  - exp_id: d134_isr_s47-s51
+    role: primary
+    result: 5/5 H7-dominated, H7=90.8±6.8%
+  - exp_id: d134_random_s47-s51
+    role: control
+    result: in progress, s47 PR=62.9%
+  depends_on: []
+- id: D140
+  date: 2026-05-18 19:05 UTC
+  summary: Table 1 保持 exploratory 5-seed 数据，matched cohort 数据通过正文叙述 + Appendix Table
+    13 呈现
+  rationale: Table 1 是 Goodhart landscape 概览表，覆盖全部 β 剂量（0.05/0.1/0.2/0.3）和条件类型（exec-only/ISR/Random/SFT）。其价值在于跨条件全景对比，不适合作为
+    matched design 的载体。Matched cohort (seeds 47-51) 的统计对比在 §4.3 正文叙述和 Appendix Table
+    13 中完整呈现，功能分离更清晰。
+  related_experiments:
+  - exp_id: d134_isr_s47-s51
+    role: matched_cohort
+    result: 数据在 Appendix Table 13
+  - exp_id: d134_random_s47-s51
+    role: matched_control
+    result: in progress
+  depends_on:
+  - D139
+- id: D141
+  date: 2026-05-19 02:27 UTC
+  summary: 'D134 matched cohort 完成: 5v5 统计确认 H7 deterministic attractor (Fisher p=0.004,
+    BF10=77, ISR* complete separation). Paper Agent 执行最终 11 处 D134-PATCH 填充。'
+  rationale: 'D134 10-seed matched design 结果: ISR 5/5 H7-dominated (90.8±7.5%) vs
+    Random 0/5 (6.7±8.1%), Fisher p=0.004, BF10=77. ISR* 完全分离 (MW U=25, p=0.004, r=1.0).
+    Genuine rate 无显著差异 (ISR 2.3% vs Random 5.9%, p=0.92) — ISR 不改善推理质量，只改变 hacking
+    模式。Random 训练极不稳定 (PR=59±36%, 含 s49 repetition collapse PR=5%)。所有数据支撑论文核心 claim:
+    H7 是 ISR-specific deterministic attractor。'
+  related_experiments:
+  - exp_id: d134-4b-isr-b01-s47
+    role: matched_isr
+    result: H7=85.6%, PR=97%
+  - exp_id: d134-4b-isr-b01-s48
+    role: matched_isr
+    result: H7=100%, PR=66%
+  - exp_id: d134-4b-isr-b01-s49
+    role: matched_isr
+    result: H7=84.9%, PR=86%
+  - exp_id: d134-4b-isr-b01-s50
+    role: matched_isr
+    result: H7=85.7%, PR=98%
+  - exp_id: d134-4b-isr-b01-s51
+    role: matched_isr
+    result: H7=98.0%, PR=98%
+  - exp_id: d134-4b-random-b01-s47
+    role: matched_random
+    result: H7=0%, H1=88.8%, PR=89%
+  - exp_id: d134-4b-random-b01-s48
+    role: matched_random
+    result: H7=3.2%, H1=80.6%, PR=93%
+  - exp_id: d134-4b-random-b01-s49
+    role: matched_random
+    result: H7=20%, PR=5% (repetition collapse)
+  - exp_id: d134-4b-random-b01-s50
+    role: matched_random
+    result: H7=8.9%, H1=86.7%, PR=45%
+  - exp_id: d134-4b-random-b01-s51
+    role: matched_random
+    result: H7=1.5%, H1=55.4%, PR=65%, genuine=13.8%
+  depends_on:
+  - D134
+  - D139
+  - D140
+- id: D142
+  date: 2026-05-19 03:07 UTC
+  summary: 'Override D139: add component-count gated ISR mitigation experiment to
+    push for Conference (4.0)'
+  rationale: 'Round 13 审稿报告 Overall 3.0 (Findings)。W-C3 指出方法新颖性有限，Conference 需要至少一个
+    mitigation preliminary result。用户明确指示冲 4.0。设计 component-count gated ISR: r = r_exec
+    + β × ISR × 𝟙(n_components ≥ 2)，直接切断 H7a (n=1) 的 ISR bonus。3 seeds × 500 steps，预计
+    9-12h。同时启动 30 条写作修复。'
+  related_experiments: []
+  depends_on:
+  - D139
+  - D141
+- id: D143
+  date: 2026-05-19 11:39 UTC
+  summary: 增加 ProofWriter 作为第二数据集，验证 Goodhart collapse 跨数据集泛化性
+  rationale: 用户指示。内审 R14 评分 3.0 (Findings)，单数据集 (FOLIO) 是审稿人反复指出的结构性限制。加 ProofWriter
+    直接回应 "single dataset" concern，若 Goodhart collapse 在 ProofWriter 上复现，可显著加固论文稳定性。DDL
+    5/25 还有 6 天，预计 12-16h GPU 时间可完成。
+  related_experiments: []
+  depends_on: []
+- id: D144
+  date: 2026-05-19 11:56 UTC
+  summary: 'D145: 全面实验扩展——ProofWriter 跨数据集(D143) + LLaMA-3.2-3B 跨模型(D144)，双 GPU 并行排期'
+  rationale: 用户指出单模型家族+单数据集是论文最大硬伤。R14 给 3.0 (Findings) 的结构性天花板部分来自泛化性不足。DDL May 25
+    还有 6 天，2 GPU 并行可在 ~24h 内完成全部新实验。扩展后论文可声称：跨数据集(FOLIO+ProofWriter)和跨模型(Qwen3-4B+LLaMA-3.2-3B)均观察到
+    ISR Goodhart collapse，大幅增强泛化性。
+  related_experiments:
+  - exp_id: d142-gated-isr-s55
+    role: predecessor
+    result: running
+  - exp_id: d143-proofwriter-prep
+    role: data-prep
+    result: running
+  depends_on:
+  - D143
+- id: D145
+  date: 2026-05-19 12:47 UTC
+  summary: 'D145: 策略转向——优先 D144 LLaMA 跨模型（确定可行），跨数据集改为调研 ProntoQA 等自带 FOL 的数据集'
+  rationale: ProofWriter 无 FOL 标注，与依赖 Prover9 的 pipeline 根本不兼容（M010）。GPU 已空闲 ~10h。LLaMA
+    下载 53%（~30 min 完成），跨模型验证用 FOLIO 数据确定可行。优先启动 D144 LLaMA 保证 GPU 不再空闲。跨数据集改为 CPU
+    并行调研 ProntoQA/LogicNLI 等自带 FOL 标注的数据集——如找到兼容数据集，在 D144 之后追加；如无合适选项，论文诚实标注 FOLIO-only
+    limitation。
+  related_experiments:
+  - exp_id: d143-pw-exec-s42
+    role: trigger
+    result: failed - FOLIO data mislabeled + ProofWriter lacks FOL
+  depends_on:
+  - D143
+  - D144
+- id: D146
+  date: 2026-05-19 13:49 UTC
+  summary: 'D146: ProofFOL 替代 ProofWriter 作为跨数据集验证——原生 Prover9 格式，零转换成本'
+  rationale: ProofWriter 无 FOL 标注与 Prover9 pipeline 不兼容（M010）。Reviewer 调研发现 ProofFOL：原生
+    Prover9 格式、10K+ 条目、兼容性 5/5。D144 LLaMA 训练期间 CPU 并行准备 ProofFOL 数据，D144 完成后追加 6 个实验（exec×3
+    + ISR×3）。串行最坏 ~24h GPU（D144 12h + ProofFOL 12h），May 20 晚完成，DDL May 25 仍有 ~4 天
+    buffer。
+  related_experiments:
+  - exp_id: d143-pw-exec-s42
+    role: trigger
+    result: failed - ProofWriter lacks FOL
+  depends_on:
+  - D145
+- id: D147
+  date: 2026-05-19 14:23 UTC
+  summary: 'D147: Kill D144 LLaMA exec-s42（60步全零），立即 pivot 到 D146 ProofFOL 跨数据集（Qwen3-4B），LLaMA
+    作为 negative result 保留'
+  rationale: d144-llama-exec-s42 运行 60/500 步，reward/loss/grad_norm 全零，480 次证明尝试全部失败。LLaMA-3.2-3B
+    base 低于 FOL GRPO 冷启动阈值。继续跑完 = 浪费 ~17h GPU。ProofFOL 数据已就绪（D146），Qwen3-4B 跨数据集验证几乎确定成功（同模型+同格式数据）。跨数据集（ProofFOL）对论文的价值
+    > 失败的跨模型（LLaMA）。LLaMA 60 步全零作为 negative result 保留，论文中报告为 capability threshold
+    finding。如 ProofFOL 完成后有余裕，可尝试 SFT 暖启动 LLaMA 再 GRPO。
+  related_experiments:
+  - exp_id: d144-llama-exec-s42
+    role: trigger
+    result: 60 steps all-zero reward/loss/grad_norm
+  depends_on:
+  - D146
+  - D145
+- id: D148
+  date: 2026-05-20 02:40 UTC
+  summary: 'D148: ProofFOL ISR 三路分歧 framing 定调 — Option B (0/3 vs 2/3) 为主，M&G taxonomy
+    作 interpretive lens'
+  rationale: Reviewer 审查确认：(1) N=3 太小无法 claim 三种不同轨迹，可防御 claim 是 0/3 ISR vs 2/3 exec-only
+    stable convergence (PR_final50≥0.90)；(2) permutation test p=0.10 underpowered，核心论证力来自
+    FOLIO+ProofFOL 联合跨数据集证据；(3) Functional Goodhart (FOLIO, Regressional M&G) vs Destructive
+    Goodhart (ProofFOL, Causal M&G) 分类成立但用 "consistent with" 非 "is an instance of"；(4)
+    C2 升级为 "dataset-dependent Goodhart effects across both tested dataset families"；(5)
+    ProofFOL 内容统一在 §4.4 Cross-Domain Generalization 不拆分；(6) Figure 5 如空间允许加 ProofFOL
+    ISR 训练曲线。
+  related_experiments:
+  - exp_id: d146-pf-exec-s42
+    role: evidence
+    result: PR=1.0, ISR=0.066, stable convergence
+  - exp_id: d146-pf-exec-s43
+    role: evidence
+    result: PR=0.55, ISR=0.119, partial convergence
+  - exp_id: d146-pf-exec-s44
+    role: evidence
+    result: PR=1.0, ISR=0.043, stable convergence
+  - exp_id: d146-pf-isr-s42
+    role: evidence
+    result: PR→0, complete collapse (Destructive Goodhart)
+  - exp_id: d146-pf-isr-s43
+    role: evidence
+    result: PR_final50≈0.47, unstable (snapshot PR=1.0 misleading)
+  - exp_id: d146-pf-isr-s44
+    role: evidence
+    result: PR→0, oscillation then collapse (Destructive Goodhart)
+  depends_on:
+  - D146
+  - D147
+- id: D149
+  date: 2026-05-20 03:08 UTC
+  summary: 'D149: C2 claim 重新聚焦 — 从 "ISR induces TS" 转向 "ISR as proxy triggers dataset-dependent
+    Goodhart effects"'
+  rationale: ProofFOL exec-s42 classify 显示 100% TS 在无 ISR bonus 下自发涌现，推翻 "ISR induces
+    TS" 强形式。Reviewer 推荐方向 B：C2 焦点从特定 hacking mode 归因转向 Goodhart effects 统一框架。FOLIO
+    上 ISR shifts hacking composition toward TS；ProofFOL 上 ISR prevents convergence
+    entirely。具体 hacking mode 归因到数据集×seed 交互。同时 §4.4 ¶2 叙事调整：exec-only 不再是 "好基线"，而是
+    "收敛到 hacking 均衡（退化但稳定）"，ISR bonus "连退化均衡都到不了"（optimization-level disruption）。
+  related_experiments:
+  - exp_id: d146-pf-exec-s42
+    role: critical_evidence
+    result: 99/99 proved are TS (0% genuine) — TS emerges WITHOUT ISR bonus
+  - exp_id: d146-pf-exec-s43
+    role: evidence
+    result: 50.8% genuine, 49.2% CE
+  - exp_id: d146-pf-exec-s44
+    role: evidence
+    result: 1.4% genuine, 98.6% CE
+  depends_on:
+  - D148
+- id: D150
+  date: 2026-05-20 03:34 UTC
+  summary: 'D150: ProofFOL classify 揭示 "convergence=hacking, instability=genuine"
+    规律 — 升级为论文 key finding，但不升为 headline claim (N=3 限制)'
+  rationale: 完整 classify 数据显示 ISR on ProofFOL 的效应与 FOLIO 相反：exec-only 17.4% genuine
+    → ISR 76.8% genuine。2/3 ISR seeds (s42/s44) 达到 100% genuine。机制："收敛=hacking, 不收敛=genuine"——ISR
+    梯度冲突阻止收敛到 hacking shortcuts，意外保护了 genuine reasoning。这在 Goodhart 文献中几乎没有先例（"instability
+    as quality preservation"）。但 N=3, permutation p=0.10, silver-standard data 限制了
+    claim 强度。决策：(1) 作为 §4.4 的 prominent observation 写入，不升为 C2 headline（留给 "dataset-dependent
+    Goodhart effects"）；(2) 在 Discussion 中讨论机制和 implications；(3) Appendix 加 genuine
+    rate bar chart；(4) 透明报告 caveats。
+  related_experiments:
+  - exp_id: d146-pf-isr-s42
+    role: key_evidence
+    result: 46 proved, 100% genuine (PR→0 model)
+  - exp_id: d146-pf-isr-s44
+    role: key_evidence
+    result: 66 proved, 100% genuine (PR→0 model) — highest genuine count across all
+      models
+  - exp_id: d146-pf-isr-s43
+    role: evidence
+    result: 56 proved, 30.4% genuine (partial recovery → CE hacking)
+  - exp_id: d146-pf-exec-s42
+    role: contrast
+    result: 99 proved, 0% genuine (100% TS)
+  - exp_id: d146-pf-exec-s44
+    role: contrast
+    result: 72 proved, 1.4% genuine (98.6% CE)
+  depends_on:
+  - D149
+  - D148
+- id: D151
+  date: 2026-05-20 03:38 UTC
+  summary: 'D151: ProofFOL ISR 重新框定为 "beneficial instability" (非 Goodhart) — C2 升级为
+    "hacking geometry" 机制'
+  rationale: Reviewer critical 审查确认：ProofFOL ISR 不满足 Goodhart 定义（proxy 被优化时偏离 true
+    objective）。在 ProofFOL 上 ISR 正确追踪 quality（genuine ISR≈0.27, hacking ISR=0）。根因：ProofFOL
+    TS 通过冗余 premise 复制实现，每个 premise individually redundant → ISR=0；FOLIO TS 通过单 premise
+    tautology 实现，premise 不可删 → ISR≈0.5+。C2 修正为："ISR effectiveness mediated by dataset-specific
+    hacking geometries"——同一 metric 的效果取决于数据集的 hacking attractors 是否满足 ISR。FOLIO=Regressional
+    Goodhart（TS 满足 ISR），ProofFOL=beneficial instability（hacking 不满足 ISR，ISR 正确惩罚 hacking
+    但 optimization landscape too rugged）。§4.4 采用 "setup→twist→explain→generalize"
+    叙事结构。
+  related_experiments:
+  - exp_id: d146-pf-isr-s42
+    role: mechanism_evidence
+    result: 100% genuine, eval ISR=0.274 — ISR correctly rewards genuine
+  - exp_id: d146-pf-isr-s44
+    role: mechanism_evidence
+    result: 100% genuine, eval ISR=0.198 — ISR correctly rewards genuine
+  - exp_id: d146-pf-exec-s42
+    role: mechanism_evidence
+    result: 100% TS, eval ISR=0.000 — ISR correctly penalizes TS on ProofFOL
+  depends_on:
+  - D150
+  - D149
+- id: D152
+  date: 2026-05-20 04:42 UTC
+  summary: 'D152: R15 审稿 Action Matrix 定稿 — 4 SYSTEMIC_ISSUE 处理方案 + 目标 3.5'
+  rationale: Round 15 fresh review 给 3.0 (Findings)，识别 4 个系统性问题：(A) 统计效力 3 seeds 不足、(B)
+    meta-Goodhart 概念过度包装、(C) ISR syntactic-only gap + premise-count confound、(D) 分类器验证不足。Reviewer
+    独立审查确认：N4 是叙事资产不是负债；N1 不应全文降为 case study，方法论保持 framework 定位；N3 用规则化人工标注而非 LLM-as-judge。目标
+    3.5 (Borderline Conference)，现实约束为 N=3 seeds 和单模型无法在 5 天内改变。执行分两条并行线：Paper Agent
+    做 framing + 引用 + 格式；Main Agent 做分类器验证 + Bonferroni 校正 + 引用验证。
+  related_experiments: []
+  depends_on:
+  - D151
+  - D150
+  - D149
+  - D148
+- id: D153
+  date: 2026-05-20 05:46 UTC
+  summary: 'D153: R16 Action Matrix — 接受 Findings 定位，集中高 ROI 写作修改'
+  rationale: R16 维持 3.0 Findings。Reviewer 共识：单模型+3seeds 是 binding constraint，7B+ 模型在
+    DDL 5 天内不可行。3.5 不可达。策略：接受 Findings，集中做 W2 LOO 讨论（新方法论盲点）、W5 Discussion 展开、W8 O(1)
+    vs O(n) 定量（ROI 最高）、references 补充、scope 限定（case study 定位）。不做冒险操作。
+  related_experiments: []
+  depends_on:
+  - D152
+- id: D154
+  date: 2026-05-20 05:51 UTC
+  summary: 'D154: 启动 Qwen3-8B cross-model 实验——用户指示 DDL 内必须完成'
+  rationale: 用户明确指出 5 天 DDL 来得及做 7B+ 模型实验。R16 升级路径要求至少一个 7B+ 模型关键实验复现。Qwen3-8B 是最低风险选择（同家族
+    cross-scale，代码改动最小）。之前 w2-qwen3-8b 两次失败需先排查原因。exec-only 3 seeds + ISR β=0.1 2
+    seeds = 5 runs，预估 2-3 天完成。如 GPU 不足立即向 Manager 申请扩卡。
+  related_experiments: []
+  depends_on:
+  - D153
+- id: D155
+  date: 2026-05-20 07:00 UTC
+  summary: R17 策略：写作修改优先，8B 降为 background。目标 3.5 via W1 scope narrowing + W2/W3/W4
+    写作修复。
+  rationale: R17 返回 3.0 Findings，与 R16 持平。升分路径明确：W1+W2+W3+W4 → 3.5。其中 W2(headline数字)/W3(ISR
+    TS盲区)/W4(页面溢出) 是纯写作修改（1天内可完成）。W1 可通过 scope narrowing（标题加 Case Study + 一致限定 Qwen3-4B）解决，不依赖
+    8B。8B 实验已三次 hang（vLLM 0.18.1 不兼容疑似），修复不确定且 ROI 低（单 seed 不构成 convincing evidence）。Reviewer
+    独立评估：写作 ROI 远高于 8B。1.7B cross-scale 数据已在论文中。
+  related_experiments: []
+  depends_on:
+  - D153
+  - D154
+- id: D156
+  date: 2026-05-20 09:03 UTC
+  summary: 'R18 Action Matrix: ISR概念修复+component count论证+措辞收紧为核心升分策略，8B未收敛放弃作为正面证据'
+  rationale: R18仍3.0。升分路径：(1) W2 ISR necessity/quality概念滑移——在§3.2和§4.3明确区分，论证Goodhart
+    operates at LOO definition level; (2) W3 component count反相关——6.58→18.55增长vs ISR
+    0.642→0.003下降，ruling out length artifact hypothesis; (3) W1措辞收紧——per-seed qualitative为主叙事;
+    (4) W6 per-seed方向一致性+CMH说明。8B exec-only PR 0-25%未收敛，不作为cross-scale正面证据，仅在Limitations一句。1.7B
+    cross-scale数据已在论文中满足reviewer关切。
+  related_experiments: []
+  depends_on:
+  - D155
+- id: D157
+  date: 2026-05-20 10:01 UTC
+  summary: 'D157: R19 Action Matrix — 统计叙事重构 + ISR post-hoc filter 升级 Must-Fix + C3
+    降格 + 排版精修'
+  rationale: R19 Overall 3.0 持平。三个系统性问题：(1) 统计基础薄弱（CMH pseudo-replication, 3 seeds），(2)
+    ISR 概念边界模糊，(3) Claim 过强。Reviewer 独立评估确认叙事重构足够（不需补 seeds），W8 ISR post-hoc filter
+    升级为 Must-Fix（3.0→3.5 关键 differentiator）。同时用户指示停止审稿循环，转入排版精修 + 内容修改同步推进。Paper Agent
+    已派 20 项（A1-A12 内容 + B1-B5 排版），Agent 已派 5 项（ISR filter 分析 + 图表字号 + bib 修复 + 缺失引用
+    + 聚合数据）。
+  related_experiments: []
+  depends_on:
+  - D156
+- id: D158
+  date: 2026-05-20 15:08 UTC
+  summary: D158 终止：LLaMA SFT PR=0%，gate 未通过，不修复。GPU 全给 D157。
+  rationale: D158 SFT 后 LLaMA 输出 Unicode FOL 而非 Prover9 ASCII，PR=0/100。修复需 Unicode→ASCII
+    converter + 重训 + 重 eval，DDL 内 ROI 不合理。D157 shuffled-ISR 是 P0（确定性收益），剩余 GPU 时间应全部分配。
+  related_experiments:
+  - exp_id: d158-llama-sft-s42
+    role: primary
+    result: negative
+  - exp_id: d158-llama-grpo-s42
+    role: dependent
+    result: negative
+  depends_on: []
+- id: D159
+  date: 2026-05-20 17:17 UTC
+  summary: 'D159: D157 framing 决策——C2 不升级 "mechanistic"，§4.3 加控制实验结果段，L11 改写不删除'
+  rationale: Reviewer 审查结论：(1) PR=15% 存在解释歧义（没学会 vs 没被 game），"mechanistic" 过强会被审稿人攻击；(2)
+    "rules out distributional confound" 是准确措辞；(3) L11 改写加 n=15 caveat 比删除更诚实；(4) 整体定位不变（Findings
+    3.0-3.5），Soundness +0.1-0.2。等 s43/s44 全部完成后再写入。
+  related_experiments:
+  - exp_id: d157-shuffled-isr-s42-r3
+    role: evidence
+    result: PR=15%, genuine=86.7%, TS=6.7%
+  depends_on:
+  - D158
+- id: D160
+  date: 2026-05-22 03:20 UTC
+  summary: 'D166: 8B GRPO 改用 K=8 — K=4 已证明 cold-start stagnation，K 作为 per-model 调参透明报告'
+  rationale: d154-8b-exec-s42-k4v2 已证明 K=4 对 8B 不可行（4 rollout 生成近乎相同输出→GRPO advantage=0→零梯度）。K=8
+    解决多样性问题但引入与 4B (K=4) 的 confound。confound 可管理：(1) K 是 per-model 超参调优，标准做法；(2) 论文做定性比较（hacking
+    modes 是否一致），非定量对齐；(3) 透明报告 K 差异。唯一风险是 K=8+8B 可能 OOM（98GB GPU），需先 dry-run。如 OOM
+    则降至 K=6 或缩短 max_completion_length。
+  related_experiments:
+  - exp_id: d154-8b-exec-s42-k4v2
+    role: evidence
+    result: K=4 cold-start stagnation, PR=15.5%, zero gradient
+  depends_on:
+  - D154
+- id: D161
+  date: 2026-05-22 04:20 UTC
+  summary: 'D167: 采纳 Reviewer 8B 时间修正 (12-13h/seed) + non-convergence 主文加一句 + K-confound
+    转化为 finding'
+  rationale: Reviewer 分析：(1) 8B K=8 batch=1 accum=16 每步 ~90s，500步=12-13h/seed（非 3-4h），3
+    seeds=37-39h，DDL 前只有 ~65h，余量紧；(2) §4.1 必须提及 3/6 non-convergence 避免 cherry-picking
+    攻击面；(3) K confound 用 "minimum K for viable gradient" framing 转化为 scale-dependent
+    finding；(4) VRAM 估计 60-72GB（bnb_8bit 省优化器），98GB 应可容纳。策略：s42 先跑，收敛则继续 s43，stagnation
+    则停止写结论。
+  related_experiments:
+  - exp_id: d154-8b-exec-s42-k4v2
+    role: evidence
+    result: K=4 stagnation
+  - exp_id: d154-8b-exec-s42-k8
+    role: planned
+    result: pending
+  depends_on:
+  - D160
+- id: D162
+  date: 2026-05-22 05:26 UTC
+  summary: 'D168: 8B 实验序列确定——exec s42→s43→ISR s42（串行+决策门），跳过 K=4 重复和 4B N=8 扩展'
+  rationale: Reviewer ROI 分析：(1) 8B exec ×2 + ISR ×1 总计 ~6h，边际 +0.5-0.8，最高 ROI；(2)
+    8B K=4 机制已清楚（d154），多 seed 无增量；(3) 4B ISR N=5→8 定性发现不变，统计边际小。序列设决策门：s42 不收敛→停；s42+s43
+    不退化→评估。K-dependence 不作为独立 finding，一句话交代在 appendix。步速 ~2h/seed 远快于预期，DDL 前有 ~50h
+    余量。
+  related_experiments:
+  - exp_id: d154-8b-exec-s42-k8
+    role: running
+    result: step 20/500, PR climbing
+  - exp_id: d154-8b-exec-s43-k8
+    role: planned
+    result: pending
+  - exp_id: d154-8b-isr-s42-k8
+    role: planned
+    result: pending
+  depends_on:
+  - D161
+- id: D163
+  date: 2026-05-22 06:30 UTC
+  summary: 'D169: 停止 8B 系列——K=8 s42 未收敛 (PR=15.9%)，不继续 s43/ISR，8B 作为 negative evidence
+    写入 appendix'
+  rationale: 8B K=8 s42 在 500 步内未收敛（PR=15.9%，与 K=4 的 15.5% 差异可忽略）。K=8 确实提供了梯度信号（~40-50%
+    步有非零 reward_std），但 cosine LR 在信号不足时衰减到零，模型坍缩回基线。继续 s43 大概率同样不收敛。调 LR/K/步数是 rabbit
+    hole，DDL 前不值得。论文处理：(1) Appendix 加 8B 段（K=4 stagnation + K=8 非收敛 = convergence
+    threshold 故事）；(2) Cross-scale claim 保持 1.7B/4B；(3) Introduction 保持 Version B (case
+    study)。GPU 释放给论文修改。
+  related_experiments:
+  - exp_id: d154-8b-exec-s42-k8
+    role: evidence
+    result: non-convergence PR=15.9%
+  - exp_id: d154-8b-exec-s42-k4v2
+    role: evidence
+    result: stagnation PR=15.5%
+  depends_on:
+  - D162
+- id: D164
+  date: 2026-05-23 03:17 UTC
+  summary: 跳过 R34 审稿，当前版本视为最终定稿
+  rationale: 三轮审稿（R31/R32/R33）均稳定在 3.0 (Findings)，Reviewer 明确建议"跳过 R34 直接定稿"——连续三轮评分无提升说明当前版本已触及单模型+单数据集的结构性天花板，继续审稿只是重复发现同类问题。review_issues.yaml
+    中 4 项 wont_fix 均为结构性限制（单模型、LOO novelty、Shuffled-ISR N=46、taxonomy recall），非文本修改可解决。R33
+    修复已 commit (e7509b6)，页数压缩完成，无 critical warnings。
+  related_experiments: []
+  depends_on: []

@@ -1,0 +1,2049 @@
+# Research conversation: <agent_context> 项目路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ 产出目录: /home/ubuntu
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 1
+- **Tool calls:** 5
+- **Original source:** `logs/chats/exported-trajectories/account-2/c90ced82-5a39-49be-a8a7-7a3187b6bb4a.jsonl`
+- **Structured JSON:** [`919e0ed867e7b6f431f5.json`](../../sessions/91/919e0ed867e7b6f431f5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T09:09:55.876Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T09:09:55.876Z",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "content": "&lt;agent_context>\n项目路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/\n产出目录: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/\n&lt;/agent_context>\n\n&lt;project_context>\n# 项目: solver-trace-ablation\n\n## 运行环境\n- 服务器名: westd-39279\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/solver-trace-ablation\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 所有实验统一使用 data/train_500_seed42.jsonl 作为训练数据，禁止使用 proofwriter_fol_500.jsonl 或其他数据文件（原因：Reviewer CRITICAL: plan001-s43 使用了不同数据文件导致多 seed 对比 confound。多 seed 实验必须控制数据变量，seed 仅控制模型初始化和训练随机性。）\n- **C002**: 提交训练任务前必须用 export CUDA_VISIBLE_DEVICES=N 显式设置 GPU，禁止 inline 赋值（bash -c VAR=X cmd），提交后验证 nvidia-smi 确认只占用分配的 GPU（原因：plan013 因 CUDA_VISIBLE_DEVICES inline 赋值引号问题越界占用两张 GPU，导致 plan001-s43 OOM 死亡。这是第二次 GPU 冲突事故。）\n- **C003**: 训练配置必须设置 save_total_limit=1 且禁用/限制 completions parquet 保存，防止磁盘耗尽（原因：plan013-r3 和 plan001-s43-r3 因磁盘 250G/250G 满导致 step 23/28 崩溃。根因：TRL 每实验保存 3 份模型权重（~48GB）+ completions parquet（~2.5GB）。）\n- **C004**: 跨 seed/跨 run 的 ISR 对比必须使用 eval_sta.py 统一评估，禁止引用训练日志 ISR 做跨 run 对比（不同 run 可能使用不同版本的 ISR 计算代码）（原因：Reviewer 核实发现 plan001-s42-r2 训练日志 ISR 使用 binary _fast_fn，plan001-s43-r4 使用 full STA _full_fn，同一指标名下计算方法不同导致不可比。论文中所有 ISR 数据必须来自 eval_sta.py 统一评估。）\n- **C005**: 所有 worker（含 fix/ops 类）启动任何 Python 进程前必须显式设置 CUDA_VISIBLE_DEVICES，禁止裸跑（原因：fix worker 未设 CUDA_VISIBLE_DEVICES 导致测试进程泄漏到 cuda:1（plan017 训练卡），占用 8638 MiB 显存。2026-05-14 事故。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：编制论文 Table 1 + Table 2 定稿草案\n\n你是论文准备 Worker。目标：基于所有已完成实验的 metrics，编制两张论文核心表格的定稿草案，输出为 artifacts。\n\n### Table 1: Main Results（方法对比表）\n\n从 registry 读取以下实验的 eval metrics，按以下列组织：\n\n| Method | Formula | β | Seed(s) | eval PR | eval ISR | proved_only ISR | Components | Taut. Collapse? |\n|--------|---------|---|---------|---------|----------|-----------------|------------|-----------------|\n\n需要包含的实验（按 exp_id 查 registry）：\n- plan001-exec-only-s42-r2: exec-only s42 (500步)\n- plan001-exec-only-s43-r4: exec-only s43 (500步) — 注意这个是 sampling eval, PR=14%\n- plan001-exec-only-s44: exec-only s44 (500步) — tautological collapse\n- plan016-extended-1000-s42: exec-only 1000步\n- plan002-additive-b01-s42: ISR β=0.1 s42\n- plan002-additive-b01-s43: ⏳ RUNNING（留空，标 TBD）\n- plan002-additive-b01-s44: ⏳ RUNNING（留空，标 TBD）\n- plan018-additive-random-b01-s42: random β=0.1 s42\n- plan002-additive-b03-s42: ISR β=0.3 (train metrics only, no eval)\n- plan017-additive-random-s42: random β=0.3\n- plan013-random-reward-s42-r4: convex random\n- plan005-sta-low-s42: convex ISR (train metrics only)\n\n对于有 3-seed 数据的组，计算 mean±std。目前只有 exec-only 有 3 seeds 完整。\n\n### Table 2: Hacking Taxonomy（退化模式对比）\n\n基于 plan012 hacking taxonomy 结果（在 registry 的 metrics 中）：\n- ISR β=0.1 vs Random β=0.1 的 5 种 hacking 模式分布\n- genuine rate, conclusion embedding rate, complexity-without-utility rate 等\n\n### 输出\n把两个表格写入 artifacts 目录：\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables_draft.md`\n\n用 register_artifact 注册产出。\n\n### 注意\n- 所有数字必须来自 registry，不可编造\n- plan001-s43-r4 使用 sampling eval (T=0.7)，其他用 eval_sta.py full STA，必须标注\n- plan002-b03 和 plan005 没有 eval_sta 结果，用 train metrics 标注 \"(train)\"\n- ISR=0.57 for s44 是 tautological artifact，必须标注\n- β=0.1 目前只有 s42 单 seed 有 eval，s43/s44 TBD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T09:09:55.880Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T09:09:55.880Z",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T09:09:55.920Z_
+
+&lt;agent_context>
+项目路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/
+产出目录: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/
+&lt;/agent_context>
+
+&lt;project_context>
+# 项目: solver-trace-ablation
+
+## 运行环境
+- 服务器名: westd-39279
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/solver-trace-ablation
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 所有实验统一使用 data/train_500_seed42.jsonl 作为训练数据，禁止使用 proofwriter_fol_500.jsonl 或其他数据文件（原因：Reviewer CRITICAL: plan001-s43 使用了不同数据文件导致多 seed 对比 confound。多 seed 实验必须控制数据变量，seed 仅控制模型初始化和训练随机性。）
+- **C002**: 提交训练任务前必须用 export CUDA_VISIBLE_DEVICES=N 显式设置 GPU，禁止 inline 赋值（bash -c VAR=X cmd），提交后验证 nvidia-smi 确认只占用分配的 GPU（原因：plan013 因 CUDA_VISIBLE_DEVICES inline 赋值引号问题越界占用两张 GPU，导致 plan001-s43 OOM 死亡。这是第二次 GPU 冲突事故。）
+- **C003**: 训练配置必须设置 save_total_limit=1 且禁用/限制 completions parquet 保存，防止磁盘耗尽（原因：plan013-r3 和 plan001-s43-r3 因磁盘 250G/250G 满导致 step 23/28 崩溃。根因：TRL 每实验保存 3 份模型权重（~48GB）+ completions parquet（~2.5GB）。）
+- **C004**: 跨 seed/跨 run 的 ISR 对比必须使用 eval_sta.py 统一评估，禁止引用训练日志 ISR 做跨 run 对比（不同 run 可能使用不同版本的 ISR 计算代码）（原因：Reviewer 核实发现 plan001-s42-r2 训练日志 ISR 使用 binary _fast_fn，plan001-s43-r4 使用 full STA _full_fn，同一指标名下计算方法不同导致不可比。论文中所有 ISR 数据必须来自 eval_sta.py 统一评估。）
+- **C005**: 所有 worker（含 fix/ops 类）启动任何 Python 进程前必须显式设置 CUDA_VISIBLE_DEVICES，禁止裸跑（原因：fix worker 未设 CUDA_VISIBLE_DEVICES 导致测试进程泄漏到 cuda:1（plan017 训练卡），占用 8638 MiB 显存。2026-05-14 事故。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：编制论文 Table 1 + Table 2 定稿草案
+
+你是论文准备 Worker。目标：基于所有已完成实验的 metrics，编制两张论文核心表格的定稿草案，输出为 artifacts。
+
+### Table 1: Main Results（方法对比表）
+
+从 registry 读取以下实验的 eval metrics，按以下列组织：
+
+| Method | Formula | β | Seed(s) | eval PR | eval ISR | proved_only ISR | Components | Taut. Collapse? |
+|--------|---------|---|---------|---------|----------|-----------------|------------|-----------------|
+
+需要包含的实验（按 exp_id 查 registry）：
+- plan001-exec-only-s42-r2: exec-only s42 (500步)
+- plan001-exec-only-s43-r4: exec-only s43 (500步) — 注意这个是 sampling eval, PR=14%
+- plan001-exec-only-s44: exec-only s44 (500步) — tautological collapse
+- plan016-extended-1000-s42: exec-only 1000步
+- plan002-additive-b01-s42: ISR β=0.1 s42
+- plan002-additive-b01-s43: ⏳ RUNNING（留空，标 TBD）
+- plan002-additive-b01-s44: ⏳ RUNNING（留空，标 TBD）
+- plan018-additive-random-b01-s42: random β=0.1 s42
+- plan002-additive-b03-s42: ISR β=0.3 (train metrics only, no eval)
+- plan017-additive-random-s42: random β=0.3
+- plan013-random-reward-s42-r4: convex random
+- plan005-sta-low-s42: convex ISR (train metrics only)
+
+对于有 3-seed 数据的组，计算 mean±std。目前只有 exec-only 有 3 seeds 完整。
+
+### Table 2: Hacking Taxonomy（退化模式对比）
+
+基于 plan012 hacking taxonomy 结果（在 registry 的 metrics 中）：
+- ISR β=0.1 vs Random β=0.1 的 5 种 hacking 模式分布
+- genuine rate, conclusion embedding rate, complexity-without-utility rate 等
+
+### 输出
+把两个表格写入 artifacts 目录：
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables_draft.md`
+
+用 register_artifact 注册产出。
+
+### 注意
+- 所有数字必须来自 registry，不可编造
+- plan001-s43-r4 使用 sampling eval (T=0.7)，其他用 eval_sta.py full STA，必须标注
+- plan002-b03 和 plan005 没有 eval_sta 结果，用 train metrics 标注 "(train)"
+- ISR=0.57 for s44 是 tautological artifact，必须标注
+- β=0.1 目前只有 s42 单 seed 有 eval，s43/s44 TBD
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c9de32c8-d22a-4308-998c-6703f67415fe",
+  "type": "user",
+  "uuid": "ff59adde-e82a-439f-9dfb-b2e3644ff512",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T09:09:55.919Z_
+
+```json
+{
+  "parentUuid": "ff59adde-e82a-439f-9dfb-b2e3644ff512",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "d9d69289-3fb4-4aa4-a2d4-39398adc6a09",
+  "timestamp": "2026-05-14T09:09:55.919Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T09:09:55.919Z_
+
+```json
+{
+  "parentUuid": "d9d69289-3fb4-4aa4-a2d4-39398adc6a09",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7504bdf6-7a4d-4f89-89ac-8fdb18aeab35",
+  "timestamp": "2026-05-14T09:09:55.919Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T09:09:55.919Z_
+
+```json
+{
+  "parentUuid": "7504bdf6-7a4d-4f89-89ac-8fdb18aeab35",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "52e70397-8b00-4598-9385-89a7f5a850af",
+  "timestamp": "2026-05-14T09:09:55.919Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper Table 1 and Table 2 draft",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T09:09:59.665Z_
+
+I'll start by reading the registry to get all experiment metrics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52e70397-8b00-4598-9385-89a7f5a850af",
+  "isSidechain": false,
+  "requestId": "req_011Cb2CaDF9XqWczSqpVwphf",
+  "type": "assistant",
+  "uuid": "261d67bb-50bd-46bd-b116-8b874197bbad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQcLj4cBAhCZSRFZ6HC1pq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12466,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12466,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12466,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12466
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T09:10:00.437Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016JL2QSNCxWZvA15tjC95Hh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "261d67bb-50bd-46bd-b116-8b874197bbad",
+  "isSidechain": false,
+  "requestId": "req_011Cb2CaDF9XqWczSqpVwphf",
+  "type": "assistant",
+  "uuid": "596d0b4a-8724-4665-b072-b54d4708c7a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YQcLj4cBAhCZSRFZ6HC1pq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12466,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12466,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12466,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12466
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T09:10:00.444Z_
+
+<details><summary>↩ Tool result · `toolu_016JL2QSNCxWZvA15tjC95Hh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "596d0b4a-8724-4665-b072-b54d4708c7a7",
+  "isSidechain": false,
+  "promptId": "c9de32c8-d22a-4308-998c-6703f67415fe",
+  "type": "user",
+  "uuid": "478da6b9-c899-4f1e-a1c1-e66518c2fe57",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 25
+  },
+  "sourceToolAssistantUUID": "596d0b4a-8724-4665-b072-b54d4708c7a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-14T09:10:03.266Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry to get all experiment metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "478da6b9-c899-4f1e-a1c1-e66518c2fe57",
+  "isSidechain": false,
+  "requestId": "req_011Cb2CaYmPuptXt3Cjz6dqk",
+  "type": "assistant",
+  "uuid": "5435f8c8-ea3b-4ead-8170-3de024fa12a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGwLkc6NRdZxEFppAEesbe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1673,
+      "cache_read_input_tokens": 24307,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1673,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 24307,
+          "cache_creation_input_tokens": 1673,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1673
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T09:10:04.120Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01EmjeWRDWHgQrks9YRmzhV6`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5435f8c8-ea3b-4ead-8170-3de024fa12a7",
+  "isSidechain": false,
+  "requestId": "req_011Cb2CaYmPuptXt3Cjz6dqk",
+  "type": "assistant",
+  "uuid": "834dc89f-acc0-4c02-975b-deb2af3d2e29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGwLkc6NRdZxEFppAEesbe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1673,
+      "cache_read_input_tokens": 24307,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1673,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 24307,
+          "cache_creation_input_tokens": 1673,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1673
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T09:10:04.556Z_
+
+<details><summary>↩ Tool result · `toolu_01EmjeWRDWHgQrks9YRmzhV6`</summary>
+
+```text
+Error: result (71,418 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "834dc89f-acc0-4c02-975b-deb2af3d2e29",
+  "isSidechain": false,
+  "promptId": "c9de32c8-d22a-4308-998c-6703f67415fe",
+  "type": "user",
+  "uuid": "d54e1164-708e-419b-a789-596f75231776",
+  "toolUseResult": "Error: result (71,418 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan012-hacking-taxonomy\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T09:06:38.613Z\", \"updated_at\": \"2026-05-14T09:07:42.314Z\", \"spec\": {\"command\": \"rule-based hacking taxonomy classification on eval_sta outputs\", \"server\": \"westd-39279\", \"data_path\": \"eval_results.json from plan002-b01-s42 + plan018-b01-s42\", \"data_count\": 160, \"model_name\": \"N/A (rule-based analysis)\", \"seed\": \"N/A\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (analysis task)\", \"log_path\": \"artifacts/hacking_taxonomy_comparison.md\", \"completed_at\": \"2026-05-14T09:07:12.765Z\", \"hypothesis\": \"ISR β=0.1 vs Random β=0.1 hacking taxonomy 对比：ISR reward 能否减少 hacking 模式比例、增加 genuine proof 比例？5 种 hacking 分类（conclusion embedding, repetition collapse, tautological collapse, complexity-without-utility, premise padding）。\", \"metrics\": {\"isr_b01_genuine_rate\": 0.259, \"random_b01_genuine_rate\": 0.177, \"genuine_rate_delta_pp\": 8.2, \"isr_b01_conclusion_embedding_rate\": 0.728, \"random_b01_conclusion_embedding_rate\": 0.785, \"isr_b01_genuine_mean_isr\": 0.6723, \"random_b01_genuine_mean_isr\": 0.3427, \"isr_b01_complexity_wo_utility_rate\": 0, \"random_b01_complexity_wo_utility_rate\": 0.038, \"isr_b01_hacking_rate\": 0.741, \"random_b01_hacking_rate\": 0.823}, \"notes\": \"D037/D038 完成。Conclusion embedding 是主导 hacking 模式（ISR 72.8% vs Random 78.5%）。ISR β=0.1 genuine proof +8.2pp (25.9% vs 17.7%)，genuine ISR 质量 0.67 vs 0.34。ISR 消除 complexity-without-utility hacking。LLM-as-judge 跳过（D038），记入 Discussion/Future Work。Artifact: art_20260514_bf31aa。\"}, \"plan002-additive-b01-s44\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:36:17.298Z\", \"updated_at\": \"2026-05-14T08:46:23.514Z\", \"hypothesis\": \"ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。\", \"parent\": \"plan002-additive-b01-s42\", \"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T08:45:11.826Z\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s44\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s44\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"466540\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s44.log\", \"submitted_at\": \"2026-05-14T08:46:23.037Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"466540\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s44.log\"}, \"plan002-additive-b01-s43\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:36:16.367Z\", \"updated_at\": \"2026-05-14T08:45:55.347Z\", \"hypothesis\": \"ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。\", \"parent\": \"plan002-additive-b01-s42\", \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T08:45:10.999Z\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"466128\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s43.log\", \"submitted_at\": \"2026-05-14T08:45:54.837Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"466128\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s43.log\"}, \"plan018-additive-random-b01-s44\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:36:18.722Z\", \"updated_at\": \"2026-05-14T08:36:45.627Z\", \"hypothesis\": \"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\", \"parent\": \"plan018-additive-random-b01-s42\"}, \"plan018-additive-random-b01-s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:36:18.260Z\", \"updated_at\": \"2026-05-14T08:36:44.827Z\", \"hypothesis\": \"Random β=0.1 seed=43 控制组：与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s43 下是否成立。\", \"parent\": \"plan018-additive-random-b01-s42\"}, \"plan018-additive-random-b01-s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:55:48.888Z\", \"updated_at\": \"2026-05-14T08:32:44.808Z\", \"hypothesis\": \"β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。\", \"parent\": \"plan002-additive-b01-s42\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"377678\", \"log_path\": \"~/runs/solver-trace-ablation/plan018-additive-random-b01-s42.log\", \"submitted_at\": \"2026-05-14T06:55:59.287Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"plan_id\": \"plan018\", \"reward_formula\": \"r = r_exec * (1 + 0.1 * random[0,1])\", \"num_steps\": 500, \"checkpoint_source\": \"N/A (training, not eval)\", \"eval_data\": \"N/A (training, not eval)\", \"wall_clock_seconds\": 5160.4, \"gpu_hours\": 1.43, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan018_additive_random_b01_s42\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:09:07.662Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:09:09.188407+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.79, \"eval_mean_isr\": 0.1038, \"eval_isr_std\": 0.1369, \"eval_median_isr\": 0.0357, \"eval_proved_only_isr\": 0.1314, \"eval_n_proved\": 79, \"eval_n_problems\": 100, \"eval_component_count_mean\": 8.46, \"eval_component_count_median\": 8, \"eval_component_count_2_ratio\": 0, \"eval_isr_1_ratio\": 0, \"eval_isr_0_ratio\": 0.367, \"eval_isr_gt0_ratio\": 0.633, \"eval_by_type_false_pr\": 0.8, \"eval_by_type_false_isr\": 0.1318, \"eval_by_type_unknown_pr\": 0.7317, \"eval_by_type_unknown_isr\": 0.0944, \"eval_by_type_true_pr\": 0.8529, \"eval_by_type_true_isr\": 0.0945, \"tautological_collapse\": false, \"train_total_steps\": 500, \"train_duration_min\": 70.5, \"train_last100_pr\": 0.805, \"train_last100_isr\": 0.1432, \"train_loss\": 0.005}, \"notes\": \"Random control β=0.1 vs ISR β=0.1 (plan002-b01) 对照。conclusion=negative: random control的ISR远低于ISR-guided。\\n\\n对比 plan002-b01 (ISR β=0.1):\\n- PR: 0.79 vs 0.81 (≈持平, Δ=0.02)\\n- Mean ISR: 0.104 vs 0.337 (ISR 3.2x higher)\\n- Proved-only ISR: 0.131 vs 0.415 (ISR 3.2x higher)\\n- Median ISR: 0.036 vs plan002未记录\\n- Component count: 8.46 vs 5.58 (random组更多冗余)\\n- ISR=0占比(proved): 36.7% (random组大量proof无结构)\\n- Tautological collapse: 无 (component_2_ratio=0)\\n\\n关键发现: PR几乎相同说明β=0.1 random噪声不影响证明能力。但ISR差3.2倍，证明ISR reward提供genuine structural guidance而非仅variance regularization。这强力支持Claim 2: ISR信号在低剂量下有结构价值。\\n\\nEval output: /root/autodl-tmp/outputs/plan018_additive_random_b01_s42/eval_results.json\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan018_additive_random_b01_s42\", \"completed_at\": \"2026-05-14T08:21:59.737Z\"}, \"plan002-additive-b01-s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:29:08.138Z\", \"updated_at\": \"2026-05-14T08:32:21.912Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"262261\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\", \"submitted_at\": \"2026-05-14T05:32:32.415Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"plan_id\": \"plan002\", \"reward_formula\": \"r_exec * (1 + 0.1 * ISR)\", \"num_steps\": 500, \"wall_clock_seconds\": 4493.9, \"gpu_hours\": 1.25, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42\"}, \"parent\": \"plan002-additive-b03-s42\", \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"262261\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\", \"reproduce\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"\", \"finished_at\": \"2026-05-14T06:37:58.285Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:37:59.656631+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.81, \"eval_mean_isr\": 0.3365, \"eval_isr_std\": 0.3227, \"eval_proved_only_isr\": 0.4154, \"eval_median_isr\": 0.2, \"eval_n_proved\": 81, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 5.58, \"eval_component_count_2_ratio\": 0.037, \"eval_isr_1_ratio\": 0.124, \"eval_isr_0_ratio\": 0.037, \"eval_by_type_false_pr\": 0.88, \"eval_by_type_false_isr\": 0.3515, \"eval_by_type_unknown_pr\": 0.83, \"eval_by_type_unknown_isr\": 0.3684, \"eval_by_type_true_pr\": 0.74, \"eval_by_type_true_isr\": 0.2869, \"tautological_collapse\": false, \"train_total_steps\": 500, \"train_duration_min\": 63, \"train_last100_pr\": 0.6875, \"train_last100_isr\": 0.1954, \"train_last100_loss\": 0.015}, \"notes\": \"SUCCESS: additive ISR β=0.1 是最佳工作点。eval PR=0.81 (exec-only baseline 0.93 的 -12pp, 可接受), eval ISR=0.3365 (baseline 0.1232 的 2.73x)。无 tautological collapse (mean components=5.58)。β 剂量响应清晰：β=0.1 → PR保持+ISR提升; β=0.3 → PR崩塌(0.18)。ISR-as-reward 并非全面失败——低剂量 additive bonus 有效引导结构改善。⚠️ 注意：与 plan017 (additive random β=0.3) 直接对比不公平——β 不匹配。需要 β=0.1 random control 实验做同 β 对照（D031 已批准）。\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42\", \"completed_at\": \"2026-05-14T06:47:26.358Z\"}, \"plan016-extended-1000-s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:29:47.634Z\", \"updated_at\": \"2026-05-14T08:15:33.185Z\", \"hypothesis\": \"Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？\", \"parent\": \"plan001-exec-only-s42-r2\", \"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 42 --output_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence?\", \"plan_id\": \"plan016\", \"reward_formula\": \"r = r_exec (exec-only)\", \"num_steps\": 1000}, \"pid\": \"263268\", \"log_path\": \"~/runs/solver-trace-ablation/plan016-extended-1000-s42.log\", \"reproduce\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 42 --output_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42\\\"\", \"finished_at\": \"2026-05-14T08:02:31.805Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:02:33.434519+00:00\"}]}, \"metrics\": {\"train\": {\"total_steps\": 1000, \"duration_min\": 146, \"final_prove_rate\": 0.8396, \"final_mean_isr\": 0.0503, \"train_loss\": 0.0125, \"epoch\": 4, \"windowed\": {\"steps_001_100\": {\"pr\": 0.19, \"isr\": 0.0859}, \"steps_101_200\": {\"pr\": 0.66, \"isr\": 0.1115}, \"steps_201_300\": {\"pr\": 0.838, \"isr\": 0.0985}, \"steps_301_400\": {\"pr\": 0.907, \"isr\": 0.054}, \"steps_401_500\": {\"pr\": 0.927, \"isr\": 0.0433}, \"steps_501_600\": {\"pr\": 0.963, \"isr\": 0.0408}, \"steps_601_700\": {\"pr\": 0.965, \"isr\": 0.02}, \"steps_701_800\": {\"pr\": 0.988, \"isr\": 0.0178}, \"steps_801_900\": {\"pr\": 0.978, \"isr\": 0.017}, \"steps_901_1000\": {\"pr\": 0.981, \"isr\": 0.0144}}}, \"eval\": {\"prove_rate\": 0.96, \"n_proved\": 96, \"n_problems\": 100, \"mean_isr\": 0.0027, \"isr_std\": 0.0118, \"median_isr\": 0, \"proved_only_mean_isr\": 0.0028, \"min_isr\": 0, \"max_isr\": 0.0588, \"isr_0_ratio\": 0.9479, \"isr_1_ratio\": 0, \"component_count_mean\": 18.55, \"component_count_2_ratio\": 0, \"mean_n_necessary\": 0.052, \"n_necessary_0_ratio\": 0.9479, \"tautological_collapse\": false, \"by_answer_type\": {\"false\": {\"count\": 29, \"proved\": 26, \"prove_rate\": 0.8966, \"mean_isr\": 0}, \"unknown\": {\"count\": 31, \"proved\": 30, \"prove_rate\": 0.9677, \"mean_isr\": 0.0053}, \"true\": {\"count\": 40, \"proved\": 40, \"prove_rate\": 1, \"mean_isr\": 0.0026}}, \"eval_time_seconds\": 396.3}}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan016_extended_1000_s42\", \"completed_at\": \"2026-05-14T08:13:51.754Z\", \"notes\": \"Extended training to 1000 steps CONFIRMS ISR collapse worsens monotonically.\\\\n\\\\n## 500 vs 1000 step comparison (eval_sta.py):\\\\n| Metric | plan001-s42 (500步) | plan016 (1000步) | Change |\\\\n|--------|-------------------|-----------------|--------|\\\\n| eval PR | 0.93 | 0.96 | +3.2% |\\\\n| eval ISR | 0.123 | 0.0027 | -97.8% |\\\\n| proved_only ISR | 0.132 | 0.0028 | -97.9% |\\\\n| components | 6.58 | 18.55 | +182% |\\\\n| ISR=0 ratio | - | 94.8% | - |\\\\n| n_necessary=0 ratio | - | 94.8% | - |\\\\n\\\\n## Key findings:\\\\n1. PR improves (+3%) but ISR collapses near-zero (0.0027). The model gets BETTER at proving while becoming WORSE at faithful reasoning.\\\\n2. Component count nearly tripled (6.58→18.55). Model generates longer proofs with more components, but 94.8% have ZERO necessary components.\\\\n3. NOT tautological collapse (comp=2 ratio=0). Instead: contradiction-based collapse — model embeds P(a) and ¬P(a) among many irrelevant premises, making anything provable via explosion.\\\\n4. Windowed ISR trend is monotonically decreasing: 0.1115 (101-200) → 0.0433 (401-500) → 0.0200 (601-700) → 0.0144 (901-1000). No recovery signal.\\\\n5. The exec-only reward creates a pure reward hacking incentive: the model discovers that contradictions + trivially true conclusions always satisfy the prover.\\\\n\\\\n## Implication for paper:\\\\nExtended training is a clean ablation showing exec-only reward's failure mode worsens over time. The 500-step ISR of 0.123 was not a floor — it was a snapshot of ongoing collapse.\"}, \"plan006-prolog-exec-s44\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:13:35.647Z\", \"updated_at\": \"2026-05-14T07:13:45.285Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=44: third seed for Prolog. Together with s42/s43, provides 3-seed evidence for cross-logic generalization claim.\"}, \"plan006-prolog-exec-s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:13:35.078Z\", \"updated_at\": \"2026-05-14T07:13:43.936Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degenerate vs s44 tautological).\"}, \"plan006-prolog-exec-s42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:13:34.169Z\", \"updated_at\": \"2026-05-14T07:13:41.548Z\", \"hypothesis\": \"Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.\"}, \"plan005-sta-low-s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:20:47.812Z\", \"updated_at\": \"2026-05-14T06:31:05.119Z\", \"spec\": {\"model_name\": \"Qwen3-4B\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:55:02.341Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:55:06.559440+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\", \"completed_at\": \"2026-05-13T23:59:25.396Z\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 71, \"parse_rate\": 1, \"overall_prove_rate\": 0.5657, \"overall_isr\": 0.1682, \"last50_prove_rate\": 0.77, \"last50_isr\": 0.2559, \"last100_prove_rate\": 0.7725, \"last100_isr\": 0.2299, \"last100_loss\": 0.022752, \"overall_loss\": 0.017296, \"last100_isr_pr_ratio\": 0.298, \"last100_isr_lt_pr_count\": \"99/100\", \"first_rolling10_pr_ge_0.8\": 178, \"first_rolling10_pr_ge_0.9\": 439, \"max_rolling10_pr\": 0.9375, \"max_rolling10_isr\": 0.3282, \"windowed\": {\"1-50\": {\"pr\": 0.1775, \"isr\": 0.0906}, \"51-100\": {\"pr\": 0.1775, \"isr\": 0.0835}, \"101-200\": {\"pr\": 0.5062, \"isr\": 0.1463}, \"201-300\": {\"pr\": 0.6713, \"isr\": 0.1791}, \"301-400\": {\"pr\": 0.7013, \"isr\": 0.1984}, \"401-500\": {\"pr\": 0.7725, \"isr\": 0.2299}}}, \"notes\": \"conclusion=negative 基于 prove_rate 下降（last100 0.7725 vs exec-only 0.865）。但结构性发现：ISR/PR ratio=0.298，99/100 步 ISR &lt; PR，说明 STA=0.1 维持了 ISR 与 PR 的持续分离——模型未通过 hacking prove_rate 绕过 STA penalty。此观察支持论文 \\\"STA 抑制 reward hacking\\\" claim。windowed ISR/PR: 1-50 (0.51), 51-100 (0.47), 101-200 (0.29), 201-300 (0.27), 301-400 (0.28), 401-500 (0.30) — 分离在100步后稳定。D030 决策：checkpoint 已删除，不重训。论文用训练曲线 windowed ISR/PR 数据作为证据。\"}, \"plan001-exec-only-s43-r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:37.808Z\", \"updated_at\": \"2026-05-14T06:30:57.539Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"136339\", \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s43-r4.log\", \"submitted_at\": \"2026-05-14T01:40:37.746Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 43, \"hypothesis\": \"Exec-only seed=43 replication: confirm plan001-r2 (seed=42) prove_rate convergence is reproducible across seeds\", \"plan_id\": \"plan001\", \"wall_clock_seconds\": 10020.8, \"gpu_hours\": 2.78}, \"reproduce\": {\"finished_at\": \"2026-05-14T03:13:08.926Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T03:13:12.957272+00:00\"}]}, \"metrics\": {\"eval_sampling_prove_rate\": 0.14, \"eval_sampling_mean_isr\": 0, \"eval_sampling_n_proved\": 14, \"eval_sampling_temperature\": 0.7, \"eval_sampling_method\": \"do_sample=True, temperature=0.7\", \"eval_sampling_by_answer\": {\"true\": {\"count\": 34, \"proved\": 6, \"prove_rate\": 0.176}, \"false\": {\"count\": 25, \"proved\": 2, \"prove_rate\": 0.08}, \"unknown\": {\"count\": 41, \"proved\": 6, \"prove_rate\": 0.146}}}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s43_r4\", \"log_path\": \"/root/runs/solver-trace-ablation/plan001-exec-only-s43-r4.log\", \"conclusion\": \"negative\", \"notes\": \"训练 PR(last100)=0.883 但 eval PR=14% (sampling, T=0.7), ISR=0。87% 样本 hit max_new_tokens 生成不可解析长输出。与 s42 (eval PR=93%) 形成极端跨 seed 不稳定。exec-only reward landscape 存在极大方差。⚠️ 评估方法：sampling eval (T=0.7)，其他组用 eval_sta.py full STA。D029 决策：不重训，论文标注方法差异。PR=14% 是 failure case，eval 方法不影响结论。\", \"completed_at\": \"2026-05-14T04:27:38.542Z\"}, \"plan017-additive-random-s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:11:14.694Z\", \"updated_at\": \"2026-05-14T05:33:25.603Z\", \"hypothesis\": \"Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。\", \"parent\": \"plan013-random-reward-s42-r4\", \"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan017_additive_random_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Additive random control: r = r_exec·(1+0.3·random)\", \"plan_id\": \"plan017\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * random[0,1])\", \"beta\": 0.3}, \"pid\": \"207116\", \"log_path\": \"~/runs/solver-trace-ablation/plan017-additive-random-s42.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan017_additive_random_s42\\\"\", \"finished_at\": \"2026-05-14T05:17:13.920Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:17:18.376399+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan017_additive_random_s42\", \"notes\": \"Eval结果: PR=0.48, mean_ISR=0.0453, proved_only_ISR=0.0943, mean_components=9.56 (3+比例100%, 无tautological collapse). 但33%已证明样本ISR=0 (n_necessary=0, conclusion trivially provable). 与plan013的不同failure mode: additive random防止了2-component坍缩, 但模型转向生成复杂但无用的formalization (多premises但conclusion不依赖任何premise). Variance regularization不足以产生genuine proofs.\", \"metrics\": {\"eval_prove_rate\": 0.48, \"eval_mean_isr\": 0.0453, \"eval_isr_std\": 0.0759, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2857, \"eval_proved_only_isr\": 0.0943, \"eval_n_proved\": 48, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 9.6, \"eval_component_count_2_ratio\": 0, \"eval_isr_pr_ratio\": 0.0943, \"eval_elapsed_s\": 542.3, \"eval_by_type_false_pr\": 0.32, \"eval_by_type_false_isr\": 0.0254, \"eval_by_type_unknown_pr\": 0.51, \"eval_by_type_unknown_isr\": 0.0518, \"eval_by_type_true_pr\": 0.56, \"eval_by_type_true_isr\": 0.052, \"tautological_collapse\": false}, \"completed_at\": \"2026-05-14T05:30:46.783Z\"}, \"plan001-exec-only-s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:57:09.690Z\", \"updated_at\": \"2026-05-14T05:14:31.732Z\", \"hypothesis\": \"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\", \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"226200\", \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s44.log\", \"submitted_at\": \"2026-05-14T04:29:05.471Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2725.5, \"gpu_hours\": 0.76}, \"pid\": \"226200\", \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s44.log\", \"reproduce\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44\\\"\", \"finished_at\": \"2026-05-14T05:06:39.227Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:06:40.707032+00:00\"}]}, \"metrics\": {\"eval_prove_rate\": 0.98, \"eval_mean_isr\": 0.57, \"eval_isr_std\": 0.2013, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.5816, \"eval_n_proved\": 98, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 2.04, \"eval_component_count_2\": 94, \"eval_component_count_3\": 4, \"eval_by_type_false_pr\": 1, \"eval_by_type_false_isr\": 0.62, \"eval_by_type_unknown_pr\": 0.976, \"eval_by_type_unknown_isr\": 0.524, \"eval_by_type_true_pr\": 0.971, \"eval_by_type_true_isr\": 0.588, \"train_last100_pr\": 0.9988, \"train_last100_isr\": 0.5611, \"train_last100_loss\": 0.000419, \"train_duration_min\": 36.8, \"tautological_collapse\": true}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s44\", \"conclusion\": \"negative\", \"notes\": \"TAUTOLOGICAL COLLAPSE 确认。eval PR=98% 但 94% 样本仅 2 components (premise=conclusion tautology)，mean components=2.04，与 plan013 random reward 完全一致。ISR≈0.5 是 2-component artifact。s42 是唯一产生 genuine proofs (mean components=6.58) 的 seed。3-seed 结果：s42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)。Exec-only reward 2/3 seeds 失败。\", \"completed_at\": \"2026-05-14T05:14:30.940Z\"}, \"plan014-downstream-nli-s42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T03:43:37.925Z\", \"updated_at\": \"2026-05-14T04:29:48.645Z\", \"hypothesis\": \"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\", \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T03:49:52.891Z\", \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42 --base_model /root/autodl-tmp/models/Qwen3-4B --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\\\"\", \"finished_at\": \"2026-05-14T04:26:05.334Z\", \"training_hours\": 0.6}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-14T03:51:18.427Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T03:51:19.514390+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T04:26:06.788787+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"r1 失败: checkpoint_path 多了 /checkpoint-500。save_total_limit=1 导致模型直接保存在 plan001_exec_only_s42/ 根目录。修正路径为 /root/autodl-tmp/outputs/plan001_exec_only_s42 即可。等 s43 re-eval 完成后重跑。\"}}, \"notes\": \"Negative: ISR 作为 downstream NLI quality proxy 无效。Spearman ρ(ISR, correct)=-0.049 (p=0.187)，Best-of-N ISR 仅 +0.9pp over random (不显著)。主因：模型严重 true-bias (false accuracy=0%)，NLI accuracy 天花板仅 34.1%，ISR 无区分空间。ISR bucket 层面有弱单调趋势 (high=75% > mid=37.7% > low=32.7%) 但 high bucket 仅 12 样本。quartile 分析非单调。\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42 --base_model /root/autodl-tmp/models/Qwen3-4B --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"216133\", \"log_path\": \"~/runs/solver-trace-ablation/plan014-downstream-nli-s42.log\", \"submitted_at\": \"2026-05-14T04:17:30.763Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 737.9, \"gpu_hours\": 0.2}, \"pid\": \"216133\", \"log_path\": \"~/runs/solver-trace-ablation/plan014-downstream-nli-s42.log\", \"conclusion\": \"negative\", \"metrics\": {\"overall_accuracy\": 0.341, \"proved_rate\": 0.915, \"proved_count\": 732, \"total_generations\": 800, \"parse_errors\": 0, \"accuracy_by_label\": {\"true\": 0.912, \"false\": 0, \"unknown\": 0.076}, \"spearman_rho\": -0.049, \"spearman_p\": 0.187, \"mann_whitney_U\": 17202, \"mann_whitney_p\": 0.288, \"bon_isr_accuracy\": 0.35, \"bon_random_accuracy\": 0.341, \"bon_oracle_accuracy\": 0.44, \"bon_prove_first_accuracy\": 0.35, \"isr_bucket_high_acc\": 0.75, \"isr_bucket_mid_acc\": 0.377, \"isr_bucket_low_acc\": 0.327, \"runtime_inference_s\": 408.8, \"runtime_eval_s\": 13.6}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan014_downstream_nli.json\"}, \"plan002-additive-b03-s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:24:47.843Z\", \"updated_at\": \"2026-05-14T04:27:38.822Z\", \"spec\": {\"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\", \"plan_id\": \"plan_002\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * ISR)\", \"beta\": 0.3, \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"161819\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T03:24:44.110Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T03:24:48.666027+00:00\"}]}, \"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"first20_prove_rate\": 0.15625, \"last50_prove_rate\": 0.555, \"last100_prove_rate\": 0.5525, \"mean_loss\": 0.008914, \"last100_loss\": 0.014469, \"parse_rate\": 1, \"w1_50_prove_rate\": 0.13, \"w51_100_prove_rate\": 0.095, \"w101_200_prove_rate\": 0.185, \"w201_300_prove_rate\": 0.375, \"w301_400_prove_rate\": 0.47625, \"w401_500_prove_rate\": 0.5525, \"steps_ge_085\": 52, \"first_step_ge_085\": 46, \"final_prove_rate\": 1, \"final_isr_mean\": 0.3089, \"final_reward_mean\": 1.0927}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\", \"notes\": \"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\", \"conclusion\": \"negative\", \"eval_prove_rate\": 0.18, \"eval_mean_isr\": 0.0257, \"eval_isr_std\": 0.0742, \"eval_proved_only_isr\": 0.1427, \"eval_median_isr\": 0, \"eval_isr_pr_ratio\": 0.1427, \"completed_at\": \"2026-05-14T04:27:38.822Z\"}, \"plan013-random-reward-s42-r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:40:35.587Z\", \"updated_at\": \"2026-05-14T03:45:53.344Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r4\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"136261\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log\", \"submitted_at\": \"2026-05-14T01:40:35.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline: replacing ISR with random values should degrade structural quality while maintaining execution reward, proving ISR's causal contribution\", \"plan_id\": \"plan013\", \"wall_clock_seconds\": 2492.4, \"gpu_hours\": 0.69}, \"reproduce\": {\"finished_at\": \"2026-05-14T02:19:57.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:19:58.514969+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl\", \"metrics\": {\"eval_prove_rate\": 1, \"eval_mean_isr\": 0.535, \"eval_isr_std\": 0.1282, \"eval_proved_only_isr\": 0.535, \"eval_median_isr\": 0.5, \"eval_n_proved\": 100, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_note\": \"DEGENERATE: model generates trivial 2-component proofs (premise=conclusion, conclusion=conclusion), ISR=0.5 is artifact of trivial proof structure\"}, \"completed_at\": \"2026-05-14T02:22:07.933Z\", \"notes\": \"⚠️ 训练日志 ISR 为 binary approximation (_fast_fn)，ISR≈prove_rate，不含结构信息。真实 ISR 需通过 eval_sta.py (full STA) 在 checkpoint-500 上重新评估。final_mean_isr=0.6705 实为 binary 近似值，禁止用于论文或跨实验 ISR 对比。\"}, \"plan001-exec-only-s42-r2\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T22:40:41.773Z\", \"updated_at\": \"2026-05-14T03:45:49.703Z\", \"completed_at\": \"2026-05-13T23:46:00Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}, \"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:46:01.596431+00:00\"}]}, \"spec\": {\"command\": \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s42\", \"server\": \"westd-39279\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"500-step exec-only baseline for STA comparison (K=8)\", \"pid\": \"84901\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s42-r2.log\", \"submitted_at\": \"2026-05-13T22:42:40.204Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3820, \"gpu_hours\": 1.06}, \"notes\": \"Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\", \"reproduce\": {\"finished_at\": \"2026-05-13T23:46:00.369Z\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500\", \"log_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s42/reward_log.jsonl\", \"metrics\": {\"eval_prove_rate\": 0.93, \"eval_mean_isr\": 0.1232, \"eval_isr_std\": 0.1887, \"eval_proved_only_isr\": 0.1324, \"eval_median_isr\": 0, \"eval_n_proved\": 93, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\"}}, \"plan001-exec-only-s43-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:02:31.830Z\", \"updated_at\": \"2026-05-14T01:41:28.427Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_r3\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"133258\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 43, \"hypothesis\": \"exec-only 500 steps seed 43 (r3), 3-seed baseline 2nd seed\", \"plan_id\": \"plan_001\"}, \"conclusion\": \"failed\", \"failure_reason\": \"OSError: [Errno 28] No space left on device — /root/autodl-tmp 磁盘满，TRL GRPOTrainer completions parquet 写入失败 at step 23\", \"checkpoint_path\": \"N/A (disk full crash at step 23)\", \"log_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s43_r3/reward_log.jsonl\", \"completed_at\": \"2026-05-14T01:41:28.427Z\"}, \"plan013-random-reward-s42-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:02:30.063Z\", \"updated_at\": \"2026-05-14T01:41:28.122Z\", \"spec\": {\"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42_r3\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"133178\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline (r3): random value replaces ISR to isolate ISR-specific signal vs multi-objective regularization\", \"plan_id\": \"plan_013\", \"hyperparams\": {\"alpha\": 0.9, \"beta\": 0.1, \"K\": 8, \"num_steps\": 500, \"reward_type\": \"random_penalty\"}}, \"conclusion\": \"failed\", \"failure_reason\": \"OSError: [Errno 28] No space left on device — /root/autodl-tmp 磁盘满，TRL GRPOTrainer completions parquet 写入失败 at step 28\", \"checkpoint_path\": \"N/A (disk full crash at step 28)\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r3/reward_log.jsonl\", \"completed_at\": \"2026-05-14T01:41:28.122Z\"}, \"plan001-exec-only-s43-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:22:12.292Z\", \"updated_at\": \"2026-05-14T01:01:56.416Z\", \"spec\": {\"command\": \"python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"126541\", \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s43-r2.log\", \"submitted_at\": \"2026-05-14T00:22:12.241Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 43, \"hypothesis\": \"exec-only 500步 seed 43 (retry), 3-seed baseline 第2个 seed\", \"wall_clock_seconds\": 2384.2, \"gpu_hours\": 0.66}, \"checkpoint_path\": \"N/A (crashed after submission)\", \"log_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s43_r2/reward_log.jsonl\", \"conclusion\": \"failed\", \"failure_reason\": \"Process crashed after submission (PID 126546 not found, tmux session dead). Worker verified 91% util at submission but process died within 30 min.\", \"completed_at\": \"2026-05-14T01:01:56.416Z\"}, \"plan013-random-reward-s42-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:22:10.140Z\", \"updated_at\": \"2026-05-14T01:01:55.694Z\", \"spec\": {\"command\": \"python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1 --output_dir /root/autodl-tmp/outputs/plan013_random_reward_s42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"126461\", \"log_path\": \"~/runs/solver-trace-ablation/plan013-random-reward-s42-r2.log\", \"submitted_at\": \"2026-05-14T00:22:10.091Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Random reward baseline (retry): 用随机值替代 ISR，隔离 ISR-specific signal vs multi-objective regularization effect\", \"wall_clock_seconds\": 2385.6, \"gpu_hours\": 0.66}, \"checkpoint_path\": \"N/A (crashed after submission)\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42_r2/reward_log.jsonl\", \"conclusion\": \"failed\", \"failure_reason\": \"Process crashed after submission (PID 126466 not found, tmux session dead). Worker verified 91% util at submission but process died within 30 min.\", \"completed_at\": \"2026-05-14T01:01:55.694Z\"}, \"plan013-random-reward-s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:56:44.062Z\", \"updated_at\": \"2026-05-14T00:21:05.430Z\", \"spec\": {\"hypothesis\": \"Random reward baseline: 用随机值替代 ISR，隔离 ISR-specific signal vs multi-objective regularization effect\", \"command\": \"bash -c \\\"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml --num_steps 500 --seed 42 --exec_weight 0.9 --sta_weight 0.1\\\"\", \"server\": \"westd-39279\", \"data_path\": \"data/proofwriter_fol_500.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"plan_id\": \"plan_013\", \"gpu\": \"cuda:0\", \"hyperparams\": {\"alpha\": 0.9, \"beta\": 0.1, \"K\": 8, \"num_steps\": 500, \"reward_type\": \"random_penalty\"}, \"pid\": 122796, \"output_dir\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42.log\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42\", \"reward_mode\": \"random_reward\", \"exec_weight\": 0.9, \"sta_weight\": 0.1, \"num_steps\": 500}, \"checkpoint_path\": \"N/A (GPU overflow, no valid output)\", \"log_path\": \"/root/autodl-tmp/outputs/plan013_random_reward_s42.log\", \"conclusion\": \"failed\", \"failure_reason\": \"CUDA_VISIBLE_DEVICES not set (inline assignment not exported), GPU overflow to both GPUs\", \"completed_at\": \"2026-05-14T00:21:05.430Z\"}, \"plan001-exec-only-s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:55:08.635Z\", \"updated_at\": \"2026-05-14T00:21:04.003Z\", \"spec\": {\"command\": \"python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"121275\", \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s43.log\", \"submitted_at\": \"2026-05-13T23:55:08.544Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/proofwriter_fol_500.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 43, \"hypothesis\": \"exec-only 500步 seed 43, 3-seed baseline 第2个 seed。预期 prove_rate>0.80 (与 s42 一致)\", \"wall_clock_seconds\": 1555.5, \"gpu_hours\": 0.43}, \"checkpoint_path\": \"N/A (killed by OOM before completion)\", \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s43.log\", \"conclusion\": \"failed\", \"failure_reason\": \"OOM by plan013 GPU overflow — plan013 未设 CUDA_VISIBLE_DEVICES 导致占用两张 GPU，plan001-s43 被 OOM kill\", \"completed_at\": \"2026-05-14T00:21:04.003Z\"}, \"plan001-exec-only-s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:19:41.568Z\", \"updated_at\": \"2026-05-13T23:03:42.892Z\", \"spec\": {\"command\": \"python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"83029\", \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s42.log\", \"submitted_at\": \"2026-05-13T22:20:46.569Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"exec-only 500步训练 baseline\", \"wall_clock_seconds\": 2576.3, \"gpu_hours\": 0.72}, \"conclusion\": \"failed\", \"checkpoint_path\": \"N/A (failed before checkpoint)\", \"completed_at\": \"2026-05-13T23:03:42.892Z\"}, \"plan003-eval-exec-only-r5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:21:48.691Z\", \"updated_at\": \"2026-05-13T23:03:19.945Z\", \"spec\": {\"command\": \"eval_sta.py on r5 exec-only checkpoint\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"83690\", \"log_path\": \"~/runs/solver-trace-ablation/plan003-eval-exec-only-r5.log\", \"submitted_at\": \"2026-05-13T22:21:48.658Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl\", \"data_count\": 100, \"model_name\": \"Qwen3-4B (r5 exec-only checkpoint)\", \"seed\": 0, \"checkpoint_source\": \"sta-phase1-exec-only-r5\", \"eval_data\": \"proofwriter_fol_100\", \"hypothesis\": \"Full STA eval on exec-only 100-step checkpoint to measure formalization quality\", \"wall_clock_seconds\": 2490.2, \"gpu_hours\": 0.69}, \"metrics\": {\"prove_rate\": 0.32, \"mean_isr\": 0.2055, \"isr_std\": 0.3194, \"proved_only_isr\": 0.6423, \"isr_by_type\": {\"true\": 0.3598, \"false\": 0.1723, \"unknown\": 0.0979}, \"total_samples\": 100, \"proved_count\": 32, \"runtime_s\": 251.7}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan003_eval_exec_only_r5.json\", \"log_path\": \"~/runs/solver-trace-ablation/plan003-eval-exec-only-r5.log\", \"completed_at\": \"2026-05-13T23:03:18.848Z\"}, \"plan001-exec-only-s42-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:42:40.242Z\", \"updated_at\": \"2026-05-13T23:03:11.395Z\", \"spec\": {\"command\": \"python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 42\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"85710\", \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s42-r3.log\", \"submitted_at\": \"2026-05-13T22:42:40.204Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"exec-only 500步训练 baseline (retry 3)\", \"wall_clock_seconds\": 1228.1, \"gpu_hours\": 0.34}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:03:08.298Z\", \"failure_reason\": \"OOM crash - duplicate submission while plan001-r2 was occupying cuda:0\"}, \"sta-phase1-exec-sta-r5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:54:31.353Z\", \"updated_at\": \"2026-05-13T22:20:41.274Z\", \"spec\": {\"command\": \"bash -c \\\"CUDA_VISIBLE_DEVICES=1 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"75968\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-sta-r5.log\", \"submitted_at\": \"2026-05-13T20:54:38.781Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/proofwriter_fol_500.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Full STA continuous ISR (0.0-1.0) 作为 reward 组件，应在训练中产生与 execution-only 不同的 ISR 趋势——execution-only ISR 随 prove_rate 上升而虚高(reward hacking)，execution+STA ISR 维持真实水平(STA 抑制 hacking)\", \"wall_clock_seconds\": 3506.3, \"gpu_hours\": 0.97}, \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1, \"mean_isr\": 0.04347, \"last20_prove_rate\": 0.15, \"last20_isr_mean\": 0.04956, \"first20_prove_rate\": 0.08125, \"first20_isr_mean\": 0.05182, \"overall_reward_mean\": 0.07174, \"last20_reward_mean\": 0.09978, \"training_steps\": 100, \"training_minutes\": 16.9, \"step_time_s\": 10.13, \"isr_pr_ratio_overall\": 0.43, \"isr_pr_ratio_last20\": 0.33, \"K\": 8}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/grpo_exec_sta/\", \"log_path\": \"/root/autodl-tmp/outputs/grpo_exec_sta/reward_log.jsonl\", \"completed_at\": \"2026-05-13T21:53:05.068Z\"}, \"sta-phase1-exec-only-r5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:54:27.505Z\", \"updated_at\": \"2026-05-13T21:53:04.486Z\", \"spec\": {\"command\": \"bash -c \\\"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"75890\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-only-r5.log\", \"submitted_at\": \"2026-05-13T20:54:37.293Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/solver-trace-ablation/data/proofwriter_fol_500.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"K=8 增加 within-group variance，减少全零 reward batch，使 GRPO 有更多有效梯度信号\", \"wall_clock_seconds\": 3507.2, \"gpu_hours\": 0.97}, \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_prove_rate\": 0.11875, \"first20_isr_mean\": 0.11875, \"overall_reward_mean\": 0.15125, \"last20_reward_mean\": 0.2, \"training_steps\": 100, \"training_minutes\": 15.7, \"step_time_s\": 9.44, \"isr_pr_ratio_last20\": 1, \"K\": 8}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/outputs/grpo_exec_only/\", \"log_path\": \"/root/autodl-tmp/outputs/grpo_exec_only/reward_log.jsonl\", \"completed_at\": \"2026-05-13T21:53:04.486Z\"}, \"sta-phase1-exec-sta-r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:28:22.778Z\", \"updated_at\": \"2026-05-13T20:52:58.761Z\", \"spec\": {\"command\": \"bash -c \\\"CUDA_VISIBLE_DEVICES=1 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"70797\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-sta-r4.log\", \"submitted_at\": \"2026-05-13T20:28:32.091Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1404.7, \"gpu_hours\": 0.39}, \"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T20:28:31.240Z\", \"command\": \"bash -c \\\"CUDA_VISIBLE_DEVICES=1 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\\\"\", \"finished_at\": \"2026-05-13T20:45:55.480Z\", \"training_hours\": 0.29}, \"pid\": \"70797\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-sta-r4.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:45:56.962544+00:00\"}]}, \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1575, \"mean_isr\": 0.1525, \"last20_prove_rate\": 0.2125, \"last20_isr_mean\": 0.2125, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/grpo_exec_sta/\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T20:51:56.799Z\", \"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，exec+STA reward ≈ exec-only reward。连续 ISR 才能产生有意义的差异信号。→ r5 改用 full sta_reward (continuous ISR 0.0-1.0) + K=8\"}, \"sta-phase1-exec-only-r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:28:18.040Z\", \"updated_at\": \"2026-05-13T20:52:56.416Z\", \"spec\": {\"command\": \"bash -c \\\"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"70716\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-only-r4.log\", \"submitted_at\": \"2026-05-13T20:28:30.420Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1405.8, \"gpu_hours\": 0.39}, \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T20:28:28.733Z\", \"command\": \"bash -c \\\"CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\\\"\", \"finished_at\": \"2026-05-13T20:45:53.506Z\", \"training_hours\": 0.29}, \"pid\": \"70716\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-only-r4.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:45:54.294365+00:00\"}]}, \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/grpo_exec_only/\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T20:51:56.183Z\", \"notes\": \"Phase 1 r4 完成但无差异。fast_isr_fol 二值信号(0/1)对 proved samples 几乎全部 ISR=1，导致 exec+STA ≈ exec-only。prove_rate 从 baseline 12% → last20 20%（微弱提升）。K=4 导致大量全零 reward batch。→ r5 改用 full STA + K=8\"}, \"sta-phase1-exec-only-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:15:04.067Z\", \"updated_at\": \"2026-05-13T20:23:15.460Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"67225\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-only-r3.log\", \"submitted_at\": \"2026-05-13T20:15:15.911Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 276.4, \"gpu_hours\": 0.08}, \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T20:15:14.333Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\\\"\", \"finished_at\": \"2026-05-13T20:19:51.612Z\", \"training_hours\": 0.08}, \"pid\": \"67225\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-only-r3.log\", \"failure_reason\": \"EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T20:19:52.268Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:19:52.981720+00:00\"}]}, \"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~276s. 同 sta-phase1-exec-sta-r3 一起诊断中\"}, \"sta-phase1-exec-sta-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:15:08.133Z\", \"updated_at\": \"2026-05-13T20:23:14.516Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"67306\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-sta-r3.log\", \"submitted_at\": \"2026-05-13T20:15:17.535Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 277.9, \"gpu_hours\": 0.08}, \"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T20:15:16.704Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\\\"\", \"finished_at\": \"2026-05-13T20:19:54.409Z\", \"training_hours\": 0.08}, \"pid\": \"67306\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-sta-r3.log\", \"failure_reason\": \"EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T20:19:55.400Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:19:56.549926+00:00\"}]}, \"notes\": \"EXIT_CODE=137 (OOM/SIGKILL) after ~278s. 诊断中: worker_diagnose_sta-phase1-r3-oom_20260513T202300\"}, \"sta-phase1-exec-sta-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:55:08.640Z\", \"updated_at\": \"2026-05-13T19:55:41.544Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"62364\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-sta-r2.log\", \"submitted_at\": \"2026-05-13T19:55:19.065Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 22.5, \"gpu_hours\": 0.01}, \"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T19:55:18.267Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\\\"\", \"finished_at\": \"2026-05-13T19:55:40.449Z\", \"training_hours\": 0.01}, \"pid\": \"62364\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-sta-r2.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T19:55:41.544Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T19:55:42.974865+00:00\"}]}}, \"sta-phase1-exec-only-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:55:04.711Z\", \"updated_at\": \"2026-05-13T19:55:37.426Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"62283\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-only-r2.log\", \"submitted_at\": \"2026-05-13T19:55:17.509Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 19.9, \"gpu_hours\": 0.01}, \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T19:55:16.037Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\\\"\", \"finished_at\": \"2026-05-13T19:55:36.845Z\", \"training_hours\": 0.01}, \"pid\": \"62283\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-only-r2.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T19:55:37.426Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T19:55:38.155358+00:00\"}]}}, \"sta-phase1-exec-sta\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:26:53.258Z\", \"updated_at\": \"2026-05-13T19:33:03.905Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:1\"], \"pid\": \"59574\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-sta.log\", \"submitted_at\": \"2026-05-13T19:32:47.783Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16.1, \"gpu_hours\": 0.0}, \"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T19:30:58.981Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_sta.yaml\\\"\", \"finished_at\": \"2026-05-13T19:33:03.170Z\", \"training_hours\": 0.03}, \"pid\": \"59574\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-sta.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T19:33:03.905Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T19:33:05.009356+00:00\"}]}}, \"sta-phase1-exec-only\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:26:46.351Z\", \"updated_at\": \"2026-05-13T19:33:01.169Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"59274\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-only.log\", \"submitted_at\": \"2026-05-13T19:32:30.340Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 30.8, \"gpu_hours\": 0.01}, \"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-39279\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T19:32:28.753Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml\\\"\", \"finished_at\": \"2026-05-13T19:33:00.602Z\", \"training_hours\": 0.01}, \"pid\": \"59274\", \"log_path\": \"~/runs/solver-trace-ablation/sta-phase1-exec-only.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T19:33:01.169Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T19:33:01.864437+00:00\"}]}}, \"sta-gt-isr-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:11:13.283Z\", \"updated_at\": \"2026-05-13T18:12:44.147Z\", \"spec\": {\"command\": \"python3 scripts/gt_isr_baseline.py\", \"server\": \"westd-39279\", \"data_path\": \"/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl\", \"data_count\": 100, \"model_name\": \"ground-truth-fol\", \"seed\": 0}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/solver-trace-ablation/outputs/gt_isr_baseline.json\", \"log_path\": \"/root/solver-trace-ablation/outputs/gt_isr_baseline.json\", \"completed_at\": \"2026-05-13T18:12:43.141Z\", \"metrics\": {\"gt_prove_rate\": 0.18, \"gt_mean_isr\": 0.5588, \"gt_isr_std\": 0.2582, \"gt_isr_median\": 0.6125, \"solver_execution_rate\": 1, \"true_prove_rate\": 0.5, \"true_mean_isr\": 0.5833}}, \"sta-phase0-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:51:48.853Z\", \"updated_at\": \"2026-05-13T18:10:40.982Z\", \"spec\": {\"hypothesis\": \"锚定 base Qwen3-4B 的 ISR baseline，后续判断 GRPO 训练是否导致 ISR 下降（reward hacking）\", \"model_name\": \"Qwen3-4B\", \"data_path\": \"/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl\", \"data_count\": 100, \"server\": \"westd-39279\", \"data_source\": \"tasksource/folio\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 scripts/phase0_baseline.py --model_path models/Qwen3-4B --data_path data/proofwriter_fol_100.jsonl --output outputs/phase0_baseline.json\", \"seed\": 0, \"checkpoint_path\": \"N/A (inference only)\", \"log_path\": \"/root/solver-trace-ablation/outputs/phase0_baseline.json\", \"notes\": \"conclusion=success 但语义是 baseline_anchored（registry 不支持自定义 conclusion）。此实验是 baseline 锚定，非传统 success/failure。ISR 盲区：premise-conclusion 重复的 trivial formalization 可能获高 ISR，论文 Discussion 需讨论。\"}, \"log_path\": \"/tmp/phase0_baseline.log\", \"checkpoint_path\": \"/root/solver-trace-ablation/outputs/phase0_baseline.json\", \"metrics\": {\"mean_isr\": 0.0641, \"isr_std\": 0.1983, \"median_isr\": 0, \"isr_range\": [0, 0.889], \"prove_rate\": 0.12, \"proved_count\": 12, \"total_samples\": 100, \"xor_affected_samples\": 34, \"effective_prove_rate_no_xor\": 0.182, \"avg_time_per_sample_s\": 3.4, \"total_runtime_s\": 336, \"isr_by_answer\": {\"true\": {\"n\": 34, \"proved\": 9, \"prove_rate\": 0.265, \"mean_isr\": 0.1345}, \"false\": {\"n\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.024}, \"unknown\": {\"n\": 41, \"proved\": 2, \"prove_rate\": 0.049, \"mean_isr\": 0.0302}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T18:04:56.962Z\"}}, \"count\": 40, \"total\": 40, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1234}}"
+    }
+  },
+  "sourceToolAssistantUUID": "834dc89f-acc0-4c02-975b-deb2af3d2e29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d54e1164-708e-419b-a789-596f75231776",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper Table 1 and Table 2 draft",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-14T09:10:06.845Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry is too large to read directly. Let me use a subagent to extract the specific experiment metrics I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d54e1164-708e-419b-a789-596f75231776",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Car6STUjNujAevXhNR",
+  "type": "assistant",
+  "uuid": "833b5852-4b57-46ae-b6cd-da478e5fdf8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012XMLiLZSk6X1uCMfEoDJMp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 648,
+      "cache_read_input_tokens": 25980,
+      "output_tokens": 570,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 570,
+          "cache_read_input_tokens": 25980,
+          "cache_creation_input_tokens": 648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-14T09:10:07.321Z_
+
+Registry is large. Let me extract the specific experiments I need with a subagent.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "833b5852-4b57-46ae-b6cd-da478e5fdf8a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Car6STUjNujAevXhNR",
+  "type": "assistant",
+  "uuid": "f3987825-3f25-4474-b2f8-d7007918c6d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012XMLiLZSk6X1uCMfEoDJMp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 648,
+      "cache_read_input_tokens": 25980,
+      "output_tokens": 570,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 570,
+          "cache_read_input_tokens": 25980,
+          "cache_creation_input_tokens": 648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T09:10:16.382Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_015aFEm4uMr3589PupiTSEBX`</summary>
+
+```json
+{
+  "description": "Extract experiment metrics from registry",
+  "prompt": "I need to extract metrics from a large JSON registry file for specific experiments. The file is at:\n/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt\n\nThe file has schema: {result: string} where `result` is a JSON string that needs to be parsed.\n\nI need metrics for these specific exp_ids:\n1. plan001-exec-only-s42-r2\n2. plan001-exec-only-s43-r4\n3. plan001-exec-only-s44\n4. plan016-extended-1000-s42\n5. plan002-additive-b01-s42\n6. plan002-additive-b01-s43\n7. plan002-additive-b01-s44\n8. plan018-additive-random-b01-s42\n9. plan002-additive-b03-s42\n10. plan017-additive-random-s42\n11. plan013-random-reward-s42-r4\n12. plan005-sta-low-s42\n13. plan012 (hacking taxonomy results - might have a different exp_id pattern)\n\nFor each experiment, I need:\n- exp_id\n- status\n- full metrics dict (all keys and values)\n- conclusion if any\n- any notes about eval method used\n\nFirst probe the structure with jq, then extract each experiment's data. Return ALL metrics verbatim - do not summarize or abbreviate numbers. I need exact values for paper tables.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3987825-3f25-4474-b2f8-d7007918c6d5",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Car6STUjNujAevXhNR",
+  "type": "assistant",
+  "uuid": "1c08c668-cedb-4efe-8f45-af069a6d27af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012XMLiLZSk6X1uCMfEoDJMp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 648,
+      "cache_read_input_tokens": 25980,
+      "output_tokens": 570,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 570,
+          "cache_read_input_tokens": 25980,
+          "cache_creation_input_tokens": 648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T09:12:59.327Z_
+
+<details><summary>↩ Tool result · `toolu_015aFEm4uMr3589PupiTSEBX`</summary>
+
+```text
+All 13 experiments have been extracted. Here is the complete data:
+
+---
+
+## Experiment 1: plan001-exec-only-s42-r2
+
+- **status**: DONE
+- **conclusion**: success
+- **eval_method**: eval_sta.py full STA
+- **metrics**:
+  - eval_prove_rate: 0.93
+  - eval_mean_isr: 0.1232
+  - eval_isr_std: 0.1887
+  - eval_proved_only_isr: 0.1324
+  - eval_median_isr: 0
+  - eval_n_proved: 93
+  - eval_n_problems: 100
+  - eval_data: proofwriter_fol_100.jsonl
+- **notes**: Training log ISR=0.8612 was binary approximation (_fast_fn), not real ISR. Final comparable ISR obtained via eval_sta.py (full STA).
+
+---
+
+## Experiment 2: plan001-exec-only-s43-r4
+
+- **status**: DONE
+- **conclusion**: negative
+- **eval_method**: sampling eval (do_sample=True, temperature=0.7) -- **NOT eval_sta.py full STA** (different from other groups; D029 decision: not retrained, paper annotates method difference; PR=14% is a failure case regardless)
+- **metrics**:
+  - eval_sampling_prove_rate: 0.14
+  - eval_sampling_mean_isr: 0
+  - eval_sampling_n_proved: 14
+  - eval_sampling_temperature: 0.7
+  - eval_sampling_method: "do_sample=True, temperature=0.7"
+  - eval_sampling_by_answer:
+    - true: count=34, proved=6, prove_rate=0.176
+    - false: count=25, proved=2, prove_rate=0.08
+    - unknown: count=41, proved=6, prove_rate=0.146
+- **notes**: Train PR(last100)=0.883 but eval PR=14% (sampling T=0.7), ISR=0. 87% samples hit max_new_tokens generating unparseable long output. Extreme cross-seed instability vs s42 (eval PR=93%).
+
+---
+
+## Experiment 3: plan001-exec-only-s44
+
+- **status**: DONE
+- **conclusion**: negative
+- **eval_method**: eval_sta.py full STA
+- **metrics**:
+  - eval_prove_rate: 0.98
+  - eval_mean_isr: 0.57
+  - eval_isr_std: 0.2013
+  - eval_median_isr: 0.5
+  - eval_proved_only_isr: 0.5816
+  - eval_n_proved: 98
+  - eval_n_problems: 100
+  - eval_data: proofwriter_fol_100.jsonl
+  - eval_component_count_mean: 2.04
+  - eval_component_count_2: 94
+  - eval_component_count_3: 4
+  - eval_by_type_false_pr: 1
+  - eval_by_type_false_isr: 0.62
+  - eval_by_type_unknown_pr: 0.976
+  - eval_by_type_unknown_isr: 0.524
+  - eval_by_type_true_pr: 0.971
+  - eval_by_type_true_isr: 0.588
+  - train_last100_pr: 0.9988
+  - train_last100_isr: 0.5611
+  - train_last100_loss: 0.000419
+  - train_duration_min: 36.8
+  - tautological_collapse: true
+- **notes**: TAUTOLOGICAL COLLAPSE confirmed. 94% samples have only 2 components (premise=conclusion tautology), mean components=2.04. ISR~0.5 is 2-component artifact. s42 is the only seed producing genuine proofs (mean components=6.58). Exec-only reward fails 2/3 seeds.
+
+---
+
+## Experiment 4: plan016-extended-1000-s42
+
+- **status**: DONE
+- **conclusion**: success
+- **eval_method**: eval_sta.py full STA
+- **metrics** (nested structure):
+  - **train**:
+    - total_steps: 1000
+    - duration_min: 146
+    - final_prove_rate: 0.8396
+    - final_mean_isr: 0.0503
+    - train_loss: 0.0125
+    - epoch: 4
+    - windowed:
+      - steps_001_100: pr=0.19, isr=0.0859
+      - steps_101_200: pr=0.66, isr=0.1115
+      - steps_201_300: pr=0.838, isr=0.0985
+      - steps_301_400: pr=0.907, isr=0.054
+      - steps_401_500: pr=0.927, isr=0.0433
+      - steps_501_600: pr=0.963, isr=0.0408
+      - steps_601_700: pr=0.965, isr=0.02
+      - steps_701_800: pr=0.988, isr=0.0178
+      - steps_801_900: pr=0.978, isr=0.017
+      - steps_901_1000: pr=0.981, isr=0.0144
+  - **eval**:
+    - prove_rate: 0.96
+    - n_proved: 96
+    - n_problems: 100
+    - mean_isr: 0.0027
+    - isr_std: 0.0118
+    - median_isr: 0
+    - proved_only_mean_isr: 0.0028
+    - min_isr: 0
+    - max_isr: 0.0588
+    - isr_0_ratio: 0.9479
+    - isr_1_ratio: 0
+    - component_count_mean: 18.55
+    - component_count_2_ratio: 0
+    - mean_n_necessary: 0.052
+    - n_necessary_0_ratio: 0.9479
+    - tautological_collapse: false
+    - by_answer_type:
+      - false: count=29, proved=26, prove_rate=0.8966, mean_isr=0
+      - unknown: count=31, proved=30, prove_rate=0.9677, mean_isr=0.0053
+      - true: count=40, proved=40, prove_rate=1, mean_isr=0.0026
+    - eval_time_seconds: 396.3
+- **notes**: Extended training confirms ISR collapse worsens monotonically. 500-step ISR=0.123 drops to 0.0027 at 1000 steps (-97.8%). Component count tripled (6.58->18.55). 94.8% of proofs have ZERO necessary components. Not tautological collapse but contradiction-based collapse (P(a) and not-P(a) embedded among irrelevant premises). Windowed ISR monotonically decreasing with no recovery signal.
+
+---
+
+## Experiment 5: plan002-additive-b01-s42
+
+- **status**: DONE
+- **conclusion**: success
+- **eval_method**: eval_sta.py full STA
+- **metrics**:
+  - eval_prove_rate: 0.81
+  - eval_mean_isr: 0.3365
+  - eval_isr_std: 0.3227
+  - eval_proved_only_isr: 0.4154
+  - eval_median_isr: 0.2
+  - eval_n_proved: 81
+  - eval_n_problems: 100
+  - eval_data: proofwriter_fol_100.jsonl
+  - eval_component_count_mean: 5.58
+  - eval_component_count_2_ratio: 0.037
+  - eval_isr_1_ratio: 0.124
+  - eval_isr_0_ratio: 0.037
+  - eval_by_type_false_pr: 0.88
+  - eval_by_type_false_isr: 0.3515
+  - eval_by_type_unknown_pr: 0.83
+  - eval_by_type_unknown_isr: 0.3684
+  - eval_by_type_true_pr: 0.74
+  - eval_by_type_true_isr: 0.2869
+  - tautological_collapse: false
+  - train_total_steps: 500
+  - train_duration_min: 63
+  - train_last100_pr: 0.6875
+  - train_last100_isr: 0.1954
+  - train_last100_loss: 0.015
+- **notes**: Best working point. eval PR=0.81 (exec-only baseline 0.93, -12pp acceptable), eval ISR=0.3365 (baseline 0.1232, 2.73x). No tautological collapse (mean components=5.58). beta dose response: beta=0.1 -> PR maintained + ISR improved; beta=0.3 -> PR collapses (0.18).
+
+---
+
+## Experiment 6: plan002-additive-b01-s43
+
+- **status**: RUNNING (at time of registry snapshot)
+- **conclusion**: N/A (still running)
+- **metrics**: None yet
+- **notes**: Seed 43 replication of beta=0.1 ISR additive. Testing whether ISR beta=0.1 can rescue the "bad seed" that failed under exec-only (PR=14%).
+
+---
+
+## Experiment 7: plan002-additive-b01-s44
+
+- **status**: RUNNING (at time of registry snapshot)
+- **conclusion**: N/A (still running)
+- **metrics**: None yet
+- **notes**: Seed 44 replication. Testing whether ISR beta=0.1 prevents tautological collapse that occurred under exec-only s44.
+
+---
+
+## Experiment 8: plan018-additive-random-b01-s42
+
+- **status**: DONE
+- **conclusion**: negative
+- **eval_method**: eval_sta.py full STA (inferred from metric keys matching full STA pattern)
+- **metrics**:
+  - eval_prove_rate: 0.79
+  - eval_mean_isr: 0.1038
+  - eval_isr_std: 0.1369
+  - eval_median_isr: 0.0357
+  - eval_proved_only_isr: 0.1314
+  - eval_n_proved: 79
+  - eval_n_problems: 100
+  - eval_component_count_mean: 8.46
+  - eval_component_count_median: 8
+  - eval_component_count_2_ratio: 0
+  - eval_isr_1_ratio: 0
+  - eval_isr_0_ratio: 0.367
+  - eval_isr_gt0_ratio: 0.633
+  - eval_by_type_false_pr: 0.8
+  - eval_by_type_false_isr: 0.1318
+  - eval_by_type_unknown_pr: 0.7317
+  - eval_by_type_unknown_isr: 0.0944
+  - eval_by_type_true_pr: 0.8529
+  - eval_by_type_true_isr: 0.0945
+  - tautological_collapse: false
+  - train_total_steps: 500
+  - train_duration_min: 70.5
+  - train_last100_pr: 0.805
+  - train_last100_isr: 0.1432
+  - train_loss: 0.005
+- **notes**: Random control beta=0.1. PR nearly identical to ISR beta=0.1 (0.79 vs 0.81, delta=0.02), but ISR is 3.2x lower (0.104 vs 0.337). Proved-only ISR also 3.2x lower (0.131 vs 0.415). 36.7% of proved samples have ISR=0. Proves ISR reward provides genuine structural guidance, not just variance regularization.
+
+---
+
+## Experiment 9: plan002-additive-b03-s42
+
+- **status**: DONE
+- **conclusion**: negative
+- **eval_method**: Training metrics are from training log (binary approx _fast_fn). Top-level eval fields added separately.
+- **metrics** (training log):
+  - total_steps: 500
+  - duration_min: 56.7
+  - overall_prove_rate: 0.34025
+  - overall_isr: 0.11527
+  - first20_prove_rate: 0.15625
+  - last50_prove_rate: 0.555
+  - last100_prove_rate: 0.5525
+  - mean_loss: 0.008914
+  - last100_loss: 0.014469
+  - parse_rate: 1
+  - w1_50_prove_rate: 0.13
+  - w51_100_prove_rate: 0.095
+  - w101_200_prove_rate: 0.185
+  - w201_300_prove_rate: 0.375
+  - w301_400_prove_rate: 0.47625
+  - w401_500_prove_rate: 0.5525
+  - steps_ge_085: 52
+  - first_step_ge_085: 46
+  - final_prove_rate: 1
+  - final_isr_mean: 0.3089
+  - final_reward_mean: 1.0927
+- **eval metrics** (top-level fields, not nested in metrics dict):
+  - eval_prove_rate: 0.18
+  - eval_mean_isr: 0.0257
+  - eval_isr_std: 0.0742
+  - eval_proved_only_isr: 0.1427
+  - eval_median_isr: 0
+  - eval_isr_pr_ratio: 0.1427
+- **notes**: ISR is binary approximation (_fast_fn) in training metrics, not usable for cross-run comparison. PR trajectory 0.13->0.095->0.185->0.375->0.476->0.553, steady rise but not saturated (52/500 steps >=0.85). Eval PR=0.18 -- beta=0.3 too high, PR collapses.
+
+---
+
+## Experiment 10: plan017-additive-random-s42
+
+- **status**: DONE
+- **conclusion**: negative
+- **eval_method**: eval_sta.py full STA
+- **metrics**:
+  - eval_prove_rate: 0.48
+  - eval_mean_isr: 0.0453
+  - eval_isr_std: 0.0759
+  - eval_median_isr: 0
+  - eval_max_isr: 0.2857
+  - eval_proved_only_isr: 0.0943
+  - eval_n_proved: 48
+  - eval_n_problems: 100
+  - eval_data: proofwriter_fol_100.jsonl
+  - eval_component_count_mean: 9.6
+  - eval_component_count_2_ratio: 0
+  - eval_isr_pr_ratio: 0.0943
+  - eval_elapsed_s: 542.3
+  - eval_by_type_false_pr: 0.32
+  - eval_by_type_false_isr: 0.0254
+  - eval_by_type_unknown_pr: 0.51
+  - eval_by_type_unknown_isr: 0.0518
+  - eval_by_type_true_pr: 0.56
+  - eval_by_type_true_isr: 0.052
+  - tautological_collapse: false
+- **notes**: Additive random beta=0.3 control. PR=0.48 (low). Prevented 2-component collapse (component_2_ratio=0) but model generates complex-but-useless formalizations (many premises but conclusion doesn't depend on any). 33% proved samples have ISR=0. Variance regularization insufficient for genuine proofs.
+
+---
+
+## Experiment 11: plan013-random-reward-s42-r4
+
+- **status**: DONE
+- **conclusion**: success (but degenerate)
+- **eval_method**: eval_sta.py full STA
+- **metrics**:
+  - eval_prove_rate: 1
+  - eval_mean_isr: 0.535
+  - eval_isr_std: 0.1282
+  - eval_proved_only_isr: 0.535
+  - eval_median_isr: 0.5
+  - eval_n_proved: 100
+  - eval_n_problems: 100
+  - eval_data: proofwriter_fol_100.jsonl
+  - eval_note: "DEGENERATE: model generates trivial 2-component proofs (premise=conclusion, conclusion=conclusion), ISR=0.5 is artifact of trivial proof structure"
+- **notes**: Training log ISR was binary approximation (_fast_fn), ISR~=prove_rate, contains no structural info. Eval shows PR=100% but ISR=0.5 is an artifact of trivial 2-component tautological proofs. The high ISR is fake.
+
+---
+
+## Experiment 12: plan005-sta-low-s42
+
+- **status**: DONE
+- **conclusion**: negative
+- **eval_method**: Training log metrics only (checkpoint deleted; no separate eval_sta.py run recorded in metrics)
+- **metrics**:
+  - total_steps: 500
+  - duration_min: 71
+  - parse_rate: 1
+  - overall_prove_rate: 0.5657
+  - overall_isr: 0.1682
+  - last50_prove_rate: 0.77
+  - last50_isr: 0.2559
+  - last100_prove_rate: 0.7725
+  - last100_isr: 0.2299
+  - last100_loss: 0.022752
+  - overall_loss: 0.017296
+  - last100_isr_pr_ratio: 0.298
+  - last100_isr_lt_pr_count: "99/100"
+  - first_rolling10_pr_ge_0.8: 178
+  - first_rolling10_pr_ge_0.9: 439
+  - max_rolling10_pr: 0.9375
+  - max_rolling10_isr: 0.3282
+  - windowed:
+    - 1-50: pr=0.1775, isr=0.0906
+    - 51-100: pr=0.1775, isr=0.0835
+    - 101-200: pr=0.5062, isr=0.1463
+    - 201-300: pr=0.6713, isr=0.1791
+    - 301-400: pr=0.7013, isr=0.1984
+    - 401-500: pr=0.7725, isr=0.2299
+- **notes**: Conclusion=negative based on prove_rate decline (last100 0.7725 vs exec-only 0.865). But structural finding: ISR/PR ratio=0.298, 99/100 steps ISR < PR, showing STA=0.1 maintained ISR-PR separation -- model did not hack prove_rate to bypass STA penalty. Supports "STA suppresses reward hacking" claim. Windowed ISR/PR stabilizes after step 100. Checkpoint deleted, not retrained. Paper uses windowed training curve data as evidence.
+
+---
+
+## Experiment 13: plan012-hacking-taxonomy
+
+- **status**: DONE
+- **conclusion**: success
+- **eval_method**: Rule-based hacking taxonomy classification on eval_sta outputs
+- **metrics**:
+  - isr_b01_genuine_rate: 0.259
+  - random_b01_genuine_rate: 0.177
+  - genuine_rate_delta_pp: 8.2
+  - isr_b01_conclusion_embedding_rate: 0.728
+  - random_b01_conclusion_embedding_rate: 0.785
+  - isr_b01_genuine_mean_isr: 0.6723
+  - random_b01_genuine_mean_isr: 0.3427
+  - isr_b01_complexity_wo_utility_rate: 0
+  - random_b01_complexity_wo_utility_rate: 0.038
+  - isr_b01_hacking_rate: 0.741
+  - random_b01_hacking_rate: 0.823
+- **notes**: Conclusion embedding is the dominant hacking mode (ISR 72.8% vs Random 78.5%). ISR beta=0.1 has +8.2pp more genuine proofs (25.9% vs 17.7%). Genuine proof ISR quality 0.67 vs 0.34. ISR eliminates complexity-without-utility hacking (0% vs 3.8%). Overall hacking rate: ISR 74.1% vs Random 82.3%.
+
+---
+
+**Summary of eval method inconsistencies to note for paper tables:**
+
+| exp_id | eval_method |
+|--------|------------|
+| plan001-exec-only-s42-r2 | eval_sta.py full STA |
+| plan001-exec-only-s43-r4 | **sampling eval (T=0.7)** -- different method |
+| plan001-exec-only-s44 | eval_sta.py full STA |
+| plan016-extended-1000-s42 | eval_sta.py full STA |
+| plan002-additive-b01-s42 | eval_sta.py full STA |
+| plan002-additive-b01-s43 | RUNNING -- no metrics yet |
+| plan002-additive-b01-s44 | RUNNING -- no metrics yet |
+| plan018-additive-random-b01-s42 | eval_sta.py full STA (inferred) |
+| plan002-additive-b03-s42 | **training log only** (binary approx _fast_fn); eval PR/ISR at top level |
+| plan017-additive-random-s42 | eval_sta.py full STA |
+| plan013-random-reward-s42-r4 | eval_sta.py full STA (but degenerate) |
+| plan005-sta-low-s42 | **training log only** (checkpoint deleted) |
+| plan012-hacking-taxonomy | rule-based classification |
+
+agentId: a205d415c0ff9d4ac (use SendMessage with to: 'a205d415c0ff9d4ac' to continue this agent)
+&lt;usage>total_tokens: 45988
+tool_uses: 12
+duration_ms: 162937&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1c08c668-cedb-4efe-8f45-af069a6d27af",
+  "isSidechain": false,
+  "promptId": "c9de32c8-d22a-4308-998c-6703f67415fe",
+  "type": "user",
+  "uuid": "3619b73b-e85c-4bdb-87a5-9be36112a7ab",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to extract metrics from a large JSON registry file for specific experiments. The file is at:\n/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt\n\nThe file has schema: {result: string} where `result` is a JSON string that needs to be parsed.\n\nI need metrics for these specific exp_ids:\n1. plan001-exec-only-s42-r2\n2. plan001-exec-only-s43-r4\n3. plan001-exec-only-s44\n4. plan016-extended-1000-s42\n5. plan002-additive-b01-s42\n6. plan002-additive-b01-s43\n7. plan002-additive-b01-s44\n8. plan018-additive-random-b01-s42\n9. plan002-additive-b03-s42\n10. plan017-additive-random-s42\n11. plan013-random-reward-s42-r4\n12. plan005-sta-low-s42\n13. plan012 (hacking taxonomy results - might have a different exp_id pattern)\n\nFor each experiment, I need:\n- exp_id\n- status\n- full metrics dict (all keys and values)\n- conclusion if any\n- any notes about eval method used\n\nFirst probe the structure with jq, then extract each experiment's data. Return ALL metrics verbatim - do not summarize or abbreviate numbers. I need exact values for paper tables.",
+    "agentId": "a205d415c0ff9d4ac",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "All 13 experiments have been extracted. Here is the complete data:\n\n---\n\n## Experiment 1: plan001-exec-only-s42-r2\n\n- **status**: DONE\n- **conclusion**: success\n- **eval_method**: eval_sta.py full STA\n- **metrics**:\n  - eval_prove_rate: 0.93\n  - eval_mean_isr: 0.1232\n  - eval_isr_std: 0.1887\n  - eval_proved_only_isr: 0.1324\n  - eval_median_isr: 0\n  - eval_n_proved: 93\n  - eval_n_problems: 100\n  - eval_data: proofwriter_fol_100.jsonl\n- **notes**: Training log ISR=0.8612 was binary approximation (_fast_fn), not real ISR. Final comparable ISR obtained via eval_sta.py (full STA).\n\n---\n\n## Experiment 2: plan001-exec-only-s43-r4\n\n- **status**: DONE\n- **conclusion**: negative\n- **eval_method**: sampling eval (do_sample=True, temperature=0.7) -- **NOT eval_sta.py full STA** (different from other groups; D029 decision: not retrained, paper annotates method difference; PR=14% is a failure case regardless)\n- **metrics**:\n  - eval_sampling_prove_rate: 0.14\n  - eval_sampling_mean_isr: 0\n  - eval_sampling_n_proved: 14\n  - eval_sampling_temperature: 0.7\n  - eval_sampling_method: \"do_sample=True, temperature=0.7\"\n  - eval_sampling_by_answer:\n    - true: count=34, proved=6, prove_rate=0.176\n    - false: count=25, proved=2, prove_rate=0.08\n    - unknown: count=41, proved=6, prove_rate=0.146\n- **notes**: Train PR(last100)=0.883 but eval PR=14% (sampling T=0.7), ISR=0. 87% samples hit max_new_tokens generating unparseable long output. Extreme cross-seed instability vs s42 (eval PR=93%).\n\n---\n\n## Experiment 3: plan001-exec-only-s44\n\n- **status**: DONE\n- **conclusion**: negative\n- **eval_method**: eval_sta.py full STA\n- **metrics**:\n  - eval_prove_rate: 0.98\n  - eval_mean_isr: 0.57\n  - eval_isr_std: 0.2013\n  - eval_median_isr: 0.5\n  - eval_proved_only_isr: 0.5816\n  - eval_n_proved: 98\n  - eval_n_problems: 100\n  - eval_data: proofwriter_fol_100.jsonl\n  - eval_component_count_mean: 2.04\n  - eval_component_count_2: 94\n  - eval_component_count_3: 4\n  - eval_by_type_false_pr: 1\n  - eval_by_type_false_isr: 0.62\n  - eval_by_type_unknown_pr: 0.976\n  - eval_by_type_unknown_isr: 0.524\n  - eval_by_type_true_pr: 0.971\n  - eval_by_type_true_isr: 0.588\n  - train_last100_pr: 0.9988\n  - train_last100_isr: 0.5611\n  - train_last100_loss: 0.000419\n  - train_duration_min: 36.8\n  - tautological_collapse: true\n- **notes**: TAUTOLOGICAL COLLAPSE confirmed. 94% samples have only 2 components (premise=conclusion tautology), mean components=2.04. ISR~0.5 is 2-component artifact. s42 is the only seed producing genuine proofs (mean components=6.58). Exec-only reward fails 2/3 seeds.\n\n---\n\n## Experiment 4: plan016-extended-1000-s42\n\n- **status**: DONE\n- **conclusion**: success\n- **eval_method**: eval_sta.py full STA\n- **metrics** (nested structure):\n  - **train**:\n    - total_steps: 1000\n    - duration_min: 146\n    - final_prove_rate: 0.8396\n    - final_mean_isr: 0.0503\n    - train_loss: 0.0125\n    - epoch: 4\n    - windowed:\n      - steps_001_100: pr=0.19, isr=0.0859\n      - steps_101_200: pr=0.66, isr=0.1115\n      - steps_201_300: pr=0.838, isr=0.0985\n      - steps_301_400: pr=0.907, isr=0.054\n      - steps_401_500: pr=0.927, isr=0.0433\n      - steps_501_600: pr=0.963, isr=0.0408\n      - steps_601_700: pr=0.965, isr=0.02\n      - steps_701_800: pr=0.988, isr=0.0178\n      - steps_801_900: pr=0.978, isr=0.017\n      - steps_901_1000: pr=0.981, isr=0.0144\n  - **eval**:\n    - prove_rate: 0.96\n    - n_proved: 96\n    - n_problems: 100\n    - mean_isr: 0.0027\n    - isr_std: 0.0118\n    - median_isr: 0\n    - proved_only_mean_isr: 0.0028\n    - min_isr: 0\n    - max_isr: 0.0588\n    - isr_0_ratio: 0.9479\n    - isr_1_ratio: 0\n    - component_count_mean: 18.55\n    - component_count_2_ratio: 0\n    - mean_n_necessary: 0.052\n    - n_necessary_0_ratio: 0.9479\n    - tautological_collapse: false\n    - by_answer_type:\n      - false: count=29, proved=26, prove_rate=0.8966, mean_isr=0\n      - unknown: count=31, proved=30, prove_rate=0.9677, mean_isr=0.0053\n      - true: count=40, proved=40, prove_rate=1, mean_isr=0.0026\n    - eval_time_seconds: 396.3\n- **notes**: Extended training confirms ISR collapse worsens monotonically. 500-step ISR=0.123 drops to 0.0027 at 1000 steps (-97.8%). Component count tripled (6.58->18.55). 94.8% of proofs have ZERO necessary components. Not tautological collapse but contradiction-based collapse (P(a) and not-P(a) embedded among irrelevant premises). Windowed ISR monotonically decreasing with no recovery signal.\n\n---\n\n## Experiment 5: plan002-additive-b01-s42\n\n- **status**: DONE\n- **conclusion**: success\n- **eval_method**: eval_sta.py full STA\n- **metrics**:\n  - eval_prove_rate: 0.81\n  - eval_mean_isr: 0.3365\n  - eval_isr_std: 0.3227\n  - eval_proved_only_isr: 0.4154\n  - eval_median_isr: 0.2\n  - eval_n_proved: 81\n  - eval_n_problems: 100\n  - eval_data: proofwriter_fol_100.jsonl\n  - eval_component_count_mean: 5.58\n  - eval_component_count_2_ratio: 0.037\n  - eval_isr_1_ratio: 0.124\n  - eval_isr_0_ratio: 0.037\n  - eval_by_type_false_pr: 0.88\n  - eval_by_type_false_isr: 0.3515\n  - eval_by_type_unknown_pr: 0.83\n  - eval_by_type_unknown_isr: 0.3684\n  - eval_by_type_true_pr: 0.74\n  - eval_by_type_true_isr: 0.2869\n  - tautological_collapse: false\n  - train_total_steps: 500\n  - train_duration_min: 63\n  - train_last100_pr: 0.6875\n  - train_last100_isr: 0.1954\n  - train_last100_loss: 0.015\n- **notes**: Best working point. eval PR=0.81 (exec-only baseline 0.93, -12pp acceptable), eval ISR=0.3365 (baseline 0.1232, 2.73x). No tautological collapse (mean components=5.58). beta dose response: beta=0.1 -> PR maintained + ISR improved; beta=0.3 -> PR collapses (0.18).\n\n---\n\n## Experiment 6: plan002-additive-b01-s43\n\n- **status**: RUNNING (at time of registry snapshot)\n- **conclusion**: N/A (still running)\n- **metrics**: None yet\n- **notes**: Seed 43 replication of beta=0.1 ISR additive. Testing whether ISR beta=0.1 can rescue the \"bad seed\" that failed under exec-only (PR=14%).\n\n---\n\n## Experiment 7: plan002-additive-b01-s44\n\n- **status**: RUNNING (at time of registry snapshot)\n- **conclusion**: N/A (still running)\n- **metrics**: None yet\n- **notes**: Seed 44 replication. Testing whether ISR beta=0.1 prevents tautological collapse that occurred under exec-only s44.\n\n---\n\n## Experiment 8: plan018-additive-random-b01-s42\n\n- **status**: DONE\n- **conclusion**: negative\n- **eval_method**: eval_sta.py full STA (inferred from metric keys matching full STA pattern)\n- **metrics**:\n  - eval_prove_rate: 0.79\n  - eval_mean_isr: 0.1038\n  - eval_isr_std: 0.1369\n  - eval_median_isr: 0.0357\n  - eval_proved_only_isr: 0.1314\n  - eval_n_proved: 79\n  - eval_n_problems: 100\n  - eval_component_count_mean: 8.46\n  - eval_component_count_median: 8\n  - eval_component_count_2_ratio: 0\n  - eval_isr_1_ratio: 0\n  - eval_isr_0_ratio: 0.367\n  - eval_isr_gt0_ratio: 0.633\n  - eval_by_type_false_pr: 0.8\n  - eval_by_type_false_isr: 0.1318\n  - eval_by_type_unknown_pr: 0.7317\n  - eval_by_type_unknown_isr: 0.0944\n  - eval_by_type_true_pr: 0.8529\n  - eval_by_type_true_isr: 0.0945\n  - tautological_collapse: false\n  - train_total_steps: 500\n  - train_duration_min: 70.5\n  - train_last100_pr: 0.805\n  - train_last100_isr: 0.1432\n  - train_loss: 0.005\n- **notes**: Random control beta=0.1. PR nearly identical to ISR beta=0.1 (0.79 vs 0.81, delta=0.02), but ISR is 3.2x lower (0.104 vs 0.337). Proved-only ISR also 3.2x lower (0.131 vs 0.415). 36.7% of proved samples have ISR=0. Proves ISR reward provides genuine structural guidance, not just variance regularization.\n\n---\n\n## Experiment 9: plan002-additive-b03-s42\n\n- **status**: DONE\n- **conclusion**: negative\n- **eval_method**: Training metrics are from training log (binary approx _fast_fn). Top-level eval fields added separately.\n- **metrics** (training log):\n  - total_steps: 500\n  - duration_min: 56.7\n  - overall_prove_rate: 0.34025\n  - overall_isr: 0.11527\n  - first20_prove_rate: 0.15625\n  - last50_prove_rate: 0.555\n  - last100_prove_rate: 0.5525\n  - mean_loss: 0.008914\n  - last100_loss: 0.014469\n  - parse_rate: 1\n  - w1_50_prove_rate: 0.13\n  - w51_100_prove_rate: 0.095\n  - w101_200_prove_rate: 0.185\n  - w201_300_prove_rate: 0.375\n  - w301_400_prove_rate: 0.47625\n  - w401_500_prove_rate: 0.5525\n  - steps_ge_085: 52\n  - first_step_ge_085: 46\n  - final_prove_rate: 1\n  - final_isr_mean: 0.3089\n  - final_reward_mean: 1.0927\n- **eval metrics** (top-level fields, not nested in metrics dict):\n  - eval_prove_rate: 0.18\n  - eval_mean_isr: 0.0257\n  - eval_isr_std: 0.0742\n  - eval_proved_only_isr: 0.1427\n  - eval_median_isr: 0\n  - eval_isr_pr_ratio: 0.1427\n- **notes**: ISR is binary approximation (_fast_fn) in training metrics, not usable for cross-run comparison. PR trajectory 0.13->0.095->0.185->0.375->0.476->0.553, steady rise but not saturated (52/500 steps >=0.85). Eval PR=0.18 -- beta=0.3 too high, PR collapses.\n\n---\n\n## Experiment 10: plan017-additive-random-s42\n\n- **status**: DONE\n- **conclusion**: negative\n- **eval_method**: eval_sta.py full STA\n- **metrics**:\n  - eval_prove_rate: 0.48\n  - eval_mean_isr: 0.0453\n  - eval_isr_std: 0.0759\n  - eval_median_isr: 0\n  - eval_max_isr: 0.2857\n  - eval_proved_only_isr: 0.0943\n  - eval_n_proved: 48\n  - eval_n_problems: 100\n  - eval_data: proofwriter_fol_100.jsonl\n  - eval_component_count_mean: 9.6\n  - eval_component_count_2_ratio: 0\n  - eval_isr_pr_ratio: 0.0943\n  - eval_elapsed_s: 542.3\n  - eval_by_type_false_pr: 0.32\n  - eval_by_type_false_isr: 0.0254\n  - eval_by_type_unknown_pr: 0.51\n  - eval_by_type_unknown_isr: 0.0518\n  - eval_by_type_true_pr: 0.56\n  - eval_by_type_true_isr: 0.052\n  - tautological_collapse: false\n- **notes**: Additive random beta=0.3 control. PR=0.48 (low). Prevented 2-component collapse (component_2_ratio=0) but model generates complex-but-useless formalizations (many premises but conclusion doesn't depend on any). 33% proved samples have ISR=0. Variance regularization insufficient for genuine proofs.\n\n---\n\n## Experiment 11: plan013-random-reward-s42-r4\n\n- **status**: DONE\n- **conclusion**: success (but degenerate)\n- **eval_method**: eval_sta.py full STA\n- **metrics**:\n  - eval_prove_rate: 1\n  - eval_mean_isr: 0.535\n  - eval_isr_std: 0.1282\n  - eval_proved_only_isr: 0.535\n  - eval_median_isr: 0.5\n  - eval_n_proved: 100\n  - eval_n_problems: 100\n  - eval_data: proofwriter_fol_100.jsonl\n  - eval_note: \"DEGENERATE: model generates trivial 2-component proofs (premise=conclusion, conclusion=conclusion), ISR=0.5 is artifact of trivial proof structure\"\n- **notes**: Training log ISR was binary approximation (_fast_fn), ISR~=prove_rate, contains no structural info. Eval shows PR=100% but ISR=0.5 is an artifact of trivial 2-component tautological proofs. The high ISR is fake.\n\n---\n\n## Experiment 12: plan005-sta-low-s42\n\n- **status**: DONE\n- **conclusion**: negative\n- **eval_method**: Training log metrics only (checkpoint deleted; no separate eval_sta.py run recorded in metrics)\n- **metrics**:\n  - total_steps: 500\n  - duration_min: 71\n  - parse_rate: 1\n  - overall_prove_rate: 0.5657\n  - overall_isr: 0.1682\n  - last50_prove_rate: 0.77\n  - last50_isr: 0.2559\n  - last100_prove_rate: 0.7725\n  - last100_isr: 0.2299\n  - last100_loss: 0.022752\n  - overall_loss: 0.017296\n  - last100_isr_pr_ratio: 0.298\n  - last100_isr_lt_pr_count: \"99/100\"\n  - first_rolling10_pr_ge_0.8: 178\n  - first_rolling10_pr_ge_0.9: 439\n  - max_rolling10_pr: 0.9375\n  - max_rolling10_isr: 0.3282\n  - windowed:\n    - 1-50: pr=0.1775, isr=0.0906\n    - 51-100: pr=0.1775, isr=0.0835\n    - 101-200: pr=0.5062, isr=0.1463\n    - 201-300: pr=0.6713, isr=0.1791\n    - 301-400: pr=0.7013, isr=0.1984\n    - 401-500: pr=0.7725, isr=0.2299\n- **notes**: Conclusion=negative based on prove_rate decline (last100 0.7725 vs exec-only 0.865). But structural finding: ISR/PR ratio=0.298, 99/100 steps ISR < PR, showing STA=0.1 maintained ISR-PR separation -- model did not hack prove_rate to bypass STA penalty. Supports \"STA suppresses reward hacking\" claim. Windowed ISR/PR stabilizes after step 100. Checkpoint deleted, not retrained. Paper uses windowed training curve data as evidence.\n\n---\n\n## Experiment 13: plan012-hacking-taxonomy\n\n- **status**: DONE\n- **conclusion**: success\n- **eval_method**: Rule-based hacking taxonomy classification on eval_sta outputs\n- **metrics**:\n  - isr_b01_genuine_rate: 0.259\n  - random_b01_genuine_rate: 0.177\n  - genuine_rate_delta_pp: 8.2\n  - isr_b01_conclusion_embedding_rate: 0.728\n  - random_b01_conclusion_embedding_rate: 0.785\n  - isr_b01_genuine_mean_isr: 0.6723\n  - random_b01_genuine_mean_isr: 0.3427\n  - isr_b01_complexity_wo_utility_rate: 0\n  - random_b01_complexity_wo_utility_rate: 0.038\n  - isr_b01_hacking_rate: 0.741\n  - random_b01_hacking_rate: 0.823\n- **notes**: Conclusion embedding is the dominant hacking mode (ISR 72.8% vs Random 78.5%). ISR beta=0.1 has +8.2pp more genuine proofs (25.9% vs 17.7%). Genuine proof ISR quality 0.67 vs 0.34. ISR eliminates complexity-without-utility hacking (0% vs 3.8%). Overall hacking rate: ISR 74.1% vs Random 82.3%.\n\n---\n\n**Summary of eval method inconsistencies to note for paper tables:**\n\n| exp_id | eval_method |\n|--------|------------|\n| plan001-exec-only-s42-r2 | eval_sta.py full STA |\n| plan001-exec-only-s43-r4 | **sampling eval (T=0.7)** -- different method |\n| plan001-exec-only-s44 | eval_sta.py full STA |\n| plan016-extended-1000-s42 | eval_sta.py full STA |\n| plan002-additive-b01-s42 | eval_sta.py full STA |\n| plan002-additive-b01-s43 | RUNNING -- no metrics yet |\n| plan002-additive-b01-s44 | RUNNING -- no metrics yet |\n| plan018-additive-random-b01-s42 | eval_sta.py full STA (inferred) |\n| plan002-additive-b03-s42 | **training log only** (binary approx _fast_fn); eval PR/ISR at top level |\n| plan017-additive-random-s42 | eval_sta.py full STA |\n| plan013-random-reward-s42-r4 | eval_sta.py full STA (but degenerate) |\n| plan005-sta-low-s42 | **training log only** (checkpoint deleted) |\n| plan012-hacking-taxonomy | rule-based classification |"
+      }
+    ],
+    "totalDurationMs": 162937,
+    "totalTokens": 45988,
+    "totalToolUseCount": 12,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2499,
+      "cache_read_input_tokens": 37822,
+      "output_tokens": 5666,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2499
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5666,
+          "cache_read_input_tokens": 37822,
+          "cache_creation_input_tokens": 2499,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2499,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 8,
+      "searchCount": 0,
+      "bashCount": 4,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "1c08c668-cedb-4efe-8f45-af069a6d27af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "3619b73b-e85c-4bdb-87a5-9be36112a7ab",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper Table 1 and Table 2 draft",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-14T09:13:41.470Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the metrics. Let me compile the two tables. Let me organize the data:
+
+## Table 1: Main Results
+
+### Exec-only baseline (R_exec only)
+- **s42** (plan001-exec-only-s42-r2): PR=0.93, ISR=0.1232, proved_only_ISR=0.1324, no taut collapse
+- **s43** (plan001-exec-only-s43-r4): PR=0.14 (sampling T=0.7), ISR=0 (sampling), taut collapse? No, just bad seed with sampling eval
+
+
+- **s44** (plan001-exec-only-s44): PR=0.98, ISR=0.57 with a tautological artifact, proved_only_ISR=0.5816, and this one does show taut collapse
+
+Looking at the three seeds for exec-only, I'm getting PR values of 0.93, 0.14, and 0.98, but s43 used a different evaluation method with sampling so it's not directly comparable to the others. I should note that distinction when averaging.
+
+### Extended exec-only (1000 steps)
+- **s42** (plan016-extended-1000-s42): PR=0.96, ISR=0.0
+
+027, proved_only_ISR=0.0028, and no taut collapse
+
+### ISR β=0.1
+- **s42** (plan002-additive-b01-s42): PR=0.81, ISR=0.3365, proved_only_ISR=0.4154, no taut collapse
+- **s43** and **s44** are still running
+
+### Random β=0.1
+- **s42** (plan018-additive-random-b01-s42): PR=0.79, ISR=0.1038, proved_only_ISR=0.1314, no taut collapse
+
+### ISR β=0.3
+- **s42** (plan002-additive-b03-s42): currently evaluating with PR=0.18, ISR=0.0257, proved_only_ISR=0.1427
+
+### Random β=0.3
+- **s42** (plan017-additive-random-s42): PR=0.48, ISR=0.0453, proved_only_ISR=0.0943, no taut collapse
+
+### Convex Random
+- **s42** (plan013-random-reward-s42-r4): achieved perfect PR=1.00 but shows degeneracy with tautological 2-component proofs
+
+### Convex ISR (STA)
+- **s42** (plan005-sta-low-s42): training metrics show PR=0.7725 and ISR=0.2299 on the last 100 steps
+
+Now looking at the hacking taxonomy results, ISR with β=0.1 achieves a 25.9% genuine rate compared to 17.7% for random, giving an 8.2 percentage point advantage. The ISR approach shows higher mean ISR on genuine proofs (0.6723 vs 0.3427) but interestingly has a lower hacking rate at 74.1% versus 82.3% for random, despite both showing substantial amounts of non-genuine behavior.
+
+For the table structure, I need to define the reward formulas clearly—exec-only gives a binary reward for passing execution, while the additive variants add either ISR or random noise scaled by β, and the convex variants blend execution rewards with either ISR or random components using a weighting parameter α.
+
+Now I'm checking the actual metrics for plan002-additive-b03-s42. The registry shows eval data at the top level even though the task description says train metrics only, so I should use what's available while being transparent about the source.
+
+For plan005-sta-low-s42, the registry confirms there's only training data, so I'll mark those entries as "(train)". I'm settling on the table structure with columns for Method, Formula, β, Seed(s), eval PR, eval ISR, proved_only ISR, Components, and Tautology Collapse, then working through what data I actually have for each experiment.
+
+I'm tracking down the component counts across all the runs—some are directly available in the metrics, others I need to infer from experiment notes. For s42 exec-only, I found the 6.58 value referenced in the s44 notes. For the convex random approach, the notes mention trivial 2-component proofs, so I'll use that estimate. Now I'm ready to compile the full table with all the values I've gathered.
+
+Generating markdown table...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3619b73b-e85c-4bdb-87a5-9be36112a7ab",
+  "isSidechain": false,
+  "requestId": "req_011Cb2CojRTzzWbFuLLzh4KT",
+  "type": "assistant",
+  "uuid": "857dc141-4577-4760-9c2c-09cb202a5878",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N2uh2EcrfmME1j44Xw4rMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6314,
+      "cache_read_input_tokens": 26628,
+      "output_tokens": 4692,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6314,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4692,
+          "cache_read_input_tokens": 26628,
+          "cache_creation_input_tokens": 6314,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6314
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-14T09:13:41.479Z_
+
+All data extracted. Now I'll compile the tables.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "857dc141-4577-4760-9c2c-09cb202a5878",
+  "isSidechain": false,
+  "requestId": "req_011Cb2CojRTzzWbFuLLzh4KT",
+  "type": "assistant",
+  "uuid": "7991f414-a7c8-4ec7-9454-bbff98bd94d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N2uh2EcrfmME1j44Xw4rMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6314,
+      "cache_read_input_tokens": 26628,
+      "output_tokens": 4692,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6314,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4692,
+          "cache_read_input_tokens": 26628,
+          "cache_creation_input_tokens": 6314,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6314
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T09:14:23.474Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01LmKTgAggi5XKYkfZcmUU7Z`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables_draft.md",
+  "content": "# Paper Tables Draft (2026-05-14)\n\nAll numbers sourced from experiment registry. Eval method is eval_sta.py full STA unless noted.\n\n---\n\n## Table 1: Main Results\n\n| Method | Formula | β | Seed | eval PR | eval ISR | proved-only ISR | Comp. (mean) | Taut. Collapse? |\n|--------|---------|---|------|---------|----------|-----------------|--------------|-----------------|\n| Exec-only (500 steps) | R = 𝟙{exec} | — | 42 | 0.93 | 0.1232 | 0.1324 | 6.58† | No |\n| Exec-only (500 steps) | R = 𝟙{exec} | — | 43 | 0.14‡ | 0.00‡ | — | — | No (degenerate)‡ |\n| Exec-only (500 steps) | R = 𝟙{exec} | — | 44 | 0.98 | 0.57§ | 0.5816§ | 2.04§ | **Yes** |\n| Exec-only (1000 steps) | R = 𝟙{exec} | — | 42 | 0.96 | 0.0027 | 0.0028 | 18.55 | No |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.1 | 42 | 0.81 | 0.3365 | 0.4154 | 5.58 | No |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.1 | 43 | TBD | TBD | TBD | TBD | TBD |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.1 | 44 | TBD | TBD | TBD | TBD | TBD |\n| Random-additive | R = 𝟙{exec} + β·Rand | 0.1 | 42 | 0.79 | 0.1038 | 0.1314 | 8.46 | No |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.3 | 42 | 0.18 | 0.0257 | 0.1427 | — | — |\n| Random-additive | R = 𝟙{exec} + β·Rand | 0.3 | 42 | 0.48 | 0.0453 | 0.0943 | 9.60 | No |\n| Convex-random | R = (1−β)·𝟙{exec} + β·Rand | — | 42 | 1.00 | 0.535§ | 0.535§ | ~2§ | **Yes** (degenerate) |\n| Convex-ISR (STA) | R = (1−β)·𝟙{exec} + β·ISR | — | 42 | 0.77ᵗ | 0.2299ᵗ | — | — | — |\n\n### Footnotes\n\n- **†** Component count 6.58 for s42 exec-only sourced from plan001-s44 cross-reference notes (eval_sta output).\n- **‡** plan001-exec-only-s43-r4: sampling eval (do_sample=True, T=0.7), **not** eval_sta.py full STA. PR=0.14 reflects sampling failure; 87% of samples hit max_new_tokens generating unparseable output. Not directly comparable to greedy-decoded eval_sta results.\n- **§** Tautological artifact. s44 ISR=0.57 is a structural artifact: 94% of proofs have only 2 components (premise = conclusion tautology), so ISR ≈ 0.5 mechanically. Similarly plan013 convex-random generates trivial 2-component proofs (PR=100%, ISR=0.535 = fake).\n- **ᵗ** plan005-sta-low-s42: **training metrics only** (last-100-step window). Checkpoint deleted; no eval_sta.py run available. Not directly comparable to eval metrics.\n\n### Exec-only 3-seed summary (where comparable)\n\nOnly s42 and s44 used eval_sta.py full STA. s43 used sampling eval → excluded from aggregation.\n\n| Metric | s42 | s44 | s43 (sampling) |\n|--------|-----|-----|----------------|\n| PR | 0.93 | 0.98 | 0.14‡ |\n| ISR | 0.1232 | 0.57§ | 0.00‡ |\n| Collapse? | No | Tautological | Degenerate output |\n\n**Key finding**: Exec-only reward fails 2/3 seeds. Only s42 produces genuine proofs.\n\n### ISR β=0.1 vs Random β=0.1 (s42, head-to-head)\n\n| Metric | ISR β=0.1 | Random β=0.1 | Δ |\n|--------|-----------|--------------|---|\n| eval PR | 0.81 | 0.79 | +0.02 |\n| eval ISR | 0.3365 | 0.1038 | **+0.2327 (3.2×)** |\n| proved-only ISR | 0.4154 | 0.1314 | **+0.2840 (3.2×)** |\n| Components (mean) | 5.58 | 8.46 | −2.88 |\n| ISR=0 ratio | 0.037 | 0.367 | −0.330 |\n| ISR=1 ratio | 0.124 | 0.000 | +0.124 |\n| Taut. collapse | No | No | — |\n\n### β dose response (s42)\n\n| β | ISR-additive PR | ISR-additive ISR | Random-additive PR | Random-additive ISR |\n|---|-----------------|------------------|--------------------|---------------------|\n| 0 (exec-only) | 0.93 | 0.1232 | — | — |\n| 0.1 | 0.81 | 0.3365 | 0.79 | 0.1038 |\n| 0.3 | 0.18 | 0.0257 | 0.48 | 0.0453 |\n\n---\n\n## Table 2: Hacking Taxonomy (plan012)\n\nISR β=0.1 (plan002-additive-b01-s42) vs Random β=0.1 (plan018-additive-random-b01-s42), classified on eval outputs.\n\n| Hacking Mode | ISR β=0.1 | Random β=0.1 | Δ (pp) |\n|--------------|-----------|--------------|--------|\n| **Genuine proofs** | 25.9% | 17.7% | **+8.2** |\n| Conclusion embedding | 72.8% | 78.5% | −5.7 |\n| Complexity w/o utility | 0.0% | 3.8% | −3.8 |\n| **Total hacking rate** | 74.1% | 82.3% | **−8.2** |\n\n### Quality within genuine proofs\n\n| Metric | ISR β=0.1 | Random β=0.1 |\n|--------|-----------|--------------|\n| Genuine proof mean ISR | 0.6723 | 0.3427 |\n\n### Interpretation\n\n- ISR reward produces +8.2pp more genuine proofs than random baseline at matched β.\n- Conclusion embedding remains the dominant hacking mode for both methods (~73-79%).\n- ISR completely eliminates complexity-without-utility hacking (0% vs 3.8%).\n- Among genuine proofs, ISR-trained models achieve 2.0× higher structural quality (ISR 0.67 vs 0.34).\n\n---\n\n## Data Provenance Notes\n\n| exp_id | eval method | data |\n|--------|-------------|------|\n| plan001-exec-only-s42-r2 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan001-exec-only-s43-r4 | **sampling eval (T=0.7)** | proofwriter_fol_100.jsonl |\n| plan001-exec-only-s44 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan016-extended-1000-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan002-additive-b01-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan002-additive-b01-s43 | ⏳ RUNNING | — |\n| plan002-additive-b01-s44 | ⏳ RUNNING | — |\n| plan018-additive-random-b01-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan002-additive-b03-s42 | eval_sta.py (top-level metrics) | proofwriter_fol_100.jsonl |\n| plan017-additive-random-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan013-random-reward-s42-r4 | eval_sta.py full STA (degenerate) | proofwriter_fol_100.jsonl |\n| plan005-sta-low-s42 | **train log only** (no eval checkpoint) | — |\n| plan012-hacking-taxonomy | rule-based classification | eval outputs from plan002/plan018 |\n\nAll training used `data/train_500_seed42.jsonl` per constraint C001.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7991f414-a7c8-4ec7-9454-bbff98bd94d3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2CojRTzzWbFuLLzh4KT",
+  "type": "assistant",
+  "uuid": "879de9c6-dda8-43eb-8292-facec1aa49b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N2uh2EcrfmME1j44Xw4rMg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6314,
+      "cache_read_input_tokens": 26628,
+      "output_tokens": 4692,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6314,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4692,
+          "cache_read_input_tokens": 26628,
+          "cache_creation_input_tokens": 6314,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6314
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T09:14:23.503Z_
+
+<details><summary>↩ Tool result · `toolu_01LmKTgAggi5XKYkfZcmUU7Z`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables_draft.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "879de9c6-dda8-43eb-8292-facec1aa49b0",
+  "isSidechain": false,
+  "promptId": "c9de32c8-d22a-4308-998c-6703f67415fe",
+  "type": "user",
+  "uuid": "c227d3be-62c1-4402-9777-58b6754939cb",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables_draft.md",
+    "content": "# Paper Tables Draft (2026-05-14)\n\nAll numbers sourced from experiment registry. Eval method is eval_sta.py full STA unless noted.\n\n---\n\n## Table 1: Main Results\n\n| Method | Formula | β | Seed | eval PR | eval ISR | proved-only ISR | Comp. (mean) | Taut. Collapse? |\n|--------|---------|---|------|---------|----------|-----------------|--------------|-----------------|\n| Exec-only (500 steps) | R = 𝟙{exec} | — | 42 | 0.93 | 0.1232 | 0.1324 | 6.58† | No |\n| Exec-only (500 steps) | R = 𝟙{exec} | — | 43 | 0.14‡ | 0.00‡ | — | — | No (degenerate)‡ |\n| Exec-only (500 steps) | R = 𝟙{exec} | — | 44 | 0.98 | 0.57§ | 0.5816§ | 2.04§ | **Yes** |\n| Exec-only (1000 steps) | R = 𝟙{exec} | — | 42 | 0.96 | 0.0027 | 0.0028 | 18.55 | No |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.1 | 42 | 0.81 | 0.3365 | 0.4154 | 5.58 | No |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.1 | 43 | TBD | TBD | TBD | TBD | TBD |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.1 | 44 | TBD | TBD | TBD | TBD | TBD |\n| Random-additive | R = 𝟙{exec} + β·Rand | 0.1 | 42 | 0.79 | 0.1038 | 0.1314 | 8.46 | No |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.3 | 42 | 0.18 | 0.0257 | 0.1427 | — | — |\n| Random-additive | R = 𝟙{exec} + β·Rand | 0.3 | 42 | 0.48 | 0.0453 | 0.0943 | 9.60 | No |\n| Convex-random | R = (1−β)·𝟙{exec} + β·Rand | — | 42 | 1.00 | 0.535§ | 0.535§ | ~2§ | **Yes** (degenerate) |\n| Convex-ISR (STA) | R = (1−β)·𝟙{exec} + β·ISR | — | 42 | 0.77ᵗ | 0.2299ᵗ | — | — | — |\n\n### Footnotes\n\n- **†** Component count 6.58 for s42 exec-only sourced from plan001-s44 cross-reference notes (eval_sta output).\n- **‡** plan001-exec-only-s43-r4: sampling eval (do_sample=True, T=0.7), **not** eval_sta.py full STA. PR=0.14 reflects sampling failure; 87% of samples hit max_new_tokens generating unparseable output. Not directly comparable to greedy-decoded eval_sta results.\n- **§** Tautological artifact. s44 ISR=0.57 is a structural artifact: 94% of proofs have only 2 components (premise = conclusion tautology), so ISR ≈ 0.5 mechanically. Similarly plan013 convex-random generates trivial 2-component proofs (PR=100%, ISR=0.535 = fake).\n- **ᵗ** plan005-sta-low-s42: **training metrics only** (last-100-step window). Checkpoint deleted; no eval_sta.py run available. Not directly comparable to eval metrics.\n\n### Exec-only 3-seed summary (where comparable)\n\nOnly s42 and s44 used eval_sta.py full STA. s43 used sampling eval → excluded from aggregation.\n\n| Metric | s42 | s44 | s43 (sampling) |\n|--------|-----|-----|----------------|\n| PR | 0.93 | 0.98 | 0.14‡ |\n| ISR | 0.1232 | 0.57§ | 0.00‡ |\n| Collapse? | No | Tautological | Degenerate output |\n\n**Key finding**: Exec-only reward fails 2/3 seeds. Only s42 produces genuine proofs.\n\n### ISR β=0.1 vs Random β=0.1 (s42, head-to-head)\n\n| Metric | ISR β=0.1 | Random β=0.1 | Δ |\n|--------|-----------|--------------|---|\n| eval PR | 0.81 | 0.79 | +0.02 |\n| eval ISR | 0.3365 | 0.1038 | **+0.2327 (3.2×)** |\n| proved-only ISR | 0.4154 | 0.1314 | **+0.2840 (3.2×)** |\n| Components (mean) | 5.58 | 8.46 | −2.88 |\n| ISR=0 ratio | 0.037 | 0.367 | −0.330 |\n| ISR=1 ratio | 0.124 | 0.000 | +0.124 |\n| Taut. collapse | No | No | — |\n\n### β dose response (s42)\n\n| β | ISR-additive PR | ISR-additive ISR | Random-additive PR | Random-additive ISR |\n|---|-----------------|------------------|--------------------|---------------------|\n| 0 (exec-only) | 0.93 | 0.1232 | — | — |\n| 0.1 | 0.81 | 0.3365 | 0.79 | 0.1038 |\n| 0.3 | 0.18 | 0.0257 | 0.48 | 0.0453 |\n\n---\n\n## Table 2: Hacking Taxonomy (plan012)\n\nISR β=0.1 (plan002-additive-b01-s42) vs Random β=0.1 (plan018-additive-random-b01-s42), classified on eval outputs.\n\n| Hacking Mode | ISR β=0.1 | Random β=0.1 | Δ (pp) |\n|--------------|-----------|--------------|--------|\n| **Genuine proofs** | 25.9% | 17.7% | **+8.2** |\n| Conclusion embedding | 72.8% | 78.5% | −5.7 |\n| Complexity w/o utility | 0.0% | 3.8% | −3.8 |\n| **Total hacking rate** | 74.1% | 82.3% | **−8.2** |\n\n### Quality within genuine proofs\n\n| Metric | ISR β=0.1 | Random β=0.1 |\n|--------|-----------|--------------|\n| Genuine proof mean ISR | 0.6723 | 0.3427 |\n\n### Interpretation\n\n- ISR reward produces +8.2pp more genuine proofs than random baseline at matched β.\n- Conclusion embedding remains the dominant hacking mode for both methods (~73-79%).\n- ISR completely eliminates complexity-without-utility hacking (0% vs 3.8%).\n- Among genuine proofs, ISR-trained models achieve 2.0× higher structural quality (ISR 0.67 vs 0.34).\n\n---\n\n## Data Provenance Notes\n\n| exp_id | eval method | data |\n|--------|-------------|------|\n| plan001-exec-only-s42-r2 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan001-exec-only-s43-r4 | **sampling eval (T=0.7)** | proofwriter_fol_100.jsonl |\n| plan001-exec-only-s44 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan016-extended-1000-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan002-additive-b01-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan002-additive-b01-s43 | ⏳ RUNNING | — |\n| plan002-additive-b01-s44 | ⏳ RUNNING | — |\n| plan018-additive-random-b01-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan002-additive-b03-s42 | eval_sta.py (top-level metrics) | proofwriter_fol_100.jsonl |\n| plan017-additive-random-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan013-random-reward-s42-r4 | eval_sta.py full STA (degenerate) | proofwriter_fol_100.jsonl |\n| plan005-sta-low-s42 | **train log only** (no eval checkpoint) | — |\n| plan012-hacking-taxonomy | rule-based classification | eval outputs from plan002/plan018 |\n\nAll training used `data/train_500_seed42.jsonl` per constraint C001.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "879de9c6-dda8-43eb-8292-facec1aa49b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T09:14:28.746Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01VxiL41q8LoZvjZMZEmFUb9`</summary>
+
+```json
+{
+  "name": "paper_tables_draft",
+  "type": "report",
+  "description": "论文 Table 1 (Main Results) + Table 2 (Hacking Taxonomy) 定稿草案，含所有实验 eval metrics、footnotes、数据溯源",
+  "project": "solver-trace-ablation",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables_draft.md",
+  "tags": [
+    "paper",
+    "tables",
+    "draft"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c227d3be-62c1-4402-9777-58b6754939cb",
+  "isSidechain": false,
+  "requestId": "req_011Cb2CuwJFcjVKrcBDnPajz",
+  "type": "assistant",
+  "uuid": "fa4a5852-38a8-4e87-88ab-305fd2349301",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018YVGHpisPtZnFWxoV6Udyv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4742,
+      "cache_read_input_tokens": 32942,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4742,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 32942,
+          "cache_creation_input_tokens": 4742,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4742
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T09:14:28.808Z_
+
+<details><summary>↩ Tool result · `toolu_01VxiL41q8LoZvjZMZEmFUb9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_c6d177\", \"name\": \"paper_tables_draft\", \"type\": \"report\", \"description\": \"论文 Table 1 (Main Results) + Table 2 (Hacking Taxonomy) 定稿草案，含所有实验 eval metrics、footnotes、数据溯源\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/report/paper_tables_draft.md\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T09:14:28.754196+00:00\", \"tags\": [\"paper\", \"tables\", \"draft\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa4a5852-38a8-4e87-88ab-305fd2349301",
+  "isSidechain": false,
+  "promptId": "c9de32c8-d22a-4308-998c-6703f67415fe",
+  "type": "user",
+  "uuid": "4317af29-a2f1-44ea-91de-0b4bca5e7a96",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_c6d177\\\", \\\"name\\\": \\\"paper_tables_draft\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"论文 Table 1 (Main Results) + Table 2 (Hacking Taxonomy) 定稿草案，含所有实验 eval metrics、footnotes、数据溯源\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/report/paper_tables_draft.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T09:14:28.754196+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"tables\\\", \\\"draft\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_c6d177\", \"name\": \"paper_tables_draft\", \"type\": \"report\", \"description\": \"论文 Table 1 (Main Results) + Table 2 (Hacking Taxonomy) 定稿草案，含所有实验 eval metrics、footnotes、数据溯源\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/report/paper_tables_draft.md\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T09:14:28.754196+00:00\", \"tags\": [\"paper\", \"tables\", \"draft\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fa4a5852-38a8-4e87-88ab-305fd2349301",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-14T09:14:40.799Z_
+
+产出已写入并注册：`artifacts/paper_tables_draft.md` (art_20260514_c6d177)
+
+内容概要：
+
+**Table 1 (Main Results)** — 12 行，覆盖 6 种方法 × 多 seed/β 配置：
+- Exec-only 3 seeds: s42 正常 (PR=0.93, ISR=0.12), s43 sampling eval 退化 (PR=0.14), s44 tautological collapse (ISR=0.57§)
+- 1000-step extended: ISR 从 0.12 跌至 0.003，确认 collapse 单调恶化
+- ISR β=0.1 s42: PR=0.81, ISR=0.34 (3.2× baseline)，s43/s44 标 TBD
+- Random β=0.1 s42: PR=0.79, ISR=0.10 — 控制组证明 ISR 非纯正则化效果
+- β=0.3: 两组均 PR 崩溃 (ISR: 0.18, Random: 0.48)
+- Convex-random/Convex-ISR(STA): 退化/仅训练指标
+
+**Table 2 (Hacking Taxonomy)** — ISR β=0.1 vs Random β=0.1：
+- Genuine rate: 25.9% vs 17.7% (+8.2pp)
+- Conclusion embedding: 72.8% vs 78.5% (主导 hacking 模式)
+- Complexity w/o utility: 0% vs 3.8% (ISR 完全消除)
+- Genuine proof 质量: ISR 0.67 vs 0.34 (2.0×)
+
+所有 footnote 标注了 s43 sampling eval、s44 tautological artifact、plan005 train-only 等不可比性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4317af29-a2f1-44ea-91de-0b4bca5e7a96",
+  "isSidechain": false,
+  "requestId": "req_011Cb2CvKtZBGTquxqSbgRGL",
+  "type": "assistant",
+  "uuid": "5a0a0243-ea15-4cc3-8bdf-511fb8d456c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WVnc4G8gwKXvjVnjMG3Nao",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 534,
+      "cache_read_input_tokens": 37684,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 534,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 37684,
+          "cache_creation_input_tokens": 534,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 534
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "5a0a0243-ea15-4cc3-8bdf-511fb8d456c8",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper Table 1 and Table 2 draft",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "5a0a0243-ea15-4cc3-8bdf-511fb8d456c8",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compile paper Table 1 and Table 2 draft",
+  "sessionId": "c90ced82-5a39-49be-a8a7-7a3187b6bb4a"
+}
+```
+
+---

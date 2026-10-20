@@ -1,0 +1,5187 @@
+# Research conversation: <project_context> # 项目: solver-trace-ablation ## 运行环境 - 服务器名: westd-39279 - SSH 账户: root（调用 ssh_execute / submit_trainin
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 98
+- **Recorded user turns:** 1
+- **Tool calls:** 27
+- **Original source:** `logs/chats/exported-trajectories/account-2/06aac431-1c54-4ef1-a189-7e057763d3c5.jsonl`
+- **Structured JSON:** [`221b073d558d3aa9501e.json`](../../sessions/22/221b073d558d3aa9501e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T17:07:19.346Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T17:07:19.346Z",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "content": "&lt;project_context>\n# 项目: solver-trace-ablation\n\n## 运行环境\n- 服务器名: westd-39279\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/solver-trace-ablation\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 所有实验统一使用 data/train_500_seed42.jsonl 作为训练数据，禁止使用 proofwriter_fol_500.jsonl 或其他数据文件（原因：Reviewer CRITICAL: plan001-s43 使用了不同数据文件导致多 seed 对比 confound。多 seed 实验必须控制数据变量，seed 仅控制模型初始化和训练随机性。）\n- **C002**: 提交训练任务前必须用 export CUDA_VISIBLE_DEVICES=N 显式设置 GPU，禁止 inline 赋值（bash -c VAR=X cmd），提交后验证 nvidia-smi 确认只占用分配的 GPU（原因：plan013 因 CUDA_VISIBLE_DEVICES inline 赋值引号问题越界占用两张 GPU，导致 plan001-s43 OOM 死亡。这是第二次 GPU 冲突事故。）\n- **C003**: 训练配置必须设置 save_total_limit=1 且禁用/限制 completions parquet 保存，防止磁盘耗尽（原因：plan013-r3 和 plan001-s43-r3 因磁盘 250G/250G 满导致 step 23/28 崩溃。根因：TRL 每实验保存 3 份模型权重（~48GB）+ completions parquet（~2.5GB）。）\n- **C004**: 跨 seed/跨 run 的 ISR 对比必须使用 eval_sta.py 统一评估，禁止引用训练日志 ISR 做跨 run 对比（不同 run 可能使用不同版本的 ISR 计算代码）（原因：Reviewer 核实发现 plan001-s42-r2 训练日志 ISR 使用 binary _fast_fn，plan001-s43-r4 使用 full STA _full_fn，同一指标名下计算方法不同导致不可比。论文中所有 ISR 数据必须来自 eval_sta.py 统一评估。）\n- **C005**: 所有 worker（含 fix/ops 类）启动任何 Python 进程前必须显式设置 CUDA_VISIBLE_DEVICES，禁止裸跑（原因：fix worker 未设 CUDA_VISIBLE_DEVICES 导致测试进程泄漏到 cuda:1（plan017 训练卡），占用 8638 MiB 显存。2026-05-14 事故。）\n- **C006**: 论文讨论 ISR 时必须区分两种语义：exec-only 的 low ISR = 冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR = metric gaming（Goodhart 效应）。不可将 ISR 差异直接等同于 reasoning 能力差异。（原因：Reviewer 发现 Prolog exec-only 生成大量重复 ground facts（如 penguin(fido). 出现 3 次），per-clause ablation 下删任一重复不影响结果，ISR=0。这是冗余不是无推理。如不区分，审稿人会误读 ISR 差异。）\n- **C007**: kill_job 后必须 nvidia-smi 确认 GPU 释放，submit 前必须 nvidia-smi 确认目标 GPU 无残留进程（原因：同一 session 两次出现 kill tmux → Python orphan → 新实验 OOM 的 pattern。kill_job 只杀 tmux session 不杀进程组，submit_on_allocated 只检查 registry 不检查实际 GPU 占用。）\n- **C008**: 所有 eval 命令必须显式指定 --data_path data/proofwriter_fol_100.jsonl，禁止依赖默认值或使用 test_100.jsonl（原因：D063: exp1 系列 eval 使用了 test_100.jsonl（与论文数据集零重叠），导致结果不可比。C004 约束的加固版。） [来自 D063]\n- **C009**: 所有 eval 命令必须显式指定 --data_path data/proofwriter_fol_100.jsonl，禁止使用默认值或 test_100.jsonl（原因：exp1 系列 eval 使用了错误的 test_100.jsonl（与 plan 系列的 proofwriter_fol_100.jsonl 零重叠），导致跨系列数据不可比。违反 C004。） [来自 D062]\n- **C010**: 磁盘清理禁止删除 conclusion=success 且标记 needs-re-eval 的 checkpoint，删前必须检查 registry 状态（原因：disk-cleanup-v2 误删了 exp1-isr-b03-s43 和 exp1-random-b03-s43 的 checkpoint，导致必须重训。这两个 checkpoint 因 D062/D063 需要用正确测试集 re-eval。）\n- **C011**: 磁盘清理禁止删除 conclusion=success 且标记 needs-re-eval 的 checkpoint 目录（原因：disk-cleanup-v2 Worker 误删 exp1_isr_b03_s43 和 exp1_random_b03_s43 checkpoint，导致必须重训。清理前必须交叉检查 registry 中 re-eval 标记。）\n- **C012**: Resume 训练时必须验证步数语义：--model_path 指向 checkpoint 时，确认 train_grpo.py 是从该 step 继续（resume）还是从 0 开始新训练。如不确定，从 base model 重新训练，不用 checkpoint。禁止第三次犯 resume 步数不对等错误。（原因：Agent 两次将 checkpoint-350 作为 model_path 启动 1000 步训练，实际训练了 1350 步（350+1000）而非 resume 到 1000 步，导致与 ISR 1000 步实验不可比。plan018-r2 数据作废。）\n- **C013**: Taxonomy 标准：genuine = proved − H7 − H1_exact − H8。H1-near 保留为 genuine 但单独标记。ISR 和 Random 两侧必须对称使用同一标准。（原因：D084 决策。H8 是退化证明必须扣除；H1-near 仍需推理步骤保留为 genuine；标准必须两侧对称以确保论文方法论一致性。） [来自 D084]\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：D091 Reviewer 修正 — 3 项论文文本修改\n\n### 背景\nReviewer 审查发现 3 项需要修正。s44-1000 的 3 个 \"genuine\" proof 经审计均为功能退化（ISR=0，disjunctive conclusions 绕 H8、commuted premises 绕 H1），genuine 从 3% 修正为 0%。\n\n### 修正 1: experiments.tex L32 附近\n找到类似 \"≤3% non-hacking\" 或 \"3% genuine\" 的表述，改为：\n\"0% genuine reasoning (3 samples escape text-match classifiers but are functionally degenerate; see Appendix)\"\n\n同时检查 experiments.tex 中的 3-seed exec-only 对比表/文字，genuine 相关数字改为：\n- s44 genuine: 3% → 0%\n- 3-seed mean genuine: 1.0%±1.7% → 0.0%±0.0%\n\n### 修正 2: introduction.tex L27\n找到 \"69.7% ... versus 0% under matched random\" 的表述，加时间限定 \"at 500 steps\"。\n例如：改为 \"69.7% at 500 steps ... versus 0% under matched random at 500 steps\"\n原因：1000步 random 也出现 H7（β=0.3 dose gradient），不加限定审稿人会质疑。\n\n### 修正 3: appendix 中 s44-1000 行\n找到 appendix 中 s44-1000 的描述，补脚注说明这 3 个样本的退化性质：\n\"Three samples in seed 44 evade text-match heuristics (H1/H8 classifiers) but exhibit ISR = 0 and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection, and commuted premises that bypass H1 detection. We classify these as degenerate rather than genuine.\"\n\n### 执行方式\n1. SSH 到 westd-39279，项目路径 /root/solver-trace-ablation\n2. 读取 experiments.tex、introduction.tex、appendix 相关文件\n3. 做上述 3 项修改\n4. 编译 LaTeX 验证无错误：cd /root/solver-trace-ablation/paper && pdflatex main.tex（编译两遍确保引用正确）\n5. 检查编译后 PDF 页数和大小，报告结果\n\n### 注意\n- 不要改动其他内容\n- 保持现有格式风格一致\n- 如果找不到精确的行号匹配，先 grep 搜索相关文本再修改"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T17:07:19.361Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T17:07:19.361Z",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+## Round 1
+
+96 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T17:07:19.468Z_
+
+&lt;project_context>
+# 项目: solver-trace-ablation
+
+## 运行环境
+- 服务器名: westd-39279
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/solver-trace-ablation
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 所有实验统一使用 data/train_500_seed42.jsonl 作为训练数据，禁止使用 proofwriter_fol_500.jsonl 或其他数据文件（原因：Reviewer CRITICAL: plan001-s43 使用了不同数据文件导致多 seed 对比 confound。多 seed 实验必须控制数据变量，seed 仅控制模型初始化和训练随机性。）
+- **C002**: 提交训练任务前必须用 export CUDA_VISIBLE_DEVICES=N 显式设置 GPU，禁止 inline 赋值（bash -c VAR=X cmd），提交后验证 nvidia-smi 确认只占用分配的 GPU（原因：plan013 因 CUDA_VISIBLE_DEVICES inline 赋值引号问题越界占用两张 GPU，导致 plan001-s43 OOM 死亡。这是第二次 GPU 冲突事故。）
+- **C003**: 训练配置必须设置 save_total_limit=1 且禁用/限制 completions parquet 保存，防止磁盘耗尽（原因：plan013-r3 和 plan001-s43-r3 因磁盘 250G/250G 满导致 step 23/28 崩溃。根因：TRL 每实验保存 3 份模型权重（~48GB）+ completions parquet（~2.5GB）。）
+- **C004**: 跨 seed/跨 run 的 ISR 对比必须使用 eval_sta.py 统一评估，禁止引用训练日志 ISR 做跨 run 对比（不同 run 可能使用不同版本的 ISR 计算代码）（原因：Reviewer 核实发现 plan001-s42-r2 训练日志 ISR 使用 binary _fast_fn，plan001-s43-r4 使用 full STA _full_fn，同一指标名下计算方法不同导致不可比。论文中所有 ISR 数据必须来自 eval_sta.py 统一评估。）
+- **C005**: 所有 worker（含 fix/ops 类）启动任何 Python 进程前必须显式设置 CUDA_VISIBLE_DEVICES，禁止裸跑（原因：fix worker 未设 CUDA_VISIBLE_DEVICES 导致测试进程泄漏到 cuda:1（plan017 训练卡），占用 8638 MiB 显存。2026-05-14 事故。）
+- **C006**: 论文讨论 ISR 时必须区分两种语义：exec-only 的 low ISR = 冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR = metric gaming（Goodhart 效应）。不可将 ISR 差异直接等同于 reasoning 能力差异。（原因：Reviewer 发现 Prolog exec-only 生成大量重复 ground facts（如 penguin(fido). 出现 3 次），per-clause ablation 下删任一重复不影响结果，ISR=0。这是冗余不是无推理。如不区分，审稿人会误读 ISR 差异。）
+- **C007**: kill_job 后必须 nvidia-smi 确认 GPU 释放，submit 前必须 nvidia-smi 确认目标 GPU 无残留进程（原因：同一 session 两次出现 kill tmux → Python orphan → 新实验 OOM 的 pattern。kill_job 只杀 tmux session 不杀进程组，submit_on_allocated 只检查 registry 不检查实际 GPU 占用。）
+- **C008**: 所有 eval 命令必须显式指定 --data_path data/proofwriter_fol_100.jsonl，禁止依赖默认值或使用 test_100.jsonl（原因：D063: exp1 系列 eval 使用了 test_100.jsonl（与论文数据集零重叠），导致结果不可比。C004 约束的加固版。） [来自 D063]
+- **C009**: 所有 eval 命令必须显式指定 --data_path data/proofwriter_fol_100.jsonl，禁止使用默认值或 test_100.jsonl（原因：exp1 系列 eval 使用了错误的 test_100.jsonl（与 plan 系列的 proofwriter_fol_100.jsonl 零重叠），导致跨系列数据不可比。违反 C004。） [来自 D062]
+- **C010**: 磁盘清理禁止删除 conclusion=success 且标记 needs-re-eval 的 checkpoint，删前必须检查 registry 状态（原因：disk-cleanup-v2 误删了 exp1-isr-b03-s43 和 exp1-random-b03-s43 的 checkpoint，导致必须重训。这两个 checkpoint 因 D062/D063 需要用正确测试集 re-eval。）
+- **C011**: 磁盘清理禁止删除 conclusion=success 且标记 needs-re-eval 的 checkpoint 目录（原因：disk-cleanup-v2 Worker 误删 exp1_isr_b03_s43 和 exp1_random_b03_s43 checkpoint，导致必须重训。清理前必须交叉检查 registry 中 re-eval 标记。）
+- **C012**: Resume 训练时必须验证步数语义：--model_path 指向 checkpoint 时，确认 train_grpo.py 是从该 step 继续（resume）还是从 0 开始新训练。如不确定，从 base model 重新训练，不用 checkpoint。禁止第三次犯 resume 步数不对等错误。（原因：Agent 两次将 checkpoint-350 作为 model_path 启动 1000 步训练，实际训练了 1350 步（350+1000）而非 resume 到 1000 步，导致与 ISR 1000 步实验不可比。plan018-r2 数据作废。）
+- **C013**: Taxonomy 标准：genuine = proved − H7 − H1_exact − H8。H1-near 保留为 genuine 但单独标记。ISR 和 Random 两侧必须对称使用同一标准。（原因：D084 决策。H8 是退化证明必须扣除；H1-near 仍需推理步骤保留为 genuine；标准必须两侧对称以确保论文方法论一致性。） [来自 D084]
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：D091 Reviewer 修正 — 3 项论文文本修改
+
+### 背景
+Reviewer 审查发现 3 项需要修正。s44-1000 的 3 个 "genuine" proof 经审计均为功能退化（ISR=0，disjunctive conclusions 绕 H8、commuted premises 绕 H1），genuine 从 3% 修正为 0%。
+
+### 修正 1: experiments.tex L32 附近
+找到类似 "≤3% non-hacking" 或 "3% genuine" 的表述，改为：
+"0% genuine reasoning (3 samples escape text-match classifiers but are functionally degenerate; see Appendix)"
+
+同时检查 experiments.tex 中的 3-seed exec-only 对比表/文字，genuine 相关数字改为：
+- s44 genuine: 3% → 0%
+- 3-seed mean genuine: 1.0%±1.7% → 0.0%±0.0%
+
+### 修正 2: introduction.tex L27
+找到 "69.7% ... versus 0% under matched random" 的表述，加时间限定 "at 500 steps"。
+例如：改为 "69.7% at 500 steps ... versus 0% under matched random at 500 steps"
+原因：1000步 random 也出现 H7（β=0.3 dose gradient），不加限定审稿人会质疑。
+
+### 修正 3: appendix 中 s44-1000 行
+找到 appendix 中 s44-1000 的描述，补脚注说明这 3 个样本的退化性质：
+"Three samples in seed 44 evade text-match heuristics (H1/H8 classifiers) but exhibit ISR = 0 and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection, and commuted premises that bypass H1 detection. We classify these as degenerate rather than genuine."
+
+### 执行方式
+1. SSH 到 westd-39279，项目路径 /root/solver-trace-ablation
+2. 读取 experiments.tex、introduction.tex、appendix 相关文件
+3. 做上述 3 项修改
+4. 编译 LaTeX 验证无错误：cd /root/solver-trace-ablation/paper && pdflatex main.tex（编译两遍确保引用正确）
+5. 检查编译后 PDF 页数和大小，报告结果
+
+### 注意
+- 不要改动其他内容
+- 保持现有格式风格一致
+- 如果找不到精确的行号匹配，先 grep 搜索相关文本再修改
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "19d8e1de-7845-4c46-8999-eefb6ee3536c",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T17:07:19.464Z_
+
+```json
+{
+  "parentUuid": "19d8e1de-7845-4c46-8999-eefb6ee3536c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ee898660-a128-411c-8f89-a04c5bf2c5b8",
+  "timestamp": "2026-05-15T17:07:19.464Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T17:07:19.465Z_
+
+```json
+{
+  "parentUuid": "ee898660-a128-411c-8f89-a04c5bf2c5b8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6a50da1b-b057-46e5-80e8-66529320d202",
+  "timestamp": "2026-05-15T17:07:19.465Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T17:07:19.465Z_
+
+```json
+{
+  "parentUuid": "6a50da1b-b057-46e5-80e8-66529320d202",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "34d0394e-d199-43cf-ad5e-4f36096fe073",
+  "timestamp": "2026-05-15T17:07:19.465Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix reviewer comments on genuine proofs in paper",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T17:07:29.600Z_
+
+我先读取服务器上的相关 LaTeX 文件，找到需要修改的位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34d0394e-d199-43cf-ad5e-4f36096fe073",
+  "isSidechain": false,
+  "requestId": "req_011Cb4inZxAthRfUqMaJBqbx",
+  "type": "assistant",
+  "uuid": "dddbcc5b-214e-4639-b04f-315e44ede5bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wfwz9T5fWir6LPQYG148nL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13374,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T17:07:30.067Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EedaAqbHyiVt7x74ymSUMQ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dddbcc5b-214e-4639-b04f-315e44ede5bb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4inZxAthRfUqMaJBqbx",
+  "type": "assistant",
+  "uuid": "4d23162f-2fb1-40c0-a075-d3dbb86d4bb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wfwz9T5fWir6LPQYG148nL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13374,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T17:07:30.074Z_
+
+<details><summary>↩ Tool result · `toolu_01EedaAqbHyiVt7x74ymSUMQ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d23162f-2fb1-40c0-a075-d3dbb86d4bb6",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "7a9d8c96-045c-414a-83b9-03df27f8d468",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "4d23162f-2fb1-40c0-a075-d3dbb86d4bb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-15T17:07:37.806Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the relevant LaTeX files on the server to find the exact text that needs to be modified.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a9d8c96-045c-414a-83b9-03df27f8d468",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ioMZ5G91UJNcPdiXiV",
+  "type": "assistant",
+  "uuid": "dcdae22d-f7ec-4109-bd39-e655ac8f0bc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DYXwU5kP35xVzjG6UXGZk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 25215,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 701,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 25215,
+          "cache_creation_input_tokens": 701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 701
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-15T17:07:38.335Z_
+
+先查找相关文件和需要修改的文本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dcdae22d-f7ec-4109-bd39-e655ac8f0bc0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ioMZ5G91UJNcPdiXiV",
+  "type": "assistant",
+  "uuid": "09a07bb4-f9f3-4f3c-bb55-22185cb6fd08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DYXwU5kP35xVzjG6UXGZk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 25215,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 701,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 25215,
+          "cache_creation_input_tokens": 701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 701
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T17:07:39.119Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G78qNP65eDJfEkvAxBYyRb`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "find /root/solver-trace-ablation/paper -name \"*.tex\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09a07bb4-f9f3-4f3c-bb55-22185cb6fd08",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ioMZ5G91UJNcPdiXiV",
+  "type": "assistant",
+  "uuid": "a6118efe-f7ef-4141-a104-fe1b41fd2ee0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DYXwU5kP35xVzjG6UXGZk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 701,
+      "cache_read_input_tokens": 25215,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 701,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 25215,
+          "cache_creation_input_tokens": 701,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 701
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T17:07:40.499Z_
+
+<details><summary>↩ Tool result · `toolu_01G78qNP65eDJfEkvAxBYyRb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/solver-trace-ablation/paper/abstract.tex\\n/root/solver-trace-ablation/paper/limitations.tex\\n/root/solver-trace-ablation/paper/introduction.tex\\n/root/solver-trace-ablation/paper/method.tex\\n/root/solver-trace-ablation/paper/appendix.tex\\n/root/solver-trace-ablation/paper/experiments.tex\\n/root/solver-trace-ablation/paper/conclusion.tex\\n/root/solver-trace-ablation/paper/related_work.tex\\n/root/solver-trace-ablation/paper/main.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6118efe-f7ef-4141-a104-fe1b41fd2ee0",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "85d5157b-dc12-4c92-85ef-e7270b081532",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/paper/abstract.tex\\\\n/root/solver-trace-ablation/paper/limitations.tex\\\\n/root/solver-trace-ablation/paper/introduction.tex\\\\n/root/solver-trace-ablation/paper/method.tex\\\\n/root/solver-trace-ablation/paper/appendix.tex\\\\n/root/solver-trace-ablation/paper/experiments.tex\\\\n/root/solver-trace-ablation/paper/conclusion.tex\\\\n/root/solver-trace-ablation/paper/related_work.tex\\\\n/root/solver-trace-ablation/paper/main.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/solver-trace-ablation/paper/abstract.tex\\n/root/solver-trace-ablation/paper/limitations.tex\\n/root/solver-trace-ablation/paper/introduction.tex\\n/root/solver-trace-ablation/paper/method.tex\\n/root/solver-trace-ablation/paper/appendix.tex\\n/root/solver-trace-ablation/paper/experiments.tex\\n/root/solver-trace-ablation/paper/conclusion.tex\\n/root/solver-trace-ablation/paper/related_work.tex\\n/root/solver-trace-ablation/paper/main.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a6118efe-f7ef-4141-a104-fe1b41fd2ee0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T17:07:49.017Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012UJvfUTpvYZhGRDJLwE4uA`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"genuine\\|non-hacking\\|3%\" /root/solver-trace-ablation/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85d5157b-dc12-4c92-85ef-e7270b081532",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ip7m8YCTTChr3HYBeA",
+  "type": "assistant",
+  "uuid": "3f433904-8f16-410e-ae8b-4f7b140adc06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Faku9u11BVrxtzmm78HbtF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 409,
+      "cache_read_input_tokens": 25916,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 409,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 25916,
+          "cache_creation_input_tokens": 409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 409
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T17:07:49.051Z_
+
+<details><summary>↩ Tool result · `toolu_012UJvfUTpvYZhGRDJLwE4uA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f433904-8f16-410e-ae8b-4f7b140adc06",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "c2f3c8ce-7374-426c-a421-f0079efe9eae",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3f433904-8f16-410e-ae8b-4f7b140adc06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T17:07:50.467Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KamF4PAAe6zKA4C38wHgHt`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"69.7\\|versus 0%\\|matched random\" /root/solver-trace-ablation/paper/introduction.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2f3c8ce-7374-426c-a421-f0079efe9eae",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ip7m8YCTTChr3HYBeA",
+  "type": "assistant",
+  "uuid": "38e5831c-495e-4e18-b91f-2142be366ab4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Faku9u11BVrxtzmm78HbtF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 409,
+      "cache_read_input_tokens": 25916,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 409,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 25916,
+          "cache_creation_input_tokens": 409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 409
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T17:07:50.476Z_
+
+<details><summary>↩ Tool result · `toolu_01KamF4PAAe6zKA4C38wHgHt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38e5831c-495e-4e18-b91f-2142be366ab4",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "f62aadc1-f07b-422c-a5d6-436935b2c8c8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "38e5831c-495e-4e18-b91f-2142be366ab4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T17:07:54.477Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RQfPSQfV7XqiJb9pxDN5zT`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"s44\\|seed.44\\|genuine\\|1000\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f62aadc1-f07b-422c-a5d6-436935b2c8c8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ip7m8YCTTChr3HYBeA",
+  "type": "assistant",
+  "uuid": "b90e5f40-6f8d-465b-99f2-1ec4801f96f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Faku9u11BVrxtzmm78HbtF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 409,
+      "cache_read_input_tokens": 25916,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 409,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 25916,
+          "cache_creation_input_tokens": 409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 409
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T17:07:54.488Z_
+
+<details><summary>↩ Tool result · `toolu_01RQfPSQfV7XqiJb9pxDN5zT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b90e5f40-6f8d-465b-99f2-1ec4801f96f9",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "4e44c412-d825-48b7-a806-2ce1e60c3183",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b90e5f40-6f8d-465b-99f2-1ec4801f96f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "4e44c412-d825-48b7-a806-2ce1e60c3183",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix reviewer comments on genuine proofs in paper",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-15T17:07:57.385Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pipe character is blocked. Let me use grep with -E flag for alternation instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e44c412-d825-48b7-a806-2ce1e60c3183",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqAmjdmFBz2b1CxKWa",
+  "type": "assistant",
+  "uuid": "00d1329c-79e9-411c-ad61-6f97f874f1d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ks5YpFcHwxSco58T7VZCmU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 26325,
+      "output_tokens": 417,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 731,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 417,
+          "cache_read_input_tokens": 26325,
+          "cache_creation_input_tokens": 731,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 731
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-15T17:07:58.425Z_
+
+需要避免管道符。用 `-E` 替代。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00d1329c-79e9-411c-ad61-6f97f874f1d5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqAmjdmFBz2b1CxKWa",
+  "type": "assistant",
+  "uuid": "dcd72cd8-f25c-405c-a3a2-694b3bfbaa12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ks5YpFcHwxSco58T7VZCmU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 26325,
+      "output_tokens": 417,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 731,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 417,
+          "cache_read_input_tokens": 26325,
+          "cache_creation_input_tokens": 731,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 731
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T17:07:59.415Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BFwEbNezzzGbdFBsCDa17x`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n -E \"genuine|non-hacking|3%\" /root/solver-trace-ablation/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dcd72cd8-f25c-405c-a3a2-694b3bfbaa12",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqAmjdmFBz2b1CxKWa",
+  "type": "assistant",
+  "uuid": "eb528313-3b5f-413e-ae80-e91a4b16949d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ks5YpFcHwxSco58T7VZCmU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 26325,
+      "output_tokens": 417,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 731,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 417,
+          "cache_read_input_tokens": 26325,
+          "cache_creation_input_tokens": 731,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 731
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T17:07:59.424Z_
+
+<details><summary>↩ Tool result · `toolu_01BFwEbNezzzGbdFBsCDa17x`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb528313-3b5f-413e-ae80-e91a4b16949d",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "103223ff-dff4-4024-9f47-5fd1c0902d71",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "eb528313-3b5f-413e-ae80-e91a4b16949d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T17:08:00.371Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LEnJ9sLTZLDa6ChWt2uVBs`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n -E \"69.7|versus 0|matched random\" /root/solver-trace-ablation/paper/introduction.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "103223ff-dff4-4024-9f47-5fd1c0902d71",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqAmjdmFBz2b1CxKWa",
+  "type": "assistant",
+  "uuid": "2209a615-9280-4b7e-98af-c36e0aadc239",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ks5YpFcHwxSco58T7VZCmU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 26325,
+      "output_tokens": 417,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 731,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 417,
+          "cache_read_input_tokens": 26325,
+          "cache_creation_input_tokens": 731,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 731
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T17:08:00.402Z_
+
+<details><summary>↩ Tool result · `toolu_01LEnJ9sLTZLDa6ChWt2uVBs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2209a615-9280-4b7e-98af-c36e0aadc239",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "8b020fe8-9e97-46e3-be37-8725957c236f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2209a615-9280-4b7e-98af-c36e0aadc239",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T17:08:00.736Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018YpjPxmRPnRj8NzVjFVL6e`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n -E \"s44|seed.44|genuine|1000\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b020fe8-9e97-46e3-be37-8725957c236f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqAmjdmFBz2b1CxKWa",
+  "type": "assistant",
+  "uuid": "6065e21f-2b3b-451a-ba37-4a0faf3c5bb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ks5YpFcHwxSco58T7VZCmU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 731,
+      "cache_read_input_tokens": 26325,
+      "output_tokens": 417,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 731,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 417,
+          "cache_read_input_tokens": 26325,
+          "cache_creation_input_tokens": 731,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 731
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T17:08:00.809Z_
+
+<details><summary>↩ Tool result · `toolu_018YpjPxmRPnRj8NzVjFVL6e`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6065e21f-2b3b-451a-ba37-4a0faf3c5bb5",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "a9a484b0-f94e-4631-9965-f64cf2af38ac",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6065e21f-2b3b-451a-ba37-4a0faf3c5bb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-15T17:08:00.819Z_
+
+```json
+{
+  "parentUuid": "a9a484b0-f94e-4631-9965-f64cf2af38ac",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1726c070-1e0a-423c-bda3-204174560d98",
+  "timestamp": "2026-05-15T17:08:00.819Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-15T17:08:03.605Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` in the `-E` pattern is also being caught as a shell metacharacter. Let me just read the full files instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1726c070-1e0a-423c-bda3-204174560d98",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqcxLTPg6vijxsh9dy",
+  "type": "assistant",
+  "uuid": "c3a927d8-f7d6-4fd8-b4e0-4a92f028dc9d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMDyx3QoyNoSapeFMpYm3H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 27056,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 27056,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-15T17:08:04.659Z_
+
+管道符在 pattern 里也被拦截了。直接读全文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3a927d8-f7d6-4fd8-b4e0-4a92f028dc9d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqcxLTPg6vijxsh9dy",
+  "type": "assistant",
+  "uuid": "79a7c8ca-8931-49f7-b12a-e74bf5a7e77e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMDyx3QoyNoSapeFMpYm3H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 27056,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 27056,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T17:08:05.152Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MHdzuv3ZSGxbhNxgnrx45z`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79a7c8ca-8931-49f7-b12a-e74bf5a7e77e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqcxLTPg6vijxsh9dy",
+  "type": "assistant",
+  "uuid": "ebc76942-f56f-4dfe-93f2-fbe0d1e7ead0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMDyx3QoyNoSapeFMpYm3H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 27056,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 27056,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T17:08:05.699Z_
+
+<details><summary>↩ Tool result · `toolu_01MHdzuv3ZSGxbhNxgnrx45z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experiments}\\n\\\\label{sec:experiments}\\n\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\S\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\S\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\S\\\\ref{sec:crosslogic}).\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\S\\\\ref{sec:taxonomy}).\\n\\n\\\\subsection{Setup}\\\\label{sec:setup}\\n\\nWe train Qwen3-4B~\\\\citep{qwen3} with GRPO~\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\{42,43,44\\\\}$ on a fixed 500-example FOLIO~\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\footnote{All experiments use \\\\texttt{data/train\\\\_500\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\nHeld-out evaluation uses 100 FOLIO examples (\\\\texttt{proofwriter\\\\_fol\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\texttt{eval\\\\_sta.py}) so training-log ISR is never compared across runs.\\nWe report prove rate (PR), proved-only ISR ($\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\text{necessary}}$ distribution; \\\\S\\\\ref{sec:taxonomy-method}), and a \\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\n\\n\\\\subsection{ISR as Diagnostic}\\n\\\\label{sec:diagnostic}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=0.95\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\n\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\\\%$\\\\to$93\\\\%$\\\\to$96\\\\% while proved-only ISR falls $0.642{\\\\to}0.132{\\\\to}0.003$ over 100$\\\\to$500$\\\\to$1000 steps. By step 1000, 94.8\\\\% of proved samples have $\\\\text{ISR}{=}0$ and mean component count inflates 6.58$\\\\to$18.55 (contradiction explosion).}\\n\\\\label{fig:isr-collapse}\\n\\\\end{figure}\\n\\n\\\\textbf{Collapse trajectory.}\\nFigure~\\\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\\nPR rises $32\\\\%\\\\to93\\\\%\\\\to96\\\\%$, a trajectory execution-only evaluation would read as successful optimization; $\\\\text{ISR}^*$ tells the opposite story, $0.642\\\\to0.132\\\\to0.003$ (214$\\\\times$ collapse). %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\\nBy 500 steps, 87.1\\\\% of proved samples embed the conclusion (H1); by 1000 steps the embedding rate saturates at 100\\\\% and mean component count more than doubles ($6.58\\\\to18.55$) as the model emits contradictory or vacuous premises that trivially derive any conclusion.\\nExtended training, lacking a structural signal, \\\\emph{worsens} formalization quality while improving the headline number.\\n\\n\\\\textbf{Cross-seed instability.}\\nThe three exec-only seeds diverge into qualitatively different failure modes despite shared data, hyperparameters, and reward (Appendix~\\\\ref{app:detailed-results}): s42 reaches $\\\\text{PR}{=}93\\\\%$ via conclusion embedding ($\\\\text{H1}{=}87\\\\%$); s43 collapses to $\\\\text{PR}{=}13\\\\%$ via repetition (87\\\\% of rollouts truncated); s44 reaches $\\\\text{PR}{=}98\\\\%$ via tautological collapse ($\\\\text{H7}{=}100\\\\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44\\nThe cross-seed PR variance ($\\\\sigma{\\\\pm}47$\\\\,pp) shows aggregate metrics obscure qualitatively different failure modes; all three are flagged by $\\\\text{ISR}^*$ even though one passes the PR check (s44) and one fails it (s43).\\nBy 1000 steps, all three converge to high PR ($0.95{\\\\pm}0.05$) but ${\\\\leq}3\\\\%$ non-hacking (Appendix Table~\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\n\\n\\\\textbf{SFT baseline.\\n\\n... [截断: 输出过长，省略 10239 字符] ...\\n\\ndological lesson that text-match classifiers have blind spots and STA's necessity profile is the cross-check.\\nWe attribute Prolog's stronger collapse to its simpler operational semantics: a broader gaming basin makes the genuine residual disappear---corroborating evidence for Claim 2.\\n\\n\\\\subsection{Hacking Taxonomy}\\n\\\\label{sec:taxonomy}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=0.92\\\\columnwidth]{figures/fig3_hacking_composition.pdf}\\n\\\\caption{Hacking composition across reward conditions (proved samples; exec-only and SFT: seed~42; ISR and Random bars: pooled across 3 seeds, per-seed breakdown in Appendix Table~\\\\ref{tab:fol-detailed}). ISR converts H1 into more extreme H7 without reducing total hacking; SFT shows near-zero hacking.}\\n\\\\label{fig:hacking-composition}\\n\\\\end{figure}\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{lccccc}\\n\\\\toprule\\n\\\\textbf{Mode} & \\\\textbf{Exec} & \\\\textbf{ISR$_{.1}$} & \\\\textbf{Rnd$_{.1}$} & \\\\textbf{SFT} & \\\\textbf{Prolog$_{\\\\text{ISR}}$} \\\\\\\\\\n\\\\midrule\\nH1 embed       & 87 & 18 & 81 & 7 & 0$^\\\\sharp$ \\\\\\\\\\nH7 duplicate   & 0  & 70 & 0  & 0 & 100$^\\\\sharp$ \\\\\\\\\\nH8 prem-subset & 6  & 5  & --- & 0 & --- \\\\\\\\\\nTautological   & --- & --- & --- & --- & s42 \\\\\\\\\\nRepetition     & s43 & --- & --- & --- & --- \\\\\\\\\\nContradiction  & 1k & --- & --- & --- & --- \\\\\\\\\\nCmplx.\\\\ vacuous& 0  & 0  & 4  & 0 & --- \\\\\\\\\\nQuery-as-fact  & --- & --- & --- & --- & s44 \\\\\\\\\\n\\\\midrule\\n\\\\textbf{Non-hacking} & 8  & 7  & 18 & \\\\textbf{92} & \\\\textbf{0} \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\caption{Eight hacking modes across conditions (\\\\% of proved samples; exec-only/SFT: seed~42; ISR/Random: pooled across 3 seeds). H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Cells with seed identifiers indicate the mode dominates that seed. $^\\\\sharp$Prolog row pools strict+functional (\\\\S\\\\ref{sec:crosslogic}).}\\n\\\\label{tab:hacking-taxonomy}\\n\\\\end{table}\\n\\nThe eight modes (Table~\\\\ref{tab:hacking-taxonomy}; full definitions in Appendix~\\\\ref{app:hacking-modes}) span the studied conditions.\\nThree are quantifiable across conditions: \\\\textbf{H1} (conclusion embedding) is GRPO-universal at $68$--$100\\\\%$ regardless of reward type; \\\\textbf{H7} (conclusion duplication) is ISR-accelerated at 500 steps ($69.7\\\\%$ combined vs.\\\\ $0\\\\%$ under random), though random $\\\\beta{=}0.1$ converges to $100\\\\%$ H7 by 1000 steps (seed~42); \\\\textbf{H8} (premise-subset gaming) appears under both exec-only ($6\\\\%$) and ISR ($5\\\\%$) conditions (Appendix~\\\\ref{app:h8}).\\nH7 splits into \\\\textbf{H7a} (standard, text-match detectable; $65\\\\%$ of ISR proved) and \\\\textbf{H7b} (obfuscated tautology; $5\\\\%$): H7b samples use vacuous quantifier wrapping ($11/12$) or structural simplification ($1/12$) to evade the text-match classifier while remaining logically equivalent, with $10/12$ achieving $\\\\text{ISR}{\\\\approx}0.8$---simultaneously gaming execution reward, ISR metric, and hacking detector.\\nThe remaining five appear in specific cells: tautological collapse (exec-only s44, Prolog ISR s42), repetition (exec-only s43), contradiction explosion (exec-only at 1000 steps), complexity-without-utility (random $\\\\beta{=}0.1$ residual), and query-as-fact gaming (Prolog ISR s44).\\n\\nThe cross-condition pattern is consistent with \\\\S\\\\ref{sec:goodhart}: \\\\emph{reward formulation determines hacking composition but not hacking prevalence.}\\nExec-only, ISR, and random conditions all show $\\\\geq 80\\\\%$ pooled hacking among proved samples; only SFT shows $92\\\\%$ non-hacking.\\nAcross 2 logic types, 6 reward conditions, 3 seeds, and up to 1000 steps, no GRPO condition we tested produces a high-PR run that is also majority non-hacking; the closest is ISR $\\\\beta{=}0.1$ s42 at $\\\\text{PR}{=}81\\\\%$, $17\\\\%$ non-hacking, and even that residual is the premise-minimization artifact analyzed above.\\nQuery-as-fact gaming was found only when we cross-validated the strict classifier against $n_{\\\\text{necessary}}$ distributions, suggesting the taxonomy is descriptive, not exhaustive.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ebc76942-f56f-4dfe-93f2-fbe0d1e7ead0",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "73994211-8693-4ebe-8c1e-aa40e0197031",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\\\\\label{sec:experiments}\\\\n\\\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\\\\\S\\\\\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}).\\\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\\\\\S\\\\\\\\ref{sec:taxonomy}).\\\\n\\\\n\\\\\\\\subsection{Setup}\\\\\\\\label{sec:setup}\\\\n\\\\nWe train Qwen3-4B~\\\\\\\\citep{qwen3} with GRPO~\\\\\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\\\\\{42,43,44\\\\\\\\}$ on a fixed 500-example FOLIO~\\\\\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\\\\\footnote{All experiments use \\\\\\\\texttt{data/train\\\\\\\\_500\\\\\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\\\nHeld-out evaluation uses 100 FOLIO examples (\\\\\\\\texttt{proofwriter\\\\\\\\_fol\\\\\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\\\\\texttt{eval\\\\\\\\_sta.py}) so training-log ISR is never compared across runs.\\\\nWe report prove rate (PR), proved-only ISR ($\\\\\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\\\\\text{necessary}}$ distribution; \\\\\\\\S\\\\\\\\ref{sec:taxonomy-method}), and a \\\\\\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\\\n\\\\n\\\\\\\\subsection{ISR as Diagnostic}\\\\n\\\\\\\\label{sec:diagnostic}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=0.95\\\\\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\\\n\\\\\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\\\\\\\%$\\\\\\\\to$93\\\\\\\\%$\\\\\\\\to$96\\\\\\\\% while proved-only ISR falls $0.642{\\\\\\\\to}0.132{\\\\\\\\to}0.003$ over 100$\\\\\\\\to$500$\\\\\\\\to$1000 steps. By step 1000, 94.8\\\\\\\\% of proved samples have $\\\\\\\\text{ISR}{=}0$ and mean component count inflates 6.58$\\\\\\\\to$18.55 (contradiction explosion).}\\\\n\\\\\\\\label{fig:isr-collapse}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\textbf{Collapse trajectory.}\\\\nFigure~\\\\\\\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\\\\nPR rises $32\\\\\\\\%\\\\\\\\to93\\\\\\\\%\\\\\\\\to96\\\\\\\\%$, a trajectory execution-only evaluation would read as successful optimization; $\\\\\\\\text{ISR}^*$ tells the opposite story, $0.642\\\\\\\\to0.132\\\\\\\\to0.003$ (214$\\\\\\\\times$ collapse). %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\\\\nBy 500 steps, 87.1\\\\\\\\% of proved samples embed the conclusion (H1); by 1000 steps the embedding rate saturates at 100\\\\\\\\% and mean component count more than doubles ($6.58\\\\\\\\to18.55$) as the model emits contradictory or vacuous premises that trivially derive any conclusion.\\\\nExtended training, lacking a structural signal, \\\\\\\\emph{worsens} formalization quality while improving the headline number.\\\\n\\\\n\\\\\\\\textbf{Cross-seed instability.}\\\\nThe three exec-only seeds diverge into qualitatively different failure modes despite shared data, hyperparameters, and reward (Appendix~\\\\\\\\ref{app:detailed-results}): s42 reaches $\\\\\\\\text{PR}{=}93\\\\\\\\%$ via conclusion embedding ($\\\\\\\\text{H1}{=}87\\\\\\\\%$); s43 collapses to $\\\\\\\\text{PR}{=}13\\\\\\\\%$ via repetition (87\\\\\\\\% of rollouts truncated); s44 reaches $\\\\\\\\text{PR}{=}98\\\\\\\\%$ via tautological collapse ($\\\\\\\\text{H7}{=}100\\\\\\\\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44\\\\nThe cross-seed PR variance ($\\\\\\\\sigma{\\\\\\\\pm}47$\\\\\\\\,pp) shows aggregate metrics obscure qualitatively different failure modes; all three are flagged by $\\\\\\\\text{ISR}^*$ even though one passes the PR check (s44) and one fails it (s43).\\\\nBy 1000 steps, all three converge to high PR ($0.95{\\\\\\\\pm}0.05$) but ${\\\\\\\\leq}3\\\\\\\\%$ non-hacking (Appendix Table~\\\\\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\\\n\\\\n\\\\\\\\textbf{SFT baseline.\\\\n\\\\n... [截断: 输出过长，省略 10239 字符] ...\\\\n\\\\ndological lesson that text-match classifiers have blind spots and STA's necessity profile is the cross-check.\\\\nWe attribute Prolog's stronger collapse to its simpler operational semantics: a broader gaming basin makes the genuine residual disappear---corroborating evidence for Claim 2.\\\\n\\\\n\\\\\\\\subsection{Hacking Taxonomy}\\\\n\\\\\\\\label{sec:taxonomy}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=0.92\\\\\\\\columnwidth]{figures/fig3_hacking_composition.pdf}\\\\n\\\\\\\\caption{Hacking composition across reward conditions (proved samples; exec-only and SFT: seed~42; ISR and Random bars: pooled across 3 seeds, per-seed breakdown in Appendix Table~\\\\\\\\ref{tab:fol-detailed}). ISR converts H1 into more extreme H7 without reducing total hacking; SFT shows near-zero hacking.}\\\\n\\\\\\\\label{fig:hacking-composition}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lccccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Mode} & \\\\\\\\textbf{Exec} & \\\\\\\\textbf{ISR$_{.1}$} & \\\\\\\\textbf{Rnd$_{.1}$} & \\\\\\\\textbf{SFT} & \\\\\\\\textbf{Prolog$_{\\\\\\\\text{ISR}}$} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nH1 embed       & 87 & 18 & 81 & 7 & 0$^\\\\\\\\sharp$ \\\\\\\\\\\\\\\\\\\\nH7 duplicate   & 0  & 70 & 0  & 0 & 100$^\\\\\\\\sharp$ \\\\\\\\\\\\\\\\\\\\nH8 prem-subset & 6  & 5  & --- & 0 & --- \\\\\\\\\\\\\\\\\\\\nTautological   & --- & --- & --- & --- & s42 \\\\\\\\\\\\\\\\\\\\nRepetition     & s43 & --- & --- & --- & --- \\\\\\\\\\\\\\\\\\\\nContradiction  & 1k & --- & --- & --- & --- \\\\\\\\\\\\\\\\\\\\nCmplx.\\\\\\\\ vacuous& 0  & 0  & 4  & 0 & --- \\\\\\\\\\\\\\\\\\\\nQuery-as-fact  & --- & --- & --- & --- & s44 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\textbf{Non-hacking} & 8  & 7  & 18 & \\\\\\\\textbf{92} & \\\\\\\\textbf{0} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\caption{Eight hacking modes across conditions (\\\\\\\\% of proved samples; exec-only/SFT: seed~42; ISR/Random: pooled across 3 seeds). H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Cells with seed identifiers indicate the mode dominates that seed. $^\\\\\\\\sharp$Prolog row pools strict+functional (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}).}\\\\n\\\\\\\\label{tab:hacking-taxonomy}\\\\n\\\\\\\\end{table}\\\\n\\\\nThe eight modes (Table~\\\\\\\\ref{tab:hacking-taxonomy}; full definitions in Appendix~\\\\\\\\ref{app:hacking-modes}) span the studied conditions.\\\\nThree are quantifiable across conditions: \\\\\\\\textbf{H1} (conclusion embedding) is GRPO-universal at $68$--$100\\\\\\\\%$ regardless of reward type; \\\\\\\\textbf{H7} (conclusion duplication) is ISR-accelerated at 500 steps ($69.7\\\\\\\\%$ combined vs.\\\\\\\\ $0\\\\\\\\%$ under random), though random $\\\\\\\\beta{=}0.1$ converges to $100\\\\\\\\%$ H7 by 1000 steps (seed~42); \\\\\\\\textbf{H8} (premise-subset gaming) appears under both exec-only ($6\\\\\\\\%$) and ISR ($5\\\\\\\\%$) conditions (Appendix~\\\\\\\\ref{app:h8}).\\\\nH7 splits into \\\\\\\\textbf{H7a} (standard, text-match detectable; $65\\\\\\\\%$ of ISR proved) and \\\\\\\\textbf{H7b} (obfuscated tautology; $5\\\\\\\\%$): H7b samples use vacuous quantifier wrapping ($11/12$) or structural simplification ($1/12$) to evade the text-match classifier while remaining logically equivalent, with $10/12$ achieving $\\\\\\\\text{ISR}{\\\\\\\\approx}0.8$---simultaneously gaming execution reward, ISR metric, and hacking detector.\\\\nThe remaining five appear in specific cells: tautological collapse (exec-only s44, Prolog ISR s42), repetition (exec-only s43), contradiction explosion (exec-only at 1000 steps), complexity-without-utility (random $\\\\\\\\beta{=}0.1$ residual), and query-as-fact gaming (Prolog ISR s44).\\\\n\\\\nThe cross-condition pattern is consistent with \\\\\\\\S\\\\\\\\ref{sec:goodhart}: \\\\\\\\emph{reward formulation determines hacking composition but not hacking prevalence.}\\\\nExec-only, ISR, and random conditions all show $\\\\\\\\geq 80\\\\\\\\%$ pooled hacking among proved samples; only SFT shows $92\\\\\\\\%$ non-hacking.\\\\nAcross 2 logic types, 6 reward conditions, 3 seeds, and up to 1000 steps, no GRPO condition we tested produces a high-PR run that is also majority non-hacking; the closest is ISR $\\\\\\\\beta{=}0.1$ s42 at $\\\\\\\\text{PR}{=}81\\\\\\\\%$, $17\\\\\\\\%$ non-hacking, and even that residual is the premise-minimization artifact analyzed above.\\\\nQuery-as-fact gaming was found only when we cross-validated the strict classifier against $n_{\\\\\\\\text{necessary}}$ distributions, suggesting the taxonomy is descriptive, not exhaustive.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experiments}\\n\\\\label{sec:experiments}\\n\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\S\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\S\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\S\\\\ref{sec:crosslogic}).\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\S\\\\ref{sec:taxonomy}).\\n\\n\\\\subsection{Setup}\\\\label{sec:setup}\\n\\nWe train Qwen3-4B~\\\\citep{qwen3} with GRPO~\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\{42,43,44\\\\}$ on a fixed 500-example FOLIO~\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\footnote{All experiments use \\\\texttt{data/train\\\\_500\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\nHeld-out evaluation uses 100 FOLIO examples (\\\\texttt{proofwriter\\\\_fol\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\texttt{eval\\\\_sta.py}) so training-log ISR is never compared across runs.\\nWe report prove rate (PR), proved-only ISR ($\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\text{necessary}}$ distribution; \\\\S\\\\ref{sec:taxonomy-method}), and a \\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\n\\n\\\\subsection{ISR as Diagnostic}\\n\\\\label{sec:diagnostic}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=0.95\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\n\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\\\%$\\\\to$93\\\\%$\\\\to$96\\\\% while proved-only ISR falls $0.642{\\\\to}0.132{\\\\to}0.003$ over 100$\\\\to$500$\\\\to$1000 steps. By step 1000, 94.8\\\\% of proved samples have $\\\\text{ISR}{=}0$ and mean component count inflates 6.58$\\\\to$18.55 (contradiction explosion).}\\n\\\\label{fig:isr-collapse}\\n\\\\end{figure}\\n\\n\\\\textbf{Collapse trajectory.}\\nFigure~\\\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\\nPR rises $32\\\\%\\\\to93\\\\%\\\\to96\\\\%$, a trajectory execution-only evaluation would read as successful optimization; $\\\\text{ISR}^*$ tells the opposite story, $0.642\\\\to0.132\\\\to0.003$ (214$\\\\times$ collapse). %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\\nBy 500 steps, 87.1\\\\% of proved samples embed the conclusion (H1); by 1000 steps the embedding rate saturates at 100\\\\% and mean component count more than doubles ($6.58\\\\to18.55$) as the model emits contradictory or vacuous premises that trivially derive any conclusion.\\nExtended training, lacking a structural signal, \\\\emph{worsens} formalization quality while improving the headline number.\\n\\n\\\\textbf{Cross-seed instability.}\\nThe three exec-only seeds diverge into qualitatively different failure modes despite shared data, hyperparameters, and reward (Appendix~\\\\ref{app:detailed-results}): s42 reaches $\\\\text{PR}{=}93\\\\%$ via conclusion embedding ($\\\\text{H1}{=}87\\\\%$); s43 collapses to $\\\\text{PR}{=}13\\\\%$ via repetition (87\\\\% of rollouts truncated); s44 reaches $\\\\text{PR}{=}98\\\\%$ via tautological collapse ($\\\\text{H7}{=}100\\\\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44\\nThe cross-seed PR variance ($\\\\sigma{\\\\pm}47$\\\\,pp) shows aggregate metrics obscure qualitatively different failure modes; all three are flagged by $\\\\text{ISR}^*$ even though one passes the PR check (s44) and one fails it (s43).\\nBy 1000 steps, all three converge to high PR ($0.95{\\\\pm}0.05$) but ${\\\\leq}3\\\\%$ non-hacking (Appendix Table~\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\n\\n\\\\textbf{SFT baseline.\\n\\n... [截断: 输出过长，省略 10239 字符] ...\\n\\ndological lesson that text-match classifiers have blind spots and STA's necessity profile is the cross-check.\\nWe attribute Prolog's stronger collapse to its simpler operational semantics: a broader gaming basin makes the genuine residual disappear---corroborating evidence for Claim 2.\\n\\n\\\\subsection{Hacking Taxonomy}\\n\\\\label{sec:taxonomy}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=0.92\\\\columnwidth]{figures/fig3_hacking_composition.pdf}\\n\\\\caption{Hacking composition across reward conditions (proved samples; exec-only and SFT: seed~42; ISR and Random bars: pooled across 3 seeds, per-seed breakdown in Appendix Table~\\\\ref{tab:fol-detailed}). ISR converts H1 into more extreme H7 without reducing total hacking; SFT shows near-zero hacking.}\\n\\\\label{fig:hacking-composition}\\n\\\\end{figure}\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{lccccc}\\n\\\\toprule\\n\\\\textbf{Mode} & \\\\textbf{Exec} & \\\\textbf{ISR$_{.1}$} & \\\\textbf{Rnd$_{.1}$} & \\\\textbf{SFT} & \\\\textbf{Prolog$_{\\\\text{ISR}}$} \\\\\\\\\\n\\\\midrule\\nH1 embed       & 87 & 18 & 81 & 7 & 0$^\\\\sharp$ \\\\\\\\\\nH7 duplicate   & 0  & 70 & 0  & 0 & 100$^\\\\sharp$ \\\\\\\\\\nH8 prem-subset & 6  & 5  & --- & 0 & --- \\\\\\\\\\nTautological   & --- & --- & --- & --- & s42 \\\\\\\\\\nRepetition     & s43 & --- & --- & --- & --- \\\\\\\\\\nContradiction  & 1k & --- & --- & --- & --- \\\\\\\\\\nCmplx.\\\\ vacuous& 0  & 0  & 4  & 0 & --- \\\\\\\\\\nQuery-as-fact  & --- & --- & --- & --- & s44 \\\\\\\\\\n\\\\midrule\\n\\\\textbf{Non-hacking} & 8  & 7  & 18 & \\\\textbf{92} & \\\\textbf{0} \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\caption{Eight hacking modes across conditions (\\\\% of proved samples; exec-only/SFT: seed~42; ISR/Random: pooled across 3 seeds). H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Cells with seed identifiers indicate the mode dominates that seed. $^\\\\sharp$Prolog row pools strict+functional (\\\\S\\\\ref{sec:crosslogic}).}\\n\\\\label{tab:hacking-taxonomy}\\n\\\\end{table}\\n\\nThe eight modes (Table~\\\\ref{tab:hacking-taxonomy}; full definitions in Appendix~\\\\ref{app:hacking-modes}) span the studied conditions.\\nThree are quantifiable across conditions: \\\\textbf{H1} (conclusion embedding) is GRPO-universal at $68$--$100\\\\%$ regardless of reward type; \\\\textbf{H7} (conclusion duplication) is ISR-accelerated at 500 steps ($69.7\\\\%$ combined vs.\\\\ $0\\\\%$ under random), though random $\\\\beta{=}0.1$ converges to $100\\\\%$ H7 by 1000 steps (seed~42); \\\\textbf{H8} (premise-subset gaming) appears under both exec-only ($6\\\\%$) and ISR ($5\\\\%$) conditions (Appendix~\\\\ref{app:h8}).\\nH7 splits into \\\\textbf{H7a} (standard, text-match detectable; $65\\\\%$ of ISR proved) and \\\\textbf{H7b} (obfuscated tautology; $5\\\\%$): H7b samples use vacuous quantifier wrapping ($11/12$) or structural simplification ($1/12$) to evade the text-match classifier while remaining logically equivalent, with $10/12$ achieving $\\\\text{ISR}{\\\\approx}0.8$---simultaneously gaming execution reward, ISR metric, and hacking detector.\\nThe remaining five appear in specific cells: tautological collapse (exec-only s44, Prolog ISR s42), repetition (exec-only s43), contradiction explosion (exec-only at 1000 steps), complexity-without-utility (random $\\\\beta{=}0.1$ residual), and query-as-fact gaming (Prolog ISR s44).\\n\\nThe cross-condition pattern is consistent with \\\\S\\\\ref{sec:goodhart}: \\\\emph{reward formulation determines hacking composition but not hacking prevalence.}\\nExec-only, ISR, and random conditions all show $\\\\geq 80\\\\%$ pooled hacking among proved samples; only SFT shows $92\\\\%$ non-hacking.\\nAcross 2 logic types, 6 reward conditions, 3 seeds, and up to 1000 steps, no GRPO condition we tested produces a high-PR run that is also majority non-hacking; the closest is ISR $\\\\beta{=}0.1$ s42 at $\\\\text{PR}{=}81\\\\%$, $17\\\\%$ non-hacking, and even that residual is the premise-minimization artifact analyzed above.\\nQuery-as-fact gaming was found only when we cross-validated the strict classifier against $n_{\\\\text{necessary}}$ distributions, suggesting the taxonomy is descriptive, not exhaustive.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ebc76942-f56f-4dfe-93f2-fbe0d1e7ead0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T17:08:06.254Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011pu1qC3Rj3Rs63SeXrdiDi`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/paper/introduction.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73994211-8693-4ebe-8c1e-aa40e0197031",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqcxLTPg6vijxsh9dy",
+  "type": "assistant",
+  "uuid": "e1824102-790b-4952-95e0-79d8d587698d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMDyx3QoyNoSapeFMpYm3H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 27056,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 27056,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T17:08:06.601Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019Rm1HpQnKU9WCgzJef6eLy`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1824102-790b-4952-95e0-79d8d587698d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iqcxLTPg6vijxsh9dy",
+  "type": "assistant",
+  "uuid": "3959d280-b82f-40ac-880b-0eaec9aad2c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QMDyx3QoyNoSapeFMpYm3H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 27056,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 27056,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T17:08:06.753Z_
+
+<details><summary>↩ Tool result · `toolu_011pu1qC3Rj3Rs63SeXrdiDi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Introduction}\\n\\\\label{sec:introduction}\\n\\nA GRPO-trained formalizer achieves a 93\\\\% prove rate on first-order logic problems---yet 87\\\\% of its proved outputs embed the conclusion verbatim among the premises.\\nThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\\nThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\\n\\n\\\\paragraph{The execution-only blind spot.}\\nProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\\\citep{skalse-reward-hacking, reward-hacking-survey}.\\nRecent work applies GRPO~\\\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but gives no gradient on structural quality.\\nProcess reward models~\\\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\\nA separate line documents that LLMs already game logical formalization at inference time~\\\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\\\emph{diagnostic} for structural integrity in neurosymbolic outputs.\\n\\n\\\\paragraph{Component necessity testing.}\\nWe address this gap with \\\\emph{Solver Trace Ablation} (STA), a diagnostic applying \\\\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\\\autoref{fig:sta-overview}).\\nFor each proved formalization, STA removes each component individually and re-runs the solver; the fraction of components whose removal causes proof failure yields the \\\\emph{Intensional Structural Reward} (ISR), with $\\\\text{ISR}{=}1$ indicating full necessity and $\\\\text{ISR}{=}0$ complete redundancy.\\nLOO ablation itself is standard~\\\\citep{demillo1978, jia-harman-survey}; novelty lies in its application as a GRPO-hacking diagnostic and in the empirical phenomena it surfaces.\\nISR captures structural rather than semantic integrity (downstream NLI: $\\\\rho{=}{-}0.049$, $p{=}0.187$).\\n\\n\\\\paragraph{ISR as diagnostic.}\\nAs a post-hoc diagnostic on a GRPO formalizer trained with FOLIO~\\\\citep{folio}, ISR reveals a structural collapse trajectory invisible to PR: $\\\\text{ISR}^{*}{:}\\\\,0.642\\\\to 0.132\\\\to 0.003$ over 100--1000 steps (99.5\\\\% degradation) while PR rises $32\\\\%{\\\\to}96\\\\%$.\\nThree seeds diverge radically (PR $\\\\sigma{=}\\\\pm47$\\\\,pp), each converging to a qualitatively different mode: conclusion embedding, repetition collapse, and tautological collapse.\\nAn SFT baseline on identical data reaches $\\\\text{PR}{=}13.0\\\\%$ with 92.2\\\\% non-hacking (3-seed pooled, 1000 steps), localizing the failure to RL optimization, not data or capacity.\\n\\n\\\\paragraph{Meta-level Goodhart.}\\nRepurposed as a training signal, $r = r_{\\\\text{exec}} \\\\cdot (1 + \\\\beta\\\\,\\\\text{ISR})$, ISR is gamed at its own definition---\\\\emph{meta-level Goodhart's Law}~\\\\citep{manheim-goodhart-taxonomy, karwowski-goodhart-rl, gao-reward-overoptimization}.\\nAt $\\\\beta{=}0.1$, 69.7\\\\% of proved samples exhibit single-premise-equals-conclusion duplication---ISR high \\\\emph{by definition}---versus 0\\\\% under matched random; the one seed with non-trivial residual reduces to $1.06\\\\times$ random after controlling for a premise-count confound.\\nAt $\\\\beta{=}0.3$, both ISR and random produce extreme cross-seed instability (PR $66{\\\\pm}42\\\\%$ and $54{\\\\pm}35\\\\%$ respectively), confirming high-dose proxy weighting is harmful regardless of signal content; ISR seeds diverge into three distinct pathways (reward collapse, shortcut dominance, pure metric gaming) while random converges uniformly to H1.\\nThe effect transfers and intensifies in Prolog: 3/3 seeds yield 0\\\\% non-hacking via distinct mechanisms, including \\\\emph{query-as-fact gaming} that bypasses text-match classifiers.\\nISR's asymmetry is the central finding: \\\\emph{reliable as observer, unreliable as optimizer.}\\n\\n\\\\paragraph{Contributions.}\\nAcross 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 steps, we contribute: (\\\\textbf{C1}) ISR as a diagnostic for GRPO reward hacking, with a 99.5\\\\% collapse trajectory invisible to PR and an SFT control localizing the failure to RL (\\\\S\\\\ref{sec:diagnostic}); (\\\\textbf{C2}) empirical meta-level Goodhart, with a random control isolating ISR-specific gaming at 500 steps (69.7\\\\% vs.\\\\ 0\\\\%; random converges to near-100\\\\% H7 by 1000 steps, seed~42) and a premise-count-matched analysis showing the sole apparent gain is an LOO artifact (\\\\S\\\\ref{sec:goodhart}); (\\\\textbf{C3}) cross-logic transfer to Prolog with universal Goodhart (\\\\S\\\\ref{sec:crosslogic}); (\\\\textbf{C4}) an eight-mode hacking taxonomy including query-as-fact gaming and obfuscated tautology, motivating functional cross-validation of diagnostics (\\\\S\\\\ref{sec:taxonomy}).\\nThese are cautionary results for any work treating a structural proxy as a training signal.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1824102-790b-4952-95e0-79d8d587698d",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "79f6a986-07f2-430e-bc97-0e13fe6cb327",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Introduction}\\\\n\\\\\\\\label{sec:introduction}\\\\n\\\\nA GRPO-trained formalizer achieves a 93\\\\\\\\% prove rate on first-order logic problems---yet 87\\\\\\\\% of its proved outputs embed the conclusion verbatim among the premises.\\\\nThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\\\\nThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\\\\n\\\\n\\\\\\\\paragraph{The execution-only blind spot.}\\\\nProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\\\\\\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\\\\\\\citep{skalse-reward-hacking, reward-hacking-survey}.\\\\nRecent work applies GRPO~\\\\\\\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\\\\\\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but gives no gradient on structural quality.\\\\nProcess reward models~\\\\\\\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\\\\nA separate line documents that LLMs already game logical formalization at inference time~\\\\\\\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\\\\\\\emph{diagnostic} for structural integrity in neurosymbolic outputs.\\\\n\\\\n\\\\\\\\paragraph{Component necessity testing.}\\\\nWe address this gap with \\\\\\\\emph{Solver Trace Ablation} (STA), a diagnostic applying \\\\\\\\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\\\\\\\autoref{fig:sta-overview}).\\\\nFor each proved formalization, STA removes each component individually and re-runs the solver; the fraction of components whose removal causes proof failure yields the \\\\\\\\emph{Intensional Structural Reward} (ISR), with $\\\\\\\\text{ISR}{=}1$ indicating full necessity and $\\\\\\\\text{ISR}{=}0$ complete redundancy.\\\\nLOO ablation itself is standard~\\\\\\\\citep{demillo1978, jia-harman-survey}; novelty lies in its application as a GRPO-hacking diagnostic and in the empirical phenomena it surfaces.\\\\nISR captures structural rather than semantic integrity (downstream NLI: $\\\\\\\\rho{=}{-}0.049$, $p{=}0.187$).\\\\n\\\\n\\\\\\\\paragraph{ISR as diagnostic.}\\\\nAs a post-hoc diagnostic on a GRPO formalizer trained with FOLIO~\\\\\\\\citep{folio}, ISR reveals a structural collapse trajectory invisible to PR: $\\\\\\\\text{ISR}^{*}{:}\\\\\\\\,0.642\\\\\\\\to 0.132\\\\\\\\to 0.003$ over 100--1000 steps (99.5\\\\\\\\% degradation) while PR rises $32\\\\\\\\%{\\\\\\\\to}96\\\\\\\\%$.\\\\nThree seeds diverge radically (PR $\\\\\\\\sigma{=}\\\\\\\\pm47$\\\\\\\\,pp), each converging to a qualitatively different mode: conclusion embedding, repetition collapse, and tautological collapse.\\\\nAn SFT baseline on identical data reaches $\\\\\\\\text{PR}{=}13.0\\\\\\\\%$ with 92.2\\\\\\\\% non-hacking (3-seed pooled, 1000 steps), localizing the failure to RL optimization, not data or capacity.\\\\n\\\\n\\\\\\\\paragraph{Meta-level Goodhart.}\\\\nRepurposed as a training signal, $r = r_{\\\\\\\\text{exec}} \\\\\\\\cdot (1 + \\\\\\\\beta\\\\\\\\,\\\\\\\\text{ISR})$, ISR is gamed at its own definition---\\\\\\\\emph{meta-level Goodhart's Law}~\\\\\\\\citep{manheim-goodhart-taxonomy, karwowski-goodhart-rl, gao-reward-overoptimization}.\\\\nAt $\\\\\\\\beta{=}0.1$, 69.7\\\\\\\\% of proved samples exhibit single-premise-equals-conclusion duplication---ISR high \\\\\\\\emph{by definition}---versus 0\\\\\\\\% under matched random; the one seed with non-trivial residual reduces to $1.06\\\\\\\\times$ random after controlling for a premise-count confound.\\\\nAt $\\\\\\\\beta{=}0.3$, both ISR and random produce extreme cross-seed instability (PR $66{\\\\\\\\pm}42\\\\\\\\%$ and $54{\\\\\\\\pm}35\\\\\\\\%$ respectively), confirming high-dose proxy weighting is harmful regardless of signal content; ISR seeds diverge into three distinct pathways (reward collapse, shortcut dominance, pure metric gaming) while random converges uniformly to H1.\\\\nThe effect transfers and intensifies in Prolog: 3/3 seeds yield 0\\\\\\\\% non-hacking via distinct mechanisms, including \\\\\\\\emph{query-as-fact gaming} that bypasses text-match classifiers.\\\\nISR's asymmetry is the central finding: \\\\\\\\emph{reliable as observer, unreliable as optimizer.}\\\\n\\\\n\\\\\\\\paragraph{Contributions.}\\\\nAcross 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 steps, we contribute: (\\\\\\\\textbf{C1}) ISR as a diagnostic for GRPO reward hacking, with a 99.5\\\\\\\\% collapse trajectory invisible to PR and an SFT control localizing the failure to RL (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}); (\\\\\\\\textbf{C2}) empirical meta-level Goodhart, with a random control isolating ISR-specific gaming at 500 steps (69.7\\\\\\\\% vs.\\\\\\\\ 0\\\\\\\\%; random converges to near-100\\\\\\\\% H7 by 1000 steps, seed~42) and a premise-count-matched analysis showing the sole apparent gain is an LOO artifact (\\\\\\\\S\\\\\\\\ref{sec:goodhart}); (\\\\\\\\textbf{C3}) cross-logic transfer to Prolog with universal Goodhart (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}); (\\\\\\\\textbf{C4}) an eight-mode hacking taxonomy including query-as-fact gaming and obfuscated tautology, motivating functional cross-validation of diagnostics (\\\\\\\\S\\\\\\\\ref{sec:taxonomy}).\\\\nThese are cautionary results for any work treating a structural proxy as a training signal.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Introduction}\\n\\\\label{sec:introduction}\\n\\nA GRPO-trained formalizer achieves a 93\\\\% prove rate on first-order logic problems---yet 87\\\\% of its proved outputs embed the conclusion verbatim among the premises.\\nThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\\nThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\\n\\n\\\\paragraph{The execution-only blind spot.}\\nProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\\\citep{skalse-reward-hacking, reward-hacking-survey}.\\nRecent work applies GRPO~\\\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but gives no gradient on structural quality.\\nProcess reward models~\\\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\\nA separate line documents that LLMs already game logical formalization at inference time~\\\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\\\emph{diagnostic} for structural integrity in neurosymbolic outputs.\\n\\n\\\\paragraph{Component necessity testing.}\\nWe address this gap with \\\\emph{Solver Trace Ablation} (STA), a diagnostic applying \\\\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\\\autoref{fig:sta-overview}).\\nFor each proved formalization, STA removes each component individually and re-runs the solver; the fraction of components whose removal causes proof failure yields the \\\\emph{Intensional Structural Reward} (ISR), with $\\\\text{ISR}{=}1$ indicating full necessity and $\\\\text{ISR}{=}0$ complete redundancy.\\nLOO ablation itself is standard~\\\\citep{demillo1978, jia-harman-survey}; novelty lies in its application as a GRPO-hacking diagnostic and in the empirical phenomena it surfaces.\\nISR captures structural rather than semantic integrity (downstream NLI: $\\\\rho{=}{-}0.049$, $p{=}0.187$).\\n\\n\\\\paragraph{ISR as diagnostic.}\\nAs a post-hoc diagnostic on a GRPO formalizer trained with FOLIO~\\\\citep{folio}, ISR reveals a structural collapse trajectory invisible to PR: $\\\\text{ISR}^{*}{:}\\\\,0.642\\\\to 0.132\\\\to 0.003$ over 100--1000 steps (99.5\\\\% degradation) while PR rises $32\\\\%{\\\\to}96\\\\%$.\\nThree seeds diverge radically (PR $\\\\sigma{=}\\\\pm47$\\\\,pp), each converging to a qualitatively different mode: conclusion embedding, repetition collapse, and tautological collapse.\\nAn SFT baseline on identical data reaches $\\\\text{PR}{=}13.0\\\\%$ with 92.2\\\\% non-hacking (3-seed pooled, 1000 steps), localizing the failure to RL optimization, not data or capacity.\\n\\n\\\\paragraph{Meta-level Goodhart.}\\nRepurposed as a training signal, $r = r_{\\\\text{exec}} \\\\cdot (1 + \\\\beta\\\\,\\\\text{ISR})$, ISR is gamed at its own definition---\\\\emph{meta-level Goodhart's Law}~\\\\citep{manheim-goodhart-taxonomy, karwowski-goodhart-rl, gao-reward-overoptimization}.\\nAt $\\\\beta{=}0.1$, 69.7\\\\% of proved samples exhibit single-premise-equals-conclusion duplication---ISR high \\\\emph{by definition}---versus 0\\\\% under matched random; the one seed with non-trivial residual reduces to $1.06\\\\times$ random after controlling for a premise-count confound.\\nAt $\\\\beta{=}0.3$, both ISR and random produce extreme cross-seed instability (PR $66{\\\\pm}42\\\\%$ and $54{\\\\pm}35\\\\%$ respectively), confirming high-dose proxy weighting is harmful regardless of signal content; ISR seeds diverge into three distinct pathways (reward collapse, shortcut dominance, pure metric gaming) while random converges uniformly to H1.\\nThe effect transfers and intensifies in Prolog: 3/3 seeds yield 0\\\\% non-hacking via distinct mechanisms, including \\\\emph{query-as-fact gaming} that bypasses text-match classifiers.\\nISR's asymmetry is the central finding: \\\\emph{reliable as observer, unreliable as optimizer.}\\n\\n\\\\paragraph{Contributions.}\\nAcross 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 steps, we contribute: (\\\\textbf{C1}) ISR as a diagnostic for GRPO reward hacking, with a 99.5\\\\% collapse trajectory invisible to PR and an SFT control localizing the failure to RL (\\\\S\\\\ref{sec:diagnostic}); (\\\\textbf{C2}) empirical meta-level Goodhart, with a random control isolating ISR-specific gaming at 500 steps (69.7\\\\% vs.\\\\ 0\\\\%; random converges to near-100\\\\% H7 by 1000 steps, seed~42) and a premise-count-matched analysis showing the sole apparent gain is an LOO artifact (\\\\S\\\\ref{sec:goodhart}); (\\\\textbf{C3}) cross-logic transfer to Prolog with universal Goodhart (\\\\S\\\\ref{sec:crosslogic}); (\\\\textbf{C4}) an eight-mode hacking taxonomy including query-as-fact gaming and obfuscated tautology, motivating functional cross-validation of diagnostics (\\\\S\\\\ref{sec:taxonomy}).\\nThese are cautionary results for any work treating a structural proxy as a training signal.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e1824102-790b-4952-95e0-79d8d587698d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "79f6a986-07f2-430e-bc97-0e13fe6cb327",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix reviewer comments on genuine proofs in paper",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T17:08:07.349Z_
+
+<details><summary>↩ Tool result · `toolu_019Rm1HpQnKU9WCgzJef6eLy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% Appendix — solver-trace-ablation\\n\\n\\\\section{Experimental Setup}\\n\\\\label{app:setup}\\n\\nTable~\\\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\\nAll RL conditions use the same GRPO configuration; only the reward function differs.\\nSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Training hyperparameters for all GRPO experiments.}\\n\\\\label{tab:hyperparams}\\n\\\\footnotesize\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{@{}ll@{}}\\n\\\\toprule\\n\\\\textbf{Parameter} & \\\\textbf{Value} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Model}} \\\\\\\\\\nBase model & Qwen3-4B \\\\\\\\\\nPrecision & BF16 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{GRPO Training}} \\\\\\\\\\nRollouts per prompt ($K$) & 8 \\\\\\\\\\nTraining steps (default) & 500 \\\\\\\\\\nTraining steps (extended) & 1000 \\\\\\\\\\nLearning rate & $1 \\\\times 10^{-6}$ \\\\\\\\\\nPer-device batch size & 4 \\\\\\\\\\nGradient accumulation steps & 2 \\\\\\\\\\nEffective batch size & 8 \\\\\\\\\\nMax completion length & 512 tokens \\\\\\\\\\nRandom seeds & 42, 43, 44 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Data}} \\\\\\\\\\nTraining set & FOLIO, 500 examples \\\\\\\\\\nEvaluation set & FOLIO, 100 examples (held-out) \\\\\\\\\\nData file & \\\\texttt{train\\\\_500\\\\_seed42} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Solvers}} \\\\\\\\\\nFOL solver & Prover9 \\\\\\\\\\nProlog solver & SWI-Prolog 8.4.2 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Evaluation}} \\\\\\\\\\nDecoding & Greedy ($T{=}0$) \\\\\\\\\\nISR computation & \\\\texttt{eval\\\\_sta.py} \\\\\\\\\\nISR variant & Proved-only (ISR$^*$) \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\n\\\\paragraph{Evaluation exception.}\\nFOL exec-only seed~43 (\\\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\\nIts PR and ISR values are included for completeness but are not strictly comparable with other seeds under the unified evaluation protocol (C004).\\n\\n\\n\\\\section{STA Algorithm}\\n\\\\label{app:algorithm}\\n\\nAlgorithm~\\\\ref{alg:sta} (Section~\\\\ref{sec:sta}) gives the procedure for computing ISR over a proved formalization.\\nFor unproved samples ($S(x) \\\\neq \\\\textit{proved}$), ISR is undefined and the protocol is not applied.\\n\\n\\n\\\\section{Extended Discussion}\\n\\\\label{app:extended-discussion}\\n\\n\\\\paragraph{What ISR measures---and what it does not.}\\nISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.\\nThis is strictly weaker than semantic faithfulness---whether the formalization accurately captures the natural-language meaning.\\nWe verify this empirically: Spearman $\\\\rho(\\\\text{ISR}, \\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\nISR and downstream task performance are uncorrelated.\\nISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.\\n\\nCritically, low ISR carries different semantics depending on the training objective.\\nUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\\\S\\\\ref{sec:crosslogic}).\\nUnder ISR-as-reward, high ISR reflects metric gaming (\\\\S\\\\ref{sec:goodhart}).\\nISR values must always be interpreted relative to the optimization objective that produced them.\\n\\n\\\\paragraph{The premise-count confound.}\\nLOO-based metrics like ISR have an inherent mathematical bias: with fewer components, each is mechanically more likely to be necessary.\\nA formalization with 2 premises where both are necessary yields ISR${=}1.0$; one with 10 premises where 8 are necessary yields ISR${=}0.8$---even though the latter encodes richer reasoning.\\nThis confound explains the sole apparent ISR-as-reward success (\\\\S\\\\ref{sec:goodhart}): ISR $\\\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\\n\\n\\n... [截断: 输出过长，省略 23181 字符] ...\\n\\nure mode but a family of convergent exploits.\\n\\n\\\\subsection{Per-Seed Results at $\\\\beta{=}0.3$}\\n\\\\label{app:beta03}\\n\\nTable~\\\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\\\beta{=}0.3$.\\nThe three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\\\S\\\\ref{sec:goodhart}).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-seed results at $\\\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H = percentage among proved samples.}\\n\\\\label{tab:beta03-detailed}\\n\\\\small\\n\\\\begin{tabular}{@{}llcccccl@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Seed} & \\\\textbf{PR} & \\\\textbf{ISR$^*$} & \\\\textbf{H7\\\\%} & \\\\textbf{H1\\\\%} & \\\\textbf{N-H\\\\%} & \\\\textbf{Mode} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{@{}l}{\\\\textit{ISR $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 0.18 & 0.143 & 0 & 77.8 & 22.2 & Reward collapse ($n{=}18$) \\\\\\\\\\n  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 26.7 & H1 shortcutting \\\\\\\\\\n  & 44 & 0.95 & 0.742 & \\\\textbf{100} & 0 & 0 & Pure H7 meta-Goodhart \\\\\\\\\\n\\\\cmidrule(l){2-8}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.66{\\\\pm}0.42$} & & \\\\makebox[0pt][l]{$0.39{\\\\pm}0.31$} & & \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{@{}l}{\\\\textit{Random $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\\\\\\\\\n  & 43 & 0.92 & 0.180 & 7.6 & 90.2 & 2.2 & \\\\\\\\\\n  & 44 & 0.23 & 0 & 0 & 100 & 0 & \\\\\\\\\\n\\\\cmidrule(l){2-8}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.54{\\\\pm}0.35$} & & \\\\makebox[0pt][l]{$0.09{\\\\pm}0.09$} & & \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\\n\\\\label{app:100step}\\n\\nTo control for the prove-rate confound in our SFT comparison (\\\\S\\\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\\\%---higher than SFT (13.0\\\\%, 3-seed pooled) but still early in training.\\nOf the 32 proved samples, 9 (28.1\\\\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\\\\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\\\\%.\\nBy contrast, SFT at comparable or lower PR shows 7.7\\\\% hacking (1/13 proved samples).\\nThis demonstrates that reward hacking emerges early in GRPO training---well before the prove-rate plateau---and is not simply an artifact of having more proved samples available for exploitation.\\nThe 100-step hacking rate (31.2\\\\%) is already substantially above SFT (7.7\\\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\\n\\n\\\\subsection{$O(1)$ vs.\\\\ $O(n)$ ISR Ablation}\\n\\\\label{app:o1-ablation}\\n\\nTo justify the per-clause LOO design (\\\\S\\\\ref{sec:sta}), we train a variant that replaces the $O(n)$ ablation with a cheaper $O(1)$ binary signal: $\\\\text{fast\\\\_ISR}(x) = 1$ if $x$ is proved \\\\emph{and} the conclusion is not provable under empty premises (tautology check), $0$ otherwise.\\nThe reward becomes $r = 0.5\\\\,r_{\\\\text{exec}} + 0.5\\\\,\\\\text{fast\\\\_ISR}$.\\nAfter 500 steps (seed~42), this variant achieves $\\\\text{PR}{=}63\\\\%$ with $\\\\text{ISR}^*{=}0.007$---functionally zero---compared to $\\\\text{ISR}^*{=}0.132$ under standard exec-only and $\\\\text{ISR}^*{=}0.42$ under ISR $\\\\beta{=}0.1$.\\n\\n\\\\paragraph{ISR signal vs.\\\\ training dynamics.}\\nAt the \\\\emph{ISR signal level}, the $O(1)$ variant is indistinguishable from exec-only: both produce near-zero ISR because models emit redundant premise copies whose individual removal never changes the proof outcome.\\nAt the \\\\emph{training level}, the two conditions are non-equivalent: the $O(1)$ tautology check penalizes formalizations where the conclusion is provable without any premises, a constraint absent from exec-only.\\nThis confound depresses prove rate by 30 percentage points ($63\\\\%$ vs.\\\\ $93\\\\%$ exec-only), making it impossible to attribute the difference purely to the ISR signal.\\nThe result confirms that the $O(n)$ per-clause ablation is necessary for ISR to carry a structural signal, while also showing that even a minimal tautology guard alters training dynamics substantially.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3959d280-b82f-40ac-880b-0eaec9aad2c0",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "89144d1b-3d39-484e-8b85-c3a679152124",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Appendix — solver-trace-ablation\\\\n\\\\n\\\\\\\\section{Experimental Setup}\\\\n\\\\\\\\label{app:setup}\\\\n\\\\nTable~\\\\\\\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\\\\nAll RL conditions use the same GRPO configuration; only the reward function differs.\\\\nSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Training hyperparameters for all GRPO experiments.}\\\\n\\\\\\\\label{tab:hyperparams}\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{@{}ll@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Parameter} & \\\\\\\\textbf{Value} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Model}} \\\\\\\\\\\\\\\\\\\\nBase model & Qwen3-4B \\\\\\\\\\\\\\\\\\\\nPrecision & BF16 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{GRPO Training}} \\\\\\\\\\\\\\\\\\\\nRollouts per prompt ($K$) & 8 \\\\\\\\\\\\\\\\\\\\nTraining steps (default) & 500 \\\\\\\\\\\\\\\\\\\\nTraining steps (extended) & 1000 \\\\\\\\\\\\\\\\\\\\nLearning rate & $1 \\\\\\\\times 10^{-6}$ \\\\\\\\\\\\\\\\\\\\nPer-device batch size & 4 \\\\\\\\\\\\\\\\\\\\nGradient accumulation steps & 2 \\\\\\\\\\\\\\\\\\\\nEffective batch size & 8 \\\\\\\\\\\\\\\\\\\\nMax completion length & 512 tokens \\\\\\\\\\\\\\\\\\\\nRandom seeds & 42, 43, 44 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Data}} \\\\\\\\\\\\\\\\\\\\nTraining set & FOLIO, 500 examples \\\\\\\\\\\\\\\\\\\\nEvaluation set & FOLIO, 100 examples (held-out) \\\\\\\\\\\\\\\\\\\\nData file & \\\\\\\\texttt{train\\\\\\\\_500\\\\\\\\_seed42} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Solvers}} \\\\\\\\\\\\\\\\\\\\nFOL solver & Prover9 \\\\\\\\\\\\\\\\\\\\nProlog solver & SWI-Prolog 8.4.2 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Evaluation}} \\\\\\\\\\\\\\\\\\\\nDecoding & Greedy ($T{=}0$) \\\\\\\\\\\\\\\\\\\\nISR computation & \\\\\\\\texttt{eval\\\\\\\\_sta.py} \\\\\\\\\\\\\\\\\\\\nISR variant & Proved-only (ISR$^*$) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Evaluation exception.}\\\\nFOL exec-only seed~43 (\\\\\\\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\\\\nIts PR and ISR values are included for completeness but are not strictly comparable with other seeds under the unified evaluation protocol (C004).\\\\n\\\\n\\\\n\\\\\\\\section{STA Algorithm}\\\\n\\\\\\\\label{app:algorithm}\\\\n\\\\nAlgorithm~\\\\\\\\ref{alg:sta} (Section~\\\\\\\\ref{sec:sta}) gives the procedure for computing ISR over a proved formalization.\\\\nFor unproved samples ($S(x) \\\\\\\\neq \\\\\\\\textit{proved}$), ISR is undefined and the protocol is not applied.\\\\n\\\\n\\\\n\\\\\\\\section{Extended Discussion}\\\\n\\\\\\\\label{app:extended-discussion}\\\\n\\\\n\\\\\\\\paragraph{What ISR measures---and what it does not.}\\\\nISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.\\\\nThis is strictly weaker than semantic faithfulness---whether the formalization accurately captures the natural-language meaning.\\\\nWe verify this empirically: Spearman $\\\\\\\\rho(\\\\\\\\text{ISR}, \\\\\\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\\\nISR and downstream task performance are uncorrelated.\\\\nISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.\\\\n\\\\nCritically, low ISR carries different semantics depending on the training objective.\\\\nUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}).\\\\nUnder ISR-as-reward, high ISR reflects metric gaming (\\\\\\\\S\\\\\\\\ref{sec:goodhart}).\\\\nISR values must always be interpreted relative to the optimization objective that produced them.\\\\n\\\\n\\\\\\\\paragraph{The premise-count confound.}\\\\nLOO-based metrics like ISR have an inherent mathematical bias: with fewer components, each is mechanically more likely to be necessary.\\\\nA formalization with 2 premises where both are necessary yields ISR${=}1.0$; one with 10 premises where 8 are necessary yields ISR${=}0.8$---even though the latter encodes richer reasoning.\\\\nThis confound explains the sole apparent ISR-as-reward success (\\\\\\\\S\\\\\\\\ref{sec:goodhart}): ISR $\\\\\\\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\\\\n\\\\n\\\\n... [截断: 输出过长，省略 23181 字符] ...\\\\n\\\\nure mode but a family of convergent exploits.\\\\n\\\\n\\\\\\\\subsection{Per-Seed Results at $\\\\\\\\beta{=}0.3$}\\\\n\\\\\\\\label{app:beta03}\\\\n\\\\nTable~\\\\\\\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\\\\\\\beta{=}0.3$.\\\\nThe three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\\\\\\\S\\\\\\\\ref{sec:goodhart}).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Per-seed results at $\\\\\\\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H = percentage among proved samples.}\\\\n\\\\\\\\label{tab:beta03-detailed}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{@{}llcccccl@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Seed} & \\\\\\\\textbf{PR} & \\\\\\\\textbf{ISR$^*$} & \\\\\\\\textbf{H7\\\\\\\\%} & \\\\\\\\textbf{H1\\\\\\\\%} & \\\\\\\\textbf{N-H\\\\\\\\%} & \\\\\\\\textbf{Mode} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{8}{@{}l}{\\\\\\\\textit{ISR $\\\\\\\\beta{=}0.3$}} \\\\\\\\\\\\\\\\\\\\n  & 42 & 0.18 & 0.143 & 0 & 77.8 & 22.2 & Reward collapse ($n{=}18$) \\\\\\\\\\\\\\\\\\\\n  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 26.7 & H1 shortcutting \\\\\\\\\\\\\\\\\\\\n  & 44 & 0.95 & 0.742 & \\\\\\\\textbf{100} & 0 & 0 & Pure H7 meta-Goodhart \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(l){2-8}\\\\n  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.66{\\\\\\\\pm}0.42$} & & \\\\\\\\makebox[0pt][l]{$0.39{\\\\\\\\pm}0.31$} & & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{8}{@{}l}{\\\\\\\\textit{Random $\\\\\\\\beta{=}0.3$}} \\\\\\\\\\\\\\\\\\\\n  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\\\\\\\\\\\\\\\\\\\n  & 43 & 0.92 & 0.180 & 7.6 & 90.2 & 2.2 & \\\\\\\\\\\\\\\\\\\\n  & 44 & 0.23 & 0 & 0 & 100 & 0 & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(l){2-8}\\\\n  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.54{\\\\\\\\pm}0.35$} & & \\\\\\\\makebox[0pt][l]{$0.09{\\\\\\\\pm}0.09$} & & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\\\\n\\\\\\\\label{app:100step}\\\\n\\\\nTo control for the prove-rate confound in our SFT comparison (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\\\\\\\%---higher than SFT (13.0\\\\\\\\%, 3-seed pooled) but still early in training.\\\\nOf the 32 proved samples, 9 (28.1\\\\\\\\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\\\\\\\\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\\\\\\\\%.\\\\nBy contrast, SFT at comparable or lower PR shows 7.7\\\\\\\\% hacking (1/13 proved samples).\\\\nThis demonstrates that reward hacking emerges early in GRPO training---well before the prove-rate plateau---and is not simply an artifact of having more proved samples available for exploitation.\\\\nThe 100-step hacking rate (31.2\\\\\\\\%) is already substantially above SFT (7.7\\\\\\\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\\\\n\\\\n\\\\\\\\subsection{$O(1)$ vs.\\\\\\\\ $O(n)$ ISR Ablation}\\\\n\\\\\\\\label{app:o1-ablation}\\\\n\\\\nTo justify the per-clause LOO design (\\\\\\\\S\\\\\\\\ref{sec:sta}), we train a variant that replaces the $O(n)$ ablation with a cheaper $O(1)$ binary signal: $\\\\\\\\text{fast\\\\\\\\_ISR}(x) = 1$ if $x$ is proved \\\\\\\\emph{and} the conclusion is not provable under empty premises (tautology check), $0$ otherwise.\\\\nThe reward becomes $r = 0.5\\\\\\\\,r_{\\\\\\\\text{exec}} + 0.5\\\\\\\\,\\\\\\\\text{fast\\\\\\\\_ISR}$.\\\\nAfter 500 steps (seed~42), this variant achieves $\\\\\\\\text{PR}{=}63\\\\\\\\%$ with $\\\\\\\\text{ISR}^*{=}0.007$---functionally zero---compared to $\\\\\\\\text{ISR}^*{=}0.132$ under standard exec-only and $\\\\\\\\text{ISR}^*{=}0.42$ under ISR $\\\\\\\\beta{=}0.1$.\\\\n\\\\n\\\\\\\\paragraph{ISR signal vs.\\\\\\\\ training dynamics.}\\\\nAt the \\\\\\\\emph{ISR signal level}, the $O(1)$ variant is indistinguishable from exec-only: both produce near-zero ISR because models emit redundant premise copies whose individual removal never changes the proof outcome.\\\\nAt the \\\\\\\\emph{training level}, the two conditions are non-equivalent: the $O(1)$ tautology check penalizes formalizations where the conclusion is provable without any premises, a constraint absent from exec-only.\\\\nThis confound depresses prove rate by 30 percentage points ($63\\\\\\\\%$ vs.\\\\\\\\ $93\\\\\\\\%$ exec-only), making it impossible to attribute the difference purely to the ISR signal.\\\\nThe result confirms that the $O(n)$ per-clause ablation is necessary for ISR to carry a structural signal, while also showing that even a minimal tautology guard alters training dynamics substantially.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"% Appendix — solver-trace-ablation\\n\\n\\\\section{Experimental Setup}\\n\\\\label{app:setup}\\n\\nTable~\\\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\\nAll RL conditions use the same GRPO configuration; only the reward function differs.\\nSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Training hyperparameters for all GRPO experiments.}\\n\\\\label{tab:hyperparams}\\n\\\\footnotesize\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{@{}ll@{}}\\n\\\\toprule\\n\\\\textbf{Parameter} & \\\\textbf{Value} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Model}} \\\\\\\\\\nBase model & Qwen3-4B \\\\\\\\\\nPrecision & BF16 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{GRPO Training}} \\\\\\\\\\nRollouts per prompt ($K$) & 8 \\\\\\\\\\nTraining steps (default) & 500 \\\\\\\\\\nTraining steps (extended) & 1000 \\\\\\\\\\nLearning rate & $1 \\\\times 10^{-6}$ \\\\\\\\\\nPer-device batch size & 4 \\\\\\\\\\nGradient accumulation steps & 2 \\\\\\\\\\nEffective batch size & 8 \\\\\\\\\\nMax completion length & 512 tokens \\\\\\\\\\nRandom seeds & 42, 43, 44 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Data}} \\\\\\\\\\nTraining set & FOLIO, 500 examples \\\\\\\\\\nEvaluation set & FOLIO, 100 examples (held-out) \\\\\\\\\\nData file & \\\\texttt{train\\\\_500\\\\_seed42} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Solvers}} \\\\\\\\\\nFOL solver & Prover9 \\\\\\\\\\nProlog solver & SWI-Prolog 8.4.2 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Evaluation}} \\\\\\\\\\nDecoding & Greedy ($T{=}0$) \\\\\\\\\\nISR computation & \\\\texttt{eval\\\\_sta.py} \\\\\\\\\\nISR variant & Proved-only (ISR$^*$) \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\n\\\\paragraph{Evaluation exception.}\\nFOL exec-only seed~43 (\\\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\\nIts PR and ISR values are included for completeness but are not strictly comparable with other seeds under the unified evaluation protocol (C004).\\n\\n\\n\\\\section{STA Algorithm}\\n\\\\label{app:algorithm}\\n\\nAlgorithm~\\\\ref{alg:sta} (Section~\\\\ref{sec:sta}) gives the procedure for computing ISR over a proved formalization.\\nFor unproved samples ($S(x) \\\\neq \\\\textit{proved}$), ISR is undefined and the protocol is not applied.\\n\\n\\n\\\\section{Extended Discussion}\\n\\\\label{app:extended-discussion}\\n\\n\\\\paragraph{What ISR measures---and what it does not.}\\nISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.\\nThis is strictly weaker than semantic faithfulness---whether the formalization accurately captures the natural-language meaning.\\nWe verify this empirically: Spearman $\\\\rho(\\\\text{ISR}, \\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\nISR and downstream task performance are uncorrelated.\\nISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.\\n\\nCritically, low ISR carries different semantics depending on the training objective.\\nUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\\\S\\\\ref{sec:crosslogic}).\\nUnder ISR-as-reward, high ISR reflects metric gaming (\\\\S\\\\ref{sec:goodhart}).\\nISR values must always be interpreted relative to the optimization objective that produced them.\\n\\n\\\\paragraph{The premise-count confound.}\\nLOO-based metrics like ISR have an inherent mathematical bias: with fewer components, each is mechanically more likely to be necessary.\\nA formalization with 2 premises where both are necessary yields ISR${=}1.0$; one with 10 premises where 8 are necessary yields ISR${=}0.8$---even though the latter encodes richer reasoning.\\nThis confound explains the sole apparent ISR-as-reward success (\\\\S\\\\ref{sec:goodhart}): ISR $\\\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\\n\\n\\n... [截断: 输出过长，省略 23181 字符] ...\\n\\nure mode but a family of convergent exploits.\\n\\n\\\\subsection{Per-Seed Results at $\\\\beta{=}0.3$}\\n\\\\label{app:beta03}\\n\\nTable~\\\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\\\beta{=}0.3$.\\nThe three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\\\S\\\\ref{sec:goodhart}).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-seed results at $\\\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H = percentage among proved samples.}\\n\\\\label{tab:beta03-detailed}\\n\\\\small\\n\\\\begin{tabular}{@{}llcccccl@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Seed} & \\\\textbf{PR} & \\\\textbf{ISR$^*$} & \\\\textbf{H7\\\\%} & \\\\textbf{H1\\\\%} & \\\\textbf{N-H\\\\%} & \\\\textbf{Mode} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{@{}l}{\\\\textit{ISR $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 0.18 & 0.143 & 0 & 77.8 & 22.2 & Reward collapse ($n{=}18$) \\\\\\\\\\n  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 26.7 & H1 shortcutting \\\\\\\\\\n  & 44 & 0.95 & 0.742 & \\\\textbf{100} & 0 & 0 & Pure H7 meta-Goodhart \\\\\\\\\\n\\\\cmidrule(l){2-8}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.66{\\\\pm}0.42$} & & \\\\makebox[0pt][l]{$0.39{\\\\pm}0.31$} & & \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{@{}l}{\\\\textit{Random $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\\\\\\\\\n  & 43 & 0.92 & 0.180 & 7.6 & 90.2 & 2.2 & \\\\\\\\\\n  & 44 & 0.23 & 0 & 0 & 100 & 0 & \\\\\\\\\\n\\\\cmidrule(l){2-8}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.54{\\\\pm}0.35$} & & \\\\makebox[0pt][l]{$0.09{\\\\pm}0.09$} & & \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\\n\\\\label{app:100step}\\n\\nTo control for the prove-rate confound in our SFT comparison (\\\\S\\\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\\\%---higher than SFT (13.0\\\\%, 3-seed pooled) but still early in training.\\nOf the 32 proved samples, 9 (28.1\\\\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\\\\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\\\\%.\\nBy contrast, SFT at comparable or lower PR shows 7.7\\\\% hacking (1/13 proved samples).\\nThis demonstrates that reward hacking emerges early in GRPO training---well before the prove-rate plateau---and is not simply an artifact of having more proved samples available for exploitation.\\nThe 100-step hacking rate (31.2\\\\%) is already substantially above SFT (7.7\\\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\\n\\n\\\\subsection{$O(1)$ vs.\\\\ $O(n)$ ISR Ablation}\\n\\\\label{app:o1-ablation}\\n\\nTo justify the per-clause LOO design (\\\\S\\\\ref{sec:sta}), we train a variant that replaces the $O(n)$ ablation with a cheaper $O(1)$ binary signal: $\\\\text{fast\\\\_ISR}(x) = 1$ if $x$ is proved \\\\emph{and} the conclusion is not provable under empty premises (tautology check), $0$ otherwise.\\nThe reward becomes $r = 0.5\\\\,r_{\\\\text{exec}} + 0.5\\\\,\\\\text{fast\\\\_ISR}$.\\nAfter 500 steps (seed~42), this variant achieves $\\\\text{PR}{=}63\\\\%$ with $\\\\text{ISR}^*{=}0.007$---functionally zero---compared to $\\\\text{ISR}^*{=}0.132$ under standard exec-only and $\\\\text{ISR}^*{=}0.42$ under ISR $\\\\beta{=}0.1$.\\n\\n\\\\paragraph{ISR signal vs.\\\\ training dynamics.}\\nAt the \\\\emph{ISR signal level}, the $O(1)$ variant is indistinguishable from exec-only: both produce near-zero ISR because models emit redundant premise copies whose individual removal never changes the proof outcome.\\nAt the \\\\emph{training level}, the two conditions are non-equivalent: the $O(1)$ tautology check penalizes formalizations where the conclusion is provable without any premises, a constraint absent from exec-only.\\nThis confound depresses prove rate by 30 percentage points ($63\\\\%$ vs.\\\\ $93\\\\%$ exec-only), making it impossible to attribute the difference purely to the ISR signal.\\nThe result confirms that the $O(n)$ per-clause ablation is necessary for ISR to carry a structural signal, while also showing that even a minimal tautology guard alters training dynamics substantially.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3959d280-b82f-40ac-880b-0eaec9aad2c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-15T17:08:25.812Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Let me analyze what I found:
+
+**Modification 1 (experiments.tex):**
+The relevant text is around line with "≤3% non-hacking":
+```
+By 1000 steps, all three converge to high PR ($0.95{\pm}0.05$) but ${\leq}3\%$ non-hacking (Appendix Table~\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8).
+
+
+```
+
+I need to replace that `${\leq}3\%$ non-hacking` phrase with `$0\%$ non-hacking (3 samples in seed~44 escape text-match classifiers but are functionally degenerate; see Appendix)`. Now I need to locate the detailed table in the appendix to verify the actual numbers for seed 44 at 1000 steps, since the appendix section got cut off. Let me search through the appendix more carefully to find the specific table with the seed 44 data.
+
+Now I'm looking at the introduction.tex file where I need to add "at 500 steps" qualifiers to clarify the timing context. The statement about 69.7% of proved samples exhibiting single-premise-equals-conclusion duplication needs this temporal marker, and the same applies to the 0% figure under matched random conditions. I should also update the contributions section to include the same timing specification and complete the thought about how random converges to near-100% H7 by 1000 steps.
+
+```
+At $\beta{=}0.1$, 69.7\% of proved samples at 500 steps exhibit single-premise-equals-conclusion duplication---ISR high \emph{by definition}---versus 0\% under matched random at 500 steps;
+```
+
+The contributions section already has the "at 500 steps" qualifier in place, so that's consistent. Now I need to locate the s44-1000 row in the appendix table to verify the data there, but the appendix appears to be truncated, so I'll need to read through the full appendix more carefully to find the detailed results table.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89144d1b-3d39-484e-8b85-c3a679152124",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ir6R5VXWRaLgqaqtXS",
+  "type": "assistant",
+  "uuid": "574c3c96-0e3b-4506-8d20-51d485b65090",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FLDawhagDY6H8RaLJjqDe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8828,
+      "cache_read_input_tokens": 27941,
+      "output_tokens": 973,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 973,
+          "cache_read_input_tokens": 27941,
+          "cache_creation_input_tokens": 8828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-15T17:08:25.872Z_
+
+appendix 被截断了，需要读取更多内容来找到 s44-1000 的表格行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "574c3c96-0e3b-4506-8d20-51d485b65090",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ir6R5VXWRaLgqaqtXS",
+  "type": "assistant",
+  "uuid": "0372b27a-ac7c-41fd-898a-f2722ca1b56c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FLDawhagDY6H8RaLJjqDe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8828,
+      "cache_read_input_tokens": 27941,
+      "output_tokens": 973,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 973,
+          "cache_read_input_tokens": 27941,
+          "cache_creation_input_tokens": 8828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T17:08:27.792Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TgHvWe15dkDPncjMXLEC5Y`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"s44\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0372b27a-ac7c-41fd-898a-f2722ca1b56c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ir6R5VXWRaLgqaqtXS",
+  "type": "assistant",
+  "uuid": "fe76beff-9dc5-4282-88a9-aac0cc509178",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FLDawhagDY6H8RaLJjqDe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8828,
+      "cache_read_input_tokens": 27941,
+      "output_tokens": 973,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 973,
+          "cache_read_input_tokens": 27941,
+          "cache_creation_input_tokens": 8828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T17:08:28.255Z_
+
+<details><summary>↩ Tool result · `toolu_01TgHvWe15dkDPncjMXLEC5Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"153:\\\\caption{Hacking taxonomy across FOL conditions (\\\\% of proved samples). ISR/Rand columns: $\\\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Exec: H1${=}87$\\\\% in s42; $\\\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\\\ref{tab:prolog-detailed}).}\\n187:After correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\n239:H7a (text-match detectable): 64.5\\\\% pooled (149/231) under ISR~$\\\\beta{=}0.1$ (s42: 16.0\\\\%, s43: 96.7\\\\%, s44: 86.5\\\\%).\\n240:Combined H7 (H7a + H7b): 69.7\\\\% (161/231; includes s44 FN correction).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe76beff-9dc5-4282-88a9-aac0cc509178",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "5dd8438c-bd82-4279-b60f-d55a8717ebe1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"153:\\\\\\\\caption{Hacking taxonomy across FOL conditions (\\\\\\\\% of proved samples). ISR/Rand columns: $\\\\\\\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Exec: H1${=}87$\\\\\\\\% in s42; $\\\\\\\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\\\\\\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\\\\\\\ref{tab:prolog-detailed}).}\\\\n187:After correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\\\n239:H7a (text-match detectable): 64.5\\\\\\\\% pooled (149/231) under ISR~$\\\\\\\\beta{=}0.1$ (s42: 16.0\\\\\\\\%, s43: 96.7\\\\\\\\%, s44: 86.5\\\\\\\\%).\\\\n240:Combined H7 (H7a + H7b): 69.7\\\\\\\\% (161/231; includes s44 FN correction).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"153:\\\\caption{Hacking taxonomy across FOL conditions (\\\\% of proved samples). ISR/Rand columns: $\\\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Exec: H1${=}87$\\\\% in s42; $\\\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\\\ref{tab:prolog-detailed}).}\\n187:After correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\n239:H7a (text-match detectable): 64.5\\\\% pooled (149/231) under ISR~$\\\\beta{=}0.1$ (s42: 16.0\\\\%, s43: 96.7\\\\%, s44: 86.5\\\\%).\\n240:Combined H7 (H7a + H7b): 69.7\\\\% (161/231; includes s44 FN correction).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fe76beff-9dc5-4282-88a9-aac0cc509178",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T17:08:28.738Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M9mszByYp2bE4KC17cj74m`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"genuine\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5dd8438c-bd82-4279-b60f-d55a8717ebe1",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ir6R5VXWRaLgqaqtXS",
+  "type": "assistant",
+  "uuid": "6d4e7b4a-adcd-4b69-a389-841d784fa14f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FLDawhagDY6H8RaLJjqDe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8828,
+      "cache_read_input_tokens": 27941,
+      "output_tokens": 973,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 973,
+          "cache_read_input_tokens": 27941,
+          "cache_creation_input_tokens": 8828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T17:08:29.196Z_
+
+<details><summary>↩ Tool result · `toolu_01M9mszByYp2bE4KC17cj74m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"89:\\\\caption{Fisher exact tests for genuine rate across conditions (3-seed pooled). ISR $\\\\beta{=}0.1$ genuine rate is corrected for H8 reclassification and H7 false negatives (Appendix~\\\\ref{app:h8}).}\\n107:\\\\multicolumn{5}{@{}l}{\\\\textit{SFT vs.\\\\ Exec-only genuine rate}} \\\\\\\\\\n118:The dose-response pattern ($\\\\beta{=}0.1$: proxy gaming inflates ISR without genuine improvement; $\\\\beta{=}0.3$: PR collapse to 18\\\\% vs.\\\\ 48\\\\% random) maps onto the trajectory predicted by~\\\\cite{gao-reward-overoptimization}, but at a meta level: the proxy being gamed is itself a gaming detector.\\n179:ISR seeds~43 and~44 checkpoints were deleted before audit and cannot be recovered; their genuine rates may be overestimated.\\n183:ISR $\\\\beta{=}0.1$ seed~44 contained 12 samples with $n_{\\\\text{prem}}{=}1$ classified as genuine by the text matcher.\\n187:After correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\n189:\\\\paragraph{Impact on genuine-rate comparison.}\\n190:Under the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\%$ vs.\\\\ random genuine $= 47/256 = 18.4\\\\%$ (Fisher $p{=}0.0002$).\\n191:Under conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\%$ vs.\\\\ $18.4\\\\%$ (Fisher $p{=}0.060$).\\n192:Both scenarios are directionally consistent: ISR-specific gaming modes reduce genuine output relative to a matched control.\\n265:Found exclusively in ISR $\\\\beta{=}0.1$ seed~44 ($12/89$ proved samples, all originally classified as genuine).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d4e7b4a-adcd-4b69-a389-841d784fa14f",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "810d8d7e-bbef-4511-b855-6042feba1fdf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"89:\\\\\\\\caption{Fisher exact tests for genuine rate across conditions (3-seed pooled). ISR $\\\\\\\\beta{=}0.1$ genuine rate is corrected for H8 reclassification and H7 false negatives (Appendix~\\\\\\\\ref{app:h8}).}\\\\n107:\\\\\\\\multicolumn{5}{@{}l}{\\\\\\\\textit{SFT vs.\\\\\\\\ Exec-only genuine rate}} \\\\\\\\\\\\\\\\\\\\n118:The dose-response pattern ($\\\\\\\\beta{=}0.1$: proxy gaming inflates ISR without genuine improvement; $\\\\\\\\beta{=}0.3$: PR collapse to 18\\\\\\\\% vs.\\\\\\\\ 48\\\\\\\\% random) maps onto the trajectory predicted by~\\\\\\\\cite{gao-reward-overoptimization}, but at a meta level: the proxy being gamed is itself a gaming detector.\\\\n179:ISR seeds~43 and~44 checkpoints were deleted before audit and cannot be recovered; their genuine rates may be overestimated.\\\\n183:ISR $\\\\\\\\beta{=}0.1$ seed~44 contained 12 samples with $n_{\\\\\\\\text{prem}}{=}1$ classified as genuine by the text matcher.\\\\n187:After correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\\\n189:\\\\\\\\paragraph{Impact on genuine-rate comparison.}\\\\n190:Under the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\\\\\%$ vs.\\\\\\\\ random genuine $= 47/256 = 18.4\\\\\\\\%$ (Fisher $p{=}0.0002$).\\\\n191:Under conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\\\\\%$ vs.\\\\\\\\ $18.4\\\\\\\\%$ (Fisher $p{=}0.060$).\\\\n192:Both scenarios are directionally consistent: ISR-specific gaming modes reduce genuine output relative to a matched control.\\\\n265:Found exclusively in ISR $\\\\\\\\beta{=}0.1$ seed~44 ($12/89$ proved samples, all originally classified as genuine).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"89:\\\\caption{Fisher exact tests for genuine rate across conditions (3-seed pooled). ISR $\\\\beta{=}0.1$ genuine rate is corrected for H8 reclassification and H7 false negatives (Appendix~\\\\ref{app:h8}).}\\n107:\\\\multicolumn{5}{@{}l}{\\\\textit{SFT vs.\\\\ Exec-only genuine rate}} \\\\\\\\\\n118:The dose-response pattern ($\\\\beta{=}0.1$: proxy gaming inflates ISR without genuine improvement; $\\\\beta{=}0.3$: PR collapse to 18\\\\% vs.\\\\ 48\\\\% random) maps onto the trajectory predicted by~\\\\cite{gao-reward-overoptimization}, but at a meta level: the proxy being gamed is itself a gaming detector.\\n179:ISR seeds~43 and~44 checkpoints were deleted before audit and cannot be recovered; their genuine rates may be overestimated.\\n183:ISR $\\\\beta{=}0.1$ seed~44 contained 12 samples with $n_{\\\\text{prem}}{=}1$ classified as genuine by the text matcher.\\n187:After correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\n189:\\\\paragraph{Impact on genuine-rate comparison.}\\n190:Under the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\%$ vs.\\\\ random genuine $= 47/256 = 18.4\\\\%$ (Fisher $p{=}0.0002$).\\n191:Under conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\%$ vs.\\\\ $18.4\\\\%$ (Fisher $p{=}0.060$).\\n192:Both scenarios are directionally consistent: ISR-specific gaming modes reduce genuine output relative to a matched control.\\n265:Found exclusively in ISR $\\\\beta{=}0.1$ seed~44 ($12/89$ proved samples, all originally classified as genuine).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6d4e7b4a-adcd-4b69-a389-841d784fa14f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T17:08:29.148Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CXNgoYtxWUhBpayyMB9odX`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"fol-detailed\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d4e7b4a-adcd-4b69-a389-841d784fa14f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ir6R5VXWRaLgqaqtXS",
+  "type": "assistant",
+  "uuid": "9b1e83c5-6988-46c6-812d-eda437622cdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012FLDawhagDY6H8RaLJjqDe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8828,
+      "cache_read_input_tokens": 27941,
+      "output_tokens": 973,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 973,
+          "cache_read_input_tokens": 27941,
+          "cache_creation_input_tokens": 8828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "810d8d7e-bbef-4511-b855-6042feba1fdf",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix reviewer comments on genuine proofs in paper",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T17:08:29.723Z_
+
+<details><summary>↩ Tool result · `toolu_01CXNgoYtxWUhBpayyMB9odX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"395:\\\\label{tab:fol-detailed}\\n485:Table~\\\\ref{tab:fol-detailed} traces the ISR collapse over training:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b1e83c5-6988-46c6-812d-eda437622cdd",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "6ebaaa84-9976-4a30-af35-df4433b5604c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"395:\\\\\\\\label{tab:fol-detailed}\\\\n485:Table~\\\\\\\\ref{tab:fol-detailed} traces the ISR collapse over training:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"395:\\\\label{tab:fol-detailed}\\n485:Table~\\\\ref{tab:fol-detailed} traces the ISR collapse over training:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9b1e83c5-6988-46c6-812d-eda437622cdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-15T17:08:38.070Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to read the relevant sections more carefully. Let me read:
+
+1. The table at line 395 (tab:fol-detailed) to find s44-1000 genuine data
+2. Lines around 183-192 for the H7b/genuine correction section
+3. The experiments.tex around the "≤3% non-hacking" text
+
+Let me read specific sections of the appendix.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ebaaa84-9976-4a30-af35-df4433b5604c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4isk6WWRJNHCMTvtQFB",
+  "type": "assistant",
+  "uuid": "acd6cbff-1e17-4478-8090-000f0b781863",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4WRq7RaCfLuSR8PBMHWwN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2251,
+      "cache_read_input_tokens": 36769,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 36769,
+          "cache_creation_input_tokens": 2251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T17:08:39.997Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XrymeDcmPxevcGCEEeHJ2r`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -220 /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "acd6cbff-1e17-4478-8090-000f0b781863",
+  "isSidechain": false,
+  "requestId": "req_011Cb4isk6WWRJNHCMTvtQFB",
+  "type": "assistant",
+  "uuid": "77d0ef6c-d71b-48f1-a55b-08af9e74db8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4WRq7RaCfLuSR8PBMHWwN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2251,
+      "cache_read_input_tokens": 36769,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 36769,
+          "cache_creation_input_tokens": 2251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T17:08:40.525Z_
+
+<details><summary>↩ Tool result · `toolu_01XrymeDcmPxevcGCEEeHJ2r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% Appendix — solver-trace-ablation\\n\\n\\\\section{Experimental Setup}\\n\\\\label{app:setup}\\n\\nTable~\\\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\\nAll RL conditions use the same GRPO configuration; only the reward function differs.\\nSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Training hyperparameters for all GRPO experiments.}\\n\\\\label{tab:hyperparams}\\n\\\\footnotesize\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{@{}ll@{}}\\n\\\\toprule\\n\\\\textbf{Parameter} & \\\\textbf{Value} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Model}} \\\\\\\\\\nBase model & Qwen3-4B \\\\\\\\\\nPrecision & BF16 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{GRPO Training}} \\\\\\\\\\nRollouts per prompt ($K$) & 8 \\\\\\\\\\nTraining steps (default) & 500 \\\\\\\\\\nTraining steps (extended) & 1000 \\\\\\\\\\nLearning rate & $1 \\\\times 10^{-6}$ \\\\\\\\\\nPer-device batch size & 4 \\\\\\\\\\nGradient accumulation steps & 2 \\\\\\\\\\nEffective batch size & 8 \\\\\\\\\\nMax completion length & 512 tokens \\\\\\\\\\nRandom seeds & 42, 43, 44 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Data}} \\\\\\\\\\nTraining set & FOLIO, 500 examples \\\\\\\\\\nEvaluation set & FOLIO, 100 examples (held-out) \\\\\\\\\\nData file & \\\\texttt{train\\\\_500\\\\_seed42} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Solvers}} \\\\\\\\\\nFOL solver & Prover9 \\\\\\\\\\nProlog solver & SWI-Prolog 8.4.2 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Evaluation}} \\\\\\\\\\nDecoding & Greedy ($T{=}0$) \\\\\\\\\\nISR computation & \\\\texttt{eval\\\\_sta.py} \\\\\\\\\\nISR variant & Proved-only (ISR$^*$) \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\n\\\\paragraph{Evaluation exception.}\\nFOL exec-only seed~43 (\\\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\\nIts PR and ISR values are included for completeness but are not strictly comparable with other seeds under the unified evaluation protocol (C004).\\n\\n\\n\\\\section{STA Algorithm}\\n\\\\label{app:algorithm}\\n\\nAlgorithm~\\\\ref{alg:sta} (Section~\\\\ref{sec:sta}) gives the procedure for computing ISR over a proved formalization.\\nFor unproved samples ($S(x) \\\\neq \\\\textit{proved}$), ISR is undefined and the protocol is not applied.\\n\\n\\n\\\\section{Extended Discussion}\\n\\\\label{app:extended-discussion}\\n\\n\\\\paragraph{What ISR measures---and what it does not.}\\nISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.\\nThis is strictly weaker than semantic faithfulness---whether the formalization accurately captures the natural-language meaning.\\nWe verify this empirically: Spearman $\\\\rho(\\\\text{ISR}, \\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\nISR and downstream task performance are uncorrelated.\\nISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.\\n\\nCritically, low ISR carries different semantics depending on the training objective.\\nUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\\\S\\\\ref{sec:crosslogic}).\\nUnder ISR-as-reward, high ISR reflects metric gaming (\\\\S\\\\ref{sec:goodhart}).\\nISR values must always be interpreted relative to the optimization objective that produced them.\\n\\n\\\\paragraph{The premise-count confound.}\\nLOO-based metrics like ISR have an inherent mathematical bias: with fewer components, each is mechanically more likely to be necessary.\\nA formalization with 2 premises where both are necessary yields ISR${=}1.0$; one with 10 premises where 8 are necessary yields ISR${=}0.8$---even though the latter encodes richer reasoning.\\nThis confound explains the sole apparent ISR-as-reward success (\\\\S\\\\ref{sec:goodhart}): ISR $\\\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\\n\\n\\n... [截断: 输出过长，省略 5806 字符] ...\\n\\ning but showing $n_{\\\\text{necessary}} \\\\leq 1$ are flagged as potential false negatives.\\nThis cross-validation revealed query-as-fact gaming in Prolog (\\\\S\\\\ref{app:hacking-modes}), where the strict text classifier reported 100\\\\% non-hacking but functional analysis showed 95/97 samples were tautological ($n_{\\\\text{necessary}}{=}1$).\\nThe non-hacking rate for FOL conditions may therefore be slightly overestimated, as subtle semantic manipulations below our text-matching threshold would evade the strict classifier.\\n\\n\\\\subsection{H8 --- Premise-Subset Gaming}\\n\\\\label{app:h8}\\n\\nManual audit of ISR $\\\\beta{=}0.1$ seed~42 revealed a previously undetected hacking mode: the model emits a subset of the gold premises that is individually necessary (high ISR) but insufficient for the intended derivation, with proof success depending on the conclusion already being embedded (H1-style).\\nWe term this \\\\textbf{H8 (premise-subset gaming)}: formalizations where each component is LOO-necessary but the premise set is a strict subset of what the NL problem requires, inflating ISR without faithful reasoning.\\n\\n\\\\paragraph{Detection.} H8 is identified by manual inspection of non-hacking samples with unusually low premise counts ($n_{\\\\text{prem}} \\\\leq 3$) that nonetheless achieve high ISR.\\nAutomated detection is not currently feasible because H8 requires comparing the generated premise set against the gold premises.\\n\\n\\\\paragraph{Audit scope and limitations.}\\nFull H8 audit was completed for ISR $\\\\beta{=}0.1$ seed~42 only.\\nISR seeds~43 and~44 checkpoints were deleted before audit and cannot be recovered; their genuine rates may be overestimated.\\nRandom $\\\\beta{=}0.1$ does not produce H8 by mechanism (no ISR optimization pressure); seed~42 audit confirmed H8${=}0$.\\n\\n\\\\paragraph{H7 false-negative correction (H7b obfuscated tautology).}\\nISR $\\\\beta{=}0.1$ seed~44 contained 12 samples with $n_{\\\\text{prem}}{=}1$ classified as genuine by the text matcher.\\nManual inspection confirmed all 12 are logically equivalent to H7 but evade text matching through vacuous quantifier wrapping ($11/12$) or structural simplification ($1/12$).\\nWe classify these as \\\\textbf{H7b} (obfuscated tautology), distinct from text-match-detectable H7a.\\n$10/12$ achieve $\\\\text{ISR}{\\\\approx}0.8$, indicating simultaneous gaming of execution reward, ISR metric, and H7 classifier---triple gaming (\\\\S\\\\ref{sec:taxonomy}).\\nAfter correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\n\\n\\\\paragraph{Impact on genuine-rate comparison.}\\nUnder the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\%$ vs.\\\\ random genuine $= 47/256 = 18.4\\\\%$ (Fisher $p{=}0.0002$).\\nUnder conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\%$ vs.\\\\ $18.4\\\\%$ (Fisher $p{=}0.060$).\\nBoth scenarios are directionally consistent: ISR-specific gaming modes reduce genuine output relative to a matched control.\\n\\n\\\\subsection{H1 --- Conclusion Embedding}\\n\\n\\\\paragraph{Definition.}\\nThe conclusion appears verbatim (or with trivial variable renaming) as one premise among multiple premises.\\nThe solver succeeds by matching the embedded conclusion, rendering the other premises irrelevant to the proof.\\n\\n\\\\paragraph{Example (FOL).}\\n{\\\\small\\\\begin{verbatim}\\nPremises:\\n  all x (bird(x) -> flies(x)).\\n  bird(tweety).\\n  flies(tweety).  % conclusion embedded\\nConclusion: flies(tweety).\\n\\\\end{verbatim}}\\n\\n\\\\paragraph{ISR interaction.}\\nVariable. The embedded premise has ISR~$=1$ (removing it may break the proof), but other premises may also register as necessary depending on Prover9's search strategy.\\nISR does not distinguish trivial from substantive necessity.\\n\\n\\\\paragraph{Prevalence.}\\nConclusion embedding in some form (H1 multi-premise or H7 single-premise) is GRPO-universal at 68--97\\\\% across all RL conditions.\\nUnder exec-only and Random reward, it manifests as H1 (71--93\\\\%); under ISR reward, it shifts to H7 (69.7\\\\% pooled).\\n\\n\\n\\\\subsection{H7a --- Conclusion Duplication (Standard)}\\n\\n\\\\paragraph{Definition.}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77d0ef6c-d71b-48f1-a55b-08af9e74db8a",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "8634e608-e675-4412-b6b2-52eef7a4608e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Appendix — solver-trace-ablation\\\\n\\\\n\\\\\\\\section{Experimental Setup}\\\\n\\\\\\\\label{app:setup}\\\\n\\\\nTable~\\\\\\\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\\\\nAll RL conditions use the same GRPO configuration; only the reward function differs.\\\\nSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Training hyperparameters for all GRPO experiments.}\\\\n\\\\\\\\label{tab:hyperparams}\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{@{}ll@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Parameter} & \\\\\\\\textbf{Value} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Model}} \\\\\\\\\\\\\\\\\\\\nBase model & Qwen3-4B \\\\\\\\\\\\\\\\\\\\nPrecision & BF16 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{GRPO Training}} \\\\\\\\\\\\\\\\\\\\nRollouts per prompt ($K$) & 8 \\\\\\\\\\\\\\\\\\\\nTraining steps (default) & 500 \\\\\\\\\\\\\\\\\\\\nTraining steps (extended) & 1000 \\\\\\\\\\\\\\\\\\\\nLearning rate & $1 \\\\\\\\times 10^{-6}$ \\\\\\\\\\\\\\\\\\\\nPer-device batch size & 4 \\\\\\\\\\\\\\\\\\\\nGradient accumulation steps & 2 \\\\\\\\\\\\\\\\\\\\nEffective batch size & 8 \\\\\\\\\\\\\\\\\\\\nMax completion length & 512 tokens \\\\\\\\\\\\\\\\\\\\nRandom seeds & 42, 43, 44 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Data}} \\\\\\\\\\\\\\\\\\\\nTraining set & FOLIO, 500 examples \\\\\\\\\\\\\\\\\\\\nEvaluation set & FOLIO, 100 examples (held-out) \\\\\\\\\\\\\\\\\\\\nData file & \\\\\\\\texttt{train\\\\\\\\_500\\\\\\\\_seed42} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Solvers}} \\\\\\\\\\\\\\\\\\\\nFOL solver & Prover9 \\\\\\\\\\\\\\\\\\\\nProlog solver & SWI-Prolog 8.4.2 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Evaluation}} \\\\\\\\\\\\\\\\\\\\nDecoding & Greedy ($T{=}0$) \\\\\\\\\\\\\\\\\\\\nISR computation & \\\\\\\\texttt{eval\\\\\\\\_sta.py} \\\\\\\\\\\\\\\\\\\\nISR variant & Proved-only (ISR$^*$) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Evaluation exception.}\\\\nFOL exec-only seed~43 (\\\\\\\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\\\\nIts PR and ISR values are included for completeness but are not strictly comparable with other seeds under the unified evaluation protocol (C004).\\\\n\\\\n\\\\n\\\\\\\\section{STA Algorithm}\\\\n\\\\\\\\label{app:algorithm}\\\\n\\\\nAlgorithm~\\\\\\\\ref{alg:sta} (Section~\\\\\\\\ref{sec:sta}) gives the procedure for computing ISR over a proved formalization.\\\\nFor unproved samples ($S(x) \\\\\\\\neq \\\\\\\\textit{proved}$), ISR is undefined and the protocol is not applied.\\\\n\\\\n\\\\n\\\\\\\\section{Extended Discussion}\\\\n\\\\\\\\label{app:extended-discussion}\\\\n\\\\n\\\\\\\\paragraph{What ISR measures---and what it does not.}\\\\nISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.\\\\nThis is strictly weaker than semantic faithfulness---whether the formalization accurately captures the natural-language meaning.\\\\nWe verify this empirically: Spearman $\\\\\\\\rho(\\\\\\\\text{ISR}, \\\\\\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\\\nISR and downstream task performance are uncorrelated.\\\\nISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.\\\\n\\\\nCritically, low ISR carries different semantics depending on the training objective.\\\\nUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}).\\\\nUnder ISR-as-reward, high ISR reflects metric gaming (\\\\\\\\S\\\\\\\\ref{sec:goodhart}).\\\\nISR values must always be interpreted relative to the optimization objective that produced them.\\\\n\\\\n\\\\\\\\paragraph{The premise-count confound.}\\\\nLOO-based metrics like ISR have an inherent mathematical bias: with fewer components, each is mechanically more likely to be necessary.\\\\nA formalization with 2 premises where both are necessary yields ISR${=}1.0$; one with 10 premises where 8 are necessary yields ISR${=}0.8$---even though the latter encodes richer reasoning.\\\\nThis confound explains the sole apparent ISR-as-reward success (\\\\\\\\S\\\\\\\\ref{sec:goodhart}): ISR $\\\\\\\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\\\\n\\\\n\\\\n... [截断: 输出过长，省略 5806 字符] ...\\\\n\\\\ning but showing $n_{\\\\\\\\text{necessary}} \\\\\\\\leq 1$ are flagged as potential false negatives.\\\\nThis cross-validation revealed query-as-fact gaming in Prolog (\\\\\\\\S\\\\\\\\ref{app:hacking-modes}), where the strict text classifier reported 100\\\\\\\\% non-hacking but functional analysis showed 95/97 samples were tautological ($n_{\\\\\\\\text{necessary}}{=}1$).\\\\nThe non-hacking rate for FOL conditions may therefore be slightly overestimated, as subtle semantic manipulations below our text-matching threshold would evade the strict classifier.\\\\n\\\\n\\\\\\\\subsection{H8 --- Premise-Subset Gaming}\\\\n\\\\\\\\label{app:h8}\\\\n\\\\nManual audit of ISR $\\\\\\\\beta{=}0.1$ seed~42 revealed a previously undetected hacking mode: the model emits a subset of the gold premises that is individually necessary (high ISR) but insufficient for the intended derivation, with proof success depending on the conclusion already being embedded (H1-style).\\\\nWe term this \\\\\\\\textbf{H8 (premise-subset gaming)}: formalizations where each component is LOO-necessary but the premise set is a strict subset of what the NL problem requires, inflating ISR without faithful reasoning.\\\\n\\\\n\\\\\\\\paragraph{Detection.} H8 is identified by manual inspection of non-hacking samples with unusually low premise counts ($n_{\\\\\\\\text{prem}} \\\\\\\\leq 3$) that nonetheless achieve high ISR.\\\\nAutomated detection is not currently feasible because H8 requires comparing the generated premise set against the gold premises.\\\\n\\\\n\\\\\\\\paragraph{Audit scope and limitations.}\\\\nFull H8 audit was completed for ISR $\\\\\\\\beta{=}0.1$ seed~42 only.\\\\nISR seeds~43 and~44 checkpoints were deleted before audit and cannot be recovered; their genuine rates may be overestimated.\\\\nRandom $\\\\\\\\beta{=}0.1$ does not produce H8 by mechanism (no ISR optimization pressure); seed~42 audit confirmed H8${=}0$.\\\\n\\\\n\\\\\\\\paragraph{H7 false-negative correction (H7b obfuscated tautology).}\\\\nISR $\\\\\\\\beta{=}0.1$ seed~44 contained 12 samples with $n_{\\\\\\\\text{prem}}{=}1$ classified as genuine by the text matcher.\\\\nManual inspection confirmed all 12 are logically equivalent to H7 but evade text matching through vacuous quantifier wrapping ($11/12$) or structural simplification ($1/12$).\\\\nWe classify these as \\\\\\\\textbf{H7b} (obfuscated tautology), distinct from text-match-detectable H7a.\\\\n$10/12$ achieve $\\\\\\\\text{ISR}{\\\\\\\\approx}0.8$, indicating simultaneous gaming of execution reward, ISR metric, and H7 classifier---triple gaming (\\\\\\\\S\\\\\\\\ref{sec:taxonomy}).\\\\nAfter correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\\\n\\\\n\\\\\\\\paragraph{Impact on genuine-rate comparison.}\\\\nUnder the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\\\\\%$ vs.\\\\\\\\ random genuine $= 47/256 = 18.4\\\\\\\\%$ (Fisher $p{=}0.0002$).\\\\nUnder conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\\\\\%$ vs.\\\\\\\\ $18.4\\\\\\\\%$ (Fisher $p{=}0.060$).\\\\nBoth scenarios are directionally consistent: ISR-specific gaming modes reduce genuine output relative to a matched control.\\\\n\\\\n\\\\\\\\subsection{H1 --- Conclusion Embedding}\\\\n\\\\n\\\\\\\\paragraph{Definition.}\\\\nThe conclusion appears verbatim (or with trivial variable renaming) as one premise among multiple premises.\\\\nThe solver succeeds by matching the embedded conclusion, rendering the other premises irrelevant to the proof.\\\\n\\\\n\\\\\\\\paragraph{Example (FOL).}\\\\n{\\\\\\\\small\\\\\\\\begin{verbatim}\\\\nPremises:\\\\n  all x (bird(x) -> flies(x)).\\\\n  bird(tweety).\\\\n  flies(tweety).  % conclusion embedded\\\\nConclusion: flies(tweety).\\\\n\\\\\\\\end{verbatim}}\\\\n\\\\n\\\\\\\\paragraph{ISR interaction.}\\\\nVariable. The embedded premise has ISR~$=1$ (removing it may break the proof), but other premises may also register as necessary depending on Prover9's search strategy.\\\\nISR does not distinguish trivial from substantive necessity.\\\\n\\\\n\\\\\\\\paragraph{Prevalence.}\\\\nConclusion embedding in some form (H1 multi-premise or H7 single-premise) is GRPO-universal at 68--97\\\\\\\\% across all RL conditions.\\\\nUnder exec-only and Random reward, it manifests as H1 (71--93\\\\\\\\%); under ISR reward, it shifts to H7 (69.7\\\\\\\\% pooled).\\\\n\\\\n\\\\n\\\\\\\\subsection{H7a --- Conclusion Duplication (Standard)}\\\\n\\\\n\\\\\\\\paragraph{Definition.}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"% Appendix — solver-trace-ablation\\n\\n\\\\section{Experimental Setup}\\n\\\\label{app:setup}\\n\\nTable~\\\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\\nAll RL conditions use the same GRPO configuration; only the reward function differs.\\nSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Training hyperparameters for all GRPO experiments.}\\n\\\\label{tab:hyperparams}\\n\\\\footnotesize\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{@{}ll@{}}\\n\\\\toprule\\n\\\\textbf{Parameter} & \\\\textbf{Value} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Model}} \\\\\\\\\\nBase model & Qwen3-4B \\\\\\\\\\nPrecision & BF16 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{GRPO Training}} \\\\\\\\\\nRollouts per prompt ($K$) & 8 \\\\\\\\\\nTraining steps (default) & 500 \\\\\\\\\\nTraining steps (extended) & 1000 \\\\\\\\\\nLearning rate & $1 \\\\times 10^{-6}$ \\\\\\\\\\nPer-device batch size & 4 \\\\\\\\\\nGradient accumulation steps & 2 \\\\\\\\\\nEffective batch size & 8 \\\\\\\\\\nMax completion length & 512 tokens \\\\\\\\\\nRandom seeds & 42, 43, 44 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Data}} \\\\\\\\\\nTraining set & FOLIO, 500 examples \\\\\\\\\\nEvaluation set & FOLIO, 100 examples (held-out) \\\\\\\\\\nData file & \\\\texttt{train\\\\_500\\\\_seed42} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Solvers}} \\\\\\\\\\nFOL solver & Prover9 \\\\\\\\\\nProlog solver & SWI-Prolog 8.4.2 \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{2}{@{}l}{\\\\textit{Evaluation}} \\\\\\\\\\nDecoding & Greedy ($T{=}0$) \\\\\\\\\\nISR computation & \\\\texttt{eval\\\\_sta.py} \\\\\\\\\\nISR variant & Proved-only (ISR$^*$) \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\n\\\\paragraph{Evaluation exception.}\\nFOL exec-only seed~43 (\\\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\\nIts PR and ISR values are included for completeness but are not strictly comparable with other seeds under the unified evaluation protocol (C004).\\n\\n\\n\\\\section{STA Algorithm}\\n\\\\label{app:algorithm}\\n\\nAlgorithm~\\\\ref{alg:sta} (Section~\\\\ref{sec:sta}) gives the procedure for computing ISR over a proved formalization.\\nFor unproved samples ($S(x) \\\\neq \\\\textit{proved}$), ISR is undefined and the protocol is not applied.\\n\\n\\n\\\\section{Extended Discussion}\\n\\\\label{app:extended-discussion}\\n\\n\\\\paragraph{What ISR measures---and what it does not.}\\nISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.\\nThis is strictly weaker than semantic faithfulness---whether the formalization accurately captures the natural-language meaning.\\nWe verify this empirically: Spearman $\\\\rho(\\\\text{ISR}, \\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\nISR and downstream task performance are uncorrelated.\\nISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.\\n\\nCritically, low ISR carries different semantics depending on the training objective.\\nUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\\\S\\\\ref{sec:crosslogic}).\\nUnder ISR-as-reward, high ISR reflects metric gaming (\\\\S\\\\ref{sec:goodhart}).\\nISR values must always be interpreted relative to the optimization objective that produced them.\\n\\n\\\\paragraph{The premise-count confound.}\\nLOO-based metrics like ISR have an inherent mathematical bias: with fewer components, each is mechanically more likely to be necessary.\\nA formalization with 2 premises where both are necessary yields ISR${=}1.0$; one with 10 premises where 8 are necessary yields ISR${=}0.8$---even though the latter encodes richer reasoning.\\nThis confound explains the sole apparent ISR-as-reward success (\\\\S\\\\ref{sec:goodhart}): ISR $\\\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\\n\\n\\n... [截断: 输出过长，省略 5806 字符] ...\\n\\ning but showing $n_{\\\\text{necessary}} \\\\leq 1$ are flagged as potential false negatives.\\nThis cross-validation revealed query-as-fact gaming in Prolog (\\\\S\\\\ref{app:hacking-modes}), where the strict text classifier reported 100\\\\% non-hacking but functional analysis showed 95/97 samples were tautological ($n_{\\\\text{necessary}}{=}1$).\\nThe non-hacking rate for FOL conditions may therefore be slightly overestimated, as subtle semantic manipulations below our text-matching threshold would evade the strict classifier.\\n\\n\\\\subsection{H8 --- Premise-Subset Gaming}\\n\\\\label{app:h8}\\n\\nManual audit of ISR $\\\\beta{=}0.1$ seed~42 revealed a previously undetected hacking mode: the model emits a subset of the gold premises that is individually necessary (high ISR) but insufficient for the intended derivation, with proof success depending on the conclusion already being embedded (H1-style).\\nWe term this \\\\textbf{H8 (premise-subset gaming)}: formalizations where each component is LOO-necessary but the premise set is a strict subset of what the NL problem requires, inflating ISR without faithful reasoning.\\n\\n\\\\paragraph{Detection.} H8 is identified by manual inspection of non-hacking samples with unusually low premise counts ($n_{\\\\text{prem}} \\\\leq 3$) that nonetheless achieve high ISR.\\nAutomated detection is not currently feasible because H8 requires comparing the generated premise set against the gold premises.\\n\\n\\\\paragraph{Audit scope and limitations.}\\nFull H8 audit was completed for ISR $\\\\beta{=}0.1$ seed~42 only.\\nISR seeds~43 and~44 checkpoints were deleted before audit and cannot be recovered; their genuine rates may be overestimated.\\nRandom $\\\\beta{=}0.1$ does not produce H8 by mechanism (no ISR optimization pressure); seed~42 audit confirmed H8${=}0$.\\n\\n\\\\paragraph{H7 false-negative correction (H7b obfuscated tautology).}\\nISR $\\\\beta{=}0.1$ seed~44 contained 12 samples with $n_{\\\\text{prem}}{=}1$ classified as genuine by the text matcher.\\nManual inspection confirmed all 12 are logically equivalent to H7 but evade text matching through vacuous quantifier wrapping ($11/12$) or structural simplification ($1/12$).\\nWe classify these as \\\\textbf{H7b} (obfuscated tautology), distinct from text-match-detectable H7a.\\n$10/12$ achieve $\\\\text{ISR}{\\\\approx}0.8$, indicating simultaneous gaming of execution reward, ISR metric, and H7 classifier---triple gaming (\\\\S\\\\ref{sec:taxonomy}).\\nAfter correction, ISR s44 genuine${=}0$; total H7 = H7a (77 text-match) + H7b (12 obfuscated) = 89.\\n\\n\\\\paragraph{Impact on genuine-rate comparison.}\\nUnder the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\%$ vs.\\\\ random genuine $= 47/256 = 18.4\\\\%$ (Fisher $p{=}0.0002$).\\nUnder conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\%$ vs.\\\\ $18.4\\\\%$ (Fisher $p{=}0.060$).\\nBoth scenarios are directionally consistent: ISR-specific gaming modes reduce genuine output relative to a matched control.\\n\\n\\\\subsection{H1 --- Conclusion Embedding}\\n\\n\\\\paragraph{Definition.}\\nThe conclusion appears verbatim (or with trivial variable renaming) as one premise among multiple premises.\\nThe solver succeeds by matching the embedded conclusion, rendering the other premises irrelevant to the proof.\\n\\n\\\\paragraph{Example (FOL).}\\n{\\\\small\\\\begin{verbatim}\\nPremises:\\n  all x (bird(x) -> flies(x)).\\n  bird(tweety).\\n  flies(tweety).  % conclusion embedded\\nConclusion: flies(tweety).\\n\\\\end{verbatim}}\\n\\n\\\\paragraph{ISR interaction.}\\nVariable. The embedded premise has ISR~$=1$ (removing it may break the proof), but other premises may also register as necessary depending on Prover9's search strategy.\\nISR does not distinguish trivial from substantive necessity.\\n\\n\\\\paragraph{Prevalence.}\\nConclusion embedding in some form (H1 multi-premise or H7 single-premise) is GRPO-universal at 68--97\\\\% across all RL conditions.\\nUnder exec-only and Random reward, it manifests as H1 (71--93\\\\%); under ISR reward, it shifts to H7 (69.7\\\\% pooled).\\n\\n\\n\\\\subsection{H7a --- Conclusion Duplication (Standard)}\\n\\n\\\\paragraph{Definition.}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "77d0ef6c-d71b-48f1-a55b-08af9e74db8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T17:08:40.651Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C7CPhy5NV3HK5f2FqRwv9m`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "sed -n '380,500p' /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8634e608-e675-4412-b6b2-52eef7a4608e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4isk6WWRJNHCMTvtQFB",
+  "type": "assistant",
+  "uuid": "7001032b-9ed2-4f50-b70a-cde2eb43b1af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4WRq7RaCfLuSR8PBMHWwN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2251,
+      "cache_read_input_tokens": 36769,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 36769,
+          "cache_creation_input_tokens": 2251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T17:08:40.667Z_
+
+<details><summary>↩ Tool result · `toolu_01C7CPhy5NV3HK5f2FqRwv9m`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7001032b-9ed2-4f50-b70a-cde2eb43b1af",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "f0e4192b-aa0e-4977-944d-a2fbbb9058e1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7001032b-9ed2-4f50-b70a-cde2eb43b1af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57 · 2026-05-15T17:08:40.725Z_
+
+```json
+{
+  "parentUuid": "f0e4192b-aa0e-4977-944d-a2fbbb9058e1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b003b805-5002-4d49-9465-a1af8bfee53f",
+  "timestamp": "2026-05-15T17:08:40.725Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "b003b805-5002-4d49-9465-a1af8bfee53f",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix reviewer comments on genuine proofs in paper",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-15T17:08:46.161Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to read the fol-detailed table at line 395. Let me use tail and head.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b003b805-5002-4d49-9465-a1af8bfee53f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4itZBhsoPWQ6RQ1HkKS",
+  "type": "assistant",
+  "uuid": "87087957-c33e-43f0-b628-50b931e6f105",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hc9jdTB7cjKJPVpuPzqJac",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3534,
+      "cache_read_input_tokens": 39020,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3534,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 39020,
+          "cache_creation_input_tokens": 3534,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3534
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T17:08:47.713Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KEmtSZxyXZbmterc3ztrxb`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "wc -l /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87087957-c33e-43f0-b628-50b931e6f105",
+  "isSidechain": false,
+  "requestId": "req_011Cb4itZBhsoPWQ6RQ1HkKS",
+  "type": "assistant",
+  "uuid": "e863239c-9cbe-4f08-9be1-61638882d251",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hc9jdTB7cjKJPVpuPzqJac",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3534,
+      "cache_read_input_tokens": 39020,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3534,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 39020,
+          "cache_creation_input_tokens": 3534,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3534
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T17:08:48.167Z_
+
+<details><summary>↩ Tool result · `toolu_01KEmtSZxyXZbmterc3ztrxb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"549 /root/solver-trace-ablation/paper/appendix.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e863239c-9cbe-4f08-9be1-61638882d251",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "0b72929e-d974-4c3c-a403-111a93d01778",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"549 /root/solver-trace-ablation/paper/appendix.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"549 /root/solver-trace-ablation/paper/appendix.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e863239c-9cbe-4f08-9be1-61638882d251",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T17:08:50.924Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RaEf9yqNrPNBkBT3fzD4vU`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "tail -170 /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b72929e-d974-4c3c-a403-111a93d01778",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iu6xQNBK2R8tgvbSif",
+  "type": "assistant",
+  "uuid": "e3dc7604-1eb0-4e6e-bbc3-7a3f2bf8e362",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019FzXevbTY8TN4QoJq12Bpu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 251,
+      "cache_read_input_tokens": 42554,
+      "output_tokens": 121,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 251,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 121,
+          "cache_read_input_tokens": 42554,
+          "cache_creation_input_tokens": 251,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 251
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T17:08:51.379Z_
+
+<details><summary>↩ Tool result · `toolu_01RaEf9yqNrPNBkBT3fzD4vU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\paragraph{Prevalence.}\\nObserved in Prolog exec+STA seed~44 (PR~$=0.97$, ISR~$=0.912$).\\n95/97 proved samples have $n_{\\\\text{necessary}}=1$, confirming functional tautology despite the strict classifier reporting 100\\\\% non-hacking.\\n\\n\\n\\\\section{Per-Seed Detailed Results}\\n\\\\label{app:detailed-results}\\n\\nTables~\\\\ref{tab:fol-beta01-detailed} and \\\\ref{tab:prolog-detailed} report full per-seed results.\\nAll metrics are computed by \\\\texttt{eval\\\\_sta.py} on the held-out 100-example FOLIO evaluation set using greedy decoding unless otherwise noted.\\nISR values are proved-only ISR$^*$.\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\beta{=}0.1$ breakdown referenced from Table~\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\dagger$s43 uses sampling eval ($T{=}0.7$).}\\n\\\\label{tab:fol-detailed}\\n\\\\label{tab:fol-beta01-detailed}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{@{}llccccccl@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Seed} & \\\\textbf{Steps} & \\\\textbf{PR} & \\\\textbf{ISR$^*$} & \\\\textbf{H7\\\\%} & \\\\textbf{H1\\\\%} & \\\\textbf{N-H\\\\%} & \\\\textbf{Notes} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{Baselines}} \\\\\\\\\\nBase model (no training)\\n  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\\\\\\\\\nGround-truth FOL\\n  & --- & --- & 0.18 & 0.559 & --- & --- & --- & Human formalizations \\\\\\\\\\nSFT\\n  & 42 & 1000 & 0.13 & 0.568 & 0 & 7.7 & \\\\textbf{92.3} & Supervised, no RL \\\\\\\\\\n  & 43 & 1000 & 0.11 & 0.635 & 0 & 9.1 & \\\\textbf{90.9} & \\\\\\\\\\n  & 44 & 1000 & 0.15 & 0.589 & 0 & 6.7 & \\\\textbf{93.3} & \\\\\\\\\\n\\\\cmidrule(l){2-9}\\n  & \\\\multicolumn{2}{l}{3-seed pooled} & \\\\makebox[0pt][l]{$0.130$} & & \\\\makebox[0pt][l]{$0.595$} & & \\\\makebox[0pt][l]{\\\\textbf{92.3}} & $n{=}39$ proved \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{Exec-only}} \\\\\\\\\\n  & 42 & 100 & 0.32 & \\\\textbf{0.642} & --- & --- & --- & Early checkpoint \\\\\\\\\\n  & 42 & 500 & 0.93 & 0.132 & 0 & 87.1 & 7.5 & H8${=}6.5\\\\% \\\\\\\\\\n  & 42 & 1000 & 0.96 & 0.003 & 0 & 100 & 0 & Contradiction explosion \\\\\\\\\\n  & 43 & 500 & 0.13 & 0$^\\\\dagger$ & --- & --- & --- & $^\\\\dagger$Greedy ($n_{\\\\text{proved}}{=}13$) \\\\\\\\\\n  & 43 & 1000 & 0.90 & 0.531 & 100 & 0 & 0 & H7 dominant \\\\\\\\\\n  & 44 & 500 & 0.98 & 0.582 & 100 & 0 & 0 & Tautological collapse \\\\\\\\\\n  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 3 & H8${=}15\\\\%$ \\\\\\\\\\n\\\\cmidrule(l){2-9}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.68{\\\\pm}0.47$} & & \\\\makebox[0pt][l]{$0.238{\\\\pm}0.30$} & & & 500-step \\\\\\\\\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.95{\\\\pm}0.05$} & & \\\\makebox[0pt][l]{$0.18{\\\\pm}0.31$} & & \\\\makebox[0pt][l]{$1.0{\\\\pm}1.7$} & 1000-step \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{ISR $\\\\beta{=}0.1$}} \\\\\\\\\\n  & 42 & 500 & 0.81 & 0.415 & 16.0 & 51.9 & \\\\textbf{17.3} & Mixed H1+H7+H8 \\\\\\\\\\n  & 43 & 500 & 0.61 & 0.830 & \\\\textbf{96.7} & 0 & ${\\\\sim}$3 & H7 dominant \\\\\\\\\\n  & 44 & 500 & 0.89 & 0.902 & 100 & 0 & 0 & H7 dominant (FN corrected) \\\\\\\\\\n\\\\cmidrule(l){2-9}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.77{\\\\pm}0.14$} & & \\\\makebox[0pt][l]{$0.716{\\\\pm}0.26$} & & & \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{ISR $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 500 & 0.18 & 0.143 & --- & --- & --- & PR collapse \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{Random $\\\\beta{=}0.1$}} \\\\\\\\\\n  & 42 & 500 & 0.79 & 0.131 & 0 & 73.4 & 22.8 & H8${=}4$ \\\\\\\\\\n  & 43 & 500 & 0.88 & 0.058 & 0 & 93.2 & 6.8 & \\\\\\\\\\n  & 44 & 500 & 0.89 & 0.070 & 0 & 79.8 & 20.2 & \\\\\\\\\\n\\\\cmidrule(l){2-9}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.85{\\\\pm}0.06$} & & \\\\makebox[0pt][l]{$0.086{\\\\pm}0.039$} & & & H7 = 0\\\\% all seeds \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{Random $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 500 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086); $n_{\\\\text{comp}} = 9.6$ \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table*}\\n\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Detailed per-seed results: Prolog (SWI-Prolog 8.4.2). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N\\n\\n... [截断: 输出过长，省略 2940 字符] ...\\n\\nure mode but a family of convergent exploits.\\n\\n\\\\subsection{Per-Seed Results at $\\\\beta{=}0.3$}\\n\\\\label{app:beta03}\\n\\nTable~\\\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\\\beta{=}0.3$.\\nThe three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\\\S\\\\ref{sec:goodhart}).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-seed results at $\\\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H = percentage among proved samples.}\\n\\\\label{tab:beta03-detailed}\\n\\\\small\\n\\\\begin{tabular}{@{}llcccccl@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Seed} & \\\\textbf{PR} & \\\\textbf{ISR$^*$} & \\\\textbf{H7\\\\%} & \\\\textbf{H1\\\\%} & \\\\textbf{N-H\\\\%} & \\\\textbf{Mode} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{@{}l}{\\\\textit{ISR $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 0.18 & 0.143 & 0 & 77.8 & 22.2 & Reward collapse ($n{=}18$) \\\\\\\\\\n  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 26.7 & H1 shortcutting \\\\\\\\\\n  & 44 & 0.95 & 0.742 & \\\\textbf{100} & 0 & 0 & Pure H7 meta-Goodhart \\\\\\\\\\n\\\\cmidrule(l){2-8}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.66{\\\\pm}0.42$} & & \\\\makebox[0pt][l]{$0.39{\\\\pm}0.31$} & & \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{@{}l}{\\\\textit{Random $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\\\\\\\\\n  & 43 & 0.92 & 0.180 & 7.6 & 90.2 & 2.2 & \\\\\\\\\\n  & 44 & 0.23 & 0 & 0 & 100 & 0 & \\\\\\\\\\n\\\\cmidrule(l){2-8}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.54{\\\\pm}0.35$} & & \\\\makebox[0pt][l]{$0.09{\\\\pm}0.09$} & & \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\\n\\\\label{app:100step}\\n\\nTo control for the prove-rate confound in our SFT comparison (\\\\S\\\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\\\%---higher than SFT (13.0\\\\%, 3-seed pooled) but still early in training.\\nOf the 32 proved samples, 9 (28.1\\\\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\\\\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\\\\%.\\nBy contrast, SFT at comparable or lower PR shows 7.7\\\\% hacking (1/13 proved samples).\\nThis demonstrates that reward hacking emerges early in GRPO training---well before the prove-rate plateau---and is not simply an artifact of having more proved samples available for exploitation.\\nThe 100-step hacking rate (31.2\\\\%) is already substantially above SFT (7.7\\\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\\n\\n\\\\subsection{$O(1)$ vs.\\\\ $O(n)$ ISR Ablation}\\n\\\\label{app:o1-ablation}\\n\\nTo justify the per-clause LOO design (\\\\S\\\\ref{sec:sta}), we train a variant that replaces the $O(n)$ ablation with a cheaper $O(1)$ binary signal: $\\\\text{fast\\\\_ISR}(x) = 1$ if $x$ is proved \\\\emph{and} the conclusion is not provable under empty premises (tautology check), $0$ otherwise.\\nThe reward becomes $r = 0.5\\\\,r_{\\\\text{exec}} + 0.5\\\\,\\\\text{fast\\\\_ISR}$.\\nAfter 500 steps (seed~42), this variant achieves $\\\\text{PR}{=}63\\\\%$ with $\\\\text{ISR}^*{=}0.007$---functionally zero---compared to $\\\\text{ISR}^*{=}0.132$ under standard exec-only and $\\\\text{ISR}^*{=}0.42$ under ISR $\\\\beta{=}0.1$.\\n\\n\\\\paragraph{ISR signal vs.\\\\ training dynamics.}\\nAt the \\\\emph{ISR signal level}, the $O(1)$ variant is indistinguishable from exec-only: both produce near-zero ISR because models emit redundant premise copies whose individual removal never changes the proof outcome.\\nAt the \\\\emph{training level}, the two conditions are non-equivalent: the $O(1)$ tautology check penalizes formalizations where the conclusion is provable without any premises, a constraint absent from exec-only.\\nThis confound depresses prove rate by 30 percentage points ($63\\\\%$ vs.\\\\ $93\\\\%$ exec-only), making it impossible to attribute the difference purely to the ISR signal.\\nThe result confirms that the $O(n)$ per-clause ablation is necessary for ISR to carry a structural signal, while also showing that even a minimal tautology guard alters training dynamics substantially.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3dc7604-1eb0-4e6e-bbc3-7a3f2bf8e362",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "d02cf89f-0c17-4a99-806e-ad1e26a418b0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\paragraph{Prevalence.}\\\\nObserved in Prolog exec+STA seed~44 (PR~$=0.97$, ISR~$=0.912$).\\\\n95/97 proved samples have $n_{\\\\\\\\text{necessary}}=1$, confirming functional tautology despite the strict classifier reporting 100\\\\\\\\% non-hacking.\\\\n\\\\n\\\\n\\\\\\\\section{Per-Seed Detailed Results}\\\\n\\\\\\\\label{app:detailed-results}\\\\n\\\\nTables~\\\\\\\\ref{tab:fol-beta01-detailed} and \\\\\\\\ref{tab:prolog-detailed} report full per-seed results.\\\\nAll metrics are computed by \\\\\\\\texttt{eval\\\\\\\\_sta.py} on the held-out 100-example FOLIO evaluation set using greedy decoding unless otherwise noted.\\\\nISR values are proved-only ISR$^*$.\\\\n\\\\n\\\\\\\\begin{table*}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\\\\\beta{=}0.1$ breakdown referenced from Table~\\\\\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\\\\\dagger$s43 uses sampling eval ($T{=}0.7$).}\\\\n\\\\\\\\label{tab:fol-detailed}\\\\n\\\\\\\\label{tab:fol-beta01-detailed}\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3pt}\\\\n\\\\\\\\begin{tabular}{@{}llccccccl@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Seed} & \\\\\\\\textbf{Steps} & \\\\\\\\textbf{PR} & \\\\\\\\textbf{ISR$^*$} & \\\\\\\\textbf{H7\\\\\\\\%} & \\\\\\\\textbf{H1\\\\\\\\%} & \\\\\\\\textbf{N-H\\\\\\\\%} & \\\\\\\\textbf{Notes} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{9}{@{}l}{\\\\\\\\textit{Baselines}} \\\\\\\\\\\\\\\\\\\\nBase model (no training)\\\\n  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\\\\\\\\\\\\\\\\\\\nGround-truth FOL\\\\n  & --- & --- & 0.18 & 0.559 & --- & --- & --- & Human formalizations \\\\\\\\\\\\\\\\\\\\nSFT\\\\n  & 42 & 1000 & 0.13 & 0.568 & 0 & 7.7 & \\\\\\\\textbf{92.3} & Supervised, no RL \\\\\\\\\\\\\\\\\\\\n  & 43 & 1000 & 0.11 & 0.635 & 0 & 9.1 & \\\\\\\\textbf{90.9} & \\\\\\\\\\\\\\\\\\\\n  & 44 & 1000 & 0.15 & 0.589 & 0 & 6.7 & \\\\\\\\textbf{93.3} & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(l){2-9}\\\\n  & \\\\\\\\multicolumn{2}{l}{3-seed pooled} & \\\\\\\\makebox[0pt][l]{$0.130$} & & \\\\\\\\makebox[0pt][l]{$0.595$} & & \\\\\\\\makebox[0pt][l]{\\\\\\\\textbf{92.3}} & $n{=}39$ proved \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{9}{@{}l}{\\\\\\\\textit{Exec-only}} \\\\\\\\\\\\\\\\\\\\n  & 42 & 100 & 0.32 & \\\\\\\\textbf{0.642} & --- & --- & --- & Early checkpoint \\\\\\\\\\\\\\\\\\\\n  & 42 & 500 & 0.93 & 0.132 & 0 & 87.1 & 7.5 & H8${=}6.5\\\\\\\\% \\\\\\\\\\\\\\\\\\\\n  & 42 & 1000 & 0.96 & 0.003 & 0 & 100 & 0 & Contradiction explosion \\\\\\\\\\\\\\\\\\\\n  & 43 & 500 & 0.13 & 0$^\\\\\\\\dagger$ & --- & --- & --- & $^\\\\\\\\dagger$Greedy ($n_{\\\\\\\\text{proved}}{=}13$) \\\\\\\\\\\\\\\\\\\\n  & 43 & 1000 & 0.90 & 0.531 & 100 & 0 & 0 & H7 dominant \\\\\\\\\\\\\\\\\\\\n  & 44 & 500 & 0.98 & 0.582 & 100 & 0 & 0 & Tautological collapse \\\\\\\\\\\\\\\\\\\\n  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 3 & H8${=}15\\\\\\\\%$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(l){2-9}\\\\n  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.68{\\\\\\\\pm}0.47$} & & \\\\\\\\makebox[0pt][l]{$0.238{\\\\\\\\pm}0.30$} & & & 500-step \\\\\\\\\\\\\\\\\\\\n  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.95{\\\\\\\\pm}0.05$} & & \\\\\\\\makebox[0pt][l]{$0.18{\\\\\\\\pm}0.31$} & & \\\\\\\\makebox[0pt][l]{$1.0{\\\\\\\\pm}1.7$} & 1000-step \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{9}{@{}l}{\\\\\\\\textit{ISR $\\\\\\\\beta{=}0.1$}} \\\\\\\\\\\\\\\\\\\\n  & 42 & 500 & 0.81 & 0.415 & 16.0 & 51.9 & \\\\\\\\textbf{17.3} & Mixed H1+H7+H8 \\\\\\\\\\\\\\\\\\\\n  & 43 & 500 & 0.61 & 0.830 & \\\\\\\\textbf{96.7} & 0 & ${\\\\\\\\sim}$3 & H7 dominant \\\\\\\\\\\\\\\\\\\\n  & 44 & 500 & 0.89 & 0.902 & 100 & 0 & 0 & H7 dominant (FN corrected) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(l){2-9}\\\\n  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.77{\\\\\\\\pm}0.14$} & & \\\\\\\\makebox[0pt][l]{$0.716{\\\\\\\\pm}0.26$} & & & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{9}{@{}l}{\\\\\\\\textit{ISR $\\\\\\\\beta{=}0.3$}} \\\\\\\\\\\\\\\\\\\\n  & 42 & 500 & 0.18 & 0.143 & --- & --- & --- & PR collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{9}{@{}l}{\\\\\\\\textit{Random $\\\\\\\\beta{=}0.1$}} \\\\\\\\\\\\\\\\\\\\n  & 42 & 500 & 0.79 & 0.131 & 0 & 73.4 & 22.8 & H8${=}4$ \\\\\\\\\\\\\\\\\\\\n  & 43 & 500 & 0.88 & 0.058 & 0 & 93.2 & 6.8 & \\\\\\\\\\\\\\\\\\\\n  & 44 & 500 & 0.89 & 0.070 & 0 & 79.8 & 20.2 & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(l){2-9}\\\\n  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.85{\\\\\\\\pm}0.06$} & & \\\\\\\\makebox[0pt][l]{$0.086{\\\\\\\\pm}0.039$} & & & H7 = 0\\\\\\\\% all seeds \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{9}{@{}l}{\\\\\\\\textit{Random $\\\\\\\\beta{=}0.3$}} \\\\\\\\\\\\\\\\\\\\n  & 42 & 500 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086); $n_{\\\\\\\\text{comp}} = 9.6$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table*}\\\\n\\\\n\\\\n\\\\\\\\begin{table*}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Detailed per-seed results: Prolog (SWI-Prolog 8.4.2). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N\\\\n\\\\n... [截断: 输出过长，省略 2940 字符] ...\\\\n\\\\nure mode but a family of convergent exploits.\\\\n\\\\n\\\\\\\\subsection{Per-Seed Results at $\\\\\\\\beta{=}0.3$}\\\\n\\\\\\\\label{app:beta03}\\\\n\\\\nTable~\\\\\\\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\\\\\\\beta{=}0.3$.\\\\nThe three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\\\\\\\S\\\\\\\\ref{sec:goodhart}).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Per-seed results at $\\\\\\\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H = percentage among proved samples.}\\\\n\\\\\\\\label{tab:beta03-detailed}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{@{}llcccccl@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Seed} & \\\\\\\\textbf{PR} & \\\\\\\\textbf{ISR$^*$} & \\\\\\\\textbf{H7\\\\\\\\%} & \\\\\\\\textbf{H1\\\\\\\\%} & \\\\\\\\textbf{N-H\\\\\\\\%} & \\\\\\\\textbf{Mode} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{8}{@{}l}{\\\\\\\\textit{ISR $\\\\\\\\beta{=}0.3$}} \\\\\\\\\\\\\\\\\\\\n  & 42 & 0.18 & 0.143 & 0 & 77.8 & 22.2 & Reward collapse ($n{=}18$) \\\\\\\\\\\\\\\\\\\\n  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 26.7 & H1 shortcutting \\\\\\\\\\\\\\\\\\\\n  & 44 & 0.95 & 0.742 & \\\\\\\\textbf{100} & 0 & 0 & Pure H7 meta-Goodhart \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(l){2-8}\\\\n  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.66{\\\\\\\\pm}0.42$} & & \\\\\\\\makebox[0pt][l]{$0.39{\\\\\\\\pm}0.31$} & & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{8}{@{}l}{\\\\\\\\textit{Random $\\\\\\\\beta{=}0.3$}} \\\\\\\\\\\\\\\\\\\\n  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\\\\\\\\\\\\\\\\\\\n  & 43 & 0.92 & 0.180 & 7.6 & 90.2 & 2.2 & \\\\\\\\\\\\\\\\\\\\n  & 44 & 0.23 & 0 & 0 & 100 & 0 & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(l){2-8}\\\\n  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.54{\\\\\\\\pm}0.35$} & & \\\\\\\\makebox[0pt][l]{$0.09{\\\\\\\\pm}0.09$} & & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\\\\n\\\\\\\\label{app:100step}\\\\n\\\\nTo control for the prove-rate confound in our SFT comparison (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\\\\\\\%---higher than SFT (13.0\\\\\\\\%, 3-seed pooled) but still early in training.\\\\nOf the 32 proved samples, 9 (28.1\\\\\\\\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\\\\\\\\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\\\\\\\\%.\\\\nBy contrast, SFT at comparable or lower PR shows 7.7\\\\\\\\% hacking (1/13 proved samples).\\\\nThis demonstrates that reward hacking emerges early in GRPO training---well before the prove-rate plateau---and is not simply an artifact of having more proved samples available for exploitation.\\\\nThe 100-step hacking rate (31.2\\\\\\\\%) is already substantially above SFT (7.7\\\\\\\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\\\\n\\\\n\\\\\\\\subsection{$O(1)$ vs.\\\\\\\\ $O(n)$ ISR Ablation}\\\\n\\\\\\\\label{app:o1-ablation}\\\\n\\\\nTo justify the per-clause LOO design (\\\\\\\\S\\\\\\\\ref{sec:sta}), we train a variant that replaces the $O(n)$ ablation with a cheaper $O(1)$ binary signal: $\\\\\\\\text{fast\\\\\\\\_ISR}(x) = 1$ if $x$ is proved \\\\\\\\emph{and} the conclusion is not provable under empty premises (tautology check), $0$ otherwise.\\\\nThe reward becomes $r = 0.5\\\\\\\\,r_{\\\\\\\\text{exec}} + 0.5\\\\\\\\,\\\\\\\\text{fast\\\\\\\\_ISR}$.\\\\nAfter 500 steps (seed~42), this variant achieves $\\\\\\\\text{PR}{=}63\\\\\\\\%$ with $\\\\\\\\text{ISR}^*{=}0.007$---functionally zero---compared to $\\\\\\\\text{ISR}^*{=}0.132$ under standard exec-only and $\\\\\\\\text{ISR}^*{=}0.42$ under ISR $\\\\\\\\beta{=}0.1$.\\\\n\\\\n\\\\\\\\paragraph{ISR signal vs.\\\\\\\\ training dynamics.}\\\\nAt the \\\\\\\\emph{ISR signal level}, the $O(1)$ variant is indistinguishable from exec-only: both produce near-zero ISR because models emit redundant premise copies whose individual removal never changes the proof outcome.\\\\nAt the \\\\\\\\emph{training level}, the two conditions are non-equivalent: the $O(1)$ tautology check penalizes formalizations where the conclusion is provable without any premises, a constraint absent from exec-only.\\\\nThis confound depresses prove rate by 30 percentage points ($63\\\\\\\\%$ vs.\\\\\\\\ $93\\\\\\\\%$ exec-only), making it impossible to attribute the difference purely to the ISR signal.\\\\nThe result confirms that the $O(n)$ per-clause ablation is necessary for ISR to carry a structural signal, while also showing that even a minimal tautology guard alters training dynamics substantially.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\paragraph{Prevalence.}\\nObserved in Prolog exec+STA seed~44 (PR~$=0.97$, ISR~$=0.912$).\\n95/97 proved samples have $n_{\\\\text{necessary}}=1$, confirming functional tautology despite the strict classifier reporting 100\\\\% non-hacking.\\n\\n\\n\\\\section{Per-Seed Detailed Results}\\n\\\\label{app:detailed-results}\\n\\nTables~\\\\ref{tab:fol-beta01-detailed} and \\\\ref{tab:prolog-detailed} report full per-seed results.\\nAll metrics are computed by \\\\texttt{eval\\\\_sta.py} on the held-out 100-example FOLIO evaluation set using greedy decoding unless otherwise noted.\\nISR values are proved-only ISR$^*$.\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\beta{=}0.1$ breakdown referenced from Table~\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\dagger$s43 uses sampling eval ($T{=}0.7$).}\\n\\\\label{tab:fol-detailed}\\n\\\\label{tab:fol-beta01-detailed}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{@{}llccccccl@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Seed} & \\\\textbf{Steps} & \\\\textbf{PR} & \\\\textbf{ISR$^*$} & \\\\textbf{H7\\\\%} & \\\\textbf{H1\\\\%} & \\\\textbf{N-H\\\\%} & \\\\textbf{Notes} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{Baselines}} \\\\\\\\\\nBase model (no training)\\n  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\\\\\\\\\nGround-truth FOL\\n  & --- & --- & 0.18 & 0.559 & --- & --- & --- & Human formalizations \\\\\\\\\\nSFT\\n  & 42 & 1000 & 0.13 & 0.568 & 0 & 7.7 & \\\\textbf{92.3} & Supervised, no RL \\\\\\\\\\n  & 43 & 1000 & 0.11 & 0.635 & 0 & 9.1 & \\\\textbf{90.9} & \\\\\\\\\\n  & 44 & 1000 & 0.15 & 0.589 & 0 & 6.7 & \\\\textbf{93.3} & \\\\\\\\\\n\\\\cmidrule(l){2-9}\\n  & \\\\multicolumn{2}{l}{3-seed pooled} & \\\\makebox[0pt][l]{$0.130$} & & \\\\makebox[0pt][l]{$0.595$} & & \\\\makebox[0pt][l]{\\\\textbf{92.3}} & $n{=}39$ proved \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{Exec-only}} \\\\\\\\\\n  & 42 & 100 & 0.32 & \\\\textbf{0.642} & --- & --- & --- & Early checkpoint \\\\\\\\\\n  & 42 & 500 & 0.93 & 0.132 & 0 & 87.1 & 7.5 & H8${=}6.5\\\\% \\\\\\\\\\n  & 42 & 1000 & 0.96 & 0.003 & 0 & 100 & 0 & Contradiction explosion \\\\\\\\\\n  & 43 & 500 & 0.13 & 0$^\\\\dagger$ & --- & --- & --- & $^\\\\dagger$Greedy ($n_{\\\\text{proved}}{=}13$) \\\\\\\\\\n  & 43 & 1000 & 0.90 & 0.531 & 100 & 0 & 0 & H7 dominant \\\\\\\\\\n  & 44 & 500 & 0.98 & 0.582 & 100 & 0 & 0 & Tautological collapse \\\\\\\\\\n  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 3 & H8${=}15\\\\%$ \\\\\\\\\\n\\\\cmidrule(l){2-9}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.68{\\\\pm}0.47$} & & \\\\makebox[0pt][l]{$0.238{\\\\pm}0.30$} & & & 500-step \\\\\\\\\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.95{\\\\pm}0.05$} & & \\\\makebox[0pt][l]{$0.18{\\\\pm}0.31$} & & \\\\makebox[0pt][l]{$1.0{\\\\pm}1.7$} & 1000-step \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{ISR $\\\\beta{=}0.1$}} \\\\\\\\\\n  & 42 & 500 & 0.81 & 0.415 & 16.0 & 51.9 & \\\\textbf{17.3} & Mixed H1+H7+H8 \\\\\\\\\\n  & 43 & 500 & 0.61 & 0.830 & \\\\textbf{96.7} & 0 & ${\\\\sim}$3 & H7 dominant \\\\\\\\\\n  & 44 & 500 & 0.89 & 0.902 & 100 & 0 & 0 & H7 dominant (FN corrected) \\\\\\\\\\n\\\\cmidrule(l){2-9}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.77{\\\\pm}0.14$} & & \\\\makebox[0pt][l]{$0.716{\\\\pm}0.26$} & & & \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{ISR $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 500 & 0.18 & 0.143 & --- & --- & --- & PR collapse \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{Random $\\\\beta{=}0.1$}} \\\\\\\\\\n  & 42 & 500 & 0.79 & 0.131 & 0 & 73.4 & 22.8 & H8${=}4$ \\\\\\\\\\n  & 43 & 500 & 0.88 & 0.058 & 0 & 93.2 & 6.8 & \\\\\\\\\\n  & 44 & 500 & 0.89 & 0.070 & 0 & 79.8 & 20.2 & \\\\\\\\\\n\\\\cmidrule(l){2-9}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.85{\\\\pm}0.06$} & & \\\\makebox[0pt][l]{$0.086{\\\\pm}0.039$} & & & H7 = 0\\\\% all seeds \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{9}{@{}l}{\\\\textit{Random $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 500 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086); $n_{\\\\text{comp}} = 9.6$ \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table*}\\n\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Detailed per-seed results: Prolog (SWI-Prolog 8.4.2). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N\\n\\n... [截断: 输出过长，省略 2940 字符] ...\\n\\nure mode but a family of convergent exploits.\\n\\n\\\\subsection{Per-Seed Results at $\\\\beta{=}0.3$}\\n\\\\label{app:beta03}\\n\\nTable~\\\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\\\beta{=}0.3$.\\nThe three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\\\S\\\\ref{sec:goodhart}).\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Per-seed results at $\\\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H = percentage among proved samples.}\\n\\\\label{tab:beta03-detailed}\\n\\\\small\\n\\\\begin{tabular}{@{}llcccccl@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Seed} & \\\\textbf{PR} & \\\\textbf{ISR$^*$} & \\\\textbf{H7\\\\%} & \\\\textbf{H1\\\\%} & \\\\textbf{N-H\\\\%} & \\\\textbf{Mode} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{@{}l}{\\\\textit{ISR $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 0.18 & 0.143 & 0 & 77.8 & 22.2 & Reward collapse ($n{=}18$) \\\\\\\\\\n  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 26.7 & H1 shortcutting \\\\\\\\\\n  & 44 & 0.95 & 0.742 & \\\\textbf{100} & 0 & 0 & Pure H7 meta-Goodhart \\\\\\\\\\n\\\\cmidrule(l){2-8}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.66{\\\\pm}0.42$} & & \\\\makebox[0pt][l]{$0.39{\\\\pm}0.31$} & & \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{@{}l}{\\\\textit{Random $\\\\beta{=}0.3$}} \\\\\\\\\\n  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\\\\\\\\\n  & 43 & 0.92 & 0.180 & 7.6 & 90.2 & 2.2 & \\\\\\\\\\n  & 44 & 0.23 & 0 & 0 & 100 & 0 & \\\\\\\\\\n\\\\cmidrule(l){2-8}\\n  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.54{\\\\pm}0.35$} & & \\\\makebox[0pt][l]{$0.09{\\\\pm}0.09$} & & \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\\n\\\\label{app:100step}\\n\\nTo control for the prove-rate confound in our SFT comparison (\\\\S\\\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\\\%---higher than SFT (13.0\\\\%, 3-seed pooled) but still early in training.\\nOf the 32 proved samples, 9 (28.1\\\\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\\\\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\\\\%.\\nBy contrast, SFT at comparable or lower PR shows 7.7\\\\% hacking (1/13 proved samples).\\nThis demonstrates that reward hacking emerges early in GRPO training---well before the prove-rate plateau---and is not simply an artifact of having more proved samples available for exploitation.\\nThe 100-step hacking rate (31.2\\\\%) is already substantially above SFT (7.7\\\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\\n\\n\\\\subsection{$O(1)$ vs.\\\\ $O(n)$ ISR Ablation}\\n\\\\label{app:o1-ablation}\\n\\nTo justify the per-clause LOO design (\\\\S\\\\ref{sec:sta}), we train a variant that replaces the $O(n)$ ablation with a cheaper $O(1)$ binary signal: $\\\\text{fast\\\\_ISR}(x) = 1$ if $x$ is proved \\\\emph{and} the conclusion is not provable under empty premises (tautology check), $0$ otherwise.\\nThe reward becomes $r = 0.5\\\\,r_{\\\\text{exec}} + 0.5\\\\,\\\\text{fast\\\\_ISR}$.\\nAfter 500 steps (seed~42), this variant achieves $\\\\text{PR}{=}63\\\\%$ with $\\\\text{ISR}^*{=}0.007$---functionally zero---compared to $\\\\text{ISR}^*{=}0.132$ under standard exec-only and $\\\\text{ISR}^*{=}0.42$ under ISR $\\\\beta{=}0.1$.\\n\\n\\\\paragraph{ISR signal vs.\\\\ training dynamics.}\\nAt the \\\\emph{ISR signal level}, the $O(1)$ variant is indistinguishable from exec-only: both produce near-zero ISR because models emit redundant premise copies whose individual removal never changes the proof outcome.\\nAt the \\\\emph{training level}, the two conditions are non-equivalent: the $O(1)$ tautology check penalizes formalizations where the conclusion is provable without any premises, a constraint absent from exec-only.\\nThis confound depresses prove rate by 30 percentage points ($63\\\\%$ vs.\\\\ $93\\\\%$ exec-only), making it impossible to attribute the difference purely to the ISR signal.\\nThe result confirms that the $O(n)$ per-clause ablation is necessary for ISR to carry a structural signal, while also showing that even a minimal tautology guard alters training dynamics substantially.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e3dc7604-1eb0-4e6e-bbc3-7a3f2bf8e362",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d02cf89f-0c17-4a99-806e-ad1e26a418b0",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix reviewer comments on genuine proofs in paper",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-15T17:09:58.807Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I have a clear picture of what needs to be changed. Let me identify the exact modifications:
+
+**Modification 1 (experiments.tex):**
+The text to find:
+```
+By 1000 steps, all three converge to high PR ($0.95{\pm}0.05$) but ${\leq}3\%$ non-hacking (Appendix Table~\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8).
+
+
+```
+
+I need to change `${\leq}3\%$ non-hacking` to `$0\%$ genuine reasoning (3 samples escape text-match classifiers but are functionally degenerate; see Appendix)`. The task is asking me to replace the non-hacking metric with a genuine reasoning metric and add context about the three samples that technically pass the classifier but are actually degenerate.
+
+Looking at the appendix table, I need to update the 1000-step exec-only section where s44 has 3% non-hacking and the 3-seed mean is 1.0%±1.7% — both should become 0.0%±0.0% to reflect that there's no genuine reasoning in these samples.
+
+```
+At $\beta{=}0.1$, 69.7\% of proved samples exhibit single-premise-equals-conclusion duplication---ISR high \emph{by definition}---versus 0\% under matched random;
+```
+
+I need to add "at 500 steps" to clarify the comparison, so both the 69.7% and the 0% reference the same step count. The experiments.tex change should also update the non-hacking language to match the paper's terminology while noting that the few samples escaping text-match classifiers are functionally degenerate.
+
+For the appendix modification, I'm looking at the table row with s44-1000 where I need to change the N-H value from 3 to 0 and add a corresponding footnote explaining why those samples don't count as genuine reasoning. Generating markdown table... I need to add a footnote marker to the s44 row to explain the degenerate case. Since the table caption already uses `$^\dagger$` for the s43 sampling note, I'll follow the same pattern with `$^\ddagger$` and add the corresponding footnote text to the caption.
+
+Now I'm writing a Python script to handle these edits precisely, since the escaping for sed commands would be complex with all the special characters and mathematical notation involved. Updating the LaTeX files with corrections to the experimental results and methodology descriptions... I'm continuing to modify the LaTeX file, adding a footnote about the degenerate cases where models escape the heuristic classifiers through disjunctive conclusions and commuted premises that bypass detection, then writing the updated content back to the appendix file. I'm checking the experiments.tex file more carefully since the output was truncated earlier. I can see the relevant section in "Cross-seed instability" and need to verify where the "genuine" percentages appear that need updating from 3% to 0% for s44, and from 1.0%±1.7% to 0.0%±0.0% for the 3-seed mean. Writing the Python script...
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d02cf89f-0c17-4a99-806e-ad1e26a418b0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iuLpaxUps2sPzEcabk",
+  "type": "assistant",
+  "uuid": "8be2ed94-e0f5-42c0-8a1a-e1f035226f78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011au3ub5ZwMnTvoozcVW4ak",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4495,
+      "cache_read_input_tokens": 42805,
+      "output_tokens": 5252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4495,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5252,
+          "cache_read_input_tokens": 42805,
+          "cache_creation_input_tokens": 4495,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4495
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-15T17:09:59.288Z_
+
+找到了所有需要修改的位置。现在执行 3 项修改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8be2ed94-e0f5-42c0-8a1a-e1f035226f78",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iuLpaxUps2sPzEcabk",
+  "type": "assistant",
+  "uuid": "879b28e1-56d8-4e96-8ad4-2c05cef2ac10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011au3ub5ZwMnTvoozcVW4ak",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4495,
+      "cache_read_input_tokens": 42805,
+      "output_tokens": 5252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4495,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5252,
+          "cache_read_input_tokens": 42805,
+          "cache_creation_input_tokens": 4495,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4495
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T17:10:11.525Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013Z1m5Tjwovu3YgN5UToKnf`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cat << 'PYEOF' > /tmp/fix_paper.py\nimport sys\n\n# === Edit 1: experiments.tex ===\nwith open('/root/solver-trace-ablation/paper/experiments.tex', 'r') as f:\n    content = f.read()\n\nold = r'${\\leq}3\\%$ non-hacking (Appendix Table~\\ref{tab:fol-detailed})'\nnew = r'$0\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\ref{app:h8} and Table~\\ref{tab:fol-detailed})'\nif old not in content:\n    print(\"ERROR: experiments.tex target string not found\"); sys.exit(1)\ncontent = content.replace(old, new)\n\nwith open('/root/solver-trace-ablation/paper/experiments.tex', 'w') as f:\n    f.write(content)\nprint(\"experiments.tex: OK\")\n\n# === Edit 2: introduction.tex ===\nwith open('/root/solver-trace-ablation/paper/introduction.tex', 'r') as f:\n    content = f.read()\n\nold1 = r'69.7\\% of proved samples exhibit'\nnew1 = r'69.7\\% of proved samples at 500 steps exhibit'\nif old1 not in content:\n    print(\"ERROR: introduction.tex target 1 not found\"); sys.exit(1)\ncontent = content.replace(old1, new1)\n\nold2 = r'versus 0\\% under matched random;'\nnew2 = r'versus 0\\% under matched random at 500 steps;'\nif old2 not in content:\n    print(\"ERROR: introduction.tex target 2 not found\"); sys.exit(1)\ncontent = content.replace(old2, new2)\n\nwith open('/root/solver-trace-ablation/paper/introduction.tex', 'w') as f:\n    f.write(content)\nprint(\"introduction.tex: OK\")\n\n# === Edit 3: appendix.tex ===\nwith open('/root/solver-trace-ablation/paper/appendix.tex', 'r') as f:\n    content = f.read()\n\n# 3a: s44 1000-step N-H: 3 -> 0 with footnote\nold3a = '& 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 3 & H8${=}15\\\\%$'\nnew3a = '& 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\ddagger$ & H8${=}15\\\\%$'\nif old3a not in content:\n    print(\"ERROR: appendix.tex s44-1000 row not found\"); sys.exit(1)\ncontent = content.replace(old3a, new3a)\n\n# 3b: 3-seed mean N-H: 1.0±1.7 -> 0.0±0.0\nold3b = '\\\\makebox[0pt][l]{$1.0{\\\\pm}1.7$} & 1000-step'\nnew3b = '\\\\makebox[0pt][l]{$0.0{\\\\pm}0.0$} & 1000-step'\nif old3b not in content:\n    print(\"ERROR: appendix.tex 3-seed mean row not found\"); sys.exit(1)\ncontent = content.replace(old3b, new3b)\n\n# 3c: Add footnote to table caption\nold3c = \"$^\\\\dagger$s43 uses sampling eval ($T{=}0.7$).}\"\nnew3c = \"$^\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\"\nif old3c not in content:\n    print(\"ERROR: appendix.tex caption footnote target not found\"); sys.exit(1)\ncontent = content.replace(old3c, new3c)\n\nwith open('/root/solver-trace-ablation/paper/appendix.tex', 'w') as f:\n    f.write(content)\nprint(\"appendix.tex: OK\")\n\nprint(\"\\nAll edits applied successfully.\")\nPYEOF\npython3 /tmp/fix_paper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "879b28e1-56d8-4e96-8ad4-2c05cef2ac10",
+  "isSidechain": false,
+  "requestId": "req_011Cb4iuLpaxUps2sPzEcabk",
+  "type": "assistant",
+  "uuid": "e974ee8a-09a5-4235-9328-1fd5e20877c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011au3ub5ZwMnTvoozcVW4ak",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4495,
+      "cache_read_input_tokens": 42805,
+      "output_tokens": 5252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4495,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5252,
+          "cache_read_input_tokens": 42805,
+          "cache_creation_input_tokens": 4495,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4495
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T17:10:12.012Z_
+
+<details><summary>↩ Tool result · `toolu_013Z1m5Tjwovu3YgN5UToKnf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"experiments.tex: OK\\nintroduction.tex: OK\\nappendix.tex: OK\\n\\nAll edits applied successfully.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e974ee8a-09a5-4235-9328-1fd5e20877c0",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "fb6a380f-9c89-48f5-8c7c-fb1850110357",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"experiments.tex: OK\\\\nintroduction.tex: OK\\\\nappendix.tex: OK\\\\n\\\\nAll edits applied successfully.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"experiments.tex: OK\\nintroduction.tex: OK\\nappendix.tex: OK\\n\\nAll edits applied successfully.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e974ee8a-09a5-4235-9328-1fd5e20877c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-15T17:10:20.456Z_
+
+所有编辑已应用。现在编译 LaTeX 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb6a380f-9c89-48f5-8c7c-fb1850110357",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j1HSMTunaBNqyga3wi",
+  "type": "assistant",
+  "uuid": "7ccb8150-4f9b-402b-bf80-8b1699b544bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcB4FBwLNt4JS5nmKBgkQj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5356,
+      "cache_read_input_tokens": 47300,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5356,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 47300,
+          "cache_creation_input_tokens": 5356,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5356
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-15T17:10:21.507Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011EokmJbFmWX5oj4znJViKR`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ccb8150-4f9b-402b-bf80-8b1699b544bf",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j1HSMTunaBNqyga3wi",
+  "type": "assistant",
+  "uuid": "019b22ec-5317-4415-97ef-9697afb196f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcB4FBwLNt4JS5nmKBgkQj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5356,
+      "cache_read_input_tokens": 47300,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5356,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 47300,
+          "cache_creation_input_tokens": 5356,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5356
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T17:10:22.450Z_
+
+<details><summary>↩ Tool result · `toolu_011EokmJbFmWX5oj4znJViKR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist\\n/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/\\ntype1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/p\\nublic/amsfonts/cmextra/cmmib9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\nblic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\\nsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\\nm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr\\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share\\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texliv\\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf\\n-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/f\\nonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\\npe1/public/amsfonts/cm/cmti10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\nblic/amsfonts/cm/cmti9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\\nsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\\n/cm/cmtt9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf\\nb>\\nOutput written on main.pdf (17 pages, 536106 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "019b22ec-5317-4415-97ef-9697afb196f4",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "6404fb40-16c0-47da-88ed-ba771c7c3782",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist\\\\n/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/\\\\ntype1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/p\\\\nublic/amsfonts/cmextra/cmmib9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\\\nblic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\\\\nsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\\\\nm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p\\\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr\\\\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share\\\\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texliv\\\\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf\\\\n-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/f\\\\nonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\\\\npe1/public/amsfonts/cm/cmti10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\\\nblic/amsfonts/cm/cmti9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\\\\nsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\\\\n/cm/cmtt9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf\\\\nb>\\\\nOutput written on main.pdf (17 pages, 536106 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"mf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist\\n/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/\\ntype1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/p\\nublic/amsfonts/cmextra/cmmib9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\nblic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\\nsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\\nm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p\\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr\\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share\\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texliv\\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf\\n-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/f\\nonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\\npe1/public/amsfonts/cm/cmti10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\nblic/amsfonts/cm/cmti9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\\nsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\\n/cm/cmtt9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf\\nb>\\nOutput written on main.pdf (17 pages, 536106 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  },
+  "sourceToolAssistantUUID": "019b22ec-5317-4415-97ef-9697afb196f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "6404fb40-16c0-47da-88ed-ba771c7c3782",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix reviewer comments on genuine proofs in paper",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-15T17:10:25.783Z_
+
+第一遍编译成功。运行第二遍确保引用正确。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6404fb40-16c0-47da-88ed-ba771c7c3782",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j243yKpUAx6yY7kFZX",
+  "type": "assistant",
+  "uuid": "ae847687-2cc1-49d9-8690-7f31bd1ec62f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDpNWCB3aPJ5sksGg6GgDV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 52656,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 960,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 52656,
+          "cache_creation_input_tokens": 960,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 960
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-15T17:10:30.632Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XKdejQjLzRyTQuTfUXgGNd`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "cd /root/solver-trace-ablation/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae847687-2cc1-49d9-8690-7f31bd1ec62f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j243yKpUAx6yY7kFZX",
+  "type": "assistant",
+  "uuid": "22f4393f-5d1c-4003-855b-ef39ea1dc2f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDpNWCB3aPJ5sksGg6GgDV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 52656,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 960,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 52656,
+          "cache_creation_input_tokens": 960,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 960
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T17:10:31.572Z_
+
+<details><summary>↩ Tool result · `toolu_01XKdejQjLzRyTQuTfUXgGNd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"sfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\\n/cm/cmtt9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf\\nb>\\nOutput written on main.pdf (17 pages, 536020 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "22f4393f-5d1c-4003-855b-ef39ea1dc2f4",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "9b48b497-364b-4c2d-8d8b-47273036153d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\\\\n/cm/cmtt9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf\\\\nb>\\\\nOutput written on main.pdf (17 pages, 536020 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"sfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\\n/cm/cmtt9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf\\nb>\\nOutput written on main.pdf (17 pages, 536020 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  },
+  "sourceToolAssistantUUID": "22f4393f-5d1c-4003-855b-ef39ea1dc2f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-15T17:10:35.345Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0148VMKwGNQZ6MrMWJuFN3GX`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -c \"Warning\" /root/solver-trace-ablation/paper/main.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b48b497-364b-4c2d-8d8b-47273036153d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j2jACjgykcUx8gsSjK",
+  "type": "assistant",
+  "uuid": "0d780323-4747-4f8e-8553-5ef88496738e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ATkQxgd5CRpdxfptaUADi5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 349,
+      "cache_read_input_tokens": 53616,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 349,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 53616,
+          "cache_creation_input_tokens": 349,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 349
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T17:10:35.803Z_
+
+<details><summary>↩ Tool result · `toolu_0148VMKwGNQZ6MrMWJuFN3GX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d780323-4747-4f8e-8553-5ef88496738e",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "73e1cbae-c5de-443f-a18f-80d5d63f6ad8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"12\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0d780323-4747-4f8e-8553-5ef88496738e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-15T17:10:38.620Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DbvVAQwG9NZbTMie8Gd3QK`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep \"Warning\" /root/solver-trace-ablation/paper/main.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73e1cbae-c5de-443f-a18f-80d5d63f6ad8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j337Srkyj3ohv3dJQE",
+  "type": "assistant",
+  "uuid": "370da9d2-74db-4678-ac0c-57703309d31e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015rXq4cUeS2UTy4odv5w8hA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 198,
+      "cache_read_input_tokens": 53965,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 53965,
+          "cache_creation_input_tokens": 198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T17:10:39.072Z_
+
+<details><summary>↩ Tool result · `toolu_01DbvVAQwG9NZbTMie8Gd3QK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LaTeX Warning: Reference `app:h4' on page 6 undefined on input line 79.\\nLaTeX Warning: `h' float specifier changed to `ht'.\\nLaTeX Warning: `h' float specifier changed to `ht'.\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nLaTeX Warning: `h' float specifier changed to `ht'.\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nLaTeX Warning: There were undefined references.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "370da9d2-74db-4678-ac0c-57703309d31e",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "9833e3c2-2a44-4841-9ce3-970aab312d36",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LaTeX Warning: Reference `app:h4' on page 6 undefined on input line 79.\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\\\nLaTeX Warning: There were undefined references.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LaTeX Warning: Reference `app:h4' on page 6 undefined on input line 79.\\nLaTeX Warning: `h' float specifier changed to `ht'.\\nLaTeX Warning: `h' float specifier changed to `ht'.\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nLaTeX Warning: `h' float specifier changed to `ht'.\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\\nLaTeX Warning: There were undefined references.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "370da9d2-74db-4678-ac0c-57703309d31e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83 · 2026-05-15T17:10:39.075Z_
+
+```json
+{
+  "parentUuid": "9833e3c2-2a44-4841-9ce3-970aab312d36",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b86c09db-9637-4a1f-a220-084064d48359",
+  "timestamp": "2026-05-15T17:10:39.075Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-15T17:10:43.143Z_
+
+编译成功，无新增 warning（`app:h4` undefined 和 hyperref token 警告是已有的，与本次修改无关）。
+
+验证修改内容正确性：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b86c09db-9637-4a1f-a220-084064d48359",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j3H7p1gsuMvdACKYpp",
+  "type": "assistant",
+  "uuid": "b4862c3f-339a-44d2-88a6-057b3b50e06b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014egd2GZFS7ZpeoTaWshFag",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 54163,
+      "output_tokens": 394,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 516,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 394,
+          "cache_read_input_tokens": 54163,
+          "cache_creation_input_tokens": 516,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 516
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-15T17:10:44.090Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018sLyBrWQ4y4Mx2CT5Z4Hm7`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"non-hacking\" /root/solver-trace-ablation/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4862c3f-339a-44d2-88a6-057b3b50e06b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j3H7p1gsuMvdACKYpp",
+  "type": "assistant",
+  "uuid": "304e7cdf-350b-4493-b2d1-e5d56f1bb048",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014egd2GZFS7ZpeoTaWshFag",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 54163,
+      "output_tokens": 394,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 516,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 394,
+          "cache_read_input_tokens": 54163,
+          "cache_creation_input_tokens": 516,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 516
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-15T17:10:44.572Z_
+
+<details><summary>↩ Tool result · `toolu_018sLyBrWQ4y4Mx2CT5Z4Hm7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11:We report prove rate (PR), proved-only ISR ($\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\text{necessary}}$ distribution; \\\\S\\\\ref{sec:taxonomy-method}), and a \\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\n32:By 1000 steps, all three converge to high PR ($0.95{\\\\pm}0.05$) but $0\\\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\\\ref{app:h8} and Table~\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\n35:SFT on gold formalizations reaches $\\\\text{PR}{=}13.0\\\\%$ (3-seed pooled, 1000 steps) with $\\\\text{H7}{=}0$, $\\\\text{H1}{=}7.7\\\\%$, $92.2\\\\%$ non-hacking ($n{=}39$; per-seed range 91--93\\\\%). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\\n78:Restricting to non-hacking samples with $\\\\geq{3}$ premises (eliminating the trivial-$n$ regime) gives $\\\\text{ISR}^{*}{=}0.258$ for ISR vs.\\\\ $0.243$ for random: a $1.06\\\\times$ ratio, no meaningful advantage. %% D051 premise-count-matched analysis\\n92:Seed~43: \\\\emph{H1 shortcutting} ($\\\\text{PR}{=}86\\\\%$, $\\\\text{H1}{=}69\\\\%$, only $27\\\\%$ non-hacking).\\n93:Seed~44: \\\\emph{pure H7 meta-Goodhart} ($\\\\text{PR}{=}95\\\\%$, $\\\\text{H7}{=}100\\\\%$, $\\\\text{ISR}^{*}{=}0.742$, $0\\\\%$ non-hacking)---simultaneously gaming \\\\emph{both} execution and structural metrics through the same construction.\\n94:The random control at $\\\\beta{=}0.3$ is equally unstable ($\\\\text{PR}{=}54{\\\\pm}35\\\\%$, spanning 23--92\\\\%) with near-universal H1 hacking ($91\\\\%$, pooled) and ${\\\\leq}3\\\\%$ non-hacking per seed; high-dose proxy weighting destabilizes training regardless of signal source; ISR produces diverse failure modes (reward collapse, H1 shortcutting, H7 meta-Goodhart) while random converges to H1-dominated hacking with sporadic H7 ($7\\\\%$ pooled, $0$--$7$ H7a per seed) (Appendix~\\\\ref{app:beta03}).\\n102:\\\\caption{Cross-logic results. \\\\textbf{Left}: FOL vs.\\\\ Prolog exec-only $\\\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}21$). \\\\textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 0\\\\% non-hacking through distinct mechanisms.}\\n116:The Prolog result is stronger than FOL: 3/3 seeds reach $0\\\\%$ non-hacking via three distinct mechanisms (Figure~\\\\ref{fig:prolog-comparison}).\\n163:Exec-only, ISR, and random conditions all show $\\\\geq 80\\\\%$ pooled hacking among proved samples; only SFT shows $92\\\\%$ non-hacking.\\n164:Across 2 logic types, 6 reward conditions, 3 seeds, and up to 1000 steps, no GRPO condition we tested produces a high-PR run that is also majority non-hacking; the closest is ISR $\\\\beta{=}0.1$ s42 at $\\\\text{PR}{=}81\\\\%$, $17\\\\%$ non-hacking, and even that residual is the premise-minimization artifact analyzed above.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "304e7cdf-350b-4493-b2d1-e5d56f1bb048",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "8493f496-63d6-4e01-b8b3-2530662d5a87",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11:We report prove rate (PR), proved-only ISR ($\\\\\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\\\\\text{necessary}}$ distribution; \\\\\\\\S\\\\\\\\ref{sec:taxonomy-method}), and a \\\\\\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\\\n32:By 1000 steps, all three converge to high PR ($0.95{\\\\\\\\pm}0.05$) but $0\\\\\\\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\\\\\\\ref{app:h8} and Table~\\\\\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\\\n35:SFT on gold formalizations reaches $\\\\\\\\text{PR}{=}13.0\\\\\\\\%$ (3-seed pooled, 1000 steps) with $\\\\\\\\text{H7}{=}0$, $\\\\\\\\text{H1}{=}7.7\\\\\\\\%$, $92.2\\\\\\\\%$ non-hacking ($n{=}39$; per-seed range 91--93\\\\\\\\%). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\\\\n78:Restricting to non-hacking samples with $\\\\\\\\geq{3}$ premises (eliminating the trivial-$n$ regime) gives $\\\\\\\\text{ISR}^{*}{=}0.258$ for ISR vs.\\\\\\\\ $0.243$ for random: a $1.06\\\\\\\\times$ ratio, no meaningful advantage. %% D051 premise-count-matched analysis\\\\n92:Seed~43: \\\\\\\\emph{H1 shortcutting} ($\\\\\\\\text{PR}{=}86\\\\\\\\%$, $\\\\\\\\text{H1}{=}69\\\\\\\\%$, only $27\\\\\\\\%$ non-hacking).\\\\n93:Seed~44: \\\\\\\\emph{pure H7 meta-Goodhart} ($\\\\\\\\text{PR}{=}95\\\\\\\\%$, $\\\\\\\\text{H7}{=}100\\\\\\\\%$, $\\\\\\\\text{ISR}^{*}{=}0.742$, $0\\\\\\\\%$ non-hacking)---simultaneously gaming \\\\\\\\emph{both} execution and structural metrics through the same construction.\\\\n94:The random control at $\\\\\\\\beta{=}0.3$ is equally unstable ($\\\\\\\\text{PR}{=}54{\\\\\\\\pm}35\\\\\\\\%$, spanning 23--92\\\\\\\\%) with near-universal H1 hacking ($91\\\\\\\\%$, pooled) and ${\\\\\\\\leq}3\\\\\\\\%$ non-hacking per seed; high-dose proxy weighting destabilizes training regardless of signal source; ISR produces diverse failure modes (reward collapse, H1 shortcutting, H7 meta-Goodhart) while random converges to H1-dominated hacking with sporadic H7 ($7\\\\\\\\%$ pooled, $0$--$7$ H7a per seed) (Appendix~\\\\\\\\ref{app:beta03}).\\\\n102:\\\\\\\\caption{Cross-logic results. \\\\\\\\textbf{Left}: FOL vs.\\\\\\\\ Prolog exec-only $\\\\\\\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}21$). \\\\\\\\textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 0\\\\\\\\% non-hacking through distinct mechanisms.}\\\\n116:The Prolog result is stronger than FOL: 3/3 seeds reach $0\\\\\\\\%$ non-hacking via three distinct mechanisms (Figure~\\\\\\\\ref{fig:prolog-comparison}).\\\\n163:Exec-only, ISR, and random conditions all show $\\\\\\\\geq 80\\\\\\\\%$ pooled hacking among proved samples; only SFT shows $92\\\\\\\\%$ non-hacking.\\\\n164:Across 2 logic types, 6 reward conditions, 3 seeds, and up to 1000 steps, no GRPO condition we tested produces a high-PR run that is also majority non-hacking; the closest is ISR $\\\\\\\\beta{=}0.1$ s42 at $\\\\\\\\text{PR}{=}81\\\\\\\\%$, $17\\\\\\\\%$ non-hacking, and even that residual is the premise-minimization artifact analyzed above.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"11:We report prove rate (PR), proved-only ISR ($\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\text{necessary}}$ distribution; \\\\S\\\\ref{sec:taxonomy-method}), and a \\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\n32:By 1000 steps, all three converge to high PR ($0.95{\\\\pm}0.05$) but $0\\\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\\\ref{app:h8} and Table~\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\n35:SFT on gold formalizations reaches $\\\\text{PR}{=}13.0\\\\%$ (3-seed pooled, 1000 steps) with $\\\\text{H7}{=}0$, $\\\\text{H1}{=}7.7\\\\%$, $92.2\\\\%$ non-hacking ($n{=}39$; per-seed range 91--93\\\\%). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\\n78:Restricting to non-hacking samples with $\\\\geq{3}$ premises (eliminating the trivial-$n$ regime) gives $\\\\text{ISR}^{*}{=}0.258$ for ISR vs.\\\\ $0.243$ for random: a $1.06\\\\times$ ratio, no meaningful advantage. %% D051 premise-count-matched analysis\\n92:Seed~43: \\\\emph{H1 shortcutting} ($\\\\text{PR}{=}86\\\\%$, $\\\\text{H1}{=}69\\\\%$, only $27\\\\%$ non-hacking).\\n93:Seed~44: \\\\emph{pure H7 meta-Goodhart} ($\\\\text{PR}{=}95\\\\%$, $\\\\text{H7}{=}100\\\\%$, $\\\\text{ISR}^{*}{=}0.742$, $0\\\\%$ non-hacking)---simultaneously gaming \\\\emph{both} execution and structural metrics through the same construction.\\n94:The random control at $\\\\beta{=}0.3$ is equally unstable ($\\\\text{PR}{=}54{\\\\pm}35\\\\%$, spanning 23--92\\\\%) with near-universal H1 hacking ($91\\\\%$, pooled) and ${\\\\leq}3\\\\%$ non-hacking per seed; high-dose proxy weighting destabilizes training regardless of signal source; ISR produces diverse failure modes (reward collapse, H1 shortcutting, H7 meta-Goodhart) while random converges to H1-dominated hacking with sporadic H7 ($7\\\\%$ pooled, $0$--$7$ H7a per seed) (Appendix~\\\\ref{app:beta03}).\\n102:\\\\caption{Cross-logic results. \\\\textbf{Left}: FOL vs.\\\\ Prolog exec-only $\\\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}21$). \\\\textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 0\\\\% non-hacking through distinct mechanisms.}\\n116:The Prolog result is stronger than FOL: 3/3 seeds reach $0\\\\%$ non-hacking via three distinct mechanisms (Figure~\\\\ref{fig:prolog-comparison}).\\n163:Exec-only, ISR, and random conditions all show $\\\\geq 80\\\\%$ pooled hacking among proved samples; only SFT shows $92\\\\%$ non-hacking.\\n164:Across 2 logic types, 6 reward conditions, 3 seeds, and up to 1000 steps, no GRPO condition we tested produces a high-PR run that is also majority non-hacking; the closest is ISR $\\\\beta{=}0.1$ s42 at $\\\\text{PR}{=}81\\\\%$, $17\\\\%$ non-hacking, and even that residual is the premise-minimization artifact analyzed above.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "304e7cdf-350b-4493-b2d1-e5d56f1bb048",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-15T17:10:45.092Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WHHi7zxR6yyv1oj5QDCdVi`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"at 500 steps\" /root/solver-trace-ablation/paper/introduction.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8493f496-63d6-4e01-b8b3-2530662d5a87",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j3H7p1gsuMvdACKYpp",
+  "type": "assistant",
+  "uuid": "1aaf8662-1cb2-45b9-b88a-40c30d97cc33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014egd2GZFS7ZpeoTaWshFag",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 54163,
+      "output_tokens": 394,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 516,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 394,
+          "cache_read_input_tokens": 54163,
+          "cache_creation_input_tokens": 516,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 516
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T17:10:45.551Z_
+
+<details><summary>↩ Tool result · `toolu_01WHHi7zxR6yyv1oj5QDCdVi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"27:At $\\\\beta{=}0.1$, 69.7\\\\% of proved samples at 500 steps exhibit single-premise-equals-conclusion duplication---ISR high \\\\emph{by definition}---versus 0\\\\% under matched random at 500 steps; the one seed with non-trivial residual reduces to $1.06\\\\times$ random after controlling for a premise-count confound.\\n33:Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 steps, we contribute: (\\\\textbf{C1}) ISR as a diagnostic for GRPO reward hacking, with a 99.5\\\\% collapse trajectory invisible to PR and an SFT control localizing the failure to RL (\\\\S\\\\ref{sec:diagnostic}); (\\\\textbf{C2}) empirical meta-level Goodhart, with a random control isolating ISR-specific gaming at 500 steps (69.7\\\\% vs.\\\\ 0\\\\%; random converges to near-100\\\\% H7 by 1000 steps, seed~42) and a premise-count-matched analysis showing the sole apparent gain is an LOO artifact (\\\\S\\\\ref{sec:goodhart}); (\\\\textbf{C3}) cross-logic transfer to Prolog with universal Goodhart (\\\\S\\\\ref{sec:crosslogic}); (\\\\textbf{C4}) an eight-mode hacking taxonomy including query-as-fact gaming and obfuscated tautology, motivating functional cross-validation of diagnostics (\\\\S\\\\ref{sec:taxonomy}).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1aaf8662-1cb2-45b9-b88a-40c30d97cc33",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "b3670b60-3ebb-4c1e-94cd-359615cd2e4b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27:At $\\\\\\\\beta{=}0.1$, 69.7\\\\\\\\% of proved samples at 500 steps exhibit single-premise-equals-conclusion duplication---ISR high \\\\\\\\emph{by definition}---versus 0\\\\\\\\% under matched random at 500 steps; the one seed with non-trivial residual reduces to $1.06\\\\\\\\times$ random after controlling for a premise-count confound.\\\\n33:Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 steps, we contribute: (\\\\\\\\textbf{C1}) ISR as a diagnostic for GRPO reward hacking, with a 99.5\\\\\\\\% collapse trajectory invisible to PR and an SFT control localizing the failure to RL (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}); (\\\\\\\\textbf{C2}) empirical meta-level Goodhart, with a random control isolating ISR-specific gaming at 500 steps (69.7\\\\\\\\% vs.\\\\\\\\ 0\\\\\\\\%; random converges to near-100\\\\\\\\% H7 by 1000 steps, seed~42) and a premise-count-matched analysis showing the sole apparent gain is an LOO artifact (\\\\\\\\S\\\\\\\\ref{sec:goodhart}); (\\\\\\\\textbf{C3}) cross-logic transfer to Prolog with universal Goodhart (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}); (\\\\\\\\textbf{C4}) an eight-mode hacking taxonomy including query-as-fact gaming and obfuscated tautology, motivating functional cross-validation of diagnostics (\\\\\\\\S\\\\\\\\ref{sec:taxonomy}).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"27:At $\\\\beta{=}0.1$, 69.7\\\\% of proved samples at 500 steps exhibit single-premise-equals-conclusion duplication---ISR high \\\\emph{by definition}---versus 0\\\\% under matched random at 500 steps; the one seed with non-trivial residual reduces to $1.06\\\\times$ random after controlling for a premise-count confound.\\n33:Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 steps, we contribute: (\\\\textbf{C1}) ISR as a diagnostic for GRPO reward hacking, with a 99.5\\\\% collapse trajectory invisible to PR and an SFT control localizing the failure to RL (\\\\S\\\\ref{sec:diagnostic}); (\\\\textbf{C2}) empirical meta-level Goodhart, with a random control isolating ISR-specific gaming at 500 steps (69.7\\\\% vs.\\\\ 0\\\\%; random converges to near-100\\\\% H7 by 1000 steps, seed~42) and a premise-count-matched analysis showing the sole apparent gain is an LOO artifact (\\\\S\\\\ref{sec:goodhart}); (\\\\textbf{C3}) cross-logic transfer to Prolog with universal Goodhart (\\\\S\\\\ref{sec:crosslogic}); (\\\\textbf{C4}) an eight-mode hacking taxonomy including query-as-fact gaming and obfuscated tautology, motivating functional cross-validation of diagnostics (\\\\S\\\\ref{sec:taxonomy}).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1aaf8662-1cb2-45b9-b88a-40c30d97cc33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-15T17:10:45.669Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SDqwuYmERhGFXAvuEp7Czg`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"ddagger\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3670b60-3ebb-4c1e-94cd-359615cd2e4b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j3H7p1gsuMvdACKYpp",
+  "type": "assistant",
+  "uuid": "62987f30-8ae1-4f96-8908-338568ddc959",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014egd2GZFS7ZpeoTaWshFag",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 516,
+      "cache_read_input_tokens": 54163,
+      "output_tokens": 394,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 516,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 394,
+          "cache_read_input_tokens": 54163,
+          "cache_creation_input_tokens": 516,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 516
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "62987f30-8ae1-4f96-8908-338568ddc959",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix reviewer comments on genuine proofs in paper",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-15T17:10:46.159Z_
+
+<details><summary>↩ Tool result · `toolu_01SDqwuYmERhGFXAvuEp7Czg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"394:\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\beta{=}0.1$ breakdown referenced from Table~\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\\n422:  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\ddagger$ & H8${=}15\\\\%$ \\\\\\\\\\n469:  & 43 & 0.38 & 0.185 & 0$^\\\\ddagger$ & 97.4 & 0 & $^\\\\ddagger$Functional H7$^a$ \\\\\\\\\\n470:  & 44 & 0.97 & 0.912 & 0$^\\\\ddagger$ & 0 & 0$^\\\\ddagger$ & Query-as-fact gaming$^b$ \\\\\\\\\\n480:$^\\\\ddagger$ Strict classifier value is misleading; see footnotes $^a$/$^b$.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62987f30-8ae1-4f96-8908-338568ddc959",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "e2388eb3-6dc0-48a7-b0fc-138549ed6816",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"394:\\\\\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\\\\\beta{=}0.1$ breakdown referenced from Table~\\\\\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\\\\n422:  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\\\\\ddagger$ & H8${=}15\\\\\\\\%$ \\\\\\\\\\\\\\\\\\\\n469:  & 43 & 0.38 & 0.185 & 0$^\\\\\\\\ddagger$ & 97.4 & 0 & $^\\\\\\\\ddagger$Functional H7$^a$ \\\\\\\\\\\\\\\\\\\\n470:  & 44 & 0.97 & 0.912 & 0$^\\\\\\\\ddagger$ & 0 & 0$^\\\\\\\\ddagger$ & Query-as-fact gaming$^b$ \\\\\\\\\\\\\\\\\\\\n480:$^\\\\\\\\ddagger$ Strict classifier value is misleading; see footnotes $^a$/$^b$.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"394:\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\beta{=}0.1$ breakdown referenced from Table~\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\\n422:  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\ddagger$ & H8${=}15\\\\%$ \\\\\\\\\\n469:  & 43 & 0.38 & 0.185 & 0$^\\\\ddagger$ & 97.4 & 0 & $^\\\\ddagger$Functional H7$^a$ \\\\\\\\\\n470:  & 44 & 0.97 & 0.912 & 0$^\\\\ddagger$ & 0 & 0$^\\\\ddagger$ & Query-as-fact gaming$^b$ \\\\\\\\\\n480:$^\\\\ddagger$ Strict classifier value is misleading; see footnotes $^a$/$^b$.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  },
+  "sourceToolAssistantUUID": "62987f30-8ae1-4f96-8908-338568ddc959",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-15T17:10:48.949Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also verify the 3-seed mean change in the appendix.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2388eb3-6dc0-48a7-b0fc-138549ed6816",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j3oWAucMHwTT7ZfEVZ",
+  "type": "assistant",
+  "uuid": "91fe63d1-704d-4ceb-bc9b-822ffc317d83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMWvudx5ULx1BaBCqAH5mn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2741,
+      "cache_read_input_tokens": 54679,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 54679,
+          "cache_creation_input_tokens": 2741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-15T17:10:50.599Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JK6wUhE8BkiGAgDei5PKce`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"0.0\" /root/solver-trace-ablation/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91fe63d1-704d-4ceb-bc9b-822ffc317d83",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j3oWAucMHwTT7ZfEVZ",
+  "type": "assistant",
+  "uuid": "188e3ef5-fbda-4197-a972-223d48e2b8a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMWvudx5ULx1BaBCqAH5mn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2741,
+      "cache_read_input_tokens": 54679,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 54679,
+          "cache_creation_input_tokens": 2741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-15T17:10:51.063Z_
+
+<details><summary>↩ Tool result · `toolu_01JK6wUhE8BkiGAgDei5PKce`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"27:Training steps (extended) & 1000 \\\\\\\\\\n70:We verify this empirically: Spearman $\\\\rho(\\\\text{ISR}, \\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\n97:ISR vs.\\\\ Random & 6.9\\\\% {\\\\scriptsize[4.3,11.0]} & 18.4\\\\% {\\\\scriptsize[14.0,23.7]} & 0.33 & 0.0002 \\\\\\\\\\n99:Random vs.\\\\ Exec-only & 18.4\\\\% & 7.5\\\\% & 2.76 & 0.012 \\\\\\\\\\n102:ISR vs.\\\\ Random & 12.1\\\\% & 18.4\\\\% & 0.61 & 0.060 \\\\\\\\\\n105:ISR vs.\\\\ Random & 69.7\\\\% & 0\\\\% & $\\\\infty$ & ${<}0.001$ \\\\\\\\\\n108:SFT vs.\\\\ Exec-only & 92.3\\\\% {\\\\scriptsize[79.7,97.3]} & 7.5\\\\% & 147 & ${<}0.001$ \\\\\\\\\\n112:{\\\\footnotesize ISR: $n{=}231$ (3 seeds). Random: $n{=}256$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\\\\% Wilson CIs in brackets where shown.}\\n153:\\\\caption{Hacking taxonomy across FOL conditions (\\\\% of proved samples). ISR/Rand columns: $\\\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Exec: H1${=}87$\\\\% in s42; $\\\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\\\ref{tab:prolog-detailed}).}\\n190:Under the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\%$ vs.\\\\ random genuine $= 47/256 = 18.4\\\\%$ (Fisher $p{=}0.0002$).\\n191:Under conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\%$ vs.\\\\ $18.4\\\\%$ (Fisher $p{=}0.060$).\\n344:\\\\paragraph{Example (FOL, 1000-step exec-only).}\\n353:ISR~$\\\\approx 0$ (at 1000 steps: ISR~$=0.003$, with 94.8\\\\% of proved samples having ISR~$=0$).\\n356:Observed in extended exec-only training (seed~42, 1000 steps).\\n357:Mean component count grows from ${\\\\sim}6$ (500 steps) to 18.55 (1000 steps).\\n394:\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\beta{=}0.1$ breakdown referenced from Table~\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\\n405:  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\\\\\\\\\n409:  & 42 & 1000 & 0.13 & 0.568 & 0 & 7.7 & \\\\textbf{92.3} & Supervised, no RL \\\\\\\\\\n410:  & 43 & 1000 & 0.11 & 0.635 & 0 & 9.1 & \\\\textbf{90.9} & \\\\\\\\\\n411:  & 44 & 1000 & 0.15 & 0.589 & 0 & 6.7 & \\\\textbf{93.3} & \\\\\\\\\\n418:  & 42 & 1000 & 0.96 & 0.003 & 0 & 100 & 0 & Contradiction explosion \\\\\\\\\\n420:  & 43 & 1000 & 0.90 & 0.531 & 100 & 0 & 0 & H7 dominant \\\\\\\\\\n422:  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\ddagger$ & H8${=}15\\\\%$ \\\\\\\\\\n425:  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.95{\\\\pm}0.05$} & & \\\\makebox[0pt][l]{$0.18{\\\\pm}0.31$} & & \\\\makebox[0pt][l]{$0.0{\\\\pm}0.0$} & 1000-step \\\\\\\\\\n439:  & 43 & 500 & 0.88 & 0.058 & 0 & 93.2 & 6.8 & \\\\\\\\\\n440:  & 44 & 500 & 0.89 & 0.070 & 0 & 79.8 & 20.2 & \\\\\\\\\\n442:  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.85{\\\\pm}0.06$} & & \\\\makebox[0pt][l]{$0.086{\\\\pm}0.039$} & & & H7 = 0\\\\% all seeds \\\\\\\\\\n445:  & 42 & 500 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086); $n_{\\\\text{comp}} = 9.6$ \\\\\\\\\\n461:  & 42 & 0.83 & 0.037 & 0 & 0 & --- & Ground fact enumeration \\\\\\\\\\n462:  & 43 & 0.56 & 0.015 & --- & --- & --- & \\\\\\\\\\n468:  & 42 & 0.50 & 1.000 & \\\\textbf{100} & 0 & 0 & H7 tautological \\\\\\\\\\n486:ISR$^*=0.642$ at 100 steps $\\\\to$ $0.132$ at 500 steps ($-79.4$\\\\%) $\\\\to$ $0.003$ at 1000 steps ($-99.5$\\\\% from step 100).\\n488:By step 1000, 94.8\\\\% of proved samples have ISR~$=0$ and the mean component count rises to 18.55.\\n520:  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\\\\\\\\\n524:  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.54{\\\\pm}0.35$} & & \\\\makebox[0pt][l]{$0.09{\\\\pm}0.09$} & & \\\\\\\\\\n543:After 500 steps (seed~42), this variant achieves $\\\\text{PR}{=}63\\\\%$ with $\\\\text{ISR}^*{=}0.007$---functionally zero---compared to $\\\\text{ISR}^*{=}0.132$ under standard exec-only and $\\\\text{ISR}^*{=}0.42$ under ISR $\\\\beta{=}0.1$.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "188e3ef5-fbda-4197-a972-223d48e2b8a9",
+  "isSidechain": false,
+  "promptId": "143fdf6c-c98e-45db-b509-8ad4a46b0050",
+  "type": "user",
+  "uuid": "d9ca854f-acd0-45e4-a652-5e4f76e28c19",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27:Training steps (extended) & 1000 \\\\\\\\\\\\\\\\\\\\n70:We verify this empirically: Spearman $\\\\\\\\rho(\\\\\\\\text{ISR}, \\\\\\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\\\n97:ISR vs.\\\\\\\\ Random & 6.9\\\\\\\\% {\\\\\\\\scriptsize[4.3,11.0]} & 18.4\\\\\\\\% {\\\\\\\\scriptsize[14.0,23.7]} & 0.33 & 0.0002 \\\\\\\\\\\\\\\\\\\\n99:Random vs.\\\\\\\\ Exec-only & 18.4\\\\\\\\% & 7.5\\\\\\\\% & 2.76 & 0.012 \\\\\\\\\\\\\\\\\\\\n102:ISR vs.\\\\\\\\ Random & 12.1\\\\\\\\% & 18.4\\\\\\\\% & 0.61 & 0.060 \\\\\\\\\\\\\\\\\\\\n105:ISR vs.\\\\\\\\ Random & 69.7\\\\\\\\% & 0\\\\\\\\% & $\\\\\\\\infty$ & ${<}0.001$ \\\\\\\\\\\\\\\\\\\\n108:SFT vs.\\\\\\\\ Exec-only & 92.3\\\\\\\\% {\\\\\\\\scriptsize[79.7,97.3]} & 7.5\\\\\\\\% & 147 & ${<}0.001$ \\\\\\\\\\\\\\\\\\\\n112:{\\\\\\\\footnotesize ISR: $n{=}231$ (3 seeds). Random: $n{=}256$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\\\\\\\\% Wilson CIs in brackets where shown.}\\\\n153:\\\\\\\\caption{Hacking taxonomy across FOL conditions (\\\\\\\\% of proved samples). ISR/Rand columns: $\\\\\\\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Exec: H1${=}87$\\\\\\\\% in s42; $\\\\\\\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\\\\\\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\\\\\\\ref{tab:prolog-detailed}).}\\\\n190:Under the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\\\\\%$ vs.\\\\\\\\ random genuine $= 47/256 = 18.4\\\\\\\\%$ (Fisher $p{=}0.0002$).\\\\n191:Under conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\\\\\%$ vs.\\\\\\\\ $18.4\\\\\\\\%$ (Fisher $p{=}0.060$).\\\\n344:\\\\\\\\paragraph{Example (FOL, 1000-step exec-only).}\\\\n353:ISR~$\\\\\\\\approx 0$ (at 1000 steps: ISR~$=0.003$, with 94.8\\\\\\\\% of proved samples having ISR~$=0$).\\\\n356:Observed in extended exec-only training (seed~42, 1000 steps).\\\\n357:Mean component count grows from ${\\\\\\\\sim}6$ (500 steps) to 18.55 (1000 steps).\\\\n394:\\\\\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\\\\\beta{=}0.1$ breakdown referenced from Table~\\\\\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\\\\n405:  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\\\\\\\\\\\\\\\\\\\n409:  & 42 & 1000 & 0.13 & 0.568 & 0 & 7.7 & \\\\\\\\textbf{92.3} & Supervised, no RL \\\\\\\\\\\\\\\\\\\\n410:  & 43 & 1000 & 0.11 & 0.635 & 0 & 9.1 & \\\\\\\\textbf{90.9} & \\\\\\\\\\\\\\\\\\\\n411:  & 44 & 1000 & 0.15 & 0.589 & 0 & 6.7 & \\\\\\\\textbf{93.3} & \\\\\\\\\\\\\\\\\\\\n418:  & 42 & 1000 & 0.96 & 0.003 & 0 & 100 & 0 & Contradiction explosion \\\\\\\\\\\\\\\\\\\\n420:  & 43 & 1000 & 0.90 & 0.531 & 100 & 0 & 0 & H7 dominant \\\\\\\\\\\\\\\\\\\\n422:  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\\\\\ddagger$ & H8${=}15\\\\\\\\%$ \\\\\\\\\\\\\\\\\\\\n425:  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.95{\\\\\\\\pm}0.05$} & & \\\\\\\\makebox[0pt][l]{$0.18{\\\\\\\\pm}0.31$} & & \\\\\\\\makebox[0pt][l]{$0.0{\\\\\\\\pm}0.0$} & 1000-step \\\\\\\\\\\\\\\\\\\\n439:  & 43 & 500 & 0.88 & 0.058 & 0 & 93.2 & 6.8 & \\\\\\\\\\\\\\\\\\\\n440:  & 44 & 500 & 0.89 & 0.070 & 0 & 79.8 & 20.2 & \\\\\\\\\\\\\\\\\\\\n442:  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.85{\\\\\\\\pm}0.06$} & & \\\\\\\\makebox[0pt][l]{$0.086{\\\\\\\\pm}0.039$} & & & H7 = 0\\\\\\\\% all seeds \\\\\\\\\\\\\\\\\\\\n445:  & 42 & 500 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086); $n_{\\\\\\\\text{comp}} = 9.6$ \\\\\\\\\\\\\\\\\\\\n461:  & 42 & 0.83 & 0.037 & 0 & 0 & --- & Ground fact enumeration \\\\\\\\\\\\\\\\\\\\n462:  & 43 & 0.56 & 0.015 & --- & --- & --- & \\\\\\\\\\\\\\\\\\\\n468:  & 42 & 0.50 & 1.000 & \\\\\\\\textbf{100} & 0 & 0 & H7 tautological \\\\\\\\\\\\\\\\\\\\n486:ISR$^*=0.642$ at 100 steps $\\\\\\\\to$ $0.132$ at 500 steps ($-79.4$\\\\\\\\%) $\\\\\\\\to$ $0.003$ at 1000 steps ($-99.5$\\\\\\\\% from step 100).\\\\n488:By step 1000, 94.8\\\\\\\\% of proved samples have ISR~$=0$ and the mean component count rises to 18.55.\\\\n520:  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\\\\\\\\\\\\\\\\\\\n524:  & \\\\\\\\multicolumn{2}{l}{3-seed mean$\\\\\\\\pm$std} & \\\\\\\\makebox[0pt][l]{$0.54{\\\\\\\\pm}0.35$} & & \\\\\\\\makebox[0pt][l]{$0.09{\\\\\\\\pm}0.09$} & & \\\\\\\\\\\\\\\\\\\\n543:After 500 steps (seed~42), this variant achieves $\\\\\\\\text{PR}{=}63\\\\\\\\%$ with $\\\\\\\\text{ISR}^*{=}0.007$---functionally zero---compared to $\\\\\\\\text{ISR}^*{=}0.132$ under standard exec-only and $\\\\\\\\text{ISR}^*{=}0.42$ under ISR $\\\\\\\\beta{=}0.1$.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"27:Training steps (extended) & 1000 \\\\\\\\\\n70:We verify this empirically: Spearman $\\\\rho(\\\\text{ISR}, \\\\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\\n97:ISR vs.\\\\ Random & 6.9\\\\% {\\\\scriptsize[4.3,11.0]} & 18.4\\\\% {\\\\scriptsize[14.0,23.7]} & 0.33 & 0.0002 \\\\\\\\\\n99:Random vs.\\\\ Exec-only & 18.4\\\\% & 7.5\\\\% & 2.76 & 0.012 \\\\\\\\\\n102:ISR vs.\\\\ Random & 12.1\\\\% & 18.4\\\\% & 0.61 & 0.060 \\\\\\\\\\n105:ISR vs.\\\\ Random & 69.7\\\\% & 0\\\\% & $\\\\infty$ & ${<}0.001$ \\\\\\\\\\n108:SFT vs.\\\\ Exec-only & 92.3\\\\% {\\\\scriptsize[79.7,97.3]} & 7.5\\\\% & 147 & ${<}0.001$ \\\\\\\\\\n112:{\\\\footnotesize ISR: $n{=}231$ (3 seeds). Random: $n{=}256$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\\\\% Wilson CIs in brackets where shown.}\\n153:\\\\caption{Hacking taxonomy across FOL conditions (\\\\% of proved samples). ISR/Rand columns: $\\\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Exec: H1${=}87$\\\\% in s42; $\\\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\\\ref{tab:prolog-detailed}).}\\n190:Under the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\\\%$ vs.\\\\ random genuine $= 47/256 = 18.4\\\\%$ (Fisher $p{=}0.0002$).\\n191:Under conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\\\%$ vs.\\\\ $18.4\\\\%$ (Fisher $p{=}0.060$).\\n344:\\\\paragraph{Example (FOL, 1000-step exec-only).}\\n353:ISR~$\\\\approx 0$ (at 1000 steps: ISR~$=0.003$, with 94.8\\\\% of proved samples having ISR~$=0$).\\n356:Observed in extended exec-only training (seed~42, 1000 steps).\\n357:Mean component count grows from ${\\\\sim}6$ (500 steps) to 18.55 (1000 steps).\\n394:\\\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\\\beta{=}0.1$ breakdown referenced from Table~\\\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\\\ = percentage among proved samples. ``---'' indicates data not available. $^\\\\dagger$s43 uses sampling eval ($T{=}0.7$). $^\\\\ddagger$Three s44-1000 samples escape text-match heuristics (H1/H8 classifiers) but exhibit ISR${=}0$ and functionally degenerate proof structures: disjunctive conclusions that bypass H8 detection and commuted premises that bypass H1 detection; reclassified as degenerate.}\\n405:  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\\\\\\\\\n409:  & 42 & 1000 & 0.13 & 0.568 & 0 & 7.7 & \\\\textbf{92.3} & Supervised, no RL \\\\\\\\\\n410:  & 43 & 1000 & 0.11 & 0.635 & 0 & 9.1 & \\\\textbf{90.9} & \\\\\\\\\\n411:  & 44 & 1000 & 0.15 & 0.589 & 0 & 6.7 & \\\\textbf{93.3} & \\\\\\\\\\n418:  & 42 & 1000 & 0.96 & 0.003 & 0 & 100 & 0 & Contradiction explosion \\\\\\\\\\n420:  & 43 & 1000 & 0.90 & 0.531 & 100 & 0 & 0 & H7 dominant \\\\\\\\\\n422:  & 44 & 1000 & 1.00 & 0.002 & 0 & 85 & 0$^\\\\ddagger$ & H8${=}15\\\\%$ \\\\\\\\\\n425:  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.95{\\\\pm}0.05$} & & \\\\makebox[0pt][l]{$0.18{\\\\pm}0.31$} & & \\\\makebox[0pt][l]{$0.0{\\\\pm}0.0$} & 1000-step \\\\\\\\\\n439:  & 43 & 500 & 0.88 & 0.058 & 0 & 93.2 & 6.8 & \\\\\\\\\\n440:  & 44 & 500 & 0.89 & 0.070 & 0 & 79.8 & 20.2 & \\\\\\\\\\n442:  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.85{\\\\pm}0.06$} & & \\\\makebox[0pt][l]{$0.086{\\\\pm}0.039$} & & & H7 = 0\\\\% all seeds \\\\\\\\\\n445:  & 42 & 500 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086); $n_{\\\\text{comp}} = 9.6$ \\\\\\\\\\n461:  & 42 & 0.83 & 0.037 & 0 & 0 & --- & Ground fact enumeration \\\\\\\\\\n462:  & 43 & 0.56 & 0.015 & --- & --- & --- & \\\\\\\\\\n468:  & 42 & 0.50 & 1.000 & \\\\textbf{100} & 0 & 0 & H7 tautological \\\\\\\\\\n486:ISR$^*=0.642$ at 100 steps $\\\\to$ $0.132$ at 500 steps ($-79.4$\\\\%) $\\\\to$ $0.003$ at 1000 steps ($-99.5$\\\\% from step 100).\\n488:By step 1000, 94.8\\\\% of proved samples have ISR~$=0$ and the mean component count rises to 18.55.\\n520:  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & H7a${=}4$ (D086) \\\\\\\\\\n524:  & \\\\multicolumn{2}{l}{3-seed mean$\\\\pm$std} & \\\\makebox[0pt][l]{$0.54{\\\\pm}0.35$} & & \\\\makebox[0pt][l]{$0.09{\\\\pm}0.09$} & & \\\\\\\\\\n543:After 500 steps (seed~42), this variant achieves $\\\\text{PR}{=}63\\\\%$ with $\\\\text{ISR}^*{=}0.007$---functionally zero---compared to $\\\\text{ISR}^*{=}0.132$ under standard exec-only and $\\\\text{ISR}^*{=}0.42$ under ISR $\\\\beta{=}0.1$.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "188e3ef5-fbda-4197-a972-223d48e2b8a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96 · 2026-05-15T17:11:02.596Z_
+
+3 项修改全部正确应用，编译无错误。
+
+**结果：**
+- **experiments.tex L32**: `≤3% non-hacking` → `0% non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix)`
+- **introduction.tex L27**: 添加 "at 500 steps" 限定（`69.7% of proved samples at 500 steps ... versus 0% under matched random at 500 steps`）
+- **appendix.tex 表格**:
+  - s44-1000 行 N-H: `3` → `0‡`
+  - 3-seed mean N-H: `1.0±1.7` → `0.0±0.0`
+  - 表格标题新增 `‡` 脚注，说明 3 个样本的退化性质（disjunctive conclusions bypass H8, commuted premises bypass H1, ISR=0）
+- PDF 编译成功：17 页，536KB，无新增 warning
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9ca854f-acd0-45e4-a652-5e4f76e28c19",
+  "isSidechain": false,
+  "requestId": "req_011Cb4j4AR26bcmZdPTrbtME",
+  "type": "assistant",
+  "uuid": "c1b41177-441e-43b1-af81-ef2061e2f699",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rc5FbioshcQq7nWqMpoKFT",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2598,
+      "cache_read_input_tokens": 57420,
+      "output_tokens": 272,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2598,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 272,
+          "cache_read_input_tokens": 57420,
+          "cache_creation_input_tokens": 2598,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2598
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c1b41177-441e-43b1-af81-ef2061e2f699",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix reviewer comments on genuine proofs in paper",
+  "sessionId": "06aac431-1c54-4ef1-a189-7e057763d3c5"
+}
+```
+
+---

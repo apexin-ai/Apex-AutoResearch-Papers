@@ -1,0 +1,10793 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 150
+- **Recorded user turns:** 1
+- **Tool calls:** 48
+- **Original source:** `logs/chats/exported-trajectories/account-2/c021264d-3bc6-4ce6-97e4-7b2511b21c4d.jsonl`
+- **Structured JSON:** [`26ae211a7b91c705b49f.json`](../../sessions/26/26ae211a7b91c705b49f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-11T23:58:28.278Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T23:58:28.278Z",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Symbolic Reasoning.\n\nDirection: Neurosymbolic reasoning — combining neural models with symbolic systems (logic programs, knowledge graphs, formal verification, constraint solvers). NOT limited to LLM-only reasoning — explicitly seek methods that integrate external symbolic components. Also in-scope: structured mathematical reasoning, program-aided reasoning, theorem prover integration.\n\nContribution type: METHOD ONLY. Must propose a new hybrid algorithm, training objective, or inference pipeline that combines neural + symbolic components. Pure prompting tricks (vanilla CoT, self-consistency) are out of scope.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Neurosymbolic methods are often inference-heavy not training-heavy — budget accordingly.\n2. Time: ≤16 days. Use existing open checkpoints (Qwen3, Llama-3.x, DeepSeek-R1 distills) + off-the-shelf solvers (Z3, Prolog, SymPy, Lean4).\n3. Eval: MATH, AIME 2024/2025, GPQA Diamond, ProofWriter, FOLIO, LogiQA, ARC-Challenge, BBH.\n\nLook for: lightweight symbolic verifiers as post-hoc filters, neural-guided symbolic search, structured output → formal checker pipelines, hybrid neuro-symbolic distillation. Avoid: pure prompt engineering, vanilla CoT.\n\nTag: direction=neurosymbolic_reasoning, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 6/10)\n{\n  \"title\": \"Formally-Verified Intermediate Constraint Consensus Across Reasoning Paths\",\n  \"core_problem\": \"Recent work (CRAFT, PoLR, Draft-and-Prune) demonstrates that intermediate reasoning step consensus or pruning across candidate solutions provides stronger signals than answer-level majority voting. However, existing methods either rely on statistical similarity that cannot distinguish popular-but-contradictory constraints (CRAFT's TF-IRF/Jaccard), or prune individual paths based on internal consistency without cross-validating constraints across solutions (Draft-and-Prune's per-path |S|=0/|S|>1 checks). Meanwhile, single-output formal verification systems (MATH-VF, SAFE, FoVer, PRoSFI, VERGE) verify constraints within one solution or output but do not cross-validate across multiple reasoning paths, and cross-query consistency checking (arXiv 2604.14525) verifies coherence across different questions but not across multiple traces for the same question. Furthermore, 'Consensus is Not Verification' (arXiv 2603.06612) demonstrates that consensus-based aggregation fails for truthfulness because LLM errors are strongly correlated — but crucially, aggregation improves performance when a verifier exists. Can formally verifying cross-solution intermediate constraints via SMT solving and computer algebra yield more reliable consensus with interpretable provenance, and how frequently does statistical consensus actually retain contradictory constraints in practice?\",\n  \"opportunity\": \"CRAFT (arXiv 2604.14121, April 2026) builds a Reasoning Knowledge Graph from consensus intermediate steps using TF-IRF and Jaccard similarity, achieving significant accuracy improvements. However, CRAFT's authors explicitly acknowledge two key limitations: (1) 'consensus ≠ correctness' — frequently appearing steps can amplify shared errors, and (2) 'reduced effectiveness on symbolic math' due to lexical overlap bias in Jaccard similarity. This concern is empirically grounded by 'Consensus is Not Verification' (arXiv 2603.06612, March 2026), which demonstrates that LLM errors are strongly correlated across samples and even across model families — correlation persists even with random string conditioning — causing polling-style aggregation to yield no consistent accuracy gains over single-sample baselines. Critically, however, the paper finds that 'aggregation improves performance when a verifier exists, but it cannot serve as a verifier substitute,' directly motivating SICA's approach of introducing formal verification into the consensus process.\\n\\nDraft-and-Prune (D&P, arXiv 2603.17233, March 2026) addresses autoformalization brittleness by generating multiple natural-language plans, conditioning program generation on them, pruning individually contradictory or ambiguous formalizations (paths where the solver returns |S|=0 or |S|>1), and aggregating surviving paths via answer-level majority voting. D&P achieves strong results on logical reasoning benchmarks (AR-LSAT 78.43%, ProofWriter 98.33% with GPT-4), but its pruning operates independently on each path — it cannot detect cross-path contradictions where two individually valid paths assert mutually inconsistent constraints. D&P's authors explicitly note a limitation: 'We aggregate predictions at the answer level and do not cluster or de-duplicate candidates by symbolic equivalence.'\\n\\nA parallel line of work verifies individual solutions or outputs formally — MATH-VF (arXiv 2505.20869) uses CAS+Z3 for step-level verification on single solutions; SAFE (ACL 2025) uses Lean4 for retrospective step-aware verification; PRoSFI (arXiv 2603.29500) trains process rewards over structured formal intermediaries verified by Lean/Z3/Prover9, operating on individual 7B-model solutions. VERGE (arXiv 2601.20055, Jan 2026) is a single-output verify-and-refine framework that decomposes an LLM output into atomic claims, autoformalizes them, verifies joint satisfiability via Z3, and uses Minimal Correction Subsets (MCS) to provide targeted feedback for iterative refinement. VERGE's 'multi-model consensus' refers to K=3 candidate formalizations of a single claim checked for semantic equivalence — not cross-path reasoning aggregation. FoVer (arXiv 2505.15960, ACL 2026 Findings) uses Z3 and Isabelle for step-level error annotation in individual solutions for PRM training, demonstrating cross-task generalization to BBH subtasks (temporal sequences, tracking shuffled objects, word sorting). In the adjacent cross-output verification space, 'Quantifying Cross-Query Contradictions' (arXiv 2604.14525, April 2026) uses Z3 (QF_UFLIA) and CaDiCaL for cross-query consistency checking with unsat-core localization and counterexample-guided repair — but addresses cross-query consistency (different questions sharing a case file), not cross-trace consistency (same question, multiple reasoning paths). The EACL 2026 dynamic solver routing framework (arXiv 2510.06774) selects solvers at the problem level. But none of these methods formally cross-validate intermediate constraints across multiple candidate solutions for the same problem.\\n\\nThe gap: no method formally cross-validates intermediate constraints across multiple candidate solutions to produce a consistency-aware consensus signal with interpretable provenance. Concretely, SICA differs from D&P by extracting constraints from ALL paths and finding a globally consistent MAX-SAT-optimal subset (cross-path aggregation), rather than independently pruning paths with internal contradictions (per-path filtering). SICA differs from VERGE by applying MAX-SAT across multiple reasoning paths for answer selection, whereas VERGE applies the dual MCS operation within a single output for refinement feedback. SICA differs from the cross-query contradictions framework by operating on multiple traces for the same question (cross-trace scope) using weighted partial MAX-SAT for consensus, rather than on different questions in a case file (cross-query scope) using unsat-core repair. A key empirical question — how frequently does statistical consensus actually retain contradictory constraints? — remains unanswered and is central to quantifying this opportunity.\\n\\nRecent work on autoformalization faithfulness further motivates SICA's extraction quality pipeline: 'Do LLMs Game Formalization?' (arXiv 2604.19459, VerifAI-2 Workshop, ICLR 2026) shows that high compilation rates should not be equated with faithful reasoning, finding that two-stage formalization pipelines reveal distinct unfaithfulness patterns (axiom fabrication, premise mistranslation) that evade standard verification. This underscores the need for SICA's multi-tier extraction validation.\",\n  \"landscape\": \"Standard self-consistency (Wang et al., ICLR 2023) performs majority voting on final answers and shows diminishing returns on frontier models — gains plateau at <2% with accuracy sometimes declining at high sample counts (arXiv 2511.00751). 'Consensus is Not Verification' (arXiv 2603.06612, March 2026) provides a theoretical explanation: LLM errors are strongly correlated across samples and model families, causing consensus to reinforce shared misconceptions rather than converge on truth; however, the paper finds aggregation succeeds when an external verifier exists. CRAFT (arXiv 2604.14121, April 2026) extracts consensus intermediate steps via a Reasoning Knowledge Graph using TF-IRF/Jaccard similarity and topological generation, achieving up to +8.5% accuracy over SC baselines on GSM8K, FOLIO, FLD, and OlympiadBench with K=3 traces; its authors note 'consensus ≠ correctness' and 'reduced effectiveness on symbolic math' as limitations. PoLR (ICLR 2026) uses prefix consensus to prune reasoning paths, matching SC accuracy while reducing token usage by 50-60%.\\n\\nDraft-and-Prune (D&P, arXiv 2603.17233, March 2026): An inference-time framework that drafts multiple natural-language plans, conditions program generation on them, prunes executable but contradictory (|S|=0) or ambiguous (|S|>1) formalizations independently for each path, and aggregates surviving paths via answer-level majority voting. Uses Z3Py for AR-LSAT/LogicalDeduction and PyKe for ProofWriter/PrOntoQA. Achieves AR-LSAT 78.43%, ProofWriter 98.33%, PrOntoQA 99.32%, LogicalDeduction 99.50% (GPT-4). Key limitation: no cross-path constraint checking or equivalence-aware deduplication.\\n\\nVERGE (arXiv 2601.20055, Jan 2026): A single-output neurosymbolic verify-and-refine loop. Decomposes an LLM output into atomic claims, classifies them by type, autoformalizes into FOL, and verifies joint satisfiability via Z3. Uses semantic routing (symbolic solvers for logical claims, LLM ensembles for commonsense) and Minimal Correction Subsets (MCS) for precise error localization, providing actionable feedback for iterative refinement. VERGE's K=3 refers to candidate formalizations of a single claim checked for semantic equivalence, not multiple reasoning paths. MCS (minimum claims to remove for satisfiability) is dual to MAX-SAT (maximum satisfiable subset) but is applied within one output for feedback, not across paths for consensus. Evaluated on FOLIO (84.7-89.2%), ProofWriter (85.2-93.0%), AR-LSAT (88.6-91.7%) across GPT-OSS-20B, GPT-OSS-120B, and Claude 3.7 Sonnet.\\n\\nSingle-solution formal verification: MATH-VF (arXiv 2505.20869, May 2025) uses a Formalizer+Critic pipeline with CAS and Z3 SMT solver for step-level verification on individual solutions, evaluated on MATH-500 and ProcessBench. SAFE (ACL 2025, arXiv 2506.04592) uses Lean4 for retrospective step-aware formal verification of individual reasoning chains, introducing the FormalStep benchmark (30,809 formal statements). PRoSFI (arXiv 2603.29500, March 2026) — 'Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries' — trains process rewards over structured formal intermediaries verified by Lean tactics, Z3, and Prover9, operating on individual 7B-model solutions; achieves 92.97% accuracy / 76.07% GPT Soundness on ProverQA-Hard. FoVer (arXiv 2505.15960, ACL 2026 Findings) — 'Training Step-Level Reasoning Verifiers with Formal Verification Tools' — uses Z3 and Isabelle for step-level error annotation in individual solutions for PRM training; demonstrates cross-task generalization to BBH subtasks (temporal sequences 97.2%, tracking shuffled objects 96.0%, word sorting 46.8% with Llama3.1-8B-PRM at Best-of-7) and to MATH, AIME, ANLI, MMLU-Pro.\\n\\nCross-output consistency verification: 'Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning' (arXiv 2604.14525, April 2026) addresses cross-query consistency — maintaining a globally satisfiable belief state across interdependent queries sharing a case file. Uses Z3 v4.8.17 (QF_UFLIA theory) and CaDiCaL for SAT, with unsat-core localization and counterexample-guided lexicographic repair. Achieves SetCons improvement from 0.56 to 0.94 across 390 case files spanning relational/SAT, temporal/SMT, policy/rules, and abductive domains. Crucially, this operates at cross-query scope (different questions sharing context) rather than cross-trace scope (same question, multiple reasoning paths), and uses unsat-core repair rather than weighted partial MAX-SAT consensus. SICA's differentiators are: cross-trace scope, intermediate constraint extraction from reasoning steps, and popularity-weighted MAX-SAT for answer selection.\\n\\nSolver routing: The EACL 2026 dynamic solver composition framework (arXiv 2510.06774) automatically identifies formal reasoning strategies and routes to specialized solvers at the problem level, achieving 27% improvement over GPT-4o. SICA's theory-aware routing operates at the finer-grained assertion level.\\n\\nVeriCoT (Nov 2025) formalizes individual CoT traces into FOL for entailment checking without cross-solution comparison. FregeLogic (SemEval 2026) uses Z3 as a tiebreaker for syllogistic validity.\\n\\nAutoformalization reliability: Grammars of Formal Uncertainty (NeurIPS 2025) demonstrates that SMT autoformalization is task-dependent: +34.8% on ProofWriter but -44.5% on FOLIO, necessitating careful benchmark selection and per-domain extraction analysis. 'Do LLMs Game Formalization?' (arXiv 2604.19459, VerifAI-2 Workshop, ICLR 2026) evaluates faithfulness of LLM autoformalization on 303 FOL problems, finding that high compilation rates (87-99%) do not guarantee faithful reasoning — two-stage pipelines reveal distinct unfaithfulness patterns: axiom fabrication (GPT-5) and premise mistranslation (DeepSeek-R1). Autoformalization surveys (arXiv 2505.23486) report ~70% success rate on physics kinematics, with selective verification reducing errors by 14-100% with minimal abstention.\\n\\nNo concurrent work (searched arXiv and OpenReview through May 2026) formally cross-validates intermediate constraints across multiple candidate solutions for the same problem.\",\n  \"approach\": \"We propose Symbolic Invariant Consensus Aggregation (SICA): given a problem, sample K reasoning paths from a frontier open-source reasoning model (QwQ-32B via vLLM on 1-2 A100s; Qwen3-32B as secondary model for ablation), then use a prompted LLM extractor to parse each trace into typed symbolic assertions (equations, inequalities, logical predicates). SICA introduces four key technical components:\\n\\n(1) **Theory-aware assertion-level solver routing**: Extracted assertions are classified by constraint type and routed to appropriate solvers — Z3 for tractable theories (linear arithmetic, propositional logic, uninterpreted functions, bitvectors) and SymPy for nonlinear polynomial arithmetic, algebraic equivalence, and modular arithmetic. Unlike the EACL 2026 framework (arXiv 2510.06774) which routes at the problem level, SICA routes at the assertion level, enabling mixed-theory problems where individual steps span different solver domains (common in competition math). Assertions that neither solver can handle receive numerical spot-checking as fallback, with unverifiable assertions flagged and excluded from the consensus set (rather than silently included).\\n\\n(2) **Weighted partial MAX-SAT for invariant consensus**: Rather than enumerating assertion subsets (exponential worst-case), SICA leverages Z3's built-in optimization context to solve weighted partial MAX-SAT directly. Each unique assertion (deduplicated via solver-verified equivalence) is weighted by its cross-solution frequency. The optimizer finds the largest jointly satisfiable subset of assertions, weighted by popularity — a single Z3 optimization call replaces exponential subset enumeration. Per-query timeout caps (10s) bound worst-case latency. This cross-path MAX-SAT consensus is the key differentiator from Draft-and-Prune (D&P), which prunes paths independently based on internal consistency (|S|=0 or |S|>1) and aggregates surviving answers via majority voting without cross-path constraint checking. It is also distinct from VERGE's MCS, which is the dual operation (minimum claims to remove) applied within a single output for refinement feedback rather than across paths for answer selection. It further differs from the cross-query contradictions framework (arXiv 2604.14525), which uses unsat-core localization and counterexample-guided repair across different questions sharing a case file — SICA uses weighted partial MAX-SAT across different reasoning traces for the same question.\\n\\n(3) **Invariant-backed answer scoring**: Each candidate answer is scored by the coverage and weight of its supporting assertions within the MAX-SAT-optimal consistent set, yielding a continuous invariant consensus score. This captures partial structural agreement even when final answers diverge, and provides interpretable provenance (each score is backed by a specific set of formally verified constraints).\\n\\n(4) **Extraction quality assurance pipeline**: To address the documented task-dependence of autoformalization (Grammars of Formal Uncertainty, NeurIPS 2025) and the unfaithfulness risks identified by 'Do LLMs Game Formalization?' (arXiv 2604.19459), we implement a three-tier extraction quality pipeline: (a) syntactic validation — each extracted assertion must parse in the target solver's input language; (b) semantic spot-checking — a random 20% of assertions are checked against the original natural language step via an LLM judge for semantic fidelity, specifically targeting the axiom fabrication and premise mistranslation failure modes identified in the faithfulness literature; (c) coverage tracking — we report 'verifiable assertion coverage' (% of extracted assertions that successfully enter the MAX-SAT pipeline) per benchmark as a first-class metric. Extraction failures cascade to numerical fallback or abstention, preventing malformed inputs from corrupting the consensus signal.\\n\\n**Limitations of formal cross-validation**: SICA's MAX-SAT consensus catches contradictory constraints but cannot detect universally-wrong-but-mutually-consistent constraints caused by correlated extraction errors. 'Consensus is Not Verification' (arXiv 2603.06612) demonstrates that LLM errors are strongly correlated across samples and even across model families, which implies that if all K paths produce the same wrong formalization of a constraint, MAX-SAT will see K consistent-but-wrong assertions and cannot flag the error. This is a fundamental limitation of any approach combining LLM extraction with formal verification: the verifier guarantees consistency, not correctness of the extraction. SICA's semantic spot-checking tier partially mitigates this — by sampling 20% of assertions for LLM-judge semantic fidelity checks, it can catch systematic mistranslation patterns. However, if the extraction LLM and the judge LLM share the same correlated bias (as the correlated errors literature suggests is likely), the mitigation is incomplete. We acknowledge this limitation explicitly and note two potential future mitigations: (a) using structurally diverse extractor models (e.g., symbolic parsers alongside LLM extractors) to decorrelate extraction errors, and (b) grounding extracted constraints against external knowledge sources (CAS simplification, unit-test-style numerical spot-checking) that do not share LLM inductive biases. We include FOLIO as a diagnostic ablation where SMT autoformalization is documented to hurt (-44.5%), precisely to empirically characterize the boundary between domains where SICA's extraction is faithful enough to help versus where correlated errors dominate.\\n\\n**Dual-track evaluation plan**:\\n\\n*Track A — EMNLP 2026 (ARR May 25, primary target, 14 days):* Scoped evaluation with K=12 traces on 5 core benchmarks plus 3 BBH subtasks:\\n- **MATH-500** (algebraic/arithmetic reasoning; QwQ-32B ~90.6%)\\n- **AIME 2024** (competition math with mixed-theory constraints; QwQ-32B ~79.5%)\\n- **ProofWriter** (formal logic; enables direct comparison with D&P 98.33% and VERGE 85.2-93.0%)\\n- **FOLIO** (first-order logic; diagnostic ablation — SMT autoformalization documented to hurt -44.5% here)\\n- **BBH** (3 subtasks: logical deduction, tracking shuffled objects, temporal sequences — enables direct comparison with FoVer's BBH evaluation at Best-of-7; tests cross-domain generalization to structured informal reasoning)\\n\\nBaselines for Track A: self-consistency, CRAFT, D&P (on ProofWriter), VERGE (on ProofWriter/FOLIO).\\n\\n*Track B — AAAI 2027 (paper deadline ~August 1, extended version):* Expanded to K=16 traces on all Track A benchmarks plus:\\n- **AIME 2025** (tests generalization to unseen competition problems; available via MathArena/aime_2025 on HuggingFace)\\n- **GPQA Diamond** (graduate-level science; QwQ-32B ~65.2%; per-domain reporting for physics/chemistry vs. biology)\\n- **LogiQA 2.0** (natural language logical reasoning; 8,678 questions; tests constraint extraction beyond math/formal logic)\\n- Additional BBH subtasks and full ablation suite\\n\\n**ARC-Challenge exclusion justification**: ARC-Challenge (Clark et al., 2018) consists of multiple-choice grade-school science questions that primarily test factual knowledge retrieval (e.g., 'Which mineral is the hardest?', 'What happens when water freezes?'). Most questions lack the multi-step constraint structure required for meaningful symbolic assertion extraction — they involve domain knowledge rather than chains of extractable equations, inequalities, or logical predicates. Including ARC-Challenge would likely yield near-zero verifiable assertion coverage, providing no insight beyond confirming SICA's domain specificity (which FOLIO already demonstrates as a negative diagnostic). We note this scope limitation explicitly.\\n\\n**Metrics and analyses**:\\n- Primary: accuracy, calibration (ECE), informativeness of partial invariant agreement when candidates disagree\\n- **Contradiction frequency analysis** (centerpiece experiment): For each problem across all benchmarks, we measure how often CRAFT's statistical consensus retains logically contradictory constraint pairs. We report the 'contradiction rate' — the fraction of problems where at least one pair of popular constraints (appearing in ≥3 of K traces) are mutually unsatisfiable. If >15%, this validates SICA's core motivation; if <5%, we honestly acknowledge limited practical impact on this axis and emphasize interpretability/provenance instead.\\n- **D&P comparison**: On ProofWriter (shared benchmark), we compare SICA's cross-path MAX-SAT consensus against D&P's per-path pruning + answer-level voting, specifically measuring: (a) how many problems have cross-path contradictions that D&P's per-path pruning misses, and (b) whether MAX-SAT-backed scoring outperforms answer-level majority voting among surviving paths.\\n- **FoVer comparison on BBH**: On the 3 shared BBH subtasks, we compare SICA's inference-time cross-path consensus against FoVer's training-time PRM approach (Llama3.1-8B-PRM at Best-of-7: temporal 97.2%, tracking 96.0%, word sorting 46.8%), analyzing whether cross-path formal consensus provides complementary signal to trained process reward models.\\n- **Extraction accuracy ablation**: Per-benchmark measurement of (a) syntactic parse rate, (b) semantic fidelity (manual annotation on 100 samples per benchmark), and (c) error propagation analysis — how X% extraction error degrades MAX-SAT consensus quality via controlled noise injection. Per the findings of 'Do LLMs Game Formalization?', we specifically track axiom fabrication and premise mistranslation rates.\\n- **Correlated extraction error analysis**: On a subset of problems (100 per benchmark), we measure cross-path extraction agreement — the fraction of assertions that are semantically equivalent across all K traces — to empirically quantify the degree of correlated extraction and assess how much independent signal SICA's MAX-SAT actually receives.\\n- **Compute-normalized comparison**: Report total tokens generated, wall-clock time per problem, and decomposed latency (inference, extraction, solver, MAX-SAT) for each method. Plot accuracy vs. total compute (tokens) curves. If SICA takes 5x compute of vanilla SC for +2% accuracy, we justify via interpretability/soundness or acknowledge the tradeoff.\\n\\nThe primary contribution is not raw accuracy improvement over SC (which has diminishing returns on frontier models) but rather: (a) formal soundness guarantees on the consensus signal, (b) interpretable constraint-level provenance for each answer, (c) detecting logically inconsistent popular reasoning steps that both statistical consensus (CRAFT) and per-path pruning (D&P) miss — with empirical quantification of how frequently this occurs, (d) systematic domain analysis of formal cross-solution verification including where it helps (ProofWriter, BBH logical deduction) vs. hurts (FOLIO), and (e) empirical characterization of correlated extraction errors as a fundamental limitation of LLM-based autoformalization in consensus settings.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~180-240h A100 80GB (5 benchmarks + 3 BBH subtasks × K=12 traces + extraction + ablations)\",\n      \"gpu_utilization\": \"Low (~20-30%); GPUs idle during coding, debugging solver routing, manual extraction annotation\",\n      \"timeline\": \"2-3 months\",\n      \"team\": \"1-2 researchers with formal methods and LLM experience\",\n      \"estimated_gpu_cost\": \"$235-310 (at ~$1.30/hr typical A100 spot rate)\",\n      \"h100_equivalent\": \"~90-120h H100 (well within 200h H100 budget)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~220-300h A100 80GB\",\n      \"gpu_utilization\": \"Moderate (~50-60%); agent codes and runs experiments between human review gates\",\n      \"timeline\": \"4-6 weeks (fits AAAI 2027 extended version with writing buffer)\",\n      \"team\": \"1 researcher, ~40-50min/day reviewing extraction quality, solver routing correctness, contradiction analysis, D&P comparison design, and BBH extraction quality; ~6h total for manual semantic fidelity annotation (100 samples × 5 benchmarks + 3 BBH subtasks)\",\n      \"claude_api_cost\": \"$200-400 (est. 2000-4000 Opus turns)\",\n      \"estimated_gpu_cost\": \"$285-390\",\n      \"h100_equivalent\": \"~110-150h H100 (within 200h H100 budget)\",\n      \"risk_note\": \"Solver routing heuristics require human judgment for edge cases; CRAFT replication may need prompt tuning; BBH logical deduction extraction quality needs validation\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~300-400h A100 80GB (Track A: 5 benchmarks + 3 BBH subtasks × K=12 × core ablations)\",\n      \"gpu_utilization\": \"High (~85-95%); agent pipelines inference, extraction, and solving continuously; batched vLLM serving keeps GPUs saturated\",\n      \"timeline\": \"10-14 days with 2-4 A100s available (fits EMNLP 2026 ARR May 25 deadline)\",\n      \"team\": \"0 (initial setup only, ~3 hours)\",\n      \"claude_api_cost\": \"$350-600 (est. 3500-6000 Opus turns)\",\n      \"estimated_gpu_cost\": \"$390-520\",\n      \"h100_equivalent\": \"~150-200h H100 (within 200h H100 budget with K=12 and 5+3 benchmarks)\",\n      \"speed_bottleneck\": \"GPU count for parallel vLLM inference across benchmarks × 12 samples; secondary bottleneck is Z3 MAX-SAT optimization time (mitigated by 10s per-query timeout)\",\n      \"risk_note\": \"Automated extraction may produce malformed solver input in ~10-20% of traces; without human review the agent may over-tune extraction prompts to specific benchmarks; contradiction frequency analysis needs careful statistical framing to avoid over-claiming; 14-day timeline is tight but feasible in full auto mode with scoped benchmark set\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline: May 25, 2026 — 14 days from now; primary target with Track A scoped evaluation)\",\n    \"AAAI 2027 (abstract deadline: ~July 25, 2026; paper deadline: ~August 1, 2026 — extended version with Track B full evaluation)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Self-Consistency Improves Chain of Thought Reasoning in Language Models (ICLR 2023)\",\n    \"CRAFT: Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis (arXiv 2604.14121, April 2026)\",\n    \"Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning (arXiv 2603.17233, March 2026)\",\n    \"PoLR: The Path of Least Resistance — Guiding LLM Reasoning Trajectories with Prefix Consensus (ICLR 2026)\",\n    \"VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2601.20055, Jan 2026)\",\n    \"VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks (arXiv 2025)\",\n    \"MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving (arXiv 2505.20869, May 2025)\",\n    \"SAFE: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification (ACL 2025, arXiv 2506.04592)\",\n    \"Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (EACL 2026, arXiv 2510.06774)\",\n    \"PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2603.29500, March 2026)\",\n    \"FoVer: Training Step-Level Reasoning Verifiers with Formal Verification Tools (arXiv 2505.15960, ACL 2026 Findings)\",\n    \"Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks (NeurIPS 2025)\",\n    \"FregeLogic at SemEval 2026 Task 11: Hybrid Neuro-Symbolic Architecture for Syllogistic Validity (SemEval 2026)\",\n    \"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning (arXiv 2604.19459, VerifAI-2 Workshop, ICLR 2026)\",\n    \"Reevaluating Self-Consistency Scaling in Multi-Agent Systems (arXiv 2511.00751)\",\n    \"Reasoning Aware Self-Consistency: Leveraging Reasoning Paths for Efficient LLM Sampling (NAACL 2025)\",\n    \"Faithful Logical Reasoning via Symbolic Chain-of-Thought (ACL 2024)\",\n    \"Autoformalization in the Era of Large Language Models: A Survey (arXiv 2505.23486, May 2025)\",\n    \"Consensus is Not Verification: Why Crowd Wisdom Strategies Fail for LLM Truthfulness (arXiv 2603.06612, March 2026)\",\n    \"Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning (arXiv 2604.14525, April 2026)\"\n  ],\n  \"description\": \"We propose Symbolic Invariant Consensus Aggregation (SICA), a method that formally cross-validates intermediate constraints extracted from multiple LLM reasoning paths to produce a soundness-guaranteed consensus signal. While CRAFT (April 2026) demonstrates the value of intermediate-step consensus via statistical similarity (TF-IRF/Jaccard), its authors explicitly acknowledge 'consensus ≠ correctness' and 'reduced effectiveness on symbolic math.' This limitation is theoretically grounded by 'Consensus is Not Verification' (arXiv 2603.06612, March 2026), which proves that LLM errors are strongly correlated across samples and model families, causing pure consensus to fail — but critically finds that 'aggregation improves performance when a verifier exists,' directly motivating SICA's approach. Draft-and-Prune (D&P, March 2026) improves autoformalization reliability by independently pruning paths with internal contradictions and aggregating survivors via majority voting, but does not perform cross-path constraint checking — its authors note they 'aggregate predictions at the answer level and do not cluster or de-duplicate candidates by symbolic equivalence.' Meanwhile, VERGE (Jan 2026) verifies and refines a single LLM output by decomposing it into atomic claims, checking joint satisfiability via Z3, and using Minimal Correction Subsets (MCS) to provide targeted refinement feedback — but operates on one output, not across reasoning paths. In the adjacent cross-output verification space, 'Quantifying Cross-Query Contradictions' (arXiv 2604.14525, April 2026) uses Z3 (QF_UFLIA) and CaDiCaL for cross-query consistency checking with unsat-core repair, but addresses cross-query consistency (different questions sharing a case file) rather than cross-trace consistency (same question, multiple paths). Single-solution formal verification (MATH-VF uses CAS+Z3; SAFE uses Lean4; PRoSFI uses Lean/Z3/Prover9 for structured formal intermediaries on 7B models; FoVer (arXiv 2505.15960) uses Z3+Isabelle for PRM training data with cross-task generalization to BBH) improves reliability but none cross-validate across solutions.\\n\\nSICA fills this gap by extracting typed symbolic assertions from K sampled reasoning traces, routing them to appropriate solvers via assertion-level theory-aware dispatch (Z3 for linear arithmetic and propositional logic; SymPy for nonlinear polynomial and algebraic constraints — finer-grained than the EACL 2026 problem-level solver routing), and using Z3's built-in weighted partial MAX-SAT optimization to find the largest jointly satisfiable assertion set weighted by cross-solution frequency. SICA's MAX-SAT consensus across paths is the cross-path counterpart to VERGE's within-output MCS (dual operations: MAX-SAT keeps the maximum consistent subset; MCS removes the minimum inconsistent subset), and differs from cross-query contradiction checking by operating on multiple traces for the same question via weighted consensus rather than unsat-core repair across different questions. A three-tier extraction quality pipeline (syntactic validation, semantic spot-checking targeting the unfaithfulness patterns identified by 'Do LLMs Game Formalization?' (arXiv 2604.19459), and coverage tracking) addresses the documented task-dependence of autoformalization.\\n\\nWe explicitly acknowledge a fundamental limitation: SICA's MAX-SAT consensus catches contradictory constraints but cannot detect universally-wrong-but-consistent constraints caused by correlated extraction errors — the same correlated error phenomenon documented by 'Consensus is Not Verification.' The semantic spot-checking tier partially mitigates this, but correlated biases between the extractor and judge LLMs limit its effectiveness. We include FOLIO as a diagnostic ablation and propose a correlated extraction error analysis to empirically characterize this boundary.\\n\\nWe adopt a dual-track evaluation plan. Track A (EMNLP 2026, ARR May 25): scoped evaluation with K=12 on MATH-500, AIME 2024, ProofWriter, FOLIO, and 3 BBH subtasks (logical deduction, tracking shuffled objects, temporal sequences) using QwQ-32B via vLLM, comparing against SC, CRAFT, D&P, VERGE, and FoVer. BBH subtasks enable direct comparison with FoVer (ACL 2026) which reports Best-of-7 results on the same tasks (temporal 97.2%, tracking 96.0%, word sorting 46.8%). Track B (AAAI 2027): expanded to K=16 with AIME 2025, GPQA Diamond, and LogiQA 2.0 added. ARC-Challenge is excluded because its multiple-choice science knowledge questions lack the multi-step constraint structure needed for meaningful symbolic extraction (most test factual recall rather than chains of extractable logical predicates). The centerpiece experiment is a contradiction frequency analysis measuring how often statistical consensus retains logically contradictory constraint pairs. FOLIO serves as a diagnostic ablation where SMT is documented to hurt (-44.5%). Primary contributions: formal soundness guarantees, interpretable constraint-level provenance, empirically-quantified detection of contradictory consensus that both statistical methods and per-path pruning miss, systematic domain analysis of formal cross-solution verification, and honest characterization of the correlated extraction error limitation. Auto-mode compute fits within 200h H100 budget at K=12 with 5+3 benchmarks.\",\n  \"project_name\": \"symb_invariant_consensus\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL MISS: CRAFT (arXiv 2604.14121, April 2026) builds a Reasoning Knowledge Graph from consensus intermediate steps across multiple candidate traces, achieving 10%+ accuracy improvement on GSM8K, FOLIO, FLD, and OlympiadBench. This is the closest concurrent work and must be discussed — SICA's formal verification is differentiated but the intermediate-consensus concept is shared.\", \"Autoformalization to SMT-LIB is task-dependent and can be harmful: research shows -44.5% accuracy on FOLIO when using SMT formalization (Grammars of Formal Uncertainty, NeurIPS 2025 workshop). Evaluating SICA on FOLIO with Z3-based extraction is risky — the pipeline may actively hurt performance on this benchmark.\", \"Z3 is undecidable for nonlinear integer arithmetic and incomplete for nonlinear real arithmetic. AIME problems frequently involve nonlinear constraints (quadratics, modular arithmetic, combinatorics). Z3 will timeout or return 'unknown' on a significant fraction of extracted constraints, undermining the invariant graph construction.\", \"Self-consistency diminishing returns: Research (arXiv 2511.00751) demonstrates SC gains plateau at <2% on frontier models that already solve most problems correctly, with accuracy sometimes declining at high sample counts. The motivation 'SC discards structural information' is valid in theory but the practical baseline it improves upon is already losing relevance.\", \"DeepSeek V4 Pro (1.6T params, 49B activated MoE) is infeasible to serve locally via vLLM within 200 H100-hours — it requires 8+ GPUs just for model loading. Either use the API (adds cost outside GPU budget) or restrict to QwQ-32B / DeepSeek V4 Flash (284B/13B activated).\", \"The 'maximal consistent invariant cluster' finding via Z3 satisfiability checking is worst-case exponential in the number of extracted assertions. With K=32 solutions and potentially dozens of assertions per solution, the constraint combinatorics could make this step prohibitively expensive without careful engineering.\", \"Missing baseline: PoLR (ICLR 2026) uses prefix consensus to prune reasoning paths and matches/exceeds self-consistency while reducing token usage by 60%. This is a relevant efficiency baseline that should be compared.\", \"GSM8K is essentially saturated by modern reasoning models (QwQ-32B achieves ~95%+). Including it adds little signal — the improvement ceiling is too low to demonstrate SICA's value.\"]\nFeedback: The core concept of cross-solution formal invariant consensus has genuine novelty, but several revisions are needed:\n\n1. **Address CRAFT directly**: CRAFT (arXiv 2604.14121) is the most important competitor. You must: (a) cite it as the closest related work, (b) clearly articulate why formal verification via Z3 adds value over CRAFT's statistical TF-IRF/Jaccard approach — e.g., CRAFT cannot detect when statistically popular intermediate steps are actually logically inconsistent, while Z3 can. Run a direct comparison if feasible.\n\n2. **Scope Z3 to tractable theories**: Restrict invariant extraction to Z3-tractable constraint types: linear arithmetic, bitvectors, uninterpreted functions, and propositional logic. For AIME problems involving nonlinear constraints, fall back to SymPy for algebraic simplification/equivalence checking instead of Z3. Document this theory-routing explicitly.\n\n3. **Drop or replace FOLIO**: Given documented -44.5% SMT autoformalization failure on FOLIO, either (a) replace FOLIO with a benchmark where SMT formalization is known to help (e.g., ProntoQA, or use ProofWriter exclusively for logic), or (b) keep FOLIO but prepare for negative results and frame them as analysis of where symbolic consensus helps vs. hurts.\n\n4. **Add CRAFT and PoLR as baselines**: CRAFT for intermediate-consensus comparison, PoLR for compute-efficient SC comparison. Without these, reviewers will flag missing baselines.\n\n5. **Tighten resource model**: Use QwQ-32B (not DeepSeek V4 Pro) for local vLLM serving. Drop GSM8K (saturated). Reduce to 3-4 focused benchmarks: MATH-500, AIME 2024, ProofWriter, and one logic benchmark where SMT works well.\n\n6. **Weaken the motivation**: Don't frame this as 'improving self-consistency' — frame it as 'providing interpretable, formally-verified confidence signals when sampling-based methods disagree.' The value is in interpretability and formal guarantees, not raw accuracy improvement over vanilla SC on benchmarks where models already achieve 95%+.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"MISSING RELATED WORK — MATH-VF (arXiv 2505.20869, May 2025): This paper proposes a Formalizer + Critic framework that translates natural language solutions into formal context and uses CAS + Z3 SMT solver for step-level verification on MATH-500. It shares SICA's assertion-extraction + solver-verification pipeline and must be discussed. The key differentiator is that MATH-VF works on single solutions while SICA cross-validates across multiple solutions.\", \"MISSING RELATED WORK — SAFE (ACL 2025, arXiv 2506.04592): Uses Lean4 for retrospective step-aware formal verification of individual reasoning chains. Shares the formal-verification-of-intermediate-steps concept. Must be acknowledged to avoid reviewer complaints about incomplete related work coverage.\", \"MISSING RELATED WORK — Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (EACL 2026, arXiv 2510.06774): This paper introduces dynamic solver routing that automatically identifies formal reasoning strategies and selects specialized solvers. It directly overlaps with SICA's 'theory-aware solver routing' component. While SICA routes at the assertion level (finer-grained) vs. problem level, the conceptual overlap must be acknowledged and differentiated.\", \"MISSING RELATED WORK — PRoSFI (arXiv 2603.29500, March 2026): Process Reward over Structured Formal Intermediaries, which outputs structured intermediate steps verified by formal provers. Shares the structured-intermediate-step + formal-verification concept.\", \"ProntoQA is near-saturated: ATP-augmented neuro-symbolic approaches achieve ~99%+ accuracy on ProntoQA. Including it limits SICA's ability to demonstrate meaningful improvements. Consider replacing with a benchmark that has more headroom — e.g., FOLIO (acknowledging SMT risks as ablation analysis), LogiQA, or ARC-Challenge as originally specified in user requirements.\", \"Autoformalization reliability remains underspecified: The proposal acknowledges 10-20% malformed extraction in auto_research mode but provides no concrete mitigation strategy or error analysis plan. Given 'Grammars of Formal Uncertainty' shows SMT formalization is task-dependent (+34.8% ProofWriter, -44.5% FOLIO), the paper needs: (a) a planned ablation studying extraction accuracy per benchmark, (b) a fallback strategy when extraction fails (currently only 'numerical spot-checking' is mentioned), and (c) analysis of how extraction errors propagate through the MAX-SAT pipeline.\", \"Compute fairness in baseline comparison: SICA with K=16 requires 16 reasoning traces + 16 extraction LLM calls + solver calls + MAX-SAT optimization. Comparing against vanilla SC (K=16, just majority vote) on accuracy alone is misleading — the paper must report total compute (FLOPs or wall-clock) for each method and demonstrate that SICA's gains justify the overhead. CRAFT and PoLR comparisons should also be compute-normalized.\", \"The user's required benchmarks (GPQA Diamond, LogiQA, ARC-Challenge, BBH) are mostly absent: The user specified evaluation on 'MATH, AIME 2024/2025, GPQA Diamond, ProofWriter, FOLIO, LogiQA, ARC-Challenge, BBH' but the proposal only covers MATH-500, AIME 2024, ProofWriter, and ProntoQA. At minimum, GPQA Diamond (where formal constraint extraction may help on science reasoning) and one additional user-requested benchmark should be included.\"]\nFeedback: The revision successfully addressed the most critical Round 1 issues — CRAFT is properly positioned as the closest competitor, Z3 is scoped to tractable theories with SymPy fallback, GSM8K is dropped, and the framing shifts to formal soundness/interpretability. The weighted partial MAX-SAT via Z3 Optimize is technically sound (verified: Z3's assert_soft supports this). However, several issues remain:\n\n1. **Complete the related work**: Add MATH-VF (step-level CAS+SMT verification, single-solution), SAFE (Lean4 step verification, ACL 2025), EACL 2026 solver routing paper (dynamic solver composition), and PRoSFI (formal intermediate verification for process reward). For each, clearly state: 'X does Y on single solutions; SICA extends this to cross-solution consensus via MAX-SAT.' This is critical — a reviewer who knows MATH-VF will immediately flag its absence.\n\n2. **Replace ProntoQA**: It's near-saturated (~99% with ATP methods). Add GPQA Diamond instead — it has science reasoning problems where formal constraint extraction could help and is explicitly requested by the user. Consider also adding one of LogiQA/ARC-Challenge/BBH per user requirements.\n\n3. **Autoformalization ablation plan**: Add a concrete plan to measure extraction accuracy (what % of assertions parse correctly, what % are semantically faithful to the original reasoning step) and analyze how extraction noise affects downstream MAX-SAT quality. This is the single biggest technical risk and reviewers will probe it.\n\n4. **Compute-normalized comparison**: Report FLOPs or wall-clock time per problem for each method. If SICA takes 5x the compute of vanilla SC for +2% accuracy, that needs to be acknowledged and justified via the interpretability/soundness argument.\n\n5. **Strengthen impact narrative**: The current pitch — 'CRAFT's blind spot is logically inconsistent popular steps' — is good but needs empirical grounding. Include a planned analysis: on how many problems does CRAFT actually retain contradictory constraints? If this is rare in practice (e.g., <5% of problems), the motivation weakens. If frequent (>15%), it's a strong selling point. This analysis should be a centerpiece of the paper.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"MISSING RELATED WORK — Draft-and-Prune (arXiv 2603.17233, March 2026): This paper proposes an inference-time framework that (1) drafts multiple natural-language plans, (2) conditions program generation on them, (3) autoformalizes into solver-executable programs, (4) prunes executable but contradictory or ambiguous formalizations, and (5) aggregates predictions from surviving paths via majority voting. Evaluated on AR-LSAT, ProofWriter, PrOntoQA, and LogicalDeduction. This is the closest competitor to SICA's pruning mechanism — the key differentiator is that D&P prunes individual paths' internal contradictions while SICA finds cross-path MAX-SAT consensus, but the overlap is substantial and must be cited and differentiated.\", \"VERGE characterization is misleading: The proposal states VERGE 'performs multi-sample consensus via formal semantic equivalence checking of final claims with semantic routing.' My deep reading of VERGE (arXiv 2601.20055) confirms it does NOT do multi-path reasoning consensus. VERGE's 'multi-sample' aspect refers to K=3 candidate SMT formalizations of a single claim for equivalence checking (consensus among formalizations of one claim), not cross-path reasoning aggregation. VERGE is a single-output verify-and-refine loop. Its MCS is dual to MAX-SAT but used for generating feedback to the LLM, not for selecting consensus answers. This must be corrected — a reviewer familiar with VERGE will immediately flag the mischaracterization.\", \"QwQ-32B AIME 2024 baseline inaccurate: The proposal claims ~83% but the official Qwen team blog reports 79.5%. Analytics Vidhya reports 86% as an outlier. The claimed 83% doesn't match any authoritative source. This should be corrected to 79.5% (official) or the source of the 83% figure should be cited.\", \"Missing user-required benchmarks: The user explicitly requested evaluation on 'MATH, AIME 2024/2025, GPQA Diamond, ProofWriter, FOLIO, LogiQA, ARC-Challenge, BBH.' AIME 2025, LogiQA, ARC-Challenge, and BBH are all absent. At minimum, AIME 2025 should be trivially addable (same format as AIME 2024), and one of LogiQA/BBH would test generality of constraint extraction on non-math reasoning.\", \"Venue timeline misalignment: The proposal targets 'EMNLP 2026 (ARR next cycle, ~June-July 2026, if ready)' but verified EMNLP 2026 dates show the May 25, 2026 ARR cycle IS the last cycle eligible for EMNLP 2026 commitment (deadline August 2, 2026). There is no 'next cycle' that feeds into EMNLP 2026. Either commit to the May 25 deadline (14 days — extremely aggressive) or explicitly acknowledge that EMNLP 2026 is not feasible and the primary targets are AAAI 2027 (abstract July 25, paper August 1) and ICLR 2027.\", \"Auto mode compute exceeds user budget: The auto_research mode estimates 450-650h A100, which converts to roughly 225-325h H100-equivalent (H100 is ~2x faster for inference workloads). This exceeds the user's hard constraint of ≤200 H100-hours. The manual mode (200-280h A100 ≈ 100-140h H100) fits, but manual mode requires 2-4 months — incompatible with the 16-day timeline. There's a feasibility tension between compute budget and timeline.\"]\nFeedback: The proposal has matured significantly through two revision rounds and the core contribution is genuinely novel — I verified across 15+ competing papers that no existing work formally cross-validates intermediate constraints across multiple reasoning paths via MAX-SAT. However, several issues remain before this can pass:\n\n1. **Cite Draft-and-Prune (D&P, arXiv 2603.17233)**: This March 2026 paper is the closest competitor you've missed. D&P also generates multiple reasoning paths, autoformalizes them, prunes contradictory ones, and aggregates survivors. Your differentiator: D&P prunes paths with internal contradictions independently, while SICA extracts constraints from ALL paths and finds a globally consistent MAX-SAT-optimal subset — a fundamentally different aggregation mechanism. Add D&P as a baseline if feasible (it's evaluated on ProofWriter, which you already include).\n\n2. **Fix VERGE description**: VERGE does NOT do multi-path reasoning consensus. Its K=3 samples are candidate formalizations of a single claim, not multiple reasoning paths. Correct to: 'VERGE verifies and refines a single LLM output by decomposing it into atomic claims, autoformalizing them, checking joint satisfiability via Z3, and using Minimal Correction Subsets to provide targeted feedback for iterative refinement.' Note that VERGE's MCS (minimum claims to remove for satisfiability) is dual to SICA's MAX-SAT (maximum satisfiable subset), but VERGE applies it within one output for feedback, not across paths for consensus.\n\n3. **Correct baselines**: QwQ-32B AIME 2024 is 79.5% (official Qwen blog), not 83%. If using Qwen3-32B instead, verify and cite the Qwen3 Technical Report (arXiv 2505.09388) scores.\n\n4. **Add AIME 2025 + one of LogiQA/BBH**: AIME 2025 is trivially addable (same pipeline). LogiQA or BBH would test whether SICA's constraint extraction generalizes beyond math/formal-logic to broader reasoning. This is important for the EMNLP audience.\n\n5. **Resolve the venue/timeline/compute trilemma**: You can't simultaneously target May 25 ARR (14 days), stay within 200 H100-hours, and run the full experimental plan. Be explicit: either (a) scope down to 3 benchmarks for a May 25 submission with manual mode (~140h H100), or (b) target AAAI 2027 (August 1 deadline, 82 days) with the full 5-benchmark plan, or (c) both — submit a focused version to ARR May 25 and expand for AAAI 2027.\n\n6. **Consider citing 'Do LLMs Game Formalization?' (arXiv 2604.19459, April 2026)**: This paper evaluates faithfulness of LLM autoformalization for logical reasoning, directly relevant to your extraction quality concerns.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"PHANTOM REFERENCE — PRoSFI (arXiv 2603.29500): This paper cannot be found via any search query. Searches for 'PRoSFI Process Reward Structured Formal Intermediaries arXiv 2603.29500' return no matching results. The closest real papers are 'Verifiable Process Reward Models for Structured Reasoning' (arXiv 2601.17223) and 'Generalizable Process Reward Models via Formally Verified Training Data' (arXiv 2505.15960, which IS FoVer). Citing a non-existent paper would be immediately flagged by reviewers. Either provide the correct arXiv ID or remove this reference.\", \"VENUE MISALIGNMENT WITH USER REQUIREMENTS: The user explicitly specified 'Target: EMNLP 2026, ARR submission deadline 2026-05-25' and 'Time: ≤16 days.' The proposal instead targets AAAI 2027 (August 2, 2026) and ICLR 2027 as backup, completely ignoring the user's target venue. While a full 7-benchmark evaluation is infeasible in 14 days, a scoped-down 4-5 benchmark submission to ARR May 25 IS feasible in auto mode. The proposal must either commit to EMNLP 2026 with a reduced scope or explicitly justify the venue change with a dual-submission plan.\", \"MISSING USER-REQUIRED BENCHMARKS — ARC-Challenge and BBH: The user explicitly listed 'MATH, AIME 2024/2025, GPQA Diamond, ProofWriter, FOLIO, LogiQA, ARC-Challenge, BBH' as required evaluation benchmarks. ARC-Challenge and BBH are absent with no justification. ARC-Challenge tests visual/abstract reasoning where constraint extraction is questionable (which would be useful negative analysis), and BBH is a standard broad reasoning benchmark. At minimum, justify their exclusion or add BBH (which FoVer evaluates on, enabling comparison).\", \"AUTO MODE COMPUTE SLIGHTLY EXCEEDS BUDGET: The auto_research estimate of ~190-260h H100 may exceed the hard constraint of ≤200 H100-hours. The proposal acknowledges this ('reduce to 5 benchmarks or K=12 to fit') but doesn't commit to a specific plan. For an EMNLP 2026 submission, scope to 5 benchmarks and K=12 to guarantee compliance.\", \"FoVer arXiv ID DISCREPANCY: FoVer is cited as 'ACL 2026' which is correct (ACL 2026 Findings), but its arXiv ID is 2505.15960, not mentioned in the proposal. The proposal should include the arXiv ID for verifiability, especially since FoVer's formal-verification-for-PRM approach is closely related.\"]\nFeedback: The proposal has matured substantially over 4 rounds — the core novelty is confirmed, CRAFT/D&P/VERGE are properly cited and differentiated, and the evaluation design is intellectually honest. Three targeted fixes remain:\n\n1. **Fix the PRoSFI reference**: This is the most urgent issue. arXiv 2603.29500 does not exist in any index I can find. The closest real papers are: (a) 'Verifiable Process Reward Models for Structured Reasoning' (arXiv 2601.17223), which uses rule-based verifiers for intermediate step checking, or (b) FoVer itself (arXiv 2505.15960), which uses Z3+Isabelle for PRM training data. Determine which paper you intended to cite, verify it exists, and update the reference. Never cite a paper you cannot independently locate.\n\n2. **Commit to EMNLP 2026 with a scoped plan**: The user's hard requirement is EMNLP 2026 ARR May 25. Propose a dual-track plan: (a) EMNLP 2026 submission with 5 core benchmarks (MATH-500, AIME 2024, AIME 2025, ProofWriter, FOLIO) using K=12 traces to fit within 200h H100 in auto mode (~14 days); (b) expanded version with all 7+ benchmarks for AAAI 2027 if EMNLP reviews suggest additional experiments. This respects the user's venue requirement while being realistic about scope.\n\n3. **Address ARC-Challenge/BBH or justify exclusion**: For ARC-Challenge, constraint extraction from abstract/visual reasoning may not work — state this explicitly as a scope limitation. For BBH, FoVer (ACL 2026) evaluates on BBH and shows formal verification transfers to informal reasoning, making it a natural comparison point. Adding even 2-3 BBH subtasks (e.g., logical deduction, causal judgment) would strengthen the generality argument and satisfy the user's requirement.\n\nMinor: Add the FoVer arXiv ID (2505.15960) for reference verifiability.\n\n### Round 5 review\nVerdict: revise\nIssues: [\"FACTUAL ERROR — FoVer word sorting score: The proposal claims FoVer achieves 80.0% on word sorting with Llama3.1-8B-PRM at Best-of-7, but verified against Table 5 of the paper (arXiv 2505.15960), the actual word sorting score is 46.8%. The 80.0% figure is the overall average across ALL six unseen tasks (ANLI, HANS, MMLU-Pro-NoMath, Temporal, Tracking, Sorting), not the word sorting score. This error appears in both the approach section and the description. A reviewer familiar with FoVer will catch this immediately and it undermines credibility.\", \"MISSING RELATED WORK — 'Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning' (arXiv 2604.14525, April 2026): Uses Z3 v4.8.17 (QF_UFLIA theory) and CaDiCaL for cross-output consistency checking with unsat-core localization and lexicographic repair. While cross-query (different questions in a bundle) rather than cross-trace (same question, multiple paths), it occupies the same conceptual space of solver-verified cross-output consistency. SICA's differentiators are clear (cross-trace scope, intermediate constraint extraction, weighted partial MAX-SAT), but the paper must be cited to preempt reviewer concerns about incomplete coverage of the 'formal verification of LLM output consistency' landscape.\", \"MISSING RELATED WORK — 'Consensus is Not Verification' (arXiv 2603.06612, March 2026): Demonstrates that consensus-based aggregation fails for truthfulness because LLM errors are strongly correlated — correlation persists even with random string conditioning. This paper both supports SICA's motivation (pure consensus is insufficient, a formal verifier is needed) AND raises a limitation SICA must acknowledge: if all K paths produce the same wrong formalization (correlated extraction errors), MAX-SAT will see K consistent-but-wrong constraints and cannot detect the error. The proposal's semantic spot-checking partially addresses this, but the theoretical limitation should be explicitly discussed.\", \"VERGE score ranges slightly misleading: The proposal gives FOLIO 84.7-87.9% and ProofWriter 89.9-93.0%, but VERGE's GPT-20B achieves 89.2% on FOLIO and 85.2% on ProofWriter — these are excluded from the stated ranges without explanation. While the ranges may intentionally represent only GPT-OSS and Sonnet-3.7 (the models more comparable to QwQ-32B), this should be made explicit. A reviewer familiar with VERGE's full results table will notice.\", \"Correlated extraction errors not theoretically addressed: The proposal's three-tier extraction quality pipeline (syntactic validation, semantic spot-checking, coverage tracking) is well-designed for catching individual extraction errors, but does not address the systematic case where the LLM consistently mistranslates a specific constraint type across all K paths — exactly the 'premise mistranslation' pattern documented in 'Do LLMs Game Formalization?' This is a fundamental limitation of any approach that relies on LLM autoformalization: MAX-SAT catches contradictions between constraints but cannot catch universally-wrong-but-mutually-consistent constraints. Acknowledging this limitation explicitly would strengthen the paper's intellectual honesty.\"]\nFeedback: The proposal has matured substantially over 5 rounds and the core novelty is now well-established — I independently confirmed that no existing work formally cross-validates intermediate constraints across multiple reasoning paths via MAX-SAT. The remaining issues are targeted and fixable:\n\n1. **Fix FoVer word sorting score**: Change 80.0% to 46.8% everywhere it appears. The 80.0% is the overall average across all unseen tasks, not word sorting specifically. If you want to report a summary of FoVer's BBH performance, use: 'temporal sequences 97.2%, tracking shuffled objects 96.0%, word sorting 46.8%' or report the overall average of 80.0% explicitly labeled as such.\n\n2. **Add two missing citations**: (a) 'Quantifying Cross-Query Contradictions' (arXiv 2604.14525) — cite in the landscape section and differentiate: 'addresses cross-query consistency (different questions) via unsat-core repair, while SICA addresses cross-trace consistency (same question, multiple paths) via weighted partial MAX-SAT.' (b) 'Consensus is Not Verification' (arXiv 2603.06612) — cite in the opportunity section to strengthen the motivation ('pure consensus fails due to correlated errors, motivating formal verification') AND in a limitations paragraph to acknowledge correlated extraction errors.\n\n3. **Fix VERGE score ranges**: Either report the full range including GPT-20B (FOLIO 84.7-89.2%, ProofWriter 85.2-93.0%) or explicitly state that you report only GPT-OSS and Sonnet-3.7 results for comparability with open-weight models.\n\n4. **Add a 'Limitations of Formal Cross-Validation' paragraph**: Acknowledge that SICA's MAX-SAT consensus catches contradictory constraints but cannot detect universally-wrong-but-consistent constraints caused by correlated extraction errors. The semantic spot-checking tier partially mitigates this, but the theoretical limitation exists. This is honest and reviewers will appreciate it — it's the same kind of intellectual honesty shown by including FOLIO as a diagnostic ablation.\n\n5. **Minor: PRoSFI is real** — the previous round's phantom reference concern was incorrect. arXiv 2603.29500 exists and is an ICLR 2026 submission. No action needed on this front.\n\nThese fixes are straightforward and should be completable in one revision round. The proposal is close to passing — the novelty and clarity are strong, but the feasibility (14-day timeline) and impact (contingent on contradiction frequency) keep the average below 4.0.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T23:58:28.287Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-11T23:58:28.287Z",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+## Round 1
+
+148 recorded events
+
+### User
+
+_source line 3 · 2026-05-11T23:58:28.328Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Symbolic Reasoning.
+
+Direction: Neurosymbolic reasoning — combining neural models with symbolic systems (logic programs, knowledge graphs, formal verification, constraint solvers). NOT limited to LLM-only reasoning — explicitly seek methods that integrate external symbolic components. Also in-scope: structured mathematical reasoning, program-aided reasoning, theorem prover integration.
+
+Contribution type: METHOD ONLY. Must propose a new hybrid algorithm, training objective, or inference pipeline that combines neural + symbolic components. Pure prompting tricks (vanilla CoT, self-consistency) are out of scope.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Neurosymbolic methods are often inference-heavy not training-heavy — budget accordingly.
+2. Time: ≤16 days. Use existing open checkpoints (Qwen3, Llama-3.x, DeepSeek-R1 distills) + off-the-shelf solvers (Z3, Prolog, SymPy, Lean4).
+3. Eval: MATH, AIME 2024/2025, GPQA Diamond, ProofWriter, FOLIO, LogiQA, ARC-Challenge, BBH.
+
+Look for: lightweight symbolic verifiers as post-hoc filters, neural-guided symbolic search, structured output → formal checker pipelines, hybrid neuro-symbolic distillation. Avoid: pure prompt engineering, vanilla CoT.
+
+Tag: direction=neurosymbolic_reasoning, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 6/10)
+{
+  "title": "Formally-Verified Intermediate Constraint Consensus Across Reasoning Paths",
+  "core_problem": "Recent work (CRAFT, PoLR, Draft-and-Prune) demonstrates that intermediate reasoning step consensus or pruning across candidate solutions provides stronger signals than answer-level majority voting. However, existing methods either rely on statistical similarity that cannot distinguish popular-but-contradictory constraints (CRAFT's TF-IRF/Jaccard), or prune individual paths based on internal consistency without cross-validating constraints across solutions (Draft-and-Prune's per-path |S|=0/|S|>1 checks). Meanwhile, single-output formal verification systems (MATH-VF, SAFE, FoVer, PRoSFI, VERGE) verify constraints within one solution or output but do not cross-validate across multiple reasoning paths, and cross-query consistency checking (arXiv 2604.14525) verifies coherence across different questions but not across multiple traces for the same question. Furthermore, 'Consensus is Not Verification' (arXiv 2603.06612) demonstrates that consensus-based aggregation fails for truthfulness because LLM errors are strongly correlated — but crucially, aggregation improves performance when a verifier exists. Can formally verifying cross-solution intermediate constraints via SMT solving and computer algebra yield more reliable consensus with interpretable provenance, and how frequently does statistical consensus actually retain contradictory constraints in practice?",
+  "opportunity": "CRAFT (arXiv 2604.14121, April 2026) builds a Reasoning Knowledge Graph from consensus intermediate steps using TF-IRF and Jaccard similarity, achieving significant accuracy improvements. However, CRAFT's authors explicitly acknowledge two key limitations: (1) 'consensus ≠ correctness' — frequently appearing steps can amplify shared errors, and (2) 'reduced effectiveness on symbolic math' due to lexical overlap bias in Jaccard similarity. This concern is empirically grounded by 'Consensus is Not Verification' (arXiv 2603.06612, March 2026), which demonstrates that LLM errors are strongly correlated across samples and even across model families — correlation persists even with random string conditioning — causing polling-style aggregation to yield no consistent accuracy gains over single-sample baselines. Critically, however, the paper finds that 'aggregation improves performance when a verifier exists, but it cannot serve as a verifier substitute,' directly motivating SICA's approach of introducing formal verification into the consensus process.\n\nDraft-and-Prune (D&P, arXiv 2603.17233, March 2026) addresses autoformalization brittleness by generating multiple natural-language plans, conditioning program generation on them, pruning individually contradictory or ambiguous formalizations (paths where the solver returns |S|=0 or |S|>1), and aggregating surviving paths via answer-level majority voting. D&P achieves strong results on logical reasoning benchmarks (AR-LSAT 78.43%, ProofWriter 98.33% with GPT-4), but its pruning operates independently on each path — it cannot detect cross-path contradictions where two individually valid paths assert mutually inconsistent constraints. D&P's authors explicitly note a limitation: 'We aggregate predictions at the answer level and do not cluster or de-duplicate candidates by symbolic equivalence.'\n\nA parallel line of work verifies individual solutions or outputs formally — MATH-VF (arXiv 2505.20869) uses CAS+Z3 for step-level verification on single solutions; SAFE (ACL 2025) uses Lean4 for retrospective step-aware verification; PRoSFI (arXiv 2603.29500) trains process rewards over structured formal intermediaries verified by Lean/Z3/Prover9, operating on individual 7B-model solutions. VERGE (arXiv 2601.20055, Jan 2026) is a single-output verify-and-refine framework that decomposes an LLM output into atomic claims, autoformalizes them, verifies joint satisfiability via Z3, and uses Minimal Correction Subsets (MCS) to provide targeted feedback for iterative refinement. VERGE's 'multi-model consensus' refers to K=3 candidate formalizations of a single claim checked for semantic equivalence — not cross-path reasoning aggregation. FoVer (arXiv 2505.15960, ACL 2026 Findings) uses Z3 and Isabelle for step-level error annotation in individual solutions for PRM training, demonstrating cross-task generalization to BBH subtasks (temporal sequences, tracking shuffled objects, word sorting). In the adjacent cross-output verification space, 'Quantifying Cross-Query Contradictions' (arXiv 2604.14525, April 2026) uses Z3 (QF_UFLIA) and CaDiCaL for cross-query consistency checking with unsat-core localization and counterexample-guided repair — but addresses cross-query consistency (different questions sharing a case file), not cross-trace consistency (same question, multiple reasoning paths). The EACL 2026 dynamic solver routing framework (arXiv 2510.06774) selects solvers at the problem level. But none of these methods formally cross-validate intermediate constraints across multiple candidate solutions for the same problem.\n\nThe gap: no method formally cross-validates intermediate constraints across multiple candidate solutions to produce a consistency-aware consensus signal with interpretable provenance. Concretely, SICA differs from D&P by extracting constraints from ALL paths and finding a globally consistent MAX-SAT-optimal subset (cross-path aggregation), rather than independently pruning paths with internal contradictions (per-path filtering). SICA differs from VERGE by applying MAX-SAT across multiple reasoning paths for answer selection, whereas VERGE applies the dual MCS operation within a single output for refinement feedback. SICA differs from the cross-query contradictions framework by operating on multiple traces for the same question (cross-trace scope) using weighted partial MAX-SAT for consensus, rather than on different questions in a case file (cross-query scope) using unsat-core repair. A key empirical question — how frequently does statistical consensus actually retain contradictory constraints? — remains unanswered and is central to quantifying this opportunity.\n\nRecent work on autoformalization faithfulness further motivates SICA's extraction quality pipeline: 'Do LLMs Game Formalization?' (arXiv 2604.19459, VerifAI-2 Workshop, ICLR 2026) shows that high compilation rates should not be equated with faithful reasoning, finding that two-stage formalization pipelines reveal distinct unfaithfulness patterns (axiom fabrication, premise mistranslation) that evade standard verification. This underscores the need for SICA's multi-tier extraction validation.",
+  "landscape": "Standard self-consistency (Wang et al., ICLR 2023) performs majority voting on final answers and shows diminishing returns on frontier models — gains plateau at <2% with accuracy sometimes declining at high sample counts (arXiv 2511.00751). 'Consensus is Not Verification' (arXiv 2603.06612, March 2026) provides a theoretical explanation: LLM errors are strongly correlated across samples and model families, causing consensus to reinforce shared misconceptions rather than converge on truth; however, the paper finds aggregation succeeds when an external verifier exists. CRAFT (arXiv 2604.14121, April 2026) extracts consensus intermediate steps via a Reasoning Knowledge Graph using TF-IRF/Jaccard similarity and topological generation, achieving up to +8.5% accuracy over SC baselines on GSM8K, FOLIO, FLD, and OlympiadBench with K=3 traces; its authors note 'consensus ≠ correctness' and 'reduced effectiveness on symbolic math' as limitations. PoLR (ICLR 2026) uses prefix consensus to prune reasoning paths, matching SC accuracy while reducing token usage by 50-60%.\n\nDraft-and-Prune (D&P, arXiv 2603.17233, March 2026): An inference-time framework that drafts multiple natural-language plans, conditions program generation on them, prunes executable but contradictory (|S|=0) or ambiguous (|S|>1) formalizations independently for each path, and aggregates surviving paths via answer-level majority voting. Uses Z3Py for AR-LSAT/LogicalDeduction and PyKe for ProofWriter/PrOntoQA. Achieves AR-LSAT 78.43%, ProofWriter 98.33%, PrOntoQA 99.32%, LogicalDeduction 99.50% (GPT-4). Key limitation: no cross-path constraint checking or equivalence-aware deduplication.\n\nVERGE (arXiv 2601.20055, Jan 2026): A single-output neurosymbolic verify-and-refine loop. Decomposes an LLM output into atomic claims, classifies them by type, autoformalizes into FOL, and verifies joint satisfiability via Z3. Uses semantic routing (symbolic solvers for logical claims, LLM ensembles for commonsense) and Minimal Correction Subsets (MCS) for precise error localization, providing actionable feedback for iterative refinement. VERGE's K=3 refers to candidate formalizations of a single claim checked for semantic equivalence, not multiple reasoning paths. MCS (minimum claims to remove for satisfiability) is dual to MAX-SAT (maximum satisfiable subset) but is applied within one output for feedback, not across paths for consensus. Evaluated on FOLIO (84.7-89.2%), ProofWriter (85.2-93.0%), AR-LSAT (88.6-91.7%) across GPT-OSS-20B, GPT-OSS-120B, and Claude 3.7 Sonnet.\n\nSingle-solution formal verification: MATH-VF (arXiv 2505.20869, May 2025) uses a Formalizer+Critic pipeline with CAS and Z3 SMT solver for step-level verification on individual solutions, evaluated on MATH-500 and ProcessBench. SAFE (ACL 2025, arXiv 2506.04592) uses Lean4 for retrospective step-aware formal verification of individual reasoning chains, introducing the FormalStep benchmark (30,809 formal statements). PRoSFI (arXiv 2603.29500, March 2026) — 'Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries' — trains process rewards over structured formal intermediaries verified by Lean tactics, Z3, and Prover9, operating on individual 7B-model solutions; achieves 92.97% accuracy / 76.07% GPT Soundness on ProverQA-Hard. FoVer (arXiv 2505.15960, ACL 2026 Findings) — 'Training Step-Level Reasoning Verifiers with Formal Verification Tools' — uses Z3 and Isabelle for step-level error annotation in individual solutions for PRM training; demonstrates cross-task generalization to BBH subtasks (temporal sequences 97.2%, tracking shuffled objects 96.0%, word sorting 46.8% with Llama3.1-8B-PRM at Best-of-7) and to MATH, AIME, ANLI, MMLU-Pro.\n\nCross-output consistency verification: 'Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning' (arXiv 2604.14525, April 2026) addresses cross-query consistency — maintaining a globally satisfiable belief state across interdependent queries sharing a case file. Uses Z3 v4.8.17 (QF_UFLIA theory) and CaDiCaL for SAT, with unsat-core localization and counterexample-guided lexicographic repair. Achieves SetCons improvement from 0.56 to 0.94 across 390 case files spanning relational/SAT, temporal/SMT, policy/rules, and abductive domains. Crucially, this operates at cross-query scope (different questions sharing context) rather than cross-trace scope (same question, multiple reasoning paths), and uses unsat-core repair rather than weighted partial MAX-SAT consensus. SICA's differentiators are: cross-trace scope, intermediate constraint extraction from reasoning steps, and popularity-weighted MAX-SAT for answer selection.\n\nSolver routing: The EACL 2026 dynamic solver composition framework (arXiv 2510.06774) automatically identifies formal reasoning strategies and routes to specialized solvers at the problem level, achieving 27% improvement over GPT-4o. SICA's theory-aware routing operates at the finer-grained assertion level.\n\nVeriCoT (Nov 2025) formalizes individual CoT traces into FOL for entailment checking without cross-solution comparison. FregeLogic (SemEval 2026) uses Z3 as a tiebreaker for syllogistic validity.\n\nAutoformalization reliability: Grammars of Formal Uncertainty (NeurIPS 2025) demonstrates that SMT autoformalization is task-dependent: +34.8% on ProofWriter but -44.5% on FOLIO, necessitating careful benchmark selection and per-domain extraction analysis. 'Do LLMs Game Formalization?' (arXiv 2604.19459, VerifAI-2 Workshop, ICLR 2026) evaluates faithfulness of LLM autoformalization on 303 FOL problems, finding that high compilation rates (87-99%) do not guarantee faithful reasoning — two-stage pipelines reveal distinct unfaithfulness patterns: axiom fabrication (GPT-5) and premise mistranslation (DeepSeek-R1). Autoformalization surveys (arXiv 2505.23486) report ~70% success rate on physics kinematics, with selective verification reducing errors by 14-100% with minimal abstention.\n\nNo concurrent work (searched arXiv and OpenReview through May 2026) formally cross-validates intermediate constraints across multiple candidate solutions for the same problem.",
+  "approach": "We propose Symbolic Invariant Consensus Aggregation (SICA): given a problem, sample K reasoning paths from a frontier open-source reasoning model (QwQ-32B via vLLM on 1-2 A100s; Qwen3-32B as secondary model for ablation), then use a prompted LLM extractor to parse each trace into typed symbolic assertions (equations, inequalities, logical predicates). SICA introduces four key technical components:\n\n(1) **Theory-aware assertion-level solver routing**: Extracted assertions are classified by constraint type and routed to appropriate solvers — Z3 for tractable theories (linear arithmetic, propositional logic, uninterpreted functions, bitvectors) and SymPy for nonlinear polynomial arithmetic, algebraic equivalence, and modular arithmetic. Unlike the EACL 2026 framework (arXiv 2510.06774) which routes at the problem level, SICA routes at the assertion level, enabling mixed-theory problems where individual steps span different solver domains (common in competition math). Assertions that neither solver can handle receive numerical spot-checking as fallback, with unverifiable assertions flagged and excluded from the consensus set (rather than silently included).\n\n(2) **Weighted partial MAX-SAT for invariant consensus**: Rather than enumerating assertion subsets (exponential worst-case), SICA leverages Z3's built-in optimization context to solve weighted partial MAX-SAT directly. Each unique assertion (deduplicated via solver-verified equivalence) is weighted by its cross-solution frequency. The optimizer finds the largest jointly satisfiable subset of assertions, weighted by popularity — a single Z3 optimization call replaces exponential subset enumeration. Per-query timeout caps (10s) bound worst-case latency. This cross-path MAX-SAT consensus is the key differentiator from Draft-and-Prune (D&P), which prunes paths independently based on internal consistency (|S|=0 or |S|>1) and aggregates surviving answers via majority voting without cross-path constraint checking. It is also distinct from VERGE's MCS, which is the dual operation (minimum claims to remove) applied within a single output for refinement feedback rather than across paths for answer selection. It further differs from the cross-query contradictions framework (arXiv 2604.14525), which uses unsat-core localization and counterexample-guided repair across different questions sharing a case file — SICA uses weighted partial MAX-SAT across different reasoning traces for the same question.\n\n(3) **Invariant-backed answer scoring**: Each candidate answer is scored by the coverage and weight of its supporting assertions within the MAX-SAT-optimal consistent set, yielding a continuous invariant consensus score. This captures partial structural agreement even when final answers diverge, and provides interpretable provenance (each score is backed by a specific set of formally verified constraints).\n\n(4) **Extraction quality assurance pipeline**: To address the documented task-dependence of autoformalization (Grammars of Formal Uncertainty, NeurIPS 2025) and the unfaithfulness risks identified by 'Do LLMs Game Formalization?' (arXiv 2604.19459), we implement a three-tier extraction quality pipeline: (a) syntactic validation — each extracted assertion must parse in the target solver's input language; (b) semantic spot-checking — a random 20% of assertions are checked against the original natural language step via an LLM judge for semantic fidelity, specifically targeting the axiom fabrication and premise mistranslation failure modes identified in the faithfulness literature; (c) coverage tracking — we report 'verifiable assertion coverage' (% of extracted assertions that successfully enter the MAX-SAT pipeline) per benchmark as a first-class metric. Extraction failures cascade to numerical fallback or abstention, preventing malformed inputs from corrupting the consensus signal.\n\n**Limitations of formal cross-validation**: SICA's MAX-SAT consensus catches contradictory constraints but cannot detect universally-wrong-but-mutually-consistent constraints caused by correlated extraction errors. 'Consensus is Not Verification' (arXiv 2603.06612) demonstrates that LLM errors are strongly correlated across samples and even across model families, which implies that if all K paths produce the same wrong formalization of a constraint, MAX-SAT will see K consistent-but-wrong assertions and cannot flag the error. This is a fundamental limitation of any approach combining LLM extraction with formal verification: the verifier guarantees consistency, not correctness of the extraction. SICA's semantic spot-checking tier partially mitigates this — by sampling 20% of assertions for LLM-judge semantic fidelity checks, it can catch systematic mistranslation patterns. However, if the extraction LLM and the judge LLM share the same correlated bias (as the correlated errors literature suggests is likely), the mitigation is incomplete. We acknowledge this limitation explicitly and note two potential future mitigations: (a) using structurally diverse extractor models (e.g., symbolic parsers alongside LLM extractors) to decorrelate extraction errors, and (b) grounding extracted constraints against external knowledge sources (CAS simplification, unit-test-style numerical spot-checking) that do not share LLM inductive biases. We include FOLIO as a diagnostic ablation where SMT autoformalization is documented to hurt (-44.5%), precisely to empirically characterize the boundary between domains where SICA's extraction is faithful enough to help versus where correlated errors dominate.\n\n**Dual-track evaluation plan**:\n\n*Track A — EMNLP 2026 (ARR May 25, primary target, 14 days):* Scoped evaluation with K=12 traces on 5 core benchmarks plus 3 BBH subtasks:\n- **MATH-500** (algebraic/arithmetic reasoning; QwQ-32B ~90.6%)\n- **AIME 2024** (competition math with mixed-theory constraints; QwQ-32B ~79.5%)\n- **ProofWriter** (formal logic; enables direct comparison with D&P 98.33% and VERGE 85.2-93.0%)\n- **FOLIO** (first-order logic; diagnostic ablation — SMT autoformalization documented to hurt -44.5% here)\n- **BBH** (3 subtasks: logical deduction, tracking shuffled objects, temporal sequences — enables direct comparison with FoVer's BBH evaluation at Best-of-7; tests cross-domain generalization to structured informal reasoning)\n\nBaselines for Track A: self-consistency, CRAFT, D&P (on ProofWriter), VERGE (on ProofWriter/FOLIO).\n\n*Track B — AAAI 2027 (paper deadline ~August 1, extended version):* Expanded to K=16 traces on all Track A benchmarks plus:\n- **AIME 2025** (tests generalization to unseen competition problems; available via MathArena/aime_2025 on HuggingFace)\n- **GPQA Diamond** (graduate-level science; QwQ-32B ~65.2%; per-domain reporting for physics/chemistry vs. biology)\n- **LogiQA 2.0** (natural language logical reasoning; 8,678 questions; tests constraint extraction beyond math/formal logic)\n- Additional BBH subtasks and full ablation suite\n\n**ARC-Challenge exclusion justification**: ARC-Challenge (Clark et al., 2018) consists of multiple-choice grade-school science questions that primarily test factual knowledge retrieval (e.g., 'Which mineral is the hardest?', 'What happens when water freezes?'). Most questions lack the multi-step constraint structure required for meaningful symbolic assertion extraction — they involve domain knowledge rather than chains of extractable equations, inequalities, or logical predicates. Including ARC-Challenge would likely yield near-zero verifiable assertion coverage, providing no insight beyond confirming SICA's domain specificity (which FOLIO already demonstrates as a negative diagnostic). We note this scope limitation explicitly.\n\n**Metrics and analyses**:\n- Primary: accuracy, calibration (ECE), informativeness of partial invariant agreement when candidates disagree\n- **Contradiction frequency analysis** (centerpiece experiment): For each problem across all benchmarks, we measure how often CRAFT's statistical consensus retains logically contradictory constraint pairs. We report the 'contradiction rate' — the fraction of problems where at least one pair of popular constraints (appearing in ≥3 of K traces) are mutually unsatisfiable. If >15%, this validates SICA's core motivation; if <5%, we honestly acknowledge limited practical impact on this axis and emphasize interpretability/provenance instead.\n- **D&P comparison**: On ProofWriter (shared benchmark), we compare SICA's cross-path MAX-SAT consensus against D&P's per-path pruning + answer-level voting, specifically measuring: (a) how many problems have cross-path contradictions that D&P's per-path pruning misses, and (b) whether MAX-SAT-backed scoring outperforms answer-level majority voting among surviving paths.\n- **FoVer comparison on BBH**: On the 3 shared BBH subtasks, we compare SICA's inference-time cross-path consensus against FoVer's training-time PRM approach (Llama3.1-8B-PRM at Best-of-7: temporal 97.2%, tracking 96.0%, word sorting 46.8%), analyzing whether cross-path formal consensus provides complementary signal to trained process reward models.\n- **Extraction accuracy ablation**: Per-benchmark measurement of (a) syntactic parse rate, (b) semantic fidelity (manual annotation on 100 samples per benchmark), and (c) error propagation analysis — how X% extraction error degrades MAX-SAT consensus quality via controlled noise injection. Per the findings of 'Do LLMs Game Formalization?', we specifically track axiom fabrication and premise mistranslation rates.\n- **Correlated extraction error analysis**: On a subset of problems (100 per benchmark), we measure cross-path extraction agreement — the fraction of assertions that are semantically equivalent across all K traces — to empirically quantify the degree of correlated extraction and assess how much independent signal SICA's MAX-SAT actually receives.\n- **Compute-normalized comparison**: Report total tokens generated, wall-clock time per problem, and decomposed latency (inference, extraction, solver, MAX-SAT) for each method. Plot accuracy vs. total compute (tokens) curves. If SICA takes 5x compute of vanilla SC for +2% accuracy, we justify via interpretability/soundness or acknowledge the tradeoff.\n\nThe primary contribution is not raw accuracy improvement over SC (which has diminishing returns on frontier models) but rather: (a) formal soundness guarantees on the consensus signal, (b) interpretable constraint-level provenance for each answer, (c) detecting logically inconsistent popular reasoning steps that both statistical consensus (CRAFT) and per-path pruning (D&P) miss — with empirical quantification of how frequently this occurs, (d) systematic domain analysis of formal cross-solution verification including where it helps (ProofWriter, BBH logical deduction) vs. hurts (FOLIO), and (e) empirical characterization of correlated extraction errors as a fundamental limitation of LLM-based autoformalization in consensus settings.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180-240h A100 80GB (5 benchmarks + 3 BBH subtasks × K=12 traces + extraction + ablations)",
+      "gpu_utilization": "Low (~20-30%); GPUs idle during coding, debugging solver routing, manual extraction annotation",
+      "timeline": "2-3 months",
+      "team": "1-2 researchers with formal methods and LLM experience",
+      "estimated_gpu_cost": "$235-310 (at ~$1.30/hr typical A100 spot rate)",
+      "h100_equivalent": "~90-120h H100 (well within 200h H100 budget)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~220-300h A100 80GB",
+      "gpu_utilization": "Moderate (~50-60%); agent codes and runs experiments between human review gates",
+      "timeline": "4-6 weeks (fits AAAI 2027 extended version with writing buffer)",
+      "team": "1 researcher, ~40-50min/day reviewing extraction quality, solver routing correctness, contradiction analysis, D&P comparison design, and BBH extraction quality; ~6h total for manual semantic fidelity annotation (100 samples × 5 benchmarks + 3 BBH subtasks)",
+      "claude_api_cost": "$200-400 (est. 2000-4000 Opus turns)",
+      "estimated_gpu_cost": "$285-390",
+      "h100_equivalent": "~110-150h H100 (within 200h H100 budget)",
+      "risk_note": "Solver routing heuristics require human judgment for edge cases; CRAFT replication may need prompt tuning; BBH logical deduction extraction quality needs validation"
+    },
+    "auto_research": {
+      "gpu_hours": "~300-400h A100 80GB (Track A: 5 benchmarks + 3 BBH subtasks × K=12 × core ablations)",
+      "gpu_utilization": "High (~85-95%); agent pipelines inference, extraction, and solving continuously; batched vLLM serving keeps GPUs saturated",
+      "timeline": "10-14 days with 2-4 A100s available (fits EMNLP 2026 ARR May 25 deadline)",
+      "team": "0 (initial setup only, ~3 hours)",
+      "claude_api_cost": "$350-600 (est. 3500-6000 Opus turns)",
+      "estimated_gpu_cost": "$390-520",
+      "h100_equivalent": "~150-200h H100 (within 200h H100 budget with K=12 and 5+3 benchmarks)",
+      "speed_bottleneck": "GPU count for parallel vLLM inference across benchmarks × 12 samples; secondary bottleneck is Z3 MAX-SAT optimization time (mitigated by 10s per-query timeout)",
+      "risk_note": "Automated extraction may produce malformed solver input in ~10-20% of traces; without human review the agent may over-tune extraction prompts to specific benchmarks; contradiction frequency analysis needs careful statistical framing to avoid over-claiming; 14-day timeline is tight but feasible in full auto mode with scoped benchmark set"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026 — 14 days from now; primary target with Track A scoped evaluation)",
+    "AAAI 2027 (abstract deadline: ~July 25, 2026; paper deadline: ~August 1, 2026 — extended version with Track B full evaluation)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Self-Consistency Improves Chain of Thought Reasoning in Language Models (ICLR 2023)",
+    "CRAFT: Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis (arXiv 2604.14121, April 2026)",
+    "Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning (arXiv 2603.17233, March 2026)",
+    "PoLR: The Path of Least Resistance — Guiding LLM Reasoning Trajectories with Prefix Consensus (ICLR 2026)",
+    "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2601.20055, Jan 2026)",
+    "VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks (arXiv 2025)",
+    "MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving (arXiv 2505.20869, May 2025)",
+    "SAFE: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification (ACL 2025, arXiv 2506.04592)",
+    "Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (EACL 2026, arXiv 2510.06774)",
+    "PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2603.29500, March 2026)",
+    "FoVer: Training Step-Level Reasoning Verifiers with Formal Verification Tools (arXiv 2505.15960, ACL 2026 Findings)",
+    "Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks (NeurIPS 2025)",
+    "FregeLogic at SemEval 2026 Task 11: Hybrid Neuro-Symbolic Architecture for Syllogistic Validity (SemEval 2026)",
+    "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning (arXiv 2604.19459, VerifAI-2 Workshop, ICLR 2026)",
+    "Reevaluating Self-Consistency Scaling in Multi-Agent Systems (arXiv 2511.00751)",
+    "Reasoning Aware Self-Consistency: Leveraging Reasoning Paths for Efficient LLM Sampling (NAACL 2025)",
+    "Faithful Logical Reasoning via Symbolic Chain-of-Thought (ACL 2024)",
+    "Autoformalization in the Era of Large Language Models: A Survey (arXiv 2505.23486, May 2025)",
+    "Consensus is Not Verification: Why Crowd Wisdom Strategies Fail for LLM Truthfulness (arXiv 2603.06612, March 2026)",
+    "Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning (arXiv 2604.14525, April 2026)"
+  ],
+  "description": "We propose Symbolic Invariant Consensus Aggregation (SICA), a method that formally cross-validates intermediate constraints extracted from multiple LLM reasoning paths to produce a soundness-guaranteed consensus signal. While CRAFT (April 2026) demonstrates the value of intermediate-step consensus via statistical similarity (TF-IRF/Jaccard), its authors explicitly acknowledge 'consensus ≠ correctness' and 'reduced effectiveness on symbolic math.' This limitation is theoretically grounded by 'Consensus is Not Verification' (arXiv 2603.06612, March 2026), which proves that LLM errors are strongly correlated across samples and model families, causing pure consensus to fail — but critically finds that 'aggregation improves performance when a verifier exists,' directly motivating SICA's approach. Draft-and-Prune (D&P, March 2026) improves autoformalization reliability by independently pruning paths with internal contradictions and aggregating survivors via majority voting, but does not perform cross-path constraint checking — its authors note they 'aggregate predictions at the answer level and do not cluster or de-duplicate candidates by symbolic equivalence.' Meanwhile, VERGE (Jan 2026) verifies and refines a single LLM output by decomposing it into atomic claims, checking joint satisfiability via Z3, and using Minimal Correction Subsets (MCS) to provide targeted refinement feedback — but operates on one output, not across reasoning paths. In the adjacent cross-output verification space, 'Quantifying Cross-Query Contradictions' (arXiv 2604.14525, April 2026) uses Z3 (QF_UFLIA) and CaDiCaL for cross-query consistency checking with unsat-core repair, but addresses cross-query consistency (different questions sharing a case file) rather than cross-trace consistency (same question, multiple paths). Single-solution formal verification (MATH-VF uses CAS+Z3; SAFE uses Lean4; PRoSFI uses Lean/Z3/Prover9 for structured formal intermediaries on 7B models; FoVer (arXiv 2505.15960) uses Z3+Isabelle for PRM training data with cross-task generalization to BBH) improves reliability but none cross-validate across solutions.\n\nSICA fills this gap by extracting typed symbolic assertions from K sampled reasoning traces, routing them to appropriate solvers via assertion-level theory-aware dispatch (Z3 for linear arithmetic and propositional logic; SymPy for nonlinear polynomial and algebraic constraints — finer-grained than the EACL 2026 problem-level solver routing), and using Z3's built-in weighted partial MAX-SAT optimization to find the largest jointly satisfiable assertion set weighted by cross-solution frequency. SICA's MAX-SAT consensus across paths is the cross-path counterpart to VERGE's within-output MCS (dual operations: MAX-SAT keeps the maximum consistent subset; MCS removes the minimum inconsistent subset), and differs from cross-query contradiction checking by operating on multiple traces for the same question via weighted consensus rather than unsat-core repair across different questions. A three-tier extraction quality pipeline (syntactic validation, semantic spot-checking targeting the unfaithfulness patterns identified by 'Do LLMs Game Formalization?' (arXiv 2604.19459), and coverage tracking) addresses the documented task-dependence of autoformalization.\n\nWe explicitly acknowledge a fundamental limitation: SICA's MAX-SAT consensus catches contradictory constraints but cannot detect universally-wrong-but-consistent constraints caused by correlated extraction errors — the same correlated error phenomenon documented by 'Consensus is Not Verification.' The semantic spot-checking tier partially mitigates this, but correlated biases between the extractor and judge LLMs limit its effectiveness. We include FOLIO as a diagnostic ablation and propose a correlated extraction error analysis to empirically characterize this boundary.\n\nWe adopt a dual-track evaluation plan. Track A (EMNLP 2026, ARR May 25): scoped evaluation with K=12 on MATH-500, AIME 2024, ProofWriter, FOLIO, and 3 BBH subtasks (logical deduction, tracking shuffled objects, temporal sequences) using QwQ-32B via vLLM, comparing against SC, CRAFT, D&P, VERGE, and FoVer. BBH subtasks enable direct comparison with FoVer (ACL 2026) which reports Best-of-7 results on the same tasks (temporal 97.2%, tracking 96.0%, word sorting 46.8%). Track B (AAAI 2027): expanded to K=16 with AIME 2025, GPQA Diamond, and LogiQA 2.0 added. ARC-Challenge is excluded because its multiple-choice science knowledge questions lack the multi-step constraint structure needed for meaningful symbolic extraction (most test factual recall rather than chains of extractable logical predicates). The centerpiece experiment is a contradiction frequency analysis measuring how often statistical consensus retains logically contradictory constraint pairs. FOLIO serves as a diagnostic ablation where SMT is documented to hurt (-44.5%). Primary contributions: formal soundness guarantees, interpretable constraint-level provenance, empirically-quantified detection of contradictory consensus that both statistical methods and per-path pruning miss, systematic domain analysis of formal cross-solution verification, and honest characterization of the correlated extraction error limitation. Auto-mode compute fits within 200h H100 budget at K=12 with 5+3 benchmarks.",
+  "project_name": "symb_invariant_consensus",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL MISS: CRAFT (arXiv 2604.14121, April 2026) builds a Reasoning Knowledge Graph from consensus intermediate steps across multiple candidate traces, achieving 10%+ accuracy improvement on GSM8K, FOLIO, FLD, and OlympiadBench. This is the closest concurrent work and must be discussed — SICA's formal verification is differentiated but the intermediate-consensus concept is shared.", "Autoformalization to SMT-LIB is task-dependent and can be harmful: research shows -44.5% accuracy on FOLIO when using SMT formalization (Grammars of Formal Uncertainty, NeurIPS 2025 workshop). Evaluating SICA on FOLIO with Z3-based extraction is risky — the pipeline may actively hurt performance on this benchmark.", "Z3 is undecidable for nonlinear integer arithmetic and incomplete for nonlinear real arithmetic. AIME problems frequently involve nonlinear constraints (quadratics, modular arithmetic, combinatorics). Z3 will timeout or return 'unknown' on a significant fraction of extracted constraints, undermining the invariant graph construction.", "Self-consistency diminishing returns: Research (arXiv 2511.00751) demonstrates SC gains plateau at <2% on frontier models that already solve most problems correctly, with accuracy sometimes declining at high sample counts. The motivation 'SC discards structural information' is valid in theory but the practical baseline it improves upon is already losing relevance.", "DeepSeek V4 Pro (1.6T params, 49B activated MoE) is infeasible to serve locally via vLLM within 200 H100-hours — it requires 8+ GPUs just for model loading. Either use the API (adds cost outside GPU budget) or restrict to QwQ-32B / DeepSeek V4 Flash (284B/13B activated).", "The 'maximal consistent invariant cluster' finding via Z3 satisfiability checking is worst-case exponential in the number of extracted assertions. With K=32 solutions and potentially dozens of assertions per solution, the constraint combinatorics could make this step prohibitively expensive without careful engineering.", "Missing baseline: PoLR (ICLR 2026) uses prefix consensus to prune reasoning paths and matches/exceeds self-consistency while reducing token usage by 60%. This is a relevant efficiency baseline that should be compared.", "GSM8K is essentially saturated by modern reasoning models (QwQ-32B achieves ~95%+). Including it adds little signal — the improvement ceiling is too low to demonstrate SICA's value."]
+Feedback: The core concept of cross-solution formal invariant consensus has genuine novelty, but several revisions are needed:
+
+1. **Address CRAFT directly**: CRAFT (arXiv 2604.14121) is the most important competitor. You must: (a) cite it as the closest related work, (b) clearly articulate why formal verification via Z3 adds value over CRAFT's statistical TF-IRF/Jaccard approach — e.g., CRAFT cannot detect when statistically popular intermediate steps are actually logically inconsistent, while Z3 can. Run a direct comparison if feasible.
+
+2. **Scope Z3 to tractable theories**: Restrict invariant extraction to Z3-tractable constraint types: linear arithmetic, bitvectors, uninterpreted functions, and propositional logic. For AIME problems involving nonlinear constraints, fall back to SymPy for algebraic simplification/equivalence checking instead of Z3. Document this theory-routing explicitly.
+
+3. **Drop or replace FOLIO**: Given documented -44.5% SMT autoformalization failure on FOLIO, either (a) replace FOLIO with a benchmark where SMT formalization is known to help (e.g., ProntoQA, or use ProofWriter exclusively for logic), or (b) keep FOLIO but prepare for negative results and frame them as analysis of where symbolic consensus helps vs. hurts.
+
+4. **Add CRAFT and PoLR as baselines**: CRAFT for intermediate-consensus comparison, PoLR for compute-efficient SC comparison. Without these, reviewers will flag missing baselines.
+
+5. **Tighten resource model**: Use QwQ-32B (not DeepSeek V4 Pro) for local vLLM serving. Drop GSM8K (saturated). Reduce to 3-4 focused benchmarks: MATH-500, AIME 2024, ProofWriter, and one logic benchmark where SMT works well.
+
+6. **Weaken the motivation**: Don't frame this as 'improving self-consistency' — frame it as 'providing interpretable, formally-verified confidence signals when sampling-based methods disagree.' The value is in interpretability and formal guarantees, not raw accuracy improvement over vanilla SC on benchmarks where models already achieve 95%+.
+
+### Round 2 review
+Verdict: revise
+Issues: ["MISSING RELATED WORK — MATH-VF (arXiv 2505.20869, May 2025): This paper proposes a Formalizer + Critic framework that translates natural language solutions into formal context and uses CAS + Z3 SMT solver for step-level verification on MATH-500. It shares SICA's assertion-extraction + solver-verification pipeline and must be discussed. The key differentiator is that MATH-VF works on single solutions while SICA cross-validates across multiple solutions.", "MISSING RELATED WORK — SAFE (ACL 2025, arXiv 2506.04592): Uses Lean4 for retrospective step-aware formal verification of individual reasoning chains. Shares the formal-verification-of-intermediate-steps concept. Must be acknowledged to avoid reviewer complaints about incomplete related work coverage.", "MISSING RELATED WORK — Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (EACL 2026, arXiv 2510.06774): This paper introduces dynamic solver routing that automatically identifies formal reasoning strategies and selects specialized solvers. It directly overlaps with SICA's 'theory-aware solver routing' component. While SICA routes at the assertion level (finer-grained) vs. problem level, the conceptual overlap must be acknowledged and differentiated.", "MISSING RELATED WORK — PRoSFI (arXiv 2603.29500, March 2026): Process Reward over Structured Formal Intermediaries, which outputs structured intermediate steps verified by formal provers. Shares the structured-intermediate-step + formal-verification concept.", "ProntoQA is near-saturated: ATP-augmented neuro-symbolic approaches achieve ~99%+ accuracy on ProntoQA. Including it limits SICA's ability to demonstrate meaningful improvements. Consider replacing with a benchmark that has more headroom — e.g., FOLIO (acknowledging SMT risks as ablation analysis), LogiQA, or ARC-Challenge as originally specified in user requirements.", "Autoformalization reliability remains underspecified: The proposal acknowledges 10-20% malformed extraction in auto_research mode but provides no concrete mitigation strategy or error analysis plan. Given 'Grammars of Formal Uncertainty' shows SMT formalization is task-dependent (+34.8% ProofWriter, -44.5% FOLIO), the paper needs: (a) a planned ablation studying extraction accuracy per benchmark, (b) a fallback strategy when extraction fails (currently only 'numerical spot-checking' is mentioned), and (c) analysis of how extraction errors propagate through the MAX-SAT pipeline.", "Compute fairness in baseline comparison: SICA with K=16 requires 16 reasoning traces + 16 extraction LLM calls + solver calls + MAX-SAT optimization. Comparing against vanilla SC (K=16, just majority vote) on accuracy alone is misleading — the paper must report total compute (FLOPs or wall-clock) for each method and demonstrate that SICA's gains justify the overhead. CRAFT and PoLR comparisons should also be compute-normalized.", "The user's required benchmarks (GPQA Diamond, LogiQA, ARC-Challenge, BBH) are mostly absent: The user specified evaluation on 'MATH, AIME 2024/2025, GPQA Diamond, ProofWriter, FOLIO, LogiQA, ARC-Challenge, BBH' but the proposal only covers MATH-500, AIME 2024, ProofWriter, and ProntoQA. At minimum, GPQA Diamond (where formal constraint extraction may help on science reasoning) and one additional user-requested benchmark should be included."]
+Feedback: The revision successfully addressed the most critical Round 1 issues — CRAFT is properly positioned as the closest competitor, Z3 is scoped to tractable theories with SymPy fallback, GSM8K is dropped, and the framing shifts to formal soundness/interpretability. The weighted partial MAX-SAT via Z3 Optimize is technically sound (verified: Z3's assert_soft supports this). However, several issues remain:
+
+1. **Complete the related work**: Add MATH-VF (step-level CAS+SMT verification, single-solution), SAFE (Lean4 step verification, ACL 2025), EACL 2026 solver routing paper (dynamic solver composition), and PRoSFI (formal intermediate verification for process reward). For each, clearly state: 'X does Y on single solutions; SICA extends this to cross-solution consensus via MAX-SAT.' This is critical — a reviewer who knows MATH-VF will immediately flag its absence.
+
+2. **Replace ProntoQA**: It's near-saturated (~99% with ATP methods). Add GPQA Diamond instead — it has science reasoning problems where formal constraint extraction could help and is explicitly requested by the user. Consider also adding one of LogiQA/ARC-Challenge/BBH per user requirements.
+
+3. **Autoformalization ablation plan**: Add a concrete plan to measure extraction accuracy (what % of assertions parse correctly, what % are semantically faithful to the original reasoning step) and analyze how extraction noise affects downstream MAX-SAT quality. This is the single biggest technical risk and reviewers will probe it.
+
+4. **Compute-normalized comparison**: Report FLOPs or wall-clock time per problem for each method. If SICA takes 5x the compute of vanilla SC for +2% accuracy, that needs to be acknowledged and justified via the interpretability/soundness argument.
+
+5. **Strengthen impact narrative**: The current pitch — 'CRAFT's blind spot is logically inconsistent popular steps' — is good but needs empirical grounding. Include a planned analysis: on how many problems does CRAFT actually retain contradictory constraints? If this is rare in practice (e.g., <5% of problems), the motivation weakens. If frequent (>15%), it's a strong selling point. This analysis should be a centerpiece of the paper.
+
+### Round 3 review
+Verdict: revise
+Issues: ["MISSING RELATED WORK — Draft-and-Prune (arXiv 2603.17233, March 2026): This paper proposes an inference-time framework that (1) drafts multiple natural-language plans, (2) conditions program generation on them, (3) autoformalizes into solver-executable programs, (4) prunes executable but contradictory or ambiguous formalizations, and (5) aggregates predictions from surviving paths via majority voting. Evaluated on AR-LSAT, ProofWriter, PrOntoQA, and LogicalDeduction. This is the closest competitor to SICA's pruning mechanism — the key differentiator is that D&P prunes individual paths' internal contradictions while SICA finds cross-path MAX-SAT consensus, but the overlap is substantial and must be cited and differentiated.", "VERGE characterization is misleading: The proposal states VERGE 'performs multi-sample consensus via formal semantic equivalence checking of final claims with semantic routing.' My deep reading of VERGE (arXiv 2601.20055) confirms it does NOT do multi-path reasoning consensus. VERGE's 'multi-sample' aspect refers to K=3 candidate SMT formalizations of a single claim for equivalence checking (consensus among formalizations of one claim), not cross-path reasoning aggregation. VERGE is a single-output verify-and-refine loop. Its MCS is dual to MAX-SAT but used for generating feedback to the LLM, not for selecting consensus answers. This must be corrected — a reviewer familiar with VERGE will immediately flag the mischaracterization.", "QwQ-32B AIME 2024 baseline inaccurate: The proposal claims ~83% but the official Qwen team blog reports 79.5%. Analytics Vidhya reports 86% as an outlier. The claimed 83% doesn't match any authoritative source. This should be corrected to 79.5% (official) or the source of the 83% figure should be cited.", "Missing user-required benchmarks: The user explicitly requested evaluation on 'MATH, AIME 2024/2025, GPQA Diamond, ProofWriter, FOLIO, LogiQA, ARC-Challenge, BBH.' AIME 2025, LogiQA, ARC-Challenge, and BBH are all absent. At minimum, AIME 2025 should be trivially addable (same format as AIME 2024), and one of LogiQA/BBH would test generality of constraint extraction on non-math reasoning.", "Venue timeline misalignment: The proposal targets 'EMNLP 2026 (ARR next cycle, ~June-July 2026, if ready)' but verified EMNLP 2026 dates show the May 25, 2026 ARR cycle IS the last cycle eligible for EMNLP 2026 commitment (deadline August 2, 2026). There is no 'next cycle' that feeds into EMNLP 2026. Either commit to the May 25 deadline (14 days — extremely aggressive) or explicitly acknowledge that EMNLP 2026 is not feasible and the primary targets are AAAI 2027 (abstract July 25, paper August 1) and ICLR 2027.", "Auto mode compute exceeds user budget: The auto_research mode estimates 450-650h A100, which converts to roughly 225-325h H100-equivalent (H100 is ~2x faster for inference workloads). This exceeds the user's hard constraint of ≤200 H100-hours. The manual mode (200-280h A100 ≈ 100-140h H100) fits, but manual mode requires 2-4 months — incompatible with the 16-day timeline. There's a feasibility tension between compute budget and timeline."]
+Feedback: The proposal has matured significantly through two revision rounds and the core contribution is genuinely novel — I verified across 15+ competing papers that no existing work formally cross-validates intermediate constraints across multiple reasoning paths via MAX-SAT. However, several issues remain before this can pass:
+
+1. **Cite Draft-and-Prune (D&P, arXiv 2603.17233)**: This March 2026 paper is the closest competitor you've missed. D&P also generates multiple reasoning paths, autoformalizes them, prunes contradictory ones, and aggregates survivors. Your differentiator: D&P prunes paths with internal contradictions independently, while SICA extracts constraints from ALL paths and finds a globally consistent MAX-SAT-optimal subset — a fundamentally different aggregation mechanism. Add D&P as a baseline if feasible (it's evaluated on ProofWriter, which you already include).
+
+2. **Fix VERGE description**: VERGE does NOT do multi-path reasoning consensus. Its K=3 samples are candidate formalizations of a single claim, not multiple reasoning paths. Correct to: 'VERGE verifies and refines a single LLM output by decomposing it into atomic claims, autoformalizing them, checking joint satisfiability via Z3, and using Minimal Correction Subsets to provide targeted feedback for iterative refinement.' Note that VERGE's MCS (minimum claims to remove for satisfiability) is dual to SICA's MAX-SAT (maximum satisfiable subset), but VERGE applies it within one output for feedback, not across paths for consensus.
+
+3. **Correct baselines**: QwQ-32B AIME 2024 is 79.5% (official Qwen blog), not 83%. If using Qwen3-32B instead, verify and cite the Qwen3 Technical Report (arXiv 2505.09388) scores.
+
+4. **Add AIME 2025 + one of LogiQA/BBH**: AIME 2025 is trivially addable (same pipeline). LogiQA or BBH would test whether SICA's constraint extraction generalizes beyond math/formal-logic to broader reasoning. This is important for the EMNLP audience.
+
+5. **Resolve the venue/timeline/compute trilemma**: You can't simultaneously target May 25 ARR (14 days), stay within 200 H100-hours, and run the full experimental plan. Be explicit: either (a) scope down to 3 benchmarks for a May 25 submission with manual mode (~140h H100), or (b) target AAAI 2027 (August 1 deadline, 82 days) with the full 5-benchmark plan, or (c) both — submit a focused version to ARR May 25 and expand for AAAI 2027.
+
+6. **Consider citing 'Do LLMs Game Formalization?' (arXiv 2604.19459, April 2026)**: This paper evaluates faithfulness of LLM autoformalization for logical reasoning, directly relevant to your extraction quality concerns.
+
+### Round 4 review
+Verdict: revise
+Issues: ["PHANTOM REFERENCE — PRoSFI (arXiv 2603.29500): This paper cannot be found via any search query. Searches for 'PRoSFI Process Reward Structured Formal Intermediaries arXiv 2603.29500' return no matching results. The closest real papers are 'Verifiable Process Reward Models for Structured Reasoning' (arXiv 2601.17223) and 'Generalizable Process Reward Models via Formally Verified Training Data' (arXiv 2505.15960, which IS FoVer). Citing a non-existent paper would be immediately flagged by reviewers. Either provide the correct arXiv ID or remove this reference.", "VENUE MISALIGNMENT WITH USER REQUIREMENTS: The user explicitly specified 'Target: EMNLP 2026, ARR submission deadline 2026-05-25' and 'Time: ≤16 days.' The proposal instead targets AAAI 2027 (August 2, 2026) and ICLR 2027 as backup, completely ignoring the user's target venue. While a full 7-benchmark evaluation is infeasible in 14 days, a scoped-down 4-5 benchmark submission to ARR May 25 IS feasible in auto mode. The proposal must either commit to EMNLP 2026 with a reduced scope or explicitly justify the venue change with a dual-submission plan.", "MISSING USER-REQUIRED BENCHMARKS — ARC-Challenge and BBH: The user explicitly listed 'MATH, AIME 2024/2025, GPQA Diamond, ProofWriter, FOLIO, LogiQA, ARC-Challenge, BBH' as required evaluation benchmarks. ARC-Challenge and BBH are absent with no justification. ARC-Challenge tests visual/abstract reasoning where constraint extraction is questionable (which would be useful negative analysis), and BBH is a standard broad reasoning benchmark. At minimum, justify their exclusion or add BBH (which FoVer evaluates on, enabling comparison).", "AUTO MODE COMPUTE SLIGHTLY EXCEEDS BUDGET: The auto_research estimate of ~190-260h H100 may exceed the hard constraint of ≤200 H100-hours. The proposal acknowledges this ('reduce to 5 benchmarks or K=12 to fit') but doesn't commit to a specific plan. For an EMNLP 2026 submission, scope to 5 benchmarks and K=12 to guarantee compliance.", "FoVer arXiv ID DISCREPANCY: FoVer is cited as 'ACL 2026' which is correct (ACL 2026 Findings), but its arXiv ID is 2505.15960, not mentioned in the proposal. The proposal should include the arXiv ID for verifiability, especially since FoVer's formal-verification-for-PRM approach is closely related."]
+Feedback: The proposal has matured substantially over 4 rounds — the core novelty is confirmed, CRAFT/D&P/VERGE are properly cited and differentiated, and the evaluation design is intellectually honest. Three targeted fixes remain:
+
+1. **Fix the PRoSFI reference**: This is the most urgent issue. arXiv 2603.29500 does not exist in any index I can find. The closest real papers are: (a) 'Verifiable Process Reward Models for Structured Reasoning' (arXiv 2601.17223), which uses rule-based verifiers for intermediate step checking, or (b) FoVer itself (arXiv 2505.15960), which uses Z3+Isabelle for PRM training data. Determine which paper you intended to cite, verify it exists, and update the reference. Never cite a paper you cannot independently locate.
+
+2. **Commit to EMNLP 2026 with a scoped plan**: The user's hard requirement is EMNLP 2026 ARR May 25. Propose a dual-track plan: (a) EMNLP 2026 submission with 5 core benchmarks (MATH-500, AIME 2024, AIME 2025, ProofWriter, FOLIO) using K=12 traces to fit within 200h H100 in auto mode (~14 days); (b) expanded version with all 7+ benchmarks for AAAI 2027 if EMNLP reviews suggest additional experiments. This respects the user's venue requirement while being realistic about scope.
+
+3. **Address ARC-Challenge/BBH or justify exclusion**: For ARC-Challenge, constraint extraction from abstract/visual reasoning may not work — state this explicitly as a scope limitation. For BBH, FoVer (ACL 2026) evaluates on BBH and shows formal verification transfers to informal reasoning, making it a natural comparison point. Adding even 2-3 BBH subtasks (e.g., logical deduction, causal judgment) would strengthen the generality argument and satisfy the user's requirement.
+
+Minor: Add the FoVer arXiv ID (2505.15960) for reference verifiability.
+
+### Round 5 review
+Verdict: revise
+Issues: ["FACTUAL ERROR — FoVer word sorting score: The proposal claims FoVer achieves 80.0% on word sorting with Llama3.1-8B-PRM at Best-of-7, but verified against Table 5 of the paper (arXiv 2505.15960), the actual word sorting score is 46.8%. The 80.0% figure is the overall average across ALL six unseen tasks (ANLI, HANS, MMLU-Pro-NoMath, Temporal, Tracking, Sorting), not the word sorting score. This error appears in both the approach section and the description. A reviewer familiar with FoVer will catch this immediately and it undermines credibility.", "MISSING RELATED WORK — 'Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning' (arXiv 2604.14525, April 2026): Uses Z3 v4.8.17 (QF_UFLIA theory) and CaDiCaL for cross-output consistency checking with unsat-core localization and lexicographic repair. While cross-query (different questions in a bundle) rather than cross-trace (same question, multiple paths), it occupies the same conceptual space of solver-verified cross-output consistency. SICA's differentiators are clear (cross-trace scope, intermediate constraint extraction, weighted partial MAX-SAT), but the paper must be cited to preempt reviewer concerns about incomplete coverage of the 'formal verification of LLM output consistency' landscape.", "MISSING RELATED WORK — 'Consensus is Not Verification' (arXiv 2603.06612, March 2026): Demonstrates that consensus-based aggregation fails for truthfulness because LLM errors are strongly correlated — correlation persists even with random string conditioning. This paper both supports SICA's motivation (pure consensus is insufficient, a formal verifier is needed) AND raises a limitation SICA must acknowledge: if all K paths produce the same wrong formalization (correlated extraction errors), MAX-SAT will see K consistent-but-wrong constraints and cannot detect the error. The proposal's semantic spot-checking partially addresses this, but the theoretical limitation should be explicitly discussed.", "VERGE score ranges slightly misleading: The proposal gives FOLIO 84.7-87.9% and ProofWriter 89.9-93.0%, but VERGE's GPT-20B achieves 89.2% on FOLIO and 85.2% on ProofWriter — these are excluded from the stated ranges without explanation. While the ranges may intentionally represent only GPT-OSS and Sonnet-3.7 (the models more comparable to QwQ-32B), this should be made explicit. A reviewer familiar with VERGE's full results table will notice.", "Correlated extraction errors not theoretically addressed: The proposal's three-tier extraction quality pipeline (syntactic validation, semantic spot-checking, coverage tracking) is well-designed for catching individual extraction errors, but does not address the systematic case where the LLM consistently mistranslates a specific constraint type across all K paths — exactly the 'premise mistranslation' pattern documented in 'Do LLMs Game Formalization?' This is a fundamental limitation of any approach that relies on LLM autoformalization: MAX-SAT catches contradictions between constraints but cannot catch universally-wrong-but-mutually-consistent constraints. Acknowledging this limitation explicitly would strengthen the paper's intellectual honesty."]
+Feedback: The proposal has matured substantially over 5 rounds and the core novelty is now well-established — I independently confirmed that no existing work formally cross-validates intermediate constraints across multiple reasoning paths via MAX-SAT. The remaining issues are targeted and fixable:
+
+1. **Fix FoVer word sorting score**: Change 80.0% to 46.8% everywhere it appears. The 80.0% is the overall average across all unseen tasks, not word sorting specifically. If you want to report a summary of FoVer's BBH performance, use: 'temporal sequences 97.2%, tracking shuffled objects 96.0%, word sorting 46.8%' or report the overall average of 80.0% explicitly labeled as such.
+
+2. **Add two missing citations**: (a) 'Quantifying Cross-Query Contradictions' (arXiv 2604.14525) — cite in the landscape section and differentiate: 'addresses cross-query consistency (different questions) via unsat-core repair, while SICA addresses cross-trace consistency (same question, multiple paths) via weighted partial MAX-SAT.' (b) 'Consensus is Not Verification' (arXiv 2603.06612) — cite in the opportunity section to strengthen the motivation ('pure consensus fails due to correlated errors, motivating formal verification') AND in a limitations paragraph to acknowledge correlated extraction errors.
+
+3. **Fix VERGE score ranges**: Either report the full range including GPT-20B (FOLIO 84.7-89.2%, ProofWriter 85.2-93.0%) or explicitly state that you report only GPT-OSS and Sonnet-3.7 results for comparability with open-weight models.
+
+4. **Add a 'Limitations of Formal Cross-Validation' paragraph**: Acknowledge that SICA's MAX-SAT consensus catches contradictory constraints but cannot detect universally-wrong-but-consistent constraints caused by correlated extraction errors. The semantic spot-checking tier partially mitigates this, but the theoretical limitation exists. This is honest and reviewers will appreciate it — it's the same kind of intellectual honesty shown by including FOLIO as a diagnostic ablation.
+
+5. **Minor: PRoSFI is real** — the previous round's phantom reference concern was incorrect. arXiv 2603.29500 exists and is an ICLR 2026 submission. No action needed on this front.
+
+These fixes are straightforward and should be completable in one revision round. The proposal is close to passing — the novelty and clarity are strong, but the feasibility (14-day timeline) and impact (contingent on contradiction frequency) keep the average below 4.0.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "08364815-b229-4dfc-a1e2-ec97940ac936",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-11T23:58:28.323Z_
+
+```json
+{
+  "parentUuid": "08364815-b229-4dfc-a1e2-ec97940ac936",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "cc77810d-a8cb-4570-8960-d378bf065696",
+  "timestamp": "2026-05-11T23:58:28.323Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-11T23:58:28.323Z_
+
+```json
+{
+  "parentUuid": "cc77810d-a8cb-4570-8960-d378bf065696",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "47f33270-10c8-45a5-9421-629e1a43ce5c",
+  "timestamp": "2026-05-11T23:58:28.323Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "47f33270-10c8-45a5-9421-629e1a43ce5c",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-11T23:58:41.848Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is round 6 of 10 for reviewing a neurosymbolic reasoning paper idea called SICA (Symbolic Invariant Consensus Aggregation). Let me carefully review the changes made since the last round and independently verify the claims.
+
+Let me first understand what was requested in the previous round's feedback:
+
+1. Fix FoVer word sorting score (80.0% → 46.8%)
+2. Add two missing citations: "Quantifying Cross-Query Contradictions" and "Consensus is Not Verification"
+3. Fix VERGE score ranges
+
+
+4. Add a "Limitations of Formal Cross-Validation" paragraph
+5. PRoSFI is real (no action needed)
+
+Now checking if these have been addressed in the current proposal and verifying the claims independently. The FoVer word sorting score has been corrected to 46.8%, and both missing citations appear to be integrated throughout the core sections. Let me continue examining whether the remaining items have been properly implemented.
+
+Now I'm moving into independent verification work to check SOTA freshness, baseline accuracy claims, competing approaches, reference validity, timeline feasibility, venue deadlines, and overall novelty.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47f33270-10c8-45a5-9421-629e1a43ce5c",
+  "isSidechain": false,
+  "requestId": "req_011CawguN1GNXYY7Ub49Fhjo",
+  "type": "assistant",
+  "uuid": "3f98b39c-7f13-466b-97b6-a8c34570f3d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rnq8gLdo82BT8VPttQk9fe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25023,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25023,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25023,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25023
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-11T23:58:42.198Z_
+
+I'll conduct an independent review of this Round 6 proposal. Let me verify key claims, check for missed related work, and assess feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f98b39c-7f13-466b-97b6-a8c34570f3d8",
+  "isSidechain": false,
+  "requestId": "req_011CawguN1GNXYY7Ub49Fhjo",
+  "type": "assistant",
+  "uuid": "b4a69377-e248-4e1b-9552-ee7cfb084666",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rnq8gLdo82BT8VPttQk9fe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25023,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25023,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25023,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25023
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-11T23:58:43.331Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S2R3JUCR3J8izer4HbVr56`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4a69377-e248-4e1b-9552-ee7cfb084666",
+  "isSidechain": false,
+  "requestId": "req_011CawguN1GNXYY7Ub49Fhjo",
+  "type": "assistant",
+  "uuid": "4b2a8ad0-5b62-4312-b20d-69a8bf0766e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rnq8gLdo82BT8VPttQk9fe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25023,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25023,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25023,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25023
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-11T23:58:43.338Z_
+
+<details><summary>↩ Tool result · `toolu_01S2R3JUCR3J8izer4HbVr56`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b2a8ad0-5b62-4312-b20d-69a8bf0766e0",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "59f16174-20a3-4d51-9cd4-742693f85a98",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "4b2a8ad0-5b62-4312-b20d-69a8bf0766e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-11T23:58:46.385Z_
+
+Starting independent verification. I'll check key claims, search for missed competing work, and verify references in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59f16174-20a3-4d51-9cd4-742693f85a98",
+  "isSidechain": false,
+  "requestId": "req_011CawgvTwys5dbEbpno2LDi",
+  "type": "assistant",
+  "uuid": "187341c1-fce0-4100-93a8-56560857f788",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtF6WBRtntaYFCNEpUvKG5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1673,
+      "cache_read_input_tokens": 36864,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1673,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 36864,
+          "cache_creation_input_tokens": 1673,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1673
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-11T23:58:47.055Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SsgBaZTiPNXFfnrU1xUoJW`</summary>
+
+```json
+{
+  "query": "CRAFT Reasoning Knowledge Graph consensus intermediate steps arXiv 2604.14121 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "187341c1-fce0-4100-93a8-56560857f788",
+  "isSidechain": false,
+  "requestId": "req_011CawgvTwys5dbEbpno2LDi",
+  "type": "assistant",
+  "uuid": "f3e6eb4c-fb62-461d-93f3-1cbcf1ed3c24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtF6WBRtntaYFCNEpUvKG5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1673,
+      "cache_read_input_tokens": 36864,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1673,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 36864,
+          "cache_creation_input_tokens": 1673,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1673
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-11T23:58:53.708Z_
+
+<details><summary>↩ Tool result · `toolu_01SsgBaZTiPNXFfnrU1xUoJW`</summary>
+
+```text
+Web search results for query: "CRAFT Reasoning Knowledge Graph consensus intermediate steps arXiv 2604.14121 2026"
+
+Links: [{"title":"[2604.14121] Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis","url":"https://arxiv.org/abs/2604.14121"},{"title":"Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis","url":"https://arxiv.org/html/2604.14121"},{"title":"[2410.13080] Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models","url":"https://arxiv.org/abs/2410.13080"},{"title":"Causal Graphs Meet Thoughts: Enhancing Complex Reasoning in Graph-Augmented LLMs","url":"https://arxiv.org/html/2501.14892"},{"title":"Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models","url":"https://arxiv.org/html/2410.13080v1"},{"title":"[2604.12487] KG-Reasoner: A Reinforced Model for End-to-End Multi-Hop Knowledge Graph Reasoning","url":"https://arxiv.org/abs/2604.12487"},{"title":"[2604.12503] Topology-Aware Reasoning over Incomplete Knowledge Graph with Graph-Based Soft Prompting","url":"https://arxiv.org/abs/2604.12503"},{"title":"[2506.11012] A Survey of Task-Oriented Knowledge Graph Reasoning: Status, Applications, and Prospects","url":"https://arxiv.org/abs/2506.11012"},{"title":"Graphusion: A RAG Framework for Scientific Knowledge Graph Construction with a Global Perspective","url":"https://arxiv.org/html/2410.17600v2"},{"title":"Graph-Augmented Reasoning: Evolving Step-by-Step Knowledge Graph Retrieval for LLM Reasoning","url":"https://arxiv.org/html/2503.01642v1"}]
+
+I found the paper! Here are the key details about arXiv 2604.14121:
+
+**Title:** Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis
+
+**Authors:** Zipeng Ling, Shuliang Liu, Shenghong Fu, Yuehao Tang, Seonil Son, Yao Wan, Xuming Hu
+
+**Submission Date:** 15 Apr 2026
+
+**Main Contribution:** CRAFT is a unified framework that mitigates both types of Step flaws, which builds a Reasoning Knowledge Graph (RKG) based on the consensus parts of multiple candidate traces, and synthesizes a high-quality trace through topological generation.
+
+**Problem Addressed:** LLM reasoning traces suffer from complex flaws -- Step Internal Flaws (logical errors, hallucinations, etc.) and Step-wise Flaws (overthinking, underthinking), which vary by sample.
+
+**Results:** The approach improves label-prediction accuracy by 10+% on average, and consistently outperforms all baselines across both logical and mathematical reasoning benchmarks. Further, detailed benchmark evaluation proves that the method also improves the quality of LLMs' reasoning traces in multiple dimensions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3e6eb4c-fb62-461d-93f3-1cbcf1ed3c24",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "faa546da-0837-4787-a192-d309c89a68e3",
+  "toolUseResult": {
+    "query": "CRAFT Reasoning Knowledge Graph consensus intermediate steps arXiv 2604.14121 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015Bat1uNSzy3WPXHJJSCC2A",
+        "content": [
+          {
+            "title": "[2604.14121] Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis",
+            "url": "https://arxiv.org/abs/2604.14121"
+          },
+          {
+            "title": "Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis",
+            "url": "https://arxiv.org/html/2604.14121"
+          },
+          {
+            "title": "[2410.13080] Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models",
+            "url": "https://arxiv.org/abs/2410.13080"
+          },
+          {
+            "title": "Causal Graphs Meet Thoughts: Enhancing Complex Reasoning in Graph-Augmented LLMs",
+            "url": "https://arxiv.org/html/2501.14892"
+          },
+          {
+            "title": "Graph-constrained Reasoning: Faithful Reasoning on Knowledge Graphs with Large Language Models",
+            "url": "https://arxiv.org/html/2410.13080v1"
+          },
+          {
+            "title": "[2604.12487] KG-Reasoner: A Reinforced Model for End-to-End Multi-Hop Knowledge Graph Reasoning",
+            "url": "https://arxiv.org/abs/2604.12487"
+          },
+          {
+            "title": "[2604.12503] Topology-Aware Reasoning over Incomplete Knowledge Graph with Graph-Based Soft Prompting",
+            "url": "https://arxiv.org/abs/2604.12503"
+          },
+          {
+            "title": "[2506.11012] A Survey of Task-Oriented Knowledge Graph Reasoning: Status, Applications, and Prospects",
+            "url": "https://arxiv.org/abs/2506.11012"
+          },
+          {
+            "title": "Graphusion: A RAG Framework for Scientific Knowledge Graph Construction with a Global Perspective",
+            "url": "https://arxiv.org/html/2410.17600v2"
+          },
+          {
+            "title": "Graph-Augmented Reasoning: Evolving Step-by-Step Knowledge Graph Retrieval for LLM Reasoning",
+            "url": "https://arxiv.org/html/2503.01642v1"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about arXiv 2604.14121:\n\n**Title:** Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis\n\n**Authors:** Zipeng Ling, Shuliang Liu, Shenghong Fu, Yuehao Tang, Seonil Son, Yao Wan, Xuming Hu\n\n**Submission Date:** 15 Apr 2026\n\n**Main Contribution:** CRAFT is a unified framework that mitigates both types of Step flaws, which builds a Reasoning Knowledge Graph (RKG) based on the consensus parts of multiple candidate traces, and synthesizes a high-quality trace through topological generation.\n\n**Problem Addressed:** LLM reasoning traces suffer from complex flaws -- Step Internal Flaws (logical errors, hallucinations, etc.) and Step-wise Flaws (overthinking, underthinking), which vary by sample.\n\n**Results:** The approach improves label-prediction accuracy by 10+% on average, and consistently outperforms all baselines across both logical and mathematical reasoning benchmarks. Further, detailed benchmark evaluation proves that the method also improves the quality of LLMs' reasoning traces in multiple dimensions."
+    ],
+    "durationSeconds": 6.643390626
+  },
+  "sourceToolAssistantUUID": "f3e6eb4c-fb62-461d-93f3-1cbcf1ed3c24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-11T23:58:55.908Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UcuQbusQgVqTMEKk82V9ie`</summary>
+
+```json
+{
+  "query": "Draft-and-Prune autoformalization logical reasoning arXiv 2603.17233 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faa546da-0837-4787-a192-d309c89a68e3",
+  "isSidechain": false,
+  "requestId": "req_011CawgwDpwry5KpvCd8eoM8",
+  "type": "assistant",
+  "uuid": "0ecf4436-5f4a-48cc-ba2c-c53dbb5ae83f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KkHwiPVj9pSPqPUzctDkd3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 921,
+      "cache_read_input_tokens": 38537,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 921,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 38537,
+          "cache_creation_input_tokens": 921,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 921
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-11T23:59:03.719Z_
+
+<details><summary>↩ Tool result · `toolu_01UcuQbusQgVqTMEKk82V9ie`</summary>
+
+```text
+Web search results for query: "Draft-and-Prune autoformalization logical reasoning arXiv 2603.17233 2026"
+
+Links: [{"title":"[2603.17233] Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning","url":"https://arxiv.org/abs/2603.17233"},{"title":"Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning","url":"https://arxiv.org/html/2603.17233"},{"title":"Draft-and-Prune: Improving the Reliability of Auto-formalization for","url":"https://arxiv.org/pdf/2603.17233"},{"title":"PYTHEN: A Flexible Framework for Legal Reasoning in Python","url":"https://arxiv.org/html/2603.15317"},{"title":"Towards a Common Framework for Autoformalization","url":"https://arxiv.org/html/2509.09810v1"},{"title":"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/html/2604.19459"},{"title":"[2505.23486] Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/abs/2505.23486"},{"title":"Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/draft-and-prune-improving-the-reliability-of-auto-formalization-for-logical-reasoning/"},{"title":"Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/html/2505.23486v1"},{"title":"Autoformalization in the Era of Large Language Models","url":"https://arxiv.org/pdf/2505.23486"}]
+
+Based on the search results, I found information about the paper you're looking for:
+
+## Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning
+
+Draft-and-Prune (D&P) is an inference-time framework that improves AF-based logical reasoning via diversity and verification, which first drafts multiple natural-language plans and conditions program generation on them.
+
+### Problem Being Addressed
+
+Auto-formalization (AF) translates natural-language reasoning problems into solver-executable programs, enabling symbolic solvers to perform sound logical deduction. However, AF pipelines are currently brittle: programs may fail to execute, or execute but encode incorrect semantics.
+
+### Approach
+
+D&P prunes executable but contradictory or ambiguous formalizations, and aggregates predictions from surviving paths via majority voting.
+
+### Evaluation
+
+Across four representative benchmarks (AR-LSAT, ProofWriter, PrOntoQA, LogicalDeduction), D&P substantially strengthens AF-based reasoning without extra supervision.
+
+The paper was submitted to arXiv on March 18, 2026, and is authored by Zhiyu Ni, Zheng Liang, Liangcheng Song, Chenrui Cao, Xian Zhang, and others.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ecf4436-5f4a-48cc-ba2c-c53dbb5ae83f",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "1c14897d-d29c-43b6-8168-570f763c6f18",
+  "toolUseResult": {
+    "query": "Draft-and-Prune autoformalization logical reasoning arXiv 2603.17233 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H4bz6mH1n51xtpB7h1GTg4",
+        "content": [
+          {
+            "title": "[2603.17233] Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning",
+            "url": "https://arxiv.org/abs/2603.17233"
+          },
+          {
+            "title": "Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning",
+            "url": "https://arxiv.org/html/2603.17233"
+          },
+          {
+            "title": "Draft-and-Prune: Improving the Reliability of Auto-formalization for",
+            "url": "https://arxiv.org/pdf/2603.17233"
+          },
+          {
+            "title": "PYTHEN: A Flexible Framework for Legal Reasoning in Python",
+            "url": "https://arxiv.org/html/2603.15317"
+          },
+          {
+            "title": "Towards a Common Framework for Autoformalization",
+            "url": "https://arxiv.org/html/2509.09810v1"
+          },
+          {
+            "title": "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/html/2604.19459"
+          },
+          {
+            "title": "[2505.23486] Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/abs/2505.23486"
+          },
+          {
+            "title": "Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning - Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/publication/draft-and-prune-improving-the-reliability-of-auto-formalization-for-logical-reasoning/"
+          },
+          {
+            "title": "Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2505.23486v1"
+          },
+          {
+            "title": "Autoformalization in the Era of Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.23486"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper you're looking for:\n\n## Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning\n\nDraft-and-Prune (D&P) is an inference-time framework that improves AF-based logical reasoning via diversity and verification, which first drafts multiple natural-language plans and conditions program generation on them.\n\n### Problem Being Addressed\n\nAuto-formalization (AF) translates natural-language reasoning problems into solver-executable programs, enabling symbolic solvers to perform sound logical deduction. However, AF pipelines are currently brittle: programs may fail to execute, or execute but encode incorrect semantics.\n\n### Approach\n\nD&P prunes executable but contradictory or ambiguous formalizations, and aggregates predictions from surviving paths via majority voting.\n\n### Evaluation\n\nAcross four representative benchmarks (AR-LSAT, ProofWriter, PrOntoQA, LogicalDeduction), D&P substantially strengthens AF-based reasoning without extra supervision.\n\nThe paper was submitted to arXiv on March 18, 2026, and is authored by Zhiyu Ni, Zheng Liang, Liangcheng Song, Chenrui Cao, Xian Zhang, and others."
+    ],
+    "durationSeconds": 7.806454571000002
+  },
+  "sourceToolAssistantUUID": "0ecf4436-5f4a-48cc-ba2c-c53dbb5ae83f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-11T23:59:06.700Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DZm56NsHfBgmUNthiwtCzR`</summary>
+
+```json
+{
+  "query": "VERGE formal refinement guidance engine verifiable LLM reasoning arXiv 2601.20055"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c14897d-d29c-43b6-8168-570f763c6f18",
+  "isSidechain": false,
+  "requestId": "req_011CawgwxdBL5XN5ms874DJy",
+  "type": "assistant",
+  "uuid": "26d79524-4737-46bb-9cc5-df6abdfbb58c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NHknXwkwZ3aLuHjRUHSGb2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 39458,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 39458,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-11T23:59:11.762Z_
+
+<details><summary>↩ Tool result · `toolu_01DZm56NsHfBgmUNthiwtCzR`</summary>
+
+```text
+Web search results for query: "VERGE formal refinement guidance engine verifiable LLM reasoning arXiv 2601.20055"
+
+Links: [{"title":"[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/abs/2601.20055"},{"title":"VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/pdf/2601.20055"},{"title":"dblp: VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning.","url":"https://dblp.uni-trier.de/rec/journals/corr/abs-2601-20055.html"},{"title":"Paper page - VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://huggingface.co/papers/2601.20055"},{"title":"[Literature Review] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://www.themoonlight.io/en/review/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning"},{"title":"[2601.05705] Logic-Parametric Neuro-Symbolic NLI: Controlling Logical Formalisms for Verifiable LLM Reasoning","url":"https://arxiv.org/abs/2601.05705"},{"title":"Verge: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning | Hacker News","url":"https://news.ycombinator.com/item?id=46813257"},{"title":"VERGE: Formal Refinement and Guidance Engine for Verifiable ...","url":"https://ubos.tech/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning-2/"},{"title":"Formal Refinement and Guidance Engine for Verifiable ...","url":"https://www.researchgate.net/publication/400178327_VERGE_Formal_Refinement_and_Guidance_Engine_for_Verifiable_LLM_Reasoning"},{"title":"Logic-Parametric Neuro-Symbolic NLI: Controlling Logical Formalisms for Verifiable LLM Reasoning","url":"https://arxiv.org/html/2601.05705"}]
+
+I found the paper! Here's what I learned about VERGE:
+
+VERGE is a neurosymbolic framework that combines LLMs with SMT solvers to produce verification-guided answers through iterative refinement. The approach decomposes LLM outputs into atomic claims, autoformalizes them into first-order logic, and verifies their logical consistency using automated theorem proving.
+
+The framework introduces three key innovations: (1) multi-model consensus via formal semantic equivalence checking to ensure logic-level alignment between candidates, (2) semantic routing that directs different claim types to appropriate verification strategies: symbolic solvers for logical claims and LLM ensembles for commonsense reasoning, and (3) precise logical error localization via Minimal Correction Subsets (MCS), which pinpoint the exact subset of claims to revise.
+
+The system iteratively refines answers using structured feedback until acceptance criteria are met or convergence is achieved.
+
+The paper was published on arXiv on January 27, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26d79524-4737-46bb-9cc5-df6abdfbb58c",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "78408ec4-033c-4aab-9b43-af1394bcaf8f",
+  "toolUseResult": {
+    "query": "VERGE formal refinement guidance engine verifiable LLM reasoning arXiv 2601.20055",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014SBSDPbLVGEoeWXpU9pAyU",
+        "content": [
+          {
+            "title": "[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/abs/2601.20055"
+          },
+          {
+            "title": "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2601.20055"
+          },
+          {
+            "title": "dblp: VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning.",
+            "url": "https://dblp.uni-trier.de/rec/journals/corr/abs-2601-20055.html"
+          },
+          {
+            "title": "Paper page - VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://huggingface.co/papers/2601.20055"
+          },
+          {
+            "title": "[Literature Review] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://www.themoonlight.io/en/review/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning"
+          },
+          {
+            "title": "[2601.05705] Logic-Parametric Neuro-Symbolic NLI: Controlling Logical Formalisms for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/abs/2601.05705"
+          },
+          {
+            "title": "Verge: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=46813257"
+          },
+          {
+            "title": "VERGE: Formal Refinement and Guidance Engine for Verifiable ...",
+            "url": "https://ubos.tech/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning-2/"
+          },
+          {
+            "title": "Formal Refinement and Guidance Engine for Verifiable ...",
+            "url": "https://www.researchgate.net/publication/400178327_VERGE_Formal_Refinement_and_Guidance_Engine_for_Verifiable_LLM_Reasoning"
+          },
+          {
+            "title": "Logic-Parametric Neuro-Symbolic NLI: Controlling Logical Formalisms for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/html/2601.05705"
+          }
+        ]
+      },
+      "I found the paper! Here's what I learned about VERGE:\n\nVERGE is a neurosymbolic framework that combines LLMs with SMT solvers to produce verification-guided answers through iterative refinement. The approach decomposes LLM outputs into atomic claims, autoformalizes them into first-order logic, and verifies their logical consistency using automated theorem proving.\n\nThe framework introduces three key innovations: (1) multi-model consensus via formal semantic equivalence checking to ensure logic-level alignment between candidates, (2) semantic routing that directs different claim types to appropriate verification strategies: symbolic solvers for logical claims and LLM ensembles for commonsense reasoning, and (3) precise logical error localization via Minimal Correction Subsets (MCS), which pinpoint the exact subset of claims to revise.\n\nThe system iteratively refines answers using structured feedback until acceptance criteria are met or convergence is achieved.\n\nThe paper was published on arXiv on January 27, 2026."
+    ],
+    "durationSeconds": 5.052105696999999
+  },
+  "sourceToolAssistantUUID": "26d79524-4737-46bb-9cc5-df6abdfbb58c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "78408ec4-033c-4aab-9b43-af1394bcaf8f",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-11T23:59:14.194Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DpxwWbo8qDLMQU8MQ7s5t8`</summary>
+
+```json
+{
+  "query": "PRoSFI process reward structured formal intermediaries arXiv 2603.29500"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78408ec4-033c-4aab-9b43-af1394bcaf8f",
+  "isSidechain": false,
+  "requestId": "req_011CawgxZ8ajJnTkWgGiEvbC",
+  "type": "assistant",
+  "uuid": "4f3bf500-93af-47ac-b56d-3dc8813efcb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hgv7Vvt2ePeWPC5SmtmviC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 40325,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 40325,
+          "cache_creation_input_tokens": 930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-11T23:59:18.619Z_
+
+<details><summary>↩ Tool result · `toolu_01DpxwWbo8qDLMQU8MQ7s5t8`</summary>
+
+```text
+Web search results for query: "PRoSFI process reward structured formal intermediaries arXiv 2603.29500"
+
+Links: [{"title":"Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning","url":"https://arxiv.org/html/2601.17223v1"},{"title":"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models","url":"https://arxiv.org/abs/2603.06621"},{"title":"Verifiable Process Reward Models for Structured Reasoning","url":"https://www.arxiv.org/pdf/2601.17223"},{"title":"[2504.16828] Process Reward Models That Think","url":"https://arxiv.org/abs/2504.16828"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data","url":"https://arxiv.org/pdf/2505.15960"},{"title":"PRISM: Pushing the Frontier of Deep Think via Process Reward Model-Guided Inference","url":"https://arxiv.org/html/2603.02479"},{"title":"Reasoning-Aware Proxy Reward Model using Process Mining","url":"https://arxiv.org/html/2510.25065v2"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/html/2510.08049v3"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/html/2504.16828v1"},{"title":"[2604.09482v1] Process Reward Agents for Steering Knowledge-Intensive Reasoning","url":"https://arxiv.org/abs/2604.09482v1"}]
+
+I searched for the specific arXiv paper with that query, but the search results didn't return a paper with the exact ID 2603.29500. The results show various papers about Process Reward Models (PRMs) and related topics in LLM reasoning, but none matching that specific arXiv identifier.
+
+The arXiv ID format you provided (2603.29500) appears to follow the standard arXiv numbering system (year-month.number), but I wasn't able to locate a paper with that exact ID in the search results. This could mean:
+
+1. The paper ID might have a slight variation
+2. The paper may not yet be indexed or available
+3. There could be a typo in the arXiv ID
+
+Would you like me to:
+- Search with a different query or arXiv ID?
+- Search for "PRoSFI" as the primary term (if that's the paper's name)?
+- Search for papers about "structured formal intermediaries" specifically?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f3bf500-93af-47ac-b56d-3dc8813efcb0",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "b2ffdba9-73bb-418d-b6fe-085a78de5705",
+  "toolUseResult": {
+    "query": "PRoSFI process reward structured formal intermediaries arXiv 2603.29500",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Edba2t8ND8aLbEnVyao8oG",
+        "content": [
+          {
+            "title": "Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning",
+            "url": "https://arxiv.org/html/2601.17223v1"
+          },
+          {
+            "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+            "url": "https://arxiv.org/abs/2603.06621"
+          },
+          {
+            "title": "Verifiable Process Reward Models for Structured Reasoning",
+            "url": "https://www.arxiv.org/pdf/2601.17223"
+          },
+          {
+            "title": "[2504.16828] Process Reward Models That Think",
+            "url": "https://arxiv.org/abs/2504.16828"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "PRISM: Pushing the Frontier of Deep Think via Process Reward Model-Guided Inference",
+            "url": "https://arxiv.org/html/2603.02479"
+          },
+          {
+            "title": "Reasoning-Aware Proxy Reward Model using Process Mining",
+            "url": "https://arxiv.org/html/2510.25065v2"
+          },
+          {
+            "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+            "url": "https://arxiv.org/html/2510.08049v3"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/html/2504.16828v1"
+          },
+          {
+            "title": "[2604.09482v1] Process Reward Agents for Steering Knowledge-Intensive Reasoning",
+            "url": "https://arxiv.org/abs/2604.09482v1"
+          }
+        ]
+      },
+      "I searched for the specific arXiv paper with that query, but the search results didn't return a paper with the exact ID 2603.29500. The results show various papers about Process Reward Models (PRMs) and related topics in LLM reasoning, but none matching that specific arXiv identifier.\n\nThe arXiv ID format you provided (2603.29500) appears to follow the standard arXiv numbering system (year-month.number), but I wasn't able to locate a paper with that exact ID in the search results. This could mean:\n\n1. The paper ID might have a slight variation\n2. The paper may not yet be indexed or available\n3. There could be a typo in the arXiv ID\n\nWould you like me to:\n- Search with a different query or arXiv ID?\n- Search for \"PRoSFI\" as the primary term (if that's the paper's name)?\n- Search for papers about \"structured formal intermediaries\" specifically?"
+    ],
+    "durationSeconds": 4.421507299000004
+  },
+  "sourceToolAssistantUUID": "4f3bf500-93af-47ac-b56d-3dc8813efcb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-11T23:59:22.297Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FXmkygivT4VkZQQZMeanhw`</summary>
+
+```json
+{
+  "query": "\"Consensus is Not Verification\" LLM truthfulness crowd wisdom arXiv 2603.06612"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2ffdba9-73bb-418d-b6fe-085a78de5705",
+  "isSidechain": false,
+  "requestId": "req_011Cawgy4JWpHtZMo69mcEFN",
+  "type": "assistant",
+  "uuid": "8926d270-a78c-4940-896e-9a1f00a7dfe6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QbQQF14ZMDwRYxHGrxLNtA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 749,
+      "cache_read_input_tokens": 41255,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 749,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 41255,
+          "cache_creation_input_tokens": 749,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 749
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-11T23:59:26.237Z_
+
+<details><summary>↩ Tool result · `toolu_01FXmkygivT4VkZQQZMeanhw`</summary>
+
+```text
+Web search results for query: ""Consensus is Not Verification" LLM truthfulness crowd wisdom arXiv 2603.06612"
+
+Links: [{"title":"[2603.06612] Consensus is Not Verification: Why Crowd Wisdom Strategies Fail for LLM Truthfulness","url":"https://arxiv.org/abs/2603.06612"},{"title":"Consensus is Not Verification: Why Crowd Wisdom Strategies Fail for LLM Truthfulness","url":"https://arxiv.org/html/2603.06612"}]
+
+Perfect! I found the paper. Here's what the search revealed:
+
+"Consensus is Not Verification: Why Crowd Wisdom Strategies Fail for LLM Truthfulness" is a paper by Yegor Denisov-Blanch and 6 other authors (arXiv:2603.06612).
+
+**Key Findings:**
+
+While Pass@k and other methods of scaling inference compute can improve language model performance in domains with external verifiers (like mathematics and code), the paper investigates whether we can similarly scale compute to elicit gains in truthfulness for domains without convenient verification.
+
+The researchers found that across five benchmarks and models, scaling inference compute cannot improve truthfulness in such domains. Even at 25x the inference cost of naive sampling, polling-style aggregation yields no consistent accuracy gains over single-sample baselines and often amplifies shared misconceptions.
+
+The paper reveals that models are better at predicting what other models will say within model ensembles than at identifying what is true, revealing a separation between social prediction and truth verification.
+
+The reason aggregation fails to provide a robust truth signal is that language model errors are strongly correlated.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8926d270-a78c-4940-896e-9a1f00a7dfe6",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "7d19dd9a-5a67-40e2-a16a-364c709eae45",
+  "toolUseResult": {
+    "query": "\"Consensus is Not Verification\" LLM truthfulness crowd wisdom arXiv 2603.06612",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PfzLc9GcptmUKNd1dYm4XG",
+        "content": [
+          {
+            "title": "[2603.06612] Consensus is Not Verification: Why Crowd Wisdom Strategies Fail for LLM Truthfulness",
+            "url": "https://arxiv.org/abs/2603.06612"
+          },
+          {
+            "title": "Consensus is Not Verification: Why Crowd Wisdom Strategies Fail for LLM Truthfulness",
+            "url": "https://arxiv.org/html/2603.06612"
+          }
+        ]
+      },
+      "Perfect! I found the paper. Here's what the search revealed:\n\n\"Consensus is Not Verification: Why Crowd Wisdom Strategies Fail for LLM Truthfulness\" is a paper by Yegor Denisov-Blanch and 6 other authors (arXiv:2603.06612).\n\n**Key Findings:**\n\nWhile Pass@k and other methods of scaling inference compute can improve language model performance in domains with external verifiers (like mathematics and code), the paper investigates whether we can similarly scale compute to elicit gains in truthfulness for domains without convenient verification.\n\nThe researchers found that across five benchmarks and models, scaling inference compute cannot improve truthfulness in such domains. Even at 25x the inference cost of naive sampling, polling-style aggregation yields no consistent accuracy gains over single-sample baselines and often amplifies shared misconceptions.\n\nThe paper reveals that models are better at predicting what other models will say within model ensembles than at identifying what is true, revealing a separation between social prediction and truth verification.\n\nThe reason aggregation fails to provide a robust truth signal is that language model errors are strongly correlated."
+    ],
+    "durationSeconds": 3.9347195180000054
+  },
+  "sourceToolAssistantUUID": "8926d270-a78c-4940-896e-9a1f00a7dfe6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-11T23:59:28.302Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QjTbbhz3mjdHQKadYoHpwz`</summary>
+
+```json
+{
+  "query": "cross-query contradictions multi-query LLM reasoning Z3 arXiv 2604.14525"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d19dd9a-5a67-40e2-a16a-364c709eae45",
+  "isSidechain": false,
+  "requestId": "req_011CawgycuKnwJvaCPANMFm5",
+  "type": "assistant",
+  "uuid": "f3b75462-4639-44b0-ab57-1aeaf2ea5621",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T9UXE4g3ieDLmd8mbqeAjD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 42004,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 489,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 42004,
+          "cache_creation_input_tokens": 489,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 489
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-11T23:59:35.841Z_
+
+<details><summary>↩ Tool result · `toolu_01QjTbbhz3mjdHQKadYoHpwz`</summary>
+
+```text
+Web search results for query: "cross-query contradictions multi-query LLM reasoning Z3 arXiv 2604.14525"
+
+Links: [{"title":"Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning","url":"https://arxiv.org/html/2604.14525"},{"title":"[2604.14525] Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning","url":"https://arxiv.org/abs/2604.14525"},{"title":"Logical Consistency Under Pressure: Probing and Repairing Cross-Query Contradictions in LLMs | OpenReview","url":"https://openreview.net/forum?id=cz8eWlcZVF"},{"title":"Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants","url":"https://arxiv.org/html/2604.15727"},{"title":"VeriCoT: Neuro-symbolic Chain-of-Thought Validation via ...","url":"https://arxiv.org/pdf/2511.04662"},{"title":"LLMs as ASP Programmers: Self-Correction Enables Task-Agnostic Nonmonotonic Reasoning","url":"https://arxiv.org/html/2604.27960"},{"title":"Shorthand for Thought: Compressing LLM Reasoning via Entropy-Guided Supertokens","url":"https://arxiv.org/html/2604.26355"},{"title":"Beyond Correctness: Exposing LLM-generated Logical Flaws in Reasoning via Multi-step Automated Theorem Proving","url":"https://arxiv.org/html/2512.23511"},{"title":"[2603.24617v1] Multi-LLM Query Optimization","url":"https://arxiv.org/abs/2603.24617v1"},{"title":"Weaver: Interweaving SQL and LLM for Table Reasoning","url":"https://arxiv.org/html/2505.18961"}]
+
+I found the paper you're looking for! Here's what the search revealed:
+
+Large language models frequently produce mutually inconsistent answers when reasoning over multiple related queries. The paper titled "Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning" (arXiv:2604.14525) addresses this issue directly.
+
+**Key aspects of the paper:**
+
+- **Problem studied**: The paper studies case-file logical consistency: maintaining a globally satisfiable belief state across interdependent queries.
+
+- **Benchmark and metrics**: The researchers introduce a benchmark of 390 multi-query reasoning instances with entailment/contradiction/unknown labels and propose set-level metrics including Case Satisfiability Rate, Contradiction Density and Revision Cost.
+
+- **Methodology**: Their solver-augmented approach extracts commitments, verifies global satisfiability and performs counterexample-guided repair.
+
+- **Results**: Across four reasoning domains, their method substantially reduces cross-query contradictions (SetCons: 0.56 to 0.94) while preserving per-query accuracy.
+
+- **Technical tools**: Solvers (CaDiCaL for SAT, Z3 for SMT) provide hard guarantees on satisfiability. The benchmark spans four domains: Relational/SAT (120), Temporal/SMT (100), Policy/Rules (80) and Underspecified/Abductive (90), paired with 2,450 interdependent query bundles.
+
+The paper was published on arXiv on April 16, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3b75462-4639-44b0-ab57-1aeaf2ea5621",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "d8388e07-754a-4018-8d3e-f53041271a7c",
+  "toolUseResult": {
+    "query": "cross-query contradictions multi-query LLM reasoning Z3 arXiv 2604.14525",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K2A8Yq7aJ1jeMBwngPbJQa",
+        "content": [
+          {
+            "title": "Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning",
+            "url": "https://arxiv.org/html/2604.14525"
+          },
+          {
+            "title": "[2604.14525] Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning",
+            "url": "https://arxiv.org/abs/2604.14525"
+          },
+          {
+            "title": "Logical Consistency Under Pressure: Probing and Repairing Cross-Query Contradictions in LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=cz8eWlcZVF"
+          },
+          {
+            "title": "Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants",
+            "url": "https://arxiv.org/html/2604.15727"
+          },
+          {
+            "title": "VeriCoT: Neuro-symbolic Chain-of-Thought Validation via ...",
+            "url": "https://arxiv.org/pdf/2511.04662"
+          },
+          {
+            "title": "LLMs as ASP Programmers: Self-Correction Enables Task-Agnostic Nonmonotonic Reasoning",
+            "url": "https://arxiv.org/html/2604.27960"
+          },
+          {
+            "title": "Shorthand for Thought: Compressing LLM Reasoning via Entropy-Guided Supertokens",
+            "url": "https://arxiv.org/html/2604.26355"
+          },
+          {
+            "title": "Beyond Correctness: Exposing LLM-generated Logical Flaws in Reasoning via Multi-step Automated Theorem Proving",
+            "url": "https://arxiv.org/html/2512.23511"
+          },
+          {
+            "title": "[2603.24617v1] Multi-LLM Query Optimization",
+            "url": "https://arxiv.org/abs/2603.24617v1"
+          },
+          {
+            "title": "Weaver: Interweaving SQL and LLM for Table Reasoning",
+            "url": "https://arxiv.org/html/2505.18961"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search revealed:\n\nLarge language models frequently produce mutually inconsistent answers when reasoning over multiple related queries. The paper titled \"Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning\" (arXiv:2604.14525) addresses this issue directly.\n\n**Key aspects of the paper:**\n\n- **Problem studied**: The paper studies case-file logical consistency: maintaining a globally satisfiable belief state across interdependent queries.\n\n- **Benchmark and metrics**: The researchers introduce a benchmark of 390 multi-query reasoning instances with entailment/contradiction/unknown labels and propose set-level metrics including Case Satisfiability Rate, Contradiction Density and Revision Cost.\n\n- **Methodology**: Their solver-augmented approach extracts commitments, verifies global satisfiability and performs counterexample-guided repair.\n\n- **Results**: Across four reasoning domains, their method substantially reduces cross-query contradictions (SetCons: 0.56 to 0.94) while preserving per-query accuracy.\n\n- **Technical tools**: Solvers (CaDiCaL for SAT, Z3 for SMT) provide hard guarantees on satisfiability. The benchmark spans four domains: Relational/SAT (120), Temporal/SMT (100), Policy/Rules (80) and Underspecified/Abductive (90), paired with 2,450 interdependent query bundles.\n\nThe paper was published on arXiv on April 16, 2026."
+    ],
+    "durationSeconds": 7.535309822000003
+  },
+  "sourceToolAssistantUUID": "f3b75462-4639-44b0-ab57-1aeaf2ea5621",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-11T23:59:39.284Z_
+
+Good, key references verified. Now let me search for potentially missed competing work and verify more claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8388e07-754a-4018-8d3e-f53041271a7c",
+  "isSidechain": false,
+  "requestId": "req_011CawgzKxsPhiSAut3sciAu",
+  "type": "assistant",
+  "uuid": "14d9b1ae-ab56-45d3-917f-be67b97e7944",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQs9ZMniF5N3tQYEGjMkCk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 42493,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 42493,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-11T23:59:40.024Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01668wM2YqpEgee3tkp2Jeje`</summary>
+
+```json
+{
+  "query": "neurosymbolic reasoning multiple solutions cross-validation formal verification 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14d9b1ae-ab56-45d3-917f-be67b97e7944",
+  "isSidechain": false,
+  "requestId": "req_011CawgzKxsPhiSAut3sciAu",
+  "type": "assistant",
+  "uuid": "7bab01c8-a5d0-4fb0-a91b-9bd15c5661bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQs9ZMniF5N3tQYEGjMkCk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 42493,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 42493,
+          "cache_creation_input_tokens": 954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-11T23:59:50.203Z_
+
+<details><summary>↩ Tool result · `toolu_01668wM2YqpEgee3tkp2Jeje`</summary>
+
+```text
+Web search results for query: "neurosymbolic reasoning multiple solutions cross-validation formal verification 2026 arXiv"
+
+Links: [{"title":"A Neurosymbolic Approach to Natural Language Formalization and Verification","url":"https://arxiv.org/html/2511.09008v1"},{"title":"[2511.09008] A Neurosymbolic Approach to Natural Language Formalization and Verification","url":"https://arxiv.org/abs/2511.09008"},{"title":"A Neurosymbolic Approach to Natural Language Formalization and Verification | OpenReview","url":"https://openreview.net/forum?id=aMIkbx81Em"},{"title":"[2510.25975] SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation","url":"https://arxiv.org/abs/2510.25975"},{"title":"Toward Guarantees for Clinical Reasoning in Vision Language Models via Formal Verification","url":"https://arxiv.org/html/2602.24111"},{"title":"[2605.08011] Abductive Reasoning with Probabilistic Commonsense","url":"https://arxiv.org/abs/2605.08011"},{"title":"SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation","url":"https://arxiv.org/html/2510.25975v1"},{"title":"[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/abs/2601.20055"},{"title":"Advancing Symbolic Integration in Large Language Models: Beyond Conventional Neurosymbolic AI","url":"https://arxiv.org/html/2510.21425v1"},{"title":"Neurosymbolic Language Reasoning as Satisfiability Modulo Theory","url":"https://arxiv.org/html/2602.18095"}]
+
+I found several relevant papers on arXiv from 2025-2026 that address neurosymbolic reasoning with elements of multiple solutions, cross-validation, and formal verification:
+
+## Key Recent Papers:
+
+**1. A Neurosymbolic Approach to Natural Language Formalization and Verification (arXiv 2511.09008)**
+
+This paper presents a two-stage neurosymbolic framework that formalizes natural language policies and uses inference-time autoformalization to validate logical correctness. When correctness is paramount, it performs multiple redundant formalization steps at inference time, cross checking the formalizations for semantic equivalence. The benchmarks demonstrate the approach exceeds 99% soundness, indicating a near-zero false positive rate in identifying logical validity.
+
+**2. SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation (arXiv 2510.25975)**
+
+SymCode is a neurosymbolic framework that reframes mathematical problem-solving as a task of verifiable code generation using the SymPy library. The framework applies an iterative self-debugging mechanism where the LLM uses deterministic interpreter feedback to correct its own errors, a robust verification process not available to prose-based reasoners.
+
+**3. VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2601.20055)**
+
+This neurosymbolic framework combines LLMs with SMT solvers to produce verification-guided answers through iterative refinement. The approach decomposes LLM outputs into atomic claims, autoformalizes them into first-order logic, and verifies their logical consistency using automated theorem proving.
+
+**4. Neurosymbolic Language Reasoning as Satisfiability Modulo Theory (arXiv 2602.18095)**
+
+Logitext is a neurosymbolic language that represents documents as natural language text constraints, with an algorithm that integrates LLM-based constraint evaluation with satisfiability modulo theory (SMT) solving for joint textual-logical reasoning.
+
+**5. Abductive Reasoning with Probabilistic Commonsense (arXiv 2605.08011, May 2026)**
+
+PACS is a novel algorithm that uses an LLM and a formal solver to sample proofs as observations of individuals' distinct commonsense beliefs, and aggregates conclusions across these samples.
+
+These papers represent the current state-of-the-art in combining neural models with symbolic verification and formal reasoning methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7bab01c8-a5d0-4fb0-a91b-9bd15c5661bf",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "b742dc17-f5e1-4b29-bafa-442b2f12026a",
+  "toolUseResult": {
+    "query": "neurosymbolic reasoning multiple solutions cross-validation formal verification 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019pkHe8VTEB5NffEZwMnaHJ",
+        "content": [
+          {
+            "title": "A Neurosymbolic Approach to Natural Language Formalization and Verification",
+            "url": "https://arxiv.org/html/2511.09008v1"
+          },
+          {
+            "title": "[2511.09008] A Neurosymbolic Approach to Natural Language Formalization and Verification",
+            "url": "https://arxiv.org/abs/2511.09008"
+          },
+          {
+            "title": "A Neurosymbolic Approach to Natural Language Formalization and Verification | OpenReview",
+            "url": "https://openreview.net/forum?id=aMIkbx81Em"
+          },
+          {
+            "title": "[2510.25975] SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation",
+            "url": "https://arxiv.org/abs/2510.25975"
+          },
+          {
+            "title": "Toward Guarantees for Clinical Reasoning in Vision Language Models via Formal Verification",
+            "url": "https://arxiv.org/html/2602.24111"
+          },
+          {
+            "title": "[2605.08011] Abductive Reasoning with Probabilistic Commonsense",
+            "url": "https://arxiv.org/abs/2605.08011"
+          },
+          {
+            "title": "SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation",
+            "url": "https://arxiv.org/html/2510.25975v1"
+          },
+          {
+            "title": "[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/abs/2601.20055"
+          },
+          {
+            "title": "Advancing Symbolic Integration in Large Language Models: Beyond Conventional Neurosymbolic AI",
+            "url": "https://arxiv.org/html/2510.21425v1"
+          },
+          {
+            "title": "Neurosymbolic Language Reasoning as Satisfiability Modulo Theory",
+            "url": "https://arxiv.org/html/2602.18095"
+          }
+        ]
+      },
+      "I found several relevant papers on arXiv from 2025-2026 that address neurosymbolic reasoning with elements of multiple solutions, cross-validation, and formal verification:\n\n## Key Recent Papers:\n\n**1. A Neurosymbolic Approach to Natural Language Formalization and Verification (arXiv 2511.09008)**\n\nThis paper presents a two-stage neurosymbolic framework that formalizes natural language policies and uses inference-time autoformalization to validate logical correctness. When correctness is paramount, it performs multiple redundant formalization steps at inference time, cross checking the formalizations for semantic equivalence. The benchmarks demonstrate the approach exceeds 99% soundness, indicating a near-zero false positive rate in identifying logical validity.\n\n**2. SymCode: A Neurosymbolic Approach to Mathematical Reasoning via Verifiable Code Generation (arXiv 2510.25975)**\n\nSymCode is a neurosymbolic framework that reframes mathematical problem-solving as a task of verifiable code generation using the SymPy library. The framework applies an iterative self-debugging mechanism where the LLM uses deterministic interpreter feedback to correct its own errors, a robust verification process not available to prose-based reasoners.\n\n**3. VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2601.20055)**\n\nThis neurosymbolic framework combines LLMs with SMT solvers to produce verification-guided answers through iterative refinement. The approach decomposes LLM outputs into atomic claims, autoformalizes them into first-order logic, and verifies their logical consistency using automated theorem proving.\n\n**4. Neurosymbolic Language Reasoning as Satisfiability Modulo Theory (arXiv 2602.18095)**\n\nLogitext is a neurosymbolic language that represents documents as natural language text constraints, with an algorithm that integrates LLM-based constraint evaluation with satisfiability modulo theory (SMT) solving for joint textual-logical reasoning.\n\n**5. Abductive Reasoning with Probabilistic Commonsense (arXiv 2605.08011, May 2026)**\n\nPACS is a novel algorithm that uses an LLM and a formal solver to sample proofs as observations of individuals' distinct commonsense beliefs, and aggregates conclusions across these samples.\n\nThese papers represent the current state-of-the-art in combining neural models with symbolic verification and formal reasoning methods."
+    ],
+    "durationSeconds": 10.17313485100001
+  },
+  "sourceToolAssistantUUID": "7bab01c8-a5d0-4fb0-a91b-9bd15c5661bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-11T23:59:50.212Z_
+
+```json
+{
+  "parentUuid": "b742dc17-f5e1-4b29-bafa-442b2f12026a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "74f8d3c6-d4d8-4f6d-b650-58ac1d4ce3a4",
+  "timestamp": "2026-05-11T23:59:50.212Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-11T23:59:52.694Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HV1hhAhCjT8zszHKXvT8FN`</summary>
+
+```json
+{
+  "query": "MAX-SAT constraint consensus multiple reasoning paths LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74f8d3c6-d4d8-4f6d-b650-58ac1d4ce3a4",
+  "isSidechain": false,
+  "requestId": "req_011Cawh1PNYExtNKjbffxc9Q",
+  "type": "assistant",
+  "uuid": "4c476c97-5ca3-4317-a1c4-e20c3829cad1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QLtVZSgCmfVhmtp8v47kG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1277,
+      "cache_read_input_tokens": 43447,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1277,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 43447,
+          "cache_creation_input_tokens": 1277,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1277
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4c476c97-5ca3-4317-a1c4-e20c3829cad1",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-12T00:00:04.545Z_
+
+<details><summary>↩ Tool result · `toolu_01HV1hhAhCjT8zszHKXvT8FN`</summary>
+
+```text
+Web search results for query: "MAX-SAT constraint consensus multiple reasoning paths LLM 2025 2026"
+
+Links: [{"title":"The path of least Resistance: Guiding LLM reasoning trajectories with Prefix consensus","url":"https://arxiv.org/html/2601.21494v2"},{"title":"THE PATH OF LEAST RESISTANCE: GUIDING LLM REASONING TRAJECTORIES WITH PREFIX CONSENSUS | OpenReview","url":"https://openreview.net/forum?id=hrnSqERgPn"},{"title":"[2601.21494] The Path of Least Resistance: Guiding LLM Reasoning Trajectories with Prefix Consensus","url":"https://arxiv.org/abs/2601.21494"},{"title":"Published as a conference paper at ICLR 2026 LOGICONBENCH:","url":"https://openreview.net/pdf?id=ULEHJkolxB"},{"title":"Many Minds, One Path: LLM-Augmented Consensus Decision for Distributed","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40026/43987"},{"title":"CFP - LLMs meet Constraint Solving, 2nd Edition (LLM-Solve 2026)","url":"http://www.satlive.org/2026/04/21/llmsolve26.html"},{"title":"Reasoning in Large Language Models: From Chain-of-Thought to Massively Decomposed Agentic Processes[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202512.2242"},{"title":"1 Reasoning Beyond Limits: Advances and Open Problems for LLMs","url":"https://arxiv.org/pdf/2503.22732"},{"title":"Multi-Step Reasoning with Large Language Models, a Survey | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3774896"},{"title":"LLM Benchmarks 2026 - Compare AI Benchmarks and Tests","url":"https://llm-stats.com/benchmarks"}]
+
+Based on the search results, here's what I found related to your query about MAX-SAT constraint consensus and multiple reasoning paths in LLMs:
+
+## Key Findings
+
+### PoLR: Path of Least Resistance (2026)
+PoLR is the first inference-time method to leverage prefix consistency for compute-efficient reasoning. It clusters short prefixes of reasoning traces, identifies the dominant cluster, and expands all paths in that cluster, preserving the accuracy benefits of Self-Consistency while substantially reducing token usage and latency. PoLR consistently matches or exceeds Self-Consistency across GSM8K, Math500, AIME24/25, and GPQA-Diamond, reducing token usage by up to 60% and wall-clock latency by up to 50%.
+
+### MAX-SAT in Logical Reasoning
+Recent work uses a weighted MaxSAT solver to reason over dependencies and a feedback mechanism to query the model with known beliefs as context. Calanzone et al. (2025) introduce a neuro-symbolic loss that enforces consistency with an external set of facts and rules, allowing multiple constraints to be combined in a principled way.
+
+### Consensus in Multi-Agent Reasoning
+When agents agree, the consensus answer is accepted. When agents disagree, the system can apply additional verification strategies or request more agent opinions. The voting mechanism effectively filters out random errors that might occur in any single agent.
+
+### LLMs and Constraint Solving Workshop (2026)
+LLM-Solve 2026 is a workshop for researchers at the intersection of Large Language Models and Constraint Solving (CP, SAT, SMT, MIP, and related paradigms).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c476c97-5ca3-4317-a1c4-e20c3829cad1",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "40bedd7a-ad4c-4f0f-8116-3199acb8b670",
+  "toolUseResult": {
+    "query": "MAX-SAT constraint consensus multiple reasoning paths LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Tc2PZVhb1MRMTWm6smvPJA",
+        "content": [
+          {
+            "title": "The path of least Resistance: Guiding LLM reasoning trajectories with Prefix consensus",
+            "url": "https://arxiv.org/html/2601.21494v2"
+          },
+          {
+            "title": "THE PATH OF LEAST RESISTANCE: GUIDING LLM REASONING TRAJECTORIES WITH PREFIX CONSENSUS | OpenReview",
+            "url": "https://openreview.net/forum?id=hrnSqERgPn"
+          },
+          {
+            "title": "[2601.21494] The Path of Least Resistance: Guiding LLM Reasoning Trajectories with Prefix Consensus",
+            "url": "https://arxiv.org/abs/2601.21494"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 LOGICONBENCH:",
+            "url": "https://openreview.net/pdf?id=ULEHJkolxB"
+          },
+          {
+            "title": "Many Minds, One Path: LLM-Augmented Consensus Decision for Distributed",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40026/43987"
+          },
+          {
+            "title": "CFP - LLMs meet Constraint Solving, 2nd Edition (LLM-Solve 2026)",
+            "url": "http://www.satlive.org/2026/04/21/llmsolve26.html"
+          },
+          {
+            "title": "Reasoning in Large Language Models: From Chain-of-Thought to Massively Decomposed Agentic Processes[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202512.2242"
+          },
+          {
+            "title": "1 Reasoning Beyond Limits: Advances and Open Problems for LLMs",
+            "url": "https://arxiv.org/pdf/2503.22732"
+          },
+          {
+            "title": "Multi-Step Reasoning with Large Language Models, a Survey | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/10.1145/3774896"
+          },
+          {
+            "title": "LLM Benchmarks 2026 - Compare AI Benchmarks and Tests",
+            "url": "https://llm-stats.com/benchmarks"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to your query about MAX-SAT constraint consensus and multiple reasoning paths in LLMs:\n\n## Key Findings\n\n### PoLR: Path of Least Resistance (2026)\nPoLR is the first inference-time method to leverage prefix consistency for compute-efficient reasoning. It clusters short prefixes of reasoning traces, identifies the dominant cluster, and expands all paths in that cluster, preserving the accuracy benefits of Self-Consistency while substantially reducing token usage and latency. PoLR consistently matches or exceeds Self-Consistency across GSM8K, Math500, AIME24/25, and GPQA-Diamond, reducing token usage by up to 60% and wall-clock latency by up to 50%.\n\n### MAX-SAT in Logical Reasoning\nRecent work uses a weighted MaxSAT solver to reason over dependencies and a feedback mechanism to query the model with known beliefs as context. Calanzone et al. (2025) introduce a neuro-symbolic loss that enforces consistency with an external set of facts and rules, allowing multiple constraints to be combined in a principled way.\n\n### Consensus in Multi-Agent Reasoning\nWhen agents agree, the consensus answer is accepted. When agents disagree, the system can apply additional verification strategies or request more agent opinions. The voting mechanism effectively filters out random errors that might occur in any single agent.\n\n### LLMs and Constraint Solving Workshop (2026)\nLLM-Solve 2026 is a workshop for researchers at the intersection of Large Language Models and Constraint Solving (CP, SAT, SMT, MIP, and related paradigms)."
+    ],
+    "durationSeconds": 11.845857768999995
+  },
+  "sourceToolAssistantUUID": "4c476c97-5ca3-4317-a1c4-e20c3829cad1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-12T00:00:04.551Z_
+
+```json
+{
+  "parentUuid": "40bedd7a-ad4c-4f0f-8116-3199acb8b670",
+  "isSidechain": false,
+  "attachment": {
+    "type": "date_change",
+    "newDate": "2026-05-12"
+  },
+  "type": "attachment",
+  "uuid": "ffdd9bf2-7b29-436d-a841-84d39a499dbe",
+  "timestamp": "2026-05-12T00:00:04.551Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-12T00:00:07.607Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012QhdTMnGJ3R2Znz1wfmRnk`</summary>
+
+```json
+{
+  "query": "FoVer training step-level reasoning verifiers formal verification arXiv 2505.15960 BBH results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffdd9bf2-7b29-436d-a841-84d39a499dbe",
+  "isSidechain": false,
+  "requestId": "req_011Cawh2T1M4QiAU45Qf49u7",
+  "type": "assistant",
+  "uuid": "26f99877-7aa1-4282-bba4-543435d8678a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018u5UyXMszf9EisWa4xMroR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 44724,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1042,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 44724,
+          "cache_creation_input_tokens": 1042,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1042
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-12T00:00:14.781Z_
+
+<details><summary>↩ Tool result · `toolu_012QhdTMnGJ3R2Znz1wfmRnk`</summary>
+
+```text
+Web search results for query: "FoVer training step-level reasoning verifiers formal verification arXiv 2505.15960 BBH results"
+
+Links: [{"title":"[2505.15960] Training Step-Level Reasoning Verifiers with ...","url":"https://arxiv.org/abs/2505.15960"},{"title":"GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub","url":"https://github.com/psunlpgroup/FoVer"},{"title":"Training Step-Level Reasoning Verifiers with Formal ...","url":"https://arxiv.org/pdf/2505.15960"},{"title":"[2505.15960] Training Step-Level Reasoning Verifiers with Formal Verification Tools","url":"https://ar5iv.labs.arxiv.org/html/2505.15960"},{"title":"FOVER: Training Verifiers with Formal Tools","url":"https://www.emergentmind.com/papers/2505.15960"},{"title":"Paper page - Training Step-Level Reasoning Verifiers with Formal Verification Tools","url":"https://huggingface.co/papers/2505.15960"},{"title":"Training Step-Level Reasoning Verifiers with Formal Verification Tools | alphaXiv","url":"https://www.alphaxiv.org/abs/2505.15960"},{"title":"FoVer: Efficient PRM Training Data Synthesis via Formal Verification","url":"https://fover-prm.github.io/"},{"title":"[Literature Review] Training Step-Level Reasoning Verifiers with Formal Verification Tools","url":"https://www.themoonlight.io/en/review/training-step-level-reasoning-verifiers-with-formal-verification-tools"},{"title":"Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/html/2505.15960v3"}]
+
+Based on the search results, here's information about FoVer and its BBH results:
+
+## Overview of FoVer
+
+FoVer is a framework that synthesizes PRM (Process Reward Model) training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle. By leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls.
+
+## BBH Results
+
+LLM-based PRMs trained with FoVer significantly outperform PRMs based on the original LLMs and achieve competitive or superior results compared to state-of-the-art PRMs, as measured by step-level verification on ProcessBench and Best-of-K performance across 12 reasoning benchmarks, including MATH, AIME, ANLI, MMLU, and BBH.
+
+More specifically on BBH tasks, FoVer improves verification performance on BBH, whose properties differ substantially from those of the training tasks, with examples showing that the FoVer-PRM properly understands tasks like temporal sequence problems and correctly detects logical errors.
+
+## Cross-Task Generalization
+
+Experiments on 12 reasoning benchmarks show that fine-tuning on FoVer training data improves PRMs not only on math and logic reasoning tasks, which are informal variants of the training tasks, but also on NLI and BBH benchmarks, which differ substantially from the tasks used to construct the training data.
+
+The paper (arXiv 2505.15960) demonstrates strong cross-task generalization capabilities, with formal verification-based training data effectively improving PRM performance on diverse out-of-distribution reasoning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26f99877-7aa1-4282-bba4-543435d8678a",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "02a07618-83c0-4fa4-b4e6-8996171fa959",
+  "toolUseResult": {
+    "query": "FoVer training step-level reasoning verifiers formal verification arXiv 2505.15960 BBH results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012n1Gv1Buq8f8ouKUSjMXLs",
+        "content": [
+          {
+            "title": "[2505.15960] Training Step-Level Reasoning Verifiers with ...",
+            "url": "https://arxiv.org/abs/2505.15960"
+          },
+          {
+            "title": "GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub",
+            "url": "https://github.com/psunlpgroup/FoVer"
+          },
+          {
+            "title": "Training Step-Level Reasoning Verifiers with Formal ...",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "[2505.15960] Training Step-Level Reasoning Verifiers with Formal Verification Tools",
+            "url": "https://ar5iv.labs.arxiv.org/html/2505.15960"
+          },
+          {
+            "title": "FOVER: Training Verifiers with Formal Tools",
+            "url": "https://www.emergentmind.com/papers/2505.15960"
+          },
+          {
+            "title": "Paper page - Training Step-Level Reasoning Verifiers with Formal Verification Tools",
+            "url": "https://huggingface.co/papers/2505.15960"
+          },
+          {
+            "title": "Training Step-Level Reasoning Verifiers with Formal Verification Tools | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2505.15960"
+          },
+          {
+            "title": "FoVer: Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://fover-prm.github.io/"
+          },
+          {
+            "title": "[Literature Review] Training Step-Level Reasoning Verifiers with Formal Verification Tools",
+            "url": "https://www.themoonlight.io/en/review/training-step-level-reasoning-verifiers-with-formal-verification-tools"
+          },
+          {
+            "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/html/2505.15960v3"
+          }
+        ]
+      },
+      "Based on the search results, here's information about FoVer and its BBH results:\n\n## Overview of FoVer\n\nFoVer is a framework that synthesizes PRM (Process Reward Model) training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle. By leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls.\n\n## BBH Results\n\nLLM-based PRMs trained with FoVer significantly outperform PRMs based on the original LLMs and achieve competitive or superior results compared to state-of-the-art PRMs, as measured by step-level verification on ProcessBench and Best-of-K performance across 12 reasoning benchmarks, including MATH, AIME, ANLI, MMLU, and BBH.\n\nMore specifically on BBH tasks, FoVer improves verification performance on BBH, whose properties differ substantially from those of the training tasks, with examples showing that the FoVer-PRM properly understands tasks like temporal sequence problems and correctly detects logical errors.\n\n## Cross-Task Generalization\n\nExperiments on 12 reasoning benchmarks show that fine-tuning on FoVer training data improves PRMs not only on math and logic reasoning tasks, which are informal variants of the training tasks, but also on NLI and BBH benchmarks, which differ substantially from the tasks used to construct the training data.\n\nThe paper (arXiv 2505.15960) demonstrates strong cross-task generalization capabilities, with formal verification-based training data effectively improving PRM performance on diverse out-of-distribution reasoning tasks."
+    ],
+    "durationSeconds": 7.165033228
+  },
+  "sourceToolAssistantUUID": "26f99877-7aa1-4282-bba4-543435d8678a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-12T00:00:16.915Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HZhvSvphmWKCvovN4rcZfK`</summary>
+
+```json
+{
+  "query": "arXiv 2603.29500 formal intermediaries logic reasoning verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02a07618-83c0-4fa4-b4e6-8996171fa959",
+  "isSidechain": false,
+  "requestId": "req_011Cawh3Ceg19n95CMiVTPkq",
+  "type": "assistant",
+  "uuid": "a05e3adb-c17d-4684-bb1b-aee2077cf79c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PoneBKAMEBgmSEdmvFsqRt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 45766,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 45766,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-12T00:00:24.254Z_
+
+<details><summary>↩ Tool result · `toolu_01HZhvSvphmWKCvovN4rcZfK`</summary>
+
+```text
+Web search results for query: "arXiv 2603.29500 formal intermediaries logic reasoning verification"
+
+Links: [{"title":"Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries","url":"https://arxiv.org/html/2603.29500v1"},{"title":"Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification in Language Models","url":"https://arxiv.org/html/2601.22642v1"},{"title":"LEARNING TO GENERATE FORMALLY VERIFIABLE STEP-BY-STEP LOGIC REASONING VIA STRUCTURED FORMAL INTERMEDIARIES | OpenReview","url":"https://openreview.net/forum?id=Tsag0RrOW7"},{"title":"[2601.22642] Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification","url":"https://arxiv.org/abs/2601.22642"},{"title":"[2603.29550] Compositional Reasoning for Probabilistic Automata with Uncertainty","url":"https://arxiv.org/abs/2603.29550"},{"title":"[2603.01896v2] Agentic Code Reasoning","url":"https://arxiv.org/abs/2603.01896v2"},{"title":"Compositional Verification of Concurrency Using Past-Time Temporal Epistemic Logic","url":"https://arxiv.org/html/2502.18885"},{"title":"[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/abs/2505.15960"},{"title":"Training Step-Level Reasoning Verifiers with Formal ...","url":"https://arxiv.org/pdf/2505.15960"},{"title":"Agentic Code Reasoning","url":"https://arxiv.org/html/2603.01896v1"}]
+
+Based on the search results, here's what I found about arXiv 2603.29500:
+
+## Paper Overview
+
+The paper "Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries" was published on March 31, 2026, by Luoxin Chen, Yichi Zhou, and Huishuai Zhang.
+
+## Key Problem and Solution
+
+The paper addresses the issue that outcome rewards often overlook flawed intermediate steps, leading to unreliable reasoning steps even when final answers are correct. To address this unreliable reasoning, the authors propose PRoSFI (Process Reward over Structured Formal Intermediates), a novel reward method that enhances reasoning reliability without compromising accuracy.
+
+## Main Technical Approach
+
+Instead of generating formal proofs directly, which is rarely accomplishable for a modest-sized (7B) model, the model outputs structured intermediate steps aligned with its natural language reasoning. Each step is then verified by a formal prover.
+
+This approach bridges the gap between natural language reasoning and formal verification by creating intermediate structured representations that can be automatically verified while remaining tractable for smaller language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a05e3adb-c17d-4684-bb1b-aee2077cf79c",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "d9f840cf-dec6-4b7d-9517-9b6aa8378e58",
+  "toolUseResult": {
+    "query": "arXiv 2603.29500 formal intermediaries logic reasoning verification",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015UhkfvFhJUr2NkyGSrpMkd",
+        "content": [
+          {
+            "title": "Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries",
+            "url": "https://arxiv.org/html/2603.29500v1"
+          },
+          {
+            "title": "Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification in Language Models",
+            "url": "https://arxiv.org/html/2601.22642v1"
+          },
+          {
+            "title": "LEARNING TO GENERATE FORMALLY VERIFIABLE STEP-BY-STEP LOGIC REASONING VIA STRUCTURED FORMAL INTERMEDIARIES | OpenReview",
+            "url": "https://openreview.net/forum?id=Tsag0RrOW7"
+          },
+          {
+            "title": "[2601.22642] Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification",
+            "url": "https://arxiv.org/abs/2601.22642"
+          },
+          {
+            "title": "[2603.29550] Compositional Reasoning for Probabilistic Automata with Uncertainty",
+            "url": "https://arxiv.org/abs/2603.29550"
+          },
+          {
+            "title": "[2603.01896v2] Agentic Code Reasoning",
+            "url": "https://arxiv.org/abs/2603.01896v2"
+          },
+          {
+            "title": "Compositional Verification of Concurrency Using Past-Time Temporal Epistemic Logic",
+            "url": "https://arxiv.org/html/2502.18885"
+          },
+          {
+            "title": "[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/abs/2505.15960"
+          },
+          {
+            "title": "Training Step-Level Reasoning Verifiers with Formal ...",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "Agentic Code Reasoning",
+            "url": "https://arxiv.org/html/2603.01896v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about arXiv 2603.29500:\n\n## Paper Overview\n\nThe paper \"Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries\" was published on March 31, 2026, by Luoxin Chen, Yichi Zhou, and Huishuai Zhang.\n\n## Key Problem and Solution\n\nThe paper addresses the issue that outcome rewards often overlook flawed intermediate steps, leading to unreliable reasoning steps even when final answers are correct. To address this unreliable reasoning, the authors propose PRoSFI (Process Reward over Structured Formal Intermediates), a novel reward method that enhances reasoning reliability without compromising accuracy.\n\n## Main Technical Approach\n\nInstead of generating formal proofs directly, which is rarely accomplishable for a modest-sized (7B) model, the model outputs structured intermediate steps aligned with its natural language reasoning. Each step is then verified by a formal prover.\n\nThis approach bridges the gap between natural language reasoning and formal verification by creating intermediate structured representations that can be automatically verified while remaining tractable for smaller language models."
+    ],
+    "durationSeconds": 7.3343457239999985
+  },
+  "sourceToolAssistantUUID": "a05e3adb-c17d-4684-bb1b-aee2077cf79c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-12T00:00:27.380Z_
+
+Good — PRoSFI (arXiv 2603.29500) is confirmed real. Now let me verify more claims and search for additional competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9f840cf-dec6-4b7d-9517-9b6aa8378e58",
+  "isSidechain": false,
+  "requestId": "req_011Cawh3tssCh1QdXcaWw7cZ",
+  "type": "assistant",
+  "uuid": "f5aaec54-ff1b-412e-8a01-29e25fcd22b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RM7cuic2kmbohsVe3qJkLJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 46744,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 46744,
+          "cache_creation_input_tokens": 820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-12T00:00:27.982Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RqXA971mKN8bdg7cDxGP3R`</summary>
+
+```json
+{
+  "query": "QwQ-32B MATH-500 accuracy benchmark 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5aaec54-ff1b-412e-8a01-29e25fcd22b0",
+  "isSidechain": false,
+  "requestId": "req_011Cawh3tssCh1QdXcaWw7cZ",
+  "type": "assistant",
+  "uuid": "3c02603f-a9b0-4582-8f8f-8c1a78adfb1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RM7cuic2kmbohsVe3qJkLJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 46744,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 46744,
+          "cache_creation_input_tokens": 820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-12T00:00:33.832Z_
+
+<details><summary>↩ Tool result · `toolu_01RqXA971mKN8bdg7cDxGP3R`</summary>
+
+```text
+Web search results for query: "QwQ-32B MATH-500 accuracy benchmark 2026"
+
+Links: [{"title":"Evaluating the QwQ Model | EvalScope - Read the Docs","url":"https://evalscope.readthedocs.io/en/latest/best_practice/eval_qwq.html"},{"title":"QwQ-32B Challenges DeepSeek-R1 and Other Larger Reasoning Models","url":"https://www.deeplearning.ai/the-batch/qwq-32b-challenges-deepseek-r1-and-other-larger-reasoning-models/"},{"title":"I Tested QwQ 32B Preview: Alibaba’s Reasoning Model | DataCamp","url":"https://www.datacamp.com/blog/qwq-32b-preview"},{"title":"QwQ 32B Preview | Open Laboratory","url":"https://openlaboratory.ai/models/qwq-32b-preview"},{"title":"QwQ-32B-Preview Benchmarks: Revolutionizing AI Reasoning Capabilities | by Amdad H | Towards AGI | Medium","url":"https://medium.com/towards-agi/qwq-32b-preview-benchmarks-revolutionizing-ai-reasoning-capabilities-b2014a00c208"},{"title":"QwQ-32B: Embracing the Power of Reinforcement Learning | Qwen","url":"https://qwenlm.github.io/blog/qwq-32b/"},{"title":"Qwen Team Unveils QwQ-32B-Preview: Advancing AI Reasoning and Analytics - InfoQ","url":"https://www.infoq.com/news/2024/12/qwq-preview/"},{"title":"Qwen: QwQ 32B Review — Pricing, Benchmarks & Capabilities (2026) — Design for Online","url":"https://designforonline.com/ai-models/qwen-qwq-32b/"},{"title":"QwQ-32B: A New Competitive Reasoning Model - The Jurnals","url":"https://jurnals.net/qwq-32b-a-new-competitive-reasoning-model/"},{"title":"DeepSeek-R1 Uncensored, QwQ-32B Puts Reasoning in Smaller Model, and more...","url":"https://www.deeplearning.ai/the-batch/issue-292/"}]
+
+Based on the search results, here's what I found about QwQ-32B's MATH-500 accuracy benchmark:
+
+QwQ-32B achieved 90.6% accuracy on MATH-500, which is a benchmark for wide-ranging math problems. More recent data from 2026 shows QwQ-32B achieving 95.7% on MATH-500.
+
+The model scores over 90% at MATH-500, which is very impressive and shows that QwQ-32B is great at solving general math problems with decent accuracy. Both QwQ-32B and DeepSeek-R1 perform exceptionally well, maintaining high accuracy even on difficult problems, with QwQ-32B achieving the best performance at the highest difficulty level.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c02603f-a9b0-4582-8f8f-8c1a78adfb1a",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "cd4109bf-65ac-4759-8f2d-b87eed891aec",
+  "toolUseResult": {
+    "query": "QwQ-32B MATH-500 accuracy benchmark 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Af9oTiykjQNh4B9WTgW5nk",
+        "content": [
+          {
+            "title": "Evaluating the QwQ Model | EvalScope - Read the Docs",
+            "url": "https://evalscope.readthedocs.io/en/latest/best_practice/eval_qwq.html"
+          },
+          {
+            "title": "QwQ-32B Challenges DeepSeek-R1 and Other Larger Reasoning Models",
+            "url": "https://www.deeplearning.ai/the-batch/qwq-32b-challenges-deepseek-r1-and-other-larger-reasoning-models/"
+          },
+          {
+            "title": "I Tested QwQ 32B Preview: Alibaba’s Reasoning Model | DataCamp",
+            "url": "https://www.datacamp.com/blog/qwq-32b-preview"
+          },
+          {
+            "title": "QwQ 32B Preview | Open Laboratory",
+            "url": "https://openlaboratory.ai/models/qwq-32b-preview"
+          },
+          {
+            "title": "QwQ-32B-Preview Benchmarks: Revolutionizing AI Reasoning Capabilities | by Amdad H | Towards AGI | Medium",
+            "url": "https://medium.com/towards-agi/qwq-32b-preview-benchmarks-revolutionizing-ai-reasoning-capabilities-b2014a00c208"
+          },
+          {
+            "title": "QwQ-32B: Embracing the Power of Reinforcement Learning | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwq-32b/"
+          },
+          {
+            "title": "Qwen Team Unveils QwQ-32B-Preview: Advancing AI Reasoning and Analytics - InfoQ",
+            "url": "https://www.infoq.com/news/2024/12/qwq-preview/"
+          },
+          {
+            "title": "Qwen: QwQ 32B Review — Pricing, Benchmarks & Capabilities (2026) — Design for Online",
+            "url": "https://designforonline.com/ai-models/qwen-qwq-32b/"
+          },
+          {
+            "title": "QwQ-32B: A New Competitive Reasoning Model - The Jurnals",
+            "url": "https://jurnals.net/qwq-32b-a-new-competitive-reasoning-model/"
+          },
+          {
+            "title": "DeepSeek-R1 Uncensored, QwQ-32B Puts Reasoning in Smaller Model, and more...",
+            "url": "https://www.deeplearning.ai/the-batch/issue-292/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about QwQ-32B's MATH-500 accuracy benchmark:\n\nQwQ-32B achieved 90.6% accuracy on MATH-500, which is a benchmark for wide-ranging math problems. More recent data from 2026 shows QwQ-32B achieving 95.7% on MATH-500.\n\nThe model scores over 90% at MATH-500, which is very impressive and shows that QwQ-32B is great at solving general math problems with decent accuracy. Both QwQ-32B and DeepSeek-R1 perform exceptionally well, maintaining high accuracy even on difficult problems, with QwQ-32B achieving the best performance at the highest difficulty level."
+    ],
+    "durationSeconds": 5.844994435
+  },
+  "sourceToolAssistantUUID": "3c02603f-a9b0-4582-8f8f-8c1a78adfb1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-12T00:00:36.596Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019EjoiUoKUjfHdRsJia5rAW`</summary>
+
+```json
+{
+  "query": "QwQ-32B AIME 2024 accuracy score official Qwen blog"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd4109bf-65ac-4759-8f2d-b87eed891aec",
+  "isSidechain": false,
+  "requestId": "req_011Cawh4bqiZaLtE4hrxMgKE",
+  "type": "assistant",
+  "uuid": "4d51d4f3-3cca-4f39-ac58-b7d86d6a8939",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0133D2BQ3pfJSpq9cwoe6d3V",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 894,
+      "cache_read_input_tokens": 47564,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 47564,
+          "cache_creation_input_tokens": 894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-12T00:00:41.639Z_
+
+<details><summary>↩ Tool result · `toolu_019EjoiUoKUjfHdRsJia5rAW`</summary>
+
+```text
+Web search results for query: "QwQ-32B AIME 2024 accuracy score official Qwen blog"
+
+Links: [{"title":"Alibaba Cloud Unveils QwQ-32B: A Compact Reasoning Model with Cutting-Edge Performance - Alibaba Cloud Community","url":"https://www.alibabacloud.com/blog/alibaba-cloud-unveils-qwq-32b-a-compact-reasoning-model-with-cutting-edge-performance_602039"},{"title":"QwQ: Reflect Deeply on the Boundaries of the Unknown | Qwen","url":"https://qwenlm.github.io/blog/qwq-32b-preview/"},{"title":"QwQ 32B Preview | Open Laboratory","url":"https://openlaboratory.ai/models/qwq-32b-preview"},{"title":"Qwen Team Unveils QwQ-32B-Preview: Advancing AI Reasoning and Analytics - InfoQ","url":"https://www.infoq.com/news/2024/12/qwq-preview/"},{"title":"DeepSeek-R1 Uncensored, QwQ-32B Puts Reasoning in Smaller Model, and more...","url":"https://www.deeplearning.ai/the-batch/issue-292/"},{"title":"Qwen/QwQ-32B · Hugging Face","url":"https://huggingface.co/Qwen/QwQ-32B"},{"title":"Qwen’s QwQ-32B: Small Model with Huge Potential - Analytics Vidhya","url":"https://www.analyticsvidhya.com/blog/2025/03/qwens-qwq-32b/"},{"title":"Qwen QwQ-32B-Preview: Experience the Leading Open-Source Reasoning Model with Ease · LobeHub","url":"https://lobehub.com/blog/qwen-qwq-32b-preview-experience-the-leading-open-source-reasoning-model"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"QwQ-32B: Embracing the Power of Reinforcement Learning | Qwen","url":"https://qwenlm.github.io/blog/qwq-32b/"}]
+
+Based on the web search results, I found official information about QwQ-32B's AIME 2024 accuracy score:
+
+On AIME24 (high-school competition math problems), QwQ-32B achieved 79.5 percent accuracy, well ahead of o1-mini (63.6 percent) but slightly behind DeepSeek-R1 (79.8 percent).
+
+It's worth noting that there are different versions of QwQ-32B with different reported scores. The earlier preview version (QwQ demonstrates remarkable performance achieving 50.0% on AIME), while the more recent updated version achieved the higher 79.5% score mentioned above. Alibaba introduced QwQ-32B, with QwQ-32B being a version of Qwen2.5-32B that was fine-tuned to generate chains of thought using reinforcement learning (RL).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d51d4f3-3cca-4f39-ac58-b7d86d6a8939",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "00f8b39e-2dcd-43c0-b1b6-b996a953cc5d",
+  "toolUseResult": {
+    "query": "QwQ-32B AIME 2024 accuracy score official Qwen blog",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019aRm3K4SGMumXapUi3CdR6",
+        "content": [
+          {
+            "title": "Alibaba Cloud Unveils QwQ-32B: A Compact Reasoning Model with Cutting-Edge Performance - Alibaba Cloud Community",
+            "url": "https://www.alibabacloud.com/blog/alibaba-cloud-unveils-qwq-32b-a-compact-reasoning-model-with-cutting-edge-performance_602039"
+          },
+          {
+            "title": "QwQ: Reflect Deeply on the Boundaries of the Unknown | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwq-32b-preview/"
+          },
+          {
+            "title": "QwQ 32B Preview | Open Laboratory",
+            "url": "https://openlaboratory.ai/models/qwq-32b-preview"
+          },
+          {
+            "title": "Qwen Team Unveils QwQ-32B-Preview: Advancing AI Reasoning and Analytics - InfoQ",
+            "url": "https://www.infoq.com/news/2024/12/qwq-preview/"
+          },
+          {
+            "title": "DeepSeek-R1 Uncensored, QwQ-32B Puts Reasoning in Smaller Model, and more...",
+            "url": "https://www.deeplearning.ai/the-batch/issue-292/"
+          },
+          {
+            "title": "Qwen/QwQ-32B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/QwQ-32B"
+          },
+          {
+            "title": "Qwen’s QwQ-32B: Small Model with Huge Potential - Analytics Vidhya",
+            "url": "https://www.analyticsvidhya.com/blog/2025/03/qwens-qwq-32b/"
+          },
+          {
+            "title": "Qwen QwQ-32B-Preview: Experience the Leading Open-Source Reasoning Model with Ease · LobeHub",
+            "url": "https://lobehub.com/blog/qwen-qwq-32b-preview-experience-the-leading-open-source-reasoning-model"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "QwQ-32B: Embracing the Power of Reinforcement Learning | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwq-32b/"
+          }
+        ]
+      },
+      "Based on the web search results, I found official information about QwQ-32B's AIME 2024 accuracy score:\n\nOn AIME24 (high-school competition math problems), QwQ-32B achieved 79.5 percent accuracy, well ahead of o1-mini (63.6 percent) but slightly behind DeepSeek-R1 (79.8 percent).\n\nIt's worth noting that there are different versions of QwQ-32B with different reported scores. The earlier preview version (QwQ demonstrates remarkable performance achieving 50.0% on AIME), while the more recent updated version achieved the higher 79.5% score mentioned above. Alibaba introduced QwQ-32B, with QwQ-32B being a version of Qwen2.5-32B that was fine-tuned to generate chains of thought using reinforcement learning (RL)."
+    ],
+    "durationSeconds": 5.039627696999989
+  },
+  "sourceToolAssistantUUID": "4d51d4f3-3cca-4f39-ac58-b7d86d6a8939",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "00f8b39e-2dcd-43c0-b1b6-b996a953cc5d",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-12T00:00:45.359Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R1U9WjJZdALrym96AkqUwy`</summary>
+
+```json
+{
+  "query": "symbolic verification reasoning aggregation multiple solutions SMT weighted MAX-SAT 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00f8b39e-2dcd-43c0-b1b6-b996a953cc5d",
+  "isSidechain": false,
+  "requestId": "req_011Cawh5CCC4x41hwePLN2kB",
+  "type": "assistant",
+  "uuid": "c32d8504-743a-4ebd-96b4-6462632109da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7szg796fUaQiLcfdz4SxH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 894,
+      "cache_read_input_tokens": 48458,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 48458,
+          "cache_creation_input_tokens": 894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-12T00:00:53.034Z_
+
+<details><summary>↩ Tool result · `toolu_01R1U9WjJZdALrym96AkqUwy`</summary>
+
+```text
+Web search results for query: "symbolic verification reasoning aggregation multiple solutions SMT weighted MAX-SAT 2025 2026"
+
+Links: [{"title":"SMT Solvers: Theory and Practice Clark Barrett barrett@cs.nyu.edu","url":"https://resources.mpi-inf.mpg.de/departments/rg1/conferences/vtsa08/slides/barret2_smt.pdf"},{"title":"Efficient Sampling of SAT and SMT Solutions for Testing and Verification","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2019/EECS-2019-167.pdf"},{"title":"Satisfiability modulo theories - Wikipedia","url":"https://en.wikipedia.org/wiki/Satisfiability_modulo_theories"},{"title":"Solving Satisfiability Modulo Counting for Symbolic and Statistical AI Integration With Provable Guarantees","url":"https://arxiv.org/html/2309.08883v2"},{"title":"SAT solver - Wikipedia","url":"https://en.wikipedia.org/wiki/SAT_solver"},{"title":"Satisfiability Modulo Theories (SMT)","url":"https://www.emergentmind.com/topics/satisfiability-modulo-theories-smt"},{"title":"Handbook of Satisfiability: Volume 185 Frontiers in Artificial Intelligence and Applications | Guide books | ACM Digital Library","url":"https://dl.acm.org/doi/10.5555/1550723"},{"title":"A Survey on LLM Symbolic Reasoning","url":"https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.176538331.19733376/v1"},{"title":"SAT 2026 - SAT 2026","url":"http://satisfiability.org/SAT26/"},{"title":"Call for Papers - SAT 2026","url":"http://satisfiability.org/SAT26/pages/cfp.html"}]
+
+Based on the web search results, here's what I found relevant to your query about symbolic verification, reasoning, aggregation, multiple solutions, SMT, and weighted MAX-SAT:
+
+## Key Findings:
+
+**SMT and Solution Sampling:**
+Techniques like GuidedSampler dynamically guide the search of new solutions by using coverage predicates to generate solutions from different coverage classes, requiring only a small number of calls to an off-the-shelf constraint solver to generate millions of solutions.
+
+**Weighted Sampling and MAX-SMT:**
+Research has explored weighted MAX-SMT solver approaches with timeout constraints for scalability reasons.
+
+**Multiple Solution Aggregation:**
+Multiple mutations can be combined together to generate new solutions from previously unseen coverage classes.
+
+**Recent SMT Developments (2025-2026):**
+Tight fragments of answer set programming modulo theories (ASPMT) can be compiled to SMT instances, preserving stable models and enabling numeric reasoning with continuous domains. Extensions of SMT called Optimization Modulo Theories (OMT) ensure solutions are optimal with respect to possibly multi-objective cost functions.
+
+**Boolean Optimization:**
+SAT 2026, the premier annual meeting for satisfiability research, covers Boolean optimization including MaxSAT and Pseudo-Boolean constraints alongside SMT and model counting.
+
+The search results show active research in combining SMT solving with multiple solution generation and optimization techniques, particularly relevant to 2025-2026 developments in the field.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c32d8504-743a-4ebd-96b4-6462632109da",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "4390e214-1b36-4b3b-984e-9e0a5e4f548a",
+  "toolUseResult": {
+    "query": "symbolic verification reasoning aggregation multiple solutions SMT weighted MAX-SAT 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HpkgFTQR6FVU7yv4fRsQdd",
+        "content": [
+          {
+            "title": "SMT Solvers: Theory and Practice Clark Barrett barrett@cs.nyu.edu",
+            "url": "https://resources.mpi-inf.mpg.de/departments/rg1/conferences/vtsa08/slides/barret2_smt.pdf"
+          },
+          {
+            "title": "Efficient Sampling of SAT and SMT Solutions for Testing and Verification",
+            "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2019/EECS-2019-167.pdf"
+          },
+          {
+            "title": "Satisfiability modulo theories - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Satisfiability_modulo_theories"
+          },
+          {
+            "title": "Solving Satisfiability Modulo Counting for Symbolic and Statistical AI Integration With Provable Guarantees",
+            "url": "https://arxiv.org/html/2309.08883v2"
+          },
+          {
+            "title": "SAT solver - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/SAT_solver"
+          },
+          {
+            "title": "Satisfiability Modulo Theories (SMT)",
+            "url": "https://www.emergentmind.com/topics/satisfiability-modulo-theories-smt"
+          },
+          {
+            "title": "Handbook of Satisfiability: Volume 185 Frontiers in Artificial Intelligence and Applications | Guide books | ACM Digital Library",
+            "url": "https://dl.acm.org/doi/10.5555/1550723"
+          },
+          {
+            "title": "A Survey on LLM Symbolic Reasoning",
+            "url": "https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.176538331.19733376/v1"
+          },
+          {
+            "title": "SAT 2026 - SAT 2026",
+            "url": "http://satisfiability.org/SAT26/"
+          },
+          {
+            "title": "Call for Papers - SAT 2026",
+            "url": "http://satisfiability.org/SAT26/pages/cfp.html"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found relevant to your query about symbolic verification, reasoning, aggregation, multiple solutions, SMT, and weighted MAX-SAT:\n\n## Key Findings:\n\n**SMT and Solution Sampling:**\nTechniques like GuidedSampler dynamically guide the search of new solutions by using coverage predicates to generate solutions from different coverage classes, requiring only a small number of calls to an off-the-shelf constraint solver to generate millions of solutions.\n\n**Weighted Sampling and MAX-SMT:**\nResearch has explored weighted MAX-SMT solver approaches with timeout constraints for scalability reasons.\n\n**Multiple Solution Aggregation:**\nMultiple mutations can be combined together to generate new solutions from previously unseen coverage classes.\n\n**Recent SMT Developments (2025-2026):**\nTight fragments of answer set programming modulo theories (ASPMT) can be compiled to SMT instances, preserving stable models and enabling numeric reasoning with continuous domains. Extensions of SMT called Optimization Modulo Theories (OMT) ensure solutions are optimal with respect to possibly multi-objective cost functions.\n\n**Boolean Optimization:**\nSAT 2026, the premier annual meeting for satisfiability research, covers Boolean optimization including MaxSAT and Pseudo-Boolean constraints alongside SMT and model counting.\n\nThe search results show active research in combining SMT solving with multiple solution generation and optimization techniques, particularly relevant to 2025-2026 developments in the field."
+    ],
+    "durationSeconds": 7.6718477520000015
+  },
+  "sourceToolAssistantUUID": "c32d8504-743a-4ebd-96b4-6462632109da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-12T00:00:55.621Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AvRghVFtU3dKLcdpxvJFtt`</summary>
+
+```json
+{
+  "query": "ARR May 2026 submission deadline EMNLP 2026 commitment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4390e214-1b36-4b3b-984e-9e0a5e4f548a",
+  "isSidechain": false,
+  "requestId": "req_011Cawh61zoSTTj9yMjzeMGd",
+  "type": "assistant",
+  "uuid": "95a33167-5ac4-4429-aa1f-94ec1c341f10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cQrJCJp6EiRW7Uj5rxDTA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 49352,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 49352,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-12T00:01:00.899Z_
+
+<details><summary>↩ Tool result · `toolu_01AvRghVFtU3dKLcdpxvJFtt`</summary>
+
+```text
+Web search results for query: "ARR May 2026 submission deadline EMNLP 2026 commitment"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X","url":"https://x.com/emnlpmeeting/status/1892259536137785419"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"}]
+
+Based on the search results, here are the key details about the ARR May 2026 submission deadline and EMNLP 2026 commitment:
+
+## ARR May 2026 Submission Deadline
+
+The ARR submission deadline is May 25, 2026.
+
+## EMNLP 2026 Commitment Policy
+
+Since the ARR 2026 May cycle is aligned with both EMNLP and AACL conferences, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026—ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026. 
+
+However, this policy does NOT apply to any papers submitted and reviewed in prior ARR cycles that wish to commit to EMNLP.
+
+After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE, and the EMNLP commitment deadline is August 2, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95a33167-5ac4-4429-aa1f-94ec1c341f10",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "91977c14-18f0-41fd-a189-93294665c914",
+  "toolUseResult": {
+    "query": "ARR May 2026 submission deadline EMNLP 2026 commitment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018t13W1axLR7586Xzz4LXgG",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1892259536137785419"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          }
+        ]
+      },
+      "Based on the search results, here are the key details about the ARR May 2026 submission deadline and EMNLP 2026 commitment:\n\n## ARR May 2026 Submission Deadline\n\nThe ARR submission deadline is May 25, 2026.\n\n## EMNLP 2026 Commitment Policy\n\nSince the ARR 2026 May cycle is aligned with both EMNLP and AACL conferences, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026—ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026. \n\nHowever, this policy does NOT apply to any papers submitted and reviewed in prior ARR cycles that wish to commit to EMNLP.\n\nAfter submission, all authors must complete the author registration form by May 27, 2026 EoD AoE, and the EMNLP commitment deadline is August 2, 2026."
+    ],
+    "durationSeconds": 5.273746322999999
+  },
+  "sourceToolAssistantUUID": "95a33167-5ac4-4429-aa1f-94ec1c341f10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-12T00:01:05.044Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Kv4AwnAotbCnUHYaF1TurX`</summary>
+
+```json
+{
+  "query": "neurosymbolic cross-path constraint verification reasoning LLM solver 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91977c14-18f0-41fd-a189-93294665c914",
+  "isSidechain": false,
+  "requestId": "req_011Cawh6bd8HLNhriSsHqPP3",
+  "type": "assistant",
+  "uuid": "98a48012-5705-41bd-ad3d-e1edf665c146",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8Sj13xtBsZ3wMZiD2wbqm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1025,
+      "cache_read_input_tokens": 50258,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1025,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 50258,
+          "cache_creation_input_tokens": 1025,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1025
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-12T00:01:13.407Z_
+
+<details><summary>↩ Tool result · `toolu_01Kv4AwnAotbCnUHYaF1TurX`</summary>
+
+```text
+Web search results for query: "neurosymbolic cross-path constraint verification reasoning LLM solver 2026"
+
+Links: [{"title":"(iterate think thoughts): Giving LLMs a Formal Reasoning Engine for Code Analysis","url":"https://yogthos.net/posts/2026-04-08-neurosymbolic-mcp.html"},{"title":"ConstraintLLM: A Neuro-Symbolic Framework for Industrial ...","url":"https://aclanthology.org/2025.emnlp-main.809.pdf"},{"title":"Neuro-Symbolic Verification for Preventing LLM Hallucinations in Process Control","url":"https://www.mdpi.com/2227-9717/14/2/322"},{"title":"VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks | OpenReview","url":"https://openreview.net/forum?id=zHuV3Vatov"},{"title":"Post Hoc Neuro-Symbolic Verification on Instruction Following of Language Models | OpenReview","url":"https://openreview.net/forum?id=RZGs4OAH6g"},{"title":"GitHub - LAMDA-NeSy/Awesome-LLM-Reasoning-with-NeSy: ✨✨Latest Advances on Neuro-Symbolic Learning in the era of Large Language Models","url":"https://github.com/LAMDA-NeSy/Awesome-LLM-Reasoning-with-NeSy"},{"title":"Worst-Case Symbolic Constraints Analysis and Generalisation with Large Language Models","url":"https://arxiv.org/html/2506.08171"},{"title":"LLMs & Symbolic Solvers: A Neuro-Symbolic Approach","url":"https://www.emergentmind.com/topics/llms-with-symbolic-solvers"},{"title":"FregeLogic at SemEval 2026 Task 11: A hybrid neuro-symbolic architecture for content-robust syllogistic validity prediction - Amazon Science","url":"https://www.amazon.science/publications/fregelogic-at-semeval-2026-task-11-a-hybrid-neuro-symbolic-architecture-for-content-robust-syllogistic-validity-prediction"},{"title":"VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/html/2601.20055v2"}]
+
+Based on the search results, here's an overview of recent work on neurosymbolic approaches to constraint verification and reasoning with LLMs in 2026:
+
+## Key Neurosymbolic Systems and Frameworks
+
+Chiasmus is an MCP server aiming to address the problem by giving LLMs access to formal reasoning engines, bundling Z3 for constraint solving and Tau Prolog for logic programming. Source files are parsed using tree-sitter and then turned into formal grammars, providing the LLM with a structured representation of the code along with a logic engine that can answer questions about it with certainty while using a fraction of the tokens.
+
+## Cross-Path Constraint Analysis
+
+WARP (Worst-case Asymptotic Reasoner for Path constraints) is a unified neurosymbolic framework for the synthesis and verification of worst-case path constraints, combining symbolic program analysis, reinforcement learning with solver-guided feedback, and rigorous benchmarking to improve the asymptotic reasoning capabilities of LLMs.
+
+## Verification and Reasoning Methods
+
+VeriCoT is a neuro-symbolic method that extracts and verifies formal logical arguments from CoT reasoning. Additionally, NSVIF abstracts instruction-following verification as a Constraint Satisfaction Problem (CSP), where both instructions and LLM outputs are represented as structured constraints, including symbolic and neural constraints, introducing a neuro-symbolic solver that embraces symbolic reasoning and neural inference.
+
+## Constraint Satisfaction Problem Solving
+
+ConstraintLLM's inference pipeline involves feeding a problem, augmented with ICL examples, to the LLM to formulate a CP model, which is then processed by the solver.
+
+These systems represent the current state of integrating formal verification, constraint solving, and LLM reasoning for more reliable and verifiable AI systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98a48012-5705-41bd-ad3d-e1edf665c146",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "ca7906af-e672-4b36-964a-9f1123e85f0f",
+  "toolUseResult": {
+    "query": "neurosymbolic cross-path constraint verification reasoning LLM solver 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01URZ2mdsCmkom2YaKrD6BvW",
+        "content": [
+          {
+            "title": "(iterate think thoughts): Giving LLMs a Formal Reasoning Engine for Code Analysis",
+            "url": "https://yogthos.net/posts/2026-04-08-neurosymbolic-mcp.html"
+          },
+          {
+            "title": "ConstraintLLM: A Neuro-Symbolic Framework for Industrial ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.809.pdf"
+          },
+          {
+            "title": "Neuro-Symbolic Verification for Preventing LLM Hallucinations in Process Control",
+            "url": "https://www.mdpi.com/2227-9717/14/2/322"
+          },
+          {
+            "title": "VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks | OpenReview",
+            "url": "https://openreview.net/forum?id=zHuV3Vatov"
+          },
+          {
+            "title": "Post Hoc Neuro-Symbolic Verification on Instruction Following of Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=RZGs4OAH6g"
+          },
+          {
+            "title": "GitHub - LAMDA-NeSy/Awesome-LLM-Reasoning-with-NeSy: ✨✨Latest Advances on Neuro-Symbolic Learning in the era of Large Language Models",
+            "url": "https://github.com/LAMDA-NeSy/Awesome-LLM-Reasoning-with-NeSy"
+          },
+          {
+            "title": "Worst-Case Symbolic Constraints Analysis and Generalisation with Large Language Models",
+            "url": "https://arxiv.org/html/2506.08171"
+          },
+          {
+            "title": "LLMs & Symbolic Solvers: A Neuro-Symbolic Approach",
+            "url": "https://www.emergentmind.com/topics/llms-with-symbolic-solvers"
+          },
+          {
+            "title": "FregeLogic at SemEval 2026 Task 11: A hybrid neuro-symbolic architecture for content-robust syllogistic validity prediction - Amazon Science",
+            "url": "https://www.amazon.science/publications/fregelogic-at-semeval-2026-task-11-a-hybrid-neuro-symbolic-architecture-for-content-robust-syllogistic-validity-prediction"
+          },
+          {
+            "title": "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/html/2601.20055v2"
+          }
+        ]
+      },
+      "Based on the search results, here's an overview of recent work on neurosymbolic approaches to constraint verification and reasoning with LLMs in 2026:\n\n## Key Neurosymbolic Systems and Frameworks\n\nChiasmus is an MCP server aiming to address the problem by giving LLMs access to formal reasoning engines, bundling Z3 for constraint solving and Tau Prolog for logic programming. Source files are parsed using tree-sitter and then turned into formal grammars, providing the LLM with a structured representation of the code along with a logic engine that can answer questions about it with certainty while using a fraction of the tokens.\n\n## Cross-Path Constraint Analysis\n\nWARP (Worst-case Asymptotic Reasoner for Path constraints) is a unified neurosymbolic framework for the synthesis and verification of worst-case path constraints, combining symbolic program analysis, reinforcement learning with solver-guided feedback, and rigorous benchmarking to improve the asymptotic reasoning capabilities of LLMs.\n\n## Verification and Reasoning Methods\n\nVeriCoT is a neuro-symbolic method that extracts and verifies formal logical arguments from CoT reasoning. Additionally, NSVIF abstracts instruction-following verification as a Constraint Satisfaction Problem (CSP), where both instructions and LLM outputs are represented as structured constraints, including symbolic and neural constraints, introducing a neuro-symbolic solver that embraces symbolic reasoning and neural inference.\n\n## Constraint Satisfaction Problem Solving\n\nConstraintLLM's inference pipeline involves feeding a problem, augmented with ICL examples, to the LLM to formulate a CP model, which is then processed by the solver.\n\nThese systems represent the current state of integrating formal verification, constraint solving, and LLM reasoning for more reliable and verifiable AI systems."
+    ],
+    "durationSeconds": 8.36022563
+  },
+  "sourceToolAssistantUUID": "98a48012-5705-41bd-ad3d-e1edf665c146",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-12T00:01:15.795Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KX4c9S15mAWiUBhi7g5GDR`</summary>
+
+```json
+{
+  "query": "site:arxiv.org formal verification consensus reasoning paths aggregation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca7906af-e672-4b36-964a-9f1123e85f0f",
+  "isSidechain": false,
+  "requestId": "req_011Cawh7X2pjY2DphpicKJn9",
+  "type": "assistant",
+  "uuid": "c51828bc-314d-4ec3-b31b-48fa5d289379",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E3d5ysFpNX2kxW3C8Kw5Uj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 51283,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 51283,
+          "cache_creation_input_tokens": 1099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-12T00:01:24.978Z_
+
+<details><summary>↩ Tool result · `toolu_01KX4c9S15mAWiUBhi7g5GDR`</summary>
+
+```text
+Web search results for query: "site:arxiv.org formal verification consensus reasoning paths aggregation 2026"
+
+Links: [{"title":"[2508.19452] Formal Modeling and Verification of the Algorand Consensus Protocol in CADP","url":"https://arxiv.org/abs/2508.19452"},{"title":"Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2510.01069"},{"title":"The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration","url":"https://arxiv.org/html/2604.17139"},{"title":"[2604.17139] The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration","url":"https://arxiv.org/abs/2604.17139"},{"title":"arXiv:2503.20461v2 [cs.CR] 12 May 2025 Automated Reasoning in Blockchain:","url":"https://arxiv.org/pdf/2503.20461"},{"title":"Formal Verification of Multi-Paxos for Distributed Consensus","url":"https://arxiv.org/pdf/1606.01387"},{"title":"Automated Reasoning in Blockchain: Foundations, Applications, and Frontiers","url":"https://arxiv.org/html/2503.20461"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/html/2510.09312v1"},{"title":"[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/abs/2601.20055"},{"title":"Correct Reasoning Paths Visit Shared Decision Pivots Dongkyu Cho1∗,","url":"https://arxiv.org/pdf/2509.21549"}]
+
+I've performed a web search for your query. Here are the results from arxiv.org related to formal verification, consensus, reasoning paths, and aggregation from around 2026:
+
+## Key Research Papers Found:
+
+1. **Formal Modeling and Verification of the Algorand Consensus Protocol in CADP** (2508.19452) - This paper presents a process algebraic model of the Algorand consensus protocol with the aim of enabling formal verification.
+
+2. **Typed Chain-of-Thought** (2510.01069) - This work introduces Certified Self-Consistency (CSC), which aggregates only over experiments satisfying typing constraints, achieving 69.8% accuracy on GSM8K versus 19.6% for standard baselines—a 50.3% improvement using identical sampling budgets.
+
+3. **The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration** (2604.17139) - The foundational paradigm is Self-Consistency or Majority Voting, which aggregates independent reasoning paths to find the arithmetic mode. The paper proposes Token-Level Round-Robin Collaboration to address vulnerabilities in consensus-based aggregation.
+
+4. **Correct Reasoning Paths Visit Shared Decision Pivots** (2509.21549) - This work formalizes decision pivots and shows that correct reasoning concentrates on a compact pivot set, proposing ROMA, a bootstrap→rewrite framework that aggregates K paths and, via a fine-tuned verifier, distills a compact, pivot-consistent short-path reasoning.
+
+5. **VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning** (2601.20055) - The work introduces three key innovations: multi-model consensus via formal semantic equivalence checking to ensure logic-level alignment between candidates, semantic routing that directs different claim types to appropriate verification strategies, and precise logical error localization via Minimal Correction Subsets.
+
+These papers collectively address formal verification, consensus mechanisms, reasoning path aggregation, and related verification techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c51828bc-314d-4ec3-b31b-48fa5d289379",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "dbc01e68-e3d4-4f28-ae3f-c500cbef5274",
+  "toolUseResult": {
+    "query": "site:arxiv.org formal verification consensus reasoning paths aggregation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PVtLNxjsQz7S6H5TsYK4GB",
+        "content": [
+          {
+            "title": "[2508.19452] Formal Modeling and Verification of the Algorand Consensus Protocol in CADP",
+            "url": "https://arxiv.org/abs/2508.19452"
+          },
+          {
+            "title": "Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2510.01069"
+          },
+          {
+            "title": "The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration",
+            "url": "https://arxiv.org/html/2604.17139"
+          },
+          {
+            "title": "[2604.17139] The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration",
+            "url": "https://arxiv.org/abs/2604.17139"
+          },
+          {
+            "title": "arXiv:2503.20461v2 [cs.CR] 12 May 2025 Automated Reasoning in Blockchain:",
+            "url": "https://arxiv.org/pdf/2503.20461"
+          },
+          {
+            "title": "Formal Verification of Multi-Paxos for Distributed Consensus",
+            "url": "https://arxiv.org/pdf/1606.01387"
+          },
+          {
+            "title": "Automated Reasoning in Blockchain: Foundations, Applications, and Frontiers",
+            "url": "https://arxiv.org/html/2503.20461"
+          },
+          {
+            "title": "Verifying Chain-of-Thought Reasoning via Its Computational Graph",
+            "url": "https://arxiv.org/html/2510.09312v1"
+          },
+          {
+            "title": "[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/abs/2601.20055"
+          },
+          {
+            "title": "Correct Reasoning Paths Visit Shared Decision Pivots Dongkyu Cho1∗,",
+            "url": "https://arxiv.org/pdf/2509.21549"
+          }
+        ]
+      },
+      "I've performed a web search for your query. Here are the results from arxiv.org related to formal verification, consensus, reasoning paths, and aggregation from around 2026:\n\n## Key Research Papers Found:\n\n1. **Formal Modeling and Verification of the Algorand Consensus Protocol in CADP** (2508.19452) - This paper presents a process algebraic model of the Algorand consensus protocol with the aim of enabling formal verification.\n\n2. **Typed Chain-of-Thought** (2510.01069) - This work introduces Certified Self-Consistency (CSC), which aggregates only over experiments satisfying typing constraints, achieving 69.8% accuracy on GSM8K versus 19.6% for standard baselines—a 50.3% improvement using identical sampling budgets.\n\n3. **The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration** (2604.17139) - The foundational paradigm is Self-Consistency or Majority Voting, which aggregates independent reasoning paths to find the arithmetic mode. The paper proposes Token-Level Round-Robin Collaboration to address vulnerabilities in consensus-based aggregation.\n\n4. **Correct Reasoning Paths Visit Shared Decision Pivots** (2509.21549) - This work formalizes decision pivots and shows that correct reasoning concentrates on a compact pivot set, proposing ROMA, a bootstrap→rewrite framework that aggregates K paths and, via a fine-tuned verifier, distills a compact, pivot-consistent short-path reasoning.\n\n5. **VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning** (2601.20055) - The work introduces three key innovations: multi-model consensus via formal semantic equivalence checking to ensure logic-level alignment between candidates, semantic routing that directs different claim types to appropriate verification strategies, and precise logical error localization via Minimal Correction Subsets.\n\nThese papers collectively address formal verification, consensus mechanisms, reasoning path aggregation, and related verification techniques."
+    ],
+    "durationSeconds": 9.176202775000013
+  },
+  "sourceToolAssistantUUID": "c51828bc-314d-4ec3-b31b-48fa5d289379",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-12T00:01:24.984Z_
+
+```json
+{
+  "parentUuid": "dbc01e68-e3d4-4f28-ae3f-c500cbef5274",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "ba77ae59-e0d0-4736-8831-595cbacd9d55",
+  "timestamp": "2026-05-12T00:01:24.984Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ba77ae59-e0d0-4736-8831-595cbacd9d55",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-12T00:01:28.287Z_
+
+Interesting — found "Typed Chain-of-Thought" with Certified Self-Consistency (CSC). Let me check if this is relevant competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba77ae59-e0d0-4736-8831-595cbacd9d55",
+  "isSidechain": false,
+  "requestId": "req_011Cawh8NY8FsCaUGVBiCpqC",
+  "type": "assistant",
+  "uuid": "d7b657ba-d1a9-4f32-9f27-11a6a8be6639",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HwtFxDKjeHvMBmhzWaapne",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1167,
+      "cache_read_input_tokens": 52382,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1167,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 52382,
+          "cache_creation_input_tokens": 1167,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1167
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-12T00:01:28.797Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HQABuK1xJ7aqWvwRvDSC4M`</summary>
+
+```json
+{
+  "query": "\"Typed Chain-of-Thought\" \"Certified Self-Consistency\" CSC typing constraints arXiv 2510.01069"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7b657ba-d1a9-4f32-9f27-11a6a8be6639",
+  "isSidechain": false,
+  "requestId": "req_011Cawh8NY8FsCaUGVBiCpqC",
+  "type": "assistant",
+  "uuid": "d32b0fd9-cf69-4140-8b8e-568b96433571",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HwtFxDKjeHvMBmhzWaapne",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1167,
+      "cache_read_input_tokens": 52382,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1167,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 52382,
+          "cache_creation_input_tokens": 1167,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1167
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-12T00:01:36.212Z_
+
+<details><summary>↩ Tool result · `toolu_01HQABuK1xJ7aqWvwRvDSC4M`</summary>
+
+```text
+Web search results for query: ""Typed Chain-of-Thought" "Certified Self-Consistency" CSC typing constraints arXiv 2510.01069"
+
+Links: [{"title":"Typed Chain-of-Thought: A Curry-Howard Framework for Verifying LLM Reasoning","url":"https://arxiv.org/html/2510.01069"},{"title":"Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:","url":"https://arxiv.org/pdf/2510.01069"},{"title":"[2510.01069] Typed Chain-of-Thought: A Curry-Howard Framework for Verifying LLM Reasoning","url":"https://arxiv.org/abs/2510.01069"},{"title":"[2203.11171] Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://arxiv.org/abs/2203.11171"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in Language Models | OpenReview","url":"https://openreview.net/forum?id=1PL1NIMMrw"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in ...","url":"https://arxiv.org/pdf/2203.11171"},{"title":"[PDF] Self-Consistency Improves Chain of Thought Reasoning in Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Self-Consistency-Improves-Chain-of-Thought-in-Wang-Wei/5f19ae1135a9500940978104ec15a5b8751bc7d2"},{"title":"Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://iclr.cc/media/iclr-2023/Slides/11718.pdf"},{"title":"(PDF) Self-Consistency Improves Chain of Thought Reasoning in Language Models","url":"https://www.researchgate.net/publication/359390115_Self-Consistency_Improves_Chain_of_Thought_Reasoning_in_Language_Models"},{"title":"dblp: Self-Consistency Improves Chain of Thought Reasoning in Language Models.","url":"https://dblp.org/rec/conf/iclr/0002WSLCNCZ23.html"}]
+
+Based on the search results, here's information about the paper arXiv 2510.01069:
+
+## Paper Overview
+
+The paper proposes a novel theoretical lens grounded in the Curry-Howard correspondence, which posits that a faithful reasoning trace is analogous to a well-typed program, where each intermediate step corresponds to a typed logical inference.
+
+## Certified Self-Consistency (CSC)
+
+Certified Self-Consistency (CSC) aggregates only over experiments satisfying typing constraints, achieving 69.8% accuracy on GSM8K versus 19.6% for standard baselines—a 50.3% improvement using identical sampling budgets.
+
+## Methodology
+
+The paper presents methods to extract and map the informal, natural language steps of CoT into a formal, typed proof structure, with successfully converting a CoT trace into a well-typed proof serving as a strong, verifiable certificate of its computational faithfulness.
+
+## Key Results
+
+CSC provides the largest gain (+34.1%), while soft constraints outperform hard grammar enforcement by 20.9%. Accepted runs under certification achieve dramatically higher accuracy than rejected runs, yielding nearly 50 percentage point precision gains, with certification acting as a significant precision filter.
+
+The paper was submitted to ICLR 2026 and combines formal type theory with chain-of-thought reasoning to improve LLM interpretability and verification.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d32b0fd9-cf69-4140-8b8e-568b96433571",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "9e641f0f-360d-4893-b94b-4c4d8ca42b27",
+  "toolUseResult": {
+    "query": "\"Typed Chain-of-Thought\" \"Certified Self-Consistency\" CSC typing constraints arXiv 2510.01069",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WrgGpoCJYTadAEPaZVAfDD",
+        "content": [
+          {
+            "title": "Typed Chain-of-Thought: A Curry-Howard Framework for Verifying LLM Reasoning",
+            "url": "https://arxiv.org/html/2510.01069"
+          },
+          {
+            "title": "Submitted as a conference paper at ICLR 2026 TYPED CHAIN-OF-THOUGHT:",
+            "url": "https://arxiv.org/pdf/2510.01069"
+          },
+          {
+            "title": "[2510.01069] Typed Chain-of-Thought: A Curry-Howard Framework for Verifying LLM Reasoning",
+            "url": "https://arxiv.org/abs/2510.01069"
+          },
+          {
+            "title": "[2203.11171] Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://arxiv.org/abs/2203.11171"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=1PL1NIMMrw"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in ...",
+            "url": "https://arxiv.org/pdf/2203.11171"
+          },
+          {
+            "title": "[PDF] Self-Consistency Improves Chain of Thought Reasoning in Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Self-Consistency-Improves-Chain-of-Thought-in-Wang-Wei/5f19ae1135a9500940978104ec15a5b8751bc7d2"
+          },
+          {
+            "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://iclr.cc/media/iclr-2023/Slides/11718.pdf"
+          },
+          {
+            "title": "(PDF) Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+            "url": "https://www.researchgate.net/publication/359390115_Self-Consistency_Improves_Chain_of_Thought_Reasoning_in_Language_Models"
+          },
+          {
+            "title": "dblp: Self-Consistency Improves Chain of Thought Reasoning in Language Models.",
+            "url": "https://dblp.org/rec/conf/iclr/0002WSLCNCZ23.html"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper arXiv 2510.01069:\n\n## Paper Overview\n\nThe paper proposes a novel theoretical lens grounded in the Curry-Howard correspondence, which posits that a faithful reasoning trace is analogous to a well-typed program, where each intermediate step corresponds to a typed logical inference.\n\n## Certified Self-Consistency (CSC)\n\nCertified Self-Consistency (CSC) aggregates only over experiments satisfying typing constraints, achieving 69.8% accuracy on GSM8K versus 19.6% for standard baselines—a 50.3% improvement using identical sampling budgets.\n\n## Methodology\n\nThe paper presents methods to extract and map the informal, natural language steps of CoT into a formal, typed proof structure, with successfully converting a CoT trace into a well-typed proof serving as a strong, verifiable certificate of its computational faithfulness.\n\n## Key Results\n\nCSC provides the largest gain (+34.1%), while soft constraints outperform hard grammar enforcement by 20.9%. Accepted runs under certification achieve dramatically higher accuracy than rejected runs, yielding nearly 50 percentage point precision gains, with certification acting as a significant precision filter.\n\nThe paper was submitted to ICLR 2026 and combines formal type theory with chain-of-thought reasoning to improve LLM interpretability and verification."
+    ],
+    "durationSeconds": 7.411328680000006
+  },
+  "sourceToolAssistantUUID": "d32b0fd9-cf69-4140-8b8e-568b96433571",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-12T00:01:41.351Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011u8xpmmF9WHwaoupWvccH2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.01069",
+  "prompt": "Read the abstract and introduction carefully. Does this paper: (1) perform cross-solution/cross-path formal verification across multiple reasoning traces? (2) use MAX-SAT or constraint satisfaction across multiple solutions? (3) aggregate constraints from multiple paths? What is the main mechanism — does it verify individual traces or cross-validate across traces? What are the main benchmarks evaluated on?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e641f0f-360d-4893-b94b-4c4d8ca42b27",
+  "isSidechain": false,
+  "requestId": "req_011Cawh9Ce69A6NCdiwSHxKT",
+  "type": "assistant",
+  "uuid": "702badb3-0549-4c1c-be18-e571b40d3e6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQM4Pjov1xwjq9ovCbJMcG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 53549,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1021,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 53549,
+          "cache_creation_input_tokens": 1021,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1021
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-12T00:01:45.989Z_
+
+<details><summary>↩ Tool result · `toolu_011u8xpmmF9WHwaoupWvccH2`</summary>
+
+```text
+Based on the abstract provided, I cannot definitively answer your specific technical questions because the full paper content is not included in this arXiv page excerpt.
+
+From what is visible, the abstract states the framework works by converting "informal, natural language steps of CoT into a formal, typed proof structure" and that "successfully converting a CoT trace into a well-typed proof serves as a strong, verifiable certificate."
+
+However, the abstract does not clarify whether the approach:
+- Performs cross-solution verification across multiple traces
+- Employs MAX-SAT or constraint satisfaction techniques
+- Aggregates constraints from multiple reasoning paths
+
+The mechanism appears to focus on verifying "individual" traces through type-checking rather than cross-validating across multiple paths, but this is inferred rather than explicitly stated in the available text.
+
+**No benchmark information is provided in this abstract.** The page shows the paper was "Submitted on 1 Oct 2025" and is "Under review," suggesting benchmarking details would only appear in the full PDF or HTML version, which would require accessing the complete paper beyond this metadata page.
+
+To answer your questions accurately, reviewing the full paper text would be necessary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "702badb3-0549-4c1c-be18-e571b40d3e6d",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "6daea653-b379-4dff-932a-88a9c0b15723",
+  "toolUseResult": {
+    "bytes": 45223,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the abstract provided, I cannot definitively answer your specific technical questions because the full paper content is not included in this arXiv page excerpt.\n\nFrom what is visible, the abstract states the framework works by converting \"informal, natural language steps of CoT into a formal, typed proof structure\" and that \"successfully converting a CoT trace into a well-typed proof serves as a strong, verifiable certificate.\"\n\nHowever, the abstract does not clarify whether the approach:\n- Performs cross-solution verification across multiple traces\n- Employs MAX-SAT or constraint satisfaction techniques\n- Aggregates constraints from multiple reasoning paths\n\nThe mechanism appears to focus on verifying \"individual\" traces through type-checking rather than cross-validating across multiple paths, but this is inferred rather than explicitly stated in the available text.\n\n**No benchmark information is provided in this abstract.** The page shows the paper was \"Submitted on 1 Oct 2025\" and is \"Under review,\" suggesting benchmarking details would only appear in the full PDF or HTML version, which would require accessing the complete paper beyond this metadata page.\n\nTo answer your questions accurately, reviewing the full paper text would be necessary.",
+    "durationMs": 4631,
+    "url": "https://arxiv.org/abs/2510.01069"
+  },
+  "sourceToolAssistantUUID": "702badb3-0549-4c1c-be18-e571b40d3e6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-12T00:01:49.786Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01358fVFCsZb8Xg8itLETpKT`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.01069",
+  "prompt": "Focus on the methodology. Does this paper: (1) perform cross-solution/cross-path formal verification across multiple reasoning traces? (2) use MAX-SAT or constraint satisfaction across multiple solutions? (3) aggregate constraints from multiple paths for a single problem? Or does it verify individual traces independently and then aggregate via voting? What is \"Certified Self-Consistency\" exactly — does it just filter traces that pass type-checking before majority voting, or does it do something more like cross-path constraint solving? What benchmarks is it evaluated on?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6daea653-b379-4dff-932a-88a9c0b15723",
+  "isSidechain": false,
+  "requestId": "req_011Cawh9vMqMAS4doiggeVWY",
+  "type": "assistant",
+  "uuid": "8aab0231-e72f-4855-884d-e15f35f6d144",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S36xpqZTsEvK76Qy7dpHDL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 427,
+      "cache_read_input_tokens": 54570,
+      "output_tokens": 197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 427,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 197,
+          "cache_read_input_tokens": 54570,
+          "cache_creation_input_tokens": 427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 427
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-12T00:01:58.007Z_
+
+<details><summary>↩ Tool result · `toolu_01358fVFCsZb8Xg8itLETpKT`</summary>
+
+```text
+# PC-CoT Methodology Analysis
+
+## Verification Approach
+
+This work does **not** perform cross-solution constraint satisfaction. Instead, it verifies individual traces independently. As stated: "Certified Self-Consistency (CSC), which aggregates only over experiments satisfying typing constraints" – it filters traces before voting, rather than solving constraints across multiple paths.
+
+Each reasoning trace is converted to a Typed Reasoning Graph (TRG) independently. The system checks whether "each natural language step receives a type via lightweight rule schemas," computing metrics like Coverage, Evidence Validity Rate, and Path Existence per trace.
+
+## Certified Self-Consistency Details
+
+CSC is straightforward filtering-then-aggregation:
+
+> "From k independent program samples, we construct a TRG for each and evaluate its certification metrics; only those runs whose TRGs satisfy the certification criterion are retained, and CSC then aggregates the final answer over this filtered set rather than over all samples."
+
+There is no MAX-SAT solving or cross-path constraint aggregation. The system simply applies gates (Relaxed: EVR ≥ 0.30, PE required; Strict: EVR ≥ 0.80, UVR ≥ 0.80, PE required) and majority-votes among passing traces. If no traces pass, it abstains.
+
+## Benchmarks
+
+Evaluation occurs exclusively on **GSM8K** (Grade School Math 8K), with experiments on a subset of 199 aligned examples due to cost constraints. The paper states: "we found that we could obtain meaningful results demonstrating the PC-CoT method at around 200 examples."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8aab0231-e72f-4855-884d-e15f35f6d144",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "70badbb9-8682-4deb-bddd-90aedea52a07",
+  "toolUseResult": {
+    "bytes": 230140,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# PC-CoT Methodology Analysis\n\n## Verification Approach\n\nThis work does **not** perform cross-solution constraint satisfaction. Instead, it verifies individual traces independently. As stated: \"Certified Self-Consistency (CSC), which aggregates only over experiments satisfying typing constraints\" – it filters traces before voting, rather than solving constraints across multiple paths.\n\nEach reasoning trace is converted to a Typed Reasoning Graph (TRG) independently. The system checks whether \"each natural language step receives a type via lightweight rule schemas,\" computing metrics like Coverage, Evidence Validity Rate, and Path Existence per trace.\n\n## Certified Self-Consistency Details\n\nCSC is straightforward filtering-then-aggregation:\n\n> \"From k independent program samples, we construct a TRG for each and evaluate its certification metrics; only those runs whose TRGs satisfy the certification criterion are retained, and CSC then aggregates the final answer over this filtered set rather than over all samples.\"\n\nThere is no MAX-SAT solving or cross-path constraint aggregation. The system simply applies gates (Relaxed: EVR ≥ 0.30, PE required; Strict: EVR ≥ 0.80, UVR ≥ 0.80, PE required) and majority-votes among passing traces. If no traces pass, it abstains.\n\n## Benchmarks\n\nEvaluation occurs exclusively on **GSM8K** (Grade School Math 8K), with experiments on a subset of 199 aligned examples due to cost constraints. The paper states: \"we found that we could obtain meaningful results demonstrating the PC-CoT method at around 200 examples.\"",
+    "durationMs": 8214,
+    "url": "https://arxiv.org/html/2510.01069"
+  },
+  "sourceToolAssistantUUID": "8aab0231-e72f-4855-884d-e15f35f6d144",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-12T00:02:03.172Z_
+
+Good — Typed Chain-of-Thought (CSC) verifies individual traces independently and filters before majority voting. Not a competitor to SICA's cross-path MAX-SAT approach. Now let me search for more potential competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70badbb9-8682-4deb-bddd-90aedea52a07",
+  "isSidechain": false,
+  "requestId": "req_011CawhAouv9jdZdC8mSsWe3",
+  "type": "assistant",
+  "uuid": "78e7beaa-353c-44c1-952f-02ec48806090",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZWrhCBWdY9vnvnfpd9mM6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 54997,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 54997,
+          "cache_creation_input_tokens": 573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-12T00:02:03.630Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QuSZkHu5iD3J53DuTi6xmF`</summary>
+
+```json
+{
+  "query": "\"correct reasoning paths\" \"shared decision pivots\" ROMA arXiv 2509.21549"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78e7beaa-353c-44c1-952f-02ec48806090",
+  "isSidechain": false,
+  "requestId": "req_011CawhAouv9jdZdC8mSsWe3",
+  "type": "assistant",
+  "uuid": "898bb227-de8a-4086-8f69-1a270196f284",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZWrhCBWdY9vnvnfpd9mM6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 54997,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 573,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 54997,
+          "cache_creation_input_tokens": 573,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 573
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-12T00:02:11.719Z_
+
+<details><summary>↩ Tool result · `toolu_01QuSZkHu5iD3J53DuTi6xmF`</summary>
+
+```text
+Web search results for query: ""correct reasoning paths" "shared decision pivots" ROMA arXiv 2509.21549"
+
+Links: [{"title":"[2509.21549] Correct Reasoning Paths Visit Shared Decision Pivots","url":"https://arxiv.org/abs/2509.21549"},{"title":"Correct Reasoning Paths Visit Shared Decision Pivots Dongkyu Cho1∗,","url":"https://arxiv.org/pdf/2509.21549"},{"title":"[2509.17905] Mitigating Strategy-Selection Bias in Reasoning for More Effective Test-Time Scaling","url":"https://arxiv.org/abs/2509.17905"},{"title":"Learning from Contrasts: Synthesizing Reasoning Paths from Diverse Search Trajectories","url":"https://arxiv.org/html/2604.11365"},{"title":"(PDF) Correct Reasoning Paths Visit Shared Decision Pivots","url":"https://www.researchgate.net/publication/395943167_Correct_Reasoning_Paths_Visit_Shared_Decision_Pivots"},{"title":"[2604.11365] Learning from Contrasts: Synthesizing Reasoning Paths from Diverse Search Trajectories","url":"https://arxiv.org/abs/2604.11365"},{"title":"A Survey of Efficient Reasoning for Large Reasoning Models: Language, Multimodality, and Beyond","url":"https://arxiv.org/html/2503.21614v1"},{"title":"Mitigating Strategy-Selection Bias in Reasoning for More Effective Test-Time Scaling","url":"https://arxiv.org/html/2509.17905v2"},{"title":"Learning from Contrasts: Synthesizing Reasoning Paths from Diverse","url":"https://arxiv.org/pdf/2604.11365"},{"title":"[2509.24251v2] Latent Visual Reasoning","url":"https://arxiv.org/abs/2509.24251v2"}]
+
+Based on the search results, here's what I found about the paper:
+
+## "Correct Reasoning Paths Visit Shared Decision Pivots" (arXiv 2509.21549)
+
+The paper addresses the challenge that chain-of-thought reasoning exposes intermediate thinking in LLMs but verifying those traces at scale remains unsolved. The authors introduce the idea of decision pivots—minimal, verifiable checkpoints that any correct reasoning path must visit. They hypothesize that correct reasoning, though stylistically diverse, converges on the same pivot set, while incorrect ones violate at least one pivot.
+
+### The ROMA Framework
+
+The paper proposes ROMA, a bootstrap→rewrite framework that aggregates K paths and, via a fine-tuned verifier, distills a compact, pivot-consistent short-path reasoning.
+
+### Methodology
+
+The proposed method leverages a self-training pipeline that (i) samples diverse reasoning paths and mines shared decision pivots, (ii) compresses each trace into pivot-focused short-path reasoning using an auxiliary verifier, and (iii) post-trains the model using its self-generated outputs.
+
+### Results
+
+The proposed method aligns reasoning without ground truth reasoning data or external metrics. Experiments on standard benchmarks such as LogiQA, MedQA, and MATH500 show the effectiveness of the method.
+
+The paper was submitted on September 25, 2025 and last revised February 7, 2026, authored by Dongkyu Cho, Amy B.Z. Zhang, Bilel Fehri, Sheng Wang, Rumi Chunara, Hengrui Cai, and Rui Song.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "898bb227-de8a-4086-8f69-1a270196f284",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "7ac545ae-f01e-4b7b-a290-9abd095ac79f",
+  "toolUseResult": {
+    "query": "\"correct reasoning paths\" \"shared decision pivots\" ROMA arXiv 2509.21549",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0126SeqP9hHe6RzWzcBVv1km",
+        "content": [
+          {
+            "title": "[2509.21549] Correct Reasoning Paths Visit Shared Decision Pivots",
+            "url": "https://arxiv.org/abs/2509.21549"
+          },
+          {
+            "title": "Correct Reasoning Paths Visit Shared Decision Pivots Dongkyu Cho1∗,",
+            "url": "https://arxiv.org/pdf/2509.21549"
+          },
+          {
+            "title": "[2509.17905] Mitigating Strategy-Selection Bias in Reasoning for More Effective Test-Time Scaling",
+            "url": "https://arxiv.org/abs/2509.17905"
+          },
+          {
+            "title": "Learning from Contrasts: Synthesizing Reasoning Paths from Diverse Search Trajectories",
+            "url": "https://arxiv.org/html/2604.11365"
+          },
+          {
+            "title": "(PDF) Correct Reasoning Paths Visit Shared Decision Pivots",
+            "url": "https://www.researchgate.net/publication/395943167_Correct_Reasoning_Paths_Visit_Shared_Decision_Pivots"
+          },
+          {
+            "title": "[2604.11365] Learning from Contrasts: Synthesizing Reasoning Paths from Diverse Search Trajectories",
+            "url": "https://arxiv.org/abs/2604.11365"
+          },
+          {
+            "title": "A Survey of Efficient Reasoning for Large Reasoning Models: Language, Multimodality, and Beyond",
+            "url": "https://arxiv.org/html/2503.21614v1"
+          },
+          {
+            "title": "Mitigating Strategy-Selection Bias in Reasoning for More Effective Test-Time Scaling",
+            "url": "https://arxiv.org/html/2509.17905v2"
+          },
+          {
+            "title": "Learning from Contrasts: Synthesizing Reasoning Paths from Diverse",
+            "url": "https://arxiv.org/pdf/2604.11365"
+          },
+          {
+            "title": "[2509.24251v2] Latent Visual Reasoning",
+            "url": "https://arxiv.org/abs/2509.24251v2"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\n## \"Correct Reasoning Paths Visit Shared Decision Pivots\" (arXiv 2509.21549)\n\nThe paper addresses the challenge that chain-of-thought reasoning exposes intermediate thinking in LLMs but verifying those traces at scale remains unsolved. The authors introduce the idea of decision pivots—minimal, verifiable checkpoints that any correct reasoning path must visit. They hypothesize that correct reasoning, though stylistically diverse, converges on the same pivot set, while incorrect ones violate at least one pivot.\n\n### The ROMA Framework\n\nThe paper proposes ROMA, a bootstrap→rewrite framework that aggregates K paths and, via a fine-tuned verifier, distills a compact, pivot-consistent short-path reasoning.\n\n### Methodology\n\nThe proposed method leverages a self-training pipeline that (i) samples diverse reasoning paths and mines shared decision pivots, (ii) compresses each trace into pivot-focused short-path reasoning using an auxiliary verifier, and (iii) post-trains the model using its self-generated outputs.\n\n### Results\n\nThe proposed method aligns reasoning without ground truth reasoning data or external metrics. Experiments on standard benchmarks such as LogiQA, MedQA, and MATH500 show the effectiveness of the method.\n\nThe paper was submitted on September 25, 2025 and last revised February 7, 2026, authored by Dongkyu Cho, Amy B.Z. Zhang, Bilel Fehri, Sheng Wang, Rumi Chunara, Hengrui Cai, and Rui Song."
+    ],
+    "durationSeconds": 8.084910245000007
+  },
+  "sourceToolAssistantUUID": "898bb227-de8a-4086-8f69-1a270196f284",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-12T00:02:28.971Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RDCUzAnecfkDgEi6sNC3U6`</summary>
+
+```json
+{
+  "query": "formal cross-solution verification intermediate steps mathematical reasoning SMT Z3 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ac545ae-f01e-4b7b-a290-9abd095ac79f",
+  "isSidechain": false,
+  "requestId": "req_011CawhBq78PS734Co4WRKHZ",
+  "type": "assistant",
+  "uuid": "f96d957a-4478-4a2f-b424-d36e3adeff05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dm5R4ahYhNTpcKp9NTVD2S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 55570,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1009,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 55570,
+          "cache_creation_input_tokens": 1009,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1009
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-12T00:02:37.995Z_
+
+<details><summary>↩ Tool result · `toolu_01RDCUzAnecfkDgEi6sNC3U6`</summary>
+
+```text
+Web search results for query: "formal cross-solution verification intermediate steps mathematical reasoning SMT Z3 2025 2026 arXiv"
+
+Links: [{"title":"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://arxiv.org/html/2505.20869v1"},{"title":"Step-Wise Formal Verification for LLM-Based Mathematical ...","url":"https://arxiv.org/pdf/2505.20869"},{"title":"miniF2F-Dafny: LLM-Guided Mathematical Theorem Proving via Auto-Active Verification","url":"https://arxiv.org/html/2512.10187"},{"title":"arXiv:2505.18492v3 [cs.AI] 3 Jun 2025","url":"https://arxiv.org/pdf/2505.18492"},{"title":"Formal Mathematical Reasoning: A New Frontier in AI","url":"https://arxiv.org/html/2412.16075v1"},{"title":"Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries","url":"https://arxiv.org/html/2603.29500v1"},{"title":"VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/pdf/2601.20055"},{"title":"[2506.04592] Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/abs/2506.04592"},{"title":"arXiv:2503.01389v1 [cs.AI] 3 Mar 2025 Learning Conjecturing from Scratch","url":"https://arxiv.org/pdf/2503.01389"},{"title":"Evaluating SAT and SMT Solvers on Large-Scale Sudoku Puzzles","url":"https://arxiv.org/html/2501.08569v1"}]
+
+Based on the web search results, here are the key findings related to formal cross-solution verification, intermediate steps, mathematical reasoning, SMT solvers, and Z3 from recent arXiv papers (2025-2026):
+
+## Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving
+
+Process supervision is designed to evaluate and improve the reasoning capabilities of LLMs by focusing on the intermediate steps of the reasoning process, rather than just the final output. A particularly relevant paper titled "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving" (arXiv:2505.20869, May 2025) presents MATH-VF, a framework that addresses this directly.
+
+The paper introduces a critic that integrates the Large Language Model with external tools, such as SymPy and Z3-Solver for determining the correctness of mathematical problem solving steps. Z3 is a high performance Satisfiability Modulo Theories (SMT) Solver developed by Microsoft Research designed to check the satisfiability of logical expressions and generate models for satisfiable formulas, supporting a wide range of theories including linear arithmetic, bit vectors, arrays, datatypes, and strings.
+
+## Recent Frameworks for Formal Verification
+
+Multiple recent papers demonstrate the integration of intermediate step verification:
+
+PRoSFI (Process Reward over Structured Formal Intermediates) enhances reasoning reliability by having models output structured intermediate steps aligned with natural language reasoning, with each step then verified by a formal prover, where only fully validated reasoning chains receive high rewards.
+
+The Safe framework proposes a retrospective, step-aware formal verification framework that articulates mathematical claims in formal mathematical language Lean 4 at each reasoning step and provides formal proofs to identify hallucinations.
+
+## Cross-Solution and Auto-Active Verification
+
+miniF2F-Dafny represents the first exploration of auto-active verification for pure mathematical reasoning, demonstrating an effective division of labor where LLMs provide high-level guidance while SMT-backed automation handles low-level details.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f96d957a-4478-4a2f-b424-d36e3adeff05",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "d81a6560-7616-4189-afa0-ce4e7c85eac8",
+  "toolUseResult": {
+    "query": "formal cross-solution verification intermediate steps mathematical reasoning SMT Z3 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012g2m94tzTeuRddtrdzs4c8",
+        "content": [
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://arxiv.org/html/2505.20869v1"
+          },
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical ...",
+            "url": "https://arxiv.org/pdf/2505.20869"
+          },
+          {
+            "title": "miniF2F-Dafny: LLM-Guided Mathematical Theorem Proving via Auto-Active Verification",
+            "url": "https://arxiv.org/html/2512.10187"
+          },
+          {
+            "title": "arXiv:2505.18492v3 [cs.AI] 3 Jun 2025",
+            "url": "https://arxiv.org/pdf/2505.18492"
+          },
+          {
+            "title": "Formal Mathematical Reasoning: A New Frontier in AI",
+            "url": "https://arxiv.org/html/2412.16075v1"
+          },
+          {
+            "title": "Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries",
+            "url": "https://arxiv.org/html/2603.29500v1"
+          },
+          {
+            "title": "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2601.20055"
+          },
+          {
+            "title": "[2506.04592] Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://arxiv.org/abs/2506.04592"
+          },
+          {
+            "title": "arXiv:2503.01389v1 [cs.AI] 3 Mar 2025 Learning Conjecturing from Scratch",
+            "url": "https://arxiv.org/pdf/2503.01389"
+          },
+          {
+            "title": "Evaluating SAT and SMT Solvers on Large-Scale Sudoku Puzzles",
+            "url": "https://arxiv.org/html/2501.08569v1"
+          }
+        ]
+      },
+      "Based on the web search results, here are the key findings related to formal cross-solution verification, intermediate steps, mathematical reasoning, SMT solvers, and Z3 from recent arXiv papers (2025-2026):\n\n## Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving\n\nProcess supervision is designed to evaluate and improve the reasoning capabilities of LLMs by focusing on the intermediate steps of the reasoning process, rather than just the final output. A particularly relevant paper titled \"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving\" (arXiv:2505.20869, May 2025) presents MATH-VF, a framework that addresses this directly.\n\nThe paper introduces a critic that integrates the Large Language Model with external tools, such as SymPy and Z3-Solver for determining the correctness of mathematical problem solving steps. Z3 is a high performance Satisfiability Modulo Theories (SMT) Solver developed by Microsoft Research designed to check the satisfiability of logical expressions and generate models for satisfiable formulas, supporting a wide range of theories including linear arithmetic, bit vectors, arrays, datatypes, and strings.\n\n## Recent Frameworks for Formal Verification\n\nMultiple recent papers demonstrate the integration of intermediate step verification:\n\nPRoSFI (Process Reward over Structured Formal Intermediates) enhances reasoning reliability by having models output structured intermediate steps aligned with natural language reasoning, with each step then verified by a formal prover, where only fully validated reasoning chains receive high rewards.\n\nThe Safe framework proposes a retrospective, step-aware formal verification framework that articulates mathematical claims in formal mathematical language Lean 4 at each reasoning step and provides formal proofs to identify hallucinations.\n\n## Cross-Solution and Auto-Active Verification\n\nminiF2F-Dafny represents the first exploration of auto-active verification for pure mathematical reasoning, demonstrating an effective division of labor where LLMs provide high-level guidance while SMT-backed automation handles low-level details."
+    ],
+    "durationSeconds": 9.017803762000025
+  },
+  "sourceToolAssistantUUID": "f96d957a-4478-4a2f-b424-d36e3adeff05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "d81a6560-7616-4189-afa0-ce4e7c85eac8",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-12T00:02:42.013Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YVBfXkAQKhmYQta356GAo7`</summary>
+
+```json
+{
+  "query": "\"Do LLMs Game Formalization\" evaluating faithfulness logical reasoning arXiv 2604.19459"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d81a6560-7616-4189-afa0-ce4e7c85eac8",
+  "isSidechain": false,
+  "requestId": "req_011CawhDkimAqgF4c4HQd5PL",
+  "type": "assistant",
+  "uuid": "41bf2d04-15b4-4e5d-b643-5c59799b3ae2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hv6364s84w4Uc5XhsMcCvK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1040,
+      "cache_read_input_tokens": 56579,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1040,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 56579,
+          "cache_creation_input_tokens": 1040,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1040
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-12T00:02:49.500Z_
+
+<details><summary>↩ Tool result · `toolu_01YVBfXkAQKhmYQta356GAo7`</summary>
+
+```text
+Web search results for query: ""Do LLMs Game Formalization" evaluating faithfulness logical reasoning arXiv 2604.19459"
+
+Links: [{"title":"[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/abs/2604.19459"},{"title":"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/html/2604.19459"},{"title":"TriEx: A Game-based Tri-View Framework for Explaining Internal Reasoning in Multi-Agent LLMs","url":"https://arxiv.org/html/2604.20043"},{"title":"Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing","url":"https://arxiv.org/html/2604.08401"},{"title":"LogicReward: Incentivizing LLM Reasoning via Step-Wise Logical Supervision","url":"https://arxiv.org/html/2512.18196v2"},{"title":"Thinking Machines: Mathematical Reasoning in the Age of LLMs","url":"https://www.mdpi.com/2504-2289/10/1/38"},{"title":"LogicPuzzleRL: Cultivating Robust Mathematical Reasoning in LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2506.04821v1"},{"title":"GTBench: Uncovering the Strategic Reasoning Limitations of LLMs via Game-Theoretic Evaluations","url":"https://arxiv.org/html/2402.12348v2"},{"title":"Strat-Reasoner: Reinforcing Strategic Reasoning of LLMs in Multi-Agent Games","url":"https://arxiv.org/html/2605.04906"},{"title":"Large Language Model Strategic Reasoning Evaluation through Behavioral Game Theory","url":"https://arxiv.org/html/2502.20432v1"}]
+
+Based on the search results, I found the paper you're looking for. Here's a summary of the research:
+
+## "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning"
+
+The paper addresses formal verification, which guarantees proof validity but not formalization faithfulness.
+
+### Research Focus
+
+The study focuses on natural-language logical reasoning where models construct axiom systems from scratch without library constraints, investigating whether frontier models exploit the gap between valid proofs and faithful translations when generating Lean 4 proofs, a behavior termed formalization gaming.
+
+### Methodology
+
+The researchers evaluated GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval), comparing unified generation against a two-stage pipeline that separates formalization from proving.
+
+### Key Findings
+
+Despite compilation rates of 87-99%, the study found no evidence of systematic gaming in unified generation, with models preferring to report failure over forcing proofs, even under prompting designed to encourage it.
+
+However, the two-stage pipeline revealed two distinct modes of unfaithfulness: GPT-5 fabricates axioms during proof generation as a reactive fallback detectable via cross-stage comparison, while DeepSeek-R1 mistranslates premises during formalization, producing internally consistent outputs that evade detection entirely.
+
+These findings show that high compilation rates or accuracies should not be equated with faithful reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41bf2d04-15b4-4e5d-b643-5c59799b3ae2",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "0e4158ed-bcea-456a-a3be-cd9d80e74203",
+  "toolUseResult": {
+    "query": "\"Do LLMs Game Formalization\" evaluating faithfulness logical reasoning arXiv 2604.19459",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LDVLz1UqgSYkGbLZTuvuRA",
+        "content": [
+          {
+            "title": "[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/abs/2604.19459"
+          },
+          {
+            "title": "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/html/2604.19459"
+          },
+          {
+            "title": "TriEx: A Game-based Tri-View Framework for Explaining Internal Reasoning in Multi-Agent LLMs",
+            "url": "https://arxiv.org/html/2604.20043"
+          },
+          {
+            "title": "Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing",
+            "url": "https://arxiv.org/html/2604.08401"
+          },
+          {
+            "title": "LogicReward: Incentivizing LLM Reasoning via Step-Wise Logical Supervision",
+            "url": "https://arxiv.org/html/2512.18196v2"
+          },
+          {
+            "title": "Thinking Machines: Mathematical Reasoning in the Age of LLMs",
+            "url": "https://www.mdpi.com/2504-2289/10/1/38"
+          },
+          {
+            "title": "LogicPuzzleRL: Cultivating Robust Mathematical Reasoning in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2506.04821v1"
+          },
+          {
+            "title": "GTBench: Uncovering the Strategic Reasoning Limitations of LLMs via Game-Theoretic Evaluations",
+            "url": "https://arxiv.org/html/2402.12348v2"
+          },
+          {
+            "title": "Strat-Reasoner: Reinforcing Strategic Reasoning of LLMs in Multi-Agent Games",
+            "url": "https://arxiv.org/html/2605.04906"
+          },
+          {
+            "title": "Large Language Model Strategic Reasoning Evaluation through Behavioral Game Theory",
+            "url": "https://arxiv.org/html/2502.20432v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's a summary of the research:\n\n## \"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning\"\n\nThe paper addresses formal verification, which guarantees proof validity but not formalization faithfulness.\n\n### Research Focus\n\nThe study focuses on natural-language logical reasoning where models construct axiom systems from scratch without library constraints, investigating whether frontier models exploit the gap between valid proofs and faithful translations when generating Lean 4 proofs, a behavior termed formalization gaming.\n\n### Methodology\n\nThe researchers evaluated GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval), comparing unified generation against a two-stage pipeline that separates formalization from proving.\n\n### Key Findings\n\nDespite compilation rates of 87-99%, the study found no evidence of systematic gaming in unified generation, with models preferring to report failure over forcing proofs, even under prompting designed to encourage it.\n\nHowever, the two-stage pipeline revealed two distinct modes of unfaithfulness: GPT-5 fabricates axioms during proof generation as a reactive fallback detectable via cross-stage comparison, while DeepSeek-R1 mistranslates premises during formalization, producing internally consistent outputs that evade detection entirely.\n\nThese findings show that high compilation rates or accuracies should not be equated with faithful reasoning."
+    ],
+    "durationSeconds": 7.480310117000015
+  },
+  "sourceToolAssistantUUID": "41bf2d04-15b4-4e5d-b643-5c59799b3ae2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-12T00:02:52.050Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MB98ivaahoMkJvN9b7r4dL`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline abstract paper August 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e4158ed-bcea-456a-a3be-cd9d80e74203",
+  "isSidechain": false,
+  "requestId": "req_011CawhEc6d9Gz3zjZEdGQxY",
+  "type": "assistant",
+  "uuid": "d87584ee-b8c1-4e32-a086-28f1d524858d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RgBBe5CbkhVmfEVbQTxP1L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 57619,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 924,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 57619,
+          "cache_creation_input_tokens": 924,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 924
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-12T00:02:56.286Z_
+
+<details><summary>↩ Tool result · `toolu_01MB98ivaahoMkJvN9b7r4dL`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline abstract paper August 2026"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AAAI-26 Student Abstract and Poster Program: Call for Proposals - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/student-abstract-and-poster-program-call/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"}]
+
+Based on the search results, here's what I found regarding AAAI 2027:
+
+AAAI 2027 will take place February 16-23, 2027, with key dates including paper submission deadline and abstract deadline both listed as "TBD" (To Be Determined).
+
+As of March 30, 2026, no deadlines have been announced yet for AAAI 2027.
+
+The search results do not show any specific August 2026 deadline for AAAI 2027 submissions. Since the official deadlines haven't been announced yet, I'd recommend checking the official AAAI website (aaai.org) or waiting for the official Call for Papers announcement. Based on historical patterns from AAAI-26, many conferences have an abstract deadline approximately one week before the full paper deadline, but these dates have not yet been confirmed for AAAI 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d87584ee-b8c1-4e32-a086-28f1d524858d",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "70a6cc73-6b47-469d-ba40-45d94e39f672",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline abstract paper August 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NHHrWYA9RRCWLqUZyyPHku",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AAAI-26 Student Abstract and Poster Program: Call for Proposals - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/student-abstract-and-poster-program-call/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding AAAI 2027:\n\nAAAI 2027 will take place February 16-23, 2027, with key dates including paper submission deadline and abstract deadline both listed as \"TBD\" (To Be Determined).\n\nAs of March 30, 2026, no deadlines have been announced yet for AAAI 2027.\n\nThe search results do not show any specific August 2026 deadline for AAAI 2027 submissions. Since the official deadlines haven't been announced yet, I'd recommend checking the official AAAI website (aaai.org) or waiting for the official Call for Papers announcement. Based on historical patterns from AAAI-26, many conferences have an abstract deadline approximately one week before the full paper deadline, but these dates have not yet been confirmed for AAAI 2027."
+    ],
+    "durationSeconds": 4.230619260000006
+  },
+  "sourceToolAssistantUUID": "d87584ee-b8c1-4e32-a086-28f1d524858d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-12T00:03:02.750Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0191MXwaRjJLy2cJcfrAB1xq`</summary>
+
+```json
+{
+  "query": "VERGE FOLIO ProofWriter accuracy results scores GPT-OSS arXiv 2601.20055"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70a6cc73-6b47-469d-ba40-45d94e39f672",
+  "isSidechain": false,
+  "requestId": "req_011CawhF6tyhHj1bNWgoYYEQ",
+  "type": "assistant",
+  "uuid": "6d550126-c04f-468c-9846-93d39110dbc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TB1Kh8Q3atXF6Lv3QE2GNJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 58543,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 58543,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-12T00:03:09.092Z_
+
+<details><summary>↩ Tool result · `toolu_0191MXwaRjJLy2cJcfrAB1xq`</summary>
+
+```text
+Web search results for query: "VERGE FOLIO ProofWriter accuracy results scores GPT-OSS arXiv 2601.20055"
+
+Links: [{"title":"VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/html/2601.20055"},{"title":"[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/abs/2601.20055"},{"title":"arXiv:2506.18383v1 [cs.LG] 23 Jun 2025","url":"https://arxiv.org/pdf/2506.18383"},{"title":"FoVer: First-Order Logic Verification for Natural Language Reasoning | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.41/133797/FoVer-First-Order-Logic-Verification-for-Natural"},{"title":"arXiv:2409.16461v1 [cs.CL] 24 Sep 2024","url":"https://arxiv.org/pdf/2409.16461"},{"title":"arXiv:2505.15817v2 [cs.CL] 9 Jun 2025","url":"https://arxiv.org/pdf/2505.15817"},{"title":"ProofWriter Dataset","url":"https://www.emergentmind.com/topics/proofwriter-dataset"},{"title":"SIPDO: Closed-Loop Prompt Optimization via Synthetic Data Feedback","url":"https://arxiv.org/html/2505.19514v2"},{"title":"[2012.13048] ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language","url":"https://arxiv.org/abs/2012.13048"},{"title":"Intermediate Languages Matter: Formal Languages and LLMs affect Neurosymbolic Reasoning","url":"https://arxiv.org/html/2509.04083v1"}]
+
+Based on the search results, here are the key accuracy results and scores from the VERGE paper (arXiv 2601.20055) on the FOLIO and ProofWriter datasets with GPT-OSS models:
+
+## FOLIO Dataset Results:
+GPT-20B: 89.2±1.1%; GPT-120B: 84.7±0.9%; Sonnet-3.7: 87.9±0.7%
+
+## ProofWriter Dataset Results:
+GPT-20B: 85.2±1.3%; GPT-120B: 89.9±0.8%; Sonnet-3.7: 93.0±0.5%
+
+Results are averaged over 5 independent runs, with error bars (subscript) indicating standard deviation.
+
+VERGE compares against standard prompting (CoT, SC, SR) and neuro-symbolic baselines (DSB, LogicLM, LINC, PoT) across three different backbone models: GPT-OSS-20B, GPT-OSS-120B, and Claude 3.7 Sonnet. VERGE consistently outperforms baselines across diverse domains and model sizes, except on ProofWriter where the specialized PoT method remains dominant.
+
+On the ProofWriter dataset, Proof of Thought (PoT) retains dominance with 98.4% vs. VERGE's 89.9%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d550126-c04f-468c-9846-93d39110dbc3",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "002fa680-0074-4d2e-8007-965a94a368d5",
+  "toolUseResult": {
+    "query": "VERGE FOLIO ProofWriter accuracy results scores GPT-OSS arXiv 2601.20055",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HkLA3Sic8LeiNzFowJP52D",
+        "content": [
+          {
+            "title": "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/html/2601.20055"
+          },
+          {
+            "title": "[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/abs/2601.20055"
+          },
+          {
+            "title": "arXiv:2506.18383v1 [cs.LG] 23 Jun 2025",
+            "url": "https://arxiv.org/pdf/2506.18383"
+          },
+          {
+            "title": "FoVer: First-Order Logic Verification for Natural Language Reasoning | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.41/133797/FoVer-First-Order-Logic-Verification-for-Natural"
+          },
+          {
+            "title": "arXiv:2409.16461v1 [cs.CL] 24 Sep 2024",
+            "url": "https://arxiv.org/pdf/2409.16461"
+          },
+          {
+            "title": "arXiv:2505.15817v2 [cs.CL] 9 Jun 2025",
+            "url": "https://arxiv.org/pdf/2505.15817"
+          },
+          {
+            "title": "ProofWriter Dataset",
+            "url": "https://www.emergentmind.com/topics/proofwriter-dataset"
+          },
+          {
+            "title": "SIPDO: Closed-Loop Prompt Optimization via Synthetic Data Feedback",
+            "url": "https://arxiv.org/html/2505.19514v2"
+          },
+          {
+            "title": "[2012.13048] ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language",
+            "url": "https://arxiv.org/abs/2012.13048"
+          },
+          {
+            "title": "Intermediate Languages Matter: Formal Languages and LLMs affect Neurosymbolic Reasoning",
+            "url": "https://arxiv.org/html/2509.04083v1"
+          }
+        ]
+      },
+      "Based on the search results, here are the key accuracy results and scores from the VERGE paper (arXiv 2601.20055) on the FOLIO and ProofWriter datasets with GPT-OSS models:\n\n## FOLIO Dataset Results:\nGPT-20B: 89.2±1.1%; GPT-120B: 84.7±0.9%; Sonnet-3.7: 87.9±0.7%\n\n## ProofWriter Dataset Results:\nGPT-20B: 85.2±1.3%; GPT-120B: 89.9±0.8%; Sonnet-3.7: 93.0±0.5%\n\nResults are averaged over 5 independent runs, with error bars (subscript) indicating standard deviation.\n\nVERGE compares against standard prompting (CoT, SC, SR) and neuro-symbolic baselines (DSB, LogicLM, LINC, PoT) across three different backbone models: GPT-OSS-20B, GPT-OSS-120B, and Claude 3.7 Sonnet. VERGE consistently outperforms baselines across diverse domains and model sizes, except on ProofWriter where the specialized PoT method remains dominant.\n\nOn the ProofWriter dataset, Proof of Thought (PoT) retains dominance with 98.4% vs. VERGE's 89.9%."
+    ],
+    "durationSeconds": 6.339199887999974
+  },
+  "sourceToolAssistantUUID": "6d550126-c04f-468c-9846-93d39110dbc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78 · 2026-05-12T00:03:09.097Z_
+
+```json
+{
+  "parentUuid": "002fa680-0074-4d2e-8007-965a94a368d5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "97dea7a9-0a1e-49ae-b99d-5853effe5cf4",
+  "timestamp": "2026-05-12T00:03:09.097Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-12T00:03:13.017Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0131cja5s67eUPQKkS7GBrdZ`</summary>
+
+```json
+{
+  "query": "Draft-and-Prune AR-LSAT ProofWriter PrOntoQA LogicalDeduction results GPT-4 accuracy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97dea7a9-0a1e-49ae-b99d-5853effe5cf4",
+  "isSidechain": false,
+  "requestId": "req_011CawhG3f3bxFCrxMS1jABX",
+  "type": "assistant",
+  "uuid": "7597b57e-24ab-42c1-a347-af072ef7248d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WB3YMcGK3LdQ1TaSXk89eQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1064,
+      "cache_read_input_tokens": 59380,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 59380,
+          "cache_creation_input_tokens": 1064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-12T00:03:18.675Z_
+
+<details><summary>↩ Tool result · `toolu_0131cja5s67eUPQKkS7GBrdZ`</summary>
+
+```text
+Web search results for query: "Draft-and-Prune AR-LSAT ProofWriter PrOntoQA LogicalDeduction results GPT-4 accuracy"
+
+Links: [{"title":"Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning","url":"https://arxiv.org/html/2603.17233"},{"title":"Instantiation-based Formalization of Logical Reasoning Tasks using","url":"https://www.ijcai.org/proceedings/2025/0516.pdf"},{"title":"GitHub - teacherpeterpan/Logic-LLM: The project page for \"LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning\" · GitHub","url":"https://github.com/teacherpeterpan/Logic-LLM"},{"title":"GitHub - Aiden0526/SymbCoT: Codes and Data for ACL 2024 Paper \"Faithful Logical Reasoning via Symbolic Chain-of-Thought\".","url":"https://github.com/aiden0526/symbcot"},{"title":"Published as a conference paper at ICLR 2025 LARGE LANGUAGE MODELS MEET","url":"https://arxiv.org/pdf/2502.06563"},{"title":"Published at ICLR 2024 Workshop on Secure and Trustworthy Large Language Models","url":"https://openreview.net/pdf?id=xw06d8NQAd"},{"title":"Logic-LM: Enhancing Logical Reasoning in Large Language Models with Symbolic Solvers - BestAI","url":"https://bestai.com/news/Logic-enhanced-LLM-symbolic-reasoning-16bfa946af"},{"title":"DetermLR: Augmenting LLM-based Logical Reasoning from Indeterminacy to Determinacy","url":"https://arxiv.org/html/2310.18659"},{"title":"DetermLR: Augmenting LLM-based Logical Reasoning ...","url":"https://aclanthology.org/2024.acl-long.531.pdf"},{"title":"Here’s how GPT-4 scored on the GRE, LSAT, AP English, and other exams | Semafor","url":"https://www.semafor.com/article/03/15/2023/how-gpt-4-performed-in-academic-exams"}]
+
+Based on the search results, here are the key findings regarding Draft-and-Prune (D&P) performance across these logical reasoning benchmarks:
+
+## Draft-and-Prune Results with GPT-4
+
+On AR-LSAT, Draft-and-Prune achieves 80.65% (GPT-4) and 82.83% (GPT-4o), and it still saturates ProofWriter, PrOntoQA, and LogicalDeduction.
+
+More specifically, D&P attains 78.43% (AF-only) and 80.65% (with CoT fallback) under GPT-4, and 78.00% (AF-only) and 82.83% (with CoT fallback) under GPT-4o.
+
+## Comparison with Other Methods
+
+For context, SymbCoT, a baseline prompting-based method, achieves 43.91% with GPT-4 and 34.20% with GPT-4o on AR-LSAT. This shows Draft-and-Prune significantly outperforms prompting-based approaches.
+
+The search results indicate that Draft-and-Prune represents a substantial advancement in auto-formalization for logical reasoning, particularly through its approach of drafting multiple formalizations and pruning them to select the most reliable one for downstream symbolic solving.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7597b57e-24ab-42c1-a347-af072ef7248d",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "5aef86a2-c032-4bb3-b9d3-089df55368e6",
+  "toolUseResult": {
+    "query": "Draft-and-Prune AR-LSAT ProofWriter PrOntoQA LogicalDeduction results GPT-4 accuracy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FkJzZpvcFTy565tvgEXZJC",
+        "content": [
+          {
+            "title": "Draft-and-Prune: Improving the Reliability of Auto-formalization for Logical Reasoning",
+            "url": "https://arxiv.org/html/2603.17233"
+          },
+          {
+            "title": "Instantiation-based Formalization of Logical Reasoning Tasks using",
+            "url": "https://www.ijcai.org/proceedings/2025/0516.pdf"
+          },
+          {
+            "title": "GitHub - teacherpeterpan/Logic-LLM: The project page for \"LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning\" · GitHub",
+            "url": "https://github.com/teacherpeterpan/Logic-LLM"
+          },
+          {
+            "title": "GitHub - Aiden0526/SymbCoT: Codes and Data for ACL 2024 Paper \"Faithful Logical Reasoning via Symbolic Chain-of-Thought\".",
+            "url": "https://github.com/aiden0526/symbcot"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 LARGE LANGUAGE MODELS MEET",
+            "url": "https://arxiv.org/pdf/2502.06563"
+          },
+          {
+            "title": "Published at ICLR 2024 Workshop on Secure and Trustworthy Large Language Models",
+            "url": "https://openreview.net/pdf?id=xw06d8NQAd"
+          },
+          {
+            "title": "Logic-LM: Enhancing Logical Reasoning in Large Language Models with Symbolic Solvers - BestAI",
+            "url": "https://bestai.com/news/Logic-enhanced-LLM-symbolic-reasoning-16bfa946af"
+          },
+          {
+            "title": "DetermLR: Augmenting LLM-based Logical Reasoning from Indeterminacy to Determinacy",
+            "url": "https://arxiv.org/html/2310.18659"
+          },
+          {
+            "title": "DetermLR: Augmenting LLM-based Logical Reasoning ...",
+            "url": "https://aclanthology.org/2024.acl-long.531.pdf"
+          },
+          {
+            "title": "Here’s how GPT-4 scored on the GRE, LSAT, AP English, and other exams | Semafor",
+            "url": "https://www.semafor.com/article/03/15/2023/how-gpt-4-performed-in-academic-exams"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings regarding Draft-and-Prune (D&P) performance across these logical reasoning benchmarks:\n\n## Draft-and-Prune Results with GPT-4\n\nOn AR-LSAT, Draft-and-Prune achieves 80.65% (GPT-4) and 82.83% (GPT-4o), and it still saturates ProofWriter, PrOntoQA, and LogicalDeduction.\n\nMore specifically, D&P attains 78.43% (AF-only) and 80.65% (with CoT fallback) under GPT-4, and 78.00% (AF-only) and 82.83% (with CoT fallback) under GPT-4o.\n\n## Comparison with Other Methods\n\nFor context, SymbCoT, a baseline prompting-based method, achieves 43.91% with GPT-4 and 34.20% with GPT-4o on AR-LSAT. This shows Draft-and-Prune significantly outperforms prompting-based approaches.\n\nThe search results indicate that Draft-and-Prune represents a substantial advancement in auto-formalization for logical reasoning, particularly through its approach of drafting multiple formalizations and pruning them to select the most reliable one for downstream symbolic solving."
+    ],
+    "durationSeconds": 5.653796050000005
+  },
+  "sourceToolAssistantUUID": "7597b57e-24ab-42c1-a347-af072ef7248d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-12T00:03:22.269Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011DkJxoY5ra1HHiNG3dRph3`</summary>
+
+```json
+{
+  "query": "CRAFT arXiv 2604.14121 GSM8K FOLIO FLD OlympiadBench accuracy results K=3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5aef86a2-c032-4bb3-b9d3-089df55368e6",
+  "isSidechain": false,
+  "requestId": "req_011CawhGkcPrxqBxzBMUWmJW",
+  "type": "assistant",
+  "uuid": "b1490c93-ef1c-47c5-90bb-c9b65d9cc72f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZARNSvEZtfqh5AorkMCA6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 60444,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 60444,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-12T00:03:26.912Z_
+
+<details><summary>↩ Tool result · `toolu_011DkJxoY5ra1HHiNG3dRph3`</summary>
+
+```text
+Web search results for query: "CRAFT arXiv 2604.14121 GSM8K FOLIO FLD OlympiadBench accuracy results K=3"
+
+Links: [{"title":"Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis","url":"https://arxiv.org/html/2604.14121"},{"title":"Probability-Consistent Preference Optimization for Enhanced LLM Reasoning","url":"https://arxiv.org/html/2505.23540"},{"title":"Towards Effective In-context Cross-domain Knowledge Transfer via Domain-invariant-neurons-based Retrieval","url":"https://arxiv.org/html/2604.05383v1"},{"title":"OlympiadBench: A Challenging Benchmark for Promoting AGI with","url":"https://arxiv.org/pdf/2402.14008"},{"title":"Instella: Fully Open Language Models with Stellar Performance","url":"https://arxiv.org/html/2511.10628v1"},{"title":"NCV: A Node-Wise Consistency Verification Approach for Low-Cost Structured Error Localization in LLM Reasoning","url":"https://arxiv.org/html/2510.02816"},{"title":"OlympiadBench: A Challenging Benchmark for Promoting AGI with Olympiad-Level Bilingual Multimodal Scientific Problems","url":"https://arxiv.org/html/2402.14008v2"},{"title":"Soft Modality-Guided Expert Specialization in MoE-VLMs","url":"https://arxiv.org/html/2604.23996"},{"title":"OMIBench: Benchmarking Olympiad-Level Multi-Image Reasoning in Large Vision-Language Models","url":"https://arxiv.org/html/2604.20806v1"},{"title":"1 Introduction","url":"https://arxiv.org/html/2511.23310v2"}]
+
+Based on the search results, I found the CRAFT paper (arXiv 2604.14121). The paper evaluates accuracy on four benchmarks: FLD (which requires step-by-step deductive inference over natural language facts and rules), FOLIO (which tests first-order logic reasoning), GSM8K (consisting of grade-school math word problems requiring multi-step arithmetic reasoning), and OlympiadBench (containing competition-level mathematics problems demanding advanced reasoning).
+
+However, the search results do not contain the specific accuracy results for CRAFT with K=3 on these benchmarks. The search results show that the paper exists and describes these datasets, but the actual numerical accuracy results with K=3 are not visible in the excerpts provided. To get the specific accuracy numbers you're looking for, you would need to access the full paper directly at arxiv.org/html/2604.14121.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1490c93-ef1c-47c5-90bb-c9b65d9cc72f",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "fc2ba1bd-f05d-403e-a476-5de5c638333a",
+  "toolUseResult": {
+    "query": "CRAFT arXiv 2604.14121 GSM8K FOLIO FLD OlympiadBench accuracy results K=3",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XEaaSwZDbKZ42PmUAPxeXE",
+        "content": [
+          {
+            "title": "Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis",
+            "url": "https://arxiv.org/html/2604.14121"
+          },
+          {
+            "title": "Probability-Consistent Preference Optimization for Enhanced LLM Reasoning",
+            "url": "https://arxiv.org/html/2505.23540"
+          },
+          {
+            "title": "Towards Effective In-context Cross-domain Knowledge Transfer via Domain-invariant-neurons-based Retrieval",
+            "url": "https://arxiv.org/html/2604.05383v1"
+          },
+          {
+            "title": "OlympiadBench: A Challenging Benchmark for Promoting AGI with",
+            "url": "https://arxiv.org/pdf/2402.14008"
+          },
+          {
+            "title": "Instella: Fully Open Language Models with Stellar Performance",
+            "url": "https://arxiv.org/html/2511.10628v1"
+          },
+          {
+            "title": "NCV: A Node-Wise Consistency Verification Approach for Low-Cost Structured Error Localization in LLM Reasoning",
+            "url": "https://arxiv.org/html/2510.02816"
+          },
+          {
+            "title": "OlympiadBench: A Challenging Benchmark for Promoting AGI with Olympiad-Level Bilingual Multimodal Scientific Problems",
+            "url": "https://arxiv.org/html/2402.14008v2"
+          },
+          {
+            "title": "Soft Modality-Guided Expert Specialization in MoE-VLMs",
+            "url": "https://arxiv.org/html/2604.23996"
+          },
+          {
+            "title": "OMIBench: Benchmarking Olympiad-Level Multi-Image Reasoning in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2604.20806v1"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2511.23310v2"
+          }
+        ]
+      },
+      "Based on the search results, I found the CRAFT paper (arXiv 2604.14121). The paper evaluates accuracy on four benchmarks: FLD (which requires step-by-step deductive inference over natural language facts and rules), FOLIO (which tests first-order logic reasoning), GSM8K (consisting of grade-school math word problems requiring multi-step arithmetic reasoning), and OlympiadBench (containing competition-level mathematics problems demanding advanced reasoning).\n\nHowever, the search results do not contain the specific accuracy results for CRAFT with K=3 on these benchmarks. The search results show that the paper exists and describes these datasets, but the actual numerical accuracy results with K=3 are not visible in the excerpts provided. To get the specific accuracy numbers you're looking for, you would need to access the full paper directly at arxiv.org/html/2604.14121."
+    ],
+    "durationSeconds": 4.639816057000018
+  },
+  "sourceToolAssistantUUID": "b1490c93-ef1c-47c5-90bb-c9b65d9cc72f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fc2ba1bd-f05d-403e-a476-5de5c638333a",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-12T00:03:32.147Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Kd1T78QZKgNvogjhyyPLgs`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.14121",
+  "prompt": "What are the main accuracy results? Specifically: (1) what improvement does CRAFT achieve over self-consistency (SC) baselines? (2) what K values (number of traces) are used? (3) what are the exact accuracy numbers on GSM8K, FOLIO, FLD, and OlympiadBench? (4) Do the authors acknowledge any limitations about 'consensus ≠ correctness' or reduced effectiveness on symbolic math?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc2ba1bd-f05d-403e-a476-5de5c638333a",
+  "isSidechain": false,
+  "requestId": "req_011CawhHMwAMb6sMMBYanGHv",
+  "type": "assistant",
+  "uuid": "ab1991bd-1f40-406a-a37f-a667706cec2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AD9332m7frR8pBmoN2NRc3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 785,
+      "cache_read_input_tokens": 61455,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 785,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 61455,
+          "cache_creation_input_tokens": 785,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 785
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-12T00:03:36.058Z_
+
+<details><summary>↩ Tool result · `toolu_01Kd1T78QZKgNvogjhyyPLgs`</summary>
+
+```text
+# Response Based on Available Content
+
+The webpage provided contains only the arXiv abstract and metadata for paper 2604.14121. Unfortunately, **the specific accuracy results you requested are not included** in this page content.
+
+The abstract states that CRAFT achieves improvements of **"10+% on average"** and **"consistently outperforms all baselines,"** but the detailed numerical results you need are absent.
+
+To obtain the information you're seeking, you would need to:
+
+1. **Access the full PDF** (linked as "View PDF" on the page)
+2. **Review the HTML experimental version** (also linked)
+3. **Consult the TeX source** for complete technical details
+
+The abstract does not address:
+- Specific comparisons against self-consistency baselines
+- K value specifications for multiple traces
+- Exact accuracy numbers on individual benchmarks (GSM8K, FOLIO, FLD, OlympiadBench)
+- Author acknowledgments regarding consensus limitations or symbolic math effectiveness
+
+**The metadata shows this is a recent submission (April 15, 2026)**, so accessing the full paper would be necessary for your analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab1991bd-1f40-406a-a37f-a667706cec2d",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "42d2c41f-d3f3-45a5-8171-845b8bfe9790",
+  "toolUseResult": {
+    "bytes": 45768,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Response Based on Available Content\n\nThe webpage provided contains only the arXiv abstract and metadata for paper 2604.14121. Unfortunately, **the specific accuracy results you requested are not included** in this page content.\n\nThe abstract states that CRAFT achieves improvements of **\"10+% on average\"** and **\"consistently outperforms all baselines,\"** but the detailed numerical results you need are absent.\n\nTo obtain the information you're seeking, you would need to:\n\n1. **Access the full PDF** (linked as \"View PDF\" on the page)\n2. **Review the HTML experimental version** (also linked)\n3. **Consult the TeX source** for complete technical details\n\nThe abstract does not address:\n- Specific comparisons against self-consistency baselines\n- K value specifications for multiple traces\n- Exact accuracy numbers on individual benchmarks (GSM8K, FOLIO, FLD, OlympiadBench)\n- Author acknowledgments regarding consensus limitations or symbolic math effectiveness\n\n**The metadata shows this is a recent submission (April 15, 2026)**, so accessing the full paper would be necessary for your analysis.",
+    "durationMs": 3908,
+    "url": "https://arxiv.org/abs/2604.14121"
+  },
+  "sourceToolAssistantUUID": "ab1991bd-1f40-406a-a37f-a667706cec2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-12T00:03:40.489Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FEPpmNjmRKJQpWnBLaJiza`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.14121",
+  "prompt": "Look for: (1) Main accuracy results table — what are CRAFT's exact accuracy numbers on GSM8K, FOLIO, FLD, OlympiadBench? (2) What K values (number of traces/candidates) does CRAFT use? (3) What improvement over self-consistency baselines? (4) Do the authors acknowledge limitations about 'consensus ≠ correctness' or issues with symbolic math? (5) What specific similarity metrics does CRAFT use (TF-IRF, Jaccard)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42d2c41f-d3f3-45a5-8171-845b8bfe9790",
+  "isSidechain": false,
+  "requestId": "req_011CawhJ2zR1sxQvQC2R6xvv",
+  "type": "assistant",
+  "uuid": "a13a9cc5-0580-43dc-8846-140511e2dd92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EQ5utfn3NNPg44aJeMRLj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 445,
+      "cache_read_input_tokens": 62240,
+      "output_tokens": 198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 445,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 198,
+          "cache_read_input_tokens": 62240,
+          "cache_creation_input_tokens": 445,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 445
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-12T00:03:48.762Z_
+
+<details><summary>↩ Tool result · `toolu_01FEPpmNjmRKJQpWnBLaJiza`</summary>
+
+```text
+# CRAFT Framework: Key Technical Details
+
+## Main Accuracy Results (Table 2)
+
+**CRAFT's performance on four benchmarks:**
+
+| Benchmark | GPT-5.4-nano | o4-mini |
+|-----------|--------------|---------|
+| FLD | 71.6% | 75.6% |
+| FOLIO | 89.6% | 88.8% |
+| GSM8K | 96.0% | 98.0% |
+| OlympiadBench | 73.8% | 73.2% |
+
+## Number of Traces (K)
+
+The paper evaluates K from 2 to 10 traces per sample. Figure 4 shows "accuracy increases gradually from K=3 onward" for FLD, with FOLIO reaching "peak accuracy converged earlier, at about K=3." Default experiments appear to use K=3-5 based on sensitivity analysis.
+
+## Improvement Over Self-Consistency
+
+On OlympiadBench under o4-mini, CRAFT achieves 73.2% versus Self-Consistency's 68.0%—a **5.2 percentage point gain**. The broader pattern shows CRAFT "outperforms the next-best baseline by up to +8.5%" on harder benchmarks.
+
+## Acknowledged Limitations
+
+The authors explicitly identify a critical constraint: "The framework assumes that steps and edges appearing frequently across K traces are more likely correct. On hard problems where many candidates share the same wrong reasoning pattern, consensus can amplify rather than suppress errors."
+
+They also note that "intermediate mathematical results tend to be too symbolic for term-overlap methods; our gains on GSM8K and OlympiadBench, while positive, are smaller than on text-heavy logical benchmarks."
+
+## Core Similarity Metrics
+
+**TF-IRF** (Term Frequency–Inverse Reasoning Frequency): "terms frequent within one sample's K traces but rare across samples are informative," computed per-trace with no cross-sample data leakage.
+
+**Jaccard Similarity**: Used for z-score filtering of steps and edge validation. The ablation confirms this choice, showing only "−1.2% / −1.4% accuracy drop" when replacing Jaccard with embedding-based similarity.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a13a9cc5-0580-43dc-8846-140511e2dd92",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "8f2a8fa7-62e6-44d8-8743-572b3d1806dd",
+  "toolUseResult": {
+    "bytes": 812730,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CRAFT Framework: Key Technical Details\n\n## Main Accuracy Results (Table 2)\n\n**CRAFT's performance on four benchmarks:**\n\n| Benchmark | GPT-5.4-nano | o4-mini |\n|-----------|--------------|---------|\n| FLD | 71.6% | 75.6% |\n| FOLIO | 89.6% | 88.8% |\n| GSM8K | 96.0% | 98.0% |\n| OlympiadBench | 73.8% | 73.2% |\n\n## Number of Traces (K)\n\nThe paper evaluates K from 2 to 10 traces per sample. Figure 4 shows \"accuracy increases gradually from K=3 onward\" for FLD, with FOLIO reaching \"peak accuracy converged earlier, at about K=3.\" Default experiments appear to use K=3-5 based on sensitivity analysis.\n\n## Improvement Over Self-Consistency\n\nOn OlympiadBench under o4-mini, CRAFT achieves 73.2% versus Self-Consistency's 68.0%—a **5.2 percentage point gain**. The broader pattern shows CRAFT \"outperforms the next-best baseline by up to +8.5%\" on harder benchmarks.\n\n## Acknowledged Limitations\n\nThe authors explicitly identify a critical constraint: \"The framework assumes that steps and edges appearing frequently across K traces are more likely correct. On hard problems where many candidates share the same wrong reasoning pattern, consensus can amplify rather than suppress errors.\"\n\nThey also note that \"intermediate mathematical results tend to be too symbolic for term-overlap methods; our gains on GSM8K and OlympiadBench, while positive, are smaller than on text-heavy logical benchmarks.\"\n\n## Core Similarity Metrics\n\n**TF-IRF** (Term Frequency–Inverse Reasoning Frequency): \"terms frequent within one sample's K traces but rare across samples are informative,\" computed per-trace with no cross-sample data leakage.\n\n**Jaccard Similarity**: Used for z-score filtering of steps and edge validation. The ablation confirms this choice, showing only \"−1.2% / −1.4% accuracy drop\" when replacing Jaccard with embedding-based similarity.",
+    "durationMs": 8271,
+    "url": "https://arxiv.org/html/2604.14121"
+  },
+  "sourceToolAssistantUUID": "a13a9cc5-0580-43dc-8846-140511e2dd92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-12T00:03:51.261Z_
+
+Excellent — CRAFT details verified. Now let me check a few more things to complete my review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f2a8fa7-62e6-44d8-8743-572b3d1806dd",
+  "isSidechain": false,
+  "requestId": "req_011CawhJyHCRXwWwrqt7pgac",
+  "type": "assistant",
+  "uuid": "a7ca2647-2c91-48d7-b6b8-7317059631f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXmKVcgotZazRh1q1AL493",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 722,
+      "cache_read_input_tokens": 62685,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 722,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 62685,
+          "cache_creation_input_tokens": 722,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 722
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-12T00:03:51.770Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011MwrEHeSyU4aLHkEq7QkSi`</summary>
+
+```json
+{
+  "query": "QwQ-32B GPQA Diamond accuracy score benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7ca2647-2c91-48d7-b6b8-7317059631f5",
+  "isSidechain": false,
+  "requestId": "req_011CawhJyHCRXwWwrqt7pgac",
+  "type": "assistant",
+  "uuid": "9fd0d9f9-4f26-47cf-91cc-ac32ba51190a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXmKVcgotZazRh1q1AL493",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 722,
+      "cache_read_input_tokens": 62685,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 722,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 62685,
+          "cache_creation_input_tokens": 722,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 722
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-12T00:03:56.744Z_
+
+<details><summary>↩ Tool result · `toolu_011MwrEHeSyU4aLHkEq7QkSi`</summary>
+
+```text
+Web search results for query: "QwQ-32B GPQA Diamond accuracy score benchmark"
+
+Links: [{"title":"GPQA Diamond Benchmark Leaderboard | Artificial Analysis","url":"https://artificialanalysis.ai/evaluations/gpqa-diamond"},{"title":"GPQA Diamond | Epoch AI","url":"https://epoch.ai/benchmarks/gpqa-diamond"},{"title":"GPQA Diamond","url":"https://www.vals.ai/benchmarks/gpqa"},{"title":"GPQA Diamond Benchmark Results 2025 | PDF | Artificial Intelligence | Intelligence (AI) & Semantics","url":"https://www.scribd.com/document/871061508/GPQA-Diamond-Benchmark-Results"},{"title":"GPQA-Diamond Benchmark: Scores, Leaderboard & How AI Models Compare | IntuitionLabs","url":"https://intuitionlabs.ai/articles/gpqa-diamond-ai-benchmark"},{"title":"GPQA Diamond benchmark | General reasoning agent evaluation | Steel.dev","url":"https://leaderboard.steel.dev/registry/benchmarks/gpqa-diamond/"},{"title":"GPQA Dataset: Advanced Reasoning Benchmark","url":"https://www.emergentmind.com/topics/gpqa-dataset"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"AI developers accurately report GPQA Diamond scores for recent models | Epoch AI","url":"https://epoch.ai/data-insights/self-reported-gpqa"},{"title":"iAsk Pro’s GPQA Benchmark Results","url":"https://iask.ai/gpqa"}]
+
+Based on the search results, here's what I found about QwQ-32B's GPQA Diamond accuracy score:
+
+QwQ-32B achieved a GPQA Diamond score of 65.2% according to the Qwen3 Technical Report, with another reference showing 62.1%.
+
+For context on what this score means:
+- GPQA Diamond contains 198 questions, for which both domain expert annotators got the correct answers, but which the majority of non-domain experts answered incorrectly
+- PhD-level experts recruited by OpenAI scored 69.7% on GPQA Diamond
+
+QwQ-32B's performance demonstrates competitive reasoning capabilities, though it falls slightly below expert human performance on this challenging benchmark that is designed to be "Google-proof" and consists of graduate-level physics, biology, and chemistry questions that can only be consistently solved by domain experts with PhDs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9fd0d9f9-4f26-47cf-91cc-ac32ba51190a",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "9d4b5118-96a2-45de-a8f3-daaf9d532423",
+  "toolUseResult": {
+    "query": "QwQ-32B GPQA Diamond accuracy score benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013AsxqkwdtQdcWnodRiWdGQ",
+        "content": [
+          {
+            "title": "GPQA Diamond Benchmark Leaderboard | Artificial Analysis",
+            "url": "https://artificialanalysis.ai/evaluations/gpqa-diamond"
+          },
+          {
+            "title": "GPQA Diamond | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/gpqa-diamond"
+          },
+          {
+            "title": "GPQA Diamond",
+            "url": "https://www.vals.ai/benchmarks/gpqa"
+          },
+          {
+            "title": "GPQA Diamond Benchmark Results 2025 | PDF | Artificial Intelligence | Intelligence (AI) & Semantics",
+            "url": "https://www.scribd.com/document/871061508/GPQA-Diamond-Benchmark-Results"
+          },
+          {
+            "title": "GPQA-Diamond Benchmark: Scores, Leaderboard & How AI Models Compare | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/gpqa-diamond-ai-benchmark"
+          },
+          {
+            "title": "GPQA Diamond benchmark | General reasoning agent evaluation | Steel.dev",
+            "url": "https://leaderboard.steel.dev/registry/benchmarks/gpqa-diamond/"
+          },
+          {
+            "title": "GPQA Dataset: Advanced Reasoning Benchmark",
+            "url": "https://www.emergentmind.com/topics/gpqa-dataset"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "AI developers accurately report GPQA Diamond scores for recent models | Epoch AI",
+            "url": "https://epoch.ai/data-insights/self-reported-gpqa"
+          },
+          {
+            "title": "iAsk Pro’s GPQA Benchmark Results",
+            "url": "https://iask.ai/gpqa"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about QwQ-32B's GPQA Diamond accuracy score:\n\nQwQ-32B achieved a GPQA Diamond score of 65.2% according to the Qwen3 Technical Report, with another reference showing 62.1%.\n\nFor context on what this score means:\n- GPQA Diamond contains 198 questions, for which both domain expert annotators got the correct answers, but which the majority of non-domain experts answered incorrectly\n- PhD-level experts recruited by OpenAI scored 69.7% on GPQA Diamond\n\nQwQ-32B's performance demonstrates competitive reasoning capabilities, though it falls slightly below expert human performance on this challenging benchmark that is designed to be \"Google-proof\" and consists of graduate-level physics, biology, and chemistry questions that can only be consistently solved by domain experts with PhDs."
+    ],
+    "durationSeconds": 4.9691218009999725
+  },
+  "sourceToolAssistantUUID": "9fd0d9f9-4f26-47cf-91cc-ac32ba51190a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-12T00:03:58.986Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X5VwEzUK9HAYZPPacfy5xR`</summary>
+
+```json
+{
+  "query": "Z3 optimize assert_soft weighted partial MAX-SAT performance scalability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d4b5118-96a2-45de-a8f3-daaf9d532423",
+  "isSidechain": false,
+  "requestId": "req_011CawhKZWEngxAYLPA1ojPu",
+  "type": "assistant",
+  "uuid": "53422183-e735-4f61-903a-1b9695b50195",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QaP5ASR7vNEy1FrBtKZcBL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 733,
+      "cache_read_input_tokens": 63407,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 63407,
+          "cache_creation_input_tokens": 733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-12T00:04:08.248Z_
+
+<details><summary>↩ Tool result · `toolu_01X5VwEzUK9HAYZPPacfy5xR`</summary>
+
+```text
+Web search results for query: "Z3 optimize assert_soft weighted partial MAX-SAT performance scalability"
+
+Links: [{"title":"νZ - Maximal Satisfaction with Z3 Nikolaj Bjørner1 and Anh-Dung Phan2∗","url":"https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/nbjorner-scss2014.pdf"},{"title":"Objective functions in Z3","url":"https://www.philipzucker.com/z3-rise4fun/optimization.html"},{"title":"Z3.Optimize","url":"https://z3prover.github.io/api/html/ml/Z3.Optimize.html"},{"title":"Z3: Optimize Class Reference","url":"https://z3prover.github.io/api/html/classz3py_1_1_optimize.html"},{"title":"Advanced Topics | Online Z3 Guide","url":"https://microsoft.github.io/z3guide/docs/optimization/advancedtopics/"},{"title":"Optimize in z3 - Rust","url":"https://docs.rs/z3/latest/z3/struct.Optimize.html"},{"title":"Programming Z3","url":"https://theory.stanford.edu/~nikolaj/programmingz3.html"},{"title":"assert-soft: performance impact? · Issue #493 · Z3Prover/z3","url":"https://github.com/Z3Prover/z3/issues/493"},{"title":"Z3 - Optimization","url":"https://www.riseforfun.com/Z3/tutorialcontent/optimization"},{"title":"νZ - An Optimizing SMT Solver","url":"https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/nbjorner-nuz.pdf"}]
+
+Based on the search results, here's information about Z3's optimization capabilities with `assert_soft`, weighted constraints, and MAX-SAT performance:
+
+## Z3 Optimize and assert_soft
+
+Z3 allows you to add soft constraints with optional weights, where if no weight is supplied, then the penalty for violating the soft constraint is 1. Soft constraints can be asserted to the optimization context with integer weights and optional identifiers that group soft constraints.
+
+## MAX-SAT Solving Algorithms
+
+The default solver for MaxSAT problems is the MaxRes algorithm, with several alternative solvers available. The default solver is chosen based on benchmarking against MaxSAT competition benchmarks, but other solver combinations, such as wmax, may work well for some domains. Z3 implements several engines for MaxSAT including WMax, MaxRes, BCD2, and MaxHS.
+
+## Partial MAX-SAT Support
+
+νZ comprises of two main components: a MaxSMT module that solves soft constraints and an OptSMT module that optimizes linear arithmetic objective functions. MaxRes shows significantly better performance than WMax on many larger instances.
+
+## Performance Considerations
+
+There can be a relatively large increase in running time when using assert-soft instead of a regular assert, even when the assertion is satisfiable for all checks. The computational overhead depends on the specific solver configuration and problem characteristics.
+
+For comprehensive details on Z3's optimization internals and algorithms, the research paper "νZ - Maximal Satisfaction with Z3" provides technical depth on the architecture and scalability approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53422183-e735-4f61-903a-1b9695b50195",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "d23fccfe-ba4e-4f18-b00f-f5702fabbd5a",
+  "toolUseResult": {
+    "query": "Z3 optimize assert_soft weighted partial MAX-SAT performance scalability",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0141hDD5cCxiPEVBfrG4oHkf",
+        "content": [
+          {
+            "title": "νZ - Maximal Satisfaction with Z3 Nikolaj Bjørner1 and Anh-Dung Phan2∗",
+            "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/nbjorner-scss2014.pdf"
+          },
+          {
+            "title": "Objective functions in Z3",
+            "url": "https://www.philipzucker.com/z3-rise4fun/optimization.html"
+          },
+          {
+            "title": "Z3.Optimize",
+            "url": "https://z3prover.github.io/api/html/ml/Z3.Optimize.html"
+          },
+          {
+            "title": "Z3: Optimize Class Reference",
+            "url": "https://z3prover.github.io/api/html/classz3py_1_1_optimize.html"
+          },
+          {
+            "title": "Advanced Topics | Online Z3 Guide",
+            "url": "https://microsoft.github.io/z3guide/docs/optimization/advancedtopics/"
+          },
+          {
+            "title": "Optimize in z3 - Rust",
+            "url": "https://docs.rs/z3/latest/z3/struct.Optimize.html"
+          },
+          {
+            "title": "Programming Z3",
+            "url": "https://theory.stanford.edu/~nikolaj/programmingz3.html"
+          },
+          {
+            "title": "assert-soft: performance impact? · Issue #493 · Z3Prover/z3",
+            "url": "https://github.com/Z3Prover/z3/issues/493"
+          },
+          {
+            "title": "Z3 - Optimization",
+            "url": "https://www.riseforfun.com/Z3/tutorialcontent/optimization"
+          },
+          {
+            "title": "νZ - An Optimizing SMT Solver",
+            "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/nbjorner-nuz.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's information about Z3's optimization capabilities with `assert_soft`, weighted constraints, and MAX-SAT performance:\n\n## Z3 Optimize and assert_soft\n\nZ3 allows you to add soft constraints with optional weights, where if no weight is supplied, then the penalty for violating the soft constraint is 1. Soft constraints can be asserted to the optimization context with integer weights and optional identifiers that group soft constraints.\n\n## MAX-SAT Solving Algorithms\n\nThe default solver for MaxSAT problems is the MaxRes algorithm, with several alternative solvers available. The default solver is chosen based on benchmarking against MaxSAT competition benchmarks, but other solver combinations, such as wmax, may work well for some domains. Z3 implements several engines for MaxSAT including WMax, MaxRes, BCD2, and MaxHS.\n\n## Partial MAX-SAT Support\n\nνZ comprises of two main components: a MaxSMT module that solves soft constraints and an OptSMT module that optimizes linear arithmetic objective functions. MaxRes shows significantly better performance than WMax on many larger instances.\n\n## Performance Considerations\n\nThere can be a relatively large increase in running time when using assert-soft instead of a regular assert, even when the assertion is satisfiable for all checks. The computational overhead depends on the specific solver configuration and problem characteristics.\n\nFor comprehensive details on Z3's optimization internals and algorithms, the research paper \"νZ - Maximal Satisfaction with Z3\" provides technical depth on the architecture and scalability approaches."
+    ],
+    "durationSeconds": 9.257980337999994
+  },
+  "sourceToolAssistantUUID": "53422183-e735-4f61-903a-1b9695b50195",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-12T00:04:10.511Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CaxUvwtbCYn2rY8p9tnrtj`</summary>
+
+```json
+{
+  "query": "neurosymbolic intermediate constraint cross-solution consensus aggregation verification arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d23fccfe-ba4e-4f18-b00f-f5702fabbd5a",
+  "isSidechain": false,
+  "requestId": "req_011CawhLQZWLCrh4msvLn5Lq",
+  "type": "assistant",
+  "uuid": "9c0d050a-36a6-4ded-b0a7-47d8b1fa943e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WF1hY7ZbzQGx7MzSUXqDdW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 64140,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 64140,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-12T00:04:17.754Z_
+
+<details><summary>↩ Tool result · `toolu_01CaxUvwtbCYn2rY8p9tnrtj`</summary>
+
+```text
+Web search results for query: "neurosymbolic intermediate constraint cross-solution consensus aggregation verification arXiv 2026"
+
+Links: [{"title":"[2601.15493] Testing Deep Learning Libraries via Neurosymbolic Constraint Learning","url":"https://arxiv.org/abs/2601.15493"},{"title":"A Neurosymbolic Approach to Natural Language Formalization and Verification","url":"https://arxiv.org/html/2511.09008v1"},{"title":"Testing Deep Learning Libraries via Neurosymbolic Constraint Learning","url":"https://arxiv.org/html/2601.15493"},{"title":"Constraint-Aware Neurosymbolic Uncertainty Quantification with Bayesian Deep Learning for Scientific Discovery","url":"https://arxiv.org/html/2601.12442"},{"title":"Constraint-Aware Neurosymbolic Uncertainty ...","url":"https://arxiv.org/pdf/2601.12442"},{"title":"[2511.09008] A Neurosymbolic Approach to Natural Language Formalization and Verification","url":"https://arxiv.org/abs/2511.09008"},{"title":"[2601.12442] Constraint-Aware Neurosymbolic Uncertainty Quantification with Bayesian Deep Learning for Scientific Discovery","url":"https://arxiv.org/abs/2601.12442"},{"title":"A Probabilistic Neuro-symbolic Layer for Algebraic Constraint Satisfaction","url":"https://arxiv.org/html/2503.19466v1"},{"title":"[2503.19466] A Probabilistic Neuro-symbolic Layer for Algebraic Constraint Satisfaction","url":"https://arxiv.org/abs/2503.19466"},{"title":"Intermediate Languages Matter: Formal Languages and LLMs affect Neurosymbolic Reasoning","url":"https://arxiv.org/html/2509.04083v1"}]
+
+I found several relevant arXiv papers from 2025-2026 on neurosymbolic approaches with constraints and verification. Here are the key results:
+
+1. **Testing Deep Learning Libraries via Neurosymbolic Constraint Learning** - Centaur, the first neurosymbolic technique to test DL library APIs using dynamically learned input constraints (arXiv 2601.15493, January 2026)
+
+2. **A Neurosymbolic Approach to Natural Language Formalization and Verification** - A two-stage neurosymbolic framework that uses LLMs with optional human guidance to formalize natural language policies, and uses inference-time autoformalization to validate logical correctness of natural language statements against those policies, with multiple redundant formalization steps at inference time cross checking the formalizations for semantic equivalence (arXiv 2511.09008, November 2025)
+
+3. **Constraint-Aware Neurosymbolic Uncertainty Quantification with Bayesian Deep Learning for Scientific Discovery** - CANUF, which unifies Bayesian deep learning with differentiable symbolic reasoning, comprising three components: automated constraint extraction from scientific literature, probabilistic neural backbone with variational inference, and differentiable constraint satisfaction layer ensuring physical consistency (arXiv 2601.12442, January 2026)
+
+4. **Intermediate Languages Matter: Formal Languages and LLMs affect Neurosymbolic Reasoning** - Shows that the choice of formal language matters: first-order logic outperforms logic programming languages (arXiv 2509.04083, September 2025)
+
+These papers explore various aspects of neurosymbolic AI systems combined with constraint handling, verification, and symbolic reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c0d050a-36a6-4ded-b0a7-47d8b1fa943e",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "aeb6a769-4f2a-454e-a336-7f24cd7fd363",
+  "toolUseResult": {
+    "query": "neurosymbolic intermediate constraint cross-solution consensus aggregation verification arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TexsYLFsTizre3pSBZhVH5",
+        "content": [
+          {
+            "title": "[2601.15493] Testing Deep Learning Libraries via Neurosymbolic Constraint Learning",
+            "url": "https://arxiv.org/abs/2601.15493"
+          },
+          {
+            "title": "A Neurosymbolic Approach to Natural Language Formalization and Verification",
+            "url": "https://arxiv.org/html/2511.09008v1"
+          },
+          {
+            "title": "Testing Deep Learning Libraries via Neurosymbolic Constraint Learning",
+            "url": "https://arxiv.org/html/2601.15493"
+          },
+          {
+            "title": "Constraint-Aware Neurosymbolic Uncertainty Quantification with Bayesian Deep Learning for Scientific Discovery",
+            "url": "https://arxiv.org/html/2601.12442"
+          },
+          {
+            "title": "Constraint-Aware Neurosymbolic Uncertainty ...",
+            "url": "https://arxiv.org/pdf/2601.12442"
+          },
+          {
+            "title": "[2511.09008] A Neurosymbolic Approach to Natural Language Formalization and Verification",
+            "url": "https://arxiv.org/abs/2511.09008"
+          },
+          {
+            "title": "[2601.12442] Constraint-Aware Neurosymbolic Uncertainty Quantification with Bayesian Deep Learning for Scientific Discovery",
+            "url": "https://arxiv.org/abs/2601.12442"
+          },
+          {
+            "title": "A Probabilistic Neuro-symbolic Layer for Algebraic Constraint Satisfaction",
+            "url": "https://arxiv.org/html/2503.19466v1"
+          },
+          {
+            "title": "[2503.19466] A Probabilistic Neuro-symbolic Layer for Algebraic Constraint Satisfaction",
+            "url": "https://arxiv.org/abs/2503.19466"
+          },
+          {
+            "title": "Intermediate Languages Matter: Formal Languages and LLMs affect Neurosymbolic Reasoning",
+            "url": "https://arxiv.org/html/2509.04083v1"
+          }
+        ]
+      },
+      "I found several relevant arXiv papers from 2025-2026 on neurosymbolic approaches with constraints and verification. Here are the key results:\n\n1. **Testing Deep Learning Libraries via Neurosymbolic Constraint Learning** - Centaur, the first neurosymbolic technique to test DL library APIs using dynamically learned input constraints (arXiv 2601.15493, January 2026)\n\n2. **A Neurosymbolic Approach to Natural Language Formalization and Verification** - A two-stage neurosymbolic framework that uses LLMs with optional human guidance to formalize natural language policies, and uses inference-time autoformalization to validate logical correctness of natural language statements against those policies, with multiple redundant formalization steps at inference time cross checking the formalizations for semantic equivalence (arXiv 2511.09008, November 2025)\n\n3. **Constraint-Aware Neurosymbolic Uncertainty Quantification with Bayesian Deep Learning for Scientific Discovery** - CANUF, which unifies Bayesian deep learning with differentiable symbolic reasoning, comprising three components: automated constraint extraction from scientific literature, probabilistic neural backbone with variational inference, and differentiable constraint satisfaction layer ensuring physical consistency (arXiv 2601.12442, January 2026)\n\n4. **Intermediate Languages Matter: Formal Languages and LLMs affect Neurosymbolic Reasoning** - Shows that the choice of formal language matters: first-order logic outperforms logic programming languages (arXiv 2509.04083, September 2025)\n\nThese papers explore various aspects of neurosymbolic AI systems combined with constraint handling, verification, and symbolic reasoning."
+    ],
+    "durationSeconds": 7.238508709999966
+  },
+  "sourceToolAssistantUUID": "9c0d050a-36a6-4ded-b0a7-47d8b1fa943e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 96_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "aeb6a769-4f2a-454e-a336-7f24cd7fd363",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-12T00:04:20.797Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N7SvTjkrZSCCggAd35QdHb`</summary>
+
+```json
+{
+  "query": "invariant consensus reasoning LLM formal verification cross-path cross-trace 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aeb6a769-4f2a-454e-a336-7f24cd7fd363",
+  "isSidechain": false,
+  "requestId": "req_011CawhM7Ckmhz5gqvPg7o9d",
+  "type": "assistant",
+  "uuid": "6f90716a-bb19-47a4-a561-0800c3a7f97d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGbhZmUtvx5FRSQMTbgVkB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 952,
+      "cache_read_input_tokens": 65037,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 65037,
+          "cache_creation_input_tokens": 952,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 952
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-12T00:04:28.767Z_
+
+<details><summary>↩ Tool result · `toolu_01N7SvTjkrZSCCggAd35QdHb`</summary>
+
+```text
+Web search results for query: "invariant consensus reasoning LLM formal verification cross-path cross-trace 2025 2026"
+
+Links: [{"title":"A Survey on Verifying Reasoning Chains Generated by ...","url":"https://hal.science/hal-05448955v1/document"},{"title":"Can LLMs Model Real-World Systems in TLA+? | The Coders Blog | Home","url":"https://thecodersblog.com/llms-modeling-real-world-systems-in-tla-2026/"},{"title":"LLM-Based Code Translation Needs Formal Compositional Reasoning Alvin Cheung","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-174.pdf"},{"title":"Benchmarking Large Language Models for Compositional ...","url":"https://arxiv.org/pdf/2509.23061"},{"title":"LLM Output Drift: Cross-Provider Validation & Mitigation for Financial Workflows","url":"https://arxiv.org/html/2511.07585v1"},{"title":"IFM Technical Report: 2025-12-02 K2-V2: A 360-Open, Reasoning-Enhanced LLM","url":"https://www.llm360.ai/reports/K2_V2_report.pdf"},{"title":"Transactions on Artificial Intelligence https://www.sciltp.com/journals/tai","url":"https://media.sciltp.com/articles/2505000685/2505000685.pdf"},{"title":"FVEL: Interactive Formal Verification Environment with ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/62c6d7893b13a13c659cb815852dd00d-Paper-Datasets_and_Benchmarks_Track.pdf"},{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"Frontiers | A dual perspective review on large language models and code verification","url":"https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2025.1655469/full"}]
+
+I've completed a web search for your query about invariant consensus reasoning, LLMs, formal verification, and cross-path/cross-trace approaches in 2025-2026. Here are the key findings:
+
+## Recent Research Areas
+
+**Formal Verification with LLMs (2025-2026):**
+
+LLMs like Claude, GPT-4o, DeepSeek-V3, and Gemini 3.1 are being leveraged to automatically generate TLA+ specifications for systems as complex as Etcd's Raft consensus algorithm. Workflows typically involve trace validation against known system behaviors and iterative feedback loops, often driven by the TLC model checker, to nudge the LLM-generated code towards semantic alignment.
+
+**Invariant Generation and Verification:**
+
+Researchers have demonstrated the value of combining LLM-generated code with formal verification tools, including ESBMC and Dafny, to systematically identify issues, ensure correctness, and validate generated specifications such as preconditions, post-conditions, and loop invariants.
+
+**Compositional Reasoning Challenges:**
+
+Recent benchmarks focus on evaluation of whether models can generate specifications that capture emergent correctness properties across component boundaries, requiring understanding of how data flows and invariants propagate through compositions.
+
+**Current Limitations:**
+
+LLMs are not yet capable of independently modeling complex real-world systems in TLA+. However, the ecosystem is increasingly recognizing the necessity of a human-in-the-loop approach, with iterative refinement guided by human domain experts being crucial.
+
+The search results show active research in LLM-assisted formal verification, though the specific terms "invariant consensus reasoning" and "cross-path cross-trace" as a unified framework didn't appear prominently in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f90716a-bb19-47a4-a561-0800c3a7f97d",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "9f50c472-72e8-4f43-8d56-62a6c15fde1d",
+  "toolUseResult": {
+    "query": "invariant consensus reasoning LLM formal verification cross-path cross-trace 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014ZqK9ABLj4DHUAMeESs7jH",
+        "content": [
+          {
+            "title": "A Survey on Verifying Reasoning Chains Generated by ...",
+            "url": "https://hal.science/hal-05448955v1/document"
+          },
+          {
+            "title": "Can LLMs Model Real-World Systems in TLA+? | The Coders Blog | Home",
+            "url": "https://thecodersblog.com/llms-modeling-real-world-systems-in-tla-2026/"
+          },
+          {
+            "title": "LLM-Based Code Translation Needs Formal Compositional Reasoning Alvin Cheung",
+            "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-174.pdf"
+          },
+          {
+            "title": "Benchmarking Large Language Models for Compositional ...",
+            "url": "https://arxiv.org/pdf/2509.23061"
+          },
+          {
+            "title": "LLM Output Drift: Cross-Provider Validation & Mitigation for Financial Workflows",
+            "url": "https://arxiv.org/html/2511.07585v1"
+          },
+          {
+            "title": "IFM Technical Report: 2025-12-02 K2-V2: A 360-Open, Reasoning-Enhanced LLM",
+            "url": "https://www.llm360.ai/reports/K2_V2_report.pdf"
+          },
+          {
+            "title": "Transactions on Artificial Intelligence https://www.sciltp.com/journals/tai",
+            "url": "https://media.sciltp.com/articles/2505000685/2505000685.pdf"
+          },
+          {
+            "title": "FVEL: Interactive Formal Verification Environment with ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/62c6d7893b13a13c659cb815852dd00d-Paper-Datasets_and_Benchmarks_Track.pdf"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          },
+          {
+            "title": "Frontiers | A dual perspective review on large language models and code verification",
+            "url": "https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2025.1655469/full"
+          }
+        ]
+      },
+      "I've completed a web search for your query about invariant consensus reasoning, LLMs, formal verification, and cross-path/cross-trace approaches in 2025-2026. Here are the key findings:\n\n## Recent Research Areas\n\n**Formal Verification with LLMs (2025-2026):**\n\nLLMs like Claude, GPT-4o, DeepSeek-V3, and Gemini 3.1 are being leveraged to automatically generate TLA+ specifications for systems as complex as Etcd's Raft consensus algorithm. Workflows typically involve trace validation against known system behaviors and iterative feedback loops, often driven by the TLC model checker, to nudge the LLM-generated code towards semantic alignment.\n\n**Invariant Generation and Verification:**\n\nResearchers have demonstrated the value of combining LLM-generated code with formal verification tools, including ESBMC and Dafny, to systematically identify issues, ensure correctness, and validate generated specifications such as preconditions, post-conditions, and loop invariants.\n\n**Compositional Reasoning Challenges:**\n\nRecent benchmarks focus on evaluation of whether models can generate specifications that capture emergent correctness properties across component boundaries, requiring understanding of how data flows and invariants propagate through compositions.\n\n**Current Limitations:**\n\nLLMs are not yet capable of independently modeling complex real-world systems in TLA+. However, the ecosystem is increasingly recognizing the necessity of a human-in-the-loop approach, with iterative refinement guided by human domain experts being crucial.\n\nThe search results show active research in LLM-assisted formal verification, though the specific terms \"invariant consensus reasoning\" and \"cross-path cross-trace\" as a unified framework didn't appear prominently in these results."
+    ],
+    "durationSeconds": 7.9598814270000435
+  },
+  "sourceToolAssistantUUID": "6f90716a-bb19-47a4-a561-0800c3a7f97d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-12T00:04:30.836Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011KKPHfY4wkko3HKm4HuvCg`</summary>
+
+```json
+{
+  "query": "weighted partial MAX-SAT LLM reasoning constraint aggregation multiple candidate solutions 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f50c472-72e8-4f43-8d56-62a6c15fde1d",
+  "isSidechain": false,
+  "requestId": "req_011CawhMvKvpDPwD78QQ3Lhx",
+  "type": "assistant",
+  "uuid": "58056553-9dbe-4ddf-a335-d69faf54448a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zKk78HbQLcqFn3JtFfugk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1066,
+      "cache_read_input_tokens": 65989,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1066,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 65989,
+          "cache_creation_input_tokens": 1066,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1066
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-12T00:04:38.241Z_
+
+<details><summary>↩ Tool result · `toolu_011KKPHfY4wkko3HKm4HuvCg`</summary>
+
+```text
+Web search results for query: "weighted partial MAX-SAT LLM reasoning constraint aggregation multiple candidate solutions 2025 2026"
+
+Links: [{"title":"Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information","url":"https://arxiv.org/html/2510.01499"},{"title":"An Efficient Core-Guided Solver for Weighted Partial MaxSAT | IJCAI","url":"https://www.ijcai.org/proceedings/2025/295"},{"title":"Optimizing local search-based partial MaxSAT solving via initial assignment prediction | Science China Information Sciences | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11432-023-3900-7"},{"title":"CFP - LLMs meet Constraint Solving, 2nd Edition (LLM-Solve 2026)","url":"http://www.satlive.org/2026/04/21/llmsolve26.html"},{"title":"The State Of LLMs 2025: Progress, Progress, and Predictions","url":"https://magazine.sebastianraschka.com/p/state-of-llms-2025"},{"title":"A Survey of Efficient LLM Inference Serving","url":"https://aclanthology.org/2025.inlg-main.32.pdf"},{"title":"LLM Research Papers: The 2025 List (July to December)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"},{"title":"LLM Benchmarks 2026 - Compare AI Benchmarks and Tests","url":"https://llm-stats.com/benchmarks"},{"title":"Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information","url":"https://www.arxiv.org/pdf/2510.01499"},{"title":"Strategy-Aware Optimization Modeling with Reasoning LLMs","url":"https://arxiv.org/html/2605.02545v1"}]
+
+Based on the web search results, I found several relevant papers and resources related to your query:
+
+## Key Findings
+
+**LLM Aggregation with Multiple Candidate Solutions:**
+
+Two new aggregation algorithms called Optimal Weight (OW) and Inverse Surprising Popularity (ISP) have been designed, leveraging both first-order and second-order information for LLM response aggregation. The aggregation of responses from multiple large language models has been widely used in practice, such as in multi-agent LLM debate and LLM council.
+
+**Weighted Partial MAX-SAT Solvers:**
+
+CASHWMaxSAT is an efficient core-guided MaxSAT solver that introduces an extended stratification technique progressively focusing on high-weight soft clauses and integrates disjoint unsatisfiable cores to minimize the unsatisfiable core. Experimental results on benchmarks from the complete weighted track of the MaxSAT Evaluations 2022-2024 demonstrate the proposed methods lead to substantial improvements.
+
+**LLMs and Constraint Solving Integration:**
+
+LLM-Solve 2026 is a workshop for researchers at the intersection of Large Language Models and Constraint Solving (CP, SAT, SMT, MIP, and related paradigms), recognizing that LLMs now act as agentic systems that orchestrate multi-step reasoning and tool use, yet they struggle with reliability and formal correctness.
+
+The search results indicate active research in 2025-2026 combining LLM reasoning with constraint satisfaction problems and aggregation methods for multiple candidate solutions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58056553-9dbe-4ddf-a335-d69faf54448a",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "b5f73c6d-812e-4251-b863-61a764fa8ad4",
+  "toolUseResult": {
+    "query": "weighted partial MAX-SAT LLM reasoning constraint aggregation multiple candidate solutions 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CMQSzjSDkGmJvkqJX2GTad",
+        "content": [
+          {
+            "title": "Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information",
+            "url": "https://arxiv.org/html/2510.01499"
+          },
+          {
+            "title": "An Efficient Core-Guided Solver for Weighted Partial MaxSAT | IJCAI",
+            "url": "https://www.ijcai.org/proceedings/2025/295"
+          },
+          {
+            "title": "Optimizing local search-based partial MaxSAT solving via initial assignment prediction | Science China Information Sciences | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11432-023-3900-7"
+          },
+          {
+            "title": "CFP - LLMs meet Constraint Solving, 2nd Edition (LLM-Solve 2026)",
+            "url": "http://www.satlive.org/2026/04/21/llmsolve26.html"
+          },
+          {
+            "title": "The State Of LLMs 2025: Progress, Progress, and Predictions",
+            "url": "https://magazine.sebastianraschka.com/p/state-of-llms-2025"
+          },
+          {
+            "title": "A Survey of Efficient LLM Inference Serving",
+            "url": "https://aclanthology.org/2025.inlg-main.32.pdf"
+          },
+          {
+            "title": "LLM Research Papers: The 2025 List (July to December)",
+            "url": "https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"
+          },
+          {
+            "title": "LLM Benchmarks 2026 - Compare AI Benchmarks and Tests",
+            "url": "https://llm-stats.com/benchmarks"
+          },
+          {
+            "title": "Beyond Majority Voting: LLM Aggregation by Leveraging Higher-Order Information",
+            "url": "https://www.arxiv.org/pdf/2510.01499"
+          },
+          {
+            "title": "Strategy-Aware Optimization Modeling with Reasoning LLMs",
+            "url": "https://arxiv.org/html/2605.02545v1"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and resources related to your query:\n\n## Key Findings\n\n**LLM Aggregation with Multiple Candidate Solutions:**\n\nTwo new aggregation algorithms called Optimal Weight (OW) and Inverse Surprising Popularity (ISP) have been designed, leveraging both first-order and second-order information for LLM response aggregation. The aggregation of responses from multiple large language models has been widely used in practice, such as in multi-agent LLM debate and LLM council.\n\n**Weighted Partial MAX-SAT Solvers:**\n\nCASHWMaxSAT is an efficient core-guided MaxSAT solver that introduces an extended stratification technique progressively focusing on high-weight soft clauses and integrates disjoint unsatisfiable cores to minimize the unsatisfiable core. Experimental results on benchmarks from the complete weighted track of the MaxSAT Evaluations 2022-2024 demonstrate the proposed methods lead to substantial improvements.\n\n**LLMs and Constraint Solving Integration:**\n\nLLM-Solve 2026 is a workshop for researchers at the intersection of Large Language Models and Constraint Solving (CP, SAT, SMT, MIP, and related paradigms), recognizing that LLMs now act as agentic systems that orchestrate multi-step reasoning and tool use, yet they struggle with reliability and formal correctness.\n\nThe search results indicate active research in 2025-2026 combining LLM reasoning with constraint satisfaction problems and aggregation methods for multiple candidate solutions."
+    ],
+    "durationSeconds": 7.401982897000038
+  },
+  "sourceToolAssistantUUID": "58056553-9dbe-4ddf-a335-d69faf54448a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102 · 2026-05-12T00:04:38.244Z_
+
+```json
+{
+  "parentUuid": "b5f73c6d-812e-4251-b863-61a764fa8ad4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0f3eb610-c60d-4450-adb3-d32d8e0551fd",
+  "timestamp": "2026-05-12T00:04:38.244Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-12T00:04:41.695Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AtXPVUJyvaozxrir9KcDyM`</summary>
+
+```json
+{
+  "query": "FoVer arXiv 2505.15960 BBH word sorting temporal tracking shuffled objects specific accuracy numbers table"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f3eb610-c60d-4450-adb3-d32d8e0551fd",
+  "isSidechain": false,
+  "requestId": "req_011CawhNco1v1TxiHVC74m7E",
+  "type": "assistant",
+  "uuid": "9333fedb-b6a5-49c5-a3ae-0e8abb82c73b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGqwV39GB8EdiNQ2qk6uX1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 67055,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 67055,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-12T00:04:47.080Z_
+
+<details><summary>↩ Tool result · `toolu_01AtXPVUJyvaozxrir9KcDyM`</summary>
+
+```text
+Web search results for query: "FoVer arXiv 2505.15960 BBH word sorting temporal tracking shuffled objects specific accuracy numbers table"
+
+Links: [{"title":"[2505.15960] Training Step-Level Reasoning Verifiers ... - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2505.15960"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data","url":"https://arxiv.org/pdf/2505.15960"},{"title":"GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub","url":"https://github.com/psunlpgroup/FoVer"},{"title":"[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/abs/2505.15960"},{"title":"FOVER: Training Verifiers with Formal Tools","url":"https://www.emergentmind.com/papers/2505.15960"},{"title":"BHaHAHA: A Fast, Robust Apparent Horizon Finder Library for Numerical Relativity","url":"https://arxiv.org/html/2505.15912"},{"title":"[2505.12891] TIME: A Multi-level Benchmark for Temporal Reasoning of LLMs in Real-World Scenarios","url":"https://arxiv.org/abs/2505.12891"},{"title":"Temporal Sequencing of Documents","url":"https://arxiv.org/html/2311.02578"},{"title":"Word Level Timestamp Generation for Automatic Speech Recognition and Translation","url":"https://arxiv.org/html/2505.15646"},{"title":"Topic Detection and Tracking with Time-Aware Document Embeddings","url":"https://arxiv.org/html/2112.06166v2"}]
+
+Based on the search results, I found information about the FoVer paper (arXiv 2505.15960). The paper evaluates PRMs (Process Reward Models) on several BBH (Big-Bench Hard) tasks including temporal sequences, tracking shuffled objects, and word sorting.
+
+The paper evaluates Best-of-K performance of PRMs on 12 reasoning tasks, including BIG-Bench Hard tasks: temporal sequences, tracking shuffled objects (three objects), and word sorting.
+
+However, I was not able to locate the specific accuracy numbers table from the paper in these search results. The search results reference that detailed results are in the paper (mentioning appendices and tables), but the specific numerical accuracy values for word sorting, temporal tracking, and tracking shuffled objects are not displayed in the excerpts available. 
+
+To find the specific accuracy numbers you're looking for, you would need to access the full paper directly at:
+- The arxiv PDF: https://arxiv.org/pdf/2505.15960
+- The HTML version: https://ar5iv.labs.arxiv.org/html/2505.15960
+
+These sources should contain the detailed tables with the specific accuracy numbers for these BBH tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9333fedb-b6a5-49c5-a3ae-0e8abb82c73b",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "25a96732-9396-4d05-b04b-594e1fe69d7a",
+  "toolUseResult": {
+    "query": "FoVer arXiv 2505.15960 BBH word sorting temporal tracking shuffled objects specific accuracy numbers table",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N25SgvS2cajshG2DkzBeGz",
+        "content": [
+          {
+            "title": "[2505.15960] Training Step-Level Reasoning Verifiers ... - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2505.15960"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub",
+            "url": "https://github.com/psunlpgroup/FoVer"
+          },
+          {
+            "title": "[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/abs/2505.15960"
+          },
+          {
+            "title": "FOVER: Training Verifiers with Formal Tools",
+            "url": "https://www.emergentmind.com/papers/2505.15960"
+          },
+          {
+            "title": "BHaHAHA: A Fast, Robust Apparent Horizon Finder Library for Numerical Relativity",
+            "url": "https://arxiv.org/html/2505.15912"
+          },
+          {
+            "title": "[2505.12891] TIME: A Multi-level Benchmark for Temporal Reasoning of LLMs in Real-World Scenarios",
+            "url": "https://arxiv.org/abs/2505.12891"
+          },
+          {
+            "title": "Temporal Sequencing of Documents",
+            "url": "https://arxiv.org/html/2311.02578"
+          },
+          {
+            "title": "Word Level Timestamp Generation for Automatic Speech Recognition and Translation",
+            "url": "https://arxiv.org/html/2505.15646"
+          },
+          {
+            "title": "Topic Detection and Tracking with Time-Aware Document Embeddings",
+            "url": "https://arxiv.org/html/2112.06166v2"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the FoVer paper (arXiv 2505.15960). The paper evaluates PRMs (Process Reward Models) on several BBH (Big-Bench Hard) tasks including temporal sequences, tracking shuffled objects, and word sorting.\n\nThe paper evaluates Best-of-K performance of PRMs on 12 reasoning tasks, including BIG-Bench Hard tasks: temporal sequences, tracking shuffled objects (three objects), and word sorting.\n\nHowever, I was not able to locate the specific accuracy numbers table from the paper in these search results. The search results reference that detailed results are in the paper (mentioning appendices and tables), but the specific numerical accuracy values for word sorting, temporal tracking, and tracking shuffled objects are not displayed in the excerpts available. \n\nTo find the specific accuracy numbers you're looking for, you would need to access the full paper directly at:\n- The arxiv PDF: https://arxiv.org/pdf/2505.15960\n- The HTML version: https://ar5iv.labs.arxiv.org/html/2505.15960\n\nThese sources should contain the detailed tables with the specific accuracy numbers for these BBH tasks."
+    ],
+    "durationSeconds": 5.380797699999995
+  },
+  "sourceToolAssistantUUID": "9333fedb-b6a5-49c5-a3ae-0e8abb82c73b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-12T00:04:55.804Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0188cG6BEaNR4n6sqqkr8ADJ`</summary>
+
+```json
+{
+  "url": "https://ar5iv.labs.arxiv.org/html/2505.15960",
+  "prompt": "Find the specific accuracy numbers for BBH subtasks. I need the exact scores for: (1) temporal sequences, (2) tracking shuffled objects, and (3) word sorting. Specifically for Llama3.1-8B-PRM at Best-of-7 (or whichever Best-of-K is reported). Also check if the paper reports an 'overall average' of 80.0% across unseen tasks — what exactly does that 80.0% refer to?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25a96732-9396-4d05-b04b-594e1fe69d7a",
+  "isSidechain": false,
+  "requestId": "req_011CawhPGgpCuKNvGjw98cbX",
+  "type": "assistant",
+  "uuid": "d52a4850-3eeb-4153-96dd-8fd5994a9f63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pp5DvJDbqXdivhQMupiRaL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 68108,
+      "output_tokens": 197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 851,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 197,
+          "cache_read_input_tokens": 68108,
+          "cache_creation_input_tokens": 851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 851
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-12T00:05:01.243Z_
+
+<details><summary>↩ Tool result · `toolu_0188cG6BEaNR4n6sqqkr8ADJ`</summary>
+
+```text
+# FoVer BBH Performance Analysis
+
+Based on the paper content provided, here are the specific accuracy numbers for BBH subtasks:
+
+## Best-of-K (K=5) Performance for Llama 3.1 8B
+
+According to Table 3(a), the FoVer-Llama3.1-8B-PRM achieved these scores on BBH subtasks:
+
+- **Temporal Sequences**: 97.6%
+- **Tracking Shuffled Objects**: 93.2%
+- **Word Sorting**: 38.4%
+- **Average across 12 benchmarks**: 58.8%
+
+## Clarification on Overall Average
+
+The 80.0% figure you may have encountered refers to a different context. The paper does not report an "overall average of 80.0% across unseen tasks." Rather, Table 4(a) shows step-level verification performance (AUROC) on ProcessBench where the FoVer-Llama3.1-8B-PRM achieved "80.0% on GSM8K" in that specific evaluation setting.
+
+The primary cross-task generalization metric reported is the **58.8% average** across the 12 diverse reasoning benchmarks in Best-of-K evaluation, demonstrating the model's broad effectiveness despite training only on formal logic and theorem proof tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d52a4850-3eeb-4153-96dd-8fd5994a9f63",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "8aee8f78-b466-4ba4-a3db-aa762f191a8c",
+  "toolUseResult": {
+    "bytes": 999690,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# FoVer BBH Performance Analysis\n\nBased on the paper content provided, here are the specific accuracy numbers for BBH subtasks:\n\n## Best-of-K (K=5) Performance for Llama 3.1 8B\n\nAccording to Table 3(a), the FoVer-Llama3.1-8B-PRM achieved these scores on BBH subtasks:\n\n- **Temporal Sequences**: 97.6%\n- **Tracking Shuffled Objects**: 93.2%\n- **Word Sorting**: 38.4%\n- **Average across 12 benchmarks**: 58.8%\n\n## Clarification on Overall Average\n\nThe 80.0% figure you may have encountered refers to a different context. The paper does not report an \"overall average of 80.0% across unseen tasks.\" Rather, Table 4(a) shows step-level verification performance (AUROC) on ProcessBench where the FoVer-Llama3.1-8B-PRM achieved \"80.0% on GSM8K\" in that specific evaluation setting.\n\nThe primary cross-task generalization metric reported is the **58.8% average** across the 12 diverse reasoning benchmarks in Best-of-K evaluation, demonstrating the model's broad effectiveness despite training only on formal logic and theorem proof tasks.",
+    "durationMs": 5435,
+    "url": "https://ar5iv.labs.arxiv.org/html/2505.15960"
+  },
+  "sourceToolAssistantUUID": "d52a4850-3eeb-4153-96dd-8fd5994a9f63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-12T00:05:03.341Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pr35xoRY4hP465xmuNRuKi`</summary>
+
+```json
+{
+  "query": "FoVer BBH temporal sequences tracking shuffled objects word sorting Best-of-7 Llama3.1-8B accuracy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8aee8f78-b466-4ba4-a3db-aa762f191a8c",
+  "isSidechain": false,
+  "requestId": "req_011CawhQK9gTxuUtfZYdw6N6",
+  "type": "assistant",
+  "uuid": "df3a47b1-98e0-4551-97a3-8e78c8d653f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139PTts1CJEhz9vdPRjqVTr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 512,
+      "cache_read_input_tokens": 68959,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 512,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 68959,
+          "cache_creation_input_tokens": 512,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 512
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-12T00:05:11.227Z_
+
+<details><summary>↩ Tool result · `toolu_01Pr35xoRY4hP465xmuNRuKi`</summary>
+
+```text
+Web search results for query: "FoVer BBH temporal sequences tracking shuffled objects word sorting Best-of-7 Llama3.1-8B accuracy"
+
+Links: [{"title":"Challenging BIG-Bench Tasks and Whether Chain-of- ...","url":"https://aclanthology.org/2023.findings-acl.824.pdf"},{"title":"How predictable is language model benchmark performance? David Owen Epoch","url":"https://arxiv.org/pdf/2401.04757"},{"title":"BIG-Bench Extra Hard","url":"https://aclanthology.org/2025.acl-long.1285.pdf"},{"title":"[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2407.21783"},{"title":"HFT: Half Fine-Tuning for Large Language Models","url":"https://aclanthology.org/2025.acl-long.626.pdf"},{"title":"A Practice of Post-Training on Llama-3 70B with Optimal Selection of Additional Language Mixture Ratio","url":"https://arxiv.org/html/2409.06624v3"},{"title":"BIG-Bench Hard | DeepEval by Confident AI - The LLM Evaluation Framework","url":"https://deepeval.com/docs/benchmarks-big-bench-hard"},{"title":"[2407.21783] The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783"},{"title":"meta-llama/Llama-3.1-8B-Instruct · Hugging Face","url":"https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"},{"title":"LLaMA: Open and Efﬁcient Foundation Language Models","url":"https://arxiv.org/pdf/2302.13971"}]
+
+Based on the search results, I found information about the individual components of your query, but not a specific paper or benchmark combining all these elements together. Here's what the search revealed:
+
+**BBH Tasks**: Tracking Shuffled Objects involves determining the final positions of objects given their initial positions and a series of transformations (pairwise swaps), and Word Sorting tasks require sorting words lexicographically. Temporal Sequences is another BBH task.
+
+**Llama 3.1-8B**: The search results mention Llama 3 models including an 8B version, but the specific "Llama3.1-8B" reference in your query doesn't appear in the retrieved documents with the specific accuracy metrics you're asking about.
+
+**FoVer**: I could not find any results related to "FoVer" as a benchmark or evaluation framework in these search results.
+
+The query appears to reference a specific research paper or benchmark report that combines FoVer with BBH tasks evaluated on Llama 3.1-8B using a "Best-of-7" selection method, but this specific combination doesn't appear in the search results. You may want to search for the paper directly on arXiv or academic databases if you have additional information about the authors or publication venue.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "df3a47b1-98e0-4551-97a3-8e78c8d653f8",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "709722c1-008f-4631-a153-e9646ef9f220",
+  "toolUseResult": {
+    "query": "FoVer BBH temporal sequences tracking shuffled objects word sorting Best-of-7 Llama3.1-8B accuracy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E7qsNeTHp2hUcBkKXhaX5V",
+        "content": [
+          {
+            "title": "Challenging BIG-Bench Tasks and Whether Chain-of- ...",
+            "url": "https://aclanthology.org/2023.findings-acl.824.pdf"
+          },
+          {
+            "title": "How predictable is language model benchmark performance? David Owen Epoch",
+            "url": "https://arxiv.org/pdf/2401.04757"
+          },
+          {
+            "title": "BIG-Bench Extra Hard",
+            "url": "https://aclanthology.org/2025.acl-long.1285.pdf"
+          },
+          {
+            "title": "[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2407.21783"
+          },
+          {
+            "title": "HFT: Half Fine-Tuning for Large Language Models",
+            "url": "https://aclanthology.org/2025.acl-long.626.pdf"
+          },
+          {
+            "title": "A Practice of Post-Training on Llama-3 70B with Optimal Selection of Additional Language Mixture Ratio",
+            "url": "https://arxiv.org/html/2409.06624v3"
+          },
+          {
+            "title": "BIG-Bench Hard | DeepEval by Confident AI - The LLM Evaluation Framework",
+            "url": "https://deepeval.com/docs/benchmarks-big-bench-hard"
+          },
+          {
+            "title": "[2407.21783] The Llama 3 Herd of Models",
+            "url": "https://arxiv.org/abs/2407.21783"
+          },
+          {
+            "title": "meta-llama/Llama-3.1-8B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
+          },
+          {
+            "title": "LLaMA: Open and Efﬁcient Foundation Language Models",
+            "url": "https://arxiv.org/pdf/2302.13971"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the individual components of your query, but not a specific paper or benchmark combining all these elements together. Here's what the search revealed:\n\n**BBH Tasks**: Tracking Shuffled Objects involves determining the final positions of objects given their initial positions and a series of transformations (pairwise swaps), and Word Sorting tasks require sorting words lexicographically. Temporal Sequences is another BBH task.\n\n**Llama 3.1-8B**: The search results mention Llama 3 models including an 8B version, but the specific \"Llama3.1-8B\" reference in your query doesn't appear in the retrieved documents with the specific accuracy metrics you're asking about.\n\n**FoVer**: I could not find any results related to \"FoVer\" as a benchmark or evaluation framework in these search results.\n\nThe query appears to reference a specific research paper or benchmark report that combines FoVer with BBH tasks evaluated on Llama 3.1-8B using a \"Best-of-7\" selection method, but this specific combination doesn't appear in the search results. You may want to search for the paper directly on arXiv or academic databases if you have additional information about the authors or publication venue."
+    ],
+    "durationSeconds": 7.877806319000025
+  },
+  "sourceToolAssistantUUID": "df3a47b1-98e0-4551-97a3-8e78c8d653f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 109_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "709722c1-008f-4631-a153-e9646ef9f220",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 110_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-12T00:05:16.996Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RkK55mDZfYoUMtVn2WAgVz`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.15960",
+  "prompt": "Find Tables 3, 4, or 5. I need the specific Best-of-K accuracy numbers for BBH subtasks (temporal sequences, tracking shuffled objects, word sorting) with Llama3.1-8B-PRM. Specifically, I want to know: (1) Is there a Best-of-7 result? (2) What are the exact numbers for temporal_sequences, tracking_shuffled_objects, and word_sorting? (3) Is there a reported score of 97.2% for temporal, 96.0% for tracking, and 46.8% for word sorting anywhere in the tables? Look for all tables reporting BBH results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "709722c1-008f-4631-a153-e9646ef9f220",
+  "isSidechain": false,
+  "requestId": "req_011CawhR43c6xnigLxN9812T",
+  "type": "assistant",
+  "uuid": "75327ca1-324a-4113-ada1-3893fb4df5e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TzRdJDwZnpWXQJYrXTAEAS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 69471,
+      "output_tokens": 230,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 878,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 230,
+          "cache_read_input_tokens": 69471,
+          "cache_creation_input_tokens": 878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 878
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-12T00:05:19.791Z_
+
+<details><summary>↩ Tool result · `toolu_01RkK55mDZfYoUMtVn2WAgVz`</summary>
+
+```text
+# BBH Results for Llama3.1-8B-PRM
+
+Looking at Table 5 in the document, I can provide the specific Best-of-K (K=7) accuracy numbers for BBH subtasks:
+
+**Temporal Sequences:** 97.2%
+**Tracking Shuffled Objects:** 96.0%
+**Word Sorting:** 46.8%
+
+The table shows these results under the FoVer-Llama3.1-8B-PRM row, confirming Best-of-7 evaluation was conducted. The document states that this model achieved competitive or superior performance compared to existing PRMs on these reasoning tasks that substantially differed from the formal training data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75327ca1-324a-4113-ada1-3893fb4df5e8",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "3010a5c4-f322-4250-a390-6685111165e4",
+  "toolUseResult": {
+    "bytes": 544575,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# BBH Results for Llama3.1-8B-PRM\n\nLooking at Table 5 in the document, I can provide the specific Best-of-K (K=7) accuracy numbers for BBH subtasks:\n\n**Temporal Sequences:** 97.2%\n**Tracking Shuffled Objects:** 96.0%\n**Word Sorting:** 46.8%\n\nThe table shows these results under the FoVer-Llama3.1-8B-PRM row, confirming Best-of-7 evaluation was conducted. The document states that this model achieved competitive or superior performance compared to existing PRMs on these reasoning tasks that substantially differed from the formal training data.",
+    "durationMs": 2791,
+    "url": "https://arxiv.org/html/2505.15960"
+  },
+  "sourceToolAssistantUUID": "75327ca1-324a-4113-ada1-3893fb4df5e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113 · 2026-05-12T00:05:23.944Z_
+
+FoVer BBH scores confirmed: temporal sequences 97.2%, tracking shuffled objects 96.0%, word sorting 46.8% at Best-of-7. The proposal now correctly cites these. Let me do a final check on ARC-Challenge exclusion justification and any remaining missed work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3010a5c4-f322-4250-a390-6685111165e4",
+  "isSidechain": false,
+  "requestId": "req_011CawhRgVbXiShUJSnogGpu",
+  "type": "assistant",
+  "uuid": "973fb00c-b3bb-42b1-a500-64ed28a3fc41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqhyU3k5awZtLp92KpVniB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 397,
+      "cache_read_input_tokens": 70349,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 70349,
+          "cache_creation_input_tokens": 397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-12T00:05:24.465Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017xyhAXX2MDxLdSchpkdDdq`</summary>
+
+```json
+{
+  "query": "ARC-Challenge benchmark symbolic constraint extraction formal reasoning LLM neuro-symbolic 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "973fb00c-b3bb-42b1-a500-64ed28a3fc41",
+  "isSidechain": false,
+  "requestId": "req_011CawhRgVbXiShUJSnogGpu",
+  "type": "assistant",
+  "uuid": "420e7e1e-fea4-46ba-995d-5048f7bee556",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqhyU3k5awZtLp92KpVniB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 397,
+      "cache_read_input_tokens": 70349,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 397,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 70349,
+          "cache_creation_input_tokens": 397,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 397
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-12T00:05:31.588Z_
+
+<details><summary>↩ Tool result · `toolu_017xyhAXX2MDxLdSchpkdDdq`</summary>
+
+```text
+Web search results for query: "ARC-Challenge benchmark symbolic constraint extraction formal reasoning LLM neuro-symbolic 2025 2026"
+
+Links: [{"title":"ConstraintLLM: A Neuro-Symbolic Framework for Industrial ...","url":"https://aclanthology.org/2025.emnlp-main.809.pdf"},{"title":"ARC Prize - 2025 Competition Details","url":"https://arcprize.org/competitions/2025"},{"title":"ARC Prize 2025 Results and Analysis | ARC Prize","url":"https://arcprize.org/blog/arc-prize-2025-results-analysis"},{"title":"Multimodal Reasoning to Solve the ARC-AGI Challenge | Maximilian Seeth","url":"https://omseeth.github.io/blog/2025/MLLM_for_ARC/"},{"title":"ARC Prize 2025: Technical Report","url":"https://arxiv.org/pdf/2601.10904"},{"title":"ARC Challenge Benchmark","url":"https://www.emergentmind.com/topics/arc-challenge-benchmark"},{"title":"From Reasoning to Generalization: Knowledge-Augmented LLMs for ARC Benchmark","url":"https://arxiv.org/html/2505.17482v1"},{"title":"ARC | DeepEval by Confident AI - The LLM Evaluation Framework","url":"https://deepeval.com/docs/benchmarks-arc"},{"title":"ARC-AGI-2","url":"https://arcprize.org/arc-agi/2"},{"title":"NSA: Neuro-symbolic ARC Challenge","url":"https://arxiv.org/html/2501.04424v1"}]
+
+I've performed the web search with your query. Here are the key findings:
+
+## Recent Research on ARC-Challenge and Neuro-Symbolic Approaches (2025-2026)
+
+**ARC-AGI Benchmarks Evolution:**
+ARC-AGI-3 is in development, bringing temporal and agentic elements to the benchmark, with competitions expected in 2026. Hundreds of never-before-seen interactive environments are being built to test agentic reasoning, with ARC-AGI-3 planned for release in early 2026.
+
+**Neuro-Symbolic Approaches:**
+A neuro-symbolic approach combines a transformer for proposal generation with combinatorial search using a domain-specific language, where the transformer narrows the search space by proposing promising search directions. This represents work specifically on the "NSA: Neuro-symbolic ARC Challenge."
+
+**Constraint Extraction and Formal Reasoning:**
+Multi-instruction supervised fine-tuning teaches models skills in constraint programming modeling, constraint type extraction, and self-correction. ARC-AGI-2 includes tasks requiring symbols to be interpreted as having meaning beyond their visual patterns, including symbolic interpretation and compositional reasoning challenges.
+
+**2025 Competition Progress:**
+SOAR is a self-improving evolutionary program synthesis framework that fine-tunes an LLM on its own search traces, improving ARC-AGI-1 solution performance up to 52% without human-engineered domain-specific languages.
+
+The search results show active research combining LLMs with symbolic/formal reasoning methods for ARC challenges in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "420e7e1e-fea4-46ba-995d-5048f7bee556",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "a971ade9-2395-4a12-b3e7-aa9f1e9e7e7f",
+  "toolUseResult": {
+    "query": "ARC-Challenge benchmark symbolic constraint extraction formal reasoning LLM neuro-symbolic 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Eu2bkmWKybMiWvJzeajUwc",
+        "content": [
+          {
+            "title": "ConstraintLLM: A Neuro-Symbolic Framework for Industrial ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.809.pdf"
+          },
+          {
+            "title": "ARC Prize - 2025 Competition Details",
+            "url": "https://arcprize.org/competitions/2025"
+          },
+          {
+            "title": "ARC Prize 2025 Results and Analysis | ARC Prize",
+            "url": "https://arcprize.org/blog/arc-prize-2025-results-analysis"
+          },
+          {
+            "title": "Multimodal Reasoning to Solve the ARC-AGI Challenge | Maximilian Seeth",
+            "url": "https://omseeth.github.io/blog/2025/MLLM_for_ARC/"
+          },
+          {
+            "title": "ARC Prize 2025: Technical Report",
+            "url": "https://arxiv.org/pdf/2601.10904"
+          },
+          {
+            "title": "ARC Challenge Benchmark",
+            "url": "https://www.emergentmind.com/topics/arc-challenge-benchmark"
+          },
+          {
+            "title": "From Reasoning to Generalization: Knowledge-Augmented LLMs for ARC Benchmark",
+            "url": "https://arxiv.org/html/2505.17482v1"
+          },
+          {
+            "title": "ARC | DeepEval by Confident AI - The LLM Evaluation Framework",
+            "url": "https://deepeval.com/docs/benchmarks-arc"
+          },
+          {
+            "title": "ARC-AGI-2",
+            "url": "https://arcprize.org/arc-agi/2"
+          },
+          {
+            "title": "NSA: Neuro-symbolic ARC Challenge",
+            "url": "https://arxiv.org/html/2501.04424v1"
+          }
+        ]
+      },
+      "I've performed the web search with your query. Here are the key findings:\n\n## Recent Research on ARC-Challenge and Neuro-Symbolic Approaches (2025-2026)\n\n**ARC-AGI Benchmarks Evolution:**\nARC-AGI-3 is in development, bringing temporal and agentic elements to the benchmark, with competitions expected in 2026. Hundreds of never-before-seen interactive environments are being built to test agentic reasoning, with ARC-AGI-3 planned for release in early 2026.\n\n**Neuro-Symbolic Approaches:**\nA neuro-symbolic approach combines a transformer for proposal generation with combinatorial search using a domain-specific language, where the transformer narrows the search space by proposing promising search directions. This represents work specifically on the \"NSA: Neuro-symbolic ARC Challenge.\"\n\n**Constraint Extraction and Formal Reasoning:**\nMulti-instruction supervised fine-tuning teaches models skills in constraint programming modeling, constraint type extraction, and self-correction. ARC-AGI-2 includes tasks requiring symbols to be interpreted as having meaning beyond their visual patterns, including symbolic interpretation and compositional reasoning challenges.\n\n**2025 Competition Progress:**\nSOAR is a self-improving evolutionary program synthesis framework that fine-tunes an LLM on its own search traces, improving ARC-AGI-1 solution performance up to 52% without human-engineered domain-specific languages.\n\nThe search results show active research combining LLMs with symbolic/formal reasoning methods for ARC challenges in 2025-2026."
+    ],
+    "durationSeconds": 7.120486231999996
+  },
+  "sourceToolAssistantUUID": "420e7e1e-fea4-46ba-995d-5048f7bee556",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-12T00:05:33.993Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X6ocNxRKEE6gds3dpB9gVb`</summary>
+
+```json
+{
+  "query": "\"Structured Abductive-Deductive-Inductive Reasoning\" \"Algebraic Invariants\" arXiv 2604.15727 LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a971ade9-2395-4a12-b3e7-aa9f1e9e7e7f",
+  "isSidechain": false,
+  "requestId": "req_011CawhSYvTV9oABBb7QYKtb",
+  "type": "assistant",
+  "uuid": "887800f1-5b0a-46cd-8779-771ddbaaf6ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bqca7JGdpnJcQjqMFQNYn6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 70746,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 70746,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-12T00:05:39.193Z_
+
+<details><summary>↩ Tool result · `toolu_01X6ocNxRKEE6gds3dpB9gVb`</summary>
+
+```text
+Web search results for query: ""Structured Abductive-Deductive-Inductive Reasoning" "Algebraic Invariants" arXiv 2604.15727 LLM"
+
+Links: [{"title":"[2604.15727] Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants","url":"https://arxiv.org/abs/2604.15727"},{"title":"Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants","url":"https://arxiv.org/html/2604.15727"},{"title":"Structured Abductive-Deductive-Inductive Reasoning for ...","url":"https://arxiv.org/pdf/2604.15727"},{"title":"Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants | OpenReview","url":"https://openreview.net/forum?id=zy6HdcsJ9V"}]
+
+I found the paper you're looking for. Here's what the research is about:
+
+Large language models exhibit systematic limitations in structured logical reasoning: they conflate hypothesis generation with verification, cannot distinguish conjecture from validated knowledge, and allow weak reasoning steps to propagate unchecked through inference chains.
+
+The paper presents a symbolic reasoning scaffold that operationalizes Peirce's tripartite inference -- abduction, deduction, and induction -- as an explicit protocol for LLM-assisted reasoning. The framework enforces logical consistency through five algebraic invariants (the Gamma Quintet), the strongest of which -- the Weakest Link bound -- ensures that no conclusion in a reasoning chain can exceed the reliability of its least-supported premise.
+
+This principle, independently grounded as weakest link resolution in possibilistic logic and empirically validated for chain-of-thought reasoning, prevents logical inconsistencies from accumulating across multi-step inference. The authors verify all invariants through a property-based testing suite of 100 properties and 16 fuzz tests over 10^5+ generated cases, providing a verified reference implementation of the invariants suitable as a foundation for future reasoning benchmarks.
+
+The paper was authored by Sankalp Gilda and Shlok Gilda, and was posted on arXiv on April 17, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "887800f1-5b0a-46cd-8779-771ddbaaf6ee",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "913a4f74-b98a-4025-b000-e4450d624939",
+  "toolUseResult": {
+    "query": "\"Structured Abductive-Deductive-Inductive Reasoning\" \"Algebraic Invariants\" arXiv 2604.15727 LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CAZeqa9pSwhR3fL4hr5HNq",
+        "content": [
+          {
+            "title": "[2604.15727] Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants",
+            "url": "https://arxiv.org/abs/2604.15727"
+          },
+          {
+            "title": "Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants",
+            "url": "https://arxiv.org/html/2604.15727"
+          },
+          {
+            "title": "Structured Abductive-Deductive-Inductive Reasoning for ...",
+            "url": "https://arxiv.org/pdf/2604.15727"
+          },
+          {
+            "title": "Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants | OpenReview",
+            "url": "https://openreview.net/forum?id=zy6HdcsJ9V"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's what the research is about:\n\nLarge language models exhibit systematic limitations in structured logical reasoning: they conflate hypothesis generation with verification, cannot distinguish conjecture from validated knowledge, and allow weak reasoning steps to propagate unchecked through inference chains.\n\nThe paper presents a symbolic reasoning scaffold that operationalizes Peirce's tripartite inference -- abduction, deduction, and induction -- as an explicit protocol for LLM-assisted reasoning. The framework enforces logical consistency through five algebraic invariants (the Gamma Quintet), the strongest of which -- the Weakest Link bound -- ensures that no conclusion in a reasoning chain can exceed the reliability of its least-supported premise.\n\nThis principle, independently grounded as weakest link resolution in possibilistic logic and empirically validated for chain-of-thought reasoning, prevents logical inconsistencies from accumulating across multi-step inference. The authors verify all invariants through a property-based testing suite of 100 properties and 16 fuzz tests over 10^5+ generated cases, providing a verified reference implementation of the invariants suitable as a foundation for future reasoning benchmarks.\n\nThe paper was authored by Sankalp Gilda and Shlok Gilda, and was posted on arXiv on April 17, 2026."
+    ],
+    "durationSeconds": 5.196605755000026
+  },
+  "sourceToolAssistantUUID": "887800f1-5b0a-46cd-8779-771ddbaaf6ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-12T00:05:43.503Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01AeuipsNzNW2zYnbgbb7nra`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.15727",
+  "prompt": "Does this paper do cross-solution/cross-path constraint validation across multiple LLM reasoning traces? Does it use MAX-SAT or Z3? Or does it operate on individual reasoning chains? Is it a competing approach to SICA (cross-path formal constraint consensus)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "913a4f74-b98a-4025-b000-e4450d624939",
+  "isSidechain": false,
+  "requestId": "req_011CawhT7TJHFkrpvpGTo2iL",
+  "type": "assistant",
+  "uuid": "f23d43b2-4f6d-4172-abeb-5d2504b6d77f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUwczhSjJz11BxPJbc7bLd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 71689,
+      "output_tokens": 140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 140,
+          "cache_read_input_tokens": 71689,
+          "cache_creation_input_tokens": 659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-12T00:05:48.013Z_
+
+<details><summary>↩ Tool result · `toolu_01AeuipsNzNW2zYnbgbb7nra`</summary>
+
+```text
+# Analysis of the Paper's Approach
+
+Based on the abstract provided, I cannot definitively answer your specific technical questions about cross-path validation, MAX-SAT, Z3, or comparison to SICA.
+
+The abstract indicates the work focuses on "an explicit protocol for LLM-assisted reasoning" operationalizing Peirce's inference types. It emphasizes "five algebraic invariants" with the "Weakest Link bound" as central—ensuring "no conclusion in a reasoning chain can exceed the reliability of its least-supported premise."
+
+The description suggests the framework operates on **individual reasoning chains** rather than cross-solution validation. The mechanism appears to be **constraint propagation through single traces** via algebraic invariants, verified through property-based testing of generated cases.
+
+However, the abstract doesn't mention:
+- Multiple reasoning paths being validated simultaneously
+- SAT/SMT solvers (MAX-SAT, Z3)
+- Cross-path consensus mechanisms
+- Comparison to competing approaches like SICA
+
+To answer your questions about formal constraint checking across multiple LLM traces or competing methodologies, you would need to access the full paper PDF or the complete reference section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f23d43b2-4f6d-4172-abeb-5d2504b6d77f",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "f136951e-b3c3-4988-af7e-a603faed1078",
+  "toolUseResult": {
+    "bytes": 46256,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of the Paper's Approach\n\nBased on the abstract provided, I cannot definitively answer your specific technical questions about cross-path validation, MAX-SAT, Z3, or comparison to SICA.\n\nThe abstract indicates the work focuses on \"an explicit protocol for LLM-assisted reasoning\" operationalizing Peirce's inference types. It emphasizes \"five algebraic invariants\" with the \"Weakest Link bound\" as central—ensuring \"no conclusion in a reasoning chain can exceed the reliability of its least-supported premise.\"\n\nThe description suggests the framework operates on **individual reasoning chains** rather than cross-solution validation. The mechanism appears to be **constraint propagation through single traces** via algebraic invariants, verified through property-based testing of generated cases.\n\nHowever, the abstract doesn't mention:\n- Multiple reasoning paths being validated simultaneously\n- SAT/SMT solvers (MAX-SAT, Z3)\n- Cross-path consensus mechanisms\n- Comparison to competing approaches like SICA\n\nTo answer your questions about formal constraint checking across multiple LLM traces or competing methodologies, you would need to access the full paper PDF or the complete reference section.",
+    "durationMs": 4506,
+    "url": "https://arxiv.org/abs/2604.15727"
+  },
+  "sourceToolAssistantUUID": "f23d43b2-4f6d-4172-abeb-5d2504b6d77f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 120 · 2026-05-12T00:05:51.970Z_
+
+Good — that paper operates on individual chains, not cross-path. Not a competitor to SICA. Let me do one more search to check for very recent (April-May 2026) concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f136951e-b3c3-4988-af7e-a603faed1078",
+  "isSidechain": false,
+  "requestId": "req_011CawhTm7xhkrfXCXS6m2hL",
+  "type": "assistant",
+  "uuid": "8e6cc3e2-0dc4-4279-9b1c-043f0210cd69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016mtKj6TADkTncM7YfQStm2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 72348,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 72348,
+          "cache_creation_input_tokens": 404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-12T00:05:52.711Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019sqcxsC5Uok7Q7q5dPdfAf`</summary>
+
+```json
+{
+  "query": "arXiv 2605 2604 cross-path reasoning verification constraint solver LLM consensus aggregation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e6cc3e2-0dc4-4279-9b1c-043f0210cd69",
+  "isSidechain": false,
+  "requestId": "req_011CawhTm7xhkrfXCXS6m2hL",
+  "type": "assistant",
+  "uuid": "593dceae-db2a-413a-8aea-218d74ff2e5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016mtKj6TADkTncM7YfQStm2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 72348,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 72348,
+          "cache_creation_input_tokens": 404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-12T00:06:01.871Z_
+
+<details><summary>↩ Tool result · `toolu_019sqcxsC5Uok7Q7q5dPdfAf`</summary>
+
+```text
+Web search results for query: "arXiv 2605 2604 cross-path reasoning verification constraint solver LLM consensus aggregation"
+
+Links: [{"title":"Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning","url":"https://arxiv.org/html/2604.14525"},{"title":"ReaComp: Compiling LLM Reasoning into Symbolic Solvers for Efficient Program Synthesis","url":"https://arxiv.org/html/2605.05485"},{"title":"Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis","url":"https://arxiv.org/html/2604.14121"},{"title":"Strategy-Aware Optimization Modeling with Reasoning LLMs","url":"https://arxiv.org/html/2605.02545"},{"title":"The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration","url":"https://arxiv.org/html/2604.17139"},{"title":"Verifier-Backed Hard Problem Generation for Mathematical Reasoning","url":"https://arxiv.org/html/2605.06660"},{"title":"[2604.17139] The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration","url":"https://arxiv.org/abs/2604.17139"},{"title":"[2504.01005] When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://arxiv.org/abs/2504.01005"},{"title":"[2604.14121] Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis","url":"https://arxiv.org/abs/2604.14121"},{"title":"Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants","url":"https://arxiv.org/html/2604.15727"}]
+
+Based on the search results, I found several relevant papers that relate to your query about cross-path reasoning, verification, constraint solvers, and LLM consensus aggregation:
+
+## Key Papers Found:
+
+**1. Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning (arXiv 2604.14525)**
+This paper involves labels obtained through three-annotator consensus and solver verification, using SAT and SMT solvers for validation.
+
+**2. Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph (arXiv 2604.14121)**
+This work proposes CRAFT, a framework that builds a Reasoning Knowledge Graph (RKG) based on the consensus parts of multiple candidate traces, and synthesizes a high-quality trace through topological generation. The approach improves label-prediction accuracy by 10+% on average across logical and mathematical reasoning benchmarks.
+
+**3. The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities (arXiv 2604.17139)**
+This paper discusses how multi-agent LLM architectures rely on response-level aggregation such as Majority Voting, but reveals that this aggregation collapses when corrupted agents form a local majority because voting aggregates fully-formed conclusions and is blind to flawed intermediate logic.
+
+**4. ReaComp: Compiling LLM Reasoning into Symbolic Solvers (arXiv 2605.05485)**
+This work uses coding agents to compile reasoning traces into reusable symbolic program synthesizers over constrained DSLs.
+
+**5. Strategy-Aware Optimization Modeling with Reasoning LLMs (arXiv 2605.02545)**
+The SAGE framework builds a multi-strategy, solver-verified corpus by generating multiple candidate strategies per problem and filtering via solver validation against ground-truth.
+
+These papers all involve the key themes from your query: LLM reasoning, constraint solvers, verification, and consensus/aggregation mechanisms across multiple reasoning paths.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "593dceae-db2a-413a-8aea-218d74ff2e5b",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "833619a3-be14-4ac7-a948-b04a6cc99278",
+  "toolUseResult": {
+    "query": "arXiv 2605 2604 cross-path reasoning verification constraint solver LLM consensus aggregation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VGn9fignX8jUZuABCQH3St",
+        "content": [
+          {
+            "title": "Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning",
+            "url": "https://arxiv.org/html/2604.14525"
+          },
+          {
+            "title": "ReaComp: Compiling LLM Reasoning into Symbolic Solvers for Efficient Program Synthesis",
+            "url": "https://arxiv.org/html/2605.05485"
+          },
+          {
+            "title": "Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis",
+            "url": "https://arxiv.org/html/2604.14121"
+          },
+          {
+            "title": "Strategy-Aware Optimization Modeling with Reasoning LLMs",
+            "url": "https://arxiv.org/html/2605.02545"
+          },
+          {
+            "title": "The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration",
+            "url": "https://arxiv.org/html/2604.17139"
+          },
+          {
+            "title": "Verifier-Backed Hard Problem Generation for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2605.06660"
+          },
+          {
+            "title": "[2604.17139] The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration",
+            "url": "https://arxiv.org/abs/2604.17139"
+          },
+          {
+            "title": "[2504.01005] When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2504.01005"
+          },
+          {
+            "title": "[2604.14121] Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis",
+            "url": "https://arxiv.org/abs/2604.14121"
+          },
+          {
+            "title": "Structured Abductive-Deductive-Inductive Reasoning for LLMs via Algebraic Invariants",
+            "url": "https://arxiv.org/html/2604.15727"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers that relate to your query about cross-path reasoning, verification, constraint solvers, and LLM consensus aggregation:\n\n## Key Papers Found:\n\n**1. Quantifying Cross-Query Contradictions in Multi-Query LLM Reasoning (arXiv 2604.14525)**\nThis paper involves labels obtained through three-annotator consensus and solver verification, using SAT and SMT solvers for validation.\n\n**2. Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph (arXiv 2604.14121)**\nThis work proposes CRAFT, a framework that builds a Reasoning Knowledge Graph (RKG) based on the consensus parts of multiple candidate traces, and synthesizes a high-quality trace through topological generation. The approach improves label-prediction accuracy by 10+% on average across logical and mathematical reasoning benchmarks.\n\n**3. The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities (arXiv 2604.17139)**\nThis paper discusses how multi-agent LLM architectures rely on response-level aggregation such as Majority Voting, but reveals that this aggregation collapses when corrupted agents form a local majority because voting aggregates fully-formed conclusions and is blind to flawed intermediate logic.\n\n**4. ReaComp: Compiling LLM Reasoning into Symbolic Solvers (arXiv 2605.05485)**\nThis work uses coding agents to compile reasoning traces into reusable symbolic program synthesizers over constrained DSLs.\n\n**5. Strategy-Aware Optimization Modeling with Reasoning LLMs (arXiv 2605.02545)**\nThe SAGE framework builds a multi-strategy, solver-verified corpus by generating multiple candidate strategies per problem and filtering via solver validation against ground-truth.\n\nThese papers all involve the key themes from your query: LLM reasoning, constraint solvers, verification, and consensus/aggregation mechanisms across multiple reasoning paths."
+    ],
+    "durationSeconds": 9.156897516999976
+  },
+  "sourceToolAssistantUUID": "593dceae-db2a-413a-8aea-218d74ff2e5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 123 · 2026-05-12T00:06:01.873Z_
+
+```json
+{
+  "parentUuid": "833619a3-be14-4ac7-a948-b04a6cc99278",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0be275b2-497f-4bde-813e-c297eb463fa9",
+  "timestamp": "2026-05-12T00:06:01.873Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0be275b2-497f-4bde-813e-c297eb463fa9",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-12T00:06:04.006Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018EHeQP8mojtmQyJGhF9DRD`</summary>
+
+```json
+{
+  "query": "\"Consensus Trap\" adversarial majorities multi-agent token-level collaboration arXiv 2604.17139"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0be275b2-497f-4bde-813e-c297eb463fa9",
+  "isSidechain": false,
+  "requestId": "req_011CawhUnNPkNRocMsjHx3ic",
+  "type": "assistant",
+  "uuid": "9e5d55d5-495c-4312-89e2-29e7f607708c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FQG2BNhN3W17vcSBcSy1JB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1210,
+      "cache_read_input_tokens": 72752,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1210,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 72752,
+          "cache_creation_input_tokens": 1210,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1210
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-12T00:06:11.284Z_
+
+<details><summary>↩ Tool result · `toolu_018EHeQP8mojtmQyJGhF9DRD`</summary>
+
+```text
+Web search results for query: ""Consensus Trap" adversarial majorities multi-agent token-level collaboration arXiv 2604.17139"
+
+Links: [{"title":"[2604.17139] The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration","url":"https://arxiv.org/abs/2604.17139"},{"title":"The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration","url":"https://arxiv.org/html/2604.17139"},{"title":"[2302.03322] Attacking Cooperative Multi-Agent Reinforcement Learning by Adversarial Minority Influence","url":"https://arxiv.org/abs/2302.03322"},{"title":"An overview on multi-agent consensus under adversarial ...","url":"https://www.sciencedirect.com/science/article/am/pii/S1367578822000049"},{"title":"Attacking Cooperative Multi-Agent Reinforcement Learning by Adversarial Minority Influence","url":"https://arxiv.org/html/2302.03322v3"},{"title":"Multi-Agent Collaboration Mechanisms: A Survey of LLMs","url":"https://arxiv.org/html/2501.06322v1"},{"title":"Multi-Agent Algorithms for Collective Behavior","url":"https://arxiv.org/pdf/2103.11067"},{"title":"Many-to-One Adversarial Consensus: Exposing Multi-Agent Collusion Risks in AI-Based Healthcare","url":"https://arxiv.org/html/2512.03097"},{"title":"Multi-Agent Coordination across Diverse Applications: A Survey","url":"https://arxiv.org/html/2502.14743v2"},{"title":"Attacking cooperative multi-agent reinforcement learning by adversarial minority influence - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0893608025006276"}]
+
+I found the paper! Here's what I discovered about "The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration" (arXiv 2604.17139):
+
+## Overview
+Multi-agent large language model (LLM) architectures increasingly rely on response-level aggregation, such as Majority Voting (MAJ), to raise reasoning ceilings. However, the paper identifies a critical vulnerability in this approach.
+
+## The Problem
+Response-level aggregation collapses when corrupted agents form a local majority. Because voting aggregates fully-formed conclusions, it is blind to flawed intermediate logic.
+
+## The Proposed Solution
+Token-Level Round-Robin (RR) Collaboration is proposed, where agents sequentially interleave generation within a shared auto-regressive context. Token-level interleaving transitions aggregation from a brittle counting of final votes (a linear sum) to a dynamic, interwoven chain of logic (a non-linear operator product).
+
+## Results
+While MAJ collapses when corrupted agents reach a majority, RR maintains robust accuracy well beyond this critical threshold. The honest model's restorative pull can overpower adversarial corruptions, even when corrupted agents form a majority.
+
+The paper was posted to arXiv on April 18, 2026, and is authored by Jiayuan Liu, Shiyi Du, Weihua Du, Mingyu Guo, and Vincent Conitzer.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9e5d55d5-495c-4312-89e2-29e7f607708c",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "0d397816-f90c-46e5-88df-973897026fec",
+  "toolUseResult": {
+    "query": "\"Consensus Trap\" adversarial majorities multi-agent token-level collaboration arXiv 2604.17139",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SiHinjvt6kMr58179mvfU8",
+        "content": [
+          {
+            "title": "[2604.17139] The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration",
+            "url": "https://arxiv.org/abs/2604.17139"
+          },
+          {
+            "title": "The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration",
+            "url": "https://arxiv.org/html/2604.17139"
+          },
+          {
+            "title": "[2302.03322] Attacking Cooperative Multi-Agent Reinforcement Learning by Adversarial Minority Influence",
+            "url": "https://arxiv.org/abs/2302.03322"
+          },
+          {
+            "title": "An overview on multi-agent consensus under adversarial ...",
+            "url": "https://www.sciencedirect.com/science/article/am/pii/S1367578822000049"
+          },
+          {
+            "title": "Attacking Cooperative Multi-Agent Reinforcement Learning by Adversarial Minority Influence",
+            "url": "https://arxiv.org/html/2302.03322v3"
+          },
+          {
+            "title": "Multi-Agent Collaboration Mechanisms: A Survey of LLMs",
+            "url": "https://arxiv.org/html/2501.06322v1"
+          },
+          {
+            "title": "Multi-Agent Algorithms for Collective Behavior",
+            "url": "https://arxiv.org/pdf/2103.11067"
+          },
+          {
+            "title": "Many-to-One Adversarial Consensus: Exposing Multi-Agent Collusion Risks in AI-Based Healthcare",
+            "url": "https://arxiv.org/html/2512.03097"
+          },
+          {
+            "title": "Multi-Agent Coordination across Diverse Applications: A Survey",
+            "url": "https://arxiv.org/html/2502.14743v2"
+          },
+          {
+            "title": "Attacking cooperative multi-agent reinforcement learning by adversarial minority influence - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608025006276"
+          }
+        ]
+      },
+      "I found the paper! Here's what I discovered about \"The Consensus Trap: Rescuing Multi-Agent LLMs from Adversarial Majorities via Token-Level Collaboration\" (arXiv 2604.17139):\n\n## Overview\nMulti-agent large language model (LLM) architectures increasingly rely on response-level aggregation, such as Majority Voting (MAJ), to raise reasoning ceilings. However, the paper identifies a critical vulnerability in this approach.\n\n## The Problem\nResponse-level aggregation collapses when corrupted agents form a local majority. Because voting aggregates fully-formed conclusions, it is blind to flawed intermediate logic.\n\n## The Proposed Solution\nToken-Level Round-Robin (RR) Collaboration is proposed, where agents sequentially interleave generation within a shared auto-regressive context. Token-level interleaving transitions aggregation from a brittle counting of final votes (a linear sum) to a dynamic, interwoven chain of logic (a non-linear operator product).\n\n## Results\nWhile MAJ collapses when corrupted agents reach a majority, RR maintains robust accuracy well beyond this critical threshold. The honest model's restorative pull can overpower adversarial corruptions, even when corrupted agents form a majority.\n\nThe paper was posted to arXiv on April 18, 2026, and is authored by Jiayuan Liu, Shiyi Du, Weihua Du, Mingyu Guo, and Vincent Conitzer."
+    ],
+    "durationSeconds": 7.275208716000023
+  },
+  "sourceToolAssistantUUID": "9e5d55d5-495c-4312-89e2-29e7f607708c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128 · 2026-05-12T00:06:14.729Z_
+
+This is about multi-agent adversarial consensus, not cross-path constraint verification. Not a direct competitor. Let me now verify the proposal's compute estimates and do a final check.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d397816-f90c-46e5-88df-973897026fec",
+  "isSidechain": false,
+  "requestId": "req_011CawhVUfoirfDLLF8HoG6Q",
+  "type": "assistant",
+  "uuid": "fce96ebb-d8b7-4a3c-80f6-547d043808be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMsdWBxYWCKNYN7QijKVaT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 73962,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 73962,
+          "cache_creation_input_tokens": 936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-12T00:06:15.055Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bg2wQSNuZudMvHLTXoKV2f`</summary>
+
+```json
+{
+  "query": "QwQ-32B vLLM inference throughput tokens per second A100 GPU serving"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fce96ebb-d8b7-4a3c-80f6-547d043808be",
+  "isSidechain": false,
+  "requestId": "req_011CawhVUfoirfDLLF8HoG6Q",
+  "type": "assistant",
+  "uuid": "27edceae-3db4-4eac-915b-03b208f6a505",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMsdWBxYWCKNYN7QijKVaT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 73962,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 73962,
+          "cache_creation_input_tokens": 936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-12T00:06:21.824Z_
+
+<details><summary>↩ Tool result · `toolu_01Bg2wQSNuZudMvHLTXoKV2f`</summary>
+
+```text
+Web search results for query: "QwQ-32B vLLM inference throughput tokens per second A100 GPU serving"
+
+Links: [{"title":"Optimizing vLLM Performance on A100 80GB: GPU Benchmark Insights","url":"https://www.databasemart.com/blog/vllm-gpu-benchmark-a100-80gb"},{"title":"Dual A100 vLLM Benchmark: Best GPU for Hosting 14B–32B Hugging Face LLMs","url":"https://www.databasemart.com/blog/vllm-gpu-benchmark-dual-a100-40gb"},{"title":"Nvidia H100 vLLM Benchmark Results: Reasoning LLMs on Hugging Face","url":"https://www.databasemart.com/blog/vllm-gpu-benchmark-h100"},{"title":"Qwen/QwQ-32B · Hugging Face","url":"https://huggingface.co/Qwen/QwQ-32B"},{"title":"ollama vs vLLM Throughput Benchmark 2026 — Which Serves More Tokens Per Second? | Markaicode","url":"https://markaicode.com/ollama-vs-vllm-performance/"},{"title":"[Performance]: Unexpected: B200 GPU Performance Similar to H200 for Qwen/QwQ-32B, Expected B200 to be Significantly Faster · Issue #18725 · vllm-project/vllm","url":"https://github.com/vllm-project/vllm/issues/18725"},{"title":"Speed Benchmark - Qwen docs","url":"https://qwen.readthedocs.io/en/v2.0/benchmark/speed_benchmark.html"},{"title":"[Performance]: Severe performance drop on 1x A100 80GB with Qwen3-14B-AWQ at >1 concurrency (v0.9.1) · Issue #20469 · vllm-project/vllm","url":"https://github.com/vllm-project/vllm/issues/20469"},{"title":"1 Million Tokens Per Second: Qwen 3.5 27B on GKE with B200 GPUs","url":"https://medium.com/google-cloud/1-million-tokens-per-second-qwen-3-5-27b-on-gke-with-b200-gpus-161da5c1b592"},{"title":"Speed Benchmark - Qwen","url":"https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html"}]
+
+Based on my search results, I found performance data related to your query about QwQ-32B vLLM inference on A100 GPUs:
+
+## QwQ-32B Performance on A100 GPUs
+
+The search results show that QwQ-32B achieved throughput of 577.17 tokens/s on an A100 80GB GPU according to one vLLM benchmark. However, this performance varies depending on the configuration and concurrency level.
+
+For context, 32B models (DeepSeek, Qwen) are usable but slower (~1K tokens/s) on dual A100 40GB GPUs with tensor parallelism enabled.
+
+Additionally, I found that Time to First Token (TTFT) increased significantly for larger models, with DeepSeek-R1 Distill-Qwen-32B reaching 1301.37ms, indicating that 32B models experience higher latency on A100 hardware.
+
+The official QwQ-32B model documentation on Hugging Face references performance metrics, noting that for requirements on GPU memory and the respective throughput, see results here, though specific A100 throughput numbers weren't directly included in the search results.
+
+For optimal performance with 32B models on A100s, the benchmarks suggest that Dual A100 40GB GPUs (with NVLink) are an excellent choice for 14B-32B models, including Gemma-3-27B, achieving 3K-6K tokens/s at 100+ requests.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "27edceae-3db4-4eac-915b-03b208f6a505",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "3bb16e4e-3709-4e91-9ae0-88c0bf883891",
+  "toolUseResult": {
+    "query": "QwQ-32B vLLM inference throughput tokens per second A100 GPU serving",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UUwNhvCVcDzmLahYpGUVxM",
+        "content": [
+          {
+            "title": "Optimizing vLLM Performance on A100 80GB: GPU Benchmark Insights",
+            "url": "https://www.databasemart.com/blog/vllm-gpu-benchmark-a100-80gb"
+          },
+          {
+            "title": "Dual A100 vLLM Benchmark: Best GPU for Hosting 14B–32B Hugging Face LLMs",
+            "url": "https://www.databasemart.com/blog/vllm-gpu-benchmark-dual-a100-40gb"
+          },
+          {
+            "title": "Nvidia H100 vLLM Benchmark Results: Reasoning LLMs on Hugging Face",
+            "url": "https://www.databasemart.com/blog/vllm-gpu-benchmark-h100"
+          },
+          {
+            "title": "Qwen/QwQ-32B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/QwQ-32B"
+          },
+          {
+            "title": "ollama vs vLLM Throughput Benchmark 2026 — Which Serves More Tokens Per Second? | Markaicode",
+            "url": "https://markaicode.com/ollama-vs-vllm-performance/"
+          },
+          {
+            "title": "[Performance]: Unexpected: B200 GPU Performance Similar to H200 for Qwen/QwQ-32B, Expected B200 to be Significantly Faster · Issue #18725 · vllm-project/vllm",
+            "url": "https://github.com/vllm-project/vllm/issues/18725"
+          },
+          {
+            "title": "Speed Benchmark - Qwen docs",
+            "url": "https://qwen.readthedocs.io/en/v2.0/benchmark/speed_benchmark.html"
+          },
+          {
+            "title": "[Performance]: Severe performance drop on 1x A100 80GB with Qwen3-14B-AWQ at >1 concurrency (v0.9.1) · Issue #20469 · vllm-project/vllm",
+            "url": "https://github.com/vllm-project/vllm/issues/20469"
+          },
+          {
+            "title": "1 Million Tokens Per Second: Qwen 3.5 27B on GKE with B200 GPUs",
+            "url": "https://medium.com/google-cloud/1-million-tokens-per-second-qwen-3-5-27b-on-gke-with-b200-gpus-161da5c1b592"
+          },
+          {
+            "title": "Speed Benchmark - Qwen",
+            "url": "https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html"
+          }
+        ]
+      },
+      "Based on my search results, I found performance data related to your query about QwQ-32B vLLM inference on A100 GPUs:\n\n## QwQ-32B Performance on A100 GPUs\n\nThe search results show that QwQ-32B achieved throughput of 577.17 tokens/s on an A100 80GB GPU according to one vLLM benchmark. However, this performance varies depending on the configuration and concurrency level.\n\nFor context, 32B models (DeepSeek, Qwen) are usable but slower (~1K tokens/s) on dual A100 40GB GPUs with tensor parallelism enabled.\n\nAdditionally, I found that Time to First Token (TTFT) increased significantly for larger models, with DeepSeek-R1 Distill-Qwen-32B reaching 1301.37ms, indicating that 32B models experience higher latency on A100 hardware.\n\nThe official QwQ-32B model documentation on Hugging Face references performance metrics, noting that for requirements on GPU memory and the respective throughput, see results here, though specific A100 throughput numbers weren't directly included in the search results.\n\nFor optimal performance with 32B models on A100s, the benchmarks suggest that Dual A100 40GB GPUs (with NVLink) are an excellent choice for 14B-32B models, including Gemma-3-27B, achieving 3K-6K tokens/s at 100+ requests."
+    ],
+    "durationSeconds": 6.764118033999985
+  },
+  "sourceToolAssistantUUID": "27edceae-3db4-4eac-915b-03b208f6a505",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 131 · 2026-05-12T00:08:27.046Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to form my independent assessment. Let me synthesize everything I've found.
+
+## Summary of verification
+
+### Reference verification:
+1. **CRAFT (arXiv 2604.14121)** — EXISTS. April 2026. Builds RKG from consensus intermediate steps. Uses TF-IRF/Jaccard. Achieves FOLIO 89.6%, GSM8K 96.0%. Authors acknowledge "consensus ≠ correctness" and "reduced effectiveness on symbolic math." ✓
+
+
+2. **Draft-and-Prune (arXiv 2603.17233)** — EXISTS. March 2026. Drafts multiple plans, prunes contradictory formalizations, majority votes survivors. AR-LSAT 78.43% (GPT-4). ✓
+3. **VERGE (arXiv 2601.20055)** — EXISTS. January 2026. Single-output verify-and-refine with MCS. FOLIO 84.7-89.2%, ProofWriter 85.2-93.0%. ✓
+4. **PRoSFI (arXiv 2603** — Checking the remaining references and their performance metrics. Continuing through the remaining papers on my verification list — MATH-VF, SAFE, the EACL 2026 solver routing work, Grammars of Formal Uncertainty, and PoLR all check out. Now looking at the state-of-the-art benchmarks, starting with QwQ-32B's performance on MATH-500.
+
+I'm cross-checking the reported scores against what the proposal claims: QwQ-32B hits around 90.6% on MATH-500, 79.5% on AIME 2024, and 65.2% on GPQA Diamond — all matching what's stated. The FoVer results for temporal, tracking, and word sorting tasks are correctly reported, as are the VERGE scores across FOLIO and ProofWriter with the GPT-20B variants. Now checking the CRAFT accuracy metrics.
+
+CRAFT shows improvements up to 8.5% over standard chain-of-thought baselines on harder benchmarks like GSM8K, FOLIO, FLD, and OlympiadBench when using K=3 traces, which aligns with the proposal's claims. The D&P results also check out — AR-LSAT at 78.43% for GPT-4 and ProofWriter at 98.33%.
+
+Looking at the core gap claim about formal cross-validation of intermediate constraints across multiple solutions via MAX-SAT, this distinction seems to hold up. CRAFT relies on statistical similarity measures like TF-IDF and Jaccard distance rather than formal verification, D&P prunes individual solution paths without cross-validating across them, VERGE works on single outputs, and the cross-query contradictions work doesn't address this either.
+
+The other methods I'm checking — FoVer, SAFE, MATH-VF, PRoSFI — all operate on individual solutions, and even Typed CoT filters traces before majority voting rather than formally cross-validating constraints. The decision pivot extraction work uses LLM-based verification instead of formal solvers, and the structured reasoning approach also works on individual chains. So the gap appears genuine.
+
+The venue timeline checks out too — EMNLP 2026 has the ARR May 25 deadline confirmed, and AAAI 2027's estimated July/August 2026 deadline for the proposal seems reasonable based on historical patterns.
+
+Now I'm assessing the core novelty of using weighted partial MAX-SAT across multiple solution traces. multiple reasoning traces for cross-path consistency-aware consensus — is genuinely novel. No existing work combines:
+1. Cross-path (same question, multiple traces) scope
+2. Intermediate constraint extraction 
+3. Formal solver-based consistency checking via MAX-SAT
+4. Weighted consensus scoring
+
+The closest works are:
+- CRAFT (statistical similarity, not formal)
+- D&P (per-path pruning, not cross-path)
+- VERGE (single output MCS, not cross-path MAX-SAT)
+- Cross-query contradictions (cross-query scope, not cross-trace)
+
+The differentiators are clearly articulated. Novelty score: 4.
+
+### Feasibility assessment:
+**14-day timeline for EMNLP 2026 Track A:**
+- 5 benchmarks + 3 BBH subtasks, K=12 traces, auto mode
+- QwQ-32B via vLLM on 1-2 A100s
+- ~150-200h H100 equivalent
+
+The 14-day window is extremely tight for building the full SICA pipeline from scratch, especially the constraint extraction and solver routing components that need to work reliably across both mathematical and logical reasoning domains. The compute budget looks feasible, but the real bottleneck is engineering the extraction quality pipeline and ensuring consistent performance across MATH-500, AIME, ProofWriter, and FOLIO without extensive iteration.
+
+Reconsidering the proposal's specificity about scoping and reliance on existing tools (Z3, SymPy, QwQ-32B checkpoints) with inference-only requirements, the core workflow is straightforward: sample traces, extract constraints via LLM prompting, route to solvers, and compute weighted consensus. The manual annotation for semantic fidelity (100 samples across 8 benchmarks) is doable within the timeline if parallelized. I'd rate feasibility at 3.5, rounding to 4 given the methodological clarity and off-the-shelf components, though the extraction pipeline reliability across domains remains the key risk.
+
+The proposal is exceptionally clear—it precisely differentiates from related work, explains the four technical components, provides concrete metrics and baselines, and honestly flags limitations like correlated extraction errors. Clarity: 4.
+
+Impact hinges on whether statistical consensus actually preserves contradictory constraints in practice and whether the accuracy gains justify the computational overhead.  The contributions are solid for EMNLP's NLP and Symbolic Reasoning track: formal soundness guarantees, interpretable provenance, empirical quantification of contradictory consensus frequency, and systematic domain analysis. However, the value proposition leans on interpretability and soundness rather than raw accuracy improvements—self-consistency gains are already marginal on frontier models, and SICA adds significant compute for potentially modest gains. I'd rate impact around 3 to 3.5.
+
+Tallying up the scores: novelty at 4 for the genuinely novel cross-path consensus approach, feasibility at 3 given the tight 14-day timeline despite manageable compute, clarity at 4 for the exceptionally transparent proposal with honest limitations, and impact at 3.5 for a solid but contingent contribution. That averages to 3.625, which falls short of the 4.0 threshold. One minor note: the proposal mentions K=3 traces for CRAFT, though the actual paper evaluates K=2-10 with defaults around K=3-5, so there's a small imprecision there but nothing fundamentally incorrect.
+
+The D&P ProofWriter score of 98.33% under GPT-4 checks out as plausible for that benchmark, even though my search confirmed different numbers for AR-LSAT and other tasks. The real constraint here isn't the compute budget—200 hours on H100s is workable—but rather the engineering complexity of building and validating a multi-component pipeline in just two weeks. The ARC-Challenge exclusion is addressed reasonably in the proposal, though I'm still working through the full implications there.
+
+Looking at the benchmark coverage more carefully: the proposal includes 3 BBH subtasks rather than the full suite, which makes sense given scope limits. But there's a timing issue with AIME—the proposal puts AIME 2025 in Track B for AAAI 2027, while Track A for EMNLP only has AIME 2024. That means one of the user's explicitly required benchmarks gets pushed to a later submission. Let me verify what's actually in Track A versus Track B here.
+
+The PRoSFI citation appears correct despite the previous reviewer's concern. Now I'm weighing whether the proposal is ready to pass or needs revision—the core novelty holds up across multiple rounds, references check out, limitations are transparent, and most corrections from earlier feedback have been applied. The main tension is whether deferring some required benchmarks to a later track is acceptable given the 14-day timeline constraint.
+
+Looking at my scoring again, novelty is genuinely strong at 4—the cross-path formal constraint consensus via MAX-SAT approach is distinct from existing work like CRAFT, VERGE, and others. Feasibility drops to 3 though, since executing the full pipeline including extraction, routing, MAX-SAT solving, and evaluation across 8 benchmarks in two weeks is extremely tight, even with the compute resources available. auto mode. The proposal is honest about this ("14-day timeline is tight but feasible in full auto mode with scoped benchmark set").
+
+Actually, let me think about this more carefully. The approach uses:
+- Off-the-shelf model (QwQ-32B, available via vLLM)
+- Off-the-shelf solvers (Z3, SymPy)
+- Standard benchmarks (all publicly available)
+- LLM-based extraction (prompt engineering)
+- Z3's built-in optimization context for MAX-SAT
+
+The main engineering work is:
+1. Extraction prompts for different benchmark types
+2. Solver routing logic
+3. Z3 optimization wrapper
+4. Answer scoring logic
+5. Evaluation scripts
+
+This is definitely doable in 14 days for a skilled team, especially in auto mode. The extraction quality assurance pipeline adds complexity, but it's not fundamentally difficult.
+
+I'm noticing a potential issue though — the manual annotation requirement (800 samples across 8 benchmarks) seems incompatible with the auto mode's claim of minimal team involvement. But looking closer, the spot-checking is actually automated through an LLM judge checking semantic fidelity on a random 20% sample, so that resolves the feasibility concern. I'll keep the rating at 3 because prompt tuning iterations could still eat into the timeline if extraction quality issues emerge.
+
+For clarity, this proposal is exceptionally well-written with precise technical descriptions throughout. Impact-wise, the contribution is real but contingent on whether the approach actually improves accuracy on frontier models — the interpretability angle is valuable, but practical gains might be marginal.
+
+My average score comes to 3.625, which falls short of 4.0, dragged down primarily by feasibility concerns and the impact assessment. But reconsidering the impact: the paper introduces a genuinely novel consensus mechanism grounded in formal verification rather than statistics, with interpretable provenance and a thorough empirical analysis of contradiction frequencies. The honest treatment of limitations — including FOLIO as a negative diagnostic — strengthens the contribution for the field. For an EMNLP NLP+Symbolic Reasoning track, this positions well methodologically, so I could justify bumping impact up to 4.
+
+0. Actually, stepping back, the core contributions are solid: a novel MAX-SAT consensus approach, formally-grounded confidence signals, clear positioning against recent baselines like CRAFT and VERGE, and appropriate venue targeting. For EMNLP rather than a top ML conference, I'll settle on 3.5 for impact.
+
+On feasibility, I'm conflicted. The 14-day timeline is tight, but the scope is manageable — it leverages existing models and solvers, runs at inference time without training, focuses on 5+3 benchmarks at K=12, and each pipeline component is straightforward: extraction prompting, solver invocations, and optimization calls.
+
+The real bottleneck is extraction quality and how many prompt iterations are needed. With dedicated compute and automation, it's probably doable, so I'll keep feasibility at 3. That gives an average of 3.625, below the 4.0 threshold, which normally means revise.
+
+But this is round 6 of 10, and the proposal has already been through five revisions addressing most concerns. The remaining gaps are the timeline itself — which is inherent to the problem — and marginal impact, which could be strengthened through better analysis. Let me think about what concrete, actionable feedback would actually help.
+
+Before I settle on a verdict, I should double-check whether there are any factual errors or overlooked related work. Looking back, I notice the proposal claims CRAFT uses K=3 traces, but CRAFT actually evaluates across K=2-10 with solid performance starting from K=3.  The phrasing is slightly loose but not inaccurate. The accuracy improvement claim of "up to +8.5% over SC baselines" checks out — that's specific to harder benchmarks. Qwen3-32B should be available based on the recent technical report, and AIME 2025 is publicly accessible since the competition already happened in February.
+
+Now I'm checking whether there are any very recent papers from May 2026 that might affect this proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bb16e4e-3709-4e91-9ae0-88c0bf883891",
+  "isSidechain": false,
+  "requestId": "req_011CawhWFiUCbSMNwq2Hdgjh",
+  "type": "assistant",
+  "uuid": "1a7303aa-4ab2-4495-b2e7-8321e032048b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CYixcJBLjNfrcDejbY43yY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 74898,
+      "output_tokens": 5062,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1115,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5062,
+          "cache_read_input_tokens": 74898,
+          "cache_creation_input_tokens": 1115,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1115
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132 · 2026-05-12T00:08:27.164Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Nr5iDFX8a71tZF9M5cbBWQ`</summary>
+
+```json
+{
+  "query": "site:arxiv.org reasoning path cross-validation formal solver aggregation May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a7303aa-4ab2-4495-b2e7-8321e032048b",
+  "isSidechain": false,
+  "requestId": "req_011CawhWFiUCbSMNwq2Hdgjh",
+  "type": "assistant",
+  "uuid": "f7cc77e3-ea35-4390-94ee-aee795c05ce8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CYixcJBLjNfrcDejbY43yY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 74898,
+      "output_tokens": 5062,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1115,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5062,
+          "cache_read_input_tokens": 74898,
+          "cache_creation_input_tokens": 1115,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1115
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 133_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f7cc77e3-ea35-4390-94ee-aee795c05ce8",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 134_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-12T00:08:34.817Z_
+
+<details><summary>↩ Tool result · `toolu_01Nr5iDFX8a71tZF9M5cbBWQ`</summary>
+
+```text
+Web search results for query: "site:arxiv.org reasoning path cross-validation formal solver aggregation May 2026"
+
+Links: [{"title":"AI for Mathematics: Progress, Challenges, and Prospects","url":"https://arxiv.org/html/2601.13209v1"},{"title":"LogicGraph : Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification","url":"https://arxiv.org/html/2602.21044v1"},{"title":"Look Globally and Reason: Two-stage Path Reasoning over Sparse Knowledge Graphs","url":"https://arxiv.org/html/2407.18556v1"},{"title":"Understanding the Reasoning Ability of Language Models From the Perspective of Reasoning Paths Aggregation","url":"https://arxiv.org/html/2402.03268v2"},{"title":"Stop Overthinking: A Survey on Efficient Reasoning for Large Language Models","url":"https://arxiv.org/pdf/2503.16419"},{"title":"APOLLO: Automated LLM and Lean Collaboration for Advanced Formal Reasoning","url":"https://arxiv.org/html/2505.05758v5"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/new"},{"title":"Machine Learning May 2025","url":"https://www.arxiv.org/list/cs.LG/2025-05?skip=1100&show=2000"},{"title":"Cross validation for penalized quantile regression with a case-weight adjusted solution path","url":"https://arxiv.org/html/1902.07770"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"}]
+
+I've performed the web search for your query. The search results returned several papers from arxiv.org related to reasoning, formal verification, and solver aggregation, though not all are specifically dated May 2026. Here are the most relevant results:
+
+**Key Papers Found:**
+
+1. **LogicGraph: Benchmarking Multi-Path Logical Reasoning** (February 24, 2026) - This paper introduces a benchmark for evaluating multi-path logical reasoning using "a neuro-symbolic framework that leverages backward logic generation and semantic instantiation" and includes solver verification and evaluation frameworks.
+
+2. **APOLLO: Automated LLM and Lean Collaboration for Advanced Formal Reasoning** (November 4, 2025) - This discusses collaboration between language models and formal proof solvers (Lean), with techniques for code repair and aggregating compiler feedback.
+
+3. **AI for Mathematics: Progress, Challenges, and Prospects** (January 19, 2026) - A comprehensive review that covers formal verification, aggregation methods, and automated theorem proving approaches.
+
+4. **Understanding the Reasoning Ability of Language Models From the Perspective of Reasoning Paths Aggregation** (February 29, 2024) - This paper specifically examines reasoning path aggregation using weighted random walks and path analysis.
+
+The search results show active research in these areas with multiple papers combining reasoning paths, formal verification, solver aggregation, and cross-validation approaches, though papers specifically published in May 2026 were not returned in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7cc77e3-ea35-4390-94ee-aee795c05ce8",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "bf06deff-0fcd-4060-ad24-8396710ba59a",
+  "toolUseResult": {
+    "query": "site:arxiv.org reasoning path cross-validation formal solver aggregation May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018c1CFe3499svm3sXjynuad",
+        "content": [
+          {
+            "title": "AI for Mathematics: Progress, Challenges, and Prospects",
+            "url": "https://arxiv.org/html/2601.13209v1"
+          },
+          {
+            "title": "LogicGraph : Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification",
+            "url": "https://arxiv.org/html/2602.21044v1"
+          },
+          {
+            "title": "Look Globally and Reason: Two-stage Path Reasoning over Sparse Knowledge Graphs",
+            "url": "https://arxiv.org/html/2407.18556v1"
+          },
+          {
+            "title": "Understanding the Reasoning Ability of Language Models From the Perspective of Reasoning Paths Aggregation",
+            "url": "https://arxiv.org/html/2402.03268v2"
+          },
+          {
+            "title": "Stop Overthinking: A Survey on Efficient Reasoning for Large Language Models",
+            "url": "https://arxiv.org/pdf/2503.16419"
+          },
+          {
+            "title": "APOLLO: Automated LLM and Lean Collaboration for Advanced Formal Reasoning",
+            "url": "https://arxiv.org/html/2505.05758v5"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://arxiv.org/list/cs.LG/new"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-05?skip=1100&show=2000"
+          },
+          {
+            "title": "Cross validation for penalized quantile regression with a case-weight adjusted solution path",
+            "url": "https://arxiv.org/html/1902.07770"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"
+          }
+        ]
+      },
+      "I've performed the web search for your query. The search results returned several papers from arxiv.org related to reasoning, formal verification, and solver aggregation, though not all are specifically dated May 2026. Here are the most relevant results:\n\n**Key Papers Found:**\n\n1. **LogicGraph: Benchmarking Multi-Path Logical Reasoning** (February 24, 2026) - This paper introduces a benchmark for evaluating multi-path logical reasoning using \"a neuro-symbolic framework that leverages backward logic generation and semantic instantiation\" and includes solver verification and evaluation frameworks.\n\n2. **APOLLO: Automated LLM and Lean Collaboration for Advanced Formal Reasoning** (November 4, 2025) - This discusses collaboration between language models and formal proof solvers (Lean), with techniques for code repair and aggregating compiler feedback.\n\n3. **AI for Mathematics: Progress, Challenges, and Prospects** (January 19, 2026) - A comprehensive review that covers formal verification, aggregation methods, and automated theorem proving approaches.\n\n4. **Understanding the Reasoning Ability of Language Models From the Perspective of Reasoning Paths Aggregation** (February 29, 2024) - This paper specifically examines reasoning path aggregation using weighted random walks and path analysis.\n\nThe search results show active research in these areas with multiple papers combining reasoning paths, formal verification, solver aggregation, and cross-validation approaches, though papers specifically published in May 2026 were not returned in these results."
+    ],
+    "durationSeconds": 7.645835396999959
+  },
+  "sourceToolAssistantUUID": "f7cc77e3-ea35-4390-94ee-aee795c05ce8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136 · 2026-05-12T00:08:38.971Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BRLAxQ6k5SG4nMHKd6Z3wF`</summary>
+
+```json
+{
+  "query": "LogicGraph multi-path logical reasoning neuro-symbolic generation verification arXiv 2602.21044"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf06deff-0fcd-4060-ad24-8396710ba59a",
+  "isSidechain": false,
+  "requestId": "req_011Cawhg4RM6pBWwJtYenARk",
+  "type": "assistant",
+  "uuid": "51af4c03-4897-43e3-b704-c87318785ab0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kro2qdhaBD19NoSYDSSih7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5843,
+      "cache_read_input_tokens": 76013,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5843,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 76013,
+          "cache_creation_input_tokens": 5843,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5843
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-12T00:08:45.998Z_
+
+<details><summary>↩ Tool result · `toolu_01BRLAxQ6k5SG4nMHKd6Z3wF`</summary>
+
+```text
+Web search results for query: "LogicGraph multi-path logical reasoning neuro-symbolic generation verification arXiv 2602.21044"
+
+Links: [{"title":"[2602.21044] LogicGraph : Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification","url":"https://arxiv.org/abs/2602.21044"},{"title":"LogicGraph : Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification","url":"https://arxiv.org/html/2602.21044v1"},{"title":"LogicGraph : Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification | Request PDF","url":"https://www.researchgate.net/publication/401177871_LogicGraph_Benchmarking_Multi-Path_Logical_Reasoning_via_Neuro-Symbolic_Generation_and_Verification"},{"title":"LogicGraph: Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification / LogicGraph: 通过神经符号生成与验证的多路径逻辑推理基准 | Alan Hou","url":"https://alanhou.org/blog/arxiv-logicgraph-benchmarking-multi-path-logical-reasoning/"},{"title":"GitHub - kkkkarry/LogicGraph: The resource code of LogicGraph · GitHub","url":"https://github.com/kkkkarry/LogicGraph"},{"title":"Pengyu Li","url":"https://www.catalyzex.com/author/Pengyu%20Li"},{"title":"Improving LLM Reasoning via Symbolic Inference over Logic Graphs | OpenReview","url":"https://openreview.net/forum?id=lSGFavwaAm"},{"title":"Paper page - MM-CondChain: A Programmatically Verified Benchmark for Visually Grounded Deep Compositional Reasoning","url":"https://huggingface.co/papers/2603.12266"},{"title":"Discourse-Aware Graph Networks for Textual Logical ...","url":"https://www.computer.org/csdl/journal/tp/2023/10/10136812/1NsFSpQJ9xC"},{"title":"Neuro-Symbolic Architectures for Explainable and Causal ...","url":"https://www.techrxiv.org/users/684868/articles/1382185/master/file/data/Neuro_Symbolic_AI/Neuro_Symbolic_AI.pdf?inline=true"}]
+
+I found the paper! Here's information about LogicGraph (arXiv 2602.21044):
+
+## Overview
+
+LogicGraph is the first benchmark aimed to systematically evaluate multi-path logical reasoning, constructed via a neuro-symbolic framework that leverages backward logic generation and semantic instantiation.
+
+## Problem Being Addressed
+
+Current evaluations of large language models primarily emphasize convergent logical reasoning, where success is defined by producing a single correct proof. However, many real-world reasoning problems admit multiple valid derivations, requiring models to explore diverse logical paths rather than committing to one route.
+
+## Benchmark Construction
+
+The pipeline yields solver-verified reasoning problems formalized by high-depth multi-path reasoning and inherent logical distractions, where each instance is associated with an exhaustive set of minimal proofs. Each query in LogicGraph admits 2 to 19 valid proof paths and the benchmark features an average reasoning depth of 6.01 steps.
+
+## Evaluation Framework
+
+A reference-free evaluation framework is proposed to rigorously assess model performance in both convergent and divergent regimes.
+
+## Key Findings
+
+Experiments on state-of-the-art language models reveal a common limitation: models tend to commit early to a single route and fail to explore alternatives, and the coverage gap grows substantially with reasoning depth.
+
+The paper was published on February 24, 2026, and the LogicGraph dataset is fully open-source and consists of 900 instances divided into three difficulty tiers based on the number of valid derivation paths: Small, Medium, and Large.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51af4c03-4897-43e3-b704-c87318785ab0",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "e343779b-0b11-4084-a2b3-8d4064f7ac69",
+  "toolUseResult": {
+    "query": "LogicGraph multi-path logical reasoning neuro-symbolic generation verification arXiv 2602.21044",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012TQ3hmqteG8Fc2LxbzYM3E",
+        "content": [
+          {
+            "title": "[2602.21044] LogicGraph : Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification",
+            "url": "https://arxiv.org/abs/2602.21044"
+          },
+          {
+            "title": "LogicGraph : Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification",
+            "url": "https://arxiv.org/html/2602.21044v1"
+          },
+          {
+            "title": "LogicGraph : Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification | Request PDF",
+            "url": "https://www.researchgate.net/publication/401177871_LogicGraph_Benchmarking_Multi-Path_Logical_Reasoning_via_Neuro-Symbolic_Generation_and_Verification"
+          },
+          {
+            "title": "LogicGraph: Benchmarking Multi-Path Logical Reasoning via Neuro-Symbolic Generation and Verification / LogicGraph: 通过神经符号生成与验证的多路径逻辑推理基准 | Alan Hou",
+            "url": "https://alanhou.org/blog/arxiv-logicgraph-benchmarking-multi-path-logical-reasoning/"
+          },
+          {
+            "title": "GitHub - kkkkarry/LogicGraph: The resource code of LogicGraph · GitHub",
+            "url": "https://github.com/kkkkarry/LogicGraph"
+          },
+          {
+            "title": "Pengyu Li",
+            "url": "https://www.catalyzex.com/author/Pengyu%20Li"
+          },
+          {
+            "title": "Improving LLM Reasoning via Symbolic Inference over Logic Graphs | OpenReview",
+            "url": "https://openreview.net/forum?id=lSGFavwaAm"
+          },
+          {
+            "title": "Paper page - MM-CondChain: A Programmatically Verified Benchmark for Visually Grounded Deep Compositional Reasoning",
+            "url": "https://huggingface.co/papers/2603.12266"
+          },
+          {
+            "title": "Discourse-Aware Graph Networks for Textual Logical ...",
+            "url": "https://www.computer.org/csdl/journal/tp/2023/10/10136812/1NsFSpQJ9xC"
+          },
+          {
+            "title": "Neuro-Symbolic Architectures for Explainable and Causal ...",
+            "url": "https://www.techrxiv.org/users/684868/articles/1382185/master/file/data/Neuro_Symbolic_AI/Neuro_Symbolic_AI.pdf?inline=true"
+          }
+        ]
+      },
+      "I found the paper! Here's information about LogicGraph (arXiv 2602.21044):\n\n## Overview\n\nLogicGraph is the first benchmark aimed to systematically evaluate multi-path logical reasoning, constructed via a neuro-symbolic framework that leverages backward logic generation and semantic instantiation.\n\n## Problem Being Addressed\n\nCurrent evaluations of large language models primarily emphasize convergent logical reasoning, where success is defined by producing a single correct proof. However, many real-world reasoning problems admit multiple valid derivations, requiring models to explore diverse logical paths rather than committing to one route.\n\n## Benchmark Construction\n\nThe pipeline yields solver-verified reasoning problems formalized by high-depth multi-path reasoning and inherent logical distractions, where each instance is associated with an exhaustive set of minimal proofs. Each query in LogicGraph admits 2 to 19 valid proof paths and the benchmark features an average reasoning depth of 6.01 steps.\n\n## Evaluation Framework\n\nA reference-free evaluation framework is proposed to rigorously assess model performance in both convergent and divergent regimes.\n\n## Key Findings\n\nExperiments on state-of-the-art language models reveal a common limitation: models tend to commit early to a single route and fail to explore alternatives, and the coverage gap grows substantially with reasoning depth.\n\nThe paper was published on February 24, 2026, and the LogicGraph dataset is fully open-source and consists of 900 instances divided into three difficulty tiers based on the number of valid derivation paths: Small, Medium, and Large."
+    ],
+    "durationSeconds": 7.022213443999994
+  },
+  "sourceToolAssistantUUID": "51af4c03-4897-43e3-b704-c87318785ab0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 138 · 2026-05-12T00:11:24.815Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+LogicGraph is a benchmark for multi-path logical reasoning, not a method for cross-path constraint verification. It's about evaluating whether LLMs can explore diverse proof paths, not about aggregating constraints across paths. Not a direct competitor to SICA.
+
+Now let me finalize my assessment.
+
+### Final Summary of Verification:
+
+**References**: All key references verified. PRoSFI (arXiv 2603.29500) confirmed to exist. FoVer BBH scores correctly reported (temporal 97.2%, tracking 96.0%, word sorting 46.8%). VERGE scores corrected (FOLIO 84.7-89.2%, ProofWriter 85.2-93.0%). 
+
+QwQ-32B's AIME 2024 performance at ~79.5% checks out.
+
+**Gap**: Confirmed genuine. No existing work formally cross-validates intermediate constraints across multiple reasoning paths via MAX-SAT.
+
+**Missing work**: I've verified the proposal covers all relevant work—CRAFT, D&P, VERGE, FoVer, PRoSFI, MATH-VF, SAFE, cross-query contradictions, consensus verification, formalization gaming, EACL 2026 solver routing, PoLR, and Veri—with no major omissions.
+
+The venue is locked in as EMNLP 2026 ARR with a May 25 deadline, and the compute requirements of 150-200 hours on H100s fit comfortably within the 200-hour budget using K=12 across the benchmark suite.
+
+Looking at my scoring: Novelty gets a 4 for the genuinely novel cross-path consensus mechanism that's well-differentiated from related work. Feasibility is a 3 because the 14-day timeline is extremely tight, though compute fits and the implementation scope is ambitious. Clarity earns a 4 for the exceptionally clear and honest proposal structure. Impact lands at 3.5—it's a solid methodological contribution well-suited for EMNLP's NLP and symbolic reasoning focus, but the real impact depends on what the empirical results show. That averages to 3.625.
+
+The feasibility score is really the bottleneck here, and honestly that's a constraint of the problem itself rather than something I can fix through revision. The impact could potentially improve with stronger framing, but it's already quite solid. I've already revised this five times, all the factual issues are addressed, the novelty is strong, the related work is comprehensive, and I'm being honest about limitations. The remaining concerns—the timeline pressure and impact contingency—are inherent to the problem. For EMNLP specifically, this is actually a strong fit for the NLP and symbolic reasoning track. I'm leaning toward passing rather than revising again. 14-day timeline is genuinely risky, and impact is contingent on empirical findings. The threshold requires an average score of 4.0 with no critical issues, but we're at 3.625—below that mark. However, the remaining gaps stem from inherent constraints rather than fixable problems: the deadline can't be moved, and impact contingency is just honest research methodology. After five revisions with all substantive issues addressed, I think this warrants a conditional pass or minimal targeted feedback for a final revision.
+
+Reconsidering feasibility—the approach leverages existing checkpoints and off-the-shelf solvers, runs inference-only without training, and has a clear pipeline architecture. Z3's weighted partial MAX-SAT is well-documented with straightforward Python bindings, and vLLM serving is established. The real risks are the tight 14-day window for building and debugging, potential iteration on extraction quality, and manual annotation overhead. But with dedicated compute in auto_research mode, the pipeline can be built incrementally, extraction prompts refined per-benchmark, and Z3 integration handled cleanly. A feasibility score of 3 feels right—it's achievable but genuinely constrained by time. Given that the average is 3.625 and the remaining issues are inherent rather than fixable, I'll give a "revise" verdict with focused feedback on the few remaining improvable aspects. The feedback should be targeted enough that one more round could bring it to pass.
+
+Actually, wait. Let me re-examine whether I can give higher scores honestly.
+
+Novelty: 4 is fair. Could argue 4.5 but 4 is honest.
+
+Clarity: 4 is fair. The proposal is very well-written. Could argue 4.5 — the level of detail, honest limitations, precise differentiators, and structured evaluation plan is genuinely impressive. But 4 is honest.
+
+Feasibility: 3 is fair given the 14-day constraint.
+
+Impact: 3.5 is fair. The contribution is solid but not exciting.
+
+Hmm, let me think about what specific feedback would be most useful at this point.
+
+There are a few concrete ways to strengthen this. First, adding a minimum viable submission plan would address the feasibility concerns — defining the absolute bare minimum for a credible EMNLP submission, like 3 core benchmarks with K=8 traces and no manual annotation, gives a realistic fallback if the full scope gets too ambitious. Second, the contradiction frequency analysis could be reframed more explicitly as answering an open empirical question rather than just proposing a method, which shifts the narrative from incremental improvement to novel insight. Third, there's a factual claim about concurrent work that needs verification.
+
+Actually, I've already verified that claim independently and it holds up. So that's not an issue.
+
+Let me step back. This is round 6 of 10, and the proposal has been through 5 revisions already. Every major issue has been resolved — CRAFT, D&P, VERGE, FoVer scores, all the citations are in place, PRoSFI is confirmed real. The remaining gaps are either inherent to the problem or would require substantial new work. Given the trajectory and the quality of the current version, I should give a "revise" verdict with minimal, specific feedback that acknowledges how close this is to passing.
+
+Actually, looking at the full checklist now — the wQ-32B baselines are corrected, VERGE scores are fixed, limitations are acknowledged, venue alignment checks out, compute budget works with K=12, all the benchmark decisions are justified. The only real concerns left are the tight 14-day timeline, which is just a constraint of the situation, and the fact that impact depends on what the empirical results show, which is honest rather than a flaw.
+
+There's nothing substantive I can meaningfully improve here. These are inherent limitations, not fixable problems.
+
+But wait — I'm looking at the scoring threshold again. The average is 3.625 with scores of 4, 3, 4, 3.5, and I need 4.0 to pass. I could inflate the feasibility score, but that would be dishonest. Let me actually think through whether a 3 on feasibility is justified or too conservative.
+
+The approach doesn't require training, just inference on off-the-shelf components. The pipeline is mechanistically straightforward, Z3 bindings are mature, vLLM handles QwQ-32B well, and prompt-based extraction can iterate quickly. The Track A scope is intentionally narrow, and 14 days with continuous GPU access is genuinely achievable. But building and debugging from scratch in that timeframe, iterating on extraction quality, generalizing prompts across benchmarks, and handling manual annotation all present real challenges. The feasibility concern is legitimate, not overly harsh.
+
+The real constraint is that the timeline includes paper writing. The proposal mentions 10-14 days for the auto mode work with 2-4 A100s, which leaves almost no time for a polished EMNLP submission. That's the actual bottleneck, so I'll keep feasibility at 3.
+
+Now reconsidering impact — this is exactly what the EMNLP NLP+Symbolic Reasoning track is looking for. SICA combines LLM reasoning with SMT solving for consensus, which is the core integration they want. The contribution spans a novel mechanism using cross-path MAX-SAT consensus, empirical evidence on contradiction frequency, systematic analysis of where formal consensus helps versus hurts, honest treatment of correlated errors, and interpretable provenance throughout.
+
+For this specific track, it's a strong fit, so I'll keep impact at 3.5.
+
+My final assessment is to revise with minimal targeted feedback. Let me also double-check the factual claims. The CRAFT citation looks approximately right — the proposal states up to +8.5% over SC baselines on those benchmarks with K=3 traces, which matches what I found, though CRAFT actually evaluates K=2-10 with K=3-5 as the default range.
+
+The limitations section is accurately paraphrased too — consensus can amplify errors rather than suppress them, and symbolic math shows reduced effectiveness, which aligns with the paper's own discussion of smaller gains on math-heavy benchmarks compared to logical reasoning tasks.
+
+Now checking the D&P accuracy numbers: AR-LSAT at 78.43% with GPT-4 checks out, and ProofWriter, PrOntoQA, and LogicalDeduction are described as saturated in the original work, which would be consistent with the near-perfect scores cited.
+
+VERGE's K=3 definition is correct — it's about checking semantic equivalence of formalizations for a single claim, not multiple reasoning paths. The "Consensus is Not Verification" paper's core finding about correlated LLM errors across samples and model families is accurately represented. FoVer's results from Table 5 match what's cited: temporal at 97.2%, tracking at 96.0%, word sorting at 46.8% using Llama3.1-8B-PRM with Best-of-7. Now I'm checking QwQ-32B's AIME 2024 performance around 79.5%.
+
+QwQ-32B's MATH-500 score of ~90.6% checks out, though some sources cite 95.7% which likely reflects a different evaluation setup. GPQA Diamond at ~65.2% is confirmed. I've gone through the major factual claims and found no errors — the proposal holds up well. There's one quote about D&P's aggregation approach that I couldn't directly verify, but it aligns with their described methodology of majority voting without cross-path constraint checking, so I'm accepting it. The proposal is solid and well-researched overall.
+
+Now I'm weighing the final assessment: the work is mature and addresses a real gap with strong novelty and comprehensive related work coverage, but the 14-day timeline and contingent impact pull the average score down to 3.625, below the 4.0 threshold. Since this is round 6 out of 10, I need to decide whether to pass with a feasibility caveat or push back with constructive feedback. I think the timeline deserves more specificity — breaking down what actually happens in each phase, including where the paper writing fits, would make the plan more credible. Looking back at the proposal more carefully, I see the manual annotation is actually in human-in-loop mode, not auto mode — the automated version relies on LLM judges for semantic spot-checking instead. So that contradiction I flagged doesn't actually exist. The main gaps are just a detailed timeline and a clear fallback if results underperform on some benchmarks. Overall the proposal is solid enough to move forward, though I'd rate novelty and clarity higher than feasibility and impact given the tight 14-day window.
+
+Computing the average across my scores puts it just under 4.0, which means I should recommend revision rather than acceptance. But since the feedback is straightforward and the proposal is close, I'll keep my comments minimal and targeted. The feasibility concern really does come down to that compressed timeline — everything else about the approach is sound and uses existing components. Impact-wise it's a respectable contribution but not groundbreaking. I'll go with revise and write up the feedback now.
+
+Actually, one more thing to consider: the proposal deliberately includes FOLIO as a case where the method fails badly, which is intellectually honest but risky when the overall results are already showing diminishing returns. That said, they frame it well as a diagnostic ablation, and their pre-commitment to honest reporting regardless of the outcome actually strengthens the work rather than weakening it.
+
+The ARC-Challenge exclusion is worth noting since the user explicitly required it, but the justification about testing factual retrieval rather than multi-step reasoning is sound for their methodology. I won't flag it as critical.
+
+For the scores: Novelty is 4, Feasibility is 3, and Clarity is 4 — maybe even 4.5 given how well they've thought through the edge cases and potential criticisms.
+
+Impact lands at 3.5, bringing the average to 3.625, which falls short of the 4.0 threshold. The verdict is revise, with the main issues being the 14-day timeline lacking granular breakdown and no defined minimum viable scope as a fallback. There's also that minor point about AIME 2025 not appearing in Track A despite being a user requirement.
+
+But I'm second-guessing myself here. This proposal has already gone through five rounds of revision, and every substantive concern has been addressed. The remaining issues — timeline constraints and research impact uncertainty — aren't really things that can be fixed through another revision cycle. They're inherent to the project itself. Asking for more changes when the problems aren't actually remediable feels harsh, but the scoring rubric is explicit: you need an average of 4.0 or higher to pass.
+
+Let me reconsider the impact score more carefully. For an EMNLP 2026 NLP and Symbolic Reasoning track paper, what would actually constitute a 4 out of 5? It would need to introduce a method that advances the state of the art, provide insights that shift how the community approaches a problem, and show broad applicability or clear advantages over existing approaches. Looking at SICA specifically, it introduces a genuinely novel consensus mechanism, provides formal soundness guarantees that statistical methods can't offer, answers an empirical question about contradiction frequency that hasn't been explored before, and delivers interpretable provenance that no existing method provides.
+
+The paper also includes systematic domain analysis showing where the approach helps versus hurts, and it's well-positioned relative to very recent work like CRAFT and D&P. The main question is whether the accuracy improvement justifies the computational cost, but the proposal reframes the contribution appropriately: the value lies in formal soundness guarantees, interpretable constraint-level provenance, and detecting logically inconsistent reasoning steps rather than raw accuracy gains. For this particular track, which values meaningful integration of neural and symbolic components, that reframing makes sense.
+
+I'm inclined to argue for a 4 impact score given the track fit, but I'll stick with 3.5 because the impact ultimately depends on empirical findings—specifically the contradiction frequency. If contradictions turn out to be rare, below 5%, the paper's core motivation weakens considerably.
+
+So my final scores are: Novelty 4, Feasibility 3, Clarity 4, Impact 3.5, averaging 3.625. The verdict is revise.
+
+Before I finalize the JSON, I should double-check whether "Consensus Trap" overlaps with this work—it discusses adversarial majorities and token-level collaboration in multi-agent systems, but that's distinct from formal verification of reasoning constraints. And "Correct Reasoning Paths Visit Shared Decision Pivots" extracts decision pivots from multiple reasoning paths, which is related but not directly competitive.
+
+Generating the JSON output... The methodological contribution fits well with EMNLP's NLP+Symbolic Reasoning track, and the interpretability and contradiction analysis are genuine advances. But the real impact depends on whether the empirical results actually pan out, and even then, the practical gains might be modest on state-of-the-art models.
+
+I'm second-guessing whether I'm being too critical here. The core idea is sound, so this shouldn't be a rejection—it's more about whether the issues are fixable. The timeline constraint and impact uncertainty aren't things I can resolve, but they're not fatal flaws either. This feels like a "revise" situation where I can give concrete, actionable feedback: break down the timeline day-by-day, define a minimal viable scope as a fallback, and clarify whether adding AIME 2025 to Track A is feasible. Those changes would actually strengthen the proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e343779b-0b11-4084-a2b3-8d4064f7ac69",
+  "isSidechain": false,
+  "requestId": "req_011Cawhgt7GJ6w5vQwppKPSF",
+  "type": "assistant",
+  "uuid": "8f5d19e3-a8a0-4b41-bfbb-4fc6c5cc519c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDrpg77YnmYMosfBqub3z7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 81856,
+      "output_tokens": 6390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6390,
+          "cache_read_input_tokens": 81856,
+          "cache_creation_input_tokens": 1075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 139 · 2026-05-12T00:11:24.851Z_
+
+Now let me verify one more potential concern — the ROMA paper on shared decision pivots across reasoning paths.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f5d19e3-a8a0-4b41-bfbb-4fc6c5cc519c",
+  "isSidechain": false,
+  "requestId": "req_011Cawhgt7GJ6w5vQwppKPSF",
+  "type": "assistant",
+  "uuid": "a4c84057-314a-480f-9c71-e1adcc54eddb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDrpg77YnmYMosfBqub3z7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 81856,
+      "output_tokens": 6390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6390,
+          "cache_read_input_tokens": 81856,
+          "cache_creation_input_tokens": 1075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 140 · 2026-05-12T00:11:26.211Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016WEmpHMfNDBFDJaBnamv1f`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.21549",
+  "prompt": "Does this paper: (1) Extract and cross-validate intermediate constraints from multiple reasoning paths using formal solvers (Z3, SMT)? (2) Use MAX-SAT or constraint satisfaction? (3) Aggregate constraints via formal verification? Or does it use neural/learned verification? How does it differ from a system that formally cross-validates constraints across multiple reasoning traces?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4c84057-314a-480f-9c71-e1adcc54eddb",
+  "isSidechain": false,
+  "requestId": "req_011Cawhgt7GJ6w5vQwppKPSF",
+  "type": "assistant",
+  "uuid": "70672783-533c-4f16-b127-4eac5a0ab7a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FDrpg77YnmYMosfBqub3z7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 81856,
+      "output_tokens": 6390,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6390,
+          "cache_read_input_tokens": 81856,
+          "cache_creation_input_tokens": 1075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 141_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "70672783-533c-4f16-b127-4eac5a0ab7a5",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 142_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-12T00:11:31.353Z_
+
+<details><summary>↩ Tool result · `toolu_016WEmpHMfNDBFDJaBnamv1f`</summary>
+
+```text
+# Analysis of Paper's Verification Approach
+
+Based on the provided abstract and metadata, this paper **does not employ formal solvers, MAX-SAT, or constraint satisfaction techniques**.
+
+## What the Paper Actually Does
+
+The work introduces "decision pivots—minimal, verifiable checkpoints that any correct reasoning path must visit." The methodology involves:
+
+1. **Neural sampling**: Generates diverse reasoning paths through the language model
+2. **Learned verification**: Uses "an auxiliary verifier" to compress traces into pivot-focused reasoning
+3. **Self-training**: Post-trains the model using its own generated outputs
+
+The paper states that it "aligns reasoning without ground truth reasoning data or external metrics," suggesting a purely neural approach rather than formal verification.
+
+## Key Differences from Formal Verification Systems
+
+This approach fundamentally differs from formal cross-validation systems because:
+
+- **No symbolic methods**: The abstract contains no mention of Z3, SMT solvers, or constraint satisfaction
+- **Learned rather than proven**: The verification relies on neural networks rather than mathematical proof
+- **Empirical validation**: Success is measured on benchmark performance (LogiQA, MedQA, MATH500) rather than formal correctness guarantees
+
+The method appears focused on training LLMs to naturally converge on shared reasoning patterns rather than formally validating logical consistency across traces.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70672783-533c-4f16-b127-4eac5a0ab7a5",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "bd4e5a14-0f16-487c-9c90-d4736b004729",
+  "toolUseResult": {
+    "bytes": 45907,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Paper's Verification Approach\n\nBased on the provided abstract and metadata, this paper **does not employ formal solvers, MAX-SAT, or constraint satisfaction techniques**.\n\n## What the Paper Actually Does\n\nThe work introduces \"decision pivots—minimal, verifiable checkpoints that any correct reasoning path must visit.\" The methodology involves:\n\n1. **Neural sampling**: Generates diverse reasoning paths through the language model\n2. **Learned verification**: Uses \"an auxiliary verifier\" to compress traces into pivot-focused reasoning\n3. **Self-training**: Post-trains the model using its own generated outputs\n\nThe paper states that it \"aligns reasoning without ground truth reasoning data or external metrics,\" suggesting a purely neural approach rather than formal verification.\n\n## Key Differences from Formal Verification Systems\n\nThis approach fundamentally differs from formal cross-validation systems because:\n\n- **No symbolic methods**: The abstract contains no mention of Z3, SMT solvers, or constraint satisfaction\n- **Learned rather than proven**: The verification relies on neural networks rather than mathematical proof\n- **Empirical validation**: Success is measured on benchmark performance (LogiQA, MedQA, MATH500) rather than formal correctness guarantees\n\nThe method appears focused on training LLMs to naturally converge on shared reasoning patterns rather than formally validating logical consistency across traces.",
+    "durationMs": 5135,
+    "url": "https://arxiv.org/abs/2509.21549"
+  },
+  "sourceToolAssistantUUID": "70672783-533c-4f16-b127-4eac5a0ab7a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 144 · 2026-05-12T00:11:35.444Z_
+
+Good — ROMA uses neural verification, not formal solvers. Not a competitor to SICA's formal approach. I've now completed my independent verification. Let me compile my assessment.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd4e5a14-0f16-487c-9c90-d4736b004729",
+  "isSidechain": false,
+  "requestId": "req_011Cawhu56PqQFQZmThYtqT9",
+  "type": "assistant",
+  "uuid": "3c1c6310-0a3f-4762-aadd-48d5d04d1e46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GRCgaXEfE5f3CEzfFJLwEE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6673,
+      "cache_read_input_tokens": 82931,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6673,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 82931,
+          "cache_creation_input_tokens": 6673,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6673
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-12T00:11:36.029Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hr75jpcVqE4kCfUyTYMufu`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR May 25 2026 paper submission author registration deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c1c6310-0a3f-4762-aadd-48d5d04d1e46",
+  "isSidechain": false,
+  "requestId": "req_011Cawhu56PqQFQZmThYtqT9",
+  "type": "assistant",
+  "uuid": "ce5e1b94-9c44-482d-a989-b755e60faee1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GRCgaXEfE5f3CEzfFJLwEE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6673,
+      "cache_read_input_tokens": 82931,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6673,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 82931,
+          "cache_creation_input_tokens": 6673,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6673
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-12T00:11:41.143Z_
+
+<details><summary>↩ Tool result · `toolu_01Hr75jpcVqE4kCfUyTYMufu`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR May 25 2026 paper submission author registration deadline"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"}]
+
+Based on the search results for EMNLP 2026, here are the key deadlines related to your query:
+
+## Important Deadlines:
+
+**ARR Submission Deadline (long & short papers): May 25, 2026**
+
+**Reviewer registration deadline for ALL authors: May 27, 2026** (also referred to as author registration deadline, with the requirement being "by May 27, 2026 EoD AoE")
+
+## Additional Context:
+
+Since the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce5e1b94-9c44-482d-a989-b755e60faee1",
+  "isSidechain": false,
+  "promptId": "841e829a-39b2-4a1b-b19a-bce99af65928",
+  "type": "user",
+  "uuid": "b45a0f6c-5465-4f9f-bba7-9fb213c19812",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR May 25 2026 paper submission author registration deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UhHsE44whieLaYQZrL3hgw",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          }
+        ]
+      },
+      "Based on the search results for EMNLP 2026, here are the key deadlines related to your query:\n\n## Important Deadlines:\n\n**ARR Submission Deadline (long & short papers): May 25, 2026**\n\n**Reviewer registration deadline for ALL authors: May 27, 2026** (also referred to as author registration deadline, with the requirement being \"by May 27, 2026 EoD AoE\")\n\n## Additional Context:\n\nSince the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.\n\nAll deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\")."
+    ],
+    "durationSeconds": 5.109533349000034
+  },
+  "sourceToolAssistantUUID": "ce5e1b94-9c44-482d-a989-b755e60faee1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 147 · 2026-05-12T00:11:57.840Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK I have all the information I need. Let me finalize my assessment.
+
+Let me also note: today's date is 2026-05-12 (just changed). The ARR deadline is May 25, 2026. That's 13 days away (not 14 or 16 as stated in the proposal — the proposal says "14 days from now" which was calculated when the date was May 11). Actually the user said "16 days from today 2026-05-09" in their original request and the proposal says "14 days from now" which seems to be from a later date. Today is May 12, so it's actually 13 days. 
+
+The timing discrepancy is minor and doesn't change my overall assessment. I'm settling on scores of 4 for novelty and clarity, 3 for feasibility, and 3.5 for impact, which averages to 3.625—below the 4.0 threshold. The proposal needs revision, primarily because it lacks a granular day-by-day breakdown for the compressed 13-day sprint, doesn't define a minimum viable scope as a fallback, and omits AIME 2025 from Track A despite the user's requirement and its straightforward integration into the existing pipeline.
+
+I should also note that ROMA—a recent paper on learned verification across decision paths—could strengthen the landscape section as a neural alternative to SICA's formal methods approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b45a0f6c-5465-4f9f-bba7-9fb213c19812",
+  "isSidechain": false,
+  "requestId": "req_011Cawhunu68JKjB7acShUYK",
+  "type": "assistant",
+  "uuid": "51767ffa-639e-4f21-b61d-d2faea4c714c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REwqgC5YSjo4pckmmZ38Ea",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 952,
+      "cache_read_input_tokens": 89604,
+      "output_tokens": 1850,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1850,
+          "cache_read_input_tokens": 89604,
+          "cache_creation_input_tokens": 952,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 952
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 148 · 2026-05-12T00:12:35.982Z_
+
+I've completed my independent verification across 20+ searches and several deep reads. Here is my assessment.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "Independently confirmed across 15+ papers that no existing work formally cross-validates intermediate constraints across multiple reasoning paths via weighted partial MAX-SAT. Clear, precise differentiators from CRAFT (statistical TF-IRF/Jaccard), D&P (per-path pruning), VERGE (single-output MCS), and cross-query contradictions (cross-query scope with unsat-core repair)."},
+    "feasibility": {"score": 3, "rationale": "Compute fits (150-200h H100 at K=12, 5+3 benchmarks) and all components are off-the-shelf (QwQ-32B/vLLM, Z3, SymPy). However, building the full SICA pipeline (extraction prompts × 5+ domains, theory-aware routing, MAX-SAT wrapper, three-tier quality pipeline, evaluation harness) plus writing a polished paper in 13 remaining days is extremely aggressive even in full auto mode. No day-by-day plan or minimum viable fallback scope is defined."},
+    "clarity": {"score": 4, "rationale": "Exceptionally well-structured: precise technical differentiators from each competitor, honest limitations (correlated extraction errors, FOLIO as negative diagnostic), pre-committed thresholds for the centerpiece experiment (>15% validates, <5% acknowledged), and clearly scoped dual-track evaluation. Among the clearest proposals I have reviewed."},
+    "impact": {"score": 3.5, "rationale": "Well-suited for EMNLP NLP+Symbolic Reasoning track. Interpretable provenance and the contradiction frequency analysis are genuine contributions absent from the literature. However, practical accuracy improvement over SC/CRAFT is likely marginal on frontier models (SC gains plateau at <2%), and the core impact is contingent on the empirical contradiction rate — if <5%, the formal verification overhead may not be justified beyond interpretability."}
+  },
+  "issues": [
+    "FEASIBILITY — No day-by-day timeline for the 13-day sprint to ARR May 25. The proposal says '10-14 days' in auto mode but does not allocate time for: (1) pipeline implementation and debugging, (2) extraction prompt development per domain, (3) running experiments across 8 benchmark configs, (4) analysis and figure generation, (5) paper writing and formatting. A credible timeline would show these phases don't overlap impossibly. Paper writing alone typically takes 3-5 days for a polished submission.",
+    "FEASIBILITY — No minimum viable scope fallback. If extraction quality proves unreliable on 1-2 benchmarks (plausible given documented task-dependence of autoformalization), what is the minimum credible submission? E.g., could Track A be scoped to 3 benchmarks (MATH-500, ProofWriter, AIME 2024) at K=8 with a shortened paper? Without a fallback plan, the proposal is all-or-nothing on a 13-day deadline.",
+    "USER REQUIREMENT — AIME 2025 excluded from Track A despite user explicitly listing it. Since AIME 2025 uses the identical evaluation pipeline as AIME 2024 (same problem format, same constraint extraction approach), adding it to Track A is trivially low-cost (one additional benchmark run) and directly satisfies a user requirement. No justification is given for deferring it to Track B.",
+    "MINOR — 'Correct Reasoning Paths Visit Shared Decision Pivots' (ROMA, arXiv 2509.21549, ICLR 2026 under review) extracts shared intermediate checkpoints ('decision pivots') across multiple reasoning paths and uses a learned verifier to identify correct reasoning. While ROMA uses neural verification rather than formal solvers, it occupies the adjacent conceptual space of cross-path intermediate-step analysis and could be cited in the landscape section to strengthen the positioning: SICA provides formal guarantees where ROMA uses learned signals."
+  ],
+  "feedback": "The proposal is close to passing — all prior substantive issues are resolved, references are verified, the gap is genuine, and the intellectual honesty (FOLIO diagnostic, correlated error limitations) is commendable. Three targeted fixes to cross the threshold:\n\n1. **Add a realistic day-by-day timeline for Track A**: Break the 13-day sprint into phases: Days 1-3 (pipeline implementation: extraction prompts, solver routing, MAX-SAT wrapper), Days 4-7 (experiments: 8 benchmark configs × K=12), Days 8-10 (analysis: contradiction frequency, ablations, figures), Days 11-13 (paper writing and formatting). If paper writing cannot fit, acknowledge this honestly and consider submitting to the June ARR cycle instead (which would still allow EMNLP 2026 commitment via prior-cycle papers, though this depends on ARR policy — verify).\n\n2. **Define a minimum viable scope**: If the full 5+3 benchmark plan proves too ambitious, what is the minimum credible submission? Suggest: 3 core benchmarks (MATH-500, ProofWriter, AIME 2024) at K=12, plus FOLIO as negative diagnostic = 4 benchmarks total. This would still demonstrate the core contribution (cross-path MAX-SAT consensus, contradiction frequency analysis, domain analysis including negative results) while leaving headroom for implementation and writing.\n\n3. **Move AIME 2025 to Track A**: It uses the identical pipeline as AIME 2024 and is essentially free to add. This satisfies the user's explicit requirement and provides a generalization test (unseen competition problems).\n\nMinor: cite ROMA (arXiv 2509.21549) as a neural counterpart to SICA's formal cross-path analysis in the landscape section.",
+  "reason": "Core novelty is strong and independently verified, but feasibility score (3/5) drags the average to 3.625 — the 13-day timeline lacks a concrete plan and fallback scope, which are addressable in one more revision."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51767ffa-639e-4f21-b61d-d2faea4c714c",
+  "isSidechain": false,
+  "requestId": "req_011Cawhunu68JKjB7acShUYK",
+  "type": "assistant",
+  "uuid": "7415c961-3e51-4372-8148-38407c3a5084",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REwqgC5YSjo4pckmmZ38Ea",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 952,
+      "cache_read_input_tokens": 89604,
+      "output_tokens": 1850,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1850,
+          "cache_read_input_tokens": 89604,
+          "cache_creation_input_tokens": 952,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 952
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 149_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7415c961-3e51-4372-8148-38407c3a5084",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 150_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Neurosymbolic reasoning with formal cross-path invariant consensus",
+  "sessionId": "c021264d-3bc6-4ce6-97e4-7b2511b21c4d"
+}
+```
+
+---

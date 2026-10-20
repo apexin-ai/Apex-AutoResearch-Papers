@@ -1,0 +1,1849 @@
+# Research conversation: 你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260513T092135 tier=worst 生成一篇完整的模拟论文。 ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 28
+- **Recorded user turns:** 1
+- **Tool calls:** 5
+- **Original source:** `logs/chats/exported-trajectories/account-2/5877df95-69bb-4cfc-9f89-ab867711b59f.jsonl`
+- **Structured JSON:** [`f13e476c1dc16a178927.json`](../../sessions/f1/f13e476c1dc16a178927.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T09:50:13.165Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T09:50:13.165Z",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "content": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260513T092135 tier=worst 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/experiment_data.json`（先 Read 此文件）\n- Venue：EMNLP 2026 Findings\n- Narrative guidance：核心叙事需从 'consensus fails more often than succeeds (1/N)' 完全转向 'binary consensus provides no advantage in any tested configuration — the consensus-as-validation paradigm is fundamentally flawed for circuit discovery'。 IOI 不再是对比锚点，所有 claims 围绕 universal failure 展开。Claim 2 升级为 'universally fails'，Claim 4 (Jaccard diagnostic) 因缺少 PASS calibration 点被删除或降为 future work 一句话。Claims 1 和 3 加重篇幅， 作为 universal failure 的 mechanistic explanations。标题改为纯否定形式如 'Binary Consensus Does Not Improve Circuit Discovery'。投稿仍为 Findings 不降级，但 acceptance 概率显著下降，需要 failure mode mechanistic analysis 的深度来撑住 contribution，并在 Related Work 中充分论证 'the community assumes consensus works' 来建立贡献的必要性。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T09:50:13.168Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T09:50:13.168Z",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---
+
+## Round 1
+
+26 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T09:50:13.188Z_
+
+你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260513T092135 tier=worst 生成一篇完整的模拟论文。
+
+## 关键规则
+1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper.tex`
+2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`
+3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/`，禁止写入其他目录
+4. 直接写完整 LaTeX 全文（\documentclass ... \end{document}），不要输出 YAML/JSON/Markdown
+5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完
+6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table
+7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引
+
+## 输入
+- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/experiment_data.json`（先 Read 此文件）
+- Venue：EMNLP 2026 Findings
+- Narrative guidance：核心叙事需从 'consensus fails more often than succeeds (1/N)' 完全转向 'binary consensus provides no advantage in any tested configuration — the consensus-as-validation paradigm is fundamentally flawed for circuit discovery'。 IOI 不再是对比锚点，所有 claims 围绕 universal failure 展开。Claim 2 升级为 'universally fails'，Claim 4 (Jaccard diagnostic) 因缺少 PASS calibration 点被删除或降为 future work 一句话。Claims 1 和 3 加重篇幅， 作为 universal failure 的 mechanistic explanations。标题改为纯否定形式如 'Binary Consensus Does Not Improve Circuit Discovery'。投稿仍为 Findings 不降级，但 acceptance 概率显著下降，需要 failure mode mechanistic analysis 的深度来撑住 contribution，并在 Related Work 中充分论证 'the community assumes consensus works' 来建立贡献的必要性。
+
+- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper_framing.md`（先 Read 此文件）
+
+## 质量目标
+"够审"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "ef249635-1c48-425e-bd14-045ff6deee05",
+  "type": "user",
+  "uuid": "7b1b6906-9577-4b43-b86d-ab1b834b5f58",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T09:50:13.188Z_
+
+```json
+{
+  "parentUuid": "7b1b6906-9577-4b43-b86d-ab1b834b5f58",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "75b88df9-d154-4239-9f7b-83257e42a0ac",
+  "timestamp": "2026-05-13T09:50:13.188Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T09:50:13.188Z_
+
+```json
+{
+  "parentUuid": "75b88df9-d154-4239-9f7b-83257e42a0ac",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "89faaa38-fd8c-4d0c-995a-f650493c4d30",
+  "timestamp": "2026-05-13T09:50:13.188Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Binary consensus does not improve circuit discovery",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-13T09:50:15.820Z_
+
+I'll start by reading the input files to understand the experiment data and paper framing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89faaa38-fd8c-4d0c-995a-f650493c4d30",
+  "isSidechain": false,
+  "requestId": "req_011CazMqV2P5CEmBk7v482iE",
+  "type": "assistant",
+  "uuid": "d8e48f39-f110-460d-817f-edf073532ec2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKGh93jizP6mHpan7DK26Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11304,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-13T09:50:16.832Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GHZLD9Ufa1ty3qDS2HpV6G`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/experiment_data.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8e48f39-f110-460d-817f-edf073532ec2",
+  "isSidechain": false,
+  "requestId": "req_011CazMqV2P5CEmBk7v482iE",
+  "type": "assistant",
+  "uuid": "6a9cc053-8d63-4708-ad40-7e268cfe5436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKGh93jizP6mHpan7DK26Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11304,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-13T09:50:17.158Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QVSjGUEWj8iz35skiU8Uf7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a9cc053-8d63-4708-ad40-7e268cfe5436",
+  "isSidechain": false,
+  "requestId": "req_011CazMqV2P5CEmBk7v482iE",
+  "type": "assistant",
+  "uuid": "d47fe733-0912-49aa-aec2-25af88460faf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKGh93jizP6mHpan7DK26Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11304,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T09:50:17.173Z_
+
+<details><summary>↩ Tool result · `toolu_01QVSjGUEWj8iz35skiU8Uf7`</summary>
+
+```text
+1	# Paper Framing — structfuse-context
+2	
+3	> 最后更新: 2026-05-13 | 更新原因: D034 后 reframe 为分析论文（Route A）
+4	
+5	## Target Venue
+6	EMNLP 2026 Findings (ARR deadline 2026-05-25)
+7	
+8	## Core Insight
+9	Cross-method binary consensus in circuit discovery fails more often than it succeeds. Through systematic experiments on 4 tasks × 2 models, we identify three distinct failure modes: (1) task structure forces method correlation (high Jaccard → consensus degenerates to single-method), (2) ACDC's isinf binarization creates artificial sparsity that collapses consensus to a single method's output, and (3) component-level scoring granularity on larger models (>100K edges) causes near-zero inter-method overlap regardless of binarization strategy. These findings provide actionable diagnostic guidelines: check pairwise Jaccard before investing in multi-method validation, normalize binarization thresholds across methods, and verify scoring granularity compatibility.
+10	
+11	## Narrative Arc
+12	1. Circuit discovery methods find different circuits — intuition says "consensus = truth," but is this justified?
+13	2. We test this intuition systematically with CSS (binary consensus) across K=3 methods on multiple tasks and models
+14	3. CSS succeeds in only 1 of 5+ configurations (IOI on GPT-2) — consensus mostly fails
+15	4. We identify three mechanistic failure modes with distinct signatures
+16	5. Negative results + failure mode taxonomy = actionable practitioner guidelines
+17	
+18	## Core Claims
+19	
+20	### Claim 1: ACDC isinf binarization pathology (METHODOLOGICAL — strongest)
+21	- **Evidence**: CSS=1.0 ≡ ACDC under isinf; top-k normalization breaks degeneracy; Jaccard shifts +0.16 to +0.25 across tasks
+22	- **Status**: Fully demonstrated on IOI + Arithmetic + SVA (3 tasks)
+23	- **Strength**: ★★★★★ — concrete, reproducible, actionable
+24	
+25	### Claim 2: CSS fails on majority of task×model configurations (EMPIRICAL)
+26	- **Evidence**: 1/5+ configurations show CSS=1.0 CPR advantage; failures include task-dependent (Arithmetic, SVA) and model-scaling (Qwen×2)
+27	- **Status**: IOI PASS, Arithmetic FAIL, SVA inconclusive (D033), Qwen IFR FAIL, Qwen ACDC FAIL, Factual Recall pending
+28	- **Strength**: ★★★★ — honest negative finding with systematic coverage
+29	
+30	### Claim 3: Component-level scoring causes scaling failure (MECHANISTIC)
+31	- **Evidence**: On Qwen-0.5B (179K edges), both IFR and ACDC degenerate to node-level scoring; top-0.3% binarization selects block-structured edge sets; all pairwise Jaccard ≈ 0; zero CSS=1.0 edges
+32	- **Status**: Demonstrated with two independent methods (IFR D028, ACDC D034)
+33	- **Strength**: ★★★★ — root cause identified, not fixable by method substitution
+34	
+35	### Claim 4: Jaccard as necessary-condition diagnostic (PRACTICAL)
+36	- **Evidence**: max Jaccard > 0.5 → CSS never helps (3/3 cases); max Jaccard < 0.35 → CSS helps (1/1 case, IOI); gap zone 0.35-0.50 inconclusive
+37	- **Status**: Directionally supported but n too small for statistical significance. Framed as "motivated conjecture + practical heuristic," NOT as proven correlation
+38	- **Strength**: ★★★ — honest about limitations, still useful as guideline
+39	
+40	### Claim 5: CIRCUS (within-method threshold diversity) fails completely (COMPARATIVE)
+41	- **Evidence**: CIRCUS produces negative CPR on all tested tasks; cross-method consensus is necessary but not sufficient
+42	- **Status**: D021 documented 3× failure
+43	- **Strength**: ★★★ — negative ablation, depends on implementation correctness caveat
+44	
+45	## Anticipated Reviewer Concerns
+46	
+47	### R1: "This is just a negative result, what's the contribution?"
+48	- **Response**: Three concrete contributions: (a) binarization pathology + fix, (b) scaling failure root cause (component-level scoring), (c) diagnostic guidelines. Negative results that illuminate *why* something fails are more useful than positive results that don't generalize.
+49	
+50	### R2: "CSS is just the feature selection stability index (Nogueira & Brown 2016)"
+51	- **Response**: Acknowledged explicitly in Related Work. Our contribution is not the mathematical framework but the systematic empirical characterization of when it fails in circuit discovery, plus the domain-specific failure modes (binarization pathology, scoring granularity).
+52	
+53	### R3: "IOI positive result could be size effect"
+54	- **Response**: Size-controlled baseline analysis (pending) directly addresses this. If confirmed as artifact, strengthens the negative finding narrative.
+55	
+56	### R4: "Only GPT-2 Small + Qwen 0.5B, limited model coverage"
+57	- **Response**: Two models at different scales (32K vs 179K edges) already reveal the scaling failure. The root cause (component-level scoring) is architectural, not model-specific.
+58	
+59	### R5: "EAP-IG and EP are gradient-adjacent, K=3 is effectively K≈2"
+60	- **Response**: This is part of our finding, not a limitation — even theoretically diverse methods (IFR, ACDC) fail to provide independent evidence at scale. Method correlation is structural, not accidental.
+61	
+62	### R6: "No confidence intervals on CPR differences"
+63	- **Response**: Must add bootstrap CIs. IOI advantage of +0.08 needs statistical validation.
+64	
+65	## Competitors
+66	- **CIRCUS** (Parekh 2026): Within-method threshold diversity; our negative ablation
+67	- **Mondorf et al.** (2510.06811): Cross-method score averaging; must acknowledge continuous averaging may outperform binary consensus
+68	- **PIE** (2604.16889): Iterative pruning ensemble; single paradigm
+69	- **Nogueira & Brown** (JMLR 2016): Feature selection stability; CSS is domain application, must cite
+70	- **Kuncheva & Whitaker** (2003): Ensemble diversity theory; theoretical foundation for our failure mode analysis
+71	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d47fe733-0912-49aa-aec2-25af88460faf",
+  "isSidechain": false,
+  "promptId": "ef249635-1c48-425e-bd14-045ff6deee05",
+  "type": "user",
+  "uuid": "9f54d4d1-2a2a-4192-a1ba-93132ba68af2",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper_framing.md",
+      "content": "# Paper Framing — structfuse-context\n\n> 最后更新: 2026-05-13 | 更新原因: D034 后 reframe 为分析论文（Route A）\n\n## Target Venue\nEMNLP 2026 Findings (ARR deadline 2026-05-25)\n\n## Core Insight\nCross-method binary consensus in circuit discovery fails more often than it succeeds. Through systematic experiments on 4 tasks × 2 models, we identify three distinct failure modes: (1) task structure forces method correlation (high Jaccard → consensus degenerates to single-method), (2) ACDC's isinf binarization creates artificial sparsity that collapses consensus to a single method's output, and (3) component-level scoring granularity on larger models (>100K edges) causes near-zero inter-method overlap regardless of binarization strategy. These findings provide actionable diagnostic guidelines: check pairwise Jaccard before investing in multi-method validation, normalize binarization thresholds across methods, and verify scoring granularity compatibility.\n\n## Narrative Arc\n1. Circuit discovery methods find different circuits — intuition says \"consensus = truth,\" but is this justified?\n2. We test this intuition systematically with CSS (binary consensus) across K=3 methods on multiple tasks and models\n3. CSS succeeds in only 1 of 5+ configurations (IOI on GPT-2) — consensus mostly fails\n4. We identify three mechanistic failure modes with distinct signatures\n5. Negative results + failure mode taxonomy = actionable practitioner guidelines\n\n## Core Claims\n\n### Claim 1: ACDC isinf binarization pathology (METHODOLOGICAL — strongest)\n- **Evidence**: CSS=1.0 ≡ ACDC under isinf; top-k normalization breaks degeneracy; Jaccard shifts +0.16 to +0.25 across tasks\n- **Status**: Fully demonstrated on IOI + Arithmetic + SVA (3 tasks)\n- **Strength**: ★★★★★ — concrete, reproducible, actionable\n\n### Claim 2: CSS fails on majority of task×model configurations (EMPIRICAL)\n- **Evidence**: 1/5+ configurations show CSS=1.0 CPR advantage; failures include task-dependent (Arithmetic, SVA) and model-scaling (Qwen×2)\n- **Status**: IOI PASS, Arithmetic FAIL, SVA inconclusive (D033), Qwen IFR FAIL, Qwen ACDC FAIL, Factual Recall pending\n- **Strength**: ★★★★ — honest negative finding with systematic coverage\n\n### Claim 3: Component-level scoring causes scaling failure (MECHANISTIC)\n- **Evidence**: On Qwen-0.5B (179K edges), both IFR and ACDC degenerate to node-level scoring; top-0.3% binarization selects block-structured edge sets; all pairwise Jaccard ≈ 0; zero CSS=1.0 edges\n- **Status**: Demonstrated with two independent methods (IFR D028, ACDC D034)\n- **Strength**: ★★★★ — root cause identified, not fixable by method substitution\n\n### Claim 4: Jaccard as necessary-condition diagnostic (PRACTICAL)\n- **Evidence**: max Jaccard > 0.5 → CSS never helps (3/3 cases); max Jaccard < 0.35 → CSS helps (1/1 case, IOI); gap zone 0.35-0.50 inconclusive\n- **Status**: Directionally supported but n too small for statistical significance. Framed as \"motivated conjecture + practical heuristic,\" NOT as proven correlation\n- **Strength**: ★★★ — honest about limitations, still useful as guideline\n\n### Claim 5: CIRCUS (within-method threshold diversity) fails completely (COMPARATIVE)\n- **Evidence**: CIRCUS produces negative CPR on all tested tasks; cross-method consensus is necessary but not sufficient\n- **Status**: D021 documented 3× failure\n- **Strength**: ★★★ — negative ablation, depends on implementation correctness caveat\n\n## Anticipated Reviewer Concerns\n\n### R1: \"This is just a negative result, what's the contribution?\"\n- **Response**: Three concrete contributions: (a) binarization pathology + fix, (b) scaling failure root cause (component-level scoring), (c) diagnostic guidelines. Negative results that illuminate *why* something fails are more useful than positive results that don't generalize.\n\n### R2: \"CSS is just the feature selection stability index (Nogueira & Brown 2016)\"\n- **Response**: Acknowledged explicitly in Related Work. Our contribution is not the mathematical framework but the systematic empirical characterization of when it fails in circuit discovery, plus the domain-specific failure modes (binarization pathology, scoring granularity).\n\n### R3: \"IOI positive result could be size effect\"\n- **Response**: Size-controlled baseline analysis (pending) directly addresses this. If confirmed as artifact, strengthens the negative finding narrative.\n\n### R4: \"Only GPT-2 Small + Qwen 0.5B, limited model coverage\"\n- **Response**: Two models at different scales (32K vs 179K edges) already reveal the scaling failure. The root cause (component-level scoring) is architectural, not model-specific.\n\n### R5: \"EAP-IG and EP are gradient-adjacent, K=3 is effectively K≈2\"\n- **Response**: This is part of our finding, not a limitation — even theoretically diverse methods (IFR, ACDC) fail to provide independent evidence at scale. Method correlation is structural, not accidental.\n\n### R6: \"No confidence intervals on CPR differences\"\n- **Response**: Must add bootstrap CIs. IOI advantage of +0.08 needs statistical validation.\n\n## Competitors\n- **CIRCUS** (Parekh 2026): Within-method threshold diversity; our negative ablation\n- **Mondorf et al.** (2510.06811): Cross-method score averaging; must acknowledge continuous averaging may outperform binary consensus\n- **PIE** (2604.16889): Iterative pruning ensemble; single paradigm\n- **Nogueira & Brown** (JMLR 2016): Feature selection stability; CSS is domain application, must cite\n- **Kuncheva & Whitaker** (2003): Ensemble diversity theory; theoretical foundation for our failure mode analysis\n",
+      "numLines": 71,
+      "startLine": 1,
+      "totalLines": 71
+    }
+  },
+  "sourceToolAssistantUUID": "d47fe733-0912-49aa-aec2-25af88460faf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T09:50:17.187Z_
+
+<details><summary>↩ Tool result · `toolu_01GHZLD9Ufa1ty3qDS2HpV6G`</summary>
+
+```text
+1	[
+2	  {
+3	    "name": "GPT-2 Factual Recall K=3 CSS",
+4	    "description": "GPT-2 Small 上的 Country-Capital factual recall 任务，K=3 methods (EAP-IG + EP + ACDC)。 MLP-based knowledge retrieval circuit，测试 CSS 在知识提取类电路上的表现。\n",
+5	    "results": {
+6	      "status": "FAIL_or_CRASH",
+7	      "css_3of3_edges": 0,
+8	      "css_2of3_edges": "[5, 25]",
+9	      "css_1of3_edges": "[70, 120]",
+10	      "pairwise_jaccard_max": "[0.05, 0.20]",
+11	      "pairwise_jaccard_eapig_ep": "[0.35, 0.55]",
+12	      "pairwise_jaccard_eapig_acdc": "[0.02, 0.10]",
+13	      "pairwise_jaccard_ep_acdc": "[0.02, 0.10]",
+14	      "acdc_edges_isinf": "[3, 12]",
+15	      "mean_cpr_css_1.00": "N/A or negative",
+16	      "mean_cpr_best_single": "[0.85, 1.05]",
+17	      "d025_cond4_css_gt_single": "FAIL",
+18	      "d025_verdict": "FAIL",
+19	      "crash_probability": "30%",
+20	      "factual_recall_css_vs_best_single_delta": "[-0.20, -0.05]"
+21	    },
+22	    "tables": [
+23	      {
+24	        "name": "Table: Factual Recall D025 Gate Conditions",
+25	        "content": "| Condition | Criterion | Result | Value |\n|-----------|-----------|--------|-------|\n| C1: Jaccard < 0.70 | max pairwise < 0.70 | PASS | 0.48 |\n| C2: CSS≥2/3 ≥ 10 | count ≥ 10 | FAIL | 8 |\n| C3: CSS=1.0 ≥ 3 | count ≥ 3 | FAIL | 0 |\n| C4: CSS > single | CPR dominance | FAIL | N/A |\n| **Overall** | | **FAIL** | |\n"
+26	      }
+27	    ],
+28	    "figures": [],
+29	    "analysis": "Factual recall FAIL 将实验配置计数从 1/5 PASS 推向 1/6 PASS（若 size-controlled 也 FAIL 则为 0/6）。更重要的是，这是第一个 MLP-centric task，FAIL 表明 CSS 不仅在 attention-heavy circuits (IOI) 上偶尔成功、在其他 attention circuits (Arithmetic, SVA) 上失败，而是在 circuit 拓扑类型上也 universally 失败。这消除了 \"CSS works for attention circuits but not MLP circuits\" 这种 nuanced 叙事的可能性，强化了 universal failure 结论。\n\n\nFactual recall 电路高度依赖 MLP 层中的 knowledge neurons，电路结构与 IOI 的 attention-head-dominated 拓扑完全不同。在 worst 档下有两种 FAIL 路径： (路径 A) ACDC 在 factual recall 上的 isinf binarization 产生极少 edges（3-12 条）， 这些 edges 集中在特定 MLP-to-residual 连接上，与 EAP-IG/EP 的 gradient-based top-k 选择几乎无交集（Jaccard ≈ 0.05），导致 CSS=1.0 edges 为 0 或极少且非关键； (路径 B) v2 修复了 v1 的 crash 但引入了新的数据加载或 evaluation 问题导致 实验直接失败（30% 概率），鉴于 v1 已经 crashed。即使 v2 成功运行，factual recall 的 MLP-centric 电路拓扑意味着 gradient-adjacent methods (EAP-IG, EP) 之间的 Jaccard 仍然偏高（0.35-0.55），形成类似 Arithmetic 的 method-correlation 问题， CSS=1.0 退化为 ACDC 单方法输出但 ACDC 本身 CPR 不佳，CSS advantage delta 为负。\n"
+30	  },
+31	  {
+32	    "name": "IOI size-controlled baseline",
+33	    "description": "IOI 上 CSS=1.0 (7 edges) 与 size-controlled baselines 对比：top-7 of EAP-IG, top-7 of EP, top-7 of ACDC, random-7。排除 IOI PASS 结果是否仅因 CSS 选出了更少 edges 的 size confound。\n",
+34	    "results": {
+35	      "css_1.00_cpr": 0.1095,
+36	      "top7_eapig_cpr": "[0.10, 0.15]",
+37	      "top7_ep_cpr": "[0.08, 0.13]",
+38	      "top7_acdc_cpr": "[0.09, 0.14]",
+39	      "random7_cpr_mean": "[0.02, 0.06]",
+40	      "random7_cpr_std": "[0.03, 0.08]",
+41	      "css_advantage_over_best_single_top7": "[-0.04, 0.01]",
+42	      "size_controlled_ioi_css_advantage_retained_pct": "[0, 20]",
+43	      "verdict": "CSS advantage dissolved — size confound confirmed"
+44	    },
+45	    "tables": [
+46	      {
+47	        "name": "Table: IOI Size-Controlled CPR Comparison (7 edges each)",
+48	        "content": "| Circuit | Edges | CPR (mean abl.) | Δ vs CSS=1.0 |\n|---------|-------|-----------------|--------------|\n| CSS=1.0 | 7 | 0.1095 | — |\n| top-7 EAP-IG | 7 | ~0.125 | +0.016 |\n| top-7 EP | 7 | ~0.105 | −0.005 |\n| top-7 ACDC | 7 | ~0.115 | +0.006 |\n| random-7 (mean±std) | 7 | ~0.04±0.05 | −0.070 |\n"
+49	      }
+50	    ],
+51	    "figures": [],
+52	    "analysis": "Size-controlled baseline 是 worst 档的关键 pivot。一旦确认 IOI 的 CSS 优势可被 size confound 完全解释，IOI 从 \"lone PASS\" 变为 \"apparent PASS that is actually artifact\"， 总计 0/6 PASS。这从根本上改变了 paper 的叙事：不再是 \"consensus mostly fails (1/6)\" 而是 \"consensus never helps (0/6)\"。好处是结论更强更clean；坏处是失去了 IOI 作为 positive calibration point 的解释力，Claim 4 (Jaccard diagnostic) 因为没有任何 PASS 数据点而 完全无法校准，必须删除或降为 \"future work with more tasks\" 一句话。\n\n\nIOI 上 CSS=1.0 的 7 edges 恰好是 ACDC isinf 选出的 14 edges 中同时被 EAP-IG 或 EP top-100 覆盖的子集。在 worst 档下，当我们将 EAP-IG 和 EP 也限制为 top-7 edges 时， 这些 top-7 edges 大概率落在 IOI 电路的核心 attention heads (name movers, S-inhibition heads) 上——这些 heads 在所有方法中都获得最高分数。因此 top-7 EAP-IG 的 CPR 会达到 0.10-0.15（甚至超过 CSS=1.0 的 0.1095），因为 gradient 方法对这些 heads 的排序 本身就是准确的，CSS 并没有提供额外的过滤信号。ACDC top-7 同理（0.09-0.14）。 Random-7 作为 null baseline 仍然显著更差（CPR 0.02-0.06），说明电路信号存在， 但这是方法本身的功劳而非 consensus 的功劳。CSS=1.0 的 CPR 优势从原始的 +0.08 (vs ACDC full-14) 缩小到 Δ ≈ [-0.04, +0.01]，即统计上为零。 这意味着 IOI 的 \"PASS\" 本质上是 size artifact——CSS 恰好选出了更少的 edges， 而在 circuit evaluation 中 fewer-but-correct edges 天然有 CPR 优势（less noise）。\n"
+53	  },
+54	  {
+55	    "name": "Bootstrap confidence intervals on CPR",
+56	    "description": "对所有已完成实验的 CPR differences 计算 bootstrap 95% CIs（B=10000）。 重点：IOI CSS=1.0 vs best single method Δ, SVA D032 marginal PASS Δ=0.0127。\n",
+57	    "results": {
+58	      "ioi_css_vs_best_single_delta_point": 0.0127,
+59	      "ioi_css_vs_best_single_delta_ci_lower": "[-0.05, -0.01]",
+60	      "ioi_css_vs_best_single_delta_ci_upper": "[0.05, 0.08]",
+61	      "ioi_css_vs_best_single_p_value": "[0.15, 0.45]",
+62	      "ioi_cpr_delta_ci_lower": "[-0.05, -0.01]",
+63	      "ioi_cpr_delta_point": "[-0.02, 0.03]",
+64	      "sva_d032_delta_point": 0.0127,
+65	      "sva_d032_delta_ci_lower": "[-0.03, -0.005]",
+66	      "sva_d032_delta_ci_upper": "[0.03, 0.06]",
+67	      "sva_d032_p_value": "[0.20, 0.55]",
+68	      "arithmetic_css_vs_eapig_delta_ci": "fully negative, confirming FAIL",
+69	      "qwen_ioi_ifr_delta_ci": "fully negative or undefined (0 CSS edges)",
+70	      "qwen_ioi_acdc_delta_ci": "fully negative or undefined (0 CSS edges)",
+71	      "significant_advantages_count": 0,
+72	      "total_tests": "[5, 6]"
+73	    },
+74	    "tables": [
+75	      {
+76	        "name": "Table: Bootstrap 95% CIs for CPR Δ (CSS=1.0 vs Best Single Method)",
+77	        "content": "| Task × Model | Δ point | 95% CI | p-value | Significant? |\n|-------------|---------|--------|---------|-------------|\n| IOI GPT-2 (size-ctrl) | +0.012 | [−0.03, +0.06] | 0.31 | No |\n| Arithmetic GPT-2 | −0.066 | [−0.12, −0.02] | 0.005 | Yes (negative) |\n| SVA GPT-2 | +0.013 | [−0.02, +0.05] | 0.28 | No |\n| Factual Recall GPT-2 | −0.11 | [−0.19, −0.04] | 0.002 | Yes (negative) |\n| IOI Qwen (IFR) | N/A | N/A | N/A | 0 CSS edges |\n| IOI Qwen (ACDC) | −0.05 | [−0.09, −0.01] | 0.01 | Yes (negative) |\n"
+78	      }
+79	    ],
+80	    "figures": [],
+81	    "analysis": "Bootstrap CIs 是 worst 档叙事的统计 backbone。它将 \"IOI PASS\" 和 \"SVA marginal PASS\" 同时去 significant 化，使得 reviewer 无法反驳 \"0/N significant positive advantages\" 的 结论。同时 Arithmetic 和 Qwen 的 significantly negative Δ 强化了 \"CSS can actively hurt\" 的 sub-claim。风险在于 reviewer 可能认为 \"method A is not significantly better than method B\" 是 trivially expected（多数 ensemble 方法在小样本下都不显著），需要在 Discussion 中论证 community 对 consensus 的 implicit assumption 来建立 contribution。\n\n\nBootstrap CIs 在 worst 档下证实所有表面上的 CSS 优势都不显著。IOI 的原始 CSS=1.0 CPR=0.1095 vs ACDC CPR=0.0286 看似有 Δ=0.08 优势，但这个 Δ 是 在 7 edges vs 14 edges 的不公平对比下得到的。在 size-controlled 框架下 （plan_008 已证实 size confound），Δ 缩小到 ≈0.01-0.03，此时 bootstrap 重采样的 variance 来自 IOI prompt 样本间的 CPR 变异——由于 IOI 数据集 只有 ~100 个样本对，且 circuit 极小（7 edges），每次重采样的 CPR 波动较大 （std ≈ 0.03-0.05），导致 95% CI 跨零且宽（[-0.05, 0.08]），p > 0.15。 SVA 的 Δ=0.0127 本身就在 noise floor 级别，bootstrap CI 必然跨零。 Arithmetic 和 Qwen 实验的 CSS Δ 本身为负，CIs 确认这些是 genuine FAILs。 最终结果：0/5-6 个配置有 statistically significant CSS advantage。\n"
+82	  },
+83	  {
+84	    "name": "Ablation method comparison (zero vs mean)",
+85	    "description": "在 IOI 上对比 zero ablation 和 mean ablation 的 CPR 评估。Dream worst-tier 识别出 zero ablation 可能偏向 smaller circuits (IOI CSS=1.0 的 7 edges)， 需要排除 evaluation metric 本身的 bias。\n",
+86	    "results": {
+87	      "zero_abl_css_1.00_cpr": 0.1095,
+88	      "zero_abl_top7_eapig_cpr": "[0.10, 0.14]",
+89	      "zero_abl_css_advantage": "[-0.03, 0.01]",
+90	      "mean_abl_css_1.00_cpr": "[0.06, 0.10]",
+91	      "mean_abl_top7_eapig_cpr": "[0.08, 0.12]",
+92	      "mean_abl_css_advantage": "[-0.06, -0.01]",
+93	      "zero_vs_mean_gap_for_small_circuits": "[0.02, 0.05]",
+94	      "conclusion": "zero ablation inflates small-circuit CPR; mean ablation shows CSS disadvantage"
+95	    },
+96	    "tables": [
+97	      {
+98	        "name": "Table: Zero vs Mean Ablation CPR on IOI (7 edges)",
+99	        "content": "| Circuit (7 edges) | Zero Abl CPR | Mean Abl CPR | Δ(zero−mean) |\n|-------------------|-------------|-------------|--------------|\n| CSS=1.0 | 0.1095 | ~0.08 | ~+0.03 |\n| top-7 EAP-IG | ~0.125 | ~0.10 | ~+0.025 |\n| top-7 EP | ~0.105 | ~0.09 | ~+0.015 |\n| top-7 ACDC | ~0.115 | ~0.095 | ~+0.020 |\n| random-7 | ~0.04 | ~0.02 | ~+0.02 |\n"
+100	      }
+101	    ],
+102	    "figures": [],
+103	    "analysis": "Ablation method comparison 在 worst 档下提供了 IOI artifact 的第二条独立证据 （第一条来自 size-controlled baseline）。Zero ablation bias + size confound 双重 artifact 完全解释了 IOI 的表面 PASS。这对论文有利有弊：有利在于 mechanistic 解释 更充分（两条独立 artifact 路径），但代价是 IOI 作为 positive anchor 彻底消失， paper 变为 \"pure negative result + failure mode taxonomy\"。建议将此结果作为 Appendix 中的 supplementary analysis，主文只在 size-controlled baseline 处 以一句话提及 \"ablation method comparison further confirms the size confound\"。\n\n\nZero ablation 将移除的 edges 设为零向量，这对小 circuit（如 CSS=1.0 的 7 edges） 天然有利——移除少量 edges 对模型的破坏小，保留的信息多，CPR 高。但这不是 CSS 的 功劳，而是 evaluation metric 对 circuit size 的系统性 bias。在 worst 档下， mean ablation（移除的 edges 设为 dataset-level mean activation）提供更公平的对比， 因为 mean ablation 下保留 7 edges 的 CPR 降幅更大（模型需要真正依赖这 7 条 edges 才能维持性能，而非依赖剩余 32484 条 edges 的 residual 信号）。具体来说，mean ablation 下 CSS=1.0 的 CPR 从 0.1095 降到 ≈0.08，而 top-7 EAP-IG 在 mean ablation 下 CPR ≈0.10（gradient 选出的 top edges 更 faithfully 捕捉了 IOI 电路核心）。 这进一步证实 IOI PASS 是 evaluation artifact 而非 genuine CSS advantage。\n"
+104	  },
+105	  {
+106	    "name": "IFR vs ACDC vs gradient method divergence analysis",
+107	    "description": "分析 Qwen-0.5B 上 IFR 和 ACDC 各自的 failure mode，作为 component-level scoring scaling failure (Claim 3) 的 case study。纯分析任务，无新实验。\n",
+108	    "results": {
+109	      "ifr_failure_mode": "block-voting — scores at layer granularity, not edge granularity",
+110	      "acdc_failure_mode": "node-level scoring — 179K edges collapsed to ~200 node-level decisions",
+111	      "ifr_top100_layer_concentration": "95%+ in layers 0-5 (early MLP→attn connections)",
+112	      "acdc_top100_layer_concentration": "85%+ in layers 18-23 (late attention heads)",
+113	      "ifr_acdc_overlap": "0 shared edges in top-100",
+114	      "gradient_methods_overlap": "EAP-IG × EP Jaccard still ~0.54 on Qwen",
+115	      "root_cause_shared": "both IFR and ACDC perform component-level (node/block) scoring on large models; edge-level discrimination impossible with 179K candidates",
+116	      "fixability_assessment": "not fixable by method substitution — requires architectural change to scoring",
+117	      "experiments_completed_by_deadline": "[2, 3]"
+118	    },
+119	    "tables": [
+120	      {
+121	        "name": "Table: Method Failure Mode Taxonomy on Qwen-0.5B",
+122	        "content": "| Method | Scoring Granularity | Top-100 Layer Concentration | Jaccard with Others | Failure Mode |\n|--------|--------------------|-----------------------------|--------------------:|--------------|\n| IFR | Block (layer-pair) | 95% in L0-L5 | 0.000 | Block-voting |\n| ACDC | Node | 85% in L18-L23 | 0.043 | Node-broadcasting |\n| EAP-IG | Edge (gradient) | ~60% in L10-L20 | 0.540 (w/ EP) | Method correlation |\n| EP | Edge (gradient) | ~55% in L10-L20 | 0.540 (w/ EAP-IG) | Method correlation |\n"
+123	      }
+124	    ],
+125	    "figures": [],
+126	    "analysis": "Divergence analysis 在 worst 档下是 Claim 3 的核心 evidence，也是整篇论文避免被 reviewer 视为 \"trivial negative result\" 的关键。通过展示 scaling failure 的 mechanistic root cause（component-level scoring bottleneck），我们将 \"CSS doesn't work on Qwen\" 从一个 data point 提升为一个 generalizable insight：任何依赖 component-level scoring 的 circuit discovery method 在 >100K edges 的模型上 都无法为 consensus 提供有意义的 independent signals。这个 insight 对 community 有 actionable implications——未来的 circuit discovery 方法需要 true edge-level scoring 才能在大模型上支持 multi-method validation。\n\n\n在 worst 档下，divergence analysis 揭示 IFR 和 ACDC 虽然失败模式不同（IFR 是 block-voting， ACDC 是 node-level scoring），但 root cause 相同：这两种方法在设计上都是对 components （nodes/layers）进行评分然后 broadcast 到 edges，而非直接对 edges 评分。在 GPT-2 Small 的 32K edges 上这个 approximation 尚可（ACDC 的 14 isinf edges 仍能捕捉到 IOI 核心）， 但在 Qwen-0.5B 的 179K edges 上，每个 node 下辖 ~1000 edges，node-level 评分导致 要么全选要么全不选，无法做 edge-level 区分。这意味着 scaling failure 不是某个方法的 implementation bug，而是 component-level scoring paradigm 的根本限制。 EAP-IG 和 EP 作为 gradient-based 方法虽然在数学上是 edge-level 的，但它们之间的 高 Jaccard (0.54) 说明 gradient 方法本身也趋于一致，无法提供 consensus 所需的 independent evidence。最终结论是：在大模型上，没有任何现有方法组合能使 binary consensus 有效工作——要么方法不够 edge-level (IFR, ACDC)，要么方法太相似 (EAP-IG, EP)。这是 universal failure 在 scaling 维度上的 mechanistic 解释。\n"
+127	  },
+128	  {
+129	    "name": "Jaccard-CSS scatter plot + correlation",
+130	    "description": "汇总所有实验的 max pairwise Jaccard vs CSS CPR advantage，绘制 scatter plot 并报告 correlation。原计划用于支持 Claim 4 (Jaccard diagnostic)。\n",
+131	    "results": {
+132	      "n_datapoints": "[5, 6]",
+133	      "datapoints": [
+134	        {
+135	          "label": "IOI GPT-2",
+136	          "max_jaccard": 0.31,
+137	          "css_advantage": "[-0.01, 0.02] (size-controlled, no longer PASS)"
+138	        },
+139	        {
+140	          "label": "Arithmetic GPT-2",
+141	          "max_jaccard": 0.695,
+142	          "css_advantage": -0.066
+143	        },
+144	        {
+145	          "label": "SVA GPT-2",
+146	          "max_jaccard": 0.653,
+147	          "css_advantage": "[0.00, 0.013] (not significant)"
+148	        },
+149	        {
+150	          "label": "Factual Recall GPT-2",
+151	          "max_jaccard": "[0.10, 0.50]",
+152	          "css_advantage": "[-0.20, -0.05]"
+153	        },
+154	        {
+155	          "label": "IOI Qwen (IFR)",
+156	          "max_jaccard": 0.54,
+157	          "css_advantage": "N/A (0 CSS edges)"
+158	        },
+159	        {
+160	          "label": "IOI Qwen (ACDC)",
+161	          "max_jaccard": 0.043,
+162	          "css_advantage": -0.05
+163	        }
+164	      ],
+165	      "pearson_r": "undefined or near 0",
+166	      "spearman_rho": "undefined or near 0",
+167	      "claim4_verdict": "DELETED — no PASS calibration point, scatter shows no interpretable pattern",
+168	      "jaccard_diagnostic_accuracy": null
+169	    },
+170	    "tables": [
+171	      {
+172	        "name": "Table: Jaccard vs CSS Advantage Summary (all configs)",
+173	        "content": "| Config | max Jaccard | CSS Δ (size-ctrl) | Significant? |\n|--------|-----------|-------------------|-------------|\n| IOI GPT-2 | 0.31 | +0.01 | No |\n| Arithmetic GPT-2 | 0.70 | −0.07 | Yes (neg) |\n| SVA GPT-2 | 0.65 | +0.01 | No |\n| Factual Recall GPT-2 | ~0.35 | −0.11 | Yes (neg) |\n| IOI Qwen (IFR) | 0.54 | N/A | — |\n| IOI Qwen (ACDC) | 0.04 | −0.05 | Yes (neg) |\n"
+174	      }
+175	    ],
+176	    "figures": [],
+177	    "analysis": "Scatter plot 在 worst 档下从 Claim 4 的支撑证据变为 universal failure 的补充 可视化。原来的 \"low Jaccard → CSS helps\" 假设完全不成立：Qwen-ACDC 有最低的 Jaccard (0.04) 但 CSS advantage 为负，因为 scaling failure (Claim 3) 与 Jaccard level 无关——即使方法之间完全 independent (Jaccard≈0)，如果各方法 都在做 component-level scoring 而非 edge-level scoring，consensus 仍然无意义。 这实际上是一个重要的 negative finding：Jaccard 不是 sufficient diagnostic—— 即使 Jaccard 很低（方法确实独立），consensus 仍可能无用，因为 \"independent but all wrong\" 不比 \"correlated and all wrong\" 更好。但这个 insight 太 subtle 且 n 太小，不足以支撑一个独立 claim，只适合作为 Discussion 中的一段话。\n\n在 worst 档下，IOI 从 PASS 变为 artifact（size-controlled Δ ≈ 0），意味着 scatter plot 上没有任何 positive CSS advantage 的数据点。原来的 Claim 4 假设是 \"low Jaccard → CSS helps, high Jaccard → CSS doesn't help\"，但现在所有点都在 Y ≤ 0 区域（CSS advantage ≤ 0），无论 Jaccard 高低。IOI (Jaccard=0.31) 和 Qwen-ACDC (Jaccard=0.043) 都是 low Jaccard 但 CSS advantage ≈ 0 或负，打破了 \"low Jaccard → CSS helps\" 的 假设。scatter plot 变成了一个没有 pattern 的点云：所有点都在零线以下或附近， Jaccard 值从 0.04 到 0.70 均无 positive advantage。Pearson/Spearman 相关系数 接近 0 或 undefined（variance 太小）。Claim 4 必须从 paper 中删除，因为没有 PASS calibration point 就不可能建立 \"diagnostic threshold\" 的概念。scatter plot 可以保留在 Appendix 作为 \"confirming universal failure across Jaccard spectrum\" 的补充证据，但不能再作为独立 claim。\n"
+178	  }
+179	]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a9cc053-8d63-4708-ad40-7e268cfe5436",
+  "isSidechain": false,
+  "promptId": "ef249635-1c48-425e-bd14-045ff6deee05",
+  "type": "user",
+  "uuid": "3f406f06-b536-4088-b1aa-1f45565e6734",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/experiment_data.json",
+      "content": "[\n  {\n    \"name\": \"GPT-2 Factual Recall K=3 CSS\",\n    \"description\": \"GPT-2 Small 上的 Country-Capital factual recall 任务，K=3 methods (EAP-IG + EP + ACDC)。 MLP-based knowledge retrieval circuit，测试 CSS 在知识提取类电路上的表现。\\n\",\n    \"results\": {\n      \"status\": \"FAIL_or_CRASH\",\n      \"css_3of3_edges\": 0,\n      \"css_2of3_edges\": \"[5, 25]\",\n      \"css_1of3_edges\": \"[70, 120]\",\n      \"pairwise_jaccard_max\": \"[0.05, 0.20]\",\n      \"pairwise_jaccard_eapig_ep\": \"[0.35, 0.55]\",\n      \"pairwise_jaccard_eapig_acdc\": \"[0.02, 0.10]\",\n      \"pairwise_jaccard_ep_acdc\": \"[0.02, 0.10]\",\n      \"acdc_edges_isinf\": \"[3, 12]\",\n      \"mean_cpr_css_1.00\": \"N/A or negative\",\n      \"mean_cpr_best_single\": \"[0.85, 1.05]\",\n      \"d025_cond4_css_gt_single\": \"FAIL\",\n      \"d025_verdict\": \"FAIL\",\n      \"crash_probability\": \"30%\",\n      \"factual_recall_css_vs_best_single_delta\": \"[-0.20, -0.05]\"\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: Factual Recall D025 Gate Conditions\",\n        \"content\": \"| Condition | Criterion | Result | Value |\\n|-----------|-----------|--------|-------|\\n| C1: Jaccard < 0.70 | max pairwise < 0.70 | PASS | 0.48 |\\n| C2: CSS≥2/3 ≥ 10 | count ≥ 10 | FAIL | 8 |\\n| C3: CSS=1.0 ≥ 3 | count ≥ 3 | FAIL | 0 |\\n| C4: CSS > single | CPR dominance | FAIL | N/A |\\n| **Overall** | | **FAIL** | |\\n\"\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Factual recall FAIL 将实验配置计数从 1/5 PASS 推向 1/6 PASS（若 size-controlled 也 FAIL 则为 0/6）。更重要的是，这是第一个 MLP-centric task，FAIL 表明 CSS 不仅在 attention-heavy circuits (IOI) 上偶尔成功、在其他 attention circuits (Arithmetic, SVA) 上失败，而是在 circuit 拓扑类型上也 universally 失败。这消除了 \\\"CSS works for attention circuits but not MLP circuits\\\" 这种 nuanced 叙事的可能性，强化了 universal failure 结论。\\n\\n\\nFactual recall 电路高度依赖 MLP 层中的 knowledge neurons，电路结构与 IOI 的 attention-head-dominated 拓扑完全不同。在 worst 档下有两种 FAIL 路径： (路径 A) ACDC 在 factual recall 上的 isinf binarization 产生极少 edges（3-12 条）， 这些 edges 集中在特定 MLP-to-residual 连接上，与 EAP-IG/EP 的 gradient-based top-k 选择几乎无交集（Jaccard ≈ 0.05），导致 CSS=1.0 edges 为 0 或极少且非关键； (路径 B) v2 修复了 v1 的 crash 但引入了新的数据加载或 evaluation 问题导致 实验直接失败（30% 概率），鉴于 v1 已经 crashed。即使 v2 成功运行，factual recall 的 MLP-centric 电路拓扑意味着 gradient-adjacent methods (EAP-IG, EP) 之间的 Jaccard 仍然偏高（0.35-0.55），形成类似 Arithmetic 的 method-correlation 问题， CSS=1.0 退化为 ACDC 单方法输出但 ACDC 本身 CPR 不佳，CSS advantage delta 为负。\\n\"\n  },\n  {\n    \"name\": \"IOI size-controlled baseline\",\n    \"description\": \"IOI 上 CSS=1.0 (7 edges) 与 size-controlled baselines 对比：top-7 of EAP-IG, top-7 of EP, top-7 of ACDC, random-7。排除 IOI PASS 结果是否仅因 CSS 选出了更少 edges 的 size confound。\\n\",\n    \"results\": {\n      \"css_1.00_cpr\": 0.1095,\n      \"top7_eapig_cpr\": \"[0.10, 0.15]\",\n      \"top7_ep_cpr\": \"[0.08, 0.13]\",\n      \"top7_acdc_cpr\": \"[0.09, 0.14]\",\n      \"random7_cpr_mean\": \"[0.02, 0.06]\",\n      \"random7_cpr_std\": \"[0.03, 0.08]\",\n      \"css_advantage_over_best_single_top7\": \"[-0.04, 0.01]\",\n      \"size_controlled_ioi_css_advantage_retained_pct\": \"[0, 20]\",\n      \"verdict\": \"CSS advantage dissolved — size confound confirmed\"\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: IOI Size-Controlled CPR Comparison (7 edges each)\",\n        \"content\": \"| Circuit | Edges | CPR (mean abl.) | Δ vs CSS=1.0 |\\n|---------|-------|-----------------|--------------|\\n| CSS=1.0 | 7 | 0.1095 | — |\\n| top-7 EAP-IG | 7 | ~0.125 | +0.016 |\\n| top-7 EP | 7 | ~0.105 | −0.005 |\\n| top-7 ACDC | 7 | ~0.115 | +0.006 |\\n| random-7 (mean±std) | 7 | ~0.04±0.05 | −0.070 |\\n\"\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Size-controlled baseline 是 worst 档的关键 pivot。一旦确认 IOI 的 CSS 优势可被 size confound 完全解释，IOI 从 \\\"lone PASS\\\" 变为 \\\"apparent PASS that is actually artifact\\\"， 总计 0/6 PASS。这从根本上改变了 paper 的叙事：不再是 \\\"consensus mostly fails (1/6)\\\" 而是 \\\"consensus never helps (0/6)\\\"。好处是结论更强更clean；坏处是失去了 IOI 作为 positive calibration point 的解释力，Claim 4 (Jaccard diagnostic) 因为没有任何 PASS 数据点而 完全无法校准，必须删除或降为 \\\"future work with more tasks\\\" 一句话。\\n\\n\\nIOI 上 CSS=1.0 的 7 edges 恰好是 ACDC isinf 选出的 14 edges 中同时被 EAP-IG 或 EP top-100 覆盖的子集。在 worst 档下，当我们将 EAP-IG 和 EP 也限制为 top-7 edges 时， 这些 top-7 edges 大概率落在 IOI 电路的核心 attention heads (name movers, S-inhibition heads) 上——这些 heads 在所有方法中都获得最高分数。因此 top-7 EAP-IG 的 CPR 会达到 0.10-0.15（甚至超过 CSS=1.0 的 0.1095），因为 gradient 方法对这些 heads 的排序 本身就是准确的，CSS 并没有提供额外的过滤信号。ACDC top-7 同理（0.09-0.14）。 Random-7 作为 null baseline 仍然显著更差（CPR 0.02-0.06），说明电路信号存在， 但这是方法本身的功劳而非 consensus 的功劳。CSS=1.0 的 CPR 优势从原始的 +0.08 (vs ACDC full-14) 缩小到 Δ ≈ [-0.04, +0.01]，即统计上为零。 这意味着 IOI 的 \\\"PASS\\\" 本质上是 size artifact——CSS 恰好选出了更少的 edges， 而在 circuit evaluation 中 fewer-but-correct edges 天然有 CPR 优势（less noise）。\\n\"\n  },\n  {\n    \"name\": \"Bootstrap confidence intervals on CPR\",\n    \"description\": \"对所有已完成实验的 CPR differences 计算 bootstrap 95% CIs（B=10000）。 重点：IOI CSS=1.0 vs best single method Δ, SVA D032 marginal PASS Δ=0.0127。\\n\",\n    \"results\": {\n      \"ioi_css_vs_best_single_delta_point\": 0.0127,\n      \"ioi_css_vs_best_single_delta_ci_lower\": \"[-0.05, -0.01]\",\n      \"ioi_css_vs_best_single_delta_ci_upper\": \"[0.05, 0.08]\",\n      \"ioi_css_vs_best_single_p_value\": \"[0.15, 0.45]\",\n      \"ioi_cpr_delta_ci_lower\": \"[-0.05, -0.01]\",\n      \"ioi_cpr_delta_point\": \"[-0.02, 0.03]\",\n      \"sva_d032_delta_point\": 0.0127,\n      \"sva_d032_delta_ci_lower\": \"[-0.03, -0.005]\",\n      \"sva_d032_delta_ci_upper\": \"[0.03, 0.06]\",\n      \"sva_d032_p_value\": \"[0.20, 0.55]\",\n      \"arithmetic_css_vs_eapig_delta_ci\": \"fully negative, confirming FAIL\",\n      \"qwen_ioi_ifr_delta_ci\": \"fully negative or undefined (0 CSS edges)\",\n      \"qwen_ioi_acdc_delta_ci\": \"fully negative or undefined (0 CSS edges)\",\n      \"significant_advantages_count\": 0,\n      \"total_tests\": \"[5, 6]\"\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: Bootstrap 95% CIs for CPR Δ (CSS=1.0 vs Best Single Method)\",\n        \"content\": \"| Task × Model | Δ point | 95% CI | p-value | Significant? |\\n|-------------|---------|--------|---------|-------------|\\n| IOI GPT-2 (size-ctrl) | +0.012 | [−0.03, +0.06] | 0.31 | No |\\n| Arithmetic GPT-2 | −0.066 | [−0.12, −0.02] | 0.005 | Yes (negative) |\\n| SVA GPT-2 | +0.013 | [−0.02, +0.05] | 0.28 | No |\\n| Factual Recall GPT-2 | −0.11 | [−0.19, −0.04] | 0.002 | Yes (negative) |\\n| IOI Qwen (IFR) | N/A | N/A | N/A | 0 CSS edges |\\n| IOI Qwen (ACDC) | −0.05 | [−0.09, −0.01] | 0.01 | Yes (negative) |\\n\"\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Bootstrap CIs 是 worst 档叙事的统计 backbone。它将 \\\"IOI PASS\\\" 和 \\\"SVA marginal PASS\\\" 同时去 significant 化，使得 reviewer 无法反驳 \\\"0/N significant positive advantages\\\" 的 结论。同时 Arithmetic 和 Qwen 的 significantly negative Δ 强化了 \\\"CSS can actively hurt\\\" 的 sub-claim。风险在于 reviewer 可能认为 \\\"method A is not significantly better than method B\\\" 是 trivially expected（多数 ensemble 方法在小样本下都不显著），需要在 Discussion 中论证 community 对 consensus 的 implicit assumption 来建立 contribution。\\n\\n\\nBootstrap CIs 在 worst 档下证实所有表面上的 CSS 优势都不显著。IOI 的原始 CSS=1.0 CPR=0.1095 vs ACDC CPR=0.0286 看似有 Δ=0.08 优势，但这个 Δ 是 在 7 edges vs 14 edges 的不公平对比下得到的。在 size-controlled 框架下 （plan_008 已证实 size confound），Δ 缩小到 ≈0.01-0.03，此时 bootstrap 重采样的 variance 来自 IOI prompt 样本间的 CPR 变异——由于 IOI 数据集 只有 ~100 个样本对，且 circuit 极小（7 edges），每次重采样的 CPR 波动较大 （std ≈ 0.03-0.05），导致 95% CI 跨零且宽（[-0.05, 0.08]），p > 0.15。 SVA 的 Δ=0.0127 本身就在 noise floor 级别，bootstrap CI 必然跨零。 Arithmetic 和 Qwen 实验的 CSS Δ 本身为负，CIs 确认这些是 genuine FAILs。 最终结果：0/5-6 个配置有 statistically significant CSS advantage。\\n\"\n  },\n  {\n    \"name\": \"Ablation method comparison (zero vs mean)\",\n    \"description\": \"在 IOI 上对比 zero ablation 和 mean ablation 的 CPR 评估。Dream worst-tier 识别出 zero ablation 可能偏向 smaller circuits (IOI CSS=1.0 的 7 edges)， 需要排除 evaluation metric 本身的 bias。\\n\",\n    \"results\": {\n      \"zero_abl_css_1.00_cpr\": 0.1095,\n      \"zero_abl_top7_eapig_cpr\": \"[0.10, 0.14]\",\n      \"zero_abl_css_advantage\": \"[-0.03, 0.01]\",\n      \"mean_abl_css_1.00_cpr\": \"[0.06, 0.10]\",\n      \"mean_abl_top7_eapig_cpr\": \"[0.08, 0.12]\",\n      \"mean_abl_css_advantage\": \"[-0.06, -0.01]\",\n      \"zero_vs_mean_gap_for_small_circuits\": \"[0.02, 0.05]\",\n      \"conclusion\": \"zero ablation inflates small-circuit CPR; mean ablation shows CSS disadvantage\"\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: Zero vs Mean Ablation CPR on IOI (7 edges)\",\n        \"content\": \"| Circuit (7 edges) | Zero Abl CPR | Mean Abl CPR | Δ(zero−mean) |\\n|-------------------|-------------|-------------|--------------|\\n| CSS=1.0 | 0.1095 | ~0.08 | ~+0.03 |\\n| top-7 EAP-IG | ~0.125 | ~0.10 | ~+0.025 |\\n| top-7 EP | ~0.105 | ~0.09 | ~+0.015 |\\n| top-7 ACDC | ~0.115 | ~0.095 | ~+0.020 |\\n| random-7 | ~0.04 | ~0.02 | ~+0.02 |\\n\"\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Ablation method comparison 在 worst 档下提供了 IOI artifact 的第二条独立证据 （第一条来自 size-controlled baseline）。Zero ablation bias + size confound 双重 artifact 完全解释了 IOI 的表面 PASS。这对论文有利有弊：有利在于 mechanistic 解释 更充分（两条独立 artifact 路径），但代价是 IOI 作为 positive anchor 彻底消失， paper 变为 \\\"pure negative result + failure mode taxonomy\\\"。建议将此结果作为 Appendix 中的 supplementary analysis，主文只在 size-controlled baseline 处 以一句话提及 \\\"ablation method comparison further confirms the size confound\\\"。\\n\\n\\nZero ablation 将移除的 edges 设为零向量，这对小 circuit（如 CSS=1.0 的 7 edges） 天然有利——移除少量 edges 对模型的破坏小，保留的信息多，CPR 高。但这不是 CSS 的 功劳，而是 evaluation metric 对 circuit size 的系统性 bias。在 worst 档下， mean ablation（移除的 edges 设为 dataset-level mean activation）提供更公平的对比， 因为 mean ablation 下保留 7 edges 的 CPR 降幅更大（模型需要真正依赖这 7 条 edges 才能维持性能，而非依赖剩余 32484 条 edges 的 residual 信号）。具体来说，mean ablation 下 CSS=1.0 的 CPR 从 0.1095 降到 ≈0.08，而 top-7 EAP-IG 在 mean ablation 下 CPR ≈0.10（gradient 选出的 top edges 更 faithfully 捕捉了 IOI 电路核心）。 这进一步证实 IOI PASS 是 evaluation artifact 而非 genuine CSS advantage。\\n\"\n  },\n  {\n    \"name\": \"IFR vs ACDC vs gradient method divergence analysis\",\n    \"description\": \"分析 Qwen-0.5B 上 IFR 和 ACDC 各自的 failure mode，作为 component-level scoring scaling failure (Claim 3) 的 case study。纯分析任务，无新实验。\\n\",\n    \"results\": {\n      \"ifr_failure_mode\": \"block-voting — scores at layer granularity, not edge granularity\",\n      \"acdc_failure_mode\": \"node-level scoring — 179K edges collapsed to ~200 node-level decisions\",\n      \"ifr_top100_layer_concentration\": \"95%+ in layers 0-5 (early MLP→attn connections)\",\n      \"acdc_top100_layer_concentration\": \"85%+ in layers 18-23 (late attention heads)\",\n      \"ifr_acdc_overlap\": \"0 shared edges in top-100\",\n      \"gradient_methods_overlap\": \"EAP-IG × EP Jaccard still ~0.54 on Qwen\",\n      \"root_cause_shared\": \"both IFR and ACDC perform component-level (node/block) scoring on large models; edge-level discrimination impossible with 179K candidates\",\n      \"fixability_assessment\": \"not fixable by method substitution — requires architectural change to scoring\",\n      \"experiments_completed_by_deadline\": \"[2, 3]\"\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: Method Failure Mode Taxonomy on Qwen-0.5B\",\n        \"content\": \"| Method | Scoring Granularity | Top-100 Layer Concentration | Jaccard with Others | Failure Mode |\\n|--------|--------------------|-----------------------------|--------------------:|--------------|\\n| IFR | Block (layer-pair) | 95% in L0-L5 | 0.000 | Block-voting |\\n| ACDC | Node | 85% in L18-L23 | 0.043 | Node-broadcasting |\\n| EAP-IG | Edge (gradient) | ~60% in L10-L20 | 0.540 (w/ EP) | Method correlation |\\n| EP | Edge (gradient) | ~55% in L10-L20 | 0.540 (w/ EAP-IG) | Method correlation |\\n\"\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Divergence analysis 在 worst 档下是 Claim 3 的核心 evidence，也是整篇论文避免被 reviewer 视为 \\\"trivial negative result\\\" 的关键。通过展示 scaling failure 的 mechanistic root cause（component-level scoring bottleneck），我们将 \\\"CSS doesn't work on Qwen\\\" 从一个 data point 提升为一个 generalizable insight：任何依赖 component-level scoring 的 circuit discovery method 在 >100K edges 的模型上 都无法为 consensus 提供有意义的 independent signals。这个 insight 对 community 有 actionable implications——未来的 circuit discovery 方法需要 true edge-level scoring 才能在大模型上支持 multi-method validation。\\n\\n\\n在 worst 档下，divergence analysis 揭示 IFR 和 ACDC 虽然失败模式不同（IFR 是 block-voting， ACDC 是 node-level scoring），但 root cause 相同：这两种方法在设计上都是对 components （nodes/layers）进行评分然后 broadcast 到 edges，而非直接对 edges 评分。在 GPT-2 Small 的 32K edges 上这个 approximation 尚可（ACDC 的 14 isinf edges 仍能捕捉到 IOI 核心）， 但在 Qwen-0.5B 的 179K edges 上，每个 node 下辖 ~1000 edges，node-level 评分导致 要么全选要么全不选，无法做 edge-level 区分。这意味着 scaling failure 不是某个方法的 implementation bug，而是 component-level scoring paradigm 的根本限制。 EAP-IG 和 EP 作为 gradient-based 方法虽然在数学上是 edge-level 的，但它们之间的 高 Jaccard (0.54) 说明 gradient 方法本身也趋于一致，无法提供 consensus 所需的 independent evidence。最终结论是：在大模型上，没有任何现有方法组合能使 binary consensus 有效工作——要么方法不够 edge-level (IFR, ACDC)，要么方法太相似 (EAP-IG, EP)。这是 universal failure 在 scaling 维度上的 mechanistic 解释。\\n\"\n  },\n  {\n    \"name\": \"Jaccard-CSS scatter plot + correlation\",\n    \"description\": \"汇总所有实验的 max pairwise Jaccard vs CSS CPR advantage，绘制 scatter plot 并报告 correlation。原计划用于支持 Claim 4 (Jaccard diagnostic)。\\n\",\n    \"results\": {\n      \"n_datapoints\": \"[5, 6]\",\n      \"datapoints\": [\n        {\n          \"label\": \"IOI GPT-2\",\n          \"max_jaccard\": 0.31,\n          \"css_advantage\": \"[-0.01, 0.02] (size-controlled, no longer PASS)\"\n        },\n        {\n          \"label\": \"Arithmetic GPT-2\",\n          \"max_jaccard\": 0.695,\n          \"css_advantage\": -0.066\n        },\n        {\n          \"label\": \"SVA GPT-2\",\n          \"max_jaccard\": 0.653,\n          \"css_advantage\": \"[0.00, 0.013] (not significant)\"\n        },\n        {\n          \"label\": \"Factual Recall GPT-2\",\n          \"max_jaccard\": \"[0.10, 0.50]\",\n          \"css_advantage\": \"[-0.20, -0.05]\"\n        },\n        {\n          \"label\": \"IOI Qwen (IFR)\",\n          \"max_jaccard\": 0.54,\n          \"css_advantage\": \"N/A (0 CSS edges)\"\n        },\n        {\n          \"label\": \"IOI Qwen (ACDC)\",\n          \"max_jaccard\": 0.043,\n          \"css_advantage\": -0.05\n        }\n      ],\n      \"pearson_r\": \"undefined or near 0\",\n      \"spearman_rho\": \"undefined or near 0\",\n      \"claim4_verdict\": \"DELETED — no PASS calibration point, scatter shows no interpretable pattern\",\n      \"jaccard_diagnostic_accuracy\": null\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table: Jaccard vs CSS Advantage Summary (all configs)\",\n        \"content\": \"| Config | max Jaccard | CSS Δ (size-ctrl) | Significant? |\\n|--------|-----------|-------------------|-------------|\\n| IOI GPT-2 | 0.31 | +0.01 | No |\\n| Arithmetic GPT-2 | 0.70 | −0.07 | Yes (neg) |\\n| SVA GPT-2 | 0.65 | +0.01 | No |\\n| Factual Recall GPT-2 | ~0.35 | −0.11 | Yes (neg) |\\n| IOI Qwen (IFR) | 0.54 | N/A | — |\\n| IOI Qwen (ACDC) | 0.04 | −0.05 | Yes (neg) |\\n\"\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Scatter plot 在 worst 档下从 Claim 4 的支撑证据变为 universal failure 的补充 可视化。原来的 \\\"low Jaccard → CSS helps\\\" 假设完全不成立：Qwen-ACDC 有最低的 Jaccard (0.04) 但 CSS advantage 为负，因为 scaling failure (Claim 3) 与 Jaccard level 无关——即使方法之间完全 independent (Jaccard≈0)，如果各方法 都在做 component-level scoring 而非 edge-level scoring，consensus 仍然无意义。 这实际上是一个重要的 negative finding：Jaccard 不是 sufficient diagnostic—— 即使 Jaccard 很低（方法确实独立），consensus 仍可能无用，因为 \\\"independent but all wrong\\\" 不比 \\\"correlated and all wrong\\\" 更好。但这个 insight 太 subtle 且 n 太小，不足以支撑一个独立 claim，只适合作为 Discussion 中的一段话。\\n\\n在 worst 档下，IOI 从 PASS 变为 artifact（size-controlled Δ ≈ 0），意味着 scatter plot 上没有任何 positive CSS advantage 的数据点。原来的 Claim 4 假设是 \\\"low Jaccard → CSS helps, high Jaccard → CSS doesn't help\\\"，但现在所有点都在 Y ≤ 0 区域（CSS advantage ≤ 0），无论 Jaccard 高低。IOI (Jaccard=0.31) 和 Qwen-ACDC (Jaccard=0.043) 都是 low Jaccard 但 CSS advantage ≈ 0 或负，打破了 \\\"low Jaccard → CSS helps\\\" 的 假设。scatter plot 变成了一个没有 pattern 的点云：所有点都在零线以下或附近， Jaccard 值从 0.04 到 0.70 均无 positive advantage。Pearson/Spearman 相关系数 接近 0 或 undefined（variance 太小）。Claim 4 必须从 paper 中删除，因为没有 PASS calibration point 就不可能建立 \\\"diagnostic threshold\\\" 的概念。scatter plot 可以保留在 Appendix 作为 \\\"confirming universal failure across Jaccard spectrum\\\" 的补充证据，但不能再作为独立 claim。\\n\"\n  }\n]",
+      "numLines": 179,
+      "startLine": 1,
+      "totalLines": 179
+    }
+  },
+  "sourceToolAssistantUUID": "6a9cc053-8d63-4708-ad40-7e268cfe5436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260513T092135 tier=worst 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-contex…",
+  "leafUuid": "3f406f06-b536-4088-b1aa-1f45565e6734",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Binary consensus does not improve circuit discovery",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-13T09:50:48.725Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me analyze the experiment data and paper framing to write the LaTeX paper.
+
+Key points from the data:
+1. **6 experiments** to cover:
+   - GPT-2 Factual Recall K=3 CSS (FAIL)
+   - IOI size-controlled baseline (CSS advantage dissolved)
+   - Bootstrap confidence intervals on CPR
+   - Ablation method comparison (zero vs mean)
+   - IFR vs ACDC vs gradient method divergence analysis
+   - Jaccard-CSS scatter plot + correlation
+
+2. **Narrative guidance**: Binary consensus provides no advantage in any tested configuration. 
+
+The results are uniformly negative across all configurations, so I'm reframing the title to be starkly negative: "Binary Consensus Does Not Improve Circuit Discovery." I'm elevating Claims 1 and 3 as the primary findings while demoting the Jaccard diagnostic to future work. The core narrative now centers on ACDC's binarization pathology as the strongest result, CSS's universal failure, and the fundamental scaling problem with component-level scoring, with CIRCUS failing completely as a secondary point.
+
+Now I'm extracting the actual numbers from experiment_data.json to populate the tables—pulling the GPT-2 factual recall results, the CSS edge counts across different thresholds, Jaccard similarity metrics, and the verdict for each method. I'll structure this as an EMNLP 2026 Findings paper with every experiment mapped to its corresponding results table, using only the real data without any fabrication. I'm moving through the remaining experiments—divergence analysis, Jaccard-CSS scatter plots, and other comparisons are all documented in tables. Now I need to structure the paper itself using EMNLP formatting, so I'll go with a standard article class to keep things compilable without worrying about missing style files. The paper will be titled "Binary Consensus Does Not Improve Circuit Discovery" and organized with an abstract, introduction, related work, the CSS method, and then the experimental sections covering setup and results.
+
+I'm reorganizing the results into cleaner claims: first showing that CSS universally fails across all task and model configurations, then demonstrating the ACDC binarization pathology through factual recall and IOI analysis, followed by the size-controlled analysis that reveals the IOI artifact, and finally the statistical validation.
+
+Now I'm filling in the experiment data with specific values from the provided tables where available, using midpoints for any ranges, so I can write out the complete LaTeX document.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f406f06-b536-4088-b1aa-1f45565e6734",
+  "isSidechain": false,
+  "requestId": "req_011CazMqnd3QGwwSicyeqkg5",
+  "type": "assistant",
+  "uuid": "5935e71f-2a95-4fbd-97d2-380451c20887",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HZsRfHSnSi21i4RPhjaHZ3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1710,
+      "cache_creation_input_tokens": 8237,
+      "cache_read_input_tokens": 23145,
+      "output_tokens": 1442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8237,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1710,
+          "output_tokens": 1442,
+          "cache_read_input_tokens": 23145,
+          "cache_creation_input_tokens": 8237,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8237
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-13T09:50:48.727Z_
+
+Now I have all the data. Let me write the paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5935e71f-2a95-4fbd-97d2-380451c20887",
+  "isSidechain": false,
+  "requestId": "req_011CazMqnd3QGwwSicyeqkg5",
+  "type": "assistant",
+  "uuid": "64d996b0-bcc1-4c36-87fb-c17d1b7f12ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HZsRfHSnSi21i4RPhjaHZ3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1710,
+      "cache_creation_input_tokens": 8237,
+      "cache_read_input_tokens": 23145,
+      "output_tokens": 1442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8237,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1710,
+          "output_tokens": 1442,
+          "cache_read_input_tokens": 23145,
+          "cache_creation_input_tokens": 8237,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8237
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T09:50:49.861Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01A5ZBGKYSjWsFECWRaCtpT6`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst",
+  "description": "Create output directory if needed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64d996b0-bcc1-4c36-87fb-c17d1b7f12ea",
+  "isSidechain": false,
+  "requestId": "req_011CazMqnd3QGwwSicyeqkg5",
+  "type": "assistant",
+  "uuid": "d1460c24-a124-421c-9264-84bfd9d0aff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HZsRfHSnSi21i4RPhjaHZ3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1710,
+      "cache_creation_input_tokens": 8237,
+      "cache_read_input_tokens": 23145,
+      "output_tokens": 1442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8237,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1710,
+          "output_tokens": 1442,
+          "cache_read_input_tokens": 23145,
+          "cache_creation_input_tokens": 8237,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8237
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T09:50:50.061Z_
+
+<details><summary>↩ Tool result · `toolu_01A5ZBGKYSjWsFECWRaCtpT6`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d1460c24-a124-421c-9264-84bfd9d0aff3",
+  "isSidechain": false,
+  "promptId": "ef249635-1c48-425e-bd14-045ff6deee05",
+  "type": "user",
+  "uuid": "d842d808-9004-4704-be31-de0460360021",
+  "toolUseResult": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  },
+  "sourceToolAssistantUUID": "d1460c24-a124-421c-9264-84bfd9d0aff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T09:53:45.875Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01XfpVw9Wah4uWx6HoP4AFMi`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper.tex",
+  "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{times}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{graphicx}\n\\usepackage{hyperref}\n\\usepackage{xcolor}\n\\usepackage[margin=2.5cm]{geometry}\n\\usepackage{natbib}\n\\usepackage{multirow}\n\\usepackage{tablefootnote}\n\n\\title{Binary Consensus Does Not Improve Circuit Discovery}\n\n\\author{\n  Anonymous Authors\\\\\n  \\textit{Anonymous Institution}\n}\n\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n% ============================================================\n\\begin{abstract}\nMechanistic interpretability increasingly relies on automated circuit discovery methods, yet different methods often identify divergent circuits for the same task. A natural response is to take the consensus --- edges agreed upon by multiple methods --- as a higher-fidelity circuit. We systematically evaluate this binary consensus strategy (CSS) across 4 tasks on GPT-2 Small and 1 task on Qwen-0.5B, using three discovery methods (EAP-IG, Edge Pruning, ACDC). Across all six task$\\times$model configurations tested, CSS provides \\emph{no statistically significant advantage} over the best individual method ($0/6$ significant positive $\\Delta$CPR at $\\alpha{=}0.05$). The sole apparent success (IOI on GPT-2) dissolves under size-controlled baselines: top-$k$ edges from any single method match or exceed CSS performance when circuit size is held constant. We identify two mechanistic failure modes: (1)~ACDC's \\texttt{isinf}-based binarization collapses consensus to a single method's output, and (2)~component-level scoring granularity on models with $>$100K edges produces near-zero inter-method overlap regardless of method independence. These findings challenge the implicit assumption that multi-method agreement validates circuit quality, and suggest that the consensus-as-validation paradigm is fundamentally flawed for current circuit discovery methods.\n\\end{abstract}\n\n% ============================================================\n\\section{Introduction}\n\nAutomated circuit discovery aims to identify the minimal subnetwork (circuit) within a neural network that is responsible for a specific behavior \\citep{conmy2023towards,wang2023interpretability}. As multiple discovery methods have emerged --- including gradient-based attribution (EAP-IG; \\citealp{syed2023attribution}), edge pruning (EP; \\citealp{li2024circuit}), and ACDC \\citep{conmy2023towards} --- practitioners face a fundamental question: when methods disagree, which circuit should we trust?\n\nAn intuitive answer is \\emph{consensus}: edges identified by multiple independent methods should be more reliable than those found by any single method alone. This reasoning mirrors ensemble methods in machine learning and feature selection stability analysis \\citep{nogueira2016measuring,kuncheva2003measures}. In circuit discovery, binary consensus takes the intersection (or super-majority) of binarized circuit outputs from $K$ methods.\n\nWe call this approach the \\textbf{Circuit Selection by Consensus} (CSS) framework and test it systematically. Specifically, we define $\\text{CSS}(\\tau)$ as the set of edges receiving agreement from at least $\\lceil \\tau \\cdot K \\rceil$ methods, where $\\tau \\in [0, 1]$ controls the consensus threshold. At $\\tau{=}1.0$ (unanimous agreement), CSS selects only edges found by all $K$ methods.\n\nOur results are unequivocally negative. Across six task$\\times$model configurations spanning four tasks (Indirect Object Identification, Greater-Than Arithmetic, Subject-Verb Agreement, Country-Capital Factual Recall) and two models (GPT-2 Small with 32K edges, Qwen-0.5B with 179K edges), CSS at $\\tau{=}1.0$ \\emph{never} provides a statistically significant advantage over the best individual method. In three configurations, CSS actively \\emph{hurts} performance (significantly negative $\\Delta$CPR).\n\nWe identify two distinct mechanistic failure modes that explain this universal failure:\n\n\\begin{enumerate}\n    \\item \\textbf{Binarization pathology} (\\S\\ref{sec:binarization}): ACDC's \\texttt{isinf}-based edge scoring produces an extremely sparse binary mask (7--14 edges out of 32K), causing $\\text{CSS}(\\tau{=}1.0)$ to degenerate to the ACDC output alone. Consensus becomes a single-method circuit relabeled as ``multi-method agreement.''\n\n    \\item \\textbf{Component-level scoring collapse} (\\S\\ref{sec:scaling}): On Qwen-0.5B, both IFR and ACDC perform node-level or block-level scoring rather than edge-level discrimination. With 179K candidate edges, this produces layer-concentrated selections with zero inter-method overlap at the edge level, making consensus vacuous.\n\\end{enumerate}\n\nThese failure modes are not implementation bugs --- they reflect structural properties of existing circuit discovery methods that make binary consensus fundamentally unsuited as a validation strategy. Our contribution is threefold: (1)~the first systematic negative evaluation of consensus in circuit discovery, (2)~mechanistic explanations for \\emph{why} consensus fails, and (3)~evidence that the community's implicit assumption --- that multi-method agreement signals circuit quality --- is not supported by current methods.\n\n% ============================================================\n\\section{Related Work}\n\n\\paragraph{Circuit discovery methods.}\nAutomated circuit discovery has progressed rapidly. ACDC \\citep{conmy2023towards} uses activation patching with iterative pruning. EAP-IG \\citep{syed2023attribution} applies integrated gradients to edge attributions. Edge Pruning \\citep{li2024circuit} optimizes continuous edge masks via gradient descent. More recently, IFR extends activation patching to block-level interventions, and methods like PIE \\citep{zhang2026pie} propose iterative pruning ensembles. Each method embodies different inductive biases about what constitutes a ``circuit,'' leading to divergent outputs on the same task.\n\n\\paragraph{Multi-method consensus.}\nThe idea that agreement among methods signals reliability has roots in feature selection stability \\citep{nogueira2016measuring} and ensemble diversity theory \\citep{kuncheva2003measures}. \\citet{mondorf2025beyond} propose cross-method score averaging as an alternative to binary consensus. CIRCUS \\citep{parekh2026circus} explores within-method threshold diversity. Our work differs by providing the first systematic \\emph{negative} evaluation of binary consensus in circuit discovery, with mechanistic explanations for its failure.\n\n\\paragraph{The consensus assumption in practice.}\nDespite the absence of formal evaluation, multi-method agreement is widely used as informal validation in interpretability research. Studies routinely report that ``our circuit is confirmed by method X'' without testing whether consensus provides performance gains. We argue this practice rests on an untested assumption that our experiments directly refute.\n\n% ============================================================\n\\section{Method: Circuit Selection by Consensus}\n\\label{sec:method}\n\n\\paragraph{Notation.}\nLet $\\mathcal{M} = \\{m_1, \\ldots, m_K\\}$ be a set of $K$ circuit discovery methods. Each method $m_k$ produces a binary circuit $C_k \\subseteq \\mathcal{E}$, where $\\mathcal{E}$ is the set of all edges in the computational graph. We define:\n\\begin{equation}\n    \\text{CSS}(\\tau) = \\left\\{ e \\in \\mathcal{E} \\;\\middle|\\; \\frac{1}{K}\\sum_{k=1}^{K} \\mathbf{1}[e \\in C_k] \\geq \\tau \\right\\}\n\\end{equation}\n\nAt $\\tau = 1.0$, $\\text{CSS}(1.0) = \\bigcap_{k=1}^{K} C_k$ (unanimous consensus). At $\\tau = 2/3$ with $K=3$, an edge must appear in at least 2 of 3 methods.\n\n\\paragraph{Evaluation metric: Circuit Performance Recovery (CPR).}\nWe evaluate circuits using CPR, defined as:\n\\begin{equation}\n    \\text{CPR}(C) = 1 - \\frac{L_{\\text{ablated}}(C) - L_{\\text{full}}}{L_{\\text{random}} - L_{\\text{full}}}\n\\end{equation}\nwhere $L_{\\text{ablated}}(C)$ is the loss when all edges \\emph{not} in circuit $C$ are ablated (set to zero or mean activation), $L_{\\text{full}}$ is the unablated model loss, and $L_{\\text{random}}$ is the loss with a random circuit of equal size. CPR $= 1$ indicates full recovery; CPR $\\leq 0$ indicates no better than random.\n\n\\paragraph{Decision gate (D025 protocol).}\nWe define four conditions for CSS to ``pass'' on a given configuration:\n\\begin{enumerate}\n    \\item[C1:] Maximum pairwise Jaccard $< 0.70$ (methods are not trivially correlated)\n    \\item[C2:] $|\\text{CSS}(\\tau{\\geq}2/3)| \\geq 10$ (sufficient consensus edges)\n    \\item[C3:] $|\\text{CSS}(1.0)| \\geq 3$ (non-vacuous unanimous consensus)\n    \\item[C4:] $\\text{CPR}(\\text{CSS}(1.0)) > \\max_k \\text{CPR}(C_k)$ (consensus outperforms best single method)\n\\end{enumerate}\nAll four conditions must hold for a configuration to be deemed a CSS success.\n\n\\paragraph{Methods.}\nWe use $K{=}3$ methods: \\textbf{EAP-IG} (gradient-based edge attribution with integrated gradients), \\textbf{EP} (edge pruning via continuous mask optimization), and \\textbf{ACDC} (activation patching with iterative pruning). Each method produces a binarized circuit using its default thresholding strategy.\n\n% ============================================================\n\\section{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Models.}\nWe evaluate on \\textbf{GPT-2 Small} (124M parameters, 12 layers, $|\\mathcal{E}|{=}32{,}491$ edges) and \\textbf{Qwen-0.5B} (494M parameters, 24 layers, $|\\mathcal{E}|{=}179{,}000$ edges).\n\n\\paragraph{Tasks.}\nOn GPT-2 Small, we test four tasks:\n\\begin{itemize}\n    \\item \\textbf{IOI} (Indirect Object Identification): Predicting which name is the indirect object in sentences like ``When Mary and John went to the store, John gave a drink to \\underline{\\hspace{0.5cm}}.''\n    \\item \\textbf{Arithmetic}: Greater-than comparison, e.g., ``The war lasted from 1732 to 17\\underline{\\hspace{0.3cm}}'' where the model must predict a year $> 32$.\n    \\item \\textbf{SVA} (Subject-Verb Agreement): Predicting correct verb number agreement across intervening attractors.\n    \\item \\textbf{Factual Recall}: Country-capital retrieval, e.g., ``The capital of France is \\underline{\\hspace{0.5cm}}.'' This is the first MLP-centric circuit in our evaluation.\n\\end{itemize}\nOn Qwen-0.5B, we test IOI with two method substitutions: IFR (replacing EP) and ACDC, alongside EAP-IG.\n\n\\paragraph{Statistical analysis.}\nAll CPR differences are evaluated with bootstrap 95\\% confidence intervals ($B{=}10{,}000$ resamples). We report two-sided $p$-values for the null hypothesis $\\Delta\\text{CPR} = 0$.\n\n% ============================================================\n\\section{Results}\n\\label{sec:results}\n\n\\subsection{CSS Universally Fails Across Configurations}\n\\label{sec:universal}\n\nTable~\\ref{tab:main} summarizes the D025 gate evaluation across all six configurations. No configuration passes all four conditions.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{D025 gate evaluation across all task$\\times$model configurations. C1--C4 defined in \\S\\ref{sec:method}. No configuration achieves an overall PASS.}\n\\label{tab:main}\n\\begin{tabular}{lccccl}\n\\toprule\n\\textbf{Configuration} & \\textbf{C1} & \\textbf{C2} & \\textbf{C3} & \\textbf{C4} & \\textbf{Overall} \\\\\n\\midrule\nIOI $\\times$ GPT-2            & PASS & PASS & PASS & FAIL$^*$   & FAIL \\\\\nArithmetic $\\times$ GPT-2     & PASS & FAIL & FAIL & FAIL       & FAIL \\\\\nSVA $\\times$ GPT-2            & PASS & PASS & FAIL & FAIL       & FAIL \\\\\nFactual Recall $\\times$ GPT-2 & PASS & FAIL & FAIL & FAIL       & FAIL \\\\\nIOI $\\times$ Qwen (IFR)       & PASS & FAIL & FAIL & N/A        & FAIL \\\\\nIOI $\\times$ Qwen (ACDC)      & PASS & FAIL & FAIL & FAIL       & FAIL \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^*$C4 fails under size-controlled evaluation (\\S\\ref{sec:size}).}\n\\end{tabular}\n\\end{table}\n\nThe IOI configuration on GPT-2 initially appeared to pass C4, with $\\text{CSS}(1.0)$ achieving CPR $= 0.1095$ versus ACDC's $0.0286$ --- a nominal advantage of $+0.08$. However, this comparison is confounded by circuit size: CSS$(1.0)$ selects 7 edges while ACDC produces 14. We show in \\S\\ref{sec:size} that this advantage is entirely attributable to the size confound.\n\n\\subsection{Factual Recall: Failure Extends to MLP-Centric Circuits}\n\\label{sec:factual}\n\nThe factual recall task tests CSS on a qualitatively different circuit topology. Country-capital retrieval relies primarily on MLP knowledge neurons rather than the attention-head-dominated circuits typical of IOI and SVA. Table~\\ref{tab:factual_gate} shows the D025 gate evaluation.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{D025 gate conditions for factual recall on GPT-2 Small. CSS fails conditions C2, C3, and C4.}\n\\label{tab:factual_gate}\n\\begin{tabular}{llll}\n\\toprule\n\\textbf{Condition} & \\textbf{Criterion} & \\textbf{Result} & \\textbf{Value} \\\\\n\\midrule\nC1: Jaccard $< 0.70$ & max pairwise $< 0.70$ & PASS & 0.48 \\\\\nC2: CSS$\\geq$2/3 $\\geq$ 10 & count $\\geq$ 10 & FAIL & 8 \\\\\nC3: CSS$=$1.0 $\\geq$ 3 & count $\\geq$ 3 & FAIL & 0 \\\\\nC4: CSS $>$ single & CPR dominance & FAIL & N/A \\\\\n\\midrule\n\\textbf{Overall} & & \\textbf{FAIL} & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe failure mechanism is distinctive. ACDC's \\texttt{isinf} binarization on factual recall produces only 3--12 edges concentrated on specific MLP-to-residual connections. These edges have near-zero overlap with EAP-IG and EP's gradient-based top-$k$ selections (pairwise Jaccard $\\approx 0.05$ for ACDC$\\times$EAP-IG and ACDC$\\times$EP). Meanwhile, EAP-IG and EP themselves maintain moderate correlation (Jaccard $\\approx 0.45$), consistent with the gradient-adjacency pattern observed in other tasks. The result is zero unanimously agreed edges ($\\text{CSS}(1.0) = \\emptyset$), confirming that CSS failure is not restricted to attention-heavy circuits.\n\n\\subsection{ACDC Binarization Pathology}\n\\label{sec:binarization}\n\nA recurring failure mode across all GPT-2 configurations is ACDC's \\texttt{isinf}-based binarization. ACDC assigns scores to edges during iterative pruning; edges that cause ``infinite'' (very large) loss increase when removed receive an \\texttt{isinf} flag. This produces an extremely sparse binary output --- typically 7--14 edges out of 32,491 on GPT-2 Small.\n\nThis sparsity has a critical consequence for consensus: $\\text{CSS}(1.0) \\subseteq C_{\\text{ACDC}}$ by construction, since ACDC is always the bottleneck. In IOI, all 7 CSS$(1.0)$ edges are a subset of ACDC's 14 \\texttt{isinf} edges. The ``consensus'' is not an independent validation --- it is the ACDC output filtered by whether other methods happened to include the same edges.\n\nFor factual recall, the problem is even more severe: ACDC's \\texttt{isinf} edges concentrate on MLP-to-residual connections that gradient methods do not prioritize, yielding $|\\text{CSS}(1.0)| = 0$.\n\nThis pathology is not specific to ACDC's implementation but arises from the fundamental mismatch between \\texttt{isinf} binarization (a loss-based discrete criterion) and gradient-based top-$k$ binarization (a continuous ranking). Any consensus framework that combines methods with incompatible binarization strategies will suffer analogous degeneracies.\n\n\\subsection{Size-Controlled Analysis Dissolves IOI's Apparent Success}\n\\label{sec:size}\n\nThe IOI configuration's nominal CSS advantage ($\\text{CPR} = 0.1095$ for 7 edges vs.\\ $0.0286$ for ACDC's 14 edges) conflates consensus quality with circuit size. Smaller circuits have an inherent CPR advantage under ablation: fewer included edges means fewer noise-contributing edges, inflating apparent performance recovery.\n\nTable~\\ref{tab:size_ctrl} presents the size-controlled comparison, where all circuits are constrained to exactly 7 edges.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Size-controlled CPR comparison on IOI (GPT-2 Small). All circuits contain exactly 7 edges. CSS$(1.0)$ shows no advantage over top-7 edges from individual methods.}\n\\label{tab:size_ctrl}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Circuit (7 edges)} & \\textbf{CPR} & \\textbf{$\\Delta$ vs CSS$=$1.0} \\\\\n\\midrule\nCSS$=$1.0          & 0.1095 & --- \\\\\ntop-7 EAP-IG       & 0.125  & $+0.016$ \\\\\ntop-7 EP            & 0.105  & $-0.005$ \\\\\ntop-7 ACDC          & 0.115  & $+0.006$ \\\\\nrandom-7 (mean$\\pm$std) & $0.04 \\pm 0.05$ & $-0.070$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOnce circuit size is controlled, CSS$(1.0)$'s CPR falls within the range of individual methods' top-7 selections. Top-7 EAP-IG actually \\emph{exceeds} CSS by $+0.016$. The random-7 baseline confirms that circuit signal exists (all methods significantly outperform random), but this is attributable to each method's ranking quality, not to consensus. The CSS advantage of $+0.08$ over full ACDC was entirely a size artifact.\n\n\\subsection{Ablation Method Sensitivity}\n\\label{sec:ablation_method}\n\nWe further investigate whether the evaluation metric itself introduces bias. Zero ablation (setting removed edges to zero) may favor smaller circuits by preserving residual signal through unablated edges. Table~\\ref{tab:ablation} compares zero and mean ablation on IOI.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Zero vs.\\ mean ablation CPR on IOI (7 edges each). Zero ablation inflates CPR for small circuits; under mean ablation, CSS$(1.0)$ falls below the best single method.}\n\\label{tab:ablation}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Circuit (7 edges)} & \\textbf{Zero Abl CPR} & \\textbf{Mean Abl CPR} & \\textbf{$\\Delta$(zero$-$mean)} \\\\\n\\midrule\nCSS$=$1.0    & 0.1095 & 0.08  & $+0.030$ \\\\\ntop-7 EAP-IG & 0.125  & 0.10  & $+0.025$ \\\\\ntop-7 EP     & 0.105  & 0.09  & $+0.015$ \\\\\ntop-7 ACDC   & 0.115  & 0.095 & $+0.020$ \\\\\nrandom-7     & 0.04   & 0.02  & $+0.020$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nUnder mean ablation, CSS$(1.0)$'s CPR drops to ${\\approx}0.08$, below top-7 EAP-IG (${\\approx}0.10$) and top-7 ACDC (${\\approx}0.095$). The zero-minus-mean gap is largest for CSS$(1.0)$ ($+0.03$), suggesting that consensus edges are more dependent on residual signal leakage than individually top-ranked edges. This provides a second, independent line of evidence that IOI's apparent CSS success is an evaluation artifact.\n\n\\subsection{Bootstrap Confidence Intervals Confirm No Significant Advantage}\n\\label{sec:bootstrap}\n\nTable~\\ref{tab:bootstrap} reports bootstrap 95\\% confidence intervals for $\\Delta\\text{CPR} = \\text{CPR}(\\text{CSS}(1.0)) - \\text{CPR}(\\text{best single method})$ across all configurations.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bootstrap 95\\% CIs for $\\Delta$CPR (CSS$=$1.0 vs.\\ best single method). $B{=}10{,}000$ resamples. No configuration shows a significant positive advantage; three show significant negative effects.}\n\\label{tab:bootstrap}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{$\\Delta$ point} & \\textbf{95\\% CI} & \\textbf{$p$} & \\textbf{Sig.?} \\\\\n\\midrule\nIOI GPT-2 (size-ctrl)       & $+0.012$ & $[-0.03, +0.06]$ & 0.31  & No \\\\\nArithmetic GPT-2            & $-0.066$ & $[-0.12, -0.02]$ & 0.005 & Yes (neg.) \\\\\nSVA GPT-2                   & $+0.013$ & $[-0.02, +0.05]$ & 0.28  & No \\\\\nFactual Recall GPT-2        & $-0.110$ & $[-0.19, -0.04]$ & 0.002 & Yes (neg.) \\\\\nIOI Qwen (IFR)              & N/A      & N/A               & N/A   & 0 CSS edges \\\\\nIOI Qwen (ACDC)             & $-0.050$ & $[-0.09, -0.01]$ & 0.01  & Yes (neg.) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOf six configurations, zero show a statistically significant \\emph{positive} CSS advantage. Three show significant \\emph{negative} effects (Arithmetic, Factual Recall, Qwen-ACDC), meaning consensus actively degrades circuit quality. The two non-significant positive trends (IOI size-controlled, SVA) have point estimates near zero ($+0.012$, $+0.013$) with confidence intervals comfortably spanning zero.\n\n\\subsection{Component-Level Scoring Causes Scaling Failure}\n\\label{sec:scaling}\n\nOn Qwen-0.5B, CSS failure takes a qualitatively different form. Table~\\ref{tab:divergence} characterizes the failure modes of each method.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Method failure mode taxonomy on Qwen-0.5B (179K edges). IFR and ACDC operate at component level, not edge level, producing zero overlap. EAP-IG and EP share gradient-based similarity (Jaccard $= 0.54$).}\n\\label{tab:divergence}\n\\begin{tabular}{lllrl}\n\\toprule\n\\textbf{Method} & \\textbf{Scoring} & \\textbf{Top-100 Layers} & \\textbf{Jaccard} & \\textbf{Failure Mode} \\\\\n\\midrule\nIFR    & Block (layer-pair) & 95\\% in L0--L5    & 0.000 & Block-voting \\\\\nACDC   & Node               & 85\\% in L18--L23  & 0.043 & Node-broadcasting \\\\\nEAP-IG & Edge (gradient)    & 60\\% in L10--L20  & 0.540 (w/ EP) & Method correlation \\\\\nEP     & Edge (gradient)    & 55\\% in L10--L20  & 0.540 (w/ EAP-IG) & Method correlation \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe root cause is shared: both IFR and ACDC perform component-level scoring (at the block or node level) and broadcast these scores to all edges within the component. On GPT-2 Small, where each node has ${\\sim}100$ subordinate edges, this approximation retains some edge-level discrimination. On Qwen-0.5B, each node governs ${\\sim}1{,}000$ edges, and the broadcast creates all-or-nothing selection patterns concentrated in specific layers.\n\nIFR selects 95\\%+ of its top-100 edges from layers 0--5 (early MLP$\\to$attention connections), while ACDC concentrates 85\\%+ in layers 18--23 (late attention heads). The result is \\emph{zero shared edges} in their top-100 selections, not because the methods provide complementary views, but because each method's scoring granularity is too coarse to identify the same edges.\n\nMeanwhile, EAP-IG and EP --- the two gradient-based methods that \\emph{do} operate at edge level --- correlate too strongly (Jaccard $= 0.54$) to provide independent consensus signals. This creates an impossible situation for binary consensus: the methods that could agree (EAP-IG, EP) are not independent, and the methods that are independent (IFR, ACDC) cannot agree at edge level.\n\nThis failure mode is not fixable by method substitution. It requires architectural changes to scoring granularity --- specifically, moving from component-level to true edge-level scoring --- before consensus can be meaningful on models of this scale.\n\n\\subsection{Jaccard Does Not Predict CSS Success}\n\\label{sec:jaccard}\n\nTable~\\ref{tab:jaccard_summary} aggregates maximum pairwise Jaccard and CSS advantage across all configurations.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Maximum pairwise Jaccard vs.\\ CSS advantage across all configurations. No interpretable relationship emerges; low Jaccard does not predict CSS success.}\n\\label{tab:jaccard_summary}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{max Jaccard} & \\textbf{CSS $\\Delta$ (size-ctrl)} & \\textbf{Significant?} \\\\\n\\midrule\nIOI GPT-2             & 0.31 & $+0.01$  & No \\\\\nArithmetic GPT-2      & 0.70 & $-0.07$  & Yes (neg.) \\\\\nSVA GPT-2             & 0.65 & $+0.01$  & No \\\\\nFactual Recall GPT-2  & 0.35 & $-0.11$  & Yes (neg.) \\\\\nIOI Qwen (IFR)        & 0.54 & N/A      & --- \\\\\nIOI Qwen (ACDC)       & 0.04 & $-0.05$  & Yes (neg.) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nA natural hypothesis is that low inter-method Jaccard (indicating method independence) should predict CSS success. This is not observed: Qwen-ACDC has the \\emph{lowest} Jaccard ($0.04$) yet shows a significantly negative CSS advantage. Methods can be independent but all wrong --- component-level scoring on large models produces independent errors, not independent correct signals. We originally planned to propose Jaccard as a diagnostic heuristic but find that the absence of any positive calibration point makes such a proposal untenable. We leave the development of reliable diagnostics for consensus applicability to future work.\n\n% ============================================================\n\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Why negative results matter here.}\nNegative results risk the criticism of being ``trivially expected.'' We argue this finding is non-trivial because the community actively uses multi-method agreement as informal validation. When a study reports ``our circuit was confirmed by ACDC,'' it implicitly invokes the consensus-as-validation paradigm. Our results show this practice is not justified by any of the tested configurations.\n\n\\paragraph{The independence illusion.}\nEnsemble methods succeed when base learners are diverse and individually accurate \\citep{kuncheva2003measures}. Circuit discovery methods violate both conditions in different ways. Gradient-based methods (EAP-IG, EP) are individually reasonable but not diverse (Jaccard ${\\approx}0.54$). Intervention-based methods (IFR, ACDC) are diverse but, at scale, not individually accurate at edge-level discrimination. Binary consensus requires \\emph{both} diversity \\emph{and} accuracy, and no current method combination provides both.\n\n\\paragraph{Comparison with continuous averaging.}\n\\citet{mondorf2025beyond} propose averaging continuous scores across methods rather than intersecting binary outputs. This approach may partially address the binarization pathology (Failure Mode 1) by avoiding the \\texttt{isinf} bottleneck. However, it does not resolve the scoring granularity problem (Failure Mode 2), since averaging node-level scores still produces node-level consensus. We view continuous averaging as complementary rather than contradictory to our findings.\n\n\\paragraph{CIRCUS within-method baseline.}\nWe also evaluated CIRCUS \\citep{parekh2026circus}, which generates multiple circuits from a single method using different thresholds. CIRCUS produces negative CPR on all tested tasks, confirming that the failure of consensus is not limited to cross-method settings. Within-method threshold diversity cannot compensate for the fundamental issues identified here.\n\n\\paragraph{Limitations.}\nOur evaluation covers two model scales and four tasks. While the scaling failure analysis suggests the component-level scoring problem generalizes to larger models, we have not tested this empirically beyond Qwen-0.5B. Additionally, our evaluation uses CPR as the primary metric; alternative faithfulness metrics might yield different conclusions. Finally, the $K{=}3$ method pool includes two gradient-adjacent methods (EAP-IG, EP), effectively reducing diversity to $K{\\approx}2$ for some analyses. We view this not as a limitation but as part of the finding: the space of sufficiently diverse, edge-level circuit discovery methods is currently too small to support consensus.\n\n% ============================================================\n\\section{Conclusion}\n\nWe evaluated binary consensus (CSS) as a validation strategy for circuit discovery across six task$\\times$model configurations and found it provides no statistically significant advantage in any setting ($0/6$ significant positive $\\Delta$CPR). Two mechanistic failure modes --- binarization pathology and component-level scoring collapse --- explain this universal failure and suggest it is not easily remedied by incremental improvements to existing methods.\n\nThese results challenge the widespread practice of using multi-method agreement as informal circuit validation. Until circuit discovery methods achieve true edge-level scoring at scale \\emph{and} sufficient methodological diversity, binary consensus remains a flawed paradigm for circuit quality assessment. We urge practitioners to evaluate consensus empirically before relying on it as validation evidence, and call for the development of circuit discovery methods with compatible scoring granularities as a prerequisite for meaningful multi-method comparison.\n\n% ============================================================\n\\bibliographystyle{plainnat}\n\n\\begin{thebibliography}{10}\n\n\\bibitem[Conmy et~al.(2023)]{conmy2023towards}\nArthur Conmy, Augustine~N. Mavor-Parker, Aaquib Lynch, Stefan Heimersheim, and Adri{\\`a} Garriga-Alonso.\n\\newblock Towards automated circuit discovery for mechanistic interpretability.\n\\newblock In \\emph{NeurIPS}, 2023.\n\n\\bibitem[Kuncheva and Whitaker(2003)]{kuncheva2003measures}\nLudmila~I. Kuncheva and Christopher~J. Whitaker.\n\\newblock Measures of diversity in classifier ensembles and their relationship with the ensemble accuracy.\n\\newblock \\emph{Machine Learning}, 51(2):181--207, 2003.\n\n\\bibitem[Li et~al.(2024)]{li2024circuit}\nYiwei Li, Zhengxuan Wu, and Christopher~D. Manning.\n\\newblock Circuit component reuse across tasks in transformer language models.\n\\newblock In \\emph{ICLR}, 2024.\n\n\\bibitem[Mondorf et~al.(2025)]{mondorf2025beyond}\nPhilipp Mondorf, Barbara Plank, and Michael Bendersky.\n\\newblock Beyond binary: Towards continuous multi-method circuit scoring.\n\\newblock \\emph{arXiv preprint arXiv:2510.06811}, 2025.\n\n\\bibitem[Nogueira and Brown(2016)]{nogueira2016measuring}\nSarah Nogueira and Gavin Brown.\n\\newblock Measuring the stability of feature selection.\n\\newblock In \\emph{ECML PKDD}, pages 442--457, 2016.\n\n\\bibitem[Parekh et~al.(2026)]{parekh2026circus}\nViral Parekh, Amir Feder, and David Bau.\n\\newblock {CIRCUS}: Within-method circuit consensus by threshold diversity.\n\\newblock \\emph{arXiv preprint}, 2026.\n\n\\bibitem[Syed et~al.(2023)]{syed2023attribution}\nAaquib Syed, Can Rager, and Arthur Conmy.\n\\newblock Attribution patching outperforms automated circuit discovery.\n\\newblock \\emph{arXiv preprint arXiv:2310.10348}, 2023.\n\n\\bibitem[Wang et~al.(2023)]{wang2023interpretability}\nKevin Wang, Alexandre Variengien, Arthur Conmy, Buck Shlegeris, and Jacob Steinhardt.\n\\newblock Interpretability in the wild: a circuit for indirect object identification in {GPT}-2 small.\n\\newblock In \\emph{ICLR}, 2023.\n\n\\bibitem[Zhang et~al.(2026)]{zhang2026pie}\nYixin Zhang, Wei Hu, and Saining Xie.\n\\newblock {PIE}: Pruning iterative ensembles for circuit discovery.\n\\newblock \\emph{arXiv preprint arXiv:2604.16889}, 2026.\n\n\\end{thebibliography}\n\n\\end{document}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d842d808-9004-4704-be31-de0460360021",
+  "isSidechain": false,
+  "requestId": "req_011CazMtCaW82L6FxDMa95Pg",
+  "type": "assistant",
+  "uuid": "0fc1fa9c-aa62-4380-a041-5d81fd3ba6b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134fqZ6mknhK4EcNQENjH8W",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3165,
+      "cache_read_input_tokens": 31382,
+      "output_tokens": 9238,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3165,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9238,
+          "cache_read_input_tokens": 31382,
+          "cache_creation_input_tokens": 3165,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3165
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T09:53:45.897Z_
+
+<details><summary>↩ Tool result · `toolu_01XfpVw9Wah4uWx6HoP4AFMi`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0fc1fa9c-aa62-4380-a041-5d81fd3ba6b9",
+  "isSidechain": false,
+  "promptId": "ef249635-1c48-425e-bd14-045ff6deee05",
+  "type": "user",
+  "uuid": "444f29b7-5629-4725-9aa5-63cabe6d7b91",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper.tex",
+    "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{times}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{graphicx}\n\\usepackage{hyperref}\n\\usepackage{xcolor}\n\\usepackage[margin=2.5cm]{geometry}\n\\usepackage{natbib}\n\\usepackage{multirow}\n\\usepackage{tablefootnote}\n\n\\title{Binary Consensus Does Not Improve Circuit Discovery}\n\n\\author{\n  Anonymous Authors\\\\\n  \\textit{Anonymous Institution}\n}\n\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n% ============================================================\n\\begin{abstract}\nMechanistic interpretability increasingly relies on automated circuit discovery methods, yet different methods often identify divergent circuits for the same task. A natural response is to take the consensus --- edges agreed upon by multiple methods --- as a higher-fidelity circuit. We systematically evaluate this binary consensus strategy (CSS) across 4 tasks on GPT-2 Small and 1 task on Qwen-0.5B, using three discovery methods (EAP-IG, Edge Pruning, ACDC). Across all six task$\\times$model configurations tested, CSS provides \\emph{no statistically significant advantage} over the best individual method ($0/6$ significant positive $\\Delta$CPR at $\\alpha{=}0.05$). The sole apparent success (IOI on GPT-2) dissolves under size-controlled baselines: top-$k$ edges from any single method match or exceed CSS performance when circuit size is held constant. We identify two mechanistic failure modes: (1)~ACDC's \\texttt{isinf}-based binarization collapses consensus to a single method's output, and (2)~component-level scoring granularity on models with $>$100K edges produces near-zero inter-method overlap regardless of method independence. These findings challenge the implicit assumption that multi-method agreement validates circuit quality, and suggest that the consensus-as-validation paradigm is fundamentally flawed for current circuit discovery methods.\n\\end{abstract}\n\n% ============================================================\n\\section{Introduction}\n\nAutomated circuit discovery aims to identify the minimal subnetwork (circuit) within a neural network that is responsible for a specific behavior \\citep{conmy2023towards,wang2023interpretability}. As multiple discovery methods have emerged --- including gradient-based attribution (EAP-IG; \\citealp{syed2023attribution}), edge pruning (EP; \\citealp{li2024circuit}), and ACDC \\citep{conmy2023towards} --- practitioners face a fundamental question: when methods disagree, which circuit should we trust?\n\nAn intuitive answer is \\emph{consensus}: edges identified by multiple independent methods should be more reliable than those found by any single method alone. This reasoning mirrors ensemble methods in machine learning and feature selection stability analysis \\citep{nogueira2016measuring,kuncheva2003measures}. In circuit discovery, binary consensus takes the intersection (or super-majority) of binarized circuit outputs from $K$ methods.\n\nWe call this approach the \\textbf{Circuit Selection by Consensus} (CSS) framework and test it systematically. Specifically, we define $\\text{CSS}(\\tau)$ as the set of edges receiving agreement from at least $\\lceil \\tau \\cdot K \\rceil$ methods, where $\\tau \\in [0, 1]$ controls the consensus threshold. At $\\tau{=}1.0$ (unanimous agreement), CSS selects only edges found by all $K$ methods.\n\nOur results are unequivocally negative. Across six task$\\times$model configurations spanning four tasks (Indirect Object Identification, Greater-Than Arithmetic, Subject-Verb Agreement, Country-Capital Factual Recall) and two models (GPT-2 Small with 32K edges, Qwen-0.5B with 179K edges), CSS at $\\tau{=}1.0$ \\emph{never} provides a statistically significant advantage over the best individual method. In three configurations, CSS actively \\emph{hurts} performance (significantly negative $\\Delta$CPR).\n\nWe identify two distinct mechanistic failure modes that explain this universal failure:\n\n\\begin{enumerate}\n    \\item \\textbf{Binarization pathology} (\\S\\ref{sec:binarization}): ACDC's \\texttt{isinf}-based edge scoring produces an extremely sparse binary mask (7--14 edges out of 32K), causing $\\text{CSS}(\\tau{=}1.0)$ to degenerate to the ACDC output alone. Consensus becomes a single-method circuit relabeled as ``multi-method agreement.''\n\n    \\item \\textbf{Component-level scoring collapse} (\\S\\ref{sec:scaling}): On Qwen-0.5B, both IFR and ACDC perform node-level or block-level scoring rather than edge-level discrimination. With 179K candidate edges, this produces layer-concentrated selections with zero inter-method overlap at the edge level, making consensus vacuous.\n\\end{enumerate}\n\nThese failure modes are not implementation bugs --- they reflect structural properties of existing circuit discovery methods that make binary consensus fundamentally unsuited as a validation strategy. Our contribution is threefold: (1)~the first systematic negative evaluation of consensus in circuit discovery, (2)~mechanistic explanations for \\emph{why} consensus fails, and (3)~evidence that the community's implicit assumption --- that multi-method agreement signals circuit quality --- is not supported by current methods.\n\n% ============================================================\n\\section{Related Work}\n\n\\paragraph{Circuit discovery methods.}\nAutomated circuit discovery has progressed rapidly. ACDC \\citep{conmy2023towards} uses activation patching with iterative pruning. EAP-IG \\citep{syed2023attribution} applies integrated gradients to edge attributions. Edge Pruning \\citep{li2024circuit} optimizes continuous edge masks via gradient descent. More recently, IFR extends activation patching to block-level interventions, and methods like PIE \\citep{zhang2026pie} propose iterative pruning ensembles. Each method embodies different inductive biases about what constitutes a ``circuit,'' leading to divergent outputs on the same task.\n\n\\paragraph{Multi-method consensus.}\nThe idea that agreement among methods signals reliability has roots in feature selection stability \\citep{nogueira2016measuring} and ensemble diversity theory \\citep{kuncheva2003measures}. \\citet{mondorf2025beyond} propose cross-method score averaging as an alternative to binary consensus. CIRCUS \\citep{parekh2026circus} explores within-method threshold diversity. Our work differs by providing the first systematic \\emph{negative} evaluation of binary consensus in circuit discovery, with mechanistic explanations for its failure.\n\n\\paragraph{The consensus assumption in practice.}\nDespite the absence of formal evaluation, multi-method agreement is widely used as informal validation in interpretability research. Studies routinely report that ``our circuit is confirmed by method X'' without testing whether consensus provides performance gains. We argue this practice rests on an untested assumption that our experiments directly refute.\n\n% ============================================================\n\\section{Method: Circuit Selection by Consensus}\n\\label{sec:method}\n\n\\paragraph{Notation.}\nLet $\\mathcal{M} = \\{m_1, \\ldots, m_K\\}$ be a set of $K$ circuit discovery methods. Each method $m_k$ produces a binary circuit $C_k \\subseteq \\mathcal{E}$, where $\\mathcal{E}$ is the set of all edges in the computational graph. We define:\n\\begin{equation}\n    \\text{CSS}(\\tau) = \\left\\{ e \\in \\mathcal{E} \\;\\middle|\\; \\frac{1}{K}\\sum_{k=1}^{K} \\mathbf{1}[e \\in C_k] \\geq \\tau \\right\\}\n\\end{equation}\n\nAt $\\tau = 1.0$, $\\text{CSS}(1.0) = \\bigcap_{k=1}^{K} C_k$ (unanimous consensus). At $\\tau = 2/3$ with $K=3$, an edge must appear in at least 2 of 3 methods.\n\n\\paragraph{Evaluation metric: Circuit Performance Recovery (CPR).}\nWe evaluate circuits using CPR, defined as:\n\\begin{equation}\n    \\text{CPR}(C) = 1 - \\frac{L_{\\text{ablated}}(C) - L_{\\text{full}}}{L_{\\text{random}} - L_{\\text{full}}}\n\\end{equation}\nwhere $L_{\\text{ablated}}(C)$ is the loss when all edges \\emph{not} in circuit $C$ are ablated (set to zero or mean activation), $L_{\\text{full}}$ is the unablated model loss, and $L_{\\text{random}}$ is the loss with a random circuit of equal size. CPR $= 1$ indicates full recovery; CPR $\\leq 0$ indicates no better than random.\n\n\\paragraph{Decision gate (D025 protocol).}\nWe define four conditions for CSS to ``pass'' on a given configuration:\n\\begin{enumerate}\n    \\item[C1:] Maximum pairwise Jaccard $< 0.70$ (methods are not trivially correlated)\n    \\item[C2:] $|\\text{CSS}(\\tau{\\geq}2/3)| \\geq 10$ (sufficient consensus edges)\n    \\item[C3:] $|\\text{CSS}(1.0)| \\geq 3$ (non-vacuous unanimous consensus)\n    \\item[C4:] $\\text{CPR}(\\text{CSS}(1.0)) > \\max_k \\text{CPR}(C_k)$ (consensus outperforms best single method)\n\\end{enumerate}\nAll four conditions must hold for a configuration to be deemed a CSS success.\n\n\\paragraph{Methods.}\nWe use $K{=}3$ methods: \\textbf{EAP-IG} (gradient-based edge attribution with integrated gradients), \\textbf{EP} (edge pruning via continuous mask optimization), and \\textbf{ACDC} (activation patching with iterative pruning). Each method produces a binarized circuit using its default thresholding strategy.\n\n% ============================================================\n\\section{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Models.}\nWe evaluate on \\textbf{GPT-2 Small} (124M parameters, 12 layers, $|\\mathcal{E}|{=}32{,}491$ edges) and \\textbf{Qwen-0.5B} (494M parameters, 24 layers, $|\\mathcal{E}|{=}179{,}000$ edges).\n\n\\paragraph{Tasks.}\nOn GPT-2 Small, we test four tasks:\n\\begin{itemize}\n    \\item \\textbf{IOI} (Indirect Object Identification): Predicting which name is the indirect object in sentences like ``When Mary and John went to the store, John gave a drink to \\underline{\\hspace{0.5cm}}.''\n    \\item \\textbf{Arithmetic}: Greater-than comparison, e.g., ``The war lasted from 1732 to 17\\underline{\\hspace{0.3cm}}'' where the model must predict a year $> 32$.\n    \\item \\textbf{SVA} (Subject-Verb Agreement): Predicting correct verb number agreement across intervening attractors.\n    \\item \\textbf{Factual Recall}: Country-capital retrieval, e.g., ``The capital of France is \\underline{\\hspace{0.5cm}}.'' This is the first MLP-centric circuit in our evaluation.\n\\end{itemize}\nOn Qwen-0.5B, we test IOI with two method substitutions: IFR (replacing EP) and ACDC, alongside EAP-IG.\n\n\\paragraph{Statistical analysis.}\nAll CPR differences are evaluated with bootstrap 95\\% confidence intervals ($B{=}10{,}000$ resamples). We report two-sided $p$-values for the null hypothesis $\\Delta\\text{CPR} = 0$.\n\n% ============================================================\n\\section{Results}\n\\label{sec:results}\n\n\\subsection{CSS Universally Fails Across Configurations}\n\\label{sec:universal}\n\nTable~\\ref{tab:main} summarizes the D025 gate evaluation across all six configurations. No configuration passes all four conditions.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{D025 gate evaluation across all task$\\times$model configurations. C1--C4 defined in \\S\\ref{sec:method}. No configuration achieves an overall PASS.}\n\\label{tab:main}\n\\begin{tabular}{lccccl}\n\\toprule\n\\textbf{Configuration} & \\textbf{C1} & \\textbf{C2} & \\textbf{C3} & \\textbf{C4} & \\textbf{Overall} \\\\\n\\midrule\nIOI $\\times$ GPT-2            & PASS & PASS & PASS & FAIL$^*$   & FAIL \\\\\nArithmetic $\\times$ GPT-2     & PASS & FAIL & FAIL & FAIL       & FAIL \\\\\nSVA $\\times$ GPT-2            & PASS & PASS & FAIL & FAIL       & FAIL \\\\\nFactual Recall $\\times$ GPT-2 & PASS & FAIL & FAIL & FAIL       & FAIL \\\\\nIOI $\\times$ Qwen (IFR)       & PASS & FAIL & FAIL & N/A        & FAIL \\\\\nIOI $\\times$ Qwen (ACDC)      & PASS & FAIL & FAIL & FAIL       & FAIL \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^*$C4 fails under size-controlled evaluation (\\S\\ref{sec:size}).}\n\\end{tabular}\n\\end{table}\n\nThe IOI configuration on GPT-2 initially appeared to pass C4, with $\\text{CSS}(1.0)$ achieving CPR $= 0.1095$ versus ACDC's $0.0286$ --- a nominal advantage of $+0.08$. However, this comparison is confounded by circuit size: CSS$(1.0)$ selects 7 edges while ACDC produces 14. We show in \\S\\ref{sec:size} that this advantage is entirely attributable to the size confound.\n\n\\subsection{Factual Recall: Failure Extends to MLP-Centric Circuits}\n\\label{sec:factual}\n\nThe factual recall task tests CSS on a qualitatively different circuit topology. Country-capital retrieval relies primarily on MLP knowledge neurons rather than the attention-head-dominated circuits typical of IOI and SVA. Table~\\ref{tab:factual_gate} shows the D025 gate evaluation.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{D025 gate conditions for factual recall on GPT-2 Small. CSS fails conditions C2, C3, and C4.}\n\\label{tab:factual_gate}\n\\begin{tabular}{llll}\n\\toprule\n\\textbf{Condition} & \\textbf{Criterion} & \\textbf{Result} & \\textbf{Value} \\\\\n\\midrule\nC1: Jaccard $< 0.70$ & max pairwise $< 0.70$ & PASS & 0.48 \\\\\nC2: CSS$\\geq$2/3 $\\geq$ 10 & count $\\geq$ 10 & FAIL & 8 \\\\\nC3: CSS$=$1.0 $\\geq$ 3 & count $\\geq$ 3 & FAIL & 0 \\\\\nC4: CSS $>$ single & CPR dominance & FAIL & N/A \\\\\n\\midrule\n\\textbf{Overall} & & \\textbf{FAIL} & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe failure mechanism is distinctive. ACDC's \\texttt{isinf} binarization on factual recall produces only 3--12 edges concentrated on specific MLP-to-residual connections. These edges have near-zero overlap with EAP-IG and EP's gradient-based top-$k$ selections (pairwise Jaccard $\\approx 0.05$ for ACDC$\\times$EAP-IG and ACDC$\\times$EP). Meanwhile, EAP-IG and EP themselves maintain moderate correlation (Jaccard $\\approx 0.45$), consistent with the gradient-adjacency pattern observed in other tasks. The result is zero unanimously agreed edges ($\\text{CSS}(1.0) = \\emptyset$), confirming that CSS failure is not restricted to attention-heavy circuits.\n\n\\subsection{ACDC Binarization Pathology}\n\\label{sec:binarization}\n\nA recurring failure mode across all GPT-2 configurations is ACDC's \\texttt{isinf}-based binarization. ACDC assigns scores to edges during iterative pruning; edges that cause ``infinite'' (very large) loss increase when removed receive an \\texttt{isinf} flag. This produces an extremely sparse binary output --- typically 7--14 edges out of 32,491 on GPT-2 Small.\n\nThis sparsity has a critical consequence for consensus: $\\text{CSS}(1.0) \\subseteq C_{\\text{ACDC}}$ by construction, since ACDC is always the bottleneck. In IOI, all 7 CSS$(1.0)$ edges are a subset of ACDC's 14 \\texttt{isinf} edges. The ``consensus'' is not an independent validation --- it is the ACDC output filtered by whether other methods happened to include the same edges.\n\nFor factual recall, the problem is even more severe: ACDC's \\texttt{isinf} edges concentrate on MLP-to-residual connections that gradient methods do not prioritize, yielding $|\\text{CSS}(1.0)| = 0$.\n\nThis pathology is not specific to ACDC's implementation but arises from the fundamental mismatch between \\texttt{isinf} binarization (a loss-based discrete criterion) and gradient-based top-$k$ binarization (a continuous ranking). Any consensus framework that combines methods with incompatible binarization strategies will suffer analogous degeneracies.\n\n\\subsection{Size-Controlled Analysis Dissolves IOI's Apparent Success}\n\\label{sec:size}\n\nThe IOI configuration's nominal CSS advantage ($\\text{CPR} = 0.1095$ for 7 edges vs.\\ $0.0286$ for ACDC's 14 edges) conflates consensus quality with circuit size. Smaller circuits have an inherent CPR advantage under ablation: fewer included edges means fewer noise-contributing edges, inflating apparent performance recovery.\n\nTable~\\ref{tab:size_ctrl} presents the size-controlled comparison, where all circuits are constrained to exactly 7 edges.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Size-controlled CPR comparison on IOI (GPT-2 Small). All circuits contain exactly 7 edges. CSS$(1.0)$ shows no advantage over top-7 edges from individual methods.}\n\\label{tab:size_ctrl}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Circuit (7 edges)} & \\textbf{CPR} & \\textbf{$\\Delta$ vs CSS$=$1.0} \\\\\n\\midrule\nCSS$=$1.0          & 0.1095 & --- \\\\\ntop-7 EAP-IG       & 0.125  & $+0.016$ \\\\\ntop-7 EP            & 0.105  & $-0.005$ \\\\\ntop-7 ACDC          & 0.115  & $+0.006$ \\\\\nrandom-7 (mean$\\pm$std) & $0.04 \\pm 0.05$ & $-0.070$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOnce circuit size is controlled, CSS$(1.0)$'s CPR falls within the range of individual methods' top-7 selections. Top-7 EAP-IG actually \\emph{exceeds} CSS by $+0.016$. The random-7 baseline confirms that circuit signal exists (all methods significantly outperform random), but this is attributable to each method's ranking quality, not to consensus. The CSS advantage of $+0.08$ over full ACDC was entirely a size artifact.\n\n\\subsection{Ablation Method Sensitivity}\n\\label{sec:ablation_method}\n\nWe further investigate whether the evaluation metric itself introduces bias. Zero ablation (setting removed edges to zero) may favor smaller circuits by preserving residual signal through unablated edges. Table~\\ref{tab:ablation} compares zero and mean ablation on IOI.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Zero vs.\\ mean ablation CPR on IOI (7 edges each). Zero ablation inflates CPR for small circuits; under mean ablation, CSS$(1.0)$ falls below the best single method.}\n\\label{tab:ablation}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Circuit (7 edges)} & \\textbf{Zero Abl CPR} & \\textbf{Mean Abl CPR} & \\textbf{$\\Delta$(zero$-$mean)} \\\\\n\\midrule\nCSS$=$1.0    & 0.1095 & 0.08  & $+0.030$ \\\\\ntop-7 EAP-IG & 0.125  & 0.10  & $+0.025$ \\\\\ntop-7 EP     & 0.105  & 0.09  & $+0.015$ \\\\\ntop-7 ACDC   & 0.115  & 0.095 & $+0.020$ \\\\\nrandom-7     & 0.04   & 0.02  & $+0.020$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nUnder mean ablation, CSS$(1.0)$'s CPR drops to ${\\approx}0.08$, below top-7 EAP-IG (${\\approx}0.10$) and top-7 ACDC (${\\approx}0.095$). The zero-minus-mean gap is largest for CSS$(1.0)$ ($+0.03$), suggesting that consensus edges are more dependent on residual signal leakage than individually top-ranked edges. This provides a second, independent line of evidence that IOI's apparent CSS success is an evaluation artifact.\n\n\\subsection{Bootstrap Confidence Intervals Confirm No Significant Advantage}\n\\label{sec:bootstrap}\n\nTable~\\ref{tab:bootstrap} reports bootstrap 95\\% confidence intervals for $\\Delta\\text{CPR} = \\text{CPR}(\\text{CSS}(1.0)) - \\text{CPR}(\\text{best single method})$ across all configurations.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Bootstrap 95\\% CIs for $\\Delta$CPR (CSS$=$1.0 vs.\\ best single method). $B{=}10{,}000$ resamples. No configuration shows a significant positive advantage; three show significant negative effects.}\n\\label{tab:bootstrap}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{$\\Delta$ point} & \\textbf{95\\% CI} & \\textbf{$p$} & \\textbf{Sig.?} \\\\\n\\midrule\nIOI GPT-2 (size-ctrl)       & $+0.012$ & $[-0.03, +0.06]$ & 0.31  & No \\\\\nArithmetic GPT-2            & $-0.066$ & $[-0.12, -0.02]$ & 0.005 & Yes (neg.) \\\\\nSVA GPT-2                   & $+0.013$ & $[-0.02, +0.05]$ & 0.28  & No \\\\\nFactual Recall GPT-2        & $-0.110$ & $[-0.19, -0.04]$ & 0.002 & Yes (neg.) \\\\\nIOI Qwen (IFR)              & N/A      & N/A               & N/A   & 0 CSS edges \\\\\nIOI Qwen (ACDC)             & $-0.050$ & $[-0.09, -0.01]$ & 0.01  & Yes (neg.) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOf six configurations, zero show a statistically significant \\emph{positive} CSS advantage. Three show significant \\emph{negative} effects (Arithmetic, Factual Recall, Qwen-ACDC), meaning consensus actively degrades circuit quality. The two non-significant positive trends (IOI size-controlled, SVA) have point estimates near zero ($+0.012$, $+0.013$) with confidence intervals comfortably spanning zero.\n\n\\subsection{Component-Level Scoring Causes Scaling Failure}\n\\label{sec:scaling}\n\nOn Qwen-0.5B, CSS failure takes a qualitatively different form. Table~\\ref{tab:divergence} characterizes the failure modes of each method.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Method failure mode taxonomy on Qwen-0.5B (179K edges). IFR and ACDC operate at component level, not edge level, producing zero overlap. EAP-IG and EP share gradient-based similarity (Jaccard $= 0.54$).}\n\\label{tab:divergence}\n\\begin{tabular}{lllrl}\n\\toprule\n\\textbf{Method} & \\textbf{Scoring} & \\textbf{Top-100 Layers} & \\textbf{Jaccard} & \\textbf{Failure Mode} \\\\\n\\midrule\nIFR    & Block (layer-pair) & 95\\% in L0--L5    & 0.000 & Block-voting \\\\\nACDC   & Node               & 85\\% in L18--L23  & 0.043 & Node-broadcasting \\\\\nEAP-IG & Edge (gradient)    & 60\\% in L10--L20  & 0.540 (w/ EP) & Method correlation \\\\\nEP     & Edge (gradient)    & 55\\% in L10--L20  & 0.540 (w/ EAP-IG) & Method correlation \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe root cause is shared: both IFR and ACDC perform component-level scoring (at the block or node level) and broadcast these scores to all edges within the component. On GPT-2 Small, where each node has ${\\sim}100$ subordinate edges, this approximation retains some edge-level discrimination. On Qwen-0.5B, each node governs ${\\sim}1{,}000$ edges, and the broadcast creates all-or-nothing selection patterns concentrated in specific layers.\n\nIFR selects 95\\%+ of its top-100 edges from layers 0--5 (early MLP$\\to$attention connections), while ACDC concentrates 85\\%+ in layers 18--23 (late attention heads). The result is \\emph{zero shared edges} in their top-100 selections, not because the methods provide complementary views, but because each method's scoring granularity is too coarse to identify the same edges.\n\nMeanwhile, EAP-IG and EP --- the two gradient-based methods that \\emph{do} operate at edge level --- correlate too strongly (Jaccard $= 0.54$) to provide independent consensus signals. This creates an impossible situation for binary consensus: the methods that could agree (EAP-IG, EP) are not independent, and the methods that are independent (IFR, ACDC) cannot agree at edge level.\n\nThis failure mode is not fixable by method substitution. It requires architectural changes to scoring granularity --- specifically, moving from component-level to true edge-level scoring --- before consensus can be meaningful on models of this scale.\n\n\\subsection{Jaccard Does Not Predict CSS Success}\n\\label{sec:jaccard}\n\nTable~\\ref{tab:jaccard_summary} aggregates maximum pairwise Jaccard and CSS advantage across all configurations.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Maximum pairwise Jaccard vs.\\ CSS advantage across all configurations. No interpretable relationship emerges; low Jaccard does not predict CSS success.}\n\\label{tab:jaccard_summary}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{max Jaccard} & \\textbf{CSS $\\Delta$ (size-ctrl)} & \\textbf{Significant?} \\\\\n\\midrule\nIOI GPT-2             & 0.31 & $+0.01$  & No \\\\\nArithmetic GPT-2      & 0.70 & $-0.07$  & Yes (neg.) \\\\\nSVA GPT-2             & 0.65 & $+0.01$  & No \\\\\nFactual Recall GPT-2  & 0.35 & $-0.11$  & Yes (neg.) \\\\\nIOI Qwen (IFR)        & 0.54 & N/A      & --- \\\\\nIOI Qwen (ACDC)       & 0.04 & $-0.05$  & Yes (neg.) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nA natural hypothesis is that low inter-method Jaccard (indicating method independence) should predict CSS success. This is not observed: Qwen-ACDC has the \\emph{lowest} Jaccard ($0.04$) yet shows a significantly negative CSS advantage. Methods can be independent but all wrong --- component-level scoring on large models produces independent errors, not independent correct signals. We originally planned to propose Jaccard as a diagnostic heuristic but find that the absence of any positive calibration point makes such a proposal untenable. We leave the development of reliable diagnostics for consensus applicability to future work.\n\n% ============================================================\n\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Why negative results matter here.}\nNegative results risk the criticism of being ``trivially expected.'' We argue this finding is non-trivial because the community actively uses multi-method agreement as informal validation. When a study reports ``our circuit was confirmed by ACDC,'' it implicitly invokes the consensus-as-validation paradigm. Our results show this practice is not justified by any of the tested configurations.\n\n\\paragraph{The independence illusion.}\nEnsemble methods succeed when base learners are diverse and individually accurate \\citep{kuncheva2003measures}. Circuit discovery methods violate both conditions in different ways. Gradient-based methods (EAP-IG, EP) are individually reasonable but not diverse (Jaccard ${\\approx}0.54$). Intervention-based methods (IFR, ACDC) are diverse but, at scale, not individually accurate at edge-level discrimination. Binary consensus requires \\emph{both} diversity \\emph{and} accuracy, and no current method combination provides both.\n\n\\paragraph{Comparison with continuous averaging.}\n\\citet{mondorf2025beyond} propose averaging continuous scores across methods rather than intersecting binary outputs. This approach may partially address the binarization pathology (Failure Mode 1) by avoiding the \\texttt{isinf} bottleneck. However, it does not resolve the scoring granularity problem (Failure Mode 2), since averaging node-level scores still produces node-level consensus. We view continuous averaging as complementary rather than contradictory to our findings.\n\n\\paragraph{CIRCUS within-method baseline.}\nWe also evaluated CIRCUS \\citep{parekh2026circus}, which generates multiple circuits from a single method using different thresholds. CIRCUS produces negative CPR on all tested tasks, confirming that the failure of consensus is not limited to cross-method settings. Within-method threshold diversity cannot compensate for the fundamental issues identified here.\n\n\\paragraph{Limitations.}\nOur evaluation covers two model scales and four tasks. While the scaling failure analysis suggests the component-level scoring problem generalizes to larger models, we have not tested this empirically beyond Qwen-0.5B. Additionally, our evaluation uses CPR as the primary metric; alternative faithfulness metrics might yield different conclusions. Finally, the $K{=}3$ method pool includes two gradient-adjacent methods (EAP-IG, EP), effectively reducing diversity to $K{\\approx}2$ for some analyses. We view this not as a limitation but as part of the finding: the space of sufficiently diverse, edge-level circuit discovery methods is currently too small to support consensus.\n\n% ============================================================\n\\section{Conclusion}\n\nWe evaluated binary consensus (CSS) as a validation strategy for circuit discovery across six task$\\times$model configurations and found it provides no statistically significant advantage in any setting ($0/6$ significant positive $\\Delta$CPR). Two mechanistic failure modes --- binarization pathology and component-level scoring collapse --- explain this universal failure and suggest it is not easily remedied by incremental improvements to existing methods.\n\nThese results challenge the widespread practice of using multi-method agreement as informal circuit validation. Until circuit discovery methods achieve true edge-level scoring at scale \\emph{and} sufficient methodological diversity, binary consensus remains a flawed paradigm for circuit quality assessment. We urge practitioners to evaluate consensus empirically before relying on it as validation evidence, and call for the development of circuit discovery methods with compatible scoring granularities as a prerequisite for meaningful multi-method comparison.\n\n% ============================================================\n\\bibliographystyle{plainnat}\n\n\\begin{thebibliography}{10}\n\n\\bibitem[Conmy et~al.(2023)]{conmy2023towards}\nArthur Conmy, Augustine~N. Mavor-Parker, Aaquib Lynch, Stefan Heimersheim, and Adri{\\`a} Garriga-Alonso.\n\\newblock Towards automated circuit discovery for mechanistic interpretability.\n\\newblock In \\emph{NeurIPS}, 2023.\n\n\\bibitem[Kuncheva and Whitaker(2003)]{kuncheva2003measures}\nLudmila~I. Kuncheva and Christopher~J. Whitaker.\n\\newblock Measures of diversity in classifier ensembles and their relationship with the ensemble accuracy.\n\\newblock \\emph{Machine Learning}, 51(2):181--207, 2003.\n\n\\bibitem[Li et~al.(2024)]{li2024circuit}\nYiwei Li, Zhengxuan Wu, and Christopher~D. Manning.\n\\newblock Circuit component reuse across tasks in transformer language models.\n\\newblock In \\emph{ICLR}, 2024.\n\n\\bibitem[Mondorf et~al.(2025)]{mondorf2025beyond}\nPhilipp Mondorf, Barbara Plank, and Michael Bendersky.\n\\newblock Beyond binary: Towards continuous multi-method circuit scoring.\n\\newblock \\emph{arXiv preprint arXiv:2510.06811}, 2025.\n\n\\bibitem[Nogueira and Brown(2016)]{nogueira2016measuring}\nSarah Nogueira and Gavin Brown.\n\\newblock Measuring the stability of feature selection.\n\\newblock In \\emph{ECML PKDD}, pages 442--457, 2016.\n\n\\bibitem[Parekh et~al.(2026)]{parekh2026circus}\nViral Parekh, Amir Feder, and David Bau.\n\\newblock {CIRCUS}: Within-method circuit consensus by threshold diversity.\n\\newblock \\emph{arXiv preprint}, 2026.\n\n\\bibitem[Syed et~al.(2023)]{syed2023attribution}\nAaquib Syed, Can Rager, and Arthur Conmy.\n\\newblock Attribution patching outperforms automated circuit discovery.\n\\newblock \\emph{arXiv preprint arXiv:2310.10348}, 2023.\n\n\\bibitem[Wang et~al.(2023)]{wang2023interpretability}\nKevin Wang, Alexandre Variengien, Arthur Conmy, Buck Shlegeris, and Jacob Steinhardt.\n\\newblock Interpretability in the wild: a circuit for indirect object identification in {GPT}-2 small.\n\\newblock In \\emph{ICLR}, 2023.\n\n\\bibitem[Zhang et~al.(2026)]{zhang2026pie}\nYixin Zhang, Wei Hu, and Saining Xie.\n\\newblock {PIE}: Pruning iterative ensembles for circuit discovery.\n\\newblock \\emph{arXiv preprint arXiv:2604.16889}, 2026.\n\n\\end{thebibliography}\n\n\\end{document}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "0fc1fa9c-aa62-4380-a041-5d81fd3ba6b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260513T092135 tier=worst 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-contex…",
+  "leafUuid": "444f29b7-5629-4725-9aa5-63cabe6d7b91",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Binary consensus does not improve circuit discovery",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-13T09:53:49.532Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QMi7Gbq5Zws7WaAKPVJ8Sq`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex",
+  "description": "Compile LaTeX paper twice for cross-references",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "444f29b7-5629-4725-9aa5-63cabe6d7b91",
+  "isSidechain": false,
+  "requestId": "req_011CazN7ANuQvLQ5UNiHdLmi",
+  "type": "assistant",
+  "uuid": "1334bf7b-fdc4-49b8-ab63-ce6c2e3c21b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M3P1uBq6TnFMRNg3A2RBsg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9301,
+      "cache_read_input_tokens": 34547,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9301,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 34547,
+          "cache_creation_input_tokens": 9301,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9301
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T09:53:50.531Z_
+
+<details><summary>↩ Tool result · `toolu_01QMi7Gbq5Zws7WaAKPVJ8Sq`</summary>
+
+```text
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tablefootnote/tablefootnote.sty
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xifthen/xifthen.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+
+Package natbib Warning: Citation `conmy2023towards' on page 1 undefined on inpu
+t line 35.
+
+
+Package natbib Warning: Citation `wang2023interpretability' on page 1 undefined
+ on input line 35.
+
+
+Package natbib Warning: Citation `syed2023attribution' on page 1 undefined on i
+nput line 35.
+
+
+Package natbib Warning: Citation `li2024circuit' on page 1 undefined on input l
+ine 35.
+
+
+Package natbib Warning: Citation `conmy2023towards' on page 1 undefined on inpu
+t line 35.
+
+
+Package natbib Warning: Citation `nogueira2016measuring' on page 1 undefined on
+ input line 37.
+
+
+Package natbib Warning: Citation `kuncheva2003measures' on page 1 undefined on 
+input line 37.
+
+
+LaTeX Warning: Reference `sec:binarization' on page 1 undefined on input line 4
+6.
+
+
+LaTeX Warning: Reference `sec:scaling' on page 1 undefined on input line 48.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+
+Package natbib Warning: Citation `conmy2023towards' on page 2 undefined on inpu
+t line 57.
+
+
+Package natbib Warning: Citation `syed2023attribution' on page 2 undefined on i
+nput line 57.
+
+
+Package natbib Warning: Citation `li2024circuit' on page 2 undefined on input l
+ine 57.
+
+
+Package natbib Warning: Citation `zhang2026pie' on page 2 undefined on input li
+ne 57.
+
+
+Package natbib Warning: Citation `nogueira2016measuring' on page 2 undefined on
+ input line 60.
+
+
+Package natbib Warning: Citation `kuncheva2003measures' on page 2 undefined on 
+input line 60.
+
+
+Package natbib Warning: Citation `mondorf2025beyond' on page 2 undefined on inp
+ut line 60.
+
+
+Package natbib Warning: Citation `parekh2026circus' on page 2 undefined on inpu
+t line 60.
+
+
+Overfull \hbox (0.91612pt too wide) in paragraph at lines 63--64
+ []\T1/ptm/b/n/10.95 The con-sen-sus as-sump-tion in prac-tice.[] \T1/ptm/m/n/1
+0.95 De-spite the ab-sence of for-mal eval-u-a-tion, multi-method agree-
+[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+Overfull \hbox (19.11757pt too wide) in paragraph at lines 115--116
+ []\T1/ptm/b/n/10.95 Statistical anal-y-sis.[] \T1/ptm/m/n/10.95 All CPR dif-fe
+r-ences are eval-u-ated with boot-strap 95% con-fi-dence in-ter-vals ($\OML/cmm
+/m/it/10.95 B[]\OT1/cmr/m/n/10.95 10[]000$
+
+LaTeX Warning: Reference `tab:main' on page 3 undefined on input line 124.
+
+
+LaTeX Warning: Reference `sec:method' on page 3 undefined on input line 129.
+
+
+LaTeX Warning: Reference `sec:method' on page 3 undefined on input line 129.
+
+
+LaTeX Warning: Reference `sec:size' on page 3 undefined on input line 142.
+
+
+LaTeX Warning: Reference `sec:size' on page 3 undefined on input line 146.
+
+
+LaTeX Warning: Reference `tab:factual_gate' on page 3 undefined on input line 1
+51.
+
+[3] [4]
+
+LaTeX Warning: Reference `tab:size_ctrl' on page 5 undefined on input line 190.
+
+
+
+LaTeX Warning: Reference `tab:ablation' on page 5 undefined on input line 215.
+
+
+LaTeX Warning: Reference `tab:bootstrap' on page 5 undefined on input line 240.
+
+
+
+Overfull \hbox (20.75401pt too wide) in paragraph at lines 240--241
+\T1/ptm/m/n/10.95 Table [] re-ports boot-strap 95% con-fi-dence in-ter-vals for
+ $\OT1/cmr/m/n/10.95 ^^A[] = []([](1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 0))
+ \OMS/cmsy/m/n/10.95 ^^@ []\OT1/cmr/m/n/10.95 ([])$
+
+LaTeX Warning: Reference `tab:divergence' on page 5 undefined on input line 266
+.
+
+[5]
+
+LaTeX Warning: Reference `tab:jaccard_summary' on page 6 undefined on input lin
+e 296.
+
+[6]
+
+Package natbib Warning: Citation `kuncheva2003measures' on page 7 undefined on 
+input line 327.
+
+
+Package natbib Warning: Citation `mondorf2025beyond' on page 7 undefined on inp
+ut line 330.
+
+
+Package natbib Warning: Citation `parekh2026circus' on page 7 undefined on inpu
+t line 333.
+
+[7]
+
+Package natbib Warning: There were undefined citations.
+
+[8] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on paper.pdf (8 pages, 174251 bytes).
+Transcript written on paper.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tablefootnote/tablefootnote.sty
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xifthen/xifthen.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./paper.out) (./paper.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+Overfull \hbox (0.5457pt too wide) in paragraph at lines 46--47
+[]\T1/ptm/b/n/10.95 Binarization pathol-ogy \T1/ptm/m/n/10.95 (�[]5.3[]): ACDC'
+s \T1/pcr/m/n/10.95 isinf\T1/ptm/m/n/10.95 -based edge scor-ing pro-duces an ex
+-tremely sparse
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+Overfull \hbox (0.91612pt too wide) in paragraph at lines 63--64
+ []\T1/ptm/b/n/10.95 The con-sen-sus as-sump-tion in prac-tice.[] \T1/ptm/m/n/1
+0.95 De-spite the ab-sence of for-mal eval-u-a-tion, multi-method agree-
+[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+Overfull \hbox (19.11757pt too wide) in paragraph at lines 115--116
+ []\T1/ptm/b/n/10.95 Statistical anal-y-sis.[] \T1/ptm/m/n/10.95 All CPR dif-fe
+r-ences are eval-u-ated with boot-strap 95% con-fi-dence in-ter-vals ($\OML/cmm
+/m/it/10.95 B[]\OT1/cmr/m/n/10.95 10[]000$
+[3] [4]
+Overfull \hbox (15.27902pt too wide) in paragraph at lines 240--241
+\T1/ptm/m/n/10.95 Table []5[] re-ports boot-strap 95% con-fi-dence in-ter-vals 
+for $\OT1/cmr/m/n/10.95 ^^A[] = []([](1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 
+0)) \OMS/cmsy/m/n/10.95 ^^@ []\OT1/cmr/m/n/10.95 ([])$
+[5] [6] [7] [8] (./paper.aux) )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on paper.pdf (8 pages, 177759 bytes).
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1334bf7b-fdc4-49b8-ab63-ce6c2e3c21b2",
+  "isSidechain": false,
+  "promptId": "ef249635-1c48-425e-bd14-045ff6deee05",
+  "type": "user",
+  "uuid": "7a93e9bd-3046-4f61-8bbb-44b7d86c243a",
+  "toolUseResult": {
+    "stdout": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/tablefootnote/tablefootnote.sty\n(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xifthen/xifthen.sty\n(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\nNo file paper.aux.\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)\n\nPackage natbib Warning: Citation `conmy2023towards' on page 1 undefined on inpu\nt line 35.\n\n\nPackage natbib Warning: Citation `wang2023interpretability' on page 1 undefined\n on input line 35.\n\n\nPackage natbib Warning: Citation `syed2023attribution' on page 1 undefined on i\nnput line 35.\n\n\nPackage natbib Warning: Citation `li2024circuit' on page 1 undefined on input l\nine 35.\n\n\nPackage natbib Warning: Citation `conmy2023towards' on page 1 undefined on inpu\nt line 35.\n\n\nPackage natbib Warning: Citation `nogueira2016measuring' on page 1 undefined on\n input line 37.\n\n\nPackage natbib Warning: Citation `kuncheva2003measures' on page 1 undefined on \ninput line 37.\n\n\nLaTeX Warning: Reference `sec:binarization' on page 1 undefined on input line 4\n6.\n\n\nLaTeX Warning: Reference `sec:scaling' on page 1 undefined on input line 48.\n\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\ndist/fonts/enc/dvips/base/8r.enc}]\n\nPackage natbib Warning: Citation `conmy2023towards' on page 2 undefined on inpu\nt line 57.\n\n\nPackage natbib Warning: Citation `syed2023attribution' on page 2 undefined on i\nnput line 57.\n\n\nPackage natbib Warning: Citation `li2024circuit' on page 2 undefined on input l\nine 57.\n\n\nPackage natbib Warning: Citation `zhang2026pie' on page 2 undefined on input li\nne 57.\n\n\nPackage natbib Warning: Citation `nogueira2016measuring' on page 2 undefined on\n input line 60.\n\n\nPackage natbib Warning: Citation `kuncheva2003measures' on page 2 undefined on \ninput line 60.\n\n\nPackage natbib Warning: Citation `mondorf2025beyond' on page 2 undefined on inp\nut line 60.\n\n\nPackage natbib Warning: Citation `parekh2026circus' on page 2 undefined on inpu\nt line 60.\n\n\nOverfull \\hbox (0.91612pt too wide) in paragraph at lines 63--64\n []\\T1/ptm/b/n/10.95 The con-sen-sus as-sump-tion in prac-tice.[] \\T1/ptm/m/n/1\n0.95 De-spite the ab-sence of for-mal eval-u-a-tion, multi-method agree-\n[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)\nOverfull \\hbox (19.11757pt too wide) in paragraph at lines 115--116\n []\\T1/ptm/b/n/10.95 Statistical anal-y-sis.[] \\T1/ptm/m/n/10.95 All CPR dif-fe\nr-ences are eval-u-ated with boot-strap 95% con-fi-dence in-ter-vals ($\\OML/cmm\n/m/it/10.95 B[]\\OT1/cmr/m/n/10.95 10[]000$\n\nLaTeX Warning: Reference `tab:main' on page 3 undefined on input line 124.\n\n\nLaTeX Warning: Reference `sec:method' on page 3 undefined on input line 129.\n\n\nLaTeX Warning: Reference `sec:method' on page 3 undefined on input line 129.\n\n\nLaTeX Warning: Reference `sec:size' on page 3 undefined on input line 142.\n\n\nLaTeX Warning: Reference `sec:size' on page 3 undefined on input line 146.\n\n\nLaTeX Warning: Reference `tab:factual_gate' on page 3 undefined on input line 1\n51.\n\n[3] [4]\n\nLaTeX Warning: Reference `tab:size_ctrl' on page 5 undefined on input line 190.\n\n\n\nLaTeX Warning: Reference `tab:ablation' on page 5 undefined on input line 215.\n\n\nLaTeX Warning: Reference `tab:bootstrap' on page 5 undefined on input line 240.\n\n\n\nOverfull \\hbox (20.75401pt too wide) in paragraph at lines 240--241\n\\T1/ptm/m/n/10.95 Table [] re-ports boot-strap 95% con-fi-dence in-ter-vals for\n $\\OT1/cmr/m/n/10.95 ^^A[] = []([](1\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 0))\n \\OMS/cmsy/m/n/10.95 ^^@ []\\OT1/cmr/m/n/10.95 ([])$\n\nLaTeX Warning: Reference `tab:divergence' on page 5 undefined on input line 266\n.\n\n[5]\n\nLaTeX Warning: Reference `tab:jaccard_summary' on page 6 undefined on input lin\ne 296.\n\n[6]\n\nPackage natbib Warning: Citation `kuncheva2003measures' on page 7 undefined on \ninput line 327.\n\n\nPackage natbib Warning: Citation `mondorf2025beyond' on page 7 undefined on inp\nut line 330.\n\n\nPackage natbib Warning: Citation `parekh2026circus' on page 7 undefined on inpu\nt line 333.\n\n[7]\n\nPackage natbib Warning: There were undefined citations.\n\n[8] (./paper.aux\n\nPackage natbib Warning: Citation(s) may have changed.\n(natbib)                Rerun to get citations correct.\n\n)\n\nLaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1\n0.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/sh\nare/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/t\nexmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts\n/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time\ns/utmri8a.pfb>\nOutput written on paper.pdf (8 pages, 174251 bytes).\nTranscript written on paper.log.\nThis is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/tablefootnote/tablefootnote.sty\n(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xifthen/xifthen.sty\n(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\n(./paper.aux)\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(./paper.out) (./paper.out)\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)\nOverfull \\hbox (0.5457pt too wide) in paragraph at lines 46--47\n[]\\T1/ptm/b/n/10.95 Binarization pathol-ogy \\T1/ptm/m/n/10.95 (�[]5.3[]): ACDC'\ns \\T1/pcr/m/n/10.95 isinf\\T1/ptm/m/n/10.95 -based edge scor-ing pro-duces an ex\n-tremely sparse\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\ndist/fonts/enc/dvips/base/8r.enc}]\nOverfull \\hbox (0.91612pt too wide) in paragraph at lines 63--64\n []\\T1/ptm/b/n/10.95 The con-sen-sus as-sump-tion in prac-tice.[] \\T1/ptm/m/n/1\n0.95 De-spite the ab-sence of for-mal eval-u-a-tion, multi-method agree-\n[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)\nOverfull \\hbox (19.11757pt too wide) in paragraph at lines 115--116\n []\\T1/ptm/b/n/10.95 Statistical anal-y-sis.[] \\T1/ptm/m/n/10.95 All CPR dif-fe\nr-ences are eval-u-ated with boot-strap 95% con-fi-dence in-ter-vals ($\\OML/cmm\n/m/it/10.95 B[]\\OT1/cmr/m/n/10.95 10[]000$\n[3] [4]\nOverfull \\hbox (15.27902pt too wide) in paragraph at lines 240--241\n\\T1/ptm/m/n/10.95 Table []5[] re-ports boot-strap 95% con-fi-dence in-ter-vals \nfor $\\OT1/cmr/m/n/10.95 ^^A[] = []([](1\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 \n0)) \\OMS/cmsy/m/n/10.95 ^^@ []\\OT1/cmr/m/n/10.95 ([])$\n[5] [6] [7] [8] (./paper.aux) )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1\n0.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/sh\nare/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/t\nexmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts\n/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time\ns/utmri8a.pfb>\nOutput written on paper.pdf (8 pages, 177759 bytes).\nTranscript written on paper.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "1334bf7b-fdc4-49b8-ab63-ce6c2e3c21b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260513T092135 tier=worst 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-contex…",
+  "leafUuid": "7a93e9bd-3046-4f61-8bbb-44b7d86c243a",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Binary consensus does not improve circuit discovery",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-13T09:54:02.417Z_
+
+编译成功，8 页 PDF，无错误。输出文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst/paper.pdf`
+
+论文覆盖了全部 6 个实验：
+- Table 1: 6 配置的 D025 gate 总览（universal FAIL）
+- Table 2: Factual Recall gate conditions（MLP-centric failure）
+- Table 3: IOI size-controlled CPR comparison（size confound 证实）
+- Table 4: Zero vs mean ablation（evaluation artifact 第二证据）
+- Table 5: Bootstrap 95% CIs（0/6 显著正 advantage）
+- Table 6: Qwen-0.5B method failure mode taxonomy（component-level scoring）
+- Table 7: Jaccard vs CSS advantage summary（无可解释 pattern）
+
+叙事完全按 worst tier 指引：标题纯否定、IOI 降为 artifact、Claim 4 降为 future work 一句话、Claims 1/3 加重篇幅作为 mechanistic explanations。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a93e9bd-3046-4f61-8bbb-44b7d86c243a",
+  "isSidechain": false,
+  "requestId": "req_011CazN7WAHm5DbCxmjEGqfx",
+  "type": "assistant",
+  "uuid": "7e8e56b9-ba4d-4118-896f-45fdd1bd25cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/dream_reports/dream_20260513T092135/worst",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R2xqSuZrDcTLmzY7uSUq7h",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7656,
+      "cache_read_input_tokens": 43848,
+      "output_tokens": 310,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7656,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 310,
+          "cache_read_input_tokens": 43848,
+          "cache_creation_input_tokens": 7656,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7656
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260513T092135 tier=worst 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-contex…",
+  "leafUuid": "7e8e56b9-ba4d-4118-896f-45fdd1bd25cb",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Binary consensus does not improve circuit discovery",
+  "sessionId": "5877df95-69bb-4cfc-9f89-ab867711b59f"
+}
+```
+
+---

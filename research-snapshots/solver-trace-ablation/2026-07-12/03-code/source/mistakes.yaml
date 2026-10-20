@@ -1,0 +1,262 @@
+_next_id: 20
+mistakes:
+- id: M001
+  date: '2026-05-16'
+  category: agent_behavior
+  severity: medium
+  summary: exec-only-s43-1000step 连续 4 次失败：bad args → OOM → no conda。Agent 未参照成功实验的完整命令。
+  root_cause: Agent 每次从零拼命令而非复制成功实验 (plan016) 的完整启动命令。导致反复遗漏环境配置（conda 激活、正确的环境变量名、batch
+    size 调整）。
+  prevention: 提交训练实验时，Director 或 Agent 必须先从 registry 找到同配置成功实验的启动命令作为模板，仅修改 seed/output_dir
+    等差异项。禁止从零构造命令。完整命令必须包含：conda 激活 + CUDA_VISIBLE_DEVICES + PYTORCH_CUDA_ALLOC_CONF
+    + cd project_dir + python 调用。
+  status: active
+  fix: Reviewer 提供了参照 plan016 的完整正确命令，包含 conda 激活和正确环境变量。
+- id: M002
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: high
+  summary: /tmp/dryrun 21GB 撑满根分区导致两个训练实验同时崩溃
+  root_cause: /tmp/dryrun 目录积累到 21GB，根分区仅 30GB，写入失败导致 plan018-random-b01-s45 (step
+    209) 和 sweep-random-b005-s42 (step 301) 同时崩溃。两实验同时死亡 = 系统级问题，非 OOM。
+  prevention: 1. 训练前检查根分区剩余空间（df -h /），低于 5GB 告警。2. 定期清理 /tmp 下临时目录。3. 训练输出目录应指向数据盘（/root/autodl-tmp）而非根分区。4.
+    添加训练启动前的磁盘空间预检 assert。
+  status: active
+  fix: 清理 /tmp/dryrun（释放 21GB），删除崩溃实验的部分 checkpoint，从 base model 重新训练 500 步。
+- id: M003
+  date: '2026-05-17'
+  category: resource_misuse
+  severity: high
+  summary: autodl-tmp 磁盘 250G/250G 满导致 Wave 2 两实验崩溃（M002 /tmp 后第二次磁盘事故）
+  root_cause: 完成实验的 checkpoint（每个 31G）未及时清理。7 个已 eval 的实验累积 217G 占满磁盘。Wave 1 eval
+    完成后未检查磁盘剩余空间就启动 Wave 2。
+  prevention: 1. 实验 eval 完成后立即清理 checkpoint（保留 eval_results.json + classify_h7 输出到
+    eval_archive）。2. 每次启动新实验前 Agent 必须检查磁盘剩余空间（df -h /root/autodl-tmp），< 50G 则先清理。3.
+    考虑在训练脚本中只保留最后一个 checkpoint 而非全部。
+  status: active
+  context: 'Wave 2 experiments sweep-random-b005-s43 crashed at step 50 (checkpoint
+    save), sweep-isr-b005-s43 about to crash. Second disk incident after M002 (/tmp/dryrun
+    21GB). Pattern: never checking disk before launching experiments.'
+  fix: 批准删除 7 个已 eval 的 checkpoint 目录（~217G），备份 eval_results.json 到 eval_archive，从头重启两个实验。
+- id: M004
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: D129 random control 使用了 random_reward 而非 additive_random，与 s42 基线不可比
+  root_cause: Agent 在创建 D129 random 实验 spec 时未核对 s42 基线的 reward_mode 参数。random_reward
+    和 additive_random 是两个完全不同的函数（random 占比 50% vs 9.1%），但名称相近容易混淆。
+  prevention: 创建跨 seed 复现实验时，必须从 registry 中提取 s42 基线的完整命令行，逐参数核对 reward_mode / beta
+    / exec_weight / sta_weight。名称相近的 reward mode 需要对照代码确认函数签名。
+  status: active
+  context: d129-1.7b-random-b01-s43 用 --reward_mode random_reward（proved reward [0.5,1.0],
+    random 占 50%），s42 基线用 --reward_mode additive_random --beta 0.1（proved reward [1.0,1.1],
+    random 占 9.1%）。train_grpo.py line 198 vs 225。
+  fix: Kill 错误 run，标 FAILED，用 additive_random --beta 0.1 重跑。同时检查 s44 和 isr-b03 的 spec。
+- id: M005
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: medium
+  summary: isr-b03-s43 训练在 step 100 因磁盘满崩溃，浪费 ~100 步 GPU 时间 + 3h 空闲（cron 回调丢失）
+  root_cause: outputs/ 累积 127GB 未清理；Agent session 重启后 cron 监控丢失，训练崩溃无人发现。
+  prevention: 1. 启动训练前检查磁盘余量（df -h），低于 20% 先清理旧 outputs。2. Agent session 重启后必须重建所有
+    RUNNING 实验的 cron 监控。3. 长时间训练设置 checkpoint resume 而非从头开始。
+  status: active
+  fix: 清理旧文件腾出空间，从头重启训练。84GB 余量足够完成 D129 剩余实验。
+- id: M006
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: D129 3-seed 数据仅更新 PR 列，Table 2/3 的 ISR*、hacking mode、caption 仍为 s42 单种子数据
+  root_cause: Paper Agent 在 W1/W3 patch 中收到的 D129 数据模板只包含 PR 和 strict genuine 汇总，未包含
+    per-seed ISR* 和 classify 分布。Agent 提供的 d129_paper_update_template.md 也未覆盖 Table
+    3 taxonomy 列。导致 Table 2 ISR* 用了错误字段(mean_isr vs proved_only_mean_isr)，caption
+    仍描述 s42 单种子特征，Table 3 的 1.7B 列完全未更新。
+  prevention: '多 seed 实验数据更新论文时，必须逐列检查所有表格：PR、ISR*、S-NH、hacking mode percentages、caption
+    claims。建立 checklist: (1) 每个数据列是否为 N-seed pooled; (2) caption 中的定量声明是否与 N-seed
+    数据一致; (3) 所有 seeds 是否都有对应的 classify 文件。Paper Agent patch 前 Reviewer 必须先核实数据完整性。'
+  status: active
+  context: Table 2 ISR β=0.3 ISR*=0.031 (should be 0.216), ISR β=0.1 caption claims
+    zero variance (actually ±0.155), Table 3 1.7B columns all single-seed. 5 个 critical/warning
+    级别错误。如果审稿发现将严重损害论文可信度。
+  commit_id: 2e62f5e
+- id: M007
+  date: '2026-05-18'
+  category: communication
+  severity: high
+  summary: PDF compiled from stale docs/paper/ directory, missing 5 commits of fixes
+  root_cause: 项目有两个 paper 目录：paper/（git-tracked, Paper Agent 编辑目标）和 docs/paper/（旧副本）。Director
+    编译 PDF 时用了 docs/paper/，导致发给用户的 PDF 不包含 Round 11 的任何修改（5 commits）。两个目录从 Round 10
+    后分叉。
+  prevention: 编译 PDF 始终从 git-tracked 的 paper/ 目录，不用 docs/paper/。编译前 `git log --oneline
+    -1 -- paper/` 确认最新 commit 已在编译目录中。考虑删除 docs/paper/ 或用 symlink 替代，避免再次分叉。
+  status: active
+  fix: 从 paper/ 重新编译 PDF 并上传。后续所有编译操作使用 paper/ 目录。
+- id: M008
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: high
+  summary: D134 磁盘满事故（第二次）：pipeline 未自动清理已完成 seed 的 model weights，导致 s48 训练崩溃
+  root_cause: Pipeline 脚本在每个 seed 完成 classify 后不删除 model weights（每个 ~8GB），ISR 5 seeds
+    + Random s47 累计 ~48GB weights 占满 250GB 磁盘。ISR phase 也发生过同样问题但未修复 pipeline 脚本。
+  prevention: Pipeline 脚本必须在每个 seed 完成 classify 后自动删除 model weights，仅保留 classify.json
+    + eval_results.json + train.log。多 seed 串行实验必须有磁盘清理逻辑，不能依赖手动清理。
+  status: active
+  context: 'D134 Random s48 在 step 100/500 保存 checkpoint 时触发 SafetensorError: No space
+    left on device。/root/autodl-tmp 250GB 磁盘 100% 占满（804K 剩余）。ISR phase 已经发生过一次同类事故但当时只做了手动清理，未修改
+    pipeline 脚本加自动清理。'
+  fix: 手动删除已完成 seeds 的 model weights 释放空间 + 修改 pipeline 脚本增加自动清理逻辑
+- id: M009
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: high
+  summary: D143 启动前 GPU 空闲 9 小时：D142-ext 11:12 UTC 完成，20:08 UTC 仍无训练进程
+  root_cause: Agent RESET 后队列中第一条是过时的双 GPU 指令（引用不存在的 cuda:1），Agent 长时间 processing
+    该消息未能有效执行。Director 的串行修正指令排在队列第二位无法被及时处理。Agent session 切换期间无人监控 GPU 利用率。
+  prevention: 1. Agent RESET 前 Director 必须先 replace_agent_queue 清空旧消息，确保新 session
+    首条消息就是最新指令。2. Director session 切换时必须在 handoff 中标记"Agent 队列有过时消息需要立即清理"为 Step 0。3.
+    实验完成后 cron 应触发 GPU 空闲告警，超过 30 分钟无新任务自动 escalate。4. 关键路径上的实验（DDL 驱动）应有独立的 GPU 利用率监控。
+  status: active
+  context: D142-ext pipeline 于 11:12 UTC 完成，D143 ProofWriter 数据已就绪（proofwriter_fol_500.jsonl），Qwen3-4B
+    已在位，但截至 20:08 UTC 服务器上无任何 D143 pipeline 脚本、无训练进程。GPU util 0%, mem 0 MiB。在 May
+    25 DDL 下，9 小时空窗 = D143 估计 18h 训练时间的一半。这是本项目第 5 次 GPU 资源浪费事故（M002/M003/M005/M008）。
+  fix: replace_agent_queue 发送紧急综合指令要求立即启动 D143，同时清理重复 LLaMA 下载 + 更新 stale registry。
+  related_decisions:
+  - D143
+  - D144
+- id: M010
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: D143 "跨数据集" 实验使用了 FOLIO 数据而非 ProofWriter：proofwriter_fol_*.jsonl 文件 100%
+    是 folio_* ID
+  root_cause: 数据文件命名为 proofwriter_fol_*.jsonl 但实际内容全是 FOLIO 数据。Agent 在数据准备阶段未验证数据来源和内容，仅依赖文件名判断。Director
+    审批时也未要求 Agent 先做数据 sanity check（抽样验证 ID 前缀和内容来源）。
+  prevention: 1. 跨数据集实验启动前，必须做数据 sanity check：抽样 10 行验证 ID 前缀、问题内容是否属于目标数据集。2. 数据准备
+    Worker 完成后，Reviewer 必须独立验证数据来源（检查 ID 分布、问题样本）。3. 文件命名必须与实际数据来源一致，禁止复用旧文件名存放不同数据。
+  status: active
+  context: proofwriter_fol_500.jsonl 和 proofwriter_fol_100.jsonl 全部是 folio_* ID。d143_pw_exec_s42
+    正在 GPU 上运行（91% util），但本质是 D134 exec-only s42 的重复。真正的 ProofWriter 数据从未被下载或格式化。
+  fix: Kill 当前运行，下载真正的 ProofWriter 数据集，重新格式化后重启 D143。
+  related_decisions:
+  - D143
+  - D144
+- id: M011
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: 论文声称 K=8 rollouts 但实际核心实验全部使用 K=4（num_generations=4）
+  root_cause: 早期实验设计时可能计划用 K=8，后因显存/速度调整为 K=4，但论文超参表和 Setup 段落未同步更新。appendix 超参表标题写"for
+    all GRPO experiments"进一步放大了不一致性。
+  prevention: 论文写作完成后，Paper Agent 或 Reviewer 必须交叉核对论文中每个超参数值与实际 config 文件。建立 checklist：对
+    experiments.tex 和 appendix 超参表中的每个数值，grep 对应 config 验证。
+  status: active
+  context: Reviewer 审查发现 experiments.tex §5.1 写 K=8，appendix tab:hyperparams 写 K=8，但
+    40 个 config 中 28 个核心实验用 num_generations=4。K=8 仅出现在废弃的 warmstart/retrain 变体中。
+  fix: Paper Agent 修正 §5.1 K=8→K=4 + appendix 超参表 K=8→K=4
+- id: M012
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: 8B OOM 根因诊断错误：归因于 1.4 GiB 碎片化，实际是 fp32 模型加载多占 16 GiB
+  root_cause: Worker 仅看 nvidia-smi 峰值与总显存的差值（93.4/94.9 GiB），未检查模型加载 dtype。TRL GRPOConfig
+    默认 fp32 加载模型后再 cast 到 bf16 训练，多占约 16 GiB。
+  prevention: OOM 诊断时必须检查：(1) 模型加载 dtype（model.dtype / model_init_kwargs）(2) TRL/HF
+    Trainer 的默认 dtype 行为（可能 fp32 加载后自动 cast）(3) 显存分解需区分模型权重、optimizer、gradient、activation
+    各自的 dtype
+  status: active
+  fix: 'train_grpo.py:606 添加 model_init_kwargs={"dtype": "bfloat16"}，峰值 93.9→53.9
+    GiB'
+  related_decisions:
+  - D154
+- id: M013
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: 8B 训练"挂死"误判——实际是外部 kill 信号，导致 3 次不必要的重启和 vLLM 误诊
+  root_cause: r3 (EXIT_CODE=129/SIGHUP) 和 k4 (EXIT_CODE=143/SIGTERM) 被误判为训练挂死。实际 k4
+    正常运行到 step 52 时被我们自己的 kill 命令误杀。vLLM 0.18.1 兼容性被错误归因为挂死原因，但项目根本不使用 vLLM（TRL 警告仅
+    import-time 检测）。连锁误判：Reviewer 基于错误信息提出 vLLM 降级建议，Director 基于此制定了错误的调试方案。
+  prevention: 1. 训练异常终止时先检查 EXIT_CODE（129=SIGHUP, 143=SIGTERM 均为外部信号，非程序内部错误）2. 确认
+    kill 来源（tmux session 管理/前次 Worker 残余 kill）再判定"挂死" 3. 区分 TRL import-time 警告（vLLM
+    版本检测）和实际 runtime 依赖 4. 不要基于未验证的假设做连续调试决策
+  status: active
+  context: d154-8b-exec-s42 系列实验。r3 在 step 7 报告"挂死"实际是 SIGHUP；k4 在 step 52 报告"挂死"实际是我们发的
+    SIGTERM kill。重启后 k4v2 前 20 步全部正常通过，证明原始配置无问题。浪费了 ~3h GPU 时间和大量调试精力。
+  fix: Worker 诊断确认真实原因后重启 k4v2，训练稳定运行中（step_time ~19-20s, 55% VRAM）。
+  related_decisions:
+  - D154
+- id: M014
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: medium
+  summary: 错误地将不存在的 cuda:1 加入 gpu_ids 白名单
+  root_cause: 'get_resource_inventory 返回 "root: 可用 GPU cuda:0, cuda:1"，Director 未用
+    list_available_gpus 做实际 nvidia-smi 验证就直接修改了配置。资源清单数据与服务器实际硬件不符。'
+  prevention: 修改 gpu_ids/gpu_constraint 前，必须先调 list_available_gpus 确认 GPU 实际存在（该工具走
+    nvidia-smi），不能仅凭 get_resource_inventory 的静态配置信息。用户说的硬件信息优先于系统返回的配置信息。
+  status: active
+  fix: 回滚 gpu_ids 和 gpu_constraint 至只有 cuda:0，通知 Agent 停止 cuda:1 准备工作，改为串行计划。
+- id: M015
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: D158 Worker 绕过 submit_training_job 直接用 ssh_execute 在 cuda:0 跑 SFT 训练
+  root_cause: Worker 在收到 cuda:1 解锁通知前已启动，可能在准备阶段直接执行了训练脚本而未走正式提交流程。submit_training_job
+    有 GPU 占用检查和 cron 监控，ssh_execute 绕过了这些。
+  prevention: 所有训练（包括短时 SFT）必须通过 submit_training_job 提交，禁止 ssh_execute 直接运行训练脚本。Agent
+    应在实验指令中明确强调此约束。
+  status: active
+  fix: 等待 GPU check 确认 D157 是否存活。如果崩溃则立即重新提交。
+- id: M016
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: low
+  summary: Checkpoint 清理时误删 eval 结果文件（eval_sta_results.json, hacking_audit.json）
+  root_cause: 指令说"删除 checkpoint"，Worker 直接 rm -rf 整个实验目录而非仅删除模型权重文件。
+  prevention: 清理 checkpoint 时指令应明确：只删模型权重目录（checkpoint-*/），保留 eval 结果文件（*.json）。或先
+    mv eval 文件到安全位置再删目录。
+  status: active
+  fix: 论文数字已写入 appendix 且 Reviewer 验证正确，registry 有记录。不影响提交。如需重验需重跑实验。
+- id: M017
+  date: '2026-05-21'
+  category: experiment_design
+  severity: medium
+  summary: Director instructed Agent to use K=8 for new exec-only seeds, but paper
+    and existing data use K=4
+  root_cause: experiment_plan.yaml plan_001 description says "K=8" but the actual
+    training configs and paper (experiments.tex L9) use K=4. Director trusted plan
+    documentation over paper ground truth when issuing instructions.
+  prevention: 'When specifying hyperparameters for seed expansion, always verify against
+    the paper''s stated setup section (experiments.tex) and existing config files
+    on server — not the experiment_plan.yaml description which may be outdated. Rule:
+    paper > server configs > plan description.'
+  status: active
+  fix: Urgent message sent to kill K=8 training (step 13/1000, minimal waste) and
+    restart with K=4. Also correcting all future instructions.
+- id: M018
+  date: '2026-05-22'
+  category: experiment_design
+  severity: medium
+  summary: s46 收敛状态误分类：plan001 s46 PR=93% 是收敛的，被误归入 non-converging 组
+  root_cause: 混淆了两个不同实验：plan001-exec-only-s46（500步，PR=93%，收敛）和 exec-only-s46-1000step（从基础模型重新训练
+    1000步，不收敛）。后者是独立 from-scratch run（不同 batch config），不代表 plan001 s46 的延续。
+  prevention: 区分 "同 seed 不同实验" 时必须检查 checkpoint_source 和 resume_from_checkpoint 配置。同一
+    seed 不同 run 可以有完全不同的收敛结果（CUDA 非确定性 + config 差异）。引用 seed 收敛状态时以 plan001 原始 registry
+    为准。
+  status: active
+  context: s46-1000step 用 base model 重新训练（batch=4/accum=2），plan001 用 batch=2/accum=4。不同
+    batch config + CUDA 非确定性导致收敛结果不同。正确统计：4/6 收敛退化（含 s43 慢收敛），2/6 不收敛（s45, s52）。
+  fix: Paper Agent 修正 §4.1 "Three → Two additional seeds"。ROADMAP 和 framing 更新正确统计。
+- id: M019
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: high
+  summary: 'M019: 清理 8B checkpoint 时删除了正在 eval 的实验目录，eval 结果可能丢失'
+  root_cause: Director 在同一条指令中同时要求 checkpoint 清理和 eval，Worker 清理时未检查是否有进程正在使用该目录（nvidia-smi/ps
+    确认）。eval 进程仍在运行但输出目录被删。
+  prevention: 清理 checkpoint 前必须：(1) 确认 registry status 已为 DONE（非 ANALYZING）；(2) nvidia-smi
+    + ps 确认无进程使用该目录；(3) 不要在同一条指令中同时下达 eval 和清理——等 eval 完成后再清理。
+  status: active
+  context: d154-8b-exec-s42-k8 eval PID 992326 正在使用 /root/autodl-tmp/outputs/8b_exec_only_s42_k8/，cleanup
+    Worker 删除了该目录。紧急 mkdir -p 尝试挽救。
+  fix: 'urgent_agent_message: mkdir -p 恢复目录。如失败需重新训练 1.7h 或使用训练 summary stats。'

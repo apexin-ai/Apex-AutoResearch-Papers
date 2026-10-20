@@ -1,0 +1,2319 @@
+# Research conversation: <project_context> # 项目: structfuse-context ## 运行环境 - 服务器名: cqa1-21977 - SSH 账户: root（调用 ssh_execute / submit_training_jo
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-2/389daeac-2555-46b4-b35e-37a6a1170f93.jsonl`
+- **Structured JSON:** [`cfd8afb26684b3ae4e49.json`](../../sessions/cf/cfd8afb26684b3ae4e49.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T22:07:14.185Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T22:07:14.185Z",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "content": "&lt;project_context>\n# 项目: structfuse-context\n\n## 运行环境\n- 服务器名: cqa1-21977\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/structfuse-context\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：创建 Phase 2 实验脚本框架 + 配置矩阵\n\n### 背景\n项目 structfuse-context 做跨方法二值共识（CSS）电路发现。MVP 在 GPT-2 Small / IOI 上验证 3 方法（EAP-IG + Edge Pruning + ACDC）。Phase 2 扩展到更多模型和任务。\n\n当前方法配置（来自 ROADMAP）：\n| 模型 | K | 方法 | 算法族 |\n|------|---|------|--------|\n| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |\n| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |\n\n任务候选：IOI, Greater-Than, Docstring, Indirect Object Identification variants\n\n### 你的任务\n\n**Part 1: run_phase2_experiment.py**\n\n写到本地：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py`\n\n```python\n\"\"\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\n\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\n支持配置化批量实验。\n\nUsage:\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\n    python run_phase2_experiment.py --list  # 列出所有候选实验\n\"\"\"\n```\n\n功能框架（写好接口和 TODO，不需要完全跑通）：\n\n1. **配置加载**：从 YAML 读取实验矩阵，每个实验有 model/task/methods/thresholds 等参数\n2. **实验调度**：\n   - `run_single_experiment(config)` → 调用各方法的 scoring 函数（eap_ig_scoring.compute_eap_ig_edges, edge_pruning_scoring.compute_edge_pruning_scores, ifr_scoring.compute_ifr_edges, 或 auto_circuit 的 ACDC）\n   - 自动检测模型类型选择 TransformerLens vs HuggingFace 路径\n   - 结果输出到 `results/{model}_{task}/` 目录\n3. **分析集成**：实验完成后自动调用 analyze_mvp_results.py 的分析逻辑\n4. **缓存管理**：支持断点续跑（已完成的方法跳过），缓存绑定 CANONICAL_VERSION\n5. **GPU guard**：入口处设 CUDA_VISIBLE_DEVICES\n6. **日志**：不在命令内重定向，用 Python logging 模块\n\n对于尚未实现的部分（如 auto_circuit ACDC 调用），写清晰的 TODO 注释说明需要什么。\n\n**Part 2: phase2_configs.yaml**\n\n写到本地：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/phase2_configs.yaml`\n\n```yaml\n# Phase 2 实验矩阵\n# 每个实验 = 一个 model × task × methods 组合\n\nexperiments:\n  # --- GPT-2 Small (TransformerLens, K=3 causal methods) ---\n  gpt2_ioi:\n    model: \"gpt2\"\n    model_path: null  # TransformerLens 自动下载\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.1]\n    priority: 1  # MVP 已在跑\n    \n  gpt2_greater_than:\n    model: \"gpt2\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    priority: 2\n\n  # ... 补全其他组合\n\n  # --- Qwen-2.5 0.5B (HuggingFace, K=3 with IFR) ---\n  qwen05_ioi:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    priority: 2  # MVP 后第一个\n\n  # ... Gemma-2, Llama-3.1 等\n```\n\n包含所有 4 模型 × 至少 3 任务的完整矩阵，每个实验标注 priority（1=MVP已跑, 2=MVP后立即跑, 3=有空再跑）。\n\n### 产出\n汇报：\n1. 框架的核心接口设计\n2. 实验矩阵总数（model × task 组合数）\n3. priority 1/2/3 各有多少个实验\n4. 预估全量运行时间（基于已知的各方法耗时）\n\n### 注意事项\n- 不要 SSH 到服务器\n- 文件顶部注释 + 函数 docstring\n- TODO 注释要具体（说明需要什么，而非泛泛的 \"TODO: implement\"）\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T22:07:14.188Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T22:07:14.188Z",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---
+
+## Round 1
+
+31 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T22:07:14.225Z_
+
+&lt;project_context>
+# 项目: structfuse-context
+
+## 运行环境
+- 服务器名: cqa1-21977
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/structfuse-context
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：创建 Phase 2 实验脚本框架 + 配置矩阵
+
+### 背景
+项目 structfuse-context 做跨方法二值共识（CSS）电路发现。MVP 在 GPT-2 Small / IOI 上验证 3 方法（EAP-IG + Edge Pruning + ACDC）。Phase 2 扩展到更多模型和任务。
+
+当前方法配置（来自 ROADMAP）：
+| 模型 | K | 方法 | 算法族 |
+|------|---|------|--------|
+| GPT-2 Small | 3 | EAP-IG + Edge Pruning + ACDC | gradient / mask / greedy causal |
+| Qwen-2.5 0.5B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |
+| Gemma-2 2B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |
+| Llama-3.1 8B | 3 | EAP-IG + Edge Pruning + IFR | gradient / mask / similarity |
+
+任务候选：IOI, Greater-Than, Docstring, Indirect Object Identification variants
+
+### 你的任务
+
+**Part 1: run_phase2_experiment.py**
+
+写到本地：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py`
+
+```python
+"""Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。
+
+复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，
+支持配置化批量实验。
+
+Usage:
+    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi
+    python run_phase2_experiment.py --config phase2_configs.yaml --all
+    python run_phase2_experiment.py --list  # 列出所有候选实验
+"""
+```
+
+功能框架（写好接口和 TODO，不需要完全跑通）：
+
+1. **配置加载**：从 YAML 读取实验矩阵，每个实验有 model/task/methods/thresholds 等参数
+2. **实验调度**：
+   - `run_single_experiment(config)` → 调用各方法的 scoring 函数（eap_ig_scoring.compute_eap_ig_edges, edge_pruning_scoring.compute_edge_pruning_scores, ifr_scoring.compute_ifr_edges, 或 auto_circuit 的 ACDC）
+   - 自动检测模型类型选择 TransformerLens vs HuggingFace 路径
+   - 结果输出到 `results/{model}_{task}/` 目录
+3. **分析集成**：实验完成后自动调用 analyze_mvp_results.py 的分析逻辑
+4. **缓存管理**：支持断点续跑（已完成的方法跳过），缓存绑定 CANONICAL_VERSION
+5. **GPU guard**：入口处设 CUDA_VISIBLE_DEVICES
+6. **日志**：不在命令内重定向，用 Python logging 模块
+
+对于尚未实现的部分（如 auto_circuit ACDC 调用），写清晰的 TODO 注释说明需要什么。
+
+**Part 2: phase2_configs.yaml**
+
+写到本地：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/phase2_configs.yaml`
+
+```yaml
+# Phase 2 实验矩阵
+# 每个实验 = 一个 model × task × methods 组合
+
+experiments:
+  # --- GPT-2 Small (TransformerLens, K=3 causal methods) ---
+  gpt2_ioi:
+    model: "gpt2"
+    model_path: null  # TransformerLens 自动下载
+    task: "ioi"
+    methods: ["eap_ig", "edge_pruning", "acdc"]
+    backend: "transformerlens"
+    thresholds:
+      acdc: [0.01, 0.03, 0.1]
+    priority: 1  # MVP 已在跑
+    
+  gpt2_greater_than:
+    model: "gpt2"
+    task: "greater_than"
+    methods: ["eap_ig", "edge_pruning", "acdc"]
+    backend: "transformerlens"
+    priority: 2
+
+  # ... 补全其他组合
+
+  # --- Qwen-2.5 0.5B (HuggingFace, K=3 with IFR) ---
+  qwen05_ioi:
+    model: "Qwen/Qwen2.5-0.5B"
+    model_path: "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/"
+    task: "ioi"
+    methods: ["eap_ig", "edge_pruning", "ifr"]
+    backend: "huggingface"
+    priority: 2  # MVP 后第一个
+
+  # ... Gemma-2, Llama-3.1 等
+```
+
+包含所有 4 模型 × 至少 3 任务的完整矩阵，每个实验标注 priority（1=MVP已跑, 2=MVP后立即跑, 3=有空再跑）。
+
+### 产出
+汇报：
+1. 框架的核心接口设计
+2. 实验矩阵总数（model × task 组合数）
+3. priority 1/2/3 各有多少个实验
+4. 预估全量运行时间（基于已知的各方法耗时）
+
+### 注意事项
+- 不要 SSH 到服务器
+- 文件顶部注释 + 函数 docstring
+- TODO 注释要具体（说明需要什么，而非泛泛的 "TODO: implement"）
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d7553ab7-032d-427d-8149-54844310075a",
+  "type": "user",
+  "uuid": "f86c40ce-0c1a-40ef-86cf-6fb8f9ba6706",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T22:07:14.224Z_
+
+```json
+{
+  "parentUuid": "f86c40ce-0c1a-40ef-86cf-6fb8f9ba6706",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "14b65ba2-1a29-40c4-8398-a54111173a2e",
+  "timestamp": "2026-05-12T22:07:14.224Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T22:07:14.224Z_
+
+```json
+{
+  "parentUuid": "14b65ba2-1a29-40c4-8398-a54111173a2e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "28327a1a-8af6-45a9-b490-3e41ca300fc4",
+  "timestamp": "2026-05-12T22:07:14.224Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-12T22:07:14.224Z_
+
+```json
+{
+  "parentUuid": "28327a1a-8af6-45a9-b490-3e41ca300fc4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7764721b-d390-4777-9a89-584b874cf768",
+  "timestamp": "2026-05-12T22:07:14.224Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Create Phase 2 experiment framework and config matrix",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T22:07:17.258Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the project structure and existing code to make the framework consistent with what's already there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7764721b-d390-4777-9a89-584b874cf768",
+  "isSidechain": false,
+  "requestId": "req_011CaySEHu1Jty6WTB4DmczJ",
+  "type": "assistant",
+  "uuid": "181fe9da-3c32-4e33-8dc0-30c4ec430e83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzWJbuqdPfDaYEdpKzXFpA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12392,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12392,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12392,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12392
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-12T22:07:17.832Z_
+
+先看现有代码结构和关键接口。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "181fe9da-3c32-4e33-8dc0-30c4ec430e83",
+  "isSidechain": false,
+  "requestId": "req_011CaySEHu1Jty6WTB4DmczJ",
+  "type": "assistant",
+  "uuid": "ea4c6225-0ff2-4fc5-8afc-2f8b169ddcd0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzWJbuqdPfDaYEdpKzXFpA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12392,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12392,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12392,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12392
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T22:07:22.293Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_018FP38TDWhQ5y5E72XLwMXA`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Explore structfuse-context codebase",
+  "prompt": "I need to understand the structfuse-context project structure to write a Phase 2 experiment framework. The project is at /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/\n\nPlease find:\n1. The directory structure (especially artifacts/, any existing scripts like run_circus.py, analyze_mvp_results.py, scoring modules)\n2. The interfaces of key modules: eap_ig_scoring, edge_pruning_scoring, ifr_scoring, any ACDC-related code\n3. How run_circus.py works (its main pipeline, config loading, how it calls methods)\n4. How analyze_mvp_results.py works (what analysis it does)\n5. Any existing YAML configs or experiment configs\n6. The ROADMAP.md content\n7. Any constants like CANONICAL_VERSION\n\nSearch breadth: very thorough. Report file paths, key function signatures, and how they connect."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea4c6225-0ff2-4fc5-8afc-2f8b169ddcd0",
+  "isSidechain": false,
+  "requestId": "req_011CaySEHu1Jty6WTB4DmczJ",
+  "type": "assistant",
+  "uuid": "60f5c311-0ab2-4804-a739-6e26073f94b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzWJbuqdPfDaYEdpKzXFpA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12392,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 377,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12392,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 377,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12392,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12392
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T22:09:07.034Z_
+
+<details><summary>↩ Tool result · `toolu_018FP38TDWhQ5y5E72XLwMXA`</summary>
+
+````text
+Perfect! Now I have all the information needed. Let me provide a comprehensive report.
+
+## StructFuse-Context Project Structure & Phase 2 Framework
+
+### 1. DIRECTORY STRUCTURE
+
+**Root directories:**
+```
+/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/
+├── ROADMAP.md                           # Project milestones & gate rules
+├── AGENTS.md                            # Agent orchestration log
+├── decisions.yaml                       # Decision log (D001-D011)
+├── memory.md                            # L1 lessons learned (GPU, cache, edge names)
+├── registry.yaml                        # Artifact registry
+├── report.md                            # MVP status
+├── artifacts/                           # Main code directory
+│   ├── run_circus.py                   # Phase 2 entry point (config-driven pipeline)
+│   ├── analyze_mvp_results.py          # MVP analysis tool
+│   ├── model_adapter.py                # Unified model interface (GPT-2 TL + HF)
+│   ├── css.py                          # CSS binarization module
+│   ├── eap_ig_scoring.py               # EAP-IG for HuggingFace (phase 2)
+│   ├── edge_pruning_scoring.py         # Edge Pruning L0 for HuggingFace (phase 2)
+│   ├── ifr_scoring.py                  # IFR activation decomposition
+│   ├── test_*.py                       # Smoke tests for each module
+│   ├── structfuse-mvp/                 # MVP TransformerLens implementations
+│   │   ├── run_mvp.py                  # MVP main pipeline
+│   │   ├── circuit_discovery.py        # K=3 method dispatch (EAP-IG, EP, ACDC)
+│   │   ├── edge_pruning_l0.py          # L0 pruning (TL version)
+│   │   ├── ifr_discovery.py            # IFR (TL version)
+│   │   ├── config.py                   # MVPConfig & LargeModelConfig
+│   │   ├── css.py                      # CSS for MVP
+│   │   ├── circus.py                   # CIRCUS config-bagging
+│   │   ├── cross_tabulate.py           # Cross-tabulation
+│   │   ├── evaluation.py               # Faithfulness metrics
+│   │   └── API_SURVEY.md / LARGE_MODEL_THIRD_METHOD.md
+│   ├── _project/                       # Internal artifact versions
+│   │   ├── intermediate/               # Previous versions of modules
+│   │   └── report/
+│   └── deploy_phase2.sh                # Deployment script
+├── checkpoints/                        # Model checkpoints
+├── logs/                               # Worker logs
+└── task_context/                       # Agent conversation history
+```
+
+---
+
+### 2. KEY CONSTANTS
+
+**CANONICAL_VERSION (model_adapter.py, line 28):**
+```python
+CANONICAL_VERSION = "v2"
+```
+This ties cached scores to edge name format. Used in `run_circus.py` for cache validation:
+- Cache path: `cache_dir/{model_slug}/{task}/{method}_{CANONICAL_VERSION}_{hash16}.json`
+- Cache invalidation: If code changes edge naming, increment CANONICAL_VERSION
+
+**Edge naming canonical forms:**
+- **TransformerLens:** `"blocks.{L}.attn.hook_result[{H}] -> blocks.{L'}.attn.hook_q[{H'}]"`
+- **HuggingFace:** `"{src}->{dst}"` with node names like `a{L}.h{H}.q`, `m{L}`, `input`
+- Normalization patterns in `model_adapter.py` lines 47-96
+
+---
+
+### 3. RUN_CIRCUS.PY PIPELINE (Phase 2 Entry Point)
+
+**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_circus.py` (599 lines)
+
+**Main function signature (line 459):**
+```python
+def run_pipeline(config: Optional[Dict[str, Any]] = None) -> Dict[str, Any]
+```
+
+**Pipeline steps:**
+
+1. **Config loading (lines 460-463):**
+   - Merges DEFAULT_CONFIG with runtime overrides
+   - Sets CUDA_VISIBLE_DEVICES from config (D007 lesson)
+   - Supports JSON/YAML config files via CLI
+
+2. **Model loading (lines 471-479):**
+   - `ModelAdapter.from_pretrained()` auto-detects backend:
+     - GPT-2 → TransformerLens
+     - Qwen/Llama/Gemma/Mistral → HuggingFace
+   - Returns ModelInfo with architecture details
+
+3. **Dataset loading (lines 481-486):**
+   - IOI: 50 samples of "When {name1} and {name2} went to the store, {name1} gave..."
+   - Greater-than: Templated arithmetic examples
+   - Dispatched by task name via `load_dataset()` (lines 67-103)
+
+4. **Method dispatch (lines 495-512):**
+   - Iterates over `cfg['methods']` (default: `["eap_ig", "edge_pruning", "ifr"]`)
+   - Each method dispatched by `run_method()` (line 506):
+     - Key: `(method, backend)` tuple
+     - Dispatch table lines 228-240
+     - Returns Dict[str, float] with canonical edge names
+   - Caching: `load_cached()` / `save_cache()` with CANONICAL_VERSION validation
+
+5. **Binarization (lines 514-518):**
+   - Calls `_binarize_method()` per method
+   - Delegates to `css.binarize_scores()` with per-method strategy:
+     - EAP-IG: `topn` (n=200)
+     - Edge Pruning: `topn` (n=200)
+     - IFR: `unique_score_rank` (n=50) to avoid layer-block voting (D010)
+
+6. **CSS computation (lines 520-526):**
+   - `compute_css()` counts method agreement per edge
+   - Distribution histogram via `css_distribution()`
+   - Thresholding at 0.67 (≥2/3 methods) for K=3
+
+7. **CIRCUS stability (lines 528-540):**
+   - Config-bagging on primary method (default: EAP-IG)
+   - `config_bag()`: sweep B=10 percentile thresholds
+   - Classification via `classify_tiers()`: core (≥1.0) / contingent / noise
+
+8. **Cross-tabulation (lines 542-549):**
+   - `cross_tabulate()` bins edges into:
+     - stable_core: CIRCUS-core AND CSS≥threshold
+     - method_specific: CIRCUS-core but not CSS
+     - cross_unstable: CSS high but not CIRCUS-core
+     - noise: neither
+   - Computes off_diagonal_pct = method_specific / core_total
+
+9. **Results output (lines 551-579):**
+   - JSON: `{model_slug}_{task}_K{K}.json`
+   - Fields: config, timings_sec, method_edge_counts, css_distribution, cross_table, etc.
+
+**Config structure (lines 36-60):**
+```python
+DEFAULT_CONFIG: Dict[str, Any] = {
+    "model": "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/",
+    "task": "ioi",
+    "methods": ["eap_ig", "edge_pruning", "ifr"],
+    "K": 3,
+    "num_samples": 50,
+    "gpu_id": "5",
+    "binarize": {
+        "eap_ig":       {"strategy": "topn", "n": 200},
+        "edge_pruning": {"strategy": "topn", "n": 200},
+        "ifr":          {"strategy": "unique_score_rank", "n": 50},  # D010
+    },
+    "eap_ig_steps": 5,
+    "edge_pruning_epochs": 100,
+    "edge_pruning_lambda": 1e-2,
+    "ifr_threshold": 0.1,
+    "css_threshold": 0.67,
+    "circus_B": 10,
+    "circus_core_threshold": 1.0,
+    "circus_contingent_threshold": 0.5,
+    "device": "cuda",
+    "seed": 42,
+    "output_dir": "./results",
+    "cache_dir": "./cache",
+}
+```
+
+---
+
+### 4. ANALYZE_MVP_RESULTS.PY (Analysis Tool)
+
+**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/analyze_mvp_results.py` (618 lines)
+
+**Main function signature (line 456):**
+```python
+def run_analysis(
+    results_dir: Path,
+    output_dir: Path,
+    top_n: int = 200,
+    dry_run: bool = False,
+) -> Dict[str, Any]
+```
+
+**Analysis pipeline:**
+
+1. **Data loading (lines 464-479):**
+   - Auto-detects per-method cache files via `_find_cache_files()`
+   - Supports: `cache_{method}.json`, `cache/{model_slug}/{task}/{method}*.json`
+   - Loads via `_load_scores_from_file()` (handles both flat and structured JSON)
+   - Optional pipeline results from `mvp_results.json`
+
+2. **Binarization (lines 481-491):**
+   - Method dispatch via `binarize_method()`:
+     - ACDC: threshold at 0.05 (tau)
+     - Edge Pruning: threshold at 0.5
+     - EAP-IG/IFR: top-N (default 200)
+   - Computes union of all method edges
+
+3. **Statistics (lines 493-537):**
+   - Per-method circuit sizes
+   - Pairwise Jaccard via `compute_pairwise_css()`
+   - Full cross-tabulation via `compute_css_matrix_full()`:
+     - Cell counts for all 2^K combinations
+     - off_diagonal = edges where methods disagree (not in all-ones cell)
+     - off_diagonal_pct = off_diagonal / (edges with at least one method)
+
+4. **CIRCUS tiers (lines 523-537):**
+   - `compute_circus_tiers()`: config-bagging on primary method
+   - Cross-tabulation via `compute_cross_table()`
+   - Outputs: stable_core, method_specific, cross_unstable, noise
+
+5. **ACDC sensitivity (lines 539-545):**
+   - Sweeps tau in [0.01, 0.03, 0.05, 0.1, 0.3]
+   - For each tau: recomputes off_diagonal_pct
+   - Helps understand ACDC threshold impact
+
+6. **Gate judgment (lines 547-551):**
+   - `gate_judgment()` applies MVP gate rules (D001-D003):
+     - ≥10% off-diagonal → PASS_MAIN
+     - 5-10% → PASS_FINDINGS (add Arithmetic verification)
+     - 2-5% → MARGINAL (Findings track)
+     - <2% → KILL (if ΔF also insignificant)
+
+7. **Visualization (lines 554-557):**
+   - CSS heatmap (pairwise Jaccard) via matplotlib
+   - Venn diagram (3-method overlap) or bar chart
+   - Saves as PNG to output_dir
+
+8. **JSON output (lines 559-589):**
+   - File: `analysis_results.json`
+   - Fields: methods, K, per_method_edges, css_cross_tabulation, circus_cross_table, acdc_sensitivity, gate
+
+**CLI usage (lines 596-614):**
+```bash
+python analyze_mvp_results.py \
+    --results-dir /root/structfuse-context \
+    --output-dir ./analysis \
+    --top-n 200 \
+    --dry-run
+```
+
+---
+
+### 5. SCORING MODULES INTERFACES
+
+#### 5.1 EAP-IG Scoring (eap_ig_scoring.py)
+
+**Function signature:**
+```python
+def compute_eap_ig_scores(
+    model: nn.Module,
+    clean_inputs: Tensor,
+    corrupt_inputs: Tensor,
+    metric_fn: Callable,
+    target_ids: Optional[Tensor] = None,
+    ig_steps: int = 5,
+    device: str = "cuda",
+) -> Dict[str, float]
+```
+
+**Output:** Dict[str, float] with edge names like `"input->a0.h0.q"`, `"a0.h0->m1"`, etc.
+
+**Key components:**
+- `_get_model_info()`: Detects arch (llama_like, gpt2)
+- `_prepare_inputs()`: Converts various input formats to Tensor
+- `_decompose_per_head()`: Projects head outputs through projection matrices
+- **Backward compatibility:** HuggingFace backend (`_run_eap_ig_hf`) marked NotImplementedError in run_circus.py line 172 — Phase 2 requires HF implementation
+
+#### 5.2 Edge Pruning Scoring (edge_pruning_scoring.py)
+
+**Class:** `HardConcrete(nn.Module)` (lines 40-74)
+```python
+def forward(self, training: bool = True) -> torch.Tensor
+def l0_penalty(self) -> torch.Tensor
+def expected_masks(self) -> torch.Tensor  # Final scoring
+```
+
+**Topology:** `_build_edge_topology()` (lines 125-150)
+- Enumerates all edges: input → all layers
+- Per-head Q masks (independent)
+- Per-KV-group K/V masks (GQA shared)
+- Per-source MLP masks
+- Returns: (edge_names, edge_to_mask_idx, n_masks)
+
+**Hook strategy (v2, D011):**
+- Layer pre-hooks abandoned
+- New: 4 submodule hooks per layer (q_proj, k_proj, v_proj, mlp)
+- Each submodule applies corresponding edge mask in forward
+
+**Output:** Dict[str, float] with mask scores 0-1 per edge
+
+#### 5.3 IFR Scoring (ifr_scoring.py)
+
+**Function signature:**
+```python
+def compute_ifr_edges(
+    model,
+    dataset: Union[torch.Tensor, dict, list],
+    metric_fn: Optional[Callable] = None,
+    threshold: float = 0.1,
+    device: str = "cuda",
+) -> Dict[str, float]
+```
+
+**Core metric (line 39):**
+```python
+def _proximity(y_u: torch.Tensor, x_v: torch.Tensor) -> float:
+    diff_norm = (y_u - x_v).abs().sum(dim=-1)
+    base_norm = x_v.abs().sum(dim=-1)
+    return (base_norm - diff_norm).clamp(min=0).mean().item()
+```
+
+**Properties:**
+- Single forward pass + activation caching (no backward)
+- **Critical:** All heads at same (src, dst_layer) get identical proximity scores
+- Causes 36 tied edges per layer-pair (D010 issue)
+- Solution: Use `unique_score_rank` binarization (css.py line 53)
+
+**Output:** Dict[str, float] with canonical edge names
+
+---
+
+### 6. SUPPORTING MODULES
+
+#### 6.1 Model Adapter (model_adapter.py, 306 lines)
+
+**Key class:** `ModelAdapter`
+
+**Factory methods:**
+- `from_pretrained(model_name: str, device: str = "cuda")` (line 119)
+  - Auto-detects: `_is_gpt2()` → TL, else → HF
+  - TL: via `HookedTransformer.from_pretrained()`
+  - HF: via `AutoModelForCausalLM.from_pretrained()`
+
+**ModelInfo dataclass (lines 31-40):**
+```python
+@dataclass
+class ModelInfo:
+    arch: str                   # "gpt2" | "qwen2" | "llama" | ...
+    n_layers: int
+    n_heads: int
+    n_kv_heads: int             # GQA
+    d_model: int
+    head_dim: int
+    backend: str                # "transformerlens" | "huggingface"
+    model_name: str
+```
+
+**Canonical conversion:**
+- TL → canonical: `_tl_to_canonical()` (lines 61-66)
+  - Pattern: `hook_embed` → `input`, `blocks.{L}.attn.hook_result[{H}]` → `a{L}.h{H}`
+- HF → canonical: `_hf_to_canonical()` (lines 69-80)
+  - Pattern: `model.layers.{L}.self_attn.o_proj` → `a{L}`
+
+**Hook point mapping:** `get_hook_points()` returns {canonical_name: module_path}
+
+**GQA support:** `gqa_kv_group()` maps query head to KV group
+
+#### 6.2 CSS Module (css.py, 128 lines)
+
+**Functions:**
+- `binarize_scores(scores, strategy, n=200, threshold=0.01, percentile=95.0)` (lines 18-59)
+  - Strategies: topn, threshold, percentile_threshold, unique_score_rank
+  - **unique_score_rank:** Ranks by unique score values (fixes D010 block-voting)
+
+- `compute_css_matrix(method_circuits, all_edges)` (lines 62-112)
+  - Returns: cell_counts, css_core, off_diagonal, off_diagonal_pct, per_method_counts
+
+- `circus_score(method_circuits, edge)` (lines 115-127)
+  - Fraction of methods including edge
+
+---
+
+### 7. MVP FRAMEWORK (structfuse-mvp/)
+
+**Entry point:** `run_mvp.py` (265 lines)
+
+**Main pipeline:**
+```python
+def main():
+    # 1. Load model + data
+    model, dataset = load_model_and_data(config)
+    
+    # 2. Run K=3 methods (via circuit_discovery.run_all_methods)
+    all_scores = run_all_methods(model, dataset, metric_fn, config)
+    
+    # 3. Binarize
+    method_circuits = {m: binarize_scores(scores, m) for m, scores in all_scores.items()}
+    
+    # 4. CIRCUS config-bagging (EAP-IG only)
+    eap_stability, circus_tiers = run_circus(all_scores["eap_ig"], config)
+    
+    # 5. CSS across K=3 methods
+    css_scores = compute_css(method_circuits, K=3)
+    
+    # 6. Cross-tabulation
+    table = cross_tabulate(circus_tiers, css_scores, threshold=0.67)
+    
+    # 7. Evaluation (faithfulness)
+    eval_results = evaluate_all_circuits(model, circuits_to_eval, dataset, metric)
+    
+    # 8. MVP gate
+    pct = compute_off_diagonal(table) * 100
+    gate_verdict = "PASS_MAIN" if pct >= 10 else "PASS_FINDINGS" if pct >= 5 else ...
+```
+
+**Config (structfuse-mvp/config.py):**
+```python
+@dataclass
+class MVPConfig:
+    model_name: str = "gpt2-small"
+    task: str = "ioi"
+    methods: List[str] = ["eap_ig", "edge_pruning", "acdc"]  # MVP uses ACDC
+    K: int = 3
+    css_thresholds: List[float] = [0.0, 0.33, 0.67, 1.0]
+    css_default_threshold: float = 0.67
+    circus_B: int = 10
+    eap_ig_steps: int = 5
+    eap_ig_topn: int = 100
+    acdc_threshold: float = 0.05
+
+@dataclass
+class LargeModelConfig(MVPConfig):
+    model_name: str = "Qwen/Qwen2.5-0.5B"
+    methods: List[str] = ["eap_ig", "edge_pruning", "ifr"]  # Phase 2: IFR replaces ACDC
+    eap_ig_topn: int = 200
+```
+
+---
+
+### 8. ROADMAP & DECISION LOG
+
+**ROADMAP.md highlights:**
+
+| Phase | Models | Methods | Gate Rule | Status |
+|-------|--------|---------|-----------|--------|
+| MVP | GPT-2 Small | EAP-IG + EP + ACDC (K=3) | ≥10% off-diagonal | Pending |
+| Phase 2 | Qwen-2.5 0.5B | EAP-IG + EP + IFR (K=3) | K=3 checkpoint pass | ~3 days post-MVP |
+| Phase 3 | Qwen, Gemma, Llama | K=3 × 4 tasks + OOD | Full CSS matrix | ~4 days |
+| Phase 4 | All | — | Analysis + writing | ~3 days, deadline 2026-05-22 |
+
+**Key decisions (decisions.yaml):**
+
+| ID | Summary | Impact |
+|----|---------|--------|
+| D006 | IFR as third method (D005 dependent) | Large model K=3 now viable |
+| D010 | unique_score_rank for IFR | Fixes D006 layer-block voting bias |
+| D011 | EP v2 hook restructure (D010 dependent) | Fixes MLP mask + Q/K/V collapse issues |
+| D009 | Edge name normalization (critical bug) | Unified canonical format |
+| D008 | MVP ≥10% valid under mask_gradient proxy | MVP result interpretation |
+| D007 | GPU isolation fix (L1 lesson) | CUDA_VISIBLE_DEVICES enforcement |
+
+---
+
+### 9. CRITICAL IMPLEMENTATION DETAILS FOR PHASE 2
+
+**1. EAP-IG HuggingFace backend (NOT YET IMPLEMENTED):**
+- File: `eap_ig_scoring.py` line 171-173 raises NotImplementedError
+- Required for Phase 2 on Qwen-2.5
+- Hook points: model.layers.{i} (pre-hook for resid_pre), self_attn.o_proj (per-head decomposition), mlp
+
+**2. Edge Pruning v2 hook restructure (D011):**
+- Current file: `edge_pruning_scoring.py` uses layer pre-hook
+- Problem: MLP mask not applied in forward; Q/K/V masks aggregated to scalar
+- Solution: Replace with 4 submodule hooks (q_proj, k_proj, v_proj, mlp) per layer
+
+**3. IFR binarization strategy (D010):**
+- Problem: 36 tied scores per layer-pair (residual-stream shared across heads)
+- Solution: Use `unique_score_rank` in `css.binarize_scores()` instead of `topn`
+- Default config in `run_circus.py` line 46: `"unique_score_rank"` with n=50
+
+**4. GPU safety (D007, memory.md):**
+- All scripts must set `os.environ['CUDA_VISIBLE_DEVICES']` BEFORE torch import
+- `run_circus.py` line 24 enforces this
+- Memory.md line 6: "后续所有实验脚本必须在第一行设置 CUDA_VISIBLE_DEVICES"
+
+**5. Cache invalidation:**
+- CANONICAL_VERSION in model_adapter.py line 28
+- Cache key includes: model, task, method, canonical_version, hyperparams
+- If edge names change, increment CANONICAL_VERSION + clear old caches
+
+**6. Edge naming normalization (D009):**
+- Critical: _normalize_* functions in structfuse-mvp/circuit_discovery.py must produce same format
+- Canonical form: `"{src}->{dst}"` (no spaces around arrow)
+- Test: All three methods' edges must match exactly in css.py compute_css()
+
+---
+
+### 10. TESTING FRAMEWORK
+
+**Test files (artifacts/):**
+- `test_css.py`: 8 tests for binarization, CSS matrix, CIRCUS score
+- `test_eap_ig_scoring.py`: AST validation + GPT-2 integration
+- `test_edge_pruning_scoring.py`: Topology, GQA sharing, mask independence
+- `test_ifr_scoring.py`: Proximity metric, edge coverage
+
+**Smoke test pattern:**
+```python
+def test_module_signature():
+    """AST-based validation of function signatures."""
+    import ast
+    tree = ast.parse(open("module.py").read())
+    # Assert expected functions exist with correct signatures
+    
+def test_integration_gpt2():
+    """Optional: run on actual GPT-2 if available."""
+    from transformer_lens import HookedTransformer
+    model = HookedTransformer.from_pretrained("gpt2-small")
+    scores = compute_scores(model, ...)
+    assert isinstance(scores, dict) and all(isinstance(v, float) for v in scores.values())
+```
+
+---
+
+### 11. DEPLOYMENT & EXECUTION
+
+**Phase 2 deployment script:** `deploy_phase2.sh` (in artifacts/)
+
+**CLI entry points:**
+
+```bash
+# Run full Phase 2 pipeline with default config
+python run_circus.py
+
+# Custom config (JSON)
+python run_circus.py config.json
+
+# Custom config (YAML)
+python run_circus.py config.yaml
+
+# Analyze MVP results
+python analyze_mvp_results.py \
+    --results-dir /root/structfuse-context \
+    --output-dir ./analysis \
+    --top-n 200
+```
+
+**Expected outputs:**
+
+```
+results/
+├── Qwen_Qwen2.5-0.5B__ioi_K3.json       # run_circus output
+├── analysis/
+│   ├── analysis_results.json             # analyze_mvp_results output
+│   ├── css_heatmap.png
+│   └── edge_overlap.png                  # Venn or bar chart
+└── cache/
+    ├── Qwen_Qwen2.5-0.5B__/
+    │   └── ioi/
+    │       ├── eap_ig_v2_&lt;hash>.json
+    │       ├── edge_pruning_v2_&lt;hash>.json
+    │       └── ifr_v2_&lt;hash>.json
+```
+
+---
+
+### 12. SUMMARY OF KEY FUNCTION SIGNATURES FOR PHASE 2 FRAMEWORK
+
+```python
+# run_circus.py
+def run_pipeline(config: Optional[Dict[str, Any]] = None) -> Dict[str, Any]
+def run_method(adapter: ModelAdapter, method: str, dataset: torch.Tensor, 
+               metric: Optional[Callable], cfg: dict) -> Dict[str, float]
+def compute_css(method_circuits: Dict[str, Set[str]], K: int) -> Dict[str, float]
+def cross_tabulate(tiers: Dict[str, str], css_scores: Dict[str, float], 
+                   css_thr: float) -> Dict[str, Any]
+
+# analyze_mvp_results.py
+def run_analysis(results_dir: Path, output_dir: Path, top_n: int = 200,
+                 dry_run: bool = False) -> Dict[str, Any]
+def gate_judgment(off_diagonal_pct: float) -> Dict[str, str]
+
+# model_adapter.py
+class ModelAdapter:
+    @classmethod
+    def from_pretrained(cls, model_name: str, device: str = "cuda") -> ModelAdapter
+    def to_canonical_edges(self, edge_scores: Dict[str, float], method: str) -> Dict[str, float]
+
+# css.py
+def binarize_scores(scores: Dict[str, float], strategy: BinarizeStrategy,
+                    n: int = 200, threshold: float = 0.01) -> set[str]
+def compute_css_matrix(method_circuits: Dict[str, set[str]], all_edges: set[str]) -> Dict
+
+# Scoring modules (Phase 2 HF implementations)
+def compute_eap_ig_scores(model, clean_inputs, corrupt_inputs, metric_fn, ...) -> Dict[str, float]
+def compute_ifr_edges(model, dataset, metric_fn=None, threshold=0.1, ...) -> Dict[str, float]
+# Edge Pruning: use eap_ig_scoring.HardConcrete + _masked_forward pattern
+```
+
+---
+
+This comprehensive framework enables Phase 2 to:
+1. **Scale to large models** (Qwen-2.5, Llama-3.1, Gemma-2) via HuggingFace backends
+2. **Maintain edge-level precision** via canonical naming (D009) and proper hook placement (D011)
+3. **Handle IFR tied scores** via unique_score_rank binarization (D010)
+4. **Reproduce MVP analysis** via run_circus.py + analyze_mvp_results.py
+5. **Gate progression** via off-diagonal_pct thresholds (D001-D003)
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "60f5c311-0ab2-4804-a739-6e26073f94b2",
+  "isSidechain": false,
+  "promptId": "d7553ab7-032d-427d-8149-54844310075a",
+  "type": "user",
+  "uuid": "6494aa07-bf58-421d-8bda-f71268130e58",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to understand the structfuse-context project structure to write a Phase 2 experiment framework. The project is at /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/\n\nPlease find:\n1. The directory structure (especially artifacts/, any existing scripts like run_circus.py, analyze_mvp_results.py, scoring modules)\n2. The interfaces of key modules: eap_ig_scoring, edge_pruning_scoring, ifr_scoring, any ACDC-related code\n3. How run_circus.py works (its main pipeline, config loading, how it calls methods)\n4. How analyze_mvp_results.py works (what analysis it does)\n5. Any existing YAML configs or experiment configs\n6. The ROADMAP.md content\n7. Any constants like CANONICAL_VERSION\n\nSearch breadth: very thorough. Report file paths, key function signatures, and how they connect.",
+    "agentId": "a56a48656517bd500",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now I have all the information needed. Let me provide a comprehensive report.\n\n## StructFuse-Context Project Structure & Phase 2 Framework\n\n### 1. DIRECTORY STRUCTURE\n\n**Root directories:**\n```\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/\n├── ROADMAP.md                           # Project milestones & gate rules\n├── AGENTS.md                            # Agent orchestration log\n├── decisions.yaml                       # Decision log (D001-D011)\n├── memory.md                            # L1 lessons learned (GPU, cache, edge names)\n├── registry.yaml                        # Artifact registry\n├── report.md                            # MVP status\n├── artifacts/                           # Main code directory\n│   ├── run_circus.py                   # Phase 2 entry point (config-driven pipeline)\n│   ├── analyze_mvp_results.py          # MVP analysis tool\n│   ├── model_adapter.py                # Unified model interface (GPT-2 TL + HF)\n│   ├── css.py                          # CSS binarization module\n│   ├── eap_ig_scoring.py               # EAP-IG for HuggingFace (phase 2)\n│   ├── edge_pruning_scoring.py         # Edge Pruning L0 for HuggingFace (phase 2)\n│   ├── ifr_scoring.py                  # IFR activation decomposition\n│   ├── test_*.py                       # Smoke tests for each module\n│   ├── structfuse-mvp/                 # MVP TransformerLens implementations\n│   │   ├── run_mvp.py                  # MVP main pipeline\n│   │   ├── circuit_discovery.py        # K=3 method dispatch (EAP-IG, EP, ACDC)\n│   │   ├── edge_pruning_l0.py          # L0 pruning (TL version)\n│   │   ├── ifr_discovery.py            # IFR (TL version)\n│   │   ├── config.py                   # MVPConfig & LargeModelConfig\n│   │   ├── css.py                      # CSS for MVP\n│   │   ├── circus.py                   # CIRCUS config-bagging\n│   │   ├── cross_tabulate.py           # Cross-tabulation\n│   │   ├── evaluation.py               # Faithfulness metrics\n│   │   └── API_SURVEY.md / LARGE_MODEL_THIRD_METHOD.md\n│   ├── _project/                       # Internal artifact versions\n│   │   ├── intermediate/               # Previous versions of modules\n│   │   └── report/\n│   └── deploy_phase2.sh                # Deployment script\n├── checkpoints/                        # Model checkpoints\n├── logs/                               # Worker logs\n└── task_context/                       # Agent conversation history\n```\n\n---\n\n### 2. KEY CONSTANTS\n\n**CANONICAL_VERSION (model_adapter.py, line 28):**\n```python\nCANONICAL_VERSION = \"v2\"\n```\nThis ties cached scores to edge name format. Used in `run_circus.py` for cache validation:\n- Cache path: `cache_dir/{model_slug}/{task}/{method}_{CANONICAL_VERSION}_{hash16}.json`\n- Cache invalidation: If code changes edge naming, increment CANONICAL_VERSION\n\n**Edge naming canonical forms:**\n- **TransformerLens:** `\"blocks.{L}.attn.hook_result[{H}] -> blocks.{L'}.attn.hook_q[{H'}]\"`\n- **HuggingFace:** `\"{src}->{dst}\"` with node names like `a{L}.h{H}.q`, `m{L}`, `input`\n- Normalization patterns in `model_adapter.py` lines 47-96\n\n---\n\n### 3. RUN_CIRCUS.PY PIPELINE (Phase 2 Entry Point)\n\n**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_circus.py` (599 lines)\n\n**Main function signature (line 459):**\n```python\ndef run_pipeline(config: Optional[Dict[str, Any]] = None) -> Dict[str, Any]\n```\n\n**Pipeline steps:**\n\n1. **Config loading (lines 460-463):**\n   - Merges DEFAULT_CONFIG with runtime overrides\n   - Sets CUDA_VISIBLE_DEVICES from config (D007 lesson)\n   - Supports JSON/YAML config files via CLI\n\n2. **Model loading (lines 471-479):**\n   - `ModelAdapter.from_pretrained()` auto-detects backend:\n     - GPT-2 → TransformerLens\n     - Qwen/Llama/Gemma/Mistral → HuggingFace\n   - Returns ModelInfo with architecture details\n\n3. **Dataset loading (lines 481-486):**\n   - IOI: 50 samples of \"When {name1} and {name2} went to the store, {name1} gave...\"\n   - Greater-than: Templated arithmetic examples\n   - Dispatched by task name via `load_dataset()` (lines 67-103)\n\n4. **Method dispatch (lines 495-512):**\n   - Iterates over `cfg['methods']` (default: `[\"eap_ig\", \"edge_pruning\", \"ifr\"]`)\n   - Each method dispatched by `run_method()` (line 506):\n     - Key: `(method, backend)` tuple\n     - Dispatch table lines 228-240\n     - Returns Dict[str, float] with canonical edge names\n   - Caching: `load_cached()` / `save_cache()` with CANONICAL_VERSION validation\n\n5. **Binarization (lines 514-518):**\n   - Calls `_binarize_method()` per method\n   - Delegates to `css.binarize_scores()` with per-method strategy:\n     - EAP-IG: `topn` (n=200)\n     - Edge Pruning: `topn` (n=200)\n     - IFR: `unique_score_rank` (n=50) to avoid layer-block voting (D010)\n\n6. **CSS computation (lines 520-526):**\n   - `compute_css()` counts method agreement per edge\n   - Distribution histogram via `css_distribution()`\n   - Thresholding at 0.67 (≥2/3 methods) for K=3\n\n7. **CIRCUS stability (lines 528-540):**\n   - Config-bagging on primary method (default: EAP-IG)\n   - `config_bag()`: sweep B=10 percentile thresholds\n   - Classification via `classify_tiers()`: core (≥1.0) / contingent / noise\n\n8. **Cross-tabulation (lines 542-549):**\n   - `cross_tabulate()` bins edges into:\n     - stable_core: CIRCUS-core AND CSS≥threshold\n     - method_specific: CIRCUS-core but not CSS\n     - cross_unstable: CSS high but not CIRCUS-core\n     - noise: neither\n   - Computes off_diagonal_pct = method_specific / core_total\n\n9. **Results output (lines 551-579):**\n   - JSON: `{model_slug}_{task}_K{K}.json`\n   - Fields: config, timings_sec, method_edge_counts, css_distribution, cross_table, etc.\n\n**Config structure (lines 36-60):**\n```python\nDEFAULT_CONFIG: Dict[str, Any] = {\n    \"model\": \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\",\n    \"task\": \"ioi\",\n    \"methods\": [\"eap_ig\", \"edge_pruning\", \"ifr\"],\n    \"K\": 3,\n    \"num_samples\": 50,\n    \"gpu_id\": \"5\",\n    \"binarize\": {\n        \"eap_ig\":       {\"strategy\": \"topn\", \"n\": 200},\n        \"edge_pruning\": {\"strategy\": \"topn\", \"n\": 200},\n        \"ifr\":          {\"strategy\": \"unique_score_rank\", \"n\": 50},  # D010\n    },\n    \"eap_ig_steps\": 5,\n    \"edge_pruning_epochs\": 100,\n    \"edge_pruning_lambda\": 1e-2,\n    \"ifr_threshold\": 0.1,\n    \"css_threshold\": 0.67,\n    \"circus_B\": 10,\n    \"circus_core_threshold\": 1.0,\n    \"circus_contingent_threshold\": 0.5,\n    \"device\": \"cuda\",\n    \"seed\": 42,\n    \"output_dir\": \"./results\",\n    \"cache_dir\": \"./cache\",\n}\n```\n\n---\n\n### 4. ANALYZE_MVP_RESULTS.PY (Analysis Tool)\n\n**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/analyze_mvp_results.py` (618 lines)\n\n**Main function signature (line 456):**\n```python\ndef run_analysis(\n    results_dir: Path,\n    output_dir: Path,\n    top_n: int = 200,\n    dry_run: bool = False,\n) -> Dict[str, Any]\n```\n\n**Analysis pipeline:**\n\n1. **Data loading (lines 464-479):**\n   - Auto-detects per-method cache files via `_find_cache_files()`\n   - Supports: `cache_{method}.json`, `cache/{model_slug}/{task}/{method}*.json`\n   - Loads via `_load_scores_from_file()` (handles both flat and structured JSON)\n   - Optional pipeline results from `mvp_results.json`\n\n2. **Binarization (lines 481-491):**\n   - Method dispatch via `binarize_method()`:\n     - ACDC: threshold at 0.05 (tau)\n     - Edge Pruning: threshold at 0.5\n     - EAP-IG/IFR: top-N (default 200)\n   - Computes union of all method edges\n\n3. **Statistics (lines 493-537):**\n   - Per-method circuit sizes\n   - Pairwise Jaccard via `compute_pairwise_css()`\n   - Full cross-tabulation via `compute_css_matrix_full()`:\n     - Cell counts for all 2^K combinations\n     - off_diagonal = edges where methods disagree (not in all-ones cell)\n     - off_diagonal_pct = off_diagonal / (edges with at least one method)\n\n4. **CIRCUS tiers (lines 523-537):**\n   - `compute_circus_tiers()`: config-bagging on primary method\n   - Cross-tabulation via `compute_cross_table()`\n   - Outputs: stable_core, method_specific, cross_unstable, noise\n\n5. **ACDC sensitivity (lines 539-545):**\n   - Sweeps tau in [0.01, 0.03, 0.05, 0.1, 0.3]\n   - For each tau: recomputes off_diagonal_pct\n   - Helps understand ACDC threshold impact\n\n6. **Gate judgment (lines 547-551):**\n   - `gate_judgment()` applies MVP gate rules (D001-D003):\n     - ≥10% off-diagonal → PASS_MAIN\n     - 5-10% → PASS_FINDINGS (add Arithmetic verification)\n     - 2-5% → MARGINAL (Findings track)\n     - <2% → KILL (if ΔF also insignificant)\n\n7. **Visualization (lines 554-557):**\n   - CSS heatmap (pairwise Jaccard) via matplotlib\n   - Venn diagram (3-method overlap) or bar chart\n   - Saves as PNG to output_dir\n\n8. **JSON output (lines 559-589):**\n   - File: `analysis_results.json`\n   - Fields: methods, K, per_method_edges, css_cross_tabulation, circus_cross_table, acdc_sensitivity, gate\n\n**CLI usage (lines 596-614):**\n```bash\npython analyze_mvp_results.py \\\n    --results-dir /root/structfuse-context \\\n    --output-dir ./analysis \\\n    --top-n 200 \\\n    --dry-run\n```\n\n---\n\n### 5. SCORING MODULES INTERFACES\n\n#### 5.1 EAP-IG Scoring (eap_ig_scoring.py)\n\n**Function signature:**\n```python\ndef compute_eap_ig_scores(\n    model: nn.Module,\n    clean_inputs: Tensor,\n    corrupt_inputs: Tensor,\n    metric_fn: Callable,\n    target_ids: Optional[Tensor] = None,\n    ig_steps: int = 5,\n    device: str = \"cuda\",\n) -> Dict[str, float]\n```\n\n**Output:** Dict[str, float] with edge names like `\"input->a0.h0.q\"`, `\"a0.h0->m1\"`, etc.\n\n**Key components:**\n- `_get_model_info()`: Detects arch (llama_like, gpt2)\n- `_prepare_inputs()`: Converts various input formats to Tensor\n- `_decompose_per_head()`: Projects head outputs through projection matrices\n- **Backward compatibility:** HuggingFace backend (`_run_eap_ig_hf`) marked NotImplementedError in run_circus.py line 172 — Phase 2 requires HF implementation\n\n#### 5.2 Edge Pruning Scoring (edge_pruning_scoring.py)\n\n**Class:** `HardConcrete(nn.Module)` (lines 40-74)\n```python\ndef forward(self, training: bool = True) -> torch.Tensor\ndef l0_penalty(self) -> torch.Tensor\ndef expected_masks(self) -> torch.Tensor  # Final scoring\n```\n\n**Topology:** `_build_edge_topology()` (lines 125-150)\n- Enumerates all edges: input → all layers\n- Per-head Q masks (independent)\n- Per-KV-group K/V masks (GQA shared)\n- Per-source MLP masks\n- Returns: (edge_names, edge_to_mask_idx, n_masks)\n\n**Hook strategy (v2, D011):**\n- Layer pre-hooks abandoned\n- New: 4 submodule hooks per layer (q_proj, k_proj, v_proj, mlp)\n- Each submodule applies corresponding edge mask in forward\n\n**Output:** Dict[str, float] with mask scores 0-1 per edge\n\n#### 5.3 IFR Scoring (ifr_scoring.py)\n\n**Function signature:**\n```python\ndef compute_ifr_edges(\n    model,\n    dataset: Union[torch.Tensor, dict, list],\n    metric_fn: Optional[Callable] = None,\n    threshold: float = 0.1,\n    device: str = \"cuda\",\n) -> Dict[str, float]\n```\n\n**Core metric (line 39):**\n```python\ndef _proximity(y_u: torch.Tensor, x_v: torch.Tensor) -> float:\n    diff_norm = (y_u - x_v).abs().sum(dim=-1)\n    base_norm = x_v.abs().sum(dim=-1)\n    return (base_norm - diff_norm).clamp(min=0).mean().item()\n```\n\n**Properties:**\n- Single forward pass + activation caching (no backward)\n- **Critical:** All heads at same (src, dst_layer) get identical proximity scores\n- Causes 36 tied edges per layer-pair (D010 issue)\n- Solution: Use `unique_score_rank` binarization (css.py line 53)\n\n**Output:** Dict[str, float] with canonical edge names\n\n---\n\n### 6. SUPPORTING MODULES\n\n#### 6.1 Model Adapter (model_adapter.py, 306 lines)\n\n**Key class:** `ModelAdapter`\n\n**Factory methods:**\n- `from_pretrained(model_name: str, device: str = \"cuda\")` (line 119)\n  - Auto-detects: `_is_gpt2()` → TL, else → HF\n  - TL: via `HookedTransformer.from_pretrained()`\n  - HF: via `AutoModelForCausalLM.from_pretrained()`\n\n**ModelInfo dataclass (lines 31-40):**\n```python\n@dataclass\nclass ModelInfo:\n    arch: str                   # \"gpt2\" | \"qwen2\" | \"llama\" | ...\n    n_layers: int\n    n_heads: int\n    n_kv_heads: int             # GQA\n    d_model: int\n    head_dim: int\n    backend: str                # \"transformerlens\" | \"huggingface\"\n    model_name: str\n```\n\n**Canonical conversion:**\n- TL → canonical: `_tl_to_canonical()` (lines 61-66)\n  - Pattern: `hook_embed` → `input`, `blocks.{L}.attn.hook_result[{H}]` → `a{L}.h{H}`\n- HF → canonical: `_hf_to_canonical()` (lines 69-80)\n  - Pattern: `model.layers.{L}.self_attn.o_proj` → `a{L}`\n\n**Hook point mapping:** `get_hook_points()` returns {canonical_name: module_path}\n\n**GQA support:** `gqa_kv_group()` maps query head to KV group\n\n#### 6.2 CSS Module (css.py, 128 lines)\n\n**Functions:**\n- `binarize_scores(scores, strategy, n=200, threshold=0.01, percentile=95.0)` (lines 18-59)\n  - Strategies: topn, threshold, percentile_threshold, unique_score_rank\n  - **unique_score_rank:** Ranks by unique score values (fixes D010 block-voting)\n\n- `compute_css_matrix(method_circuits, all_edges)` (lines 62-112)\n  - Returns: cell_counts, css_core, off_diagonal, off_diagonal_pct, per_method_counts\n\n- `circus_score(method_circuits, edge)` (lines 115-127)\n  - Fraction of methods including edge\n\n---\n\n### 7. MVP FRAMEWORK (structfuse-mvp/)\n\n**Entry point:** `run_mvp.py` (265 lines)\n\n**Main pipeline:**\n```python\ndef main():\n    # 1. Load model + data\n    model, dataset = load_model_and_data(config)\n    \n    # 2. Run K=3 methods (via circuit_discovery.run_all_methods)\n    all_scores = run_all_methods(model, dataset, metric_fn, config)\n    \n    # 3. Binarize\n    method_circuits = {m: binarize_scores(scores, m) for m, scores in all_scores.items()}\n    \n    # 4. CIRCUS config-bagging (EAP-IG only)\n    eap_stability, circus_tiers = run_circus(all_scores[\"eap_ig\"], config)\n    \n    # 5. CSS across K=3 methods\n    css_scores = compute_css(method_circuits, K=3)\n    \n    # 6. Cross-tabulation\n    table = cross_tabulate(circus_tiers, css_scores, threshold=0.67)\n    \n    # 7. Evaluation (faithfulness)\n    eval_results = evaluate_all_circuits(model, circuits_to_eval, dataset, metric)\n    \n    # 8. MVP gate\n    pct = compute_off_diagonal(table) * 100\n    gate_verdict = \"PASS_MAIN\" if pct >= 10 else \"PASS_FINDINGS\" if pct >= 5 else ...\n```\n\n**Config (structfuse-mvp/config.py):**\n```python\n@dataclass\nclass MVPConfig:\n    model_name: str = \"gpt2-small\"\n    task: str = \"ioi\"\n    methods: List[str] = [\"eap_ig\", \"edge_pruning\", \"acdc\"]  # MVP uses ACDC\n    K: int = 3\n    css_thresholds: List[float] = [0.0, 0.33, 0.67, 1.0]\n    css_default_threshold: float = 0.67\n    circus_B: int = 10\n    eap_ig_steps: int = 5\n    eap_ig_topn: int = 100\n    acdc_threshold: float = 0.05\n\n@dataclass\nclass LargeModelConfig(MVPConfig):\n    model_name: str = \"Qwen/Qwen2.5-0.5B\"\n    methods: List[str] = [\"eap_ig\", \"edge_pruning\", \"ifr\"]  # Phase 2: IFR replaces ACDC\n    eap_ig_topn: int = 200\n```\n\n---\n\n### 8. ROADMAP & DECISION LOG\n\n**ROADMAP.md highlights:**\n\n| Phase | Models | Methods | Gate Rule | Status |\n|-------|--------|---------|-----------|--------|\n| MVP | GPT-2 Small | EAP-IG + EP + ACDC (K=3) | ≥10% off-diagonal | Pending |\n| Phase 2 | Qwen-2.5 0.5B | EAP-IG + EP + IFR (K=3) | K=3 checkpoint pass | ~3 days post-MVP |\n| Phase 3 | Qwen, Gemma, Llama | K=3 × 4 tasks + OOD | Full CSS matrix | ~4 days |\n| Phase 4 | All | — | Analysis + writing | ~3 days, deadline 2026-05-22 |\n\n**Key decisions (decisions.yaml):**\n\n| ID | Summary | Impact |\n|----|---------|--------|\n| D006 | IFR as third method (D005 dependent) | Large model K=3 now viable |\n| D010 | unique_score_rank for IFR | Fixes D006 layer-block voting bias |\n| D011 | EP v2 hook restructure (D010 dependent) | Fixes MLP mask + Q/K/V collapse issues |\n| D009 | Edge name normalization (critical bug) | Unified canonical format |\n| D008 | MVP ≥10% valid under mask_gradient proxy | MVP result interpretation |\n| D007 | GPU isolation fix (L1 lesson) | CUDA_VISIBLE_DEVICES enforcement |\n\n---\n\n### 9. CRITICAL IMPLEMENTATION DETAILS FOR PHASE 2\n\n**1. EAP-IG HuggingFace backend (NOT YET IMPLEMENTED):**\n- File: `eap_ig_scoring.py` line 171-173 raises NotImplementedError\n- Required for Phase 2 on Qwen-2.5\n- Hook points: model.layers.{i} (pre-hook for resid_pre), self_attn.o_proj (per-head decomposition), mlp\n\n**2. Edge Pruning v2 hook restructure (D011):**\n- Current file: `edge_pruning_scoring.py` uses layer pre-hook\n- Problem: MLP mask not applied in forward; Q/K/V masks aggregated to scalar\n- Solution: Replace with 4 submodule hooks (q_proj, k_proj, v_proj, mlp) per layer\n\n**3. IFR binarization strategy (D010):**\n- Problem: 36 tied scores per layer-pair (residual-stream shared across heads)\n- Solution: Use `unique_score_rank` in `css.binarize_scores()` instead of `topn`\n- Default config in `run_circus.py` line 46: `\"unique_score_rank\"` with n=50\n\n**4. GPU safety (D007, memory.md):**\n- All scripts must set `os.environ['CUDA_VISIBLE_DEVICES']` BEFORE torch import\n- `run_circus.py` line 24 enforces this\n- Memory.md line 6: \"后续所有实验脚本必须在第一行设置 CUDA_VISIBLE_DEVICES\"\n\n**5. Cache invalidation:**\n- CANONICAL_VERSION in model_adapter.py line 28\n- Cache key includes: model, task, method, canonical_version, hyperparams\n- If edge names change, increment CANONICAL_VERSION + clear old caches\n\n**6. Edge naming normalization (D009):**\n- Critical: _normalize_* functions in structfuse-mvp/circuit_discovery.py must produce same format\n- Canonical form: `\"{src}->{dst}\"` (no spaces around arrow)\n- Test: All three methods' edges must match exactly in css.py compute_css()\n\n---\n\n### 10. TESTING FRAMEWORK\n\n**Test files (artifacts/):**\n- `test_css.py`: 8 tests for binarization, CSS matrix, CIRCUS score\n- `test_eap_ig_scoring.py`: AST validation + GPT-2 integration\n- `test_edge_pruning_scoring.py`: Topology, GQA sharing, mask independence\n- `test_ifr_scoring.py`: Proximity metric, edge coverage\n\n**Smoke test pattern:**\n```python\ndef test_module_signature():\n    \"\"\"AST-based validation of function signatures.\"\"\"\n    import ast\n    tree = ast.parse(open(\"module.py\").read())\n    # Assert expected functions exist with correct signatures\n    \ndef test_integration_gpt2():\n    \"\"\"Optional: run on actual GPT-2 if available.\"\"\"\n    from transformer_lens import HookedTransformer\n    model = HookedTransformer.from_pretrained(\"gpt2-small\")\n    scores = compute_scores(model, ...)\n    assert isinstance(scores, dict) and all(isinstance(v, float) for v in scores.values())\n```\n\n---\n\n### 11. DEPLOYMENT & EXECUTION\n\n**Phase 2 deployment script:** `deploy_phase2.sh` (in artifacts/)\n\n**CLI entry points:**\n\n```bash\n# Run full Phase 2 pipeline with default config\npython run_circus.py\n\n# Custom config (JSON)\npython run_circus.py config.json\n\n# Custom config (YAML)\npython run_circus.py config.yaml\n\n# Analyze MVP results\npython analyze_mvp_results.py \\\n    --results-dir /root/structfuse-context \\\n    --output-dir ./analysis \\\n    --top-n 200\n```\n\n**Expected outputs:**\n\n```\nresults/\n├── Qwen_Qwen2.5-0.5B__ioi_K3.json       # run_circus output\n├── analysis/\n│   ├── analysis_results.json             # analyze_mvp_results output\n│   ├── css_heatmap.png\n│   └── edge_overlap.png                  # Venn or bar chart\n└── cache/\n    ├── Qwen_Qwen2.5-0.5B__/\n    │   └── ioi/\n    │       ├── eap_ig_v2_&lt;hash>.json\n    │       ├── edge_pruning_v2_&lt;hash>.json\n    │       └── ifr_v2_&lt;hash>.json\n```\n\n---\n\n### 12. SUMMARY OF KEY FUNCTION SIGNATURES FOR PHASE 2 FRAMEWORK\n\n```python\n# run_circus.py\ndef run_pipeline(config: Optional[Dict[str, Any]] = None) -> Dict[str, Any]\ndef run_method(adapter: ModelAdapter, method: str, dataset: torch.Tensor, \n               metric: Optional[Callable], cfg: dict) -> Dict[str, float]\ndef compute_css(method_circuits: Dict[str, Set[str]], K: int) -> Dict[str, float]\ndef cross_tabulate(tiers: Dict[str, str], css_scores: Dict[str, float], \n                   css_thr: float) -> Dict[str, Any]\n\n# analyze_mvp_results.py\ndef run_analysis(results_dir: Path, output_dir: Path, top_n: int = 200,\n                 dry_run: bool = False) -> Dict[str, Any]\ndef gate_judgment(off_diagonal_pct: float) -> Dict[str, str]\n\n# model_adapter.py\nclass ModelAdapter:\n    @classmethod\n    def from_pretrained(cls, model_name: str, device: str = \"cuda\") -> ModelAdapter\n    def to_canonical_edges(self, edge_scores: Dict[str, float], method: str) -> Dict[str, float]\n\n# css.py\ndef binarize_scores(scores: Dict[str, float], strategy: BinarizeStrategy,\n                    n: int = 200, threshold: float = 0.01) -> set[str]\ndef compute_css_matrix(method_circuits: Dict[str, set[str]], all_edges: set[str]) -> Dict\n\n# Scoring modules (Phase 2 HF implementations)\ndef compute_eap_ig_scores(model, clean_inputs, corrupt_inputs, metric_fn, ...) -> Dict[str, float]\ndef compute_ifr_edges(model, dataset, metric_fn=None, threshold=0.1, ...) -> Dict[str, float]\n# Edge Pruning: use eap_ig_scoring.HardConcrete + _masked_forward pattern\n```\n\n---\n\nThis comprehensive framework enables Phase 2 to:\n1. **Scale to large models** (Qwen-2.5, Llama-3.1, Gemma-2) via HuggingFace backends\n2. **Maintain edge-level precision** via canonical naming (D009) and proper hook placement (D011)\n3. **Handle IFR tied scores** via unique_score_rank binarization (D010)\n4. **Reproduce MVP analysis** via run_circus.py + analyze_mvp_results.py\n5. **Gate progression** via off-diagonal_pct thresholds (D001-D003)"
+      }
+    ],
+    "totalDurationMs": 104735,
+    "totalTokens": 83200,
+    "totalToolUseCount": 31,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 622,
+      "cache_read_input_tokens": 75090,
+      "output_tokens": 7485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 622
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7485,
+          "cache_read_input_tokens": 75090,
+          "cache_creation_input_tokens": 622,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 622,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 20,
+      "searchCount": 0,
+      "bashCount": 11,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "60f5c311-0ab2-4804-a739-6e26073f94b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "6494aa07-bf58-421d-8bda-f71268130e58",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Create Phase 2 experiment framework and config matrix",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-12T22:09:28.584Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent, now I have a comprehensive understanding of the project. Let me write the two files:
+
+1. `run_phase2_experiment.py` - Phase 2 experiment framework
+2. `phase2_configs.yaml` - Experiment configuration matrix
+
+Key things to incorporate:
+- Reuse `run_circus.py`'s `run_pipeline()` as the core
+- Reuse `analyze_mvp_results.py`'s `run_analysis()` for post-experiment analysis
+- Support YAML config loading
+- Cache management with CANONICAL_VERSION
+- GPU guard (CUDA_VISIBLE_DEVICES before torch import)
+
+
+- Python logging setup and checkpoint/resume capabilities
+
+Now I'm mapping out the experiment matrix: 4 models across 3 core tasks (IOI, Greater-Than, Docstring) with GPT-2 using ACDC and the others using IFR, giving me at least 12 base experiments that could expand with additional variants.
+
+I'm prioritizing the work in phases—starting with the GPT-2 IOI baseline that's already running, then moving to Qwen-2.5 across all tasks plus GPT-2's remaining benchmarks, and finally tackling the larger models once those are complete.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6494aa07-bf58-421d-8bda-f71268130e58",
+  "isSidechain": false,
+  "requestId": "req_011CaySNc6MYWWxJ9bfZc3Ui",
+  "type": "assistant",
+  "uuid": "1776256a-8ba2-4be1-90f4-3a543482dc97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiDozKfweKd1sRsnJuFNMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7863,
+      "cache_read_input_tokens": 24233,
+      "output_tokens": 5819,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5819,
+          "cache_read_input_tokens": 24233,
+          "cache_creation_input_tokens": 7863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-12T22:09:28.600Z_
+
+Now I have full context on the codebase. Let me write both files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1776256a-8ba2-4be1-90f4-3a543482dc97",
+  "isSidechain": false,
+  "requestId": "req_011CaySNc6MYWWxJ9bfZc3Ui",
+  "type": "assistant",
+  "uuid": "7b43d22e-d0cf-4d38-a605-802b4b25d2b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiDozKfweKd1sRsnJuFNMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7863,
+      "cache_read_input_tokens": 24233,
+      "output_tokens": 5819,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5819,
+          "cache_read_input_tokens": 24233,
+          "cache_creation_input_tokens": 7863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-12T22:10:42.502Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01R7hzKg3SgV1u6Zz5gfQSEz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py",
+  "content": "\"\"\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\n\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\n支持配置化批量实验。\n\nUsage:\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\n    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\n    python run_phase2_experiment.py --list  # 列出所有候选实验\n    python run_phase2_experiment.py --status  # 查看已完成/待运行状态\n\"\"\"\n\nimport os\n# GPU guard: 必须在 torch import 之前设置 (D007)\n_GPU_ID = os.environ.get(\"CUDA_VISIBLE_DEVICES\", \"0\")\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = _GPU_ID\n\nimport argparse\nimport hashlib\nimport json\nimport logging\nimport sys\nimport time\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\nfrom typing import Any, Dict, List, Optional, Set\n\nimport yaml\n\nCANONICAL_VERSION = \"v2\"\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    datefmt=\"%Y-%m-%d %H:%M:%S\",\n)\nlogger = logging.getLogger(\"phase2\")\n\n\n# ---------------------------------------------------------------------------\n# Config dataclasses\n# ---------------------------------------------------------------------------\n\n@dataclass\nclass ExperimentConfig:\n    \"\"\"单个实验的配置。\"\"\"\n    name: str\n    model: str\n    task: str\n    methods: List[str]\n    backend: str  # \"transformerlens\" | \"huggingface\"\n    priority: int = 3\n    model_path: Optional[str] = None\n    K: int = 3\n    num_samples: int = 50\n    gpu_id: str = \"0\"\n    seed: int = 42\n    eap_ig_steps: int = 5\n    edge_pruning_epochs: int = 100\n    edge_pruning_lambda: float = 1e-2\n    ifr_threshold: float = 0.1\n    css_threshold: float = 0.67\n    circus_B: int = 10\n    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\n    thresholds: Dict[str, List[float]] = field(default_factory=dict)\n    notes: str = \"\"\n\n    def __post_init__(self):\n        if not self.binarize:\n            self.binarize = {\n                \"eap_ig\": {\"strategy\": \"topn\", \"n\": 200},\n                \"edge_pruning\": {\"strategy\": \"topn\", \"n\": 200},\n                \"ifr\": {\"strategy\": \"unique_score_rank\", \"n\": 50},  # D010\n                \"acdc\": {\"strategy\": \"threshold\", \"threshold\": 0.05},\n            }\n\n    @property\n    def model_slug(self) -> str:\n        return self.model.replace(\"/\", \"_\").replace(\"-\", \"_\")\n\n    @property\n    def output_dir(self) -> Path:\n        return Path(\"results\") / f\"{self.model_slug}_{self.task}\"\n\n    @property\n    def cache_dir(self) -> Path:\n        return Path(\"cache\") / self.model_slug / self.task\n\n    def to_run_circus_config(self) -> Dict[str, Any]:\n        \"\"\"转换为 run_circus.py 的 config dict 格式。\"\"\"\n        cfg = {\n            \"model\": self.model_path or self.model,\n            \"task\": self.task,\n            \"methods\": self.methods,\n            \"K\": self.K,\n            \"num_samples\": self.num_samples,\n            \"gpu_id\": self.gpu_id,\n            \"seed\": self.seed,\n            \"eap_ig_steps\": self.eap_ig_steps,\n            \"edge_pruning_epochs\": self.edge_pruning_epochs,\n            \"edge_pruning_lambda\": self.edge_pruning_lambda,\n            \"ifr_threshold\": self.ifr_threshold,\n            \"css_threshold\": self.css_threshold,\n            \"circus_B\": self.circus_B,\n            \"binarize\": {m: v for m, v in self.binarize.items() if m in self.methods},\n            \"device\": \"cuda\",\n            \"output_dir\": str(self.output_dir),\n            \"cache_dir\": str(self.cache_dir),\n        }\n        return cfg\n\n\n# ---------------------------------------------------------------------------\n# Config loading\n# ---------------------------------------------------------------------------\n\ndef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\n    \"\"\"从 YAML 加载实验矩阵。\"\"\"\n    path = Path(config_path)\n    if not path.exists():\n        raise FileNotFoundError(f\"Config not found: {config_path}\")\n\n    with open(path) as f:\n        raw = yaml.safe_load(f)\n\n    defaults = raw.get(\"defaults\", {})\n    experiments = {}\n\n    for name, exp_cfg in raw.get(\"experiments\", {}).items():\n        merged = {**defaults, **exp_cfg}\n        experiments[name] = ExperimentConfig(name=name, **merged)\n\n    return experiments\n\n\ndef list_experiments(experiments: Dict[str, ExperimentConfig]) -> None:\n    \"\"\"打印实验列表。\"\"\"\n    by_priority: Dict[int, List[ExperimentConfig]] = {}\n    for exp in experiments.values():\n        by_priority.setdefault(exp.priority, []).append(exp)\n\n    for pri in sorted(by_priority):\n        label = {1: \"MVP (已跑/在跑)\", 2: \"MVP 后立即跑\", 3: \"有空再跑\"}.get(pri, f\"P{pri}\")\n        print(f\"\\n=== Priority {pri}: {label} ===\")\n        for exp in sorted(by_priority[pri], key=lambda e: e.name):\n            methods_str = \", \".join(exp.methods)\n            print(f\"  {exp.name:30s}  {exp.model:30s}  {exp.task:15s}  [{methods_str}]\")\n\n    total = len(experiments)\n    counts = {p: len(exps) for p, exps in by_priority.items()}\n    print(f\"\\nTotal: {total} experiments | \" + \" | \".join(f\"P{p}={c}\" for p, c in sorted(counts.items())))\n\n\n# ---------------------------------------------------------------------------\n# Cache management\n# ---------------------------------------------------------------------------\n\ndef _cache_key(exp: ExperimentConfig, method: str) -> str:\n    \"\"\"生成缓存文件名，绑定 CANONICAL_VERSION + 超参哈希。\"\"\"\n    params = {\n        \"model\": exp.model,\n        \"task\": exp.task,\n        \"method\": method,\n        \"num_samples\": exp.num_samples,\n        \"seed\": exp.seed,\n    }\n    if method == \"eap_ig\":\n        params[\"steps\"] = exp.eap_ig_steps\n    elif method == \"edge_pruning\":\n        params[\"epochs\"] = exp.edge_pruning_epochs\n        params[\"lambda\"] = exp.edge_pruning_lambda\n    elif method == \"ifr\":\n        params[\"threshold\"] = exp.ifr_threshold\n    elif method == \"acdc\":\n        params[\"thresholds\"] = exp.thresholds.get(\"acdc\", [0.05])\n\n    h = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()[:16]\n    return f\"{method}_{CANONICAL_VERSION}_{h}.json\"\n\n\ndef check_cache(exp: ExperimentConfig) -> Dict[str, bool]:\n    \"\"\"检查每个方法的缓存状态。\"\"\"\n    status = {}\n    for method in exp.methods:\n        cache_file = exp.cache_dir / _cache_key(exp, method)\n        status[method] = cache_file.exists()\n    return status\n\n\ndef load_cached_scores(exp: ExperimentConfig, method: str) -> Optional[Dict[str, float]]:\n    \"\"\"加载已缓存的 edge scores。\"\"\"\n    cache_file = exp.cache_dir / _cache_key(exp, method)\n    if not cache_file.exists():\n        return None\n    with open(cache_file) as f:\n        data = json.load(f)\n    if data.get(\"canonical_version\") != CANONICAL_VERSION:\n        logger.warning(\"Cache version mismatch for %s/%s, will recompute\", exp.name, method)\n        return None\n    return data.get(\"scores\", {})\n\n\ndef save_cached_scores(exp: ExperimentConfig, method: str, scores: Dict[str, float]) -> None:\n    \"\"\"保存 edge scores 到缓存。\"\"\"\n    exp.cache_dir.mkdir(parents=True, exist_ok=True)\n    cache_file = exp.cache_dir / _cache_key(exp, method)\n    data = {\n        \"canonical_version\": CANONICAL_VERSION,\n        \"model\": exp.model,\n        \"task\": exp.task,\n        \"method\": method,\n        \"n_edges\": len(scores),\n        \"scores\": scores,\n    }\n    with open(cache_file, \"w\") as f:\n        json.dump(data, f, indent=2)\n    logger.info(\"Cached %d edges → %s\", len(scores), cache_file)\n\n\n# ---------------------------------------------------------------------------\n# Experiment runner\n# ---------------------------------------------------------------------------\n\ndef run_single_experiment(exp: ExperimentConfig, force: bool = False) -> Dict[str, Any]:\n    \"\"\"运行单个实验：调用 run_circus pipeline，支持断点续跑。\n\n    Returns:\n        run_circus.run_pipeline() 的完整输出 dict，包含\n        method_edge_counts, css_distribution, cross_table 等。\n    \"\"\"\n    logger.info(\"=\" * 60)\n    logger.info(\"Starting experiment: %s\", exp.name)\n    logger.info(\"  Model: %s (%s backend)\", exp.model, exp.backend)\n    logger.info(\"  Task: %s | Methods: %s | K=%d\", exp.task, exp.methods, exp.K)\n    logger.info(\"=\" * 60)\n\n    # 断点续跑：检查哪些方法已有缓存\n    cache_status = check_cache(exp)\n    if not force:\n        cached = [m for m, done in cache_status.items() if done]\n        pending = [m for m, done in cache_status.items() if not done]\n        if cached:\n            logger.info(\"Cached methods (skip): %s\", cached)\n        if not pending:\n            logger.info(\"All methods cached, running CSS/CIRCUS aggregation only\")\n    else:\n        pending = exp.methods\n        logger.info(\"Force mode: recomputing all methods\")\n\n    # 构建 run_circus config\n    circus_cfg = exp.to_run_circus_config()\n    exp.output_dir.mkdir(parents=True, exist_ok=True)\n\n    # 调用 run_circus pipeline\n    # TODO: 当前直接调用 run_pipeline，未来可拆分为：\n    #   1. run_methods_only(circus_cfg, skip=cached) → 仅跑 scoring\n    #   2. run_aggregation(circus_cfg, all_scores) → CSS + CIRCUS + cross-tab\n    # 以支持更细粒度的断点续跑\n    try:\n        from run_circus import run_pipeline\n        results = run_pipeline(config=circus_cfg)\n    except ImportError:\n        logger.error(\"run_circus.py not found in sys.path. Add artifacts/ to PYTHONPATH.\")\n        raise\n    except Exception as e:\n        logger.error(\"Experiment %s failed: %s\", exp.name, e)\n        raise\n\n    # 保存实验元信息\n    meta = {\n        \"experiment_name\": exp.name,\n        \"priority\": exp.priority,\n        \"backend\": exp.backend,\n        \"canonical_version\": CANONICAL_VERSION,\n        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n    }\n    results[\"phase2_meta\"] = meta\n\n    output_file = exp.output_dir / f\"{exp.model_slug}_{exp.task}_K{exp.K}.json\"\n    with open(output_file, \"w\") as f:\n        json.dump(results, f, indent=2, default=str)\n    logger.info(\"Results → %s\", output_file)\n\n    return results\n\n\ndef run_analysis_for_experiment(exp: ExperimentConfig) -> Optional[Dict[str, Any]]:\n    \"\"\"实验完成后调用 analyze_mvp_results 的分析逻辑。\"\"\"\n    try:\n        from analyze_mvp_results import run_analysis\n    except ImportError:\n        logger.warning(\"analyze_mvp_results.py not importable, skipping analysis\")\n        return None\n\n    analysis_dir = exp.output_dir / \"analysis\"\n    analysis_dir.mkdir(parents=True, exist_ok=True)\n\n    # run_analysis 从 cache dir 加载 per-method scores\n    results = run_analysis(\n        results_dir=exp.cache_dir.parent.parent,  # results/ 根\n        output_dir=analysis_dir,\n        top_n=200,\n    )\n    logger.info(\"Analysis → %s\", analysis_dir)\n    return results\n\n\n# ---------------------------------------------------------------------------\n# Batch runner\n# ---------------------------------------------------------------------------\n\ndef run_batch(\n    experiments: Dict[str, ExperimentConfig],\n    names: Optional[List[str]] = None,\n    max_priority: Optional[int] = None,\n    force: bool = False,\n) -> Dict[str, Dict[str, Any]]:\n    \"\"\"批量运行实验。\n\n    Args:\n        experiments: 完整实验矩阵\n        names: 指定运行的实验名（None=全部）\n        max_priority: 只运行 priority <= 此值的实验\n        force: 忽略缓存，强制重算\n    \"\"\"\n    selected = _select_experiments(experiments, names, max_priority)\n\n    # 按 priority 排序\n    ordered = sorted(selected.values(), key=lambda e: (e.priority, e.name))\n    logger.info(\"Running %d experiments (sorted by priority)\", len(ordered))\n\n    all_results = {}\n    for i, exp in enumerate(ordered, 1):\n        logger.info(\"[%d/%d] %s (priority=%d)\", i, len(ordered), exp.name, exp.priority)\n        t0 = time.time()\n\n        try:\n            results = run_single_experiment(exp, force=force)\n            analysis = run_analysis_for_experiment(exp)\n            if analysis:\n                results[\"analysis\"] = analysis\n\n            elapsed = time.time() - t0\n            results[\"elapsed_sec\"] = elapsed\n            all_results[exp.name] = results\n            logger.info(\"✓ %s completed in %.1f sec\", exp.name, elapsed)\n\n        except Exception as e:\n            logger.error(\"✗ %s failed: %s\", exp.name, e)\n            all_results[exp.name] = {\"error\": str(e)}\n\n    _save_batch_summary(all_results)\n    return all_results\n\n\ndef _select_experiments(\n    experiments: Dict[str, ExperimentConfig],\n    names: Optional[List[str]] = None,\n    max_priority: Optional[int] = None,\n) -> Dict[str, ExperimentConfig]:\n    \"\"\"筛选实验子集。\"\"\"\n    selected = experiments\n    if names:\n        missing = set(names) - set(experiments)\n        if missing:\n            raise ValueError(f\"Unknown experiments: {missing}\")\n        selected = {n: experiments[n] for n in names}\n    if max_priority is not None:\n        selected = {n: e for n, e in selected.items() if e.priority <= max_priority}\n    if not selected:\n        raise ValueError(\"No experiments match the filter criteria\")\n    return selected\n\n\ndef _save_batch_summary(all_results: Dict[str, Dict[str, Any]]) -> None:\n    \"\"\"保存批量运行摘要。\"\"\"\n    summary_path = Path(\"results\") / \"phase2_batch_summary.json\"\n    summary_path.parent.mkdir(parents=True, exist_ok=True)\n\n    summary = {\n        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n        \"canonical_version\": CANONICAL_VERSION,\n        \"experiments\": {},\n    }\n    for name, res in all_results.items():\n        entry = {\"status\": \"error\" if \"error\" in res else \"ok\"}\n        if \"error\" in res:\n            entry[\"error\"] = res[\"error\"]\n        else:\n            entry[\"elapsed_sec\"] = res.get(\"elapsed_sec\")\n            if \"cross_table\" in res:\n                entry[\"off_diagonal_pct\"] = res[\"cross_table\"].get(\"off_diagonal_pct\")\n            if \"css_distribution\" in res:\n                entry[\"css_distribution\"] = res[\"css_distribution\"]\n        summary[\"experiments\"][name] = entry\n\n    with open(summary_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    logger.info(\"Batch summary → %s\", summary_path)\n\n\n# ---------------------------------------------------------------------------\n# Status check\n# ---------------------------------------------------------------------------\n\ndef show_status(experiments: Dict[str, ExperimentConfig]) -> None:\n    \"\"\"显示每个实验的完成状态。\"\"\"\n    print(f\"\\n{'Experiment':30s} {'Model':25s} {'Task':12s} {'Cached Methods':40s} {'Result'}\")\n    print(\"-\" * 120)\n\n    for name in sorted(experiments, key=lambda n: (experiments[n].priority, n)):\n        exp = experiments[name]\n        cache = check_cache(exp)\n        cached_str = \" \".join(f\"{'✓' if v else '✗'}{m}\" for m, v in cache.items())\n\n        result_file = exp.output_dir / f\"{exp.model_slug}_{exp.task}_K{exp.K}.json\"\n        result_str = \"✓\" if result_file.exists() else \"—\"\n\n        print(f\"  P{exp.priority} {name:28s} {exp.model:25s} {exp.task:12s} {cached_str:40s} {result_str}\")\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args() -> argparse.Namespace:\n    parser = argparse.ArgumentParser(description=\"Phase 2 experiment runner\")\n    parser.add_argument(\"--config\", type=str, default=\"phase2_configs.yaml\",\n                        help=\"实验矩阵 YAML 路径\")\n    parser.add_argument(\"--experiment\", type=str, nargs=\"+\",\n                        help=\"运行指定实验（空格分隔多个）\")\n    parser.add_argument(\"--all\", action=\"store_true\",\n                        help=\"运行全部实验\")\n    parser.add_argument(\"--priority\", type=int,\n                        help=\"只运行 priority <= N 的实验\")\n    parser.add_argument(\"--list\", action=\"store_true\",\n                        help=\"列出所有实验\")\n    parser.add_argument(\"--status\", action=\"store_true\",\n                        help=\"显示完成状态\")\n    parser.add_argument(\"--force\", action=\"store_true\",\n                        help=\"忽略缓存强制重算\")\n    parser.add_argument(\"--gpu\", type=str, default=None,\n                        help=\"覆盖 CUDA_VISIBLE_DEVICES\")\n    return parser.parse_args()\n\n\ndef main():\n    args = parse_args()\n\n    if args.gpu:\n        os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu\n        logger.info(\"GPU override: CUDA_VISIBLE_DEVICES=%s\", args.gpu)\n\n    experiments = load_experiment_matrix(args.config)\n\n    if args.list:\n        list_experiments(experiments)\n        return\n\n    if args.status:\n        show_status(experiments)\n        return\n\n    if args.experiment:\n        run_batch(experiments, names=args.experiment, force=args.force)\n    elif args.all:\n        run_batch(experiments, max_priority=args.priority, force=args.force)\n    elif args.priority:\n        run_batch(experiments, max_priority=args.priority, force=args.force)\n    else:\n        parser = argparse.ArgumentParser()\n        parser.print_help()\n        print(\"\\nHint: use --list to see experiments, --experiment NAME to run one\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b43d22e-d0cf-4d38-a605-802b4b25d2b8",
+  "isSidechain": false,
+  "requestId": "req_011CaySNc6MYWWxJ9bfZc3Ui",
+  "type": "assistant",
+  "uuid": "af11b566-bc11-4e71-9ab3-4795d83ab2d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiDozKfweKd1sRsnJuFNMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7863,
+      "cache_read_input_tokens": 24233,
+      "output_tokens": 5819,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5819,
+          "cache_read_input_tokens": 24233,
+          "cache_creation_input_tokens": 7863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-12T22:10:42.522Z_
+
+<details><summary>↩ Tool result · `toolu_01R7hzKg3SgV1u6Zz5gfQSEz`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af11b566-bc11-4e71-9ab3-4795d83ab2d8",
+  "isSidechain": false,
+  "promptId": "d7553ab7-032d-427d-8149-54844310075a",
+  "type": "user",
+  "uuid": "90109723-60c8-4821-8dbe-9339d5583f7c",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py",
+    "content": "\"\"\"Phase 2 实验框架：多模型 × 多任务 × 多方法的 CSS circuit discovery。\n\n复用 run_circus.py 的 pipeline + analyze_mvp_results.py 的分析，\n支持配置化批量实验。\n\nUsage:\n    python run_phase2_experiment.py --config phase2_configs.yaml --experiment gpt2_ioi\n    python run_phase2_experiment.py --config phase2_configs.yaml --all\n    python run_phase2_experiment.py --config phase2_configs.yaml --priority 2\n    python run_phase2_experiment.py --list  # 列出所有候选实验\n    python run_phase2_experiment.py --status  # 查看已完成/待运行状态\n\"\"\"\n\nimport os\n# GPU guard: 必须在 torch import 之前设置 (D007)\n_GPU_ID = os.environ.get(\"CUDA_VISIBLE_DEVICES\", \"0\")\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = _GPU_ID\n\nimport argparse\nimport hashlib\nimport json\nimport logging\nimport sys\nimport time\nfrom dataclasses import dataclass, field\nfrom pathlib import Path\nfrom typing import Any, Dict, List, Optional, Set\n\nimport yaml\n\nCANONICAL_VERSION = \"v2\"\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    datefmt=\"%Y-%m-%d %H:%M:%S\",\n)\nlogger = logging.getLogger(\"phase2\")\n\n\n# ---------------------------------------------------------------------------\n# Config dataclasses\n# ---------------------------------------------------------------------------\n\n@dataclass\nclass ExperimentConfig:\n    \"\"\"单个实验的配置。\"\"\"\n    name: str\n    model: str\n    task: str\n    methods: List[str]\n    backend: str  # \"transformerlens\" | \"huggingface\"\n    priority: int = 3\n    model_path: Optional[str] = None\n    K: int = 3\n    num_samples: int = 50\n    gpu_id: str = \"0\"\n    seed: int = 42\n    eap_ig_steps: int = 5\n    edge_pruning_epochs: int = 100\n    edge_pruning_lambda: float = 1e-2\n    ifr_threshold: float = 0.1\n    css_threshold: float = 0.67\n    circus_B: int = 10\n    binarize: Dict[str, Dict[str, Any]] = field(default_factory=dict)\n    thresholds: Dict[str, List[float]] = field(default_factory=dict)\n    notes: str = \"\"\n\n    def __post_init__(self):\n        if not self.binarize:\n            self.binarize = {\n                \"eap_ig\": {\"strategy\": \"topn\", \"n\": 200},\n                \"edge_pruning\": {\"strategy\": \"topn\", \"n\": 200},\n                \"ifr\": {\"strategy\": \"unique_score_rank\", \"n\": 50},  # D010\n                \"acdc\": {\"strategy\": \"threshold\", \"threshold\": 0.05},\n            }\n\n    @property\n    def model_slug(self) -> str:\n        return self.model.replace(\"/\", \"_\").replace(\"-\", \"_\")\n\n    @property\n    def output_dir(self) -> Path:\n        return Path(\"results\") / f\"{self.model_slug}_{self.task}\"\n\n    @property\n    def cache_dir(self) -> Path:\n        return Path(\"cache\") / self.model_slug / self.task\n\n    def to_run_circus_config(self) -> Dict[str, Any]:\n        \"\"\"转换为 run_circus.py 的 config dict 格式。\"\"\"\n        cfg = {\n            \"model\": self.model_path or self.model,\n            \"task\": self.task,\n            \"methods\": self.methods,\n            \"K\": self.K,\n            \"num_samples\": self.num_samples,\n            \"gpu_id\": self.gpu_id,\n            \"seed\": self.seed,\n            \"eap_ig_steps\": self.eap_ig_steps,\n            \"edge_pruning_epochs\": self.edge_pruning_epochs,\n            \"edge_pruning_lambda\": self.edge_pruning_lambda,\n            \"ifr_threshold\": self.ifr_threshold,\n            \"css_threshold\": self.css_threshold,\n            \"circus_B\": self.circus_B,\n            \"binarize\": {m: v for m, v in self.binarize.items() if m in self.methods},\n            \"device\": \"cuda\",\n            \"output_dir\": str(self.output_dir),\n            \"cache_dir\": str(self.cache_dir),\n        }\n        return cfg\n\n\n# ---------------------------------------------------------------------------\n# Config loading\n# ---------------------------------------------------------------------------\n\ndef load_experiment_matrix(config_path: str) -> Dict[str, ExperimentConfig]:\n    \"\"\"从 YAML 加载实验矩阵。\"\"\"\n    path = Path(config_path)\n    if not path.exists():\n        raise FileNotFoundError(f\"Config not found: {config_path}\")\n\n    with open(path) as f:\n        raw = yaml.safe_load(f)\n\n    defaults = raw.get(\"defaults\", {})\n    experiments = {}\n\n    for name, exp_cfg in raw.get(\"experiments\", {}).items():\n        merged = {**defaults, **exp_cfg}\n        experiments[name] = ExperimentConfig(name=name, **merged)\n\n    return experiments\n\n\ndef list_experiments(experiments: Dict[str, ExperimentConfig]) -> None:\n    \"\"\"打印实验列表。\"\"\"\n    by_priority: Dict[int, List[ExperimentConfig]] = {}\n    for exp in experiments.values():\n        by_priority.setdefault(exp.priority, []).append(exp)\n\n    for pri in sorted(by_priority):\n        label = {1: \"MVP (已跑/在跑)\", 2: \"MVP 后立即跑\", 3: \"有空再跑\"}.get(pri, f\"P{pri}\")\n        print(f\"\\n=== Priority {pri}: {label} ===\")\n        for exp in sorted(by_priority[pri], key=lambda e: e.name):\n            methods_str = \", \".join(exp.methods)\n            print(f\"  {exp.name:30s}  {exp.model:30s}  {exp.task:15s}  [{methods_str}]\")\n\n    total = len(experiments)\n    counts = {p: len(exps) for p, exps in by_priority.items()}\n    print(f\"\\nTotal: {total} experiments | \" + \" | \".join(f\"P{p}={c}\" for p, c in sorted(counts.items())))\n\n\n# ---------------------------------------------------------------------------\n# Cache management\n# ---------------------------------------------------------------------------\n\ndef _cache_key(exp: ExperimentConfig, method: str) -> str:\n    \"\"\"生成缓存文件名，绑定 CANONICAL_VERSION + 超参哈希。\"\"\"\n    params = {\n        \"model\": exp.model,\n        \"task\": exp.task,\n        \"method\": method,\n        \"num_samples\": exp.num_samples,\n        \"seed\": exp.seed,\n    }\n    if method == \"eap_ig\":\n        params[\"steps\"] = exp.eap_ig_steps\n    elif method == \"edge_pruning\":\n        params[\"epochs\"] = exp.edge_pruning_epochs\n        params[\"lambda\"] = exp.edge_pruning_lambda\n    elif method == \"ifr\":\n        params[\"threshold\"] = exp.ifr_threshold\n    elif method == \"acdc\":\n        params[\"thresholds\"] = exp.thresholds.get(\"acdc\", [0.05])\n\n    h = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()[:16]\n    return f\"{method}_{CANONICAL_VERSION}_{h}.json\"\n\n\ndef check_cache(exp: ExperimentConfig) -> Dict[str, bool]:\n    \"\"\"检查每个方法的缓存状态。\"\"\"\n    status = {}\n    for method in exp.methods:\n        cache_file = exp.cache_dir / _cache_key(exp, method)\n        status[method] = cache_file.exists()\n    return status\n\n\ndef load_cached_scores(exp: ExperimentConfig, method: str) -> Optional[Dict[str, float]]:\n    \"\"\"加载已缓存的 edge scores。\"\"\"\n    cache_file = exp.cache_dir / _cache_key(exp, method)\n    if not cache_file.exists():\n        return None\n    with open(cache_file) as f:\n        data = json.load(f)\n    if data.get(\"canonical_version\") != CANONICAL_VERSION:\n        logger.warning(\"Cache version mismatch for %s/%s, will recompute\", exp.name, method)\n        return None\n    return data.get(\"scores\", {})\n\n\ndef save_cached_scores(exp: ExperimentConfig, method: str, scores: Dict[str, float]) -> None:\n    \"\"\"保存 edge scores 到缓存。\"\"\"\n    exp.cache_dir.mkdir(parents=True, exist_ok=True)\n    cache_file = exp.cache_dir / _cache_key(exp, method)\n    data = {\n        \"canonical_version\": CANONICAL_VERSION,\n        \"model\": exp.model,\n        \"task\": exp.task,\n        \"method\": method,\n        \"n_edges\": len(scores),\n        \"scores\": scores,\n    }\n    with open(cache_file, \"w\") as f:\n        json.dump(data, f, indent=2)\n    logger.info(\"Cached %d edges → %s\", len(scores), cache_file)\n\n\n# ---------------------------------------------------------------------------\n# Experiment runner\n# ---------------------------------------------------------------------------\n\ndef run_single_experiment(exp: ExperimentConfig, force: bool = False) -> Dict[str, Any]:\n    \"\"\"运行单个实验：调用 run_circus pipeline，支持断点续跑。\n\n    Returns:\n        run_circus.run_pipeline() 的完整输出 dict，包含\n        method_edge_counts, css_distribution, cross_table 等。\n    \"\"\"\n    logger.info(\"=\" * 60)\n    logger.info(\"Starting experiment: %s\", exp.name)\n    logger.info(\"  Model: %s (%s backend)\", exp.model, exp.backend)\n    logger.info(\"  Task: %s | Methods: %s | K=%d\", exp.task, exp.methods, exp.K)\n    logger.info(\"=\" * 60)\n\n    # 断点续跑：检查哪些方法已有缓存\n    cache_status = check_cache(exp)\n    if not force:\n        cached = [m for m, done in cache_status.items() if done]\n        pending = [m for m, done in cache_status.items() if not done]\n        if cached:\n            logger.info(\"Cached methods (skip): %s\", cached)\n        if not pending:\n            logger.info(\"All methods cached, running CSS/CIRCUS aggregation only\")\n    else:\n        pending = exp.methods\n        logger.info(\"Force mode: recomputing all methods\")\n\n    # 构建 run_circus config\n    circus_cfg = exp.to_run_circus_config()\n    exp.output_dir.mkdir(parents=True, exist_ok=True)\n\n    # 调用 run_circus pipeline\n    # TODO: 当前直接调用 run_pipeline，未来可拆分为：\n    #   1. run_methods_only(circus_cfg, skip=cached) → 仅跑 scoring\n    #   2. run_aggregation(circus_cfg, all_scores) → CSS + CIRCUS + cross-tab\n    # 以支持更细粒度的断点续跑\n    try:\n        from run_circus import run_pipeline\n        results = run_pipeline(config=circus_cfg)\n    except ImportError:\n        logger.error(\"run_circus.py not found in sys.path. Add artifacts/ to PYTHONPATH.\")\n        raise\n    except Exception as e:\n        logger.error(\"Experiment %s failed: %s\", exp.name, e)\n        raise\n\n    # 保存实验元信息\n    meta = {\n        \"experiment_name\": exp.name,\n        \"priority\": exp.priority,\n        \"backend\": exp.backend,\n        \"canonical_version\": CANONICAL_VERSION,\n        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n    }\n    results[\"phase2_meta\"] = meta\n\n    output_file = exp.output_dir / f\"{exp.model_slug}_{exp.task}_K{exp.K}.json\"\n    with open(output_file, \"w\") as f:\n        json.dump(results, f, indent=2, default=str)\n    logger.info(\"Results → %s\", output_file)\n\n    return results\n\n\ndef run_analysis_for_experiment(exp: ExperimentConfig) -> Optional[Dict[str, Any]]:\n    \"\"\"实验完成后调用 analyze_mvp_results 的分析逻辑。\"\"\"\n    try:\n        from analyze_mvp_results import run_analysis\n    except ImportError:\n        logger.warning(\"analyze_mvp_results.py not importable, skipping analysis\")\n        return None\n\n    analysis_dir = exp.output_dir / \"analysis\"\n    analysis_dir.mkdir(parents=True, exist_ok=True)\n\n    # run_analysis 从 cache dir 加载 per-method scores\n    results = run_analysis(\n        results_dir=exp.cache_dir.parent.parent,  # results/ 根\n        output_dir=analysis_dir,\n        top_n=200,\n    )\n    logger.info(\"Analysis → %s\", analysis_dir)\n    return results\n\n\n# ---------------------------------------------------------------------------\n# Batch runner\n# ---------------------------------------------------------------------------\n\ndef run_batch(\n    experiments: Dict[str, ExperimentConfig],\n    names: Optional[List[str]] = None,\n    max_priority: Optional[int] = None,\n    force: bool = False,\n) -> Dict[str, Dict[str, Any]]:\n    \"\"\"批量运行实验。\n\n    Args:\n        experiments: 完整实验矩阵\n        names: 指定运行的实验名（None=全部）\n        max_priority: 只运行 priority <= 此值的实验\n        force: 忽略缓存，强制重算\n    \"\"\"\n    selected = _select_experiments(experiments, names, max_priority)\n\n    # 按 priority 排序\n    ordered = sorted(selected.values(), key=lambda e: (e.priority, e.name))\n    logger.info(\"Running %d experiments (sorted by priority)\", len(ordered))\n\n    all_results = {}\n    for i, exp in enumerate(ordered, 1):\n        logger.info(\"[%d/%d] %s (priority=%d)\", i, len(ordered), exp.name, exp.priority)\n        t0 = time.time()\n\n        try:\n            results = run_single_experiment(exp, force=force)\n            analysis = run_analysis_for_experiment(exp)\n            if analysis:\n                results[\"analysis\"] = analysis\n\n            elapsed = time.time() - t0\n            results[\"elapsed_sec\"] = elapsed\n            all_results[exp.name] = results\n            logger.info(\"✓ %s completed in %.1f sec\", exp.name, elapsed)\n\n        except Exception as e:\n            logger.error(\"✗ %s failed: %s\", exp.name, e)\n            all_results[exp.name] = {\"error\": str(e)}\n\n    _save_batch_summary(all_results)\n    return all_results\n\n\ndef _select_experiments(\n    experiments: Dict[str, ExperimentConfig],\n    names: Optional[List[str]] = None,\n    max_priority: Optional[int] = None,\n) -> Dict[str, ExperimentConfig]:\n    \"\"\"筛选实验子集。\"\"\"\n    selected = experiments\n    if names:\n        missing = set(names) - set(experiments)\n        if missing:\n            raise ValueError(f\"Unknown experiments: {missing}\")\n        selected = {n: experiments[n] for n in names}\n    if max_priority is not None:\n        selected = {n: e for n, e in selected.items() if e.priority <= max_priority}\n    if not selected:\n        raise ValueError(\"No experiments match the filter criteria\")\n    return selected\n\n\ndef _save_batch_summary(all_results: Dict[str, Dict[str, Any]]) -> None:\n    \"\"\"保存批量运行摘要。\"\"\"\n    summary_path = Path(\"results\") / \"phase2_batch_summary.json\"\n    summary_path.parent.mkdir(parents=True, exist_ok=True)\n\n    summary = {\n        \"timestamp\": time.strftime(\"%Y-%m-%d %H:%M:%S\"),\n        \"canonical_version\": CANONICAL_VERSION,\n        \"experiments\": {},\n    }\n    for name, res in all_results.items():\n        entry = {\"status\": \"error\" if \"error\" in res else \"ok\"}\n        if \"error\" in res:\n            entry[\"error\"] = res[\"error\"]\n        else:\n            entry[\"elapsed_sec\"] = res.get(\"elapsed_sec\")\n            if \"cross_table\" in res:\n                entry[\"off_diagonal_pct\"] = res[\"cross_table\"].get(\"off_diagonal_pct\")\n            if \"css_distribution\" in res:\n                entry[\"css_distribution\"] = res[\"css_distribution\"]\n        summary[\"experiments\"][name] = entry\n\n    with open(summary_path, \"w\") as f:\n        json.dump(summary, f, indent=2)\n    logger.info(\"Batch summary → %s\", summary_path)\n\n\n# ---------------------------------------------------------------------------\n# Status check\n# ---------------------------------------------------------------------------\n\ndef show_status(experiments: Dict[str, ExperimentConfig]) -> None:\n    \"\"\"显示每个实验的完成状态。\"\"\"\n    print(f\"\\n{'Experiment':30s} {'Model':25s} {'Task':12s} {'Cached Methods':40s} {'Result'}\")\n    print(\"-\" * 120)\n\n    for name in sorted(experiments, key=lambda n: (experiments[n].priority, n)):\n        exp = experiments[name]\n        cache = check_cache(exp)\n        cached_str = \" \".join(f\"{'✓' if v else '✗'}{m}\" for m, v in cache.items())\n\n        result_file = exp.output_dir / f\"{exp.model_slug}_{exp.task}_K{exp.K}.json\"\n        result_str = \"✓\" if result_file.exists() else \"—\"\n\n        print(f\"  P{exp.priority} {name:28s} {exp.model:25s} {exp.task:12s} {cached_str:40s} {result_str}\")\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args() -> argparse.Namespace:\n    parser = argparse.ArgumentParser(description=\"Phase 2 experiment runner\")\n    parser.add_argument(\"--config\", type=str, default=\"phase2_configs.yaml\",\n                        help=\"实验矩阵 YAML 路径\")\n    parser.add_argument(\"--experiment\", type=str, nargs=\"+\",\n                        help=\"运行指定实验（空格分隔多个）\")\n    parser.add_argument(\"--all\", action=\"store_true\",\n                        help=\"运行全部实验\")\n    parser.add_argument(\"--priority\", type=int,\n                        help=\"只运行 priority <= N 的实验\")\n    parser.add_argument(\"--list\", action=\"store_true\",\n                        help=\"列出所有实验\")\n    parser.add_argument(\"--status\", action=\"store_true\",\n                        help=\"显示完成状态\")\n    parser.add_argument(\"--force\", action=\"store_true\",\n                        help=\"忽略缓存强制重算\")\n    parser.add_argument(\"--gpu\", type=str, default=None,\n                        help=\"覆盖 CUDA_VISIBLE_DEVICES\")\n    return parser.parse_args()\n\n\ndef main():\n    args = parse_args()\n\n    if args.gpu:\n        os.environ[\"CUDA_VISIBLE_DEVICES\"] = args.gpu\n        logger.info(\"GPU override: CUDA_VISIBLE_DEVICES=%s\", args.gpu)\n\n    experiments = load_experiment_matrix(args.config)\n\n    if args.list:\n        list_experiments(experiments)\n        return\n\n    if args.status:\n        show_status(experiments)\n        return\n\n    if args.experiment:\n        run_batch(experiments, names=args.experiment, force=args.force)\n    elif args.all:\n        run_batch(experiments, max_priority=args.priority, force=args.force)\n    elif args.priority:\n        run_batch(experiments, max_priority=args.priority, force=args.force)\n    else:\n        parser = argparse.ArgumentParser()\n        parser.print_help()\n        print(\"\\nHint: use --list to see experiments, --experiment NAME to run one\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "af11b566-bc11-4e71-9ab3-4795d83ab2d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "90109723-60c8-4821-8dbe-9339d5583f7c",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Create Phase 2 experiment framework and config matrix",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-12T22:11:24.552Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01RFDyyvr7yRCgzcq2TZ7RX7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/phase2_configs.yaml",
+  "content": "# Phase 2 实验矩阵\n# 每个实验 = 一个 model × task × methods 组合\n#\n# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑\n# Backend: transformerlens (GPT-2) | huggingface (其他)\n# Methods: GPT-2 用 ACDC, 大模型用 IFR (D006)\n#\n# 预估单实验耗时（基于 MVP 经验）:\n#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC ~10min  → ~20min/task\n#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, IFR ~3min → ~25min/task\n#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, IFR ~8min  → ~65min/task\n#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, IFR ~15min → ~150min/task\n\ndefaults:\n  K: 3\n  num_samples: 50\n  seed: 42\n  gpu_id: \"0\"\n  eap_ig_steps: 5\n  edge_pruning_epochs: 100\n  edge_pruning_lambda: 1e-2\n  ifr_threshold: 0.1\n  css_threshold: 0.67\n  circus_B: 10\n\nexperiments:\n\n  # ===================================================================\n  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)\n  # 预估总耗时: ~60min (3 tasks × ~20min)\n  # ===================================================================\n\n  gpt2_ioi:\n    model: \"gpt2\"\n    model_path: null\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      acdc: {strategy: \"threshold\", threshold: 0.05}\n    priority: 1\n    notes: \"MVP baseline, 已有部分结果\"\n\n  gpt2_greater_than:\n    model: \"gpt2\"\n    model_path: null\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      acdc: {strategy: \"threshold\", threshold: 0.05}\n    priority: 2\n    notes: \"数值推理任务, 预期电路更紧凑\"\n\n  gpt2_docstring:\n    model: \"gpt2\"\n    model_path: null\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      acdc: {strategy: \"threshold\", threshold: 0.05}\n    priority: 2\n    notes: \"代码理解任务, 验证跨领域泛化\"\n\n  # ===================================================================\n  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + IFR)\n  # 预估总耗时: ~100min (4 tasks × ~25min)\n  # ===================================================================\n\n  qwen05_ioi:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 2\n    notes: \"Phase 2 首个大模型实验, MVP 后立即跑\"\n\n  qwen05_greater_than:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 2\n    notes: \"Qwen 数值推理\"\n\n  qwen05_docstring:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 2\n    notes: \"Qwen 代码理解\"\n\n  qwen05_ioi_variant:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"ioi_variant\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"IOI 变体 (name permutation), 验证电路稳定性\"\n\n  # ===================================================================\n  # Gemma-2 2B — HuggingFace, K=3 (EAP-IG + EP + IFR)\n  # 预估总耗时: ~260min (4 tasks × ~65min)\n  # ===================================================================\n\n  gemma2_ioi:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"2B 模型, 减 samples 和 EP epochs 控制显存\"\n\n  gemma2_greater_than:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Gemma-2 数值推理\"\n\n  gemma2_docstring:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Gemma-2 代码理解\"\n\n  gemma2_ioi_variant:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"ioi_variant\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Gemma-2 IOI 变体\"\n\n  # ===================================================================\n  # Llama-3.1 8B — HuggingFace, K=3 (EAP-IG + EP + IFR)\n  # 预估总耗时: ~600min (4 tasks × ~150min)\n  # 需要 >=24GB VRAM (A6000), EP 可能需 gradient checkpointing\n  # ===================================================================\n\n  llama31_ioi:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"8B 最大模型, 减 samples/epochs, 可能需 gradient checkpointing\"\n\n  llama31_greater_than:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Llama-3.1 数值推理\"\n\n  llama31_docstring:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Llama-3.1 代码理解\"\n\n  llama31_ioi_variant:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"ioi_variant\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Llama-3.1 IOI 变体\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90109723-60c8-4821-8dbe-9339d5583f7c",
+  "isSidechain": false,
+  "requestId": "req_011CaySVeQTJNPWog4AZobDy",
+  "type": "assistant",
+  "uuid": "6ddaa17a-4911-4c68-93fd-d96acc87e906",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eu7L1VN9SvV4oSMLE3udRL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5872,
+      "cache_read_input_tokens": 32096,
+      "output_tokens": 3876,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5872,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3876,
+          "cache_read_input_tokens": 32096,
+          "cache_creation_input_tokens": 5872,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5872
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T22:11:24.571Z_
+
+<details><summary>↩ Tool result · `toolu_01RFDyyvr7yRCgzcq2TZ7RX7`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/phase2_configs.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ddaa17a-4911-4c68-93fd-d96acc87e906",
+  "isSidechain": false,
+  "promptId": "d7553ab7-032d-427d-8149-54844310075a",
+  "type": "user",
+  "uuid": "f78255a7-ec1a-42df-96f6-044edebcebd1",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/phase2_configs.yaml",
+    "content": "# Phase 2 实验矩阵\n# 每个实验 = 一个 model × task × methods 组合\n#\n# Priority: 1 = MVP 已在跑, 2 = MVP 后立即跑, 3 = 有空再跑\n# Backend: transformerlens (GPT-2) | huggingface (其他)\n# Methods: GPT-2 用 ACDC, 大模型用 IFR (D006)\n#\n# 预估单实验耗时（基于 MVP 经验）:\n#   GPT-2 Small:  EAP-IG ~2min, EP ~5min, ACDC ~10min  → ~20min/task\n#   Qwen-2.5 0.5B: EAP-IG ~5min, EP ~15min, IFR ~3min → ~25min/task\n#   Gemma-2 2B:   EAP-IG ~15min, EP ~40min, IFR ~8min  → ~65min/task\n#   Llama-3.1 8B: EAP-IG ~40min, EP ~90min, IFR ~15min → ~150min/task\n\ndefaults:\n  K: 3\n  num_samples: 50\n  seed: 42\n  gpu_id: \"0\"\n  eap_ig_steps: 5\n  edge_pruning_epochs: 100\n  edge_pruning_lambda: 1e-2\n  ifr_threshold: 0.1\n  css_threshold: 0.67\n  circus_B: 10\n\nexperiments:\n\n  # ===================================================================\n  # GPT-2 Small — TransformerLens, K=3 causal methods (EAP-IG + EP + ACDC)\n  # 预估总耗时: ~60min (3 tasks × ~20min)\n  # ===================================================================\n\n  gpt2_ioi:\n    model: \"gpt2\"\n    model_path: null\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      acdc: {strategy: \"threshold\", threshold: 0.05}\n    priority: 1\n    notes: \"MVP baseline, 已有部分结果\"\n\n  gpt2_greater_than:\n    model: \"gpt2\"\n    model_path: null\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      acdc: {strategy: \"threshold\", threshold: 0.05}\n    priority: 2\n    notes: \"数值推理任务, 预期电路更紧凑\"\n\n  gpt2_docstring:\n    model: \"gpt2\"\n    model_path: null\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"acdc\"]\n    backend: \"transformerlens\"\n    thresholds:\n      acdc: [0.01, 0.03, 0.05, 0.1]\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      acdc: {strategy: \"threshold\", threshold: 0.05}\n    priority: 2\n    notes: \"代码理解任务, 验证跨领域泛化\"\n\n  # ===================================================================\n  # Qwen-2.5 0.5B — HuggingFace, K=3 (EAP-IG + EP + IFR)\n  # 预估总耗时: ~100min (4 tasks × ~25min)\n  # ===================================================================\n\n  qwen05_ioi:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 2\n    notes: \"Phase 2 首个大模型实验, MVP 后立即跑\"\n\n  qwen05_greater_than:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 2\n    notes: \"Qwen 数值推理\"\n\n  qwen05_docstring:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 2\n    notes: \"Qwen 代码理解\"\n\n  qwen05_ioi_variant:\n    model: \"Qwen/Qwen2.5-0.5B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B/\"\n    task: \"ioi_variant\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"IOI 变体 (name permutation), 验证电路稳定性\"\n\n  # ===================================================================\n  # Gemma-2 2B — HuggingFace, K=3 (EAP-IG + EP + IFR)\n  # 预估总耗时: ~260min (4 tasks × ~65min)\n  # ===================================================================\n\n  gemma2_ioi:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"2B 模型, 减 samples 和 EP epochs 控制显存\"\n\n  gemma2_greater_than:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Gemma-2 数值推理\"\n\n  gemma2_docstring:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Gemma-2 代码理解\"\n\n  gemma2_ioi_variant:\n    model: \"google/gemma-2-2b\"\n    model_path: \"/root/autodl-tmp/.hf_cache/google/gemma-2-2b/\"\n    task: \"ioi_variant\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 30\n    edge_pruning_epochs: 80\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Gemma-2 IOI 变体\"\n\n  # ===================================================================\n  # Llama-3.1 8B — HuggingFace, K=3 (EAP-IG + EP + IFR)\n  # 预估总耗时: ~600min (4 tasks × ~150min)\n  # 需要 >=24GB VRAM (A6000), EP 可能需 gradient checkpointing\n  # ===================================================================\n\n  llama31_ioi:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"ioi\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"8B 最大模型, 减 samples/epochs, 可能需 gradient checkpointing\"\n\n  llama31_greater_than:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"greater_than\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Llama-3.1 数值推理\"\n\n  llama31_docstring:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"docstring\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Llama-3.1 代码理解\"\n\n  llama31_ioi_variant:\n    model: \"meta-llama/Llama-3.1-8B\"\n    model_path: \"/root/autodl-tmp/.hf_cache/meta-llama/Llama-3.1-8B/\"\n    task: \"ioi_variant\"\n    methods: [\"eap_ig\", \"edge_pruning\", \"ifr\"]\n    backend: \"huggingface\"\n    num_samples: 20\n    edge_pruning_epochs: 60\n    edge_pruning_lambda: 5e-3\n    binarize:\n      eap_ig: {strategy: \"topn\", n: 200}\n      edge_pruning: {strategy: \"topn\", n: 200}\n      ifr: {strategy: \"unique_score_rank\", n: 50}\n    priority: 3\n    notes: \"Llama-3.1 IOI 变体\"\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "6ddaa17a-4911-4c68-93fd-d96acc87e906",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-12T22:11:26.989Z_
+
+注册产出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f78255a7-ec1a-42df-96f6-044edebcebd1",
+  "isSidechain": false,
+  "requestId": "req_011CaySYk8poYo1AFVzUnHZ8",
+  "type": "assistant",
+  "uuid": "1d2d593e-f927-4bfb-86be-7bca381aaa13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X45tnJ3Py5piMG6oAKqPFU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3929,
+      "cache_read_input_tokens": 37968,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 37968,
+          "cache_creation_input_tokens": 3929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-12T22:11:27.527Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KCbYq5QVHvezFLVy7nrG8u`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d2d593e-f927-4bfb-86be-7bca381aaa13",
+  "isSidechain": false,
+  "requestId": "req_011CaySYk8poYo1AFVzUnHZ8",
+  "type": "assistant",
+  "uuid": "53fb0ee2-429a-46e7-b2fd-0bdb15a8de19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X45tnJ3Py5piMG6oAKqPFU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3929,
+      "cache_read_input_tokens": 37968,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 37968,
+          "cache_creation_input_tokens": 3929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T22:11:27.533Z_
+
+<details><summary>↩ Tool result · `toolu_01KCbYq5QVHvezFLVy7nrG8u`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53fb0ee2-429a-46e7-b2fd-0bdb15a8de19",
+  "isSidechain": false,
+  "promptId": "d7553ab7-032d-427d-8149-54844310075a",
+  "type": "user",
+  "uuid": "b7c73a0d-9809-46dc-99e8-048796ee311b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "53fb0ee2-429a-46e7-b2fd-0bdb15a8de19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-12T22:11:33.029Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01KTPS27W6w5TGo8e1G1QAXy`</summary>
+
+```json
+{
+  "name": "run_phase2_experiment",
+  "type": "data",
+  "description": "Phase 2 实验框架脚本：多模型×多任务×多方法批量调度，复用 run_circus pipeline，支持断点续跑和缓存管理",
+  "project": "structfuse-context",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/run_phase2_experiment.py",
+  "tags": [
+    "phase2",
+    "experiment",
+    "framework"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7c73a0d-9809-46dc-99e8-048796ee311b",
+  "isSidechain": false,
+  "requestId": "req_011CaySYy1UxXYpZd6qMgd7s",
+  "type": "assistant",
+  "uuid": "668c5525-622c-461d-9355-32243ab6a04b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SMvcWZcRXMoTkzeHUw9Cf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 41897,
+      "output_tokens": 476,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 476,
+          "cache_read_input_tokens": 41897,
+          "cache_creation_input_tokens": 718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-12T22:11:33.140Z_
+
+<details><summary>↩ Tool result · `toolu_01KTPS27W6w5TGo8e1G1QAXy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_54986c\", \"name\": \"run_phase2_experiment\", \"type\": \"data\", \"description\": \"Phase 2 实验框架脚本：多模型×多任务×多方法批量调度，复用 run_circus pipeline，支持断点续跑和缓存管理\", \"path\": \"projects/structfuse-context/artifacts/_project/data/run_phase2_experiment.py\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T22:11:33.039687+00:00\", \"tags\": [\"phase2\", \"experiment\", \"framework\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "668c5525-622c-461d-9355-32243ab6a04b",
+  "isSidechain": false,
+  "promptId": "d7553ab7-032d-427d-8149-54844310075a",
+  "type": "user",
+  "uuid": "6c239d60-a6d5-469d-be82-abdbb2336536",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_54986c\\\", \\\"name\\\": \\\"run_phase2_experiment\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Phase 2 实验框架脚本：多模型×多任务×多方法批量调度，复用 run_circus pipeline，支持断点续跑和缓存管理\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/_project/data/run_phase2_experiment.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T22:11:33.039687+00:00\\\", \\\"tags\\\": [\\\"phase2\\\", \\\"experiment\\\", \\\"framework\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_54986c\", \"name\": \"run_phase2_experiment\", \"type\": \"data\", \"description\": \"Phase 2 实验框架脚本：多模型×多任务×多方法批量调度，复用 run_circus pipeline，支持断点续跑和缓存管理\", \"path\": \"projects/structfuse-context/artifacts/_project/data/run_phase2_experiment.py\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T22:11:33.039687+00:00\", \"tags\": [\"phase2\", \"experiment\", \"framework\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "668c5525-622c-461d-9355-32243ab6a04b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-12T22:11:34.961Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01R6f7hxRrSuJ8AhQ3kQ2ypH`</summary>
+
+```json
+{
+  "name": "phase2_configs",
+  "type": "data",
+  "description": "Phase 2 实验矩阵 YAML：4模型×4任务=16个实验，含 priority/binarize/backend 配置",
+  "project": "structfuse-context",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/phase2_configs.yaml",
+  "tags": [
+    "phase2",
+    "config",
+    "experiment-matrix"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c239d60-a6d5-469d-be82-abdbb2336536",
+  "isSidechain": false,
+  "requestId": "req_011CaySYy1UxXYpZd6qMgd7s",
+  "type": "assistant",
+  "uuid": "28d8263c-19ec-4ced-bcd1-a925385fb2d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015SMvcWZcRXMoTkzeHUw9Cf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 41897,
+      "output_tokens": 476,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 476,
+          "cache_read_input_tokens": 41897,
+          "cache_creation_input_tokens": 718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-12T22:11:35.044Z_
+
+<details><summary>↩ Tool result · `toolu_01R6f7hxRrSuJ8AhQ3kQ2ypH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_1d2ec1\", \"name\": \"phase2_configs\", \"type\": \"data\", \"description\": \"Phase 2 实验矩阵 YAML：4模型×4任务=16个实验，含 priority/binarize/backend 配置\", \"path\": \"projects/structfuse-context/artifacts/_project/data/phase2_configs.yaml\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T22:11:34.966347+00:00\", \"tags\": [\"phase2\", \"config\", \"experiment-matrix\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "28d8263c-19ec-4ced-bcd1-a925385fb2d6",
+  "isSidechain": false,
+  "promptId": "d7553ab7-032d-427d-8149-54844310075a",
+  "type": "user",
+  "uuid": "04791e44-aaa8-41b6-9c66-a5ae7b8e9bbc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_1d2ec1\\\", \\\"name\\\": \\\"phase2_configs\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Phase 2 实验矩阵 YAML：4模型×4任务=16个实验，含 priority/binarize/backend 配置\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/_project/data/phase2_configs.yaml\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T22:11:34.966347+00:00\\\", \\\"tags\\\": [\\\"phase2\\\", \\\"config\\\", \\\"experiment-matrix\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_1d2ec1\", \"name\": \"phase2_configs\", \"type\": \"data\", \"description\": \"Phase 2 实验矩阵 YAML：4模型×4任务=16个实验，含 priority/binarize/backend 配置\", \"path\": \"projects/structfuse-context/artifacts/_project/data/phase2_configs.yaml\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T22:11:34.966347+00:00\", \"tags\": [\"phase2\", \"config\", \"experiment-matrix\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "28d8263c-19ec-4ced-bcd1-a925385fb2d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "04791e44-aaa8-41b6-9c66-a5ae7b8e9bbc",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Create Phase 2 experiment framework and config matrix",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-12T22:11:53.577Z_
+
+## 产出汇报
+
+### 1. 核心接口设计
+
+| 函数 | 职责 |
+|------|------|
+| `ExperimentConfig` | dataclass，封装单实验全部参数，`to_run_circus_config()` 转换为 `run_circus.run_pipeline()` 入参 |
+| `load_experiment_matrix(yaml)` | 从 YAML 加载实验矩阵，defaults 与每个实验合并 |
+| `run_single_experiment(exp)` | 调用 `run_circus.run_pipeline()`，带缓存检查和断点续跑 |
+| `run_analysis_for_experiment(exp)` | 实验完成后调用 `analyze_mvp_results.run_analysis()` |
+| `run_batch(experiments, names, max_priority)` | 按 priority 排序批量执行，输出 `phase2_batch_summary.json` |
+| `check_cache(exp)` / `load_cached_scores()` / `save_cached_scores()` | 缓存管理，key 绑定 `CANONICAL_VERSION` + 超参哈希 |
+
+### 2. 实验矩阵
+
+**4 模型 × 4 任务 = 16 个实验**
+
+| 模型 | 任务 | 方法 | Backend |
+|------|------|------|---------|
+| GPT-2 Small | IOI, Greater-Than, Docstring | EAP-IG + EP + ACDC | TransformerLens |
+| Qwen-2.5 0.5B | IOI, Greater-Than, Docstring, IOI-variant | EAP-IG + EP + IFR | HuggingFace |
+| Gemma-2 2B | IOI, Greater-Than, Docstring, IOI-variant | EAP-IG + EP + IFR | HuggingFace |
+| Llama-3.1 8B | IOI, Greater-Than, Docstring, IOI-variant | EAP-IG + EP + IFR | HuggingFace |
+
+### 3. Priority 分布
+
+| Priority | 数量 | 说明 |
+|----------|------|------|
+| P1 | **1** | `gpt2_ioi`（MVP 已在跑） |
+| P2 | **5** | GPT-2 另外 2 task + Qwen-2.5 的 3 task |
+| P3 | **10** | Gemma-2 全部 4 task + Llama-3.1 全部 4 task + Qwen IOI-variant |
+
+### 4. 预估全量运行时间
+
+| 模型 | 单 task 耗时 | task 数 | 小计 |
+|------|-------------|---------|------|
+| GPT-2 Small | ~20min | 3 | ~60min |
+| Qwen-2.5 0.5B | ~25min | 4 | ~100min |
+| Gemma-2 2B | ~65min | 4 | ~260min |
+| Llama-3.1 8B | ~150min | 4 | ~600min |
+| **合计** | | **16** | **~1020min (~17h)** |
+
+P1+P2 子集（6 个实验）约 **2.5h**，可在 MVP 通过后当天完成。P3 的 10 个实验约 **14.5h**，需安排过夜跑。Llama-3.1 8B 需 >=24GB VRAM，config 中已降低 `num_samples=20` 和 `edge_pruning_epochs=60` 控制显存。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04791e44-aaa8-41b6-9c66-a5ae7b8e9bbc",
+  "isSidechain": false,
+  "requestId": "req_011CaySZWwrUKV3XGNPBZ5eM",
+  "type": "assistant",
+  "uuid": "f0ffe9b1-5ad2-421c-83c8-f61850a98ae0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/structfuse-context",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y6wQGWKvJ7FLM7vsP3w5TJ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1097,
+      "cache_read_input_tokens": 42615,
+      "output_tokens": 990,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1097,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 990,
+          "cache_read_input_tokens": 42615,
+          "cache_creation_input_tokens": 1097,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1097
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f0ffe9b1-5ad2-421c-83c8-f61850a98ae0",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Create Phase 2 experiment framework and config matrix",
+  "sessionId": "389daeac-2555-46b4-b35e-37a6a1170f93"
+}
+```
+
+---

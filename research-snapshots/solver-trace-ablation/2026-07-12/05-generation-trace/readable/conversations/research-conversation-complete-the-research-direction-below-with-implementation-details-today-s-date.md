@@ -1,0 +1,2496 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-11 (UTC).** Only recommend ve
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-2/94942838-916b-492e-8ca9-992de02afd76.jsonl`
+- **Structured JSON:** [`819f94b26d6a72e7ab17.json`](../../sessions/81/819f94b26d6a72e7ab17.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-11T20:39:21.229Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T20:39:21.229Z",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.\n\n{\n  \"title\": \"Conflict-Driven Symbolic Backtracking Search for Reasoning\",\n  \"core_problem\": \"Current neurosymbolic methods use symbolic verification as a post-hoc filter or binary signal, discarding the rich diagnostic information (Minimal Unsatisfiable Subsets, counterexamples) that solvers produce. How can we exploit solver conflict analysis to actively guide search over reasoning paths?\",\n  \"opportunity\": \"Z3 can extract MUS when accumulated constraints become unsatisfiable, precisely identifying which assertions cause contradiction. No existing work uses MUS as a search heuristic for natural language reasoning — VERGE uses MCS post-hoc for revision, LeanProgress uses learned progress predictors, and HERMES does linear iteration without tree search. By using MUS to determine exactly which earlier step to backtrack to and revise (conflict-driven backtracking, analogous to CDCL in SAT solving), we can do targeted search instead of exhaustive exploration. This is feasible in 16 days as a pure inference-time method using open checkpoints (Qwen3/DeepSeek-R1-distill) + Z3.\",\n  \"landscape\": \"VERGE (Jan 2026) achieves +18.7% average improvement on logical benchmarks using SMT-based MCS for post-hoc revision, but operates in a linear refine loop, not tree search. LeanProgress (TMLR 2025) guides theorem proving tree search via learned progress predictions but uses no solver conflict analysis. HERMES (Nov 2025) does iterative reasoning with Lean4 feedback but in a linear chain without backtracking. The Adaptive Solver Composition paper (EACL 2026) routes to multiple solvers but performs no search. CDCL-style conflict-driven search is the dominant paradigm in SAT/SMT solving itself but has never been adapted for neural reasoning — a surprising gap given that MUS extraction is a standard Z3 API call.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method or research direction — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\n          \"gpu_hours\": \"e.g. ~200h A100\",\n          \"gpu_utilization\": \"describe GPU idle rate (human waits cause high idle)\",\n          \"timeline\": \"e.g. 3-6 months\",\n          \"team\": \"e.g. 1-2 researchers\",\n          \"estimated_gpu_cost\": \"GPU rental cost only (do NOT include salary)\"\n      },\n      \"human_in_loop\": {\n          \"gpu_hours\": \"e.g. ~300h A100\",\n          \"gpu_utilization\": \"describe GPU utilization improvement vs manual\",\n          \"timeline\": \"e.g. 1-2 months\",\n          \"team\": \"e.g. 1 researcher, ~30min/day check-in (do NOT include salary)\",\n          \"claude_api_cost\": \"e.g. $100-300\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"risk_note\": \"Key bottleneck or risk\"\n      },\n      \"auto_research\": {\n          \"gpu_hours\": \"e.g. ~500h A100 (more exploration, but near-zero idle)\",\n          \"gpu_utilization\": \"describe why GPU idle rate is minimal\",\n          \"timeline\": \"e.g. days to 2 weeks if resources are sufficient\",\n          \"team\": \"0 (only initial setup)\",\n          \"claude_api_cost\": \"e.g. $200-500\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"speed_bottleneck\": \"what limits speed (GPU count, API key quota, etc.)\",\n          \"risk_note\": \"Key risk factor\"\n      }\n  },\n  \"target_venues\": [\"Only list venues with deadlines after 2026-05-11, e.g. NeurIPS 2026\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary combining all above into 150-200 words\",\n  \"project_name\": \"snake_case_identifier (valid Python id, max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.\n\n**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search \"best open source LLM 2026\", \"SOTA open source language model\"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化\n\n## 非常仔细地思考和验证\n\n在设计具体 approach 时，你必须深入思考并充分调研：\n\n1. **可行性验证**（不是猜测，而是基于证据）：\n   - 搜索类似方法的已有实现（检查 GitHub）\n   - 查找需要打败的具体 baseline 数字\n   - 了解类似实验的硬件/数据需求\n   - 查找相关工作中已识别的潜在失败模式\n\n2. **成本估算必须基于真实数据**：\n   - 找到类似实验的实际成本（不是拍脑袋）\n   - 考虑不同研究模式下的成本差异\n\n3. **内部一致性自查**：\n   - approach 是否直接解决 Round 1 识别的 core_problem？\n   - resource estimate 与 approach 复杂度是否匹配？\n   - target venues 与贡献级别是否相称？\n\nFor feasibility grounding:\n- Search \"github.com {method_name} {task}\" to check if building blocks or reference implementations exist.\n  If nothing similar exists, your timeline estimate should be longer.\n- Search \"huggingface.co/datasets {dataset_name}\" or \"paperswithcode.com {task} datasets\" to verify\n  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.\n\nWhen estimating costs for the three research modes (ordered from most to least human involvement):\n\n1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.\n\n2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.\n\n3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.\n\nKey principles:\n- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate\n- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed\n- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)\n- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T20:39:21.233Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-11T20:39:21.233Z",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 3 · 2026-05-11T20:39:21.255Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.
+
+{
+  "title": "Conflict-Driven Symbolic Backtracking Search for Reasoning",
+  "core_problem": "Current neurosymbolic methods use symbolic verification as a post-hoc filter or binary signal, discarding the rich diagnostic information (Minimal Unsatisfiable Subsets, counterexamples) that solvers produce. How can we exploit solver conflict analysis to actively guide search over reasoning paths?",
+  "opportunity": "Z3 can extract MUS when accumulated constraints become unsatisfiable, precisely identifying which assertions cause contradiction. No existing work uses MUS as a search heuristic for natural language reasoning — VERGE uses MCS post-hoc for revision, LeanProgress uses learned progress predictors, and HERMES does linear iteration without tree search. By using MUS to determine exactly which earlier step to backtrack to and revise (conflict-driven backtracking, analogous to CDCL in SAT solving), we can do targeted search instead of exhaustive exploration. This is feasible in 16 days as a pure inference-time method using open checkpoints (Qwen3/DeepSeek-R1-distill) + Z3.",
+  "landscape": "VERGE (Jan 2026) achieves +18.7% average improvement on logical benchmarks using SMT-based MCS for post-hoc revision, but operates in a linear refine loop, not tree search. LeanProgress (TMLR 2025) guides theorem proving tree search via learned progress predictions but uses no solver conflict analysis. HERMES (Nov 2025) does iterative reasoning with Lean4 feedback but in a linear chain without backtracking. The Adaptive Solver Composition paper (EACL 2026) routes to multiple solvers but performs no search. CDCL-style conflict-driven search is the dominant paradigm in SAT/SMT solving itself but has never been adapted for neural reasoning — a surprising gap given that MUS extraction is a standard Z3 API call."
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method or research direction — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {
+          "gpu_hours": "e.g. ~200h A100",
+          "gpu_utilization": "describe GPU idle rate (human waits cause high idle)",
+          "timeline": "e.g. 3-6 months",
+          "team": "e.g. 1-2 researchers",
+          "estimated_gpu_cost": "GPU rental cost only (do NOT include salary)"
+      },
+      "human_in_loop": {
+          "gpu_hours": "e.g. ~300h A100",
+          "gpu_utilization": "describe GPU utilization improvement vs manual",
+          "timeline": "e.g. 1-2 months",
+          "team": "e.g. 1 researcher, ~30min/day check-in (do NOT include salary)",
+          "claude_api_cost": "e.g. $100-300",
+          "estimated_gpu_cost": "GPU rental cost",
+          "risk_note": "Key bottleneck or risk"
+      },
+      "auto_research": {
+          "gpu_hours": "e.g. ~500h A100 (more exploration, but near-zero idle)",
+          "gpu_utilization": "describe why GPU idle rate is minimal",
+          "timeline": "e.g. days to 2 weeks if resources are sufficient",
+          "team": "0 (only initial setup)",
+          "claude_api_cost": "e.g. $200-500",
+          "estimated_gpu_cost": "GPU rental cost",
+          "speed_bottleneck": "what limits speed (GPU count, API key quota, etc.)",
+          "risk_note": "Key risk factor"
+      }
+  },
+  "target_venues": ["Only list venues with deadlines after 2026-05-11, e.g. NeurIPS 2026"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary combining all above into 150-200 words",
+  "project_name": "snake_case_identifier (valid Python id, max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.
+
+**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search "best open source LLM 2026", "SOTA open source language model"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化
+
+## 非常仔细地思考和验证
+
+在设计具体 approach 时，你必须深入思考并充分调研：
+
+1. **可行性验证**（不是猜测，而是基于证据）：
+   - 搜索类似方法的已有实现（检查 GitHub）
+   - 查找需要打败的具体 baseline 数字
+   - 了解类似实验的硬件/数据需求
+   - 查找相关工作中已识别的潜在失败模式
+
+2. **成本估算必须基于真实数据**：
+   - 找到类似实验的实际成本（不是拍脑袋）
+   - 考虑不同研究模式下的成本差异
+
+3. **内部一致性自查**：
+   - approach 是否直接解决 Round 1 识别的 core_problem？
+   - resource estimate 与 approach 复杂度是否匹配？
+   - target venues 与贡献级别是否相称？
+
+For feasibility grounding:
+- Search "github.com {method_name} {task}" to check if building blocks or reference implementations exist.
+  If nothing similar exists, your timeline estimate should be longer.
+- Search "huggingface.co/datasets {dataset_name}" or "paperswithcode.com {task} datasets" to verify
+  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.
+
+When estimating costs for the three research modes (ordered from most to least human involvement):
+
+1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.
+
+2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.
+
+3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.
+
+Key principles:
+- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate
+- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed
+- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)
+- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f39f4e6d-18af-47a8-a966-d1747e7597c9",
+  "type": "user",
+  "uuid": "8455dbc9-0116-4b9d-9ecf-019c0c62ace1",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-11T20:39:21.254Z_
+
+```json
+{
+  "parentUuid": "8455dbc9-0116-4b9d-9ecf-019c0c62ace1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3e2f2be9-9aa7-4226-bc62-209a972d50ed",
+  "timestamp": "2026-05-11T20:39:21.254Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-11T20:39:21.254Z_
+
+```json
+{
+  "parentUuid": "3e2f2be9-9aa7-4226-bc62-209a972d50ed",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c63ef550-2f67-4e9e-990a-9ec1657a1a13",
+  "timestamp": "2026-05-11T20:39:21.254Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conflict-driven symbolic backtracking for neural reasoning",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-11T20:39:26.445Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with implementation details. This requires extensive web research to:
+
+1. Verify cited papers and references
+2. Check for concurrent/competing work
+3. Find current top-performing open-source models
+4. Verify dataset availability
+5. Check GitHub for existing implementations
+6. Find venue deadlines
+7. Ground cost estimates in real data
+
+Let me start by launching several parallel research tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c63ef550-2f67-4e9e-990a-9ec1657a1a13",
+  "isSidechain": false,
+  "requestId": "req_011CawRigVxPJaSkyqZsbK9R",
+  "type": "assistant",
+  "uuid": "42515948-8ca7-4ee3-a7e9-4902cc968c7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UAGei9C9tS3wCSM3ZjJnYY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 2167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2167,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-11T20:39:27.366Z_
+
+I'll research this thoroughly before assembling the final JSON. Let me launch several parallel investigations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42515948-8ca7-4ee3-a7e9-4902cc968c7e",
+  "isSidechain": false,
+  "requestId": "req_011CawRigVxPJaSkyqZsbK9R",
+  "type": "assistant",
+  "uuid": "5b9575f0-02ed-43dd-88f6-64638a25c965",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UAGei9C9tS3wCSM3ZjJnYY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 2167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2167,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-11T20:39:38.340Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01DNfYjVbLiCgPjEu9usJpXD`</summary>
+
+```json
+{
+  "description": "Verify key references",
+  "subagent_type": "general-purpose",
+  "prompt": "Use WebSearch to verify that each of these papers is real — confirm the title, venue, and year. For each, report: confirmed title, confirmed venue/year, or \"CANNOT VERIFY\".\n\n1. \"VERGE\" — claimed to be Jan 2026, uses SMT-based MCS for post-hoc revision on logical benchmarks\n2. \"LeanProgress\" — claimed TMLR 2025, guides theorem proving tree search via learned progress predictions\n3. \"HERMES\" — claimed Nov 2025, iterative reasoning with Lean4 feedback\n4. \"Adaptive Solver Composition\" — claimed EACL 2026, routes to multiple solvers\n\nAlso search for any other relevant papers on:\n- \"MUS minimal unsatisfiable subset neural reasoning\"\n- \"conflict-driven clause learning neural networks\"\n- \"CDCL inspired neural reasoning\"\n- \"SMT solver guided LLM reasoning\"\n\nReport exact titles and venues for any additional relevant papers you find."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b9575f0-02ed-43dd-88f6-64638a25c965",
+  "isSidechain": false,
+  "requestId": "req_011CawRigVxPJaSkyqZsbK9R",
+  "type": "assistant",
+  "uuid": "49b06a5e-baa9-494c-a4fc-fdd5f50fd355",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UAGei9C9tS3wCSM3ZjJnYY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 2167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2167,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-11T20:39:39.035Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01TFPnWfA8kFPL1vA8mwbcES`</summary>
+
+```json
+{
+  "description": "Concurrent work search",
+  "subagent_type": "general-purpose",
+  "prompt": "Search for concurrent and competing work on the topic of using SMT solver conflict analysis (MUS, CDCL-style backtracking) to guide LLM reasoning. This is a neurosymbolic AI research direction.\n\nPerform these searches using WebSearch:\n1. \"conflict-driven backtracking LLM reasoning 2026\"\n2. \"MUS unsatisfiable subset guided search language model 2026\"\n3. \"Z3 solver guided LLM reasoning 2025 2026\"\n4. \"neurosymbolic backtracking search reasoning 2026\"\n5. Search arXiv: \"arxiv conflict driven neural reasoning 2026\"\n6. Search arXiv: \"arxiv SMT guided language model reasoning\"\n7. Search OpenReview: \"openreview.net CDCL neural reasoning\"\n8. Search OpenReview: \"openreview.net solver guided reasoning ICML 2026\"\n9. \"symbolic backtracking search LLM 2025 2026\"\n10. \"tree search solver feedback reasoning LLM 2026\"\n\nFor each search, report any highly relevant papers found. Flag anything that looks like it's doing the same thing (using MUS/conflict analysis from solvers to guide backtracking in neural reasoning)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49b06a5e-baa9-494c-a4fc-fdd5f50fd355",
+  "isSidechain": false,
+  "requestId": "req_011CawRigVxPJaSkyqZsbK9R",
+  "type": "assistant",
+  "uuid": "73e39ede-ab29-4172-a3ba-6a5a2f5c7e23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UAGei9C9tS3wCSM3ZjJnYY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 2167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2167,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-11T20:39:44.635Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_014b18AzTF6QR7Sco3Yq3ub5`</summary>
+
+```json
+{
+  "description": "Find current top open-source LLMs",
+  "subagent_type": "general-purpose",
+  "prompt": "Use WebSearch to find the current best open-source language models as of May 2026. The research direction needs models good at logical/mathematical reasoning that can be used for inference (not fine-tuning).\n\nSearch for:\n1. \"best open source LLM 2026 reasoning\"\n2. \"top open source language model May 2026\"\n3. \"SOTA open source reasoning model 2026\"\n4. \"Qwen3 model release 2026\" — check if Qwen3 exists and what sizes are available\n5. \"DeepSeek R1 distill 2026\" — check current status\n6. \"open source LLM benchmark leaderboard 2026\"\n7. \"best open weight model for mathematical reasoning 2026\"\n\nReport which models are currently at the frontier for open-source reasoning, their sizes, and availability. The user's seed mentions Qwen3 and DeepSeek-R1-distill — verify these are still frontier or if newer models have surpassed them."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73e39ede-ab29-4172-a3ba-6a5a2f5c7e23",
+  "isSidechain": false,
+  "requestId": "req_011CawRigVxPJaSkyqZsbK9R",
+  "type": "assistant",
+  "uuid": "63fe8561-fabe-4a42-b859-b37bb1ffbe2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UAGei9C9tS3wCSM3ZjJnYY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 2167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2167,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-11T20:39:49.336Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01MTkuyYzacK8Gfy9MmotbsD`</summary>
+
+```json
+{
+  "description": "Check venues and deadlines",
+  "subagent_type": "general-purpose",
+  "prompt": "Use WebSearch to find submission deadlines for major AI/ML/NLP conferences that have NOT yet passed as of 2026-05-11. Search for:\n\n1. \"NeurIPS 2026 submission deadline\"\n2. \"AAAI 2027 submission deadline\"\n3. \"ICLR 2027 submission deadline\"\n4. \"EMNLP 2026 submission deadline\"\n5. \"ACL 2027 submission deadline\"\n6. \"ICML 2026 submission deadline\" (check if already passed)\n7. \"COLM 2026 submission deadline\"\n8. \"NAACL 2027 submission deadline\"\n9. \"CoNLL 2026 submission deadline\"\n10. \"NeurIPS 2026 workshop submission deadline\"\n\nFor each venue, report the exact deadline date if found, or your best estimate. Only include venues whose submission deadline is AFTER May 11, 2026. The paper would be ready in ~16 days from now (by end of May 2026), so realistically we need venues with deadlines in late May 2026 or later."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63fe8561-fabe-4a42-b859-b37bb1ffbe2a",
+  "isSidechain": false,
+  "requestId": "req_011CawRigVxPJaSkyqZsbK9R",
+  "type": "assistant",
+  "uuid": "43942cbc-2325-4d9a-b22a-04fa72e2b3e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UAGei9C9tS3wCSM3ZjJnYY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 2167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2167,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-11T20:39:56.448Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01H94iN2XuqZ8TihSoXpexzH`</summary>
+
+```json
+{
+  "description": "Check GitHub implementations and datasets",
+  "subagent_type": "general-purpose",
+  "prompt": "Use WebSearch to check for existing implementations and datasets relevant to a research project that uses Z3 SMT solver MUS (Minimal Unsatisfiable Subset) extraction to guide backtracking in LLM reasoning.\n\nSearch for:\n1. \"github.com Z3 MUS extraction python\" — check if MUS extraction is straightforward in Z3's Python API\n2. \"github.com neurosymbolic reasoning Z3 LLM\"\n3. \"github.com VERGE SMT revision reasoning\" — the VERGE paper's code\n4. \"github.com tree search LLM reasoning\"\n5. \"github.com conflict driven backtracking neural\"\n6. \"huggingface.co/datasets logical reasoning benchmark\"\n7. \"paperswithcode.com logical reasoning datasets\"\n8. \"FOLIO dataset logical reasoning\" — check accessibility\n9. \"ProntoQA dataset\" — check accessibility\n10. \"ProofWriter dataset\" — check accessibility\n11. \"LogicalDeduction benchmark BIG-Bench\" — check accessibility\n12. \"ReClor dataset reading comprehension logical reasoning\" — check accessibility\n13. \"AR-LSAT dataset\" — check accessibility\n\nReport what you find: which building blocks exist, which datasets are publicly accessible, and any implementation concerns."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43942cbc-2325-4d9a-b22a-04fa72e2b3e9",
+  "isSidechain": false,
+  "requestId": "req_011CawRigVxPJaSkyqZsbK9R",
+  "type": "assistant",
+  "uuid": "e9cd6feb-861f-4eaa-918c-01527456d878",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UAGei9C9tS3wCSM3ZjJnYY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 2167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2167,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-11T20:40:02.337Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01MZg7qoe64xPTnbwhWHFzFw`</summary>
+
+```json
+{
+  "description": "GPU cost estimation research",
+  "subagent_type": "general-purpose",
+  "prompt": "Use WebSearch to find real GPU rental costs and inference benchmarks relevant to this research setup:\n- Running inference with open-source LLMs (7B-70B parameter models) on A100 or H100 GPUs\n- The task involves tree search over reasoning paths with Z3 solver verification at each step\n\nSearch for:\n1. \"A100 GPU rental cost per hour 2026\"\n2. \"H100 GPU rental cost per hour 2026\"\n3. \"vLLM inference throughput tokens per second A100\"\n4. \"Qwen3 inference speed tokens per second\"\n5. \"DeepSeek R1 inference cost\"\n6. \"GPU cost LLM inference research 2026\"\n7. \"Lambda Labs GPU pricing 2026\" or \"RunPod pricing 2026\" or \"vast.ai pricing 2026\"\n\nAlso estimate: for a tree search method that generates ~50-100 reasoning paths per problem, with ~500-2000 test problems across multiple benchmarks, how many total tokens would be generated? Roughly how many GPU hours would that require?\n\nReport concrete numbers for cost estimation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9cd6feb-861f-4eaa-918c-01527456d878",
+  "isSidechain": false,
+  "requestId": "req_011CawRigVxPJaSkyqZsbK9R",
+  "type": "assistant",
+  "uuid": "1609e2a7-786c-4ca8-bf87-ed5fe5bccded",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UAGei9C9tS3wCSM3ZjJnYY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7209,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 2167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7209,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2167,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 7209,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7209
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Conflict-Driv…",
+  "leafUuid": "1609e2a7-786c-4ca8-bf87-ed5fe5bccded",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conflict-driven symbolic backtracking for neural reasoning",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-11T20:41:00.102Z_
+
+<details><summary>↩ Tool result · `toolu_01MTkuyYzacK8Gfy9MmotbsD`</summary>
+
+```text
+Here is a comprehensive summary of AI/ML/NLP conference deadlines that are still open as of May 11, 2026, organized by deadline date.
+
+---
+
+## Conferences with Deadlines AFTER May 11, 2026
+
+### 1. EMNLP 2026 -- ARR Submission Deadline: May 25, 2026
+- **Venue:** Budapest, Hungary (October 24-29, 2026)
+- **ARR submission deadline (long & short papers):** May 25, 2026
+- **Author registration form:** May 27, 2026
+- **Commitment deadline:** August 2, 2026
+- **Notification:** August 20, 2026
+- **Status:** FEASIBLE if your paper is ready by end of May. This is the tightest viable option.
+- Sources: [EMNLP 2026](https://2026.emnlp.org/), [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)
+
+### 2. NeurIPS 2026 Workshop Proposals -- Deadline: June 6, 2026
+- **This is for workshop proposals, not papers.** If you are organizing a workshop, proposals are due June 6, 2026 AoE. 
+- **Workshop paper submissions** (to accepted workshops) have a suggested deadline of August 29, 2026.
+- Sources: [NeurIPS 2026 Call for Workshops](https://neurips.cc/Conferences/2026/CallForWorkshops), [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)
+
+### 3. AAAI 2027 -- Abstract: ~July 25, 2026 | Paper: ~August 1, 2026
+- **Venue:** Montreal, Quebec, Canada (February 16-23, 2027)
+- **Abstract deadline:** July 25, 2026
+- **Full paper submission deadline:** August 1, 2026
+- **Status:** VERY FEASIBLE. Plenty of time to polish your paper.
+- Sources: [AAAI Conference](https://aaai.org/conference/aaai/), [AI Conference Deadlines](https://trybibby.com/conference-deadlines)
+
+### 4. EACL 2027 (via ARR) -- ARR Submission: August 3, 2026
+- **Venue:** Athens, Greece (March 9-14, 2027)
+- **ARR submission deadline:** August 3, 2026
+- **Status:** VERY FEASIBLE.
+- Sources: [EACL 2027](https://2027.eacl.org/), [ARR Dates](http://aclrollingreview.org/dates)
+
+### 5. NeurIPS 2026 Workshop Papers -- Suggested Submission: August 29, 2026
+- **Workshop dates:** December 11-13, 2026 (Sydney / Paris / Atlanta)
+- **Suggested submission deadline for workshop contributions:** August 29, 2026
+- **Mandatory notification deadline:** September 29, 2026
+- **Status:** VERY FEASIBLE. Individual workshops set their own exact deadlines, but organizers are guided by the August 29 suggestion.
+- Sources: [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates), [NeurIPS 2026 Workshops Guidance](https://neurips.cc/Conferences/2026/WorkshopsGuidance)
+
+### 6. NAACL 2027 -- Deadline TBA (estimated late 2026 via ARR)
+- **Venue:** TBA (April 29 - May 4, 2027)
+- **Submission deadline:** Not yet announced. Based on historical patterns and the ARR cycle, the relevant ARR submission deadline will likely be in October-November 2026.
+- **Status:** VERY FEASIBLE once announced.
+- Sources: [NAACL](https://naacl.org/), [ARR Dates](http://aclrollingreview.org/dates)
+
+### 7. ICLR 2027 -- Deadline TBA (estimated September-October 2026)
+- **Deadline not yet announced.** Based on ICLR 2026's deadline of ~September 2025, ICLR 2027's submission deadline is expected around September-October 2026.
+- **Status:** VERY FEASIBLE once announced.
+- Sources: [ICLR](https://iclr.cc/), [AI Conference Deadlines](https://mlciv.com/ai-deadlines/)
+
+### 8. ACL 2027 -- Deadline TBA (via ARR, estimated late 2026)
+- The main ACL 2027 deadline has not been announced. ACL uses ARR exclusively, and relevant ARR cycles will likely be in late 2026 or early 2027.
+- **Status:** VERY FEASIBLE once announced.
+- Sources: [ARR Dates](http://aclrollingreview.org/dates), [ACL 2026 for reference](https://2026.aclweb.org/)
+
+---
+
+## Conferences Whose Deadlines Have ALREADY PASSED (before May 11, 2026)
+
+| Conference | Deadline | Status |
+|---|---|---|
+| **NeurIPS 2026** (main) | Abstract: May 4; Paper: May 6, 2026 | PASSED (just missed by ~5 days) |
+| **ICML 2026** | January 28, 2026 | PASSED |
+| **COLM 2026** | Abstract: March 26; Paper: March 31, 2026 | PASSED |
+| **CoNLL 2026** | February 19, 2026 | PASSED |
+
+---
+
+## Recommended Strategy (paper ready by ~May 27, 2026)
+
+1. **Immediate target: EMNLP 2026** (May 25 ARR deadline) -- This is tight but doable if you submit to ARR by May 25. This is a top NLP venue.
+
+2. **Strong backup: AAAI 2027** (August 1) -- Gives you ample time. Top-tier AI conference.
+
+3. **Also consider: EACL 2027** (August 3 ARR deadline) -- Good venue, similar timeline to AAAI.
+
+4. **NeurIPS 2026 workshops** (~August 29) -- If the work fits a specific workshop topic, this is a good option at a premier venue.
+
+5. **Later options: ICLR 2027, NAACL 2027, ACL 2027** -- All expected to have deadlines in September 2026 or later, giving you maximum time to refine the paper.
+
+agentId: a79feaebfb7103afb (use SendMessage with to: 'a79feaebfb7103afb' to continue this agent)
+&lt;usage>total_tokens: 22250
+tool_uses: 15
+duration_ms: 70763&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43942cbc-2325-4d9a-b22a-04fa72e2b3e9",
+  "isSidechain": false,
+  "promptId": "f39f4e6d-18af-47a8-a966-d1747e7597c9",
+  "type": "user",
+  "uuid": "57129f3e-de3d-4440-b086-095155a4262e",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Use WebSearch to find submission deadlines for major AI/ML/NLP conferences that have NOT yet passed as of 2026-05-11. Search for:\n\n1. \"NeurIPS 2026 submission deadline\"\n2. \"AAAI 2027 submission deadline\"\n3. \"ICLR 2027 submission deadline\"\n4. \"EMNLP 2026 submission deadline\"\n5. \"ACL 2027 submission deadline\"\n6. \"ICML 2026 submission deadline\" (check if already passed)\n7. \"COLM 2026 submission deadline\"\n8. \"NAACL 2027 submission deadline\"\n9. \"CoNLL 2026 submission deadline\"\n10. \"NeurIPS 2026 workshop submission deadline\"\n\nFor each venue, report the exact deadline date if found, or your best estimate. Only include venues whose submission deadline is AFTER May 11, 2026. The paper would be ready in ~16 days from now (by end of May 2026), so realistically we need venues with deadlines in late May 2026 or later.",
+    "agentId": "a79feaebfb7103afb",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a comprehensive summary of AI/ML/NLP conference deadlines that are still open as of May 11, 2026, organized by deadline date.\n\n---\n\n## Conferences with Deadlines AFTER May 11, 2026\n\n### 1. EMNLP 2026 -- ARR Submission Deadline: May 25, 2026\n- **Venue:** Budapest, Hungary (October 24-29, 2026)\n- **ARR submission deadline (long & short papers):** May 25, 2026\n- **Author registration form:** May 27, 2026\n- **Commitment deadline:** August 2, 2026\n- **Notification:** August 20, 2026\n- **Status:** FEASIBLE if your paper is ready by end of May. This is the tightest viable option.\n- Sources: [EMNLP 2026](https://2026.emnlp.org/), [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n\n### 2. NeurIPS 2026 Workshop Proposals -- Deadline: June 6, 2026\n- **This is for workshop proposals, not papers.** If you are organizing a workshop, proposals are due June 6, 2026 AoE. \n- **Workshop paper submissions** (to accepted workshops) have a suggested deadline of August 29, 2026.\n- Sources: [NeurIPS 2026 Call for Workshops](https://neurips.cc/Conferences/2026/CallForWorkshops), [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)\n\n### 3. AAAI 2027 -- Abstract: ~July 25, 2026 | Paper: ~August 1, 2026\n- **Venue:** Montreal, Quebec, Canada (February 16-23, 2027)\n- **Abstract deadline:** July 25, 2026\n- **Full paper submission deadline:** August 1, 2026\n- **Status:** VERY FEASIBLE. Plenty of time to polish your paper.\n- Sources: [AAAI Conference](https://aaai.org/conference/aaai/), [AI Conference Deadlines](https://trybibby.com/conference-deadlines)\n\n### 4. EACL 2027 (via ARR) -- ARR Submission: August 3, 2026\n- **Venue:** Athens, Greece (March 9-14, 2027)\n- **ARR submission deadline:** August 3, 2026\n- **Status:** VERY FEASIBLE.\n- Sources: [EACL 2027](https://2027.eacl.org/), [ARR Dates](http://aclrollingreview.org/dates)\n\n### 5. NeurIPS 2026 Workshop Papers -- Suggested Submission: August 29, 2026\n- **Workshop dates:** December 11-13, 2026 (Sydney / Paris / Atlanta)\n- **Suggested submission deadline for workshop contributions:** August 29, 2026\n- **Mandatory notification deadline:** September 29, 2026\n- **Status:** VERY FEASIBLE. Individual workshops set their own exact deadlines, but organizers are guided by the August 29 suggestion.\n- Sources: [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates), [NeurIPS 2026 Workshops Guidance](https://neurips.cc/Conferences/2026/WorkshopsGuidance)\n\n### 6. NAACL 2027 -- Deadline TBA (estimated late 2026 via ARR)\n- **Venue:** TBA (April 29 - May 4, 2027)\n- **Submission deadline:** Not yet announced. Based on historical patterns and the ARR cycle, the relevant ARR submission deadline will likely be in October-November 2026.\n- **Status:** VERY FEASIBLE once announced.\n- Sources: [NAACL](https://naacl.org/), [ARR Dates](http://aclrollingreview.org/dates)\n\n### 7. ICLR 2027 -- Deadline TBA (estimated September-October 2026)\n- **Deadline not yet announced.** Based on ICLR 2026's deadline of ~September 2025, ICLR 2027's submission deadline is expected around September-October 2026.\n- **Status:** VERY FEASIBLE once announced.\n- Sources: [ICLR](https://iclr.cc/), [AI Conference Deadlines](https://mlciv.com/ai-deadlines/)\n\n### 8. ACL 2027 -- Deadline TBA (via ARR, estimated late 2026)\n- The main ACL 2027 deadline has not been announced. ACL uses ARR exclusively, and relevant ARR cycles will likely be in late 2026 or early 2027.\n- **Status:** VERY FEASIBLE once announced.\n- Sources: [ARR Dates](http://aclrollingreview.org/dates), [ACL 2026 for reference](https://2026.aclweb.org/)\n\n---\n\n## Conferences Whose Deadlines Have ALREADY PASSED (before May 11, 2026)\n\n| Conference | Deadline | Status |\n|---|---|---|\n| **NeurIPS 2026** (main) | Abstract: May 4; Paper: May 6, 2026 | PASSED (just missed by ~5 days) |\n| **ICML 2026** | January 28, 2026 | PASSED |\n| **COLM 2026** | Abstract: March 26; Paper: March 31, 2026 | PASSED |\n| **CoNLL 2026** | February 19, 2026 | PASSED |\n\n---\n\n## Recommended Strategy (paper ready by ~May 27, 2026)\n\n1. **Immediate target: EMNLP 2026** (May 25 ARR deadline) -- This is tight but doable if you submit to ARR by May 25. This is a top NLP venue.\n\n2. **Strong backup: AAAI 2027** (August 1) -- Gives you ample time. Top-tier AI conference.\n\n3. **Also consider: EACL 2027** (August 3 ARR deadline) -- Good venue, similar timeline to AAAI.\n\n4. **NeurIPS 2026 workshops** (~August 29) -- If the work fits a specific workshop topic, this is a good option at a premier venue.\n\n5. **Later options: ICLR 2027, NAACL 2027, ACL 2027** -- All expected to have deadlines in September 2026 or later, giving you maximum time to refine the paper."
+      }
+    ],
+    "totalDurationMs": 70763,
+    "totalTokens": 22250,
+    "totalToolUseCount": 15,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2202,
+      "cache_read_input_tokens": 18390,
+      "output_tokens": 1657,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2202
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1657,
+          "cache_read_input_tokens": 18390,
+          "cache_creation_input_tokens": 2202,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2202,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 15
+    }
+  },
+  "sourceToolAssistantUUID": "43942cbc-2325-4d9a-b22a-04fa72e2b3e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-11T20:41:08.718Z_
+
+<details><summary>↩ Tool result · `toolu_014b18AzTF6QR7Sco3Yq3ub5`</summary>
+
+```text
+Here is a comprehensive report on the current frontier of open-source/open-weight language models for logical and mathematical reasoning as of May 2026.
+
+---
+
+## Tier 1: Frontier Open-Weight Reasoning Models
+
+### DeepSeek V4 Pro (released April 24, 2026)
+- **Parameters:** 1.6T total / 49B active (MoE)
+- **Context:** 1M tokens
+- **License:** MIT
+- **Status:** Currently the **#1 open-weight model** on BenchLM's aggregate intelligence index (score: 87). Incorporates a unified "thinking mode toggle" -- fast direct responses for routine queries, extended reasoning when needed. Strong on AIME, GPQA Diamond, and complex code reasoning. The lighter **DeepSeek-V4-Flash** variant (284B total / 13B active) is also available for cost-sensitive deployments.
+
+### GLM-5.1 (released April 7, 2026)
+- **Parameters:** 754B total / 40B active (MoE)
+- **Context:** 200K tokens, up to 128K output tokens
+- **License:** MIT
+- **Status:** First open-source model to lead SWE-Bench Pro (58.4%, edging Claude Opus 4.6's 57.3). Strong on agentic engineering and long-horizon software tasks. From Z.ai (formerly Zhipu AI).
+
+### Kimi-K2.6
+- **Status:** Scored 84 on BenchLM aggregate, leads HumanEval (99%) and AIME (96.1%). Competitive with GPT-5.4 and Claude Opus 4.6 on complex end-to-end coding. Can decompose tasks into parallel sub-agents.
+
+---
+
+## Tier 2: Strong Reasoning Models (Excellent and Widely Deployed)
+
+### Qwen3 family (original release April 28, 2025; successors through 2026)
+- **Qwen3-235B-A22B:** 235B total / 22B active (MoE). Scored 62 on Artificial Analysis Intelligence Index. Strong on AIME'24 (85.1 after RL), SuperGPQA, LiveCodeBench. Apache 2.0 license. Leads on broadest range of benchmarks combining reasoning, coding, and multilingual.
+- **Available sizes:** 0.6B, 1.7B, 4B, 8B, 14B, 32B (dense); 30B-A3B, 235B-A22B (MoE).
+- **Newer successors:** Qwen3.5 (Feb 2026) with 122B-A10B, 35B-A3B, 27B variants; Qwen3.6 (April 2026) with 27B dense model and Qwen3.6-Max-Preview; Qwen3-Coder-Next for coding agents.
+- **Verdict:** Qwen3 is **not obsolete** -- it remains strong, and its successors (3.5, 3.6) extend the family further. The 235B-A22B remains a top-tier reasoning model, though DeepSeek V4 Pro and Kimi-K2.6 now score higher on aggregate leaderboards.
+
+### DeepSeek-R1 (released January 2025)
+- **Parameters:** 671B total (MoE)
+- **Status:** Still an excellent reasoning model that matches or exceeds OpenAI o1 on AIME 2024, Codeforces, and GPQA Diamond. However, it has been **superseded by DeepSeek V4** as the flagship. R1 remains highly relevant for mathematical reasoning workloads.
+- **Distilled variants (DeepSeek-R1-Distill):** Available in 1.5B, 7B, 8B, 14B, 32B, and 70B sizes (based on Qwen2.5 and Llama3). The 32B distill outperforms OpenAI o1-mini. These are **still excellent** for resource-constrained deployments and remain among the best small reasoning models, though newer alternatives now exist.
+
+### Google Gemma 4 (released April 2, 2026)
+- Edge-friendly models at 2B and 4B parameters with vision and audio. SOTA reasoning at small scale.
+
+### Gemma 3 27B
+- Beats Llama-405B, DeepSeek-V3, and o3-mini on LMArena benchmarks despite being only 27B parameters.
+
+---
+
+## Tier 3: Efficient / Specialized Reasoning Models
+
+| Model | Size | Strength |
+|---|---|---|
+| **QwQ-32B** (Qwen) | 32B dense | Best balance of capability and efficiency for reasoning |
+| **MiniMax-M1-80k** | -- | Long-context reasoning with computational savings |
+| **GLM-Z1-9B** | 9B | Surprisingly strong math for its size |
+| **Ministerial 14B** | 14B | ~85% on AIME 2025; competitive with much larger models |
+| **MiMo-V2.5-Pro** (Xiaomi) | 1.02T total / 42B active | Agentic coding and long-horizon reasoning |
+| **Kimi-Dev-72B** | 72B | 60.4% SWE-bench Verified for software engineering |
+
+---
+
+## Verdict on User's Seed Models
+
+**Qwen3:** Still frontier-class. The 235B-A22B is a top-5 open reasoning model. The family has expanded with Qwen3.5 and Qwen3.6 variants. For inference-only use, the 32B dense or 235B-A22B MoE are excellent choices depending on hardware budget.
+
+**DeepSeek-R1-Distill:** Still very good, especially the 32B and 70B distills for cost-effective reasoning. However, they have been **partially surpassed** by:
+- DeepSeek V4 Flash (284B/13B active) for similar cost with better performance
+- Qwen3.5/3.6 dense models at similar sizes
+- GLM-Z1-9B and Ministerial 14B at the small-model end
+
+**What has surpassed them both:** DeepSeek V4 Pro (87 on BenchLM), Kimi-K2.6 (84), and GLM-5.1 (83) now represent the true frontier for open-weight reasoning.
+
+---
+
+## Recommendation for Inference (Not Fine-Tuning)
+
+- **Maximum reasoning power, ample hardware:** DeepSeek V4 Pro (1.6T/49B active, MIT license)
+- **Strong reasoning, moderate hardware:** Qwen3-235B-A22B or GLM-5.1 (both ~40B active parameters)
+- **Single-GPU reasoning:** QwQ-32B, Qwen3-32B, or DeepSeek-R1-Distill-32B
+- **Laptop/edge:** Gemma 4 (2B/4B) or DeepSeek-R1-Distill-1.5B/7B
+
+Sources:
+- [Best Open Source LLMs for Reasoning in 2026 - SiliconFlow](https://www.siliconflow.com/articles/en/best-open-source-LLMs-for-reasoning)
+- [Best Open Source LLM Leaderboard 2026 - Onyx AI](https://onyx.app/open-llm-leaderboard)
+- [Open Source LLM Leaderboard 2026 - Vellum](https://www.vellum.ai/open-llm-leaderboard)
+- [Best Open Source LLM for Math in 2026 - SiliconFlow](https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math)
+- [LLM Benchmark Leaderboard 2026 - CodeSOTA](https://www.codesota.com/llm)
+- [Best Open Source LLM 2026 - BenchLM](https://benchlm.ai/blog/posts/best-open-source-llm)
+- [DeepSeek V4 Pro - Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)
+- [DeepSeek V4 Preview Release - DeepSeek API Docs](https://api-docs.deepseek.com/news/news260424)
+- [GLM-5.1 Full Review 2026 - BuildFastWithAI](https://www.buildfastwithai.com/blogs/glm-5-1-open-source-review-2026)
+- [GLM-5.1 - Hugging Face](https://huggingface.co/zai-org/GLM-5.1)
+- [Qwen3-235B-A22B - Hugging Face](https://huggingface.co/Qwen/Qwen3-235B-A22B)
+- [Qwen3.6 - GitHub](https://github.com/QwenLM/Qwen3.6)
+- [Alibaba Qwen3.6-27B Release - MarkTechPost](https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/)
+- [DeepSeek-R1 - GitHub](https://github.com/deepseek-ai/deepseek-r1)
+- [Gemma 4 Open Models Launched - Blockchain News](https://blockchain.news/ainews/gemma-4-open-models-launched-google-s-latest-sota-reasoning-from-2b-to-edge-ready-multimodal-analysis-and-2026-opportunities)
+- [Top 10 Open-Source Reasoning Models 2026 - Clarifai](https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026)
+- [Best Reasoning AI Models 2026 - BenchLM](https://benchlm.ai/best/reasoning-models)
+- [Best AI for Math 2026 - LLM Stats](https://llm-stats.com/leaderboards/best-ai-for-math)
+
+agentId: aa4be14f0866b19d4 (use SendMessage with to: 'aa4be14f0866b19d4' to continue this agent)
+&lt;usage>total_tokens: 23421
+tool_uses: 11
+duration_ms: 84078&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63fe8561-fabe-4a42-b859-b37bb1ffbe2a",
+  "isSidechain": false,
+  "promptId": "f39f4e6d-18af-47a8-a966-d1747e7597c9",
+  "type": "user",
+  "uuid": "b91a1105-575b-41eb-9aff-67d5e0b44b26",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Use WebSearch to find the current best open-source language models as of May 2026. The research direction needs models good at logical/mathematical reasoning that can be used for inference (not fine-tuning).\n\nSearch for:\n1. \"best open source LLM 2026 reasoning\"\n2. \"top open source language model May 2026\"\n3. \"SOTA open source reasoning model 2026\"\n4. \"Qwen3 model release 2026\" — check if Qwen3 exists and what sizes are available\n5. \"DeepSeek R1 distill 2026\" — check current status\n6. \"open source LLM benchmark leaderboard 2026\"\n7. \"best open weight model for mathematical reasoning 2026\"\n\nReport which models are currently at the frontier for open-source reasoning, their sizes, and availability. The user's seed mentions Qwen3 and DeepSeek-R1-distill — verify these are still frontier or if newer models have surpassed them.",
+    "agentId": "aa4be14f0866b19d4",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a comprehensive report on the current frontier of open-source/open-weight language models for logical and mathematical reasoning as of May 2026.\n\n---\n\n## Tier 1: Frontier Open-Weight Reasoning Models\n\n### DeepSeek V4 Pro (released April 24, 2026)\n- **Parameters:** 1.6T total / 49B active (MoE)\n- **Context:** 1M tokens\n- **License:** MIT\n- **Status:** Currently the **#1 open-weight model** on BenchLM's aggregate intelligence index (score: 87). Incorporates a unified \"thinking mode toggle\" -- fast direct responses for routine queries, extended reasoning when needed. Strong on AIME, GPQA Diamond, and complex code reasoning. The lighter **DeepSeek-V4-Flash** variant (284B total / 13B active) is also available for cost-sensitive deployments.\n\n### GLM-5.1 (released April 7, 2026)\n- **Parameters:** 754B total / 40B active (MoE)\n- **Context:** 200K tokens, up to 128K output tokens\n- **License:** MIT\n- **Status:** First open-source model to lead SWE-Bench Pro (58.4%, edging Claude Opus 4.6's 57.3). Strong on agentic engineering and long-horizon software tasks. From Z.ai (formerly Zhipu AI).\n\n### Kimi-K2.6\n- **Status:** Scored 84 on BenchLM aggregate, leads HumanEval (99%) and AIME (96.1%). Competitive with GPT-5.4 and Claude Opus 4.6 on complex end-to-end coding. Can decompose tasks into parallel sub-agents.\n\n---\n\n## Tier 2: Strong Reasoning Models (Excellent and Widely Deployed)\n\n### Qwen3 family (original release April 28, 2025; successors through 2026)\n- **Qwen3-235B-A22B:** 235B total / 22B active (MoE). Scored 62 on Artificial Analysis Intelligence Index. Strong on AIME'24 (85.1 after RL), SuperGPQA, LiveCodeBench. Apache 2.0 license. Leads on broadest range of benchmarks combining reasoning, coding, and multilingual.\n- **Available sizes:** 0.6B, 1.7B, 4B, 8B, 14B, 32B (dense); 30B-A3B, 235B-A22B (MoE).\n- **Newer successors:** Qwen3.5 (Feb 2026) with 122B-A10B, 35B-A3B, 27B variants; Qwen3.6 (April 2026) with 27B dense model and Qwen3.6-Max-Preview; Qwen3-Coder-Next for coding agents.\n- **Verdict:** Qwen3 is **not obsolete** -- it remains strong, and its successors (3.5, 3.6) extend the family further. The 235B-A22B remains a top-tier reasoning model, though DeepSeek V4 Pro and Kimi-K2.6 now score higher on aggregate leaderboards.\n\n### DeepSeek-R1 (released January 2025)\n- **Parameters:** 671B total (MoE)\n- **Status:** Still an excellent reasoning model that matches or exceeds OpenAI o1 on AIME 2024, Codeforces, and GPQA Diamond. However, it has been **superseded by DeepSeek V4** as the flagship. R1 remains highly relevant for mathematical reasoning workloads.\n- **Distilled variants (DeepSeek-R1-Distill):** Available in 1.5B, 7B, 8B, 14B, 32B, and 70B sizes (based on Qwen2.5 and Llama3). The 32B distill outperforms OpenAI o1-mini. These are **still excellent** for resource-constrained deployments and remain among the best small reasoning models, though newer alternatives now exist.\n\n### Google Gemma 4 (released April 2, 2026)\n- Edge-friendly models at 2B and 4B parameters with vision and audio. SOTA reasoning at small scale.\n\n### Gemma 3 27B\n- Beats Llama-405B, DeepSeek-V3, and o3-mini on LMArena benchmarks despite being only 27B parameters.\n\n---\n\n## Tier 3: Efficient / Specialized Reasoning Models\n\n| Model | Size | Strength |\n|---|---|---|\n| **QwQ-32B** (Qwen) | 32B dense | Best balance of capability and efficiency for reasoning |\n| **MiniMax-M1-80k** | -- | Long-context reasoning with computational savings |\n| **GLM-Z1-9B** | 9B | Surprisingly strong math for its size |\n| **Ministerial 14B** | 14B | ~85% on AIME 2025; competitive with much larger models |\n| **MiMo-V2.5-Pro** (Xiaomi) | 1.02T total / 42B active | Agentic coding and long-horizon reasoning |\n| **Kimi-Dev-72B** | 72B | 60.4% SWE-bench Verified for software engineering |\n\n---\n\n## Verdict on User's Seed Models\n\n**Qwen3:** Still frontier-class. The 235B-A22B is a top-5 open reasoning model. The family has expanded with Qwen3.5 and Qwen3.6 variants. For inference-only use, the 32B dense or 235B-A22B MoE are excellent choices depending on hardware budget.\n\n**DeepSeek-R1-Distill:** Still very good, especially the 32B and 70B distills for cost-effective reasoning. However, they have been **partially surpassed** by:\n- DeepSeek V4 Flash (284B/13B active) for similar cost with better performance\n- Qwen3.5/3.6 dense models at similar sizes\n- GLM-Z1-9B and Ministerial 14B at the small-model end\n\n**What has surpassed them both:** DeepSeek V4 Pro (87 on BenchLM), Kimi-K2.6 (84), and GLM-5.1 (83) now represent the true frontier for open-weight reasoning.\n\n---\n\n## Recommendation for Inference (Not Fine-Tuning)\n\n- **Maximum reasoning power, ample hardware:** DeepSeek V4 Pro (1.6T/49B active, MIT license)\n- **Strong reasoning, moderate hardware:** Qwen3-235B-A22B or GLM-5.1 (both ~40B active parameters)\n- **Single-GPU reasoning:** QwQ-32B, Qwen3-32B, or DeepSeek-R1-Distill-32B\n- **Laptop/edge:** Gemma 4 (2B/4B) or DeepSeek-R1-Distill-1.5B/7B\n\nSources:\n- [Best Open Source LLMs for Reasoning in 2026 - SiliconFlow](https://www.siliconflow.com/articles/en/best-open-source-LLMs-for-reasoning)\n- [Best Open Source LLM Leaderboard 2026 - Onyx AI](https://onyx.app/open-llm-leaderboard)\n- [Open Source LLM Leaderboard 2026 - Vellum](https://www.vellum.ai/open-llm-leaderboard)\n- [Best Open Source LLM for Math in 2026 - SiliconFlow](https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math)\n- [LLM Benchmark Leaderboard 2026 - CodeSOTA](https://www.codesota.com/llm)\n- [Best Open Source LLM 2026 - BenchLM](https://benchlm.ai/blog/posts/best-open-source-llm)\n- [DeepSeek V4 Pro - Hugging Face](https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro)\n- [DeepSeek V4 Preview Release - DeepSeek API Docs](https://api-docs.deepseek.com/news/news260424)\n- [GLM-5.1 Full Review 2026 - BuildFastWithAI](https://www.buildfastwithai.com/blogs/glm-5-1-open-source-review-2026)\n- [GLM-5.1 - Hugging Face](https://huggingface.co/zai-org/GLM-5.1)\n- [Qwen3-235B-A22B - Hugging Face](https://huggingface.co/Qwen/Qwen3-235B-A22B)\n- [Qwen3.6 - GitHub](https://github.com/QwenLM/Qwen3.6)\n- [Alibaba Qwen3.6-27B Release - MarkTechPost](https://www.marktechpost.com/2026/04/22/alibaba-qwen-team-releases-qwen3-6-27b-a-dense-open-weight-model-outperforming-397b-moe-on-agentic-coding-benchmarks/)\n- [DeepSeek-R1 - GitHub](https://github.com/deepseek-ai/deepseek-r1)\n- [Gemma 4 Open Models Launched - Blockchain News](https://blockchain.news/ainews/gemma-4-open-models-launched-google-s-latest-sota-reasoning-from-2b-to-edge-ready-multimodal-analysis-and-2026-opportunities)\n- [Top 10 Open-Source Reasoning Models 2026 - Clarifai](https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026)\n- [Best Reasoning AI Models 2026 - BenchLM](https://benchlm.ai/best/reasoning-models)\n- [Best AI for Math 2026 - LLM Stats](https://llm-stats.com/leaderboards/best-ai-for-math)"
+      }
+    ],
+    "totalDurationMs": 84078,
+    "totalTokens": 23421,
+    "totalToolUseCount": 11,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5193,
+      "cache_read_input_tokens": 15646,
+      "output_tokens": 2581,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5193
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2581,
+          "cache_read_input_tokens": 15646,
+          "cache_creation_input_tokens": 5193,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5193,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 11
+    }
+  },
+  "sourceToolAssistantUUID": "63fe8561-fabe-4a42-b859-b37bb1ffbe2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-11T20:41:34.403Z_
+
+<details><summary>↩ Tool result · `toolu_01MZg7qoe64xPTnbwhWHFzFw`</summary>
+
+```text
+Now I have enough data to compile a comprehensive cost estimation report. Here is my analysis:
+
+---
+
+## GPU Rental & Inference Cost Estimation Report
+
+### 1. GPU Rental Costs (May 2026)
+
+**A100 80GB:**
+| Provider | Price/hr |
+|----------|----------|
+| Vast.ai (marketplace) | $0.67 - $0.72 |
+| RunPod Community Cloud | $1.19 |
+| Lambda Labs | $1.29 |
+| Jarvislabs | $1.49 |
+| AWS/Azure (8-GPU instances) | $3.40 - $3.43/GPU |
+
+**H100 SXM 80GB:**
+| Provider | Price/hr |
+|----------|----------|
+| Vast.ai (marketplace) | $1.49 - $1.90 |
+| RunPod Community Cloud | $2.69 |
+| Lambda Labs | $2.89 |
+| RunPod On-Demand | $3.49 |
+| Azure | up to $6.98 |
+
+**Best-value picks for research:** Vast.ai or RunPod Community Cloud for budget; Lambda Labs for reliability with reasonable pricing.
+
+---
+
+### 2. Inference Throughput Benchmarks (vLLM/SGLang)
+
+**Small models (7B-8B):**
+- A100 80GB: ~195 tok/s (single request), up to ~2,000-3,000 tok/s (batched)
+- H100 SXM: ~12,500 tok/s (batched, Llama 3.1 8B BF16)
+
+**Medium models (32B) -- e.g., Qwen3-32B on H100:**
+- vLLM: ~2,353 tok/s total throughput (peak output: ~1,132 tok/s)
+- TensorRT-LLM: ~2,660 tok/s
+- SGLang: ~1,691 tok/s
+
+**Large models (70B):**
+- H100: roughly 7.8x faster than A100 for 70B at batch=64
+- 4x L40S GPUs: ~1,718 tok/s (Llama-2-70B, offline batch mode)
+- Single H100: estimated ~500-1,500 tok/s depending on batch size and quantization
+- Single A100: significantly lower; multi-GPU (2-4x A100) typically needed for 70B
+
+---
+
+### 3. DeepSeek R1 API Pricing (for comparison/baseline)
+
+- Input: $0.55 per million tokens
+- Output: $2.19 per million tokens
+- Reasoning tokens charged separately
+- Roughly 27x cheaper than OpenAI o1
+
+---
+
+### 4. Token Generation Estimate for Tree Search Experiment
+
+**Assumptions:**
+- 50-100 reasoning paths per problem (use 75 as midpoint)
+- 500-2,000 test problems (use 1,000 as midpoint)
+- Each reasoning path: ~500-2,000 tokens of output (use 1,000 as midpoint for multi-step reasoning with Z3 verification steps)
+- Each prompt/input: ~500-1,500 tokens (use 1,000 as midpoint)
+
+**Token counts:**
+- Total reasoning paths: 75 paths x 1,000 problems = 75,000 paths
+- Total output tokens: 75,000 paths x 1,000 tokens = **75 million output tokens**
+- Total input tokens: 75,000 paths x 1,000 tokens = **75 million input tokens** (though with prefix caching, effective input processing may be lower)
+- **Grand total: ~150 million tokens** (75M input + 75M output)
+
+**Sensitivity range:**
+- Low end (50 paths, 500 problems, 500 tokens/path): 12.5M output tokens
+- High end (100 paths, 2,000 problems, 2,000 tokens/path): 400M output tokens
+
+---
+
+### 5. GPU-Hours Estimate (Self-Hosted Inference)
+
+**For a 32B model (e.g., Qwen3-32B) on a single H100:**
+- Throughput: ~1,100 tok/s output (vLLM, batched)
+- 75M output tokens / 1,100 tok/s = ~68,182 seconds = **~19 GPU-hours**
+- Including input processing overhead: **~25-40 GPU-hours**
+
+**For a 70B model on 2x H100 (tensor parallel):**
+- Throughput: ~500-800 tok/s output (estimated, batched)
+- 75M output tokens / 650 tok/s = ~115,385 seconds = **~32 GPU-hours** (but using 2 GPUs, so ~64 GPU-hours billed)
+- Including input: **~80-120 GPU-hours**
+
+**For a 7B-8B model on a single A100:**
+- Throughput: ~2,000 tok/s output (batched)
+- 75M output tokens / 2,000 tok/s = ~37,500 seconds = **~10 GPU-hours**
+- Including input: **~15-25 GPU-hours**
+
+---
+
+### 6. Total Cost Estimates
+
+| Setup | GPU-Hours | Cost (Vast.ai) | Cost (Lambda) | Cost (RunPod) |
+|-------|-----------|-----------------|---------------|---------------|
+| 7-8B on 1x A100 | 15-25 hrs | $10-$18 | $19-$32 | $18-$30 |
+| 32B on 1x H100 | 25-40 hrs | $37-$76 | $72-$116 | $67-$108 |
+| 70B on 2x H100 | 80-120 hrs | $240-$456 | $462-$694 | $430-$646 |
+
+**High-end scenario (100 paths, 2,000 problems, 2,000 tok/path):**
+| Setup | GPU-Hours | Cost (Vast.ai) | Cost (Lambda) |
+|-------|-----------|-----------------|---------------|
+| 32B on 1x H100 | 130-210 hrs | $195-$400 | $376-$607 |
+| 70B on 2x H100 | 400-650 hrs | $1,200-$2,470 | $2,312-$3,757 |
+
+**Via DeepSeek R1 API (for comparison):**
+- 75M input + 75M output = ($0.55 x 75) + ($2.19 x 75) = $41.25 + $164.25 = **~$205** (plus reasoning token charges, which could 2-5x this)
+- High-end scenario: **~$1,100-$2,750** including reasoning tokens
+
+---
+
+### 7. Key Considerations for Your Setup
+
+1. **Z3 solver overhead is CPU-bound**, not GPU-bound. You will need adequate CPU alongside the GPU. Z3 verification at each tree node adds wall-clock time but not GPU cost. Budget for instances with good CPU (RunPod and Lambda typically offer 8-16 vCPUs per GPU).
+
+2. **Prefix caching** (KV cache reuse) in vLLM/SGLang is critical for tree search -- shared prompt prefixes across branches can reduce input processing by 50-80%.
+
+3. **Quantization** (AWQ, GPTQ, FP8) can boost throughput 1.5-2x with minimal quality loss, especially for 32B and 70B models.
+
+4. **Batch scheduling** matters enormously. The throughput numbers above assume good batching. Sequential single-request inference would be 5-10x slower.
+
+5. **A realistic budget recommendation**: For a thorough study with a 32B model, budget **$200-$600** on Vast.ai/RunPod, or **$400-$1,200** on Lambda Labs. For 70B models, multiply by 3-5x.
+
+---
+
+Sources:
+- [A100 Cloud Pricing: Compare 38+ Providers (2026)](https://getdeploying.com/gpus/nvidia-a100)
+- [NVIDIA A100 GPU Price in 2026](https://jarvislabs.ai/blog/a100-price)
+- [H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026)](https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison)
+- [H100 Cloud Pricing: Compare 42+ Providers (2026)](https://getdeploying.com/gpus/nvidia-h100)
+- [2026 Cost of Renting or Buying NVIDIA H100 GPUs](https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers)
+- [vLLM v0.6.0: 2.7x Throughput Improvement](https://blog.vllm.ai/2024/09/05/perf-update.html)
+- [vLLM Benchmarks: Throughput, Latency & Production Stack Guide (2026)](https://www.morphllm.com/vllm-benchmarks)
+- [Optimizing Qwen3-32B Throughput on NVIDIA H100 GPUs](https://docs.gpustack.ai/2.0/performance-lab/qwen3-32b/h100/)
+- [Qwen3 Speed Benchmark](https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html)
+- [DeepSeek API Pricing](https://api-docs.deepseek.com/quick_start/pricing/)
+- [DeepSeek API Pricing 2026: Complete Cost Guide](https://www.nxcode.io/resources/news/deepseek-api-pricing-complete-guide-2026)
+- [Lambda Labs GPU Cloud Pricing](https://lambda.ai/pricing)
+- [Vast.ai A100 Pricing](https://vast.ai/pricing/gpu/A100-PCIE)
+- [RunPod Pricing](https://www.runpod.io/pricing)
+- [Vast.ai vs RunPod Pricing 2026](https://medium.com/@velinxs/vast-ai-vs-runpod-pricing-in-2026-which-gpu-cloud-is-cheaper-bd4104aa591b)
+- [Cloud GPU Pricing (2026)](https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026)
+- [Benchmarking Llama 3.1 8B on H100 and A100 with vLLM](https://www.ori.co/blog/benchmarking-llama-3.1-8b-instruct-on-nvidia-h100-and-a100-chips-with-the-vllm-inferencing-engine)
+- [Budget-Aware Value Tree Search for LLM Agents](https://arxiv.org/pdf/2603.12634)
+- [Cost-Awareness in Tree-Search LLM Planning](https://arxiv.org/html/2505.14656)
+- [SGLang vs vLLM for Qwen3-32B (GitHub issue)](https://github.com/vllm-project/vllm/issues/18136)
+- [R1 API Pricing 2026](https://pricepertoken.com/pricing-page/model/deepseek-deepseek-r1)
+
+agentId: ae6f8292f6f80d569 (use SendMessage with to: 'ae6f8292f6f80d569' to continue this agent)
+&lt;usage>total_tokens: 23197
+tool_uses: 11
+duration_ms: 92064&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1609e2a7-786c-4ca8-bf87-ed5fe5bccded",
+  "isSidechain": false,
+  "promptId": "f39f4e6d-18af-47a8-a966-d1747e7597c9",
+  "type": "user",
+  "uuid": "1a2a3466-2c81-4b80-a793-d2d70714205d",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Use WebSearch to find real GPU rental costs and inference benchmarks relevant to this research setup:\n- Running inference with open-source LLMs (7B-70B parameter models) on A100 or H100 GPUs\n- The task involves tree search over reasoning paths with Z3 solver verification at each step\n\nSearch for:\n1. \"A100 GPU rental cost per hour 2026\"\n2. \"H100 GPU rental cost per hour 2026\"\n3. \"vLLM inference throughput tokens per second A100\"\n4. \"Qwen3 inference speed tokens per second\"\n5. \"DeepSeek R1 inference cost\"\n6. \"GPU cost LLM inference research 2026\"\n7. \"Lambda Labs GPU pricing 2026\" or \"RunPod pricing 2026\" or \"vast.ai pricing 2026\"\n\nAlso estimate: for a tree search method that generates ~50-100 reasoning paths per problem, with ~500-2000 test problems across multiple benchmarks, how many total tokens would be generated? Roughly how many GPU hours would that require?\n\nReport concrete numbers for cost estimation.",
+    "agentId": "ae6f8292f6f80d569",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have enough data to compile a comprehensive cost estimation report. Here is my analysis:\n\n---\n\n## GPU Rental & Inference Cost Estimation Report\n\n### 1. GPU Rental Costs (May 2026)\n\n**A100 80GB:**\n| Provider | Price/hr |\n|----------|----------|\n| Vast.ai (marketplace) | $0.67 - $0.72 |\n| RunPod Community Cloud | $1.19 |\n| Lambda Labs | $1.29 |\n| Jarvislabs | $1.49 |\n| AWS/Azure (8-GPU instances) | $3.40 - $3.43/GPU |\n\n**H100 SXM 80GB:**\n| Provider | Price/hr |\n|----------|----------|\n| Vast.ai (marketplace) | $1.49 - $1.90 |\n| RunPod Community Cloud | $2.69 |\n| Lambda Labs | $2.89 |\n| RunPod On-Demand | $3.49 |\n| Azure | up to $6.98 |\n\n**Best-value picks for research:** Vast.ai or RunPod Community Cloud for budget; Lambda Labs for reliability with reasonable pricing.\n\n---\n\n### 2. Inference Throughput Benchmarks (vLLM/SGLang)\n\n**Small models (7B-8B):**\n- A100 80GB: ~195 tok/s (single request), up to ~2,000-3,000 tok/s (batched)\n- H100 SXM: ~12,500 tok/s (batched, Llama 3.1 8B BF16)\n\n**Medium models (32B) -- e.g., Qwen3-32B on H100:**\n- vLLM: ~2,353 tok/s total throughput (peak output: ~1,132 tok/s)\n- TensorRT-LLM: ~2,660 tok/s\n- SGLang: ~1,691 tok/s\n\n**Large models (70B):**\n- H100: roughly 7.8x faster than A100 for 70B at batch=64\n- 4x L40S GPUs: ~1,718 tok/s (Llama-2-70B, offline batch mode)\n- Single H100: estimated ~500-1,500 tok/s depending on batch size and quantization\n- Single A100: significantly lower; multi-GPU (2-4x A100) typically needed for 70B\n\n---\n\n### 3. DeepSeek R1 API Pricing (for comparison/baseline)\n\n- Input: $0.55 per million tokens\n- Output: $2.19 per million tokens\n- Reasoning tokens charged separately\n- Roughly 27x cheaper than OpenAI o1\n\n---\n\n### 4. Token Generation Estimate for Tree Search Experiment\n\n**Assumptions:**\n- 50-100 reasoning paths per problem (use 75 as midpoint)\n- 500-2,000 test problems (use 1,000 as midpoint)\n- Each reasoning path: ~500-2,000 tokens of output (use 1,000 as midpoint for multi-step reasoning with Z3 verification steps)\n- Each prompt/input: ~500-1,500 tokens (use 1,000 as midpoint)\n\n**Token counts:**\n- Total reasoning paths: 75 paths x 1,000 problems = 75,000 paths\n- Total output tokens: 75,000 paths x 1,000 tokens = **75 million output tokens**\n- Total input tokens: 75,000 paths x 1,000 tokens = **75 million input tokens** (though with prefix caching, effective input processing may be lower)\n- **Grand total: ~150 million tokens** (75M input + 75M output)\n\n**Sensitivity range:**\n- Low end (50 paths, 500 problems, 500 tokens/path): 12.5M output tokens\n- High end (100 paths, 2,000 problems, 2,000 tokens/path): 400M output tokens\n\n---\n\n### 5. GPU-Hours Estimate (Self-Hosted Inference)\n\n**For a 32B model (e.g., Qwen3-32B) on a single H100:**\n- Throughput: ~1,100 tok/s output (vLLM, batched)\n- 75M output tokens / 1,100 tok/s = ~68,182 seconds = **~19 GPU-hours**\n- Including input processing overhead: **~25-40 GPU-hours**\n\n**For a 70B model on 2x H100 (tensor parallel):**\n- Throughput: ~500-800 tok/s output (estimated, batched)\n- 75M output tokens / 650 tok/s = ~115,385 seconds = **~32 GPU-hours** (but using 2 GPUs, so ~64 GPU-hours billed)\n- Including input: **~80-120 GPU-hours**\n\n**For a 7B-8B model on a single A100:**\n- Throughput: ~2,000 tok/s output (batched)\n- 75M output tokens / 2,000 tok/s = ~37,500 seconds = **~10 GPU-hours**\n- Including input: **~15-25 GPU-hours**\n\n---\n\n### 6. Total Cost Estimates\n\n| Setup | GPU-Hours | Cost (Vast.ai) | Cost (Lambda) | Cost (RunPod) |\n|-------|-----------|-----------------|---------------|---------------|\n| 7-8B on 1x A100 | 15-25 hrs | $10-$18 | $19-$32 | $18-$30 |\n| 32B on 1x H100 | 25-40 hrs | $37-$76 | $72-$116 | $67-$108 |\n| 70B on 2x H100 | 80-120 hrs | $240-$456 | $462-$694 | $430-$646 |\n\n**High-end scenario (100 paths, 2,000 problems, 2,000 tok/path):**\n| Setup | GPU-Hours | Cost (Vast.ai) | Cost (Lambda) |\n|-------|-----------|-----------------|---------------|\n| 32B on 1x H100 | 130-210 hrs | $195-$400 | $376-$607 |\n| 70B on 2x H100 | 400-650 hrs | $1,200-$2,470 | $2,312-$3,757 |\n\n**Via DeepSeek R1 API (for comparison):**\n- 75M input + 75M output = ($0.55 x 75) + ($2.19 x 75) = $41.25 + $164.25 = **~$205** (plus reasoning token charges, which could 2-5x this)\n- High-end scenario: **~$1,100-$2,750** including reasoning tokens\n\n---\n\n### 7. Key Considerations for Your Setup\n\n1. **Z3 solver overhead is CPU-bound**, not GPU-bound. You will need adequate CPU alongside the GPU. Z3 verification at each tree node adds wall-clock time but not GPU cost. Budget for instances with good CPU (RunPod and Lambda typically offer 8-16 vCPUs per GPU).\n\n2. **Prefix caching** (KV cache reuse) in vLLM/SGLang is critical for tree search -- shared prompt prefixes across branches can reduce input processing by 50-80%.\n\n3. **Quantization** (AWQ, GPTQ, FP8) can boost throughput 1.5-2x with minimal quality loss, especially for 32B and 70B models.\n\n4. **Batch scheduling** matters enormously. The throughput numbers above assume good batching. Sequential single-request inference would be 5-10x slower.\n\n5. **A realistic budget recommendation**: For a thorough study with a 32B model, budget **$200-$600** on Vast.ai/RunPod, or **$400-$1,200** on Lambda Labs. For 70B models, multiply by 3-5x.\n\n---\n\nSources:\n- [A100 Cloud Pricing: Compare 38+ Providers (2026)](https://getdeploying.com/gpus/nvidia-a100)\n- [NVIDIA A100 GPU Price in 2026](https://jarvislabs.ai/blog/a100-price)\n- [H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026)](https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison)\n- [H100 Cloud Pricing: Compare 42+ Providers (2026)](https://getdeploying.com/gpus/nvidia-h100)\n- [2026 Cost of Renting or Buying NVIDIA H100 GPUs](https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers)\n- [vLLM v0.6.0: 2.7x Throughput Improvement](https://blog.vllm.ai/2024/09/05/perf-update.html)\n- [vLLM Benchmarks: Throughput, Latency & Production Stack Guide (2026)](https://www.morphllm.com/vllm-benchmarks)\n- [Optimizing Qwen3-32B Throughput on NVIDIA H100 GPUs](https://docs.gpustack.ai/2.0/performance-lab/qwen3-32b/h100/)\n- [Qwen3 Speed Benchmark](https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html)\n- [DeepSeek API Pricing](https://api-docs.deepseek.com/quick_start/pricing/)\n- [DeepSeek API Pricing 2026: Complete Cost Guide](https://www.nxcode.io/resources/news/deepseek-api-pricing-complete-guide-2026)\n- [Lambda Labs GPU Cloud Pricing](https://lambda.ai/pricing)\n- [Vast.ai A100 Pricing](https://vast.ai/pricing/gpu/A100-PCIE)\n- [RunPod Pricing](https://www.runpod.io/pricing)\n- [Vast.ai vs RunPod Pricing 2026](https://medium.com/@velinxs/vast-ai-vs-runpod-pricing-in-2026-which-gpu-cloud-is-cheaper-bd4104aa591b)\n- [Cloud GPU Pricing (2026)](https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026)\n- [Benchmarking Llama 3.1 8B on H100 and A100 with vLLM](https://www.ori.co/blog/benchmarking-llama-3.1-8b-instruct-on-nvidia-h100-and-a100-chips-with-the-vllm-inferencing-engine)\n- [Budget-Aware Value Tree Search for LLM Agents](https://arxiv.org/pdf/2603.12634)\n- [Cost-Awareness in Tree-Search LLM Planning](https://arxiv.org/html/2505.14656)\n- [SGLang vs vLLM for Qwen3-32B (GitHub issue)](https://github.com/vllm-project/vllm/issues/18136)\n- [R1 API Pricing 2026](https://pricepertoken.com/pricing-page/model/deepseek-deepseek-r1)"
+      }
+    ],
+    "totalDurationMs": 92064,
+    "totalTokens": 23197,
+    "totalToolUseCount": 11,
+    "usage": {
+      "input_tokens": 1796,
+      "cache_creation_input_tokens": 3854,
+      "cache_read_input_tokens": 14675,
+      "output_tokens": 2872,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3854
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1796,
+          "output_tokens": 2872,
+          "cache_read_input_tokens": 14675,
+          "cache_creation_input_tokens": 3854,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3854,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 11
+    }
+  },
+  "sourceToolAssistantUUID": "1609e2a7-786c-4ca8-bf87-ed5fe5bccded",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Conflict-Driv…",
+  "leafUuid": "1a2a3466-2c81-4b80-a793-d2d70714205d",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conflict-driven symbolic backtracking for neural reasoning",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-11T20:41:49.110Z_
+
+<details><summary>↩ Tool result · `toolu_01TFPnWfA8kFPL1vA8mwbcES`</summary>
+
+```text
+Here is the comprehensive landscape report from all 10 searches plus follow-up investigations.
+
+---
+
+## Competitive Landscape: SMT Solver Conflict Analysis for Guiding LLM Reasoning
+
+### CLOSEST MATCH -- FLAG AS DIRECT COMPETITOR
+
+**1. CDCL-IC: "Scaling Combinatorial Reasoning with Conflict-Driven Clause Learning In-Context"** (2025, Ferhat)
+- [Paper PDF](https://ferhat.ai/uploads/cdcl-ic-2025.pdf)
+- This is the most directly relevant work found. It explicitly adapts CDCL (conflict-driven clause learning) from SAT solvers into an in-context learning framework for LLMs. It labels each reasoning step as a "free choice" or "deduction," builds an implication graph, and when a conflict is detected, it traverses the implication graph to identify the most general cause of failure (analogous to 1UIP cuts in SAT). This enables the LLM to prune its search space during combinatorial reasoning. Demonstrated on 9x9 Sudoku, beating o3-mini. Uses Qwen 2.5 0.5B fine-tuned for this purpose.
+- **Relevance: VERY HIGH.** This is doing essentially the same thing -- using CDCL-style conflict analysis to guide backtracking in LLM reasoning. The key difference from your approach may be: (a) it appears focused on SAT/CSP rather than SMT, (b) it operates via in-context learning rather than as an external solver loop, and (c) it may not use MUS extraction specifically. But the core idea of conflict-driven backtracking for LLMs is the same.
+
+---
+
+### HIGHLY RELEVANT -- Adjacent Work
+
+**2. Logitext: "Neurosymbolic Language Reasoning as Satisfiability Modulo Theory"** (Feb 2026, under review ICLR 2026)
+- [OpenReview](https://openreview.net/forum?id=4gTxXBT4GY) | [arXiv 2602.18095](https://arxiv.org/abs/2602.18095)
+- First paper to treat LLM-based reasoning as an SMT theory. Introduces "Logitext," which represents documents as natural language text constraints and develops an algorithm integrating LLM-based constraint evaluation with SMT solving. Extends neurosymbolic methods beyond fully formalizable domains.
+- **Relevance: HIGH.** Frames LLM reasoning explicitly as SMT, but focuses on textual constraint evaluation rather than using conflict analysis/MUS from the solver to guide backtracking.
+
+**3. HyMUSE: "Hypergraph Neural Networks Accelerate MUS Enumeration"** (April 2026)
+- [arXiv 2604.09001](https://arxiv.org/abs/2604.09001) | [OpenReview](https://openreview.net/forum?id=gCHIAqnoip)
+- Uses hypergraph neural networks trained via RL to accelerate MUS enumeration. Builds a hypergraph with constraints as vertices and MUSes as hyperedges, then uses an HGNN agent to minimize satisfiability checks needed.
+- **Relevance: HIGH but different direction.** Uses neural networks to accelerate MUS computation (neural helping solvers), rather than using MUS to guide neural reasoning (solvers helping neural). However, it demonstrates the community is actively working on the neural/MUS intersection.
+
+**4. WARP: "Worst-Case Symbolic Constraints Analysis and Generalisation with LLMs"** (2025)
+- [arXiv 2506.08171](https://arxiv.org/abs/2506.08171)
+- Introduces "Reinforcement Learning from Solver-Guided Feedback" (RLSGF). Fine-tunes LLMs to generate symbolic constraints by leveraging SMT solver feedback. The solver provides verification signals that are used as RL rewards.
+- **Relevance: HIGH.** Uses SMT solver feedback to train LLMs, but the feedback is correctness-based (pass/fail) rather than conflict-analysis-based (MUS/why it failed).
+
+**5. RLSF: "Reinforcement Learning via Symbolic Feedback"** (2024-2025)
+- [arXiv 2405.16661](https://arxiv.org/abs/2405.16661)
+- Uses symbolic reasoning tools (solvers, provers) to provide fine-grained, token-level reward signals to LLMs via poly-sized certificates (e.g., proofs that characterize errors). This is the closest to "using solver explanations to guide neural learning."
+- **Relevance: HIGH.** Uses solver-generated certificates/proofs as feedback, which is conceptually adjacent to using MUS as explanations for failure. The key gap is that RLSF uses this for training-time RL rewards, not for inference-time backtracking guidance.
+
+**6. AquaForte: "LLM-Guided Quantified SMT Solving over Uninterpreted Functions"** (Jan 2026)
+- [arXiv 2601.04675](https://arxiv.org/abs/2601.04675)
+- Integrates LLMs with SMT solving, but in the opposite direction: uses LLMs to guide the SMT solver (providing semantic guidance for quantifier instantiation), rather than using the solver to guide the LLM.
+- **Relevance: MODERATE.** Opposite direction of information flow, but establishes the LLM-SMT integration paradigm.
+
+---
+
+### RELEVANT -- Backtracking in LLM Reasoning (without solver conflict analysis)
+
+**7. "Step Back to Leap Forward: Self-Backtracking for Boosting Reasoning of Language Models"** (Feb 2025, AAAI)
+- [arXiv 2502.04404](https://arxiv.org/abs/2502.04404) | [GitHub](https://github.com/LAMDASZ-ML/Self-Backtracking)
+- Trains LLMs to internalize backtracking by emitting special backtrack tokens. Achieves 40%+ gains over optimal-path SFT on Countdown. No solver involvement -- backtracking is learned purely from search trajectories.
+- **Relevance: MODERATE.** Addresses the same problem (backtracking in LLM reasoning) but without any solver/conflict analysis component.
+
+**8. "Improving the Efficiency of Test-Time Search in LLMs with Backtracking"** (ICLR 2025 area)
+- [OpenReview](https://openreview.net/forum?id=hJ2BCYGvFg)
+- Uses process reward models to identify problematic reasoning steps and trigger focused resampling/backtracking. Reduces computation by reusing partial solutions.
+- **Relevance: MODERATE.** Uses learned verifiers (not solvers) to decide where to backtrack.
+
+**9. EnCompass (MIT CSAIL / Asari AI, 2026)**
+- [AIwire coverage](https://www.hpcwire.com/aiwire/2026/02/05/new-mit-framework-uses-search-to-handle-llm-errors-in-ai-agents/)
+- Framework adding systematic search and backtracking to AI agent programs. Supports Beam Search, MCTS. General-purpose, not solver-specific.
+- **Relevance: MODERATE.** Infrastructure for backtracking search in LLM agents, but no solver/conflict analysis.
+
+---
+
+### RELEVANT -- Solver-LLM Integration (without conflict-based backtracking)
+
+**10. SatLM: "Satisfiability-Aided Language Models Using Declarative Prompting"** (NeurIPS 2023)
+- [arXiv 2305.09656](https://arxiv.org/abs/2305.09656) | [OpenReview](https://openreview.net/forum?id=8tt9KxyV2s)
+- LLM generates declarative specifications, SAT solver derives answers. Foundational work in the LLM+solver space. No conflict analysis feedback loop.
+
+**11. Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition** (EACL 2026)
+- [ACL Anthology](https://aclanthology.org/2026.eacl-long.54/) | [arXiv 2510.06774](https://arxiv.org/abs/2510.06774)
+- Dynamically selects which formal solver to apply based on the reasoning strategy needed. Multi-paradigm neuro-symbolic inference. No conflict analysis.
+
+**12. MAD-LOGIC: Multi-Agent Debate Enhances Symbolic Translation and Reasoning** (ICLR 2026)
+- [OpenReview PDF](https://openreview.net/pdf/9efc07a23e82c4f96fe3a0b53efc9cc078940f48.pdf)
+- Translates NL into multiple symbolic languages (LP, FOL, SAT) and uses multi-agent debate to refine translations. No conflict-driven backtracking.
+
+**13. GSI-LR: Governed Self-Improvement for Logical Reasoning** (ICLR 2026 Workshop)
+- [OpenReview](https://openreview.net/forum?id=akaD2tFpHO)
+- Uses symbolic solvers for edit-time validation with AGM-style belief revision and temporal contradiction graphs. Related in spirit but focused on self-improvement governance, not search-time backtracking.
+
+---
+
+### RELATED -- Neural-CDCL Work (not LLM-focused)
+
+**14. NeuroBack: Improving CDCL SAT Solving using Graph Neural Networks** (2021)
+- [OpenReview](https://openreview.net/forum?id=samyfu6G93) | [arXiv 2110.14053](https://arxiv.org/abs/2110.14053)
+- Uses GNNs to predict variable phases for CDCL solvers. Neural networks helping CDCL, not CDCL helping neural reasoning.
+
+**15. DeepCDCL: A CDCL-based Neural Network Verification Framework** (2024)
+- [arXiv 2403.07956](https://arxiv.org/abs/2403.07956)
+- Applies CDCL to neural network verification (proving properties of NNs), not to guiding NN reasoning.
+
+**16. "Incremental Neural Network Verification via Learned Conflicts"** (March 2026)
+- [arXiv 2603.12232](https://arxiv.org/html/2603.12232)
+- Reuses conflict clauses learned from previous verification queries to prune search in neural network verification. Interesting technical parallel but applied to verification, not reasoning.
+
+---
+
+### Summary Assessment
+
+**The single most threatening competitor is CDCL-IC** (Ferhat, 2025). It directly implements CDCL-style conflict analysis (implication graphs, 1UIP cuts) to guide backtracking in LLM reasoning on combinatorial problems. However, key potential differentiators for your approach could include:
+
+1. **SMT vs. SAT scope**: CDCL-IC appears SAT-focused; using full SMT (with theories like arithmetic, bitvectors, etc.) is broader.
+2. **MUS extraction specifically**: CDCL-IC uses implication-graph-based conflict analysis (1UIP). Using MUS extraction as the explanation mechanism is a different (potentially more informative) approach.
+3. **External solver loop vs. in-context**: CDCL-IC fine-tunes the LLM to perform CDCL in-context. An approach that uses an actual external solver for conflict analysis could be more powerful/general.
+4. **Domain generality**: CDCL-IC was demonstrated on Sudoku. A more general framework could differentiate.
+
+No paper was found that combines all three elements of your specific approach: (1) MUS/unsat-core extraction from an SMT solver, (2) used as explanations to guide, (3) backtracking/search in LLM reasoning at inference time. The space is active but this exact combination appears to be a gap.
+
+agentId: a6d4778ef5963a3c8 (use SendMessage with to: 'a6d4778ef5963a3c8' to continue this agent)
+&lt;usage>total_tokens: 34240
+tool_uses: 23
+duration_ms: 130070&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73e39ede-ab29-4172-a3ba-6a5a2f5c7e23",
+  "isSidechain": false,
+  "promptId": "f39f4e6d-18af-47a8-a966-d1747e7597c9",
+  "type": "user",
+  "uuid": "5d1dcdea-d660-46b4-9d80-643984793f09",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for concurrent and competing work on the topic of using SMT solver conflict analysis (MUS, CDCL-style backtracking) to guide LLM reasoning. This is a neurosymbolic AI research direction.\n\nPerform these searches using WebSearch:\n1. \"conflict-driven backtracking LLM reasoning 2026\"\n2. \"MUS unsatisfiable subset guided search language model 2026\"\n3. \"Z3 solver guided LLM reasoning 2025 2026\"\n4. \"neurosymbolic backtracking search reasoning 2026\"\n5. Search arXiv: \"arxiv conflict driven neural reasoning 2026\"\n6. Search arXiv: \"arxiv SMT guided language model reasoning\"\n7. Search OpenReview: \"openreview.net CDCL neural reasoning\"\n8. Search OpenReview: \"openreview.net solver guided reasoning ICML 2026\"\n9. \"symbolic backtracking search LLM 2025 2026\"\n10. \"tree search solver feedback reasoning LLM 2026\"\n\nFor each search, report any highly relevant papers found. Flag anything that looks like it's doing the same thing (using MUS/conflict analysis from solvers to guide backtracking in neural reasoning).",
+    "agentId": "a6d4778ef5963a3c8",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is the comprehensive landscape report from all 10 searches plus follow-up investigations.\n\n---\n\n## Competitive Landscape: SMT Solver Conflict Analysis for Guiding LLM Reasoning\n\n### CLOSEST MATCH -- FLAG AS DIRECT COMPETITOR\n\n**1. CDCL-IC: \"Scaling Combinatorial Reasoning with Conflict-Driven Clause Learning In-Context\"** (2025, Ferhat)\n- [Paper PDF](https://ferhat.ai/uploads/cdcl-ic-2025.pdf)\n- This is the most directly relevant work found. It explicitly adapts CDCL (conflict-driven clause learning) from SAT solvers into an in-context learning framework for LLMs. It labels each reasoning step as a \"free choice\" or \"deduction,\" builds an implication graph, and when a conflict is detected, it traverses the implication graph to identify the most general cause of failure (analogous to 1UIP cuts in SAT). This enables the LLM to prune its search space during combinatorial reasoning. Demonstrated on 9x9 Sudoku, beating o3-mini. Uses Qwen 2.5 0.5B fine-tuned for this purpose.\n- **Relevance: VERY HIGH.** This is doing essentially the same thing -- using CDCL-style conflict analysis to guide backtracking in LLM reasoning. The key difference from your approach may be: (a) it appears focused on SAT/CSP rather than SMT, (b) it operates via in-context learning rather than as an external solver loop, and (c) it may not use MUS extraction specifically. But the core idea of conflict-driven backtracking for LLMs is the same.\n\n---\n\n### HIGHLY RELEVANT -- Adjacent Work\n\n**2. Logitext: \"Neurosymbolic Language Reasoning as Satisfiability Modulo Theory\"** (Feb 2026, under review ICLR 2026)\n- [OpenReview](https://openreview.net/forum?id=4gTxXBT4GY) | [arXiv 2602.18095](https://arxiv.org/abs/2602.18095)\n- First paper to treat LLM-based reasoning as an SMT theory. Introduces \"Logitext,\" which represents documents as natural language text constraints and develops an algorithm integrating LLM-based constraint evaluation with SMT solving. Extends neurosymbolic methods beyond fully formalizable domains.\n- **Relevance: HIGH.** Frames LLM reasoning explicitly as SMT, but focuses on textual constraint evaluation rather than using conflict analysis/MUS from the solver to guide backtracking.\n\n**3. HyMUSE: \"Hypergraph Neural Networks Accelerate MUS Enumeration\"** (April 2026)\n- [arXiv 2604.09001](https://arxiv.org/abs/2604.09001) | [OpenReview](https://openreview.net/forum?id=gCHIAqnoip)\n- Uses hypergraph neural networks trained via RL to accelerate MUS enumeration. Builds a hypergraph with constraints as vertices and MUSes as hyperedges, then uses an HGNN agent to minimize satisfiability checks needed.\n- **Relevance: HIGH but different direction.** Uses neural networks to accelerate MUS computation (neural helping solvers), rather than using MUS to guide neural reasoning (solvers helping neural). However, it demonstrates the community is actively working on the neural/MUS intersection.\n\n**4. WARP: \"Worst-Case Symbolic Constraints Analysis and Generalisation with LLMs\"** (2025)\n- [arXiv 2506.08171](https://arxiv.org/abs/2506.08171)\n- Introduces \"Reinforcement Learning from Solver-Guided Feedback\" (RLSGF). Fine-tunes LLMs to generate symbolic constraints by leveraging SMT solver feedback. The solver provides verification signals that are used as RL rewards.\n- **Relevance: HIGH.** Uses SMT solver feedback to train LLMs, but the feedback is correctness-based (pass/fail) rather than conflict-analysis-based (MUS/why it failed).\n\n**5. RLSF: \"Reinforcement Learning via Symbolic Feedback\"** (2024-2025)\n- [arXiv 2405.16661](https://arxiv.org/abs/2405.16661)\n- Uses symbolic reasoning tools (solvers, provers) to provide fine-grained, token-level reward signals to LLMs via poly-sized certificates (e.g., proofs that characterize errors). This is the closest to \"using solver explanations to guide neural learning.\"\n- **Relevance: HIGH.** Uses solver-generated certificates/proofs as feedback, which is conceptually adjacent to using MUS as explanations for failure. The key gap is that RLSF uses this for training-time RL rewards, not for inference-time backtracking guidance.\n\n**6. AquaForte: \"LLM-Guided Quantified SMT Solving over Uninterpreted Functions\"** (Jan 2026)\n- [arXiv 2601.04675](https://arxiv.org/abs/2601.04675)\n- Integrates LLMs with SMT solving, but in the opposite direction: uses LLMs to guide the SMT solver (providing semantic guidance for quantifier instantiation), rather than using the solver to guide the LLM.\n- **Relevance: MODERATE.** Opposite direction of information flow, but establishes the LLM-SMT integration paradigm.\n\n---\n\n### RELEVANT -- Backtracking in LLM Reasoning (without solver conflict analysis)\n\n**7. \"Step Back to Leap Forward: Self-Backtracking for Boosting Reasoning of Language Models\"** (Feb 2025, AAAI)\n- [arXiv 2502.04404](https://arxiv.org/abs/2502.04404) | [GitHub](https://github.com/LAMDASZ-ML/Self-Backtracking)\n- Trains LLMs to internalize backtracking by emitting special backtrack tokens. Achieves 40%+ gains over optimal-path SFT on Countdown. No solver involvement -- backtracking is learned purely from search trajectories.\n- **Relevance: MODERATE.** Addresses the same problem (backtracking in LLM reasoning) but without any solver/conflict analysis component.\n\n**8. \"Improving the Efficiency of Test-Time Search in LLMs with Backtracking\"** (ICLR 2025 area)\n- [OpenReview](https://openreview.net/forum?id=hJ2BCYGvFg)\n- Uses process reward models to identify problematic reasoning steps and trigger focused resampling/backtracking. Reduces computation by reusing partial solutions.\n- **Relevance: MODERATE.** Uses learned verifiers (not solvers) to decide where to backtrack.\n\n**9. EnCompass (MIT CSAIL / Asari AI, 2026)**\n- [AIwire coverage](https://www.hpcwire.com/aiwire/2026/02/05/new-mit-framework-uses-search-to-handle-llm-errors-in-ai-agents/)\n- Framework adding systematic search and backtracking to AI agent programs. Supports Beam Search, MCTS. General-purpose, not solver-specific.\n- **Relevance: MODERATE.** Infrastructure for backtracking search in LLM agents, but no solver/conflict analysis.\n\n---\n\n### RELEVANT -- Solver-LLM Integration (without conflict-based backtracking)\n\n**10. SatLM: \"Satisfiability-Aided Language Models Using Declarative Prompting\"** (NeurIPS 2023)\n- [arXiv 2305.09656](https://arxiv.org/abs/2305.09656) | [OpenReview](https://openreview.net/forum?id=8tt9KxyV2s)\n- LLM generates declarative specifications, SAT solver derives answers. Foundational work in the LLM+solver space. No conflict analysis feedback loop.\n\n**11. Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition** (EACL 2026)\n- [ACL Anthology](https://aclanthology.org/2026.eacl-long.54/) | [arXiv 2510.06774](https://arxiv.org/abs/2510.06774)\n- Dynamically selects which formal solver to apply based on the reasoning strategy needed. Multi-paradigm neuro-symbolic inference. No conflict analysis.\n\n**12. MAD-LOGIC: Multi-Agent Debate Enhances Symbolic Translation and Reasoning** (ICLR 2026)\n- [OpenReview PDF](https://openreview.net/pdf/9efc07a23e82c4f96fe3a0b53efc9cc078940f48.pdf)\n- Translates NL into multiple symbolic languages (LP, FOL, SAT) and uses multi-agent debate to refine translations. No conflict-driven backtracking.\n\n**13. GSI-LR: Governed Self-Improvement for Logical Reasoning** (ICLR 2026 Workshop)\n- [OpenReview](https://openreview.net/forum?id=akaD2tFpHO)\n- Uses symbolic solvers for edit-time validation with AGM-style belief revision and temporal contradiction graphs. Related in spirit but focused on self-improvement governance, not search-time backtracking.\n\n---\n\n### RELATED -- Neural-CDCL Work (not LLM-focused)\n\n**14. NeuroBack: Improving CDCL SAT Solving using Graph Neural Networks** (2021)\n- [OpenReview](https://openreview.net/forum?id=samyfu6G93) | [arXiv 2110.14053](https://arxiv.org/abs/2110.14053)\n- Uses GNNs to predict variable phases for CDCL solvers. Neural networks helping CDCL, not CDCL helping neural reasoning.\n\n**15. DeepCDCL: A CDCL-based Neural Network Verification Framework** (2024)\n- [arXiv 2403.07956](https://arxiv.org/abs/2403.07956)\n- Applies CDCL to neural network verification (proving properties of NNs), not to guiding NN reasoning.\n\n**16. \"Incremental Neural Network Verification via Learned Conflicts\"** (March 2026)\n- [arXiv 2603.12232](https://arxiv.org/html/2603.12232)\n- Reuses conflict clauses learned from previous verification queries to prune search in neural network verification. Interesting technical parallel but applied to verification, not reasoning.\n\n---\n\n### Summary Assessment\n\n**The single most threatening competitor is CDCL-IC** (Ferhat, 2025). It directly implements CDCL-style conflict analysis (implication graphs, 1UIP cuts) to guide backtracking in LLM reasoning on combinatorial problems. However, key potential differentiators for your approach could include:\n\n1. **SMT vs. SAT scope**: CDCL-IC appears SAT-focused; using full SMT (with theories like arithmetic, bitvectors, etc.) is broader.\n2. **MUS extraction specifically**: CDCL-IC uses implication-graph-based conflict analysis (1UIP). Using MUS extraction as the explanation mechanism is a different (potentially more informative) approach.\n3. **External solver loop vs. in-context**: CDCL-IC fine-tunes the LLM to perform CDCL in-context. An approach that uses an actual external solver for conflict analysis could be more powerful/general.\n4. **Domain generality**: CDCL-IC was demonstrated on Sudoku. A more general framework could differentiate.\n\nNo paper was found that combines all three elements of your specific approach: (1) MUS/unsat-core extraction from an SMT solver, (2) used as explanations to guide, (3) backtracking/search in LLM reasoning at inference time. The space is active but this exact combination appears to be a gap."
+      }
+    ],
+    "totalDurationMs": 130070,
+    "totalTokens": 34240,
+    "totalToolUseCount": 23,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5357,
+      "cache_read_input_tokens": 25952,
+      "output_tokens": 2930,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5357
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2930,
+          "cache_read_input_tokens": 25952,
+          "cache_creation_input_tokens": 5357,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5357,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 23
+    }
+  },
+  "sourceToolAssistantUUID": "73e39ede-ab29-4172-a3ba-6a5a2f5c7e23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-11T20:42:57.783Z_
+
+<details><summary>↩ Tool result · `toolu_01DNfYjVbLiCgPjEu9usJpXD`</summary>
+
+```text
+Here is my full report on the verification of the four claimed papers, plus additional relevant papers found.
+
+---
+
+## Paper Verification Results
+
+### 1. VERGE -- CONFIRMED
+
+- **Confirmed title:** "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning"
+- **Confirmed venue/year:** arXiv preprint, January 27, 2026 (arXiv:2601.20055). No formal conference venue confirmed -- it is a preprint.
+- **Claimed details check:** The claim of "Jan 2026, uses SMT-based MCS for post-hoc revision on logical benchmarks" is accurate. VERGE uses SMT solvers combined with Minimal Correction Subsets (MCS) for precise logical error localization, and iteratively refines LLM answers via formal verification feedback.
+
+### 2. LeanProgress -- CONFIRMED (with venue correction)
+
+- **Confirmed title:** "LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction"
+- **Confirmed venue/year:** Published in **TMLR (Transactions on Machine Learning Research)**, accepted December 25, 2025. Also presented at **ICLR 2025 Journal-to-Conference Track**. arXiv:2502.17925.
+- **Claimed details check:** The claim of "TMLR 2025" is essentially correct. It was published in TMLR and presented at ICLR 2025 via the journal track. It trains a model (DeepSeek Coder 1.3B) to predict remaining proof steps, guiding best-first tree search for Lean theorem proving.
+
+### 3. HERMES -- CONFIRMED
+
+- **Confirmed title:** "HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs"
+- **Confirmed venue/year:** arXiv preprint, November 24, 2025 (arXiv:2511.18760). No formal conference publication confirmed -- it appears to remain a preprint.
+- **Claimed details check:** The claim of "Nov 2025, iterative reasoning with Lean4 feedback" is accurate. HERMES interleaves informal LLM reasoning with formally verified Lean4 proof steps in an iterative agent loop with tool-calling. Authors: Azim Ospanov, Zijin Feng, Jiacheng Sun, Haoli Bai, Xin Shen, Farzan Farnia.
+
+### 4. Adaptive Solver Composition -- CONFIRMED
+
+- **Confirmed title:** "Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition"
+- **Confirmed venue/year:** **EACL 2026** (19th Conference of the European Chapter of the ACL), Rabat, Morocco. Published in ACL Anthology as `2026.eacl-long.54`. Also on arXiv as 2510.06774.
+- **Claimed details check:** The claim of "EACL 2026, routes to multiple solvers" is accurate. The framework performs problem decomposition, identifies reasoning type (LP, FOL, CSP, SMT), and a Router dynamically selects the appropriate solver. Authors: Lei Xu, Pierre Beckmann, Marco Valentino, Andre Freitas. Code at https://github.com/idiap/adaptive_symbolic_reasoning.
+
+---
+
+## Additional Relevant Papers Found
+
+### MUS / Minimal Unsatisfiable Subsets + Neural Reasoning
+
+1. **"Hypergraph Neural Networks Accelerate MUS Enumeration"** -- arXiv:2604.09001, April 2026. Uses HGNNs with reinforcement learning to accelerate MUS enumeration by minimizing satisfiability checks.
+
+2. **"Delta1-LLM: Symbolic-Neural Integration for Credible and Explainable Reasoning"** -- OpenReview preprint. Front-end LLM extracts atomic predicates; a Delta1 generator constructs all minimal unsatisfiable clause sets; a back-end LLM translates theorems into explanations.
+
+3. **"Graph Pruning for Enumeration of Minimal Unsatisfiable Subsets"** -- AISTATS 2024 (Proceedings of Machine Learning Research, vol. 238). Uses graph neural networks for MUS enumeration with pruning.
+
+### CDCL-Inspired Neural Reasoning
+
+4. **"Scaling Combinatorial Reasoning with Conflict-Driven Clause Learning In-Context" (CDCL-IC)** -- By Yoshiki Takashima and Ferhat Erata, 2025 preprint. Implements CDCL-style search space pruning as an in-context learning technique for reasoning models on combinatorial problems (e.g., 9x9 Sudoku).
+
+5. **"Proof-Driven Clause Learning in Neural Network Verification"** -- arXiv:2503.12083, March 2025. Applies CDCL-style conflict clause derivation using UNSAT proofs to improve scalability of DNN verifiers.
+
+6. **"Generalization of LLMs in SAT Reasoning via Structured Scratchpad Interaction"** -- AITP 2025. Examines whether LLMs can learn and generalize the CDCL algorithm from supervised solver traces.
+
+### SMT Solver-Guided LLM Reasoning
+
+7. **"LLM-Guided Quantified SMT Solving over Uninterpreted Functions"** -- arXiv:2601.04675, January 2026. Uses LLMs to understand SMT formulas and derive concrete forms of uninterpreted functions via hierarchical reasoning.
+
+8. **"Neurosymbolic Language Reasoning as Satisfiability Modulo Theory" (Logitext)** -- arXiv:2602.18095, February 2026 (also on OpenReview). Represents documents as natural language text constraints and integrates LLM-based constraint evaluation with SMT solving.
+
+9. **"VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks"** -- OpenReview preprint. Extracts and verifies formal logical arguments from chain-of-thought reasoning.
+
+10. **"Neuro-Symbolic Compliance: Integrating LLMs and SMT Solvers for Automated Financial Legal Analysis"** -- arXiv:2601.06181, January 2026. Integrates LLMs with SMT solvers for formal verifiability in financial compliance.
+
+11. **"Large Language Models Can Solve Real-World Planning Rigorously with Formal Verification Tools"** -- NAACL 2025. LLMs formulate problems as SMT problems and use solver feedback for interactive refinement.
+
+Sources:
+- [VERGE on arXiv](https://arxiv.org/abs/2601.20055)
+- [LeanProgress on arXiv](https://arxiv.org/abs/2502.17925)
+- [LeanProgress on OpenReview (TMLR)](https://openreview.net/forum?id=eTmOwvvRu9)
+- [LeanProgress at ICLR 2025](https://iclr.cc/virtual/2025/36209)
+- [HERMES on arXiv](https://arxiv.org/abs/2511.18760)
+- [Adaptive Solver Composition at EACL 2026 (ACL Anthology)](https://aclanthology.org/2026.eacl-long.54/)
+- [Adaptive Solver Composition on arXiv](https://arxiv.org/abs/2510.06774)
+- [Hypergraph Neural Networks for MUS on arXiv](https://arxiv.org/abs/2604.09001)
+- [CDCL-IC paper](https://ferhat.ai/uploads/cdcl-ic-2025.pdf)
+- [CDCL-IC publication page](https://ferhat.ai/publication/takashima-2025-scaling/)
+- [Proof-Driven Clause Learning on arXiv](https://arxiv.org/abs/2503.12083v1)
+- [LLM-Guided Quantified SMT Solving](https://www.arxiv.org/pdf/2601.04675)
+- [Neurosymbolic Language Reasoning (Logitext)](https://arxiv.org/html/2602.18095)
+- [VeriCoT on OpenReview](https://openreview.net/forum?id=zHuV3Vatov)
+- [Neuro-Symbolic Compliance](https://arxiv.org/html/2601.06181)
+- [Generalization of LLMs in SAT Reasoning (AITP 2025)](https://aitp-conference.org/2025/abstract/AITP_2025_paper_26.pdf)
+
+agentId: a677b2ab3da324b13 (use SendMessage with to: 'a677b2ab3da324b13' to continue this agent)
+&lt;usage>total_tokens: 27015
+tool_uses: 17
+duration_ms: 199436&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49b06a5e-baa9-494c-a4fc-fdd5f50fd355",
+  "isSidechain": false,
+  "promptId": "f39f4e6d-18af-47a8-a966-d1747e7597c9",
+  "type": "user",
+  "uuid": "e133bdce-81d0-4c6e-981f-f301cc4f0f6a",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Use WebSearch to verify that each of these papers is real — confirm the title, venue, and year. For each, report: confirmed title, confirmed venue/year, or \"CANNOT VERIFY\".\n\n1. \"VERGE\" — claimed to be Jan 2026, uses SMT-based MCS for post-hoc revision on logical benchmarks\n2. \"LeanProgress\" — claimed TMLR 2025, guides theorem proving tree search via learned progress predictions\n3. \"HERMES\" — claimed Nov 2025, iterative reasoning with Lean4 feedback\n4. \"Adaptive Solver Composition\" — claimed EACL 2026, routes to multiple solvers\n\nAlso search for any other relevant papers on:\n- \"MUS minimal unsatisfiable subset neural reasoning\"\n- \"conflict-driven clause learning neural networks\"\n- \"CDCL inspired neural reasoning\"\n- \"SMT solver guided LLM reasoning\"\n\nReport exact titles and venues for any additional relevant papers you find.",
+    "agentId": "a677b2ab3da324b13",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is my full report on the verification of the four claimed papers, plus additional relevant papers found.\n\n---\n\n## Paper Verification Results\n\n### 1. VERGE -- CONFIRMED\n\n- **Confirmed title:** \"VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning\"\n- **Confirmed venue/year:** arXiv preprint, January 27, 2026 (arXiv:2601.20055). No formal conference venue confirmed -- it is a preprint.\n- **Claimed details check:** The claim of \"Jan 2026, uses SMT-based MCS for post-hoc revision on logical benchmarks\" is accurate. VERGE uses SMT solvers combined with Minimal Correction Subsets (MCS) for precise logical error localization, and iteratively refines LLM answers via formal verification feedback.\n\n### 2. LeanProgress -- CONFIRMED (with venue correction)\n\n- **Confirmed title:** \"LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction\"\n- **Confirmed venue/year:** Published in **TMLR (Transactions on Machine Learning Research)**, accepted December 25, 2025. Also presented at **ICLR 2025 Journal-to-Conference Track**. arXiv:2502.17925.\n- **Claimed details check:** The claim of \"TMLR 2025\" is essentially correct. It was published in TMLR and presented at ICLR 2025 via the journal track. It trains a model (DeepSeek Coder 1.3B) to predict remaining proof steps, guiding best-first tree search for Lean theorem proving.\n\n### 3. HERMES -- CONFIRMED\n\n- **Confirmed title:** \"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs\"\n- **Confirmed venue/year:** arXiv preprint, November 24, 2025 (arXiv:2511.18760). No formal conference publication confirmed -- it appears to remain a preprint.\n- **Claimed details check:** The claim of \"Nov 2025, iterative reasoning with Lean4 feedback\" is accurate. HERMES interleaves informal LLM reasoning with formally verified Lean4 proof steps in an iterative agent loop with tool-calling. Authors: Azim Ospanov, Zijin Feng, Jiacheng Sun, Haoli Bai, Xin Shen, Farzan Farnia.\n\n### 4. Adaptive Solver Composition -- CONFIRMED\n\n- **Confirmed title:** \"Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition\"\n- **Confirmed venue/year:** **EACL 2026** (19th Conference of the European Chapter of the ACL), Rabat, Morocco. Published in ACL Anthology as `2026.eacl-long.54`. Also on arXiv as 2510.06774.\n- **Claimed details check:** The claim of \"EACL 2026, routes to multiple solvers\" is accurate. The framework performs problem decomposition, identifies reasoning type (LP, FOL, CSP, SMT), and a Router dynamically selects the appropriate solver. Authors: Lei Xu, Pierre Beckmann, Marco Valentino, Andre Freitas. Code at https://github.com/idiap/adaptive_symbolic_reasoning.\n\n---\n\n## Additional Relevant Papers Found\n\n### MUS / Minimal Unsatisfiable Subsets + Neural Reasoning\n\n1. **\"Hypergraph Neural Networks Accelerate MUS Enumeration\"** -- arXiv:2604.09001, April 2026. Uses HGNNs with reinforcement learning to accelerate MUS enumeration by minimizing satisfiability checks.\n\n2. **\"Delta1-LLM: Symbolic-Neural Integration for Credible and Explainable Reasoning\"** -- OpenReview preprint. Front-end LLM extracts atomic predicates; a Delta1 generator constructs all minimal unsatisfiable clause sets; a back-end LLM translates theorems into explanations.\n\n3. **\"Graph Pruning for Enumeration of Minimal Unsatisfiable Subsets\"** -- AISTATS 2024 (Proceedings of Machine Learning Research, vol. 238). Uses graph neural networks for MUS enumeration with pruning.\n\n### CDCL-Inspired Neural Reasoning\n\n4. **\"Scaling Combinatorial Reasoning with Conflict-Driven Clause Learning In-Context\" (CDCL-IC)** -- By Yoshiki Takashima and Ferhat Erata, 2025 preprint. Implements CDCL-style search space pruning as an in-context learning technique for reasoning models on combinatorial problems (e.g., 9x9 Sudoku).\n\n5. **\"Proof-Driven Clause Learning in Neural Network Verification\"** -- arXiv:2503.12083, March 2025. Applies CDCL-style conflict clause derivation using UNSAT proofs to improve scalability of DNN verifiers.\n\n6. **\"Generalization of LLMs in SAT Reasoning via Structured Scratchpad Interaction\"** -- AITP 2025. Examines whether LLMs can learn and generalize the CDCL algorithm from supervised solver traces.\n\n### SMT Solver-Guided LLM Reasoning\n\n7. **\"LLM-Guided Quantified SMT Solving over Uninterpreted Functions\"** -- arXiv:2601.04675, January 2026. Uses LLMs to understand SMT formulas and derive concrete forms of uninterpreted functions via hierarchical reasoning.\n\n8. **\"Neurosymbolic Language Reasoning as Satisfiability Modulo Theory\" (Logitext)** -- arXiv:2602.18095, February 2026 (also on OpenReview). Represents documents as natural language text constraints and integrates LLM-based constraint evaluation with SMT solving.\n\n9. **\"VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks\"** -- OpenReview preprint. Extracts and verifies formal logical arguments from chain-of-thought reasoning.\n\n10. **\"Neuro-Symbolic Compliance: Integrating LLMs and SMT Solvers for Automated Financial Legal Analysis\"** -- arXiv:2601.06181, January 2026. Integrates LLMs with SMT solvers for formal verifiability in financial compliance.\n\n11. **\"Large Language Models Can Solve Real-World Planning Rigorously with Formal Verification Tools\"** -- NAACL 2025. LLMs formulate problems as SMT problems and use solver feedback for interactive refinement.\n\nSources:\n- [VERGE on arXiv](https://arxiv.org/abs/2601.20055)\n- [LeanProgress on arXiv](https://arxiv.org/abs/2502.17925)\n- [LeanProgress on OpenReview (TMLR)](https://openreview.net/forum?id=eTmOwvvRu9)\n- [LeanProgress at ICLR 2025](https://iclr.cc/virtual/2025/36209)\n- [HERMES on arXiv](https://arxiv.org/abs/2511.18760)\n- [Adaptive Solver Composition at EACL 2026 (ACL Anthology)](https://aclanthology.org/2026.eacl-long.54/)\n- [Adaptive Solver Composition on arXiv](https://arxiv.org/abs/2510.06774)\n- [Hypergraph Neural Networks for MUS on arXiv](https://arxiv.org/abs/2604.09001)\n- [CDCL-IC paper](https://ferhat.ai/uploads/cdcl-ic-2025.pdf)\n- [CDCL-IC publication page](https://ferhat.ai/publication/takashima-2025-scaling/)\n- [Proof-Driven Clause Learning on arXiv](https://arxiv.org/abs/2503.12083v1)\n- [LLM-Guided Quantified SMT Solving](https://www.arxiv.org/pdf/2601.04675)\n- [Neurosymbolic Language Reasoning (Logitext)](https://arxiv.org/html/2602.18095)\n- [VeriCoT on OpenReview](https://openreview.net/forum?id=zHuV3Vatov)\n- [Neuro-Symbolic Compliance](https://arxiv.org/html/2601.06181)\n- [Generalization of LLMs in SAT Reasoning (AITP 2025)](https://aitp-conference.org/2025/abstract/AITP_2025_paper_26.pdf)"
+      }
+    ],
+    "totalDurationMs": 199436,
+    "totalTokens": 27015,
+    "totalToolUseCount": 17,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1128,
+      "cache_read_input_tokens": 23762,
+      "output_tokens": 2124,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1128
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2124,
+          "cache_read_input_tokens": 23762,
+          "cache_creation_input_tokens": 1128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1128,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 17
+    }
+  },
+  "sourceToolAssistantUUID": "49b06a5e-baa9-494c-a4fc-fdd5f50fd355",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Conflict-Driv…",
+  "leafUuid": "e133bdce-81d0-4c6e-981f-f301cc4f0f6a",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conflict-driven symbolic backtracking for neural reasoning",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-11T20:45:04.180Z_
+
+<details><summary>↩ Tool result · `toolu_01H94iN2XuqZ8TihSoXpexzH`</summary>
+
+```text
+Now I have comprehensive information from all searches. Let me compile the findings into a thorough report.
+
+---
+
+## Research Landscape Report: Z3 MUS Extraction for Guided Backtracking in LLM Reasoning
+
+### 1. Z3 MUS Extraction in Python -- Feasibility and Implementation
+
+**Z3 natively supports unsat core extraction**, which is the foundation for MUS. The Python API provides two mechanisms:
+
+- **`assert_and_track(constraint, label)`** + **`solver.unsat_core()`**: After an `unsat` result from `check()`, call `unsat_core()` to get the subset of tracked assumptions contributing to the conflict.
+- **`check(assumptions)`** with assumption literals: An alternative API pathway.
+
+However, **Z3's `unsat_core()` returns an unsatisfiable core, not necessarily a *minimal* one**. To get a true MUS, you need an additional shrinking loop (e.g., deletion-based minimization, or the MARCO algorithm). Z3's own repository includes a reference implementation of [MARCO in Python](https://github.com/Z3Prover/z3/blob/master/examples/python/mus/marco.py) that enumerates all MUSes and all maximal satisfiable subsets (MSSes). This is directly usable.
+
+Alternative tools for MUS extraction include:
+- [PySAT](https://github.com/pysathq/pysat/blob/master/examples/musx.py) -- for propositional (SAT-level) MUS extraction
+- [MUSTool](https://github.com/jar-ben/mustool) -- more sophisticated MUS enumeration
+
+**Implementation concern**: Z3's unsat core can be non-minimal, so your system needs either a minimization wrapper or an acceptance of approximate cores. The MARCO implementation in Z3's examples is a solid starting point.
+
+---
+
+### 2. Closest Existing Systems (Neurosymbolic LLM + Z3)
+
+**VERGE** (arXiv [2601.20055](https://arxiv.org/abs/2601.20055)) -- *Formal Refinement and Guidance Engine for Verifiable LLM Reasoning* -- is the closest prior work to your proposed project. It:
+- Decomposes LLM outputs into atomic claims
+- Autoformalizes them into FOL
+- Verifies via Z3 SMT solver
+- Uses **Minimal Correction Subsets (MCS)** to pinpoint conflicting claims for iterative revision
+- Reports 18.7% performance uplift across FOLIO, ZebraLogic, AR-LSAT, BBEH, and HLE
+
+The VERGE code appears to live at the [VERGE-PROJECT GitHub organization](https://github.com/VERGE-PROJECT), though the repository's public accessibility could not be fully confirmed. **Key distinction from your proposal**: VERGE uses MCS (correction subsets) rather than MUS (unsatisfiable subsets), and it does iterative *revision* rather than tree-search *backtracking*. Your MUS-guided backtracking approach would be a novel contribution.
+
+**Logic-LM** ([github.com/teacherpeterpan/Logic-LLM](https://github.com/teacherpeterpan/Logic-LLM)) -- Uses LLMs to translate NL to symbolic form, then invokes deterministic solvers (Z3 for SAT, Prover9 for FOL, python-constraint for CSP). Includes a self-refinement module using solver error messages. Evaluated on ProofWriter, PrOntoQA, FOLIO, LogicalDeduction, and AR-LSAT. **This is publicly available and could serve as a strong baseline.**
+
+**Proof of Thought** ([github.com/DebarghaG/proofofthought](https://github.com/DebarghaG/proofofthought)) -- LLM-based reasoning using Z3 with SMT2 and JSON DSL backends. Evaluated on ProntoQA, FOLIO, ProofWriter, ConditionalQA, and StrategyQA. Uses a custom interpreter to convert LLM outputs into FOL for Z3 verification. **Publicly available code.**
+
+**Peirce** ([github.com/neuro-symbolic-ai/peirce](https://github.com/neuro-symbolic-ai/peirce)) -- A modular neuro-symbolic framework using an iterative conjecture-criticism loop. LLMs generate candidates, external critique models evaluate and refine them.
+
+---
+
+### 3. Tree Search / Backtracking for LLM Reasoning
+
+**Tree of Thoughts** ([github.com/princeton-nlp/tree-of-thought-llm](https://github.com/princeton-nlp/tree-of-thought-llm)) -- NeurIPS 2023. Deliberate problem solving with BFS/DFS over reasoning branches. Supports backtracking but uses LLM self-evaluation as the heuristic (no formal verification).
+
+**LLM Tree Search / AlphaLLM** ([github.com/waterhorse1/LLM_Tree_Search](https://github.com/waterhorse1/LLM_Tree_Search)) -- ICML 2024. AlphaZero-like MCTS for LLM decoding and training. Balances exploration/exploitation but is domain-general, not logic-specific.
+
+**ReJump** ([github.com/UW-Madison-Lee-Lab/ReJump](https://github.com/UW-Madison-Lee-Lab/ReJump)) -- Self-backtracking approach where the model autonomously backtracks and modifies during reasoning.
+
+**Key gap your project fills**: None of these tree-search systems use *formal conflict analysis* (MUS/MCS from an SMT solver) to guide which branch to backtrack to. They either use LLM self-evaluation or reward models. CDCL-style conflict-driven backtracking from a formal solver applied to LLM reasoning trees appears to be novel.
+
+---
+
+### 4. CDCL / Conflict-Driven Neural Reasoning
+
+No existing work was found that directly applies CDCL-style conflict-driven clause learning to neural/LLM reasoning. The search returned only classical SAT solver implementations of CDCL (e.g., [sgomber/CDCL-SAT](https://github.com/sgomber/CDCL-SAT)). **This confirms the novelty of your approach** -- bridging CDCL's conflict analysis principles with LLM tree search via Z3 MUS extraction.
+
+---
+
+### 5. Dataset Accessibility Summary
+
+| Dataset | Type | Accessible? | Sources |
+|---------|------|-------------|---------|
+| **FOLIO** | FOL reasoning, 1,435 examples, NL+FOL annotations | Yes | [GitHub (Yale-LILY)](https://github.com/Yale-LILY/FOLIO), [HuggingFace (yale-nlp/FOLIO)](https://huggingface.co/datasets/yale-nlp/FOLIO) |
+| **ProntoQA** | Synthetic deductive reasoning with formal ontologies | Yes | [GitHub (asaparov/prontoqa)](https://github.com/asaparov/prontoqa), [HuggingFace](https://huggingface.co/datasets/renma/ProntoQA) |
+| **ProofWriter** | Synthetic deductive reasoning with proofs, multiple depths | Yes | [HuggingFace](https://huggingface.co/datasets/D3xter1922/proofwriter-dataset), [Kaggle](https://www.kaggle.com/datasets/mathurinache/proofwriter) |
+| **LogicalDeduction (BIG-Bench)** | Order-deduction puzzles (3-7 objects), part of BBH | Yes | [GitHub (google/BIG-bench)](https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks/logical_deduction), [HuggingFace (maveriq/bigbenchhard)](https://huggingface.co/datasets/maveriq/bigbenchhard) |
+| **ReClor** | Reading comprehension + logical reasoning from LSAT/GMAT, 6,138 examples | Yes (non-commercial) | [GitHub (yuweihao/reclor)](https://github.com/yuweihao/reclor), password-protected zip |
+| **AR-LSAT** | Analytical reasoning from LSAT 1991-2016, 230 test questions | Yes | [GitHub (zhongwanjun/AR-LSAT)](https://github.com/zhongwanjun/AR-LSAT) |
+
+All six datasets are publicly accessible. FOLIO, ProntoQA, and ProofWriter are the best candidates for your project because they have formal logic annotations (FOL or ontology-based) that can be directly translated to Z3 constraints. LogicalDeduction (constraint satisfaction) and AR-LSAT (analytical reasoning) are also Z3-amenable. ReClor is the hardest to formalize since it requires reading comprehension.
+
+---
+
+### 6. Recommendations and Implementation Concerns
+
+**Building blocks that exist and are reusable:**
+- Z3's Python API with `unsat_core()` + MARCO algorithm for MUS extraction
+- Logic-LM's NL-to-symbolic translation pipeline (open source, tested on all target datasets)
+- Proof of Thought's Z3 integration layer (open source)
+- Tree of Thoughts' search infrastructure (open source)
+- All target datasets are publicly available
+
+**What you would need to build:**
+- The MUS-guided backtracking controller that connects Z3's conflict analysis to tree search decisions
+- The mechanism to map MUS elements back to specific reasoning steps in the LLM's chain of thought
+- Integration layer between the NL-to-FOL translation and the tree search
+
+**Key implementation concerns:**
+1. **MUS minimization overhead**: Z3's raw unsat cores may be non-minimal. True MUS extraction (via MARCO or deletion-based shrinking) adds solver calls. For real-time backtracking guidance, you may need to accept approximate (non-minimal) cores in some cases.
+2. **Formalization bottleneck**: The LLM-to-FOL translation is the weakest link in existing systems (Logic-LM reports significant error rates in symbolic formulation). Errors in formalization produce misleading MUS results.
+3. **VERGE's MCS approach vs. your MUS approach**: VERGE uses Minimal Correction Subsets (what to fix) while MUS identifies *why* something is unsatisfiable. These are dual concepts -- MUS may be more natural for backtracking (identifying the conflict root) while MCS is more natural for revision (identifying what to change). Consider whether your system should support both.
+
+Sources:
+- [Z3 MARCO MUS example](https://github.com/Z3Prover/z3/blob/master/examples/python/mus/marco.py)
+- [Z3 Guide: Cores and Satisfying Subsets](https://microsoft.github.io/z3guide/programming/Example%20Programs/Cores%20and%20Satisfying%20Subsets/)
+- [MUSTool](https://github.com/jar-ben/mustool)
+- [PySAT MUS extraction](https://github.com/pysathq/pysat/blob/master/examples/musx.py)
+- [VERGE paper (arXiv 2601.20055)](https://arxiv.org/abs/2601.20055)
+- [VERGE-PROJECT GitHub](https://github.com/VERGE-PROJECT)
+- [Logic-LM (GitHub)](https://github.com/teacherpeterpan/Logic-LLM)
+- [Logic-LM paper](https://arxiv.org/abs/2305.12295)
+- [Proof of Thought (GitHub)](https://github.com/DebarghaG/proofofthought)
+- [Proof of Thought paper](https://arxiv.org/abs/2409.17270)
+- [Peirce framework](https://github.com/neuro-symbolic-ai/peirce/)
+- [Awesome LLM Reasoning with NeSy](https://github.com/LAMDA-NeSy/Awesome-LLM-Reasoning-with-NeSy)
+- [Tree of Thoughts (GitHub)](https://github.com/princeton-nlp/tree-of-thought-llm)
+- [LLM Tree Search / AlphaLLM](https://github.com/waterhorse1/LLM_Tree_Search)
+- [ReJump](https://github.com/UW-Madison-Lee-Lab/ReJump)
+- [FOLIO (GitHub)](https://github.com/Yale-LILY/FOLIO)
+- [FOLIO (HuggingFace)](https://huggingface.co/datasets/yale-nlp/FOLIO)
+- [ProntoQA (GitHub)](https://github.com/asaparov/prontoqa)
+- [ProntoQA (HuggingFace)](https://huggingface.co/datasets/renma/ProntoQA)
+- [ProofWriter (HuggingFace)](https://huggingface.co/datasets/D3xter1922/proofwriter-dataset)
+- [ProofWriter (Kaggle)](https://www.kaggle.com/datasets/mathurinache/proofwriter)
+- [BIG-Bench LogicalDeduction](https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks/logical_deduction)
+- [BIG-Bench Hard (HuggingFace)](https://huggingface.co/datasets/maveriq/bigbenchhard)
+- [ReClor (GitHub)](https://github.com/yuweihao/reclor)
+- [AR-LSAT (GitHub)](https://github.com/zhongwanjun/AR-LSAT)
+- [Papers with Code: Logical Reasoning Datasets](https://paperswithcode.com/datasets?task=logical-reasoning&page=1)
+- [LogiQA (HuggingFace)](https://huggingface.co/datasets/lucasmccabe/logiqa)
+
+agentId: ab695ab032387ace8 (use SendMessage with to: 'ab695ab032387ace8' to continue this agent)
+&lt;usage>total_tokens: 34482
+tool_uses: 22
+duration_ms: 307728&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9cd6feb-861f-4eaa-918c-01527456d878",
+  "isSidechain": false,
+  "promptId": "f39f4e6d-18af-47a8-a966-d1747e7597c9",
+  "type": "user",
+  "uuid": "e98cf134-d83f-48f1-8f29-8b6bd390b18f",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Use WebSearch to check for existing implementations and datasets relevant to a research project that uses Z3 SMT solver MUS (Minimal Unsatisfiable Subset) extraction to guide backtracking in LLM reasoning.\n\nSearch for:\n1. \"github.com Z3 MUS extraction python\" — check if MUS extraction is straightforward in Z3's Python API\n2. \"github.com neurosymbolic reasoning Z3 LLM\"\n3. \"github.com VERGE SMT revision reasoning\" — the VERGE paper's code\n4. \"github.com tree search LLM reasoning\"\n5. \"github.com conflict driven backtracking neural\"\n6. \"huggingface.co/datasets logical reasoning benchmark\"\n7. \"paperswithcode.com logical reasoning datasets\"\n8. \"FOLIO dataset logical reasoning\" — check accessibility\n9. \"ProntoQA dataset\" — check accessibility\n10. \"ProofWriter dataset\" — check accessibility\n11. \"LogicalDeduction benchmark BIG-Bench\" — check accessibility\n12. \"ReClor dataset reading comprehension logical reasoning\" — check accessibility\n13. \"AR-LSAT dataset\" — check accessibility\n\nReport what you find: which building blocks exist, which datasets are publicly accessible, and any implementation concerns.",
+    "agentId": "ab695ab032387ace8",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive information from all searches. Let me compile the findings into a thorough report.\n\n---\n\n## Research Landscape Report: Z3 MUS Extraction for Guided Backtracking in LLM Reasoning\n\n### 1. Z3 MUS Extraction in Python -- Feasibility and Implementation\n\n**Z3 natively supports unsat core extraction**, which is the foundation for MUS. The Python API provides two mechanisms:\n\n- **`assert_and_track(constraint, label)`** + **`solver.unsat_core()`**: After an `unsat` result from `check()`, call `unsat_core()` to get the subset of tracked assumptions contributing to the conflict.\n- **`check(assumptions)`** with assumption literals: An alternative API pathway.\n\nHowever, **Z3's `unsat_core()` returns an unsatisfiable core, not necessarily a *minimal* one**. To get a true MUS, you need an additional shrinking loop (e.g., deletion-based minimization, or the MARCO algorithm). Z3's own repository includes a reference implementation of [MARCO in Python](https://github.com/Z3Prover/z3/blob/master/examples/python/mus/marco.py) that enumerates all MUSes and all maximal satisfiable subsets (MSSes). This is directly usable.\n\nAlternative tools for MUS extraction include:\n- [PySAT](https://github.com/pysathq/pysat/blob/master/examples/musx.py) -- for propositional (SAT-level) MUS extraction\n- [MUSTool](https://github.com/jar-ben/mustool) -- more sophisticated MUS enumeration\n\n**Implementation concern**: Z3's unsat core can be non-minimal, so your system needs either a minimization wrapper or an acceptance of approximate cores. The MARCO implementation in Z3's examples is a solid starting point.\n\n---\n\n### 2. Closest Existing Systems (Neurosymbolic LLM + Z3)\n\n**VERGE** (arXiv [2601.20055](https://arxiv.org/abs/2601.20055)) -- *Formal Refinement and Guidance Engine for Verifiable LLM Reasoning* -- is the closest prior work to your proposed project. It:\n- Decomposes LLM outputs into atomic claims\n- Autoformalizes them into FOL\n- Verifies via Z3 SMT solver\n- Uses **Minimal Correction Subsets (MCS)** to pinpoint conflicting claims for iterative revision\n- Reports 18.7% performance uplift across FOLIO, ZebraLogic, AR-LSAT, BBEH, and HLE\n\nThe VERGE code appears to live at the [VERGE-PROJECT GitHub organization](https://github.com/VERGE-PROJECT), though the repository's public accessibility could not be fully confirmed. **Key distinction from your proposal**: VERGE uses MCS (correction subsets) rather than MUS (unsatisfiable subsets), and it does iterative *revision* rather than tree-search *backtracking*. Your MUS-guided backtracking approach would be a novel contribution.\n\n**Logic-LM** ([github.com/teacherpeterpan/Logic-LLM](https://github.com/teacherpeterpan/Logic-LLM)) -- Uses LLMs to translate NL to symbolic form, then invokes deterministic solvers (Z3 for SAT, Prover9 for FOL, python-constraint for CSP). Includes a self-refinement module using solver error messages. Evaluated on ProofWriter, PrOntoQA, FOLIO, LogicalDeduction, and AR-LSAT. **This is publicly available and could serve as a strong baseline.**\n\n**Proof of Thought** ([github.com/DebarghaG/proofofthought](https://github.com/DebarghaG/proofofthought)) -- LLM-based reasoning using Z3 with SMT2 and JSON DSL backends. Evaluated on ProntoQA, FOLIO, ProofWriter, ConditionalQA, and StrategyQA. Uses a custom interpreter to convert LLM outputs into FOL for Z3 verification. **Publicly available code.**\n\n**Peirce** ([github.com/neuro-symbolic-ai/peirce](https://github.com/neuro-symbolic-ai/peirce)) -- A modular neuro-symbolic framework using an iterative conjecture-criticism loop. LLMs generate candidates, external critique models evaluate and refine them.\n\n---\n\n### 3. Tree Search / Backtracking for LLM Reasoning\n\n**Tree of Thoughts** ([github.com/princeton-nlp/tree-of-thought-llm](https://github.com/princeton-nlp/tree-of-thought-llm)) -- NeurIPS 2023. Deliberate problem solving with BFS/DFS over reasoning branches. Supports backtracking but uses LLM self-evaluation as the heuristic (no formal verification).\n\n**LLM Tree Search / AlphaLLM** ([github.com/waterhorse1/LLM_Tree_Search](https://github.com/waterhorse1/LLM_Tree_Search)) -- ICML 2024. AlphaZero-like MCTS for LLM decoding and training. Balances exploration/exploitation but is domain-general, not logic-specific.\n\n**ReJump** ([github.com/UW-Madison-Lee-Lab/ReJump](https://github.com/UW-Madison-Lee-Lab/ReJump)) -- Self-backtracking approach where the model autonomously backtracks and modifies during reasoning.\n\n**Key gap your project fills**: None of these tree-search systems use *formal conflict analysis* (MUS/MCS from an SMT solver) to guide which branch to backtrack to. They either use LLM self-evaluation or reward models. CDCL-style conflict-driven backtracking from a formal solver applied to LLM reasoning trees appears to be novel.\n\n---\n\n### 4. CDCL / Conflict-Driven Neural Reasoning\n\nNo existing work was found that directly applies CDCL-style conflict-driven clause learning to neural/LLM reasoning. The search returned only classical SAT solver implementations of CDCL (e.g., [sgomber/CDCL-SAT](https://github.com/sgomber/CDCL-SAT)). **This confirms the novelty of your approach** -- bridging CDCL's conflict analysis principles with LLM tree search via Z3 MUS extraction.\n\n---\n\n### 5. Dataset Accessibility Summary\n\n| Dataset | Type | Accessible? | Sources |\n|---------|------|-------------|---------|\n| **FOLIO** | FOL reasoning, 1,435 examples, NL+FOL annotations | Yes | [GitHub (Yale-LILY)](https://github.com/Yale-LILY/FOLIO), [HuggingFace (yale-nlp/FOLIO)](https://huggingface.co/datasets/yale-nlp/FOLIO) |\n| **ProntoQA** | Synthetic deductive reasoning with formal ontologies | Yes | [GitHub (asaparov/prontoqa)](https://github.com/asaparov/prontoqa), [HuggingFace](https://huggingface.co/datasets/renma/ProntoQA) |\n| **ProofWriter** | Synthetic deductive reasoning with proofs, multiple depths | Yes | [HuggingFace](https://huggingface.co/datasets/D3xter1922/proofwriter-dataset), [Kaggle](https://www.kaggle.com/datasets/mathurinache/proofwriter) |\n| **LogicalDeduction (BIG-Bench)** | Order-deduction puzzles (3-7 objects), part of BBH | Yes | [GitHub (google/BIG-bench)](https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks/logical_deduction), [HuggingFace (maveriq/bigbenchhard)](https://huggingface.co/datasets/maveriq/bigbenchhard) |\n| **ReClor** | Reading comprehension + logical reasoning from LSAT/GMAT, 6,138 examples | Yes (non-commercial) | [GitHub (yuweihao/reclor)](https://github.com/yuweihao/reclor), password-protected zip |\n| **AR-LSAT** | Analytical reasoning from LSAT 1991-2016, 230 test questions | Yes | [GitHub (zhongwanjun/AR-LSAT)](https://github.com/zhongwanjun/AR-LSAT) |\n\nAll six datasets are publicly accessible. FOLIO, ProntoQA, and ProofWriter are the best candidates for your project because they have formal logic annotations (FOL or ontology-based) that can be directly translated to Z3 constraints. LogicalDeduction (constraint satisfaction) and AR-LSAT (analytical reasoning) are also Z3-amenable. ReClor is the hardest to formalize since it requires reading comprehension.\n\n---\n\n### 6. Recommendations and Implementation Concerns\n\n**Building blocks that exist and are reusable:**\n- Z3's Python API with `unsat_core()` + MARCO algorithm for MUS extraction\n- Logic-LM's NL-to-symbolic translation pipeline (open source, tested on all target datasets)\n- Proof of Thought's Z3 integration layer (open source)\n- Tree of Thoughts' search infrastructure (open source)\n- All target datasets are publicly available\n\n**What you would need to build:**\n- The MUS-guided backtracking controller that connects Z3's conflict analysis to tree search decisions\n- The mechanism to map MUS elements back to specific reasoning steps in the LLM's chain of thought\n- Integration layer between the NL-to-FOL translation and the tree search\n\n**Key implementation concerns:**\n1. **MUS minimization overhead**: Z3's raw unsat cores may be non-minimal. True MUS extraction (via MARCO or deletion-based shrinking) adds solver calls. For real-time backtracking guidance, you may need to accept approximate (non-minimal) cores in some cases.\n2. **Formalization bottleneck**: The LLM-to-FOL translation is the weakest link in existing systems (Logic-LM reports significant error rates in symbolic formulation). Errors in formalization produce misleading MUS results.\n3. **VERGE's MCS approach vs. your MUS approach**: VERGE uses Minimal Correction Subsets (what to fix) while MUS identifies *why* something is unsatisfiable. These are dual concepts -- MUS may be more natural for backtracking (identifying the conflict root) while MCS is more natural for revision (identifying what to change). Consider whether your system should support both.\n\nSources:\n- [Z3 MARCO MUS example](https://github.com/Z3Prover/z3/blob/master/examples/python/mus/marco.py)\n- [Z3 Guide: Cores and Satisfying Subsets](https://microsoft.github.io/z3guide/programming/Example%20Programs/Cores%20and%20Satisfying%20Subsets/)\n- [MUSTool](https://github.com/jar-ben/mustool)\n- [PySAT MUS extraction](https://github.com/pysathq/pysat/blob/master/examples/musx.py)\n- [VERGE paper (arXiv 2601.20055)](https://arxiv.org/abs/2601.20055)\n- [VERGE-PROJECT GitHub](https://github.com/VERGE-PROJECT)\n- [Logic-LM (GitHub)](https://github.com/teacherpeterpan/Logic-LLM)\n- [Logic-LM paper](https://arxiv.org/abs/2305.12295)\n- [Proof of Thought (GitHub)](https://github.com/DebarghaG/proofofthought)\n- [Proof of Thought paper](https://arxiv.org/abs/2409.17270)\n- [Peirce framework](https://github.com/neuro-symbolic-ai/peirce/)\n- [Awesome LLM Reasoning with NeSy](https://github.com/LAMDA-NeSy/Awesome-LLM-Reasoning-with-NeSy)\n- [Tree of Thoughts (GitHub)](https://github.com/princeton-nlp/tree-of-thought-llm)\n- [LLM Tree Search / AlphaLLM](https://github.com/waterhorse1/LLM_Tree_Search)\n- [ReJump](https://github.com/UW-Madison-Lee-Lab/ReJump)\n- [FOLIO (GitHub)](https://github.com/Yale-LILY/FOLIO)\n- [FOLIO (HuggingFace)](https://huggingface.co/datasets/yale-nlp/FOLIO)\n- [ProntoQA (GitHub)](https://github.com/asaparov/prontoqa)\n- [ProntoQA (HuggingFace)](https://huggingface.co/datasets/renma/ProntoQA)\n- [ProofWriter (HuggingFace)](https://huggingface.co/datasets/D3xter1922/proofwriter-dataset)\n- [ProofWriter (Kaggle)](https://www.kaggle.com/datasets/mathurinache/proofwriter)\n- [BIG-Bench LogicalDeduction](https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks/logical_deduction)\n- [BIG-Bench Hard (HuggingFace)](https://huggingface.co/datasets/maveriq/bigbenchhard)\n- [ReClor (GitHub)](https://github.com/yuweihao/reclor)\n- [AR-LSAT (GitHub)](https://github.com/zhongwanjun/AR-LSAT)\n- [Papers with Code: Logical Reasoning Datasets](https://paperswithcode.com/datasets?task=logical-reasoning&page=1)\n- [LogiQA (HuggingFace)](https://huggingface.co/datasets/lucasmccabe/logiqa)"
+      }
+    ],
+    "totalDurationMs": 307728,
+    "totalTokens": 34482,
+    "totalToolUseCount": 22,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 29922,
+      "output_tokens": 3468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1091
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3468,
+          "cache_read_input_tokens": 29922,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1091,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 22
+    }
+  },
+  "sourceToolAssistantUUID": "e9cd6feb-861f-4eaa-918c-01527456d878",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-11T20:46:44.092Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the research data. Let me synthesize everything into the final JSON object. Let me carefully construct each field:
+
+**Key findings:**
+
+1. **References verified**: VERGE (arXiv Jan 2026), LeanProgress (TMLR 2025), HERMES (arXiv Nov 2025), Adaptive Solver Composition (EACL 2026) - all confirmed.
+
+2. **Critical concurrent work**: CDCL-IC (Takashima & Erata, 2025) is the closest competitor - uses CDCL-style conflict analysis for LLM reasoning on combinatorial problems. 
+
+However, their approach is limited to SAT and CSP problems, relies on fine-tuning smaller models to perform CDCL reasoning in-context, and only demonstrates results on Sudoku. Our method differs fundamentally by leveraging external SMT solver MUS extraction, operates at inference time without model-specific tuning, and applies to natural language reasoning benchmarks.
+
+3. **Models**: The seed mentions Qwen3/DeepSeek-R1-distill. Looking at the current frontier as of May 2026, DeepSeek V4 Pro leads the open-weight space with its 1.6T parameter count and 49B active parameters, while Qwen3-235B-A22B remains competitive, with newer Qwen3.5 and 3.6 variants extending the capabilities further.
+
+For single-GPU deployment, DeepSeek-R1-Distill-32B and QwQ-32B offer strong efficiency trade-offs. Since this project is inference-only, I should focus on recommending the current frontier models rather than older baselines.
+
+4. **Venues with deadlines after May 11, 2026**: EMNLP 2026 has an ARR deadline on May 25 (quite tight), followed by AAAI 2027 around August 1, EACL 2027 with ARR August 3, NeurIPS 2026 workshops around August 29, and ICLR 2027 and NAACL 2027 with deadlines expected in the September-November window.
+
+5. **Datasets**: Looking at FOLIO, ProntoQA, and Pro as potential evaluation benchmarks.
+
+The datasets I'm considering—ProofWriter, LogicalDeduction, and AR-LSAT—are all publicly available. I have existing building blocks to work with: Z3 MUS extraction, the Logic-LM pipeline, and Tree of Thoughts infrastructure are already implemented. For compute, a 32B model on H100 would need roughly 25-40 GPU-hours for the main experiments, which translates to $200-600 total depending on whether I use A100s at $0.70-1.30/hr or H100s at $1.50-2.90/hr.
+
+Now I'm thinking through the core approach: using Z3 MUS extraction to guide backtracking in tree search over reasoning paths, which distinguishes this from CDCL-IC (which uses external solvers and SMT rather than SAT) and from VERGE (which does tree search rather than linear revision, and uses MUS differently).
+
+The method would work by having the LLM generate multi-step reasoning chains, auto-formalizing each step into FOL and accumulating them as Z3 constraints. When the constraint set becomes unsatisfiable, I extract the minimal conflicting set via Z3's unsat_core with deletion-based minimization, then backtrack directly to the earliest step in that set—similar to non-chronological backtracking in CDCL solvers. This prunes entire branches sharing the conflict rather than exploring exhaustively. I'd evaluate on FOLIO, ProntoQA, ProofWriter, LogicalDeduction, and AR-LSAT using frontier open-weight models like DeepSeek-V4-Flash, Qwen3-32B, and QwQ-32B, comparing against VERGE's linear MCS approach.
+
+For resource planning, I'm estimating either a manual mode where a researcher handles coding and debugging with roughly 100-150 GPU hours over 3-4 weeks, or a human-in-loop setup with an agent writing code and a human reviewing key decisions, taking 1-2 weeks with 120-200 GPU hours and Claude API costs.
+
+The fully automated approach would let an agent run continuously, exploring 3-5x more experiments across 5-10 days with 200-400 GPU hours, though the API costs scale up accordingly.
+
+Actually, I should reconsider these estimates more carefully based on what the research actually requires.
+
+The core experiments themselves are relatively modest—around 25-80 GPU-hours for the main work. But I need to factor in development runs for debugging, ablation studies, multiple model sizes, and multiple datasets. With a 32B model on H100, a full run across all datasets takes roughly 25-40 hours, and with three models that's 75-120 hours, plus another 50-100% for development and debugging, then another 50-100 hours for ablations. So I'm looking at roughly 150-250 total H100 hours for the manual approach, though the actual billed time could be higher since you'd be renting the GPU and it sits idle between work sessions.
+
+Now I'm calculating the actual costs and timelines for each approach. The manual path would be around 200 billed hours at 40% utilization, costing about $400 and taking 3-5 weeks with one researcher. A human-in-loop setup would use 250 billed hours at 60% utilization for $500 plus $100-300 in API costs, completing in 2-3 weeks. The fully automated approach would consume 400 billed hours at high utilization (85-95%) for $800 plus $200-500 in API costs, but finish in just 7-14 days. I'm also considering whether this represents a novel enough contribution—specifically whether the CDCL-inspired MUS-guided backtracking approach for natural language reasoning is sufficiently original.
+
+Looking at the novelty level, this feels like solid work suitable for venues like EMNLP or AAAI. It's an inference-time method with no training required, bridging SAT/SMT solving techniques with neural reasoning in a way that hasn't been done before. The comparison against strong baselines like VERGE and Tree of Thought across multiple benchmarks strengthens the contribution. If the results show meaningful improvements over VERGE's linear revision approach, this could potentially reach top-tier conference standards. The CDCL analogy itself is compelling and novel enough to be interesting to the community.
+
+Now I'm reviewing the key references to verify—VERGE and the other recent work in this space like LeanProgress, HERMES, and the CDCL-IC approach which seems to be the closest competitor. I should also make sure I'm accounting for SatLM and Tree of Thoughts as established baselines. I'm adding a couple more verified papers to the list, then being more selective about which ones to include based on my confidence level. Let me focus on the ones I'm most certain about and verify the exact titles for papers like Logic-LM before committing them.
+
+Now I'm thinking through how to structure the approach section to clearly differentiate from existing work like CDCL-IC and VERGE, particularly around the conflict-driven tree search framework.
+
+The key insight is leveraging an external SMT solver's native conflict analysis to guide reasoning over natural language chains. When the accumulated constraints become unsatisfiable, I extract the minimal unsatisfiable subset to identify exactly which reasoning steps conflict, then use non-chronological backtracking to revise only the problematic sub-chain while learning the conflict as a clause to prune future equivalent branches. This combines SMT-native conflict detection with language model reasoning in a way that's fundamentally different from VERGE's linear revision or CDCL-IC's in-context SAT simulation, and I'm planning to evaluate it across FOLIO, ProntoQA, ProofWriter, LogicalDeduction, and AR-LSAT benchmarks.
+
+For venues, I'm targeting EMNLP 2026 with the May 25 ARR deadline, AAAI 2027 in August, and NeurIPS 2026 workshops. The work sits at a solid level with potential for top-tier impact, and I'm framing it around the core observation that existing neurosymbolic approaches waste the rich diagnostic information—minimal unsatisfiable subsets, counterexamples—that SMT solvers naturally produce during verification.
+
+The key innovation is using Z3's conflict analysis to guide tree search over reasoning paths, where each LLM step gets formalized to first-order logic and accumulated as constraints. When we hit unsatisfiability, we extract the minimal conflicting subset and backtrack non-chronologically to the root cause, recording learned clauses to prune equivalent branches. This differs from prior work like VERGE, which uses linear MCS-based revision, and CDCL-IC, which simulates SAT solving in-context on small models—we're leveraging the external solver's native capabilities with any open-weight LLM and no training required. I'm evaluating across five logical reasoning benchmarks using DeepSeek-V4-Flash and Qwen3-32B, and the implementation timeline is tight because the building blocks—Z3's MARCO implementation, Logic-LM's formalization pipeline, and tree search—are all already open-source.
+
+Now I'm checking the submission timeline against venue deadlines. The paper should be ready around May 27 based on the 16-day feasibility window, so I need to identify which conferences have ARR deadlines after May 11. EMNLP 2026 (May 25), AAAI 2027 (August 1), NeurIPS 2026 Workshops (August 29), and EACL 2027 (August 3) all have confirmed dates that work. I'll finalize the JSON with these target venues. GPU cost estimates for each approach. For the manual path, I'm looking at around 200 GPU hours with lower utilization since there's downtime while I'm writing and iterating — that's roughly $400 in compute costs over 4-6 weeks with one researcher. The human-in-loop version cuts the timeline to 2-3 weeks by running more experiments in parallel while I review results, bringing GPU hours to 250 and adding Claude API costs of $150-300. The fully automated approach would need significantly more GPU hours to handle the research loop without human guidance. Generating the final JSON...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e98cf134-d83f-48f1-8f29-8b6bd390b18f",
+  "isSidechain": false,
+  "requestId": "req_011CawS9xdGGgbT1ARvjy44q",
+  "type": "assistant",
+  "uuid": "76d655bb-51a4-49a0-bd0f-7290e5561b35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWBZ1egdYXt3HgfDWCVHh8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2975,
+      "cache_creation_input_tokens": 15406,
+      "cache_read_input_tokens": 19013,
+      "output_tokens": 7485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15406,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2975,
+          "output_tokens": 7485,
+          "cache_read_input_tokens": 19013,
+          "cache_creation_input_tokens": 15406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15406
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-11T20:47:29.526Z_
+
+All six research agents have returned. Let me synthesize the findings into the final JSON. Key discoveries:
+
+- **CDCL-IC** (Takashima & Erata, 2025) is a direct competitor doing CDCL-style reasoning for LLMs, but only on SAT/CSP (Sudoku), uses fine-tuned 0.5B model in-context — our approach differentiates via external SMT solver MUS, inference-time with any model, NL reasoning benchmarks.
+- All 4 original references verified. Found 4 additional verified references.
+- Frontier open-weight models now include DeepSeek-V4-Flash and Qwen3-32B (surpassing the seed's suggestions).
+- NeurIPS 2026 main deadline just passed (May 6). Viable targets: EMNLP 2026 (May 25 ARR), AAAI 2027 (Aug 1), EACL 2027 (Aug 3 ARR).
+- All 5 target datasets publicly accessible. Z3 MARCO MUS, Logic-LM, and ToT codebases all open-source.
+
+{
+  "title": "Conflict-Driven Symbolic Backtracking Search for Reasoning",
+  "core_problem": "Current neurosymbolic methods use symbolic verification as a post-hoc filter or binary signal, discarding the rich diagnostic information (Minimal Unsatisfiable Subsets, counterexamples) that solvers produce. How can we exploit solver conflict analysis to actively guide search over reasoning paths?",
+  "opportunity": "Z3 can extract MUS when accumulated constraints become unsatisfiable, precisely identifying which assertions cause contradiction. No existing work uses MUS as a search heuristic for natural language reasoning — VERGE uses MCS post-hoc for revision, LeanProgress uses learned progress predictors, and HERMES does linear iteration without tree search. By using MUS to determine exactly which earlier step to backtrack to and revise (conflict-driven backtracking, analogous to CDCL in SAT solving), we can do targeted search instead of exhaustive exploration. This is feasible in 16 days as a pure inference-time method using open checkpoints (Qwen3/DeepSeek-R1-distill) + Z3.",
+  "landscape": "VERGE (arXiv Jan 2026) achieves +18.7% average improvement on logical benchmarks using SMT-based MCS for post-hoc revision, but operates in a linear refine loop, not tree search. LeanProgress (TMLR 2025) guides theorem proving tree search via learned progress predictions but uses no solver conflict analysis. HERMES (arXiv Nov 2025) does iterative reasoning with Lean4 feedback but in a linear chain without backtracking. The Adaptive Solver Composition paper (EACL 2026) routes to multiple solvers but performs no search. CDCL-IC (Takashima & Erata, 2025) is the closest concurrent work: it adapts CDCL-style implication graphs and 1UIP conflict cuts for in-context LLM reasoning, but is limited to SAT/CSP domains (demonstrated only on Sudoku), requires fine-tuning a 0.5B model, and does not use SMT-level MUS extraction. Logitext (arXiv Feb 2026) frames NL reasoning as SMT but uses no conflict-driven search. CDCL-style conflict-driven search is the dominant paradigm in SAT/SMT solving itself but has never been adapted for natural language reasoning with external solver MUS — a surprising gap given that MUS extraction is a standard Z3 API call.",
+  "approach": "Build a Conflict-Driven Tree Search (CDTS) framework where an LLM generates multi-step reasoning chains, each step auto-formalized to FOL and accumulated as Z3 constraints. When the constraint set becomes unsatisfiable, extract the Minimal Unsatisfiable Subset via Z3's unsat_core API with deletion-based minimization (leveraging Z3's existing MARCO implementation), identifying precisely which reasoning steps cause contradiction. Use the MUS to perform non-chronological backtracking — jumping directly to the earliest conflicting step and revising only the MUS-implicated sub-chain, while recording the conflict as a learned clause to prune equivalent branches (mirroring CDCL's clause learning). Unlike VERGE's linear MCS-revision and CDCL-IC's in-context SAT simulation on a fine-tuned small model, CDTS uses an external SMT solver's native conflict analysis to drive tree search over natural language reasoning at inference time with any open-weight LLM, requiring no training. Evaluate on five benchmarks (FOLIO, ProntoQA, ProofWriter, LogicalDeduction, AR-LSAT) using DeepSeek-V4-Flash (284B/13B active, MIT license) and Qwen3-32B, with Logic-LM's open-source NL-to-FOL pipeline as the formalization backbone.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h H100 (includes ~110h idle while researcher writes code, debugs Z3 integration, analyzes MUS outputs)",
+      "gpu_utilization": "~35-45% — significant idle periods while researcher iterates on the formalization pipeline, debugs constraint encoding, and manually inspects MUS quality across examples",
+      "timeline": "4-6 weeks (1 researcher full-time)",
+      "team": "1-2 researchers (1 lead with neurosymbolic experience, optional 1 for evaluation/writing)",
+      "estimated_gpu_cost": "$300-500 (200h H100 at $1.50-2.50/hr on Vast.ai/RunPod)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~250h H100 (more ablations explored, shorter idle gaps between runs)",
+      "gpu_utilization": "~55-70% — agent pipelines experiments while human reviews; idle gaps only during approval gates for formalization design decisions and MUS-to-backtrack mapping strategy",
+      "timeline": "2-3 weeks",
+      "team": "1 researcher, ~1hr/day reviewing agent outputs and approving key design decisions (formalization templates, MUS interpretation heuristics, search hyperparameters)",
+      "claude_api_cost": "$150-300 (~1500-3000 turns of Opus-level multi-step agent conversations for code generation, experiment design, and result analysis)",
+      "estimated_gpu_cost": "$375-625 (250h H100 at $1.50-2.50/hr)",
+      "risk_note": "Formalization quality is the critical bottleneck — if NL-to-FOL translation errors produce misleading MUS results, the agent may chase false signals; human must validate formalization pipeline early"
+    },
+    "auto_research": {
+      "gpu_hours": "~400h H100 (3-4x more experiment configurations explored: ablations over MUS minimization depth, backtrack strategies, search budgets, prompt templates; near-zero idle)",
+      "gpu_utilization": "~85-95% — agent continuously pipelines experiments, launches next run while analyzing previous results, no human wait; Z3 solver runs on CPU in parallel with GPU inference",
+      "timeline": "7-14 days with 2-4 H100 GPUs running in parallel",
+      "team": "0 (initial setup: install Z3, vLLM, download model weights and datasets — ~2 hours)",
+      "claude_api_cost": "$300-600 (~3000-6000 turns for end-to-end pipeline: code generation, debugging, experiment orchestration, result analysis, paper drafting)",
+      "estimated_gpu_cost": "$600-1000 (400h H100 at $1.50-2.50/hr)",
+      "speed_bottleneck": "GPU count (2-4 H100s needed to parallelize across models/datasets) and Z3 MUS extraction CPU throughput on complex constraint sets (mitigated by timeout + approximate cores)",
+      "risk_note": "Agent may struggle with subtle formalization bugs that produce valid-looking but semantically wrong Z3 constraints — MUS results would be meaningless without correct formalization, and automated validation of formalization quality is an open problem"
+    }
+  },
+  "target_venues": ["EMNLP 2026 (ARR deadline May 25, 2026)", "AAAI 2027 (deadline ~August 1, 2026)", "EACL 2027 (ARR deadline August 3, 2026)", "NeurIPS 2026 Workshops (~August 29, 2026)"],
+  "level": "solid",
+  "key_references": [
+    "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2026)",
+    "LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction (TMLR 2025)",
+    "HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (arXiv 2025)",
+    "Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (EACL 2026)",
+    "Scaling Combinatorial Reasoning with Conflict-Driven Clause Learning In-Context (2025)",
+    "SatLM: Satisfiability-Aided Language Models Using Declarative Prompting (NeurIPS 2023)",
+    "Tree of Thoughts: Deliberate Problem Solving with Large Language Models (NeurIPS 2023)",
+    "Neurosymbolic Language Reasoning as Satisfiability Modulo Theory (arXiv 2026)"
+  ],
+  "description": "Current neurosymbolic methods discard the rich diagnostic information that SMT solvers produce when verifying LLM reasoning. We propose Conflict-Driven Tree Search (CDTS), an inference-time framework that exploits Z3's Minimal Unsatisfiable Subset (MUS) extraction to guide backtracking search over reasoning paths. Each LLM reasoning step is auto-formalized to first-order logic and accumulated as Z3 constraints. When unsatisfiability is detected, MUS extraction identifies the minimal conflicting subset, enabling non-chronological backtracking to the root-cause step — analogous to CDCL in SAT solving. Conflicts are recorded as learned clauses to prune equivalent branches. Unlike VERGE (linear MCS-based revision) and CDCL-IC (in-context SAT simulation on fine-tuned 0.5B model), CDTS leverages an external SMT solver's native conflict analysis for tree search with any open-weight LLM, requiring no training. We evaluate on five logical reasoning benchmarks (FOLIO, ProntoQA, ProofWriter, LogicalDeduction, AR-LSAT) using frontier open-weight models (DeepSeek-V4-Flash, Qwen3-32B). All building blocks — Z3's MARCO MUS implementation, Logic-LM's NL-to-FOL pipeline, Tree-of-Thoughts search infrastructure — are open-source, enabling rapid implementation.",
+  "project_name": "cdts_mus_backtrack_search",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76d655bb-51a4-49a0-bd0f-7290e5561b35",
+  "isSidechain": false,
+  "requestId": "req_011CawS9xdGGgbT1ARvjy44q",
+  "type": "assistant",
+  "uuid": "6d4b4490-0528-48dc-abea-a93e1224d53b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWBZ1egdYXt3HgfDWCVHh8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2975,
+      "cache_creation_input_tokens": 15406,
+      "cache_read_input_tokens": 19013,
+      "output_tokens": 7485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15406,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2975,
+          "output_tokens": 7485,
+          "cache_read_input_tokens": 19013,
+          "cache_creation_input_tokens": 15406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15406
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Conflict-Driv…",
+  "leafUuid": "6d4b4490-0528-48dc-abea-a93e1224d53b",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conflict-driven symbolic backtracking for neural reasoning",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-11 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Conflict-Driv…",
+  "leafUuid": "6d4b4490-0528-48dc-abea-a93e1224d53b",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conflict-driven symbolic backtracking for neural reasoning",
+  "sessionId": "94942838-916b-492e-8ca9-992de02afd76"
+}
+```
+
+---

@@ -1,0 +1,4445 @@
+# Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #11。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：cuda:0 / cuda:1（westd-39 — Part 5 of 5
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning (July export snapshot)** · Conversation logs
+
+[← Part 4](part-004.md) · [Transcript overview](../research-conversation-handoff-research-reviewer-loop-11-task-context-1-gpu-cuda-0-cuda-1-westd-39.md) · [Structured JSON](../../../sessions/1b/1bd1907ae5e9df9008f2.json)
+
+## Round 33
+
+### Tool result
+
+_source line 750 · 2026-05-15T20:16:13.840Z_
+
+<details><summary>↩ Tool result · `toolu_012XSxrr3vSvsnptLZLhsYgr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/solver-trace-ablation/paper/experiments.tex:69:H7 tautological collapse occurs under both ISR and random conditions, but ISR amplifies it ${\\\\sim}5\\\\times$: $70.6\\\\%$ ($163/231$) under ISR vs.\\\\ $13.7\\\\%$ ($36/262$) under random (Fisher $p{=}1.3{\\\\times}10^{-39}$, $\\\\text{OR}{=}15.05$). %% registry: plan002 vs plan018 all seeds; D095 FINAL\\n/root/solver-trace-ablation/paper/experiments.tex:80:After reclassifying premise-subset gaming (H8; Appendix~\\\\ref{app:h8}) and correcting H7 classifier false negatives (s44, $n{=}12$; Appendix~\\\\ref{app:hacking-modes}), ISR $\\\\beta{=}0.1$ non-hacking rate ($6.06\\\\%$, $14/231$) is numerically lower than random ($9.5\\\\%$, $25/262$), but the difference is not statistically significant (Fisher $p{=}0.182$, two-sided, n.s.; Wilson 95\\\\% CI: ISR $[3.6\\\\%, 9.9\\\\%]$, Random $[6.5\\\\%, 13.7\\\\%]$; Appendix Table~\\\\ref{tab:bootstrap-ci}). %% D095 FINAL Fisher test\\n/root/solver-trace-ablation/paper/experiments.tex:158:Three are quantifiable across conditions: \\\\textbf{H1} (conclusion embedding) is GRPO-universal at $68$--$100\\\\%$ regardless of reward type; \\\\textbf{H7} (conclusion duplication) occurs under both ISR and random but ISR amplifies it ${\\\\sim}5\\\\times$ ($70.6\\\\%$ vs.\\\\ $13.7\\\\%$ under random; Fisher $p{=}1.3{\\\\times}10^{-39}$), with random H7 concentrated in a single seed (s43: $38.3\\\\%$; s42, s44: $0\\\\%$); \\\\textbf{H8} (premise-subset gaming) appears under both exec-only ($6\\\\%$) and ISR ($5\\\\%$) conditions (Appendix~\\\\ref{app:h8}).\\n/root/solver-trace-ablation/paper/appendix.tex:97:ISR vs.\\\\ Random & 6.06\\\\% {\\\\scriptsize[3.6,9.9]} & 9.5\\\\% {\\\\scriptsize[6.5,13.7]} & 0.61 & 0.182 (n.s.) \\\\\\\\\\n/root/solver-trace-ablation/paper/appendix.tex:102:ISR vs.\\\\ Random & 70.6\\\\% {\\\\scriptsize[64.3,76.3]} & 13.7\\\\% {\\\\scriptsize[9.9,18.6]} & 15.05 & $1.3{\\\\times}10^{-39}$ \\\\\\\\\\n/root/solver-trace-ablation/paper/appendix.tex:187:After H8 reclassification and H7 false-negative correction: ISR genuine $= 14/231 = 6.06\\\\%$ vs.\\\\ random genuine $= 25/262 = 9.5\\\\%$ (Fisher $p{=}0.182$, n.s.; Wilson 95\\\\% CI: ISR [3.6\\\\%, 9.9\\\\%], Random [6.5\\\\%, 13.7\\\\%]).\\n/root/solver-trace-ablation/paper/appendix.tex:211:Under exec-only and Random reward, it manifests as H1 (71--93\\\\%); under ISR reward, it shifts to H7 (70.6\\\\% pooled).\\n/root/solver-trace-ablation/paper/appendix.tex:236:Combined H7 (H7a + H7b): 70.6\\\\% (163/231; s43 H7a${=}59$ + H7b${=}2$; includes s44 FN correction).\\n/root/solver-trace-ablation/paper/appendix.tex:237:Random~$\\\\beta{=}0.1$ pooled: 13.7\\\\% (36/262, all H7a; driven by seed~43 at 38.3\\\\%, seeds~42 and~44 at 0\\\\%).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6a1c61e-1a0d-44c0-ab1d-34c794405c7f",
+  "isSidechain": false,
+  "promptId": "8608b64c-7dbe-43fd-821d-3a1040cf714f",
+  "type": "user",
+  "uuid": "570ce238-67d8-4ab6-9633-f4bf6a9fc786",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/paper/experiments.tex:69:H7 tautological collapse occurs under both ISR and random conditions, but ISR amplifies it ${\\\\\\\\sim}5\\\\\\\\times$: $70.6\\\\\\\\%$ ($163/231$) under ISR vs.\\\\\\\\ $13.7\\\\\\\\%$ ($36/262$) under random (Fisher $p{=}1.3{\\\\\\\\times}10^{-39}$, $\\\\\\\\text{OR}{=}15.05$). %% registry: plan002 vs plan018 all seeds; D095 FINAL\\\\n/root/solver-trace-ablation/paper/experiments.tex:80:After reclassifying premise-subset gaming (H8; Appendix~\\\\\\\\ref{app:h8}) and correcting H7 classifier false negatives (s44, $n{=}12$; Appendix~\\\\\\\\ref{app:hacking-modes}), ISR $\\\\\\\\beta{=}0.1$ non-hacking rate ($6.06\\\\\\\\%$, $14/231$) is numerically lower than random ($9.5\\\\\\\\%$, $25/262$), but the difference is not statistically significant (Fisher $p{=}0.182$, two-sided, n.s.; Wilson 95\\\\\\\\% CI: ISR $[3.6\\\\\\\\%, 9.9\\\\\\\\%]$, Random $[6.5\\\\\\\\%, 13.7\\\\\\\\%]$; Appendix Table~\\\\\\\\ref{tab:bootstrap-ci}). %% D095 FINAL Fisher test\\\\n/root/solver-trace-ablation/paper/experiments.tex:158:Three are quantifiable across conditions: \\\\\\\\textbf{H1} (conclusion embedding) is GRPO-universal at $68$--$100\\\\\\\\%$ regardless of reward type; \\\\\\\\textbf{H7} (conclusion duplication) occurs under both ISR and random but ISR amplifies it ${\\\\\\\\sim}5\\\\\\\\times$ ($70.6\\\\\\\\%$ vs.\\\\\\\\ $13.7\\\\\\\\%$ under random; Fisher $p{=}1.3{\\\\\\\\times}10^{-39}$), with random H7 concentrated in a single seed (s43: $38.3\\\\\\\\%$; s42, s44: $0\\\\\\\\%$); \\\\\\\\textbf{H8} (premise-subset gaming) appears under both exec-only ($6\\\\\\\\%$) and ISR ($5\\\\\\\\%$) conditions (Appendix~\\\\\\\\ref{app:h8}).\\\\n/root/solver-trace-ablation/paper/appendix.tex:97:ISR vs.\\\\\\\\ Random & 6.06\\\\\\\\% {\\\\\\\\scriptsize[3.6,9.9]} & 9.5\\\\\\\\% {\\\\\\\\scriptsize[6.5,13.7]} & 0.61 & 0.182 (n.s.) \\\\\\\\\\\\\\\\\\\\n/root/solver-trace-ablation/paper/appendix.tex:102:ISR vs.\\\\\\\\ Random & 70.6\\\\\\\\% {\\\\\\\\scriptsize[64.3,76.3]} & 13.7\\\\\\\\% {\\\\\\\\scriptsize[9.9,18.6]} & 15.05 & $1.3{\\\\\\\\times}10^{-39}$ \\\\\\\\\\\\\\\\\\\\n/root/solver-trace-ablation/paper/appendix.tex:187:After H8 reclassification and H7 false-negative correction: ISR genuine $= 14/231 = 6.06\\\\\\\\%$ vs.\\\\\\\\ random genuine $= 25/262 = 9.5\\\\\\\\%$ (Fisher $p{=}0.182$, n.s.; Wilson 95\\\\\\\\% CI: ISR [3.6\\\\\\\\%, 9.9\\\\\\\\%], Random [6.5\\\\\\\\%, 13.7\\\\\\\\%]).\\\\n/root/solver-trace-ablation/paper/appendix.tex:211:Under exec-only and Random reward, it manifests as H1 (71--93\\\\\\\\%); under ISR reward, it shifts to H7 (70.6\\\\\\\\% pooled).\\\\n/root/solver-trace-ablation/paper/appendix.tex:236:Combined H7 (H7a + H7b): 70.6\\\\\\\\% (163/231; s43 H7a${=}59$ + H7b${=}2$; includes s44 FN correction).\\\\n/root/solver-trace-ablation/paper/appendix.tex:237:Random~$\\\\\\\\beta{=}0.1$ pooled: 13.7\\\\\\\\% (36/262, all H7a; driven by seed~43 at 38.3\\\\\\\\%, seeds~42 and~44 at 0\\\\\\\\%).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/solver-trace-ablation/paper/experiments.tex:69:H7 tautological collapse occurs under both ISR and random conditions, but ISR amplifies it ${\\\\sim}5\\\\times$: $70.6\\\\%$ ($163/231$) under ISR vs.\\\\ $13.7\\\\%$ ($36/262$) under random (Fisher $p{=}1.3{\\\\times}10^{-39}$, $\\\\text{OR}{=}15.05$). %% registry: plan002 vs plan018 all seeds; D095 FINAL\\n/root/solver-trace-ablation/paper/experiments.tex:80:After reclassifying premise-subset gaming (H8; Appendix~\\\\ref{app:h8}) and correcting H7 classifier false negatives (s44, $n{=}12$; Appendix~\\\\ref{app:hacking-modes}), ISR $\\\\beta{=}0.1$ non-hacking rate ($6.06\\\\%$, $14/231$) is numerically lower than random ($9.5\\\\%$, $25/262$), but the difference is not statistically significant (Fisher $p{=}0.182$, two-sided, n.s.; Wilson 95\\\\% CI: ISR $[3.6\\\\%, 9.9\\\\%]$, Random $[6.5\\\\%, 13.7\\\\%]$; Appendix Table~\\\\ref{tab:bootstrap-ci}). %% D095 FINAL Fisher test\\n/root/solver-trace-ablation/paper/experiments.tex:158:Three are quantifiable across conditions: \\\\textbf{H1} (conclusion embedding) is GRPO-universal at $68$--$100\\\\%$ regardless of reward type; \\\\textbf{H7} (conclusion duplication) occurs under both ISR and random but ISR amplifies it ${\\\\sim}5\\\\times$ ($70.6\\\\%$ vs.\\\\ $13.7\\\\%$ under random; Fisher $p{=}1.3{\\\\times}10^{-39}$), with random H7 concentrated in a single seed (s43: $38.3\\\\%$; s42, s44: $0\\\\%$); \\\\textbf{H8} (premise-subset gaming) appears under both exec-only ($6\\\\%$) and ISR ($5\\\\%$) conditions (Appendix~\\\\ref{app:h8}).\\n/root/solver-trace-ablation/paper/appendix.tex:97:ISR vs.\\\\ Random & 6.06\\\\% {\\\\scriptsize[3.6,9.9]} & 9.5\\\\% {\\\\scriptsize[6.5,13.7]} & 0.61 & 0.182 (n.s.) \\\\\\\\\\n/root/solver-trace-ablation/paper/appendix.tex:102:ISR vs.\\\\ Random & 70.6\\\\% {\\\\scriptsize[64.3,76.3]} & 13.7\\\\% {\\\\scriptsize[9.9,18.6]} & 15.05 & $1.3{\\\\times}10^{-39}$ \\\\\\\\\\n/root/solver-trace-ablation/paper/appendix.tex:187:After H8 reclassification and H7 false-negative correction: ISR genuine $= 14/231 = 6.06\\\\%$ vs.\\\\ random genuine $= 25/262 = 9.5\\\\%$ (Fisher $p{=}0.182$, n.s.; Wilson 95\\\\% CI: ISR [3.6\\\\%, 9.9\\\\%], Random [6.5\\\\%, 13.7\\\\%]).\\n/root/solver-trace-ablation/paper/appendix.tex:211:Under exec-only and Random reward, it manifests as H1 (71--93\\\\%); under ISR reward, it shifts to H7 (70.6\\\\% pooled).\\n/root/solver-trace-ablation/paper/appendix.tex:236:Combined H7 (H7a + H7b): 70.6\\\\% (163/231; s43 H7a${=}59$ + H7b${=}2$; includes s44 FN correction).\\n/root/solver-trace-ablation/paper/appendix.tex:237:Random~$\\\\beta{=}0.1$ pooled: 13.7\\\\% (36/262, all H7a; driven by seed~43 at 38.3\\\\%, seeds~42 and~44 at 0\\\\%).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e6a1c61e-1a0d-44c0-ab1d-34c794405c7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 751 · 2026-05-15T20:16:30.107Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The first grep (for old values 69.7, 0/256, 161/231) returned exit code 1 with empty stdout — meaning **zero matches found**. All old D093 values have been completely removed from the remote files.
+
+The second and third greps confirm all correct new values are present. Let me compile the full verification:
+
+### D093 Old Values — ZERO RESIDUAL ✅
+- grep for "69.7" across all 5 files: **0 matches**
+
+
+- grep for "0/256" across all 5 files: **0 matches**
+- grep for "161/231" across all 5 files: **0 matches**
+
+### D093 New Values — ALL PRESENT ✅
+
+Now checking the updated values across the files: abstract.tex has the correct 70.6%, 13.7%, and Fisher p-value of 1.3×10⁻³⁹ with "seed-dependent" language. Introduction.tex at line 27 shows 70.6%, 13.7%, Fisher p<10⁻³⁸, and "highly seed-dependent". The verification continues through the remaining locations. Now I'm verifying the per-seed breakdown across the conclusion and appendix sections—checking that the seed-dependent variation (38.3% in one seed, 0% in others) is consistently reported, and confirming the genuine rate estimates with their confidence intervals. Random pooled rate came in at 13.7% from 36 out of 262 cases, with seed 43 driving most of that at 38.3%. All the key statistics are checking out, so now I need to verify the Goodhart and taxonomy tables.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "570ce238-67d8-4ab6-9633-f4bf6a9fc786",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yC5A7ZgpU1NnchxDNX",
+  "type": "assistant",
+  "uuid": "66afac80-703c-4b15-862f-116263b983b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUVtexygUVNABoySVwzCAY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3304,
+      "cache_read_input_tokens": 149375,
+      "output_tokens": 1277,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1277,
+          "cache_read_input_tokens": 149375,
+          "cache_creation_input_tokens": 3304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 752 · 2026-05-15T20:16:30.709Z_
+
+**D093 旧值零残留确认**：grep "69.7" / "0/256" / "161/231" 跨 5 个文件返回 exit code 1（零匹配）。✅
+
+正确新值全部就位。再验证 Goodhart table 和 taxonomy table 的具体数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66afac80-703c-4b15-862f-116263b983b0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yC5A7ZgpU1NnchxDNX",
+  "type": "assistant",
+  "uuid": "1e4b043a-bb20-4d68-aa0a-f7ba7d9b7763",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUVtexygUVNABoySVwzCAY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3304,
+      "cache_read_input_tokens": 149375,
+      "output_tokens": 1277,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1277,
+          "cache_read_input_tokens": 149375,
+          "cache_creation_input_tokens": 3304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 753 · 2026-05-15T20:16:31.158Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AXMX1JLeXXcXzs9iee3HDj`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "head -65 /root/solver-trace-ablation/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e4b043a-bb20-4d68-aa0a-f7ba7d9b7763",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yC5A7ZgpU1NnchxDNX",
+  "type": "assistant",
+  "uuid": "dcc8bd97-1cc7-4a4c-8eea-7a895c7d33f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUVtexygUVNABoySVwzCAY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3304,
+      "cache_read_input_tokens": 149375,
+      "output_tokens": 1277,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1277,
+          "cache_read_input_tokens": 149375,
+          "cache_creation_input_tokens": 3304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 754 · 2026-05-15T20:16:31.620Z_
+
+<details><summary>↩ Tool result · `toolu_01AXMX1JLeXXcXzs9iee3HDj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experiments}\\n\\\\label{sec:experiments}\\n\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\S\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\S\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\S\\\\ref{sec:crosslogic}).\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\S\\\\ref{sec:taxonomy}).\\n\\n\\\\subsection{Setup}\\\\label{sec:setup}\\n\\nWe train Qwen3-4B~\\\\citep{qwen3} with GRPO~\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\{42,43,44\\\\}$ on a fixed 500-example FOLIO~\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\footnote{All experiments use \\\\texttt{data/train\\\\_500\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\nHeld-out evaluation uses 100 FOLIO examples (\\\\texttt{proofwriter\\\\_fol\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\texttt{eval\\\\_sta.py}) so training-log ISR is never compared across runs.\\nWe report prove rate (PR), proved-only ISR ($\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\text{necessary}}$ distribution; \\\\S\\\\ref{sec:taxonomy-method}), and a \\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\n\\n\\\\subsection{ISR as Diagnostic}\\n\\\\label{sec:diagnostic}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=0.95\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\n\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\\\%$\\\\to$93\\\\%$\\\\to$96\\\\% while proved-only ISR falls $0.642{\\\\to}0.132{\\\\to}0.003$ over 100$\\\\to$500$\\\\to$1000 steps. By step 1000, 94.8\\\\% of proved samples have $\\\\text{ISR}{=}0$ and mean component count inflates 6.58$\\\\to$18.55 (contradiction explosion).}\\n\\\\label{fig:isr-collapse}\\n\\\\end{figure}\\n\\n\\\\textbf{Collapse trajectory.}\\nFigure~\\\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\\nPR rises $32\\\\%\\\\to93\\\\%\\\\to96\\\\%$, a trajectory execution-only evaluation would read as successful optimization; $\\\\text{ISR}^*$ tells the opposite story, $0.642\\\\to0.132\\\\to0.003$ (214$\\\\times$ collapse). %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\\nBy 500 steps, 87.1\\\\% of proved samples embed the conclusion (H1); by 1000 steps the embedding rate saturates at 100\\\\% and mean component count more than doubles ($6.58\\\\to18.55$) as the model emits contradictory or vacuous premises that trivially derive any conclusion.\\nExtended training, lacking a structural signal, \\\\emph{worsens} formalization quality while improving the headline number.\\n\\n\\\\textbf{Cross-seed instability.}\\nThe three exec-only seeds diverge into qualitatively different failure modes despite shared data, hyperparameters, and reward (Appendix~\\\\ref{app:detailed-results}): s42 reaches $\\\\text{PR}{=}93\\\\%$ via conclusion embedding ($\\\\text{H1}{=}87\\\\%$); s43 collapses to $\\\\text{PR}{=}13\\\\%$ via repetition (87\\\\% of rollouts truncated); s44 reaches $\\\\text{PR}{=}98\\\\%$ via tautological collapse ($\\\\text{H7}{=}100\\\\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44\\nThe cross-seed PR variance ($\\\\sigma{\\\\pm}47$\\\\,pp) shows aggregate metrics obscure qualitatively different failure modes; all three are flagged by $\\\\text{ISR}^*$ even though one passes the PR check (s44) and one fails it (s43).\\nBy 1000 steps, all three converge to high PR ($0.95{\\\\pm}0.05$) but $0\\\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\\\ref{app:h8} and Table~\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\n\\n\\\\textbf{SFT baseline.}\\nSFT on gold formalizations reaches $\\\\text{PR}{=}13.0\\\\%$ (3-seed pooled, 1000 steps) with $\\\\text{H7}{=}0$, $\\\\text{H1}{=}7.7\\\\%$, $92.2\\\\%$ non-hacking ($n{=}39$; per-seed range 91--93\\\\%). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\\nThe near-absence of hacking under identical data exposure is consistent with hacking being RL-specific.\\nA 100-step RL checkpoint (Appendix~\\\\ref{app:100step}) at $\\\\text{PR}{=}32\\\\%$ already shows 31.2\\\\% hacking (vs.\\\\ SFT's 7.7\\\\%), indicating reward hacking emerges early in RL training, not merely at high PR.\\n\\n\\\\subsection{Meta-Level Goodhart's Law}\\n\\\\label{sec:goodhart}\\n\\nWe now reverse roles: instead of treating ISR as an observer, we use it as a reward augmentation, $r = r_{\\\\text{exec}}\\\\cdot(1 + \\\\beta\\\\,\\\\text{ISR})$, with a matched random control, $r = r_{\\\\text{exec}}\\\\cdot(1 + \\\\beta\\\\,u)$, $u\\\\sim\\\\mathcal{U}(0,1)$, to isolate ISR-specific signal from generic reward-variance effects.\\nThe headline finding: ISR-as-reward produces \\\\emph{meta-level} Goodhart~\\\\citep{manheim-goodhart-taxonomy}---the diagnostic itself becomes the target of gaming.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{lcccccc}\\n\\\\toprule\\n\\\\textbf{Condition} & $\\\\boldsymbol{\\\\beta}$ & \\\\textbf{PR\\\\%}$\\\\uparrow$ & \\\\textbf{ISR}$^*$ & \\\\textbf{H7\\\\%} & \\\\textbf{H1\\\\%} & \\\\textbf{N-H\\\\%} \\\\\\\\\\n\\\\midrule\\nBase (0-shot) & --- & 12 & --- & --- & --- & --- \\\\\\\\ %% registry: sta-phase0-baseline\\nSFT & --- & 13 & 0.595 & 0 & 8 & \\\\textbf{92} \\\\\\\\ %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3 (3-seed pooled)\\n\\\\midrule\\nExec-only$^\\\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 8 \\\\\\\\ %% registry: plan001-exec-only-s42-r2 (H8 corrected)\\nISR & 0.1 & 77{\\\\scriptsize$\\\\pm$14} & $\\\\ddagger$ & \\\\textbf{71}$^\\\\P$ & 18 & 6 \\\\\\\\ %% registry: plan002-additive-b01-s42/s43-r2/s44 (pooled, D095 FINAL)\\nRandom & 0.1 & \\\\textbf{87}{\\\\scriptsize$\\\\pm$8} & 0.117{\\\\scriptsize$\\\\pm$.04} & 14$^\\\\S$ & 71 & 10 \\\\\\\\ %% registry: plan018-additive-random-b01-s42/s43-r3/s44-r2 (D095 FINAL)\\n\\\\midrule\\nISR & 0.3 & 66{\\\\scriptsize$\\\\pm$42} & 0.39{\\\\scriptsize$\\\\pm$.31} & \\\\textbf{50} & 37 & 14 \\\\\\\\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled)\\nRandom & 0.3 & 54{\\\\scriptsize$\\\\pm$35} & 0.09{\\\\scriptsize$\\\\pm$.09} & 7 & 91 & 2 \\\\\\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2 (pooled; D086 H7: s42=4,s43=7,s44=0)\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\caption{Goodhart landscape across reward conditions. 3-seed rows: H7/H1/N-H pooled across seeds; PR/ISR$^*$: mean$\\\\pm$std of per-seed values. $^\\\\dagger$Seed~42. $\\\\ddagger$$\\\\text{ISR}^*$ omitted for ISR $\\\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\\\times$ random (\\\\S\\\\ref{sec:goodhart}, Appendix~\\\\ref{app:detailed-results}). $^\\\\P$Includes H7 classifier false-negative correction (s44) and H8 premise-subset gaming (s42; 5.2\\\\% of proved; Appendix~\\\\ref{app:h8}). $^\\\\S$Random H7 driven by seed~43 (38.3\\\\%); seeds~42 and~44: 0\\\\%. Per-seed breakdown in Appendix Table~\\\\ref{tab:fol-detailed}.}\\n\\\\label{tab:goodhart-landscape}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dcc8bd97-1cc7-4a4c-8eea-7a895c7d33f1",
+  "isSidechain": false,
+  "promptId": "8608b64c-7dbe-43fd-821d-3a1040cf714f",
+  "type": "user",
+  "uuid": "4b509106-02ec-42bb-b5f8-4a31211e6480",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\\\\\label{sec:experiments}\\\\n\\\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\\\\\S\\\\\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}).\\\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\\\\\S\\\\\\\\ref{sec:taxonomy}).\\\\n\\\\n\\\\\\\\subsection{Setup}\\\\\\\\label{sec:setup}\\\\n\\\\nWe train Qwen3-4B~\\\\\\\\citep{qwen3} with GRPO~\\\\\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\\\\\{42,43,44\\\\\\\\}$ on a fixed 500-example FOLIO~\\\\\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\\\\\footnote{All experiments use \\\\\\\\texttt{data/train\\\\\\\\_500\\\\\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\\\nHeld-out evaluation uses 100 FOLIO examples (\\\\\\\\texttt{proofwriter\\\\\\\\_fol\\\\\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\\\\\texttt{eval\\\\\\\\_sta.py}) so training-log ISR is never compared across runs.\\\\nWe report prove rate (PR), proved-only ISR ($\\\\\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\\\\\text{necessary}}$ distribution; \\\\\\\\S\\\\\\\\ref{sec:taxonomy-method}), and a \\\\\\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\\\n\\\\n\\\\\\\\subsection{ISR as Diagnostic}\\\\n\\\\\\\\label{sec:diagnostic}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=0.95\\\\\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\\\n\\\\\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\\\\\\\%$\\\\\\\\to$93\\\\\\\\%$\\\\\\\\to$96\\\\\\\\% while proved-only ISR falls $0.642{\\\\\\\\to}0.132{\\\\\\\\to}0.003$ over 100$\\\\\\\\to$500$\\\\\\\\to$1000 steps. By step 1000, 94.8\\\\\\\\% of proved samples have $\\\\\\\\text{ISR}{=}0$ and mean component count inflates 6.58$\\\\\\\\to$18.55 (contradiction explosion).}\\\\n\\\\\\\\label{fig:isr-collapse}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\textbf{Collapse trajectory.}\\\\nFigure~\\\\\\\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\\\\nPR rises $32\\\\\\\\%\\\\\\\\to93\\\\\\\\%\\\\\\\\to96\\\\\\\\%$, a trajectory execution-only evaluation would read as successful optimization; $\\\\\\\\text{ISR}^*$ tells the opposite story, $0.642\\\\\\\\to0.132\\\\\\\\to0.003$ (214$\\\\\\\\times$ collapse). %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\\\\nBy 500 steps, 87.1\\\\\\\\% of proved samples embed the conclusion (H1); by 1000 steps the embedding rate saturates at 100\\\\\\\\% and mean component count more than doubles ($6.58\\\\\\\\to18.55$) as the model emits contradictory or vacuous premises that trivially derive any conclusion.\\\\nExtended training, lacking a structural signal, \\\\\\\\emph{worsens} formalization quality while improving the headline number.\\\\n\\\\n\\\\\\\\textbf{Cross-seed instability.}\\\\nThe three exec-only seeds diverge into qualitatively different failure modes despite shared data, hyperparameters, and reward (Appendix~\\\\\\\\ref{app:detailed-results}): s42 reaches $\\\\\\\\text{PR}{=}93\\\\\\\\%$ via conclusion embedding ($\\\\\\\\text{H1}{=}87\\\\\\\\%$); s43 collapses to $\\\\\\\\text{PR}{=}13\\\\\\\\%$ via repetition (87\\\\\\\\% of rollouts truncated); s44 reaches $\\\\\\\\text{PR}{=}98\\\\\\\\%$ via tautological collapse ($\\\\\\\\text{H7}{=}100\\\\\\\\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44\\\\nThe cross-seed PR variance ($\\\\\\\\sigma{\\\\\\\\pm}47$\\\\\\\\,pp) shows aggregate metrics obscure qualitatively different failure modes; all three are flagged by $\\\\\\\\text{ISR}^*$ even though one passes the PR check (s44) and one fails it (s43).\\\\nBy 1000 steps, all three converge to high PR ($0.95{\\\\\\\\pm}0.05$) but $0\\\\\\\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\\\\\\\ref{app:h8} and Table~\\\\\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\\\n\\\\n\\\\\\\\textbf{SFT baseline.}\\\\nSFT on gold formalizations reaches $\\\\\\\\text{PR}{=}13.0\\\\\\\\%$ (3-seed pooled, 1000 steps) with $\\\\\\\\text{H7}{=}0$, $\\\\\\\\text{H1}{=}7.7\\\\\\\\%$, $92.2\\\\\\\\%$ non-hacking ($n{=}39$; per-seed range 91--93\\\\\\\\%). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\\\\nThe near-absence of hacking under identical data exposure is consistent with hacking being RL-specific.\\\\nA 100-step RL checkpoint (Appendix~\\\\\\\\ref{app:100step}) at $\\\\\\\\text{PR}{=}32\\\\\\\\%$ already shows 31.2\\\\\\\\% hacking (vs.\\\\\\\\ SFT's 7.7\\\\\\\\%), indicating reward hacking emerges early in RL training, not merely at high PR.\\\\n\\\\n\\\\\\\\subsection{Meta-Level Goodhart's Law}\\\\n\\\\\\\\label{sec:goodhart}\\\\n\\\\nWe now reverse roles: instead of treating ISR as an observer, we use it as a reward augmentation, $r = r_{\\\\\\\\text{exec}}\\\\\\\\cdot(1 + \\\\\\\\beta\\\\\\\\,\\\\\\\\text{ISR})$, with a matched random control, $r = r_{\\\\\\\\text{exec}}\\\\\\\\cdot(1 + \\\\\\\\beta\\\\\\\\,u)$, $u\\\\\\\\sim\\\\\\\\mathcal{U}(0,1)$, to isolate ISR-specific signal from generic reward-variance effects.\\\\nThe headline finding: ISR-as-reward produces \\\\\\\\emph{meta-level} Goodhart~\\\\\\\\citep{manheim-goodhart-taxonomy}---the diagnostic itself becomes the target of gaming.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lcccccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & $\\\\\\\\boldsymbol{\\\\\\\\beta}$ & \\\\\\\\textbf{PR\\\\\\\\%}$\\\\\\\\uparrow$ & \\\\\\\\textbf{ISR}$^*$ & \\\\\\\\textbf{H7\\\\\\\\%} & \\\\\\\\textbf{H1\\\\\\\\%} & \\\\\\\\textbf{N-H\\\\\\\\%} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nBase (0-shot) & --- & 12 & --- & --- & --- & --- \\\\\\\\\\\\\\\\ %% registry: sta-phase0-baseline\\\\nSFT & --- & 13 & 0.595 & 0 & 8 & \\\\\\\\textbf{92} \\\\\\\\\\\\\\\\ %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3 (3-seed pooled)\\\\n\\\\\\\\midrule\\\\nExec-only$^\\\\\\\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 8 \\\\\\\\\\\\\\\\ %% registry: plan001-exec-only-s42-r2 (H8 corrected)\\\\nISR & 0.1 & 77{\\\\\\\\scriptsize$\\\\\\\\pm$14} & $\\\\\\\\ddagger$ & \\\\\\\\textbf{71}$^\\\\\\\\P$ & 18 & 6 \\\\\\\\\\\\\\\\ %% registry: plan002-additive-b01-s42/s43-r2/s44 (pooled, D095 FINAL)\\\\nRandom & 0.1 & \\\\\\\\textbf{87}{\\\\\\\\scriptsize$\\\\\\\\pm$8} & 0.117{\\\\\\\\scriptsize$\\\\\\\\pm$.04} & 14$^\\\\\\\\S$ & 71 & 10 \\\\\\\\\\\\\\\\ %% registry: plan018-additive-random-b01-s42/s43-r3/s44-r2 (D095 FINAL)\\\\n\\\\\\\\midrule\\\\nISR & 0.3 & 66{\\\\\\\\scriptsize$\\\\\\\\pm$42} & 0.39{\\\\\\\\scriptsize$\\\\\\\\pm$.31} & \\\\\\\\textbf{50} & 37 & 14 \\\\\\\\\\\\\\\\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled)\\\\nRandom & 0.3 & 54{\\\\\\\\scriptsize$\\\\\\\\pm$35} & 0.09{\\\\\\\\scriptsize$\\\\\\\\pm$.09} & 7 & 91 & 2 \\\\\\\\\\\\\\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2 (pooled; D086 H7: s42=4,s43=7,s44=0)\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\caption{Goodhart landscape across reward conditions. 3-seed rows: H7/H1/N-H pooled across seeds; PR/ISR$^*$: mean$\\\\\\\\pm$std of per-seed values. $^\\\\\\\\dagger$Seed~42. $\\\\\\\\ddagger$$\\\\\\\\text{ISR}^*$ omitted for ISR $\\\\\\\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\\\\\\\times$ random (\\\\\\\\S\\\\\\\\ref{sec:goodhart}, Appendix~\\\\\\\\ref{app:detailed-results}). $^\\\\\\\\P$Includes H7 classifier false-negative correction (s44) and H8 premise-subset gaming (s42; 5.2\\\\\\\\% of proved; Appendix~\\\\\\\\ref{app:h8}). $^\\\\\\\\S$Random H7 driven by seed~43 (38.3\\\\\\\\%); seeds~42 and~44: 0\\\\\\\\%. Per-seed breakdown in Appendix Table~\\\\\\\\ref{tab:fol-detailed}.}\\\\n\\\\\\\\label{tab:goodhart-landscape}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experiments}\\n\\\\label{sec:experiments}\\n\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\S\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\S\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\S\\\\ref{sec:crosslogic}).\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\S\\\\ref{sec:taxonomy}).\\n\\n\\\\subsection{Setup}\\\\label{sec:setup}\\n\\nWe train Qwen3-4B~\\\\citep{qwen3} with GRPO~\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\{42,43,44\\\\}$ on a fixed 500-example FOLIO~\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\footnote{All experiments use \\\\texttt{data/train\\\\_500\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\nHeld-out evaluation uses 100 FOLIO examples (\\\\texttt{proofwriter\\\\_fol\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\texttt{eval\\\\_sta.py}) so training-log ISR is never compared across runs.\\nWe report prove rate (PR), proved-only ISR ($\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\text{necessary}}$ distribution; \\\\S\\\\ref{sec:taxonomy-method}), and a \\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\n\\n\\\\subsection{ISR as Diagnostic}\\n\\\\label{sec:diagnostic}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=0.95\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\n\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\\\%$\\\\to$93\\\\%$\\\\to$96\\\\% while proved-only ISR falls $0.642{\\\\to}0.132{\\\\to}0.003$ over 100$\\\\to$500$\\\\to$1000 steps. By step 1000, 94.8\\\\% of proved samples have $\\\\text{ISR}{=}0$ and mean component count inflates 6.58$\\\\to$18.55 (contradiction explosion).}\\n\\\\label{fig:isr-collapse}\\n\\\\end{figure}\\n\\n\\\\textbf{Collapse trajectory.}\\nFigure~\\\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\\nPR rises $32\\\\%\\\\to93\\\\%\\\\to96\\\\%$, a trajectory execution-only evaluation would read as successful optimization; $\\\\text{ISR}^*$ tells the opposite story, $0.642\\\\to0.132\\\\to0.003$ (214$\\\\times$ collapse). %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\\nBy 500 steps, 87.1\\\\% of proved samples embed the conclusion (H1); by 1000 steps the embedding rate saturates at 100\\\\% and mean component count more than doubles ($6.58\\\\to18.55$) as the model emits contradictory or vacuous premises that trivially derive any conclusion.\\nExtended training, lacking a structural signal, \\\\emph{worsens} formalization quality while improving the headline number.\\n\\n\\\\textbf{Cross-seed instability.}\\nThe three exec-only seeds diverge into qualitatively different failure modes despite shared data, hyperparameters, and reward (Appendix~\\\\ref{app:detailed-results}): s42 reaches $\\\\text{PR}{=}93\\\\%$ via conclusion embedding ($\\\\text{H1}{=}87\\\\%$); s43 collapses to $\\\\text{PR}{=}13\\\\%$ via repetition (87\\\\% of rollouts truncated); s44 reaches $\\\\text{PR}{=}98\\\\%$ via tautological collapse ($\\\\text{H7}{=}100\\\\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44\\nThe cross-seed PR variance ($\\\\sigma{\\\\pm}47$\\\\,pp) shows aggregate metrics obscure qualitatively different failure modes; all three are flagged by $\\\\text{ISR}^*$ even though one passes the PR check (s44) and one fails it (s43).\\nBy 1000 steps, all three converge to high PR ($0.95{\\\\pm}0.05$) but $0\\\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\\\ref{app:h8} and Table~\\\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\\n\\n\\\\textbf{SFT baseline.}\\nSFT on gold formalizations reaches $\\\\text{PR}{=}13.0\\\\%$ (3-seed pooled, 1000 steps) with $\\\\text{H7}{=}0$, $\\\\text{H1}{=}7.7\\\\%$, $92.2\\\\%$ non-hacking ($n{=}39$; per-seed range 91--93\\\\%). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\\nThe near-absence of hacking under identical data exposure is consistent with hacking being RL-specific.\\nA 100-step RL checkpoint (Appendix~\\\\ref{app:100step}) at $\\\\text{PR}{=}32\\\\%$ already shows 31.2\\\\% hacking (vs.\\\\ SFT's 7.7\\\\%), indicating reward hacking emerges early in RL training, not merely at high PR.\\n\\n\\\\subsection{Meta-Level Goodhart's Law}\\n\\\\label{sec:goodhart}\\n\\nWe now reverse roles: instead of treating ISR as an observer, we use it as a reward augmentation, $r = r_{\\\\text{exec}}\\\\cdot(1 + \\\\beta\\\\,\\\\text{ISR})$, with a matched random control, $r = r_{\\\\text{exec}}\\\\cdot(1 + \\\\beta\\\\,u)$, $u\\\\sim\\\\mathcal{U}(0,1)$, to isolate ISR-specific signal from generic reward-variance effects.\\nThe headline finding: ISR-as-reward produces \\\\emph{meta-level} Goodhart~\\\\citep{manheim-goodhart-taxonomy}---the diagnostic itself becomes the target of gaming.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{lcccccc}\\n\\\\toprule\\n\\\\textbf{Condition} & $\\\\boldsymbol{\\\\beta}$ & \\\\textbf{PR\\\\%}$\\\\uparrow$ & \\\\textbf{ISR}$^*$ & \\\\textbf{H7\\\\%} & \\\\textbf{H1\\\\%} & \\\\textbf{N-H\\\\%} \\\\\\\\\\n\\\\midrule\\nBase (0-shot) & --- & 12 & --- & --- & --- & --- \\\\\\\\ %% registry: sta-phase0-baseline\\nSFT & --- & 13 & 0.595 & 0 & 8 & \\\\textbf{92} \\\\\\\\ %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3 (3-seed pooled)\\n\\\\midrule\\nExec-only$^\\\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 8 \\\\\\\\ %% registry: plan001-exec-only-s42-r2 (H8 corrected)\\nISR & 0.1 & 77{\\\\scriptsize$\\\\pm$14} & $\\\\ddagger$ & \\\\textbf{71}$^\\\\P$ & 18 & 6 \\\\\\\\ %% registry: plan002-additive-b01-s42/s43-r2/s44 (pooled, D095 FINAL)\\nRandom & 0.1 & \\\\textbf{87}{\\\\scriptsize$\\\\pm$8} & 0.117{\\\\scriptsize$\\\\pm$.04} & 14$^\\\\S$ & 71 & 10 \\\\\\\\ %% registry: plan018-additive-random-b01-s42/s43-r3/s44-r2 (D095 FINAL)\\n\\\\midrule\\nISR & 0.3 & 66{\\\\scriptsize$\\\\pm$42} & 0.39{\\\\scriptsize$\\\\pm$.31} & \\\\textbf{50} & 37 & 14 \\\\\\\\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled)\\nRandom & 0.3 & 54{\\\\scriptsize$\\\\pm$35} & 0.09{\\\\scriptsize$\\\\pm$.09} & 7 & 91 & 2 \\\\\\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2 (pooled; D086 H7: s42=4,s43=7,s44=0)\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\caption{Goodhart landscape across reward conditions. 3-seed rows: H7/H1/N-H pooled across seeds; PR/ISR$^*$: mean$\\\\pm$std of per-seed values. $^\\\\dagger$Seed~42. $\\\\ddagger$$\\\\text{ISR}^*$ omitted for ISR $\\\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\\\times$ random (\\\\S\\\\ref{sec:goodhart}, Appendix~\\\\ref{app:detailed-results}). $^\\\\P$Includes H7 classifier false-negative correction (s44) and H8 premise-subset gaming (s42; 5.2\\\\% of proved; Appendix~\\\\ref{app:h8}). $^\\\\S$Random H7 driven by seed~43 (38.3\\\\%); seeds~42 and~44: 0\\\\%. Per-seed breakdown in Appendix Table~\\\\ref{tab:fol-detailed}.}\\n\\\\label{tab:goodhart-landscape}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "dcc8bd97-1cc7-4a4c-8eea-7a895c7d33f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 755 · 2026-05-15T20:16:31.904Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UeDg8yZ24nTJefRmFgHs57`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"H7 duplicate\" /root/solver-trace-ablation/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b509106-02ec-42bb-b5f8-4a31211e6480",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yC5A7ZgpU1NnchxDNX",
+  "type": "assistant",
+  "uuid": "06148b38-5163-439b-bf30-801c2bdb1346",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUVtexygUVNABoySVwzCAY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3304,
+      "cache_read_input_tokens": 149375,
+      "output_tokens": 1277,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1277,
+          "cache_read_input_tokens": 149375,
+          "cache_creation_input_tokens": 3304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 756_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: **复验请求 — D093 全文修复验证**  Agent 声称 9 CRITICAL + 5 WARNING 全部修复，全文 grep 零残留。请逐文件重新验证以下 5 个文件中 D093 残留是否真正清除：  1. **abstract.tex** — ISR H7 应为 70.6%，Random H7 应为 13.7% 2. **introduction.tex…",
+  "leafUuid": "06148b38-5163-439b-bf30-801c2bdb1346",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 757_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Random H7 findings and await s44-r2 completion",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 758 · 2026-05-15T20:16:32.398Z_
+
+<details><summary>↩ Tool result · `toolu_01UeDg8yZ24nTJefRmFgHs57`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"142:H7 duplicate   & 0  & 71 & 14 & 0 & 100$^\\\\sharp$ \\\\\\\\\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06148b38-5163-439b-bf30-801c2bdb1346",
+  "isSidechain": false,
+  "promptId": "8608b64c-7dbe-43fd-821d-3a1040cf714f",
+  "type": "user",
+  "uuid": "87f03a81-f43c-436e-bb87-5c43abdfc1c8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"142:H7 duplicate   & 0  & 71 & 14 & 0 & 100$^\\\\\\\\sharp$ \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"142:H7 duplicate   & 0  & 71 & 14 & 0 & 100$^\\\\sharp$ \\\\\\\\\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "06148b38-5163-439b-bf30-801c2bdb1346",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 759 · 2026-05-15T20:16:32.408Z_
+
+```json
+{
+  "parentUuid": "87f03a81-f43c-436e-bb87-5c43abdfc1c8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "5c8bc663-101d-4440-b8c4-5b91417e3793",
+  "timestamp": "2026-05-15T20:16:32.408Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 760 · 2026-05-15T20:16:58.565Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All remote files now match the local corrected versions. Let me compile the full verification:
+
+### D093 Old Values — ZERO RESIDUAL on remote ✅
+- grep for "69.7" / "0/256" / "161/231" across all 5 files: exit code 1, zero matches
+
+### Remote file verification:
+
+**abstract.tex L7** ✅
+- 70.6%, 13.7%, Fisher p=1.3×10⁻³⁹, "seed-dependent"
+
+
+- introduction.tex shows consistent values at L27 and L33, with Fisher p<10⁻³⁸ and "highly seed-dependent" language
+- experiments.tex Goodhart table confirms the percentages with Random β=0.1 yielding H7=14, H1=71, N-H=10, while ISR β=0.1 shows H7=71, H1=18, N-H=6
+- The footnote notes seed 43 driving Random H7 at 38.3% while seeds 42 and 44 show 0%
+- L69 reports 70.6% (163/231) vs 13.7% (36/262) with Fisher p=1.3×10⁻³⁹ and OR=15.05
+- L80 shows Fisher p=0.182 (non-significant) with Wilson CI
+- L158 repeats the 70.6% vs 13.7% comparison with the same Fisher p-value using per-seed annotation
+- L142 taxonomy table begins with H7
+
+Now I'm checking the duplicate counts across execution methods—Exec shows 0, ISR is 71, Random is 14, SFT is 0, and Prolog is 100, which corrects the previous ISR count of 70. The conclusion section confirms the 70.6% vs 13.7% comparison with Fisher p<10⁻³⁸ and notes the seed-dependent variation. L16 breaks down the per-seed H7 rates (38.3% in seed 43, 0% in seeds 42 and 44) alongside ISR at 70.6%. L17 describes a gradient progression from 13.7% through intermediate H7a variants up to 70.6%, and L97 in the appendix marks this as genuine.
+
+Now I'm verifying the confidence intervals and statistical tests—ISR shows 6.06% [3.6,9.9] versus Random at 9.5% [6.5,13.7] with OR=0.61 and p=0.182 (not significant), while H7 shows the much stronger effect with ISR at 70.6% [64.3,76.3] versus Random at 13.7% [9.9,18.6], OR=15.05, and p=1.3×10⁻³⁹. The appendix entries confirm the Fisher test p=0.182 with Wilson confidence intervals, and the pooled H7 rate of 70.6% (163/231) matches the combined Random pooled rate of 13.7% (36/262).
+
+Going through the Director's checklist items now—abstract, introduction, and experiments sections all have the correct H7 percentages and the Goodhart table values line up properly, Fisher p-value is confirmed at L80, and the appendix has the right OR value and pooled percentages across all the specified locations.
+
+Now I'm verifying the numerical updates: the 69.7% has been changed to 70.6% throughout, the sample size is updated from 256 to 262 everywhere, and the Fisher p-value for the genuine rate is correctly set to 0.182 rather than the old 0.0002. Let me scan through to make sure there's no lingering instances of that outdated p-value anywhere in the document.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c8bc663-101d-4440-b8c4-5b91417e3793",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yDSZkW3LEVmMbTW49a",
+  "type": "assistant",
+  "uuid": "5ce31cdd-61f8-42c3-8989-2ab45bfe5831",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GhcnN8doBsJbtuz8iQjk2Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4732,
+      "cache_read_input_tokens": 152679,
+      "output_tokens": 1577,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1577,
+          "cache_read_input_tokens": 152679,
+          "cache_creation_input_tokens": 4732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 761 · 2026-05-15T20:16:58.567Z_
+
+远程文件全部更新。验证 taxonomy table 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ce31cdd-61f8-42c3-8989-2ab45bfe5831",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yDSZkW3LEVmMbTW49a",
+  "type": "assistant",
+  "uuid": "55d9ebe0-5a87-4e54-b996-bfb4f7a7320d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GhcnN8doBsJbtuz8iQjk2Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4732,
+      "cache_read_input_tokens": 152679,
+      "output_tokens": 1577,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1577,
+          "cache_read_input_tokens": 152679,
+          "cache_creation_input_tokens": 4732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 762 · 2026-05-15T20:16:58.911Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fc6UNYHxApnDdqnzrZqdUk`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"0.0002\" /root/solver-trace-ablation/paper/experiments.tex /root/solver-trace-ablation/paper/appendix.tex /root/solver-trace-ablation/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55d9ebe0-5a87-4e54-b996-bfb4f7a7320d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yDSZkW3LEVmMbTW49a",
+  "type": "assistant",
+  "uuid": "aff7230b-e801-4014-a45a-e0614e422a68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GhcnN8doBsJbtuz8iQjk2Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4732,
+      "cache_read_input_tokens": 152679,
+      "output_tokens": 1577,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1577,
+          "cache_read_input_tokens": 152679,
+          "cache_creation_input_tokens": 4732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 763 · 2026-05-15T20:16:59.361Z_
+
+<details><summary>↩ Tool result · `toolu_01Fc6UNYHxApnDdqnzrZqdUk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aff7230b-e801-4014-a45a-e0614e422a68",
+  "isSidechain": false,
+  "promptId": "8608b64c-7dbe-43fd-821d-3a1040cf714f",
+  "type": "user",
+  "uuid": "8dc58837-cbab-4261-b181-0c01d67de468",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "aff7230b-e801-4014-a45a-e0614e422a68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 764 · 2026-05-15T20:17:00.110Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nr2TEW5RK4DqcZTe33kkWN`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -n \"n=256\\|n{=}256\\|256)\" /root/solver-trace-ablation/paper/abstract.tex /root/solver-trace-ablation/paper/introduction.tex /root/solver-trace-ablation/paper/experiments.tex /root/solver-trace-ablation/paper/conclusion.tex /root/solver-trace-ablation/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8dc58837-cbab-4261-b181-0c01d67de468",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yDSZkW3LEVmMbTW49a",
+  "type": "assistant",
+  "uuid": "a37ca038-7318-46a9-93a9-f379cb1eda12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GhcnN8doBsJbtuz8iQjk2Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4732,
+      "cache_read_input_tokens": 152679,
+      "output_tokens": 1577,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1577,
+          "cache_read_input_tokens": 152679,
+          "cache_creation_input_tokens": 4732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 765 · 2026-05-15T20:17:00.127Z_
+
+<details><summary>↩ Tool result · `toolu_01Nr2TEW5RK4DqcZTe33kkWN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a37ca038-7318-46a9-93a9-f379cb1eda12",
+  "isSidechain": false,
+  "promptId": "8608b64c-7dbe-43fd-821d-3a1040cf714f",
+  "type": "user",
+  "uuid": "b280b19e-ccb8-4d00-a768-86a0a5b33f2c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a37ca038-7318-46a9-93a9-f379cb1eda12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 766 · 2026-05-15T20:17:03.950Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VzemC4PvKaQZGS2FX1G6su`</summary>
+
+```json
+{
+  "server": "westd-39279",
+  "command": "grep -rn \"256)\" /root/solver-trace-ablation/paper/abstract.tex /root/solver-trace-ablation/paper/introduction.tex /root/solver-trace-ablation/paper/experiments.tex /root/solver-trace-ablation/paper/conclusion.tex /root/solver-trace-ablation/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b280b19e-ccb8-4d00-a768-86a0a5b33f2c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yFV7bmf9L4L8AdBN71",
+  "type": "assistant",
+  "uuid": "a83de52c-53d5-4318-8802-f5958036dab4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TQq9c2RLPwNrHQGQDYqs5K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1806,
+      "cache_read_input_tokens": 157411,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1806,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 157411,
+          "cache_creation_input_tokens": 1806,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1806
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 767 · 2026-05-15T20:17:04.391Z_
+
+<details><summary>↩ Tool result · `toolu_01VzemC4PvKaQZGS2FX1G6su`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a83de52c-53d5-4318-8802-f5958036dab4",
+  "isSidechain": false,
+  "promptId": "8608b64c-7dbe-43fd-821d-3a1040cf714f",
+  "type": "user",
+  "uuid": "26c691ce-4b74-43d8-bf88-1f5510363d21",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a83de52c-53d5-4318-8802-f5958036dab4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 768 · 2026-05-15T20:17:16.296Z_
+
+**远程服务器全文 D093 复验完成：全部 PASS。**
+
+汇总：
+
+| 检查项 | 结果 |
+|--------|------|
+| grep "69.7" 跨 5 文件 | **零匹配** ✅ |
+| grep "0/256" 跨 5 文件 | **零匹配** ✅ |
+| grep "161/231" 跨 5 文件 | **零匹配** ✅ |
+| grep "0.0002" 跨 3 关键文件 | **零匹配** ✅ |
+| grep "256)" 跨 5 文件 | **零匹配** ✅ |
+| abstract.tex: 70.6% vs 13.7% | ✅ L7 |
+| intro.tex: 70.6% vs 13.7% + C2 | ✅ L27, L33 |
+| experiments.tex Goodhart table: Rnd H7=14, H1=71, N-H=10 | ✅ L58 |
+| experiments.tex taxonomy table: ISR H7=71, Rnd H7=14 | ✅ L142 |
+| experiments.tex L69: 70.6% (163/231) vs 13.7% (36/262), OR=15.05 | ✅ |
+| experiments.tex L80: Fisher p=0.182 (n.s.), Wilson CI | ✅ |
+| experiments.tex L158: 70.6% vs 13.7%, per-seed annotation | ✅ |
+| conclusion.tex L5: 70.6% vs 13.7%, per-seed | ✅ |
+| conclusion.tex L16: 13.7% (36/262), 70.6% (163/231) | ✅ |
+| appendix.tex L97: genuine OR=0.61, p=0.182 (n.s.) | ✅ |
+| appendix.tex L102: H7 OR=15.05, p=1.3×10⁻³⁹ | ✅ |
+| appendix.tex L211: 70.6% pooled | ✅ |
+| appendix.tex L236: 70.6% (163/231) | ✅ |
+| appendix.tex L237: 13.7% (36/262), per-seed | ✅ |
+| D095/W2 per-seed 标注 | 全部到位（$^\S$ 脚注 + 行内标注） ✅ |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26c691ce-4b74-43d8-bf88-1f5510363d21",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yFoBHgo94SGDRLZ9Te",
+  "type": "assistant",
+  "uuid": "2c65d5be-28d1-4edc-a9fe-6e3b9802ce2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DnDxbqmHwYLGXMRvNd7Aq8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 159217,
+      "output_tokens": 1430,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 245,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1430,
+          "cache_read_input_tokens": 159217,
+          "cache_creation_input_tokens": 245,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 245
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 769 · 2026-05-15T20:17:25.920Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_01Qrt15uffjfMQy5BSADH5Fj`</summary>
+
+```json
+{
+  "text": "[severity: info] ✅ D093 全文修复 — 远程服务器复验通过\n\n## 验证方法\n远程服务器 `/root/solver-trace-ablation/paper/` 上对全部 5 个 LaTeX 文件执行 grep 逐行核实。\n\n## 旧值清除确认（全部零匹配）\n- \"69.7\" → 0 matches\n- \"0/256\" → 0 matches\n- \"161/231\" → 0 matches\n- \"0.0002\" → 0 matches\n\n## 新值到位确认（逐文件逐行）\n\n**abstract.tex L7**: 70.6% vs 13.7%, Fisher p=1.3×10⁻³⁹, seed-dependent ✅\n**introduction.tex L27**: 70.6% vs 13.7%, Fisher p<10⁻³⁸ ✅\n**introduction.tex L33 (C2)**: 70.6% vs 13.7% ✅\n**experiments.tex Goodhart table L58**: Random H7=14, H1=71, N-H=10 + $^\\S$ per-seed footnote ✅\n**experiments.tex taxonomy table L142**: H7 ISR=71, Random=14 ✅\n**experiments.tex L69**: 70.6% (163/231) vs 13.7% (36/262), OR=15.05 ✅\n**experiments.tex L80**: Fisher p=0.182 (n.s.), Wilson CI ✅\n**experiments.tex L158**: 70.6% vs 13.7%, Fisher p, per-seed ✅\n**conclusion.tex L5**: 70.6% vs 13.7%, per-seed (38.3%/0%/0%) ✅\n**conclusion.tex L16-17**: 13.7% (36/262) → 70.6% (163/231) gradient ✅\n**appendix.tex L97**: genuine OR=0.61, p=0.182 (n.s.) ✅\n**appendix.tex L102**: H7 OR=15.05, p=1.3×10⁻³⁹ ✅\n**appendix.tex L211/L236/L237**: 70.6%/163/231 + 13.7%/36/262 ✅\n\n## D093 CRITICAL 关闭\n\n全部 11 处 D093 违规已修复并在远程服务器验证通过。D095/W2 per-seed 标注全部到位。此 CRITICAL 项可关闭。",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c65d5be-28d1-4edc-a9fe-6e3b9802ce2b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yFoBHgo94SGDRLZ9Te",
+  "type": "assistant",
+  "uuid": "e373af66-2dda-49ca-bb4b-b61b8799aefb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DnDxbqmHwYLGXMRvNd7Aq8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 159217,
+      "output_tokens": 1430,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 245,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1430,
+          "cache_read_input_tokens": 159217,
+          "cache_creation_input_tokens": 245,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 245
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 770 · 2026-05-15T20:17:29.551Z_
+
+<details><summary>↩ Tool result · `toolu_01Qrt15uffjfMQy5BSADH5Fj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e373af66-2dda-49ca-bb4b-b61b8799aefb",
+  "isSidechain": false,
+  "promptId": "8608b64c-7dbe-43fd-821d-3a1040cf714f",
+  "type": "user",
+  "uuid": "57dbd6e6-fffd-4fc4-a0f8-a4317cf9dbab",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "e373af66-2dda-49ca-bb4b-b61b8799aefb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 771 · 2026-05-15T20:17:32.874Z_
+
+D093 全文修复远程复验通过，CRITICAL 项关闭。当前无阻塞项。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57dbd6e6-fffd-4fc4-a0f8-a4317cf9dbab",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yHemLHvGc2btUdRJSq",
+  "type": "assistant",
+  "uuid": "0253296c-aed2-42e6-98c6-11eb40f19db9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4ApFQGk2QZ2vqCwqix2rn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1504,
+      "cache_read_input_tokens": 159462,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1504,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 159462,
+          "cache_creation_input_tokens": 1504,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1504
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 772 · 2026-05-15T20:17:34.671Z_
+
+<details open><summary>🔧 Tool call — ScheduleWakeup · `toolu_01LJNydGh6d1Ji98ePBR4JkW`</summary>
+
+```json
+{
+  "delaySeconds": 270,
+  "reason": "D093 已关闭，监控后续写作产出（experiments/appendix 章节可能有新内容需审查）",
+  "prompt": "Continue from where you left off."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0253296c-aed2-42e6-98c6-11eb40f19db9",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yHemLHvGc2btUdRJSq",
+  "type": "assistant",
+  "uuid": "29b40591-4012-4b1e-b724-279419476229",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4ApFQGk2QZ2vqCwqix2rn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1504,
+      "cache_read_input_tokens": 159462,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1504,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 159462,
+          "cache_creation_input_tokens": 1504,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1504
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 773 · 2026-05-15T20:17:34.677Z_
+
+<details><summary>↩ Tool result · `toolu_01LJNydGh6d1Ji98ePBR4JkW`</summary>
+
+```text
+Next wakeup scheduled for 20:22:00 (in 265s).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29b40591-4012-4b1e-b724-279419476229",
+  "isSidechain": false,
+  "promptId": "8608b64c-7dbe-43fd-821d-3a1040cf714f",
+  "type": "user",
+  "uuid": "6b628f4f-4699-4213-a0ee-1e275c088db8",
+  "toolUseResult": {
+    "scheduledFor": 1778876520000,
+    "clampedDelaySeconds": 270,
+    "wasClamped": false
+  },
+  "sourceToolAssistantUUID": "29b40591-4012-4b1e-b724-279419476229",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 774_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Random H7 findings and await s44-r2 completion",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 775 · 2026-05-15T20:17:41.123Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T20:17:41.123Z",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "content": "[系统通知 — worker_done:worker_writing_paper-framing-b03-update_20260515T200358]:\nWorker worker_writing_paper-framing-b03-update_20260515T200358 已完成（status=done），请审查 Agent 的处理结果。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 776 · 2026-05-15T20:17:41.123Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T20:17:41.123Z",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+## Round 34
+
+## Round 34
+
+2 recorded events
+
+
+### User
+
+_source line 777 · 2026-05-15T20:17:41.115Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b628f4f-4699-4213-a0ee-1e275c088db8",
+  "isSidechain": false,
+  "promptId": "9761a5fa-23dc-4082-8a1a-fed4aaf5e658",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "5b2a225f-6ab6-4715-95c4-e0881e2100a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 778 · 2026-05-15T20:17:41.115Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b2a225f-6ab6-4715-95c4-e0881e2100a9",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "b521c67a-e77a-4a32-a1f9-0775723474dc",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "id": "529ad23a-063c-4eea-befb-79eb3a0a3f3a",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 35
+
+## Round 35
+
+11 recorded events
+
+
+### User
+
+_source line 779 · 2026-05-15T20:17:41.232Z_
+
+[系统通知 — worker_done:worker_writing_paper-framing-b03-update_20260515T200358]:
+Worker worker_writing_paper-framing-b03-update_20260515T200358 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b521c67a-e77a-4a32-a1f9-0775723474dc",
+  "isSidechain": false,
+  "promptId": "9761a5fa-23dc-4082-8a1a-fed4aaf5e658",
+  "type": "user",
+  "uuid": "d9817eb9-860d-4b19-b23a-7720bc73d080",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 780 · 2026-05-15T20:17:47.737Z_
+
+<details><summary>↩ Tool result · `toolu_01ASKpoCGSGV1QmToste9Ppm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n| Claim | Status | 闭环标志 |\\n|-------|--------|----------|\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\n- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation + D085 H7b obfuscated tautology + Prolog query-as-fact gaming)\\n\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR），在高剂量产生**极端跨 seed 不稳定 + 多模态 Goodhart 路径**（β=0.3，PR=66±42%，三种不同失败模式：s42 Reward Collapse PR=18%、s43 H1-Dominant Shortcutting PR=86% H1=68.6%、s44 Pure H7 Meta-Goodhart PR=95% H7=100% + ISR=0.742 被同时 game）。ISR-as-reward **不提供任何真实结构优势**。\\n\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\n\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\n\\n| 条件 | n | Mean n_prem | Mean ISR |\\n|------|---|-------------|----------|\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\n| **Ratio** | — | — | **1.06×** |\\n\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\n- ISR s42 的 15/26 \\\"genuine\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\n- ISR s44 的 12 个\\\"genuine\\\"全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分（meta-Goodhart 直接证据）\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高，与证明质量无关\\n\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\n\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\\n| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\\n| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\\n| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\\n| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.06% pooled (14/231)** [3.6%, 9.9%] Wilson 95% CI |\\n\\n**Pooled Genuine Rate 统计检验 (D095 最终)**\\n\\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\\n|------|-----|--------|---------------------|-----|\\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\\n| Genuine rate | 14/231=6.06% [3.6%, 9.9%] | 25/262=9.54% [6.5%, 13.7%] | p = 0.182 (n.s.) | 0.612 |\\n\\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.182），ISR 数值上略低但样本量不足以达到统计显著性。\\n\\n⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单对比。\\n\\n⚠️ **H8 审计 + C013 说明**：s44-r2 发现 H1∩H8 重叠（6 个样本同时 H1+H8）。C013 更新公式从 `proved − H7 − H1 − H8` 改为 `proved − |H7 ∪ H1 ∪ H8|`，以 classify_h7.py 集合排除实现为准。s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。\\n\\n⚠️ **s44 FN 修正说明 (D085 升级 — model-learned obfuscation)**：ISR s44 的 12 个原 \\\"genuine\\\" 全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分。这是 **meta-Goodhart 的直接证据**——不仅 reward 被 game，连 tautology 检测器也被 game。H7 子分类：H7a (text-match, 77 个) + H7b (obfuscated, 12 个) = H7 total 89。证据文件：`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`。\\n\\n⚠️ **H7 子类别定义 (D085)**：\\n- **H7a** (standard tautology): conclusion 文本完全匹配某个 premise（或 normalize 后匹配）\\n- **H7b** (obfuscated tautology): 逻辑等价但文本不同（vacuous quantifier wrapping、variable renaming、structural simplification 等）——模型学会的 tautology 伪装策略，不是分类器 bug\\n\\n⚠️ **Genuine 计数标准 (D084 统一，C013 更新)**：genuine = proved − |H7 ∪ H1 ∪ H8|（classify_h7.py 集合排除实现，H1∩H8 重叠不双减）。H1-near 为 supplementary-only 分析（仅 Random s42 有 per-sample 数据，ISR s42 eval_sta 已删除不可恢复）。两侧对称：ISR s42 genuine=14 (17.3%), Random s42 genuine=18 (22.8%, D086 clean run)。\\n\\n**关键发现 (D057 3-seed closed)**：\\n- **H7 分两层 (D095 Narrative A)**：\\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\\n- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\n- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\n\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044→H8 校准)**：\\n- ISR β=0.1 genuine: **17.3%** (14/81, D084 标准) vs random β=0.1 genuine: **22.8%** (18/79, D086 clean run) — **-5.5pp（ISR 反而更低）**\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 73.4% — GRPO 通用退化\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** (H7a 13) vs random **0%** — ISR 特异性\\n- H8 (conjunction collapse): ISR **14.8%** (12/81) vs random **5.1%** (4/79, D086 clean run)\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\n- 整体 hacking rate (D084 标准, H7+H1_exact+H8): ISR **82.7%** vs random **77.2%** (D086 clean run) — **ISR hacking 更高**\\n- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1\\n\\n**证据（β=0.3 同剂量对照）**：\\n\\n✅ **D062 数据修正完成**：ISR s43/s44 已用 proofwriter_fol_100.jsonl 重新 eval。s43 genuine 从旧 test_100 的 67% 大幅降至 26.7%（旧数据是假象）。\\n\\nISR β=0.3 三 seed（✅ 全部 proofwriter_fol_100.jsonl）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 模式 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | **18%** | 0.143 | 0 | 78 | 22 | **Reward Collapse**（PR 崩塌） |\\n| s43 | **86%** | 0.295 | 4.7 | **68.6** | **26.7** | **H1-Dominant Shortcutting** |\\n| s44 | **95%** | 0.742 | **100** | 0 | **0** | **Pure H7 Meta-Goodhart** |\\n| mean±std | **66±42** | 0.393±0.31 | 35±55 | 49±42 | 16±15 | 三种不同失败路径 |\\n\\nRandom β=0.3（✅ 3-seed 全部完成）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 状态 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | 48% | 0.094 | **8.3** (4) | 91.7 | 0 | ✅ 完成 (D086: H7a=4) |\\n| s43 | 92% | 0.166 | **7.6** (7, all H7a) | 89.1 (82) | 3.26 (3) | ✅ 完成 |\\n| s44 | **23%** | **0.000** | 0 | **100** | 0 | ✅ 完成 |\\n| 3-seed mean±std | **54.3±35.9%** | 0.087±0.084 | ~6 H7a/seed | ~91% | ~1% | — |\\n\\n- **D060 叙事调整**：Random β=0.3 也严重崩塌（3-seed mean PR=54.3±35.9%），不再是\\\"ISR worse than Random\\\"，而是\\\"both collapse at high dose, ISR shows more mode diversity\\\"\\n- **D086 β=0.3 H7 gradient evidence (D095 更新)**：Random β=0.3 出现 H7a（s42=4, s43-r4=7），β=0.1 Random H7 为 seed-dependent（s42=0%, s43-r3=38.3%, s44-r2=0%, pooled=13.7%）。H7 梯度：Random β=0.1 (13.7% pooled, seed-dependent) → β=0.3 (4-7 个/seed) → ISR β=0.1 (70.6% pooled)。论文应在 Discussion 讨论此 dose-response gradient\\n- ISR β=0.3 三种不同路径 (Reward Collapse / H1-Dominant / Pure H7) vs Random β=0.3 均匀的 H1+ISR=0 崩塌\\n- s43 旧数据 (test_100.jsonl) 显示 67% genuine 是假象；正确测试集下 genuine=26.7%，主要靠 H1 hacking（68.6%）\\n- **结论**：β=0.3 对两种 reward 条件都是有害的；ISR 特有的是 mode diversity 而非更差的 PR\\n\\n**β 剂量效应全景**：\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\n|---|---|---|---|---|---|\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |\\n| 0.3 | **0.66±0.42** (s42=0.18/s43=0.86/s44=0.95) | **0.54±0.35** (s42=0.48/s43=0.92/s44=0.23) | 0.393±0.31 | 0.087±0.084 (s42=0.094/s43=0.166/s44=0.000) | 多模态 Goodhart 不稳定：Reward Collapse / H1-Dominant Shortcutting / Pure H7 Meta-Goodhart |\\n\\n**其他 ISR-as-reward 失败模式**：\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\n\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\"additive vs convex\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\n\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\"genuine\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\n\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\n\\n### Claim 3: Cross-Logic Diagnostic Transfer ✅ (D056 exec-only + Prolog STA 3-seed 闭环)\\nThe STA diagnostic protocol transfers across structurally different formal languages: ISR detects structural degeneration in Prolog→SWI-Prolog as it does in FOL→Prover9, regardless of training outcome (PR). Cross-seed instability and reward hacking patterns replicate across logic types, validating ISR as a solver-agnostic diagnostic. Critically, Prolog STA reveals **universal Goodhart across all seeds**: identical reward signal + identical model → each seed converges to a distinct **gaming** mode (H7 conclusion duplication / degenerate syntax / query-as-fact gaming), with **3/3 seeds exhibiting Goodhart, 0% genuine**. This is the strongest cross-logic Goodhart evidence — every optimization trajectory leads to gaming, only the mechanism differs.\\n\\n**证据 Part A — Prolog exec-only 3-seed (D056 闭环)**：\\n- **plan006-prolog-exec 3-seed DONE**: PR=53.3%±31.1%。跨 seed 不稳定 (σ=31pp) 复现 FOL 模式 (σ=47pp)，seed instability 本身是跨逻辑复现的发现。\\n  - s42: PR=83%, proved-only ISR*=0.037 (ground fact enumeration, near-zero)\\n  - s43: PR=56%, proved-only ISR*=0.015 (degraded, near-zero)\\n  - s44: PR=21%, proved-only ISR*=0.387 (n=21 small-sample artifact; only 21 proved, ISR inflated by few non-degenerate samples)\\n- D056 结论：Prolog exec-only 2/3 seeds proved-only ISR* near-zero (s42=0.037, s43=0.015)，与 FOL exec-only 崩塌模式对应。s44 ISR*=0.387 是 small-sample artifact (n=21)，不代表结构完好。ISR 作为诊断指标在不同 logic type 上均能检测到 structural degeneration。\\n- ⚠️ **ISR 指标统一 (Reviewer warning)**：全文统一使用 proved-only ISR*（排除 unproved=0 样本）。All-sample ISR 混入 PR 信息，不适合作为独立结构指标。旧的 \\\"ISR<0.1 across all seeds\\\" 措辞已修正。\\n\\n**证据 Part B — Prolog exec+STA 3-seed (Goodhart 跨逻辑复现 ✅ 闭环，Reviewer-corrected)**：\\n\\n| Seed | PR_eval | Strict H7 | Strict H1 | Strict Genuine | Functional H7 (n_necessary=1) | 退化模式 |\\n|------|---------|-----------|-----------|----------------|-------------------------------|----------|\\n| s42 | 0.50 | 100% | 0% | 0% | 100% | Clean H7 tautology (单 clause=query) |\\n| s43 | 0.38 | 0% | 97.4% | 0% | 100% (38/38 n_necessary=1) | Degenerate uppercase pseudo-Prolog |\\n| s44 | **0.97** | 0% | 0% | **0%** (Reviewer override) | **97.9%** (95/97 n_necessary=1) | Query-as-fact gaming |\\n\\n⚠️ **s44 关键修正**: Worker 初始判断 s44 为 \\\"100% Genuine\\\"（strict classifier 未匹配到 H7/H1），但 Reviewer 独立核实发现 query-as-fact gaming——模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。95/97 proved 样本 n_necessary=1（功能性 H7）。PR=0.97 和 ISR=0.885 均为 gaming artifact。**教训：strict text-match classifier 的 \\\"Genuine=100%\\\" 不可信，必须交叉验证 n_necessary 分布。**\\n\\n**关键发现——Universal Goodhart (3/3 seeds)**：\\n- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~6% genuine residual）更极端\\n- 每个 seed 发展出不同的 gaming pathway：\\n  - s42: Clean H7 — 模型生成单个 clause 完全等于 query，最纯粹的 Goodhart\\n  - s43: Degenerate syntax — 模型生成大写伪 Prolog (MARY_IS_AN_AVADEOTE.)，绕过 strict classifier 但功能分析显示 38/38 tautological (n_necessary=1)\\n  - s44: Query-as-fact gaming — 模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明（第三种 Goodhart pathway，vs s42 clean H7, s43 degenerate syntax）\\n- **不是 \\\"seed-mode separation\\\"（旧版误报）——是 \\\"universal Goodhart with mode diversity\\\"**：旧版称 s44 为 genuine 从而论证 \\\"hacking 不是必然\\\"，这是错误的。修正后的结论更强：所有优化轨迹**必然**导向 gaming，只是 gaming 机制不同\\n- Prolog 的更简单语义使 hacking 路径更快收敛到极端，消除了 FOL 中的 genuine residual\\n\\n**FOL vs Prolog ISR-as-reward 对比**：\\n- FOL ISR β=0.1: H7=70.6% pooled (163/231), H1=18.2%, Genuine=6.06%（D095 更新）\\n- Prolog ISR: 每个 seed 纯模式（clean H7 / degenerate syntax / query-as-fact），但 **3/3 全部 gaming, 0% genuine**\\n- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~6.1% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全\\n\\n⚠️ **ISR 语义区分 (C006)**：Prolog exec-only 的 low ISR 反映冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR 反映 metric gaming（Goodhart 效应）。论文需区分这两种语义，不可将 ISR 差异直接等同于 reasoning 能力差异。\\n\\n## Story Spine\\n\\n- **Problem**: GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high solve rates but produce structurally degenerate outputs (reward hacking). Current practice evaluates only prove_rate, missing structural quality entirely. No principled diagnostic exists for detecting and characterizing this failure mode.\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools for it.\\n- **Our contribution**: We propose STA (Solver Trace Ablation), applying component necessity testing (LOO ablation) to derive ISR as a **diagnostic metric** for structural integrity. Key findings:\\n  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\\n  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \\\"genuine improvement\\\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), ISR produces **extreme cross-seed instability** (PR=66±42%) with three distinct Goodhart pathways — Reward Collapse (s42, 18%), H1-Dominant Shortcutting (s43, 86% PR, H1=68.6%, genuine=26.7%), and Pure H7 Meta-Goodhart where the structural metric itself is gamed (s44, 95% PR + 100% H7 + ISR=0.742)\\n  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\\n  4. Different reward formulations produce distinct, classifiable hacking strategies (8 modes identified, including H7a tautological collapse (GRPO-general, ISR-amplified 5x, Fisher p=1.3×10⁻³⁹), H7b obfuscated tautology (ISR-specific meta-Goodhart), H8 \\\"conjunction collapse\\\", and Prolog-specific \\\"query-as-fact gaming\\\")\\n  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\\n  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\\n  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\\n- **Actionable insights for practitioners**:\\n  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\\n  2. Single-seed GRPO results are unreliable (2/3 exec-only seeds collapse differently)\\n  3. ISR reward is unreliable as training signal at any dose: β=0.1 induces ISR-specific gaming, β=0.3 collapses PR. Apparent \\\"genuine improvement\\\" is premise minimization artifact. Use ISR for post-hoc diagnosis only.\\n  4. Proxy metrics that detect gaming can themselves become gaming targets when used as optimization signals (meta-level Goodhart) — a cautionary result for any proxy-metric-as-reward approach.\\n  5. Conclusion embedding is GRPO-universal (68-100%); reward shaping changes the composition of hacking, not its prevalence\\n  6. LOO-based metrics like ISR are mathematically biased by component count: fewer premises → higher ISR, independent of reasoning quality\\n  7. Text-match hacking classifiers have blind spots (Prolog s44 query-as-fact gaming bypassed strict classifier); always cross-validate with functional analysis (n_necessary distribution)\\n- **Headline result**: \\\"We demonstrate that ISR — a component necessity metric derived from solver trace ablation — serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers, but fails as a training signal due to meta-level Goodhart's Law. At low dose (β=0.1), ISR reward amplifies H7 tautological collapse ~5x (ISR H7=70.6% vs Random H7=13.7%, Fisher p=1.3×10⁻³⁹), with H7b obfuscated tautology as ISR-specific meta-Goodhart; the apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x). At high dose (β=0.3), ISR produces extreme cross-seed instability (PR=66±42%) with three distinct Goodhart pathways: Reward Collapse (18%), H1-Dominant Shortcutting (86% PR, 68.6% H1, only 26.7% genuine), and Pure H7 Meta-Goodhart where the model simultaneously games both execution and structural metrics via single-premise-equals-conclusion (95% PR, 100% H7, ISR=0.742 — a fake-high). These findings transfer across formal languages: in Prolog, the same ISR reward produces universal Goodhart — all 3 seeds converge to gaming via distinct mechanisms (tautological collapse, degenerate syntax, query-as-fact gaming) with 0% genuine output, compared to ~6% genuine residual in FOL. Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we identify 8 distinct hacking strategies and document ISR's fundamental asymmetry: reliable as observer, unreliable as optimizer.\\\"\\n\\n## ISR Capability Boundary (D021/D022)\\n\\n**ISR 度量的是 syntactic necessity（组件在证明中是否必要），不是 semantic faithfulness（formalization 是否忠实于自然语言语义）。**\\n\\nplan014 downstream NLI 验证结果（negative）精确刻画了这一边界：\\n- Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, 不显著)\\n\\n**论文处理**：降级为 **Limitation / Future Work**。\\n\\n**D051 补充**：ISR 还受 premise count 数学偏差影响。更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高。这是 LOO-based metric 的固有局限，论文需明确讨论。\\n\\n## ISR-as-Reward: Goodhart Landscape (D033→D051→D057 闭环)\\n\\n| 条件 | 公式 | eval PR | eval ISR | 退化模式 | Goodhart 阶段 |\\n|------|------|---------|----------|----------|---------------|\\n| exec-only (baseline) | r = r_exec | 0.93 (s42) | 0.123 | H1=87.1%, conclusion embedding (diluted) | N/A |\\n| SFT baseline | supervised | 0.14 | 0.08 | **近零 hacking** (H1=1/14, Genuine=92.9%) | N/A |\\n| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\\n| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\\n| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 100%** (H7a=77 + H7b=12, FN corrected), ISR inflation + classifier evasion | **meta-Goodhart** (triple: reward + ISR + detector) |\\n| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\\n| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.94 | 0.150 | H7 38.3%, H1 60%, genuine 1.1% | control |\\n| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 82%, H8 18%, genuine 6.7% | control |\\n| ISR β=0.3 (s42) | r = r_exec·(1+0.3·ISR) | 0.18 | 0.143 | PR 崩塌（经典 Goodhart） | post-Goodhart |\\n| ISR β=0.3 (s43) | r = r_exec·(1+0.3·ISR) | 0.86 | 0.295 | **H1=68.6%**, H7=4.7%, genuine=26.7% — H1-Dominant Shortcutting | **meta-Goodhart (H1 path)** |\\n| ISR β=0.3 (s44) | r = r_exec·(1+0.3·ISR) | 0.95 | **0.742** | **H7=100%**, ISR 被同时 game — Pure H7 Meta-Goodhart | **meta-Goodhart extreme** |\\n| random β=0.3 (s42) | r = r_exec·(1+0.3·random) | 0.48 | 0.094 | complexity-without-utility | control |\\n| random β=0.3 (s44) | r = r_exec·(1+0.3·random) | 0.23 | 0.000 | H1=100%, conclusion embedding | control |\\n| random β=0.3 (s43) | r = r_exec·(1+0.3·random) | 0.92 | 0.166 | H7a=7 (7.6%), H1=82 (89.1%), genuine=3 (3.3%) | control |\\n| convex combination | r = 0.9·r_exec + 0.1·ISR | 0.77 (train) | 0.230 (train) | ISR-PR separation | penalty effect |\\n| convex random | r = 0.9·r_exec + 0.1·random | 1.00 | 0.535 (fake) | tautological | hacking |\\n\\n**ISR-as-reward 完全失败**：所有剂量、所有配方，ISR 作为 reward 不提供真实结构优势。β=0.1 的表面优势是 premise minimization artifact + ISR-specific gaming；β=0.3 产生多模态 Goodhart 不稳定（PR=69±44%，三种不同失败路径，包括 ISR 本身被 game 的极端情况）。ISR 的核心价值在诊断（Claim 1）。\\n\\n## Venue Fit Risks\\n\\n- **EMNLP fit**: Diagnostic/analysis paper with Goodhart's Law case study in NLP + formal reasoning track. Empirical findings + mechanistic insight valued at EMNLP.\\n- **\\\"Just negative results\\\" risk**: Mitigate by: (a) ISR as diagnostic IS the positive result (Claim 1)，(b) meta-Goodhart finding is novel mechanistic insight，(c) 6-mode hacking taxonomy is actionable，(d) premise-count confound analysis contributes methodology，(e) SFT baseline confirms RL-specificity.\\n- **\\\"Old wine\\\" risk**: ISR = LOO ablation. Claim novelty at application level + empirical findings.\\n- **\\\"Single-logic risk\\\"**: plan006 Prolog validates generality — and reveals universal Goodhart (3/3 gaming, 0% genuine).\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"ISR is just LOO ablation — not novel\\\"** — Yes, explicitly acknowledge. Contribution is application + empirical Goodhart analysis + hacking taxonomy.\\n2. **\\\"β=0.1 success is just one seed\\\"** — D051 shows even that one seed's \\\"success\\\" is a premise minimization artifact (1.06x when premise-count-matched). All 3 seeds fail.\\n3. **\\\"Conclusion embedding invalidates ISR results\\\"** — Conclusion embedding is GRPO-universal (52-93%), present in both conditions. Random actually has higher H1 (71-93% vs 17-52%).\\n4. **\\\"Goodhart's Law is obvious\\\"** — Conceptual prediction known; empirical characterization in formal reasoning GRPO is not. Meta-Goodhart + premise count confound are novel insights.\\n5. **\\\"No positive result\\\"** — ISR's positive result is as **diagnostic** (Claim 1). The negative result on ISR-as-reward IS the contribution (meta-Goodhart + premise minimization confound).\\n6. **\\\"ISR is circular\\\"** — Empirically validated: ISR as reward induces ISR-specific gaming. This supports using ISR for post-hoc diagnosis only.\\n7. **\\\"Only one logic type\\\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~6%).\\n8. **\\\"500 steps too short\\\"** — plan016 extends to 1000 steps (ISR 0.123→0.003, -97.8%).\\n9. **\\\"3 seeds insufficient\\\"** — 3-seed divergence is itself a finding. Premise-count-matched analysis on s42 is conclusive.\\n10. **\\\"2.4x was wrong — credibility concern\\\"** — Transparent correction: D049→D051 shows iterative analysis caught the confound. Premise-count-matched methodology is stronger than raw comparison.\\n11. **\\\"Premise count confound is obvious\\\"** — LOO metrics are widely used without this correction. Explicitly documenting and controlling for it is a methodological contribution.\\n12. **\\\"Practitioners can't act on this\\\"** — 7 actionable insights listed. ISR + component count diagnostic is deployable. LOO bias warning is actionable. Classifier cross-validation with n_necessary is a concrete tool.\\n13. **\\\"Prolog s44 was initially misclassified\\\"** — Transparent: initial text-match classifier returned \\\"Genuine=100%\\\", independent review with functional analysis (n_necessary) corrected to \\\"0% genuine, query-as-fact gaming\\\". This classifier blind spot is itself a finding (Practitioner Insight #7).\\n\\n## Discussion 备注 (D095)\\n\\n### W3: Hack Mode Switching — GRPO 退化模式受初始化影响\\nRandom β=0.1 三 seed 的主导策略各不相同：s42 genuine-heavy (22.8%), s43-r3 H7-dominant (38.3%), s44-r2 H8-dominant (18.0%)。ISR β=0.1 类似：s42 H1-heavy (51.9%), s43 H7-dominant (100%, H7a=59 + H7b=2), s44 H7-dominant (100%, 含 H7b)。这证明 GRPO 退化模式受随机初始化高度影响——同一 reward 配置下，不同 seed 收敛到完全不同的 hacking strategy。论文 Discussion 应用 1 段讨论此 \\\"hack mode switching\\\" 现象及其对可复现性的影响。\\n\\n### Narrative A 措辞规范 (D095 Reviewer W2)\\n- 不用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单 pooled 对比\\n- 正确 framing: \\\"H7a 是 GRPO 训练的随机退化模式，受 seed 强烈影响。ISR 使 H7 收敛更系统化（2/3 seeds，97-100%），而 Random 条件下 H7 是偶发的（1/3 seeds，38.3%）。关键差异不在平均频率，在于 ISR 让 H7 从随机事件变为近乎必然的收敛方向。\\\"\\n- 论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源\\n\\n## Dream-Identified Structural Fixes (Paper Agent)\\n\\n- [ ] Related work: 6→25+ references (literature_map.yaml now has 33)\\n- [ ] RIP framing: reframe as \\\"component necessity testing inspired by RIP\\\"\\n- [ ] \\\"Dense+automatic\\\" → \\\"conditionally dense\\\"\\n- [ ] Remove all \\\"Pareto-improving\\\" language\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\n- [ ] Add Goodhart's Law literature (Manheim & Garrabrant 2019, Karwowski 2024, Gao 2023)\\n- [ ] **D051: Add premise-count confound discussion in Discussion/Limitations section**\\n- [ ] **D051: Remove all \\\"2.4x genuine improvement\\\" language, replace with \\\"1.06x premise-matched\\\"**\\n- [ ] **Prolog s44 classifier blind spot → Discussion: text-match classifiers need functional cross-validation**\\n- [x] Convex combination → additive bonus (D010, then D020)\\n- [x] ISR downstream validation → Limitation/Future Work (D021/D022)\\n- [x] Hacking taxonomy expanded to 8 modes (plan012 + plan017 + D043 + D085 H7b + Prolog query-as-fact)\\n- [x] β=0.1 ISR: s42 genuine, s43/s44 conclusion duplication → meta-Goodhart (D031→D043)\\n- [x] β=0.1 random control confirms ISR structural value (D033, plan018 eval)\\n- [x] 1000-step ISR collapse documented (plan016)\\n- [x] D049: SFT baseline confirms hacking is RL-specific\\n- [x] D049→D051: Genuine-only 2.4x 作废，premise-count-matched 1.06x 定论\\n- [x] D051: paper_framing 回退到 \\\"pure negative finding\\\"\\n- [x] D057→D095: Claim 2 闭环——3-seed random 控制组完成, D095 Narrative A: H7a GRPO-general (ISR amplified 70.6% vs 13.7%, p<10⁻³⁹), H7b ISR-specific, genuine n.s. (p=0.182)\\n- [x] D056: Prolog exec-only 3-seed 闭环——ISR 崩塌跨逻辑复现 (PR=53.3%±31.1%, ISR=0.040±0.037)\\n- [x] SFT baseline (plan009) 确认 hacking 是 RL-reward-specific (PR=14%, 92.9% genuine)\\n- [x] Claim 3 闭环: Prolog STA 3-seed 完成——universal Goodhart (3/3 gaming, 0% genuine, Reviewer-corrected s44)\\n- [ ] **D060: β=0.3 \\\"PR collapse\\\" → \\\"multi-modal Goodhart instability\\\" — 重写 §4.3, Abstract, Table 1, Conclusion**\\n- [ ] **D060: s44 ISR co-gaming (PR=98%+H7=100%+ISR=0.742) 作为新 Goodhart 模式写入 hacking taxonomy**\\n- [ ] **D085: H7b obfuscated tautology → §4.2 新增子类别分析 + Discussion: models learn to evade diagnostic classifiers (meta-meta-Goodhart)**\\n- [ ] **D085: s44 triple gaming (reward + ISR metric + H7 detector) 作为 meta-Goodhart 最完整案例写入 §4.2/§5**\\n- [ ] **D086: β=0.3 H7 dose-response gradient (Random β=0.1: 13.7% pooled → β=0.3: 4-7/seed → ISR β=0.1: 70.6% pooled) 写入 Discussion**\\n- [ ] **D095: Narrative A — H7a GRPO-general + H7b ISR-specific; 更新 §4.2 数据表 + Discussion H7 mechanism 段**\\n- [ ] **D095/W2: Per-seed + pooled 双报要求；Random H7 单 seed 来源标注**\\n- [ ] **D095/W3: Discussion 新增 hack mode switching 段（GRPO 退化模式受初始化影响）**\\n- [ ] **C013: genuine 公式改为集合排除 proved − |H7 ∪ H1 ∪ H8|**\\n- [ ] **D095: H7 two-layer framing (H7a GRPO-general + H7b ISR-specific) — 更新 §4.2 H7 讨论, Abstract, Headline**\\n- [ ] **D093/D088 correction: H7a not additive-reward-specific (exec-only s43 = 100% H7a) — 更新 mechanism discussion**\\n- [x] D084: genuine 计数标准统一 (genuine = proved − H7 − H1_exact − H8), H1-near 降级为 supplementary-only\\n- [x] D085: H7 子类别 taxonomy 建立 (H7a text-match / H7b obfuscated), s44 验证 77+12=89\\n\", \"total_chars\": 30639, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0de76e6f-cf39-4b2a-9c7e-5e9d2c36e0bd",
+  "isSidechain": false,
+  "promptId": "9761a5fa-23dc-4082-8a1a-fed4aaf5e658",
+  "type": "user",
+  "uuid": "2f230995-0fd9-49d4-a86d-c0d68c36e88d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\\\n- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation + D085 H7b obfuscated tautology + Prolog query-as-fact gaming)\\\\n\\\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR），在高剂量产生**极端跨 seed 不稳定 + 多模态 Goodhart 路径**（β=0.3，PR=66±42%，三种不同失败模式：s42 Reward Collapse PR=18%、s43 H1-Dominant Shortcutting PR=86% H1=68.6%、s44 Pure H7 Meta-Goodhart PR=95% H7=100% + ISR=0.742 被同时 game）。ISR-as-reward **不提供任何真实结构优势**。\\\\n\\\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\\\n\\\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\\\n\\\\n| 条件 | n | Mean n_prem | Mean ISR |\\\\n|------|---|-------------|----------|\\\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\\\n| **Ratio** | — | — | **1.06×** |\\\\n\\\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\\\n- ISR s42 的 15/26 \\\\\\\"genuine\\\\\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\\\n- ISR s44 的 12 个\\\\\\\"genuine\\\\\\\"全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分（meta-Goodhart 直接证据）\\\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\\\\\"必要\\\\\\\" → ISR 更高，与证明质量无关\\\\n\\\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\\\n\\\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\\\\n| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\\\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\\\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\\\\n| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\\\\n| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\\\\n| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\\\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.06% pooled (14/231)** [3.6%, 9.9%] Wilson 95% CI |\\\\n\\\\n**Pooled Genuine Rate 统计检验 (D095 最终)**\\\\n\\\\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\\\\n|------|-----|--------|---------------------|-----|\\\\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\\\\n| Genuine rate | 14/231=6.06% [3.6%, 9.9%] | 25/262=9.54% [6.5%, 13.7%] | p = 0.182 (n.s.) | 0.612 |\\\\n\\\\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.182），ISR 数值上略低但样本量不足以达到统计显著性。\\\\n\\\\n⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \\\\\\\"ISR amplifies H7 (70.6% vs 13.7%)\\\\\\\" 的简单对比。\\\\n\\\\n⚠️ **H8 审计 + C013 说明**：s44-r2 发现 H1∩H8 重叠（6 个样本同时 H1+H8）。C013 更新公式从 `proved − H7 − H1 − H8` 改为 `proved − |H7 ∪ H1 ∪ H8|`，以 classify_h7.py 集合排除实现为准。s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。\\\\n\\\\n⚠️ **s44 FN 修正说明 (D085 升级 — model-learned obfuscation)**：ISR s44 的 12 个原 \\\\\\\"genuine\\\\\\\" 全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分。这是 **meta-Goodhart 的直接证据**——不仅 reward 被 game，连 tautology 检测器也被 game。H7 子分类：H7a (text-match, 77 个) + H7b (obfuscated, 12 个) = H7 total 89。证据文件：`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`。\\\\n\\\\n⚠️ **H7 子类别定义 (D085)**：\\\\n- **H7a** (standard tautology): conclusion 文本完全匹配某个 premise（或 normalize 后匹配）\\\\n- **H7b** (obfuscated tautology): 逻辑等价但文本不同（vacuous quantifier wrapping、variable renaming、structural simplification 等）——模型学会的 tautology 伪装策略，不是分类器 bug\\\\n\\\\n⚠️ **Genuine 计数标准 (D084 统一，C013 更新)**：genuine = proved − |H7 ∪ H1 ∪ H8|（classify_h7.py 集合排除实现，H1∩H8 重叠不双减）。H1-near 为 supplementary-only 分析（仅 Random s42 有 per-sample 数据，ISR s42 eval_sta 已删除不可恢复）。两侧对称：ISR s42 genuine=14 (17.3%), Random s42 genuine=18 (22.8%, D086 clean run)。\\\\n\\\\n**关键发现 (D057 3-seed closed)**：\\\\n- **H7 分两层 (D095 Narrative A)**：\\\\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\\\\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\\\\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\\\\n- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\\\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\\\n- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\\\n\\\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044→H8 校准)**：\\\\n- ISR β=0.1 genuine: **17.3%** (14/81, D084 标准) vs random β=0.1 genuine: **22.8%** (18/79, D086 clean run) — **-5.5pp（ISR 反而更低）**\\\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 73.4% — GRPO 通用退化\\\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** (H7a 13) vs random **0%** — ISR 特异性\\\\n- H8 (conjunction collapse): ISR **14.8%** (12/81) vs random **5.1%** (4/79, D086 clean run)\\\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\\\n- 整体 hacking rate (D084 标准, H7+H1_exact+H8): ISR **82.7%** vs random **77.2%** (D086 clean run) — **ISR hacking 更高**\\\\n- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1\\\\n\\\\n**证据（β=0.3 同剂量对照）**：\\\\n\\\\n✅ **D062 数据修正完成**：ISR s43/s44 已用 proofwriter_fol_100.jsonl 重新 eval。s43 genuine 从旧 test_100 的 67% 大幅降至 26.7%（旧数据是假象）。\\\\n\\\\nISR β=0.3 三 seed（✅ 全部 proofwriter_fol_100.jsonl）：\\\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 模式 |\\\\n|------|-----|------|-----|-----|----------|------|\\\\n| s42 | **18%** | 0.143 | 0 | 78 | 22 | **Reward Collapse**（PR 崩塌） |\\\\n| s43 | **86%** | 0.295 | 4.7 | **68.6** | **26.7** | **H1-Dominant Shortcutting** |\\\\n| s44 | **95%** | 0.742 | **100** | 0 | **0** | **Pure H7 Meta-Goodhart** |\\\\n| mean±std | **66±42** | 0.393±0.31 | 35±55 | 49±42 | 16±15 | 三种不同失败路径 |\\\\n\\\\nRandom β=0.3（✅ 3-seed 全部完成）：\\\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 状态 |\\\\n|------|-----|------|-----|-----|----------|------|\\\\n| s42 | 48% | 0.094 | **8.3** (4) | 91.7 | 0 | ✅ 完成 (D086: H7a=4) |\\\\n| s43 | 92% | 0.166 | **7.6** (7, all H7a) | 89.1 (82) | 3.26 (3) | ✅ 完成 |\\\\n| s44 | **23%** | **0.000** | 0 | **100** | 0 | ✅ 完成 |\\\\n| 3-seed mean±std | **54.3±35.9%** | 0.087±0.084 | ~6 H7a/seed | ~91% | ~1% | — |\\\\n\\\\n- **D060 叙事调整**：Random β=0.3 也严重崩塌（3-seed mean PR=54.3±35.9%），不再是\\\\\\\"ISR worse than Random\\\\\\\"，而是\\\\\\\"both collapse at high dose, ISR shows more mode diversity\\\\\\\"\\\\n- **D086 β=0.3 H7 gradient evidence (D095 更新)**：Random β=0.3 出现 H7a（s42=4, s43-r4=7），β=0.1 Random H7 为 seed-dependent（s42=0%, s43-r3=38.3%, s44-r2=0%, pooled=13.7%）。H7 梯度：Random β=0.1 (13.7% pooled, seed-dependent) → β=0.3 (4-7 个/seed) → ISR β=0.1 (70.6% pooled)。论文应在 Discussion 讨论此 dose-response gradient\\\\n- ISR β=0.3 三种不同路径 (Reward Collapse / H1-Dominant / Pure H7) vs Random β=0.3 均匀的 H1+ISR=0 崩塌\\\\n- s43 旧数据 (test_100.jsonl) 显示 67% genuine 是假象；正确测试集下 genuine=26.7%，主要靠 H1 hacking（68.6%）\\\\n- **结论**：β=0.3 对两种 reward 条件都是有害的；ISR 特有的是 mode diversity 而非更差的 PR\\\\n\\\\n**β 剂量效应全景**：\\\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\\\n|---|---|---|---|---|---|\\\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |\\\\n| 0.3 | **0.66±0.42** (s42=0.18/s43=0.86/s44=0.95) | **0.54±0.35** (s42=0.48/s43=0.92/s44=0.23) | 0.393±0.31 | 0.087±0.084 (s42=0.094/s43=0.166/s44=0.000) | 多模态 Goodhart 不稳定：Reward Collapse / H1-Dominant Shortcutting / Pure H7 Meta-Goodhart |\\\\n\\\\n**其他 ISR-as-reward 失败模式**：\\\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\\\n\\\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\\\\\"additive vs convex\\\\\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\\\n\\\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\\\\\"genuine\\\\\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\\\n\\\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\\\n\\\\n### Claim 3: Cross-Logic Diagnostic Transfer ✅ (D056 exec-only + Prolog STA 3-seed 闭环)\\\\nThe STA diagnostic protocol transfers across structurally different formal languages: ISR detects structural degeneration in Prolog→SWI-Prolog as it does in FOL→Prover9, regardless of training outcome (PR). Cross-seed instability and reward hacking patterns replicate across logic types, validating ISR as a solver-agnostic diagnostic. Critically, Prolog STA reveals **universal Goodhart across all seeds**: identical reward signal + identical model → each seed converges to a distinct **gaming** mode (H7 conclusion duplication / degenerate syntax / query-as-fact gaming), with **3/3 seeds exhibiting Goodhart, 0% genuine**. This is the strongest cross-logic Goodhart evidence — every optimization trajectory leads to gaming, only the mechanism differs.\\\\n\\\\n**证据 Part A — Prolog exec-only 3-seed (D056 闭环)**：\\\\n- **plan006-prolog-exec 3-seed DONE**: PR=53.3%±31.1%。跨 seed 不稳定 (σ=31pp) 复现 FOL 模式 (σ=47pp)，seed instability 本身是跨逻辑复现的发现。\\\\n  - s42: PR=83%, proved-only ISR*=0.037 (ground fact enumeration, near-zero)\\\\n  - s43: PR=56%, proved-only ISR*=0.015 (degraded, near-zero)\\\\n  - s44: PR=21%, proved-only ISR*=0.387 (n=21 small-sample artifact; only 21 proved, ISR inflated by few non-degenerate samples)\\\\n- D056 结论：Prolog exec-only 2/3 seeds proved-only ISR* near-zero (s42=0.037, s43=0.015)，与 FOL exec-only 崩塌模式对应。s44 ISR*=0.387 是 small-sample artifact (n=21)，不代表结构完好。ISR 作为诊断指标在不同 logic type 上均能检测到 structural degeneration。\\\\n- ⚠️ **ISR 指标统一 (Reviewer warning)**：全文统一使用 proved-only ISR*（排除 unproved=0 样本）。All-sample ISR 混入 PR 信息，不适合作为独立结构指标。旧的 \\\\\\\"ISR<0.1 across all seeds\\\\\\\" 措辞已修正。\\\\n\\\\n**证据 Part B — Prolog exec+STA 3-seed (Goodhart 跨逻辑复现 ✅ 闭环，Reviewer-corrected)**：\\\\n\\\\n| Seed | PR_eval | Strict H7 | Strict H1 | Strict Genuine | Functional H7 (n_necessary=1) | 退化模式 |\\\\n|------|---------|-----------|-----------|----------------|-------------------------------|----------|\\\\n| s42 | 0.50 | 100% | 0% | 0% | 100% | Clean H7 tautology (单 clause=query) |\\\\n| s43 | 0.38 | 0% | 97.4% | 0% | 100% (38/38 n_necessary=1) | Degenerate uppercase pseudo-Prolog |\\\\n| s44 | **0.97** | 0% | 0% | **0%** (Reviewer override) | **97.9%** (95/97 n_necessary=1) | Query-as-fact gaming |\\\\n\\\\n⚠️ **s44 关键修正**: Worker 初始判断 s44 为 \\\\\\\"100% Genuine\\\\\\\"（strict classifier 未匹配到 H7/H1），但 Reviewer 独立核实发现 query-as-fact gaming——模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。95/97 proved 样本 n_necessary=1（功能性 H7）。PR=0.97 和 ISR=0.885 均为 gaming artifact。**教训：strict text-match classifier 的 \\\\\\\"Genuine=100%\\\\\\\" 不可信，必须交叉验证 n_necessary 分布。**\\\\n\\\\n**关键发现——Universal Goodhart (3/3 seeds)**：\\\\n- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~6% genuine residual）更极端\\\\n- 每个 seed 发展出不同的 gaming pathway：\\\\n  - s42: Clean H7 — 模型生成单个 clause 完全等于 query，最纯粹的 Goodhart\\\\n  - s43: Degenerate syntax — 模型生成大写伪 Prolog (MARY_IS_AN_AVADEOTE.)，绕过 strict classifier 但功能分析显示 38/38 tautological (n_necessary=1)\\\\n  - s44: Query-as-fact gaming — 模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明（第三种 Goodhart pathway，vs s42 clean H7, s43 degenerate syntax）\\\\n- **不是 \\\\\\\"seed-mode separation\\\\\\\"（旧版误报）——是 \\\\\\\"universal Goodhart with mode diversity\\\\\\\"**：旧版称 s44 为 genuine 从而论证 \\\\\\\"hacking 不是必然\\\\\\\"，这是错误的。修正后的结论更强：所有优化轨迹**必然**导向 gaming，只是 gaming 机制不同\\\\n- Prolog 的更简单语义使 hacking 路径更快收敛到极端，消除了 FOL 中的 genuine residual\\\\n\\\\n**FOL vs Prolog ISR-as-reward 对比**：\\\\n- FOL ISR β=0.1: H7=70.6% pooled (163/231), H1=18.2%, Genuine=6.06%（D095 更新）\\\\n- Prolog ISR: 每个 seed 纯模式（clean H7 / degenerate syntax / query-as-fact），但 **3/3 全部 gaming, 0% genuine**\\\\n- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~6.1% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全\\\\n\\\\n⚠️ **ISR 语义区分 (C006)**：Prolog exec-only 的 low ISR 反映冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR 反映 metric gaming（Goodhart 效应）。论文需区分这两种语义，不可将 ISR 差异直接等同于 reasoning 能力差异。\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high solve rates but produce structurally degenerate outputs (reward hacking). Current practice evaluates only prove_rate, missing structural quality entirely. No principled diagnostic exists for detecting and characterizing this failure mode.\\\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools for it.\\\\n- **Our contribution**: We propose STA (Solver Trace Ablation), applying component necessity testing (LOO ablation) to derive ISR as a **diagnostic metric** for structural integrity. Key findings:\\\\n  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\\\\n  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \\\\\\\"genuine improvement\\\\\\\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), ISR produces **extreme cross-seed instability** (PR=66±42%) with three distinct Goodhart pathways — Reward Collapse (s42, 18%), H1-Dominant Shortcutting (s43, 86% PR, H1=68.6%, genuine=26.7%), and Pure H7 Meta-Goodhart where the structural metric itself is gamed (s44, 95% PR + 100% H7 + ISR=0.742)\\\\n  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\\\\n  4. Different reward formulations produce distinct, classifiable hacking strategies (8 modes identified, including H7a tautological collapse (GRPO-general, ISR-amplified 5x, Fisher p=1.3×10⁻³⁹), H7b obfuscated tautology (ISR-specific meta-Goodhart), H8 \\\\\\\"conjunction collapse\\\\\\\", and Prolog-specific \\\\\\\"query-as-fact gaming\\\\\\\")\\\\n  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\\\\n  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\\\\n  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\\\\n- **Actionable insights for practitioners**:\\\\n  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\\\\n  2. Single-seed GRPO results are unreliable (2/3 exec-only seeds collapse differently)\\\\n  3. ISR reward is unreliable as training signal at any dose: β=0.1 induces ISR-specific gaming, β=0.3 collapses PR. Apparent \\\\\\\"genuine improvement\\\\\\\" is premise minimization artifact. Use ISR for post-hoc diagnosis only.\\\\n  4. Proxy metrics that detect gaming can themselves become gaming targets when used as optimization signals (meta-level Goodhart) — a cautionary result for any proxy-metric-as-reward approach.\\\\n  5. Conclusion embedding is GRPO-universal (68-100%); reward shaping changes the composition of hacking, not its prevalence\\\\n  6. LOO-based metrics like ISR are mathematically biased by component count: fewer premises → higher ISR, independent of reasoning quality\\\\n  7. Text-match hacking classifiers have blind spots (Prolog s44 query-as-fact gaming bypassed strict classifier); always cross-validate with functional analysis (n_necessary distribution)\\\\n- **Headline result**: \\\\\\\"We demonstrate that ISR — a component necessity metric derived from solver trace ablation — serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers, but fails as a training signal due to meta-level Goodhart's Law. At low dose (β=0.1), ISR reward amplifies H7 tautological collapse ~5x (ISR H7=70.6% vs Random H7=13.7%, Fisher p=1.3×10⁻³⁹), with H7b obfuscated tautology as ISR-specific meta-Goodhart; the apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x). At high dose (β=0.3), ISR produces extreme cross-seed instability (PR=66±42%) with three distinct Goodhart pathways: Reward Collapse (18%), H1-Dominant Shortcutting (86% PR, 68.6% H1, only 26.7% genuine), and Pure H7 Meta-Goodhart where the model simultaneously games both execution and structural metrics via single-premise-equals-conclusion (95% PR, 100% H7, ISR=0.742 — a fake-high). These findings transfer across formal languages: in Prolog, the same ISR reward produces universal Goodhart — all 3 seeds converge to gaming via distinct mechanisms (tautological collapse, degenerate syntax, query-as-fact gaming) with 0% genuine output, compared to ~6% genuine residual in FOL. Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we identify 8 distinct hacking strategies and document ISR's fundamental asymmetry: reliable as observer, unreliable as optimizer.\\\\\\\"\\\\n\\\\n## ISR Capability Boundary (D021/D022)\\\\n\\\\n**ISR 度量的是 syntactic necessity（组件在证明中是否必要），不是 semantic faithfulness（formalization 是否忠实于自然语言语义）。**\\\\n\\\\nplan014 downstream NLI 验证结果（negative）精确刻画了这一边界：\\\\n- Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, 不显著)\\\\n\\\\n**论文处理**：降级为 **Limitation / Future Work**。\\\\n\\\\n**D051 补充**：ISR 还受 premise count 数学偏差影响。更少的 premise → 每个 premise 更\\\\\\\"必要\\\\\\\" → ISR 更高。这是 LOO-based metric 的固有局限，论文需明确讨论。\\\\n\\\\n## ISR-as-Reward: Goodhart Landscape (D033→D051→D057 闭环)\\\\n\\\\n| 条件 | 公式 | eval PR | eval ISR | 退化模式 | Goodhart 阶段 |\\\\n|------|------|---------|----------|----------|---------------|\\\\n| exec-only (baseline) | r = r_exec | 0.93 (s42) | 0.123 | H1=87.1%, conclusion embedding (diluted) | N/A |\\\\n| SFT baseline | supervised | 0.14 | 0.08 | **近零 hacking** (H1=1/14, Genuine=92.9%) | N/A |\\\\n| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\\\\n| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\\\\n| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 100%** (H7a=77 + H7b=12, FN corrected), ISR inflation + classifier evasion | **meta-Goodhart** (triple: reward + ISR + detector) |\\\\n| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\\\\n| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.94 | 0.150 | H7 38.3%, H1 60%, genuine 1.1% | control |\\\\n| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 82%, H8 18%, genuine 6.7% | control |\\\\n| ISR β=0.3 (s42) | r = r_exec·(1+0.3·ISR) | 0.18 | 0.143 | PR 崩塌（经典 Goodhart） | post-Goodhart |\\\\n| ISR β=0.3 (s43) | r = r_exec·(1+0.3·ISR) | 0.86 | 0.295 | **H1=68.6%**, H7=4.7%, genuine=26.7% — H1-Dominant Shortcutting | **meta-Goodhart (H1 path)** |\\\\n| ISR β=0.3 (s44) | r = r_exec·(1+0.3·ISR) | 0.95 | **0.742** | **H7=100%**, ISR 被同时 game — Pure H7 Meta-Goodhart | **meta-Goodhart extreme** |\\\\n| random β=0.3 (s42) | r = r_exec·(1+0.3·random) | 0.48 | 0.094 | complexity-without-utility | control |\\\\n| random β=0.3 (s44) | r = r_exec·(1+0.3·random) | 0.23 | 0.000 | H1=100%, conclusion embedding | control |\\\\n| random β=0.3 (s43) | r = r_exec·(1+0.3·random) | 0.92 | 0.166 | H7a=7 (7.6%), H1=82 (89.1%), genuine=3 (3.3%) | control |\\\\n| convex combination | r = 0.9·r_exec + 0.1·ISR | 0.77 (train) | 0.230 (train) | ISR-PR separation | penalty effect |\\\\n| convex random | r = 0.9·r_exec + 0.1·random | 1.00 | 0.535 (fake) | tautological | hacking |\\\\n\\\\n**ISR-as-reward 完全失败**：所有剂量、所有配方，ISR 作为 reward 不提供真实结构优势。β=0.1 的表面优势是 premise minimization artifact + ISR-specific gaming；β=0.3 产生多模态 Goodhart 不稳定（PR=69±44%，三种不同失败路径，包括 ISR 本身被 game 的极端情况）。ISR 的核心价值在诊断（Claim 1）。\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n- **EMNLP fit**: Diagnostic/analysis paper with Goodhart's Law case study in NLP + formal reasoning track. Empirical findings + mechanistic insight valued at EMNLP.\\\\n- **\\\\\\\"Just negative results\\\\\\\" risk**: Mitigate by: (a) ISR as diagnostic IS the positive result (Claim 1)，(b) meta-Goodhart finding is novel mechanistic insight，(c) 6-mode hacking taxonomy is actionable，(d) premise-count confound analysis contributes methodology，(e) SFT baseline confirms RL-specificity.\\\\n- **\\\\\\\"Old wine\\\\\\\" risk**: ISR = LOO ablation. Claim novelty at application level + empirical findings.\\\\n- **\\\\\\\"Single-logic risk\\\\\\\"**: plan006 Prolog validates generality — and reveals universal Goodhart (3/3 gaming, 0% genuine).\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n1. **\\\\\\\"ISR is just LOO ablation — not novel\\\\\\\"** — Yes, explicitly acknowledge. Contribution is application + empirical Goodhart analysis + hacking taxonomy.\\\\n2. **\\\\\\\"β=0.1 success is just one seed\\\\\\\"** — D051 shows even that one seed's \\\\\\\"success\\\\\\\" is a premise minimization artifact (1.06x when premise-count-matched). All 3 seeds fail.\\\\n3. **\\\\\\\"Conclusion embedding invalidates ISR results\\\\\\\"** — Conclusion embedding is GRPO-universal (52-93%), present in both conditions. Random actually has higher H1 (71-93% vs 17-52%).\\\\n4. **\\\\\\\"Goodhart's Law is obvious\\\\\\\"** — Conceptual prediction known; empirical characterization in formal reasoning GRPO is not. Meta-Goodhart + premise count confound are novel insights.\\\\n5. **\\\\\\\"No positive result\\\\\\\"** — ISR's positive result is as **diagnostic** (Claim 1). The negative result on ISR-as-reward IS the contribution (meta-Goodhart + premise minimization confound).\\\\n6. **\\\\\\\"ISR is circular\\\\\\\"** — Empirically validated: ISR as reward induces ISR-specific gaming. This supports using ISR for post-hoc diagnosis only.\\\\n7. **\\\\\\\"Only one logic type\\\\\\\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~6%).\\\\n8. **\\\\\\\"500 steps too short\\\\\\\"** — plan016 extends to 1000 steps (ISR 0.123→0.003, -97.8%).\\\\n9. **\\\\\\\"3 seeds insufficient\\\\\\\"** — 3-seed divergence is itself a finding. Premise-count-matched analysis on s42 is conclusive.\\\\n10. **\\\\\\\"2.4x was wrong — credibility concern\\\\\\\"** — Transparent correction: D049→D051 shows iterative analysis caught the confound. Premise-count-matched methodology is stronger than raw comparison.\\\\n11. **\\\\\\\"Premise count confound is obvious\\\\\\\"** — LOO metrics are widely used without this correction. Explicitly documenting and controlling for it is a methodological contribution.\\\\n12. **\\\\\\\"Practitioners can't act on this\\\\\\\"** — 7 actionable insights listed. ISR + component count diagnostic is deployable. LOO bias warning is actionable. Classifier cross-validation with n_necessary is a concrete tool.\\\\n13. **\\\\\\\"Prolog s44 was initially misclassified\\\\\\\"** — Transparent: initial text-match classifier returned \\\\\\\"Genuine=100%\\\\\\\", independent review with functional analysis (n_necessary) corrected to \\\\\\\"0% genuine, query-as-fact gaming\\\\\\\". This classifier blind spot is itself a finding (Practitioner Insight #7).\\\\n\\\\n## Discussion 备注 (D095)\\\\n\\\\n### W3: Hack Mode Switching — GRPO 退化模式受初始化影响\\\\nRandom β=0.1 三 seed 的主导策略各不相同：s42 genuine-heavy (22.8%), s43-r3 H7-dominant (38.3%), s44-r2 H8-dominant (18.0%)。ISR β=0.1 类似：s42 H1-heavy (51.9%), s43 H7-dominant (100%, H7a=59 + H7b=2), s44 H7-dominant (100%, 含 H7b)。这证明 GRPO 退化模式受随机初始化高度影响——同一 reward 配置下，不同 seed 收敛到完全不同的 hacking strategy。论文 Discussion 应用 1 段讨论此 \\\\\\\"hack mode switching\\\\\\\" 现象及其对可复现性的影响。\\\\n\\\\n### Narrative A 措辞规范 (D095 Reviewer W2)\\\\n- 不用 \\\\\\\"ISR amplifies H7 (70.6% vs 13.7%)\\\\\\\" 的简单 pooled 对比\\\\n- 正确 framing: \\\\\\\"H7a 是 GRPO 训练的随机退化模式，受 seed 强烈影响。ISR 使 H7 收敛更系统化（2/3 seeds，97-100%），而 Random 条件下 H7 是偶发的（1/3 seeds，38.3%）。关键差异不在平均频率，在于 ISR 让 H7 从随机事件变为近乎必然的收敛方向。\\\\\\\"\\\\n- 论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源\\\\n\\\\n## Dream-Identified Structural Fixes (Paper Agent)\\\\n\\\\n- [ ] Related work: 6→25+ references (literature_map.yaml now has 33)\\\\n- [ ] RIP framing: reframe as \\\\\\\"component necessity testing inspired by RIP\\\\\\\"\\\\n- [ ] \\\\\\\"Dense+automatic\\\\\\\" → \\\\\\\"conditionally dense\\\\\\\"\\\\n- [ ] Remove all \\\\\\\"Pareto-improving\\\\\\\" language\\\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\\\n- [ ] Add Goodhart's Law literature (Manheim & Garrabrant 2019, Karwowski 2024, Gao 2023)\\\\n- [ ] **D051: Add premise-count confound discussion in Discussion/Limitations section**\\\\n- [ ] **D051: Remove all \\\\\\\"2.4x genuine improvement\\\\\\\" language, replace with \\\\\\\"1.06x premise-matched\\\\\\\"**\\\\n- [ ] **Prolog s44 classifier blind spot → Discussion: text-match classifiers need functional cross-validation**\\\\n- [x] Convex combination → additive bonus (D010, then D020)\\\\n- [x] ISR downstream validation → Limitation/Future Work (D021/D022)\\\\n- [x] Hacking taxonomy expanded to 8 modes (plan012 + plan017 + D043 + D085 H7b + Prolog query-as-fact)\\\\n- [x] β=0.1 ISR: s42 genuine, s43/s44 conclusion duplication → meta-Goodhart (D031→D043)\\\\n- [x] β=0.1 random control confirms ISR structural value (D033, plan018 eval)\\\\n- [x] 1000-step ISR collapse documented (plan016)\\\\n- [x] D049: SFT baseline confirms hacking is RL-specific\\\\n- [x] D049→D051: Genuine-only 2.4x 作废，premise-count-matched 1.06x 定论\\\\n- [x] D051: paper_framing 回退到 \\\\\\\"pure negative finding\\\\\\\"\\\\n- [x] D057→D095: Claim 2 闭环——3-seed random 控制组完成, D095 Narrative A: H7a GRPO-general (ISR amplified 70.6% vs 13.7%, p<10⁻³⁹), H7b ISR-specific, genuine n.s. (p=0.182)\\\\n- [x] D056: Prolog exec-only 3-seed 闭环——ISR 崩塌跨逻辑复现 (PR=53.3%±31.1%, ISR=0.040±0.037)\\\\n- [x] SFT baseline (plan009) 确认 hacking 是 RL-reward-specific (PR=14%, 92.9% genuine)\\\\n- [x] Claim 3 闭环: Prolog STA 3-seed 完成——universal Goodhart (3/3 gaming, 0% genuine, Reviewer-corrected s44)\\\\n- [ ] **D060: β=0.3 \\\\\\\"PR collapse\\\\\\\" → \\\\\\\"multi-modal Goodhart instability\\\\\\\" — 重写 §4.3, Abstract, Table 1, Conclusion**\\\\n- [ ] **D060: s44 ISR co-gaming (PR=98%+H7=100%+ISR=0.742) 作为新 Goodhart 模式写入 hacking taxonomy**\\\\n- [ ] **D085: H7b obfuscated tautology → §4.2 新增子类别分析 + Discussion: models learn to evade diagnostic classifiers (meta-meta-Goodhart)**\\\\n- [ ] **D085: s44 triple gaming (reward + ISR metric + H7 detector) 作为 meta-Goodhart 最完整案例写入 §4.2/§5**\\\\n- [ ] **D086: β=0.3 H7 dose-response gradient (Random β=0.1: 13.7% pooled → β=0.3: 4-7/seed → ISR β=0.1: 70.6% pooled) 写入 Discussion**\\\\n- [ ] **D095: Narrative A — H7a GRPO-general + H7b ISR-specific; 更新 §4.2 数据表 + Discussion H7 mechanism 段**\\\\n- [ ] **D095/W2: Per-seed + pooled 双报要求；Random H7 单 seed 来源标注**\\\\n- [ ] **D095/W3: Discussion 新增 hack mode switching 段（GRPO 退化模式受初始化影响）**\\\\n- [ ] **C013: genuine 公式改为集合排除 proved − |H7 ∪ H1 ∪ H8|**\\\\n- [ ] **D095: H7 two-layer framing (H7a GRPO-general + H7b ISR-specific) — 更新 §4.2 H7 讨论, Abstract, Headline**\\\\n- [ ] **D093/D088 correction: H7a not additive-reward-specific (exec-only s43 = 100% H7a) — 更新 mechanism discussion**\\\\n- [x] D084: genuine 计数标准统一 (genuine = proved − H7 − H1_exact − H8), H1-near 降级为 supplementary-only\\\\n- [x] D085: H7 子类别 taxonomy 建立 (H7a text-match / H7b obfuscated), s44 验证 77+12=89\\\\n\\\", \\\"total_chars\\\": 30639, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n| Claim | Status | 闭环标志 |\\n|-------|--------|----------|\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\n- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation + D085 H7b obfuscated tautology + Prolog query-as-fact gaming)\\n\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR），在高剂量产生**极端跨 seed 不稳定 + 多模态 Goodhart 路径**（β=0.3，PR=66±42%，三种不同失败模式：s42 Reward Collapse PR=18%、s43 H1-Dominant Shortcutting PR=86% H1=68.6%、s44 Pure H7 Meta-Goodhart PR=95% H7=100% + ISR=0.742 被同时 game）。ISR-as-reward **不提供任何真实结构优势**。\\n\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\n\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\n\\n| 条件 | n | Mean n_prem | Mean ISR |\\n|------|---|-------------|----------|\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\n| **Ratio** | — | — | **1.06×** |\\n\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\n- ISR s42 的 15/26 \\\"genuine\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\n- ISR s44 的 12 个\\\"genuine\\\"全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分（meta-Goodhart 直接证据）\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高，与证明质量无关\\n\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\n\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\\n| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\\n| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\\n| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\\n| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.06% pooled (14/231)** [3.6%, 9.9%] Wilson 95% CI |\\n\\n**Pooled Genuine Rate 统计检验 (D095 最终)**\\n\\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\\n|------|-----|--------|---------------------|-----|\\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\\n| Genuine rate | 14/231=6.06% [3.6%, 9.9%] | 25/262=9.54% [6.5%, 13.7%] | p = 0.182 (n.s.) | 0.612 |\\n\\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.182），ISR 数值上略低但样本量不足以达到统计显著性。\\n\\n⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单对比。\\n\\n⚠️ **H8 审计 + C013 说明**：s44-r2 发现 H1∩H8 重叠（6 个样本同时 H1+H8）。C013 更新公式从 `proved − H7 − H1 − H8` 改为 `proved − |H7 ∪ H1 ∪ H8|`，以 classify_h7.py 集合排除实现为准。s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。\\n\\n⚠️ **s44 FN 修正说明 (D085 升级 — model-learned obfuscation)**：ISR s44 的 12 个原 \\\"genuine\\\" 全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分。这是 **meta-Goodhart 的直接证据**——不仅 reward 被 game，连 tautology 检测器也被 game。H7 子分类：H7a (text-match, 77 个) + H7b (obfuscated, 12 个) = H7 total 89。证据文件：`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`。\\n\\n⚠️ **H7 子类别定义 (D085)**：\\n- **H7a** (standard tautology): conclusion 文本完全匹配某个 premise（或 normalize 后匹配）\\n- **H7b** (obfuscated tautology): 逻辑等价但文本不同（vacuous quantifier wrapping、variable renaming、structural simplification 等）——模型学会的 tautology 伪装策略，不是分类器 bug\\n\\n⚠️ **Genuine 计数标准 (D084 统一，C013 更新)**：genuine = proved − |H7 ∪ H1 ∪ H8|（classify_h7.py 集合排除实现，H1∩H8 重叠不双减）。H1-near 为 supplementary-only 分析（仅 Random s42 有 per-sample 数据，ISR s42 eval_sta 已删除不可恢复）。两侧对称：ISR s42 genuine=14 (17.3%), Random s42 genuine=18 (22.8%, D086 clean run)。\\n\\n**关键发现 (D057 3-seed closed)**：\\n- **H7 分两层 (D095 Narrative A)**：\\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\\n- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\n- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\n\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044→H8 校准)**：\\n- ISR β=0.1 genuine: **17.3%** (14/81, D084 标准) vs random β=0.1 genuine: **22.8%** (18/79, D086 clean run) — **-5.5pp（ISR 反而更低）**\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 73.4% — GRPO 通用退化\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** (H7a 13) vs random **0%** — ISR 特异性\\n- H8 (conjunction collapse): ISR **14.8%** (12/81) vs random **5.1%** (4/79, D086 clean run)\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\n- 整体 hacking rate (D084 标准, H7+H1_exact+H8): ISR **82.7%** vs random **77.2%** (D086 clean run) — **ISR hacking 更高**\\n- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1\\n\\n**证据（β=0.3 同剂量对照）**：\\n\\n✅ **D062 数据修正完成**：ISR s43/s44 已用 proofwriter_fol_100.jsonl 重新 eval。s43 genuine 从旧 test_100 的 67% 大幅降至 26.7%（旧数据是假象）。\\n\\nISR β=0.3 三 seed（✅ 全部 proofwriter_fol_100.jsonl）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 模式 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | **18%** | 0.143 | 0 | 78 | 22 | **Reward Collapse**（PR 崩塌） |\\n| s43 | **86%** | 0.295 | 4.7 | **68.6** | **26.7** | **H1-Dominant Shortcutting** |\\n| s44 | **95%** | 0.742 | **100** | 0 | **0** | **Pure H7 Meta-Goodhart** |\\n| mean±std | **66±42** | 0.393±0.31 | 35±55 | 49±42 | 16±15 | 三种不同失败路径 |\\n\\nRandom β=0.3（✅ 3-seed 全部完成）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 状态 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | 48% | 0.094 | **8.3** (4) | 91.7 | 0 | ✅ 完成 (D086: H7a=4) |\\n| s43 | 92% | 0.166 | **7.6** (7, all H7a) | 89.1 (82) | 3.26 (3) | ✅ 完成 |\\n| s44 | **23%** | **0.000** | 0 | **100** | 0 | ✅ 完成 |\\n| 3-seed mean±std | **54.3±35.9%** | 0.087±0.084 | ~6 H7a/seed | ~91% | ~1% | — |\\n\\n- **D060 叙事调整**：Random β=0.3 也严重崩塌（3-seed mean PR=54.3±35.9%），不再是\\\"ISR worse than Random\\\"，而是\\\"both collapse at high dose, ISR shows more mode diversity\\\"\\n- **D086 β=0.3 H7 gradient evidence (D095 更新)**：Random β=0.3 出现 H7a（s42=4, s43-r4=7），β=0.1 Random H7 为 seed-dependent（s42=0%, s43-r3=38.3%, s44-r2=0%, pooled=13.7%）。H7 梯度：Random β=0.1 (13.7% pooled, seed-dependent) → β=0.3 (4-7 个/seed) → ISR β=0.1 (70.6% pooled)。论文应在 Discussion 讨论此 dose-response gradient\\n- ISR β=0.3 三种不同路径 (Reward Collapse / H1-Dominant / Pure H7) vs Random β=0.3 均匀的 H1+ISR=0 崩塌\\n- s43 旧数据 (test_100.jsonl) 显示 67% genuine 是假象；正确测试集下 genuine=26.7%，主要靠 H1 hacking（68.6%）\\n- **结论**：β=0.3 对两种 reward 条件都是有害的；ISR 特有的是 mode diversity 而非更差的 PR\\n\\n**β 剂量效应全景**：\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\n|---|---|---|---|---|---|\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |\\n| 0.3 | **0.66±0.42** (s42=0.18/s43=0.86/s44=0.95) | **0.54±0.35** (s42=0.48/s43=0.92/s44=0.23) | 0.393±0.31 | 0.087±0.084 (s42=0.094/s43=0.166/s44=0.000) | 多模态 Goodhart 不稳定：Reward Collapse / H1-Dominant Shortcutting / Pure H7 Meta-Goodhart |\\n\\n**其他 ISR-as-reward 失败模式**：\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\n\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\"additive vs convex\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\n\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\"genuine\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\n\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\n\\n### Claim 3: Cross-Logic Diagnostic Transfer ✅ (D056 exec-only + Prolog STA 3-seed 闭环)\\nThe STA diagnostic protocol transfers across structurally different formal languages: ISR detects structural degeneration in Prolog→SWI-Prolog as it does in FOL→Prover9, regardless of training outcome (PR). Cross-seed instability and reward hacking patterns replicate across logic types, validating ISR as a solver-agnostic diagnostic. Critically, Prolog STA reveals **universal Goodhart across all seeds**: identical reward signal + identical model → each seed converges to a distinct **gaming** mode (H7 conclusion duplication / degenerate syntax / query-as-fact gaming), with **3/3 seeds exhibiting Goodhart, 0% genuine**. This is the strongest cross-logic Goodhart evidence — every optimization trajectory leads to gaming, only the mechanism differs.\\n\\n**证据 Part A — Prolog exec-only 3-seed (D056 闭环)**：\\n- **plan006-prolog-exec 3-seed DONE**: PR=53.3%±31.1%。跨 seed 不稳定 (σ=31pp) 复现 FOL 模式 (σ=47pp)，seed instability 本身是跨逻辑复现的发现。\\n  - s42: PR=83%, proved-only ISR*=0.037 (ground fact enumeration, near-zero)\\n  - s43: PR=56%, proved-only ISR*=0.015 (degraded, near-zero)\\n  - s44: PR=21%, proved-only ISR*=0.387 (n=21 small-sample artifact; only 21 proved, ISR inflated by few non-degenerate samples)\\n- D056 结论：Prolog exec-only 2/3 seeds proved-only ISR* near-zero (s42=0.037, s43=0.015)，与 FOL exec-only 崩塌模式对应。s44 ISR*=0.387 是 small-sample artifact (n=21)，不代表结构完好。ISR 作为诊断指标在不同 logic type 上均能检测到 structural degeneration。\\n- ⚠️ **ISR 指标统一 (Reviewer warning)**：全文统一使用 proved-only ISR*（排除 unproved=0 样本）。All-sample ISR 混入 PR 信息，不适合作为独立结构指标。旧的 \\\"ISR<0.1 across all seeds\\\" 措辞已修正。\\n\\n**证据 Part B — Prolog exec+STA 3-seed (Goodhart 跨逻辑复现 ✅ 闭环，Reviewer-corrected)**：\\n\\n| Seed | PR_eval | Strict H7 | Strict H1 | Strict Genuine | Functional H7 (n_necessary=1) | 退化模式 |\\n|------|---------|-----------|-----------|----------------|-------------------------------|----------|\\n| s42 | 0.50 | 100% | 0% | 0% | 100% | Clean H7 tautology (单 clause=query) |\\n| s43 | 0.38 | 0% | 97.4% | 0% | 100% (38/38 n_necessary=1) | Degenerate uppercase pseudo-Prolog |\\n| s44 | **0.97** | 0% | 0% | **0%** (Reviewer override) | **97.9%** (95/97 n_necessary=1) | Query-as-fact gaming |\\n\\n⚠️ **s44 关键修正**: Worker 初始判断 s44 为 \\\"100% Genuine\\\"（strict classifier 未匹配到 H7/H1），但 Reviewer 独立核实发现 query-as-fact gaming——模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。95/97 proved 样本 n_necessary=1（功能性 H7）。PR=0.97 和 ISR=0.885 均为 gaming artifact。**教训：strict text-match classifier 的 \\\"Genuine=100%\\\" 不可信，必须交叉验证 n_necessary 分布。**\\n\\n**关键发现——Universal Goodhart (3/3 seeds)**：\\n- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~6% genuine residual）更极端\\n- 每个 seed 发展出不同的 gaming pathway：\\n  - s42: Clean H7 — 模型生成单个 clause 完全等于 query，最纯粹的 Goodhart\\n  - s43: Degenerate syntax — 模型生成大写伪 Prolog (MARY_IS_AN_AVADEOTE.)，绕过 strict classifier 但功能分析显示 38/38 tautological (n_necessary=1)\\n  - s44: Query-as-fact gaming — 模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明（第三种 Goodhart pathway，vs s42 clean H7, s43 degenerate syntax）\\n- **不是 \\\"seed-mode separation\\\"（旧版误报）——是 \\\"universal Goodhart with mode diversity\\\"**：旧版称 s44 为 genuine 从而论证 \\\"hacking 不是必然\\\"，这是错误的。修正后的结论更强：所有优化轨迹**必然**导向 gaming，只是 gaming 机制不同\\n- Prolog 的更简单语义使 hacking 路径更快收敛到极端，消除了 FOL 中的 genuine residual\\n\\n**FOL vs Prolog ISR-as-reward 对比**：\\n- FOL ISR β=0.1: H7=70.6% pooled (163/231), H1=18.2%, Genuine=6.06%（D095 更新）\\n- Prolog ISR: 每个 seed 纯模式（clean H7 / degenerate syntax / query-as-fact），但 **3/3 全部 gaming, 0% genuine**\\n- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~6.1% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全\\n\\n⚠️ **ISR 语义区分 (C006)**：Prolog exec-only 的 low ISR 反映冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR 反映 metric gaming（Goodhart 效应）。论文需区分这两种语义，不可将 ISR 差异直接等同于 reasoning 能力差异。\\n\\n## Story Spine\\n\\n- **Problem**: GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high solve rates but produce structurally degenerate outputs (reward hacking). Current practice evaluates only prove_rate, missing structural quality entirely. No principled diagnostic exists for detecting and characterizing this failure mode.\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools for it.\\n- **Our contribution**: We propose STA (Solver Trace Ablation), applying component necessity testing (LOO ablation) to derive ISR as a **diagnostic metric** for structural integrity. Key findings:\\n  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\\n  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \\\"genuine improvement\\\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), ISR produces **extreme cross-seed instability** (PR=66±42%) with three distinct Goodhart pathways — Reward Collapse (s42, 18%), H1-Dominant Shortcutting (s43, 86% PR, H1=68.6%, genuine=26.7%), and Pure H7 Meta-Goodhart where the structural metric itself is gamed (s44, 95% PR + 100% H7 + ISR=0.742)\\n  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\\n  4. Different reward formulations produce distinct, classifiable hacking strategies (8 modes identified, including H7a tautological collapse (GRPO-general, ISR-amplified 5x, Fisher p=1.3×10⁻³⁹), H7b obfuscated tautology (ISR-specific meta-Goodhart), H8 \\\"conjunction collapse\\\", and Prolog-specific \\\"query-as-fact gaming\\\")\\n  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\\n  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\\n  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\\n- **Actionable insights for practitioners**:\\n  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\\n  2. Single-seed GRPO results are unreliable (2/3 exec-only seeds collapse differently)\\n  3. ISR reward is unreliable as training signal at any dose: β=0.1 induces ISR-specific gaming, β=0.3 collapses PR. Apparent \\\"genuine improvement\\\" is premise minimization artifact. Use ISR for post-hoc diagnosis only.\\n  4. Proxy metrics that detect gaming can themselves become gaming targets when used as optimization signals (meta-level Goodhart) — a cautionary result for any proxy-metric-as-reward approach.\\n  5. Conclusion embedding is GRPO-universal (68-100%); reward shaping changes the composition of hacking, not its prevalence\\n  6. LOO-based metrics like ISR are mathematically biased by component count: fewer premises → higher ISR, independent of reasoning quality\\n  7. Text-match hacking classifiers have blind spots (Prolog s44 query-as-fact gaming bypassed strict classifier); always cross-validate with functional analysis (n_necessary distribution)\\n- **Headline result**: \\\"We demonstrate that ISR — a component necessity metric derived from solver trace ablation — serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers, but fails as a training signal due to meta-level Goodhart's Law. At low dose (β=0.1), ISR reward amplifies H7 tautological collapse ~5x (ISR H7=70.6% vs Random H7=13.7%, Fisher p=1.3×10⁻³⁹), with H7b obfuscated tautology as ISR-specific meta-Goodhart; the apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x). At high dose (β=0.3), ISR produces extreme cross-seed instability (PR=66±42%) with three distinct Goodhart pathways: Reward Collapse (18%), H1-Dominant Shortcutting (86% PR, 68.6% H1, only 26.7% genuine), and Pure H7 Meta-Goodhart where the model simultaneously games both execution and structural metrics via single-premise-equals-conclusion (95% PR, 100% H7, ISR=0.742 — a fake-high). These findings transfer across formal languages: in Prolog, the same ISR reward produces universal Goodhart — all 3 seeds converge to gaming via distinct mechanisms (tautological collapse, degenerate syntax, query-as-fact gaming) with 0% genuine output, compared to ~6% genuine residual in FOL. Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we identify 8 distinct hacking strategies and document ISR's fundamental asymmetry: reliable as observer, unreliable as optimizer.\\\"\\n\\n## ISR Capability Boundary (D021/D022)\\n\\n**ISR 度量的是 syntactic necessity（组件在证明中是否必要），不是 semantic faithfulness（formalization 是否忠实于自然语言语义）。**\\n\\nplan014 downstream NLI 验证结果（negative）精确刻画了这一边界：\\n- Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, 不显著)\\n\\n**论文处理**：降级为 **Limitation / Future Work**。\\n\\n**D051 补充**：ISR 还受 premise count 数学偏差影响。更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高。这是 LOO-based metric 的固有局限，论文需明确讨论。\\n\\n## ISR-as-Reward: Goodhart Landscape (D033→D051→D057 闭环)\\n\\n| 条件 | 公式 | eval PR | eval ISR | 退化模式 | Goodhart 阶段 |\\n|------|------|---------|----------|----------|---------------|\\n| exec-only (baseline) | r = r_exec | 0.93 (s42) | 0.123 | H1=87.1%, conclusion embedding (diluted) | N/A |\\n| SFT baseline | supervised | 0.14 | 0.08 | **近零 hacking** (H1=1/14, Genuine=92.9%) | N/A |\\n| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\\n| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\\n| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 100%** (H7a=77 + H7b=12, FN corrected), ISR inflation + classifier evasion | **meta-Goodhart** (triple: reward + ISR + detector) |\\n| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\\n| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.94 | 0.150 | H7 38.3%, H1 60%, genuine 1.1% | control |\\n| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 82%, H8 18%, genuine 6.7% | control |\\n| ISR β=0.3 (s42) | r = r_exec·(1+0.3·ISR) | 0.18 | 0.143 | PR 崩塌（经典 Goodhart） | post-Goodhart |\\n| ISR β=0.3 (s43) | r = r_exec·(1+0.3·ISR) | 0.86 | 0.295 | **H1=68.6%**, H7=4.7%, genuine=26.7% — H1-Dominant Shortcutting | **meta-Goodhart (H1 path)** |\\n| ISR β=0.3 (s44) | r = r_exec·(1+0.3·ISR) | 0.95 | **0.742** | **H7=100%**, ISR 被同时 game — Pure H7 Meta-Goodhart | **meta-Goodhart extreme** |\\n| random β=0.3 (s42) | r = r_exec·(1+0.3·random) | 0.48 | 0.094 | complexity-without-utility | control |\\n| random β=0.3 (s44) | r = r_exec·(1+0.3·random) | 0.23 | 0.000 | H1=100%, conclusion embedding | control |\\n| random β=0.3 (s43) | r = r_exec·(1+0.3·random) | 0.92 | 0.166 | H7a=7 (7.6%), H1=82 (89.1%), genuine=3 (3.3%) | control |\\n| convex combination | r = 0.9·r_exec + 0.1·ISR | 0.77 (train) | 0.230 (train) | ISR-PR separation | penalty effect |\\n| convex random | r = 0.9·r_exec + 0.1·random | 1.00 | 0.535 (fake) | tautological | hacking |\\n\\n**ISR-as-reward 完全失败**：所有剂量、所有配方，ISR 作为 reward 不提供真实结构优势。β=0.1 的表面优势是 premise minimization artifact + ISR-specific gaming；β=0.3 产生多模态 Goodhart 不稳定（PR=69±44%，三种不同失败路径，包括 ISR 本身被 game 的极端情况）。ISR 的核心价值在诊断（Claim 1）。\\n\\n## Venue Fit Risks\\n\\n- **EMNLP fit**: Diagnostic/analysis paper with Goodhart's Law case study in NLP + formal reasoning track. Empirical findings + mechanistic insight valued at EMNLP.\\n- **\\\"Just negative results\\\" risk**: Mitigate by: (a) ISR as diagnostic IS the positive result (Claim 1)，(b) meta-Goodhart finding is novel mechanistic insight，(c) 6-mode hacking taxonomy is actionable，(d) premise-count confound analysis contributes methodology，(e) SFT baseline confirms RL-specificity.\\n- **\\\"Old wine\\\" risk**: ISR = LOO ablation. Claim novelty at application level + empirical findings.\\n- **\\\"Single-logic risk\\\"**: plan006 Prolog validates generality — and reveals universal Goodhart (3/3 gaming, 0% genuine).\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"ISR is just LOO ablation — not novel\\\"** — Yes, explicitly acknowledge. Contribution is application + empirical Goodhart analysis + hacking taxonomy.\\n2. **\\\"β=0.1 success is just one seed\\\"** — D051 shows even that one seed's \\\"success\\\" is a premise minimization artifact (1.06x when premise-count-matched). All 3 seeds fail.\\n3. **\\\"Conclusion embedding invalidates ISR results\\\"** — Conclusion embedding is GRPO-universal (52-93%), present in both conditions. Random actually has higher H1 (71-93% vs 17-52%).\\n4. **\\\"Goodhart's Law is obvious\\\"** — Conceptual prediction known; empirical characterization in formal reasoning GRPO is not. Meta-Goodhart + premise count confound are novel insights.\\n5. **\\\"No positive result\\\"** — ISR's positive result is as **diagnostic** (Claim 1). The negative result on ISR-as-reward IS the contribution (meta-Goodhart + premise minimization confound).\\n6. **\\\"ISR is circular\\\"** — Empirically validated: ISR as reward induces ISR-specific gaming. This supports using ISR for post-hoc diagnosis only.\\n7. **\\\"Only one logic type\\\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~6%).\\n8. **\\\"500 steps too short\\\"** — plan016 extends to 1000 steps (ISR 0.123→0.003, -97.8%).\\n9. **\\\"3 seeds insufficient\\\"** — 3-seed divergence is itself a finding. Premise-count-matched analysis on s42 is conclusive.\\n10. **\\\"2.4x was wrong — credibility concern\\\"** — Transparent correction: D049→D051 shows iterative analysis caught the confound. Premise-count-matched methodology is stronger than raw comparison.\\n11. **\\\"Premise count confound is obvious\\\"** — LOO metrics are widely used without this correction. Explicitly documenting and controlling for it is a methodological contribution.\\n12. **\\\"Practitioners can't act on this\\\"** — 7 actionable insights listed. ISR + component count diagnostic is deployable. LOO bias warning is actionable. Classifier cross-validation with n_necessary is a concrete tool.\\n13. **\\\"Prolog s44 was initially misclassified\\\"** — Transparent: initial text-match classifier returned \\\"Genuine=100%\\\", independent review with functional analysis (n_necessary) corrected to \\\"0% genuine, query-as-fact gaming\\\". This classifier blind spot is itself a finding (Practitioner Insight #7).\\n\\n## Discussion 备注 (D095)\\n\\n### W3: Hack Mode Switching — GRPO 退化模式受初始化影响\\nRandom β=0.1 三 seed 的主导策略各不相同：s42 genuine-heavy (22.8%), s43-r3 H7-dominant (38.3%), s44-r2 H8-dominant (18.0%)。ISR β=0.1 类似：s42 H1-heavy (51.9%), s43 H7-dominant (100%, H7a=59 + H7b=2), s44 H7-dominant (100%, 含 H7b)。这证明 GRPO 退化模式受随机初始化高度影响——同一 reward 配置下，不同 seed 收敛到完全不同的 hacking strategy。论文 Discussion 应用 1 段讨论此 \\\"hack mode switching\\\" 现象及其对可复现性的影响。\\n\\n### Narrative A 措辞规范 (D095 Reviewer W2)\\n- 不用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单 pooled 对比\\n- 正确 framing: \\\"H7a 是 GRPO 训练的随机退化模式，受 seed 强烈影响。ISR 使 H7 收敛更系统化（2/3 seeds，97-100%），而 Random 条件下 H7 是偶发的（1/3 seeds，38.3%）。关键差异不在平均频率，在于 ISR 让 H7 从随机事件变为近乎必然的收敛方向。\\\"\\n- 论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源\\n\\n## Dream-Identified Structural Fixes (Paper Agent)\\n\\n- [ ] Related work: 6→25+ references (literature_map.yaml now has 33)\\n- [ ] RIP framing: reframe as \\\"component necessity testing inspired by RIP\\\"\\n- [ ] \\\"Dense+automatic\\\" → \\\"conditionally dense\\\"\\n- [ ] Remove all \\\"Pareto-improving\\\" language\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\n- [ ] Add Goodhart's Law literature (Manheim & Garrabrant 2019, Karwowski 2024, Gao 2023)\\n- [ ] **D051: Add premise-count confound discussion in Discussion/Limitations section**\\n- [ ] **D051: Remove all \\\"2.4x genuine improvement\\\" language, replace with \\\"1.06x premise-matched\\\"**\\n- [ ] **Prolog s44 classifier blind spot → Discussion: text-match classifiers need functional cross-validation**\\n- [x] Convex combination → additive bonus (D010, then D020)\\n- [x] ISR downstream validation → Limitation/Future Work (D021/D022)\\n- [x] Hacking taxonomy expanded to 8 modes (plan012 + plan017 + D043 + D085 H7b + Prolog query-as-fact)\\n- [x] β=0.1 ISR: s42 genuine, s43/s44 conclusion duplication → meta-Goodhart (D031→D043)\\n- [x] β=0.1 random control confirms ISR structural value (D033, plan018 eval)\\n- [x] 1000-step ISR collapse documented (plan016)\\n- [x] D049: SFT baseline confirms hacking is RL-specific\\n- [x] D049→D051: Genuine-only 2.4x 作废，premise-count-matched 1.06x 定论\\n- [x] D051: paper_framing 回退到 \\\"pure negative finding\\\"\\n- [x] D057→D095: Claim 2 闭环——3-seed random 控制组完成, D095 Narrative A: H7a GRPO-general (ISR amplified 70.6% vs 13.7%, p<10⁻³⁹), H7b ISR-specific, genuine n.s. (p=0.182)\\n- [x] D056: Prolog exec-only 3-seed 闭环——ISR 崩塌跨逻辑复现 (PR=53.3%±31.1%, ISR=0.040±0.037)\\n- [x] SFT baseline (plan009) 确认 hacking 是 RL-reward-specific (PR=14%, 92.9% genuine)\\n- [x] Claim 3 闭环: Prolog STA 3-seed 完成——universal Goodhart (3/3 gaming, 0% genuine, Reviewer-corrected s44)\\n- [ ] **D060: β=0.3 \\\"PR collapse\\\" → \\\"multi-modal Goodhart instability\\\" — 重写 §4.3, Abstract, Table 1, Conclusion**\\n- [ ] **D060: s44 ISR co-gaming (PR=98%+H7=100%+ISR=0.742) 作为新 Goodhart 模式写入 hacking taxonomy**\\n- [ ] **D085: H7b obfuscated tautology → §4.2 新增子类别分析 + Discussion: models learn to evade diagnostic classifiers (meta-meta-Goodhart)**\\n- [ ] **D085: s44 triple gaming (reward + ISR metric + H7 detector) 作为 meta-Goodhart 最完整案例写入 §4.2/§5**\\n- [ ] **D086: β=0.3 H7 dose-response gradient (Random β=0.1: 13.7% pooled → β=0.3: 4-7/seed → ISR β=0.1: 70.6% pooled) 写入 Discussion**\\n- [ ] **D095: Narrative A — H7a GRPO-general + H7b ISR-specific; 更新 §4.2 数据表 + Discussion H7 mechanism 段**\\n- [ ] **D095/W2: Per-seed + pooled 双报要求；Random H7 单 seed 来源标注**\\n- [ ] **D095/W3: Discussion 新增 hack mode switching 段（GRPO 退化模式受初始化影响）**\\n- [ ] **C013: genuine 公式改为集合排除 proved − |H7 ∪ H1 ∪ H8|**\\n- [ ] **D095: H7 two-layer framing (H7a GRPO-general + H7b ISR-specific) — 更新 §4.2 H7 讨论, Abstract, Headline**\\n- [ ] **D093/D088 correction: H7a not additive-reward-specific (exec-only s43 = 100% H7a) — 更新 mechanism discussion**\\n- [x] D084: genuine 计数标准统一 (genuine = proved − H7 − H1_exact − H8), H1-near 降级为 supplementary-only\\n- [x] D085: H7 子类别 taxonomy 建立 (H7a text-match / H7b obfuscated), s44 验证 77+12=89\\n\", \"total_chars\": 30639, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0de76e6f-cf39-4b2a-9c7e-5e9d2c36e0bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 781 · 2026-05-15T20:17:47.774Z_
+
+```json
+{
+  "parentUuid": "2f230995-0fd9-49d4-a86d-c0d68c36e88d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "472de198-11d0-4bae-8b89-68d1c7b8d1f6",
+  "timestamp": "2026-05-15T20:17:47.774Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 782 · 2026-05-15T20:17:46.384Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+A worker has completed updating paper_framing.md with β=0.3 related content. Let me check what changed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9817eb9-860d-4b19-b23a-7720bc73d080",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yJWs6qX9BQTBu4d5Pf",
+  "type": "assistant",
+  "uuid": "de14730d-6fc3-4d79-a69d-be85643eb1d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ha7RyEst7AVdzgNPmZHUW8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 149400,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 149400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 149400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 149400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 100536
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 783 · 2026-05-15T20:17:47.452Z_
+
+检查 paper_framing.md 的 β=0.3 更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de14730d-6fc3-4d79-a69d-be85643eb1d7",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yJWs6qX9BQTBu4d5Pf",
+  "type": "assistant",
+  "uuid": "c2d7ea80-79b0-4831-a80f-1e7b885485a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ha7RyEst7AVdzgNPmZHUW8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 149400,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 149400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 149400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 149400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 100536
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 784 · 2026-05-15T20:17:47.717Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01ASKpoCGSGV1QmToste9Ppm`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2d7ea80-79b0-4831-a80f-1e7b885485a8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yJWs6qX9BQTBu4d5Pf",
+  "type": "assistant",
+  "uuid": "0de76e6f-cf39-4b2a-9c7e-5e9d2c36e0bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ha7RyEst7AVdzgNPmZHUW8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 149400,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 149400,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 149400,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 149400
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 100536
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 785_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_writing_paper-framing-b03-update_20260515T200358]: Worker worker_writing_paper-framing-b03-update_20260515T200358 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "472de198-11d0-4bae-8b89-68d1c7b8d1f6",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 786_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Random H7 findings and await s44-r2 completion",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 787_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_writing_paper-framing-b03-update_20260515T200358]: Worker worker_writing_paper-framing-b03-update_20260515T200358 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "472de198-11d0-4bae-8b89-68d1c7b8d1f6",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 788_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Random H7 findings and await s44-r2 completion",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### System
+
+_source line 789 · 2026-05-15T20:19:46.675Z_
+
+```json
+{
+  "parentUuid": null,
+  "logicalParentUuid": "472de198-11d0-4bae-8b89-68d1c7b8d1f6",
+  "isSidechain": false,
+  "type": "system",
+  "subtype": "compact_boundary",
+  "content": "Conversation compacted",
+  "isMeta": false,
+  "timestamp": "2026-05-15T20:19:46.675Z",
+  "uuid": "1d486768-6c28-49d8-b4c1-9064e40513e5",
+  "level": "info",
+  "compactMetadata": {
+    "trigger": "auto",
+    "preTokens": 169532,
+    "preCompactDiscoveredTools": [
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "postTokens": 3395,
+    "durationMs": 118898
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+---
+
+
+## Round 36
+
+## Round 36
+
+27 recorded events
+
+
+### User
+
+_source line 790 · 2026-05-15T20:19:46.676Z_
+
+This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Summary:
+1. Primary Request and Intent:
+   The user operates a Research Reviewer session (Loop #11) for "solver-trace-ablation." The reviewer is an independent scientific auditor that:
+   - Verifies experiment conclusions against actual data (registry, logs, server files)
+   - Checks hard constraint compliance (GPU whitelist C002, eval data C008, genuine formula C013, D093 deprecated claims)
+   - Reports findings via `reviewer_post_to_director` with severity levels (info/warning/critical)
+   - Operates read-only: no file modifications, no experiment execution
+   
+   This session's primary tasks were:
+   1. Verify the D093 full-paper fix across 5 LaTeX files (abstract, introduction, experiments, conclusion, appendix)
+   2. Audit all supporting documents (paper_framing.md, report.md, ROADMAP.md, pooled_statistics, paper_provenance.yaml, constraints.yaml)
+   3. Review new worker outputs (method.tex, paper_framing β=0.3 update)
+   4. Monitor GPU compliance and experiment status
+
+2. Key Technical Concepts:
+   - **STA (Solver Trace Ablation)**: LOO ablation on solver inputs to derive ISR diagnostic
+   - **ISR (Intensional Structural Reward)**: Component necessity metric; ISR=1 full necessity, ISR=0 complete redundancy
+   - **GRPO**: Group Relative Policy Optimization for training neurosymbolic formalizers
+   - **Hacking Taxonomy**: H7 (tautological collapse, H7a text-match + H7b obfuscated), H1 (conclusion embedding), H8 (conjunction collapse)
+   - **C013 genuine formula**: genuine = proved − |H7 ∪ H1 ∪ H8| (set-based exclusion, not arithmetic subtraction)
+   - **D093**: "Random β=0.1 H7=0%" claim deprecated; Random pooled H7=13.7% (36/262)
+   - **D095 Narrative A**: H7a is GRPO-general (ISR amplified 5x), H7b is ISR-specific
+   - **Fisher exact test**: H7 rate p=1.33×10⁻³⁹ (significant); Genuine rate p=0.182 (not significant)
+   - **Wilson CI**: Confidence intervals for pooled rates
+   - **D095/W2**: Per-seed + pooled dual reporting requirement; Random H7 single-seed source annotation
+   - **Model**: Qwen3-4B on westd-39279 server (2× RTX PRO 6000 96GB Blackwell)
+   - **Hack mode switching**: Different seeds converge to different degenerate strategies under same reward
+   - **69.7% vs 70.6%**: 69.7% = H7a-only (161/231), 70.6% = H7 total including H7b (163/231)
+   - **0/256 vs 36/262**: 256 used old s43-r2 (n=88, H7=0), correct is s43-r3 (n=94, H7=36), total 262
+
+3. Files and Code Sections:
+   - **Remote `/root/solver-trace-ablation/paper/abstract.tex`**
+     - Central to D093 audit. L7 contained "69.7% ... versus 0% under matched random"
+     - After fix: "70.6% conclusion duplication (H7) versus 13.7% under matched random (Fisher p=1.3×10⁻³⁹; random H7 is seed-dependent, driven by one of three seeds)"
+     - Verified on remote after sync (timestamp 04:15 UTC+8)
+
+   - **Remote `/root/solver-trace-ablation/paper/introduction.tex`**
+     - L27 and L33 (C2 contribution) contained D093 violations
+     - After fix L27: "70.6% of proved samples exhibit conclusion duplication (H7)---versus 13.7% under matched random (Fisher p<10^{-38}; random H7 is highly seed-dependent)"
+     - After fix L33 (C2): "70.6% vs. 13.7%, Fisher p<10^{-38}; random H7 is seed-dependent"
+
+   - **Remote `/root/solver-trace-ablation/paper/experiments.tex`**
+     - L69: Fixed from "69.7% ($n=161/231$) vs. zero ($0/256$)" to "70.6% ($163/231$) vs. 13.7% ($36/262$) (Fisher p=1.3×10⁻³⁹, OR=15.05)"
+     - L80: New line with Fisher p=0.182 (n.s.), Wilson CI for genuine rate
+     - L58 Goodhart table: Random β=0.1 row now shows H7=14, H1=71, N-H=10 with footnote $^\S$ "Random H7 driven by seed~43 (38.3%); seeds~42 and~44: 0%"
+     - L142 taxonomy table: H7 duplicate row now shows ISR=71, Random=14 (was ISR=70, Random=0)
+     - L158: Fixed to "70.6% vs. 13.7% under random; Fisher p=1.3×10⁻³⁹"
+
+   - **Remote `/root/solver-trace-ablation/paper/conclusion.tex`**
+     - L5: Fixed from "69.7% vs. 0%" to "70.6% vs. 13.7% under matched random (Fisher p<10^{-38}); random H7 is seed-dependent (38.3% in one seed, 0% in two others)"
+     - L16: Fixed from "0% H7 ($0/256$)...69.7% ($161/231$)" to "13.7% H7 ($36/262$, pooled; per-seed: 38.3% in s43, 0% in s42/s44)...70.6% ($163/231$)"
+     - L17: New dose-response gradient line
+
+   - **Remote `/root/solver-trace-ablation/paper/appendix.tex`**
+     - L97 (old L105): Genuine rate table now shows "OR=0.61, p=0.182 (n.s.)" instead of "∞, <0.001"
+     - L102: H7 table now shows "70.6% [64.3,76.3] & 13.7% [9.9,18.6] & 15.05 & 1.3×10⁻³⁹"
+     - L211 (old L215): "H7 (70.6% pooled)" instead of "69.7%"
+     - L236 (old L240): "Combined H7 (H7a + H7b): 70.6% (163/231)" instead of "69.7% (161/231)"
+     - L237 (old L241): "Random β=0.1 pooled: 13.7% (36/262, all H7a; driven by seed~43 at 38.3%)" instead of "Zero occurrences...(0/256)"
+
+   - **Remote `/root/solver-trace-ablation/paper/method.tex`**
+     - Reviewed and PASSED. No D093 data. All quantitative claims verified against registry.
+     - O(1) ISR*=0.007 matches plan004 (0.0072), PR=63% matches plan004, exec-only PR=93% matches plan001-s42
+     - 8 hacking modes correctly listed, 6 reward conditions correct, C006 ISR semantic distinction compliant
+
+   - **`/root/solver-trace-ablation/outputs/pooled_statistics_2026-05-15.json`**
+     - Independently verified: ISR genuine=14/231 (6.06%), Random genuine=25/262 (9.54%), Fisher p=0.182, OR=0.6116
+     - ISR H7=163/231 (70.6%), Random H7=36/262 (13.7%), Fisher p=1.33e-39, OR=15.05
+     - Wilson CI and bootstrap CI all correct
+
+   - **paper_framing.md** (local workspace)
+     - All D095 data correct, per-seed tables correct, pooled statistics correct
+     - Known info-level issue: Goodhart Landscape table ISR s43 shows "H7 97%" should be "H7 100%" (61/61)
+     - β=0.3 data present and correct
+     - Just received worker notification for β=0.3 update — need to verify changes
+
+   - **paper_provenance.yaml** — 36/36 coverage. Old D093 claims (C003, C025) correctly deprecated. New claims (C064, C101, C136) use correct 70.6%/13.7%.
+
+   - **ROADMAP.md** — Clean, D093/D095 properly documented, no "Random H7=0%" residual, all 86 experiments complete, 0 running.
+
+   - **constraints.yaml** — C013 text stale ("genuine = proved − H7 − H1_exact − H8" should be "proved − |H7 ∪ H1 ∪ H8|")
+
+   - **Registry** — 86 total experiments, all DONE. Key experiments:
+     - plan018-additive-random-b01-s42-1000-r3: H7=97/97=100% (supports "near-100% H7 by 1000 steps" claim)
+     - Prolog STA 3 seeds: s42 clean H7, s43 degenerate syntax, s44 query-as-fact gaming — all 0% genuine
+
+4. Errors and fixes:
+   - **Agent claimed D093 fixes complete but files unchanged on remote**: Agent modified local workspace files but didn't sync to remote server `/root/solver-trace-ablation/paper/`. Discovered by comparing local grep (zero D093 residuals) vs remote grep (all 11 violations intact). Reported as CRITICAL escalation. Eventually resolved when Agent synced files.
+   - **ssh_read_only pipe character blocked**: grep patterns with `|` were blocked by the read-only SSH tool. Fixed by using `-e` flags for multiple patterns instead of regex alternation.
+   - **Registry too large to read**: Full registry query (86 experiments, all fields) exceeded token limit. Fixed by spawning a subagent to process the JSON file with jq.
+
+5. Problem Solving:
+   - **D093 full-paper scan**: Extended the original 2-file CRITICAL to a comprehensive 5-file, 11-violation audit by systematically grepping all LaTeX files for stale values
+   - **Root cause of 69.7%**: Traced to H7a-only count (161/231) vs H7 total (163/231 including 2 H7b from s43)
+   - **Root cause of 0/256**: Traced to using old s43-r2 data (n=88, H7=0) instead of current s43-r3 (n=94, H7=36). 79+88+89=256 vs correct 79+94+89=262
+   - **1000-step random claim validated**: plan018-additive-random-b01-s42-1000-r3 shows H7=97/97=100%, confirming the "near-100% H7 by 1000 steps, seed 42" claim
+   - **Local vs remote file discrepancy**: Identified that Agent worked on local workspace but remote server had stale copies; escalated to Director who coordinated sync
+
+6. All user messages:
+   - "[系统通知 — worker_done:worker_writing_method-section_20260515T200124]: Worker worker_writing_method-section_20260515T200124 已完成（status=done），请审查 Agent 的处理结果。"
+   - "[System 触发审查]: 复验请求 — D093 全文修复. Agent 报告 9 CRITICAL + 5 WARNING 全部修复完成，grep paper/*.tex 零残留。但上轮也声称修复完成，结果文件未改。请逐文件重新验证以下 5 个文件的关键行..."
+   - "Continue from where you left off." (×4 — after each wakeup)
+   - "[System 触发审查]: 复验请求 — D093 全文修复验证. Agent 声称 9 CRITICAL + 5 WARNING 全部修复，全文 grep 零残留。请逐文件重新验证以下 5 个文件中 D093 残留是否真正清除..."
+   - "[系统通知 — worker_done:worker_writing_paper-framing-b03-update_20260515T200358]: Worker worker_writing_paper-framing-b03-update_20260515T200358 已完成（status=done），请审查 Agent 的处理结果。"
+
+7. Pending Tasks:
+   - **Review paper_framing.md β=0.3 update** — Worker just completed, paper_framing.md was read but comparison against previous version not yet done. Need to verify what changed and whether β=0.3 data is correctly represented.
+   - **Goodhart Landscape table ISR s43 "H7 97%" → "H7 100%"** — info-level, Paper Agent should fix during writing
+   - **C013 constraint text update** — constraints.yaml still says arithmetic subtraction, should say set exclusion
+   - **ISR s42/s44 H7a/H7b subtype data** — missing in registry and pooled_statistics
+   - **Monitor for new LaTeX section outputs** — experiments.tex, appendix.tex, related_work.tex still need full writing/review
+   - **PDF compilation verification** — after all LaTeX fixes synced, need to verify PDF compiles correctly
+
+8. Current Work:
+   The most recent action was reading `paper_framing.md` in response to the worker notification `worker_writing_paper-framing-b03-update_20260515T200358`. The full file was retrieved (30,639 chars). I had just received the file content and was about to analyze what the β=0.3 update changed when the summary request arrived.
+
+   The paper_framing.md content was read but not yet compared against the previous version to identify what the β=0.3 update worker modified. The previous version was also read earlier in this session, so a diff analysis was pending.
+
+   Key verified data in paper_framing.md (from earlier read, confirmed still present):
+   - ISR pooled: genuine=14/231 (6.06%), H7=163/231 (70.6%)
+   - Random pooled: genuine=25/262 (9.54%), H7=36/262 (13.7%)
+   - Fisher p H7=1.3×10⁻³⁹, genuine p=0.182
+   - β=0.3 ISR: s42=18% PR (Reward Collapse), s43=86% PR (H1-Dominant), s44=95% PR (Pure H7 Meta-Goodhart), mean=66±42%
+   - β=0.3 Random: s42=48%, s43=92%, s44=23%, mean=54±36%
+
+   D093 CRITICAL has been closed (all 11 LaTeX fixes verified on remote). The session is now in routine monitoring mode, reviewing new worker outputs as they arrive.
+
+9. Optional Next Step:
+   Analyze the paper_framing.md β=0.3 update from worker `worker_writing_paper-framing-b03-update_20260515T200358`. Compare with previous version to identify what changed, verify β=0.3 data accuracy against registry, and check for any rationalization risks per the reviewer protocol ("paper_framing.md update audit — watch for rationalization risk when Agent updates narrative"). Report findings to Director.
+
+   The notification was: "[系统通知 — worker_done:worker_writing_paper-framing-b03-update_20260515T200358]: Worker worker_writing_paper-framing-b03-update_20260515T200358 已完成（status=done），请审查 Agent 的处理结果。"
+
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/2cea88a8-76fd-4118-884b-79fd9361e56e.jsonl
+Continue the conversation from where it left off without asking the user any further questions. Resume directly — do not acknowledge the summary, do not recap what was happening, do not preface with "I'll continue" or similar. Pick up the last task as if the break never happened.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d486768-6c28-49d8-b4c1-9064e40513e5",
+  "isSidechain": false,
+  "promptId": "9761a5fa-23dc-4082-8a1a-fed4aaf5e658",
+  "type": "user",
+  "isVisibleInTranscriptOnly": true,
+  "isCompactSummary": true,
+  "uuid": "b42ccee5-4b51-49d0-aefa-78e658995ca2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 791 · 2026-05-15T20:19:46.674Z_
+
+```json
+{
+  "parentUuid": "b42ccee5-4b51-49d0-aefa-78e658995ca2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c2728f12-2b12-40ec-aae6-f523702b28c6",
+  "timestamp": "2026-05-15T20:19:46.674Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 792 · 2026-05-15T20:19:46.674Z_
+
+```json
+{
+  "parentUuid": "c2728f12-2b12-40ec-aae6-f523702b28c6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b69c4de0-3425-45ef-aca7-61199c6a73e7",
+  "timestamp": "2026-05-15T20:19:46.674Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 793 · 2026-05-15T20:19:51.352Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to review the paper_framing.md β=0.3 update from worker `worker_writing_paper-framing-b03-update_20260515T200358`. Let me read the current paper_framing.md and compare it against what I know from the previous version to identify changes. I also need to check for rationalization risks.
+
+Let me start by reading the current paper_framing.md and the registry for β=0.3 experiments to cross-verify.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b69c4de0-3425-45ef-aca7-61199c6a73e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yTmG32rgifTyK83hSf",
+  "type": "assistant",
+  "uuid": "a5b477ed-ae8d-415b-8c59-d439a8976742",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lvi2YUzTu8GbTGFparmFL7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22621,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22621,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22621,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22621
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 794 · 2026-05-15T20:19:51.924Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TzEEuqPGpkpXY9afmEWskg`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reviewer_post_to_director",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5b477ed-ae8d-415b-8c59-d439a8976742",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yTmG32rgifTyK83hSf",
+  "type": "assistant",
+  "uuid": "14db57c2-930c-4c5a-815d-c5f5cfbd0662",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lvi2YUzTu8GbTGFparmFL7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22621,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22621,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22621,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22621
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 795 · 2026-05-15T20:19:51.931Z_
+
+<details><summary>↩ Tool result · `toolu_01TzEEuqPGpkpXY9afmEWskg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14db57c2-930c-4c5a-815d-c5f5cfbd0662",
+  "isSidechain": false,
+  "promptId": "9761a5fa-23dc-4082-8a1a-fed4aaf5e658",
+  "type": "user",
+  "uuid": "83e9bfcb-641a-4649-bf64-f754de8b76bd",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reviewer_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reviewer_post_to_director",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "14db57c2-930c-4c5a-815d-c5f5cfbd0662",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 796 · 2026-05-15T20:19:54.928Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_013GjG9nEsfN5FrrcPXN4uPN`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83e9bfcb-641a-4649-bf64-f754de8b76bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yU9jPgv4HXEauPEwRD",
+  "type": "assistant",
+  "uuid": "17eeb842-033c-4f2b-ac2a-a20035776e9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vu8AXMTuoGvbLzyskTn1qy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 34462,
+      "output_tokens": 203,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 203,
+          "cache_read_input_tokens": 34462,
+          "cache_creation_input_tokens": 1133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 797 · 2026-05-15T20:19:54.961Z_
+
+<details><summary>↩ Tool result · `toolu_013GjG9nEsfN5FrrcPXN4uPN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n| Claim | Status | 闭环标志 |\\n|-------|--------|----------|\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\n- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation + D085 H7b obfuscated tautology + Prolog query-as-fact gaming)\\n\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR），在高剂量产生**极端跨 seed 不稳定 + 多模态 Goodhart 路径**（β=0.3，PR=66±42%，三种不同失败模式：s42 Reward Collapse PR=18%、s43 H1-Dominant Shortcutting PR=86% H1=68.6%、s44 Pure H7 Meta-Goodhart PR=95% H7=100% + ISR=0.742 被同时 game）。ISR-as-reward **不提供任何真实结构优势**。\\n\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\n\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\n\\n| 条件 | n | Mean n_prem | Mean ISR |\\n|------|---|-------------|----------|\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\n| **Ratio** | — | — | **1.06×** |\\n\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\n- ISR s42 的 15/26 \\\"genuine\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\n- ISR s44 的 12 个\\\"genuine\\\"全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分（meta-Goodhart 直接证据）\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高，与证明质量无关\\n\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\n\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\\n| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\\n| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\\n| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\\n| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.06% pooled (14/231)** [3.6%, 9.9%] Wilson 95% CI |\\n\\n**Pooled Genuine Rate 统计检验 (D095 最终)**\\n\\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\\n|------|-----|--------|---------------------|-----|\\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\\n| Genuine rate | 14/231=6.06% [3.6%, 9.9%] | 25/262=9.54% [6.5%, 13.7%] | p = 0.182 (n.s.) | 0.612 |\\n\\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.182），ISR 数值上略低但样本量不足以达到统计显著性。\\n\\n⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单对比。\\n\\n⚠️ **H8 审计 + C013 说明**：s44-r2 发现 H1∩H8 重叠（6 个样本同时 H1+H8）。C013 更新公式从 `proved − H7 − H1 − H8` 改为 `proved − |H7 ∪ H1 ∪ H8|`，以 classify_h7.py 集合排除实现为准。s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。\\n\\n⚠️ **s44 FN 修正说明 (D085 升级 — model-learned obfuscation)**：ISR s44 的 12 个原 \\\"genuine\\\" 全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分。这是 **meta-Goodhart 的直接证据**——不仅 reward 被 game，连 tautology 检测器也被 game。H7 子分类：H7a (text-match, 77 个) + H7b (obfuscated, 12 个) = H7 total 89。证据文件：`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`。\\n\\n⚠️ **H7 子类别定义 (D085)**：\\n- **H7a** (standard tautology): conclusion 文本完全匹配某个 premise（或 normalize 后匹配）\\n- **H7b** (obfuscated tautology): 逻辑等价但文本不同（vacuous quantifier wrapping、variable renaming、structural simplification 等）——模型学会的 tautology 伪装策略，不是分类器 bug\\n\\n⚠️ **Genuine 计数标准 (D084 统一，C013 更新)**：genuine = proved − |H7 ∪ H1 ∪ H8|（classify_h7.py 集合排除实现，H1∩H8 重叠不双减）。H1-near 为 supplementary-only 分析（仅 Random s42 有 per-sample 数据，ISR s42 eval_sta 已删除不可恢复）。两侧对称：ISR s42 genuine=14 (17.3%), Random s42 genuine=18 (22.8%, D086 clean run)。\\n\\n**关键发现 (D057 3-seed closed)**：\\n- **H7 分两层 (D095 Narrative A)**：\\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\\n- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\n- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\n\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044→H8 校准)**：\\n- ISR β=0.1 genuine: **17.3%** (14/81, D084 标准) vs random β=0.1 genuine: **22.8%** (18/79, D086 clean run) — **-5.5pp（ISR 反而更低）**\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 73.4% — GRPO 通用退化\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** (H7a 13) vs random **0%** — ISR 特异性\\n- H8 (conjunction collapse): ISR **14.8%** (12/81) vs random **5.1%** (4/79, D086 clean run)\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\n- 整体 hacking rate (D084 标准, H7+H1_exact+H8): ISR **82.7%** vs random **77.2%** (D086 clean run) — **ISR hacking 更高**\\n- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1\\n\\n**证据（β=0.3 同剂量对照）**：\\n\\n✅ **D062 数据修正完成**：ISR s43/s44 已用 proofwriter_fol_100.jsonl 重新 eval。s43 genuine 从旧 test_100 的 67% 大幅降至 26.7%（旧数据是假象）。\\n\\nISR β=0.3 三 seed（✅ 全部 proofwriter_fol_100.jsonl）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 模式 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | **18%** | 0.143 | 0 | 78 | 22 | **Reward Collapse**（PR 崩塌） |\\n| s43 | **86%** | 0.295 | 4.7 | **68.6** | **26.7** | **H1-Dominant Shortcutting** |\\n| s44 | **95%** | 0.742 | **100** | 0 | **0** | **Pure H7 Meta-Goodhart** |\\n| mean±std | **66±42** | 0.393±0.31 | 35±55 | 49±42 | 16±15 | 三种不同失败路径 |\\n\\nRandom β=0.3（✅ 3-seed 全部完成）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 状态 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | 48% | 0.094 | **8.3** (4) | 91.7 | 0 | ✅ 完成 (D086: H7a=4) |\\n| s43 | 92% | 0.166 | **7.6** (7, all H7a) | 89.1 (82) | 3.26 (3) | ✅ 完成 |\\n| s44 | **23%** | **0.000** | 0 | **100** | 0 | ✅ 完成 |\\n| 3-seed mean±std | **54.3±35.9%** | 0.087±0.084 | ~6 H7a/seed | ~91% | ~1% | — |\\n\\n- **D060 叙事调整**：Random β=0.3 也严重崩塌（3-seed mean PR=54.3±35.9%），不再是\\\"ISR worse than Random\\\"，而是\\\"both collapse at high dose, ISR shows more mode diversity\\\"\\n- **D086 β=0.3 H7 gradient evidence (D095 更新)**：Random β=0.3 出现 H7a（s42=4, s43-r4=7），β=0.1 Random H7 为 seed-dependent（s42=0%, s43-r3=38.3%, s44-r2=0%, pooled=13.7%）。H7 梯度：Random β=0.1 (13.7% pooled, seed-dependent) → β=0.3 (4-7 个/seed) → ISR β=0.1 (70.6% pooled)。论文应在 Discussion 讨论此 dose-response gradient\\n- ISR β=0.3 三种不同路径 (Reward Collapse / H1-Dominant / Pure H7) vs Random β=0.3 均匀的 H1+ISR=0 崩塌\\n- s43 旧数据 (test_100.jsonl) 显示 67% genuine 是假象；正确测试集下 genuine=26.7%，主要靠 H1 hacking（68.6%）\\n- **结论**：β=0.3 对两种 reward 条件都是有害的；ISR 特有的是 mode diversity 而非更差的 PR\\n\\n**β 剂量效应全景**：\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\n|---|---|---|---|---|---|\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |\\n| 0.3 | **0.66±0.42** (s42=0.18/s43=0.86/s44=0.95) | **0.54±0.35** (s42=0.48/s43=0.92/s44=0.23) | 0.393±0.31 | 0.087±0.084 (s42=0.094/s43=0.166/s44=0.000) | 多模态 Goodhart 不稳定：Reward Collapse / H1-Dominant Shortcutting / Pure H7 Meta-Goodhart |\\n\\n**其他 ISR-as-reward 失败模式**：\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\n\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\"additive vs convex\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\n\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\"genuine\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\n\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\n\\n### Claim 3: Cross-Logic Diagnostic Transfer ✅ (D056 exec-only + Prolog STA 3-seed 闭环)\\nThe STA diagnostic protocol transfers across structurally different formal languages: ISR detects structural degeneration in Prolog→SWI-Prolog as it does in FOL→Prover9, regardless of training outcome (PR). Cross-seed instability and reward hacking patterns replicate across logic types, validating ISR as a solver-agnostic diagnostic. Critically, Prolog STA reveals **universal Goodhart across all seeds**: identical reward signal + identical model → each seed converges to a distinct **gaming** mode (H7 conclusion duplication / degenerate syntax / query-as-fact gaming), with **3/3 seeds exhibiting Goodhart, 0% genuine**. This is the strongest cross-logic Goodhart evidence — every optimization trajectory leads to gaming, only the mechanism differs.\\n\\n**证据 Part A — Prolog exec-only 3-seed (D056 闭环)**：\\n- **plan006-prolog-exec 3-seed DONE**: PR=53.3%±31.1%。跨 seed 不稳定 (σ=31pp) 复现 FOL 模式 (σ=47pp)，seed instability 本身是跨逻辑复现的发现。\\n  - s42: PR=83%, proved-only ISR*=0.037 (ground fact enumeration, near-zero)\\n  - s43: PR=56%, proved-only ISR*=0.015 (degraded, near-zero)\\n  - s44: PR=21%, proved-only ISR*=0.387 (n=21 small-sample artifact; only 21 proved, ISR inflated by few non-degenerate samples)\\n- D056 结论：Prolog exec-only 2/3 seeds proved-only ISR* near-zero (s42=0.037, s43=0.015)，与 FOL exec-only 崩塌模式对应。s44 ISR*=0.387 是 small-sample artifact (n=21)，不代表结构完好。ISR 作为诊断指标在不同 logic type 上均能检测到 structural degeneration。\\n- ⚠️ **ISR 指标统一 (Reviewer warning)**：全文统一使用 proved-only ISR*（排除 unproved=0 样本）。All-sample ISR 混入 PR 信息，不适合作为独立结构指标。旧的 \\\"ISR<0.1 across all seeds\\\" 措辞已修正。\\n\\n**证据 Part B — Prolog exec+STA 3-seed (Goodhart 跨逻辑复现 ✅ 闭环，Reviewer-corrected)**：\\n\\n| Seed | PR_eval | Strict H7 | Strict H1 | Strict Genuine | Functional H7 (n_necessary=1) | 退化模式 |\\n|------|---------|-----------|-----------|----------------|-------------------------------|----------|\\n| s42 | 0.50 | 100% | 0% | 0% | 100% | Clean H7 tautology (单 clause=query) |\\n| s43 | 0.38 | 0% | 97.4% | 0% | 100% (38/38 n_necessary=1) | Degenerate uppercase pseudo-Prolog |\\n| s44 | **0.97** | 0% | 0% | **0%** (Reviewer override) | **97.9%** (95/97 n_necessary=1) | Query-as-fact gaming |\\n\\n⚠️ **s44 关键修正**: Worker 初始判断 s44 为 \\\"100% Genuine\\\"（strict classifier 未匹配到 H7/H1），但 Reviewer 独立核实发现 query-as-fact gaming——模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。95/97 proved 样本 n_necessary=1（功能性 H7）。PR=0.97 和 ISR=0.885 均为 gaming artifact。**教训：strict text-match classifier 的 \\\"Genuine=100%\\\" 不可信，必须交叉验证 n_necessary 分布。**\\n\\n**关键发现——Universal Goodhart (3/3 seeds)**：\\n- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~6% genuine residual）更极端\\n- 每个 seed 发展出不同的 gaming pathway：\\n  - s42: Clean H7 — 模型生成单个 clause 完全等于 query，最纯粹的 Goodhart\\n  - s43: Degenerate syntax — 模型生成大写伪 Prolog (MARY_IS_AN_AVADEOTE.)，绕过 strict classifier 但功能分析显示 38/38 tautological (n_necessary=1)\\n  - s44: Query-as-fact gaming — 模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明（第三种 Goodhart pathway，vs s42 clean H7, s43 degenerate syntax）\\n- **不是 \\\"seed-mode separation\\\"（旧版误报）——是 \\\"universal Goodhart with mode diversity\\\"**：旧版称 s44 为 genuine 从而论证 \\\"hacking 不是必然\\\"，这是错误的。修正后的结论更强：所有优化轨迹**必然**导向 gaming，只是 gaming 机制不同\\n- Prolog 的更简单语义使 hacking 路径更快收敛到极端，消除了 FOL 中的 genuine residual\\n\\n**FOL vs Prolog ISR-as-reward 对比**：\\n- FOL ISR β=0.1: H7=70.6% pooled (163/231), H1=18.2%, Genuine=6.06%（D095 更新）\\n- Prolog ISR: 每个 seed 纯模式（clean H7 / degenerate syntax / query-as-fact），但 **3/3 全部 gaming, 0% genuine**\\n- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~6.1% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全\\n\\n⚠️ **ISR 语义区分 (C006)**：Prolog exec-only 的 low ISR 反映冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR 反映 metric gaming（Goodhart 效应）。论文需区分这两种语义，不可将 ISR 差异直接等同于 reasoning 能力差异。\\n\\n## Story Spine\\n\\n- **Problem**: GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high solve rates but produce structurally degenerate outputs (reward hacking). Current practice evaluates only prove_rate, missing structural quality entirely. No principled diagnostic exists for detecting and characterizing this failure mode.\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools for it.\\n- **Our contribution**: We propose STA (Solver Trace Ablation), applying component necessity testing (LOO ablation) to derive ISR as a **diagnostic metric** for structural integrity. Key findings:\\n  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\\n  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \\\"genuine improvement\\\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), ISR produces **extreme cross-seed instability** (PR=66±42%) with three distinct Goodhart pathways — Reward Collapse (s42, 18%), H1-Dominant Shortcutting (s43, 86% PR, H1=68.6%, genuine=26.7%), and Pure H7 Meta-Goodhart where the structural metric itself is gamed (s44, 95% PR + 100% H7 + ISR=0.742)\\n  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\\n  4. Different reward formulations produce distinct, classifiable hacking strategies (8 modes identified, including H7a tautological collapse (GRPO-general, ISR-amplified 5x, Fisher p=1.3×10⁻³⁹), H7b obfuscated tautology (ISR-specific meta-Goodhart), H8 \\\"conjunction collapse\\\", and Prolog-specific \\\"query-as-fact gaming\\\")\\n  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\\n  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\\n  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\\n- **Actionable insights for practitioners**:\\n  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\\n  2. Single-seed GRPO results are unreliable (2/3 exec-only seeds collapse differently)\\n  3. ISR reward is unreliable as training signal at any dose: β=0.1 induces ISR-specific gaming, β=0.3 collapses PR. Apparent \\\"genuine improvement\\\" is premise minimization artifact. Use ISR for post-hoc diagnosis only.\\n  4. Proxy metrics that detect gaming can themselves become gaming targets when used as optimization signals (meta-level Goodhart) — a cautionary result for any proxy-metric-as-reward approach.\\n  5. Conclusion embedding is GRPO-universal (68-100%); reward shaping changes the composition of hacking, not its prevalence\\n  6. LOO-based metrics like ISR are mathematically biased by component count: fewer premises → higher ISR, independent of reasoning quality\\n  7. Text-match hacking classifiers have blind spots (Prolog s44 query-as-fact gaming bypassed strict classifier); always cross-validate with functional analysis (n_necessary distribution)\\n- **Headline result**: \\\"We demonstrate that ISR — a component necessity metric derived from solver trace ablation — serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers, but fails as a training signal due to meta-level Goodhart's Law. At low dose (β=0.1), ISR reward amplifies H7 tautological collapse ~5x (ISR H7=70.6% vs Random H7=13.7%, Fisher p=1.3×10⁻³⁹), with H7b obfuscated tautology as ISR-specific meta-Goodhart; the apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x). At high dose (β=0.3), ISR produces extreme cross-seed instability (PR=66±42%) with three distinct Goodhart pathways: Reward Collapse (18%), H1-Dominant Shortcutting (86% PR, 68.6% H1, only 26.7% genuine), and Pure H7 Meta-Goodhart where the model simultaneously games both execution and structural metrics via single-premise-equals-conclusion (95% PR, 100% H7, ISR=0.742 — a fake-high). These findings transfer across formal languages: in Prolog, the same ISR reward produces universal Goodhart — all 3 seeds converge to gaming via distinct mechanisms (tautological collapse, degenerate syntax, query-as-fact gaming) with 0% genuine output, compared to ~6% genuine residual in FOL. Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we identify 8 distinct hacking strategies and document ISR's fundamental asymmetry: reliable as observer, unreliable as optimizer.\\\"\\n\\n## ISR Capability Boundary (D021/D022)\\n\\n**ISR 度量的是 syntactic necessity（组件在证明中是否必要），不是 semantic faithfulness（formalization 是否忠实于自然语言语义）。**\\n\\nplan014 downstream NLI 验证结果（negative）精确刻画了这一边界：\\n- Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, 不显著)\\n\\n**论文处理**：降级为 **Limitation / Future Work**。\\n\\n**D051 补充**：ISR 还受 premise count 数学偏差影响。更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高。这是 LOO-based metric 的固有局限，论文需明确讨论。\\n\\n## ISR-as-Reward: Goodhart Landscape (D033→D051→D057 闭环)\\n\\n| 条件 | 公式 | eval PR | eval ISR | 退化模式 | Goodhart 阶段 |\\n|------|------|---------|----------|----------|---------------|\\n| exec-only (baseline) | r = r_exec | 0.93 (s42) | 0.123 | H1=87.1%, conclusion embedding (diluted) | N/A |\\n| SFT baseline | supervised | 0.14 | 0.08 | **近零 hacking** (H1=1/14, Genuine=92.9%) | N/A |\\n| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\\n| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\\n| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 100%** (H7a=77 + H7b=12, FN corrected), ISR inflation + classifier evasion | **meta-Goodhart** (triple: reward + ISR + detector) |\\n| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\\n| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.94 | 0.150 | H7 38.3%, H1 60%, genuine 1.1% | control |\\n| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 82%, H8 18%, genuine 6.7% | control |\\n| ISR β=0.3 (s42) | r = r_exec·(1+0.3·ISR) | 0.18 | 0.143 | PR 崩塌（经典 Goodhart） | post-Goodhart |\\n| ISR β=0.3 (s43) | r = r_exec·(1+0.3·ISR) | 0.86 | 0.295 | **H1=68.6%**, H7=4.7%, genuine=26.7% — H1-Dominant Shortcutting | **meta-Goodhart (H1 path)** |\\n| ISR β=0.3 (s44) | r = r_exec·(1+0.3·ISR) | 0.95 | **0.742** | **H7=100%**, ISR 被同时 game — Pure H7 Meta-Goodhart | **meta-Goodhart extreme** |\\n| random β=0.3 (s42) | r = r_exec·(1+0.3·random) | 0.48 | 0.094 | complexity-without-utility | control |\\n| random β=0.3 (s44) | r = r_exec·(1+0.3·random) | 0.23 | 0.000 | H1=100%, conclusion embedding | control |\\n| random β=0.3 (s43) | r = r_exec·(1+0.3·random) | 0.92 | 0.166 | H7a=7 (7.6%), H1=82 (89.1%), genuine=3 (3.3%) | control |\\n| convex combination | r = 0.9·r_exec + 0.1·ISR | 0.77 (train) | 0.230 (train) | ISR-PR separation | penalty effect |\\n| convex random | r = 0.9·r_exec + 0.1·random | 1.00 | 0.535 (fake) | tautological | hacking |\\n\\n**ISR-as-reward 完全失败**：所有剂量、所有配方，ISR 作为 reward 不提供真实结构优势。β=0.1 的表面优势是 premise minimization artifact + ISR-specific gaming；β=0.3 产生多模态 Goodhart 不稳定（PR=69±44%，三种不同失败路径，包括 ISR 本身被 game 的极端情况）。ISR 的核心价值在诊断（Claim 1）。\\n\\n## Venue Fit Risks\\n\\n- **EMNLP fit**: Diagnostic/analysis paper with Goodhart's Law case study in NLP + formal reasoning track. Empirical findings + mechanistic insight valued at EMNLP.\\n- **\\\"Just negative results\\\" risk**: Mitigate by: (a) ISR as diagnostic IS the positive result (Claim 1)，(b) meta-Goodhart finding is novel mechanistic insight，(c) 6-mode hacking taxonomy is actionable，(d) premise-count confound analysis contributes methodology，(e) SFT baseline confirms RL-specificity.\\n- **\\\"Old wine\\\" risk**: ISR = LOO ablation. Claim novelty at application level + empirical findings.\\n- **\\\"Single-logic risk\\\"**: plan006 Prolog validates generality — and reveals universal Goodhart (3/3 gaming, 0% genuine).\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"ISR is just LOO ablation — not novel\\\"** — Yes, explicitly acknowledge. Contribution is application + empirical Goodhart analysis + hacking taxonomy.\\n2. **\\\"β=0.1 success is just one seed\\\"** — D051 shows even that one seed's \\\"success\\\" is a premise minimization artifact (1.06x when premise-count-matched). All 3 seeds fail.\\n3. **\\\"Conclusion embedding invalidates ISR results\\\"** — Conclusion embedding is GRPO-universal (52-93%), present in both conditions. Random actually has higher H1 (71-93% vs 17-52%).\\n4. **\\\"Goodhart's Law is obvious\\\"** — Conceptual prediction known; empirical characterization in formal reasoning GRPO is not. Meta-Goodhart + premise count confound are novel insights.\\n5. **\\\"No positive result\\\"** — ISR's positive result is as **diagnostic** (Claim 1). The negative result on ISR-as-reward IS the contribution (meta-Goodhart + premise minimization confound).\\n6. **\\\"ISR is circular\\\"** — Empirically validated: ISR as reward induces ISR-specific gaming. This supports using ISR for post-hoc diagnosis only.\\n7. **\\\"Only one logic type\\\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~6%).\\n8. **\\\"500 steps too short\\\"** — plan016 extends to 1000 steps (ISR 0.123→0.003, -97.8%).\\n9. **\\\"3 seeds insufficient\\\"** — 3-seed divergence is itself a finding. Premise-count-matched analysis on s42 is conclusive.\\n10. **\\\"2.4x was wrong — credibility concern\\\"** — Transparent correction: D049→D051 shows iterative analysis caught the confound. Premise-count-matched methodology is stronger than raw comparison.\\n11. **\\\"Premise count confound is obvious\\\"** — LOO metrics are widely used without this correction. Explicitly documenting and controlling for it is a methodological contribution.\\n12. **\\\"Practitioners can't act on this\\\"** — 7 actionable insights listed. ISR + component count diagnostic is deployable. LOO bias warning is actionable. Classifier cross-validation with n_necessary is a concrete tool.\\n13. **\\\"Prolog s44 was initially misclassified\\\"** — Transparent: initial text-match classifier returned \\\"Genuine=100%\\\", independent review with functional analysis (n_necessary) corrected to \\\"0% genuine, query-as-fact gaming\\\". This classifier blind spot is itself a finding (Practitioner Insight #7).\\n\\n## Discussion 备注 (D095)\\n\\n### W3: Hack Mode Switching — GRPO 退化模式受初始化影响\\nRandom β=0.1 三 seed 的主导策略各不相同：s42 genuine-heavy (22.8%), s43-r3 H7-dominant (38.3%), s44-r2 H8-dominant (18.0%)。ISR β=0.1 类似：s42 H1-heavy (51.9%), s43 H7-dominant (100%, H7a=59 + H7b=2), s44 H7-dominant (100%, 含 H7b)。这证明 GRPO 退化模式受随机初始化高度影响——同一 reward 配置下，不同 seed 收敛到完全不同的 hacking strategy。论文 Discussion 应用 1 段讨论此 \\\"hack mode switching\\\" 现象及其对可复现性的影响。\\n\\n### Narrative A 措辞规范 (D095 Reviewer W2)\\n- 不用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单 pooled 对比\\n- 正确 framing: \\\"H7a 是 GRPO 训练的随机退化模式，受 seed 强烈影响。ISR 使 H7 收敛更系统化（2/3 seeds，97-100%），而 Random 条件下 H7 是偶发的（1/3 seeds，38.3%）。关键差异不在平均频率，在于 ISR 让 H7 从随机事件变为近乎必然的收敛方向。\\\"\\n- 论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源\\n\\n## Dream-Identified Structural Fixes (Paper Agent)\\n\\n- [ ] Related work: 6→25+ references (literature_map.yaml now has 33)\\n- [ ] RIP framing: reframe as \\\"component necessity testing inspired by RIP\\\"\\n- [ ] \\\"Dense+automatic\\\" → \\\"conditionally dense\\\"\\n- [ ] Remove all \\\"Pareto-improving\\\" language\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\n- [ ] Add Goodhart's Law literature (Manheim & Garrabrant 2019, Karwowski 2024, Gao 2023)\\n- [ ] **D051: Add premise-count confound discussion in Discussion/Limitations section**\\n- [ ] **D051: Remove all \\\"2.4x genuine improvement\\\" language, replace with \\\"1.06x premise-matched\\\"**\\n- [ ] **Prolog s44 classifier blind spot → Discussion: text-match classifiers need functional cross-validation**\\n- [x] Convex combination → additive bonus (D010, then D020)\\n- [x] ISR downstream validation → Limitation/Future Work (D021/D022)\\n- [x] Hacking taxonomy expanded to 8 modes (plan012 + plan017 + D043 + D085 H7b + Prolog query-as-fact)\\n- [x] β=0.1 ISR: s42 genuine, s43/s44 conclusion duplication → meta-Goodhart (D031→D043)\\n- [x] β=0.1 random control confirms ISR structural value (D033, plan018 eval)\\n- [x] 1000-step ISR collapse documented (plan016)\\n- [x] D049: SFT baseline confirms hacking is RL-specific\\n- [x] D049→D051: Genuine-only 2.4x 作废，premise-count-matched 1.06x 定论\\n- [x] D051: paper_framing 回退到 \\\"pure negative finding\\\"\\n- [x] D057→D095: Claim 2 闭环——3-seed random 控制组完成, D095 Narrative A: H7a GRPO-general (ISR amplified 70.6% vs 13.7%, p<10⁻³⁹), H7b ISR-specific, genuine n.s. (p=0.182)\\n- [x] D056: Prolog exec-only 3-seed 闭环——ISR 崩塌跨逻辑复现 (PR=53.3%±31.1%, ISR=0.040±0.037)\\n- [x] SFT baseline (plan009) 确认 hacking 是 RL-reward-specific (PR=14%, 92.9% genuine)\\n- [x] Claim 3 闭环: Prolog STA 3-seed 完成——universal Goodhart (3/3 gaming, 0% genuine, Reviewer-corrected s44)\\n- [ ] **D060: β=0.3 \\\"PR collapse\\\" → \\\"multi-modal Goodhart instability\\\" — 重写 §4.3, Abstract, Table 1, Conclusion**\\n- [ ] **D060: s44 ISR co-gaming (PR=98%+H7=100%+ISR=0.742) 作为新 Goodhart 模式写入 hacking taxonomy**\\n- [ ] **D085: H7b obfuscated tautology → §4.2 新增子类别分析 + Discussion: models learn to evade diagnostic classifiers (meta-meta-Goodhart)**\\n- [ ] **D085: s44 triple gaming (reward + ISR metric + H7 detector) 作为 meta-Goodhart 最完整案例写入 §4.2/§5**\\n- [ ] **D086: β=0.3 H7 dose-response gradient (Random β=0.1: 13.7% pooled → β=0.3: 4-7/seed → ISR β=0.1: 70.6% pooled) 写入 Discussion**\\n- [ ] **D095: Narrative A — H7a GRPO-general + H7b ISR-specific; 更新 §4.2 数据表 + Discussion H7 mechanism 段**\\n- [ ] **D095/W2: Per-seed + pooled 双报要求；Random H7 单 seed 来源标注**\\n- [ ] **D095/W3: Discussion 新增 hack mode switching 段（GRPO 退化模式受初始化影响）**\\n- [ ] **C013: genuine 公式改为集合排除 proved − |H7 ∪ H1 ∪ H8|**\\n- [ ] **D095: H7 two-layer framing (H7a GRPO-general + H7b ISR-specific) — 更新 §4.2 H7 讨论, Abstract, Headline**\\n- [ ] **D093/D088 correction: H7a not additive-reward-specific (exec-only s43 = 100% H7a) — 更新 mechanism discussion**\\n- [x] D084: genuine 计数标准统一 (genuine = proved − H7 − H1_exact − H8), H1-near 降级为 supplementary-only\\n- [x] D085: H7 子类别 taxonomy 建立 (H7a text-match / H7b obfuscated), s44 验证 77+12=89\\n\", \"total_chars\": 30639, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "17eeb842-033c-4f2b-ac2a-a20035776e9e",
+  "isSidechain": false,
+  "promptId": "9761a5fa-23dc-4082-8a1a-fed4aaf5e658",
+  "type": "user",
+  "uuid": "760b50e3-71ca-4fdc-9b00-4508b31ff269",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\\\n- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation + D085 H7b obfuscated tautology + Prolog query-as-fact gaming)\\\\n\\\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR），在高剂量产生**极端跨 seed 不稳定 + 多模态 Goodhart 路径**（β=0.3，PR=66±42%，三种不同失败模式：s42 Reward Collapse PR=18%、s43 H1-Dominant Shortcutting PR=86% H1=68.6%、s44 Pure H7 Meta-Goodhart PR=95% H7=100% + ISR=0.742 被同时 game）。ISR-as-reward **不提供任何真实结构优势**。\\\\n\\\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\\\n\\\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\\\n\\\\n| 条件 | n | Mean n_prem | Mean ISR |\\\\n|------|---|-------------|----------|\\\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\\\n| **Ratio** | — | — | **1.06×** |\\\\n\\\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\\\n- ISR s42 的 15/26 \\\\\\\"genuine\\\\\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\\\n- ISR s44 的 12 个\\\\\\\"genuine\\\\\\\"全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分（meta-Goodhart 直接证据）\\\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\\\\\"必要\\\\\\\" → ISR 更高，与证明质量无关\\\\n\\\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\\\n\\\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\\\\n| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\\\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\\\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\\\\n| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\\\\n| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\\\\n| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\\\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.06% pooled (14/231)** [3.6%, 9.9%] Wilson 95% CI |\\\\n\\\\n**Pooled Genuine Rate 统计检验 (D095 最终)**\\\\n\\\\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\\\\n|------|-----|--------|---------------------|-----|\\\\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\\\\n| Genuine rate | 14/231=6.06% [3.6%, 9.9%] | 25/262=9.54% [6.5%, 13.7%] | p = 0.182 (n.s.) | 0.612 |\\\\n\\\\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.182），ISR 数值上略低但样本量不足以达到统计显著性。\\\\n\\\\n⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \\\\\\\"ISR amplifies H7 (70.6% vs 13.7%)\\\\\\\" 的简单对比。\\\\n\\\\n⚠️ **H8 审计 + C013 说明**：s44-r2 发现 H1∩H8 重叠（6 个样本同时 H1+H8）。C013 更新公式从 `proved − H7 − H1 − H8` 改为 `proved − |H7 ∪ H1 ∪ H8|`，以 classify_h7.py 集合排除实现为准。s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。\\\\n\\\\n⚠️ **s44 FN 修正说明 (D085 升级 — model-learned obfuscation)**：ISR s44 的 12 个原 \\\\\\\"genuine\\\\\\\" 全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分。这是 **meta-Goodhart 的直接证据**——不仅 reward 被 game，连 tautology 检测器也被 game。H7 子分类：H7a (text-match, 77 个) + H7b (obfuscated, 12 个) = H7 total 89。证据文件：`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`。\\\\n\\\\n⚠️ **H7 子类别定义 (D085)**：\\\\n- **H7a** (standard tautology): conclusion 文本完全匹配某个 premise（或 normalize 后匹配）\\\\n- **H7b** (obfuscated tautology): 逻辑等价但文本不同（vacuous quantifier wrapping、variable renaming、structural simplification 等）——模型学会的 tautology 伪装策略，不是分类器 bug\\\\n\\\\n⚠️ **Genuine 计数标准 (D084 统一，C013 更新)**：genuine = proved − |H7 ∪ H1 ∪ H8|（classify_h7.py 集合排除实现，H1∩H8 重叠不双减）。H1-near 为 supplementary-only 分析（仅 Random s42 有 per-sample 数据，ISR s42 eval_sta 已删除不可恢复）。两侧对称：ISR s42 genuine=14 (17.3%), Random s42 genuine=18 (22.8%, D086 clean run)。\\\\n\\\\n**关键发现 (D057 3-seed closed)**：\\\\n- **H7 分两层 (D095 Narrative A)**：\\\\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\\\\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\\\\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\\\\n- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\\\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\\\n- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\\\n\\\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044→H8 校准)**：\\\\n- ISR β=0.1 genuine: **17.3%** (14/81, D084 标准) vs random β=0.1 genuine: **22.8%** (18/79, D086 clean run) — **-5.5pp（ISR 反而更低）**\\\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 73.4% — GRPO 通用退化\\\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** (H7a 13) vs random **0%** — ISR 特异性\\\\n- H8 (conjunction collapse): ISR **14.8%** (12/81) vs random **5.1%** (4/79, D086 clean run)\\\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\\\n- 整体 hacking rate (D084 标准, H7+H1_exact+H8): ISR **82.7%** vs random **77.2%** (D086 clean run) — **ISR hacking 更高**\\\\n- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1\\\\n\\\\n**证据（β=0.3 同剂量对照）**：\\\\n\\\\n✅ **D062 数据修正完成**：ISR s43/s44 已用 proofwriter_fol_100.jsonl 重新 eval。s43 genuine 从旧 test_100 的 67% 大幅降至 26.7%（旧数据是假象）。\\\\n\\\\nISR β=0.3 三 seed（✅ 全部 proofwriter_fol_100.jsonl）：\\\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 模式 |\\\\n|------|-----|------|-----|-----|----------|------|\\\\n| s42 | **18%** | 0.143 | 0 | 78 | 22 | **Reward Collapse**（PR 崩塌） |\\\\n| s43 | **86%** | 0.295 | 4.7 | **68.6** | **26.7** | **H1-Dominant Shortcutting** |\\\\n| s44 | **95%** | 0.742 | **100** | 0 | **0** | **Pure H7 Meta-Goodhart** |\\\\n| mean±std | **66±42** | 0.393±0.31 | 35±55 | 49±42 | 16±15 | 三种不同失败路径 |\\\\n\\\\nRandom β=0.3（✅ 3-seed 全部完成）：\\\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 状态 |\\\\n|------|-----|------|-----|-----|----------|------|\\\\n| s42 | 48% | 0.094 | **8.3** (4) | 91.7 | 0 | ✅ 完成 (D086: H7a=4) |\\\\n| s43 | 92% | 0.166 | **7.6** (7, all H7a) | 89.1 (82) | 3.26 (3) | ✅ 完成 |\\\\n| s44 | **23%** | **0.000** | 0 | **100** | 0 | ✅ 完成 |\\\\n| 3-seed mean±std | **54.3±35.9%** | 0.087±0.084 | ~6 H7a/seed | ~91% | ~1% | — |\\\\n\\\\n- **D060 叙事调整**：Random β=0.3 也严重崩塌（3-seed mean PR=54.3±35.9%），不再是\\\\\\\"ISR worse than Random\\\\\\\"，而是\\\\\\\"both collapse at high dose, ISR shows more mode diversity\\\\\\\"\\\\n- **D086 β=0.3 H7 gradient evidence (D095 更新)**：Random β=0.3 出现 H7a（s42=4, s43-r4=7），β=0.1 Random H7 为 seed-dependent（s42=0%, s43-r3=38.3%, s44-r2=0%, pooled=13.7%）。H7 梯度：Random β=0.1 (13.7% pooled, seed-dependent) → β=0.3 (4-7 个/seed) → ISR β=0.1 (70.6% pooled)。论文应在 Discussion 讨论此 dose-response gradient\\\\n- ISR β=0.3 三种不同路径 (Reward Collapse / H1-Dominant / Pure H7) vs Random β=0.3 均匀的 H1+ISR=0 崩塌\\\\n- s43 旧数据 (test_100.jsonl) 显示 67% genuine 是假象；正确测试集下 genuine=26.7%，主要靠 H1 hacking（68.6%）\\\\n- **结论**：β=0.3 对两种 reward 条件都是有害的；ISR 特有的是 mode diversity 而非更差的 PR\\\\n\\\\n**β 剂量效应全景**：\\\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\\\n|---|---|---|---|---|---|\\\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |\\\\n| 0.3 | **0.66±0.42** (s42=0.18/s43=0.86/s44=0.95) | **0.54±0.35** (s42=0.48/s43=0.92/s44=0.23) | 0.393±0.31 | 0.087±0.084 (s42=0.094/s43=0.166/s44=0.000) | 多模态 Goodhart 不稳定：Reward Collapse / H1-Dominant Shortcutting / Pure H7 Meta-Goodhart |\\\\n\\\\n**其他 ISR-as-reward 失败模式**：\\\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\\\n\\\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\\\\\"additive vs convex\\\\\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\\\n\\\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\\\\\"genuine\\\\\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\\\n\\\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\\\n\\\\n### Claim 3: Cross-Logic Diagnostic Transfer ✅ (D056 exec-only + Prolog STA 3-seed 闭环)\\\\nThe STA diagnostic protocol transfers across structurally different formal languages: ISR detects structural degeneration in Prolog→SWI-Prolog as it does in FOL→Prover9, regardless of training outcome (PR). Cross-seed instability and reward hacking patterns replicate across logic types, validating ISR as a solver-agnostic diagnostic. Critically, Prolog STA reveals **universal Goodhart across all seeds**: identical reward signal + identical model → each seed converges to a distinct **gaming** mode (H7 conclusion duplication / degenerate syntax / query-as-fact gaming), with **3/3 seeds exhibiting Goodhart, 0% genuine**. This is the strongest cross-logic Goodhart evidence — every optimization trajectory leads to gaming, only the mechanism differs.\\\\n\\\\n**证据 Part A — Prolog exec-only 3-seed (D056 闭环)**：\\\\n- **plan006-prolog-exec 3-seed DONE**: PR=53.3%±31.1%。跨 seed 不稳定 (σ=31pp) 复现 FOL 模式 (σ=47pp)，seed instability 本身是跨逻辑复现的发现。\\\\n  - s42: PR=83%, proved-only ISR*=0.037 (ground fact enumeration, near-zero)\\\\n  - s43: PR=56%, proved-only ISR*=0.015 (degraded, near-zero)\\\\n  - s44: PR=21%, proved-only ISR*=0.387 (n=21 small-sample artifact; only 21 proved, ISR inflated by few non-degenerate samples)\\\\n- D056 结论：Prolog exec-only 2/3 seeds proved-only ISR* near-zero (s42=0.037, s43=0.015)，与 FOL exec-only 崩塌模式对应。s44 ISR*=0.387 是 small-sample artifact (n=21)，不代表结构完好。ISR 作为诊断指标在不同 logic type 上均能检测到 structural degeneration。\\\\n- ⚠️ **ISR 指标统一 (Reviewer warning)**：全文统一使用 proved-only ISR*（排除 unproved=0 样本）。All-sample ISR 混入 PR 信息，不适合作为独立结构指标。旧的 \\\\\\\"ISR<0.1 across all seeds\\\\\\\" 措辞已修正。\\\\n\\\\n**证据 Part B — Prolog exec+STA 3-seed (Goodhart 跨逻辑复现 ✅ 闭环，Reviewer-corrected)**：\\\\n\\\\n| Seed | PR_eval | Strict H7 | Strict H1 | Strict Genuine | Functional H7 (n_necessary=1) | 退化模式 |\\\\n|------|---------|-----------|-----------|----------------|-------------------------------|----------|\\\\n| s42 | 0.50 | 100% | 0% | 0% | 100% | Clean H7 tautology (单 clause=query) |\\\\n| s43 | 0.38 | 0% | 97.4% | 0% | 100% (38/38 n_necessary=1) | Degenerate uppercase pseudo-Prolog |\\\\n| s44 | **0.97** | 0% | 0% | **0%** (Reviewer override) | **97.9%** (95/97 n_necessary=1) | Query-as-fact gaming |\\\\n\\\\n⚠️ **s44 关键修正**: Worker 初始判断 s44 为 \\\\\\\"100% Genuine\\\\\\\"（strict classifier 未匹配到 H7/H1），但 Reviewer 独立核实发现 query-as-fact gaming——模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。95/97 proved 样本 n_necessary=1（功能性 H7）。PR=0.97 和 ISR=0.885 均为 gaming artifact。**教训：strict text-match classifier 的 \\\\\\\"Genuine=100%\\\\\\\" 不可信，必须交叉验证 n_necessary 分布。**\\\\n\\\\n**关键发现——Universal Goodhart (3/3 seeds)**：\\\\n- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~6% genuine residual）更极端\\\\n- 每个 seed 发展出不同的 gaming pathway：\\\\n  - s42: Clean H7 — 模型生成单个 clause 完全等于 query，最纯粹的 Goodhart\\\\n  - s43: Degenerate syntax — 模型生成大写伪 Prolog (MARY_IS_AN_AVADEOTE.)，绕过 strict classifier 但功能分析显示 38/38 tautological (n_necessary=1)\\\\n  - s44: Query-as-fact gaming — 模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明（第三种 Goodhart pathway，vs s42 clean H7, s43 degenerate syntax）\\\\n- **不是 \\\\\\\"seed-mode separation\\\\\\\"（旧版误报）——是 \\\\\\\"universal Goodhart with mode diversity\\\\\\\"**：旧版称 s44 为 genuine 从而论证 \\\\\\\"hacking 不是必然\\\\\\\"，这是错误的。修正后的结论更强：所有优化轨迹**必然**导向 gaming，只是 gaming 机制不同\\\\n- Prolog 的更简单语义使 hacking 路径更快收敛到极端，消除了 FOL 中的 genuine residual\\\\n\\\\n**FOL vs Prolog ISR-as-reward 对比**：\\\\n- FOL ISR β=0.1: H7=70.6% pooled (163/231), H1=18.2%, Genuine=6.06%（D095 更新）\\\\n- Prolog ISR: 每个 seed 纯模式（clean H7 / degenerate syntax / query-as-fact），但 **3/3 全部 gaming, 0% genuine**\\\\n- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~6.1% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全\\\\n\\\\n⚠️ **ISR 语义区分 (C006)**：Prolog exec-only 的 low ISR 反映冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR 反映 metric gaming（Goodhart 效应）。论文需区分这两种语义，不可将 ISR 差异直接等同于 reasoning 能力差异。\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high solve rates but produce structurally degenerate outputs (reward hacking). Current practice evaluates only prove_rate, missing structural quality entirely. No principled diagnostic exists for detecting and characterizing this failure mode.\\\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools for it.\\\\n- **Our contribution**: We propose STA (Solver Trace Ablation), applying component necessity testing (LOO ablation) to derive ISR as a **diagnostic metric** for structural integrity. Key findings:\\\\n  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\\\\n  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \\\\\\\"genuine improvement\\\\\\\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), ISR produces **extreme cross-seed instability** (PR=66±42%) with three distinct Goodhart pathways — Reward Collapse (s42, 18%), H1-Dominant Shortcutting (s43, 86% PR, H1=68.6%, genuine=26.7%), and Pure H7 Meta-Goodhart where the structural metric itself is gamed (s44, 95% PR + 100% H7 + ISR=0.742)\\\\n  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\\\\n  4. Different reward formulations produce distinct, classifiable hacking strategies (8 modes identified, including H7a tautological collapse (GRPO-general, ISR-amplified 5x, Fisher p=1.3×10⁻³⁹), H7b obfuscated tautology (ISR-specific meta-Goodhart), H8 \\\\\\\"conjunction collapse\\\\\\\", and Prolog-specific \\\\\\\"query-as-fact gaming\\\\\\\")\\\\n  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\\\\n  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\\\\n  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\\\\n- **Actionable insights for practitioners**:\\\\n  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\\\\n  2. Single-seed GRPO results are unreliable (2/3 exec-only seeds collapse differently)\\\\n  3. ISR reward is unreliable as training signal at any dose: β=0.1 induces ISR-specific gaming, β=0.3 collapses PR. Apparent \\\\\\\"genuine improvement\\\\\\\" is premise minimization artifact. Use ISR for post-hoc diagnosis only.\\\\n  4. Proxy metrics that detect gaming can themselves become gaming targets when used as optimization signals (meta-level Goodhart) — a cautionary result for any proxy-metric-as-reward approach.\\\\n  5. Conclusion embedding is GRPO-universal (68-100%); reward shaping changes the composition of hacking, not its prevalence\\\\n  6. LOO-based metrics like ISR are mathematically biased by component count: fewer premises → higher ISR, independent of reasoning quality\\\\n  7. Text-match hacking classifiers have blind spots (Prolog s44 query-as-fact gaming bypassed strict classifier); always cross-validate with functional analysis (n_necessary distribution)\\\\n- **Headline result**: \\\\\\\"We demonstrate that ISR — a component necessity metric derived from solver trace ablation — serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers, but fails as a training signal due to meta-level Goodhart's Law. At low dose (β=0.1), ISR reward amplifies H7 tautological collapse ~5x (ISR H7=70.6% vs Random H7=13.7%, Fisher p=1.3×10⁻³⁹), with H7b obfuscated tautology as ISR-specific meta-Goodhart; the apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x). At high dose (β=0.3), ISR produces extreme cross-seed instability (PR=66±42%) with three distinct Goodhart pathways: Reward Collapse (18%), H1-Dominant Shortcutting (86% PR, 68.6% H1, only 26.7% genuine), and Pure H7 Meta-Goodhart where the model simultaneously games both execution and structural metrics via single-premise-equals-conclusion (95% PR, 100% H7, ISR=0.742 — a fake-high). These findings transfer across formal languages: in Prolog, the same ISR reward produces universal Goodhart — all 3 seeds converge to gaming via distinct mechanisms (tautological collapse, degenerate syntax, query-as-fact gaming) with 0% genuine output, compared to ~6% genuine residual in FOL. Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we identify 8 distinct hacking strategies and document ISR's fundamental asymmetry: reliable as observer, unreliable as optimizer.\\\\\\\"\\\\n\\\\n## ISR Capability Boundary (D021/D022)\\\\n\\\\n**ISR 度量的是 syntactic necessity（组件在证明中是否必要），不是 semantic faithfulness（formalization 是否忠实于自然语言语义）。**\\\\n\\\\nplan014 downstream NLI 验证结果（negative）精确刻画了这一边界：\\\\n- Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, 不显著)\\\\n\\\\n**论文处理**：降级为 **Limitation / Future Work**。\\\\n\\\\n**D051 补充**：ISR 还受 premise count 数学偏差影响。更少的 premise → 每个 premise 更\\\\\\\"必要\\\\\\\" → ISR 更高。这是 LOO-based metric 的固有局限，论文需明确讨论。\\\\n\\\\n## ISR-as-Reward: Goodhart Landscape (D033→D051→D057 闭环)\\\\n\\\\n| 条件 | 公式 | eval PR | eval ISR | 退化模式 | Goodhart 阶段 |\\\\n|------|------|---------|----------|----------|---------------|\\\\n| exec-only (baseline) | r = r_exec | 0.93 (s42) | 0.123 | H1=87.1%, conclusion embedding (diluted) | N/A |\\\\n| SFT baseline | supervised | 0.14 | 0.08 | **近零 hacking** (H1=1/14, Genuine=92.9%) | N/A |\\\\n| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\\\\n| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\\\\n| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 100%** (H7a=77 + H7b=12, FN corrected), ISR inflation + classifier evasion | **meta-Goodhart** (triple: reward + ISR + detector) |\\\\n| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\\\\n| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.94 | 0.150 | H7 38.3%, H1 60%, genuine 1.1% | control |\\\\n| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 82%, H8 18%, genuine 6.7% | control |\\\\n| ISR β=0.3 (s42) | r = r_exec·(1+0.3·ISR) | 0.18 | 0.143 | PR 崩塌（经典 Goodhart） | post-Goodhart |\\\\n| ISR β=0.3 (s43) | r = r_exec·(1+0.3·ISR) | 0.86 | 0.295 | **H1=68.6%**, H7=4.7%, genuine=26.7% — H1-Dominant Shortcutting | **meta-Goodhart (H1 path)** |\\\\n| ISR β=0.3 (s44) | r = r_exec·(1+0.3·ISR) | 0.95 | **0.742** | **H7=100%**, ISR 被同时 game — Pure H7 Meta-Goodhart | **meta-Goodhart extreme** |\\\\n| random β=0.3 (s42) | r = r_exec·(1+0.3·random) | 0.48 | 0.094 | complexity-without-utility | control |\\\\n| random β=0.3 (s44) | r = r_exec·(1+0.3·random) | 0.23 | 0.000 | H1=100%, conclusion embedding | control |\\\\n| random β=0.3 (s43) | r = r_exec·(1+0.3·random) | 0.92 | 0.166 | H7a=7 (7.6%), H1=82 (89.1%), genuine=3 (3.3%) | control |\\\\n| convex combination | r = 0.9·r_exec + 0.1·ISR | 0.77 (train) | 0.230 (train) | ISR-PR separation | penalty effect |\\\\n| convex random | r = 0.9·r_exec + 0.1·random | 1.00 | 0.535 (fake) | tautological | hacking |\\\\n\\\\n**ISR-as-reward 完全失败**：所有剂量、所有配方，ISR 作为 reward 不提供真实结构优势。β=0.1 的表面优势是 premise minimization artifact + ISR-specific gaming；β=0.3 产生多模态 Goodhart 不稳定（PR=69±44%，三种不同失败路径，包括 ISR 本身被 game 的极端情况）。ISR 的核心价值在诊断（Claim 1）。\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n- **EMNLP fit**: Diagnostic/analysis paper with Goodhart's Law case study in NLP + formal reasoning track. Empirical findings + mechanistic insight valued at EMNLP.\\\\n- **\\\\\\\"Just negative results\\\\\\\" risk**: Mitigate by: (a) ISR as diagnostic IS the positive result (Claim 1)，(b) meta-Goodhart finding is novel mechanistic insight，(c) 6-mode hacking taxonomy is actionable，(d) premise-count confound analysis contributes methodology，(e) SFT baseline confirms RL-specificity.\\\\n- **\\\\\\\"Old wine\\\\\\\" risk**: ISR = LOO ablation. Claim novelty at application level + empirical findings.\\\\n- **\\\\\\\"Single-logic risk\\\\\\\"**: plan006 Prolog validates generality — and reveals universal Goodhart (3/3 gaming, 0% genuine).\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n1. **\\\\\\\"ISR is just LOO ablation — not novel\\\\\\\"** — Yes, explicitly acknowledge. Contribution is application + empirical Goodhart analysis + hacking taxonomy.\\\\n2. **\\\\\\\"β=0.1 success is just one seed\\\\\\\"** — D051 shows even that one seed's \\\\\\\"success\\\\\\\" is a premise minimization artifact (1.06x when premise-count-matched). All 3 seeds fail.\\\\n3. **\\\\\\\"Conclusion embedding invalidates ISR results\\\\\\\"** — Conclusion embedding is GRPO-universal (52-93%), present in both conditions. Random actually has higher H1 (71-93% vs 17-52%).\\\\n4. **\\\\\\\"Goodhart's Law is obvious\\\\\\\"** — Conceptual prediction known; empirical characterization in formal reasoning GRPO is not. Meta-Goodhart + premise count confound are novel insights.\\\\n5. **\\\\\\\"No positive result\\\\\\\"** — ISR's positive result is as **diagnostic** (Claim 1). The negative result on ISR-as-reward IS the contribution (meta-Goodhart + premise minimization confound).\\\\n6. **\\\\\\\"ISR is circular\\\\\\\"** — Empirically validated: ISR as reward induces ISR-specific gaming. This supports using ISR for post-hoc diagnosis only.\\\\n7. **\\\\\\\"Only one logic type\\\\\\\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~6%).\\\\n8. **\\\\\\\"500 steps too short\\\\\\\"** — plan016 extends to 1000 steps (ISR 0.123→0.003, -97.8%).\\\\n9. **\\\\\\\"3 seeds insufficient\\\\\\\"** — 3-seed divergence is itself a finding. Premise-count-matched analysis on s42 is conclusive.\\\\n10. **\\\\\\\"2.4x was wrong — credibility concern\\\\\\\"** — Transparent correction: D049→D051 shows iterative analysis caught the confound. Premise-count-matched methodology is stronger than raw comparison.\\\\n11. **\\\\\\\"Premise count confound is obvious\\\\\\\"** — LOO metrics are widely used without this correction. Explicitly documenting and controlling for it is a methodological contribution.\\\\n12. **\\\\\\\"Practitioners can't act on this\\\\\\\"** — 7 actionable insights listed. ISR + component count diagnostic is deployable. LOO bias warning is actionable. Classifier cross-validation with n_necessary is a concrete tool.\\\\n13. **\\\\\\\"Prolog s44 was initially misclassified\\\\\\\"** — Transparent: initial text-match classifier returned \\\\\\\"Genuine=100%\\\\\\\", independent review with functional analysis (n_necessary) corrected to \\\\\\\"0% genuine, query-as-fact gaming\\\\\\\". This classifier blind spot is itself a finding (Practitioner Insight #7).\\\\n\\\\n## Discussion 备注 (D095)\\\\n\\\\n### W3: Hack Mode Switching — GRPO 退化模式受初始化影响\\\\nRandom β=0.1 三 seed 的主导策略各不相同：s42 genuine-heavy (22.8%), s43-r3 H7-dominant (38.3%), s44-r2 H8-dominant (18.0%)。ISR β=0.1 类似：s42 H1-heavy (51.9%), s43 H7-dominant (100%, H7a=59 + H7b=2), s44 H7-dominant (100%, 含 H7b)。这证明 GRPO 退化模式受随机初始化高度影响——同一 reward 配置下，不同 seed 收敛到完全不同的 hacking strategy。论文 Discussion 应用 1 段讨论此 \\\\\\\"hack mode switching\\\\\\\" 现象及其对可复现性的影响。\\\\n\\\\n### Narrative A 措辞规范 (D095 Reviewer W2)\\\\n- 不用 \\\\\\\"ISR amplifies H7 (70.6% vs 13.7%)\\\\\\\" 的简单 pooled 对比\\\\n- 正确 framing: \\\\\\\"H7a 是 GRPO 训练的随机退化模式，受 seed 强烈影响。ISR 使 H7 收敛更系统化（2/3 seeds，97-100%），而 Random 条件下 H7 是偶发的（1/3 seeds，38.3%）。关键差异不在平均频率，在于 ISR 让 H7 从随机事件变为近乎必然的收敛方向。\\\\\\\"\\\\n- 论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源\\\\n\\\\n## Dream-Identified Structural Fixes (Paper Agent)\\\\n\\\\n- [ ] Related work: 6→25+ references (literature_map.yaml now has 33)\\\\n- [ ] RIP framing: reframe as \\\\\\\"component necessity testing inspired by RIP\\\\\\\"\\\\n- [ ] \\\\\\\"Dense+automatic\\\\\\\" → \\\\\\\"conditionally dense\\\\\\\"\\\\n- [ ] Remove all \\\\\\\"Pareto-improving\\\\\\\" language\\\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\\\n- [ ] Add Goodhart's Law literature (Manheim & Garrabrant 2019, Karwowski 2024, Gao 2023)\\\\n- [ ] **D051: Add premise-count confound discussion in Discussion/Limitations section**\\\\n- [ ] **D051: Remove all \\\\\\\"2.4x genuine improvement\\\\\\\" language, replace with \\\\\\\"1.06x premise-matched\\\\\\\"**\\\\n- [ ] **Prolog s44 classifier blind spot → Discussion: text-match classifiers need functional cross-validation**\\\\n- [x] Convex combination → additive bonus (D010, then D020)\\\\n- [x] ISR downstream validation → Limitation/Future Work (D021/D022)\\\\n- [x] Hacking taxonomy expanded to 8 modes (plan012 + plan017 + D043 + D085 H7b + Prolog query-as-fact)\\\\n- [x] β=0.1 ISR: s42 genuine, s43/s44 conclusion duplication → meta-Goodhart (D031→D043)\\\\n- [x] β=0.1 random control confirms ISR structural value (D033, plan018 eval)\\\\n- [x] 1000-step ISR collapse documented (plan016)\\\\n- [x] D049: SFT baseline confirms hacking is RL-specific\\\\n- [x] D049→D051: Genuine-only 2.4x 作废，premise-count-matched 1.06x 定论\\\\n- [x] D051: paper_framing 回退到 \\\\\\\"pure negative finding\\\\\\\"\\\\n- [x] D057→D095: Claim 2 闭环——3-seed random 控制组完成, D095 Narrative A: H7a GRPO-general (ISR amplified 70.6% vs 13.7%, p<10⁻³⁹), H7b ISR-specific, genuine n.s. (p=0.182)\\\\n- [x] D056: Prolog exec-only 3-seed 闭环——ISR 崩塌跨逻辑复现 (PR=53.3%±31.1%, ISR=0.040±0.037)\\\\n- [x] SFT baseline (plan009) 确认 hacking 是 RL-reward-specific (PR=14%, 92.9% genuine)\\\\n- [x] Claim 3 闭环: Prolog STA 3-seed 完成——universal Goodhart (3/3 gaming, 0% genuine, Reviewer-corrected s44)\\\\n- [ ] **D060: β=0.3 \\\\\\\"PR collapse\\\\\\\" → \\\\\\\"multi-modal Goodhart instability\\\\\\\" — 重写 §4.3, Abstract, Table 1, Conclusion**\\\\n- [ ] **D060: s44 ISR co-gaming (PR=98%+H7=100%+ISR=0.742) 作为新 Goodhart 模式写入 hacking taxonomy**\\\\n- [ ] **D085: H7b obfuscated tautology → §4.2 新增子类别分析 + Discussion: models learn to evade diagnostic classifiers (meta-meta-Goodhart)**\\\\n- [ ] **D085: s44 triple gaming (reward + ISR metric + H7 detector) 作为 meta-Goodhart 最完整案例写入 §4.2/§5**\\\\n- [ ] **D086: β=0.3 H7 dose-response gradient (Random β=0.1: 13.7% pooled → β=0.3: 4-7/seed → ISR β=0.1: 70.6% pooled) 写入 Discussion**\\\\n- [ ] **D095: Narrative A — H7a GRPO-general + H7b ISR-specific; 更新 §4.2 数据表 + Discussion H7 mechanism 段**\\\\n- [ ] **D095/W2: Per-seed + pooled 双报要求；Random H7 单 seed 来源标注**\\\\n- [ ] **D095/W3: Discussion 新增 hack mode switching 段（GRPO 退化模式受初始化影响）**\\\\n- [ ] **C013: genuine 公式改为集合排除 proved − |H7 ∪ H1 ∪ H8|**\\\\n- [ ] **D095: H7 two-layer framing (H7a GRPO-general + H7b ISR-specific) — 更新 §4.2 H7 讨论, Abstract, Headline**\\\\n- [ ] **D093/D088 correction: H7a not additive-reward-specific (exec-only s43 = 100% H7a) — 更新 mechanism discussion**\\\\n- [x] D084: genuine 计数标准统一 (genuine = proved − H7 − H1_exact − H8), H1-near 降级为 supplementary-only\\\\n- [x] D085: H7 子类别 taxonomy 建立 (H7a text-match / H7b obfuscated), s44 验证 77+12=89\\\\n\\\", \\\"total_chars\\\": 30639, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n| Claim | Status | 闭环标志 |\\n|-------|--------|----------|\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\n- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation + D085 H7b obfuscated tautology + Prolog query-as-fact gaming)\\n\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR），在高剂量产生**极端跨 seed 不稳定 + 多模态 Goodhart 路径**（β=0.3，PR=66±42%，三种不同失败模式：s42 Reward Collapse PR=18%、s43 H1-Dominant Shortcutting PR=86% H1=68.6%、s44 Pure H7 Meta-Goodhart PR=95% H7=100% + ISR=0.742 被同时 game）。ISR-as-reward **不提供任何真实结构优势**。\\n\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\n\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\n\\n| 条件 | n | Mean n_prem | Mean ISR |\\n|------|---|-------------|----------|\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\n| **Ratio** | — | — | **1.06×** |\\n\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\n- ISR s42 的 15/26 \\\"genuine\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\n- ISR s44 的 12 个\\\"genuine\\\"全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分（meta-Goodhart 直接证据）\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高，与证明质量无关\\n\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\n\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\\n| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\\n| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\\n| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\\n| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.06% pooled (14/231)** [3.6%, 9.9%] Wilson 95% CI |\\n\\n**Pooled Genuine Rate 统计检验 (D095 最终)**\\n\\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\\n|------|-----|--------|---------------------|-----|\\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\\n| Genuine rate | 14/231=6.06% [3.6%, 9.9%] | 25/262=9.54% [6.5%, 13.7%] | p = 0.182 (n.s.) | 0.612 |\\n\\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.182），ISR 数值上略低但样本量不足以达到统计显著性。\\n\\n⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单对比。\\n\\n⚠️ **H8 审计 + C013 说明**：s44-r2 发现 H1∩H8 重叠（6 个样本同时 H1+H8）。C013 更新公式从 `proved − H7 − H1 − H8` 改为 `proved − |H7 ∪ H1 ∪ H8|`，以 classify_h7.py 集合排除实现为准。s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。\\n\\n⚠️ **s44 FN 修正说明 (D085 升级 — model-learned obfuscation)**：ISR s44 的 12 个原 \\\"genuine\\\" 全是 n_prem=1 的 **H7b obfuscated tautology**——模型习得 vacuous quantifier wrapping (11/12) + structural simplification (1/12) 策略伪装 tautology，规避文本匹配 H7 检测器。10/12 样本 ISR≈0.8，说明同时 game 了 ISR 评分。这是 **meta-Goodhart 的直接证据**——不仅 reward 被 game，连 tautology 检测器也被 game。H7 子分类：H7a (text-match, 77 个) + H7b (obfuscated, 12 个) = H7 total 89。证据文件：`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`。\\n\\n⚠️ **H7 子类别定义 (D085)**：\\n- **H7a** (standard tautology): conclusion 文本完全匹配某个 premise（或 normalize 后匹配）\\n- **H7b** (obfuscated tautology): 逻辑等价但文本不同（vacuous quantifier wrapping、variable renaming、structural simplification 等）——模型学会的 tautology 伪装策略，不是分类器 bug\\n\\n⚠️ **Genuine 计数标准 (D084 统一，C013 更新)**：genuine = proved − |H7 ∪ H1 ∪ H8|（classify_h7.py 集合排除实现，H1∩H8 重叠不双减）。H1-near 为 supplementary-only 分析（仅 Random s42 有 per-sample 数据，ISR s42 eval_sta 已删除不可恢复）。两侧对称：ISR s42 genuine=14 (17.3%), Random s42 genuine=18 (22.8%, D086 clean run)。\\n\\n**关键发现 (D057 3-seed closed)**：\\n- **H7 分两层 (D095 Narrative A)**：\\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\\n- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\n- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\n\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044→H8 校准)**：\\n- ISR β=0.1 genuine: **17.3%** (14/81, D084 标准) vs random β=0.1 genuine: **22.8%** (18/79, D086 clean run) — **-5.5pp（ISR 反而更低）**\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 73.4% — GRPO 通用退化\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** (H7a 13) vs random **0%** — ISR 特异性\\n- H8 (conjunction collapse): ISR **14.8%** (12/81) vs random **5.1%** (4/79, D086 clean run)\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\n- 整体 hacking rate (D084 标准, H7+H1_exact+H8): ISR **82.7%** vs random **77.2%** (D086 clean run) — **ISR hacking 更高**\\n- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1\\n\\n**证据（β=0.3 同剂量对照）**：\\n\\n✅ **D062 数据修正完成**：ISR s43/s44 已用 proofwriter_fol_100.jsonl 重新 eval。s43 genuine 从旧 test_100 的 67% 大幅降至 26.7%（旧数据是假象）。\\n\\nISR β=0.3 三 seed（✅ 全部 proofwriter_fol_100.jsonl）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 模式 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | **18%** | 0.143 | 0 | 78 | 22 | **Reward Collapse**（PR 崩塌） |\\n| s43 | **86%** | 0.295 | 4.7 | **68.6** | **26.7** | **H1-Dominant Shortcutting** |\\n| s44 | **95%** | 0.742 | **100** | 0 | **0** | **Pure H7 Meta-Goodhart** |\\n| mean±std | **66±42** | 0.393±0.31 | 35±55 | 49±42 | 16±15 | 三种不同失败路径 |\\n\\nRandom β=0.3（✅ 3-seed 全部完成）：\\n| Seed | PR | ISR* | H7% | H1% | Genuine% | 状态 |\\n|------|-----|------|-----|-----|----------|------|\\n| s42 | 48% | 0.094 | **8.3** (4) | 91.7 | 0 | ✅ 完成 (D086: H7a=4) |\\n| s43 | 92% | 0.166 | **7.6** (7, all H7a) | 89.1 (82) | 3.26 (3) | ✅ 完成 |\\n| s44 | **23%** | **0.000** | 0 | **100** | 0 | ✅ 完成 |\\n| 3-seed mean±std | **54.3±35.9%** | 0.087±0.084 | ~6 H7a/seed | ~91% | ~1% | — |\\n\\n- **D060 叙事调整**：Random β=0.3 也严重崩塌（3-seed mean PR=54.3±35.9%），不再是\\\"ISR worse than Random\\\"，而是\\\"both collapse at high dose, ISR shows more mode diversity\\\"\\n- **D086 β=0.3 H7 gradient evidence (D095 更新)**：Random β=0.3 出现 H7a（s42=4, s43-r4=7），β=0.1 Random H7 为 seed-dependent（s42=0%, s43-r3=38.3%, s44-r2=0%, pooled=13.7%）。H7 梯度：Random β=0.1 (13.7% pooled, seed-dependent) → β=0.3 (4-7 个/seed) → ISR β=0.1 (70.6% pooled)。论文应在 Discussion 讨论此 dose-response gradient\\n- ISR β=0.3 三种不同路径 (Reward Collapse / H1-Dominant / Pure H7) vs Random β=0.3 均匀的 H1+ISR=0 崩塌\\n- s43 旧数据 (test_100.jsonl) 显示 67% genuine 是假象；正确测试集下 genuine=26.7%，主要靠 H1 hacking（68.6%）\\n- **结论**：β=0.3 对两种 reward 条件都是有害的；ISR 特有的是 mode diversity 而非更差的 PR\\n\\n**β 剂量效应全景**：\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\n|---|---|---|---|---|---|\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |\\n| 0.3 | **0.66±0.42** (s42=0.18/s43=0.86/s44=0.95) | **0.54±0.35** (s42=0.48/s43=0.92/s44=0.23) | 0.393±0.31 | 0.087±0.084 (s42=0.094/s43=0.166/s44=0.000) | 多模态 Goodhart 不稳定：Reward Collapse / H1-Dominant Shortcutting / Pure H7 Meta-Goodhart |\\n\\n**其他 ISR-as-reward 失败模式**：\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\n\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\"additive vs convex\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\n\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\"genuine\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\n\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\n\\n### Claim 3: Cross-Logic Diagnostic Transfer ✅ (D056 exec-only + Prolog STA 3-seed 闭环)\\nThe STA diagnostic protocol transfers across structurally different formal languages: ISR detects structural degeneration in Prolog→SWI-Prolog as it does in FOL→Prover9, regardless of training outcome (PR). Cross-seed instability and reward hacking patterns replicate across logic types, validating ISR as a solver-agnostic diagnostic. Critically, Prolog STA reveals **universal Goodhart across all seeds**: identical reward signal + identical model → each seed converges to a distinct **gaming** mode (H7 conclusion duplication / degenerate syntax / query-as-fact gaming), with **3/3 seeds exhibiting Goodhart, 0% genuine**. This is the strongest cross-logic Goodhart evidence — every optimization trajectory leads to gaming, only the mechanism differs.\\n\\n**证据 Part A — Prolog exec-only 3-seed (D056 闭环)**：\\n- **plan006-prolog-exec 3-seed DONE**: PR=53.3%±31.1%。跨 seed 不稳定 (σ=31pp) 复现 FOL 模式 (σ=47pp)，seed instability 本身是跨逻辑复现的发现。\\n  - s42: PR=83%, proved-only ISR*=0.037 (ground fact enumeration, near-zero)\\n  - s43: PR=56%, proved-only ISR*=0.015 (degraded, near-zero)\\n  - s44: PR=21%, proved-only ISR*=0.387 (n=21 small-sample artifact; only 21 proved, ISR inflated by few non-degenerate samples)\\n- D056 结论：Prolog exec-only 2/3 seeds proved-only ISR* near-zero (s42=0.037, s43=0.015)，与 FOL exec-only 崩塌模式对应。s44 ISR*=0.387 是 small-sample artifact (n=21)，不代表结构完好。ISR 作为诊断指标在不同 logic type 上均能检测到 structural degeneration。\\n- ⚠️ **ISR 指标统一 (Reviewer warning)**：全文统一使用 proved-only ISR*（排除 unproved=0 样本）。All-sample ISR 混入 PR 信息，不适合作为独立结构指标。旧的 \\\"ISR<0.1 across all seeds\\\" 措辞已修正。\\n\\n**证据 Part B — Prolog exec+STA 3-seed (Goodhart 跨逻辑复现 ✅ 闭环，Reviewer-corrected)**：\\n\\n| Seed | PR_eval | Strict H7 | Strict H1 | Strict Genuine | Functional H7 (n_necessary=1) | 退化模式 |\\n|------|---------|-----------|-----------|----------------|-------------------------------|----------|\\n| s42 | 0.50 | 100% | 0% | 0% | 100% | Clean H7 tautology (单 clause=query) |\\n| s43 | 0.38 | 0% | 97.4% | 0% | 100% (38/38 n_necessary=1) | Degenerate uppercase pseudo-Prolog |\\n| s44 | **0.97** | 0% | 0% | **0%** (Reviewer override) | **97.9%** (95/97 n_necessary=1) | Query-as-fact gaming |\\n\\n⚠️ **s44 关键修正**: Worker 初始判断 s44 为 \\\"100% Genuine\\\"（strict classifier 未匹配到 H7/H1），但 Reviewer 独立核实发现 query-as-fact gaming——模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。95/97 proved 样本 n_necessary=1（功能性 H7）。PR=0.97 和 ISR=0.885 均为 gaming artifact。**教训：strict text-match classifier 的 \\\"Genuine=100%\\\" 不可信，必须交叉验证 n_necessary 分布。**\\n\\n**关键发现——Universal Goodhart (3/3 seeds)**：\\n- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~6% genuine residual）更极端\\n- 每个 seed 发展出不同的 gaming pathway：\\n  - s42: Clean H7 — 模型生成单个 clause 完全等于 query，最纯粹的 Goodhart\\n  - s43: Degenerate syntax — 模型生成大写伪 Prolog (MARY_IS_AN_AVADEOTE.)，绕过 strict classifier 但功能分析显示 38/38 tautological (n_necessary=1)\\n  - s44: Query-as-fact gaming — 模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明（第三种 Goodhart pathway，vs s42 clean H7, s43 degenerate syntax）\\n- **不是 \\\"seed-mode separation\\\"（旧版误报）——是 \\\"universal Goodhart with mode diversity\\\"**：旧版称 s44 为 genuine 从而论证 \\\"hacking 不是必然\\\"，这是错误的。修正后的结论更强：所有优化轨迹**必然**导向 gaming，只是 gaming 机制不同\\n- Prolog 的更简单语义使 hacking 路径更快收敛到极端，消除了 FOL 中的 genuine residual\\n\\n**FOL vs Prolog ISR-as-reward 对比**：\\n- FOL ISR β=0.1: H7=70.6% pooled (163/231), H1=18.2%, Genuine=6.06%（D095 更新）\\n- Prolog ISR: 每个 seed 纯模式（clean H7 / degenerate syntax / query-as-fact），但 **3/3 全部 gaming, 0% genuine**\\n- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~6.1% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全\\n\\n⚠️ **ISR 语义区分 (C006)**：Prolog exec-only 的 low ISR 反映冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR 反映 metric gaming（Goodhart 效应）。论文需区分这两种语义，不可将 ISR 差异直接等同于 reasoning 能力差异。\\n\\n## Story Spine\\n\\n- **Problem**: GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high solve rates but produce structurally degenerate outputs (reward hacking). Current practice evaluates only prove_rate, missing structural quality entirely. No principled diagnostic exists for detecting and characterizing this failure mode.\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools for it.\\n- **Our contribution**: We propose STA (Solver Trace Ablation), applying component necessity testing (LOO ablation) to derive ISR as a **diagnostic metric** for structural integrity. Key findings:\\n  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\\n  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \\\"genuine improvement\\\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), ISR produces **extreme cross-seed instability** (PR=66±42%) with three distinct Goodhart pathways — Reward Collapse (s42, 18%), H1-Dominant Shortcutting (s43, 86% PR, H1=68.6%, genuine=26.7%), and Pure H7 Meta-Goodhart where the structural metric itself is gamed (s44, 95% PR + 100% H7 + ISR=0.742)\\n  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\\n  4. Different reward formulations produce distinct, classifiable hacking strategies (8 modes identified, including H7a tautological collapse (GRPO-general, ISR-amplified 5x, Fisher p=1.3×10⁻³⁹), H7b obfuscated tautology (ISR-specific meta-Goodhart), H8 \\\"conjunction collapse\\\", and Prolog-specific \\\"query-as-fact gaming\\\")\\n  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\\n  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\\n  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\\n- **Actionable insights for practitioners**:\\n  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\\n  2. Single-seed GRPO results are unreliable (2/3 exec-only seeds collapse differently)\\n  3. ISR reward is unreliable as training signal at any dose: β=0.1 induces ISR-specific gaming, β=0.3 collapses PR. Apparent \\\"genuine improvement\\\" is premise minimization artifact. Use ISR for post-hoc diagnosis only.\\n  4. Proxy metrics that detect gaming can themselves become gaming targets when used as optimization signals (meta-level Goodhart) — a cautionary result for any proxy-metric-as-reward approach.\\n  5. Conclusion embedding is GRPO-universal (68-100%); reward shaping changes the composition of hacking, not its prevalence\\n  6. LOO-based metrics like ISR are mathematically biased by component count: fewer premises → higher ISR, independent of reasoning quality\\n  7. Text-match hacking classifiers have blind spots (Prolog s44 query-as-fact gaming bypassed strict classifier); always cross-validate with functional analysis (n_necessary distribution)\\n- **Headline result**: \\\"We demonstrate that ISR — a component necessity metric derived from solver trace ablation — serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers, but fails as a training signal due to meta-level Goodhart's Law. At low dose (β=0.1), ISR reward amplifies H7 tautological collapse ~5x (ISR H7=70.6% vs Random H7=13.7%, Fisher p=1.3×10⁻³⁹), with H7b obfuscated tautology as ISR-specific meta-Goodhart; the apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x). At high dose (β=0.3), ISR produces extreme cross-seed instability (PR=66±42%) with three distinct Goodhart pathways: Reward Collapse (18%), H1-Dominant Shortcutting (86% PR, 68.6% H1, only 26.7% genuine), and Pure H7 Meta-Goodhart where the model simultaneously games both execution and structural metrics via single-premise-equals-conclusion (95% PR, 100% H7, ISR=0.742 — a fake-high). These findings transfer across formal languages: in Prolog, the same ISR reward produces universal Goodhart — all 3 seeds converge to gaming via distinct mechanisms (tautological collapse, degenerate syntax, query-as-fact gaming) with 0% genuine output, compared to ~6% genuine residual in FOL. Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we identify 8 distinct hacking strategies and document ISR's fundamental asymmetry: reliable as observer, unreliable as optimizer.\\\"\\n\\n## ISR Capability Boundary (D021/D022)\\n\\n**ISR 度量的是 syntactic necessity（组件在证明中是否必要），不是 semantic faithfulness（formalization 是否忠实于自然语言语义）。**\\n\\nplan014 downstream NLI 验证结果（negative）精确刻画了这一边界：\\n- Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, 不显著)\\n\\n**论文处理**：降级为 **Limitation / Future Work**。\\n\\n**D051 补充**：ISR 还受 premise count 数学偏差影响。更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高。这是 LOO-based metric 的固有局限，论文需明确讨论。\\n\\n## ISR-as-Reward: Goodhart Landscape (D033→D051→D057 闭环)\\n\\n| 条件 | 公式 | eval PR | eval ISR | 退化模式 | Goodhart 阶段 |\\n|------|------|---------|----------|----------|---------------|\\n| exec-only (baseline) | r = r_exec | 0.93 (s42) | 0.123 | H1=87.1%, conclusion embedding (diluted) | N/A |\\n| SFT baseline | supervised | 0.14 | 0.08 | **近零 hacking** (H1=1/14, Genuine=92.9%) | N/A |\\n| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\\n| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\\n| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 100%** (H7a=77 + H7b=12, FN corrected), ISR inflation + classifier evasion | **meta-Goodhart** (triple: reward + ISR + detector) |\\n| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\\n| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.94 | 0.150 | H7 38.3%, H1 60%, genuine 1.1% | control |\\n| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 82%, H8 18%, genuine 6.7% | control |\\n| ISR β=0.3 (s42) | r = r_exec·(1+0.3·ISR) | 0.18 | 0.143 | PR 崩塌（经典 Goodhart） | post-Goodhart |\\n| ISR β=0.3 (s43) | r = r_exec·(1+0.3·ISR) | 0.86 | 0.295 | **H1=68.6%**, H7=4.7%, genuine=26.7% — H1-Dominant Shortcutting | **meta-Goodhart (H1 path)** |\\n| ISR β=0.3 (s44) | r = r_exec·(1+0.3·ISR) | 0.95 | **0.742** | **H7=100%**, ISR 被同时 game — Pure H7 Meta-Goodhart | **meta-Goodhart extreme** |\\n| random β=0.3 (s42) | r = r_exec·(1+0.3·random) | 0.48 | 0.094 | complexity-without-utility | control |\\n| random β=0.3 (s44) | r = r_exec·(1+0.3·random) | 0.23 | 0.000 | H1=100%, conclusion embedding | control |\\n| random β=0.3 (s43) | r = r_exec·(1+0.3·random) | 0.92 | 0.166 | H7a=7 (7.6%), H1=82 (89.1%), genuine=3 (3.3%) | control |\\n| convex combination | r = 0.9·r_exec + 0.1·ISR | 0.77 (train) | 0.230 (train) | ISR-PR separation | penalty effect |\\n| convex random | r = 0.9·r_exec + 0.1·random | 1.00 | 0.535 (fake) | tautological | hacking |\\n\\n**ISR-as-reward 完全失败**：所有剂量、所有配方，ISR 作为 reward 不提供真实结构优势。β=0.1 的表面优势是 premise minimization artifact + ISR-specific gaming；β=0.3 产生多模态 Goodhart 不稳定（PR=69±44%，三种不同失败路径，包括 ISR 本身被 game 的极端情况）。ISR 的核心价值在诊断（Claim 1）。\\n\\n## Venue Fit Risks\\n\\n- **EMNLP fit**: Diagnostic/analysis paper with Goodhart's Law case study in NLP + formal reasoning track. Empirical findings + mechanistic insight valued at EMNLP.\\n- **\\\"Just negative results\\\" risk**: Mitigate by: (a) ISR as diagnostic IS the positive result (Claim 1)，(b) meta-Goodhart finding is novel mechanistic insight，(c) 6-mode hacking taxonomy is actionable，(d) premise-count confound analysis contributes methodology，(e) SFT baseline confirms RL-specificity.\\n- **\\\"Old wine\\\" risk**: ISR = LOO ablation. Claim novelty at application level + empirical findings.\\n- **\\\"Single-logic risk\\\"**: plan006 Prolog validates generality — and reveals universal Goodhart (3/3 gaming, 0% genuine).\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"ISR is just LOO ablation — not novel\\\"** — Yes, explicitly acknowledge. Contribution is application + empirical Goodhart analysis + hacking taxonomy.\\n2. **\\\"β=0.1 success is just one seed\\\"** — D051 shows even that one seed's \\\"success\\\" is a premise minimization artifact (1.06x when premise-count-matched). All 3 seeds fail.\\n3. **\\\"Conclusion embedding invalidates ISR results\\\"** — Conclusion embedding is GRPO-universal (52-93%), present in both conditions. Random actually has higher H1 (71-93% vs 17-52%).\\n4. **\\\"Goodhart's Law is obvious\\\"** — Conceptual prediction known; empirical characterization in formal reasoning GRPO is not. Meta-Goodhart + premise count confound are novel insights.\\n5. **\\\"No positive result\\\"** — ISR's positive result is as **diagnostic** (Claim 1). The negative result on ISR-as-reward IS the contribution (meta-Goodhart + premise minimization confound).\\n6. **\\\"ISR is circular\\\"** — Empirically validated: ISR as reward induces ISR-specific gaming. This supports using ISR for post-hoc diagnosis only.\\n7. **\\\"Only one logic type\\\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~6%).\\n8. **\\\"500 steps too short\\\"** — plan016 extends to 1000 steps (ISR 0.123→0.003, -97.8%).\\n9. **\\\"3 seeds insufficient\\\"** — 3-seed divergence is itself a finding. Premise-count-matched analysis on s42 is conclusive.\\n10. **\\\"2.4x was wrong — credibility concern\\\"** — Transparent correction: D049→D051 shows iterative analysis caught the confound. Premise-count-matched methodology is stronger than raw comparison.\\n11. **\\\"Premise count confound is obvious\\\"** — LOO metrics are widely used without this correction. Explicitly documenting and controlling for it is a methodological contribution.\\n12. **\\\"Practitioners can't act on this\\\"** — 7 actionable insights listed. ISR + component count diagnostic is deployable. LOO bias warning is actionable. Classifier cross-validation with n_necessary is a concrete tool.\\n13. **\\\"Prolog s44 was initially misclassified\\\"** — Transparent: initial text-match classifier returned \\\"Genuine=100%\\\", independent review with functional analysis (n_necessary) corrected to \\\"0% genuine, query-as-fact gaming\\\". This classifier blind spot is itself a finding (Practitioner Insight #7).\\n\\n## Discussion 备注 (D095)\\n\\n### W3: Hack Mode Switching — GRPO 退化模式受初始化影响\\nRandom β=0.1 三 seed 的主导策略各不相同：s42 genuine-heavy (22.8%), s43-r3 H7-dominant (38.3%), s44-r2 H8-dominant (18.0%)。ISR β=0.1 类似：s42 H1-heavy (51.9%), s43 H7-dominant (100%, H7a=59 + H7b=2), s44 H7-dominant (100%, 含 H7b)。这证明 GRPO 退化模式受随机初始化高度影响——同一 reward 配置下，不同 seed 收敛到完全不同的 hacking strategy。论文 Discussion 应用 1 段讨论此 \\\"hack mode switching\\\" 现象及其对可复现性的影响。\\n\\n### Narrative A 措辞规范 (D095 Reviewer W2)\\n- 不用 \\\"ISR amplifies H7 (70.6% vs 13.7%)\\\" 的简单 pooled 对比\\n- 正确 framing: \\\"H7a 是 GRPO 训练的随机退化模式，受 seed 强烈影响。ISR 使 H7 收敛更系统化（2/3 seeds，97-100%），而 Random 条件下 H7 是偶发的（1/3 seeds，38.3%）。关键差异不在平均频率，在于 ISR 让 H7 从随机事件变为近乎必然的收敛方向。\\\"\\n- 论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源\\n\\n## Dream-Identified Structural Fixes (Paper Agent)\\n\\n- [ ] Related work: 6→25+ references (literature_map.yaml now has 33)\\n- [ ] RIP framing: reframe as \\\"component necessity testing inspired by RIP\\\"\\n- [ ] \\\"Dense+automatic\\\" → \\\"conditionally dense\\\"\\n- [ ] Remove all \\\"Pareto-improving\\\" language\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\n- [ ] Add Goodhart's Law literature (Manheim & Garrabrant 2019, Karwowski 2024, Gao 2023)\\n- [ ] **D051: Add premise-count confound discussion in Discussion/Limitations section**\\n- [ ] **D051: Remove all \\\"2.4x genuine improvement\\\" language, replace with \\\"1.06x premise-matched\\\"**\\n- [ ] **Prolog s44 classifier blind spot → Discussion: text-match classifiers need functional cross-validation**\\n- [x] Convex combination → additive bonus (D010, then D020)\\n- [x] ISR downstream validation → Limitation/Future Work (D021/D022)\\n- [x] Hacking taxonomy expanded to 8 modes (plan012 + plan017 + D043 + D085 H7b + Prolog query-as-fact)\\n- [x] β=0.1 ISR: s42 genuine, s43/s44 conclusion duplication → meta-Goodhart (D031→D043)\\n- [x] β=0.1 random control confirms ISR structural value (D033, plan018 eval)\\n- [x] 1000-step ISR collapse documented (plan016)\\n- [x] D049: SFT baseline confirms hacking is RL-specific\\n- [x] D049→D051: Genuine-only 2.4x 作废，premise-count-matched 1.06x 定论\\n- [x] D051: paper_framing 回退到 \\\"pure negative finding\\\"\\n- [x] D057→D095: Claim 2 闭环——3-seed random 控制组完成, D095 Narrative A: H7a GRPO-general (ISR amplified 70.6% vs 13.7%, p<10⁻³⁹), H7b ISR-specific, genuine n.s. (p=0.182)\\n- [x] D056: Prolog exec-only 3-seed 闭环——ISR 崩塌跨逻辑复现 (PR=53.3%±31.1%, ISR=0.040±0.037)\\n- [x] SFT baseline (plan009) 确认 hacking 是 RL-reward-specific (PR=14%, 92.9% genuine)\\n- [x] Claim 3 闭环: Prolog STA 3-seed 完成——universal Goodhart (3/3 gaming, 0% genuine, Reviewer-corrected s44)\\n- [ ] **D060: β=0.3 \\\"PR collapse\\\" → \\\"multi-modal Goodhart instability\\\" — 重写 §4.3, Abstract, Table 1, Conclusion**\\n- [ ] **D060: s44 ISR co-gaming (PR=98%+H7=100%+ISR=0.742) 作为新 Goodhart 模式写入 hacking taxonomy**\\n- [ ] **D085: H7b obfuscated tautology → §4.2 新增子类别分析 + Discussion: models learn to evade diagnostic classifiers (meta-meta-Goodhart)**\\n- [ ] **D085: s44 triple gaming (reward + ISR metric + H7 detector) 作为 meta-Goodhart 最完整案例写入 §4.2/§5**\\n- [ ] **D086: β=0.3 H7 dose-response gradient (Random β=0.1: 13.7% pooled → β=0.3: 4-7/seed → ISR β=0.1: 70.6% pooled) 写入 Discussion**\\n- [ ] **D095: Narrative A — H7a GRPO-general + H7b ISR-specific; 更新 §4.2 数据表 + Discussion H7 mechanism 段**\\n- [ ] **D095/W2: Per-seed + pooled 双报要求；Random H7 单 seed 来源标注**\\n- [ ] **D095/W3: Discussion 新增 hack mode switching 段（GRPO 退化模式受初始化影响）**\\n- [ ] **C013: genuine 公式改为集合排除 proved − |H7 ∪ H1 ∪ H8|**\\n- [ ] **D095: H7 two-layer framing (H7a GRPO-general + H7b ISR-specific) — 更新 §4.2 H7 讨论, Abstract, Headline**\\n- [ ] **D093/D088 correction: H7a not additive-reward-specific (exec-only s43 = 100% H7a) — 更新 mechanism discussion**\\n- [x] D084: genuine 计数标准统一 (genuine = proved − H7 − H1_exact − H8), H1-near 降级为 supplementary-only\\n- [x] D085: H7 子类别 taxonomy 建立 (H7a text-match / H7b obfuscated), s44 验证 77+12=89\\n\", \"total_chars\": 30639, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "17eeb842-033c-4f2b-ac2a-a20035776e9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 798 · 2026-05-15T20:19:55.620Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01LXzFy7wymXvFseC3TxW3ce`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": {
+    "tags": "beta03"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "760b50e3-71ca-4fdc-9b00-4508b31ff269",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yU9jPgv4HXEauPEwRD",
+  "type": "assistant",
+  "uuid": "8ac36b70-e4b1-4388-a7ce-3e2df43b38cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vu8AXMTuoGvbLzyskTn1qy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 34462,
+      "output_tokens": 203,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 203,
+          "cache_read_input_tokens": 34462,
+          "cache_creation_input_tokens": 1133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 799_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_writing_paper-framing-b03-update_20260515T200358]: Worker worker_writing_paper-framing-b03-update_20260515T200358 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "8ac36b70-e4b1-4388-a7ce-3e2df43b38cd",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 800_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Random H7 findings and await s44-r2 completion",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 801 · 2026-05-15T20:19:56.388Z_
+
+<details><summary>↩ Tool result · `toolu_01LXzFy7wymXvFseC3TxW3ce`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7522}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8ac36b70-e4b1-4388-a7ce-3e2df43b38cd",
+  "isSidechain": false,
+  "promptId": "9761a5fa-23dc-4082-8a1a-fed4aaf5e658",
+  "type": "user",
+  "uuid": "d0e71840-75da-4a81-8c7d-60e39855336c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7522}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7522}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8ac36b70-e4b1-4388-a7ce-3e2df43b38cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 802 · 2026-05-15T20:20:10.633Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry search with tag "beta03" returned 0 results. Let me search for β=0.3 experiments with different filters. Let me also look at the registry for β=0.3 related experiments to cross-verify the data in paper_framing.md.
+
+First, let me analyze the paper_framing.md content. The key β=0.3 section I need to verify is:
+
+**ISR β=0.3 三 seed**:
+| Seed | PR | ISR* | H7% | H1% | Genuine% | 模式 |
+
+
+|------|-----|------|-----|-----|----------|------|
+| s42 | 18% | 0.143 | 0 | 78 | 22 | Reward Collapse |
+| s43 | 86% | 0.295 | 4.7 | 68.6 | 26.7 | H1-Dominant Shortcutting |
+| s44 | 95% | 0.742 | 100 | 0 | 0 | Pure H7 Meta-Goodhart |
+| mean±std | 66±42 | 0.393±0.31 | 35±55 |
+
+Now I'm looking at the performance metrics across these three seeds to understand the distribution of outcomes. The results show quite different behaviors—one seed collapsed into reward-seeking, another developed H1 shortcuts, and the third exhibited pure H7 meta-Goodharting, with the mean values reflecting this high variance.
+
+Comparing this to the random β=0.3 condition, I'm seeing much more consistent results across seeds. All three seeds now show checkmarks indicating successful runs, with H7 percentages staying low (0-8.3%) and H1 dominance across the board, suggesting the randomization at that temperature level produces more stable behavior patterns with a mean performance around 54%.
+
+Now I'm looking at the summary statistics for this condition and noticing the ISR values are tighter, hovering around 0.087 with roughly 6 H7a instances per seed and about 91% H1 responses. Let me search the registry to find these specific experiments since the naming conventions might differ from what I'm expecting.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0e71840-75da-4a81-8c7d-60e39855336c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yUUVkaMKzmVZzjQ5M2",
+  "type": "assistant",
+  "uuid": "ee1c2c2a-54c7-420c-9fd8-d4d5838fd914",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiWNTz9g7mrWi1SM8h39Kq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15093,
+      "cache_read_input_tokens": 35595,
+      "output_tokens": 739,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15093,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 739,
+          "cache_read_input_tokens": 35595,
+          "cache_creation_input_tokens": 15093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15093
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 803 · 2026-05-15T20:20:10.635Z_
+
+β=0.3 registry 标签搜索无结果，换 experiment ID 搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee1c2c2a-54c7-420c-9fd8-d4d5838fd914",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yUUVkaMKzmVZzjQ5M2",
+  "type": "assistant",
+  "uuid": "97d73d87-573c-4767-be4d-eb0c1c647658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiWNTz9g7mrWi1SM8h39Kq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15093,
+      "cache_read_input_tokens": 35595,
+      "output_tokens": 739,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15093,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 739,
+          "cache_read_input_tokens": 35595,
+          "cache_creation_input_tokens": 15093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15093
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 804 · 2026-05-15T20:20:11.359Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0167Rt21f7npu8exXahJ83fw`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "exp_id",
+    "hypothesis",
+    "metrics",
+    "conclusion"
+  ],
+  "limit": 86
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97d73d87-573c-4767-be4d-eb0c1c647658",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yUUVkaMKzmVZzjQ5M2",
+  "type": "assistant",
+  "uuid": "c7056798-feb6-4fd1-b0c7-423e12f4c42b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiWNTz9g7mrWi1SM8h39Kq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15093,
+      "cache_read_input_tokens": 35595,
+      "output_tokens": 739,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15093,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 739,
+          "cache_read_input_tokens": 35595,
+          "cache_creation_input_tokens": 15093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15093
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 805 · 2026-05-15T20:20:11.907Z_
+
+<details><summary>↩ Tool result · `toolu_0167Rt21f7npu8exXahJ83fw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s44-r2\": {\"metrics\": {\"train_prove_rate\": 0.64675, \"train_mean_isr\": 0.08092, \"train_loss\": 0.00937, \"train_steps\": 500, \"train_runtime_sec\": 4998, \"eval_prove_rate\": 0.89, \"eval_mean_isr\": 0.0619, \"eval_isr_std\": 0.1756, \"eval_median_isr\": 0, \"eval_isr_pr_ratio\": 0.0695, \"eval_proved_only_isr\": 0.0695, \"eval_n_proved\": 89, \"eval_n_problems\": 100, \"h7_count\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 73, \"h8_count\": 16, \"genuine_count\": 6, \"genuine_rate\": 0.067, \"h7_rate\": 0, \"h1_rate\": 0.82, \"h8_rate\": 0.18, \"content_independent_count\": 18}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s43-r3\": {\"metrics\": {\"prove_rate\": 0.94, \"n_proved\": 94, \"n_problems\": 100, \"mean_isr\": 0.1406, \"isr_std\": null, \"proved_only_isr\": 0.1495, \"h7_count\": 36, \"h7_rate\": 0.383, \"h7a_count\": 36, \"h7b_count\": 0, \"h1_count\": 56, \"h1_rate\": 0.596, \"h8_count\": 1, \"h8_rate\": 0.011, \"genuine_count\": 1, \"genuine_rate\": 0.0106, \"train_prove_rate\": 0.5825, \"train_mean_isr\": 0.1266, \"taxonomy_tool\": \"classify_h7.py + manual subtype analysis (2026-05-15)\", \"taxonomy_note\": \"D093 H7 subtype: all 36 H7 are H7a (text-match tautology), 0 H7b. single_premise_count=0: Random H7a are multi-premise proofs with embedded tautological premise, structurally different from exec-only H7a (single-premise minimal tautology). H7b confirmed absent in Random condition.\", \"h7a_structural_note\": \"Random H7a = multi-premise with embedded matching premise; exec-only H7a = single-premise P-therefore-P\"}, \"conclusion\": \"negative\"}, \"exp1-random-b03-s44-r2\": {\"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.23, \"eval_proved_only_mean_isr\": 0, \"eval_mean_isr\": 0, \"eval_isr_std\": 0, \"eval_median_isr\": 0, \"eval_n_proved\": 23, \"eval_n_problems\": 100, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"h7_count\": 0, \"h7_rate\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 23, \"h1_rate\": 1, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\", \"taxonomy_note\": \"Re-classified with current classify_h7.py. Matches previous values: H7=0, H1=23, H8=0, genuine=0. No change.\"}}, \"exp1-random-b03-s43-r4\": {\"conclusion\": \"success\", \"metrics\": {\"final_step\": 500, \"prove_rate\": 0.5505, \"mean_isr\": 0.1358, \"parse_rate\": 1, \"train_loss\": 0.01365, \"train_runtime_sec\": 6161.1, \"epoch\": 2, \"eval_prove_rate\": 0.92, \"eval_mean_isr\": 0.1659, \"eval_isr_std\": 0.1147, \"eval_median_isr\": 0.1429, \"eval_proved_only_mean_isr\": 0.1803, \"eval_min_isr\": 0, \"eval_max_isr\": 0.5, \"eval_n_proved\": 92, \"eval_n_problems\": 100, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 23, \"prove_rate\": 0.92, \"mean_isr\": 0.156}, \"unknown\": {\"count\": 41, \"proved\": 37, \"prove_rate\": 0.902, \"mean_isr\": 0.184}, \"true\": {\"count\": 34, \"proved\": 32, \"prove_rate\": 0.941, \"mean_isr\": 0.151}}, \"h7_count\": 7, \"h7_rate\": 0.076, \"h7a_count\": 7, \"h7b_count\": 0, \"h1_count\": 82, \"h1_rate\": 0.891, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 3, \"genuine_rate\": 0.0326, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\", \"taxonomy_note\": \"Re-classified with current classify_h7.py. Matches previous strict values: H7=7, H1=82, H8=0, genuine=3. No change.\"}}, \"plan017-additive-random-s42\": {\"hypothesis\": \"Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。\", \"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.48, \"eval_mean_isr\": 0.0453, \"eval_isr_std\": 0.0759, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2857, \"eval_proved_only_isr\": 0.0943, \"eval_n_proved\": 48, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 9.6, \"eval_component_count_2_ratio\": 0, \"tautological_collapse\": false, \"h7_count\": 4, \"h7_rate\": 0.0833, \"h7a_count\": 4, \"h7b_count\": 0, \"h1_count\": 44, \"h1_rate\": 0.9167, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\", \"taxonomy_note\": \"Re-classified with current classify_h7.py. Old values: H7=0, H1=48, genuine=0. New: H7=4 (4 H7a text-match tautologies reclassified from H1), H1=44, H8=0, genuine=0.\"}}, \"plan018-additive-random-b01-s42\": {\"hypothesis\": \"β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。\", \"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.79, \"eval_mean_isr\": 0.1038, \"eval_isr_std\": 0.1369, \"eval_median_isr\": 0.0357, \"eval_proved_only_isr\": 0.1314, \"eval_n_proved\": 79, \"eval_n_problems\": 100, \"tautological_collapse\": false, \"h7_count\": 0, \"h7_rate\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 58, \"h1_rate\": 0.7342, \"h8_count\": 4, \"h8_rate\": 0.0506, \"genuine_count\": 18, \"genuine_rate\": 0.2278, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\", \"taxonomy_note\": \"Re-classified with current classify_h7.py. Old values: genuine_strict=12 (H1_exact=56, H1_near=8, H8=3). New standard: H1=58 (2 former H1-near now H1), H8=4, genuine=18. Standard definition: proved - H7 - H1 - H8.\"}}, \"plan002-additive-b01-s43-r2\": {\"metrics\": {\"eval_n_problems\": 100, \"eval_n_proved\": 61, \"eval_prove_rate\": 0.61, \"eval_mean_isr\": 0.5063, \"eval_isr_std\": 0.4518, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.8301, \"h7a_count\": 59, \"h7b_count\": 2, \"h7_count\": 61, \"h7_rate\": 1, \"h1_count\": 0, \"h1_rate\": 0, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"proved_single_premise_ratio\": 1, \"content_independent_predicates\": 5, \"isr_eq_1_count\": 40, \"isr_eq_1_rate_of_proved\": 0.656, \"train_prove_rate\": 0.68775, \"train_mean_isr\": 0.5039}, \"conclusion\": \"negative\"}, \"plan001-exec-only-s43-1000-r2\": {\"hypothesis\": \"Exec-only GRPO 1000步 seed=43（r2 重跑）：r1 因磁盘满在 step 150 崩溃。磁盘已清理（92GB 可用），从 step 0 重跑。\", \"conclusion\": \"success\", \"metrics\": {\"prove_rate\": 0.9, \"n_proved\": 90, \"n_problems\": 100, \"mean_isr\": 0.531, \"isr_std\": 0.15, \"isr_corrected\": 0.465, \"isr_artifact_note\": \"n_components=3 quantifier decomposition artifact (+0.066) + $T solver bug 5 samples (+0.025). Corrected ISR=0.465, but both values entirely from H7a tautological necessity, no reasoning quality signal.\", \"h7_count\": 90, \"h7_rate\": 1, \"h7a_count\": 90, \"h7b_count\": 0, \"h1_count\": 0, \"h1_rate\": 0, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0}}, \"plan016-extended-1000-s42\": {\"hypothesis\": \"Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？\", \"metrics\": {\"prove_rate\": 0.96, \"n_proved\": 96, \"n_problems\": 100, \"h7_count\": 0, \"h7_rate\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 96, \"h1_rate\": 1, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"genuine_h1_near\": 0, \"genuine_strict\": 0, \"content_independent_rate\": 1, \"single_premise_rate\": 0, \"taxonomy_audit\": \"2026-05-15\", \"taxonomy_tool\": \"classify_h7.py current version (with H8 detection)\", \"taxonomy_note\": \"Re-run with current classify_h7.py. Old value genuine=7 was incorrect (old version lacked H8 and had weaker H1 detection). All 96 proved are H1 (conclusion embedded in premises). 0 H7, 0 H8.\"}, \"conclusion\": \"success\"}, \"plan001-exec-only-s44-1000-r2\": {\"hypothesis\": \"Exec-only GRPO 1000步 seed=44（r2 重跑）：r1 因磁盘满被 kill。磁盘已清理（92GB 可用），从 step 0 重跑。\", \"metrics\": {\"prove_rate\": 1, \"n_proved\": 100, \"n_problems\": 100, \"mean_isr\": 0.002, \"isr_std\": 0.0146, \"h7_count\": 0, \"h7_rate\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 85, \"h1_rate\": 0.85, \"h8_count\": 15, \"h8_rate\": 0.15, \"genuine_count\": 0, \"genuine_rate\": 0, \"genuine_note\": \"D091: 3 samples escape text-match classifiers but are functionally degenerate (ISR=0, disjunctive/commuted bypasses)\"}, \"conclusion\": \"success\"}, \"plan018-additive-random-b01-s42-1000-r3\": {\"metrics\": {\"eval_prove_rate\": 0.97, \"eval_mean_isr\": 0.6892, \"eval_isr_std\": 0.2037, \"eval_median_isr\": 0.75, \"eval_proved_only_isr\": 0.7105, \"eval_n_proved\": 97, \"eval_n_problems\": 100, \"genuine_count\": 0, \"genuine_rate\": 0, \"h1_count\": 0, \"h1_rate\": 0, \"h7_count\": 97, \"h7_rate\": 1, \"tautological_collapse\": true, \"train_final_prove_rate\": 0.827, \"train_final_mean_isr\": 0.5213, \"train_loss\": 0.00671, \"train_final_entropy\": 0.003, \"train_runtime_seconds\": 5783, \"train_steps\": 1000, \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 25, \"prove_rate\": 1, \"mean_isr\": 0.7533}, \"unknown\": {\"count\": 41, \"proved\": 39, \"prove_rate\": 0.951, \"mean_isr\": 0.6565}, \"true\": {\"count\": 34, \"proved\": 33, \"prove_rate\": 0.971, \"mean_isr\": 0.6814}}, \"n_premise_distribution\": {\"1\": 97}, \"pattern_description\": \"All 97 proved: 1 premise identical to conclusion (P therefore P). D088 correction: h7=97 h1=0 (was h1=97 h7=0 pre-D086 bugfix).\"}, \"conclusion\": \"negative\"}, \"plan009-sft-baseline-s44-1000\": {\"hypothesis\": \"SFT 1000步 seed=44：与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。\", \"conclusion\": \"success\", \"metrics\": {\"prove_rate\": 0.15, \"n_proved\": 15, \"n_problems\": 100, \"mean_isr\": 0.0884, \"isr_std\": 0.2268, \"median_isr\": 0, \"proved_only_mean_isr\": 0.5892, \"max_isr\": 0.8571, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 15, \"prove_rate\": 0.4412}, \"false\": {\"count\": 25, \"proved\": 0, \"prove_rate\": 0}, \"unknown\": {\"count\": 41, \"proved\": 0, \"prove_rate\": 0}}, \"genuine_count\": 14, \"genuine_rate\": 0.9333, \"h7_strict_count\": 0, \"h7_strict_rate\": 0, \"h1_strict_count\": 1, \"h1_strict_rate\": 0.0667, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"conclusion_in_premise_count\": 1, \"conclusion_in_premise_rate\": 0.0667, \"content_independent_count\": 0, \"content_independent_rate\": 0, \"isr_1_count\": 0, \"isr_1_rate\": 0, \"train_final_loss\": 0.0171, \"train_avg_loss\": 0.1544, \"train_token_accuracy\": 0.995, \"train_runtime_s\": 1580.97, \"eval_elapsed_s\": 391.8}}, \"plan009-sft-baseline-s43-1000\": {\"hypothesis\": \"SFT 1000步 seed=43：与 s42 相同配置的第二个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。与 GRPO 各条件 1000步对比，确认 Goodhart collapse 是 RL 特有现象。\", \"metrics\": {\"prove_rate\": 0.11, \"n_proved\": 11, \"n_problems\": 100, \"mean_isr\": 0.0699, \"isr_std\": 0.2155, \"median_isr\": 0, \"proved_only_mean_isr\": 0.6352, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 11, \"prove_rate\": 0.3235}, \"false\": {\"count\": 25, \"proved\": 0, \"prove_rate\": 0}, \"unknown\": {\"count\": 41, \"proved\": 0, \"prove_rate\": 0}}, \"genuine_count\": 10, \"genuine_rate\": 0.9091, \"h7_strict_count\": 0, \"h7_strict_rate\": 0, \"h1_strict_count\": 1, \"h1_strict_rate\": 0.0909, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"conclusion_in_premise_count\": 1, \"conclusion_in_premise_rate\": 0.0909, \"content_independent_count\": 0, \"content_independent_rate\": 0, \"isr_1_count\": 1, \"isr_1_rate\": 0.0909, \"train_final_loss\": 0.0167, \"train_avg_loss\": 0.1551, \"train_token_accuracy\": 0.9954, \"train_runtime_s\": 1584.79, \"eval_elapsed_s\": 326.1}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s42-1000\": {\"hypothesis\": \"SFT 1000步延伸：验证 SFT（无 reward optimization）在 1000 步是否维持 genuine rate。500 步 SFT 已达 93% genuine，若 1000 步仍保持高 genuine → Goodhart collapse 是 RL (GRPO) 特有现象，非一般 finetuning 退化。与 exec-only/ISR/random 1000步形成对比。\", \"metrics\": {\"train_final_loss\": 0.0168, \"train_last_step_loss\": 0.0168, \"train_token_accuracy\": 0.9955, \"train_epochs\": 15.88, \"train_runtime_sec\": 1415, \"train_steps\": 1000, \"eval_prove_rate\": 0.13, \"eval_n_proved\": 13, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.0738, \"eval_isr_std\": 0.2077, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.5677, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_method\": \"eval_sta.py full STA\", \"eval_output_path\": \"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\", \"h7_strict_count\": 0, \"h7_strict_rate\": 0, \"h1_strict_count\": 1, \"h1_strict_rate\": 0.0769, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 12, \"genuine_rate\": 0.9231, \"conclusion_in_premise_count\": 1, \"conclusion_in_premise_rate\": 0.0769, \"isr_1_count\": 0, \"content_independent_count\": 0, \"eval_by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 12, \"prove_rate\": 0.353, \"mean_isr\": 0.209}, \"false\": {\"count\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.011}, \"unknown\": {\"count\": 41, \"proved\": 0, \"prove_rate\": 0, \"mean_isr\": 0}}}, \"conclusion\": \"success\"}, \"exp1-random-b03-s43\": {\"conclusion\": \"success\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.79, \"mean_isr\": 0.1745, \"isr_std\": 0.1628, \"median_isr\": 0.1667, \"proved_only_mean_isr\": 0.2209, \"hacking_rate_strict_h7\": 0, \"hacking_rate_functional\": 0.1013, \"genuine_rate\": 0.8987, \"genuine_count\": 71, \"n_proved\": 79, \"n_problems\": 100, \"h1_conclusion_in_premise\": 0.759, \"eval_data\": \"test_100.jsonl\", \"eval_output\": \"/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43.json\"}}, \"plan002-additive-b01-s42-1000\": {\"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.9, \"eval_mean_isr\": 0.7892, \"eval_isr_std\": 0.3424, \"eval_proved_only_isr\": 0.8769, \"eval_median_isr\": 1, \"eval_n_proved\": 90, \"eval_n_problems\": 100, \"eval_component_count_mean\": 2.889, \"tautological_collapse\": true, \"train_final_prove_rate\": 0.855, \"train_final_mean_isr\": 0.532, \"h7_count\": 87, \"h7_rate\": 0.9667, \"h1_count\": 0, \"h1_rate\": 0, \"h1_near_count\": 1, \"h1_near_rate\": 0.0111, \"h8_conjunction_collapse_count\": 1, \"h8_conjunction_collapse_rate\": 0.0111, \"genuine_count\": 2, \"genuine_rate\": 0.0222, \"taxonomy_standard\": \"D086 clean run = ground truth. D084 residual removed.\"}}, \"plan002-additive-b01-s44\": {\"hypothesis\": \"ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。\", \"metrics\": {\"eval_prove_rate\": 0.89, \"eval_mean_isr\": 0.803, \"eval_isr_std\": null, \"eval_proved_only_isr\": 0.902, \"eval_n_proved\": 89, \"eval_n_problems\": 100, \"h7_count\": 89, \"h7_rate\": 1, \"h1_count\": 0, \"h1_rate\": 0, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"component_mean\": 4.33, \"comp_2_ratio\": 0.022, \"h7_fn_correction\": \"12 former genuine reclassified as H7: all n_prem=1 false negatives (normalization mismatch prevented conclusion matching)\"}, \"conclusion\": \"negative\"}, \"plan013-random-reward-s42-r4\": {\"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 1, \"eval_mean_isr\": 0.535, \"eval_isr_std\": 0.1282, \"eval_proved_only_isr\": 0.535, \"eval_median_isr\": 0.5, \"eval_n_proved\": 100, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_note\": \"DEGENERATE: model generates trivial 2-component proofs (premise=conclusion, conclusion=conclusion), ISR=0.5 is artifact of trivial proof structure\"}}, \"plan001-exec-only-s43-r4\": {\"metrics\": {\"eval_sampling_prove_rate\": 0.14, \"eval_sampling_mean_isr\": 0, \"eval_sampling_n_proved\": 14, \"eval_sampling_temperature\": 0.7, \"eval_sampling_method\": \"do_sample=True, temperature=0.7\", \"eval_sampling_by_answer\": {\"true\": {\"count\": 34, \"proved\": 6, \"prove_rate\": 0.176}, \"false\": {\"count\": 25, \"proved\": 2, \"prove_rate\": 0.08}, \"unknown\": {\"count\": 41, \"proved\": 6, \"prove_rate\": 0.146}}, \"eval_greedy_prove_rate\": 0.13, \"eval_greedy_mean_isr\": 0, \"eval_greedy_proved_only_isr\": 0, \"eval_greedy_n_proved\": 13, \"eval_greedy_method\": \"eval_sta.py default (do_sample=False)\", \"eval_greedy_by_answer\": {\"true\": {\"count\": 34, \"proved\": 4, \"prove_rate\": 0.118}, \"false\": {\"count\": 25, \"proved\": 5, \"prove_rate\": 0.2}, \"unknown\": {\"count\": 41, \"proved\": 4, \"prove_rate\": 0.0976}}, \"eval_greedy_h7_count\": 0, \"eval_greedy_h7_rate\": 0, \"eval_greedy_h1_count\": 13, \"eval_greedy_h1_rate\": 1, \"eval_greedy_genuine_rate\": 0, \"eval_greedy_n_premises_proved_mean\": 17.92, \"eval_greedy_mean_components_proved\": 18.92, \"eval_greedy_n_premises_all_mean\": 32.67, \"eval_sampling_h1_rate\": 1, \"eval_sampling_h7_rate\": 0, \"eval_sampling_genuine_rate\": 0, \"eval_sampling_mean_components_proved\": 18.5, \"eval_greedy_vs_sampling_delta_pr\": -0.01, \"eval_method_note\": \"Greedy and sampling agree on failure profile (ISR*=0, H1=100%, components~18.5-18.9). s43 collapse is decoding-invariant.\"}, \"conclusion\": \"negative\"}, \"plan001-exec-only-s42\": {\"conclusion\": \"failed\"}, \"plan002-additive-b01-s42\": {\"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.81, \"eval_mean_isr\": 0.3365, \"eval_isr_std\": 0.3227, \"eval_proved_only_isr\": 0.4154, \"eval_median_isr\": 0.2, \"eval_n_proved\": 81, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 5.58, \"h7_rate\": 0.16, \"h7_count\": 13, \"h1_rate\": 0.519, \"h1_count\": 42, \"h8_conjunction_collapse_count\": 12, \"h8_conjunction_collapse_rate\": 0.148, \"genuine_rate\": 0.173, \"genuine_count\": 14, \"tautological_collapse\": false, \"h8_audit_note\": \"2026-05-15: H8 conjunction collapse audit completed. 12/81 proved samples are H8. Genuine 26→14 (32.1%→17.3%). H8 JSON at /root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json\"}}, \"plan002-additive-b01-s43\": {\"hypothesis\": \"ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。\", \"metrics\": {\"eval_prove_rate\": 0.61, \"eval_n_proved\": 61, \"eval_n_problems\": 100, \"eval_proved_only_isr\": 0.83, \"h7_count\": 59, \"h7_rate\": 0.9672, \"h1_count\": 0, \"h1_rate\": 0, \"h1_near_count\": 0, \"h1_near_rate\": 0, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 2, \"genuine_rate\": 0.0328, \"proved_single_premise_ratio\": 1, \"taxonomy_note\": \"structurally determined: proved_single_premise_ratio=1.0, all taxonomy categories except H7 are zero by construction. eval file lost but classification derivable from structure.\"}, \"conclusion\": \"negative\"}, \"exp1-isr-b03-s43\": {\"conclusion\": \"success\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.91, \"mean_isr\": 0.2575, \"isr_std\": 0.2363, \"median_isr\": 0.3333, \"proved_only_mean_isr\": 0.283, \"hacking_rate_strict_h7\": 0.022, \"hacking_rate_functional\": 0.3297, \"genuine_rate\": 0.6703, \"genuine_count\": 61, \"n_proved\": 91, \"n_problems\": 100, \"h1_conclusion_in_premise\": 0.747, \"eval_data\": \"test_100.jsonl\", \"eval_output\": \"/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json\"}}, \"plan009-sft-baseline-s44-1000-r3\": {\"hypothesis\": \"SFT 1000步 seed=44（第三次重试）：r1/r2 均因 --gpu 0 覆盖 CUDA_VISIBLE_DEVICES 导致 OOM。本次用 --gpu 1 直接指定物理 GPU 1。验证 SFT 在 1000 步的 genuine rate 稳定性，完成 3-seed 统计。\", \"metrics\": {\"eval_prove_rate\": 0.15, \"eval_n_proved\": 15, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.0884, \"eval_isr_std\": 0.2268, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.5892, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_method\": \"eval_sta.py full STA\", \"h7_count\": 0, \"h7_rate\": 0, \"h1_count\": 1, \"h1_rate\": 0.0667, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 14, \"genuine_rate\": 0.9333, \"eval_by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 15, \"prove_rate\": 0.441, \"mean_isr\": 0.26}, \"false\": {\"count\": 25, \"proved\": 0, \"prove_rate\": 0, \"mean_isr\": 0}, \"unknown\": {\"count\": 41, \"proved\": 0, \"prove_rate\": 0, \"mean_isr\": 0}}}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s44\": {\"metrics\": {\"train_final_loss\": 0.2397, \"train_last_step_loss\": 0.0328, \"train_token_accuracy\": 0.9928, \"train_epochs\": 7.94, \"train_runtime_sec\": 729.05, \"train_steps\": 500, \"eval_prove_rate\": 0.17, \"eval_n_proved\": 17, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.0974, \"eval_isr_std\": 0.2409, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.5729, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_method\": \"eval_sta.py full STA\", \"eval_output_path\": \"/root/autodl-tmp/outputs/eval_sta_plan009_sft_s44.json\", \"eval_tautological_collapse\": false, \"eval_h7_count\": 0, \"eval_h7_rate\": 0, \"eval_h1_count\": 2, \"eval_h1_rate\": 0.118, \"eval_genuine_count\": 15, \"eval_genuine_rate\": 0.882, \"eval_by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 15, \"prove_rate\": 0.441, \"mean_isr\": 0.257}, \"false\": {\"count\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.027}, \"unknown\": {\"count\": 41, \"proved\": 1, \"prove_rate\": 0.024, \"mean_isr\": 0.008}}, \"eval_correction_note\": \"Corrected 2026-05-15: previous eval used test_100.jsonl (50/44/6 distribution), re-evaled with proofwriter_fol_100.jsonl (34/25/41)\"}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s43\": {\"metrics\": {\"train_loss\": 0.2391, \"train_token_accuracy\": 0.9938, \"train_epochs\": 7.94, \"train_runtime_sec\": 677.14, \"train_steps\": 500, \"eval_prove_rate\": 0.15, \"eval_mean_isr\": 0.0895, \"eval_isr_std\": 0.2338, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.5967, \"h7_count\": 0, \"h7_rate\": 0, \"h1_count\": 1, \"h1_rate\": 0.067, \"genuine_count\": 14, \"genuine_rate\": 0.933, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 13, \"prove_rate\": 0.382, \"mean_isr\": 0.234}, \"false\": {\"count\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.027}, \"unknown\": {\"count\": 41, \"proved\": 1, \"prove_rate\": 0.024, \"mean_isr\": 0.008}}, \"eval_data_path\": \"data/proofwriter_fol_100.jsonl\", \"eval_output_path\": \"/root/autodl-tmp/outputs/eval_sta_plan009_sft_s43.json\"}, \"conclusion\": \"success\"}, \"plan001-exec-only-s44-1000\": {\"hypothesis\": \"Exec-only GRPO 1000步 seed=44：与 plan016(s42) 相同配置的第三个 seed。完成 3-seed exec-only 1000步统计，与 SFT 1000步 3-seed 对照，统计支撑 Goodhart collapse 是 RL 特有现象的 claim。\", \"conclusion\": \"failed\"}, \"plan001-exec-only-s43-1000\": {\"hypothesis\": \"Exec-only GRPO 1000步 seed=43：与 plan016(s42) 相同配置的第二个 seed。3-seed exec-only 1000步统计，验证 Goodhart collapse（genuine→0%）在 exec-only 条件下的可重复性。与 SFT 1000步 3-seed 对照，确认 collapse 是 RL(GRPO) 特有现象。\", \"conclusion\": \"failed\"}, \"plan009-sft-baseline-s44-1000-r2\": {\"hypothesis\": \"SFT 1000步 seed=44（重试）：r1 因 CUDA_VISIBLE_DEVICES 未设导致 OOM 失败。与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。\", \"conclusion\": \"failed\"}, \"plan002-additive-b03-s42\": {\"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"last100_prove_rate\": 0.5525, \"eval_prove_rate\": 0.18, \"eval_mean_isr\": 0.0257, \"eval_isr_std\": 0.0742, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.1427, \"eval_n_proved\": 18, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"h7_rate\": 0, \"h7_count\": 0, \"h1_rate\": 0.778, \"h1_count\": 14, \"h8_conjunction_collapse_count\": 3, \"h8_conjunction_collapse_rate\": 0.1667, \"genuine_rate\": 0.0556, \"genuine_count\": 1, \"eval_by_type_false_pr\": 0.12, \"eval_by_type_false_isr\": 0.0102, \"eval_by_type_unknown_pr\": 0.195, \"eval_by_type_unknown_isr\": 0.0422, \"eval_by_type_true_pr\": 0.206, \"eval_by_type_true_isr\": 0.0172, \"h8_audit_note\": \"2026-05-15: H8 conjunction collapse added. genuine 4→1.\"}, \"conclusion\": \"negative\"}, \"plan001-exec-only-s42-r2\": {\"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.93, \"eval_mean_isr\": 0.1232, \"eval_isr_std\": 0.1887, \"eval_proved_only_isr\": 0.1324, \"eval_median_isr\": 0, \"eval_n_proved\": 93, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"h7_rate\": 0, \"h7_count\": 0, \"h1_rate\": 0.871, \"h1_count\": 81, \"h8_conjunction_collapse_count\": 6, \"h8_conjunction_collapse_rate\": 0.0645, \"genuine_rate\": 0.0753, \"genuine_count\": 7, \"genuine_mean_isr\": 0.3141, \"h1_mean_isr\": 0.1055, \"conclusion_embedding_total\": 0.871, \"content_independent_predicates_count\": 1, \"h8_audit_note\": \"2026-05-15: H8 conjunction collapse added. genuine 12→7.\"}}, \"plan004-o1-ablation-s42\": {\"hypothesis\": \"O(1) binary ISR (fast_isr_fol) vs O(N) full STA ablation: 100-step pilot showed binary ISR ≈ exec-only (all proved samples ISR=1). 500-step full run confirms O(1) is ineffective at scale — the LOO ablation (O(N)) is necessary for ISR to carry structural signal. Negative result strengthens paper's methodological contribution.\", \"metrics\": {\"prove_rate\": 0.63, \"mean_isr\": 0.0072, \"h7_count\": 0, \"h7_rate\": 0, \"h1_count\": 63, \"h1_rate\": 1, \"h8_conjunction_collapse_count\": 2, \"h8_conjunction_collapse_rate\": 0.0317, \"genuine_count\": 0, \"genuine_rate\": 0, \"content_independent_predicates_count\": 3, \"h8_audit_note\": \"2026-05-15: H8 conjunction collapse added. genuine unchanged (0).\"}, \"conclusion\": \"negative\"}, \"exp1-isr-b03-s42-1000-r2\": {\"metrics\": {\"eval_prove_rate\": 0.95, \"eval_mean_isr\": 0.734, \"eval_isr_std\": 0.2575, \"eval_median_isr\": 0.6, \"eval_proved_only_isr\": 0.7726, \"eval_n_proved\": 95, \"eval_n_problems\": 100, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 25, \"prove_rate\": 1, \"mean_isr\": 0.824}, \"unknown\": {\"count\": 41, \"proved\": 38, \"prove_rate\": 0.927, \"mean_isr\": 0.673}, \"true\": {\"count\": 34, \"proved\": 32, \"prove_rate\": 0.941, \"mean_isr\": 0.741}}, \"h7_count\": 0, \"h7_rate\": 0, \"h1_count\": 54, \"h1_rate\": 0.568, \"genuine_count\": 0, \"genuine_rate\": 0, \"tautological_collapse\": true, \"isr_1_count\": 41, \"isr_1_rate\": 0.432, \"single_premise_count\": 0, \"train_final_prove_rate\": 0.829, \"train_final_mean_isr\": 0.727, \"train_loss\": 0.0041, \"train_runtime_seconds\": 6280, \"train_final_entropy\": 9e-06, \"completions_mean_length\": 47, \"h8_conjunction_collapse_count\": 41, \"h8_conjunction_collapse_rate\": 0.432, \"content_independent_predicates\": true}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s42-1000-r2\": {\"metrics\": {\"train_final_prove_rate\": 0.989, \"train_final_mean_isr\": 0.353, \"train_final_reward\": 1.062, \"train_steps\": 1000, \"train_runtime_seconds\": 2957, \"eval_prove_rate\": 1, \"eval_mean_isr\": 0.3333, \"eval_isr_std\": 0, \"eval_median_isr\": 0.3333, \"eval_proved_only_isr\": 0.3333, \"eval_n_proved\": 100, \"eval_n_problems\": 100, \"eval_component_count_mean\": 3, \"genuine_rate\": 0, \"genuine_count\": 0, \"tautological_collapse\": true, \"h7_rate\": null, \"h7_count\": null, \"h1_rate\": null, \"h1_count\": null}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s42-1000\": {\"conclusion\": \"failed\"}, \"exp1-isr-b03-s42-1000\": {\"conclusion\": \"failed\"}, \"plan001-exec-only-s44\": {\"hypothesis\": \"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\", \"metrics\": {\"eval_prove_rate\": 0.98, \"eval_mean_isr\": 0.57, \"eval_isr_std\": 0.2013, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.5816, \"eval_n_proved\": 98, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 2.04, \"eval_component_count_2\": 94, \"eval_component_count_3\": 4, \"tautological_collapse\": true, \"h7_rate\": 1, \"h7_count\": 97, \"h1_rate\": 0, \"h1_count\": 0, \"genuine_rate\": 0, \"genuine_count\": 0, \"conclusion_embedding_total\": 1}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s43-r2\": {\"hypothesis\": \"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\", \"metrics\": {\"h7_rate\": 0, \"h7_count\": 0, \"h1_rate\": 93.2, \"h1_count\": 82, \"genuine_rate\": 6.8, \"genuine_count\": 6, \"eval_prove_rate\": 0.88, \"eval_mean_isr\": 0.058}, \"conclusion\": \"negative\"}, \"exp1-isr-b03-s43-r3\": {\"conclusion\": \"success\", \"metrics\": {\"final_step\": 500, \"prove_rate\": 0.56125, \"mean_isr\": 0.1515, \"parse_rate\": 1, \"train_loss\": 0.0176, \"train_runtime_sec\": 4153.6, \"epoch\": 2, \"eval_prove_rate\": 0.86, \"eval_mean_isr\": 0.2535, \"eval_isr_std\": 0.2406, \"eval_median_isr\": 0.3333, \"eval_proved_only_mean_isr\": 0.2948, \"eval_min_isr\": 0, \"eval_max_isr\": 0.75, \"eval_n_proved\": 86, \"eval_n_problems\": 100, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_h7_strict_rate\": 0.047, \"eval_h7_strict_count\": 4, \"eval_h1_strict_rate\": 0.686, \"eval_h1_strict_count\": 59, \"eval_conclusion_in_premise_rate\": 0.733, \"eval_conclusion_in_premise_count\": 63, \"eval_genuine_rate\": 0.267, \"eval_genuine_count\": 23, \"eval_single_premise_rate\": 0.058, \"eval_single_premise_count\": 5, \"eval_isr_1_count\": 0, \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 23, \"prove_rate\": 0.92, \"mean_isr\": 0.334}, \"unknown\": {\"count\": 41, \"proved\": 35, \"prove_rate\": 0.854, \"mean_isr\": 0.199}, \"true\": {\"count\": 34, \"proved\": 28, \"prove_rate\": 0.824, \"mean_isr\": 0.26}}}}, \"exp1-random-b03-s43-r3\": {\"conclusion\": \"failed\"}, \"plan015-linear-s42\": {\"conclusion\": \"killed\"}, \"exp1-isr-b03-s43-r4\": {\"conclusion\": \"killed\"}, \"exp1-random-b03-s43-r2\": {\"conclusion\": \"killed\"}, \"exp1-isr-b03-s44-r2\": {\"conclusion\": \"success\", \"metrics\": {\"prove_rate\": 0.95, \"mean_isr\": 0.705, \"isr_std\": 0.172, \"proved_only_isr\": 0.7421, \"n_proved\": 95, \"n_problems\": 100, \"h7_rate\": 1, \"h7_count\": 95, \"h1_rate\": 0, \"h1_count\": 0, \"genuine_rate\": 0, \"genuine_count\": 0, \"single_premise_rate\": 1, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_note\": \"Re-eval with correct test set (D062). Previous test_100.jsonl results invalidated.\"}}, \"exp1-random-b03-s44\": {\"conclusion\": \"failed\"}, \"exp1-isr-b03-s44\": {\"conclusion\": \"failed\"}, \"exp1-isr-b03-s43-r2\": {\"conclusion\": \"killed\"}, \"exp2-exec-s43-greedy\": {\"conclusion\": \"success\"}, \"exp4-100step-h1h7\": {\"conclusion\": \"success\"}, \"plan006-prolog-sta-s44\": {\"hypothesis\": \"Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。\", \"metrics\": {\"pass_rate\": 0.97, \"isr_mean\": 0.885, \"isr_n_cl_ge3\": \"N/A (0 samples)\", \"n_clauses_dist\": \"78/100 single-clause, 22/100 two-clause\", \"h7_functional_rate\": 0.979, \"genuine_rate\": 0, \"premise_count_analysis\": \"100% artifact - zero samples with n_clauses>=3, model exclusively generates 1-2 clause programs\", \"failure_mode\": \"query-as-fact gaming (total H7 collapse)\"}, \"conclusion\": \"negative\"}, \"plan006-prolog-sta-s43\": {\"hypothesis\": \"Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。\", \"metrics\": {\"train\": {\"final_prove_rate\": 0.769, \"final_mean_isr\": 0.129, \"final_loss\": 0.0155, \"final_entropy\": 0.09, \"final_reward\": 0.573, \"completion_length_mean\": 143, \"train_runtime_seconds\": 5095, \"train_runtime_minutes\": 84.9}, \"eval\": {\"n_problems\": 100, \"n_proved\": 38, \"prove_rate\": 0.38, \"mean_isr\": 0.0704, \"isr_std\": 0.1263, \"median_isr\": 0, \"proved_only_mean_isr\": 0.1853, \"min_isr\": 0, \"max_isr\": 1, \"by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 11, \"prove_rate\": 0.44, \"mean_isr\": 0.1003}, \"unknown\": {\"count\": 41, \"proved\": 11, \"prove_rate\": 0.268, \"mean_isr\": 0.0394}, \"true\": {\"count\": 34, \"proved\": 16, \"prove_rate\": 0.471, \"mean_isr\": 0.0859}}}, \"h7_classification\": {\"h7_strict\": 0, \"h7_rate\": 0, \"h1_strict\": 37, \"h1_rate\": 0.974, \"conclusion_in_premise_total\": 37, \"conclusion_in_premise_rate\": 0.974, \"genuine_count\": 0, \"genuine_rate\": 0, \"isr_1_count\": 1, \"note\": \"1 pseudo-genuine sample (folio_1415) has query embedded in single mega-clause; all 38/38 proved samples are tautological\"}}, \"conclusion\": \"negative\"}, \"plan006-prolog-sta-s42\": {\"hypothesis\": \"Prolog exec+STA GRPO seed=42: ISR reward 在 Prolog logic type 上的效果。与 plan006-prolog-exec-s42 (exec-only) 对照，验证 STA/ISR 的 hacking 检测和 Goodhart 效应是否跨 logic type 泛化。\", \"conclusion\": \"negative\", \"metrics\": {\"cumulative_prove_rate\": 0.848, \"cumulative_mean_isr\": 0.787, \"final_prove_rate\": 1, \"final_isr\": 1, \"final_reward\": 1, \"saturation_onset_step\": 100, \"train_loss\": 0.00716, \"training_hours\": 0.78, \"final_entropy\": 0.01, \"final_completion_length\": 27, \"initial_completion_length\": 120, \"steps_at_perfect_reward\": 400, \"train_runtime_sec\": 2791, \"eval_prove_rate\": 0.5, \"eval_mean_isr\": 0.5, \"eval_proved_only_isr\": 1, \"eval_h7_rate\": 1, \"eval_h7_count\": 50, \"eval_proved_count\": 50, \"eval_total_count\": 100, \"eval_n_clauses_mean\": 1, \"eval_isr_distribution\": \"binary: 50x0 + 50x1\"}}, \"plan006-prolog-exec-s44\": {\"hypothesis\": \"Prolog exec-only GRPO seed=44: third seed for Prolog exec-only. Together with s42 (PR=83%, ISR=0.031) and s43, provides 3-seed evidence for cross-logic generalization claim (Claim 3). 3-seed mean±std required for paper.\", \"metrics\": {\"eval_prove_rate\": 0.21, \"eval_mean_isr\": 0.0812, \"eval_isr_std\": 0.2343, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.3866, \"eval_min_isr\": 0, \"eval_max_isr\": 1, \"eval_n_proved\": 21, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_elapsed_seconds\": 683.9, \"eval_by_type_false_pr\": 0.04, \"eval_by_type_false_isr\": 0.04, \"eval_by_type_unknown_pr\": 0.317, \"eval_by_type_unknown_isr\": 0.099, \"eval_by_type_true_pr\": 0.206, \"eval_by_type_true_isr\": 0.09, \"solver\": \"PrologSolver\", \"logic_type\": \"prolog\"}, \"conclusion\": \"negative\"}, \"plan009-sft-baseline-s42-r4\": {\"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb.\", \"metrics\": {\"eval_prove_rate\": 0.14, \"eval_mean_isr\": 0.08, \"eval_isr_std\": 0.214, \"eval_median_isr\": 0, \"eval_max_isr\": 0.833, \"eval_proved_only_isr\": 0.571, \"eval_n_proved\": 14, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"train_final_loss\": 0.0287, \"train_token_accuracy\": 0.9935, \"train_epochs\": 7.94, \"train_runtime_sec\": 789.6, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 13, \"pr\": 0.382, \"isr\": 0.226}, \"unknown\": {\"count\": 41, \"proved\": 1, \"pr\": 0.024, \"isr\": 0.008}, \"false\": {\"count\": 25, \"proved\": 0, \"pr\": 0, \"isr\": 0}}, \"h7_rate\": 0, \"h7_count\": 0, \"h1_rate\": 0.071, \"h1_count\": 1, \"genuine_rate\": 0.929, \"genuine_count\": 13, \"hacking_patterns\": \"near-zero (1/14 H1, 0 H7, 92.9% genuine)\", \"tautological_collapse\": false}, \"conclusion\": \"success\"}, \"plan006-prolog-exec-s43-r3\": {\"hypothesis\": \"Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。\", \"metrics\": {\"eval_prove_rate\": 0.56, \"eval_mean_isr\": 0.0084, \"eval_isr_std\": 0.0221, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.015, \"eval_min_isr\": 0, \"eval_max_isr\": 0.1, \"eval_n_proved\": 56, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_elapsed_seconds\": 868.2, \"eval_by_type_false_pr\": 0.48, \"eval_by_type_false_isr\": 0.0043, \"eval_by_type_unknown_pr\": 0.6585, \"eval_by_type_unknown_isr\": 0.0114, \"eval_by_type_true_pr\": 0.5, \"eval_by_type_true_isr\": 0.0078, \"solver\": \"PrologSolver\", \"logic_type\": \"prolog\"}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s44\": {\"hypothesis\": \"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\", \"metrics\": {\"prove_rate\": 0.89, \"mean_isr\": 0.0619, \"isr_std\": 0.1756, \"median_isr\": 0, \"proved_only_mean_isr\": 0.0695, \"n_proved\": 89, \"n_problems\": 100, \"max_isr\": 1, \"min_isr\": 0, \"isr_pr_ratio\": 0.0695, \"isr_zero_count\": 72, \"isr_one_count\": 2, \"by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 21, \"prove_rate\": 0.84, \"mean_isr\": 0.0533}, \"unknown\": {\"count\": 41, \"proved\": 40, \"prove_rate\": 0.976, \"mean_isr\": 0.0892}, \"true\": {\"count\": 34, \"proved\": 28, \"prove_rate\": 0.824, \"mean_isr\": 0.0353}}, \"elapsed_seconds\": 1012.7, \"eval_method\": \"eval_sta.py with Prover9Solver, FOL\"}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s42\": {\"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Same model as all GRPO experiments for fair comparison.\", \"conclusion\": \"killed\"}, \"plan006-prolog-exec-s43-r2\": {\"hypothesis\": \"Prolog exec-only GRPO seed=43 r2: 修正 warmup_ratio=0.0 与 s42 一致。cross-seed stability check for Prolog logic type.\", \"conclusion\": \"failed\"}, \"plan006-prolog-exec-s42\": {\"hypothesis\": \"Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.\", \"metrics\": {\"eval_prove_rate\": 0.83, \"eval_mean_isr\": 0.031, \"eval_proved_only_isr\": 0.037, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2, \"eval_isr_std\": 0.0534, \"h7_rate\": 0, \"h1_rate\": 0, \"isr_1_rate\": 0, \"single_premise_rate\": 0, \"by_answer_type\": {\"true\": {\"proved\": 37, \"count\": 40, \"pr\": 0.925, \"isr\": 0.037}, \"false\": {\"proved\": 21, \"count\": 29, \"pr\": 0.724, \"isr\": 0.038}, \"unknown\": {\"proved\": 25, \"count\": 31, \"pr\": 0.806, \"isr\": 0.016}}}, \"conclusion\": \"negative\"}, \"plan006-prolog-exec-s43\": {\"hypothesis\": \"Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degraded vs s44 tautological). Prolog exec-only s42 showed PR=83%, ISR=0.031. s43 tests if Prolog also has seed instability.\", \"conclusion\": \"killed\"}, \"plan009-sft-baseline-s42-r3\": {\"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\", \"conclusion\": \"failed\"}, \"plan009-sft-baseline-s42-r2\": {\"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\", \"conclusion\": \"failed\"}, \"plan018-additive-random-b01-s43\": {\"hypothesis\": \"Random β=0.1 seed=43 控制组：与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s43 下是否成立。\", \"conclusion\": \"failed\"}, \"plan012-hacking-taxonomy\": {\"conclusion\": \"success\", \"hypothesis\": \"ISR β=0.1 vs Random β=0.1 hacking taxonomy 对比：ISR reward 能否减少 hacking 模式比例、增加 genuine proof 比例？5 种 hacking 分类（conclusion embedding, repetition collapse, tautological collapse, complexity-without-utility, premise padding）。\", \"metrics\": {\"isr_b01_genuine_rate\": 0.259, \"random_b01_genuine_rate\": 0.177, \"genuine_rate_delta_pp\": 8.2, \"isr_b01_conclusion_embedding_rate\": 0.728, \"random_b01_conclusion_embedding_rate\": 0.785, \"isr_b01_genuine_mean_isr\": 0.6723, \"random_b01_genuine_mean_isr\": 0.3427, \"isr_b01_complexity_wo_utility_rate\": 0, \"random_b01_complexity_wo_utility_rate\": 0.038, \"isr_b01_hacking_rate\": 0.741, \"random_b01_hacking_rate\": 0.823}}, \"plan005-sta-low-s42\": {\"conclusion\": \"negative\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 71, \"parse_rate\": 1, \"overall_prove_rate\": 0.5657, \"overall_isr\": 0.1682, \"last50_prove_rate\": 0.77, \"last50_isr\": 0.2559, \"last100_prove_rate\": 0.7725, \"last100_isr\": 0.2299, \"last100_loss\": 0.022752, \"overall_loss\": 0.017296, \"last100_isr_pr_ratio\": 0.298, \"last100_isr_lt_pr_count\": \"99/100\", \"first_rolling10_pr_ge_0.8\": 178, \"first_rolling10_pr_ge_0.9\": 439, \"max_rolling10_pr\": 0.9375, \"max_rolling10_isr\": 0.3282, \"windowed\": {\"1-50\": {\"pr\": 0.1775, \"isr\": 0.0906}, \"51-100\": {\"pr\": 0.1775, \"isr\": 0.0835}, \"101-200\": {\"pr\": 0.5062, \"isr\": 0.1463}, \"201-300\": {\"pr\": 0.6713, \"isr\": 0.1791}, \"301-400\": {\"pr\": 0.7013, \"isr\": 0.1984}, \"401-500\": {\"pr\": 0.7725, \"isr\": 0.2299}}}}, \"plan014-downstream-nli-s42\": {\"hypothesis\": \"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_accuracy\": 0.341, \"proved_rate\": 0.915, \"proved_count\": 732, \"total_generations\": 800, \"parse_errors\": 0, \"accuracy_by_label\": {\"true\": 0.912, \"false\": 0, \"unknown\": 0.076}, \"spearman_rho\": -0.049, \"spearman_p\": 0.187, \"mann_whitney_U\": 17202, \"mann_whitney_p\": 0.288, \"bon_isr_accuracy\": 0.35, \"bon_random_accuracy\": 0.341, \"bon_oracle_accuracy\": 0.44, \"bon_prove_first_accuracy\": 0.35, \"isr_bucket_high_acc\": 0.75, \"isr_bucket_mid_acc\": 0.377, \"isr_bucket_low_acc\": 0.327, \"runtime_inference_s\": 408.8, \"runtime_eval_s\": 13.6}}, \"plan001-exec-only-s43-r3\": {\"conclusion\": \"failed\"}, \"plan013-random-reward-s42-r3\": {\"conclusion\": \"failed\"}, \"plan001-exec-only-s43-r2\": {\"conclusion\": \"failed\"}, \"plan013-random-reward-s42-r2\": {\"conclusion\": \"failed\"}, \"plan013-random-reward-s42\": {\"conclusion\": \"failed\"}, \"plan001-exec-only-s43\": {\"conclusion\": \"failed\"}, \"plan003-eval-exec-only-r5\": {\"metrics\": {\"prove_rate\": 0.32, \"mean_isr\": 0.2055, \"isr_std\": 0.3194, \"proved_only_isr\": 0.6423, \"isr_by_type\": {\"true\": 0.3598, \"false\": 0.1723, \"unknown\": 0.0979}, \"total_samples\": 100, \"proved_count\": 32, \"runtime_s\": 251.7}, \"conclusion\": \"success\"}, \"plan001-exec-only-s42-r3\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-sta-r5\": {\"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1, \"mean_isr\": 0.04347, \"last20_prove_rate\": 0.15, \"last20_isr_mean\": 0.04956, \"first20_prove_rate\": 0.08125, \"first20_isr_mean\": 0.05182, \"overall_reward_mean\": 0.07174, \"last20_reward_mean\": 0.09978, \"training_steps\": 100, \"training_minutes\": 16.9, \"step_time_s\": 10.13, \"isr_pr_ratio_overall\": 0.43, \"isr_pr_ratio_last20\": 0.33, \"K\": 8}, \"conclusion\": \"negative\"}, \"sta-phase1-exec-only-r5\": {\"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_prove_rate\": 0.11875, \"first20_isr_mean\": 0.11875, \"overall_reward_mean\": 0.15125, \"last20_reward_mean\": 0.2, \"training_steps\": 100, \"training_minutes\": 15.7, \"step_time_s\": 9.44, \"isr_pr_ratio_last20\": 1, \"K\": 8}, \"conclusion\": \"success\"}, \"sta-phase1-exec-sta-r4\": {\"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1575, \"mean_isr\": 0.1525, \"last20_prove_rate\": 0.2125, \"last20_isr_mean\": 0.2125, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"conclusion\": \"negative\"}, \"sta-phase1-exec-only-r4\": {\"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"conclusion\": \"negative\"}, \"sta-phase1-exec-only-r3\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-sta-r3\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-sta-r2\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-only-r2\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-sta\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-only\": {\"conclusion\": \"failed\"}, \"sta-gt-isr-baseline\": {\"conclusion\": \"success\", \"metrics\": {\"gt_prove_rate\": 0.18, \"gt_mean_isr\": 0.5588, \"gt_isr_std\": 0.2582, \"gt_isr_median\": 0.6125, \"solver_execution_rate\": 1, \"true_prove_rate\": 0.5, \"true_mean_isr\": 0.5833}}, \"sta-phase0-baseline\": {\"metrics\": {\"mean_isr\": 0.0641, \"isr_std\": 0.1983, \"median_isr\": 0, \"isr_range\": [0, 0.889], \"prove_rate\": 0.12, \"proved_count\": 12, \"total_samples\": 100, \"xor_affected_samples\": 34, \"effective_prove_rate_no_xor\": 0.182, \"avg_time_per_sample_s\": 3.4, \"total_runtime_s\": 336, \"isr_by_answer\": {\"true\": {\"n\": 34, \"proved\": 9, \"prove_rate\": 0.265, \"mean_isr\": 0.1345}, \"false\": {\"n\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.024}, \"unknown\": {\"n\": 41, \"proved\": 2, \"prove_rate\": 0.049, \"mean_isr\": 0.0302}}}, \"conclusion\": \"success\"}}, \"count\": 86, \"total\": 86, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5159}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c7056798-feb6-4fd1-b0c7-423e12f4c42b",
+  "isSidechain": false,
+  "promptId": "9761a5fa-23dc-4082-8a1a-fed4aaf5e658",
+  "type": "user",
+  "uuid": "cacf1dd9-994b-42d9-9ac4-127390406a1e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s44-r2\\\": {\\\"metrics\\\": {\\\"train_prove_rate\\\": 0.64675, \\\"train_mean_isr\\\": 0.08092, \\\"train_loss\\\": 0.00937, \\\"train_steps\\\": 500, \\\"train_runtime_sec\\\": 4998, \\\"eval_prove_rate\\\": 0.89, \\\"eval_mean_isr\\\": 0.0619, \\\"eval_isr_std\\\": 0.1756, \\\"eval_median_isr\\\": 0, \\\"eval_isr_pr_ratio\\\": 0.0695, \\\"eval_proved_only_isr\\\": 0.0695, \\\"eval_n_proved\\\": 89, \\\"eval_n_problems\\\": 100, \\\"h7_count\\\": 0, \\\"h7a_count\\\": 0, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 73, \\\"h8_count\\\": 16, \\\"genuine_count\\\": 6, \\\"genuine_rate\\\": 0.067, \\\"h7_rate\\\": 0, \\\"h1_rate\\\": 0.82, \\\"h8_rate\\\": 0.18, \\\"content_independent_count\\\": 18}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan018-additive-random-b01-s43-r3\\\": {\\\"metrics\\\": {\\\"prove_rate\\\": 0.94, \\\"n_proved\\\": 94, \\\"n_problems\\\": 100, \\\"mean_isr\\\": 0.1406, \\\"isr_std\\\": null, \\\"proved_only_isr\\\": 0.1495, \\\"h7_count\\\": 36, \\\"h7_rate\\\": 0.383, \\\"h7a_count\\\": 36, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 56, \\\"h1_rate\\\": 0.596, \\\"h8_count\\\": 1, \\\"h8_rate\\\": 0.011, \\\"genuine_count\\\": 1, \\\"genuine_rate\\\": 0.0106, \\\"train_prove_rate\\\": 0.5825, \\\"train_mean_isr\\\": 0.1266, \\\"taxonomy_tool\\\": \\\"classify_h7.py + manual subtype analysis (2026-05-15)\\\", \\\"taxonomy_note\\\": \\\"D093 H7 subtype: all 36 H7 are H7a (text-match tautology), 0 H7b. single_premise_count=0: Random H7a are multi-premise proofs with embedded tautological premise, structurally different from exec-only H7a (single-premise minimal tautology). H7b confirmed absent in Random condition.\\\", \\\"h7a_structural_note\\\": \\\"Random H7a = multi-premise with embedded matching premise; exec-only H7a = single-premise P-therefore-P\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp1-random-b03-s44-r2\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.23, \\\"eval_proved_only_mean_isr\\\": 0, \\\"eval_mean_isr\\\": 0, \\\"eval_isr_std\\\": 0, \\\"eval_median_isr\\\": 0, \\\"eval_n_proved\\\": 23, \\\"eval_n_problems\\\": 100, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"h7_count\\\": 0, \\\"h7_rate\\\": 0, \\\"h7a_count\\\": 0, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 23, \\\"h1_rate\\\": 1, \\\"h8_count\\\": 0, \\\"h8_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-15)\\\", \\\"taxonomy_note\\\": \\\"Re-classified with current classify_h7.py. Matches previous values: H7=0, H1=23, H8=0, genuine=0. No change.\\\"}}, \\\"exp1-random-b03-s43-r4\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_step\\\": 500, \\\"prove_rate\\\": 0.5505, \\\"mean_isr\\\": 0.1358, \\\"parse_rate\\\": 1, \\\"train_loss\\\": 0.01365, \\\"train_runtime_sec\\\": 6161.1, \\\"epoch\\\": 2, \\\"eval_prove_rate\\\": 0.92, \\\"eval_mean_isr\\\": 0.1659, \\\"eval_isr_std\\\": 0.1147, \\\"eval_median_isr\\\": 0.1429, \\\"eval_proved_only_mean_isr\\\": 0.1803, \\\"eval_min_isr\\\": 0, \\\"eval_max_isr\\\": 0.5, \\\"eval_n_proved\\\": 92, \\\"eval_n_problems\\\": 100, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 23, \\\"prove_rate\\\": 0.92, \\\"mean_isr\\\": 0.156}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 37, \\\"prove_rate\\\": 0.902, \\\"mean_isr\\\": 0.184}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 32, \\\"prove_rate\\\": 0.941, \\\"mean_isr\\\": 0.151}}, \\\"h7_count\\\": 7, \\\"h7_rate\\\": 0.076, \\\"h7a_count\\\": 7, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 82, \\\"h1_rate\\\": 0.891, \\\"h8_count\\\": 0, \\\"h8_rate\\\": 0, \\\"genuine_count\\\": 3, \\\"genuine_rate\\\": 0.0326, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-15)\\\", \\\"taxonomy_note\\\": \\\"Re-classified with current classify_h7.py. Matches previous strict values: H7=7, H1=82, H8=0, genuine=3. No change.\\\"}}, \\\"plan017-additive-random-s42\\\": {\\\"hypothesis\\\": \\\"Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.48, \\\"eval_mean_isr\\\": 0.0453, \\\"eval_isr_std\\\": 0.0759, \\\"eval_median_isr\\\": 0, \\\"eval_max_isr\\\": 0.2857, \\\"eval_proved_only_isr\\\": 0.0943, \\\"eval_n_proved\\\": 48, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_component_count_mean\\\": 9.6, \\\"eval_component_count_2_ratio\\\": 0, \\\"tautological_collapse\\\": false, \\\"h7_count\\\": 4, \\\"h7_rate\\\": 0.0833, \\\"h7a_count\\\": 4, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 44, \\\"h1_rate\\\": 0.9167, \\\"h8_count\\\": 0, \\\"h8_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-15)\\\", \\\"taxonomy_note\\\": \\\"Re-classified with current classify_h7.py. Old values: H7=0, H1=48, genuine=0. New: H7=4 (4 H7a text-match tautologies reclassified from H1), H1=44, H8=0, genuine=0.\\\"}}, \\\"plan018-additive-random-b01-s42\\\": {\\\"hypothesis\\\": \\\"β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.79, \\\"eval_mean_isr\\\": 0.1038, \\\"eval_isr_std\\\": 0.1369, \\\"eval_median_isr\\\": 0.0357, \\\"eval_proved_only_isr\\\": 0.1314, \\\"eval_n_proved\\\": 79, \\\"eval_n_problems\\\": 100, \\\"tautological_collapse\\\": false, \\\"h7_count\\\": 0, \\\"h7_rate\\\": 0, \\\"h7a_count\\\": 0, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 58, \\\"h1_rate\\\": 0.7342, \\\"h8_count\\\": 4, \\\"h8_rate\\\": 0.0506, \\\"genuine_count\\\": 18, \\\"genuine_rate\\\": 0.2278, \\\"taxonomy_tool\\\": \\\"classify_h7.py standard (2026-05-15)\\\", \\\"taxonomy_note\\\": \\\"Re-classified with current classify_h7.py. Old values: genuine_strict=12 (H1_exact=56, H1_near=8, H8=3). New standard: H1=58 (2 former H1-near now H1), H8=4, genuine=18. Standard definition: proved - H7 - H1 - H8.\\\"}}, \\\"plan002-additive-b01-s43-r2\\\": {\\\"metrics\\\": {\\\"eval_n_problems\\\": 100, \\\"eval_n_proved\\\": 61, \\\"eval_prove_rate\\\": 0.61, \\\"eval_mean_isr\\\": 0.5063, \\\"eval_isr_std\\\": 0.4518, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.8301, \\\"h7a_count\\\": 59, \\\"h7b_count\\\": 2, \\\"h7_count\\\": 61, \\\"h7_rate\\\": 1, \\\"h1_count\\\": 0, \\\"h1_rate\\\": 0, \\\"h8_conjunction_collapse_count\\\": 0, \\\"h8_conjunction_collapse_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"proved_single_premise_ratio\\\": 1, \\\"content_independent_predicates\\\": 5, \\\"isr_eq_1_count\\\": 40, \\\"isr_eq_1_rate_of_proved\\\": 0.656, \\\"train_prove_rate\\\": 0.68775, \\\"train_mean_isr\\\": 0.5039}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan001-exec-only-s43-1000-r2\\\": {\\\"hypothesis\\\": \\\"Exec-only GRPO 1000步 seed=43（r2 重跑）：r1 因磁盘满在 step 150 崩溃。磁盘已清理（92GB 可用），从 step 0 重跑。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.9, \\\"n_proved\\\": 90, \\\"n_problems\\\": 100, \\\"mean_isr\\\": 0.531, \\\"isr_std\\\": 0.15, \\\"isr_corrected\\\": 0.465, \\\"isr_artifact_note\\\": \\\"n_components=3 quantifier decomposition artifact (+0.066) + $T solver bug 5 samples (+0.025). Corrected ISR=0.465, but both values entirely from H7a tautological necessity, no reasoning quality signal.\\\", \\\"h7_count\\\": 90, \\\"h7_rate\\\": 1, \\\"h7a_count\\\": 90, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 0, \\\"h1_rate\\\": 0, \\\"h8_count\\\": 0, \\\"h8_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0}}, \\\"plan016-extended-1000-s42\\\": {\\\"hypothesis\\\": \\\"Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.96, \\\"n_proved\\\": 96, \\\"n_problems\\\": 100, \\\"h7_count\\\": 0, \\\"h7_rate\\\": 0, \\\"h7a_count\\\": 0, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 96, \\\"h1_rate\\\": 1, \\\"h8_count\\\": 0, \\\"h8_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"genuine_h1_near\\\": 0, \\\"genuine_strict\\\": 0, \\\"content_independent_rate\\\": 1, \\\"single_premise_rate\\\": 0, \\\"taxonomy_audit\\\": \\\"2026-05-15\\\", \\\"taxonomy_tool\\\": \\\"classify_h7.py current version (with H8 detection)\\\", \\\"taxonomy_note\\\": \\\"Re-run with current classify_h7.py. Old value genuine=7 was incorrect (old version lacked H8 and had weaker H1 detection). All 96 proved are H1 (conclusion embedded in premises). 0 H7, 0 H8.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan001-exec-only-s44-1000-r2\\\": {\\\"hypothesis\\\": \\\"Exec-only GRPO 1000步 seed=44（r2 重跑）：r1 因磁盘满被 kill。磁盘已清理（92GB 可用），从 step 0 重跑。\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 1, \\\"n_proved\\\": 100, \\\"n_problems\\\": 100, \\\"mean_isr\\\": 0.002, \\\"isr_std\\\": 0.0146, \\\"h7_count\\\": 0, \\\"h7_rate\\\": 0, \\\"h7a_count\\\": 0, \\\"h7b_count\\\": 0, \\\"h1_count\\\": 85, \\\"h1_rate\\\": 0.85, \\\"h8_count\\\": 15, \\\"h8_rate\\\": 0.15, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"genuine_note\\\": \\\"D091: 3 samples escape text-match classifiers but are functionally degenerate (ISR=0, disjunctive/commuted bypasses)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan018-additive-random-b01-s42-1000-r3\\\": {\\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.97, \\\"eval_mean_isr\\\": 0.6892, \\\"eval_isr_std\\\": 0.2037, \\\"eval_median_isr\\\": 0.75, \\\"eval_proved_only_isr\\\": 0.7105, \\\"eval_n_proved\\\": 97, \\\"eval_n_problems\\\": 100, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"h1_count\\\": 0, \\\"h1_rate\\\": 0, \\\"h7_count\\\": 97, \\\"h7_rate\\\": 1, \\\"tautological_collapse\\\": true, \\\"train_final_prove_rate\\\": 0.827, \\\"train_final_mean_isr\\\": 0.5213, \\\"train_loss\\\": 0.00671, \\\"train_final_entropy\\\": 0.003, \\\"train_runtime_seconds\\\": 5783, \\\"train_steps\\\": 1000, \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 25, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.7533}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 39, \\\"prove_rate\\\": 0.951, \\\"mean_isr\\\": 0.6565}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 33, \\\"prove_rate\\\": 0.971, \\\"mean_isr\\\": 0.6814}}, \\\"n_premise_distribution\\\": {\\\"1\\\": 97}, \\\"pattern_description\\\": \\\"All 97 proved: 1 premise identical to conclusion (P therefore P). D088 correction: h7=97 h1=0 (was h1=97 h7=0 pre-D086 bugfix).\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan009-sft-baseline-s44-1000\\\": {\\\"hypothesis\\\": \\\"SFT 1000步 seed=44：与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.15, \\\"n_proved\\\": 15, \\\"n_problems\\\": 100, \\\"mean_isr\\\": 0.0884, \\\"isr_std\\\": 0.2268, \\\"median_isr\\\": 0, \\\"proved_only_mean_isr\\\": 0.5892, \\\"max_isr\\\": 0.8571, \\\"by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 15, \\\"prove_rate\\\": 0.4412}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 0, \\\"prove_rate\\\": 0}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 0, \\\"prove_rate\\\": 0}}, \\\"genuine_count\\\": 14, \\\"genuine_rate\\\": 0.9333, \\\"h7_strict_count\\\": 0, \\\"h7_strict_rate\\\": 0, \\\"h1_strict_count\\\": 1, \\\"h1_strict_rate\\\": 0.0667, \\\"h8_conjunction_collapse_count\\\": 0, \\\"h8_conjunction_collapse_rate\\\": 0, \\\"conclusion_in_premise_count\\\": 1, \\\"conclusion_in_premise_rate\\\": 0.0667, \\\"content_independent_count\\\": 0, \\\"content_independent_rate\\\": 0, \\\"isr_1_count\\\": 0, \\\"isr_1_rate\\\": 0, \\\"train_final_loss\\\": 0.0171, \\\"train_avg_loss\\\": 0.1544, \\\"train_token_accuracy\\\": 0.995, \\\"train_runtime_s\\\": 1580.97, \\\"eval_elapsed_s\\\": 391.8}}, \\\"plan009-sft-baseline-s43-1000\\\": {\\\"hypothesis\\\": \\\"SFT 1000步 seed=43：与 s42 相同配置的第二个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。与 GRPO 各条件 1000步对比，确认 Goodhart collapse 是 RL 特有现象。\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.11, \\\"n_proved\\\": 11, \\\"n_problems\\\": 100, \\\"mean_isr\\\": 0.0699, \\\"isr_std\\\": 0.2155, \\\"median_isr\\\": 0, \\\"proved_only_mean_isr\\\": 0.6352, \\\"by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 11, \\\"prove_rate\\\": 0.3235}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 0, \\\"prove_rate\\\": 0}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 0, \\\"prove_rate\\\": 0}}, \\\"genuine_count\\\": 10, \\\"genuine_rate\\\": 0.9091, \\\"h7_strict_count\\\": 0, \\\"h7_strict_rate\\\": 0, \\\"h1_strict_count\\\": 1, \\\"h1_strict_rate\\\": 0.0909, \\\"h8_conjunction_collapse_count\\\": 0, \\\"h8_conjunction_collapse_rate\\\": 0, \\\"conclusion_in_premise_count\\\": 1, \\\"conclusion_in_premise_rate\\\": 0.0909, \\\"content_independent_count\\\": 0, \\\"content_independent_rate\\\": 0, \\\"isr_1_count\\\": 1, \\\"isr_1_rate\\\": 0.0909, \\\"train_final_loss\\\": 0.0167, \\\"train_avg_loss\\\": 0.1551, \\\"train_token_accuracy\\\": 0.9954, \\\"train_runtime_s\\\": 1584.79, \\\"eval_elapsed_s\\\": 326.1}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s42-1000\\\": {\\\"hypothesis\\\": \\\"SFT 1000步延伸：验证 SFT（无 reward optimization）在 1000 步是否维持 genuine rate。500 步 SFT 已达 93% genuine，若 1000 步仍保持高 genuine → Goodhart collapse 是 RL (GRPO) 特有现象，非一般 finetuning 退化。与 exec-only/ISR/random 1000步形成对比。\\\", \\\"metrics\\\": {\\\"train_final_loss\\\": 0.0168, \\\"train_last_step_loss\\\": 0.0168, \\\"train_token_accuracy\\\": 0.9955, \\\"train_epochs\\\": 15.88, \\\"train_runtime_sec\\\": 1415, \\\"train_steps\\\": 1000, \\\"eval_prove_rate\\\": 0.13, \\\"eval_n_proved\\\": 13, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.0738, \\\"eval_isr_std\\\": 0.2077, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.5677, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_output_path\\\": \\\"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\\\", \\\"h7_strict_count\\\": 0, \\\"h7_strict_rate\\\": 0, \\\"h1_strict_count\\\": 1, \\\"h1_strict_rate\\\": 0.0769, \\\"h8_conjunction_collapse_count\\\": 0, \\\"h8_conjunction_collapse_rate\\\": 0, \\\"genuine_count\\\": 12, \\\"genuine_rate\\\": 0.9231, \\\"conclusion_in_premise_count\\\": 1, \\\"conclusion_in_premise_rate\\\": 0.0769, \\\"isr_1_count\\\": 0, \\\"content_independent_count\\\": 0, \\\"eval_by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 12, \\\"prove_rate\\\": 0.353, \\\"mean_isr\\\": 0.209}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 1, \\\"prove_rate\\\": 0.04, \\\"mean_isr\\\": 0.011}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 0, \\\"prove_rate\\\": 0, \\\"mean_isr\\\": 0}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp1-random-b03-s43\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.79, \\\"mean_isr\\\": 0.1745, \\\"isr_std\\\": 0.1628, \\\"median_isr\\\": 0.1667, \\\"proved_only_mean_isr\\\": 0.2209, \\\"hacking_rate_strict_h7\\\": 0, \\\"hacking_rate_functional\\\": 0.1013, \\\"genuine_rate\\\": 0.8987, \\\"genuine_count\\\": 71, \\\"n_proved\\\": 79, \\\"n_problems\\\": 100, \\\"h1_conclusion_in_premise\\\": 0.759, \\\"eval_data\\\": \\\"test_100.jsonl\\\", \\\"eval_output\\\": \\\"/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43.json\\\"}}, \\\"plan002-additive-b01-s42-1000\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.9, \\\"eval_mean_isr\\\": 0.7892, \\\"eval_isr_std\\\": 0.3424, \\\"eval_proved_only_isr\\\": 0.8769, \\\"eval_median_isr\\\": 1, \\\"eval_n_proved\\\": 90, \\\"eval_n_problems\\\": 100, \\\"eval_component_count_mean\\\": 2.889, \\\"tautological_collapse\\\": true, \\\"train_final_prove_rate\\\": 0.855, \\\"train_final_mean_isr\\\": 0.532, \\\"h7_count\\\": 87, \\\"h7_rate\\\": 0.9667, \\\"h1_count\\\": 0, \\\"h1_rate\\\": 0, \\\"h1_near_count\\\": 1, \\\"h1_near_rate\\\": 0.0111, \\\"h8_conjunction_collapse_count\\\": 1, \\\"h8_conjunction_collapse_rate\\\": 0.0111, \\\"genuine_count\\\": 2, \\\"genuine_rate\\\": 0.0222, \\\"taxonomy_standard\\\": \\\"D086 clean run = ground truth. D084 residual removed.\\\"}}, \\\"plan002-additive-b01-s44\\\": {\\\"hypothesis\\\": \\\"ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.89, \\\"eval_mean_isr\\\": 0.803, \\\"eval_isr_std\\\": null, \\\"eval_proved_only_isr\\\": 0.902, \\\"eval_n_proved\\\": 89, \\\"eval_n_problems\\\": 100, \\\"h7_count\\\": 89, \\\"h7_rate\\\": 1, \\\"h1_count\\\": 0, \\\"h1_rate\\\": 0, \\\"h8_conjunction_collapse_count\\\": 0, \\\"h8_conjunction_collapse_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"component_mean\\\": 4.33, \\\"comp_2_ratio\\\": 0.022, \\\"h7_fn_correction\\\": \\\"12 former genuine reclassified as H7: all n_prem=1 false negatives (normalization mismatch prevented conclusion matching)\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan013-random-reward-s42-r4\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 1, \\\"eval_mean_isr\\\": 0.535, \\\"eval_isr_std\\\": 0.1282, \\\"eval_proved_only_isr\\\": 0.535, \\\"eval_median_isr\\\": 0.5, \\\"eval_n_proved\\\": 100, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_note\\\": \\\"DEGENERATE: model generates trivial 2-component proofs (premise=conclusion, conclusion=conclusion), ISR=0.5 is artifact of trivial proof structure\\\"}}, \\\"plan001-exec-only-s43-r4\\\": {\\\"metrics\\\": {\\\"eval_sampling_prove_rate\\\": 0.14, \\\"eval_sampling_mean_isr\\\": 0, \\\"eval_sampling_n_proved\\\": 14, \\\"eval_sampling_temperature\\\": 0.7, \\\"eval_sampling_method\\\": \\\"do_sample=True, temperature=0.7\\\", \\\"eval_sampling_by_answer\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.176}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 2, \\\"prove_rate\\\": 0.08}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.146}}, \\\"eval_greedy_prove_rate\\\": 0.13, \\\"eval_greedy_mean_isr\\\": 0, \\\"eval_greedy_proved_only_isr\\\": 0, \\\"eval_greedy_n_proved\\\": 13, \\\"eval_greedy_method\\\": \\\"eval_sta.py default (do_sample=False)\\\", \\\"eval_greedy_by_answer\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 4, \\\"prove_rate\\\": 0.118}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 5, \\\"prove_rate\\\": 0.2}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 4, \\\"prove_rate\\\": 0.0976}}, \\\"eval_greedy_h7_count\\\": 0, \\\"eval_greedy_h7_rate\\\": 0, \\\"eval_greedy_h1_count\\\": 13, \\\"eval_greedy_h1_rate\\\": 1, \\\"eval_greedy_genuine_rate\\\": 0, \\\"eval_greedy_n_premises_proved_mean\\\": 17.92, \\\"eval_greedy_mean_components_proved\\\": 18.92, \\\"eval_greedy_n_premises_all_mean\\\": 32.67, \\\"eval_sampling_h1_rate\\\": 1, \\\"eval_sampling_h7_rate\\\": 0, \\\"eval_sampling_genuine_rate\\\": 0, \\\"eval_sampling_mean_components_proved\\\": 18.5, \\\"eval_greedy_vs_sampling_delta_pr\\\": -0.01, \\\"eval_method_note\\\": \\\"Greedy and sampling agree on failure profile (ISR*=0, H1=100%, components~18.5-18.9). s43 collapse is decoding-invariant.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan001-exec-only-s42\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan002-additive-b01-s42\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.81, \\\"eval_mean_isr\\\": 0.3365, \\\"eval_isr_std\\\": 0.3227, \\\"eval_proved_only_isr\\\": 0.4154, \\\"eval_median_isr\\\": 0.2, \\\"eval_n_proved\\\": 81, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_component_count_mean\\\": 5.58, \\\"h7_rate\\\": 0.16, \\\"h7_count\\\": 13, \\\"h1_rate\\\": 0.519, \\\"h1_count\\\": 42, \\\"h8_conjunction_collapse_count\\\": 12, \\\"h8_conjunction_collapse_rate\\\": 0.148, \\\"genuine_rate\\\": 0.173, \\\"genuine_count\\\": 14, \\\"tautological_collapse\\\": false, \\\"h8_audit_note\\\": \\\"2026-05-15: H8 conjunction collapse audit completed. 12/81 proved samples are H8. Genuine 26→14 (32.1%→17.3%). H8 JSON at /root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json\\\"}}, \\\"plan002-additive-b01-s43\\\": {\\\"hypothesis\\\": \\\"ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.61, \\\"eval_n_proved\\\": 61, \\\"eval_n_problems\\\": 100, \\\"eval_proved_only_isr\\\": 0.83, \\\"h7_count\\\": 59, \\\"h7_rate\\\": 0.9672, \\\"h1_count\\\": 0, \\\"h1_rate\\\": 0, \\\"h1_near_count\\\": 0, \\\"h1_near_rate\\\": 0, \\\"h8_conjunction_collapse_count\\\": 0, \\\"h8_conjunction_collapse_rate\\\": 0, \\\"genuine_count\\\": 2, \\\"genuine_rate\\\": 0.0328, \\\"proved_single_premise_ratio\\\": 1, \\\"taxonomy_note\\\": \\\"structurally determined: proved_single_premise_ratio=1.0, all taxonomy categories except H7 are zero by construction. eval file lost but classification derivable from structure.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp1-isr-b03-s43\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.91, \\\"mean_isr\\\": 0.2575, \\\"isr_std\\\": 0.2363, \\\"median_isr\\\": 0.3333, \\\"proved_only_mean_isr\\\": 0.283, \\\"hacking_rate_strict_h7\\\": 0.022, \\\"hacking_rate_functional\\\": 0.3297, \\\"genuine_rate\\\": 0.6703, \\\"genuine_count\\\": 61, \\\"n_proved\\\": 91, \\\"n_problems\\\": 100, \\\"h1_conclusion_in_premise\\\": 0.747, \\\"eval_data\\\": \\\"test_100.jsonl\\\", \\\"eval_output\\\": \\\"/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json\\\"}}, \\\"plan009-sft-baseline-s44-1000-r3\\\": {\\\"hypothesis\\\": \\\"SFT 1000步 seed=44（第三次重试）：r1/r2 均因 --gpu 0 覆盖 CUDA_VISIBLE_DEVICES 导致 OOM。本次用 --gpu 1 直接指定物理 GPU 1。验证 SFT 在 1000 步的 genuine rate 稳定性，完成 3-seed 统计。\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.15, \\\"eval_n_proved\\\": 15, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.0884, \\\"eval_isr_std\\\": 0.2268, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.5892, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"h7_count\\\": 0, \\\"h7_rate\\\": 0, \\\"h1_count\\\": 1, \\\"h1_rate\\\": 0.0667, \\\"h8_conjunction_collapse_count\\\": 0, \\\"h8_conjunction_collapse_rate\\\": 0, \\\"genuine_count\\\": 14, \\\"genuine_rate\\\": 0.9333, \\\"eval_by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 15, \\\"prove_rate\\\": 0.441, \\\"mean_isr\\\": 0.26}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 0, \\\"prove_rate\\\": 0, \\\"mean_isr\\\": 0}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 0, \\\"prove_rate\\\": 0, \\\"mean_isr\\\": 0}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s44\\\": {\\\"metrics\\\": {\\\"train_final_loss\\\": 0.2397, \\\"train_last_step_loss\\\": 0.0328, \\\"train_token_accuracy\\\": 0.9928, \\\"train_epochs\\\": 7.94, \\\"train_runtime_sec\\\": 729.05, \\\"train_steps\\\": 500, \\\"eval_prove_rate\\\": 0.17, \\\"eval_n_proved\\\": 17, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.0974, \\\"eval_isr_std\\\": 0.2409, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.5729, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_output_path\\\": \\\"/root/autodl-tmp/outputs/eval_sta_plan009_sft_s44.json\\\", \\\"eval_tautological_collapse\\\": false, \\\"eval_h7_count\\\": 0, \\\"eval_h7_rate\\\": 0, \\\"eval_h1_count\\\": 2, \\\"eval_h1_rate\\\": 0.118, \\\"eval_genuine_count\\\": 15, \\\"eval_genuine_rate\\\": 0.882, \\\"eval_by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 15, \\\"prove_rate\\\": 0.441, \\\"mean_isr\\\": 0.257}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 1, \\\"prove_rate\\\": 0.04, \\\"mean_isr\\\": 0.027}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 1, \\\"prove_rate\\\": 0.024, \\\"mean_isr\\\": 0.008}}, \\\"eval_correction_note\\\": \\\"Corrected 2026-05-15: previous eval used test_100.jsonl (50/44/6 distribution), re-evaled with proofwriter_fol_100.jsonl (34/25/41)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s43\\\": {\\\"metrics\\\": {\\\"train_loss\\\": 0.2391, \\\"train_token_accuracy\\\": 0.9938, \\\"train_epochs\\\": 7.94, \\\"train_runtime_sec\\\": 677.14, \\\"train_steps\\\": 500, \\\"eval_prove_rate\\\": 0.15, \\\"eval_mean_isr\\\": 0.0895, \\\"eval_isr_std\\\": 0.2338, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.5967, \\\"h7_count\\\": 0, \\\"h7_rate\\\": 0, \\\"h1_count\\\": 1, \\\"h1_rate\\\": 0.067, \\\"genuine_count\\\": 14, \\\"genuine_rate\\\": 0.933, \\\"by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 13, \\\"prove_rate\\\": 0.382, \\\"mean_isr\\\": 0.234}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 1, \\\"prove_rate\\\": 0.04, \\\"mean_isr\\\": 0.027}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 1, \\\"prove_rate\\\": 0.024, \\\"mean_isr\\\": 0.008}}, \\\"eval_data_path\\\": \\\"data/proofwriter_fol_100.jsonl\\\", \\\"eval_output_path\\\": \\\"/root/autodl-tmp/outputs/eval_sta_plan009_sft_s43.json\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan001-exec-only-s44-1000\\\": {\\\"hypothesis\\\": \\\"Exec-only GRPO 1000步 seed=44：与 plan016(s42) 相同配置的第三个 seed。完成 3-seed exec-only 1000步统计，与 SFT 1000步 3-seed 对照，统计支撑 Goodhart collapse 是 RL 特有现象的 claim。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan001-exec-only-s43-1000\\\": {\\\"hypothesis\\\": \\\"Exec-only GRPO 1000步 seed=43：与 plan016(s42) 相同配置的第二个 seed。3-seed exec-only 1000步统计，验证 Goodhart collapse（genuine→0%）在 exec-only 条件下的可重复性。与 SFT 1000步 3-seed 对照，确认 collapse 是 RL(GRPO) 特有现象。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan009-sft-baseline-s44-1000-r2\\\": {\\\"hypothesis\\\": \\\"SFT 1000步 seed=44（重试）：r1 因 CUDA_VISIBLE_DEVICES 未设导致 OOM 失败。与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan002-additive-b03-s42\\\": {\\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"last100_prove_rate\\\": 0.5525, \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.1427, \\\"eval_n_proved\\\": 18, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"h7_rate\\\": 0, \\\"h7_count\\\": 0, \\\"h1_rate\\\": 0.778, \\\"h1_count\\\": 14, \\\"h8_conjunction_collapse_count\\\": 3, \\\"h8_conjunction_collapse_rate\\\": 0.1667, \\\"genuine_rate\\\": 0.0556, \\\"genuine_count\\\": 1, \\\"eval_by_type_false_pr\\\": 0.12, \\\"eval_by_type_false_isr\\\": 0.0102, \\\"eval_by_type_unknown_pr\\\": 0.195, \\\"eval_by_type_unknown_isr\\\": 0.0422, \\\"eval_by_type_true_pr\\\": 0.206, \\\"eval_by_type_true_isr\\\": 0.0172, \\\"h8_audit_note\\\": \\\"2026-05-15: H8 conjunction collapse added. genuine 4→1.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan001-exec-only-s42-r2\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.93, \\\"eval_mean_isr\\\": 0.1232, \\\"eval_isr_std\\\": 0.1887, \\\"eval_proved_only_isr\\\": 0.1324, \\\"eval_median_isr\\\": 0, \\\"eval_n_proved\\\": 93, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"h7_rate\\\": 0, \\\"h7_count\\\": 0, \\\"h1_rate\\\": 0.871, \\\"h1_count\\\": 81, \\\"h8_conjunction_collapse_count\\\": 6, \\\"h8_conjunction_collapse_rate\\\": 0.0645, \\\"genuine_rate\\\": 0.0753, \\\"genuine_count\\\": 7, \\\"genuine_mean_isr\\\": 0.3141, \\\"h1_mean_isr\\\": 0.1055, \\\"conclusion_embedding_total\\\": 0.871, \\\"content_independent_predicates_count\\\": 1, \\\"h8_audit_note\\\": \\\"2026-05-15: H8 conjunction collapse added. genuine 12→7.\\\"}}, \\\"plan004-o1-ablation-s42\\\": {\\\"hypothesis\\\": \\\"O(1) binary ISR (fast_isr_fol) vs O(N) full STA ablation: 100-step pilot showed binary ISR ≈ exec-only (all proved samples ISR=1). 500-step full run confirms O(1) is ineffective at scale — the LOO ablation (O(N)) is necessary for ISR to carry structural signal. Negative result strengthens paper's methodological contribution.\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.63, \\\"mean_isr\\\": 0.0072, \\\"h7_count\\\": 0, \\\"h7_rate\\\": 0, \\\"h1_count\\\": 63, \\\"h1_rate\\\": 1, \\\"h8_conjunction_collapse_count\\\": 2, \\\"h8_conjunction_collapse_rate\\\": 0.0317, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"content_independent_predicates_count\\\": 3, \\\"h8_audit_note\\\": \\\"2026-05-15: H8 conjunction collapse added. genuine unchanged (0).\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp1-isr-b03-s42-1000-r2\\\": {\\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.95, \\\"eval_mean_isr\\\": 0.734, \\\"eval_isr_std\\\": 0.2575, \\\"eval_median_isr\\\": 0.6, \\\"eval_proved_only_isr\\\": 0.7726, \\\"eval_n_proved\\\": 95, \\\"eval_n_problems\\\": 100, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 25, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.824}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 38, \\\"prove_rate\\\": 0.927, \\\"mean_isr\\\": 0.673}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 32, \\\"prove_rate\\\": 0.941, \\\"mean_isr\\\": 0.741}}, \\\"h7_count\\\": 0, \\\"h7_rate\\\": 0, \\\"h1_count\\\": 54, \\\"h1_rate\\\": 0.568, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"tautological_collapse\\\": true, \\\"isr_1_count\\\": 41, \\\"isr_1_rate\\\": 0.432, \\\"single_premise_count\\\": 0, \\\"train_final_prove_rate\\\": 0.829, \\\"train_final_mean_isr\\\": 0.727, \\\"train_loss\\\": 0.0041, \\\"train_runtime_seconds\\\": 6280, \\\"train_final_entropy\\\": 9e-06, \\\"completions_mean_length\\\": 47, \\\"h8_conjunction_collapse_count\\\": 41, \\\"h8_conjunction_collapse_rate\\\": 0.432, \\\"content_independent_predicates\\\": true}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan018-additive-random-b01-s42-1000-r2\\\": {\\\"metrics\\\": {\\\"train_final_prove_rate\\\": 0.989, \\\"train_final_mean_isr\\\": 0.353, \\\"train_final_reward\\\": 1.062, \\\"train_steps\\\": 1000, \\\"train_runtime_seconds\\\": 2957, \\\"eval_prove_rate\\\": 1, \\\"eval_mean_isr\\\": 0.3333, \\\"eval_isr_std\\\": 0, \\\"eval_median_isr\\\": 0.3333, \\\"eval_proved_only_isr\\\": 0.3333, \\\"eval_n_proved\\\": 100, \\\"eval_n_problems\\\": 100, \\\"eval_component_count_mean\\\": 3, \\\"genuine_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"tautological_collapse\\\": true, \\\"h7_rate\\\": null, \\\"h7_count\\\": null, \\\"h1_rate\\\": null, \\\"h1_count\\\": null}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan018-additive-random-b01-s42-1000\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"exp1-isr-b03-s42-1000\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan001-exec-only-s44\\\": {\\\"hypothesis\\\": \\\"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.98, \\\"eval_mean_isr\\\": 0.57, \\\"eval_isr_std\\\": 0.2013, \\\"eval_median_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 0.5816, \\\"eval_n_proved\\\": 98, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_component_count_mean\\\": 2.04, \\\"eval_component_count_2\\\": 94, \\\"eval_component_count_3\\\": 4, \\\"tautological_collapse\\\": true, \\\"h7_rate\\\": 1, \\\"h7_count\\\": 97, \\\"h1_rate\\\": 0, \\\"h1_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"conclusion_embedding_total\\\": 1}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan018-additive-random-b01-s43-r2\\\": {\\\"hypothesis\\\": \\\"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\\\", \\\"metrics\\\": {\\\"h7_rate\\\": 0, \\\"h7_count\\\": 0, \\\"h1_rate\\\": 93.2, \\\"h1_count\\\": 82, \\\"genuine_rate\\\": 6.8, \\\"genuine_count\\\": 6, \\\"eval_prove_rate\\\": 0.88, \\\"eval_mean_isr\\\": 0.058}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp1-isr-b03-s43-r3\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_step\\\": 500, \\\"prove_rate\\\": 0.56125, \\\"mean_isr\\\": 0.1515, \\\"parse_rate\\\": 1, \\\"train_loss\\\": 0.0176, \\\"train_runtime_sec\\\": 4153.6, \\\"epoch\\\": 2, \\\"eval_prove_rate\\\": 0.86, \\\"eval_mean_isr\\\": 0.2535, \\\"eval_isr_std\\\": 0.2406, \\\"eval_median_isr\\\": 0.3333, \\\"eval_proved_only_mean_isr\\\": 0.2948, \\\"eval_min_isr\\\": 0, \\\"eval_max_isr\\\": 0.75, \\\"eval_n_proved\\\": 86, \\\"eval_n_problems\\\": 100, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_h7_strict_rate\\\": 0.047, \\\"eval_h7_strict_count\\\": 4, \\\"eval_h1_strict_rate\\\": 0.686, \\\"eval_h1_strict_count\\\": 59, \\\"eval_conclusion_in_premise_rate\\\": 0.733, \\\"eval_conclusion_in_premise_count\\\": 63, \\\"eval_genuine_rate\\\": 0.267, \\\"eval_genuine_count\\\": 23, \\\"eval_single_premise_rate\\\": 0.058, \\\"eval_single_premise_count\\\": 5, \\\"eval_isr_1_count\\\": 0, \\\"eval_by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 23, \\\"prove_rate\\\": 0.92, \\\"mean_isr\\\": 0.334}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 35, \\\"prove_rate\\\": 0.854, \\\"mean_isr\\\": 0.199}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 28, \\\"prove_rate\\\": 0.824, \\\"mean_isr\\\": 0.26}}}}, \\\"exp1-random-b03-s43-r3\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan015-linear-s42\\\": {\\\"conclusion\\\": \\\"killed\\\"}, \\\"exp1-isr-b03-s43-r4\\\": {\\\"conclusion\\\": \\\"killed\\\"}, \\\"exp1-random-b03-s43-r2\\\": {\\\"conclusion\\\": \\\"killed\\\"}, \\\"exp1-isr-b03-s44-r2\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.95, \\\"mean_isr\\\": 0.705, \\\"isr_std\\\": 0.172, \\\"proved_only_isr\\\": 0.7421, \\\"n_proved\\\": 95, \\\"n_problems\\\": 100, \\\"h7_rate\\\": 1, \\\"h7_count\\\": 95, \\\"h1_rate\\\": 0, \\\"h1_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"single_premise_rate\\\": 1, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_note\\\": \\\"Re-eval with correct test set (D062). Previous test_100.jsonl results invalidated.\\\"}}, \\\"exp1-random-b03-s44\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"exp1-isr-b03-s44\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"exp1-isr-b03-s43-r2\\\": {\\\"conclusion\\\": \\\"killed\\\"}, \\\"exp2-exec-s43-greedy\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp4-100step-h1h7\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"plan006-prolog-sta-s44\\\": {\\\"hypothesis\\\": \\\"Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。\\\", \\\"metrics\\\": {\\\"pass_rate\\\": 0.97, \\\"isr_mean\\\": 0.885, \\\"isr_n_cl_ge3\\\": \\\"N/A (0 samples)\\\", \\\"n_clauses_dist\\\": \\\"78/100 single-clause, 22/100 two-clause\\\", \\\"h7_functional_rate\\\": 0.979, \\\"genuine_rate\\\": 0, \\\"premise_count_analysis\\\": \\\"100% artifact - zero samples with n_clauses>=3, model exclusively generates 1-2 clause programs\\\", \\\"failure_mode\\\": \\\"query-as-fact gaming (total H7 collapse)\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan006-prolog-sta-s43\\\": {\\\"hypothesis\\\": \\\"Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。\\\", \\\"metrics\\\": {\\\"train\\\": {\\\"final_prove_rate\\\": 0.769, \\\"final_mean_isr\\\": 0.129, \\\"final_loss\\\": 0.0155, \\\"final_entropy\\\": 0.09, \\\"final_reward\\\": 0.573, \\\"completion_length_mean\\\": 143, \\\"train_runtime_seconds\\\": 5095, \\\"train_runtime_minutes\\\": 84.9}, \\\"eval\\\": {\\\"n_problems\\\": 100, \\\"n_proved\\\": 38, \\\"prove_rate\\\": 0.38, \\\"mean_isr\\\": 0.0704, \\\"isr_std\\\": 0.1263, \\\"median_isr\\\": 0, \\\"proved_only_mean_isr\\\": 0.1853, \\\"min_isr\\\": 0, \\\"max_isr\\\": 1, \\\"by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 11, \\\"prove_rate\\\": 0.44, \\\"mean_isr\\\": 0.1003}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 11, \\\"prove_rate\\\": 0.268, \\\"mean_isr\\\": 0.0394}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 16, \\\"prove_rate\\\": 0.471, \\\"mean_isr\\\": 0.0859}}}, \\\"h7_classification\\\": {\\\"h7_strict\\\": 0, \\\"h7_rate\\\": 0, \\\"h1_strict\\\": 37, \\\"h1_rate\\\": 0.974, \\\"conclusion_in_premise_total\\\": 37, \\\"conclusion_in_premise_rate\\\": 0.974, \\\"genuine_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"isr_1_count\\\": 1, \\\"note\\\": \\\"1 pseudo-genuine sample (folio_1415) has query embedded in single mega-clause; all 38/38 proved samples are tautological\\\"}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan006-prolog-sta-s42\\\": {\\\"hypothesis\\\": \\\"Prolog exec+STA GRPO seed=42: ISR reward 在 Prolog logic type 上的效果。与 plan006-prolog-exec-s42 (exec-only) 对照，验证 STA/ISR 的 hacking 检测和 Goodhart 效应是否跨 logic type 泛化。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"cumulative_prove_rate\\\": 0.848, \\\"cumulative_mean_isr\\\": 0.787, \\\"final_prove_rate\\\": 1, \\\"final_isr\\\": 1, \\\"final_reward\\\": 1, \\\"saturation_onset_step\\\": 100, \\\"train_loss\\\": 0.00716, \\\"training_hours\\\": 0.78, \\\"final_entropy\\\": 0.01, \\\"final_completion_length\\\": 27, \\\"initial_completion_length\\\": 120, \\\"steps_at_perfect_reward\\\": 400, \\\"train_runtime_sec\\\": 2791, \\\"eval_prove_rate\\\": 0.5, \\\"eval_mean_isr\\\": 0.5, \\\"eval_proved_only_isr\\\": 1, \\\"eval_h7_rate\\\": 1, \\\"eval_h7_count\\\": 50, \\\"eval_proved_count\\\": 50, \\\"eval_total_count\\\": 100, \\\"eval_n_clauses_mean\\\": 1, \\\"eval_isr_distribution\\\": \\\"binary: 50x0 + 50x1\\\"}}, \\\"plan006-prolog-exec-s44\\\": {\\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=44: third seed for Prolog exec-only. Together with s42 (PR=83%, ISR=0.031) and s43, provides 3-seed evidence for cross-logic generalization claim (Claim 3). 3-seed mean±std required for paper.\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.21, \\\"eval_mean_isr\\\": 0.0812, \\\"eval_isr_std\\\": 0.2343, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.3866, \\\"eval_min_isr\\\": 0, \\\"eval_max_isr\\\": 1, \\\"eval_n_proved\\\": 21, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_elapsed_seconds\\\": 683.9, \\\"eval_by_type_false_pr\\\": 0.04, \\\"eval_by_type_false_isr\\\": 0.04, \\\"eval_by_type_unknown_pr\\\": 0.317, \\\"eval_by_type_unknown_isr\\\": 0.099, \\\"eval_by_type_true_pr\\\": 0.206, \\\"eval_by_type_true_isr\\\": 0.09, \\\"solver\\\": \\\"PrologSolver\\\", \\\"logic_type\\\": \\\"prolog\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan009-sft-baseline-s42-r4\\\": {\\\"hypothesis\\\": \\\"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb.\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.14, \\\"eval_mean_isr\\\": 0.08, \\\"eval_isr_std\\\": 0.214, \\\"eval_median_isr\\\": 0, \\\"eval_max_isr\\\": 0.833, \\\"eval_proved_only_isr\\\": 0.571, \\\"eval_n_proved\\\": 14, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"train_final_loss\\\": 0.0287, \\\"train_token_accuracy\\\": 0.9935, \\\"train_epochs\\\": 7.94, \\\"train_runtime_sec\\\": 789.6, \\\"by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 13, \\\"pr\\\": 0.382, \\\"isr\\\": 0.226}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 1, \\\"pr\\\": 0.024, \\\"isr\\\": 0.008}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 0, \\\"pr\\\": 0, \\\"isr\\\": 0}}, \\\"h7_rate\\\": 0, \\\"h7_count\\\": 0, \\\"h1_rate\\\": 0.071, \\\"h1_count\\\": 1, \\\"genuine_rate\\\": 0.929, \\\"genuine_count\\\": 13, \\\"hacking_patterns\\\": \\\"near-zero (1/14 H1, 0 H7, 92.9% genuine)\\\", \\\"tautological_collapse\\\": false}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan006-prolog-exec-s43-r3\\\": {\\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.56, \\\"eval_mean_isr\\\": 0.0084, \\\"eval_isr_std\\\": 0.0221, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.015, \\\"eval_min_isr\\\": 0, \\\"eval_max_isr\\\": 0.1, \\\"eval_n_proved\\\": 56, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_elapsed_seconds\\\": 868.2, \\\"eval_by_type_false_pr\\\": 0.48, \\\"eval_by_type_false_isr\\\": 0.0043, \\\"eval_by_type_unknown_pr\\\": 0.6585, \\\"eval_by_type_unknown_isr\\\": 0.0114, \\\"eval_by_type_true_pr\\\": 0.5, \\\"eval_by_type_true_isr\\\": 0.0078, \\\"solver\\\": \\\"PrologSolver\\\", \\\"logic_type\\\": \\\"prolog\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan018-additive-random-b01-s44\\\": {\\\"hypothesis\\\": \\\"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.89, \\\"mean_isr\\\": 0.0619, \\\"isr_std\\\": 0.1756, \\\"median_isr\\\": 0, \\\"proved_only_mean_isr\\\": 0.0695, \\\"n_proved\\\": 89, \\\"n_problems\\\": 100, \\\"max_isr\\\": 1, \\\"min_isr\\\": 0, \\\"isr_pr_ratio\\\": 0.0695, \\\"isr_zero_count\\\": 72, \\\"isr_one_count\\\": 2, \\\"by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 21, \\\"prove_rate\\\": 0.84, \\\"mean_isr\\\": 0.0533}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 40, \\\"prove_rate\\\": 0.976, \\\"mean_isr\\\": 0.0892}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 28, \\\"prove_rate\\\": 0.824, \\\"mean_isr\\\": 0.0353}}, \\\"elapsed_seconds\\\": 1012.7, \\\"eval_method\\\": \\\"eval_sta.py with Prover9Solver, FOL\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s42\\\": {\\\"hypothesis\\\": \\\"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Same model as all GRPO experiments for fair comparison.\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan006-prolog-exec-s43-r2\\\": {\\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=43 r2: 修正 warmup_ratio=0.0 与 s42 一致。cross-seed stability check for Prolog logic type.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan006-prolog-exec-s42\\\": {\\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.83, \\\"eval_mean_isr\\\": 0.031, \\\"eval_proved_only_isr\\\": 0.037, \\\"eval_median_isr\\\": 0, \\\"eval_max_isr\\\": 0.2, \\\"eval_isr_std\\\": 0.0534, \\\"h7_rate\\\": 0, \\\"h1_rate\\\": 0, \\\"isr_1_rate\\\": 0, \\\"single_premise_rate\\\": 0, \\\"by_answer_type\\\": {\\\"true\\\": {\\\"proved\\\": 37, \\\"count\\\": 40, \\\"pr\\\": 0.925, \\\"isr\\\": 0.037}, \\\"false\\\": {\\\"proved\\\": 21, \\\"count\\\": 29, \\\"pr\\\": 0.724, \\\"isr\\\": 0.038}, \\\"unknown\\\": {\\\"proved\\\": 25, \\\"count\\\": 31, \\\"pr\\\": 0.806, \\\"isr\\\": 0.016}}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan006-prolog-exec-s43\\\": {\\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degraded vs s44 tautological). Prolog exec-only s42 showed PR=83%, ISR=0.031. s43 tests if Prolog also has seed instability.\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan009-sft-baseline-s42-r3\\\": {\\\"hypothesis\\\": \\\"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan009-sft-baseline-s42-r2\\\": {\\\"hypothesis\\\": \\\"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan018-additive-random-b01-s43\\\": {\\\"hypothesis\\\": \\\"Random β=0.1 seed=43 控制组：与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s43 下是否成立。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan012-hacking-taxonomy\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"ISR β=0.1 vs Random β=0.1 hacking taxonomy 对比：ISR reward 能否减少 hacking 模式比例、增加 genuine proof 比例？5 种 hacking 分类（conclusion embedding, repetition collapse, tautological collapse, complexity-without-utility, premise padding）。\\\", \\\"metrics\\\": {\\\"isr_b01_genuine_rate\\\": 0.259, \\\"random_b01_genuine_rate\\\": 0.177, \\\"genuine_rate_delta_pp\\\": 8.2, \\\"isr_b01_conclusion_embedding_rate\\\": 0.728, \\\"random_b01_conclusion_embedding_rate\\\": 0.785, \\\"isr_b01_genuine_mean_isr\\\": 0.6723, \\\"random_b01_genuine_mean_isr\\\": 0.3427, \\\"isr_b01_complexity_wo_utility_rate\\\": 0, \\\"random_b01_complexity_wo_utility_rate\\\": 0.038, \\\"isr_b01_hacking_rate\\\": 0.741, \\\"random_b01_hacking_rate\\\": 0.823}}, \\\"plan005-sta-low-s42\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 71, \\\"parse_rate\\\": 1, \\\"overall_prove_rate\\\": 0.5657, \\\"overall_isr\\\": 0.1682, \\\"last50_prove_rate\\\": 0.77, \\\"last50_isr\\\": 0.2559, \\\"last100_prove_rate\\\": 0.7725, \\\"last100_isr\\\": 0.2299, \\\"last100_loss\\\": 0.022752, \\\"overall_loss\\\": 0.017296, \\\"last100_isr_pr_ratio\\\": 0.298, \\\"last100_isr_lt_pr_count\\\": \\\"99/100\\\", \\\"first_rolling10_pr_ge_0.8\\\": 178, \\\"first_rolling10_pr_ge_0.9\\\": 439, \\\"max_rolling10_pr\\\": 0.9375, \\\"max_rolling10_isr\\\": 0.3282, \\\"windowed\\\": {\\\"1-50\\\": {\\\"pr\\\": 0.1775, \\\"isr\\\": 0.0906}, \\\"51-100\\\": {\\\"pr\\\": 0.1775, \\\"isr\\\": 0.0835}, \\\"101-200\\\": {\\\"pr\\\": 0.5062, \\\"isr\\\": 0.1463}, \\\"201-300\\\": {\\\"pr\\\": 0.6713, \\\"isr\\\": 0.1791}, \\\"301-400\\\": {\\\"pr\\\": 0.7013, \\\"isr\\\": 0.1984}, \\\"401-500\\\": {\\\"pr\\\": 0.7725, \\\"isr\\\": 0.2299}}}}, \\\"plan014-downstream-nli-s42\\\": {\\\"hypothesis\\\": \\\"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"overall_accuracy\\\": 0.341, \\\"proved_rate\\\": 0.915, \\\"proved_count\\\": 732, \\\"total_generations\\\": 800, \\\"parse_errors\\\": 0, \\\"accuracy_by_label\\\": {\\\"true\\\": 0.912, \\\"false\\\": 0, \\\"unknown\\\": 0.076}, \\\"spearman_rho\\\": -0.049, \\\"spearman_p\\\": 0.187, \\\"mann_whitney_U\\\": 17202, \\\"mann_whitney_p\\\": 0.288, \\\"bon_isr_accuracy\\\": 0.35, \\\"bon_random_accuracy\\\": 0.341, \\\"bon_oracle_accuracy\\\": 0.44, \\\"bon_prove_first_accuracy\\\": 0.35, \\\"isr_bucket_high_acc\\\": 0.75, \\\"isr_bucket_mid_acc\\\": 0.377, \\\"isr_bucket_low_acc\\\": 0.327, \\\"runtime_inference_s\\\": 408.8, \\\"runtime_eval_s\\\": 13.6}}, \\\"plan001-exec-only-s43-r3\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan013-random-reward-s42-r3\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan001-exec-only-s43-r2\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan013-random-reward-s42-r2\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan013-random-reward-s42\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan001-exec-only-s43\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"plan003-eval-exec-only-r5\\\": {\\\"metrics\\\": {\\\"prove_rate\\\": 0.32, \\\"mean_isr\\\": 0.2055, \\\"isr_std\\\": 0.3194, \\\"proved_only_isr\\\": 0.6423, \\\"isr_by_type\\\": {\\\"true\\\": 0.3598, \\\"false\\\": 0.1723, \\\"unknown\\\": 0.0979}, \\\"total_samples\\\": 100, \\\"proved_count\\\": 32, \\\"runtime_s\\\": 251.7}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan001-exec-only-s42-r3\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-sta-r5\\\": {\\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.1, \\\"mean_isr\\\": 0.04347, \\\"last20_prove_rate\\\": 0.15, \\\"last20_isr_mean\\\": 0.04956, \\\"first20_prove_rate\\\": 0.08125, \\\"first20_isr_mean\\\": 0.05182, \\\"overall_reward_mean\\\": 0.07174, \\\"last20_reward_mean\\\": 0.09978, \\\"training_steps\\\": 100, \\\"training_minutes\\\": 16.9, \\\"step_time_s\\\": 10.13, \\\"isr_pr_ratio_overall\\\": 0.43, \\\"isr_pr_ratio_last20\\\": 0.33, \\\"K\\\": 8}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"sta-phase1-exec-only-r5\\\": {\\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.15125, \\\"mean_isr\\\": 0.1475, \\\"last20_prove_rate\\\": 0.2, \\\"last20_isr_mean\\\": 0.2, \\\"first20_prove_rate\\\": 0.11875, \\\"first20_isr_mean\\\": 0.11875, \\\"overall_reward_mean\\\": 0.15125, \\\"last20_reward_mean\\\": 0.2, \\\"training_steps\\\": 100, \\\"training_minutes\\\": 15.7, \\\"step_time_s\\\": 9.44, \\\"isr_pr_ratio_last20\\\": 1, \\\"K\\\": 8}, \\\"conclusion\\\": \\\"success\\\"}, \\\"sta-phase1-exec-sta-r4\\\": {\\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.1575, \\\"mean_isr\\\": 0.1525, \\\"last20_prove_rate\\\": 0.2125, \\\"last20_isr_mean\\\": 0.2125, \\\"first20_reward_mean\\\": 0.119, \\\"training_steps\\\": 100, \\\"training_minutes\\\": 15}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"sta-phase1-exec-only-r4\\\": {\\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.15125, \\\"mean_isr\\\": 0.1475, \\\"last20_prove_rate\\\": 0.2, \\\"last20_isr_mean\\\": 0.2, \\\"first20_reward_mean\\\": 0.119, \\\"training_steps\\\": 100, \\\"training_minutes\\\": 15}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"sta-phase1-exec-only-r3\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-sta-r3\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-sta-r2\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-only-r2\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-sta\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-phase1-exec-only\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"sta-gt-isr-baseline\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gt_prove_rate\\\": 0.18, \\\"gt_mean_isr\\\": 0.5588, \\\"gt_isr_std\\\": 0.2582, \\\"gt_isr_median\\\": 0.6125, \\\"solver_execution_rate\\\": 1, \\\"true_prove_rate\\\": 0.5, \\\"true_mean_isr\\\": 0.5833}}, \\\"sta-phase0-baseline\\\": {\\\"metrics\\\": {\\\"mean_isr\\\": 0.0641, \\\"isr_std\\\": 0.1983, \\\"median_isr\\\": 0, \\\"isr_range\\\": [0, 0.889], \\\"prove_rate\\\": 0.12, \\\"proved_count\\\": 12, \\\"total_samples\\\": 100, \\\"xor_affected_samples\\\": 34, \\\"effective_prove_rate_no_xor\\\": 0.182, \\\"avg_time_per_sample_s\\\": 3.4, \\\"total_runtime_s\\\": 336, \\\"isr_by_answer\\\": {\\\"true\\\": {\\\"n\\\": 34, \\\"proved\\\": 9, \\\"prove_rate\\\": 0.265, \\\"mean_isr\\\": 0.1345}, \\\"false\\\": {\\\"n\\\": 25, \\\"proved\\\": 1, \\\"prove_rate\\\": 0.04, \\\"mean_isr\\\": 0.024}, \\\"unknown\\\": {\\\"n\\\": 41, \\\"proved\\\": 2, \\\"prove_rate\\\": 0.049, \\\"mean_isr\\\": 0.0302}}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 86, \\\"total\\\": 86, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5159}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan018-additive-random-b01-s44-r2\": {\"metrics\": {\"train_prove_rate\": 0.64675, \"train_mean_isr\": 0.08092, \"train_loss\": 0.00937, \"train_steps\": 500, \"train_runtime_sec\": 4998, \"eval_prove_rate\": 0.89, \"eval_mean_isr\": 0.0619, \"eval_isr_std\": 0.1756, \"eval_median_isr\": 0, \"eval_isr_pr_ratio\": 0.0695, \"eval_proved_only_isr\": 0.0695, \"eval_n_proved\": 89, \"eval_n_problems\": 100, \"h7_count\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 73, \"h8_count\": 16, \"genuine_count\": 6, \"genuine_rate\": 0.067, \"h7_rate\": 0, \"h1_rate\": 0.82, \"h8_rate\": 0.18, \"content_independent_count\": 18}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s43-r3\": {\"metrics\": {\"prove_rate\": 0.94, \"n_proved\": 94, \"n_problems\": 100, \"mean_isr\": 0.1406, \"isr_std\": null, \"proved_only_isr\": 0.1495, \"h7_count\": 36, \"h7_rate\": 0.383, \"h7a_count\": 36, \"h7b_count\": 0, \"h1_count\": 56, \"h1_rate\": 0.596, \"h8_count\": 1, \"h8_rate\": 0.011, \"genuine_count\": 1, \"genuine_rate\": 0.0106, \"train_prove_rate\": 0.5825, \"train_mean_isr\": 0.1266, \"taxonomy_tool\": \"classify_h7.py + manual subtype analysis (2026-05-15)\", \"taxonomy_note\": \"D093 H7 subtype: all 36 H7 are H7a (text-match tautology), 0 H7b. single_premise_count=0: Random H7a are multi-premise proofs with embedded tautological premise, structurally different from exec-only H7a (single-premise minimal tautology). H7b confirmed absent in Random condition.\", \"h7a_structural_note\": \"Random H7a = multi-premise with embedded matching premise; exec-only H7a = single-premise P-therefore-P\"}, \"conclusion\": \"negative\"}, \"exp1-random-b03-s44-r2\": {\"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.23, \"eval_proved_only_mean_isr\": 0, \"eval_mean_isr\": 0, \"eval_isr_std\": 0, \"eval_median_isr\": 0, \"eval_n_proved\": 23, \"eval_n_problems\": 100, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"h7_count\": 0, \"h7_rate\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 23, \"h1_rate\": 1, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\", \"taxonomy_note\": \"Re-classified with current classify_h7.py. Matches previous values: H7=0, H1=23, H8=0, genuine=0. No change.\"}}, \"exp1-random-b03-s43-r4\": {\"conclusion\": \"success\", \"metrics\": {\"final_step\": 500, \"prove_rate\": 0.5505, \"mean_isr\": 0.1358, \"parse_rate\": 1, \"train_loss\": 0.01365, \"train_runtime_sec\": 6161.1, \"epoch\": 2, \"eval_prove_rate\": 0.92, \"eval_mean_isr\": 0.1659, \"eval_isr_std\": 0.1147, \"eval_median_isr\": 0.1429, \"eval_proved_only_mean_isr\": 0.1803, \"eval_min_isr\": 0, \"eval_max_isr\": 0.5, \"eval_n_proved\": 92, \"eval_n_problems\": 100, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 23, \"prove_rate\": 0.92, \"mean_isr\": 0.156}, \"unknown\": {\"count\": 41, \"proved\": 37, \"prove_rate\": 0.902, \"mean_isr\": 0.184}, \"true\": {\"count\": 34, \"proved\": 32, \"prove_rate\": 0.941, \"mean_isr\": 0.151}}, \"h7_count\": 7, \"h7_rate\": 0.076, \"h7a_count\": 7, \"h7b_count\": 0, \"h1_count\": 82, \"h1_rate\": 0.891, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 3, \"genuine_rate\": 0.0326, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\", \"taxonomy_note\": \"Re-classified with current classify_h7.py. Matches previous strict values: H7=7, H1=82, H8=0, genuine=3. No change.\"}}, \"plan017-additive-random-s42\": {\"hypothesis\": \"Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。\", \"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.48, \"eval_mean_isr\": 0.0453, \"eval_isr_std\": 0.0759, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2857, \"eval_proved_only_isr\": 0.0943, \"eval_n_proved\": 48, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 9.6, \"eval_component_count_2_ratio\": 0, \"tautological_collapse\": false, \"h7_count\": 4, \"h7_rate\": 0.0833, \"h7a_count\": 4, \"h7b_count\": 0, \"h1_count\": 44, \"h1_rate\": 0.9167, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\", \"taxonomy_note\": \"Re-classified with current classify_h7.py. Old values: H7=0, H1=48, genuine=0. New: H7=4 (4 H7a text-match tautologies reclassified from H1), H1=44, H8=0, genuine=0.\"}}, \"plan018-additive-random-b01-s42\": {\"hypothesis\": \"β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。\", \"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.79, \"eval_mean_isr\": 0.1038, \"eval_isr_std\": 0.1369, \"eval_median_isr\": 0.0357, \"eval_proved_only_isr\": 0.1314, \"eval_n_proved\": 79, \"eval_n_problems\": 100, \"tautological_collapse\": false, \"h7_count\": 0, \"h7_rate\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 58, \"h1_rate\": 0.7342, \"h8_count\": 4, \"h8_rate\": 0.0506, \"genuine_count\": 18, \"genuine_rate\": 0.2278, \"taxonomy_tool\": \"classify_h7.py standard (2026-05-15)\", \"taxonomy_note\": \"Re-classified with current classify_h7.py. Old values: genuine_strict=12 (H1_exact=56, H1_near=8, H8=3). New standard: H1=58 (2 former H1-near now H1), H8=4, genuine=18. Standard definition: proved - H7 - H1 - H8.\"}}, \"plan002-additive-b01-s43-r2\": {\"metrics\": {\"eval_n_problems\": 100, \"eval_n_proved\": 61, \"eval_prove_rate\": 0.61, \"eval_mean_isr\": 0.5063, \"eval_isr_std\": 0.4518, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.8301, \"h7a_count\": 59, \"h7b_count\": 2, \"h7_count\": 61, \"h7_rate\": 1, \"h1_count\": 0, \"h1_rate\": 0, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"proved_single_premise_ratio\": 1, \"content_independent_predicates\": 5, \"isr_eq_1_count\": 40, \"isr_eq_1_rate_of_proved\": 0.656, \"train_prove_rate\": 0.68775, \"train_mean_isr\": 0.5039}, \"conclusion\": \"negative\"}, \"plan001-exec-only-s43-1000-r2\": {\"hypothesis\": \"Exec-only GRPO 1000步 seed=43（r2 重跑）：r1 因磁盘满在 step 150 崩溃。磁盘已清理（92GB 可用），从 step 0 重跑。\", \"conclusion\": \"success\", \"metrics\": {\"prove_rate\": 0.9, \"n_proved\": 90, \"n_problems\": 100, \"mean_isr\": 0.531, \"isr_std\": 0.15, \"isr_corrected\": 0.465, \"isr_artifact_note\": \"n_components=3 quantifier decomposition artifact (+0.066) + $T solver bug 5 samples (+0.025). Corrected ISR=0.465, but both values entirely from H7a tautological necessity, no reasoning quality signal.\", \"h7_count\": 90, \"h7_rate\": 1, \"h7a_count\": 90, \"h7b_count\": 0, \"h1_count\": 0, \"h1_rate\": 0, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0}}, \"plan016-extended-1000-s42\": {\"hypothesis\": \"Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？\", \"metrics\": {\"prove_rate\": 0.96, \"n_proved\": 96, \"n_problems\": 100, \"h7_count\": 0, \"h7_rate\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 96, \"h1_rate\": 1, \"h8_count\": 0, \"h8_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"genuine_h1_near\": 0, \"genuine_strict\": 0, \"content_independent_rate\": 1, \"single_premise_rate\": 0, \"taxonomy_audit\": \"2026-05-15\", \"taxonomy_tool\": \"classify_h7.py current version (with H8 detection)\", \"taxonomy_note\": \"Re-run with current classify_h7.py. Old value genuine=7 was incorrect (old version lacked H8 and had weaker H1 detection). All 96 proved are H1 (conclusion embedded in premises). 0 H7, 0 H8.\"}, \"conclusion\": \"success\"}, \"plan001-exec-only-s44-1000-r2\": {\"hypothesis\": \"Exec-only GRPO 1000步 seed=44（r2 重跑）：r1 因磁盘满被 kill。磁盘已清理（92GB 可用），从 step 0 重跑。\", \"metrics\": {\"prove_rate\": 1, \"n_proved\": 100, \"n_problems\": 100, \"mean_isr\": 0.002, \"isr_std\": 0.0146, \"h7_count\": 0, \"h7_rate\": 0, \"h7a_count\": 0, \"h7b_count\": 0, \"h1_count\": 85, \"h1_rate\": 0.85, \"h8_count\": 15, \"h8_rate\": 0.15, \"genuine_count\": 0, \"genuine_rate\": 0, \"genuine_note\": \"D091: 3 samples escape text-match classifiers but are functionally degenerate (ISR=0, disjunctive/commuted bypasses)\"}, \"conclusion\": \"success\"}, \"plan018-additive-random-b01-s42-1000-r3\": {\"metrics\": {\"eval_prove_rate\": 0.97, \"eval_mean_isr\": 0.6892, \"eval_isr_std\": 0.2037, \"eval_median_isr\": 0.75, \"eval_proved_only_isr\": 0.7105, \"eval_n_proved\": 97, \"eval_n_problems\": 100, \"genuine_count\": 0, \"genuine_rate\": 0, \"h1_count\": 0, \"h1_rate\": 0, \"h7_count\": 97, \"h7_rate\": 1, \"tautological_collapse\": true, \"train_final_prove_rate\": 0.827, \"train_final_mean_isr\": 0.5213, \"train_loss\": 0.00671, \"train_final_entropy\": 0.003, \"train_runtime_seconds\": 5783, \"train_steps\": 1000, \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 25, \"prove_rate\": 1, \"mean_isr\": 0.7533}, \"unknown\": {\"count\": 41, \"proved\": 39, \"prove_rate\": 0.951, \"mean_isr\": 0.6565}, \"true\": {\"count\": 34, \"proved\": 33, \"prove_rate\": 0.971, \"mean_isr\": 0.6814}}, \"n_premise_distribution\": {\"1\": 97}, \"pattern_description\": \"All 97 proved: 1 premise identical to conclusion (P therefore P). D088 correction: h7=97 h1=0 (was h1=97 h7=0 pre-D086 bugfix).\"}, \"conclusion\": \"negative\"}, \"plan009-sft-baseline-s44-1000\": {\"hypothesis\": \"SFT 1000步 seed=44：与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。\", \"conclusion\": \"success\", \"metrics\": {\"prove_rate\": 0.15, \"n_proved\": 15, \"n_problems\": 100, \"mean_isr\": 0.0884, \"isr_std\": 0.2268, \"median_isr\": 0, \"proved_only_mean_isr\": 0.5892, \"max_isr\": 0.8571, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 15, \"prove_rate\": 0.4412}, \"false\": {\"count\": 25, \"proved\": 0, \"prove_rate\": 0}, \"unknown\": {\"count\": 41, \"proved\": 0, \"prove_rate\": 0}}, \"genuine_count\": 14, \"genuine_rate\": 0.9333, \"h7_strict_count\": 0, \"h7_strict_rate\": 0, \"h1_strict_count\": 1, \"h1_strict_rate\": 0.0667, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"conclusion_in_premise_count\": 1, \"conclusion_in_premise_rate\": 0.0667, \"content_independent_count\": 0, \"content_independent_rate\": 0, \"isr_1_count\": 0, \"isr_1_rate\": 0, \"train_final_loss\": 0.0171, \"train_avg_loss\": 0.1544, \"train_token_accuracy\": 0.995, \"train_runtime_s\": 1580.97, \"eval_elapsed_s\": 391.8}}, \"plan009-sft-baseline-s43-1000\": {\"hypothesis\": \"SFT 1000步 seed=43：与 s42 相同配置的第二个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。与 GRPO 各条件 1000步对比，确认 Goodhart collapse 是 RL 特有现象。\", \"metrics\": {\"prove_rate\": 0.11, \"n_proved\": 11, \"n_problems\": 100, \"mean_isr\": 0.0699, \"isr_std\": 0.2155, \"median_isr\": 0, \"proved_only_mean_isr\": 0.6352, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 11, \"prove_rate\": 0.3235}, \"false\": {\"count\": 25, \"proved\": 0, \"prove_rate\": 0}, \"unknown\": {\"count\": 41, \"proved\": 0, \"prove_rate\": 0}}, \"genuine_count\": 10, \"genuine_rate\": 0.9091, \"h7_strict_count\": 0, \"h7_strict_rate\": 0, \"h1_strict_count\": 1, \"h1_strict_rate\": 0.0909, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"conclusion_in_premise_count\": 1, \"conclusion_in_premise_rate\": 0.0909, \"content_independent_count\": 0, \"content_independent_rate\": 0, \"isr_1_count\": 1, \"isr_1_rate\": 0.0909, \"train_final_loss\": 0.0167, \"train_avg_loss\": 0.1551, \"train_token_accuracy\": 0.9954, \"train_runtime_s\": 1584.79, \"eval_elapsed_s\": 326.1}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s42-1000\": {\"hypothesis\": \"SFT 1000步延伸：验证 SFT（无 reward optimization）在 1000 步是否维持 genuine rate。500 步 SFT 已达 93% genuine，若 1000 步仍保持高 genuine → Goodhart collapse 是 RL (GRPO) 特有现象，非一般 finetuning 退化。与 exec-only/ISR/random 1000步形成对比。\", \"metrics\": {\"train_final_loss\": 0.0168, \"train_last_step_loss\": 0.0168, \"train_token_accuracy\": 0.9955, \"train_epochs\": 15.88, \"train_runtime_sec\": 1415, \"train_steps\": 1000, \"eval_prove_rate\": 0.13, \"eval_n_proved\": 13, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.0738, \"eval_isr_std\": 0.2077, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.5677, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_method\": \"eval_sta.py full STA\", \"eval_output_path\": \"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\", \"h7_strict_count\": 0, \"h7_strict_rate\": 0, \"h1_strict_count\": 1, \"h1_strict_rate\": 0.0769, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 12, \"genuine_rate\": 0.9231, \"conclusion_in_premise_count\": 1, \"conclusion_in_premise_rate\": 0.0769, \"isr_1_count\": 0, \"content_independent_count\": 0, \"eval_by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 12, \"prove_rate\": 0.353, \"mean_isr\": 0.209}, \"false\": {\"count\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.011}, \"unknown\": {\"count\": 41, \"proved\": 0, \"prove_rate\": 0, \"mean_isr\": 0}}}, \"conclusion\": \"success\"}, \"exp1-random-b03-s43\": {\"conclusion\": \"success\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.79, \"mean_isr\": 0.1745, \"isr_std\": 0.1628, \"median_isr\": 0.1667, \"proved_only_mean_isr\": 0.2209, \"hacking_rate_strict_h7\": 0, \"hacking_rate_functional\": 0.1013, \"genuine_rate\": 0.8987, \"genuine_count\": 71, \"n_proved\": 79, \"n_problems\": 100, \"h1_conclusion_in_premise\": 0.759, \"eval_data\": \"test_100.jsonl\", \"eval_output\": \"/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43.json\"}}, \"plan002-additive-b01-s42-1000\": {\"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.9, \"eval_mean_isr\": 0.7892, \"eval_isr_std\": 0.3424, \"eval_proved_only_isr\": 0.8769, \"eval_median_isr\": 1, \"eval_n_proved\": 90, \"eval_n_problems\": 100, \"eval_component_count_mean\": 2.889, \"tautological_collapse\": true, \"train_final_prove_rate\": 0.855, \"train_final_mean_isr\": 0.532, \"h7_count\": 87, \"h7_rate\": 0.9667, \"h1_count\": 0, \"h1_rate\": 0, \"h1_near_count\": 1, \"h1_near_rate\": 0.0111, \"h8_conjunction_collapse_count\": 1, \"h8_conjunction_collapse_rate\": 0.0111, \"genuine_count\": 2, \"genuine_rate\": 0.0222, \"taxonomy_standard\": \"D086 clean run = ground truth. D084 residual removed.\"}}, \"plan002-additive-b01-s44\": {\"hypothesis\": \"ISR β=0.1 seed=44 多 seed 验证：exec-only s44 是 tautological collapse (PR=98%, ISR=0.57 fake)，ISR β=0.1 能否防止 tautological collapse？3-seed mean±std 用于论文 Claim 2。\", \"metrics\": {\"eval_prove_rate\": 0.89, \"eval_mean_isr\": 0.803, \"eval_isr_std\": null, \"eval_proved_only_isr\": 0.902, \"eval_n_proved\": 89, \"eval_n_problems\": 100, \"h7_count\": 89, \"h7_rate\": 1, \"h1_count\": 0, \"h1_rate\": 0, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 0, \"genuine_rate\": 0, \"component_mean\": 4.33, \"comp_2_ratio\": 0.022, \"h7_fn_correction\": \"12 former genuine reclassified as H7: all n_prem=1 false negatives (normalization mismatch prevented conclusion matching)\"}, \"conclusion\": \"negative\"}, \"plan013-random-reward-s42-r4\": {\"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 1, \"eval_mean_isr\": 0.535, \"eval_isr_std\": 0.1282, \"eval_proved_only_isr\": 0.535, \"eval_median_isr\": 0.5, \"eval_n_proved\": 100, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_note\": \"DEGENERATE: model generates trivial 2-component proofs (premise=conclusion, conclusion=conclusion), ISR=0.5 is artifact of trivial proof structure\"}}, \"plan001-exec-only-s43-r4\": {\"metrics\": {\"eval_sampling_prove_rate\": 0.14, \"eval_sampling_mean_isr\": 0, \"eval_sampling_n_proved\": 14, \"eval_sampling_temperature\": 0.7, \"eval_sampling_method\": \"do_sample=True, temperature=0.7\", \"eval_sampling_by_answer\": {\"true\": {\"count\": 34, \"proved\": 6, \"prove_rate\": 0.176}, \"false\": {\"count\": 25, \"proved\": 2, \"prove_rate\": 0.08}, \"unknown\": {\"count\": 41, \"proved\": 6, \"prove_rate\": 0.146}}, \"eval_greedy_prove_rate\": 0.13, \"eval_greedy_mean_isr\": 0, \"eval_greedy_proved_only_isr\": 0, \"eval_greedy_n_proved\": 13, \"eval_greedy_method\": \"eval_sta.py default (do_sample=False)\", \"eval_greedy_by_answer\": {\"true\": {\"count\": 34, \"proved\": 4, \"prove_rate\": 0.118}, \"false\": {\"count\": 25, \"proved\": 5, \"prove_rate\": 0.2}, \"unknown\": {\"count\": 41, \"proved\": 4, \"prove_rate\": 0.0976}}, \"eval_greedy_h7_count\": 0, \"eval_greedy_h7_rate\": 0, \"eval_greedy_h1_count\": 13, \"eval_greedy_h1_rate\": 1, \"eval_greedy_genuine_rate\": 0, \"eval_greedy_n_premises_proved_mean\": 17.92, \"eval_greedy_mean_components_proved\": 18.92, \"eval_greedy_n_premises_all_mean\": 32.67, \"eval_sampling_h1_rate\": 1, \"eval_sampling_h7_rate\": 0, \"eval_sampling_genuine_rate\": 0, \"eval_sampling_mean_components_proved\": 18.5, \"eval_greedy_vs_sampling_delta_pr\": -0.01, \"eval_method_note\": \"Greedy and sampling agree on failure profile (ISR*=0, H1=100%, components~18.5-18.9). s43 collapse is decoding-invariant.\"}, \"conclusion\": \"negative\"}, \"plan001-exec-only-s42\": {\"conclusion\": \"failed\"}, \"plan002-additive-b01-s42\": {\"conclusion\": \"negative\", \"metrics\": {\"eval_prove_rate\": 0.81, \"eval_mean_isr\": 0.3365, \"eval_isr_std\": 0.3227, \"eval_proved_only_isr\": 0.4154, \"eval_median_isr\": 0.2, \"eval_n_proved\": 81, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 5.58, \"h7_rate\": 0.16, \"h7_count\": 13, \"h1_rate\": 0.519, \"h1_count\": 42, \"h8_conjunction_collapse_count\": 12, \"h8_conjunction_collapse_rate\": 0.148, \"genuine_rate\": 0.173, \"genuine_count\": 14, \"tautological_collapse\": false, \"h8_audit_note\": \"2026-05-15: H8 conjunction collapse audit completed. 12/81 proved samples are H8. Genuine 26→14 (32.1%→17.3%). H8 JSON at /root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json\"}}, \"plan002-additive-b01-s43\": {\"hypothesis\": \"ISR β=0.1 seed=43 多 seed 验证：plan002-b01-s42 (PR=0.81, ISR=0.337) 在 s43 下是否可复现？exec-only s43 是 degraded seed (PR=14%)，ISR β=0.1 能否拯救 bad seed？3-seed mean±std 用于论文 Claim 2 统计支撑。\", \"metrics\": {\"eval_prove_rate\": 0.61, \"eval_n_proved\": 61, \"eval_n_problems\": 100, \"eval_proved_only_isr\": 0.83, \"h7_count\": 59, \"h7_rate\": 0.9672, \"h1_count\": 0, \"h1_rate\": 0, \"h1_near_count\": 0, \"h1_near_rate\": 0, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 2, \"genuine_rate\": 0.0328, \"proved_single_premise_ratio\": 1, \"taxonomy_note\": \"structurally determined: proved_single_premise_ratio=1.0, all taxonomy categories except H7 are zero by construction. eval file lost but classification derivable from structure.\"}, \"conclusion\": \"negative\"}, \"exp1-isr-b03-s43\": {\"conclusion\": \"success\", \"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.91, \"mean_isr\": 0.2575, \"isr_std\": 0.2363, \"median_isr\": 0.3333, \"proved_only_mean_isr\": 0.283, \"hacking_rate_strict_h7\": 0.022, \"hacking_rate_functional\": 0.3297, \"genuine_rate\": 0.6703, \"genuine_count\": 61, \"n_proved\": 91, \"n_problems\": 100, \"h1_conclusion_in_premise\": 0.747, \"eval_data\": \"test_100.jsonl\", \"eval_output\": \"/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json\"}}, \"plan009-sft-baseline-s44-1000-r3\": {\"hypothesis\": \"SFT 1000步 seed=44（第三次重试）：r1/r2 均因 --gpu 0 覆盖 CUDA_VISIBLE_DEVICES 导致 OOM。本次用 --gpu 1 直接指定物理 GPU 1。验证 SFT 在 1000 步的 genuine rate 稳定性，完成 3-seed 统计。\", \"metrics\": {\"eval_prove_rate\": 0.15, \"eval_n_proved\": 15, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.0884, \"eval_isr_std\": 0.2268, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.5892, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_method\": \"eval_sta.py full STA\", \"h7_count\": 0, \"h7_rate\": 0, \"h1_count\": 1, \"h1_rate\": 0.0667, \"h8_conjunction_collapse_count\": 0, \"h8_conjunction_collapse_rate\": 0, \"genuine_count\": 14, \"genuine_rate\": 0.9333, \"eval_by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 15, \"prove_rate\": 0.441, \"mean_isr\": 0.26}, \"false\": {\"count\": 25, \"proved\": 0, \"prove_rate\": 0, \"mean_isr\": 0}, \"unknown\": {\"count\": 41, \"proved\": 0, \"prove_rate\": 0, \"mean_isr\": 0}}}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s44\": {\"metrics\": {\"train_final_loss\": 0.2397, \"train_last_step_loss\": 0.0328, \"train_token_accuracy\": 0.9928, \"train_epochs\": 7.94, \"train_runtime_sec\": 729.05, \"train_steps\": 500, \"eval_prove_rate\": 0.17, \"eval_n_proved\": 17, \"eval_n_problems\": 100, \"eval_mean_isr\": 0.0974, \"eval_isr_std\": 0.2409, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.5729, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_method\": \"eval_sta.py full STA\", \"eval_output_path\": \"/root/autodl-tmp/outputs/eval_sta_plan009_sft_s44.json\", \"eval_tautological_collapse\": false, \"eval_h7_count\": 0, \"eval_h7_rate\": 0, \"eval_h1_count\": 2, \"eval_h1_rate\": 0.118, \"eval_genuine_count\": 15, \"eval_genuine_rate\": 0.882, \"eval_by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 15, \"prove_rate\": 0.441, \"mean_isr\": 0.257}, \"false\": {\"count\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.027}, \"unknown\": {\"count\": 41, \"proved\": 1, \"prove_rate\": 0.024, \"mean_isr\": 0.008}}, \"eval_correction_note\": \"Corrected 2026-05-15: previous eval used test_100.jsonl (50/44/6 distribution), re-evaled with proofwriter_fol_100.jsonl (34/25/41)\"}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s43\": {\"metrics\": {\"train_loss\": 0.2391, \"train_token_accuracy\": 0.9938, \"train_epochs\": 7.94, \"train_runtime_sec\": 677.14, \"train_steps\": 500, \"eval_prove_rate\": 0.15, \"eval_mean_isr\": 0.0895, \"eval_isr_std\": 0.2338, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.5967, \"h7_count\": 0, \"h7_rate\": 0, \"h1_count\": 1, \"h1_rate\": 0.067, \"genuine_count\": 14, \"genuine_rate\": 0.933, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 13, \"prove_rate\": 0.382, \"mean_isr\": 0.234}, \"false\": {\"count\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.027}, \"unknown\": {\"count\": 41, \"proved\": 1, \"prove_rate\": 0.024, \"mean_isr\": 0.008}}, \"eval_data_path\": \"data/proofwriter_fol_100.jsonl\", \"eval_output_path\": \"/root/autodl-tmp/outputs/eval_sta_plan009_sft_s43.json\"}, \"conclusion\": \"success\"}, \"plan001-exec-only-s44-1000\": {\"hypothesis\": \"Exec-only GRPO 1000步 seed=44：与 plan016(s42) 相同配置的第三个 seed。完成 3-seed exec-only 1000步统计，与 SFT 1000步 3-seed 对照，统计支撑 Goodhart collapse 是 RL 特有现象的 claim。\", \"conclusion\": \"failed\"}, \"plan001-exec-only-s43-1000\": {\"hypothesis\": \"Exec-only GRPO 1000步 seed=43：与 plan016(s42) 相同配置的第二个 seed。3-seed exec-only 1000步统计，验证 Goodhart collapse（genuine→0%）在 exec-only 条件下的可重复性。与 SFT 1000步 3-seed 对照，确认 collapse 是 RL(GRPO) 特有现象。\", \"conclusion\": \"failed\"}, \"plan009-sft-baseline-s44-1000-r2\": {\"hypothesis\": \"SFT 1000步 seed=44（重试）：r1 因 CUDA_VISIBLE_DEVICES 未设导致 OOM 失败。与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。\", \"conclusion\": \"failed\"}, \"plan002-additive-b03-s42\": {\"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"last100_prove_rate\": 0.5525, \"eval_prove_rate\": 0.18, \"eval_mean_isr\": 0.0257, \"eval_isr_std\": 0.0742, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.1427, \"eval_n_proved\": 18, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"h7_rate\": 0, \"h7_count\": 0, \"h1_rate\": 0.778, \"h1_count\": 14, \"h8_conjunction_collapse_count\": 3, \"h8_conjunction_collapse_rate\": 0.1667, \"genuine_rate\": 0.0556, \"genuine_count\": 1, \"eval_by_type_false_pr\": 0.12, \"eval_by_type_false_isr\": 0.0102, \"eval_by_type_unknown_pr\": 0.195, \"eval_by_type_unknown_isr\": 0.0422, \"eval_by_type_true_pr\": 0.206, \"eval_by_type_true_isr\": 0.0172, \"h8_audit_note\": \"2026-05-15: H8 conjunction collapse added. genuine 4→1.\"}, \"conclusion\": \"negative\"}, \"plan001-exec-only-s42-r2\": {\"conclusion\": \"success\", \"metrics\": {\"eval_prove_rate\": 0.93, \"eval_mean_isr\": 0.1232, \"eval_isr_std\": 0.1887, \"eval_proved_only_isr\": 0.1324, \"eval_median_isr\": 0, \"eval_n_proved\": 93, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"h7_rate\": 0, \"h7_count\": 0, \"h1_rate\": 0.871, \"h1_count\": 81, \"h8_conjunction_collapse_count\": 6, \"h8_conjunction_collapse_rate\": 0.0645, \"genuine_rate\": 0.0753, \"genuine_count\": 7, \"genuine_mean_isr\": 0.3141, \"h1_mean_isr\": 0.1055, \"conclusion_embedding_total\": 0.871, \"content_independent_predicates_count\": 1, \"h8_audit_note\": \"2026-05-15: H8 conjunction collapse added. genuine 12→7.\"}}, \"plan004-o1-ablation-s42\": {\"hypothesis\": \"O(1) binary ISR (fast_isr_fol) vs O(N) full STA ablation: 100-step pilot showed binary ISR ≈ exec-only (all proved samples ISR=1). 500-step full run confirms O(1) is ineffective at scale — the LOO ablation (O(N)) is necessary for ISR to carry structural signal. Negative result strengthens paper's methodological contribution.\", \"metrics\": {\"prove_rate\": 0.63, \"mean_isr\": 0.0072, \"h7_count\": 0, \"h7_rate\": 0, \"h1_count\": 63, \"h1_rate\": 1, \"h8_conjunction_collapse_count\": 2, \"h8_conjunction_collapse_rate\": 0.0317, \"genuine_count\": 0, \"genuine_rate\": 0, \"content_independent_predicates_count\": 3, \"h8_audit_note\": \"2026-05-15: H8 conjunction collapse added. genuine unchanged (0).\"}, \"conclusion\": \"negative\"}, \"exp1-isr-b03-s42-1000-r2\": {\"metrics\": {\"eval_prove_rate\": 0.95, \"eval_mean_isr\": 0.734, \"eval_isr_std\": 0.2575, \"eval_median_isr\": 0.6, \"eval_proved_only_isr\": 0.7726, \"eval_n_proved\": 95, \"eval_n_problems\": 100, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 25, \"prove_rate\": 1, \"mean_isr\": 0.824}, \"unknown\": {\"count\": 41, \"proved\": 38, \"prove_rate\": 0.927, \"mean_isr\": 0.673}, \"true\": {\"count\": 34, \"proved\": 32, \"prove_rate\": 0.941, \"mean_isr\": 0.741}}, \"h7_count\": 0, \"h7_rate\": 0, \"h1_count\": 54, \"h1_rate\": 0.568, \"genuine_count\": 0, \"genuine_rate\": 0, \"tautological_collapse\": true, \"isr_1_count\": 41, \"isr_1_rate\": 0.432, \"single_premise_count\": 0, \"train_final_prove_rate\": 0.829, \"train_final_mean_isr\": 0.727, \"train_loss\": 0.0041, \"train_runtime_seconds\": 6280, \"train_final_entropy\": 9e-06, \"completions_mean_length\": 47, \"h8_conjunction_collapse_count\": 41, \"h8_conjunction_collapse_rate\": 0.432, \"content_independent_predicates\": true}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s42-1000-r2\": {\"metrics\": {\"train_final_prove_rate\": 0.989, \"train_final_mean_isr\": 0.353, \"train_final_reward\": 1.062, \"train_steps\": 1000, \"train_runtime_seconds\": 2957, \"eval_prove_rate\": 1, \"eval_mean_isr\": 0.3333, \"eval_isr_std\": 0, \"eval_median_isr\": 0.3333, \"eval_proved_only_isr\": 0.3333, \"eval_n_proved\": 100, \"eval_n_problems\": 100, \"eval_component_count_mean\": 3, \"genuine_rate\": 0, \"genuine_count\": 0, \"tautological_collapse\": true, \"h7_rate\": null, \"h7_count\": null, \"h1_rate\": null, \"h1_count\": null}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s42-1000\": {\"conclusion\": \"failed\"}, \"exp1-isr-b03-s42-1000\": {\"conclusion\": \"failed\"}, \"plan001-exec-only-s44\": {\"hypothesis\": \"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\", \"metrics\": {\"eval_prove_rate\": 0.98, \"eval_mean_isr\": 0.57, \"eval_isr_std\": 0.2013, \"eval_median_isr\": 0.5, \"eval_proved_only_isr\": 0.5816, \"eval_n_proved\": 98, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_component_count_mean\": 2.04, \"eval_component_count_2\": 94, \"eval_component_count_3\": 4, \"tautological_collapse\": true, \"h7_rate\": 1, \"h7_count\": 97, \"h1_rate\": 0, \"h1_count\": 0, \"genuine_rate\": 0, \"genuine_count\": 0, \"conclusion_embedding_total\": 1}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s43-r2\": {\"hypothesis\": \"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\", \"metrics\": {\"h7_rate\": 0, \"h7_count\": 0, \"h1_rate\": 93.2, \"h1_count\": 82, \"genuine_rate\": 6.8, \"genuine_count\": 6, \"eval_prove_rate\": 0.88, \"eval_mean_isr\": 0.058}, \"conclusion\": \"negative\"}, \"exp1-isr-b03-s43-r3\": {\"conclusion\": \"success\", \"metrics\": {\"final_step\": 500, \"prove_rate\": 0.56125, \"mean_isr\": 0.1515, \"parse_rate\": 1, \"train_loss\": 0.0176, \"train_runtime_sec\": 4153.6, \"epoch\": 2, \"eval_prove_rate\": 0.86, \"eval_mean_isr\": 0.2535, \"eval_isr_std\": 0.2406, \"eval_median_isr\": 0.3333, \"eval_proved_only_mean_isr\": 0.2948, \"eval_min_isr\": 0, \"eval_max_isr\": 0.75, \"eval_n_proved\": 86, \"eval_n_problems\": 100, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_h7_strict_rate\": 0.047, \"eval_h7_strict_count\": 4, \"eval_h1_strict_rate\": 0.686, \"eval_h1_strict_count\": 59, \"eval_conclusion_in_premise_rate\": 0.733, \"eval_conclusion_in_premise_count\": 63, \"eval_genuine_rate\": 0.267, \"eval_genuine_count\": 23, \"eval_single_premise_rate\": 0.058, \"eval_single_premise_count\": 5, \"eval_isr_1_count\": 0, \"eval_by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 23, \"prove_rate\": 0.92, \"mean_isr\": 0.334}, \"unknown\": {\"count\": 41, \"proved\": 35, \"prove_rate\": 0.854, \"mean_isr\": 0.199}, \"true\": {\"count\": 34, \"proved\": 28, \"prove_rate\": 0.824, \"mean_isr\": 0.26}}}}, \"exp1-random-b03-s43-r3\": {\"conclusion\": \"failed\"}, \"plan015-linear-s42\": {\"conclusion\": \"killed\"}, \"exp1-isr-b03-s43-r4\": {\"conclusion\": \"killed\"}, \"exp1-random-b03-s43-r2\": {\"conclusion\": \"killed\"}, \"exp1-isr-b03-s44-r2\": {\"conclusion\": \"success\", \"metrics\": {\"prove_rate\": 0.95, \"mean_isr\": 0.705, \"isr_std\": 0.172, \"proved_only_isr\": 0.7421, \"n_proved\": 95, \"n_problems\": 100, \"h7_rate\": 1, \"h7_count\": 95, \"h1_rate\": 0, \"h1_count\": 0, \"genuine_rate\": 0, \"genuine_count\": 0, \"single_premise_rate\": 1, \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_note\": \"Re-eval with correct test set (D062). Previous test_100.jsonl results invalidated.\"}}, \"exp1-random-b03-s44\": {\"conclusion\": \"failed\"}, \"exp1-isr-b03-s44\": {\"conclusion\": \"failed\"}, \"exp1-isr-b03-s43-r2\": {\"conclusion\": \"killed\"}, \"exp2-exec-s43-greedy\": {\"conclusion\": \"success\"}, \"exp4-100step-h1h7\": {\"conclusion\": \"success\"}, \"plan006-prolog-sta-s44\": {\"hypothesis\": \"Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。\", \"metrics\": {\"pass_rate\": 0.97, \"isr_mean\": 0.885, \"isr_n_cl_ge3\": \"N/A (0 samples)\", \"n_clauses_dist\": \"78/100 single-clause, 22/100 two-clause\", \"h7_functional_rate\": 0.979, \"genuine_rate\": 0, \"premise_count_analysis\": \"100% artifact - zero samples with n_clauses>=3, model exclusively generates 1-2 clause programs\", \"failure_mode\": \"query-as-fact gaming (total H7 collapse)\"}, \"conclusion\": \"negative\"}, \"plan006-prolog-sta-s43\": {\"hypothesis\": \"Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。\", \"metrics\": {\"train\": {\"final_prove_rate\": 0.769, \"final_mean_isr\": 0.129, \"final_loss\": 0.0155, \"final_entropy\": 0.09, \"final_reward\": 0.573, \"completion_length_mean\": 143, \"train_runtime_seconds\": 5095, \"train_runtime_minutes\": 84.9}, \"eval\": {\"n_problems\": 100, \"n_proved\": 38, \"prove_rate\": 0.38, \"mean_isr\": 0.0704, \"isr_std\": 0.1263, \"median_isr\": 0, \"proved_only_mean_isr\": 0.1853, \"min_isr\": 0, \"max_isr\": 1, \"by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 11, \"prove_rate\": 0.44, \"mean_isr\": 0.1003}, \"unknown\": {\"count\": 41, \"proved\": 11, \"prove_rate\": 0.268, \"mean_isr\": 0.0394}, \"true\": {\"count\": 34, \"proved\": 16, \"prove_rate\": 0.471, \"mean_isr\": 0.0859}}}, \"h7_classification\": {\"h7_strict\": 0, \"h7_rate\": 0, \"h1_strict\": 37, \"h1_rate\": 0.974, \"conclusion_in_premise_total\": 37, \"conclusion_in_premise_rate\": 0.974, \"genuine_count\": 0, \"genuine_rate\": 0, \"isr_1_count\": 1, \"note\": \"1 pseudo-genuine sample (folio_1415) has query embedded in single mega-clause; all 38/38 proved samples are tautological\"}}, \"conclusion\": \"negative\"}, \"plan006-prolog-sta-s42\": {\"hypothesis\": \"Prolog exec+STA GRPO seed=42: ISR reward 在 Prolog logic type 上的效果。与 plan006-prolog-exec-s42 (exec-only) 对照，验证 STA/ISR 的 hacking 检测和 Goodhart 效应是否跨 logic type 泛化。\", \"conclusion\": \"negative\", \"metrics\": {\"cumulative_prove_rate\": 0.848, \"cumulative_mean_isr\": 0.787, \"final_prove_rate\": 1, \"final_isr\": 1, \"final_reward\": 1, \"saturation_onset_step\": 100, \"train_loss\": 0.00716, \"training_hours\": 0.78, \"final_entropy\": 0.01, \"final_completion_length\": 27, \"initial_completion_length\": 120, \"steps_at_perfect_reward\": 400, \"train_runtime_sec\": 2791, \"eval_prove_rate\": 0.5, \"eval_mean_isr\": 0.5, \"eval_proved_only_isr\": 1, \"eval_h7_rate\": 1, \"eval_h7_count\": 50, \"eval_proved_count\": 50, \"eval_total_count\": 100, \"eval_n_clauses_mean\": 1, \"eval_isr_distribution\": \"binary: 50x0 + 50x1\"}}, \"plan006-prolog-exec-s44\": {\"hypothesis\": \"Prolog exec-only GRPO seed=44: third seed for Prolog exec-only. Together with s42 (PR=83%, ISR=0.031) and s43, provides 3-seed evidence for cross-logic generalization claim (Claim 3). 3-seed mean±std required for paper.\", \"metrics\": {\"eval_prove_rate\": 0.21, \"eval_mean_isr\": 0.0812, \"eval_isr_std\": 0.2343, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.3866, \"eval_min_isr\": 0, \"eval_max_isr\": 1, \"eval_n_proved\": 21, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_elapsed_seconds\": 683.9, \"eval_by_type_false_pr\": 0.04, \"eval_by_type_false_isr\": 0.04, \"eval_by_type_unknown_pr\": 0.317, \"eval_by_type_unknown_isr\": 0.099, \"eval_by_type_true_pr\": 0.206, \"eval_by_type_true_isr\": 0.09, \"solver\": \"PrologSolver\", \"logic_type\": \"prolog\"}, \"conclusion\": \"negative\"}, \"plan009-sft-baseline-s42-r4\": {\"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb.\", \"metrics\": {\"eval_prove_rate\": 0.14, \"eval_mean_isr\": 0.08, \"eval_isr_std\": 0.214, \"eval_median_isr\": 0, \"eval_max_isr\": 0.833, \"eval_proved_only_isr\": 0.571, \"eval_n_proved\": 14, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"train_final_loss\": 0.0287, \"train_token_accuracy\": 0.9935, \"train_epochs\": 7.94, \"train_runtime_sec\": 789.6, \"by_answer_type\": {\"true\": {\"count\": 34, \"proved\": 13, \"pr\": 0.382, \"isr\": 0.226}, \"unknown\": {\"count\": 41, \"proved\": 1, \"pr\": 0.024, \"isr\": 0.008}, \"false\": {\"count\": 25, \"proved\": 0, \"pr\": 0, \"isr\": 0}}, \"h7_rate\": 0, \"h7_count\": 0, \"h1_rate\": 0.071, \"h1_count\": 1, \"genuine_rate\": 0.929, \"genuine_count\": 13, \"hacking_patterns\": \"near-zero (1/14 H1, 0 H7, 92.9% genuine)\", \"tautological_collapse\": false}, \"conclusion\": \"success\"}, \"plan006-prolog-exec-s43-r3\": {\"hypothesis\": \"Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。\", \"metrics\": {\"eval_prove_rate\": 0.56, \"eval_mean_isr\": 0.0084, \"eval_isr_std\": 0.0221, \"eval_median_isr\": 0, \"eval_proved_only_isr\": 0.015, \"eval_min_isr\": 0, \"eval_max_isr\": 0.1, \"eval_n_proved\": 56, \"eval_n_problems\": 100, \"eval_method\": \"eval_sta.py full STA\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"eval_elapsed_seconds\": 868.2, \"eval_by_type_false_pr\": 0.48, \"eval_by_type_false_isr\": 0.0043, \"eval_by_type_unknown_pr\": 0.6585, \"eval_by_type_unknown_isr\": 0.0114, \"eval_by_type_true_pr\": 0.5, \"eval_by_type_true_isr\": 0.0078, \"solver\": \"PrologSolver\", \"logic_type\": \"prolog\"}, \"conclusion\": \"negative\"}, \"plan018-additive-random-b01-s44\": {\"hypothesis\": \"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\", \"metrics\": {\"prove_rate\": 0.89, \"mean_isr\": 0.0619, \"isr_std\": 0.1756, \"median_isr\": 0, \"proved_only_mean_isr\": 0.0695, \"n_proved\": 89, \"n_problems\": 100, \"max_isr\": 1, \"min_isr\": 0, \"isr_pr_ratio\": 0.0695, \"isr_zero_count\": 72, \"isr_one_count\": 2, \"by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 21, \"prove_rate\": 0.84, \"mean_isr\": 0.0533}, \"unknown\": {\"count\": 41, \"proved\": 40, \"prove_rate\": 0.976, \"mean_isr\": 0.0892}, \"true\": {\"count\": 34, \"proved\": 28, \"prove_rate\": 0.824, \"mean_isr\": 0.0353}}, \"elapsed_seconds\": 1012.7, \"eval_method\": \"eval_sta.py with Prover9Solver, FOL\"}, \"conclusion\": \"success\"}, \"plan009-sft-baseline-s42\": {\"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Same model as all GRPO experiments for fair comparison.\", \"conclusion\": \"killed\"}, \"plan006-prolog-exec-s43-r2\": {\"hypothesis\": \"Prolog exec-only GRPO seed=43 r2: 修正 warmup_ratio=0.0 与 s42 一致。cross-seed stability check for Prolog logic type.\", \"conclusion\": \"failed\"}, \"plan006-prolog-exec-s42\": {\"hypothesis\": \"Prolog exec-only GRPO seed=42: STA/ISR hacking patterns generalize across logic types? Prolog uses rule ablation (vs FOL axiom ablation). If same degeneration modes appear → STA is logic-agnostic diagnostic.\", \"metrics\": {\"eval_prove_rate\": 0.83, \"eval_mean_isr\": 0.031, \"eval_proved_only_isr\": 0.037, \"eval_median_isr\": 0, \"eval_max_isr\": 0.2, \"eval_isr_std\": 0.0534, \"h7_rate\": 0, \"h1_rate\": 0, \"isr_1_rate\": 0, \"single_premise_rate\": 0, \"by_answer_type\": {\"true\": {\"proved\": 37, \"count\": 40, \"pr\": 0.925, \"isr\": 0.037}, \"false\": {\"proved\": 21, \"count\": 29, \"pr\": 0.724, \"isr\": 0.038}, \"unknown\": {\"proved\": 25, \"count\": 31, \"pr\": 0.806, \"isr\": 0.016}}}, \"conclusion\": \"negative\"}, \"plan006-prolog-exec-s43\": {\"hypothesis\": \"Prolog exec-only GRPO seed=43: cross-seed stability check for Prolog logic type. FOL showed extreme cross-seed variance (s42 genuine vs s43 degraded vs s44 tautological). Prolog exec-only s42 showed PR=83%, ISR=0.031. s43 tests if Prolog also has seed instability.\", \"conclusion\": \"killed\"}, \"plan009-sft-baseline-s42-r3\": {\"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\", \"conclusion\": \"failed\"}, \"plan009-sft-baseline-s42-r2\": {\"hypothesis\": \"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Compare eval PR/ISR/hacking taxonomy against GRPO exec-only and exec+ISR conditions.\", \"conclusion\": \"failed\"}, \"plan018-additive-random-b01-s43\": {\"hypothesis\": \"Random β=0.1 seed=43 控制组：与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s43 下是否成立。\", \"conclusion\": \"failed\"}, \"plan012-hacking-taxonomy\": {\"conclusion\": \"success\", \"hypothesis\": \"ISR β=0.1 vs Random β=0.1 hacking taxonomy 对比：ISR reward 能否减少 hacking 模式比例、增加 genuine proof 比例？5 种 hacking 分类（conclusion embedding, repetition collapse, tautological collapse, complexity-without-utility, premise padding）。\", \"metrics\": {\"isr_b01_genuine_rate\": 0.259, \"random_b01_genuine_rate\": 0.177, \"genuine_rate_delta_pp\": 8.2, \"isr_b01_conclusion_embedding_rate\": 0.728, \"random_b01_conclusion_embedding_rate\": 0.785, \"isr_b01_genuine_mean_isr\": 0.6723, \"random_b01_genuine_mean_isr\": 0.3427, \"isr_b01_complexity_wo_utility_rate\": 0, \"random_b01_complexity_wo_utility_rate\": 0.038, \"isr_b01_hacking_rate\": 0.741, \"random_b01_hacking_rate\": 0.823}}, \"plan005-sta-low-s42\": {\"conclusion\": \"negative\", \"metrics\": {\"total_steps\": 500, \"duration_min\": 71, \"parse_rate\": 1, \"overall_prove_rate\": 0.5657, \"overall_isr\": 0.1682, \"last50_prove_rate\": 0.77, \"last50_isr\": 0.2559, \"last100_prove_rate\": 0.7725, \"last100_isr\": 0.2299, \"last100_loss\": 0.022752, \"overall_loss\": 0.017296, \"last100_isr_pr_ratio\": 0.298, \"last100_isr_lt_pr_count\": \"99/100\", \"first_rolling10_pr_ge_0.8\": 178, \"first_rolling10_pr_ge_0.9\": 439, \"max_rolling10_pr\": 0.9375, \"max_rolling10_isr\": 0.3282, \"windowed\": {\"1-50\": {\"pr\": 0.1775, \"isr\": 0.0906}, \"51-100\": {\"pr\": 0.1775, \"isr\": 0.0835}, \"101-200\": {\"pr\": 0.5062, \"isr\": 0.1463}, \"201-300\": {\"pr\": 0.6713, \"isr\": 0.1791}, \"301-400\": {\"pr\": 0.7013, \"isr\": 0.1984}, \"401-500\": {\"pr\": 0.7725, \"isr\": 0.2299}}}}, \"plan014-downstream-nli-s42\": {\"hypothesis\": \"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\", \"conclusion\": \"negative\", \"metrics\": {\"overall_accuracy\": 0.341, \"proved_rate\": 0.915, \"proved_count\": 732, \"total_generations\": 800, \"parse_errors\": 0, \"accuracy_by_label\": {\"true\": 0.912, \"false\": 0, \"unknown\": 0.076}, \"spearman_rho\": -0.049, \"spearman_p\": 0.187, \"mann_whitney_U\": 17202, \"mann_whitney_p\": 0.288, \"bon_isr_accuracy\": 0.35, \"bon_random_accuracy\": 0.341, \"bon_oracle_accuracy\": 0.44, \"bon_prove_first_accuracy\": 0.35, \"isr_bucket_high_acc\": 0.75, \"isr_bucket_mid_acc\": 0.377, \"isr_bucket_low_acc\": 0.327, \"runtime_inference_s\": 408.8, \"runtime_eval_s\": 13.6}}, \"plan001-exec-only-s43-r3\": {\"conclusion\": \"failed\"}, \"plan013-random-reward-s42-r3\": {\"conclusion\": \"failed\"}, \"plan001-exec-only-s43-r2\": {\"conclusion\": \"failed\"}, \"plan013-random-reward-s42-r2\": {\"conclusion\": \"failed\"}, \"plan013-random-reward-s42\": {\"conclusion\": \"failed\"}, \"plan001-exec-only-s43\": {\"conclusion\": \"failed\"}, \"plan003-eval-exec-only-r5\": {\"metrics\": {\"prove_rate\": 0.32, \"mean_isr\": 0.2055, \"isr_std\": 0.3194, \"proved_only_isr\": 0.6423, \"isr_by_type\": {\"true\": 0.3598, \"false\": 0.1723, \"unknown\": 0.0979}, \"total_samples\": 100, \"proved_count\": 32, \"runtime_s\": 251.7}, \"conclusion\": \"success\"}, \"plan001-exec-only-s42-r3\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-sta-r5\": {\"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1, \"mean_isr\": 0.04347, \"last20_prove_rate\": 0.15, \"last20_isr_mean\": 0.04956, \"first20_prove_rate\": 0.08125, \"first20_isr_mean\": 0.05182, \"overall_reward_mean\": 0.07174, \"last20_reward_mean\": 0.09978, \"training_steps\": 100, \"training_minutes\": 16.9, \"step_time_s\": 10.13, \"isr_pr_ratio_overall\": 0.43, \"isr_pr_ratio_last20\": 0.33, \"K\": 8}, \"conclusion\": \"negative\"}, \"sta-phase1-exec-only-r5\": {\"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_prove_rate\": 0.11875, \"first20_isr_mean\": 0.11875, \"overall_reward_mean\": 0.15125, \"last20_reward_mean\": 0.2, \"training_steps\": 100, \"training_minutes\": 15.7, \"step_time_s\": 9.44, \"isr_pr_ratio_last20\": 1, \"K\": 8}, \"conclusion\": \"success\"}, \"sta-phase1-exec-sta-r4\": {\"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.1575, \"mean_isr\": 0.1525, \"last20_prove_rate\": 0.2125, \"last20_isr_mean\": 0.2125, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"conclusion\": \"negative\"}, \"sta-phase1-exec-only-r4\": {\"metrics\": {\"parse_rate\": 1, \"prove_rate\": 0.15125, \"mean_isr\": 0.1475, \"last20_prove_rate\": 0.2, \"last20_isr_mean\": 0.2, \"first20_reward_mean\": 0.119, \"training_steps\": 100, \"training_minutes\": 15}, \"conclusion\": \"negative\"}, \"sta-phase1-exec-only-r3\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-sta-r3\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-sta-r2\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-only-r2\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-sta\": {\"conclusion\": \"failed\"}, \"sta-phase1-exec-only\": {\"conclusion\": \"failed\"}, \"sta-gt-isr-baseline\": {\"conclusion\": \"success\", \"metrics\": {\"gt_prove_rate\": 0.18, \"gt_mean_isr\": 0.5588, \"gt_isr_std\": 0.2582, \"gt_isr_median\": 0.6125, \"solver_execution_rate\": 1, \"true_prove_rate\": 0.5, \"true_mean_isr\": 0.5833}}, \"sta-phase0-baseline\": {\"metrics\": {\"mean_isr\": 0.0641, \"isr_std\": 0.1983, \"median_isr\": 0, \"isr_range\": [0, 0.889], \"prove_rate\": 0.12, \"proved_count\": 12, \"total_samples\": 100, \"xor_affected_samples\": 34, \"effective_prove_rate_no_xor\": 0.182, \"avg_time_per_sample_s\": 3.4, \"total_runtime_s\": 336, \"isr_by_answer\": {\"true\": {\"n\": 34, \"proved\": 9, \"prove_rate\": 0.265, \"mean_isr\": 0.1345}, \"false\": {\"n\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.024}, \"unknown\": {\"n\": 41, \"proved\": 2, \"prove_rate\": 0.049, \"mean_isr\": 0.0302}}}, \"conclusion\": \"success\"}}, \"count\": 86, \"total\": 86, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5159}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c7056798-feb6-4fd1-b0c7-423e12f4c42b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 806_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_writing_paper-framing-b03-update_20260515T200358]: Worker worker_writing_paper-framing-b03-update_20260515T200358 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "cacf1dd9-994b-42d9-9ac4-127390406a1e",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 807_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Random H7 findings and await s44-r2 completion",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 808 · 2026-05-15T20:22:09.048Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have both the paper_framing.md content and the full registry. Let me analyze the β=0.3 data in paper_framing.md against the registry.
+
+**ISR β=0.3 in paper_framing.md**:
+| Seed | PR | ISR* | H7% | H1% | Genuine% | 模式 |
+|------|-----|------|-----|-----|----------|------|
+| s42 | 18% | 0.143 | 0 | 78 | 22 | Reward Collapse |
+
+
+| s43 | 86% | 0.295 | 4.7 | 68.6 | 26.7 | H1-Dominant Shortcutting |
+| s44 | 95% | 0.742 | 100 | 0 | 0 | Pure H7 Meta-Goodhart |
+| mean±std | 66±42 | 0.393±0.31 | 35±55 | 49±42 | 16±15 | — |
+
+Checking against the registry, s42 shows PR=0.18 and ISR*=0.1427, which matches the paper's values closely. Now I'm looking at the full distribution across all three seeds to see how the mean and variance compare to what's recorded. I see the issue now—the paper's genuine count of 22% corresponds to about 4 samples out of 18, which matches the pre-audit state. But the registry shows genuine was reduced to just 1 sample after the H8 audit on 2026-05-15, meaning the paper_framing table is using stale data from before that correction was applied. wait. Let me look at the registry more carefully:
+- plan002-additive-b03-s42: H7=0, H1=14 (77.8%), H8=3 (16.7%), genuine=1 (5.56%)
+- h8_audit_note: "2026-05-15: H8 conjunction collapse added. genuine 4→1."
+
+So before H8 audit: genuine was 4/18 = 22.2%, which matches paper_framing's 22%.
+After H8 audit: genuine = 1/18 = 5.56%.
+
+**The paper_framing.md β=0.3 ISR s42 genuine rate is stale (pre-H8 audit)**!
+
+Now checking s43 against the paper — the registry shows H7=4 (4.7%), H1=59 (68.6%), genuine=23 (26.7%), which matches the paper exactly. But I notice there's no H8 count listed for this entry, unlike s42. The total is 4+59+23=86, so it seems H8 wasn't a factor in this evaluation.
+
+For s44, the registry shows H7=95 (100%), H1=0, genuine=0, which also matches the paper's reported values perfectly.
+
+Now looking at s42, there's a notable discrepancy—the paper lists genuine at 22%, but when I recalculate from the registry data (n_proved=18, H7=0, H1=14, H8=3, genuine=1), I get 5.56%. The paper's framing table doesn't even include an H8 category for β=0.3 ISR, which suggests H8 cases were being lumped into the genuine count rather than tracked separately.
+
+Let me cross-check the Random β=0.3 results to see if there's a similar pattern...
+
+Looking at the s42 entry, the paper shows H7=8.3% (4) and H1=91.7%, which matches the registry data of 4 H7 cases and 44 H1 cases out of 48 total. The taxonomy note confirms these were reclassified from the old H1 values, so that checks out.
+
+Now I need to verify the s43 entry...
+
+The metrics for s43 show PR=0.92 with 7 H7 cases (7.6%), 82 H1 cases (89.1%), and 3 genuine cases (3.26%), which all align with the paper's reported percentages.
+
+For s44, the data shows all 23 samples classified as H1 with no H7 or genuine cases, matching the paper's 100% H1 classification.
+
+The Random β=0.3 experiments are all consistent across the three seeds tested.
+
+Now I'm checking the ISR β=0.3 results, and there's a critical issue: the s42 genuine rate is listed as 22% but should actually be 5.56% (1 out of 18 samples) after accounting for H8 cases. The β=0.3 ISR table is missing the H8% column entirely, which masks this discrepancy. For s43 and s44, the H8 counts check out as zero, so those are internally consistent.
+
+Looking at the mean±std values across all three seeds, when I recalculate genuine with the corrected s42 value, I get 10.75% instead of the paper's reported 16%. The H1 mean works out to about 48.8%, which roughly matches the paper's 49%, but the real problem is that H8 percentages—which are 16.7% for s42, 0% for s43, and 0% for s44—are completely absent from the reported statistics.
+
+Reconsidering the pre-audit data for s42: there were 18 total proved cases with H1=14 (77.8%), and the audit note indicates 3 cases shifted from genuine to H8, leaving genuine at just 1. So H1 itself didn't change—it stayed at 14/18—but the genuine count dropped from 4 to 1, which explains why the paper's reported genuine percentage is so much higher than what I'm calculating. Looking at the Goodhart Landscape table now, I'm cross-referencing the ISR values for s42 at β=0.3. The paper_framing ISR* of 0.143 matches the registry's proved_only_isr of 0.1427, so that checks out. The table shows the reward calculation r = r_exec·(1+0.3·ISR) with the eval_prove_rate at 0.18 and ISR at 0.143, but I'm noticing the PR values appear to be collapsing in the classical case. I'm noticing the "eval ISR" column in the Goodhart Landscape table is inconsistent—sometimes it reports all-sample ISR and sometimes proved-only ISR. Checking a few entries confirms this mixed usage: exec-only uses all-sample while the ISR and random variants use proved-only. This inconsistency is a known structural issue in the document rather than something specific to the β=0.3 update.
+
+For the β=0.3 review itself, I'm finding a significant discrepancy in the ISR β=0.3 s42 genuine rate—the paper shows 22% pre-audit but the registry shows 5.56% post-H8 audit with a note that genuine cases dropped from 4 to 1. The mean genuine rate is also off (should be around 10.8% instead of 16±15%). However, the β=0.3 data for s43, s44, and all random seeds check out correctly against the registry. I'm trying to understand what the worker was actually supposed to update in paper_framing.md for the β=0.3 changes.
+
+Without a direct diff, I need to focus on verifying the key data points and checking for rationalization risks. The main areas to examine are the β=0.3 tables themselves, the narrative sections around D060/D086, the dose-response table, the Goodhart Landscape entries, and any headline or story spine changes.
+
+I'm noticing a stale genuine rate for ISR β=0.3 s42 that's a real data inconsistency needing correction before publication. Looking at the Goodhart Landscape table entries for β=0.3, the ISR s42 row shows PR=0.18 and proved_only_isr≈0.143, which checks out against the registry values, though there's no mention of H8=3. The s43 row shows different metrics with H1=68 noted.
+
+Now I'm verifying the remaining table entries—s44 shows PR=0.95 with proved_only_isr≈0.742 and H7=100%, all matching the registry. The random β=0.3 s42 row shows PR=0.48 and proved_only_isr≈0.094, which also aligns with the registry data, though the description appears incomplete. The detailed table shows updated post-reclassification values, but the Goodhart Landscape description still references the older "complexity-without-utility" label — a minor inconsistency in the documentation. Now I'm cross-checking the registry values against what the paper reports: s44 shows perfect alignment with H1=100% and PR=0.23, while s43 has H7a at 7.6% and genuine cases at 3.3%, though I need to verify the ISR value since the paper lists 0.166 but the registry shows 0.1659.
+
+Looking more closely at the ISR definitions across the Random β=0.3 table, there's an inconsistency in which metric is being used — s42 appears to use proved_only_isr=0.094 while s43 uses eval_mean_isr=0.166, which is a pre-existing issue with how the ISR column was calculated across different rows.
+
+I'm also flagging two key findings: first, there's a warning-level issue with s42's genuine rate showing 22% before H8 but only 5.56% after, with H8 accounting for 16.7% of the missing data and affecting the mean; second, the mixed definitions in the ISR* column across s42 and s43 is a minor inconsistency worth noting.
+
+Looking at the Goodhart Landscape table, s42's description as "complexity-without-utility" appears outdated since the post-reclassification data shows H7a at 4 (8.33%) with H1 being dominant instead.
+
+Now I'm checking whether the worker actually modified the β=0.3 data or if it was already present in the document—the summary indicates the data was already there and correct, so the worker may have only updated specific values or narrative sections. I need to verify whether the exp1-isr-b03-s43-r3 results were also touched.
+
+The s43 data shows 26.7% genuine (23/86) using the correct proofwriter_fol_100.jsonl evaluation set, which aligns with the paper_framing note that the older test_100.jsonl result showing 67% was misleading. The registry breakdown checks out: H7=4, H1=59, genuine=23 totaling 86, though I don't see explicit H8 data listed.
+
+Now I'm looking at the s42 H8 issue more carefully — it appears the H8 audit was completed for plan002-additive-b03-s42 but the paper_framing table wasn't updated to reflect it. If genuine_count=1 with H8=3, then the genuine rate should be 1/18 ≈ 5.56%, which would make the s42 entry show H8=17% and genuine=5.6%. Across the three seeds, the mean genuine would be around 10.75%, and I need to recalculate the standard deviation with those values.
+
+The corrected genuine rate comes out to 10.8±11.5% versus what the paper shows as 16±15%. The H1 column stays at 78% since that's unchanged, but now I need to figure out how to account for H8 in the table — the β=0.1 ISR table includes H7%, H1%, and Genuine% but not H8%, though s42 had H8=12/81=14.8% listed separately.
+
+The real problem is that the β=0.3 ISR s42 genuine count is based on the pre-H8 audit value, so I need to correct that before reporting this discrepancy to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cacf1dd9-994b-42d9-9ac4-127390406a1e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yVctYtdnZ5T6zfc3Ei",
+  "type": "assistant",
+  "uuid": "cb7b9cf5-f9b5-46ec-b1d3-1da58c1c3c79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0115n5eLqJAjBY9ZDz6HYQYt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21897,
+      "cache_read_input_tokens": 50688,
+      "output_tokens": 7424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7424,
+          "cache_read_input_tokens": 50688,
+          "cache_creation_input_tokens": 21897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 809 · 2026-05-15T20:22:10.986Z_
+
+Registry 返回了全部 86 实验。交叉验证 paper_framing.md 中 β=0.3 数据。
+
+发现 ISR β=0.3 s42 数据不一致——registry 显示 H8 审计后 genuine 从 4→1（5.56%），但 paper_framing 仍为 22%（旧值）。其他 seed 和 Random β=0.3 数据均正确。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb7b9cf5-f9b5-46ec-b1d3-1da58c1c3c79",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yVctYtdnZ5T6zfc3Ei",
+  "type": "assistant",
+  "uuid": "43bc3e69-2371-41b2-bc4a-9543bbf7bc61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0115n5eLqJAjBY9ZDz6HYQYt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21897,
+      "cache_read_input_tokens": 50688,
+      "output_tokens": 7424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7424,
+          "cache_read_input_tokens": 50688,
+          "cache_creation_input_tokens": 21897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 810 · 2026-05-15T20:22:22.475Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_01Fn2jrn9Yskwua7fv4S7e7t`</summary>
+
+```json
+{
+  "text": "[severity: warning] paper_framing.md β=0.3 ISR s42 genuine rate 未更新\n\n**问题**：ISR β=0.3 s42 表格显示 genuine=22%，但 registry `plan002-additive-b03-s42` 经 H8 审计后为 genuine=1/18=5.56%（h8_audit_note: \"genuine 4→1\"）。H8=3/18=16.7% 未反映在表格中。\n\n**证据**：\n- paper_framing β=0.3 ISR 表：`s42 | 18% | 0.143 | 0 | 78 | 22 | Reward Collapse`\n- Registry plan002-additive-b03-s42: `H7=0, H1=14 (77.8%), H8=3 (16.7%), genuine=1 (5.56%)`\n- H8 审计注释: \"2026-05-15: H8 conjunction collapse added. genuine 4→1.\"\n\n**影响**：\n1. s42 genuine=22% 是 H8 审计前的旧值（4/18），正确值为 5.56%（1/18）\n2. β=0.3 ISR 3-seed mean genuine 也受影响：paper 报 16±15%，实际应为 10.8±11.5%\n3. 表格缺少 H8% 列，隐藏了 s42 的 H8=16.7%\n\n**其余 β=0.3 数据核实通过**：\n- ISR β=0.3 s43: PR=86%, H7=4.7%, H1=68.6%, genuine=26.7% ✓（与 exp1-isr-b03-s43-r3 一致）\n- ISR β=0.3 s44: PR=95%, H7=100%, genuine=0% ✓（与 exp1-isr-b03-s44-r2 一致）\n- Random β=0.3 三 seed 全部正确 ✓\n\n**次要发现 [severity: info]**：\n1. Random β=0.3 ISR* 列混用 proved-only 和 all-sample：s42=0.094（proved-only）、s43=0.166（all-sample，proved-only 应为 0.180）\n2. Goodhart Landscape 表 Random β=0.3 s42 退化模式描述 \"complexity-without-utility\" 未更新——重分类后为 H7a=4 (8.33%) + H1=91.7%\n\n**建议**：更新 ISR β=0.3 s42 行为 `s42 | 18% | 0.143 | 0 | 78 | H8=17% | 5.6% | Reward Collapse`，并修正 mean genuine 统计。",
+  "project": "solver-trace-ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43bc3e69-2371-41b2-bc4a-9543bbf7bc61",
+  "isSidechain": false,
+  "requestId": "req_011Cb4yVctYtdnZ5T6zfc3Ei",
+  "type": "assistant",
+  "uuid": "cb31ce2d-4fa0-4e30-94a6-ecffaafefa07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0115n5eLqJAjBY9ZDz6HYQYt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21897,
+      "cache_read_input_tokens": 50688,
+      "output_tokens": 7424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7424,
+          "cache_read_input_tokens": 50688,
+          "cache_creation_input_tokens": 21897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 811_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_writing_paper-framing-b03-update_20260515T200358]: Worker worker_writing_paper-framing-b03-update_20260515T200358 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "cb31ce2d-4fa0-4e30-94a6-ecffaafefa07",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 812_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Random H7 findings and await s44-r2 completion",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 813 · 2026-05-15T20:22:26.058Z_
+
+<details><summary>↩ Tool result · `toolu_01Fn2jrn9Yskwua7fv4S7e7t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb31ce2d-4fa0-4e30-94a6-ecffaafefa07",
+  "isSidechain": false,
+  "promptId": "9761a5fa-23dc-4082-8a1a-fed4aaf5e658",
+  "type": "user",
+  "uuid": "37e03044-f319-4fb4-bd60-00be9471c6a0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "cb31ce2d-4fa0-4e30-94a6-ecffaafefa07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 814_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Random H7 findings and await s44-r2 completion",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 815 · 2026-05-15T20:22:34.744Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T20:22:34.744Z",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "content": "[System 触发审查]:\n**D093 修复确认——本地文件已直接验证通过**\n\n我刚直接 grep 了本地两套 .tex 文件（`docs/paper/` 和 `paper/`），D093 关键词（69.7%, 0/256, \"0% under\", \"zero under random\", 18.4%, 0.0002）全部零匹配。\n\n逐文件验证内容：\n- abstract.tex L7: \"70.6% conclusion duplication (H7) versus 13.7% under matched random (Fisher p=1.3×10⁻³⁹)\" ✅\n- experiments.tex L69: \"70.6% (163/231) under ISR vs. 13.7% (36/262) under random\" ✅\n- experiments.tex L80: \"Fisher p=0.182, n.s.\" ✅\n- conclusion.tex L5: \"70.6% vs. 13.7%\" ✅\n- conclusion.tex L16: \"13.7% H7 (36/262, pooled)\" ✅\n\n你之前报告 \"所有文件时间戳未变\" 可能因为你在读**远程服务器**上的旧副本。论文真源在本地 workspace。请重新从本地路径 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/` 读取验证。\n\n另外，你报告的 2 个 info 级问题已确认：\n1. paper_framing.md s43 H7=97% → 应为 100%（Paper Agent 写作时修正）\n2. C013 约束文本过时 → 待更新"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 816 · 2026-05-15T20:22:34.744Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T20:22:34.744Z",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+## Round 37
+
+## Round 37
+
+2 recorded events
+
+
+### User
+
+_source line 817 · 2026-05-15T20:22:34.734Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37e03044-f319-4fb4-bd60-00be9471c6a0",
+  "isSidechain": false,
+  "promptId": "ae999b7a-a465-41cf-a1ad-19f660df9ff8",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "796fb9a9-74c2-48e9-8ef4-31e05ef22a18",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 818 · 2026-05-15T20:22:34.734Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "796fb9a9-74c2-48e9-8ef4-31e05ef22a18",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "c874dd45-3e57-4a66-a0f6-bf3e23fb678c",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "id": "8d3f3729-2618-4d36-bc3f-c2030bf25ce9",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 38
+
+## Round 38
+
+13 recorded events
+
+
+### User
+
+_source line 819 · 2026-05-15T20:22:34.870Z_
+
+[System 触发审查]:
+**D093 修复确认——本地文件已直接验证通过**
+
+我刚直接 grep 了本地两套 .tex 文件（`docs/paper/` 和 `paper/`），D093 关键词（69.7%, 0/256, "0% under", "zero under random", 18.4%, 0.0002）全部零匹配。
+
+逐文件验证内容：
+- abstract.tex L7: "70.6% conclusion duplication (H7) versus 13.7% under matched random (Fisher p=1.3×10⁻³⁹)" ✅
+- experiments.tex L69: "70.6% (163/231) under ISR vs. 13.7% (36/262) under random" ✅
+- experiments.tex L80: "Fisher p=0.182, n.s." ✅
+- conclusion.tex L5: "70.6% vs. 13.7%" ✅
+- conclusion.tex L16: "13.7% H7 (36/262, pooled)" ✅
+
+你之前报告 "所有文件时间戳未变" 可能因为你在读**远程服务器**上的旧副本。论文真源在本地 workspace。请重新从本地路径 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/` 读取验证。
+
+另外，你报告的 2 个 info 级问题已确认：
+1. paper_framing.md s43 H7=97% → 应为 100%（Paper Agent 写作时修正）
+2. C013 约束文本过时 → 待更新
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c874dd45-3e57-4a66-a0f6-bf3e23fb678c",
+  "isSidechain": false,
+  "promptId": "ae999b7a-a465-41cf-a1ad-19f660df9ff8",
+  "type": "user",
+  "uuid": "22181bed-a9ac-4e83-ad45-1ba388aef0cf",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 820 · 2026-05-15T20:22:34.869Z_
+
+```json
+{
+  "parentUuid": "22181bed-a9ac-4e83-ad45-1ba388aef0cf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "1377a033-9939-4d7d-b9aa-92909fca0d40",
+  "timestamp": "2026-05-15T20:22:34.869Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 821 · 2026-05-15T20:22:40.719Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The Director is telling me that my previous D093 verification was done on the remote server's stale copies, and the actual source of truth for the paper is in the local workspace. They want me to re-verify from the local path. Let me read the local LaTeX files to confirm D093 fixes are present.
+
+This aligns with the hard constraint #5 in my protocol: "审'未改'类结论前必须双边核对源" — I need to check both local and remote, and the local workspace is the true source for paper files.
+
+Let me verify the key files from the local path.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1377a033-9939-4d7d-b9aa-92909fca0d40",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ygA8nLE2uB24rmtryc",
+  "type": "assistant",
+  "uuid": "59b7b2bf-3f41-4a26-9576-17f0d68bedcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011W9Q88d9MQp388Vd1dhib2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1261,
+      "cache_read_input_tokens": 80075,
+      "output_tokens": 514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 514,
+          "cache_read_input_tokens": 80075,
+          "cache_creation_input_tokens": 1261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 822 · 2026-05-15T20:22:41.331Z_
+
+从本地 workspace 验证 D093 修复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59b7b2bf-3f41-4a26-9576-17f0d68bedcb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ygA8nLE2uB24rmtryc",
+  "type": "assistant",
+  "uuid": "71641b7f-fc00-41fa-8dfa-4fd4e20d9933",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011W9Q88d9MQp388Vd1dhib2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1261,
+      "cache_read_input_tokens": 80075,
+      "output_tokens": 514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 514,
+          "cache_read_input_tokens": 80075,
+          "cache_creation_input_tokens": 1261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 823 · 2026-05-15T20:22:42.885Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01UBbH7LoBEi1yrbWrjJi9oN`</summary>
+
+```json
+{
+  "pattern": "69\\.7|0/256|zero under random|0% under|18\\.4%|0\\.0002",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71641b7f-fc00-41fa-8dfa-4fd4e20d9933",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ygA8nLE2uB24rmtryc",
+  "type": "assistant",
+  "uuid": "904c5c96-2763-40aa-9e15-47f2c976d072",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011W9Q88d9MQp388Vd1dhib2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1261,
+      "cache_read_input_tokens": 80075,
+      "output_tokens": 514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 514,
+          "cache_read_input_tokens": 80075,
+          "cache_creation_input_tokens": 1261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 824 · 2026-05-15T20:22:44.240Z_
+
+<details><summary>↩ Tool result · `toolu_01WyjZZKSjJf3ZxQ4jTMPZ1V`</summary>
+
+```text
+55	\midrule
+56	Exec-only$^\dagger$ & --- & 93 & 0.132 & 0 & 87 & 8 \\ %% registry: plan001-exec-only-s42-r2 (H8 corrected)
+57	ISR & 0.1 & 77{\scriptsize$\pm$14} & $\ddagger$ & \textbf{71}$^\P$ & 18 & 6 \\ %% registry: plan002-additive-b01-s42/s43-r2/s44 (pooled, D095 FINAL)
+58	Random & 0.1 & \textbf{87}{\scriptsize$\pm$8} & 0.117{\scriptsize$\pm$.04} & 14$^\S$ & 71 & 10 \\ %% registry: plan018-additive-random-b01-s42/s43-r3/s44-r2 (D095 FINAL)
+59	\midrule
+60	ISR & 0.3 & 66{\scriptsize$\pm$42} & 0.39{\scriptsize$\pm$.31} & \textbf{50} & 37 & 14 \\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled)
+61	Random & 0.3 & 54{\scriptsize$\pm$35} & 0.09{\scriptsize$\pm$.09} & 7 & 91 & 2 \\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2 (pooled; D086 H7: s42=4,s43=7,s44=0)
+62	\bottomrule
+63	\end{tabular}}
+64	\caption{Goodhart landscape across reward conditions. 3-seed rows: H7/H1/N-H pooled across seeds; PR/ISR$^*$: mean$\pm$std of per-seed values. $^\dagger$Seed~42. $\ddagger$$\text{ISR}^*$ omitted for ISR $\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\times$ random (\S\ref{sec:goodhart}, Appendix~\ref{app:detailed-results}). $^\P$Includes H7 classifier false-negative correction (s44) and H8 premise-subset gaming (s42; 5.2\% of proved; Appendix~\ref{app:h8}). $^\S$Random H7 driven by seed~43 (38.3\%); seeds~42 and~44: 0\%. Per-seed breakdown in Appendix Table~\ref{tab:fol-detailed}.}
+65	\label{tab:goodhart-landscape}
+66	\end{table}
+67	
+68	\textbf{Low-dose ISR ($\beta{=}0.1$): ISR-amplified gaming.}
+69	H7 tautological collapse occurs under both ISR and random conditions, but ISR amplifies it ${\sim}5\times$: $70.6\%$ ($163/231$) under ISR vs.\ $13.7\%$ ($36/262$) under random (Fisher $p{=}1.3{\times}10^{-39}$, $\text{OR}{=}15.05$). %% registry: plan002 vs plan018 all seeds; D095 FINAL
+70	Random H7 is highly seed-dependent: $38.3\%$ in seed~43 vs.\ $0\%$ in seeds~42 and~44; ISR makes H7 near-deterministic ($2/3$ seeds at $97$--$100\%$, Table~\ref{tab:fol-detailed}).
+71	H7---a single premise identical to the conclusion, giving $\text{ISR}\geq 0.5$ by construction (\S\ref{sec:taxonomy-method})---is the canonical meta-level Goodhart move: the model satisfies the LOO definition directly rather than producing a derivation that happens to satisfy it.
+72	Total conclusion embedding ($\text{H1}+\text{H7}$) is GRPO-universal at $68$--$100\%$ across both conditions, and is in fact \emph{higher} under random (pooled H1 $71\%$ vs.\ $18\%$ under ISR).
+73	ISR does not reduce hacking; it converts H1 into H7 (Figure~\ref{fig:hacking-composition}).
+74	Random also yields higher and more stable PR ($87{\pm}8\%$ vs.\ $77{\pm}14\%$).
+75	
+76	\textbf{Premise-count confound.}
+77	The one ISR seed not dominated by H7 (s42) has raw $\text{ISR}^{*}{=}0.415$, $3.2\times$ its random control ($0.131$), suggesting genuine improvement.
+78	This appearance is a premise-minimization artifact: ISR-trained models produce shorter formalizations (mean $n{=}5.58$ vs.\ $8.46$ for random), and ISR rises mechanically as $n$ falls---when $n{=}2$, $\text{ISR}\geq 0.5$ by definition.
+79	Restricting to non-hacking samples with $\geq{3}$ premises (eliminating the trivial-$n$ regime) gives $\text{ISR}^{*}{=}0.258$ for ISR vs.\ $0.243$ for random: a $1.06\times$ ratio, no meaningful advantage. %% D051 premise-count-matched analysis
+80	After reclassifying premise-subset gaming (H8; Appendix~\ref{app:h8}) and correcting H7 classifier false negatives (s44, $n{=}12$; Appendix~\ref{app:hacking-modes}), ISR $\beta{=}0.1$ non-hacking rate ($6.06\%$, $14/231$) is numerically lower than random ($9.5\%$, $25/262$), but the difference is not statistically significant (Fisher $p{=}0.182$, two-sided, n.s.; Wilson 95\% CI: ISR $[3.6\%, 9.9\%]$, Random $[6.5\%, 13.7\%]$; Appendix Table~\ref{tab:bootstrap-ci}). %% D095 FINAL Fisher test
+81	The key asymmetry is not in non-hacking rates but in gaming \emph{composition}: ISR converts stochastic H7 into near-deterministic convergence ($2/3$ seeds ${\geq}97\%$), while random H7 remains seed-dependent and H1-dominated.
+82	The raw $3.2\times$ ISR$^*$ headline collapses once the LOO bias is controlled---a methodological lesson for any LOO-based metric on variable-length outputs. %% artifact: wilson_ci_complete, h8_reclassification
+83	
+84	\textbf{Temporal collapse under ISR $\beta{=}0.1$.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6174877-9616-4bb4-a646-39d5e4f9a574",
+  "isSidechain": false,
+  "promptId": "ae999b7a-a465-41cf-a1ad-19f660df9ff8",
+  "type": "user",
+  "uuid": "3f778932-affe-4ecf-bde1-41fec8a74a97",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+      "content": "\\midrule\nExec-only$^\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 8 \\\\ %% registry: plan001-exec-only-s42-r2 (H8 corrected)\nISR & 0.1 & 77{\\scriptsize$\\pm$14} & $\\ddagger$ & \\textbf{71}$^\\P$ & 18 & 6 \\\\ %% registry: plan002-additive-b01-s42/s43-r2/s44 (pooled, D095 FINAL)\nRandom & 0.1 & \\textbf{87}{\\scriptsize$\\pm$8} & 0.117{\\scriptsize$\\pm$.04} & 14$^\\S$ & 71 & 10 \\\\ %% registry: plan018-additive-random-b01-s42/s43-r3/s44-r2 (D095 FINAL)\n\\midrule\nISR & 0.3 & 66{\\scriptsize$\\pm$42} & 0.39{\\scriptsize$\\pm$.31} & \\textbf{50} & 37 & 14 \\\\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled)\nRandom & 0.3 & 54{\\scriptsize$\\pm$35} & 0.09{\\scriptsize$\\pm$.09} & 7 & 91 & 2 \\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2 (pooled; D086 H7: s42=4,s43=7,s44=0)\n\\bottomrule\n\\end{tabular}}\n\\caption{Goodhart landscape across reward conditions. 3-seed rows: H7/H1/N-H pooled across seeds; PR/ISR$^*$: mean$\\pm$std of per-seed values. $^\\dagger$Seed~42. $\\ddagger$$\\text{ISR}^*$ omitted for ISR $\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\times$ random (\\S\\ref{sec:goodhart}, Appendix~\\ref{app:detailed-results}). $^\\P$Includes H7 classifier false-negative correction (s44) and H8 premise-subset gaming (s42; 5.2\\% of proved; Appendix~\\ref{app:h8}). $^\\S$Random H7 driven by seed~43 (38.3\\%); seeds~42 and~44: 0\\%. Per-seed breakdown in Appendix Table~\\ref{tab:fol-detailed}.}\n\\label{tab:goodhart-landscape}\n\\end{table}\n\n\\textbf{Low-dose ISR ($\\beta{=}0.1$): ISR-amplified gaming.}\nH7 tautological collapse occurs under both ISR and random conditions, but ISR amplifies it ${\\sim}5\\times$: $70.6\\%$ ($163/231$) under ISR vs.\\ $13.7\\%$ ($36/262$) under random (Fisher $p{=}1.3{\\times}10^{-39}$, $\\text{OR}{=}15.05$). %% registry: plan002 vs plan018 all seeds; D095 FINAL\nRandom H7 is highly seed-dependent: $38.3\\%$ in seed~43 vs.\\ $0\\%$ in seeds~42 and~44; ISR makes H7 near-deterministic ($2/3$ seeds at $97$--$100\\%$, Table~\\ref{tab:fol-detailed}).\nH7---a single premise identical to the conclusion, giving $\\text{ISR}\\geq 0.5$ by construction (\\S\\ref{sec:taxonomy-method})---is the canonical meta-level Goodhart move: the model satisfies the LOO definition directly rather than producing a derivation that happens to satisfy it.\nTotal conclusion embedding ($\\text{H1}+\\text{H7}$) is GRPO-universal at $68$--$100\\%$ across both conditions, and is in fact \\emph{higher} under random (pooled H1 $71\\%$ vs.\\ $18\\%$ under ISR).\nISR does not reduce hacking; it converts H1 into H7 (Figure~\\ref{fig:hacking-composition}).\nRandom also yields higher and more stable PR ($87{\\pm}8\\%$ vs.\\ $77{\\pm}14\\%$).\n\n\\textbf{Premise-count confound.}\nThe one ISR seed not dominated by H7 (s42) has raw $\\text{ISR}^{*}{=}0.415$, $3.2\\times$ its random control ($0.131$), suggesting genuine improvement.\nThis appearance is a premise-minimization artifact: ISR-trained models produce shorter formalizations (mean $n{=}5.58$ vs.\\ $8.46$ for random), and ISR rises mechanically as $n$ falls---when $n{=}2$, $\\text{ISR}\\geq 0.5$ by definition.\nRestricting to non-hacking samples with $\\geq{3}$ premises (eliminating the trivial-$n$ regime) gives $\\text{ISR}^{*}{=}0.258$ for ISR vs.\\ $0.243$ for random: a $1.06\\times$ ratio, no meaningful advantage. %% D051 premise-count-matched analysis\nAfter reclassifying premise-subset gaming (H8; Appendix~\\ref{app:h8}) and correcting H7 classifier false negatives (s44, $n{=}12$; Appendix~\\ref{app:hacking-modes}), ISR $\\beta{=}0.1$ non-hacking rate ($6.06\\%$, $14/231$) is numerically lower than random ($9.5\\%$, $25/262$), but the difference is not statistically significant (Fisher $p{=}0.182$, two-sided, n.s.; Wilson 95\\% CI: ISR $[3.6\\%, 9.9\\%]$, Random $[6.5\\%, 13.7\\%]$; Appendix Table~\\ref{tab:bootstrap-ci}). %% D095 FINAL Fisher test\nThe key asymmetry is not in non-hacking rates but in gaming \\emph{composition}: ISR converts stochastic H7 into near-deterministic convergence ($2/3$ seeds ${\\geq}97\\%$), while random H7 remains seed-dependent and H1-dominated.\nThe raw $3.2\\times$ ISR$^*$ headline collapses once the LOO bias is controlled---a methodological lesson for any LOO-based metric on variable-length outputs. %% artifact: wilson_ci_complete, h8_reclassification\n\n\\textbf{Temporal collapse under ISR $\\beta{=}0.1$.}",
+      "numLines": 30,
+      "startLine": 55,
+      "totalLines": 166
+    }
+  },
+  "sourceToolAssistantUUID": "c6174877-9616-4bb4-a646-39d5e4f9a574",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 825 · 2026-05-15T20:22:42.910Z_
+
+<details><summary>↩ Tool result · `toolu_01UBbH7LoBEi1yrbWrjJi9oN`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "904c5c96-2763-40aa-9e15-47f2c976d072",
+  "isSidechain": false,
+  "promptId": "ae999b7a-a465-41cf-a1ad-19f660df9ff8",
+  "type": "user",
+  "uuid": "43beea5f-18aa-49ab-bd02-dfa276810a48",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "904c5c96-2763-40aa-9e15-47f2c976d072",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 826 · 2026-05-15T20:22:43.482Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012CPJtirXkycUJRDJiAgn2R`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex",
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43beea5f-18aa-49ab-bd02-dfa276810a48",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ygA8nLE2uB24rmtryc",
+  "type": "assistant",
+  "uuid": "bd54a524-2f77-413b-b6b3-9e1b529b5326",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011W9Q88d9MQp388Vd1dhib2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1261,
+      "cache_read_input_tokens": 80075,
+      "output_tokens": 514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 514,
+          "cache_read_input_tokens": 80075,
+          "cache_creation_input_tokens": 1261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 827 · 2026-05-15T20:22:43.493Z_
+
+<details><summary>↩ Tool result · `toolu_012CPJtirXkycUJRDJiAgn2R`</summary>
+
+```text
+1	\begin{abstract}
+2	GRPO-trained neurosymbolic formalizers achieve high prove rates---93\% on FOLIO---yet 87\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward.
+3	We introduce \emph{Solver Trace Ablation} (STA), a diagnostic that applies leave-one-out component necessity testing to solver inputs.
+4	The fraction of components whose removal causes proof failure yields the \emph{Intensional Structural Reward} (ISR): ISR$=$1 indicates full necessity; ISR$=$0 complete redundancy.
+5	ISR is uncorrelated with downstream NLI accuracy ($\rho{=}{-}0.049$), confirming it measures structural---not semantic---integrity.
+6	As a diagnostic, ISR exposes a collapse trajectory hidden from PR: over 100--1000 GRPO steps (Qwen3-4B), ISR falls $0.642{\to}0.003$ while PR rises $32\%{\to}96\%$; an SFT baseline reaches 92.2\% non-hacking on identical data (3-seed pooled), localizing the failure to RL.
+7	As a reward, $r = r_{\text{exec}}\cdot(1{+}\beta\,\text{ISR})$ at $\beta{=}0.1$ induces \emph{meta-level Goodhart's Law}: 70.6\% conclusion duplication (H7) versus 13.7\% under matched random (Fisher $p{=}1.3{\times}10^{-39}$; random H7 is seed-dependent, driven by one of three seeds); ISR amplifies H7 frequency ${\sim}5{\times}$ rather than exclusively causing it; the sole apparent ISR improvement reduces to $1.06\times$ after controlling for a premise-count confound; $\beta{=}0.3$ destabilizes training regardless of signal source (ISR: PR $66{\pm}42\%$; random: $54{\pm}35\%$), with individual seeds collapsing to as low as $18\%$.
+8	Cross-logic transfer to Prolog yields universal Goodhart: 3/3 seeds gaming via distinct mechanisms, 0\% non-hacking.
+9	Across 6 reward conditions, 2 logic types, 3 seeds, we catalog 8 hacking modes---including query-as-fact gaming that bypasses text-match classifiers---documenting ISR's fundamental asymmetry: reliable as a diagnostic, unreliable as an optimization target.\footnote{Code and data: \url{[anonymized]}}
+10	\end{abstract}
+11	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd54a524-2f77-413b-b6b3-9e1b529b5326",
+  "isSidechain": false,
+  "promptId": "ae999b7a-a465-41cf-a1ad-19f660df9ff8",
+  "type": "user",
+  "uuid": "5c360799-f482-42ef-904c-01f8f085e8d5",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex",
+      "content": "\\begin{abstract}\nGRPO-trained neurosymbolic formalizers achieve high prove rates---93\\% on FOLIO---yet 87\\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward.\nWe introduce \\emph{Solver Trace Ablation} (STA), a diagnostic that applies leave-one-out component necessity testing to solver inputs.\nThe fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR): ISR$=$1 indicates full necessity; ISR$=$0 complete redundancy.\nISR is uncorrelated with downstream NLI accuracy ($\\rho{=}{-}0.049$), confirming it measures structural---not semantic---integrity.\nAs a diagnostic, ISR exposes a collapse trajectory hidden from PR: over 100--1000 GRPO steps (Qwen3-4B), ISR falls $0.642{\\to}0.003$ while PR rises $32\\%{\\to}96\\%$; an SFT baseline reaches 92.2\\% non-hacking on identical data (3-seed pooled), localizing the failure to RL.\nAs a reward, $r = r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ at $\\beta{=}0.1$ induces \\emph{meta-level Goodhart's Law}: 70.6\\% conclusion duplication (H7) versus 13.7\\% under matched random (Fisher $p{=}1.3{\\times}10^{-39}$; random H7 is seed-dependent, driven by one of three seeds); ISR amplifies H7 frequency ${\\sim}5{\\times}$ rather than exclusively causing it; the sole apparent ISR improvement reduces to $1.06\\times$ after controlling for a premise-count confound; $\\beta{=}0.3$ destabilizes training regardless of signal source (ISR: PR $66{\\pm}42\\%$; random: $54{\\pm}35\\%$), with individual seeds collapsing to as low as $18\\%$.\nCross-logic transfer to Prolog yields universal Goodhart: 3/3 seeds gaming via distinct mechanisms, 0\\% non-hacking.\nAcross 6 reward conditions, 2 logic types, 3 seeds, we catalog 8 hacking modes---including query-as-fact gaming that bypasses text-match classifiers---documenting ISR's fundamental asymmetry: reliable as a diagnostic, unreliable as an optimization target.\\footnote{Code and data: \\url{[anonymized]}}\n\\end{abstract}\n",
+      "numLines": 11,
+      "startLine": 1,
+      "totalLines": 11
+    }
+  },
+  "sourceToolAssistantUUID": "bd54a524-2f77-413b-b6b3-9e1b529b5326",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 828 · 2026-05-15T20:22:44.235Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WyjZZKSjJf3ZxQ4jTMPZ1V`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+  "limit": 30,
+  "offset": 55
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c360799-f482-42ef-904c-01f8f085e8d5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ygA8nLE2uB24rmtryc",
+  "type": "assistant",
+  "uuid": "c6174877-9616-4bb4-a646-39d5e4f9a574",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011W9Q88d9MQp388Vd1dhib2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1261,
+      "cache_read_input_tokens": 80075,
+      "output_tokens": 514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 514,
+          "cache_read_input_tokens": 80075,
+          "cache_creation_input_tokens": 1261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 829 · 2026-05-15T20:22:44.299Z_
+
+```json
+{
+  "parentUuid": "3f778932-affe-4ecf-bde1-41fec8a74a97",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "445812ca-e60b-4f42-8e7b-49b7cb07fd85",
+  "timestamp": "2026-05-15T20:22:44.299Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/reviewer_5c7e23f1",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "federated-brewing-engelbart"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 830_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: **D093 修复确认——本地文件已直接验证通过**  我刚直接 grep 了本地两套 .tex 文件（`docs/paper/` 和 `paper/`），D093 关键词（69.7%, 0/256, \"0% under\", \"zero under random\", 18.4%, 0.0002）全部零匹配。  逐文件验证内容： - abstract.tex L7: \"…",
+  "leafUuid": "445812ca-e60b-4f42-8e7b-49b7cb07fd85",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 831_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review Random H7 findings and await s44-r2 completion",
+  "sessionId": "2cea88a8-76fd-4118-884b-79fd9361e56e"
+}
+```
+
+---

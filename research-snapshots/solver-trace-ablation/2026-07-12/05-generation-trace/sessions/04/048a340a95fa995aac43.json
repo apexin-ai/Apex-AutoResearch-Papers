@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "048a340a95fa995aac43",
+  "project": "solver-trace-ablation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## ISR 3-seed 已有数据（Claim 2） - plan002-additive-b01-s42: genuine=14, genuine_rate≈0.23, H7=29, 结论 success",
+  "task_key": "34099a3a-c984-4828-b484-b4de708adbf9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/34099a3a-c984-4828-b484-b4de708adbf9.jsonl",
+    "occurrence": 1,
+    "bytes": 649760,
+    "sha256": "264e15f472ea0bd5ccd7bb6b3cc225f1406aa42f1aa511d61a5e2d3d20e8647a"
+  },
+  "statistics": {
+    "messages": 334,
+    "user_turns": 1,
+    "tool_calls": 110,
+    "roles": {
+      "record": 54,
+      "user": 1,
+      "assistant": 59,
+      "tool_call": 110,
+      "tool_result": 110
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "048a340a95fa995aac43-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 332,
+      "chunks": [
+        {
+          "path": "048a340a95fa995aac43-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "048a340a95fa995aac43-part-0002.json",
+          "message_count": 154
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-isr-3-seed-claim-2-plan002-additive-b01-s42-genuine-14-genuine-r.md"
+}
