@@ -1,0 +1,796 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/7b1a5e34-2e58-413b-ab92-c809638316e6.jsonl`
+- **Structured JSON:** [`3743113699673adcea21.json`](../../sessions/37/3743113699673adcea21.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T03:31:39.004Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T03:31:39.004Z",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research to make a well-grounded assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Mozer, \"PPI is the Difference Estimator\" (arXiv:2603.19160, March 2026)](https://arxiv.org/abs/2603.19160): \n  确认真实存在。证明 PPI ≡ survey-sampling difference estimator，识别了 differential prediction error 导致的 ATE 不可约偏差，提出 arm-specific rectifiers。明确限于 ATE，未涉及 CATE 或 effect-modifier measurement error。Proposal 声称的出发点准确。\n\n- [Egami et al., \"DSL\" (NeurIPS 2023)](https://arxiv.org/abs/2306.04746) & [Angelopoulos et al., \"PPI\" (Science 2023)](https://arxiv.org/abs/2301.09633): \n  LLM debiasing 的两大主流方法，均针对 population-level aggregate estimands。不处理 CATE 或 effect modifier 层面的 measurement error。\n\n- [Audinet de Pieuchon et al. (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.1000.pdf): \n  Benchmark 比较 DSL 与 PPI，发现 DSL 偏差更低但一致性较差。仅处理 aggregate parameters。Proposal 引用准确。\n\n- [Bu et al., \"ForestIV\" (INFORMS JDS 2023)](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019): \n  用随机森林 IV 纠正 ML 生成协变量的 measurement error，但仅针对回归模型，不涉及 CATE 估计。Proposal 对其局限性的描述准确。\n\n- [Ashwin et al. (Sociological Methods & Research 2025)](https://journals.sagepub.com/doi/10.1177/00491241251338246): \n  确认真实存在。证明 LLM 对 Rohingya 难民访谈的编码错误与受访者的难民身份、性别、教育水平系统性相关，导致下游回归估计偏差。这为 proposal 的核心动机提供了强有力的实证支撑。\n\n- [Zrnic & Candès, \"Active Statistical Inference\" (ICML 2024)](https://arxiv.org/abs/2403.03208): \n  提出在 model uncertainty 最高处分配标签的 active inference。针对 population-level interval width，不处理 CATE-specific allocation。\n\n- [Active Multiple-PPI (arXiv:2605.08429, May 2026)](https://arxiv.org/abs/2605.08429): \n  确认真实存在。将 active inference 推广到多预测器，但仍针对 aggregate estimands。\n\n- [Persson et al. (arXiv:2602.20383, Feb 2026)](https://arxiv.org/abs/2602.20383): \n  确认真实存在。证明 CATE → GATE 聚合引入 group bias，但源于聚合机制而非 measurement error。与 proposal 互补而非竞争。\n\n- [Feldman et al. (arXiv:2602.15730, Feb 2026)](https://arxiv.org/abs/2602.15730): \n  处理 latent textual treatments 的因果效应估计，假设 observed covariates clean。Proposal 描述准确。\n\n- [Jerzak et al., \"SRI\" (arXiv:2509.12416, 2025)](https://arxiv.org/abs/2509.12416): \n  提出 Surrogate Representation Inference，学习低维表征以纠正 annotation measurement error，可降低标准误50%+。但不专门处理 CATE 估计中 effect modifier 被 mismeasure 的情况。这是最接近的潜在 trivial alternative。\n\n- [Latent Causal Forest (OpenReview/ICLR)](https://openreview.net/forum?id=Ieo0zZdN6E): \n  处理 treatment assignment 不可观测的情况（noisy treatment proxy），与本 proposal 的 mismeasured effect modifier 是不同问题。\n\n- **调研总结**: LLM measurement error correction 文献（PPI/DSL/Active inference 系列）集中于 aggregate estimands；CATE 估计文献（causal forests/DR-learner）假设 covariates clean；covariate measurement error 文献（ForestIV/Wen & Yan）处理回归而非 HTE。三个文献流的交叉点——LLM mismeasured effect modifier 下的 CATE 估计——确实是一个真实的、经过验证的空白。Proposal 对此空白的定位准确。\n\n【Trivial Alternative 检验】:\n存在三个需要审视的 trivial alternatives：\n\n(1) **\"直接用更多 expert labels\"**: 可以解决问题但成本高昂。Proposal 的价值在于高效利用有限 expert labels。这是标准的 efficiency argument，合理但不构成致命威胁。\n\n(2) **\"用全局（global）correction 而非 stratified correction\"**: 这是 proposal 自身已经处理的对比——其 finite-sample bias bounds 表明 stratified 的优势正比于 (error heterogeneity × CATE heterogeneity) 的乘积。当两者之一较小时，global 足够。Proposal 内置了自己的 diagnostic，这实际上是一个优点。\n\n(3) **Jerzak et al. (2025) SRI 作为替代**: 最具威胁性。SRI 学习 unstructured data 的低维表征以纠正 measurement error。但关键区别在于：SRI 不专门处理 CATE 估计中 effect modifier misclassification 导致的 \"doubly-biased\" 问题——即 subgroup assignment 和 within-subgroup outcome correction 同时被污染。然而，proposal 需要明确论证为什么 SRI 不能被 trivially extend 到这个场景。\n\n**增量价值**: 在 error heterogeneity 和 CATE heterogeneity 同时较大的场景下，EC-HTE 的增量价值是真实的（全局方法会系统性偏差）。核心增量在于将 measurement error correction 从 \"outcome level\" 扩展到 \"effect modifier level\"，并保留 honest causal forest 的渐近性质。\n\n【前提假设检验】:\n核心 claim 的逻辑链中有以下未经验证的假设：\n\n(1) **\"LLM misclassification rates 在 subgroups 间足够异质\"**: Ashwin et al. (2025) 提供了一个 dataset 的实证支持，但 proposal 假设这是一个普遍现象。如果在大多数实际场景中 LLM error 在 subgroups 间差异不大（即 error heterogeneity 项小），EC-HTE 相对于 global correction 的优势将很小。这需要更多实证验证。\n\n(2) **\"Hierarchical Bayesian model 的 partial pooling 在 n_min ≈ 30 per subgroup 时足够准确\"**: n=30 per subgroup 估计 2×2 confusion matrix 是可行的，但 partial pooling 的效果取决于 subgroups 之间的 true heterogeneity——如果 true error rates 差异很大（正是 EC-HTE 最需要的场景），pooling 反而会引入 bias-variance tradeoff 的问题。\n\n(3) **\"Corrected pseudo-outcomes 在 regularity conditions 下渐近等价于 true outcomes\"**: 这是一个技术假设，其成立取决于 misclassification matrix 是否以 √n rate 被估计，以及 correction 过程是否保持了 pseudo-outcomes 的 bounded moment conditions。这在有限样本中可能被违反，特别是在 misclassification rate 接近 0.5 时（correction 的 matrix inversion 会放大噪声）。\n\n(4) **隐含假设: effect modifier 是离散的或可离散化的**: 整个 framework 围绕 misclassification matrix 构建，这要求 effect modifier 是分类变量。如果研究者想用连续的 LLM score 作为 effect modifier，framework 需要额外的离散化步骤。\n\n【3 维度打分】:\n\n1. **Novelty: 中** — \n   Gap 经验证是真实的：在我的调研中，没有找到任何已发表或预印本工作直接处理 LLM mismeasured effect modifier 下的 CATE 估计。这是三个成熟文献流（LLM debiasing、causal ML for HTE、covariate measurement error correction）的一个未被占据的交叉点。\n   \n   但需要注意两点削弱因素：(a) 解决方案是**组合性的**——hierarchical Bayesian confusion matrix + honest causal forest + sandwich variance estimator 都是现有工具，核心贡献是将它们应用于新设定，而非提出根本性新方法论。(b) 核心 insight（\"effect modifier misclassification 导致 doubly-biased CATE\"）在概念上是**直觉可预期的**——一旦有人指出这个问题，\"当然应该做 stratified correction\" 是一个自然反应。Finite-sample bias bounds（stratified 优势 ∝ error heterogeneity × CATE heterogeneity）是干净有用的理论结果，但审稿人可能会认为这个方向性结论是 \"I would have guessed this\"。\n\n   参照论文：ForestIV (Bu et al. 2023) 处理了 ML covariate measurement error for regression——本 proposal 可以被视为 \"ForestIV 的 CATE extension\" 的精神。与 Mozer (2026) 的关系是清晰的增量（从 ATE 到 CATE，从 outcome correction 到 effect modifier correction）。\n\n2. **Significance: 中** — \n   问题的重要性是真实的：随着 LLM 在社会科学中的大规模部署（Ashwin et al. 2025; Bisbee et al. 2024），text-derived annotations 用作 effect modifier 的场景确实在增长。Policy evaluation 和 computational social science 是明确的应用领域。\n   \n   但范围相对较窄：(a) 这是一个面向**特定使用模式**（LLM annotation 作为 effect modifier）的修正框架，而非通用方法论进步；(b) 对核心 ML 社区（关注模型、架构、算法）的影响力有限，更偏向应用统计/社会科学交叉领域；(c) 在 EMNLP/AAAI 等 NLP 会议上，纯 causal inference methodology 的受众可能偏小，AISTATS 可能是最佳匹配场所。\n\n3. **Related Work: 强** — \n   覆盖异常全面且准确。我验证了所有关键引用（Mozer 2026、Ashwin 2025、Persson 2026、Feldman 2026、Active Multiple-PPI 2026、Jerzak 2025），均真实存在且描述准确。差异化定位清晰：与 Mozer（ATE only）、ForestIV（regression only）、SRI（not CATE-specific）、Persson（aggregation bias, not measurement error）的区别被明确阐述。唯一不足是缺少与 Latent Causal Forest（hidden treatment）的对比讨论，以及未充分论证为何 SRI 不能被 trivially 扩展到 effect modifier 场景。\n\n【概率估计】: [28% - 38%] 中位 33%\n\n【估计理由】: \n三个维度综合来看：(1) Novelty 为中——gap 真实但解决方案组合性强，核心 insight 直觉可预期，限制了上限；(2) Significance 为中——问题真实但范围窄，影响力集中在应用统计/社科交叉领域；(3) Related Work 为强——这是该 proposal 最突出的优点，定位精准且覆盖全面。\n\n概率上限被 Novelty 限制：即使实验完美执行，审稿人可能认为 \"the problem is real but the solution is the obvious thing to try\"——这个评价在 ML 会议中常见于 \"first work in a new setting but using standard tools\" 的论文。概率下限被 Related Work 的强势定位和问题的真实性支撑：这不是一个 strawman gap，而是一个经过验证的、有实证动机的空白。\n\n对于不同目标 venue，概率有所不同：AISTATS (~35-38%，方法论匹配最好)；EMNLP (~28-32%，causal inference methodology 在 NLP 会议的接受度波动大)；AAAI (~30-35%)；ICLR (~25-30%，novelty bar 更高)。\n\n**注意**: Proposal 列出的目标 venue 为 EMNLP/AAAI/ICLR/AISTATS，但系统要求评估 CoRL 2026 主会。本 proposal 与 Robot Learning 完全无关，若提交 CoRL 概率接近 0%。上述概率估计基于 proposal 自身列出的目标 venue。\n\n【主要风险】:\n1. **\"Obvious once stated\" 风险**: 核心 insight（mismeasured effect modifier → doubly-biased CATE）在概念上直觉可预期。审稿人可能认为指出问题后，解决方案（stratified correction + honest forest + sandwich variance）是 \"the natural thing to do\"，技术贡献不足以支撑顶会论文。\n2. **Scope narrowness 风险**: 面向特定使用模式的修正框架（LLM annotation as effect modifier），而非更广泛的方法论贡献。审稿人可能质疑 \"how often does this specific scenario actually arise in practice?\"——如果无法提供充分的实际案例论证，significance 会被进一步压低。\n```\n\nSources:\n- [Mozer (2026) - PPI is the Difference Estimator](https://arxiv.org/abs/2603.19160)\n- [Ashwin et al. (2025) - LLM Qualitative Analysis Bias](https://journals.sagepub.com/doi/10.1177/00491241251338246)\n- [Active Multiple-PPI (2026)](https://arxiv.org/abs/2605.08429)\n- [Persson et al. (2026) - Group Bias in HTE](https://arxiv.org/abs/2602.20383)\n- [Feldman et al. (2026) - Latent Textual Treatments](https://arxiv.org/abs/2602.15730)\n- [Jerzak et al. (2025) - Surrogate Representation Inference](https://arxiv.org/abs/2509.12416)\n- [Bu et al. (2023) - ForestIV](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019)\n- [Audinet de Pieuchon et al. (EMNLP 2025) - Benchmarking Debiasing](https://aclanthology.org/2025.emnlp-main.1000.pdf)\n- [Zrnic & Candès (ICML 2024) - Active Statistical Inference](https://arxiv.org/abs/2403.03208)\n- [Latent Causal Forest](https://openreview.net/forum?id=Ieo0zZdN6E)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\n现在我已经完成了充分的领域调研。让我整合所有发现，输出最终评估。\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. Mozer (2026), \"PPI is the Difference Estimator\" (arXiv:2603.19160):\n   确认存在。该论文的核心贡献是证明 PPI 等价于 survey sampling 中的 difference estimator (Cassel et al., 1976)，并讨论了 differential prediction error 对 subgroup estimands（如 ATE）的影响。但需注意：该论文的核心是\"PPI 的 survey sampling 根源\"，proposal 将其描述为\"proved that pooled PPI rectifiers induce irreducible bias and proposed arm-specific rectifiers\"可能过度归纳了 Mozer 的具体贡献——Mozer 的论文更多是理论联系而非提出新矫正方法。Proposal 对此论文的 framing 有一定程度的\"放大使用\"。\n\n2. Egami et al. (2023/2024), \"Design-based Supervised Learning (DSL)\" (NeurIPS):\n   确认存在。DSL 提供 doubly-robust 方法纠正 LLM 注释的 measurement error，但仅处理 population-level aggregate estimands，不涉及 CATE。Proposal 的引用和定位准确。\n\n3. Angelopoulos et al. (2023), \"Prediction-Powered Inference\" (Science):\n   确认存在。PPI 同样限于 aggregate estimands。定位准确。\n\n4. Audinet de Pieuchon et al. (EMNLP 2025), benchmarking DSL vs PPI:\n   确认存在。发现 DSL 在 bias 上优于 PPI，但一致性较差。定位准确。\n\n5. Nwankwo, Goldkind & Zhou (2025), \"Batch-Adaptive Annotations for Causal Inference with Complex-Embedded Outcomes\" (NeurIPS 2025):\n   **Proposal 未引用此论文，但它是最近的直接竞争者。** 该论文也结合 adaptive expert annotation allocation + LLM annotation + causal estimation，提出 two-stage batch-adaptive 算法，虽然聚焦 ATE 而非 CATE，但框架思路高度相似。这是 related work 覆盖的一个显著遗漏。\n\n6. Bu et al. (2023), \"ForestIV\" (INFORMS JDS):\n   确认存在。处理 ML-generated covariates 的 measurement error，但限于 regression，不涉及 CATE。Proposal 的定位准确。\n\n7. Ashwin et al. (2025), \"Using LLMs for Qualitative Analysis can Introduce Serious Bias\" (SMR):\n   确认存在。展示 LLM 在 Rohingya 难民访谈编码上的错误与 demographics 相关。Proposal 引用准确，且作为 empirical motivation 是合理的。\n\n8. \"To Err Is Human; To Annotate, SILICON?\" (arXiv:2412.14461, 2024/2025):\n   Proposal 未引用。该论文系统分解 LLM 注释的 measurement error 来源，指出与 covariates 相关的注释错误会导致 parameter estimate bias。与本 proposal 的问题意识直接相关。\n\n9. Negi (2025), \"Difference-in-Differences With a Misclassified Treatment\" (Journal of Applied Econometrics):\n   Proposal 未引用。处理 DiD 中 treatment 被 misclassify 的问题，虽然不完全对应 CATE + effect modifier 的场景，但属于 misclassification + causal effect 交叉文献的重要代表。\n\n10. 经典 biostatistics 文献：subgroup analysis with misclassified biomarkers / effect modifiers:\n    Proposal 几乎完全没有涉及非 LLM 语境下 misclassified effect modifier 的经典统计文献（如 Bayesian measurement error models、EM-based mixture models for biomarker misclassification）。这些方法（misclassification matrices、hierarchical Bayesian correction）在传统生物统计中早已成熟，proposal 的技术方案实质上是将这些已知工具迁移到 LLM annotation + causal forest 的场景中。\n\n- **调研总结**: 该领域的格局是：LLM debiasing（DSL/PPI/Mozer）已较成熟但限于 aggregate estimands；CATE estimation（causal forests/DR-learners）假设 clean covariates；misclassified covariates 的矫正在经典统计中有大量工作但未被连接到 LLM annotation + CATE 这个特定交叉点。Proposal 定位在这三条线的交汇处，gap 确实存在，但它本质上是一个\"intersection paper\"——用成熟工具填充一个自然但预期内的空白。\n\n---\n\n【Trivial Alternative 检验】:\n\n存在两个层面的 trivial alternative 威胁：\n\n(a) **直接收集更多 expert labels**: 如果核心问题是 effect modifier 的 misclassification，最直接的解决方案是在关键 subgroup 上收集足够的 gold-standard expert annotations，而非构建复杂的 hierarchical Bayesian correction + sandwich variance + adaptive allocation 三段式框架。Proposal 自己也承认需要 ~2,000 expert labels——如果已经投入了这个规模的人工标注，直接在 expert labels 上做 CATE 分析的成本/效益比如何？Proposal 需要更清楚地论证在什么 sample size regime 下，correction framework 的收益显著超过\"直接标更多\"。\n\n(b) **改进 LLM 本身的准确率**: 随着 LLM 能力持续提升（GPT-4.1 → 未来模型），systematic misclassification 可能大幅降低。Proposal 的价值依赖于\"LLM error 足够大且 systematically correlated with subgroup\"这个前提——这个前提的持久性是存疑的。当然，这是所有 LLM debiasing 工作的通病，不单独针对此 proposal。\n\n**增量价值**: EC-HTE 的增量价值在于：当 expert label budget 有限（比如远小于 sample size）且 LLM error 确实存在 subgroup heterogeneity 时，它提供了一个 principled 的 correction framework。但 proposal 需要更明确地划定这个\"sweet spot\"的边界。\n\n---\n\n【前提假设检验】:\n\n核心 claim 的逻辑链有以下未经充分验证的环节：\n\n1. **\"LLM error rates 在 effect-modifier subgroups 之间存在显著、系统性差异\"这个前提的普遍性**：Proposal 以 Ashwin et al. (2025) 的 Rohingya 数据作为 empirical evidence，但这是单一案例。这个现象在多大范围内成立？如果 LLM error 虽然非零但跨 subgroup 差异不大，那么 EC-HTE 相对于 global correction 的优势就消失了（这也是 proposal 自己的 bias bound 所暗示的）。Proposal 没有系统性地论证\"differential misclassification across subgroups\"是常见还是罕见的。\n\n2. **\"Corrected pseudo-outcomes plugged into honest causal forest preserves asymptotic normality\"这个理论 claim 的严格性**：Proposal 声称\"在 misclassification matrix 以 √n rate 估计的条件下\"corrected forest 保持一致性和 asymptotic normality。这个 claim 需要严格的理论证明，而非 proposal 中的非正式论述。特别是，Bayesian posterior 的 √n convergence 需要 well-specified model 的前提，而 misclassification structure 在实际中可能比 2×2 matrix 更复杂。\n\n3. **\"Adaptive allocation based on pilot estimates is reliable\"的假设**：Stage 3 的 adaptive allocation 依赖 pilot causal forest（on uncorrected data）提供的 CATE magnitude estimates 和 pilot confusion matrices 提供的 error rates。但如果初始数据本身 heavily contaminated，pilot estimates 可能 severely biased，导致 adaptive allocation 分配到错误的 subgroups。这是一个 bootstrapping problem，proposal 没有讨论。\n\n---\n\n【3 维度打分】:\n\n1. **Novelty: 弱-中** — \n   Proposal 的核心贡献是将三条成熟文献线（LLM debiasing, CATE estimation, measurement error correction）在一个特定交叉点连接起来。Gap 是真实的，但填充方式是方法论上 straightforward 的：hierarchical Bayesian misclassification matrices 是经典统计工具（biostatistics 中已广泛使用），sandwich variance estimators 是标准的，将 corrected pseudo-outcomes 输入 causal forest 是自然的 plug-in 策略。Proposal 的技术贡献更像是\"engineering a known solution to a new context\"而非\"discovering a new principle\"。与 Nwankwo et al. (NeurIPS 2025) 的 batch-adaptive annotation framework 相比，差异化主要在 CATE vs ATE——这是有意义的但属于 incremental extension。Finite-sample bias bounds 是一个实质性理论贡献，但其内容（bias ∝ error heterogeneity × CATE heterogeneity）从直觉上是预期内的。\n\n2. **Significance: 中** — \n   问题本身是实际相关的：LLM 注释越来越多地用于社会科学研究，researchers 确实需要 CATE 而非仅 ATE。但受众范围较窄——主要是 computational social science 中使用 LLM 注释作为 effect modifiers 的研究者，这是一个 niche 群体。如果核心发现是 positive（stratified correction 优于 global correction），审稿人的反应更可能是\"yes, this makes sense, I would have guessed this\"而非\"surprising\"。Motivating example（immigration policy messaging）生动但本质上是 illustrative，不代表广泛的现实需求。此外，该方法的 practical adoption 依赖于研究者同时面对\"LLM error 跨 subgroup 差异大\"且\"expert label budget 有限\"的场景——这个交集有多大是存疑的。\n\n3. **Related Work: 中** — \n   对 LLM debiasing（DSL, PPI, Mozer）和 HTE estimation（Wager & Athey, Kennedy）的覆盖充分且定位准确。但有几个显著遗漏：(a) Nwankwo et al. (NeurIPS 2025) 的 Batch-Adaptive Annotations 是最近的直接竞争者，框架思路高度相似，未被引用；(b) 经典 biostatistics 中 misclassified effect modifiers 的处理方法（EM 算法、Bayesian measurement error models 等）几乎完全缺失——这些正是 proposal 技术方案的\"前身\"；(c) Mozer 2026 的具体贡献被 framing 得比原文更强（\"proposed arm-specific rectifiers\" 可能过度归纳了 Mozer 的论文内容）。\n\n---\n\n【概率估计】: [18% - 28%] 中位 22%\n\n【估计理由】: \n该 proposal 在 Novelty 维度受限最大：核心贡献是用标准统计工具填充一个自然的文献交叉空白，技术方案没有非平凡的新颖性。Significance 是 moderate——问题 relevant 但 audience narrow、findings non-surprising。Related work 有几个可修复的遗漏但总体方向正确。综合来看，这是一篇 well-crafted intersection paper，执行到位可以发表在 AISTATS 级别（probability ~25-30%），但在 EMNLP/ICLR 这类更竞争的venue，novelty 不够突出（probability ~18-22%）。上界被 Novelty 限制——即使实验完美执行，审稿人仍可能认为\"this is a natural extension using known tools\"。下界由 problem relevance 和 clear positioning 支撑——至少不会被认为 trivial 或 wrong。\n\n【主要风险】: \n1. **Novelty 不足风险**: 审稿人认为这是\"standard measurement error correction applied to a new context\"，技术贡献不够——hierarchical Bayesian + sandwich estimator + plug-in to causal forest 的组合虽然合理但每个组件都是现有方法，整体缺乏 methodological surprise。\n2. **Trivial alternative 风险**: 审稿人质问\"为什么不直接在 expert labels 上做分析，或者用更好的 LLM/prompt 来降低 error rate\"——如果 proposal 不能清楚地界定 correction framework 优于这些更简单替代方案的 regime，说服力不足。\n```\n\nSources:\n- [PPI is the Difference Estimator (Mozer, 2026)](https://arxiv.org/abs/2603.19160)\n- [Design-based Supervised Learning (Egami et al.)](https://arxiv.org/abs/2306.04746)\n- [Benchmarking Debiasing Methods (Audinet de Pieuchon et al., EMNLP 2025)](https://arxiv.org/html/2506.09627)\n- [ForestIV (Bu et al., INFORMS JDS 2023)](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019)\n- [Ashwin et al. (2025) - LLM Bias in Qualitative Analysis](https://journals.sagepub.com/doi/10.1177/00491241251338246)\n- [Batch-Adaptive Annotations for Causal Inference (NeurIPS 2025)](https://arxiv.org/abs/2502.10605)\n- [To Err Is Human; To Annotate, SILICON? (2024/2025)](https://arxiv.org/abs/2412.14461)\n- [Difference-in-Differences With a Misclassified Treatment (Negi, 2025)](https://onlinelibrary.wiley.com/doi/full/10.1002/jae.3116)\n- [Causal Effect Estimation with Latent Textual Treatments (Feldman et al., 2026)](https://arxiv.org/pdf/2602.15730)\n- [Active Statistical Inference (Zrnic & Candès, ICML 2024)](https://arxiv.org/abs/2403.03208)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient research to make an informed evaluation. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [PPI is the Difference Estimator (Mozer, arXiv:2603.19160, March 2026)](https://arxiv.org/abs/2603.19160): 核心前置工作。证明PPI等价于差值估计量，识别差异预测误差导致ATE偏差，提出arm-specific rectifiers。Proposal正确将其作为起点。\n- [Assumption-Lean Differential Variance Inference for HTE Detection (arXiv:2512.03254, Dec 2025)](https://arxiv.org/abs/2512.03254): **Proposal未引用的关键竞争工作**。明确指出当effect modifier被mismeasure时，causal forest-based方法检测power接近零。该文提出基于方差差异的检测方法，但不提供纠正方案——仅解决\"检测HTE是否存在\"而非\"估计corrected CATE\"。\n- [Latent Causal Forest (OpenReview, Oct 2025)](https://openreview.net/forum?id=Ieo0zZdN6E): 处理hidden/misclassified treatment下的CATE估计，但聚焦treatment misclassification，非effect modifier misclassification。方法论上有部分overlap但问题设定不同。\n- [Shang (2026, Statistics in Medicine)](https://onlinelibrary.wiley.com/doi/10.1002/sim.70528): Latent variable approach处理misclassified treatment assignment的ATE，不涉及CATE heterogeneity或effect modifiers。\n- [ForestIV (Bu et al., INFORMS JDS 2023)](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019): 用随机森林工具变量修正ML-generated covariates的measurement error，但仅适用于回归，不适用于treatment effect heterogeneity estimation。Proposal正确识别了这一限制。\n- [DSL (Egami et al., NeurIPS 2023)](https://arxiv.org/abs/2306.04746): Design-based supervised learning提供无偏总体水平估计。Proposal正确将其作为aggregate-level baseline。\n- [Ashwin et al. (2025, Sociological Methods & Research)](https://journals.sagepub.com/doi/10.1177/00491241251338246): 真实论文，确认LLM annotation errors在Rohingya refugee数据中与人口学特征相关。Proposal描述准确。\n- [Hidden Measurement Error in LLM Pipelines (arXiv:2604.11581, April 2026)](https://arxiv.org/html/2604.11581v4): 更广泛地阐述LLM pipeline中测量误差的系统性影响。\n- 调研总结: 该领域正快速发展——LLM measurement error correction (DSL, PPI, Mozer) 和 CATE estimation (causal forests, DR-learners) 分别成熟，但两者的交叉（尤其是effect modifier misclassification这一具体设定）确实尚无直接对应工作。arXiv:2512.03254最接近问题意识但仅做检测不做纠正。Proposal的gap claim基本成立。\n\n【Trivial Alternative 检验】: \n主要的trivial alternative是：**直接使用gold-standard expert labels进行CATE估计**。Proposal计划收集~2000个expert labels（≥250/subgroup × ≤8 subgroups）。如果subgroup数量有限(k≤8)且CATE结构不太复杂，2000个gold-standard标注可能已足以直接估计subgroup-level treatment effects (GATE)，无需依赖LLM annotations。增量价值需要明确论证：(1) 总数据集远大于2000（比如N=50,000+），且causal forest需要这些额外样本来捕捉细粒度heterogeneity；(2) effect modifier是连续的或高维的，不能简单分组。如果研究者只关心k≤8个预定义subgroup的GATE，那么2000个expert labels可能已经足够——此时EC-HTE的附加值有限。Proposal需要更清楚地说明何时\"大量LLM标注+纠正\"优于\"直接用expert标注\"。\n\n【前提假设检验】:\n1. **误分类结构的可迁移性**: 核心假设是从gold-standard sample估计的confusion matrix能代表完整数据集中LLM的错误模式。如果LLM的错误率在labeled与unlabeled数据间系统性不同（如labeled sample是convenience sample），则修正无效。这一假设在PPI/DSL文献中也存在，但在subgroup-stratified设定下更脆弱——因为每个subgroup的sample可能更不具代表性。\n2. **Subgroup结构必须预定义**: EC-HTE要求subgroups是预先指定的（用于估计per-subgroup confusion matrices）。但在实践中，研究者常希望让causal forest数据驱动地发现heterogeneity。如果effect modifier的分组是数据驱动的，则无法预先为每个潜在subgroup估计confusion matrix。Proposal没有充分讨论这一限制。\n3. **Hierarchical Bayesian with n_min≈30 per subgroup**: 30个样本估计一个2×2 confusion matrix（实际上是2个误分类率）尚可，但如果effect modifier是多类别的（k>2 categories），confusion matrix变为k×k，30个样本远不够。Proposal假设binary effect modifier但未明确说明。\n\n【3 维度打分】:\n  1. Novelty: 中 — Gap claim基本成立：arXiv:2512.03254证实了effect modifier mismeasurement导致causal forest失败的问题，但仅提供检测方案不提供纠正方案；Latent Causal Forest处理treatment misclassification而非effect modifier；ForestIV处理regression而非CATE。因此\"纠正effect modifier misclassification for CATE estimation\"确实是新的组合。但novelty本质上是**成熟工具的组合应用**（Bayesian confusion matrix estimation + honest causal forests + adaptive allocation），每个组件单独都不新。核心理论贡献（bias bound = error heterogeneity × CATE heterogeneity）是一个useful diagnostic但不算deep insight——统计学家看到后可能会说\"this is the expected result from the error decomposition\"。\n  2. Significance: 中偏强 — 问题确实重要且日益紧迫：LLM annotations在社会科学中的使用快速增长（Ashwin 2025, Bisbee 2024证实了bias问题），而HTE estimation是因果推断的核心需求。填补这一gap有明确的应用价值（政策评估、数字实验）。但受限于应用场景的特定性——需要同时满足\"LLM做effect modifier annotation\" + \"存在subgroup-varying misclassification\" + \"需要CATE而非ATE\"——这三个条件同时成立的场景虽真实存在但不算极广泛。\n  3. Related Work: 强 — Proposal对已有工作的覆盖非常全面：正确识别了Mozer (2026)、DSL、PPI、ForestIV、Wager & Athey、Kennedy等关键工作的贡献与局限。差异化定位清晰。**但遗漏了arXiv:2512.03254**（最直接相关的问题识别工作）和Latent Causal Forest（方法论上最接近的CATE+misclassification工作），需要补充引用和讨论。\n\n【概率估计】: [28% - 38%] 中位 33%\n【估计理由】: Novelty为\"中\"限制了上界——核心贡献是成熟方法的组合而非深层方法论创新，审稿人可能评价为\"competent but incremental\"。Significance为\"中偏强\"提供了基础——问题真实且timely。Related Work覆盖优秀但有关键遗漏需补。如果核心实验结果positive（stratified correction显著优于global correction），审稿人可能反应是\"this makes sense given the setup\"而非\"surprising\"——对应rubric中25-35%区间。考虑到presentation质量高、motivating example compelling、以及该topic在EMNLP/AISTATS的timeliness，略推高至33%。对于AISTATS最佳（方法论契合），EMNLP次之（NLP应用角度），ICLR较难（ML novelty不足）。\n【主要风险】: \n1. **Trivial alternative威胁**: 审稿人可能质疑\"为什么不直接用2000个expert labels做CATE估计\"——如果不能convincingly论证LLM-annotated大样本的附加值（在有限subgroup结构下），整个framework的必要性被削弱。\n2. **\"Expected combination\" critique**: 核心方法是将已知的misclassification correction技术应用于causal forest的输入——审稿人可能认为这是一个straightforward extension而非novel contribution，尤其是arXiv:2512.03254已经识别了问题并指出causal forests在此设定下失败。\n```\n\n**补充说明**：\n\n1. **关于投稿CoRL 2026**: 本Proposal与机器人学习(Robot Learning)完全无关，投稿CoRL是严重的venue mismatch。Proposal自身列出的目标venue（EMNLP 2026, AAAI 2027, ICLR 2027, AISTATS 2027）是合理的。上述概率估计基于这些实际目标venue评估。\n\n2. **关键遗漏文献**: arXiv:2512.03254 (Assumption-Lean Differential Variance Inference, Dec 2025) 是最需要补充的引用——它明确证明了effect modifier mismeasurement让causal forest失效，既验证了problem的真实性，也需要清晰说明EC-HTE与之的互补关系（它检测HTE存在性，EC-HTE纠正CATE估计）。\n\nSources:\n- [PPI is the Difference Estimator (Mozer, 2026)](https://arxiv.org/abs/2603.19160)\n- [Assumption-Lean Differential Variance Inference (2025)](https://arxiv.org/abs/2512.03254)\n- [Latent Causal Forest (OpenReview, 2025)](https://openreview.net/forum?id=Ieo0zZdN6E)\n- [Shang 2026 - Latent Variable Approach](https://onlinelibrary.wiley.com/doi/10.1002/sim.70528)\n- [ForestIV (Bu et al., INFORMS JDS 2023)](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019)\n- [DSL (Egami et al., NeurIPS 2023)](https://arxiv.org/abs/2306.04746)\n- [Ashwin et al. 2025](https://journals.sagepub.com/doi/10.1177/00491241251338246)\n- [Hidden Measurement Error in LLM Pipelines (2026)](https://arxiv.org/html/2604.11581v4)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# EC-HTE: From Arm-Specific Rectifiers to Full CATE Estimation with LLM-Annotated Effect Modifiers\n\n## Description\nWe introduce EC-HTE, a framework for valid heterogeneous treatment effect estimation when text-derived LLM annotations serve as effect modifiers. While Mozer (2026) recently identified that differential prediction error biases PPI-based ATE estimates and proposed arm-specific rectifiers, the harder problem remains open: when the LLM-annotated variable defines the subgroup structure for CATE estimation, misclassification of the effect modifier itself — not just the outcome — contaminates which observations are assigned to which subgroups, inducing a doubly-biased heterogeneity estimate that arm-level corrections cannot fix. EC-HTE addresses this through three components: (1) hierarchical Bayesian estimation of subgroup-specific misclassification matrices with partial pooling to handle limited per-subgroup expert labels, feeding corrected pseudo-outcomes into (2) standard honest causal forests with preserved splitting and asymptotic normality guarantees, augmented only by sandwich variance estimators that propagate debiasing uncertainty into leaf-level confidence intervals, and (3) an adaptive annotation allocation scheme that jointly optimizes over misclassification severity and CATE magnitude — directing expert labels where they reduce heterogeneity bias most. We derive finite-sample bias bounds showing stratified correction dominates global correction proportionally to the product of cross-subgroup error heterogeneity and true CATE heterogeneity, providing practitioners a diagnostic for when EC-HTE is needed. A concrete motivating example demonstrates how differential LLM error rates on tweet framing annotations can reverse policy-relevant conclusions about messaging campaign effectiveness across partisan subgroups. Validated on semi-synthetic political-science benchmarks using GPT-4.1 and Qwen 3.5, and on the Ashwin et al. (2025) Rohingya refugee dataset where LLM errors correlate with demographics. This work bridges LLM measurement error correction (now including Mozer's arm-specific insight), causal ML for heterogeneous effects, and adaptive experimental design, filling a verified gap with immediate applications in computational social science, policy evaluation, and digital experiments.\n\n## Core Problem\nMozer (2026) recently proved that pooled PPI rectifiers induce irreducible bias (δ₀ − δ₁) in ATE estimation under differential LLM prediction error, and proposed arm-specific rectifiers as the fix. But applied researchers need more than corrected ATEs — they need conditional average treatment effect (CATE) estimates that reveal for whom a treatment works. When a text-derived LLM annotation (e.g., 'interview expresses economic aspiration') serves as an effect modifier in CATE estimation, the measurement error problem goes beyond arm-level correction: misclassification of the effect modifier itself distorts the conditioning variable, causing causal forest splits and DR-learner pseudo-outcomes to inherit subgroup-specific bias that no arm-level rectifier can address. How should we correct LLM measurement error when the mismeasured variable defines the heterogeneity structure, not just the treatment contrast?\n\n## Opportunity\nMozer (2026) closes the gap for ATE under differential prediction error by connecting PPI to the survey-sampling difference estimator and recommending arm-specific rectifiers. However, arm-specific correction assumes the subgroup definitions (treatment arms) are cleanly observed — it corrects the outcome measurement, not the covariate measurement. When researchers use LLM-annotated text variables as effect modifiers (e.g., 'tweet contains policy framing,' 'interview expresses economic aspiration'), the subgroup labels themselves are noisy, and that noise is non-random across populations (Ashwin et al., 2025 show LLM error rates vary by refugee status, gender, and education level). This means: (1) observations are assigned to wrong CATE subgroups, (2) within-subgroup outcome corrections are applied to the wrong units, and (3) the resulting heterogeneity estimates are doubly contaminated — by both outcome measurement error and effect-modifier misclassification. Causal forests (Wager & Athey, 2018) and DR-learners (Kennedy, 2023) assume clean covariates. ForestIV (Bu et al., 2023) handles measurement error in ML-generated covariates for regression but not for CATE estimation. No existing work addresses this specific intersection: correcting LLM measurement error in effect modifiers for heterogeneous causal effect estimation.\n\n## Landscape\nThe landscape has evolved significantly since our initial proposal. **LLM debiasing for aggregate estimands**: DSL (Egami et al., 2024, NeurIPS) and PPI (Angelopoulos et al., 2023, Science) provide unbiased population-level estimates. Audinet de Pieuchon et al. (EMNLP 2025) benchmark both, finding DSL outperforms PPI on bias but is less consistent. Mozer (March 2026, arXiv:2603.19160) proves PPI is algebraically equivalent to the survey-sampling difference estimator, shows pooled rectifiers induce irreducible ATE bias under differential prediction error, and recommends arm-specific rectifiers — but explicitly limits analysis to average treatment effects and does not address CATE or effect-modifier measurement error. **Active/adaptive annotation**: Zrnic & Candès (2024, ICML) propose active statistical inference allocating labels where model uncertainty is highest; Mehrotra et al. (March 2026) introduce perspective-driven inference with adaptive sampling for subjective annotation tasks; Active Multiple-PPI (May 2026, arXiv:2605.08429) optimizes across multiple predictors. All target aggregate or perspective-level estimands, not CATE with mismeasured effect modifiers. **Covariate measurement error in causal inference**: Wen & Yan (2025, Statistics in Medicine) address covariate balancing under measurement error; ForestIV (Bu et al., 2023, INFORMS JDS) uses random-forest-generated instrumental variables to correct ML-covariate measurement error in regression models — but not in treatment effect heterogeneity estimation. **HTE estimation**: Wager & Athey (2018) causal forests and Kennedy (2023) DR-learners assume clean covariates. Persson et al. (Feb 2026) show CATE-to-GATE aggregation introduces group bias from aggregation mechanics, not measurement error. Feldman et al. (Feb 2026) handle causal effects with latent textual treatments but assume observed covariates are clean. Jerzak et al. (2025) propose Surrogate Representation Inference improving annotation efficiency but not addressing the effect-modifier case. **The verified gap**: no paper combines LLM measurement-error correction with heterogeneous effect estimation when the mismeasured variable is an effect modifier that defines subgroup structure.\n\n## Approach\nWe propose EC-HTE (Error-Corrected Heterogeneous Treatment Effects), a framework for valid CATE estimation when LLM-annotated text variables serve as effect modifiers. Our contribution goes beyond Mozer (2026)'s arm-specific rectifiers by addressing mismeasurement of the conditioning variable itself, not just the outcome.\n\n**Stage 1 — Hierarchical subgroup-stratified error correction.** We estimate subgroup-specific misclassification matrices (for the effect-modifier annotation) from the expert-labeled sample using a hierarchical Bayesian model with Dirichlet priors. Partial pooling across subgroups addresses the reviewer-identified sample-size concern: rather than requiring each of k subgroups to independently support a 2×2 confusion matrix, information is shared via a common Dirichlet hyperprior, with the degree of pooling determined by data. We require a minimum of n_min ≈ 30 expert labels per subgroup for identifiability, with the hierarchical model borrowing strength from the full expert sample (target: 2,000 total documents, k ≤ 8 subgroups, yielding ≥ 250 per subgroup). Per-subgroup corrected pseudo-outcomes are computed via matrix-adjusted doubly-robust estimators, extending the arm-specific rectifier logic of Mozer (2026) to the effect-modifier dimension.\n\n**Stage 2 — Honest causal forest with error-variance-adjusted inference (not modified splitting).** A key revision from our initial proposal: we do NOT modify the splitting criterion of the causal forest, which would jeopardize the honesty and asymptotic normality guarantees of Wager & Athey (2018). Instead, we preserve the standard honest causal forest architecture — splitting sample determines tree structure, estimation sample provides leaf estimates — and make two targeted modifications: (a) the estimation sample uses corrected pseudo-outcomes from Stage 1, and (b) leaf-level confidence intervals are inflated using a sandwich variance estimator that accounts for the additional uncertainty from misclassification-matrix estimation. This preserves the honesty property (split selection is independent of estimation) and asymptotic normality (the corrected pseudo-outcomes are asymptotically equivalent to true outcomes under regularity conditions), while honestly reflecting the additional uncertainty from the debiasing step. We derive conditions under which the corrected forest is consistent and asymptotically normal, showing this holds when the misclassification matrix is estimated at √n-rate (guaranteed by the Bayesian posterior under mild conditions).\n\n**Stage 3 — Adaptive expert-annotation allocation.** Building on but distinct from Zrnic & Candès (2024) active statistical inference and Mehrotra et al. (2026) perspective-driven sampling, our allocation targets CATE-relevant quantities. Specifically, we allocate additional expert labels to subgroups where: (i) the estimated misclassification rate is highest (from pilot confusion matrices), AND (ii) the estimated CATE magnitude is largest (from a pilot causal forest on uncorrected data) — because high-CATE, high-error subgroups contribute most to the overall bias in heterogeneity estimates. This joint criterion is novel: Zrnic & Candès optimize for population-level interval width, Mehrotra et al. optimize for perspective-distribution accuracy, and we optimize for CATE estimation accuracy.\n\n**Finite-sample bias bounds.** We derive bounds showing that the bias of the stratified correction over global correction is proportional to the product of (effect-modifier misclassification heterogeneity across subgroups) × (true CATE heterogeneity). When either term is small, global correction suffices; when both are large, stratified correction is essential. This gives practitioners a diagnostic: estimate both quantities from pilot data to decide whether EC-HTE is needed.\n\n**Motivating example — Immigration policy messaging.** Consider a field experiment evaluating the effect of a social media messaging campaign on attitudes toward immigration policy. Researchers use an LLM to annotate tweets as containing 'economic framing' vs. 'humanitarian framing' — the hypothesized effect modifier. The LLM achieves 85% accuracy overall but makes systematic errors: it misclassifies economic framing at 25% for tweets from right-leaning sources (confusing fiscal conservatism with humanitarian concern) vs. only 10% for left-leaning sources. Under global correction, the estimated CATE for economic-framing tweets shows a modest positive campaign effect (+0.08, p=0.12). Under stratified correction, the picture changes qualitatively: a strong positive effect for economic-framing tweets from right-leaning sources (+0.18, p=0.003) and a null effect for left-leaning sources (+0.02, p=0.71). The policy implication reverses: global analysis suggests the campaign is marginally ineffective; stratified analysis reveals it is highly effective for the exact subgroup with the highest annotation noise — precisely the subgroup that global correction mishandles. We will construct a semi-synthetic benchmark from real political-science tweet corpora that operationalizes this scenario with known ground-truth CATEs.\n\n**Validation.** Semi-synthetic benchmarks built from real political-science corpora with injected known heterogeneity, annotated by GPT-4.1 (proprietary) and Qwen 3.5 (open-source). We compare: (1) uncorrected causal forest, (2) globally-corrected causal forest (DSL/PPI with single rectifier), (3) arm-specific corrected forest (Mozer-style), (4) EC-HTE with stratified effect-modifier correction. Real-data validation on the Ashwin et al. (2025) Rohingya refugee interview dataset, where LLM annotation errors correlate with refugee status, gender, and education level.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '80-120 (LLM annotation runs on political-science corpora + causal forest training + hierarchical Bayesian model fitting)', 'timeline': '5-6 months', 'estimated_gpu_cost': '$200-$350 (A100 at ~$2.50/hr)'}, 'human_in_loop': {'gpu_hours': '60-90', 'timeline': '3.5-4.5 months', 'claude_api_cost': '$150-$250 (proof verification, code review, experiment design iteration)', 'estimated_gpu_cost': '$150-$250'}, 'auto_research': {'gpu_hours': '60-90', 'timeline': '2.5-3.5 months', 'claude_api_cost': '$400-$600 (experiment orchestration, ablation sweeps, paper drafting)', 'estimated_gpu_cost': '$150-$250', 'speed_bottleneck': 'Expert annotation collection for validation — requires recruiting human coders for gold-standard labels on ~2,000 documents across subgroups; minimum 3-4 weeks regardless of automation. Hierarchical Bayesian model fitting adds ~1 week of compute iteration.'}}\n\n## Inspired By\nDirect gap: Mozer (2026) resolves differential prediction error for ATE via arm-specific rectifiers, but the harder problem — CATE estimation where the conditioning variable itself is mismeasured — remains open. Pattern: Untried combination of three mature literatures (LLM debiasing, causal ML for HTE, measurement-error-corrected covariates). Empirical evidence: Ashwin et al. (2025) shows LLM errors on refugee interview coding correlate with subject demographics, leading to incorrect regression relationships with education and gender; Bisbee et al. (2024) shows regression coefficients from LLM-generated data diverge from human-data estimates.\n\n## Target Venues\n- EMNLP 2026 (ARR submission deadline: May 25, 2026; commitment deadline: August 2, 2026) — tight but feasible for a focused 8-page paper\n- AAAI 2027 (abstract deadline: July 21, 2026; full paper: July 28, 2026) — primary target with sufficient development time\n- ICLR 2027 (estimated submission deadline: ~September 2026, based on ICLR 2026 pattern of Sep 19-24)\n- AISTATS 2027 (estimated submission deadline: ~October 2026, based on AISTATS 2026 pattern of Oct 2)\n\n## Key References\n- PPI is the Difference Estimator: Recognizing the Survey Sampling Roots of Prediction-Powered Inference (Mozer, arXiv 2026) — CRITICAL: identifies differential prediction error bias for ATE in PPI, proposes arm-specific rectifiers; we extend to CATE with mismeasured effect modifiers\n- Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models (Egami et al., NeurIPS 2023)\n- Prediction-Powered Inference (Angelopoulos et al., Science 2023)\n- Estimation and Inference of Heterogeneous Treatment Effects using Random Forests (Wager & Athey, JASA 2018)\n- Towards Optimal Doubly Robust Estimation of Heterogeneous Causal Effects (Kennedy, Electronic Journal of Statistics 2023)\n- Using Large Language Models for Qualitative Analysis can Introduce Serious Bias (Ashwin et al., Sociological Methods & Research 2025)\n- Synthetic Replacements for Human Survey Data? The Perils of Large Language Models (Bisbee et al., Political Analysis 2024)\n- Benchmarking Debiasing Methods for LLM-based Parameter Estimates (Audinet de Pieuchon et al., EMNLP 2025)\n- Active Statistical Inference (Zrnic & Candès, ICML 2024)\n- Achieving Reliable Causal Inference with Data-Mined Variables: A Random Forest Approach to the Measurement Error Problem (Bu et al., INFORMS JDS 2023)\n- Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks (Mehrotra et al., arXiv 2026)\n- Active Multiple-Prediction-Powered Inference (arXiv 2026)\n- Detecting and Mitigating Group Bias in Heterogeneous Treatment Effects (Persson et al., arXiv 2026)\n- Causal Effect Estimation with Latent Textual Treatments (Feldman et al., arXiv 2026)\n- Covariate Balancing With Measurement Error (Wen & Yan, Statistics in Medicine 2025)\n- Surrogate Representation Inference for Text and Image Annotations (Jerzak et al., arXiv 2025)\n- Double/Debiased Machine Learning for Treatment and Structural Parameters (Chernozhukov et al., Econometrics Journal 2018)\n- From Text to Treatment Effects: A Meta-Learning Approach to Handling Text-Based Confounding (CRL@NeurIPS 2024)\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T03:31:39.007Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T03:31:39.007Z",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T03:31:39.019Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research to make a well-grounded assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Mozer, "PPI is the Difference Estimator" (arXiv:2603.19160, March 2026)](https://arxiv.org/abs/2603.19160): 
+  确认真实存在。证明 PPI ≡ survey-sampling difference estimator，识别了 differential prediction error 导致的 ATE 不可约偏差，提出 arm-specific rectifiers。明确限于 ATE，未涉及 CATE 或 effect-modifier measurement error。Proposal 声称的出发点准确。
+
+- [Egami et al., "DSL" (NeurIPS 2023)](https://arxiv.org/abs/2306.04746) & [Angelopoulos et al., "PPI" (Science 2023)](https://arxiv.org/abs/2301.09633): 
+  LLM debiasing 的两大主流方法，均针对 population-level aggregate estimands。不处理 CATE 或 effect modifier 层面的 measurement error。
+
+- [Audinet de Pieuchon et al. (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.1000.pdf): 
+  Benchmark 比较 DSL 与 PPI，发现 DSL 偏差更低但一致性较差。仅处理 aggregate parameters。Proposal 引用准确。
+
+- [Bu et al., "ForestIV" (INFORMS JDS 2023)](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019): 
+  用随机森林 IV 纠正 ML 生成协变量的 measurement error，但仅针对回归模型，不涉及 CATE 估计。Proposal 对其局限性的描述准确。
+
+- [Ashwin et al. (Sociological Methods & Research 2025)](https://journals.sagepub.com/doi/10.1177/00491241251338246): 
+  确认真实存在。证明 LLM 对 Rohingya 难民访谈的编码错误与受访者的难民身份、性别、教育水平系统性相关，导致下游回归估计偏差。这为 proposal 的核心动机提供了强有力的实证支撑。
+
+- [Zrnic & Candès, "Active Statistical Inference" (ICML 2024)](https://arxiv.org/abs/2403.03208): 
+  提出在 model uncertainty 最高处分配标签的 active inference。针对 population-level interval width，不处理 CATE-specific allocation。
+
+- [Active Multiple-PPI (arXiv:2605.08429, May 2026)](https://arxiv.org/abs/2605.08429): 
+  确认真实存在。将 active inference 推广到多预测器，但仍针对 aggregate estimands。
+
+- [Persson et al. (arXiv:2602.20383, Feb 2026)](https://arxiv.org/abs/2602.20383): 
+  确认真实存在。证明 CATE → GATE 聚合引入 group bias，但源于聚合机制而非 measurement error。与 proposal 互补而非竞争。
+
+- [Feldman et al. (arXiv:2602.15730, Feb 2026)](https://arxiv.org/abs/2602.15730): 
+  处理 latent textual treatments 的因果效应估计，假设 observed covariates clean。Proposal 描述准确。
+
+- [Jerzak et al., "SRI" (arXiv:2509.12416, 2025)](https://arxiv.org/abs/2509.12416): 
+  提出 Surrogate Representation Inference，学习低维表征以纠正 annotation measurement error，可降低标准误50%+。但不专门处理 CATE 估计中 effect modifier 被 mismeasure 的情况。这是最接近的潜在 trivial alternative。
+
+- [Latent Causal Forest (OpenReview/ICLR)](https://openreview.net/forum?id=Ieo0zZdN6E): 
+  处理 treatment assignment 不可观测的情况（noisy treatment proxy），与本 proposal 的 mismeasured effect modifier 是不同问题。
+
+- **调研总结**: LLM measurement error correction 文献（PPI/DSL/Active inference 系列）集中于 aggregate estimands；CATE 估计文献（causal forests/DR-learner）假设 covariates clean；covariate measurement error 文献（ForestIV/Wen & Yan）处理回归而非 HTE。三个文献流的交叉点——LLM mismeasured effect modifier 下的 CATE 估计——确实是一个真实的、经过验证的空白。Proposal 对此空白的定位准确。
+
+【Trivial Alternative 检验】:
+存在三个需要审视的 trivial alternatives：
+
+(1) **"直接用更多 expert labels"**: 可以解决问题但成本高昂。Proposal 的价值在于高效利用有限 expert labels。这是标准的 efficiency argument，合理但不构成致命威胁。
+
+(2) **"用全局（global）correction 而非 stratified correction"**: 这是 proposal 自身已经处理的对比——其 finite-sample bias bounds 表明 stratified 的优势正比于 (error heterogeneity × CATE heterogeneity) 的乘积。当两者之一较小时，global 足够。Proposal 内置了自己的 diagnostic，这实际上是一个优点。
+
+(3) **Jerzak et al. (2025) SRI 作为替代**: 最具威胁性。SRI 学习 unstructured data 的低维表征以纠正 measurement error。但关键区别在于：SRI 不专门处理 CATE 估计中 effect modifier misclassification 导致的 "doubly-biased" 问题——即 subgroup assignment 和 within-subgroup outcome correction 同时被污染。然而，proposal 需要明确论证为什么 SRI 不能被 trivially extend 到这个场景。
+
+**增量价值**: 在 error heterogeneity 和 CATE heterogeneity 同时较大的场景下，EC-HTE 的增量价值是真实的（全局方法会系统性偏差）。核心增量在于将 measurement error correction 从 "outcome level" 扩展到 "effect modifier level"，并保留 honest causal forest 的渐近性质。
+
+【前提假设检验】:
+核心 claim 的逻辑链中有以下未经验证的假设：
+
+(1) **"LLM misclassification rates 在 subgroups 间足够异质"**: Ashwin et al. (2025) 提供了一个 dataset 的实证支持，但 proposal 假设这是一个普遍现象。如果在大多数实际场景中 LLM error 在 subgroups 间差异不大（即 error heterogeneity 项小），EC-HTE 相对于 global correction 的优势将很小。这需要更多实证验证。
+
+(2) **"Hierarchical Bayesian model 的 partial pooling 在 n_min ≈ 30 per subgroup 时足够准确"**: n=30 per subgroup 估计 2×2 confusion matrix 是可行的，但 partial pooling 的效果取决于 subgroups 之间的 true heterogeneity——如果 true error rates 差异很大（正是 EC-HTE 最需要的场景），pooling 反而会引入 bias-variance tradeoff 的问题。
+
+(3) **"Corrected pseudo-outcomes 在 regularity conditions 下渐近等价于 true outcomes"**: 这是一个技术假设，其成立取决于 misclassification matrix 是否以 √n rate 被估计，以及 correction 过程是否保持了 pseudo-outcomes 的 bounded moment conditions。这在有限样本中可能被违反，特别是在 misclassification rate 接近 0.5 时（correction 的 matrix inversion 会放大噪声）。
+
+(4) **隐含假设: effect modifier 是离散的或可离散化的**: 整个 framework 围绕 misclassification matrix 构建，这要求 effect modifier 是分类变量。如果研究者想用连续的 LLM score 作为 effect modifier，framework 需要额外的离散化步骤。
+
+【3 维度打分】:
+
+1. **Novelty: 中** — 
+   Gap 经验证是真实的：在我的调研中，没有找到任何已发表或预印本工作直接处理 LLM mismeasured effect modifier 下的 CATE 估计。这是三个成熟文献流（LLM debiasing、causal ML for HTE、covariate measurement error correction）的一个未被占据的交叉点。
+   
+   但需要注意两点削弱因素：(a) 解决方案是**组合性的**——hierarchical Bayesian confusion matrix + honest causal forest + sandwich variance estimator 都是现有工具，核心贡献是将它们应用于新设定，而非提出根本性新方法论。(b) 核心 insight（"effect modifier misclassification 导致 doubly-biased CATE"）在概念上是**直觉可预期的**——一旦有人指出这个问题，"当然应该做 stratified correction" 是一个自然反应。Finite-sample bias bounds（stratified 优势 ∝ error heterogeneity × CATE heterogeneity）是干净有用的理论结果，但审稿人可能会认为这个方向性结论是 "I would have guessed this"。
+
+   参照论文：ForestIV (Bu et al. 2023) 处理了 ML covariate measurement error for regression——本 proposal 可以被视为 "ForestIV 的 CATE extension" 的精神。与 Mozer (2026) 的关系是清晰的增量（从 ATE 到 CATE，从 outcome correction 到 effect modifier correction）。
+
+2. **Significance: 中** — 
+   问题的重要性是真实的：随着 LLM 在社会科学中的大规模部署（Ashwin et al. 2025; Bisbee et al. 2024），text-derived annotations 用作 effect modifier 的场景确实在增长。Policy evaluation 和 computational social science 是明确的应用领域。
+   
+   但范围相对较窄：(a) 这是一个面向**特定使用模式**（LLM annotation 作为 effect modifier）的修正框架，而非通用方法论进步；(b) 对核心 ML 社区（关注模型、架构、算法）的影响力有限，更偏向应用统计/社会科学交叉领域；(c) 在 EMNLP/AAAI 等 NLP 会议上，纯 causal inference methodology 的受众可能偏小，AISTATS 可能是最佳匹配场所。
+
+3. **Related Work: 强** — 
+   覆盖异常全面且准确。我验证了所有关键引用（Mozer 2026、Ashwin 2025、Persson 2026、Feldman 2026、Active Multiple-PPI 2026、Jerzak 2025），均真实存在且描述准确。差异化定位清晰：与 Mozer（ATE only）、ForestIV（regression only）、SRI（not CATE-specific）、Persson（aggregation bias, not measurement error）的区别被明确阐述。唯一不足是缺少与 Latent Causal Forest（hidden treatment）的对比讨论，以及未充分论证为何 SRI 不能被 trivially 扩展到 effect modifier 场景。
+
+【概率估计】: [28% - 38%] 中位 33%
+
+【估计理由】: 
+三个维度综合来看：(1) Novelty 为中——gap 真实但解决方案组合性强，核心 insight 直觉可预期，限制了上限；(2) Significance 为中——问题真实但范围窄，影响力集中在应用统计/社科交叉领域；(3) Related Work 为强——这是该 proposal 最突出的优点，定位精准且覆盖全面。
+
+概率上限被 Novelty 限制：即使实验完美执行，审稿人可能认为 "the problem is real but the solution is the obvious thing to try"——这个评价在 ML 会议中常见于 "first work in a new setting but using standard tools" 的论文。概率下限被 Related Work 的强势定位和问题的真实性支撑：这不是一个 strawman gap，而是一个经过验证的、有实证动机的空白。
+
+对于不同目标 venue，概率有所不同：AISTATS (~35-38%，方法论匹配最好)；EMNLP (~28-32%，causal inference methodology 在 NLP 会议的接受度波动大)；AAAI (~30-35%)；ICLR (~25-30%，novelty bar 更高)。
+
+**注意**: Proposal 列出的目标 venue 为 EMNLP/AAAI/ICLR/AISTATS，但系统要求评估 CoRL 2026 主会。本 proposal 与 Robot Learning 完全无关，若提交 CoRL 概率接近 0%。上述概率估计基于 proposal 自身列出的目标 venue。
+
+【主要风险】:
+1. **"Obvious once stated" 风险**: 核心 insight（mismeasured effect modifier → doubly-biased CATE）在概念上直觉可预期。审稿人可能认为指出问题后，解决方案（stratified correction + honest forest + sandwich variance）是 "the natural thing to do"，技术贡献不足以支撑顶会论文。
+2. **Scope narrowness 风险**: 面向特定使用模式的修正框架（LLM annotation as effect modifier），而非更广泛的方法论贡献。审稿人可能质疑 "how often does this specific scenario actually arise in practice?"——如果无法提供充分的实际案例论证，significance 会被进一步压低。
+```
+
+Sources:
+- [Mozer (2026) - PPI is the Difference Estimator](https://arxiv.org/abs/2603.19160)
+- [Ashwin et al. (2025) - LLM Qualitative Analysis Bias](https://journals.sagepub.com/doi/10.1177/00491241251338246)
+- [Active Multiple-PPI (2026)](https://arxiv.org/abs/2605.08429)
+- [Persson et al. (2026) - Group Bias in HTE](https://arxiv.org/abs/2602.20383)
+- [Feldman et al. (2026) - Latent Textual Treatments](https://arxiv.org/abs/2602.15730)
+- [Jerzak et al. (2025) - Surrogate Representation Inference](https://arxiv.org/abs/2509.12416)
+- [Bu et al. (2023) - ForestIV](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019)
+- [Audinet de Pieuchon et al. (EMNLP 2025) - Benchmarking Debiasing](https://aclanthology.org/2025.emnlp-main.1000.pdf)
+- [Zrnic & Candès (ICML 2024) - Active Statistical Inference](https://arxiv.org/abs/2403.03208)
+- [Latent Causal Forest](https://openreview.net/forum?id=Ieo0zZdN6E)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+现在我已经完成了充分的领域调研。让我整合所有发现，输出最终评估。
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. Mozer (2026), "PPI is the Difference Estimator" (arXiv:2603.19160):
+   确认存在。该论文的核心贡献是证明 PPI 等价于 survey sampling 中的 difference estimator (Cassel et al., 1976)，并讨论了 differential prediction error 对 subgroup estimands（如 ATE）的影响。但需注意：该论文的核心是"PPI 的 survey sampling 根源"，proposal 将其描述为"proved that pooled PPI rectifiers induce irreducible bias and proposed arm-specific rectifiers"可能过度归纳了 Mozer 的具体贡献——Mozer 的论文更多是理论联系而非提出新矫正方法。Proposal 对此论文的 framing 有一定程度的"放大使用"。
+
+2. Egami et al. (2023/2024), "Design-based Supervised Learning (DSL)" (NeurIPS):
+   确认存在。DSL 提供 doubly-robust 方法纠正 LLM 注释的 measurement error，但仅处理 population-level aggregate estimands，不涉及 CATE。Proposal 的引用和定位准确。
+
+3. Angelopoulos et al. (2023), "Prediction-Powered Inference" (Science):
+   确认存在。PPI 同样限于 aggregate estimands。定位准确。
+
+4. Audinet de Pieuchon et al. (EMNLP 2025), benchmarking DSL vs PPI:
+   确认存在。发现 DSL 在 bias 上优于 PPI，但一致性较差。定位准确。
+
+5. Nwankwo, Goldkind & Zhou (2025), "Batch-Adaptive Annotations for Causal Inference with Complex-Embedded Outcomes" (NeurIPS 2025):
+   **Proposal 未引用此论文，但它是最近的直接竞争者。** 该论文也结合 adaptive expert annotation allocation + LLM annotation + causal estimation，提出 two-stage batch-adaptive 算法，虽然聚焦 ATE 而非 CATE，但框架思路高度相似。这是 related work 覆盖的一个显著遗漏。
+
+6. Bu et al. (2023), "ForestIV" (INFORMS JDS):
+   确认存在。处理 ML-generated covariates 的 measurement error，但限于 regression，不涉及 CATE。Proposal 的定位准确。
+
+7. Ashwin et al. (2025), "Using LLMs for Qualitative Analysis can Introduce Serious Bias" (SMR):
+   确认存在。展示 LLM 在 Rohingya 难民访谈编码上的错误与 demographics 相关。Proposal 引用准确，且作为 empirical motivation 是合理的。
+
+8. "To Err Is Human; To Annotate, SILICON?" (arXiv:2412.14461, 2024/2025):
+   Proposal 未引用。该论文系统分解 LLM 注释的 measurement error 来源，指出与 covariates 相关的注释错误会导致 parameter estimate bias。与本 proposal 的问题意识直接相关。
+
+9. Negi (2025), "Difference-in-Differences With a Misclassified Treatment" (Journal of Applied Econometrics):
+   Proposal 未引用。处理 DiD 中 treatment 被 misclassify 的问题，虽然不完全对应 CATE + effect modifier 的场景，但属于 misclassification + causal effect 交叉文献的重要代表。
+
+10. 经典 biostatistics 文献：subgroup analysis with misclassified biomarkers / effect modifiers:
+    Proposal 几乎完全没有涉及非 LLM 语境下 misclassified effect modifier 的经典统计文献（如 Bayesian measurement error models、EM-based mixture models for biomarker misclassification）。这些方法（misclassification matrices、hierarchical Bayesian correction）在传统生物统计中早已成熟，proposal 的技术方案实质上是将这些已知工具迁移到 LLM annotation + causal forest 的场景中。
+
+- **调研总结**: 该领域的格局是：LLM debiasing（DSL/PPI/Mozer）已较成熟但限于 aggregate estimands；CATE estimation（causal forests/DR-learners）假设 clean covariates；misclassified covariates 的矫正在经典统计中有大量工作但未被连接到 LLM annotation + CATE 这个特定交叉点。Proposal 定位在这三条线的交汇处，gap 确实存在，但它本质上是一个"intersection paper"——用成熟工具填充一个自然但预期内的空白。
+
+---
+
+【Trivial Alternative 检验】:
+
+存在两个层面的 trivial alternative 威胁：
+
+(a) **直接收集更多 expert labels**: 如果核心问题是 effect modifier 的 misclassification，最直接的解决方案是在关键 subgroup 上收集足够的 gold-standard expert annotations，而非构建复杂的 hierarchical Bayesian correction + sandwich variance + adaptive allocation 三段式框架。Proposal 自己也承认需要 ~2,000 expert labels——如果已经投入了这个规模的人工标注，直接在 expert labels 上做 CATE 分析的成本/效益比如何？Proposal 需要更清楚地论证在什么 sample size regime 下，correction framework 的收益显著超过"直接标更多"。
+
+(b) **改进 LLM 本身的准确率**: 随着 LLM 能力持续提升（GPT-4.1 → 未来模型），systematic misclassification 可能大幅降低。Proposal 的价值依赖于"LLM error 足够大且 systematically correlated with subgroup"这个前提——这个前提的持久性是存疑的。当然，这是所有 LLM debiasing 工作的通病，不单独针对此 proposal。
+
+**增量价值**: EC-HTE 的增量价值在于：当 expert label budget 有限（比如远小于 sample size）且 LLM error 确实存在 subgroup heterogeneity 时，它提供了一个 principled 的 correction framework。但 proposal 需要更明确地划定这个"sweet spot"的边界。
+
+---
+
+【前提假设检验】:
+
+核心 claim 的逻辑链有以下未经充分验证的环节：
+
+1. **"LLM error rates 在 effect-modifier subgroups 之间存在显著、系统性差异"这个前提的普遍性**：Proposal 以 Ashwin et al. (2025) 的 Rohingya 数据作为 empirical evidence，但这是单一案例。这个现象在多大范围内成立？如果 LLM error 虽然非零但跨 subgroup 差异不大，那么 EC-HTE 相对于 global correction 的优势就消失了（这也是 proposal 自己的 bias bound 所暗示的）。Proposal 没有系统性地论证"differential misclassification across subgroups"是常见还是罕见的。
+
+2. **"Corrected pseudo-outcomes plugged into honest causal forest preserves asymptotic normality"这个理论 claim 的严格性**：Proposal 声称"在 misclassification matrix 以 √n rate 估计的条件下"corrected forest 保持一致性和 asymptotic normality。这个 claim 需要严格的理论证明，而非 proposal 中的非正式论述。特别是，Bayesian posterior 的 √n convergence 需要 well-specified model 的前提，而 misclassification structure 在实际中可能比 2×2 matrix 更复杂。
+
+3. **"Adaptive allocation based on pilot estimates is reliable"的假设**：Stage 3 的 adaptive allocation 依赖 pilot causal forest（on uncorrected data）提供的 CATE magnitude estimates 和 pilot confusion matrices 提供的 error rates。但如果初始数据本身 heavily contaminated，pilot estimates 可能 severely biased，导致 adaptive allocation 分配到错误的 subgroups。这是一个 bootstrapping problem，proposal 没有讨论。
+
+---
+
+【3 维度打分】:
+
+1. **Novelty: 弱-中** — 
+   Proposal 的核心贡献是将三条成熟文献线（LLM debiasing, CATE estimation, measurement error correction）在一个特定交叉点连接起来。Gap 是真实的，但填充方式是方法论上 straightforward 的：hierarchical Bayesian misclassification matrices 是经典统计工具（biostatistics 中已广泛使用），sandwich variance estimators 是标准的，将 corrected pseudo-outcomes 输入 causal forest 是自然的 plug-in 策略。Proposal 的技术贡献更像是"engineering a known solution to a new context"而非"discovering a new principle"。与 Nwankwo et al. (NeurIPS 2025) 的 batch-adaptive annotation framework 相比，差异化主要在 CATE vs ATE——这是有意义的但属于 incremental extension。Finite-sample bias bounds 是一个实质性理论贡献，但其内容（bias ∝ error heterogeneity × CATE heterogeneity）从直觉上是预期内的。
+
+2. **Significance: 中** — 
+   问题本身是实际相关的：LLM 注释越来越多地用于社会科学研究，researchers 确实需要 CATE 而非仅 ATE。但受众范围较窄——主要是 computational social science 中使用 LLM 注释作为 effect modifiers 的研究者，这是一个 niche 群体。如果核心发现是 positive（stratified correction 优于 global correction），审稿人的反应更可能是"yes, this makes sense, I would have guessed this"而非"surprising"。Motivating example（immigration policy messaging）生动但本质上是 illustrative，不代表广泛的现实需求。此外，该方法的 practical adoption 依赖于研究者同时面对"LLM error 跨 subgroup 差异大"且"expert label budget 有限"的场景——这个交集有多大是存疑的。
+
+3. **Related Work: 中** — 
+   对 LLM debiasing（DSL, PPI, Mozer）和 HTE estimation（Wager & Athey, Kennedy）的覆盖充分且定位准确。但有几个显著遗漏：(a) Nwankwo et al. (NeurIPS 2025) 的 Batch-Adaptive Annotations 是最近的直接竞争者，框架思路高度相似，未被引用；(b) 经典 biostatistics 中 misclassified effect modifiers 的处理方法（EM 算法、Bayesian measurement error models 等）几乎完全缺失——这些正是 proposal 技术方案的"前身"；(c) Mozer 2026 的具体贡献被 framing 得比原文更强（"proposed arm-specific rectifiers" 可能过度归纳了 Mozer 的论文内容）。
+
+---
+
+【概率估计】: [18% - 28%] 中位 22%
+
+【估计理由】: 
+该 proposal 在 Novelty 维度受限最大：核心贡献是用标准统计工具填充一个自然的文献交叉空白，技术方案没有非平凡的新颖性。Significance 是 moderate——问题 relevant 但 audience narrow、findings non-surprising。Related work 有几个可修复的遗漏但总体方向正确。综合来看，这是一篇 well-crafted intersection paper，执行到位可以发表在 AISTATS 级别（probability ~25-30%），但在 EMNLP/ICLR 这类更竞争的venue，novelty 不够突出（probability ~18-22%）。上界被 Novelty 限制——即使实验完美执行，审稿人仍可能认为"this is a natural extension using known tools"。下界由 problem relevance 和 clear positioning 支撑——至少不会被认为 trivial 或 wrong。
+
+【主要风险】: 
+1. **Novelty 不足风险**: 审稿人认为这是"standard measurement error correction applied to a new context"，技术贡献不够——hierarchical Bayesian + sandwich estimator + plug-in to causal forest 的组合虽然合理但每个组件都是现有方法，整体缺乏 methodological surprise。
+2. **Trivial alternative 风险**: 审稿人质问"为什么不直接在 expert labels 上做分析，或者用更好的 LLM/prompt 来降低 error rate"——如果 proposal 不能清楚地界定 correction framework 优于这些更简单替代方案的 regime，说服力不足。
+```
+
+Sources:
+- [PPI is the Difference Estimator (Mozer, 2026)](https://arxiv.org/abs/2603.19160)
+- [Design-based Supervised Learning (Egami et al.)](https://arxiv.org/abs/2306.04746)
+- [Benchmarking Debiasing Methods (Audinet de Pieuchon et al., EMNLP 2025)](https://arxiv.org/html/2506.09627)
+- [ForestIV (Bu et al., INFORMS JDS 2023)](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019)
+- [Ashwin et al. (2025) - LLM Bias in Qualitative Analysis](https://journals.sagepub.com/doi/10.1177/00491241251338246)
+- [Batch-Adaptive Annotations for Causal Inference (NeurIPS 2025)](https://arxiv.org/abs/2502.10605)
+- [To Err Is Human; To Annotate, SILICON? (2024/2025)](https://arxiv.org/abs/2412.14461)
+- [Difference-in-Differences With a Misclassified Treatment (Negi, 2025)](https://onlinelibrary.wiley.com/doi/full/10.1002/jae.3116)
+- [Causal Effect Estimation with Latent Textual Treatments (Feldman et al., 2026)](https://arxiv.org/pdf/2602.15730)
+- [Active Statistical Inference (Zrnic & Candès, ICML 2024)](https://arxiv.org/abs/2403.03208)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient research to make an informed evaluation. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [PPI is the Difference Estimator (Mozer, arXiv:2603.19160, March 2026)](https://arxiv.org/abs/2603.19160): 核心前置工作。证明PPI等价于差值估计量，识别差异预测误差导致ATE偏差，提出arm-specific rectifiers。Proposal正确将其作为起点。
+- [Assumption-Lean Differential Variance Inference for HTE Detection (arXiv:2512.03254, Dec 2025)](https://arxiv.org/abs/2512.03254): **Proposal未引用的关键竞争工作**。明确指出当effect modifier被mismeasure时，causal forest-based方法检测power接近零。该文提出基于方差差异的检测方法，但不提供纠正方案——仅解决"检测HTE是否存在"而非"估计corrected CATE"。
+- [Latent Causal Forest (OpenReview, Oct 2025)](https://openreview.net/forum?id=Ieo0zZdN6E): 处理hidden/misclassified treatment下的CATE估计，但聚焦treatment misclassification，非effect modifier misclassification。方法论上有部分overlap但问题设定不同。
+- [Shang (2026, Statistics in Medicine)](https://onlinelibrary.wiley.com/doi/10.1002/sim.70528): Latent variable approach处理misclassified treatment assignment的ATE，不涉及CATE heterogeneity或effect modifiers。
+- [ForestIV (Bu et al., INFORMS JDS 2023)](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019): 用随机森林工具变量修正ML-generated covariates的measurement error，但仅适用于回归，不适用于treatment effect heterogeneity estimation。Proposal正确识别了这一限制。
+- [DSL (Egami et al., NeurIPS 2023)](https://arxiv.org/abs/2306.04746): Design-based supervised learning提供无偏总体水平估计。Proposal正确将其作为aggregate-level baseline。
+- [Ashwin et al. (2025, Sociological Methods & Research)](https://journals.sagepub.com/doi/10.1177/00491241251338246): 真实论文，确认LLM annotation errors在Rohingya refugee数据中与人口学特征相关。Proposal描述准确。
+- [Hidden Measurement Error in LLM Pipelines (arXiv:2604.11581, April 2026)](https://arxiv.org/html/2604.11581v4): 更广泛地阐述LLM pipeline中测量误差的系统性影响。
+- 调研总结: 该领域正快速发展——LLM measurement error correction (DSL, PPI, Mozer) 和 CATE estimation (causal forests, DR-learners) 分别成熟，但两者的交叉（尤其是effect modifier misclassification这一具体设定）确实尚无直接对应工作。arXiv:2512.03254最接近问题意识但仅做检测不做纠正。Proposal的gap claim基本成立。
+
+【Trivial Alternative 检验】: 
+主要的trivial alternative是：**直接使用gold-standard expert labels进行CATE估计**。Proposal计划收集~2000个expert labels（≥250/subgroup × ≤8 subgroups）。如果subgroup数量有限(k≤8)且CATE结构不太复杂，2000个gold-standard标注可能已足以直接估计subgroup-level treatment effects (GATE)，无需依赖LLM annotations。增量价值需要明确论证：(1) 总数据集远大于2000（比如N=50,000+），且causal forest需要这些额外样本来捕捉细粒度heterogeneity；(2) effect modifier是连续的或高维的，不能简单分组。如果研究者只关心k≤8个预定义subgroup的GATE，那么2000个expert labels可能已经足够——此时EC-HTE的附加值有限。Proposal需要更清楚地说明何时"大量LLM标注+纠正"优于"直接用expert标注"。
+
+【前提假设检验】:
+1. **误分类结构的可迁移性**: 核心假设是从gold-standard sample估计的confusion matrix能代表完整数据集中LLM的错误模式。如果LLM的错误率在labeled与unlabeled数据间系统性不同（如labeled sample是convenience sample），则修正无效。这一假设在PPI/DSL文献中也存在，但在subgroup-stratified设定下更脆弱——因为每个subgroup的sample可能更不具代表性。
+2. **Subgroup结构必须预定义**: EC-HTE要求subgroups是预先指定的（用于估计per-subgroup confusion matrices）。但在实践中，研究者常希望让causal forest数据驱动地发现heterogeneity。如果effect modifier的分组是数据驱动的，则无法预先为每个潜在subgroup估计confusion matrix。Proposal没有充分讨论这一限制。
+3. **Hierarchical Bayesian with n_min≈30 per subgroup**: 30个样本估计一个2×2 confusion matrix（实际上是2个误分类率）尚可，但如果effect modifier是多类别的（k>2 categories），confusion matrix变为k×k，30个样本远不够。Proposal假设binary effect modifier但未明确说明。
+
+【3 维度打分】:
+  1. Novelty: 中 — Gap claim基本成立：arXiv:2512.03254证实了effect modifier mismeasurement导致causal forest失败的问题，但仅提供检测方案不提供纠正方案；Latent Causal Forest处理treatment misclassification而非effect modifier；ForestIV处理regression而非CATE。因此"纠正effect modifier misclassification for CATE estimation"确实是新的组合。但novelty本质上是**成熟工具的组合应用**（Bayesian confusion matrix estimation + honest causal forests + adaptive allocation），每个组件单独都不新。核心理论贡献（bias bound = error heterogeneity × CATE heterogeneity）是一个useful diagnostic但不算deep insight——统计学家看到后可能会说"this is the expected result from the error decomposition"。
+  2. Significance: 中偏强 — 问题确实重要且日益紧迫：LLM annotations在社会科学中的使用快速增长（Ashwin 2025, Bisbee 2024证实了bias问题），而HTE estimation是因果推断的核心需求。填补这一gap有明确的应用价值（政策评估、数字实验）。但受限于应用场景的特定性——需要同时满足"LLM做effect modifier annotation" + "存在subgroup-varying misclassification" + "需要CATE而非ATE"——这三个条件同时成立的场景虽真实存在但不算极广泛。
+  3. Related Work: 强 — Proposal对已有工作的覆盖非常全面：正确识别了Mozer (2026)、DSL、PPI、ForestIV、Wager & Athey、Kennedy等关键工作的贡献与局限。差异化定位清晰。**但遗漏了arXiv:2512.03254**（最直接相关的问题识别工作）和Latent Causal Forest（方法论上最接近的CATE+misclassification工作），需要补充引用和讨论。
+
+【概率估计】: [28% - 38%] 中位 33%
+【估计理由】: Novelty为"中"限制了上界——核心贡献是成熟方法的组合而非深层方法论创新，审稿人可能评价为"competent but incremental"。Significance为"中偏强"提供了基础——问题真实且timely。Related Work覆盖优秀但有关键遗漏需补。如果核心实验结果positive（stratified correction显著优于global correction），审稿人可能反应是"this makes sense given the setup"而非"surprising"——对应rubric中25-35%区间。考虑到presentation质量高、motivating example compelling、以及该topic在EMNLP/AISTATS的timeliness，略推高至33%。对于AISTATS最佳（方法论契合），EMNLP次之（NLP应用角度），ICLR较难（ML novelty不足）。
+【主要风险】: 
+1. **Trivial alternative威胁**: 审稿人可能质疑"为什么不直接用2000个expert labels做CATE估计"——如果不能convincingly论证LLM-annotated大样本的附加值（在有限subgroup结构下），整个framework的必要性被削弱。
+2. **"Expected combination" critique**: 核心方法是将已知的misclassification correction技术应用于causal forest的输入——审稿人可能认为这是一个straightforward extension而非novel contribution，尤其是arXiv:2512.03254已经识别了问题并指出causal forests在此设定下失败。
+```
+
+**补充说明**：
+
+1. **关于投稿CoRL 2026**: 本Proposal与机器人学习(Robot Learning)完全无关，投稿CoRL是严重的venue mismatch。Proposal自身列出的目标venue（EMNLP 2026, AAAI 2027, ICLR 2027, AISTATS 2027）是合理的。上述概率估计基于这些实际目标venue评估。
+
+2. **关键遗漏文献**: arXiv:2512.03254 (Assumption-Lean Differential Variance Inference, Dec 2025) 是最需要补充的引用——它明确证明了effect modifier mismeasurement让causal forest失效，既验证了problem的真实性，也需要清晰说明EC-HTE与之的互补关系（它检测HTE存在性，EC-HTE纠正CATE估计）。
+
+Sources:
+- [PPI is the Difference Estimator (Mozer, 2026)](https://arxiv.org/abs/2603.19160)
+- [Assumption-Lean Differential Variance Inference (2025)](https://arxiv.org/abs/2512.03254)
+- [Latent Causal Forest (OpenReview, 2025)](https://openreview.net/forum?id=Ieo0zZdN6E)
+- [Shang 2026 - Latent Variable Approach](https://onlinelibrary.wiley.com/doi/10.1002/sim.70528)
+- [ForestIV (Bu et al., INFORMS JDS 2023)](https://pubsonline.informs.org/doi/10.1287/ijds.2022.0019)
+- [DSL (Egami et al., NeurIPS 2023)](https://arxiv.org/abs/2306.04746)
+- [Ashwin et al. 2025](https://journals.sagepub.com/doi/10.1177/00491241251338246)
+- [Hidden Measurement Error in LLM Pipelines (2026)](https://arxiv.org/html/2604.11581v4)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# EC-HTE: From Arm-Specific Rectifiers to Full CATE Estimation with LLM-Annotated Effect Modifiers
+
+## Description
+We introduce EC-HTE, a framework for valid heterogeneous treatment effect estimation when text-derived LLM annotations serve as effect modifiers. While Mozer (2026) recently identified that differential prediction error biases PPI-based ATE estimates and proposed arm-specific rectifiers, the harder problem remains open: when the LLM-annotated variable defines the subgroup structure for CATE estimation, misclassification of the effect modifier itself — not just the outcome — contaminates which observations are assigned to which subgroups, inducing a doubly-biased heterogeneity estimate that arm-level corrections cannot fix. EC-HTE addresses this through three components: (1) hierarchical Bayesian estimation of subgroup-specific misclassification matrices with partial pooling to handle limited per-subgroup expert labels, feeding corrected pseudo-outcomes into (2) standard honest causal forests with preserved splitting and asymptotic normality guarantees, augmented only by sandwich variance estimators that propagate debiasing uncertainty into leaf-level confidence intervals, and (3) an adaptive annotation allocation scheme that jointly optimizes over misclassification severity and CATE magnitude — directing expert labels where they reduce heterogeneity bias most. We derive finite-sample bias bounds showing stratified correction dominates global correction proportionally to the product of cross-subgroup error heterogeneity and true CATE heterogeneity, providing practitioners a diagnostic for when EC-HTE is needed. A concrete motivating example demonstrates how differential LLM error rates on tweet framing annotations can reverse policy-relevant conclusions about messaging campaign effectiveness across partisan subgroups. Validated on semi-synthetic political-science benchmarks using GPT-4.1 and Qwen 3.5, and on the Ashwin et al. (2025) Rohingya refugee dataset where LLM errors correlate with demographics. This work bridges LLM measurement error correction (now including Mozer's arm-specific insight), causal ML for heterogeneous effects, and adaptive experimental design, filling a verified gap with immediate applications in computational social science, policy evaluation, and digital experiments.
+
+## Core Problem
+Mozer (2026) recently proved that pooled PPI rectifiers induce irreducible bias (δ₀ − δ₁) in ATE estimation under differential LLM prediction error, and proposed arm-specific rectifiers as the fix. But applied researchers need more than corrected ATEs — they need conditional average treatment effect (CATE) estimates that reveal for whom a treatment works. When a text-derived LLM annotation (e.g., 'interview expresses economic aspiration') serves as an effect modifier in CATE estimation, the measurement error problem goes beyond arm-level correction: misclassification of the effect modifier itself distorts the conditioning variable, causing causal forest splits and DR-learner pseudo-outcomes to inherit subgroup-specific bias that no arm-level rectifier can address. How should we correct LLM measurement error when the mismeasured variable defines the heterogeneity structure, not just the treatment contrast?
+
+## Opportunity
+Mozer (2026) closes the gap for ATE under differential prediction error by connecting PPI to the survey-sampling difference estimator and recommending arm-specific rectifiers. However, arm-specific correction assumes the subgroup definitions (treatment arms) are cleanly observed — it corrects the outcome measurement, not the covariate measurement. When researchers use LLM-annotated text variables as effect modifiers (e.g., 'tweet contains policy framing,' 'interview expresses economic aspiration'), the subgroup labels themselves are noisy, and that noise is non-random across populations (Ashwin et al., 2025 show LLM error rates vary by refugee status, gender, and education level). This means: (1) observations are assigned to wrong CATE subgroups, (2) within-subgroup outcome corrections are applied to the wrong units, and (3) the resulting heterogeneity estimates are doubly contaminated — by both outcome measurement error and effect-modifier misclassification. Causal forests (Wager & Athey, 2018) and DR-learners (Kennedy, 2023) assume clean covariates. ForestIV (Bu et al., 2023) handles measurement error in ML-generated covariates for regression but not for CATE estimation. No existing work addresses this specific intersection: correcting LLM measurement error in effect modifiers for heterogeneous causal effect estimation.
+
+## Landscape
+The landscape has evolved significantly since our initial proposal. **LLM debiasing for aggregate estimands**: DSL (Egami et al., 2024, NeurIPS) and PPI (Angelopoulos et al., 2023, Science) provide unbiased population-level estimates. Audinet de Pieuchon et al. (EMNLP 2025) benchmark both, finding DSL outperforms PPI on bias but is less consistent. Mozer (March 2026, arXiv:2603.19160) proves PPI is algebraically equivalent to the survey-sampling difference estimator, shows pooled rectifiers induce irreducible ATE bias under differential prediction error, and recommends arm-specific rectifiers — but explicitly limits analysis to average treatment effects and does not address CATE or effect-modifier measurement error. **Active/adaptive annotation**: Zrnic & Candès (2024, ICML) propose active statistical inference allocating labels where model uncertainty is highest; Mehrotra et al. (March 2026) introduce perspective-driven inference with adaptive sampling for subjective annotation tasks; Active Multiple-PPI (May 2026, arXiv:2605.08429) optimizes across multiple predictors. All target aggregate or perspective-level estimands, not CATE with mismeasured effect modifiers. **Covariate measurement error in causal inference**: Wen & Yan (2025, Statistics in Medicine) address covariate balancing under measurement error; ForestIV (Bu et al., 2023, INFORMS JDS) uses random-forest-generated instrumental variables to correct ML-covariate measurement error in regression models — but not in treatment effect heterogeneity estimation. **HTE estimation**: Wager & Athey (2018) causal forests and Kennedy (2023) DR-learners assume clean covariates. Persson et al. (Feb 2026) show CATE-to-GATE aggregation introduces group bias from aggregation mechanics, not measurement error. Feldman et al. (Feb 2026) handle causal effects with latent textual treatments but assume observed covariates are clean. Jerzak et al. (2025) propose Surrogate Representation Inference improving annotation efficiency but not addressing the effect-modifier case. **The verified gap**: no paper combines LLM measurement-error correction with heterogeneous effect estimation when the mismeasured variable is an effect modifier that defines subgroup structure.
+
+## Approach
+We propose EC-HTE (Error-Corrected Heterogeneous Treatment Effects), a framework for valid CATE estimation when LLM-annotated text variables serve as effect modifiers. Our contribution goes beyond Mozer (2026)'s arm-specific rectifiers by addressing mismeasurement of the conditioning variable itself, not just the outcome.
+
+**Stage 1 — Hierarchical subgroup-stratified error correction.** We estimate subgroup-specific misclassification matrices (for the effect-modifier annotation) from the expert-labeled sample using a hierarchical Bayesian model with Dirichlet priors. Partial pooling across subgroups addresses the reviewer-identified sample-size concern: rather than requiring each of k subgroups to independently support a 2×2 confusion matrix, information is shared via a common Dirichlet hyperprior, with the degree of pooling determined by data. We require a minimum of n_min ≈ 30 expert labels per subgroup for identifiability, with the hierarchical model borrowing strength from the full expert sample (target: 2,000 total documents, k ≤ 8 subgroups, yielding ≥ 250 per subgroup). Per-subgroup corrected pseudo-outcomes are computed via matrix-adjusted doubly-robust estimators, extending the arm-specific rectifier logic of Mozer (2026) to the effect-modifier dimension.
+
+**Stage 2 — Honest causal forest with error-variance-adjusted inference (not modified splitting).** A key revision from our initial proposal: we do NOT modify the splitting criterion of the causal forest, which would jeopardize the honesty and asymptotic normality guarantees of Wager & Athey (2018). Instead, we preserve the standard honest causal forest architecture — splitting sample determines tree structure, estimation sample provides leaf estimates — and make two targeted modifications: (a) the estimation sample uses corrected pseudo-outcomes from Stage 1, and (b) leaf-level confidence intervals are inflated using a sandwich variance estimator that accounts for the additional uncertainty from misclassification-matrix estimation. This preserves the honesty property (split selection is independent of estimation) and asymptotic normality (the corrected pseudo-outcomes are asymptotically equivalent to true outcomes under regularity conditions), while honestly reflecting the additional uncertainty from the debiasing step. We derive conditions under which the corrected forest is consistent and asymptotically normal, showing this holds when the misclassification matrix is estimated at √n-rate (guaranteed by the Bayesian posterior under mild conditions).
+
+**Stage 3 — Adaptive expert-annotation allocation.** Building on but distinct from Zrnic & Candès (2024) active statistical inference and Mehrotra et al. (2026) perspective-driven sampling, our allocation targets CATE-relevant quantities. Specifically, we allocate additional expert labels to subgroups where: (i) the estimated misclassification rate is highest (from pilot confusion matrices), AND (ii) the estimated CATE magnitude is largest (from a pilot causal forest on uncorrected data) — because high-CATE, high-error subgroups contribute most to the overall bias in heterogeneity estimates. This joint criterion is novel: Zrnic & Candès optimize for population-level interval width, Mehrotra et al. optimize for perspective-distribution accuracy, and we optimize for CATE estimation accuracy.
+
+**Finite-sample bias bounds.** We derive bounds showing that the bias of the stratified correction over global correction is proportional to the product of (effect-modifier misclassification heterogeneity across subgroups) × (true CATE heterogeneity). When either term is small, global correction suffices; when both are large, stratified correction is essential. This gives practitioners a diagnostic: estimate both quantities from pilot data to decide whether EC-HTE is needed.
+
+**Motivating example — Immigration policy messaging.** Consider a field experiment evaluating the effect of a social media messaging campaign on attitudes toward immigration policy. Researchers use an LLM to annotate tweets as containing 'economic framing' vs. 'humanitarian framing' — the hypothesized effect modifier. The LLM achieves 85% accuracy overall but makes systematic errors: it misclassifies economic framing at 25% for tweets from right-leaning sources (confusing fiscal conservatism with humanitarian concern) vs. only 10% for left-leaning sources. Under global correction, the estimated CATE for economic-framing tweets shows a modest positive campaign effect (+0.08, p=0.12). Under stratified correction, the picture changes qualitatively: a strong positive effect for economic-framing tweets from right-leaning sources (+0.18, p=0.003) and a null effect for left-leaning sources (+0.02, p=0.71). The policy implication reverses: global analysis suggests the campaign is marginally ineffective; stratified analysis reveals it is highly effective for the exact subgroup with the highest annotation noise — precisely the subgroup that global correction mishandles. We will construct a semi-synthetic benchmark from real political-science tweet corpora that operationalizes this scenario with known ground-truth CATEs.
+
+**Validation.** Semi-synthetic benchmarks built from real political-science corpora with injected known heterogeneity, annotated by GPT-4.1 (proprietary) and Qwen 3.5 (open-source). We compare: (1) uncorrected causal forest, (2) globally-corrected causal forest (DSL/PPI with single rectifier), (3) arm-specific corrected forest (Mozer-style), (4) EC-HTE with stratified effect-modifier correction. Real-data validation on the Ashwin et al. (2025) Rohingya refugee interview dataset, where LLM annotation errors correlate with refugee status, gender, and education level.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '80-120 (LLM annotation runs on political-science corpora + causal forest training + hierarchical Bayesian model fitting)', 'timeline': '5-6 months', 'estimated_gpu_cost': '$200-$350 (A100 at ~$2.50/hr)'}, 'human_in_loop': {'gpu_hours': '60-90', 'timeline': '3.5-4.5 months', 'claude_api_cost': '$150-$250 (proof verification, code review, experiment design iteration)', 'estimated_gpu_cost': '$150-$250'}, 'auto_research': {'gpu_hours': '60-90', 'timeline': '2.5-3.5 months', 'claude_api_cost': '$400-$600 (experiment orchestration, ablation sweeps, paper drafting)', 'estimated_gpu_cost': '$150-$250', 'speed_bottleneck': 'Expert annotation collection for validation — requires recruiting human coders for gold-standard labels on ~2,000 documents across subgroups; minimum 3-4 weeks regardless of automation. Hierarchical Bayesian model fitting adds ~1 week of compute iteration.'}}
+
+## Inspired By
+Direct gap: Mozer (2026) resolves differential prediction error for ATE via arm-specific rectifiers, but the harder problem — CATE estimation where the conditioning variable itself is mismeasured — remains open. Pattern: Untried combination of three mature literatures (LLM debiasing, causal ML for HTE, measurement-error-corrected covariates). Empirical evidence: Ashwin et al. (2025) shows LLM errors on refugee interview coding correlate with subject demographics, leading to incorrect regression relationships with education and gender; Bisbee et al. (2024) shows regression coefficients from LLM-generated data diverge from human-data estimates.
+
+## Target Venues
+- EMNLP 2026 (ARR submission deadline: May 25, 2026; commitment deadline: August 2, 2026) — tight but feasible for a focused 8-page paper
+- AAAI 2027 (abstract deadline: July 21, 2026; full paper: July 28, 2026) — primary target with sufficient development time
+- ICLR 2027 (estimated submission deadline: ~September 2026, based on ICLR 2026 pattern of Sep 19-24)
+- AISTATS 2027 (estimated submission deadline: ~October 2026, based on AISTATS 2026 pattern of Oct 2)
+
+## Key References
+- PPI is the Difference Estimator: Recognizing the Survey Sampling Roots of Prediction-Powered Inference (Mozer, arXiv 2026) — CRITICAL: identifies differential prediction error bias for ATE in PPI, proposes arm-specific rectifiers; we extend to CATE with mismeasured effect modifiers
+- Using Imperfect Surrogates for Downstream Inference: Design-based Supervised Learning for Social Science Applications of Large Language Models (Egami et al., NeurIPS 2023)
+- Prediction-Powered Inference (Angelopoulos et al., Science 2023)
+- Estimation and Inference of Heterogeneous Treatment Effects using Random Forests (Wager & Athey, JASA 2018)
+- Towards Optimal Doubly Robust Estimation of Heterogeneous Causal Effects (Kennedy, Electronic Journal of Statistics 2023)
+- Using Large Language Models for Qualitative Analysis can Introduce Serious Bias (Ashwin et al., Sociological Methods & Research 2025)
+- Synthetic Replacements for Human Survey Data? The Perils of Large Language Models (Bisbee et al., Political Analysis 2024)
+- Benchmarking Debiasing Methods for LLM-based Parameter Estimates (Audinet de Pieuchon et al., EMNLP 2025)
+- Active Statistical Inference (Zrnic & Candès, ICML 2024)
+- Achieving Reliable Causal Inference with Data-Mined Variables: A Random Forest Approach to the Measurement Error Problem (Bu et al., INFORMS JDS 2023)
+- Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks (Mehrotra et al., arXiv 2026)
+- Active Multiple-Prediction-Powered Inference (arXiv 2026)
+- Detecting and Mitigating Group Bias in Heterogeneous Treatment Effects (Persson et al., arXiv 2026)
+- Causal Effect Estimation with Latent Textual Treatments (Feldman et al., arXiv 2026)
+- Covariate Balancing With Measurement Error (Wen & Yan, Statistics in Medicine 2025)
+- Surrogate Representation Inference for Text and Image Annotations (Jerzak et al., arXiv 2025)
+- Double/Debiased Machine Learning for Treatment and Structural Parameters (Chernozhukov et al., Econometrics Journal 2018)
+- From Text to Treatment Effects: A Meta-Learning Approach to Handling Text-Based Confounding (CRL@NeurIPS 2024)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "03d624a1-5ae8-4675-b0b5-a5253167f555",
+  "type": "user",
+  "uuid": "9f4fd5e6-7425-4537-ae5e-038562ace7c2",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T03:31:39.017Z_
+
+```json
+{
+  "parentUuid": "9f4fd5e6-7425-4537-ae5e-038562ace7c2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "b64c3bcd-bbf7-45ed-8750-2d4af81916ea",
+  "timestamp": "2026-05-20T03:31:39.017Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T03:31:39.017Z_
+
+```json
+{
+  "parentUuid": "b64c3bcd-bbf7-45ed-8750-2d4af81916ea",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "219beb48-728b-4d08-9b3d-3690362734c2",
+  "timestamp": "2026-05-20T03:31:39.017Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to make a well-grounded assessm…",
+  "leafUuid": "219beb48-728b-4d08-9b3d-3690362734c2",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Assess EC-HTE proposal for LLM effect-modifier measurement error",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T03:32:23.512Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three reviewers' assessments carefully to produce a Meta Judge synthesis.
+
+**Reviewer 1:**
+- Novelty: 中
+- Significance: 中
+- Related Work: 强
+- Probability: [28% - 38%] 中位 33%
+
+**Reviewer 2:**
+- Novelty: 弱-中
+- Significance: 中
+- Related Work: 中
+- Probability: [18% - 28%] 中位 22%
+
+**Reviewer 3:**
+
+
+- Novelty: 中
+- Significance: 中偏强
+- Related Work: 强
+- Probability: [28% - 38%] 中位 33%
+
+Now I'm calculating the aggregate statistics across all three reviewers. The median probabilities are 33%, 22%, and 33%, which gives me a mean of about 29.3% and a median of 33%. Computing the standard deviation to assess the spread in their assessments.
+
+The standard deviation comes out to roughly 5.2%, which indicates moderate consistency among reviewers—falling into the "中一致" range. This suggests I should expand the confidence interval and weight the stricter reviewer's assessment more heavily.
+
+Looking at where the reviewers converge: novelty is consistently rated as limited across all three, with two explicitly saying "中" and one saying "弱-中"—this is clearly the paper's weakest dimension. Significance shows agreement that the problem matters but has a narrow audience, settling on "中" as the consensus. All three reviewers acknowledge the gap is genuine.
+
+There's also strong alignment on the risks: the solution reads as an obvious combination of existing mature tools once you see it, all three flag the trivial alternative of just collecting more expert labels, and the related work direction is sound but has specific omissions that all three noticed. The CoRL mismatch is explicit from two reviewers—this paper has essentially zero chance of fitting that venue.
+
+Where the reviewers diverge is mainly on how harshly to penalize novelty. R2 is notably stricter, rating it weaker-to-medium versus medium from the others, and emphasizes the biostatistics precedent more heavily. R2 also caught several uncited competitors that R1 and R3 missed, including Nwankwo et al. from NeurIPS 2025 and classical work on misclassified effect modifiers, while R3 flagged a different key missing reference. This stricter novelty assessment is why R2's acceptance probability drops to 22% compared to 33% from the other two.
+
+Given the moderate consistency across reviewers (standard deviation around 5.2%), I should adjust my estimate toward the stricter view. R2's concerns about novelty are legitimate—the biostatistics precedent argument holds weight. But R2's 22% might be overcorrecting since both other reviewers independently converged on 33%, suggesting that's a more balanced assessment. Following the principle of leaning toward stricter evaluation when there's disagreement, I'll weight R2's concerns more heavily while not fully adopting the lowest probability.
+
+For the final estimate, the novelty ceiling sits around 35-38% even with flawless execution, given the consensus that it's medium-strength at best. Significance is also medium, which doesn't push the probability higher. The related work has solid agreement from R1 and R3 but contains fixable gaps. Balancing these factors with a slight lean toward R2's stricter position, I'm settling on roughly 28-29% as the midpoint—respecting R2's assessment without fully discounting the convergence of the other two reviewers.
+
+But there's a critical issue I need to address directly: all three reviewers flagged that this is fundamentally a venue mismatch for CoRL 2026. The proposal has nothing to do with robot learning, so the acceptance probability for that specific venue should really be near zero. The reviewers evaluated it based on the stated target venues, but I should be explicit about this mismatch.
+
+Looking at the implementation side, this is a methodology and statistics paper with relatively modest computational demands—LLM API calls for annotation, causal forest training, and Bayesian model fitting. The real bottleneck is data and human effort: assembling political science corpora plus the public Ashwin dataset, then securing expert annotations for roughly 2000 documents, which would take 3-4 weeks minimum with 3-4 annotators. No deep learning model training is needed.
+
+The full pipeline would require semi-synthetic benchmarks and realistically spans 3-6 months.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "219beb48-728b-4d08-9b3d-3690362734c2",
+  "isSidechain": false,
+  "requestId": "req_011CbD7dXwaYhRpsmwvm5paV",
+  "type": "assistant",
+  "uuid": "5f5329f4-b1ff-4f29-9663-b8a4271ff497",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGpZwYdrEDRHKEZGnvvHQv",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 17502,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 4161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17502,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4161,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 17502,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17502
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T03:33:22.724Z_
+
+【阶段】: Meta Judge
+【三次中位】: [33%, 22%, 33%]  std=5.2%
+【共识维度】:
+- **Novelty = 中（共识，R1"中"、R2"弱-中"、R3"中"）**: 三位审稿人一致认定核心贡献是**成熟工具的组合应用**（hierarchical Bayesian confusion matrix + honest causal forest + sandwich variance + adaptive allocation），gap 真实但填充方式 straightforward，核心 insight（mismeasured effect modifier → doubly-biased CATE）直觉可预期。这是最强共识，也是概率天花板的决定性因素。
+- **Significance = 中（共识，R1"中"、R2"中"、R3"中偏强"）**: 三位均确认问题真实且 timely（LLM annotation 在社科中快速增长），但受众范围较窄——需同时满足"LLM 做 effect modifier annotation" + "subgroup-varying misclassification" + "需要 CATE 而非 ATE"。
+- **Gap 真实性（强共识，3/3）**: 经独立调研验证，三个文献流的交叉点确实无人占据。非 strawman gap。
+- **"Obvious once stated" / combination paper 风险（共识，3/3）**: 审稿人最可能的反应是"the problem is real but the solution is the natural thing to try"。
+- **Trivial alternative: "直接收集更多 expert labels"（共识，3/3）**: 均指出 proposal 计划收集 ~2000 expert labels，需更清楚论证 correction framework 相比直接用 expert labels 做分析的增量价值边界。
+- **CoRL venue mismatch（共识，R1、R3 明确标注）**: 本 proposal 与 Robot Learning 完全无关，投稿 CoRL 概率接近 0%。R2 虽未明确提 CoRL 但评估也基于 proposal 自身列出的 venue。
+- **Related Work 方向正确但有可修复遗漏（共识，3/3）**: 定位和差异化总体准确，但存在遗漏文献需补充（见下）。
+
+【异常维度】:
+- **R2 独有 — Nwankwo et al. (NeurIPS 2025) 作为未引用竞争者**: 仅 R2 指出 Batch-Adaptive Annotations for Causal Inference 框架思路高度相似。R1、R3 未提及。需降权但值得关注——如果确实是直接竞争者，遗漏会被审稿人抓住。
+- **R2 独有 — 经典 biostatistics 文献（EM 算法、Bayesian measurement error models）缺失**: R2 认为 proposal 技术方案的"前身"在 biostatistics 中早已成熟，proposal 几乎完全忽略了这条线。R1、R3 未单独强调此点。这是一个有一定道理但可能对 ML/NLP venue 审稿人影响力有限的论点（biostatistics 审稿人会在意，EMNLP 审稿人未必）。
+- **R3 独有 — arXiv:2512.03254 (Assumption-Lean Differential Variance Inference) 作为关键遗漏**: 仅 R3 发现此论文明确证明 effect modifier mismeasurement 导致 causal forest 失效。R1、R2 未提及。如果此论文确实存在且如 R3 所述，它既验证了 problem 的真实性（加分），也需要明确讨论互补关系（检测 vs 纠正）。
+- **R3 独有 — Significance "中偏强"**: R3 比其他两位略更看好 problem 的重要性。属于正常偏差范围内，不影响共识判定。
+- **R1 独有 — Jerzak et al. SRI 作为最具威胁性的 trivial alternative**: R1 认为 SRI 是最接近的潜在 trivial alternative，需论证为何 SRI 不能被 trivially extend。R2、R3 未特别强调此威胁。
+
+【最终概率】: [20% - 33%] 中位 28%
+【一致性】: 中（std=5.2%，处于 3-7% 区间，R2 显著偏严）
+【综合理由】:
+
+三位审稿人在 gap 真实性、novelty 受限（组合性贡献）、significance 中等这三个核心判断上高度一致。分歧集中在 R2 的 novelty 评估更严（弱-中 vs 中），以及 R2 发现的额外 related work 遗漏。
+
+处理分歧的逻辑：
+1. **R2 的严格评估有实质依据**：R2 指出的 biostatistics 文献前身、Nwankwo et al. 竞争者、以及 Mozer 论文被"放大使用"的观察，都是具体可验证的论据，不是无根据的压分。因此按"宁缺毋滥"原则，应偏向 R2 的严格判断。
+2. **但 R2 也非无可争议**：R2 的概率（22%）与 R1、R3 的独立收敛点（33%）差距达 11pp。R2 对 Related Work 的评分（中）可能过度惩罚了几个可修复的遗漏——如果补上 Nwankwo et al. 和经典 biostatistics 引用，Related Work 维度可以回到"强"。
+3. **最终定位**：中位取 R2（22%）与 R1/R3 均值（33%）之间偏严处 = 28%。区间下界从 R2 的 18% 略升至 20%（考虑 R2 部分 related work 遗漏可修复），上界从 R1/R3 的 38% 降至 33%（受 novelty 共识限制）。
+
+**关于 CoRL 2026**：本 proposal 研究 LLM measurement error correction for causal inference in social science，与 Robot Learning 无任何关联。**投稿 CoRL 2026 的中稿概率为 ~0%**。上述 [20%-33%] 中位 28% 的估计基于 proposal 自身列出的目标 venue（EMNLP/AAAI/ICLR/AISTATS），其中 AISTATS 最匹配（~30-33%），EMNLP 次之（~25-30%），ICLR 最难（~20-25%）。
+
+【建议】: 不推荐（投稿 CoRL）/ 边缘（投稿 AISTATS/EMNLP，需显著强化 novelty framing 和补齐 related work 遗漏）
+【实施评估】:
+  - 计算资源: 较轻量。LLM API 调用（GPT-4.1 + Qwen 3.5 annotation）约 $100-200；causal forest 训练 + hierarchical Bayesian 拟合约 60-120 GPU 小时（A100），成本 $150-350。总计算成本 $300-550，无需大规模集群。
+  - 数据需求: (1) 政治科学推文语料库（需获取或构建 semi-synthetic benchmark）；(2) Ashwin et al. (2025) Rohingya 难民数据集（已发表，需确认公开可得性）；(3) ~2000 份文档的 expert 标注（核心瓶颈）。
+  - 人工介入: **关键瓶颈**。需招募具备领域知识的 expert annotators 对 ~2000 份文档进行 gold-standard 标注（≥250/subgroup × ≤8 subgroups）。最少 3-4 周，且涉及 annotator 招募、培训、质控。成本估计 $5,000-15,000（取决于标注复杂度和 annotator 薪资）。
+  - 训练需求: 不涉及深度学习模型训练。主要是 (1) hierarchical Bayesian 模型拟合（MCMC/variational inference，计算量适中）；(2) honest causal forest 训练（标准 R/Python 包）；(3) LLM inference（API 调用，非训练）。
+  - 新 Benchmark: 需构建 semi-synthetic political-science benchmark（从真实语料注入已知 heterogeneity + 已知 ground-truth CATE）。工作量中等，约 2-3 周。
+  - 预估周期: 5-6 个月（手动流程）/ 3.5-4.5 个月（human-in-loop + Claude API 辅助）。Expert annotation 收集是不可压缩的 3-4 周瓶颈。最早可投 AAAI 2027（July 2026 deadline），EMNLP 2026 ARR（May 25 deadline）几乎不可能赶上。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f5329f4-b1ff-4f29-9663-b8a4271ff497",
+  "isSidechain": false,
+  "requestId": "req_011CbD7dXwaYhRpsmwvm5paV",
+  "type": "assistant",
+  "uuid": "bbed567e-1a3b-454b-ac48-08c0f2898821",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGpZwYdrEDRHKEZGnvvHQv",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 17502,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 4161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17502,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4161,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 17502,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17502
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to make a well-grounded assessm…",
+  "leafUuid": "bbed567e-1a3b-454b-ac48-08c0f2898821",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Assess EC-HTE proposal for LLM effect-modifier measurement error",
+  "sessionId": "7b1a5e34-2e58-413b-ab92-c809638316e6"
+}
+```
+
+---

@@ -1,0 +1,3668 @@
+# Research conversation: Title Benchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial C
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/exported-trajectories/account-1/c9029bfe-3b10-4326-b359-01ad72a562c0.jsonl`
+- **Structured JSON:** [`af60a0e36b3af569abc3.json`](../../sessions/af/af60a0e36b3af569abc3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T05:04:37.675Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T05:04:37.675Z",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "content": "## Title\n\nBenchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination\n\n## Problem Statement\n\nLLM evaluation implicitly assumes that benchmark scores are comparable across time — when we say Model B outperforms Model A on MMLU, we presume both scores measure the same construct at the same difficulty. This assumption breaks under contamination: as benchmark items leak into training data (whether through SFT or RL post-training), scores become inflated for exposed models, destroying cross-temporal comparability. This is not merely a \"score inflation\" nuisance — it constitutes a validity crisis for the entire model comparison infrastructure. All benchmark-based decisions (model selection, deployment, capability tracking, safety certification) lose their epistemic grounding when we cannot guarantee that scores from different time periods measure the same thing at the same scale.\n\nWe formalize this as the **benchmark temporal validity** problem: given a benchmark B deployed at time t₀, how do we maintain the property that scores at t₁ > t₀ remain on the same measurement scale, even when adversarial contamination has compromised a subset of items? Existing approaches address fragments of this problem — contamination detection (ConStat, NeurIPS 2024; DVD, arXiv:2601.04895; Wang et al., arXiv:2510.02386, ICLR 2026), dynamic benchmark creation (LiveBench, arXiv:2406.19314, ICLR 2025; YourBench, arXiv:2504.01833; BenchBench, arXiv:2603.20807), and psychometric methodology for LLMs (Growing Pains, arXiv:2604.12843; ATLAS; PSN-IRT) — but no published work integrates all three into a pipeline that detects contamination, generates psychometrically equivalent replacements, and formally equates old and new forms.\n\n**Why not just create new benchmarks?** The \"perpetual replacement\" paradigm (exemplified by LiveBench's monthly updates) appears to solve contamination but introduces a deeper problem: cross-version incomparability. LiveBench v1 scores and LiveBench v6 scores cannot be meaningfully compared because the items differ in difficulty, discrimination, and construct coverage without any equating procedure. This means: (a) capability tracking over time becomes impossible; (b) normative data never accumulates; (c) for safety-critical applications (medical QA, legal reasoning), \"approximately similar difficulty\" is insufficient — certified equivalent measurement is required. Our approach preserves the measurement scale across updates, enabling genuine longitudinal comparison.\n\n## Core Contributions\n\nWe present two intellectual contributions and two enabling infrastructure components:\n\n**Core Contribution 1: DIF-Based RL-Robust Contamination Detection via Impossibility Argument.** We introduce differential item functioning (DIF) analysis as a contamination detection signal and prove its RL-robustness through an information-theoretic impossibility argument: contamination, by definition, injects item-specific information into a model. This item-specific information must manifest as item-specific differential accuracy advantage at the behavioral level — otherwise the contamination has no effect and is moot. RL post-training (PPO, GRPO, DAPO) can smooth confidence distributions (contracting NLL gaps, as demonstrated by Wang et al., arXiv:2510.02386), but cannot eliminate the accuracy advantage on contaminated items without actively reducing reward — which directly contradicts the RL objective. Therefore, any RL training that preserves contamination benefit necessarily preserves the DIF signal, because the DIF signal is the behavioral manifestation of contamination benefit. This impossibility holds regardless of specific RL algorithm, hyperparameters, or training duration. DIF is the first contamination detection method that is simultaneously black-box, group-level, and analytically RL-robust. Existing RL-robust methods either require white-box access (Self-Critique/RL-MIA, Tao et al., arXiv:2510.09259, ICLR 2026) or operate at individual-model level.\n\n**Core Contribution 2: Graceful Degradation Framework with Formal Validity Boundaries.** Rather than treating benchmark maintenance as binary (valid/invalid), we define a graduated response protocol with formal validity boundaries:\n- **Green zone** (≤10% items flagged): Replace flagged items via equating pipeline, report marginal reliability and TIF change.\n- **Yellow zone** (10–20% items flagged): Replace + re-anchor using expanded anchor set, report validity degradation metrics, flag for human review.\n- **Red zone** (>20% items flagged): Declare benchmark version deprecated, trigger full-form regeneration with equating to original.\nEach zone has operationalized entry/exit criteria and quantitative reporting requirements. This framework provides the first formal treatment of \"how much contamination is too much\" with actionable decision rules.\n\n**Enabling Component A: Multi-Signal Contamination Sentinel.** A 5-signal ensemble for detecting contaminated items:\n1. DIF analysis across model release cohorts (core novel signal, RL-robust per Contribution 1)\n2. DVD variance-of-generation analysis (arXiv:2601.04895) — validated for SFT contamination, untested for RL (we test this)\n3. ConStat performance-gap analysis (NeurIPS 2024) — provides FDR control\n4. MIA-based distributional signals (Min-K%++, calibrated reference) — known RL-fragile, included for SFT detection\n5. IRT anomaly detection (person-fit statistics, l_z) — flags implausible response patterns\n\nEnsemble fusion via learned weighting with FDR calibration. The DIF signal provides RL-robustness while the other four signals provide complementary SFT-regime coverage and statistical rigor.\n\n**Enabling Component B: Construct-Constrained Generation and Bifactor Equating Pipeline.** When items are flagged, the pipeline generates psychometrically equivalent replacements:\n- **Generation**: LLM-based item generation conditioned on target IRT parameters (difficulty b, discrimination a, guessing c) and construct specification. Student simulation (arXiv:2601.09953; SMART, arXiv:2507.05129, EMNLP 2025) for pre-screening difficulty estimates. Hardy signed isotonic R² pre-filtering (arXiv:2603.24999) to reject poor items before costly calibration. ReQUESTA-style multi-agent refinement (arXiv:2602.03704) for distractor quality.\n- **Equating**: Bifactor Projective IRT (PIRT) true-score equating (Paek & Cai, 2020; Lee & Lee, 2022) under common-item nonequivalent groups design. PIRT projects specific factors onto the general dimension, enabling equating software compatibility while respecting multidimensionality (critical for multi-domain benchmarks like MMLU). Item parameter estimation via OH2PL (König et al., 2020, 2022), which achieves unbiased estimates at N≥50. Projective IRT validated for multidimensionality assessment by Reise et al. (Multivariate Behavioral Research, 2025). Equating gate: candidate items must achieve |Δb| < 0.3 logits, |Δa| < 0.2, and TIF deviation < 5% at ability range [-2, 2] relative to replaced items.\n\n## Relationship to Growing Pains (arXiv:2604.12843)\n\nGrowing Pains provides IRT-based temporal comparability infrastructure: fixed-parameter calibration with 100 anchor items per dataset enables cross-time LLM evaluation with ρ≥0.9 on 400+ models. Our work is explicitly complementary, not competitive — we provide the contamination resilience layer that Growing Pains lacks:\n- Growing Pains' anchor items are public (required for new model calibration) and therefore high-priority contamination targets. Our sentinel monitors anchor item integrity.\n- If anchor items are compromised, our regeneration pipeline produces equated replacements, preventing the temporal comparability chain from breaking.\n- Growing Pains' open-source model response data (github.com/eliyahabba/growing-pains) can bootstrap our calibration panel, reducing data collection costs.\nThis complementary stacking means both frameworks are stronger together: Growing Pains provides the IRT infrastructure, we provide contamination immunity.\n\n## Experimental Design\n\n### Experiment 1: DIF RL-Robustness Validation (Core Novel Claim)\n**Controlled cohort design**: Using Qwen2.5-7B and Llama-3.1-8B as base models:\n- **Clean-RL cohort**: K=25 model variants trained with GRPO on clean data (different random seeds, learning rate perturbations)\n- **Contaminated-RL cohort**: K=25 model variants trained with GRPO with benchmark items injected (replicating Wang et al.'s contamination protocol exactly: same hyperparameters, same GRPO steps ~156)\n- Run DIF analysis (Mantel-Haenszel + logistic regression) between cohorts on the contaminated benchmark\n- **Dose-response curve**: Evaluate DIF detection at GRPO steps {50, 100, 156, 200, 300} to demonstrate robustness across concealment intensity\n- **False positive control**: Run DIF on LiveBench clean subset (no contamination) to verify Type I error at nominal α=0.05\n- **Ecological validity**: Run DIF on naturally-contaminated MMLU/GSM8K using model release date as natural grouping variable; use GSM1K (arXiv:2405.00332) accuracy differentials as proxy item-level contamination evidence\n\n### Experiment 2: Detection Ensemble Evaluation\n**Baselines** (head-to-head under identical conditions):\n- Self-Critique/RL-MIA (Tao et al., arXiv:2510.09259, ICLR 2026) — primary RL-phase competitor\n- DVD standalone (arXiv:2601.04895)\n- ConStat standalone (NeurIPS 2024)\n- Min-K%++ (individual-level MIA)\n- CDD (contamination detection via divergence)\n- Shortcut neuron analysis (ACL 2025) — white-box baseline\n- CCV (arXiv:2603.21454) — conditional baseline on coding tasks only\n\n**Conditions**: SFT-contamination × RL-contamination × {verbatim, variant} × {Qwen2.5-7B, Llama-3.1-8B}\n\n**Metrics**: AUROC, AUPRC, TPR@FPR=0.05, empirical FDR verification, per-signal sensitivity/specificity\n\n**Detection ablation matrix**:\n- 5× leave-one-out (drop each signal individually)\n- Signal-type grouping: {group-level: DIF} vs. {individual-level: MIA+ConStat} vs. {generation-based: DVD}\n- Cross contamination type: performance under verbatim / variant / RL-concealed conditions\n\n### Experiment 3: Generation Pipeline Evaluation\n**Generation ablation**:\n- Full pipeline vs. no student simulation vs. no Hardy pre-filter vs. no multi-agent refinement → compare rejection rate, parameter recovery accuracy\n- Construct-conditioned generation vs. random generation vs. exemplar-only generation → compare equating gate pass rate\n\n**Equating ablation**:\n- Bifactor PIRT vs. unidimensional 2PL vs. no equating (random selection from candidate pool)\n- Compare: ranking preservation (Spearman ρ on held-out models), TIF preservation, marginal reliability\n\n**Threshold sensitivity analysis**: Anchor set proportion at {10%, 12%, 15%, 18%, 20%, 25%} → equating stability metrics\n\n### Experiment 4: End-to-End Pilot Feasibility Study\n**Scope**: LiveBench math subset (~200 items) × core calibration panel (80-100 diverse models)\n**Protocol**: Run full detect→generate→screen→calibrate→gate pipeline for 3 regeneration cycles\n**Pre-registered hypotheses**:\n- H1: ≥50% of generated items pass equating gate within 3 cycles\n- H2: Regenerated benchmark achieves ρ≥0.90 with original on held-out model set\n- H3: Marginal reliability ≥0.80\n\n**Pilot baselines**:\n- Random item selection from generated bank (no IRT equating)\n- Difficulty-matched selection (LLM difficulty estimates, no bifactor equating)\n- Full proposed pipeline\n\n**Reporting**: Per-cycle improvement trajectory (pass rate at cycle 1, 2, 3), convergence statistics, cost breakdown\n\n### Experiment 5: Graceful Degradation Validation\nSimulate contamination at rates {5%, 10%, 15%, 20%, 25%, 30%, 40%, 50%} on LiveBench.\nAt each rate, run the full pipeline and measure:\n- Detection recall and precision\n- Ranking preservation (ρ) on held-out models after remediation\n- Zone classification accuracy (does the system correctly identify Green/Yellow/Red?)\n- Time-to-remediation (wall clock for detect+generate+equate cycle)\n\n## Calibration Infrastructure\n\n**Tiered calibration panel**:\n- Core panel (80-100 models): Truly diverse models selected by family × size matrix (≥15 families × 3-5 sizes). Used for IRT parameter estimation (OH2PL validated at N≥50).\n- Extended panel (100-200 additional models): Including size variants and fine-tuned derivatives. Used for ranking preservation validation only.\n- Selection criteria: Inter-model correlation structure reported; models with >0.95 pairwise correlation on all items collapsed to single representative.\n\n**Cost estimate**: Core panel evaluation: ~$1500-3000 per calibration round (80 open-source models on local GPUs + 20-30 closed-source via API at current pricing). Pilot scope (200 items × 80-100 models × 3 cycles) feasible within 4-5 weeks with standard academic compute.\n\n## TTRA Connection\n\nWang & Heckel (arXiv:2603.12875) demonstrate that test-time RL alignment (TTRA) closes fine-tuning performance gaps by ~27 percentage points, suggesting many benchmark gains are task-familiarity artifacts rather than genuine capability improvements. DIF analysis uniquely discriminates between task-familiarity effects (uniform improvement across items) and contamination effects (item-specific differential improvement). This discrimination is a novel diagnostic capability not offered by any existing detection method.\n\n## Limitations\n\n- **Simulated vs. real contamination**: Our controlled experiments use fine-tuning-based contamination injection, which may produce sharper memorization signals than pretraining contamination (which occurs over hundreds of thousands of steps). We partially address this via ecological validation on naturally-contaminated MMLU/GSM8K with GSM1K proxy, but acknowledge this gap. Continual-pretraining contamination simulation is future work.\n- **Cohort availability**: DIF analysis requires model cohorts of sufficient size. For newly released model families with few publicly available variants, DIF power may be limited. We report minimum cohort sizes for reliable detection.\n- **Generation quality ceiling**: Construct-constrained generation inherits limitations of current LLM item generation — complex reasoning items (e.g., multi-step mathematical proofs) may be harder to regenerate with precise parameter matching than factual recall items."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T05:04:37.686Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T05:04:37.686Z",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+## Round 1
+
+52 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T05:04:37.700Z_
+
+## Title
+
+Benchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination
+
+## Problem Statement
+
+LLM evaluation implicitly assumes that benchmark scores are comparable across time — when we say Model B outperforms Model A on MMLU, we presume both scores measure the same construct at the same difficulty. This assumption breaks under contamination: as benchmark items leak into training data (whether through SFT or RL post-training), scores become inflated for exposed models, destroying cross-temporal comparability. This is not merely a "score inflation" nuisance — it constitutes a validity crisis for the entire model comparison infrastructure. All benchmark-based decisions (model selection, deployment, capability tracking, safety certification) lose their epistemic grounding when we cannot guarantee that scores from different time periods measure the same thing at the same scale.
+
+We formalize this as the **benchmark temporal validity** problem: given a benchmark B deployed at time t₀, how do we maintain the property that scores at t₁ > t₀ remain on the same measurement scale, even when adversarial contamination has compromised a subset of items? Existing approaches address fragments of this problem — contamination detection (ConStat, NeurIPS 2024; DVD, arXiv:2601.04895; Wang et al., arXiv:2510.02386, ICLR 2026), dynamic benchmark creation (LiveBench, arXiv:2406.19314, ICLR 2025; YourBench, arXiv:2504.01833; BenchBench, arXiv:2603.20807), and psychometric methodology for LLMs (Growing Pains, arXiv:2604.12843; ATLAS; PSN-IRT) — but no published work integrates all three into a pipeline that detects contamination, generates psychometrically equivalent replacements, and formally equates old and new forms.
+
+**Why not just create new benchmarks?** The "perpetual replacement" paradigm (exemplified by LiveBench's monthly updates) appears to solve contamination but introduces a deeper problem: cross-version incomparability. LiveBench v1 scores and LiveBench v6 scores cannot be meaningfully compared because the items differ in difficulty, discrimination, and construct coverage without any equating procedure. This means: (a) capability tracking over time becomes impossible; (b) normative data never accumulates; (c) for safety-critical applications (medical QA, legal reasoning), "approximately similar difficulty" is insufficient — certified equivalent measurement is required. Our approach preserves the measurement scale across updates, enabling genuine longitudinal comparison.
+
+## Core Contributions
+
+We present two intellectual contributions and two enabling infrastructure components:
+
+**Core Contribution 1: DIF-Based RL-Robust Contamination Detection via Impossibility Argument.** We introduce differential item functioning (DIF) analysis as a contamination detection signal and prove its RL-robustness through an information-theoretic impossibility argument: contamination, by definition, injects item-specific information into a model. This item-specific information must manifest as item-specific differential accuracy advantage at the behavioral level — otherwise the contamination has no effect and is moot. RL post-training (PPO, GRPO, DAPO) can smooth confidence distributions (contracting NLL gaps, as demonstrated by Wang et al., arXiv:2510.02386), but cannot eliminate the accuracy advantage on contaminated items without actively reducing reward — which directly contradicts the RL objective. Therefore, any RL training that preserves contamination benefit necessarily preserves the DIF signal, because the DIF signal is the behavioral manifestation of contamination benefit. This impossibility holds regardless of specific RL algorithm, hyperparameters, or training duration. DIF is the first contamination detection method that is simultaneously black-box, group-level, and analytically RL-robust. Existing RL-robust methods either require white-box access (Self-Critique/RL-MIA, Tao et al., arXiv:2510.09259, ICLR 2026) or operate at individual-model level.
+
+**Core Contribution 2: Graceful Degradation Framework with Formal Validity Boundaries.** Rather than treating benchmark maintenance as binary (valid/invalid), we define a graduated response protocol with formal validity boundaries:
+- **Green zone** (≤10% items flagged): Replace flagged items via equating pipeline, report marginal reliability and TIF change.
+- **Yellow zone** (10–20% items flagged): Replace + re-anchor using expanded anchor set, report validity degradation metrics, flag for human review.
+- **Red zone** (>20% items flagged): Declare benchmark version deprecated, trigger full-form regeneration with equating to original.
+Each zone has operationalized entry/exit criteria and quantitative reporting requirements. This framework provides the first formal treatment of "how much contamination is too much" with actionable decision rules.
+
+**Enabling Component A: Multi-Signal Contamination Sentinel.** A 5-signal ensemble for detecting contaminated items:
+1. DIF analysis across model release cohorts (core novel signal, RL-robust per Contribution 1)
+2. DVD variance-of-generation analysis (arXiv:2601.04895) — validated for SFT contamination, untested for RL (we test this)
+3. ConStat performance-gap analysis (NeurIPS 2024) — provides FDR control
+4. MIA-based distributional signals (Min-K%++, calibrated reference) — known RL-fragile, included for SFT detection
+5. IRT anomaly detection (person-fit statistics, l_z) — flags implausible response patterns
+
+Ensemble fusion via learned weighting with FDR calibration. The DIF signal provides RL-robustness while the other four signals provide complementary SFT-regime coverage and statistical rigor.
+
+**Enabling Component B: Construct-Constrained Generation and Bifactor Equating Pipeline.** When items are flagged, the pipeline generates psychometrically equivalent replacements:
+- **Generation**: LLM-based item generation conditioned on target IRT parameters (difficulty b, discrimination a, guessing c) and construct specification. Student simulation (arXiv:2601.09953; SMART, arXiv:2507.05129, EMNLP 2025) for pre-screening difficulty estimates. Hardy signed isotonic R² pre-filtering (arXiv:2603.24999) to reject poor items before costly calibration. ReQUESTA-style multi-agent refinement (arXiv:2602.03704) for distractor quality.
+- **Equating**: Bifactor Projective IRT (PIRT) true-score equating (Paek & Cai, 2020; Lee & Lee, 2022) under common-item nonequivalent groups design. PIRT projects specific factors onto the general dimension, enabling equating software compatibility while respecting multidimensionality (critical for multi-domain benchmarks like MMLU). Item parameter estimation via OH2PL (König et al., 2020, 2022), which achieves unbiased estimates at N≥50. Projective IRT validated for multidimensionality assessment by Reise et al. (Multivariate Behavioral Research, 2025). Equating gate: candidate items must achieve |Δb| < 0.3 logits, |Δa| < 0.2, and TIF deviation < 5% at ability range [-2, 2] relative to replaced items.
+
+## Relationship to Growing Pains (arXiv:2604.12843)
+
+Growing Pains provides IRT-based temporal comparability infrastructure: fixed-parameter calibration with 100 anchor items per dataset enables cross-time LLM evaluation with ρ≥0.9 on 400+ models. Our work is explicitly complementary, not competitive — we provide the contamination resilience layer that Growing Pains lacks:
+- Growing Pains' anchor items are public (required for new model calibration) and therefore high-priority contamination targets. Our sentinel monitors anchor item integrity.
+- If anchor items are compromised, our regeneration pipeline produces equated replacements, preventing the temporal comparability chain from breaking.
+- Growing Pains' open-source model response data (github.com/eliyahabba/growing-pains) can bootstrap our calibration panel, reducing data collection costs.
+This complementary stacking means both frameworks are stronger together: Growing Pains provides the IRT infrastructure, we provide contamination immunity.
+
+## Experimental Design
+
+### Experiment 1: DIF RL-Robustness Validation (Core Novel Claim)
+**Controlled cohort design**: Using Qwen2.5-7B and Llama-3.1-8B as base models:
+- **Clean-RL cohort**: K=25 model variants trained with GRPO on clean data (different random seeds, learning rate perturbations)
+- **Contaminated-RL cohort**: K=25 model variants trained with GRPO with benchmark items injected (replicating Wang et al.'s contamination protocol exactly: same hyperparameters, same GRPO steps ~156)
+- Run DIF analysis (Mantel-Haenszel + logistic regression) between cohorts on the contaminated benchmark
+- **Dose-response curve**: Evaluate DIF detection at GRPO steps {50, 100, 156, 200, 300} to demonstrate robustness across concealment intensity
+- **False positive control**: Run DIF on LiveBench clean subset (no contamination) to verify Type I error at nominal α=0.05
+- **Ecological validity**: Run DIF on naturally-contaminated MMLU/GSM8K using model release date as natural grouping variable; use GSM1K (arXiv:2405.00332) accuracy differentials as proxy item-level contamination evidence
+
+### Experiment 2: Detection Ensemble Evaluation
+**Baselines** (head-to-head under identical conditions):
+- Self-Critique/RL-MIA (Tao et al., arXiv:2510.09259, ICLR 2026) — primary RL-phase competitor
+- DVD standalone (arXiv:2601.04895)
+- ConStat standalone (NeurIPS 2024)
+- Min-K%++ (individual-level MIA)
+- CDD (contamination detection via divergence)
+- Shortcut neuron analysis (ACL 2025) — white-box baseline
+- CCV (arXiv:2603.21454) — conditional baseline on coding tasks only
+
+**Conditions**: SFT-contamination × RL-contamination × {verbatim, variant} × {Qwen2.5-7B, Llama-3.1-8B}
+
+**Metrics**: AUROC, AUPRC, TPR@FPR=0.05, empirical FDR verification, per-signal sensitivity/specificity
+
+**Detection ablation matrix**:
+- 5× leave-one-out (drop each signal individually)
+- Signal-type grouping: {group-level: DIF} vs. {individual-level: MIA+ConStat} vs. {generation-based: DVD}
+- Cross contamination type: performance under verbatim / variant / RL-concealed conditions
+
+### Experiment 3: Generation Pipeline Evaluation
+**Generation ablation**:
+- Full pipeline vs. no student simulation vs. no Hardy pre-filter vs. no multi-agent refinement → compare rejection rate, parameter recovery accuracy
+- Construct-conditioned generation vs. random generation vs. exemplar-only generation → compare equating gate pass rate
+
+**Equating ablation**:
+- Bifactor PIRT vs. unidimensional 2PL vs. no equating (random selection from candidate pool)
+- Compare: ranking preservation (Spearman ρ on held-out models), TIF preservation, marginal reliability
+
+**Threshold sensitivity analysis**: Anchor set proportion at {10%, 12%, 15%, 18%, 20%, 25%} → equating stability metrics
+
+### Experiment 4: End-to-End Pilot Feasibility Study
+**Scope**: LiveBench math subset (~200 items) × core calibration panel (80-100 diverse models)
+**Protocol**: Run full detect→generate→screen→calibrate→gate pipeline for 3 regeneration cycles
+**Pre-registered hypotheses**:
+- H1: ≥50% of generated items pass equating gate within 3 cycles
+- H2: Regenerated benchmark achieves ρ≥0.90 with original on held-out model set
+- H3: Marginal reliability ≥0.80
+
+**Pilot baselines**:
+- Random item selection from generated bank (no IRT equating)
+- Difficulty-matched selection (LLM difficulty estimates, no bifactor equating)
+- Full proposed pipeline
+
+**Reporting**: Per-cycle improvement trajectory (pass rate at cycle 1, 2, 3), convergence statistics, cost breakdown
+
+### Experiment 5: Graceful Degradation Validation
+Simulate contamination at rates {5%, 10%, 15%, 20%, 25%, 30%, 40%, 50%} on LiveBench.
+At each rate, run the full pipeline and measure:
+- Detection recall and precision
+- Ranking preservation (ρ) on held-out models after remediation
+- Zone classification accuracy (does the system correctly identify Green/Yellow/Red?)
+- Time-to-remediation (wall clock for detect+generate+equate cycle)
+
+## Calibration Infrastructure
+
+**Tiered calibration panel**:
+- Core panel (80-100 models): Truly diverse models selected by family × size matrix (≥15 families × 3-5 sizes). Used for IRT parameter estimation (OH2PL validated at N≥50).
+- Extended panel (100-200 additional models): Including size variants and fine-tuned derivatives. Used for ranking preservation validation only.
+- Selection criteria: Inter-model correlation structure reported; models with >0.95 pairwise correlation on all items collapsed to single representative.
+
+**Cost estimate**: Core panel evaluation: ~$1500-3000 per calibration round (80 open-source models on local GPUs + 20-30 closed-source via API at current pricing). Pilot scope (200 items × 80-100 models × 3 cycles) feasible within 4-5 weeks with standard academic compute.
+
+## TTRA Connection
+
+Wang & Heckel (arXiv:2603.12875) demonstrate that test-time RL alignment (TTRA) closes fine-tuning performance gaps by ~27 percentage points, suggesting many benchmark gains are task-familiarity artifacts rather than genuine capability improvements. DIF analysis uniquely discriminates between task-familiarity effects (uniform improvement across items) and contamination effects (item-specific differential improvement). This discrimination is a novel diagnostic capability not offered by any existing detection method.
+
+## Limitations
+
+- **Simulated vs. real contamination**: Our controlled experiments use fine-tuning-based contamination injection, which may produce sharper memorization signals than pretraining contamination (which occurs over hundreds of thousands of steps). We partially address this via ecological validation on naturally-contaminated MMLU/GSM8K with GSM1K proxy, but acknowledge this gap. Continual-pretraining contamination simulation is future work.
+- **Cohort availability**: DIF analysis requires model cohorts of sufficient size. For newly released model families with few publicly available variants, DIF power may be limited. We report minimum cohort sizes for reliable detection.
+- **Generation quality ceiling**: Construct-constrained generation inherits limitations of current LLM item generation — complex reasoning items (e.g., multi-step mathematical proofs) may be harder to regenerate with precise parameter matching than factual recall items.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "85557409-eaaf-4a9d-90d6-352b34060357",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T05:04:37.699Z_
+
+```json
+{
+  "parentUuid": "85557409-eaaf-4a9d-90d6-352b34060357",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "ef768bde-46f4-4143-8f84-d514af928d9d",
+  "timestamp": "2026-05-20T05:04:37.699Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T05:04:37.699Z_
+
+```json
+{
+  "parentUuid": "ef768bde-46f4-4143-8f84-d514af928d9d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "6a6902ee-2432-4700-8159-4c51b99a067a",
+  "timestamp": "2026-05-20T05:04:37.699Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-20T05:04:37.699Z_
+
+```json
+{
+  "parentUuid": "6a6902ee-2432-4700-8159-4c51b99a067a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "bdb9451a-229c-4b55-b1df-b70a032b2022",
+  "timestamp": "2026-05-20T05:04:37.699Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "## Title  Benchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination  ## Problem Statement  LLM evaluation implicitly assumes that b…",
+  "leafUuid": "bdb9451a-229c-4b55-b1df-b70a032b2022",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Benchmark temporal validity with contamination detection",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T05:04:43.808Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal as the 补救 agent (rescue/remediation agent), focusing exclusively on experimental design and technical execution completeness. I need to first do thorough literature research to understand the current experimental standards in this field before making any suggestions.
+
+Let me start by searching for recent papers on:
+1. Benchmark contamination detection methods and their experimental designs
+2. IRT/psychometric approaches for LLM evaluation
+3. Dynamic benchmark generation and equating methods
+4. Recent standards for evaluation experiments in this area
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdb9451a-229c-4b55-b1df-b70a032b2022",
+  "isSidechain": false,
+  "requestId": "req_011CbDEimEFGKE1iPhVkq6U2",
+  "type": "assistant",
+  "uuid": "0e1a593d-2060-4dc5-98a7-8736de7e5d00",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LiNSYQp5AEyQn8W1soMzaW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5440,
+      "cache_read_input_tokens": 14054,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 14054,
+          "cache_creation_input_tokens": 5440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-20T05:04:44.818Z_
+
+I need to first do thorough literature research on the experimental design standards in this field before making any assessments. Let me search for recent relevant papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e1a593d-2060-4dc5-98a7-8736de7e5d00",
+  "isSidechain": false,
+  "requestId": "req_011CbDEimEFGKE1iPhVkq6U2",
+  "type": "assistant",
+  "uuid": "7ab57661-b6a3-44cb-83fb-cb24f5ebea4c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LiNSYQp5AEyQn8W1soMzaW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5440,
+      "cache_read_input_tokens": 14054,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 14054,
+          "cache_creation_input_tokens": 5440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T05:04:44.952Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Pv7U2iCWyoEqvJKU7tZSF5`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ab57661-b6a3-44cb-83fb-cb24f5ebea4c",
+  "isSidechain": false,
+  "requestId": "req_011CbDEimEFGKE1iPhVkq6U2",
+  "type": "assistant",
+  "uuid": "6e182488-8285-4607-96e5-7cc3833aff23",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LiNSYQp5AEyQn8W1soMzaW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5440,
+      "cache_read_input_tokens": 14054,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 14054,
+          "cache_creation_input_tokens": 5440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T05:04:44.958Z_
+
+<details><summary>↩ Tool result · `toolu_01Pv7U2iCWyoEqvJKU7tZSF5`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6e182488-8285-4607-96e5-7cc3833aff23",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "5d7cc4b4-b365-4640-84f3-41fb7944b6d7",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "6e182488-8285-4607-96e5-7cc3833aff23",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-20T05:04:49.806Z_
+
+Now let me conduct my pre-research searches. I'll run multiple searches in parallel to understand the experimental design standards in this field.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d7cc4b4-b365-4640-84f3-41fb7944b6d7",
+  "isSidechain": false,
+  "requestId": "req_011CbDEjJaeKyQgiUQSJvyDg",
+  "type": "assistant",
+  "uuid": "161fa953-ad8c-4475-95e8-db0be9412bc9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUUhq9r2BF5tfxVUtpYq8A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 763,
+      "cache_read_input_tokens": 19494,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 19494,
+          "cache_creation_input_tokens": 763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T05:04:50.486Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PoVk1ovaCos7cHjNyjrPuJ`</summary>
+
+```json
+{
+  "query": "DIF differential item functioning LLM benchmark contamination detection 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "161fa953-ad8c-4475-95e8-db0be9412bc9",
+  "isSidechain": false,
+  "requestId": "req_011CbDEjJaeKyQgiUQSJvyDg",
+  "type": "assistant",
+  "uuid": "ca94018e-2c44-4166-b55a-7bca3242270c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUUhq9r2BF5tfxVUtpYq8A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 763,
+      "cache_read_input_tokens": 19494,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 19494,
+          "cache_creation_input_tokens": 763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T05:04:57.947Z_
+
+<details><summary>↩ Tool result · `toolu_01PoVk1ovaCos7cHjNyjrPuJ`</summary>
+
+```text
+Web search results for query: "DIF differential item functioning LLM benchmark contamination detection 2025 2026"
+
+Links: [{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"Finding Words Associated with DIF: Predicting Differential Item Functioning using LLMs and Explainable AI","url":"https://arxiv.org/pdf/2502.07017"},{"title":"A Log-Linear Modeling Approach for Differential Item Functioning Detection in Polytomously Scored Items - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/31933496/"},{"title":"Detecting Benchmark Contamination Through Watermarking","url":"https://arxiv.org/pdf/2502.17259"},{"title":"gies for llm benchmark data contamination - Gang Wang","url":"https://gangw.cs.illinois.edu/cvpr_Emperor25.pdf"},{"title":"PaCoST: Paired Confidence Significance Testing for Benchmark   Contamination Detection in Large Language Models","url":"https://arxiv.org/pdf/2406.18326"}]
+
+Based on the search results, here's what I found relevant to your query:
+
+## LLM Benchmark Contamination Detection (2025-2026)
+
+Five detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.
+
+A contaminated LLM is one that has seen the test set, and performance on memorized benchmarks looks like reasoning but is recall. Documented cases include GPT-4 on AG News, WNLI, XSum, Mistral-7B-v0.1 on Hellaswag and GSM8K, Llama-3-70B on ARC, and Phi/Mistral families on GSM8K.
+
+The fix is contamination-resistant benchmarks: LiveCodeBench, FrontierMath, MMLU-Pro, LiveBench.
+
+## Differential Item Functioning (DIF) with LLMs
+
+LLMs are used to detect DIF, then XAI methods are used to identify biased item text that needs revision, without any field-test data. This involves fine-tuning an encoder-based LLM to predict DIF between different groups from the item text.
+
+The search results show active research in both areas—benchmark contamination detection methods are advancing in 2025-2026, while DIF detection using LLMs is being explored with explainable AI approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca94018e-2c44-4166-b55a-7bca3242270c",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "f0486748-66ea-4447-9554-821ab3ddd6ab",
+  "toolUseResult": {
+    "query": "DIF differential item functioning LLM benchmark contamination detection 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018eV89wqF12JCLyYMnkSd44",
+        "content": [
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "Finding Words Associated with DIF: Predicting Differential Item Functioning using LLMs and Explainable AI",
+            "url": "https://arxiv.org/pdf/2502.07017"
+          },
+          {
+            "title": "A Log-Linear Modeling Approach for Differential Item Functioning Detection in Polytomously Scored Items - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/31933496/"
+          },
+          {
+            "title": "Detecting Benchmark Contamination Through Watermarking",
+            "url": "https://arxiv.org/pdf/2502.17259"
+          },
+          {
+            "title": "gies for llm benchmark data contamination - Gang Wang",
+            "url": "https://gangw.cs.illinois.edu/cvpr_Emperor25.pdf"
+          },
+          {
+            "title": "PaCoST: Paired Confidence Significance Testing for Benchmark   Contamination Detection in Large Language Models",
+            "url": "https://arxiv.org/pdf/2406.18326"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found relevant to your query:\n\n## LLM Benchmark Contamination Detection (2025-2026)\n\nFive detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.\n\nA contaminated LLM is one that has seen the test set, and performance on memorized benchmarks looks like reasoning but is recall. Documented cases include GPT-4 on AG News, WNLI, XSum, Mistral-7B-v0.1 on Hellaswag and GSM8K, Llama-3-70B on ARC, and Phi/Mistral families on GSM8K.\n\nThe fix is contamination-resistant benchmarks: LiveCodeBench, FrontierMath, MMLU-Pro, LiveBench.\n\n## Differential Item Functioning (DIF) with LLMs\n\nLLMs are used to detect DIF, then XAI methods are used to identify biased item text that needs revision, without any field-test data. This involves fine-tuning an encoder-based LLM to predict DIF between different groups from the item text.\n\nThe search results show active research in both areas—benchmark contamination detection methods are advancing in 2025-2026, while DIF detection using LLMs is being explored with explainable AI approaches."
+    ],
+    "durationSeconds": 7.454989586999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ca94018e-2c44-4166-b55a-7bca3242270c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T05:05:00.563Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LtZj7yTwqTSqW1uoPPTETP`</summary>
+
+```json
+{
+  "query": "Wang et al 2510.02386 RL contamination concealment GRPO benchmark experimental design 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0486748-66ea-4447-9554-821ab3ddd6ab",
+  "isSidechain": false,
+  "requestId": "req_011CbDEkFgJ6yhmCLj1w6eEs",
+  "type": "assistant",
+  "uuid": "92276167-bab1-46a1-afe1-41e61d16cada",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DDkhRPy2jvXcnQapS9Cswu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 20257,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 779,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 20257,
+          "cache_creation_input_tokens": 779,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 779
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T05:05:07.547Z_
+
+<details><summary>↩ Tool result · `toolu_01LtZj7yTwqTSqW1uoPPTETP`</summary>
+
+```text
+Web search results for query: "Wang et al 2510.02386 RL contamination concealment GRPO benchmark experimental design 2025 2026"
+
+Links: [{"title":"[2510.02386] On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/abs/2510.02386"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/html/2510.02386"},{"title":"detecting data contamination from reinforcement learning ...","url":"https://arxiv.org/pdf/2510.09259"},{"title":"The Impact of Post-training on Data Contamination","url":"https://arxiv.org/pdf/2601.06103"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/html/2510.09259v1"},{"title":"Hail to the Thief: Exploring Attacks and Defenses in Decentralised GRPO","url":"https://arxiv.org/pdf/2511.09780"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## Paper Overview
+
+The paper with identifier 2510.02386 is titled "On The Fragility of Benchmark Contamination Detection in Reasoning Models" and was published in September 2025.
+
+## Key Findings
+
+The paper focuses on two scenarios where contamination may occur: when a base model evolves into a large reasoning model (LRM) via supervised fine-tuning (SFT) and reinforcement learning (RL), they find that contamination during SFT can be identified by contamination detection methods, yet even brief Group Relative Policy Optimization (GRPO) training can markedly conceal contamination signals that most detection methods rely on.
+
+## Experimental Design
+
+The researchers evaluated 10 representative contamination detection methods spanning generation-based, perturbation-based, reference-based, and reference-free approaches, finding that while SFT contamination to the base model is initially detectable, contamination evidence can be concealed through subsequent GRPO training with clean samples.
+
+Further empirical experiments and theoretical analysis indicate that Proximal Policy Optimization (PPO) style importance sampling and clipping objectives are the root cause of this detection concealment, indicating that a broad class of RL methods may inherently exhibit similar concealment capability.
+
+The paper essentially demonstrates that benchmark contamination detection can be evaded during the GRPO training phase, which has significant implications for evaluating reasoning models on public leaderboards.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "92276167-bab1-46a1-afe1-41e61d16cada",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "9970e180-6fd0-47a4-874e-3e2398a8f5f7",
+  "toolUseResult": {
+    "query": "Wang et al 2510.02386 RL contamination concealment GRPO benchmark experimental design 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EDtQa7CcJETSpFgw5pfwmK",
+        "content": [
+          {
+            "title": "[2510.02386] On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/abs/2510.02386"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/pdf/2510.02386"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/html/2510.02386"
+          },
+          {
+            "title": "detecting data contamination from reinforcement learning ...",
+            "url": "https://arxiv.org/pdf/2510.09259"
+          },
+          {
+            "title": "The Impact of Post-training on Data Contamination",
+            "url": "https://arxiv.org/pdf/2601.06103"
+          },
+          {
+            "title": "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models",
+            "url": "https://arxiv.org/html/2510.09259v1"
+          },
+          {
+            "title": "Hail to the Thief: Exploring Attacks and Defenses in Decentralised GRPO",
+            "url": "https://arxiv.org/pdf/2511.09780"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## Paper Overview\n\nThe paper with identifier 2510.02386 is titled \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\" and was published in September 2025.\n\n## Key Findings\n\nThe paper focuses on two scenarios where contamination may occur: when a base model evolves into a large reasoning model (LRM) via supervised fine-tuning (SFT) and reinforcement learning (RL), they find that contamination during SFT can be identified by contamination detection methods, yet even brief Group Relative Policy Optimization (GRPO) training can markedly conceal contamination signals that most detection methods rely on.\n\n## Experimental Design\n\nThe researchers evaluated 10 representative contamination detection methods spanning generation-based, perturbation-based, reference-based, and reference-free approaches, finding that while SFT contamination to the base model is initially detectable, contamination evidence can be concealed through subsequent GRPO training with clean samples.\n\nFurther empirical experiments and theoretical analysis indicate that Proximal Policy Optimization (PPO) style importance sampling and clipping objectives are the root cause of this detection concealment, indicating that a broad class of RL methods may inherently exhibit similar concealment capability.\n\nThe paper essentially demonstrates that benchmark contamination detection can be evaded during the GRPO training phase, which has significant implications for evaluating reasoning models on public leaderboards."
+    ],
+    "durationSeconds": 6.980307647999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "92276167-bab1-46a1-afe1-41e61d16cada",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T05:05:10.640Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017dgqs4gxsmXB2kfp8wNVT8`</summary>
+
+```json
+{
+  "query": "ConStat NeurIPS 2024 contamination detection experimental setup baselines metrics DVD benchmark 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9970e180-6fd0-47a4-874e-3e2398a8f5f7",
+  "isSidechain": false,
+  "requestId": "req_011CbDEkxePh9JjCrYqM7H5g",
+  "type": "assistant",
+  "uuid": "5407f862-a798-4e01-896c-950f8f209d79",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WytKY3Dgq4S4siG9ArRLk6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 745,
+      "cache_read_input_tokens": 21036,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 745,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 21036,
+          "cache_creation_input_tokens": 745,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 745
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T05:05:18.398Z_
+
+<details><summary>↩ Tool result · `toolu_017dgqs4gxsmXB2kfp8wNVT8`</summary>
+
+```text
+Web search results for query: "ConStat NeurIPS 2024 contamination detection experimental setup baselines metrics DVD benchmark 2025"
+
+Links: [{"title":"ConStat: Performance-Based Contamination Detection in Large Language Models","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/a7f89793b9e6f8c6568dbbb6ff727b9b-Paper-Conference.pdf"},{"title":"NeurIPS Poster ConStat: Performance-Based Contamination Detection in Large Language Models","url":"https://neurips.cc/virtual/2024/poster/96266"},{"title":"DVD: A Robust Method for Detecting Variant Contamination in Large Language Model Evaluation","url":"https://arxiv.org/pdf/2601.04895"},{"title":"Detecting Benchmark Contamination Through Watermarking","url":"https://arxiv.org/pdf/2502.17259"},{"title":"2025 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2025-conference/"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"},{"title":"Evaluating Latent Knowledge of Public Tabular Datasets in Large Language Models","url":"https://arxiv.org/pdf/2510.20351"},{"title":"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models","url":"https://arxiv.org/pdf/2511.17602"}]
+
+I found relevant information about ConStat and related contamination detection methods. Here's what the search reveals:
+
+## ConStat (NeurIPS 2024)
+
+ConStat proposes a novel definition of contamination as artificially inflated and non-generalizing benchmark performance, enabling detection of any model with inflated performance that does not generalize to rephrased samples, synthetic samples from the same distribution, or different benchmarks for the same task.
+
+### Experimental Setup
+
+For the experimental setup, ConStat fine-tunes both LLAMA-2-INSTRUCT-7b and PHI-2 using various hyperparameters and contamination scenarios on each benchmark separately, varying the number of epochs, learning rate, portion of contaminated training samples, whether few-shot examples are used during fine-tuning, and whether the model is trained on original benchmark samples or rephrased data. A total of 70 models were trained, 9 of which finished training at a loss spike and were excluded from further analysis.
+
+### Method Overview
+
+The method first selects models to check for contamination, then selects reference models and benchmarks, and finally computes ConStat to detect and quantify contamination.
+
+## DVD Benchmark (2025)
+
+DVD consistently outperforms perplexity-based, Min-k%++, editdistance (CDD), and embedding-similarity baselines, while exhibiting strong robustness to hyperparameters. DVD establishes variance of the generation distribution as a principled and practical fingerprint for detecting variant contamination in LLM evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5407f862-a798-4e01-896c-950f8f209d79",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "76d797f4-2f69-4572-a64b-2b8465e437cd",
+  "toolUseResult": {
+    "query": "ConStat NeurIPS 2024 contamination detection experimental setup baselines metrics DVD benchmark 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KVqokYtwpqAeZvuSUEEuaV",
+        "content": [
+          {
+            "title": "ConStat: Performance-Based Contamination Detection in Large Language Models",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/a7f89793b9e6f8c6568dbbb6ff727b9b-Paper-Conference.pdf"
+          },
+          {
+            "title": "NeurIPS Poster ConStat: Performance-Based Contamination Detection in Large Language Models",
+            "url": "https://neurips.cc/virtual/2024/poster/96266"
+          },
+          {
+            "title": "DVD: A Robust Method for Detecting Variant Contamination in Large Language Model Evaluation",
+            "url": "https://arxiv.org/pdf/2601.04895"
+          },
+          {
+            "title": "Detecting Benchmark Contamination Through Watermarking",
+            "url": "https://arxiv.org/pdf/2502.17259"
+          },
+          {
+            "title": "2025 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2025-conference/"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/pdf/2510.02386"
+          },
+          {
+            "title": "Evaluating Latent Knowledge of Public Tabular Datasets in Large Language Models",
+            "url": "https://arxiv.org/pdf/2510.20351"
+          },
+          {
+            "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+            "url": "https://arxiv.org/pdf/2511.17602"
+          }
+        ]
+      },
+      "I found relevant information about ConStat and related contamination detection methods. Here's what the search reveals:\n\n## ConStat (NeurIPS 2024)\n\nConStat proposes a novel definition of contamination as artificially inflated and non-generalizing benchmark performance, enabling detection of any model with inflated performance that does not generalize to rephrased samples, synthetic samples from the same distribution, or different benchmarks for the same task.\n\n### Experimental Setup\n\nFor the experimental setup, ConStat fine-tunes both LLAMA-2-INSTRUCT-7b and PHI-2 using various hyperparameters and contamination scenarios on each benchmark separately, varying the number of epochs, learning rate, portion of contaminated training samples, whether few-shot examples are used during fine-tuning, and whether the model is trained on original benchmark samples or rephrased data. A total of 70 models were trained, 9 of which finished training at a loss spike and were excluded from further analysis.\n\n### Method Overview\n\nThe method first selects models to check for contamination, then selects reference models and benchmarks, and finally computes ConStat to detect and quantify contamination.\n\n## DVD Benchmark (2025)\n\nDVD consistently outperforms perplexity-based, Min-k%++, editdistance (CDD), and embedding-similarity baselines, while exhibiting strong robustness to hyperparameters. DVD establishes variance of the generation distribution as a principled and practical fingerprint for detecting variant contamination in LLM evaluation."
+    ],
+    "durationSeconds": 7.754872500999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5407f862-a798-4e01-896c-950f8f209d79",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-20T05:05:21.972Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P7DFfqJNsFqkyMZrGzzrzf`</summary>
+
+```json
+{
+  "query": "IRT item response theory LLM evaluation psychometric equating benchmark Growing Pains 2604.12843 experimental design 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76d797f4-2f69-4572-a64b-2b8465e437cd",
+  "isSidechain": false,
+  "requestId": "req_011CbDEmm59t6xWHeWDYB9Nh",
+  "type": "assistant",
+  "uuid": "21a810fc-3053-460d-a6c4-c6c7cb1603c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AjNfT748YF3PrmWR9yJHpL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 832,
+      "cache_read_input_tokens": 21781,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 832,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 21781,
+          "cache_creation_input_tokens": 832,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 832
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T05:05:29.511Z_
+
+<details><summary>↩ Tool result · `toolu_01P7DFfqJNsFqkyMZrGzzrzf`</summary>
+
+```text
+Web search results for query: "IRT item response theory LLM evaluation psychometric equating benchmark Growing Pains 2604.12843 experimental design 2025 2026"
+
+Links: [{"title":"[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/abs/2604.12843"},{"title":"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration","url":"https://arxiv.org/html/2604.12843"},{"title":"Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks","url":"https://arxiv.org/pdf/2509.24186"},{"title":"Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking","url":"https://arxiv.org/pdf/2603.23506"},{"title":"Leveraging LLM-Respondents for Item Evaluation: a Psychometric Analysis","url":"https://arxiv.org/html/2407.10899v1"},{"title":"Learning Compact Representations of LLM Abilities via Item Response Theory","url":"https://arxiv.org/pdf/2510.00844"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v1"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/pdf/2511.04689"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/html/2511.04689"}]
+
+I found relevant information about your search query. Here are the key findings:
+
+## Growing Pains Paper (arXiv 2604.12843)
+
+The "Growing Pains" paper proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed. The paper addresses the problem that the rapid release of both language models and benchmarks makes evaluation costly, and models are often evaluated on different samples, making scores difficult to compare across studies.
+
+The approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly. In large-scale experiments on more than 400 models, their framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ≥0.9 for ranking preservation.
+
+## Broader Context on IRT and LLM Evaluation
+
+The paper appears as part of a growing body of work using psychometric approaches for LLM evaluation. Recent efforts focus on ability estimation within a fixed item pool, largely overlooking equating across different test forms, which is precisely what the Growing Pains framework addresses. The paper was published on April 15, 2026, making it very recent research in this space.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21a810fc-3053-460d-a6c4-c6c7cb1603c3",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "fc438525-1f60-469b-88bf-8c7cca9c3f6a",
+  "toolUseResult": {
+    "query": "IRT item response theory LLM evaluation psychometric equating benchmark Growing Pains 2604.12843 experimental design 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LxYJkeqj6YHUemQJfhwHRj",
+        "content": [
+          {
+            "title": "[2604.12843] Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/abs/2604.12843"
+          },
+          {
+            "title": "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration",
+            "url": "https://arxiv.org/html/2604.12843"
+          },
+          {
+            "title": "Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks",
+            "url": "https://arxiv.org/pdf/2509.24186"
+          },
+          {
+            "title": "Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking",
+            "url": "https://arxiv.org/pdf/2603.23506"
+          },
+          {
+            "title": "Leveraging LLM-Respondents for Item Evaluation: a Psychometric Analysis",
+            "url": "https://arxiv.org/html/2407.10899v1"
+          },
+          {
+            "title": "Learning Compact Representations of LLM Abilities via Item Response Theory",
+            "url": "https://arxiv.org/pdf/2510.00844"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v1"
+          },
+          {
+            "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/pdf/2511.04689"
+          },
+          {
+            "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/html/2511.04689"
+          }
+        ]
+      },
+      "I found relevant information about your search query. Here are the key findings:\n\n## Growing Pains Paper (arXiv 2604.12843)\n\nThe \"Growing Pains\" paper proposes a framework based on multidimensional Item Response Theory (IRT) that uses anchor items to calibrate new benchmarks to the evaluation suite while holding previously calibrated item parameters fixed. The paper addresses the problem that the rapid release of both language models and benchmarks makes evaluation costly, and models are often evaluated on different samples, making scores difficult to compare across studies.\n\nThe approach supports a realistic evaluation setting in which datasets are introduced over time and models are evaluated only on the datasets available at the time of evaluation, while a fixed anchor set for each dataset is used so that results from different evaluation periods can be compared directly. In large-scale experiments on more than 400 models, their framework predicts full-evaluation performance within 2-3 percentage points using only 100 anchor questions per dataset, with Spearman ρ≥0.9 for ranking preservation.\n\n## Broader Context on IRT and LLM Evaluation\n\nThe paper appears as part of a growing body of work using psychometric approaches for LLM evaluation. Recent efforts focus on ability estimation within a fixed item pool, largely overlooking equating across different test forms, which is precisely what the Growing Pains framework addresses. The paper was published on April 15, 2026, making it very recent research in this space."
+    ],
+    "durationSeconds": 7.533637534000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "21a810fc-3053-460d-a6c4-c6c7cb1603c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "## Title  Benchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination  ## Problem Statement  LLM evaluation implicitly assumes that b…",
+  "leafUuid": "fc438525-1f60-469b-88bf-8c7cca9c3f6a",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Benchmark temporal validity with contamination detection",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T05:05:31.900Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HeD6r6mbWTg6TtzwoCETUw`</summary>
+
+```json
+{
+  "query": "LiveBench benchmark monthly update experimental evaluation baseline comparison 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc438525-1f60-469b-88bf-8c7cca9c3f6a",
+  "isSidechain": false,
+  "requestId": "req_011CbDEnabtXwKQA1XarD1LE",
+  "type": "assistant",
+  "uuid": "3d51b19f-fadd-4f4f-befa-d3fb21b933c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwYHNnK1TXSFZXrFbadA8i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 874,
+      "cache_read_input_tokens": 22613,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 874,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 22613,
+          "cache_creation_input_tokens": 874,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 874
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T05:05:39.325Z_
+
+<details><summary>↩ Tool result · `toolu_01HeD6r6mbWTg6TtzwoCETUw`</summary>
+
+```text
+Web search results for query: "LiveBench benchmark monthly update experimental evaluation baseline comparison 2025 2026 arXiv"
+
+Links: [{"title":"LiveBench — Grokipedia","url":"https://grokipedia.com/page/livebench"},{"title":"Published as a conference paper at ICLR 2025 LIVEBENCH: A CHALLENGING,","url":"https://arxiv.org/pdf/2406.19314"},{"title":"LiveBench: A Challenging, Contamination-Free LLM Benchmark","url":"https://livebench.ai/livebench.pdf"},{"title":"GitHub - LiveBench/LiveBench: LiveBench: A Challenging, Contamination-Free LLM Benchmark · GitHub","url":"https://github.com/LiveBench/LiveBench"},{"title":"LiveBench/changelog.md at main · LiveBench/LiveBench","url":"https://github.com/LiveBench/LiveBench/blob/main/changelog.md"},{"title":"LiveBench: A Challenging, Contamination-Limited LLM Benchmark | OpenReview","url":"https://openreview.net/forum?id=sKYHBTAxVa"},{"title":"[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark","url":"https://arxiv.org/abs/2406.19314"},{"title":"LiveSearchBench: An Automatically Constructed Benchmark for Retrieval and Reasoning over Dynamic Knowledge","url":"https://arxiv.org/pdf/2511.01409"}]
+
+Based on the search results, here's what I found about LiveBench:
+
+## LiveBench Overview
+
+LiveBench was initially released with a paper on arXiv introducing a baseline set of approximately 960 questions across 17 tasks in six core categories, including mathematics, coding, and reasoning. LiveBench appeared as a Spotlight Paper in ICLR 2025.
+
+## Monthly Updates and Baseline Comparisons
+
+Questions are added and updated on a monthly basis, and new tasks and harder versions of tasks are released over time. Two monthly updates have been completed for LiveBench so far, with rank correlation between the original and first update, and the first and second update, both greater than 0.997, showing that model rankings have stayed consistent.
+
+## Recent Performance Baselines (2025-2026)
+
+As of the LiveBench-2025-12-23 update (December 2025), leading large language models have shown substantial improvements, with Claude 4.5 Opus Thinking High Effort achieving the highest global average accuracy of 76.20%, followed closely by GPT-5.1 Codex Max at 75.63%.
+
+## Evaluation Methodology
+
+LiveBench contains frequently-updated questions from recent information sources, scores answers automatically according to objective ground-truth values, and contains a wide variety of challenging tasks, spanning math, coding, reasoning, language, instruction following, and data analysis.
+
+The arXiv paper is available at: https://arxiv.org/abs/2406.19314
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d51b19f-fadd-4f4f-befa-d3fb21b933c8",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "e269e0de-e59b-48c6-839d-c8da2afc83fd",
+  "toolUseResult": {
+    "query": "LiveBench benchmark monthly update experimental evaluation baseline comparison 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015z7woEYFmxfXtuG1GnKTF8",
+        "content": [
+          {
+            "title": "LiveBench — Grokipedia",
+            "url": "https://grokipedia.com/page/livebench"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 LIVEBENCH: A CHALLENGING,",
+            "url": "https://arxiv.org/pdf/2406.19314"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Free LLM Benchmark",
+            "url": "https://livebench.ai/livebench.pdf"
+          },
+          {
+            "title": "GitHub - LiveBench/LiveBench: LiveBench: A Challenging, Contamination-Free LLM Benchmark · GitHub",
+            "url": "https://github.com/LiveBench/LiveBench"
+          },
+          {
+            "title": "LiveBench/changelog.md at main · LiveBench/LiveBench",
+            "url": "https://github.com/LiveBench/LiveBench/blob/main/changelog.md"
+          },
+          {
+            "title": "LiveBench: A Challenging, Contamination-Limited LLM Benchmark | OpenReview",
+            "url": "https://openreview.net/forum?id=sKYHBTAxVa"
+          },
+          {
+            "title": "[2406.19314] LiveBench: A Challenging, Contamination-Limited LLM Benchmark",
+            "url": "https://arxiv.org/abs/2406.19314"
+          },
+          {
+            "title": "LiveSearchBench: An Automatically Constructed Benchmark for Retrieval and Reasoning over Dynamic Knowledge",
+            "url": "https://arxiv.org/pdf/2511.01409"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LiveBench:\n\n## LiveBench Overview\n\nLiveBench was initially released with a paper on arXiv introducing a baseline set of approximately 960 questions across 17 tasks in six core categories, including mathematics, coding, and reasoning. LiveBench appeared as a Spotlight Paper in ICLR 2025.\n\n## Monthly Updates and Baseline Comparisons\n\nQuestions are added and updated on a monthly basis, and new tasks and harder versions of tasks are released over time. Two monthly updates have been completed for LiveBench so far, with rank correlation between the original and first update, and the first and second update, both greater than 0.997, showing that model rankings have stayed consistent.\n\n## Recent Performance Baselines (2025-2026)\n\nAs of the LiveBench-2025-12-23 update (December 2025), leading large language models have shown substantial improvements, with Claude 4.5 Opus Thinking High Effort achieving the highest global average accuracy of 76.20%, followed closely by GPT-5.1 Codex Max at 75.63%.\n\n## Evaluation Methodology\n\nLiveBench contains frequently-updated questions from recent information sources, scores answers automatically according to objective ground-truth values, and contains a wide variety of challenging tasks, spanning math, coding, reasoning, language, instruction following, and data analysis.\n\nThe arXiv paper is available at: https://arxiv.org/abs/2406.19314"
+    ],
+    "durationSeconds": 7.420007061999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3d51b19f-fadd-4f4f-befa-d3fb21b933c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-20T05:05:41.960Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TWcCCEbLqqmR75zKi4MQmv`</summary>
+
+```json
+{
+  "query": "Tao et al Self-Critique RL-MIA contamination detection reinforcement learning ICLR 2026 experimental design baselines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e269e0de-e59b-48c6-839d-c8da2afc83fd",
+  "isSidechain": false,
+  "requestId": "req_011CbDEoJXXXFqhYd5xYFQz8",
+  "type": "assistant",
+  "uuid": "82cb96f7-a63d-4970-8146-1bfbfc644116",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014rMvXxYkj9RSDuCFfJKFV2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 817,
+      "cache_read_input_tokens": 23487,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 23487,
+          "cache_creation_input_tokens": 817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T05:05:49.340Z_
+
+<details><summary>↩ Tool result · `toolu_01TWcCCEbLqqmR75zKi4MQmv`</summary>
+
+```text
+Web search results for query: "Tao et al Self-Critique RL-MIA contamination detection reinforcement learning ICLR 2026 experimental design baselines"
+
+Links: [{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/pdf/2510.09259"},{"title":"DETECTING BENCHMARK CONTAMINATION THROUGH ...","url":"https://openreview.net/pdf?id=WFGxFzFDmQ"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"},{"title":"Learning to Detect Language Model Training Data via Active Reconstruction","url":"https://arxiv.org/pdf/2602.19020"},{"title":"OBSCURING DATA CONTAMINATION THROUGH TRANSLATION","url":"https://openreview.net/pdf?id=omg9K6lI93"},{"title":"OBSCURING DATA CONTAMINATION ...","url":"https://openreview.net/pdf/2e5c661a0aff3003ce18874dc593210c26709c3e.pdf"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"}]
+
+I found relevant information about the Tao et al. research. Based on the search results:
+
+Tao et al. conducted the first systematic study of data contamination detection within RL post-training scenarios and proposed Self-Critique, along with introducing RL-MIA, a benchmark constructed to simulate this specific contamination scenario.
+
+**Methodology:** The method is motivated by the observation that after the RL phase, the output entropy distribution of LLMs tends to collapse into highly specific and sparse modes. Self-Critique probes for the underlying policy collapse—the model's convergence to a narrow reasoning path—which causes this entropy reduction.
+
+**Experimental Results:** Extensive experiments show that Self-Critique significantly outperforms baseline methods across multiple models and contamination tasks, achieving an AUC improvement of up to 30%. While existing methods are close to a random guess for RL-phase contamination, their method makes detection possible.
+
+The paper addresses a critical gap in the field: Previous contamination detection methods have focused almost exclusively on the pre-training and Supervised Fine-Tuning stages, leaving a major gap in the increasingly important phase of Reinforcement Learning post-training.
+
+The benchmark and code are available at https://github.com/yongding-tao/RL-Data-Contamination.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82cb96f7-a63d-4970-8146-1bfbfc644116",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "f5b43cb0-0fc6-4593-8e26-94fbf9a1bde5",
+  "toolUseResult": {
+    "query": "Tao et al Self-Critique RL-MIA contamination detection reinforcement learning ICLR 2026 experimental design baselines",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Uuh9edLSFAu2sWy5E1ycy5",
+        "content": [
+          {
+            "title": "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models",
+            "url": "https://arxiv.org/pdf/2510.09259"
+          },
+          {
+            "title": "DETECTING BENCHMARK CONTAMINATION THROUGH ...",
+            "url": "https://openreview.net/pdf?id=WFGxFzFDmQ"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/pdf/2510.02386"
+          },
+          {
+            "title": "Learning to Detect Language Model Training Data via Active Reconstruction",
+            "url": "https://arxiv.org/pdf/2602.19020"
+          },
+          {
+            "title": "OBSCURING DATA CONTAMINATION THROUGH TRANSLATION",
+            "url": "https://openreview.net/pdf?id=omg9K6lI93"
+          },
+          {
+            "title": "OBSCURING DATA CONTAMINATION ...",
+            "url": "https://openreview.net/pdf/2e5c661a0aff3003ce18874dc593210c26709c3e.pdf"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          }
+        ]
+      },
+      "I found relevant information about the Tao et al. research. Based on the search results:\n\nTao et al. conducted the first systematic study of data contamination detection within RL post-training scenarios and proposed Self-Critique, along with introducing RL-MIA, a benchmark constructed to simulate this specific contamination scenario.\n\n**Methodology:** The method is motivated by the observation that after the RL phase, the output entropy distribution of LLMs tends to collapse into highly specific and sparse modes. Self-Critique probes for the underlying policy collapse—the model's convergence to a narrow reasoning path—which causes this entropy reduction.\n\n**Experimental Results:** Extensive experiments show that Self-Critique significantly outperforms baseline methods across multiple models and contamination tasks, achieving an AUC improvement of up to 30%. While existing methods are close to a random guess for RL-phase contamination, their method makes detection possible.\n\nThe paper addresses a critical gap in the field: Previous contamination detection methods have focused almost exclusively on the pre-training and Supervised Fine-Tuning stages, leaving a major gap in the increasingly important phase of Reinforcement Learning post-training.\n\nThe benchmark and code are available at https://github.com/yongding-tao/RL-Data-Contamination."
+    ],
+    "durationSeconds": 7.376211543000013,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "82cb96f7-a63d-4970-8146-1bfbfc644116",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-20T05:05:52.130Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QUC6gd6G35tnfwJTCY5D5D`</summary>
+
+```json
+{
+  "query": "OH2PL item response theory parameter estimation small sample size König 2022 bifactor projective IRT equating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5b43cb0-0fc6-4593-8e26-94fbf9a1bde5",
+  "isSidechain": false,
+  "requestId": "req_011CbDEp3NV1F15LBsGuoAxM",
+  "type": "assistant",
+  "uuid": "1adccb12-c3d8-48ab-b52e-54b44705ab2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016iJG5LYpyK16vaLQToJwV2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 24304,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 24304,
+          "cache_creation_input_tokens": 712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T05:05:59.140Z_
+
+<details><summary>↩ Tool result · `toolu_01QUC6gd6G35tnfwJTCY5D5D`</summary>
+
+```text
+Web search results for query: "OH2PL item response theory parameter estimation small sample size König 2022 bifactor projective IRT equating"
+
+Links: [{"title":"Robustness of the performance of the optimized hierarchical two-parameter logistic IRT model for small-sample item calibration","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10700496/"},{"title":"Robustness of the performance of the optimized hierarchical two-parameter logistic IRT model for small-sample item calibration - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/36333627/"},{"title":"Robustness of the performance of the optimized hierarchical two-parameter logistic IRT model for small-sample item calibration - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10700496/"},{"title":"Robustness of the performance of the optimized hierarchical two-parameter logistic IRT model for small-sample item calibration | Behavior Research Methods | Springer Nature Link","url":"https://link.springer.com/article/10.3758/s13428-022-02000-5"},{"title":"Redefining Item Response Models for Small Samples - Jean-Paul Fox, 2025","url":"https://journals.sagepub.com/doi/10.3102/10769986241269886"},{"title":"An Optimized Bayesian Hierarchical Two-Parameter Logistic Model for Small-Sample Item Calibration - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7262992/"}]
+
+I found relevant research on the OH2PL model from König et al. The search results show:
+
+König et al. (Applied Psychological Measurement, 44, 311–326, 2020) illustrated in an optimized hierarchical Bayesian two-parameter logistic model (OH2PL) how to avoid bias due to unintended shrinkage or degeneracies of the posterior, and how to benefit from this approach in small samples.
+
+In a comprehensive simulation study, the robustness of the performance of the novel OH2PL was investigated in several specifications of their hyperpriors under a broad range of data conditions. The novel OH2PL in the half-Cauchy or Exponential configuration yields unbiased model parameter estimates in small samples.
+
+The OH2PL was successfully applied to a six-dimensional case with N = 115 students.
+
+The 2022 publication by König, Spoden, and Frey (published in *Behavior Research Methods*, 2023, 55(8), 3965-3983) appears to be a follow-up that examined the robustness of the OH2PL's performance across different hyperprior specifications.
+
+However, the search results do not contain specific information about bifactor models or IRT equating applications. If you need information about those specific topics in relation to the OH2PL, please let me know and I can conduct additional searches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1adccb12-c3d8-48ab-b52e-54b44705ab2b",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "9c1abd6e-5453-481b-96f1-c8605d9d0077",
+  "toolUseResult": {
+    "query": "OH2PL item response theory parameter estimation small sample size König 2022 bifactor projective IRT equating",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LFbp1rh4K9SCv7LNCVbutp",
+        "content": [
+          {
+            "title": "Robustness of the performance of the optimized hierarchical two-parameter logistic IRT model for small-sample item calibration",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10700496/"
+          },
+          {
+            "title": "Robustness of the performance of the optimized hierarchical two-parameter logistic IRT model for small-sample item calibration - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/36333627/"
+          },
+          {
+            "title": "Robustness of the performance of the optimized hierarchical two-parameter logistic IRT model for small-sample item calibration - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10700496/"
+          },
+          {
+            "title": "Robustness of the performance of the optimized hierarchical two-parameter logistic IRT model for small-sample item calibration | Behavior Research Methods | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.3758/s13428-022-02000-5"
+          },
+          {
+            "title": "Redefining Item Response Models for Small Samples - Jean-Paul Fox, 2025",
+            "url": "https://journals.sagepub.com/doi/10.3102/10769986241269886"
+          },
+          {
+            "title": "An Optimized Bayesian Hierarchical Two-Parameter Logistic Model for Small-Sample Item Calibration - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7262992/"
+          }
+        ]
+      },
+      "I found relevant research on the OH2PL model from König et al. The search results show:\n\nKönig et al. (Applied Psychological Measurement, 44, 311–326, 2020) illustrated in an optimized hierarchical Bayesian two-parameter logistic model (OH2PL) how to avoid bias due to unintended shrinkage or degeneracies of the posterior, and how to benefit from this approach in small samples.\n\nIn a comprehensive simulation study, the robustness of the performance of the novel OH2PL was investigated in several specifications of their hyperpriors under a broad range of data conditions. The novel OH2PL in the half-Cauchy or Exponential configuration yields unbiased model parameter estimates in small samples.\n\nThe OH2PL was successfully applied to a six-dimensional case with N = 115 students.\n\nThe 2022 publication by König, Spoden, and Frey (published in *Behavior Research Methods*, 2023, 55(8), 3965-3983) appears to be a follow-up that examined the robustness of the OH2PL's performance across different hyperprior specifications.\n\nHowever, the search results do not contain specific information about bifactor models or IRT equating applications. If you need information about those specific topics in relation to the OH2PL, please let me know and I can conduct additional searches."
+    ],
+    "durationSeconds": 7.007299274000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1adccb12-c3d8-48ab-b52e-54b44705ab2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-20T05:05:59.143Z_
+
+```json
+{
+  "parentUuid": "9c1abd6e-5453-481b-96f1-c8605d9d0077",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0cc5e986-3644-44c0-b850-0eccb3e46bbe",
+  "timestamp": "2026-05-20T05:05:59.143Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T05:06:04.089Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HxVhuAqJPrE1cc1dyrSi4K`</summary>
+
+```json
+{
+  "query": "student simulation IRT item generation LLM benchmark calibration SMART arXiv 2507.05129 Hardy isotonic pre-filtering 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0cc5e986-3644-44c0-b850-0eccb3e46bbe",
+  "isSidechain": false,
+  "requestId": "req_011CbDEpmL7iB1BDvN6XNX3r",
+  "type": "assistant",
+  "uuid": "76b013b2-a346-497e-8708-ea888fbeedf5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHqtssMQ7wisCnYM1NRNc1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 25016,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 25016,
+          "cache_creation_input_tokens": 920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T05:06:12.003Z_
+
+<details><summary>↩ Tool result · `toolu_01HxVhuAqJPrE1cc1dyrSi4K`</summary>
+
+```text
+Web search results for query: "student simulation IRT item generation LLM benchmark calibration SMART arXiv 2507.05129 Hardy isotonic pre-filtering 2025 2026"
+
+Links: [{"title":"[2507.05129] SMART: Simulated Students Aligned with Item Response Theory for Question Difficulty Prediction","url":"https://arxiv.org/abs/2507.05129"},{"title":"SMART: Simulated Students Aligned with Item Response Theory for","url":"https://arxiv.org/pdf/2507.05129"},{"title":"Can LLMs Estimate Student Struggles? Human-AI Difficulty Alignment with Proficiency Simulation for Item Difficulty Prediction","url":"https://arxiv.org/html/2512.18880v1"},{"title":"Reconstructing Item Characteristic Curves using Fine-Tuned Large Language Models","url":"https://arxiv.org/pdf/2601.02580"},{"title":"SMART: Simulated Students Aligned with Item Response Theory for Question Difficulty Prediction","url":"https://arxiv.org/html/2507.05129"},{"title":"Application and Simulation of Computerized Adaptive ...","url":"https://arxiv.org/pdf/1707.03012"},{"title":"Take Out Your Calculators: Estimating the Real Difficulty of Question Items with LLM Student Simulations","url":"https://arxiv.org/pdf/2601.09953"},{"title":"Can LLMs Reliably Simulate Real Students’ Abilities in Mathematics and Reading Comprehension?","url":"https://arxiv.org/html/2507.08232"},{"title":"Reliability-Targeted Simulation of Item Response Data: Solving the Inverse Design Problem","url":"https://arxiv.org/pdf/2512.16012"}]
+
+Based on the web search results, I found information about the arXiv paper 2507.05129:
+
+## SMART: Simulated Students Aligned with Item Response Theory
+
+SMART (Simulated Students Aligned with IRT) is a novel method for aligning simulated students with instructed ability, which can then be used in simulations to predict the difficulty of open-ended items.
+
+**Key Methodology:**
+
+The alignment is achieved using direct preference optimization (DPO), where preference pairs are formed based on how likely responses are under a ground-truth IRT model. The method involves generating thousands of responses, evaluating them with a large language model (LLM)-based scoring model, and fitting the resulting data to an IRT model to obtain item difficulty estimates.
+
+**Three-Stage Pipeline:**
+
+The pipeline involves simulating open-ended responses for students with different abilities, scoring them, and fitting an IRT model on the scores to obtain difficulty estimates.
+
+**Paper Details:**
+
+The paper was published in September 2025 (arXiv ID: 2507.05129) and addresses the challenge of estimating item difficulties for open-ended items, which is traditionally costly and difficult in cold-start settings.
+
+Note: The search results did not contain specific information about "Hardy isotonic pre-filtering" or "SMART benchmark calibration" components you mentioned in your original query.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76b013b2-a346-497e-8708-ea888fbeedf5",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "f88d5f36-6329-4307-86a2-12b80f7608d5",
+  "toolUseResult": {
+    "query": "student simulation IRT item generation LLM benchmark calibration SMART arXiv 2507.05129 Hardy isotonic pre-filtering 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Kp9L6eokSGCA4Bvi6mPauQ",
+        "content": [
+          {
+            "title": "[2507.05129] SMART: Simulated Students Aligned with Item Response Theory for Question Difficulty Prediction",
+            "url": "https://arxiv.org/abs/2507.05129"
+          },
+          {
+            "title": "SMART: Simulated Students Aligned with Item Response Theory for",
+            "url": "https://arxiv.org/pdf/2507.05129"
+          },
+          {
+            "title": "Can LLMs Estimate Student Struggles? Human-AI Difficulty Alignment with Proficiency Simulation for Item Difficulty Prediction",
+            "url": "https://arxiv.org/html/2512.18880v1"
+          },
+          {
+            "title": "Reconstructing Item Characteristic Curves using Fine-Tuned Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.02580"
+          },
+          {
+            "title": "SMART: Simulated Students Aligned with Item Response Theory for Question Difficulty Prediction",
+            "url": "https://arxiv.org/html/2507.05129"
+          },
+          {
+            "title": "Application and Simulation of Computerized Adaptive ...",
+            "url": "https://arxiv.org/pdf/1707.03012"
+          },
+          {
+            "title": "Take Out Your Calculators: Estimating the Real Difficulty of Question Items with LLM Student Simulations",
+            "url": "https://arxiv.org/pdf/2601.09953"
+          },
+          {
+            "title": "Can LLMs Reliably Simulate Real Students’ Abilities in Mathematics and Reading Comprehension?",
+            "url": "https://arxiv.org/html/2507.08232"
+          },
+          {
+            "title": "Reliability-Targeted Simulation of Item Response Data: Solving the Inverse Design Problem",
+            "url": "https://arxiv.org/pdf/2512.16012"
+          }
+        ]
+      },
+      "Based on the web search results, I found information about the arXiv paper 2507.05129:\n\n## SMART: Simulated Students Aligned with Item Response Theory\n\nSMART (Simulated Students Aligned with IRT) is a novel method for aligning simulated students with instructed ability, which can then be used in simulations to predict the difficulty of open-ended items.\n\n**Key Methodology:**\n\nThe alignment is achieved using direct preference optimization (DPO), where preference pairs are formed based on how likely responses are under a ground-truth IRT model. The method involves generating thousands of responses, evaluating them with a large language model (LLM)-based scoring model, and fitting the resulting data to an IRT model to obtain item difficulty estimates.\n\n**Three-Stage Pipeline:**\n\nThe pipeline involves simulating open-ended responses for students with different abilities, scoring them, and fitting an IRT model on the scores to obtain difficulty estimates.\n\n**Paper Details:**\n\nThe paper was published in September 2025 (arXiv ID: 2507.05129) and addresses the challenge of estimating item difficulties for open-ended items, which is traditionally costly and difficult in cold-start settings.\n\nNote: The search results did not contain specific information about \"Hardy isotonic pre-filtering\" or \"SMART benchmark calibration\" components you mentioned in your original query."
+    ],
+    "durationSeconds": 7.909325287999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "76b013b2-a346-497e-8708-ea888fbeedf5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T05:06:14.855Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012QmqcHnQ7mcSo4SA4jzftF`</summary>
+
+```json
+{
+  "query": "benchmark contamination detection ensemble multiple signals AUROC AUPRC evaluation protocol 2025 2026 NLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f88d5f36-6329-4307-86a2-12b80f7608d5",
+  "isSidechain": false,
+  "requestId": "req_011CbDEqiKp6g4NTXywVqvDn",
+  "type": "assistant",
+  "uuid": "55ca9b96-c209-47c5-8874-dad60f0dfe7b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012e8ZPFFpSxhUGVZ4PrHh5A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 25936,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 841,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 25936,
+          "cache_creation_input_tokens": 841,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 841
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T05:06:24.863Z_
+
+<details><summary>↩ Tool result · `toolu_012QmqcHnQ7mcSo4SA4jzftF`</summary>
+
+```text
+Web search results for query: "benchmark contamination detection ensemble multiple signals AUROC AUPRC evaluation protocol 2025 2026 NLP"
+
+Links: [{"title":"Multi-Cue Anomaly Detection and Localization under Data Contamination","url":"https://arxiv.org/html/2601.22913"},{"title":"Detecting Benchmark Contamination Through Watermarking","url":"https://arxiv.org/pdf/2502.17259"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/html/2510.02386v1"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"},{"title":"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models","url":"https://arxiv.org/pdf/2511.17602"},{"title":"Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis","url":"https://arxiv.org/pdf/2603.21454"}]
+
+Based on the web search results, I found several relevant papers on benchmark contamination detection. Here's what the search revealed:
+
+## Key Research on Benchmark Contamination Detection (2025-2026)
+
+Various benchmark contamination detection methods have been proposed to determine whether specific benchmarks were used during training, based on the assumption that contamination in LLMs primarily involves memorizing the benchmark data.
+
+### Evaluation Metrics
+Detection performance is evaluated using the Area Under the Receiver Operating Characteristic curve (AUROC) and the Area Under the Precision-Recall curve (AUPRC), where AUROC captures the trade-off between true-positive and false-positive rates, while AUPRC is particularly informative for anomaly detection due to class imbalance.
+
+### Multiple Signal Approaches
+Research analyzes the contribution of individual anomaly cues and their combination, comparing single-cue variants against full models that integrate all cues through multi-signal anomaly scoring strategies.
+
+### Recent Challenges in Contamination Detection
+As LLMs have evolved into Large Reasoning Models (LRMs), contamination detection faces challenges: LRMs rely on chain-of-thought reasoning, but contamination detectors typically only have access to question-answer pairs without the intermediate reasoning steps used during training.
+
+### Cross-Context Verification Approach
+If a model has memorized a benchmark solution, it will reproduce the same answer regardless of session context, while if it genuinely reasons, natural non-determinism will produce varied solutions across independent sessions.
+
+The search results show active research on contamination detection in 2025-2026, with multiple methodological approaches being developed.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55ca9b96-c209-47c5-8874-dad60f0dfe7b",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "e1cb4932-373a-4cf7-b137-c4608957efaf",
+  "toolUseResult": {
+    "query": "benchmark contamination detection ensemble multiple signals AUROC AUPRC evaluation protocol 2025 2026 NLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MTnd9d1tE7ovVmseB46Ldt",
+        "content": [
+          {
+            "title": "Multi-Cue Anomaly Detection and Localization under Data Contamination",
+            "url": "https://arxiv.org/html/2601.22913"
+          },
+          {
+            "title": "Detecting Benchmark Contamination Through Watermarking",
+            "url": "https://arxiv.org/pdf/2502.17259"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/html/2510.02386v1"
+          },
+          {
+            "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+            "url": "https://arxiv.org/pdf/2510.02386"
+          },
+          {
+            "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+            "url": "https://arxiv.org/pdf/2511.17602"
+          },
+          {
+            "title": "Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis",
+            "url": "https://arxiv.org/pdf/2603.21454"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on benchmark contamination detection. Here's what the search revealed:\n\n## Key Research on Benchmark Contamination Detection (2025-2026)\n\nVarious benchmark contamination detection methods have been proposed to determine whether specific benchmarks were used during training, based on the assumption that contamination in LLMs primarily involves memorizing the benchmark data.\n\n### Evaluation Metrics\nDetection performance is evaluated using the Area Under the Receiver Operating Characteristic curve (AUROC) and the Area Under the Precision-Recall curve (AUPRC), where AUROC captures the trade-off between true-positive and false-positive rates, while AUPRC is particularly informative for anomaly detection due to class imbalance.\n\n### Multiple Signal Approaches\nResearch analyzes the contribution of individual anomaly cues and their combination, comparing single-cue variants against full models that integrate all cues through multi-signal anomaly scoring strategies.\n\n### Recent Challenges in Contamination Detection\nAs LLMs have evolved into Large Reasoning Models (LRMs), contamination detection faces challenges: LRMs rely on chain-of-thought reasoning, but contamination detectors typically only have access to question-answer pairs without the intermediate reasoning steps used during training.\n\n### Cross-Context Verification Approach\nIf a model has memorized a benchmark solution, it will reproduce the same answer regardless of session context, while if it genuinely reasons, natural non-determinism will produce varied solutions across independent sessions.\n\nThe search results show active research on contamination detection in 2025-2026, with multiple methodological approaches being developed."
+    ],
+    "durationSeconds": 10.000862798000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "55ca9b96-c209-47c5-8874-dad60f0dfe7b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "## Title  Benchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination  ## Problem Statement  LLM evaluation implicitly assumes that b…",
+  "leafUuid": "e1cb4932-373a-4cf7-b137-c4608957efaf",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Benchmark temporal validity with contamination detection",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T05:06:28.382Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wr8zhYCrfMipBizjWWpf2P`</summary>
+
+```json
+{
+  "query": "GSM1K benchmark contamination test GSM8K comparison protocol experimental validation 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1cb4932-373a-4cf7-b137-c4608957efaf",
+  "isSidechain": false,
+  "requestId": "req_011CbDErfNzNgNFiQ36Xk7EU",
+  "type": "assistant",
+  "uuid": "63ec928e-1700-4587-8fb6-862470c9a85d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015gqCNJcmm4cbZ79Y5LbSxd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 26777,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 26777,
+          "cache_creation_input_tokens": 739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T05:06:36.303Z_
+
+<details><summary>↩ Tool result · `toolu_01Wr8zhYCrfMipBizjWWpf2P`</summary>
+
+```text
+Web search results for query: "GSM1K benchmark contamination test GSM8K comparison protocol experimental validation 2024 2025"
+
+Links: [{"title":"GSM8K Benchmark: Evaluating Math Reasoning","url":"https://www.emergentmind.com/topics/gsm8k-benchmark"},{"title":"GSM8K Arithmetic Benchmark Overview","url":"https://www.emergentmind.com/topics/gsm8k-arithmetic-benchmark"},{"title":"arXiv:2405.00332v3 [cs.CL] 3 May 2024","url":"https://arxiv.org/pdf/2405.00332"},{"title":"Scale Labs Leaderboard: Math Evaluation | Scale Labs","url":"https://labs.scale.com/leaderboard/math"},{"title":"A Careful Examination of Large Language Model ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/53384f2090c6a5cac952c598fd67992f-Paper-Datasets_and_Benchmarks_Track.pdf"},{"title":"GitHub - scaleapi/gsm1k_eval · GitHub","url":"https://github.com/scaleapi/gsm1k_eval"},{"title":"A Careful Examination of Large Language Model Performance on Grade School Arithmetic","url":"https://arxiv.org/html/2405.00332v1"},{"title":"[Quick Review] A Careful Examination of Large Language Model Performance on Grade School Arithmetic","url":"https://liner.com/review/a-careful-examination-of-large-language-model-performance-on-grade"}]
+
+Based on the search results, here's what I found regarding GSM1K benchmark contamination testing and GSM8K comparison:
+
+## Overview
+
+GSM1k is a held-out benchmark designed to match the difficulty and structure of GSM8k to measure existing benchmark contamination. It is a new benchmark of 1250 elementary math problems created by human annotators without LLM assistance, designed to mirror the style and difficulty of GSM8k while mitigating data contamination concerns.
+
+## Creation Protocol
+
+Annotators were prompted with 3 example GSM8k problems and asked to produce novel problems of a similar difficulty level. GSM1k consists of 1205 problems requiring only elementary mathematical reasoning to solve.
+
+## Key Experimental Findings (2024)
+
+Many models exhibit accuracy drops of up to 13% on GSM1k relative to GSM8K, with strong statistical correlation between a model's GSM8K–GSM1k gap and its log-likelihood of reproducing GSM8K text, evidencing dataset contamination. Models highly likely to generate GSM8K test examples suffer larger performance drops on GSM1K (Spearman's ρ² ≈ 0.32), though frontier models (e.g., GPT-4, Claude) display minimal signs of memorization and generalize well.
+
+## Release and Validation Strategy
+
+Initially, only 50 examples from GSM1k were released to prevent data contamination concerns, with commitment to release the full set when 3 open source models of different lineages reach 95+% accuracy on GSM1k.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63ec928e-1700-4587-8fb6-862470c9a85d",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "4493f9f9-a909-4212-86dd-93860f955c95",
+  "toolUseResult": {
+    "query": "GSM1K benchmark contamination test GSM8K comparison protocol experimental validation 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JS3gvV3J7kFZfBA4Wdcqd7",
+        "content": [
+          {
+            "title": "GSM8K Benchmark: Evaluating Math Reasoning",
+            "url": "https://www.emergentmind.com/topics/gsm8k-benchmark"
+          },
+          {
+            "title": "GSM8K Arithmetic Benchmark Overview",
+            "url": "https://www.emergentmind.com/topics/gsm8k-arithmetic-benchmark"
+          },
+          {
+            "title": "arXiv:2405.00332v3 [cs.CL] 3 May 2024",
+            "url": "https://arxiv.org/pdf/2405.00332"
+          },
+          {
+            "title": "Scale Labs Leaderboard: Math Evaluation | Scale Labs",
+            "url": "https://labs.scale.com/leaderboard/math"
+          },
+          {
+            "title": "A Careful Examination of Large Language Model ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/53384f2090c6a5cac952c598fd67992f-Paper-Datasets_and_Benchmarks_Track.pdf"
+          },
+          {
+            "title": "GitHub - scaleapi/gsm1k_eval · GitHub",
+            "url": "https://github.com/scaleapi/gsm1k_eval"
+          },
+          {
+            "title": "A Careful Examination of Large Language Model Performance on Grade School Arithmetic",
+            "url": "https://arxiv.org/html/2405.00332v1"
+          },
+          {
+            "title": "[Quick Review] A Careful Examination of Large Language Model Performance on Grade School Arithmetic",
+            "url": "https://liner.com/review/a-careful-examination-of-large-language-model-performance-on-grade"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding GSM1K benchmark contamination testing and GSM8K comparison:\n\n## Overview\n\nGSM1k is a held-out benchmark designed to match the difficulty and structure of GSM8k to measure existing benchmark contamination. It is a new benchmark of 1250 elementary math problems created by human annotators without LLM assistance, designed to mirror the style and difficulty of GSM8k while mitigating data contamination concerns.\n\n## Creation Protocol\n\nAnnotators were prompted with 3 example GSM8k problems and asked to produce novel problems of a similar difficulty level. GSM1k consists of 1205 problems requiring only elementary mathematical reasoning to solve.\n\n## Key Experimental Findings (2024)\n\nMany models exhibit accuracy drops of up to 13% on GSM1k relative to GSM8K, with strong statistical correlation between a model's GSM8K–GSM1k gap and its log-likelihood of reproducing GSM8K text, evidencing dataset contamination. Models highly likely to generate GSM8K test examples suffer larger performance drops on GSM1K (Spearman's ρ² ≈ 0.32), though frontier models (e.g., GPT-4, Claude) display minimal signs of memorization and generalize well.\n\n## Release and Validation Strategy\n\nInitially, only 50 examples from GSM1k were released to prevent data contamination concerns, with commitment to release the full set when 3 open source models of different lineages reach 95+% accuracy on GSM1k."
+    ],
+    "durationSeconds": 7.916403455000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "63ec928e-1700-4587-8fb6-862470c9a85d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T05:06:39.334Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CQqtMzrqT1Gzshd5rjD9Uw`</summary>
+
+```json
+{
+  "query": "bifactor projective IRT true score equating PIRT Paek Cai multidimensional benchmark equating psychometric 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4493f9f9-a909-4212-86dd-93860f955c95",
+  "isSidechain": false,
+  "requestId": "req_011CbDEsWDMkGvwvVfXEY17M",
+  "type": "assistant",
+  "uuid": "6577c6e8-f73d-4ebf-bfa0-851de046f363",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W62E1V7afGg4vfsLKwG5Jz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 27516,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 848,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 27516,
+          "cache_creation_input_tokens": 848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 848
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T05:06:48.636Z_
+
+<details><summary>↩ Tool result · `toolu_01CQqtMzrqT1Gzshd5rjD9Uw`</summary>
+
+```text
+Web search results for query: "bifactor projective IRT true score equating PIRT Paek Cai multidimensional benchmark equating psychometric 2024 2025"
+
+Links: [{"title":"Approximating Bifactor IRT True-Score Equating With a Projective Item Response Model - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/32341608/"},{"title":"Item Response Theory True Score Equating for the Bifactor Model Under the Common-Item Nonequivalent Groups Design - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/35991829/"},{"title":"Item Response Theory True Score Equating for the Bifactor Model Under the Common-Item Nonequivalent Groups Design - Kyung Yong Kim, 2022","url":"https://journals.sagepub.com/doi/10.1177/01466216221108995"},{"title":"Item Response Theory True Score Equating for the Bifactor Model Under the Common-Item Nonequivalent Groups Design - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC9382090/"},{"title":"Approximating Bifactor IRT True-Score Equating With a Projective Item Response Model - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7174803/"},{"title":"Reporting Valid and Reliable Overall Scores and Domain Scores Using Bi-Factor Model - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/31534290/"}]
+
+Based on the search results, I found relevant research on bifactor projective IRT true score equating. Here are the key findings:
+
+## Main Research
+
+Applying item response theory (IRT) true score equating to multidimensional IRT models is not straightforward due to the one-to-many relationship between a true score and latent variables. Under the common-item nonequivalent groups design, researchers introduced two IRT true score equating procedures that adopted different dimension reduction strategies for the bifactor model.
+
+## Two Primary Approaches
+
+The first procedure, referred to as the integration procedure, linked the latent variable scales for the bifactor model and integrated out the specific factors from the item response function of the bifactor model, then IRT true score equating was applied to the marginalized bifactor model.
+
+The second procedure, referred to as the PIRT-based procedure, projected the specific dimensions onto the general dimension to obtain a locally dependent unidimensional IRT (UIRT) model and linked the scales of the UIRT model, followed by the application of IRT true score equating.
+
+## Projective IRT (PIRT) Technical Details
+
+The projection approach involves projecting the nuisance dimensions of the bifactor model onto the dominant dimension, which results in a locally dependent UIRT model that is empirically indistinguishable from the original MIRT model.
+
+The research referenced in these results appears to be primarily from 2020-2022, with authors including Kim and Cho. I did not find specific 2024-2025 publications by Paek and Cai in these results, though the foundational work on these methods is well-documented in the psychometric literature.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6577c6e8-f73d-4ebf-bfa0-851de046f363",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "5c396f6e-e8e8-4cf5-8c5b-f769eb646d5f",
+  "toolUseResult": {
+    "query": "bifactor projective IRT true score equating PIRT Paek Cai multidimensional benchmark equating psychometric 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YFiLJ6etQgks3fuyxBW1V2",
+        "content": [
+          {
+            "title": "Approximating Bifactor IRT True-Score Equating With a Projective Item Response Model - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/32341608/"
+          },
+          {
+            "title": "Item Response Theory True Score Equating for the Bifactor Model Under the Common-Item Nonequivalent Groups Design - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/35991829/"
+          },
+          {
+            "title": "Item Response Theory True Score Equating for the Bifactor Model Under the Common-Item Nonequivalent Groups Design - Kyung Yong Kim, 2022",
+            "url": "https://journals.sagepub.com/doi/10.1177/01466216221108995"
+          },
+          {
+            "title": "Item Response Theory True Score Equating for the Bifactor Model Under the Common-Item Nonequivalent Groups Design - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9382090/"
+          },
+          {
+            "title": "Approximating Bifactor IRT True-Score Equating With a Projective Item Response Model - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7174803/"
+          },
+          {
+            "title": "Reporting Valid and Reliable Overall Scores and Domain Scores Using Bi-Factor Model - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/31534290/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant research on bifactor projective IRT true score equating. Here are the key findings:\n\n## Main Research\n\nApplying item response theory (IRT) true score equating to multidimensional IRT models is not straightforward due to the one-to-many relationship between a true score and latent variables. Under the common-item nonequivalent groups design, researchers introduced two IRT true score equating procedures that adopted different dimension reduction strategies for the bifactor model.\n\n## Two Primary Approaches\n\nThe first procedure, referred to as the integration procedure, linked the latent variable scales for the bifactor model and integrated out the specific factors from the item response function of the bifactor model, then IRT true score equating was applied to the marginalized bifactor model.\n\nThe second procedure, referred to as the PIRT-based procedure, projected the specific dimensions onto the general dimension to obtain a locally dependent unidimensional IRT (UIRT) model and linked the scales of the UIRT model, followed by the application of IRT true score equating.\n\n## Projective IRT (PIRT) Technical Details\n\nThe projection approach involves projecting the nuisance dimensions of the bifactor model onto the dominant dimension, which results in a locally dependent UIRT model that is empirically indistinguishable from the original MIRT model.\n\nThe research referenced in these results appears to be primarily from 2020-2022, with authors including Kim and Cho. I did not find specific 2024-2025 publications by Paek and Cai in these results, though the foundational work on these methods is well-documented in the psychometric literature."
+    ],
+    "durationSeconds": 9.298345062000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6577c6e8-f73d-4ebf-bfa0-851de046f363",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T05:06:51.859Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XCVKZHPExSuc1v2mNNvS4S`</summary>
+
+```json
+{
+  "query": "\"shortcut neuron\" benchmark contamination detection ACL 2025 white-box LLM evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c396f6e-e8e8-4cf5-8c5b-f769eb646d5f",
+  "isSidechain": false,
+  "requestId": "req_011CbDEtQvtRD8zdyBrKWGoM",
+  "type": "assistant",
+  "uuid": "eab60a3e-e202-499e-896f-df7ec887d3f7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B1thEsEN9837UAcQnqP4PD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 883,
+      "cache_read_input_tokens": 28364,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 883,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 28364,
+          "cache_creation_input_tokens": 883,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 883
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T05:07:00.566Z_
+
+<details><summary>↩ Tool result · `toolu_01XCVKZHPExSuc1v2mNNvS4S`</summary>
+
+```text
+Web search results for query: ""shortcut neuron" benchmark contamination detection ACL 2025 white-box LLM evaluation"
+
+Links: [{"title":"GitHub - GaryStack/Trustworthy-Evaluation: Repository of paper \"Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis\" (ACL 2025 Main)","url":"https://github.com/GaryStack/Trustworthy-Evaluation"},{"title":"Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.192/"},{"title":"Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250604142Z/abstract"},{"title":"[2506.04142v1] Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis","url":"https://arxiv.org/abs/2506.04142v1"},{"title":"[2506.04142] Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis","url":"https://arxiv.org/abs/2506.04142"},{"title":"Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis","url":"https://arxiv.org/pdf/2506.04142"},{"title":"Establishing Trustworthy LLM Evaluation via Shortcut ...","url":"https://aclanthology.org/2025.acl-long.192.pdf"},{"title":"Accepted Main Conference Papers - ACL 2025","url":"https://2025.aclweb.org/program/main_papers/"}]
+
+I found relevant information about the research on shortcut neuron analysis for LLM evaluation. Here are the key findings:
+
+## Paper Summary
+
+"Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis" is accepted to ACL 2025 Main Conference. 
+
+The work tackles contamination by analyzing the mechanisms of contaminated models themselves, discovering that overestimation of contaminated models is likely due to parameters acquiring shortcut solutions in training.
+
+## Core Methodology
+
+The authors propose a novel method for identifying shortcut neurons through comparative and causal analysis, and introduce an evaluation method called shortcut neuron patching to suppress shortcut neurons.
+
+## Validation Results
+
+The evaluation results exhibit a strong linear correlation with MixEval, a recently released trustworthy benchmark, achieving a Spearman coefficient exceeding 0.95, indicating that the method closely reveals true capabilities of the models and is trustworthy.
+
+## Generalizability
+
+Experiments validate the effectiveness of the approach in mitigating contamination, with demonstrations of generalizability across various benchmarks and hyperparameter settings.
+
+Code is available at https://github.com/GaryStack/Trustworthy-Evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eab60a3e-e202-499e-896f-df7ec887d3f7",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "8d478e70-41a0-4a1a-8360-d06d8877e9ef",
+  "toolUseResult": {
+    "query": "\"shortcut neuron\" benchmark contamination detection ACL 2025 white-box LLM evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CMDqdhqVrEGnof12Pk8nUH",
+        "content": [
+          {
+            "title": "GitHub - GaryStack/Trustworthy-Evaluation: Repository of paper \"Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis\" (ACL 2025 Main)",
+            "url": "https://github.com/GaryStack/Trustworthy-Evaluation"
+          },
+          {
+            "title": "Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.192/"
+          },
+          {
+            "title": "Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250604142Z/abstract"
+          },
+          {
+            "title": "[2506.04142v1] Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis",
+            "url": "https://arxiv.org/abs/2506.04142v1"
+          },
+          {
+            "title": "[2506.04142] Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis",
+            "url": "https://arxiv.org/abs/2506.04142"
+          },
+          {
+            "title": "Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis",
+            "url": "https://arxiv.org/pdf/2506.04142"
+          },
+          {
+            "title": "Establishing Trustworthy LLM Evaluation via Shortcut ...",
+            "url": "https://aclanthology.org/2025.acl-long.192.pdf"
+          },
+          {
+            "title": "Accepted Main Conference Papers - ACL 2025",
+            "url": "https://2025.aclweb.org/program/main_papers/"
+          }
+        ]
+      },
+      "I found relevant information about the research on shortcut neuron analysis for LLM evaluation. Here are the key findings:\n\n## Paper Summary\n\n\"Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis\" is accepted to ACL 2025 Main Conference. \n\nThe work tackles contamination by analyzing the mechanisms of contaminated models themselves, discovering that overestimation of contaminated models is likely due to parameters acquiring shortcut solutions in training.\n\n## Core Methodology\n\nThe authors propose a novel method for identifying shortcut neurons through comparative and causal analysis, and introduce an evaluation method called shortcut neuron patching to suppress shortcut neurons.\n\n## Validation Results\n\nThe evaluation results exhibit a strong linear correlation with MixEval, a recently released trustworthy benchmark, achieving a Spearman coefficient exceeding 0.95, indicating that the method closely reveals true capabilities of the models and is trustworthy.\n\n## Generalizability\n\nExperiments validate the effectiveness of the approach in mitigating contamination, with demonstrations of generalizability across various benchmarks and hyperparameter settings.\n\nCode is available at https://github.com/GaryStack/Trustworthy-Evaluation."
+    ],
+    "durationSeconds": 8.69975463500002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "eab60a3e-e202-499e-896f-df7ec887d3f7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T05:07:03.280Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0129hUhZWpjmLk9Y4RxgGNii`</summary>
+
+```json
+{
+  "query": "CCV cross-context verification 2603.21454 benchmark contamination coding tasks session-isolated 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d478e70-41a0-4a1a-8360-d06d8877e9ef",
+  "isSidechain": false,
+  "requestId": "req_011CbDEuJ1SaSmbYSCvMWBCv",
+  "type": "assistant",
+  "uuid": "e0c6b761-b508-41b6-afbd-86d110885636",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGjZn1JggXST1Xggqtg4zb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 799,
+      "cache_read_input_tokens": 29247,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 799,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 29247,
+          "cache_creation_input_tokens": 799,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 799
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T05:07:10.303Z_
+
+<details><summary>↩ Tool result · `toolu_0129hUhZWpjmLk9Y4RxgGNii`</summary>
+
+```text
+Web search results for query: "CCV cross-context verification 2603.21454 benchmark contamination coding tasks session-isolated 2026"
+
+Links: [{"title":"[2603.21454] Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis","url":"https://arxiv.org/abs/2603.21454"},{"title":"Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis","url":"https://arxiv.org/html/2603.21454v1"},{"title":"Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis","url":"https://arxiv.org/pdf/2603.21454"},{"title":"VeriContaminated: Assessing LLM-Driven Verilog Coding for Data Contamination","url":"https://arxiv.org/pdf/2503.13572"},{"title":"Data Contamination Can Cross Language Barriers","url":"https://arxiv.org/pdf/2406.13236"}]
+
+Based on the search results, I found the paper you're looking for:
+
+Cross-Context Verification (CCV) is a black-box method that solves the same benchmark problem in N independent sessions and measures solution diversity, combined with the Hierarchical Cross-Context Architecture (HCCA), a multi-agent analysis framework that prevents confirmation bias through intentional information restriction across specialized analytical roles.
+
+**Key Details:**
+
+- **Paper ID**: 2603.21454
+- **Authors**: Tae-Eun Song
+- **Publication**: Posted March 23, 2026 (version 2 updated April 1, 2026)
+
+**Main Focus**: The paper addresses the credibility crisis in LLM coding benchmarks due to widespread solution leakage and test quality issues in SWE-bench Verified, noting that existing detection methods never directly observe whether a model reasons or recalls.
+
+**Key Results**: On 9 SWE-bench Verified problems (45 trials, Claude Opus 4.6, temperature 0), CCV achieves perfect separation between contaminated and genuine reasoning.
+
+**Notable Findings**: The research found that contamination is binary (models either recall perfectly or not at all), reasoning absence is a perfect discriminator, and 33% of prior contamination labels are false positives.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0c6b761-b508-41b6-afbd-86d110885636",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "e28b2948-242a-41cd-a21e-c2ae2df51224",
+  "toolUseResult": {
+    "query": "CCV cross-context verification 2603.21454 benchmark contamination coding tasks session-isolated 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VVETwZndcc4DHrjxwZK5Nj",
+        "content": [
+          {
+            "title": "[2603.21454] Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis",
+            "url": "https://arxiv.org/abs/2603.21454"
+          },
+          {
+            "title": "Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis",
+            "url": "https://arxiv.org/html/2603.21454v1"
+          },
+          {
+            "title": "Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis",
+            "url": "https://arxiv.org/pdf/2603.21454"
+          },
+          {
+            "title": "VeriContaminated: Assessing LLM-Driven Verilog Coding for Data Contamination",
+            "url": "https://arxiv.org/pdf/2503.13572"
+          },
+          {
+            "title": "Data Contamination Can Cross Language Barriers",
+            "url": "https://arxiv.org/pdf/2406.13236"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nCross-Context Verification (CCV) is a black-box method that solves the same benchmark problem in N independent sessions and measures solution diversity, combined with the Hierarchical Cross-Context Architecture (HCCA), a multi-agent analysis framework that prevents confirmation bias through intentional information restriction across specialized analytical roles.\n\n**Key Details:**\n\n- **Paper ID**: 2603.21454\n- **Authors**: Tae-Eun Song\n- **Publication**: Posted March 23, 2026 (version 2 updated April 1, 2026)\n\n**Main Focus**: The paper addresses the credibility crisis in LLM coding benchmarks due to widespread solution leakage and test quality issues in SWE-bench Verified, noting that existing detection methods never directly observe whether a model reasons or recalls.\n\n**Key Results**: On 9 SWE-bench Verified problems (45 trials, Claude Opus 4.6, temperature 0), CCV achieves perfect separation between contaminated and genuine reasoning.\n\n**Notable Findings**: The research found that contamination is binary (models either recall perfectly or not at all), reasoning absence is a perfect discriminator, and 33% of prior contamination labels are false positives."
+    ],
+    "durationSeconds": 7.0161648419999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e0c6b761-b508-41b6-afbd-86d110885636",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T05:07:13.774Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DSCRjZnovtH8YaMZrNUDmy`</summary>
+
+```json
+{
+  "query": "Mantel-Haenszel DIF analysis group size requirement minimum sample power analysis psychometric 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e28b2948-242a-41cd-a21e-c2ae2df51224",
+  "isSidechain": false,
+  "requestId": "req_011CbDEv1bFTGdP1hX6c2xUK",
+  "type": "assistant",
+  "uuid": "8dbdbe09-93e4-4d63-aacc-dd9e42f33682",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AyVrXaUAMEuB54THcxLJR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 649,
+      "cache_read_input_tokens": 30046,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 649,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 30046,
+          "cache_creation_input_tokens": 649,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 649
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T05:07:24.192Z_
+
+<details><summary>↩ Tool result · `toolu_01DSCRjZnovtH8YaMZrNUDmy`</summary>
+
+```text
+Web search results for query: "Mantel-Haenszel DIF analysis group size requirement minimum sample power analysis psychometric 2024 2025"
+
+Links: [{"title":"(PDF) The Effects of Sample Size and Matching Strategy on Mantel-Haenszel and Logit DIF Procedures","url":"https://www.academia.edu/73833424/The_Effects_of_Sample_Size_and_Matching_Strategy_on_Mantel_Haenszel_and_Logit_DIF_Procedures"},{"title":"DIF - DPF - DTF - bias - interactions concepts","url":"https://www.winsteps.com/winman/difconcepts.htm"},{"title":"A Power Formula for the Mantel-Haenszel Test for Differential Item Functioning - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/29881014/"},{"title":"A Power Formula for the Mantel–Haenszel Test for Differential Item Functioning - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC5978601/"},{"title":"A Review of ETS Differential Item Functioning Assessment Procedures:","url":"https://files.eric.ed.gov/fulltext/EJ1109842.pdf"},{"title":"Influence of equal or unequal comparison group sample sizes on the detection of differential item functioning using the Mantel–Haenszel and logistic regression techniques | Request PDF","url":"https://www.researchgate.net/publication/226232135_Influence_of_equal_or_unequal_comparison_group_sample_sizes_on_the_detection_of_differential_item_functioning_using_the_Mantel-Haenszel_and_logistic_regression_techniques"},{"title":"The Effect of Small Sample Size on Measurement Equivalence of Psychometric Questionnaires in MIMIC Model: A Simulation Study","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5496316/"}]
+
+Based on the search results, here's what I found regarding Mantel-Haenszel DIF analysis group size requirements and sample power analysis:
+
+## Sample Size Requirements for Adequate Power
+
+Detecting moderate uniform DIF in a two-item scale required a sample size of 300 per group for adequate (>80%) power, while for longer scales, a sample size of 200 was adequate. Additionally, considerably larger sample sizes were required to detect nonuniform DIF, when there were extreme floor effects or when a reduced type I error rate was required.
+
+## Power Formula and Factors Influencing Power
+
+The power of the Mantel-Haenszel test is related to the sample size, effect size of DIF, the item response function (IRF), and the distribution of the latent trait in the reference and focal groups. A power formula provides an approximation of the power of the MH test in practice and serves as a guideline for DIF detection, with research showing how to conduct sample size calculation.
+
+## Factors Affecting Detection Accuracy
+
+Five factors studied in relation to DIF detection include the length of a test, the proportion of items exhibiting DIF, sample size, ratio of reference and focal group, and the existence of an average ability difference between two groups.
+
+The research indicates that sample size requirements are not fixed but depend on multiple factors including the type of DIF being detected (uniform vs. nonuniform), scale length, and desired statistical power.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8dbdbe09-93e4-4d63-aacc-dd9e42f33682",
+  "isSidechain": false,
+  "promptId": "1eee6957-be76-4c67-a3a3-48ac0c33e8e0",
+  "type": "user",
+  "uuid": "1113a8ef-fafe-431f-8799-657ff6fc7589",
+  "toolUseResult": {
+    "query": "Mantel-Haenszel DIF analysis group size requirement minimum sample power analysis psychometric 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019nF6ix6ZuhnxJbAVQQpAep",
+        "content": [
+          {
+            "title": "(PDF) The Effects of Sample Size and Matching Strategy on Mantel-Haenszel and Logit DIF Procedures",
+            "url": "https://www.academia.edu/73833424/The_Effects_of_Sample_Size_and_Matching_Strategy_on_Mantel_Haenszel_and_Logit_DIF_Procedures"
+          },
+          {
+            "title": "DIF - DPF - DTF - bias - interactions concepts",
+            "url": "https://www.winsteps.com/winman/difconcepts.htm"
+          },
+          {
+            "title": "A Power Formula for the Mantel-Haenszel Test for Differential Item Functioning - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/29881014/"
+          },
+          {
+            "title": "A Power Formula for the Mantel–Haenszel Test for Differential Item Functioning - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5978601/"
+          },
+          {
+            "title": "A Review of ETS Differential Item Functioning Assessment Procedures:",
+            "url": "https://files.eric.ed.gov/fulltext/EJ1109842.pdf"
+          },
+          {
+            "title": "Influence of equal or unequal comparison group sample sizes on the detection of differential item functioning using the Mantel–Haenszel and logistic regression techniques | Request PDF",
+            "url": "https://www.researchgate.net/publication/226232135_Influence_of_equal_or_unequal_comparison_group_sample_sizes_on_the_detection_of_differential_item_functioning_using_the_Mantel-Haenszel_and_logistic_regression_techniques"
+          },
+          {
+            "title": "The Effect of Small Sample Size on Measurement Equivalence of Psychometric Questionnaires in MIMIC Model: A Simulation Study",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5496316/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding Mantel-Haenszel DIF analysis group size requirements and sample power analysis:\n\n## Sample Size Requirements for Adequate Power\n\nDetecting moderate uniform DIF in a two-item scale required a sample size of 300 per group for adequate (>80%) power, while for longer scales, a sample size of 200 was adequate. Additionally, considerably larger sample sizes were required to detect nonuniform DIF, when there were extreme floor effects or when a reduced type I error rate was required.\n\n## Power Formula and Factors Influencing Power\n\nThe power of the Mantel-Haenszel test is related to the sample size, effect size of DIF, the item response function (IRF), and the distribution of the latent trait in the reference and focal groups. A power formula provides an approximation of the power of the MH test in practice and serves as a guideline for DIF detection, with research showing how to conduct sample size calculation.\n\n## Factors Affecting Detection Accuracy\n\nFive factors studied in relation to DIF detection include the length of a test, the proportion of items exhibiting DIF, sample size, ratio of reference and focal group, and the existence of an average ability difference between two groups.\n\nThe research indicates that sample size requirements are not fixed but depend on multiple factors including the type of DIF being detected (uniform vs. nonuniform), scale length, and desired statistical power."
+    ],
+    "durationSeconds": 10.412931818000011,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8dbdbe09-93e4-4d63-aacc-dd9e42f33682",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "## Title  Benchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination  ## Problem Statement  LLM evaluation implicitly assumes that b…",
+  "leafUuid": "1113a8ef-fafe-431f-8799-657ff6fc7589",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Benchmark temporal validity with contamination detection",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-20T05:08:58.380Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me synthesize my research findings and assess the experimental design of this proposal. Let me go through the key aspects:
+
+1. **DIF analysis for contamination detection**: The proposal's core claim is that DIF analysis is RL-robust. The MH DIF analysis traditionally requires sample sizes of 200-300 per group for adequate power. The proposal uses K=25 per cohort, which is very small for traditional DIF analysis. However, in the LLM context, each "respondent" answers many items, so the situation is different from human testing. Need to think about this carefully.
+
+
+2. **Baselines and methodology**: The proposal includes a solid set of baseline methods for comparison, though I should verify whether any recent approaches have been overlooked. The controlled cohort design comparing clean versus contaminated RL is well-structured, and the dose-response curve adds useful validation. For equating, they're using bifactor PIRT, which has strong psychometric foundations, though I need to see the full details of their equating gate criteria.
+
+3. **Sample size considerations**: The core calibration uses 80-100 models, which aligns with OH2PL literature for achieving unbiased estimates at that scale. However, the MH DIF analysis with K=25 models per cohort raises some concerns—traditional psychometric standards would recommend 200-300 per group, though LLMs may behave more deterministically than human respondents. The key question is whether the effective sample size for MH DIF detection is truly just 25 models or if the deterministic nature of LLM responses changes this calculation. responses. In traditional DIF, each examinee is a data point. Here, each model is an "examinee." With K=25 models per cohort (total N=50), MH DIF power is likely inadequate based on the psychometric literature, which recommends N≥200 per group. This is a significant experimental design concern.
+
+Actually, let me think more carefully. In the LLM evaluation context, each model responds to every item. So for MH DIF, we have:
+- Reference group: 25 clean-RL models
+- Focal group: 25 contaminated-RL models
+- Each model answers all items (e.g., 200+ items on LiveBench)
+
+For MH DIF on a specific item, the 2×2 table at each total score stratum has very few observations (25 per group total, and these are further stratified by total score). With N=25 per group, many strata will have 0 or 1 observation, making MH extremely unreliable. This is a major technical concern—the proposal really needs much larger cohorts (200+ per group based on psychometric standards) or needs to justify why smaller samples work here.
+
+Though, the proposal does mention these are 25 variants of the same base model trained with different random seeds and hyperparameters. In traditional DIF, that sample size would be severely underpowered. But in the LLM context, responses are essentially deterministic at temperature 0, so treating these 25 variants as independent observations like human test-takers would be misleading—they likely have substantial dependence.
+
+The correlation between variants is probably high, further reducing the effective sample size. This is a critical experimental design issue that needs addressing.
+
+Beyond that, I should also evaluate the other methodological choices: the equating thresholds (|Δb| < 0.3 logits, |Δa| < 0.2, TIF < 5%) seem reasonable by psychometric standards but should be explicitly justified. Using ~200 items from LiveBench math as a pilot is sensible. The cost estimate of $1500-3000 per calibration round appears reasonable. Replicating Wang et al.'s contamination protocol is solid methodological practice. The pre-registered hypotheses—H1 (≥50% pass rate), H2 (ρ≥0.90), H3 (reliability ≥0.80)—are specific and testable.
+
+There's a subtle theoretical issue with the impossibility argument though. The claim that contamination must manifest as item-specific DIF assumes the advantage stays item-specific, but RL could potentially generalize contaminated knowledge across items—converting item-specific advantage into general capability rather than eliminating it entirely. The argument hinges on contamination being necessarily item-specific, but that's only true if the model can't abstract and generalize from the contaminated training signal.
+
+That said, this is more of a theoretical novelty question. What matters for my evaluation is whether the experimental design actually tests the empirical claim, and I think the dose-response curve in Experiment 1 does that adequately.
+
+The real concerns are practical. The Mantel-Haenszel DIF test with only 25 models per cohort is severely underpowered—psychometric standards recommend at least 200 per group. And treating 25 variants of the same base model as independent cohorts violates the independence assumption that DIF testing requires.
+
+Beyond that, the proposal doesn't clearly define how "construct specification" gets validated across MMLU's diverse domains, lacks any human expert review of generated items despite that being standard practice, and doesn't directly test the core claim about RL's inability to eliminate item-specific advantages without reducing reward—it would need to measure item-level accuracy gains separately from the DIF signal to do that. There's also the question of ecological validity that seems to be cut off here. The compute budget looks manageable—100 GRPO training runs on smaller models with relatively short training horizons should take a few weeks on a modest GPU cluster, and the detection method evaluations are mostly inference-only. The API costs for the LLM-based experiments and the simulation work are both reasonable, so overall this seems feasible for a well-resourced lab. Now I'm thinking through which issues are most critical to address.
+
+The sample size for the Mantel-Haenszel DIF analysis stands out as the biggest concern—K=25 is underpowered by psychometric standards. There's also a gap between the controlled contamination setup and what actually happens during pretraining, which the paper acknowledges but doesn't fully resolve. The proposal should include equipercentile equating as a baseline for comparison, and the generated items really need expert review rather than just automated validation. The variant contamination condition is underspecified too—how variants are created will directly affect the DIF results. Finally, the ensemble fusion approach using learned weighting with FDR calibration needs more detail about the training procedure and what data would be used.
+
+But reconsidering the DIF power issue more carefully: since LLM responses are deterministic, each model produces a binary correct/incorrect answer per item. With K=25 models per group across 200 items, that's a 50×200 binary matrix. The Mantel-Haenszel test analyzes each item separately while stratifying by total score, but with 50 models and varying performance levels, the strata become extremely sparse—potentially 80+ distinct score levels with only one model per stratum on average, which breaks the assumptions the test needs to function.
+
+Even binning total scores into just 5 groups leaves roughly 5 models per reference and focal group per stratum, creating mostly-empty 2×2 contingency tables for each item. The proposal needs to either substantially increase the number of model variants to 200+, switch to a method like logistic regression DIF that doesn't rely on stratification, or provide a strong justification for why this sparse-sample approach would still work here. Logistic regression DIF might be more feasible since it avoids stratification entirely, though it traditionally still requires N>100 per group for adequate statistical power.
+
+Actually, IRT-based DIF detection could be more compatible with their OH2PL framework, which they've validated at N≥50—the item parameters get estimated from the full dataset and DIF is detected by comparing those parameters across groups. But the proposal specifically mentions Mantel-Haenszel and logistic regression, not IRT-based methods, which seems like a significant oversight given their sample size constraints.
+
+I'm also noticing gaps in how the ensemble fusion works. The "learned weighting with FDR calibration" requires labeled training data, which they could generate from their controlled contamination setup, but there's no discussion of train-test splitting to prevent overfitting. And the multiple testing correction aspect needs more careful consideration too.
+
+When running DIF across 200+ items, the multiple comparisons problem becomes severe. While ConStat handles FDR control, it's unclear how that integrates with the overall ensemble FDR control. Plus, they only test on Qwen2.5-7B and Llama-3.1-8B—there's no evaluation of whether the DIF signals and ensemble weights transfer to other model families.
+
+So the main issues I need to flag are the statistical power problem with Mantel-Haenszel at small cohort sizes, the unspecified train-test split for ensemble training, the missing standard equating baselines, and the limited cross-architecture generalization testing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1113a8ef-fafe-431f-8799-657ff6fc7589",
+  "isSidechain": false,
+  "requestId": "req_011CbDEw2y87cCfoBT2sMudY",
+  "type": "assistant",
+  "uuid": "8fb94326-0ea3-49db-8d26-46d9133c236f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsxBbxqx4YzoY1rDruCJrz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 918,
+      "cache_read_input_tokens": 30695,
+      "output_tokens": 10772,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10772,
+          "cache_read_input_tokens": 30695,
+          "cache_creation_input_tokens": 918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-20T05:11:35.547Z_
+
+Now I have enough research context. Let me compile my analysis.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **Wang et al. (arXiv:2510.02386, ICLR 2026)**: 测试了 10 种污染检测方法在 GRPO 后训练场景下的表现；使用 Qwen2.5-7B 作为 base model，在 GSM8K/MATH 上进行受控污染注入；评估指标包括检测准确率和 NLL gap 变化。实验规模：每种设置训练多个模型变体，采用 156 步 GRPO。
+- **Tao et al. Self-Critique/RL-MIA (arXiv:2510.09259, ICLR 2026)**: 首次系统研究 RL 后训练阶段的污染检测；baseline 包括 Min-K%++、perplexity-based 等多种方法；评估指标 AUC，Self-Critique 比 baseline 提升最高 30%。实验使用多个 model×task 组合。
+- **ConStat (NeurIPS 2024)**: 训练 70 个 fine-tuned 模型变体（LLAMA-2-7B、PHI-2），变化 epoch、learning rate、污染比例等超参数。采用 performance gap on rephrased samples 作为核心信号。实验中用 reference model 集合做统计检验。
+- **DVD (arXiv:2601.04895)**: 使用 generation variance 作为 fingerprint，baseline 包括 perplexity-based、Min-K%++、CDD、embedding similarity。在多个 benchmark 上验证。
+- **Shortcut Neuron Analysis (ACL 2025 Main)**: 白盒方法，通过因果分析识别 shortcut neurons 并进行 patching。验证指标：与 MixEval 的 Spearman ρ > 0.95。
+- **GSM1K (arXiv:2405.00332, NeurIPS 2024)**: 1250 道人工编写数学题匹配 GSM8K 难度，用 GSM8K-GSM1K 准确率差值作为污染 proxy。发现部分模型差异高达 13 个百分点。
+- **Mantel-Haenszel DIF power analysis (Penfield, 2018; PMC5978601)**: 检测中等 DIF 效应需要每组 N≥200 以获得 >80% power；短量表需 N≥300/组。Power 受 effect size、量表长度、能力分布影响。
+- **Growing Pains (arXiv:2604.12843)**: 在 400+ 模型上验证 IRT 框架，100 anchor items/dataset 实现 Spearman ρ≥0.9。使用 fixed-parameter calibration。
+- **OH2PL (König et al., 2020, 2022/2023)**: 在 N≥50 时实现无偏 IRT 参数估计（half-Cauchy/Exponential 先验）。在 N=115 的六维案例上验证成功。
+- **Bifactor PIRT equating (Paek & Cai, 2020; Kim, 2022)**: PIRT 将 specific factors 投影到 general dimension，在 common-item nonequivalent groups design 下进行 true-score equating。另一种方法为 integration procedure。Kim (2022) 比较了两种方法。
+- **CCV (arXiv:2603.21454)**: 黑盒方法，通过 session-isolated analysis 对比同一问题在不同会话中的 solution diversity。在 SWE-bench Verified 上 9 个问题实现完美分离，但规模极小。
+
+- **调研总结**: 该领域当前的实验设计标准要求：(1) 受控污染注入实验需覆盖 SFT 和 RL 两种 regime，(2) baseline 应至少包括 5-6 种主流检测方法进行 head-to-head 对比，(3) 评估需报告 AUROC/AUPRC 及在固定 FPR 下的 TPR，(4) DIF/MH 分析对样本量有严格要求（N≥200/组是 psychometric gold standard），(5) equating 实验需包括多种标准方法的比较。审稿人对 RL 场景下的检测 robustness 尤为关注，且期望 ecological validation on naturally-contaminated benchmarks。
+
+---
+
+【缺陷 1】
+- 类别: 实验设计不足（统计 power 严重不足）
+- 问题: Experiment 1 的 DIF 分析使用 K=25 模型/组（共 50 models），但心理测量学文献一致表明 **Mantel-Haenszel DIF 检测需要 N≥200/组才能达到 >80% 统计 power**（Penfield 2018），短量表甚至需要 N≥300/组。在本 proposal 的设计中，50 个模型还需要按 total score 进行分层（MH 要求），每层仅有零星几个模型，2×2 列联表将极度稀疏，MH 统计量本质上无法计算。Logistic regression DIF 同样在 N<100/组时表现不稳定。这是 Experiment 1 的**核心验证实验**——如果 DIF 检测的统计 power 不足，整个"DIF is RL-robust"的核心声明将无法被充分支撑。
+- 严重度: 可补救
+- 补救方案: 三条路径（按优先级排序）：
+  1. **大幅增加模型变体数量至 N≥200/组**：通过扩大 seed variation、learning rate grid、warmup schedule、batch size 等超参数组合生成更多 GRPO 变体。7B 模型在 156 步 GRPO 下训练成本较低（每 run 约几小时单 GPU），200 个变体在 8-GPU 机器上约 1-2 周可完成。
+  2. **改用 IRT-based DIF detection 代替 MH**：既然 proposal 已经使用 OH2PL（在 N≥50 时有效），可以用 IRT 框架下的 DIF 检测（如 Wald test on item parameter differences between groups, 或 MIMIC model）。这与整体 IRT pipeline 更一致，且对小样本更鲁棒。
+  3. **至少进行 power analysis 并报告**：在 K=25 的设计下，通过 simulation 报告对不同 DIF effect size 的检测 power，明确当前设计能检测的最小效应量。若 power 不足以检测实际预期的 DIF 效应，则必须增加 K。
+  建议同时采用路径 1+2：增加变体到至少 100/组，并使用 IRT-based DIF 作为主要分析方法，MH 作为 robustness check。
+- 调研依据: Penfield (2018, Applied Psychological Measurement) 的 MH power formula 研究，及 Winsteps DIF 文档关于最小样本量的建议；König et al. (2020, 2022) 的 OH2PL N≥50 结果表明 IRT framework 更适合本 proposal 的小样本场景。
+
+【缺陷 2】
+- 类别: 实验设计不足（模型独立性假设）
+- 问题: Experiment 1 中 K=25 模型变体均从**同一 base model**（Qwen2.5-7B 或 Llama-3.1-8B）出发、仅改变 random seed 和 learning rate perturbation。这些变体在 architecture、pretraining weights 上完全相同，item-level response pattern 的相关性极高。传统 DIF 分析假设组内受试者是独立样本，但同一 base model 的变体在未污染 items 上的 accuracy 可能几乎完全一致（variance ≈ 0），导致 DIF 估计的 standard error 被严重低估（inflated Type I error）或信号被噪声淹没（underpowered）。Proposal 没有讨论或控制组内相关性。
+- 严重度: 可补救
+- 补救方案: 
+  1. **跨 model family 扩展**：至少使用 4-5 个不同 base model families（如 Qwen2.5-7B、Llama-3.1-8B、Mistral-7B、Gemma-2-9B、Yi-1.5-6B），每个 family 生成 K 个变体。跨 family 的变体在 pretraining data 和 architecture 上有真实差异，更接近独立样本假设。
+  2. **报告组内 ICC (Intraclass Correlation)**：在分析前报告同组变体间的 item-level response 一致性（ICC 或 Fleiss' kappa）。若 ICC 极高（>0.95），需讨论 effective sample size 的衰减。
+  3. **使用 cluster-robust variance estimation**：将同一 base model 的变体视为同一 cluster，使用 clustered standard errors for DIF statistics。
+- 调研依据: 基于领域实验规范判断。ConStat (NeurIPS 2024) 在训练 70 个模型变体时也使用了 2 个不同 base model families (LLAMA-2 + PHI-2) 来增加多样性。
+
+【缺陷 3】
+- 类别: 实验设计不足（ensemble 训练与评估的数据泄漏风险）
+- 问题: Enabling Component A 的 ensemble fusion 使用"learned weighting with FDR calibration"，但 proposal 未说明：(a) ensemble 的权重在什么数据上学习？(b) 训练数据和测试数据如何划分？(c) 是否存在信息泄漏（用受控污染数据训练 ensemble weights，又在同一 distribution 的受控污染数据上评估 ensemble 性能）？如果 ensemble weights 在 Experiment 2 的同一实验数据上 train + test，AUROC/AUPRC 将被严重高估。
+- 严重度: 可补救
+- 补救方案:
+  1. **明确 train/test split 方案**：使用 leave-one-model-family-out cross-validation（在 Qwen 变体上 train，在 Llama 变体上 test，反之亦然），确保 ensemble weights 不 overfit 到特定 model family。
+  2. **报告 individual signal baselines 和 oracle ensemble 的差距**：Individual signal baselines 不需要训练权重，直接 test。Ensemble 相对于最强 individual signal 的提升应在 held-out data 上衡量。
+  3. **替代方案**：使用不需要训练的 ensemble 方法（如 majority vote、mean rank aggregation）作为 baseline，与 learned ensemble 对比，以衡量 learned weighting 的真实增益。
+- 调研依据: 基于领域实验规范判断。Wang et al. (2510.02386) 在评估 10 种检测方法时使用严格的受控实验设计，但每种方法独立评估，无 ensemble training 的泄漏问题。本 proposal 引入了 learned ensemble，增加了实验设计复杂度。
+
+【缺陷 4】
+- 类别: baseline 不足或过时（equating 方法比较不充分）
+- 问题: Experiment 3 的 equating ablation 仅比较三种条件：bifactor PIRT vs. unidimensional 2PL vs. no equating (random selection)。这遗漏了心理测量学中几种被广泛使用的 equating 方法：(a) **equipercentile equating** (with kernel smoothing)——最常用的非 IRT equating 方法；(b) **Stocking-Lord / Haebara IRT equating**——标准的 IRT characteristic curve equating 方法，是 bifactor PIRT 的直接对比基准；(c) **mean/sigma 和 mean/mean linking**——最简单的 IRT linking 方法，常作为 lower bound baseline。缺少这些 baseline 会让审稿人质疑 bifactor PIRT 的优势是否真实。
+- 严重度: 可补救
+- 补救方案: 
+  1. 增加 **equipercentile equating** 作为非 IRT baseline（实现简单，R 包 `equate` 直接可用）。
+  2. 增加 **Stocking-Lord equating** 作为 IRT characteristic curve equating baseline（`plink` 或 `equateIRT` R 包可用）。
+  3. 增加 **mean/sigma linking** 作为 minimal IRT baseline。
+  4. "No equating (random selection)" 太弱，建议改为 "random selection from generated pool" + "difficulty-matched selection without equating"（后者 proposal 在 Experiment 4 pilot 中已有，但 Experiment 3 的 ablation 里缺失）。
+- 调研依据: Kim (2022, Applied Psychological Measurement) 在比较 bifactor equating 方法时，以 unidimensional IRT equating (Stocking-Lord) 和 integration procedure 作为对照基准。Paek & Cai (2020) 也将 PIRT 与标准 IRT equating 方法进行了系统比较。本 proposal 需要复现这种对比结构。
+
+【缺陷 5】
+- 类别: 实验设计不足（"variant" 污染条件定义不明）
+- 问题: Experiment 2 的实验条件包括 "verbatim × variant" 污染类型，但 proposal **没有定义 "variant contamination" 的具体生成方式**。Variant contamination 的生成方式直接影响 DIF 信号强度和各检测方法的相对表现：(a) surface-level paraphrase（改变措辞不改变结构）vs. (b) structural variant（改变数值/实体但保留推理路径）vs. (c) template-based variant（改变 domain/context）——这三种 variant 类型会产生完全不同的实验结果。DVD 的设计目标就是检测 variant contamination，但 DVD 论文中对 variant 有明确定义。不明确 variant 的生成方式，实验结果不可复现。
+- 严重度: 可补救
+- 补救方案:
+  1. 参照 DVD (arXiv:2601.04895) 的 variant contamination 定义和生成方法。
+  2. 明确定义至少两个 variant 层级：(a) **paraphrased variant**（同语义不同措辞）和 (b) **structural variant**（改变数值/实体/context，保留 reasoning structure）。
+  3. 描述 variant 生成的具体 pipeline（LLM-based paraphrasing? Template substitution? Human-created?）及 variant 与原题的相似度量化（如 BLEU、embedding cosine similarity 的分布）。
+- 调研依据: DVD (arXiv:2601.04895) 明确定义了 variant contamination 并提供了生成方法。Wang et al. (2510.02386) 也区分了 verbatim 和 rephrased contamination。
+
+【缺陷 6】
+- 类别: 评估方案缺陷（ecological validation 设计薄弱）
+- 问题: Experiment 1 的 ecological validity 验证使用"model release date 作为 natural grouping variable"在 MMLU/GSM8K 上运行 DIF，以 GSM1K accuracy differential 作为 proxy item-level contamination evidence。这个设计有两个漏洞：(a) **model release date 不等于 contamination status**——同一时期发布的模型可能来自不同 training pipeline，对 benchmark data 的暴露程度完全不同；不同时期的模型可能因能力进步（而非污染）表现不同。这使 DIF 的 grouping variable 带有大量噪声，结果难以解读。(b) **GSM1K 作为 proxy 只适用于 GSM8K，无法推广到 MMLU 或其他 benchmark**——GSM1K 是专门为 GSM8K 设计的 contamination-free mirror，但 MMLU 没有类似的 mirror benchmark。
+- 严重度: 可补救
+- 补救方案:
+  1. **更精细的分组策略**：不使用 release date 作为唯一 grouping variable，而是使用已知信息（training data cutoff date、是否使用 benchmark data 做 SFT 等，部分模型有公开的 training recipe）进行分组。
+  2. **使用已有 contamination evidence 作为 ground truth**：利用已发表的 contamination detection 结果（如 ConStat、Min-K%++ 的已有检测结果）作为"soft labels"，验证 DIF 分析能否与这些已知结果一致。
+  3. **构建额外 mirror benchmark**：如果资源允许，参照 GSM1K 思路为 MMLU 的一个 subset 构建 contamination-free mirror（或利用 MMLU-Pro 中 MMLU 未覆盖的新题），以提供更强的 ecological ground truth。
+  4. **至少在写作中明确 acknowledge ecological validation 的局限性并降低 claim 强度**：当前 proposal 的 limitations 已提到 simulated vs. real contamination gap，但未充分讨论 ecological validation 设计的 confounds。
+- 调研依据: GSM1K (arXiv:2405.00332) 的 contamination proxy 方法仅对 GSM8K 有效（Spearman ρ² ≈ 0.32 between GSM8K-GSM1K gap and memorization score）；ConStat (NeurIPS 2024) 使用 performance on rephrased samples 作为更通用的 contamination proxy。
+
+【缺陷 7】
+- 类别: ablation 不完整（cross-architecture generalization 测试不足）
+- 问题: 所有受控实验仅使用 Qwen2.5-7B 和 Llama-3.1-8B 两个 base model。审稿人很可能会质疑：DIF 检测和 ensemble 在其他 model family（特别是不同 architecture 如 MoE 模型、不同 pre-training data 的模型）上是否同样有效？两个 model family 的实验结果**不足以支撑 proposal 所声称的 "regardless of specific RL algorithm, hyperparameters, or training duration" 的 generality**。
+- 严重度: 可补救
+- 补救方案: 
+  1. 至少增加 2-3 个 model families：建议加入 **Mistral-7B-v0.3** (不同 architecture 设计选择)、**Gemma-2-9B** (不同 pre-training data 和 training recipe)、以及一个 **MoE 模型**（如 Mixtral-8x7B 或 Qwen2.5-MoE）以测试对不同 architecture 的 robustness。
+  2. 如果 compute 受限，至少增加 1 个 family 并在 limitations 中明确讨论 generalization 范围。但注意这会降低 "regardless of..." claim 的可信度。
+- 调研依据: Wang et al. (2510.02386) 使用 Qwen2.5-7B 作为主要实验 base model；Tao et al. (2510.09259) 在多个 model×task 组合上验证；ConStat (NeurIPS 2024) 使用 LLAMA-2 + PHI-2 两个不同 family。本领域实验规范通常要求至少 2-3 个 model families，但 proposal 声称的 generality 程度需要更强的验证。
+
+【缺陷 8】
+- 类别: 可行性问题（生成 pipeline 对复杂推理题的效果存疑）
+- 问题: Proposal 的 Limitations 中已 acknowledge "complex reasoning items may be harder to regenerate with precise parameter matching"，但未在实验设计中充分测试这一限制。Experiment 3 的 generation ablation 没有按题目类型（factual recall vs. mathematical reasoning vs. multi-step logic）分别报告 equating gate pass rate。如果 pass rate 在 reasoning items 上远低于 factual items，整个 pipeline 对 reasoning-heavy benchmark（如 MATH、ARC-Challenge）的适用性将大打折扣——而 reasoning benchmarks 恰恰是污染最严重、最需要 remediation 的。
+- 严重度: 可补救
+- 补救方案:
+  1. 在 Experiment 3 和 Experiment 4 中**按 item type 分层报告所有指标**：至少分为 factual recall、procedural reasoning、multi-step reasoning 三类。
+  2. 在 Experiment 4 pilot 中选择 LiveBench math subset 时，确保覆盖不同难度和推理步骤数量的题目，并按子类报告 pass rate。
+  3. 如果 reasoning items 的 pass rate 远低于 factual items，需要讨论 pipeline 的适用范围并降低 generality claim（这是 honest reporting，对审稿人来说是加分项）。
+- 调研依据: SMART (arXiv:2507.05129) 在 open-ended items 上进行了难度预测，但未报告按推理类型的分层结果。基于领域实验规范判断，审稿人普遍期望对不同 item types 的差异化分析。
+
+【缺陷 9】
+- 类别: 评估方案缺陷（多重检验校正不明确）
+- 问题: DIF 分析对每个 benchmark item 单独检验（如 LiveBench 200 items），产生 200 个并行假设检验。Proposal 提到 ConStat 提供 FDR control，ensemble fusion 使用 "FDR calibration"，但没有明确说明**整体检测 pipeline 的 FDR 控制方案**：(a) DIF 单独使用时如何控制 FDR？(b) 5 个信号的 ensemble output 如何确保 item-level FDR 控制？(c) FDR 的 target level 是多少（0.05? 0.10?）？缺乏明确的多重检验框架会导致 Experiment 2 的 "empirical FDR verification" 无法被审稿人信服。
+- 严重度: 可补救
+- 补救方案:
+  1. 明确指定 FDR 控制方法（Benjamini-Hochberg or Benjamini-Yekutieli）和 target FDR level。
+  2. 在 Experiment 2 中增加 **FDR calibration curve**：在不同 target FDR levels (0.01, 0.05, 0.10, 0.20) 下报告 ensemble 的 actual FDR 和 TPR。
+  3. 对 DIF 单独使用的场景，明确是否使用 Holm-Bonferroni 或 BH correction，并报告 corrected vs. uncorrected 的检测 sensitivity 差异。
+- 调研依据: ConStat (NeurIPS 2024) 明确提供了 FDR control 框架。基于领域实验规范判断，对 item-level 检测任务的多重检验校正是审稿人的标准要求。
+
+---
+
+**总结**: 该 proposal 的实验设计框架整体较为全面（5 个实验覆盖了核心 claim 验证、ensemble 评估、generation/equating ablation、end-to-end pilot、graceful degradation），baseline 选择也较为完整。上述 9 个缺陷均为**可补救**级别，没有发现不可补救的方向性致命缺陷。其中**缺陷 1（DIF 统计 power）** 和 **缺陷 2（模型独立性假设）** 是最关键的，因为它们直接影响 Core Contribution 1 的可信度。建议优先解决这两个问题后，其他缺陷的补救均为增量改进。
+
+Sources:
+- [Wang et al. - On The Fragility of Benchmark Contamination Detection](https://arxiv.org/abs/2510.02386)
+- [Tao et al. - Self-Critique/RL-MIA](https://arxiv.org/pdf/2510.09259)
+- [ConStat - NeurIPS 2024](https://proceedings.neurips.cc/paper_files/paper/2024/file/a7f89793b9e6f8c6568dbbb6ff727b9b-Paper-Conference.pdf)
+- [DVD - Robust Variant Contamination Detection](https://arxiv.org/pdf/2601.04895)
+- [Shortcut Neuron Analysis - ACL 2025](https://aclanthology.org/2025.acl-long.192/)
+- [GSM1K - A Careful Examination](https://arxiv.org/abs/2405.00332)
+- [MH DIF Power Formula - Penfield 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC5978601/)
+- [Growing Pains - arXiv:2604.12843](https://arxiv.org/abs/2604.12843)
+- [OH2PL - König et al.](https://link.springer.com/article/10.3758/s13428-022-02000-5)
+- [Bifactor PIRT Equating - Paek & Cai 2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC7174803/)
+- [Kim 2022 - Bifactor IRT Equating](https://journals.sagepub.com/doi/10.1177/01466216221108995)
+- [SMART - arXiv:2507.05129](https://arxiv.org/abs/2507.05129)
+- [CCV - arXiv:2603.21454](https://arxiv.org/abs/2603.21454)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fb94326-0ea3-49db-8d26-46d9133c236f",
+  "isSidechain": false,
+  "requestId": "req_011CbDEw2y87cCfoBT2sMudY",
+  "type": "assistant",
+  "uuid": "85e08b6d-63aa-4819-9351-42403f0214af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsxBbxqx4YzoY1rDruCJrz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 918,
+      "cache_read_input_tokens": 30695,
+      "output_tokens": 10772,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10772,
+          "cache_read_input_tokens": 30695,
+          "cache_creation_input_tokens": 918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "## Title  Benchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination  ## Problem Statement  LLM evaluation implicitly assumes that b…",
+  "leafUuid": "85e08b6d-63aa-4819-9351-42403f0214af",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Benchmark temporal validity with contamination detection",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "## Title  Benchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination  ## Problem Statement  LLM evaluation implicitly assumes that b…",
+  "leafUuid": "85e08b6d-63aa-4819-9351-42403f0214af",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Benchmark temporal validity with contamination detection",
+  "sessionId": "c9029bfe-3b10-4326-b359-01ad72a562c0"
+}
+```
+
+---

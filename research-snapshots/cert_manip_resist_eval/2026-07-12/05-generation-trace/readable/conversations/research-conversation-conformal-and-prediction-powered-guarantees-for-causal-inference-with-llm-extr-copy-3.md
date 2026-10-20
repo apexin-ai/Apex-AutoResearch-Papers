@@ -1,0 +1,3978 @@
+# Research conversation: Conformal and Prediction-Powered Guarantees for Causal Inference with LLM-Extracted Text Confounders ## Description We p
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 60
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-1/c34d42a2-ffba-4f07-a7a4-708509a39564.jsonl`
+- **Structured JSON:** [`6088f65ea6d340926b78.json`](../../sessions/60/6088f65ea6d340926b78.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T03:48:37.631Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T03:48:37.631Z",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "content": "# Conformal and Prediction-Powered Guarantees for Causal Inference with LLM-Extracted Text Confounders\n\n## Description\nWe propose ConformalPPITextCausal, a framework providing finite-sample coverage guarantees for treatment effects estimated using LLM-extracted text confounders. Current methods (DoubleLingo, Ma et al.) rely on asymptotic guarantees that break down when LLM extraction introduces unquantified heterogeneous noise. Our dual-track approach addresses this via: Track A (ITE intervals) — adapting modular conformal prediction (Zhang et al. 2025) to a causal two-stage pipeline where Stage 1 produces conformal prediction sets over LLM-extracted categorical confounders (with worst-case pseudo-outcome enumeration including explicit propensity score propagation, O(|C|) per unit) or low-dimensional Matryoshka embeddings (with ellipsoidal sets and convex relaxation restricted to smooth nuisance estimators), and Stage 2 constructs doubly robust treatment effect intervals with FWER-controlled coverage tighter than Bonferroni; Track B (ATE intervals) — extending conformal prediction-powered inference (Csillag et al. 2025) to the causal setting, where a small expert-labeled and large LLM-imputed dataset yield valid confidence intervals via Z-estimation with conformal set-predictors. Cross-conformal calibration (Gasparin & Ramdas, ICML 2025) reduces the three-way data split to two-way, improving sample efficiency for labeled-data-scarce settings. A pilot conservatism analysis shows practical viability: for K=5 confounder categories, interval widening is ~60% with conformal set size |C|=2 (good LLM) and ~100% with |C|=3 (decent LLM), driven primarily by propensity score variation across conformal set members. The method is practically useful when the LLM achieves small conformal sets and correctly signals insufficient information otherwise. We differentiate from Barnatchez et al. (2604.03772), who handle missing confounders at deployment via semiparametric debiasing — a complementary but distinct setting from our noisy-extraction framework. The genuine theoretical contribution is proving the modular residual decomposition holds under causal exchangeability conditions specific to doubly robust pseudo-outcomes with explicit propensity propagation. Experiments on semi-synthetic MIMIC-IV clinical notes, social media data, and synthetic benchmarks demonstrate maintained nominal coverage where bootstrap alternatives undercover, with a dedicated conservatism experiment varying |C|/K to validate the pilot analysis.\n\n## Core Problem\nCausal inference from observational text data (clinical notes, social media, policy documents) requires adjusting for confounders embedded in unstructured text. Modern LLMs can extract these confounders, but extraction is imperfect — introducing measurement error that invalidates standard causal estimators' asymptotic guarantees. No existing framework provides finite-sample coverage guarantees for treatment effect estimates when confounders are extracted by a fallible LLM. Naive approaches (plugging in LLM point predictions as if they were ground truth) can produce arbitrarily biased causal conclusions when extraction noise is heterogeneous across subpopulations.\n\n## Opportunity\nThree independent research threads have matured to the point where they can be unified into a principled solution: (1) modular conformal prediction for sequential pipelines (Zhang et al. 2025, arXiv 2510.04406) provides a residual decomposition framework that controls family-wise error across pipeline stages without resorting to loose Bonferroni corrections; (2) prediction-powered inference extended through conformal prediction (Csillag et al. 2025, arXiv 2510.16166) yields valid population-level confidence intervals when a prediction model (here, the LLM) imputes covariates on a large unlabeled set alongside a small human-labeled set; and (3) conformal meta-learners for individual treatment effects (Alaa et al. NeurIPS 2023) provide conformal intervals for heterogeneous effects but assume perfectly observed confounders. Additionally, Matryoshka embedding models (Qwen3-Embedding-8B) now support flexible dimensionality from 32 to 4096, making conformal prediction over embedding spaces tractable at reduced dimensions. Recent work on conformal prediction under confounding — including Barnatchez et al. (arXiv 2604.03772) on runtime confounding (missing confounders at deployment) and Vovk & Wang (arXiv 2603.11134) on conformal e-prediction — demonstrates growing interest but targets distinct problem settings from ours (noisy extraction vs. missing variables, and e-values for prediction vs. p-values for treatment effects). By bridging these threads, we can deliver both individual-level (ITE) and population-level (ATE) treatment effect intervals that honestly account for LLM extraction uncertainty — a capability no current method provides.\n\n## Landscape\nThe intersection of conformal prediction and causal inference has seen rapid growth (Systematic Review, arXiv 2509.21660, covering 11 key papers), but existing conformal ITE methods (Lei & Candès JRSS-B 2021; Alaa et al. NeurIPS 2023; KDD 2024 wTCP-DR) assume confounders are observed without error. The conformal prediction for NLP survey (Campos et al. TACL 2024) covers classification, QA, and generation quality but not downstream causal validity. Prediction-powered inference (Angelopoulos et al. Science 2023) and its causal extensions (arXiv 2502.06343; Kato arXiv 2511.08303 NeurIPS 2025) address the labeled/unlabeled split for treatment effects but do not incorporate conformal sets for the imputed covariates. Zhang et al. (2025) handle sequential model pipelines with modular conformal guarantees but do not treat the causal setting or weighted exchangeability. DoubleLingo (NAACL 2024) and Ma et al. (NeurIPS 2025) use LLMs within doubly robust causal estimators for text data but provide only asymptotic guarantees with no finite-sample uncertainty quantification for LLM extraction noise. Multi-variable conformal prediction (Lützow et al. arXiv 2605.12341, 2026) and ellipsoidal conformal sets (Xu et al. ICML 2024) now provide tractable geometric tools for moderate-dimensional conformal regions.\n\nTwo recent works merit explicit differentiation: Barnatchez et al. (arXiv 2604.03772, April 2026) address conformal prediction for counterfactual outcomes under 'runtime confounding' — where confounders measured in training are entirely MISSING at deployment. Their semiparametric debiasing approach marginalizes over unobserved confounders via multiply-robust influence functions, assuming Y(a)⊥S|V (systematic differences explained by the observed subset V). Our setting is fundamentally different: all confounders are present in the text and extracted by the LLM, but with NOISE — the confounders are measured with error, not missing entirely. Their debiasing marginalizes over missing variables; our conformal sets quantify extraction uncertainty over observed-but-noisy variables. Vovk & Wang (arXiv 2603.11134, March 2026) extend conformal e-prediction to handle observed confounding between X and Y using e-values (nonnegative random variables with expectation ≤ 1) rather than p-values. While e-values provide attractive anytime-valid guarantees under optional stopping, their framework targets prediction of Y given X under confounding, not treatment effect estimation. Our framework uses standard conformal prediction sets combined with PPI, targeting ITE/ATE estimation — a complementary but distinct goal. The e-value approach could be an interesting alternative foundation for future work.\n\nThe gap we fill is the integration of modular conformal prediction and conformal PPI into a unified framework for the two-stage pipeline of LLM confounder extraction followed by causal effect estimation, with proven finite-sample validity under noisy (not missing) confounder extraction.\n\n## Approach\nWe propose a dual-track framework, ConformalPPITextCausal, for valid causal inference when text confounders are extracted by an LLM.\n\n**Data Splitting and Sample Efficiency.** The baseline design uses a three-way data split: (S1) training data for fine-tuning the LLM extraction model and fitting nuisance functions (propensity score, outcome regression), (S2) calibration data for Stage 1 conformal sets on the extracted confounders, and (S3) calibration data for Stage 2 conformal intervals on treatment effects. To address sample efficiency — critical for clinical text datasets like MIMIC-IV where expert-labeled samples are expensive — we propose two improvements: (i) K-fold cross-fitting for nuisance function estimation within S1, following Chernozhukov et al. (2018) DML, which uses all training data for both estimation and evaluation; (ii) cross-conformal calibration for Stage 1, following Gasparin & Ramdas (ICML 2025, arXiv 2503.01495), which achieves coverage ≥ 1−2α₁ using K-fold rotation rather than a dedicated hold-out set, effectively merging S2 into S1 and reducing the three-way split to a two-way split (train+Stage1-calibrate vs. Stage2-calibrate). The coverage cost (1−2α₁ vs. 1−α₁) is manageable by setting α₁ conservatively (e.g., α₁=0.025 for effective 95% Stage 1 coverage). We discuss minimum sample size requirements: Stage 2 calibration requires n₃ ≥ ⌈1/α₂⌉ ≈ 100-200 for reliable conformal quantiles at α₂=0.05, and we recommend n_total ≥ 500 for the full pipeline, with n₃ ≥ 150 reserved for Stage 2. For very small labeled datasets (n < 300), Track B (PPI) is preferred as it leverages large unlabeled corpora.\n\n**Track A — Modular Conformal ITE Intervals.** We adapt the residual decomposition of Zhang et al. (2025), where the total prediction residual R decomposes as R ≤ ΔR₁ + R₂, with Stage 1 = LLM confounder extraction and Stage 2 = doubly robust pseudo-outcome estimation.\n\nIn the primary setting, the LLM extracts CATEGORICAL confounders (e.g., disease severity ∈ {mild, moderate, severe}, smoking status ∈ {never, former, current}) via prompted classification. Conformal prediction sets for classification are natural finite sets with guaranteed coverage.\n\n**Explicit Propensity Score Propagation.** The worst-case pseudo-outcome over the conformal set is computed by full enumeration with explicit propagation through BOTH the outcome regression AND the propensity score. For each possible confounder value c ∈ C(x), the DR pseudo-outcome is:\n\nφ̂(c; Yᵢ, Aᵢ) = [μ̂₁(c) − μ̂₀(c)] + Aᵢ·(Yᵢ − μ̂₁(c))/ê(c) − (1−Aᵢ)·(Yᵢ − μ̂₀(c))/(1−ê(c))\n\nCritically, different confounder values c yield different propensity scores ê(c), which enter the augmentation term as 1/ê(c) (for treated) or 1/(1−ê(c)) (for control). This propensity variation is a distinct and compounding source of uncertainty beyond outcome regression variation. The augmentation term amplifies when propensity scores are extreme: a confounder value with ê(c)=0.1 magnifies residuals 10×. The worst-case interval is [min_c φ̂(c), max_c φ̂(c)] with complexity O(|C|) per unit. We recommend propensity score trimming (truncating ê(c) to [0.05, 0.95]) to prevent a single extreme-propensity confounder value from dominating the interval.\n\n**Pilot Conservatism Analysis.** We provide a back-of-envelope quantification of interval widening due to worst-case enumeration. Consider a clinical setting with K=5 severity categories {none, mild, moderate, severe, critical} and realistic nuisance function values:\n\n| Category | μ̂₁(c) | μ̂₀(c) | ê(c) | CATE |\n|----------|--------|--------|-------|------|\n| none     | 0.40   | 0.30   | 0.50  | 0.10 |\n| mild     | 0.50   | 0.35   | 0.45  | 0.15 |\n| moderate | 0.60   | 0.40   | 0.40  | 0.20 |\n| severe   | 0.72   | 0.45   | 0.35  | 0.27 |\n| critical | 0.85   | 0.50   | 0.25  | 0.35 |\n\nFor a treated patient with Y=0.65 and true severity=moderate, the DR pseudo-outcomes across categories are: φ̂(none)=0.60, φ̂(mild)=0.48, φ̂(moderate)=0.33, φ̂(severe)=0.07, φ̂(critical)=−0.45. The variation is dominated by the augmentation term (Y−μ̂₁(c))/ê(c), where propensity changes from 0.50 to 0.25 amplify residuals 2×. The extraction uncertainty width (Δφ = max−min over C(x)) for different conformal set sizes:\n\n- |C|=1 (excellent LLM, singleton): Δφ=0, no widening vs. oracle.\n- |C|=2 (good LLM, e.g., {moderate, severe}): Δφ≈0.26, widening ≈ 60% over oracle CI width of ~0.40.\n- |C|=3 (decent LLM, e.g., {mild, moderate, severe}): Δφ≈0.41, widening ≈ 100% over oracle.\n- |C|=4+ (poor LLM): Δφ>1.0, intervals become vacuously wide — correctly reflecting that the LLM provides insufficient information for credible causal conclusions.\n\nThe general widening ratio is approximately W ≈ 1 + [Δ_CATE + |r|·Δ(1/ê)] / width_oracle, where Δ_CATE is the CATE variation across the conformal set, |r| is the outcome residual magnitude, and Δ(1/ê) is the inverse propensity variation. Key practical determinants: (a) conformal set size |C|/K — the LLM quality directly controls conservatism; (b) propensity score stability across confounder categories — good overlap reduces widening; (c) outcome residual magnitude — well-fitted outcome models reduce augmentation-driven widening. The method is practically useful (W < 2) when the LLM achieves conformal set size |C| ≤ 2 for K=5 categories, and correctly signals 'insufficient information' otherwise.\n\nFor the secondary continuous track, we use Qwen3-Embedding-8B with Matryoshka dimensionality reduction to 128–256 dimensions, construct ellipsoidal conformal sets (Xu et al. ICML 2024; Lützow et al. 2026), and bound worst-case pseudo-outcomes via convex relaxation: local Lipschitz continuity of nuisance functions plus first-order Taylor expansion over the ellipsoid, following the decision-theoretic framework of Wang & Dobriban (arXiv 2602.00989, 2026). **Important restriction**: the convex relaxation via Lipschitz continuity and Taylor expansion requires smooth nuisance estimators. This is compatible with neural network outcome models (e.g., TARNet, DragonNet) and kernel methods, but NOT with tree-based models (gradient-boosted trees, random forests) that are piecewise constant with jump discontinuities. We therefore restrict the continuous embedding track to smooth nuisance estimators. Note that the categorical track (primary) works with ANY nuisance estimator, including tree-based methods, since worst-case computation is by direct enumeration without smoothness assumptions. The modular framework's FWER control across both stages yields provably tighter intervals than naive Bonferroni.\n\n**Track B — Conformal PPI for ATE Intervals.** We apply the conformal PPI framework of Csillag et al. (2025) to estimate average treatment effects. The LLM serves as the prediction model in the PPI sense: a small human-labeled dataset has expert-annotated confounders, and a large dataset has LLM-extracted confounders. The conformal set-predictor from Stage 1 replaces point imputation, yielding valid ATE confidence intervals via Z-estimation: E[inf φ(C(X))] − M·Err(C) ≤ ATE ≤ E[sup φ(C(X))] + M·Err(C), where M is the bounded range of the influence function and Err(C) is the conformal miscoverage rate. This extends PPI causal inference (arXiv 2502.06343) by using conformal rather than point imputation, providing finite-sample validity without distributional assumptions on the LLM. Track B is especially suited to small-labeled-data settings (MIMIC-IV) because it leverages large unlabeled corpora.\n\nWe evaluate on three benchmarks: (1) semi-synthetic MIMIC-IV clinical notes (treatment escalation effect on ICU outcomes, disease severity as text confounder), (2) semi-synthetic social media data (content moderation effect on engagement, toxicity level as confounder), and (3) fully synthetic data with known ground-truth for calibration validation. Key metrics: empirical coverage at 90%/95% nominal levels, interval width relative to oracle (perfectly observed confounders) and bootstrap baselines, widening ratio W as a function of conformal set size and propensity overlap, and sensitivity to LLM extraction quality via deliberately degraded models. We include a dedicated conservatism experiment varying |C|/K from 0.2 to 0.8 to empirically validate the pilot analysis above.\n\nWe are transparent that worst-case reasoning over conformal sets introduces conservatism relative to oracle methods. The honest framing: our intervals maintain nominal coverage where bootstrap intervals undercover due to LLM extraction noise, with comparable width when LLM quality is high (|C|=1-2). The conservatism correctly reflects true uncertainty in the LLM-as-measurement-instrument setting, and the pilot analysis above shows it is quantifiably bounded for reasonable LLM quality.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '200-300', 'timeline': '10 weeks (targeting AAAI 2027 July 28 deadline)', 'estimated_gpu_cost': '$300-450 (A100 at ~$1.50/hr)', 'breakdown': 'Weeks 1-2: Formalize theoretical framework (modular decomposition under weighted exchangeability, conformal PPI ATE estimator, cross-conformal Stage 1 calibration). Weeks 3-4: Implement cross-fitted pipeline, categorical conformal extraction, worst-case enumeration with explicit propensity propagation. Weeks 5-6: Implement continuous embedding track (Matryoshka 128-256d, ellipsoidal sets, convex relaxation with smooth nuisance estimators) and PPI ATE track. Weeks 7-8: Experiments on MIMIC-IV, social media, synthetic benchmarks including conservatism analysis. Week 9: Ablations (LLM quality sensitivity via |C|/K sweep, propensity overlap analysis, embedding dimension, calibration set size, cross-conformal vs. split comparison). Week 10: Paper writing and proof polishing.'}, 'human_in_loop': {'gpu_hours': '200-300', 'timeline': '8 weeks', 'claude_api_cost': '$100-150', 'estimated_gpu_cost': '$300-450 (A100 at ~$1.50/hr)', 'notes': 'AI assists with literature integration, boilerplate code, proof sketch verification. Human focuses on theoretical contributions (weighted exchangeability conditions, tight bounds for DR pseudo-outcomes, propensity propagation analysis) and experimental design. Requires ~5 hours domain expert time for confounder annotation guidelines.'}, 'auto_research': {'gpu_hours': '250-350', 'timeline': '5-6 weeks', 'claude_api_cost': '$250-350', 'estimated_gpu_cost': '$375-525 (A100 at ~$1.50/hr)', 'speed_bottleneck': 'Theoretical proof verification requires human mathematician; three-way split calibration across multiple seeds requires sequential experiment iterations; domain expert annotation for MIMIC-IV confounder labels cannot be automated'}}\n\n## Inspired By\nGap: Existing conformal causal methods assume error-free confounders; existing LLM conformal methods ignore causal settings; existing text-based causal methods provide only asymptotic guarantees; Barnatchez et al. handle missing confounders but not noisy extraction; Vovk & Wang handle confounding in prediction but not treatment effects. Pattern: Three converging literatures (modular CP, conformal PPI, conformal causal inference) that have not been connected. Key enablers: Zhang et al. (arXiv 2510.04406) modular residual decomposition framework; Csillag et al. (arXiv 2510.16166) conformal set-predictor for PPI; Alaa et al. (NeurIPS 2023) conformal meta-learners for ITE; Barber et al. (Annals of Statistics 2023) weighted exchangeability beyond standard CP assumptions.\n\n## Target Venues\n- AAAI 2027 (Primary — abstract July 21, full paper July 28, 2026; ~10 weeks from today)\n- ARR August 2026 cycle (Secondary — submission August 3, 2026) → EACL 2027 (commitment October 11, 2026)\n- AISTATS 2027 (Stretch — estimated deadline ~October 2026, not yet announced)\n\n## Key References\n- Zhang et al. 'Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition' (arXiv 2510.04406, 2025)\n- Csillag et al. 'Extending Prediction-Powered Inference through Conformal Prediction' (arXiv 2510.16166, 2025)\n- Angelopoulos et al. 'Prediction-Powered Inference' (Science, 2023)\n- Prediction-Powered Causal Inferences (arXiv 2502.06343, 2025)\n- Kato 'Semi-Supervised Treatment Effect Estimation with Unlabeled Covariates via Generalized Riesz Regression' (arXiv 2511.08303, NeurIPS 2025)\n- Barber et al. 'Conformal prediction beyond exchangeability' (Annals of Statistics, 2023)\n- Alaa et al. 'Conformal Meta-learners for Predictive Inference of Individual Treatment Effects' (NeurIPS 2023)\n- Wang & Dobriban 'Optimal Decision-Making Based on Prediction Sets' (arXiv 2602.00989, 2026)\n- Lützow et al. 'Multi-Variable Conformal Prediction: Optimizing Prediction Sets without Data Splitting' (arXiv 2605.12341, 2026)\n- Xu et al. 'Conformal prediction for multi-dimensional time series by ellipsoidal sets' (ICML 2024)\n- Campos et al. 'Conformal Prediction for Natural Language Processing: A Survey' (TACL, 2024)\n- Systematic Review of Conformal Inference Procedures for Treatment Effect Estimation (arXiv 2509.21660, 2025)\n- Lei & Candès 'Conformal Inference of Counterfactuals and Individual Treatment Effects' (JRSS-B, 2021)\n- DoubleLingo: Causal Estimation with Large Language Models (NAACL 2024)\n- Ma et al. 'LLM-Driven Treatment Effect Estimation Under Inference Time Text Confounding' (NeurIPS 2025)\n- Conformal Counterfactual Inference under Hidden Confounding (KDD 2024)\n- Veitch et al. 'Adapting Text Embeddings for Causal Inference' (UAI 2020)\n- Barnatchez et al. 'Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding' (arXiv 2604.03772, 2026)\n- Vovk & Wang 'Conformal e-prediction in the presence of confounding' (arXiv 2603.11134, 2026)\n- Gasparin & Ramdas 'Improving the statistical efficiency of cross-conformal prediction' (arXiv 2503.01495, ICML 2025)\n- Chernozhukov et al. 'Double/debiased machine learning for treatment and structural parameters' (Econometrics Journal, 2018)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T03:48:37.634Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T03:48:37.634Z",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+## Round 1
+
+58 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T03:48:37.647Z_
+
+# Conformal and Prediction-Powered Guarantees for Causal Inference with LLM-Extracted Text Confounders
+
+## Description
+We propose ConformalPPITextCausal, a framework providing finite-sample coverage guarantees for treatment effects estimated using LLM-extracted text confounders. Current methods (DoubleLingo, Ma et al.) rely on asymptotic guarantees that break down when LLM extraction introduces unquantified heterogeneous noise. Our dual-track approach addresses this via: Track A (ITE intervals) — adapting modular conformal prediction (Zhang et al. 2025) to a causal two-stage pipeline where Stage 1 produces conformal prediction sets over LLM-extracted categorical confounders (with worst-case pseudo-outcome enumeration including explicit propensity score propagation, O(|C|) per unit) or low-dimensional Matryoshka embeddings (with ellipsoidal sets and convex relaxation restricted to smooth nuisance estimators), and Stage 2 constructs doubly robust treatment effect intervals with FWER-controlled coverage tighter than Bonferroni; Track B (ATE intervals) — extending conformal prediction-powered inference (Csillag et al. 2025) to the causal setting, where a small expert-labeled and large LLM-imputed dataset yield valid confidence intervals via Z-estimation with conformal set-predictors. Cross-conformal calibration (Gasparin & Ramdas, ICML 2025) reduces the three-way data split to two-way, improving sample efficiency for labeled-data-scarce settings. A pilot conservatism analysis shows practical viability: for K=5 confounder categories, interval widening is ~60% with conformal set size |C|=2 (good LLM) and ~100% with |C|=3 (decent LLM), driven primarily by propensity score variation across conformal set members. The method is practically useful when the LLM achieves small conformal sets and correctly signals insufficient information otherwise. We differentiate from Barnatchez et al. (2604.03772), who handle missing confounders at deployment via semiparametric debiasing — a complementary but distinct setting from our noisy-extraction framework. The genuine theoretical contribution is proving the modular residual decomposition holds under causal exchangeability conditions specific to doubly robust pseudo-outcomes with explicit propensity propagation. Experiments on semi-synthetic MIMIC-IV clinical notes, social media data, and synthetic benchmarks demonstrate maintained nominal coverage where bootstrap alternatives undercover, with a dedicated conservatism experiment varying |C|/K to validate the pilot analysis.
+
+## Core Problem
+Causal inference from observational text data (clinical notes, social media, policy documents) requires adjusting for confounders embedded in unstructured text. Modern LLMs can extract these confounders, but extraction is imperfect — introducing measurement error that invalidates standard causal estimators' asymptotic guarantees. No existing framework provides finite-sample coverage guarantees for treatment effect estimates when confounders are extracted by a fallible LLM. Naive approaches (plugging in LLM point predictions as if they were ground truth) can produce arbitrarily biased causal conclusions when extraction noise is heterogeneous across subpopulations.
+
+## Opportunity
+Three independent research threads have matured to the point where they can be unified into a principled solution: (1) modular conformal prediction for sequential pipelines (Zhang et al. 2025, arXiv 2510.04406) provides a residual decomposition framework that controls family-wise error across pipeline stages without resorting to loose Bonferroni corrections; (2) prediction-powered inference extended through conformal prediction (Csillag et al. 2025, arXiv 2510.16166) yields valid population-level confidence intervals when a prediction model (here, the LLM) imputes covariates on a large unlabeled set alongside a small human-labeled set; and (3) conformal meta-learners for individual treatment effects (Alaa et al. NeurIPS 2023) provide conformal intervals for heterogeneous effects but assume perfectly observed confounders. Additionally, Matryoshka embedding models (Qwen3-Embedding-8B) now support flexible dimensionality from 32 to 4096, making conformal prediction over embedding spaces tractable at reduced dimensions. Recent work on conformal prediction under confounding — including Barnatchez et al. (arXiv 2604.03772) on runtime confounding (missing confounders at deployment) and Vovk & Wang (arXiv 2603.11134) on conformal e-prediction — demonstrates growing interest but targets distinct problem settings from ours (noisy extraction vs. missing variables, and e-values for prediction vs. p-values for treatment effects). By bridging these threads, we can deliver both individual-level (ITE) and population-level (ATE) treatment effect intervals that honestly account for LLM extraction uncertainty — a capability no current method provides.
+
+## Landscape
+The intersection of conformal prediction and causal inference has seen rapid growth (Systematic Review, arXiv 2509.21660, covering 11 key papers), but existing conformal ITE methods (Lei & Candès JRSS-B 2021; Alaa et al. NeurIPS 2023; KDD 2024 wTCP-DR) assume confounders are observed without error. The conformal prediction for NLP survey (Campos et al. TACL 2024) covers classification, QA, and generation quality but not downstream causal validity. Prediction-powered inference (Angelopoulos et al. Science 2023) and its causal extensions (arXiv 2502.06343; Kato arXiv 2511.08303 NeurIPS 2025) address the labeled/unlabeled split for treatment effects but do not incorporate conformal sets for the imputed covariates. Zhang et al. (2025) handle sequential model pipelines with modular conformal guarantees but do not treat the causal setting or weighted exchangeability. DoubleLingo (NAACL 2024) and Ma et al. (NeurIPS 2025) use LLMs within doubly robust causal estimators for text data but provide only asymptotic guarantees with no finite-sample uncertainty quantification for LLM extraction noise. Multi-variable conformal prediction (Lützow et al. arXiv 2605.12341, 2026) and ellipsoidal conformal sets (Xu et al. ICML 2024) now provide tractable geometric tools for moderate-dimensional conformal regions.
+
+Two recent works merit explicit differentiation: Barnatchez et al. (arXiv 2604.03772, April 2026) address conformal prediction for counterfactual outcomes under 'runtime confounding' — where confounders measured in training are entirely MISSING at deployment. Their semiparametric debiasing approach marginalizes over unobserved confounders via multiply-robust influence functions, assuming Y(a)⊥S|V (systematic differences explained by the observed subset V). Our setting is fundamentally different: all confounders are present in the text and extracted by the LLM, but with NOISE — the confounders are measured with error, not missing entirely. Their debiasing marginalizes over missing variables; our conformal sets quantify extraction uncertainty over observed-but-noisy variables. Vovk & Wang (arXiv 2603.11134, March 2026) extend conformal e-prediction to handle observed confounding between X and Y using e-values (nonnegative random variables with expectation ≤ 1) rather than p-values. While e-values provide attractive anytime-valid guarantees under optional stopping, their framework targets prediction of Y given X under confounding, not treatment effect estimation. Our framework uses standard conformal prediction sets combined with PPI, targeting ITE/ATE estimation — a complementary but distinct goal. The e-value approach could be an interesting alternative foundation for future work.
+
+The gap we fill is the integration of modular conformal prediction and conformal PPI into a unified framework for the two-stage pipeline of LLM confounder extraction followed by causal effect estimation, with proven finite-sample validity under noisy (not missing) confounder extraction.
+
+## Approach
+We propose a dual-track framework, ConformalPPITextCausal, for valid causal inference when text confounders are extracted by an LLM.
+
+**Data Splitting and Sample Efficiency.** The baseline design uses a three-way data split: (S1) training data for fine-tuning the LLM extraction model and fitting nuisance functions (propensity score, outcome regression), (S2) calibration data for Stage 1 conformal sets on the extracted confounders, and (S3) calibration data for Stage 2 conformal intervals on treatment effects. To address sample efficiency — critical for clinical text datasets like MIMIC-IV where expert-labeled samples are expensive — we propose two improvements: (i) K-fold cross-fitting for nuisance function estimation within S1, following Chernozhukov et al. (2018) DML, which uses all training data for both estimation and evaluation; (ii) cross-conformal calibration for Stage 1, following Gasparin & Ramdas (ICML 2025, arXiv 2503.01495), which achieves coverage ≥ 1−2α₁ using K-fold rotation rather than a dedicated hold-out set, effectively merging S2 into S1 and reducing the three-way split to a two-way split (train+Stage1-calibrate vs. Stage2-calibrate). The coverage cost (1−2α₁ vs. 1−α₁) is manageable by setting α₁ conservatively (e.g., α₁=0.025 for effective 95% Stage 1 coverage). We discuss minimum sample size requirements: Stage 2 calibration requires n₃ ≥ ⌈1/α₂⌉ ≈ 100-200 for reliable conformal quantiles at α₂=0.05, and we recommend n_total ≥ 500 for the full pipeline, with n₃ ≥ 150 reserved for Stage 2. For very small labeled datasets (n < 300), Track B (PPI) is preferred as it leverages large unlabeled corpora.
+
+**Track A — Modular Conformal ITE Intervals.** We adapt the residual decomposition of Zhang et al. (2025), where the total prediction residual R decomposes as R ≤ ΔR₁ + R₂, with Stage 1 = LLM confounder extraction and Stage 2 = doubly robust pseudo-outcome estimation.
+
+In the primary setting, the LLM extracts CATEGORICAL confounders (e.g., disease severity ∈ {mild, moderate, severe}, smoking status ∈ {never, former, current}) via prompted classification. Conformal prediction sets for classification are natural finite sets with guaranteed coverage.
+
+**Explicit Propensity Score Propagation.** The worst-case pseudo-outcome over the conformal set is computed by full enumeration with explicit propagation through BOTH the outcome regression AND the propensity score. For each possible confounder value c ∈ C(x), the DR pseudo-outcome is:
+
+φ̂(c; Yᵢ, Aᵢ) = [μ̂₁(c) − μ̂₀(c)] + Aᵢ·(Yᵢ − μ̂₁(c))/ê(c) − (1−Aᵢ)·(Yᵢ − μ̂₀(c))/(1−ê(c))
+
+Critically, different confounder values c yield different propensity scores ê(c), which enter the augmentation term as 1/ê(c) (for treated) or 1/(1−ê(c)) (for control). This propensity variation is a distinct and compounding source of uncertainty beyond outcome regression variation. The augmentation term amplifies when propensity scores are extreme: a confounder value with ê(c)=0.1 magnifies residuals 10×. The worst-case interval is [min_c φ̂(c), max_c φ̂(c)] with complexity O(|C|) per unit. We recommend propensity score trimming (truncating ê(c) to [0.05, 0.95]) to prevent a single extreme-propensity confounder value from dominating the interval.
+
+**Pilot Conservatism Analysis.** We provide a back-of-envelope quantification of interval widening due to worst-case enumeration. Consider a clinical setting with K=5 severity categories {none, mild, moderate, severe, critical} and realistic nuisance function values:
+
+| Category | μ̂₁(c) | μ̂₀(c) | ê(c) | CATE |
+|----------|--------|--------|-------|------|
+| none     | 0.40   | 0.30   | 0.50  | 0.10 |
+| mild     | 0.50   | 0.35   | 0.45  | 0.15 |
+| moderate | 0.60   | 0.40   | 0.40  | 0.20 |
+| severe   | 0.72   | 0.45   | 0.35  | 0.27 |
+| critical | 0.85   | 0.50   | 0.25  | 0.35 |
+
+For a treated patient with Y=0.65 and true severity=moderate, the DR pseudo-outcomes across categories are: φ̂(none)=0.60, φ̂(mild)=0.48, φ̂(moderate)=0.33, φ̂(severe)=0.07, φ̂(critical)=−0.45. The variation is dominated by the augmentation term (Y−μ̂₁(c))/ê(c), where propensity changes from 0.50 to 0.25 amplify residuals 2×. The extraction uncertainty width (Δφ = max−min over C(x)) for different conformal set sizes:
+
+- |C|=1 (excellent LLM, singleton): Δφ=0, no widening vs. oracle.
+- |C|=2 (good LLM, e.g., {moderate, severe}): Δφ≈0.26, widening ≈ 60% over oracle CI width of ~0.40.
+- |C|=3 (decent LLM, e.g., {mild, moderate, severe}): Δφ≈0.41, widening ≈ 100% over oracle.
+- |C|=4+ (poor LLM): Δφ>1.0, intervals become vacuously wide — correctly reflecting that the LLM provides insufficient information for credible causal conclusions.
+
+The general widening ratio is approximately W ≈ 1 + [Δ_CATE + |r|·Δ(1/ê)] / width_oracle, where Δ_CATE is the CATE variation across the conformal set, |r| is the outcome residual magnitude, and Δ(1/ê) is the inverse propensity variation. Key practical determinants: (a) conformal set size |C|/K — the LLM quality directly controls conservatism; (b) propensity score stability across confounder categories — good overlap reduces widening; (c) outcome residual magnitude — well-fitted outcome models reduce augmentation-driven widening. The method is practically useful (W < 2) when the LLM achieves conformal set size |C| ≤ 2 for K=5 categories, and correctly signals 'insufficient information' otherwise.
+
+For the secondary continuous track, we use Qwen3-Embedding-8B with Matryoshka dimensionality reduction to 128–256 dimensions, construct ellipsoidal conformal sets (Xu et al. ICML 2024; Lützow et al. 2026), and bound worst-case pseudo-outcomes via convex relaxation: local Lipschitz continuity of nuisance functions plus first-order Taylor expansion over the ellipsoid, following the decision-theoretic framework of Wang & Dobriban (arXiv 2602.00989, 2026). **Important restriction**: the convex relaxation via Lipschitz continuity and Taylor expansion requires smooth nuisance estimators. This is compatible with neural network outcome models (e.g., TARNet, DragonNet) and kernel methods, but NOT with tree-based models (gradient-boosted trees, random forests) that are piecewise constant with jump discontinuities. We therefore restrict the continuous embedding track to smooth nuisance estimators. Note that the categorical track (primary) works with ANY nuisance estimator, including tree-based methods, since worst-case computation is by direct enumeration without smoothness assumptions. The modular framework's FWER control across both stages yields provably tighter intervals than naive Bonferroni.
+
+**Track B — Conformal PPI for ATE Intervals.** We apply the conformal PPI framework of Csillag et al. (2025) to estimate average treatment effects. The LLM serves as the prediction model in the PPI sense: a small human-labeled dataset has expert-annotated confounders, and a large dataset has LLM-extracted confounders. The conformal set-predictor from Stage 1 replaces point imputation, yielding valid ATE confidence intervals via Z-estimation: E[inf φ(C(X))] − M·Err(C) ≤ ATE ≤ E[sup φ(C(X))] + M·Err(C), where M is the bounded range of the influence function and Err(C) is the conformal miscoverage rate. This extends PPI causal inference (arXiv 2502.06343) by using conformal rather than point imputation, providing finite-sample validity without distributional assumptions on the LLM. Track B is especially suited to small-labeled-data settings (MIMIC-IV) because it leverages large unlabeled corpora.
+
+We evaluate on three benchmarks: (1) semi-synthetic MIMIC-IV clinical notes (treatment escalation effect on ICU outcomes, disease severity as text confounder), (2) semi-synthetic social media data (content moderation effect on engagement, toxicity level as confounder), and (3) fully synthetic data with known ground-truth for calibration validation. Key metrics: empirical coverage at 90%/95% nominal levels, interval width relative to oracle (perfectly observed confounders) and bootstrap baselines, widening ratio W as a function of conformal set size and propensity overlap, and sensitivity to LLM extraction quality via deliberately degraded models. We include a dedicated conservatism experiment varying |C|/K from 0.2 to 0.8 to empirically validate the pilot analysis above.
+
+We are transparent that worst-case reasoning over conformal sets introduces conservatism relative to oracle methods. The honest framing: our intervals maintain nominal coverage where bootstrap intervals undercover due to LLM extraction noise, with comparable width when LLM quality is high (|C|=1-2). The conservatism correctly reflects true uncertainty in the LLM-as-measurement-instrument setting, and the pilot analysis above shows it is quantifiably bounded for reasonable LLM quality.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '200-300', 'timeline': '10 weeks (targeting AAAI 2027 July 28 deadline)', 'estimated_gpu_cost': '$300-450 (A100 at ~$1.50/hr)', 'breakdown': 'Weeks 1-2: Formalize theoretical framework (modular decomposition under weighted exchangeability, conformal PPI ATE estimator, cross-conformal Stage 1 calibration). Weeks 3-4: Implement cross-fitted pipeline, categorical conformal extraction, worst-case enumeration with explicit propensity propagation. Weeks 5-6: Implement continuous embedding track (Matryoshka 128-256d, ellipsoidal sets, convex relaxation with smooth nuisance estimators) and PPI ATE track. Weeks 7-8: Experiments on MIMIC-IV, social media, synthetic benchmarks including conservatism analysis. Week 9: Ablations (LLM quality sensitivity via |C|/K sweep, propensity overlap analysis, embedding dimension, calibration set size, cross-conformal vs. split comparison). Week 10: Paper writing and proof polishing.'}, 'human_in_loop': {'gpu_hours': '200-300', 'timeline': '8 weeks', 'claude_api_cost': '$100-150', 'estimated_gpu_cost': '$300-450 (A100 at ~$1.50/hr)', 'notes': 'AI assists with literature integration, boilerplate code, proof sketch verification. Human focuses on theoretical contributions (weighted exchangeability conditions, tight bounds for DR pseudo-outcomes, propensity propagation analysis) and experimental design. Requires ~5 hours domain expert time for confounder annotation guidelines.'}, 'auto_research': {'gpu_hours': '250-350', 'timeline': '5-6 weeks', 'claude_api_cost': '$250-350', 'estimated_gpu_cost': '$375-525 (A100 at ~$1.50/hr)', 'speed_bottleneck': 'Theoretical proof verification requires human mathematician; three-way split calibration across multiple seeds requires sequential experiment iterations; domain expert annotation for MIMIC-IV confounder labels cannot be automated'}}
+
+## Inspired By
+Gap: Existing conformal causal methods assume error-free confounders; existing LLM conformal methods ignore causal settings; existing text-based causal methods provide only asymptotic guarantees; Barnatchez et al. handle missing confounders but not noisy extraction; Vovk & Wang handle confounding in prediction but not treatment effects. Pattern: Three converging literatures (modular CP, conformal PPI, conformal causal inference) that have not been connected. Key enablers: Zhang et al. (arXiv 2510.04406) modular residual decomposition framework; Csillag et al. (arXiv 2510.16166) conformal set-predictor for PPI; Alaa et al. (NeurIPS 2023) conformal meta-learners for ITE; Barber et al. (Annals of Statistics 2023) weighted exchangeability beyond standard CP assumptions.
+
+## Target Venues
+- AAAI 2027 (Primary — abstract July 21, full paper July 28, 2026; ~10 weeks from today)
+- ARR August 2026 cycle (Secondary — submission August 3, 2026) → EACL 2027 (commitment October 11, 2026)
+- AISTATS 2027 (Stretch — estimated deadline ~October 2026, not yet announced)
+
+## Key References
+- Zhang et al. 'Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition' (arXiv 2510.04406, 2025)
+- Csillag et al. 'Extending Prediction-Powered Inference through Conformal Prediction' (arXiv 2510.16166, 2025)
+- Angelopoulos et al. 'Prediction-Powered Inference' (Science, 2023)
+- Prediction-Powered Causal Inferences (arXiv 2502.06343, 2025)
+- Kato 'Semi-Supervised Treatment Effect Estimation with Unlabeled Covariates via Generalized Riesz Regression' (arXiv 2511.08303, NeurIPS 2025)
+- Barber et al. 'Conformal prediction beyond exchangeability' (Annals of Statistics, 2023)
+- Alaa et al. 'Conformal Meta-learners for Predictive Inference of Individual Treatment Effects' (NeurIPS 2023)
+- Wang & Dobriban 'Optimal Decision-Making Based on Prediction Sets' (arXiv 2602.00989, 2026)
+- Lützow et al. 'Multi-Variable Conformal Prediction: Optimizing Prediction Sets without Data Splitting' (arXiv 2605.12341, 2026)
+- Xu et al. 'Conformal prediction for multi-dimensional time series by ellipsoidal sets' (ICML 2024)
+- Campos et al. 'Conformal Prediction for Natural Language Processing: A Survey' (TACL, 2024)
+- Systematic Review of Conformal Inference Procedures for Treatment Effect Estimation (arXiv 2509.21660, 2025)
+- Lei & Candès 'Conformal Inference of Counterfactuals and Individual Treatment Effects' (JRSS-B, 2021)
+- DoubleLingo: Causal Estimation with Large Language Models (NAACL 2024)
+- Ma et al. 'LLM-Driven Treatment Effect Estimation Under Inference Time Text Confounding' (NeurIPS 2025)
+- Conformal Counterfactual Inference under Hidden Confounding (KDD 2024)
+- Veitch et al. 'Adapting Text Embeddings for Causal Inference' (UAI 2020)
+- Barnatchez et al. 'Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding' (arXiv 2604.03772, 2026)
+- Vovk & Wang 'Conformal e-prediction in the presence of confounding' (arXiv 2603.11134, 2026)
+- Gasparin & Ramdas 'Improving the statistical efficiency of cross-conformal prediction' (arXiv 2503.01495, ICML 2025)
+- Chernozhukov et al. 'Double/debiased machine learning for treatment and structural parameters' (Econometrics Journal, 2018)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "4c9168cb-3d35-4d2d-8484-69f6c4105bec",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T03:48:37.646Z_
+
+```json
+{
+  "parentUuid": "4c9168cb-3d35-4d2d-8484-69f6c4105bec",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "faa20604-2190-4118-bf54-9d14dc2a3a1d",
+  "timestamp": "2026-05-20T03:48:37.646Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T03:48:37.646Z_
+
+```json
+{
+  "parentUuid": "faa20604-2190-4118-bf54-9d14dc2a3a1d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "a8ed5b1c-3285-4547-ad04-55fc51f59aa4",
+  "timestamp": "2026-05-20T03:48:37.646Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-20T03:48:37.646Z_
+
+```json
+{
+  "parentUuid": "a8ed5b1c-3285-4547-ad04-55fc51f59aa4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b1ebda84-6e4f-4098-b981-50701d261c3a",
+  "timestamp": "2026-05-20T03:48:37.646Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal and Prediction-Powered Guarantees for Causal Inference with LLM-Extracted Text Confounders  ## Description We propose ConformalPPITextCausal, a framework providing finite-sample coverage g…",
+  "leafUuid": "b1ebda84-6e4f-4098-b981-50701d261c3a",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal prediction for LLM-extracted causal confounders",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T03:48:43.461Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal carefully as the "发掘 agent" (Discovery Agent). I need to:
+
+1. First, do prerequisite literature research via WebSearch
+2. Assess novelty, significance, and related work differentiation
+3. Identify potential flash points that could elevate the idea's ceiling
+4. Check for trivial alternatives and assumption validity
+
+Let me start by searching for the most relevant recent work in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1ebda84-6e4f-4098-b981-50701d261c3a",
+  "isSidechain": false,
+  "requestId": "req_011CbD8vd4FKB4wC5zwZo4eJ",
+  "type": "assistant",
+  "uuid": "6d157057-b9b1-4a2b-81be-068d922e3f85",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HUkW92oUYLPzLWJWJh9th",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11177,
+      "cache_read_input_tokens": 10980,
+      "output_tokens": 231,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11177,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 231,
+          "cache_read_input_tokens": 10980,
+          "cache_creation_input_tokens": 11177,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11177
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-20T03:48:44.939Z_
+
+I'll start by doing thorough literature research before making any assessments. Let me search for the most relevant recent work in this intersection of conformal prediction, causal inference, and LLM-based text analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d157057-b9b1-4a2b-81be-068d922e3f85",
+  "isSidechain": false,
+  "requestId": "req_011CbD8vd4FKB4wC5zwZo4eJ",
+  "type": "assistant",
+  "uuid": "c545f4ce-6828-4166-814e-1385ef22957f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HUkW92oUYLPzLWJWJh9th",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11177,
+      "cache_read_input_tokens": 10980,
+      "output_tokens": 231,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11177,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 231,
+          "cache_read_input_tokens": 10980,
+          "cache_creation_input_tokens": 11177,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11177
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T03:48:45.338Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XX2xnUtvXLaS6B7BRCq6ub`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c545f4ce-6828-4166-814e-1385ef22957f",
+  "isSidechain": false,
+  "requestId": "req_011CbD8vd4FKB4wC5zwZo4eJ",
+  "type": "assistant",
+  "uuid": "5017d3f9-b481-43e0-b958-3fc71843423f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019HUkW92oUYLPzLWJWJh9th",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11177,
+      "cache_read_input_tokens": 10980,
+      "output_tokens": 231,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11177,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 231,
+          "cache_read_input_tokens": 10980,
+          "cache_creation_input_tokens": 11177,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11177
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T03:48:45.344Z_
+
+<details><summary>↩ Tool result · `toolu_01XX2xnUtvXLaS6B7BRCq6ub`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5017d3f9-b481-43e0-b958-3fc71843423f",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "02b1af05-87fa-4285-a8e8-7fb175d8a31b",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "5017d3f9-b481-43e0-b958-3fc71843423f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-20T03:48:48.044Z_
+
+Now let me run multiple searches in parallel to cover the key areas of this proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02b1af05-87fa-4285-a8e8-7fb175d8a31b",
+  "isSidechain": false,
+  "requestId": "req_011CbD8wC3NfWNgZap8ot7d3",
+  "type": "assistant",
+  "uuid": "216583d1-feba-4bab-b488-e189195b1112",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUwC6Kq4gmNUpjkUVjvne6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 758,
+      "cache_read_input_tokens": 22157,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 758,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 22157,
+          "cache_creation_input_tokens": 758,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 758
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T03:48:48.403Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KyV2SPbLr1pcXYobnoE65b`</summary>
+
+```json
+{
+  "query": "modular conformal prediction causal inference treatment effects 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "216583d1-feba-4bab-b488-e189195b1112",
+  "isSidechain": false,
+  "requestId": "req_011CbD8wC3NfWNgZap8ot7d3",
+  "type": "assistant",
+  "uuid": "c25d329e-90a0-44fb-89f3-081d04037463",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUwC6Kq4gmNUpjkUVjvne6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 758,
+      "cache_read_input_tokens": 22157,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 758,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 22157,
+          "cache_creation_input_tokens": 758,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 758
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T03:48:56.502Z_
+
+<details><summary>↩ Tool result · `toolu_01KyV2SPbLr1pcXYobnoE65b`</summary>
+
+```text
+Web search results for query: "modular conformal prediction causal inference treatment effects 2025 2026"
+
+Links: [{"title":"CONFIDE: CONformal Free Inference for Distribution-Free Estimation in Causal Competing Risks","url":"https://www.mdpi.com/2227-7390/14/2/383"},{"title":"Conformal prediction for causal effects of continuous treatments","url":"https://arxiv.org/html/2407.03094v3"},{"title":"Conformal prediction for causal effects of continuous treatments | OpenReview","url":"https://openreview.net/forum?id=pVL4bYKOGM"},{"title":"Prediction Intervals for Individual Treatment Effects in a Multiple Decision Point Framework using Conformal Inference","url":"https://arxiv.org/html/2512.08828"},{"title":"A Systematic Review of Conformal Inference Procedures for Treatment Effect Estimation: Methods and Challenges","url":"https://arxiv.org/html/2509.21660"},{"title":"[2407.03094] Conformal Prediction for Causal Effects of Continuous Treatments","url":"https://arxiv.org/abs/2407.03094"},{"title":"(PDF) Conformal Prediction for Causal Effects of Continuous Treatments","url":"https://www.researchgate.net/publication/381960657_Conformal_Prediction_for_Causal_Effects_of_Continuous_Treatments"}]
+
+Based on my search results, here are the key recent developments in modular conformal prediction, causal inference, and treatment effects from 2025-2026:
+
+## Recent Research Highlights
+
+**Conformal Prediction for Continuous Treatments**
+
+A novel conformal prediction method has been developed for potential outcomes of continuous treatments, accounting for additional uncertainty introduced through propensity estimation so that prediction intervals are valid even if the propensity score is unknown. This appears to be the first to propose conformal prediction for continuous treatments when the propensity score is unknown and must be estimated from data.
+
+**Individual Treatment Effects with Conformal Inference**
+
+The ultimate goal of causal inference is often to understand the Individual Treatment Effect (ITE), which represents the causal effect of the treatment for a single individual. Conformal inference has emerged as a powerful framework for constructing distribution-free prediction intervals with finite-sample guarantees, providing rigorous uncertainty quantification for predictive models even in nonparametric settings.
+
+**Treatment Effects in Clinical Applications**
+
+CONFIDE provides individual-level prediction sets for time-to-event outcomes, which are more clinically actionable for personalized treatment decisions by directly quantifying uncertainty in future patient outcomes.
+
+**Systematic Review of Conformal Inference**
+
+A comprehensive systematic review provides an overview of conformal prediction techniques for treatment effect estimation, organizing and summarizing various approaches to highlight their suitability for different types of problems, with no other review paper existing for this application.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c25d329e-90a0-44fb-89f3-081d04037463",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "fd05bf96-e598-4fae-b11a-e00e6b38b93c",
+  "toolUseResult": {
+    "query": "modular conformal prediction causal inference treatment effects 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XucntDNWHLArZKxLASW2Lu",
+        "content": [
+          {
+            "title": "CONFIDE: CONformal Free Inference for Distribution-Free Estimation in Causal Competing Risks",
+            "url": "https://www.mdpi.com/2227-7390/14/2/383"
+          },
+          {
+            "title": "Conformal prediction for causal effects of continuous treatments",
+            "url": "https://arxiv.org/html/2407.03094v3"
+          },
+          {
+            "title": "Conformal prediction for causal effects of continuous treatments | OpenReview",
+            "url": "https://openreview.net/forum?id=pVL4bYKOGM"
+          },
+          {
+            "title": "Prediction Intervals for Individual Treatment Effects in a Multiple Decision Point Framework using Conformal Inference",
+            "url": "https://arxiv.org/html/2512.08828"
+          },
+          {
+            "title": "A Systematic Review of Conformal Inference Procedures for Treatment Effect Estimation: Methods and Challenges",
+            "url": "https://arxiv.org/html/2509.21660"
+          },
+          {
+            "title": "[2407.03094] Conformal Prediction for Causal Effects of Continuous Treatments",
+            "url": "https://arxiv.org/abs/2407.03094"
+          },
+          {
+            "title": "(PDF) Conformal Prediction for Causal Effects of Continuous Treatments",
+            "url": "https://www.researchgate.net/publication/381960657_Conformal_Prediction_for_Causal_Effects_of_Continuous_Treatments"
+          }
+        ]
+      },
+      "Based on my search results, here are the key recent developments in modular conformal prediction, causal inference, and treatment effects from 2025-2026:\n\n## Recent Research Highlights\n\n**Conformal Prediction for Continuous Treatments**\n\nA novel conformal prediction method has been developed for potential outcomes of continuous treatments, accounting for additional uncertainty introduced through propensity estimation so that prediction intervals are valid even if the propensity score is unknown. This appears to be the first to propose conformal prediction for continuous treatments when the propensity score is unknown and must be estimated from data.\n\n**Individual Treatment Effects with Conformal Inference**\n\nThe ultimate goal of causal inference is often to understand the Individual Treatment Effect (ITE), which represents the causal effect of the treatment for a single individual. Conformal inference has emerged as a powerful framework for constructing distribution-free prediction intervals with finite-sample guarantees, providing rigorous uncertainty quantification for predictive models even in nonparametric settings.\n\n**Treatment Effects in Clinical Applications**\n\nCONFIDE provides individual-level prediction sets for time-to-event outcomes, which are more clinically actionable for personalized treatment decisions by directly quantifying uncertainty in future patient outcomes.\n\n**Systematic Review of Conformal Inference**\n\nA comprehensive systematic review provides an overview of conformal prediction techniques for treatment effect estimation, organizing and summarizing various approaches to highlight their suitability for different types of problems, with no other review paper existing for this application."
+    ],
+    "durationSeconds": 8.093115472000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c25d329e-90a0-44fb-89f3-081d04037463",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T03:48:59.377Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CWzd7XCCHFoLTYU43n1ew6`</summary>
+
+```json
+{
+  "query": "LLM text confounder extraction causal inference measurement error 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd05bf96-e598-4fae-b11a-e00e6b38b93c",
+  "isSidechain": false,
+  "requestId": "req_011CbD8x1YsZpWXJtE13Kiva",
+  "type": "assistant",
+  "uuid": "380068ba-32b5-4a83-8700-9190b288bfcf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PX6jXwrXs6EGEzro3WW8Kk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 790,
+      "cache_read_input_tokens": 22915,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 790,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 22915,
+          "cache_creation_input_tokens": 790,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 790
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T03:49:05.821Z_
+
+<details><summary>↩ Tool result · `toolu_01CWzd7XCCHFoLTYU43n1ew6`</summary>
+
+```text
+Web search results for query: "LLM text confounder extraction causal inference measurement error 2025 2026"
+
+Links: [{"title":"Causal Inference with Large Language Model: A Survey","url":"https://www.researchgate.net/publication/392505118_Causal_Inference_with_Large_Language_Model_A_Survey"},{"title":"LLMs Are Prone to Fallacies in Causal Inference","url":"https://arxiv.org/pdf/2406.12158"},{"title":"Do LLMs Act as Repositories of Causal Knowledge?","url":"https://arxiv.org/pdf/2412.10635"},{"title":"Using large language models for sensitivity analysis in causal inference: case studies on Cornfield inequality and E-value","url":"https://arxiv.org/pdf/2603.14273"},{"title":"Counterfactual Causal Inference in Natural Language with Large Language   Models","url":"https://arxiv.org/pdf/2410.06392"},{"title":"LLM-based Agents for Automated Confounder Discovery and Subgroup Analysis in Causal Inference","url":"https://arxiv.org/pdf/2508.07221"},{"title":"[2508.07221] LLM-based Agents for Automated Confounder Discovery and Subgroup Analysis in Causal Inference","url":"https://arxiv.org/abs/2508.07221"}]
+
+Based on the search results, here's what I found on this topic:
+
+## Recent Research on LLMs and Causal Inference
+
+Recent work explores LLMs for causal discovery/modeling support, and causal reasoning. There are several key developments in this area:
+
+**Confounder Identification and Discovery:**
+LLM-based agents have been proposed for automated confounder discovery and subgroup analysis that integrate agents into the causal ML pipeline to simulate domain expertise. However, LLM judgment on confounder status is highly inconsistent across models, prompts, and irrelevant concerns like multiple-choice option ordering.
+
+**Text-Based Causal Extraction:**
+An end-to-end causal structure discovery and causal inference method from natural language has been proposed where an LLM extracts the instantiated causal variables from text data and builds a causal graph. Additionally, methods are limited in their ability to process unstructured inputs, such as free-text clinical notes or natural language descriptions.
+
+**Measurement Error and Sensitivity Analysis:**
+LLMs can support the calculations of sensitivity analysis for unmeasured confounding, and using LLMs for sensitivity analysis for unmeasured confounding remains largely unexplored.
+
+**Limitations:**
+Properly performing causal inference relies on theoretical understanding of real-world counterfactuals, while LLMs are instead trained to replicate actual observed text.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "380068ba-32b5-4a83-8700-9190b288bfcf",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "8429b9d4-310b-4c94-a80d-11840ad7924e",
+  "toolUseResult": {
+    "query": "LLM text confounder extraction causal inference measurement error 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DUBF8ZHp12YTtcox8hZTRf",
+        "content": [
+          {
+            "title": "Causal Inference with Large Language Model: A Survey",
+            "url": "https://www.researchgate.net/publication/392505118_Causal_Inference_with_Large_Language_Model_A_Survey"
+          },
+          {
+            "title": "LLMs Are Prone to Fallacies in Causal Inference",
+            "url": "https://arxiv.org/pdf/2406.12158"
+          },
+          {
+            "title": "Do LLMs Act as Repositories of Causal Knowledge?",
+            "url": "https://arxiv.org/pdf/2412.10635"
+          },
+          {
+            "title": "Using large language models for sensitivity analysis in causal inference: case studies on Cornfield inequality and E-value",
+            "url": "https://arxiv.org/pdf/2603.14273"
+          },
+          {
+            "title": "Counterfactual Causal Inference in Natural Language with Large Language   Models",
+            "url": "https://arxiv.org/pdf/2410.06392"
+          },
+          {
+            "title": "LLM-based Agents for Automated Confounder Discovery and Subgroup Analysis in Causal Inference",
+            "url": "https://arxiv.org/pdf/2508.07221"
+          },
+          {
+            "title": "[2508.07221] LLM-based Agents for Automated Confounder Discovery and Subgroup Analysis in Causal Inference",
+            "url": "https://arxiv.org/abs/2508.07221"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found on this topic:\n\n## Recent Research on LLMs and Causal Inference\n\nRecent work explores LLMs for causal discovery/modeling support, and causal reasoning. There are several key developments in this area:\n\n**Confounder Identification and Discovery:**\nLLM-based agents have been proposed for automated confounder discovery and subgroup analysis that integrate agents into the causal ML pipeline to simulate domain expertise. However, LLM judgment on confounder status is highly inconsistent across models, prompts, and irrelevant concerns like multiple-choice option ordering.\n\n**Text-Based Causal Extraction:**\nAn end-to-end causal structure discovery and causal inference method from natural language has been proposed where an LLM extracts the instantiated causal variables from text data and builds a causal graph. Additionally, methods are limited in their ability to process unstructured inputs, such as free-text clinical notes or natural language descriptions.\n\n**Measurement Error and Sensitivity Analysis:**\nLLMs can support the calculations of sensitivity analysis for unmeasured confounding, and using LLMs for sensitivity analysis for unmeasured confounding remains largely unexplored.\n\n**Limitations:**\nProperly performing causal inference relies on theoretical understanding of real-world counterfactuals, while LLMs are instead trained to replicate actual observed text."
+    ],
+    "durationSeconds": 6.440867503999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "380068ba-32b5-4a83-8700-9190b288bfcf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T03:49:08.380Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MHQFS2XC92YEh267Nq5dYm`</summary>
+
+```json
+{
+  "query": "prediction-powered inference conformal sets covariates imputation 2025 2026 Csillag"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8429b9d4-310b-4c94-a80d-11840ad7924e",
+  "isSidechain": false,
+  "requestId": "req_011CbD8xhMmV6MLh3czqb5Fv",
+  "type": "assistant",
+  "uuid": "f746a6a7-cc5d-448d-ad19-e1854b76e082",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014MDmJF8GCKeRySgvYKCds7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 752,
+      "cache_read_input_tokens": 23705,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 23705,
+          "cache_creation_input_tokens": 752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T03:49:14.854Z_
+
+<details><summary>↩ Tool result · `toolu_01MHQFS2XC92YEh267Nq5dYm`</summary>
+
+```text
+Web search results for query: "prediction-powered inference conformal sets covariates imputation 2025 2026 Csillag"
+
+Links: [{"title":"Extending Prediction-Powered Inference through Conformal Prediction","url":"https://arxiv.org/html/2510.16166v1"},{"title":"[2510.16166] Extending Prediction-Powered Inference through Conformal Prediction","url":"https://arxiv.org/abs/2510.16166"},{"title":"[PDF] Prediction-powered inference | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Prediction-powered-inference-Angelopoulos-Bates/96f75d06ce8bc26128f0af0071b374d065bf7d64"},{"title":"Published as a preprint EXTENDING PREDICTION-POWERED INFERENCE","url":"https://arxiv.org/pdf/2510.16166"},{"title":"Prediction-powered inference | Request PDF","url":"https://www.researchgate.net/publication/375523918_Prediction-powered_inference"},{"title":"[2501.18577] Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling","url":"https://arxiv.org/abs/2501.18577"},{"title":"Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling","url":"https://arxiv.org/pdf/2501.18577"}]
+
+Based on the search results, I found relevant recent research on this topic:
+
+## Key Findings
+
+Prediction-powered inference has been connected with conformal prediction, where performing imputation through a calibrated conformal set-predictor attains validity while achieving additional guarantees in a natural manner.
+
+This approach allows leveraging the conformal prediction literature with additional guarantees, spanning privacy, robustness to strategic and adversarial distribution shift (including work by Csillag et al., 2024), continuous distribution shift, robustness to outliers, and censored/missing data.
+
+The procedure has been instantiated for inference of means, Z- and M-estimation, as well as e-values and e-value-based procedures.
+
+Additionally, there is recent work on machine learning models that are increasingly used to produce predictions that serve as input data in subsequent statistical analyses, with a 2025 paper titled "Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling" addressing this challenge (updated as recently as November 2025).
+
+The research appears to be actively evolving, with multiple papers from 2025-2026 advancing this intersection of prediction-powered inference, conformal methods, and covariate imputation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f746a6a7-cc5d-448d-ad19-e1854b76e082",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "2137bf11-1d12-4cc0-be8d-e1260b6095f0",
+  "toolUseResult": {
+    "query": "prediction-powered inference conformal sets covariates imputation 2025 2026 Csillag",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BSLCKq3pgnb65i5YBj2GkX",
+        "content": [
+          {
+            "title": "Extending Prediction-Powered Inference through Conformal Prediction",
+            "url": "https://arxiv.org/html/2510.16166v1"
+          },
+          {
+            "title": "[2510.16166] Extending Prediction-Powered Inference through Conformal Prediction",
+            "url": "https://arxiv.org/abs/2510.16166"
+          },
+          {
+            "title": "[PDF] Prediction-powered inference | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Prediction-powered-inference-Angelopoulos-Bates/96f75d06ce8bc26128f0af0071b374d065bf7d64"
+          },
+          {
+            "title": "Published as a preprint EXTENDING PREDICTION-POWERED INFERENCE",
+            "url": "https://arxiv.org/pdf/2510.16166"
+          },
+          {
+            "title": "Prediction-powered inference | Request PDF",
+            "url": "https://www.researchgate.net/publication/375523918_Prediction-powered_inference"
+          },
+          {
+            "title": "[2501.18577] Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling",
+            "url": "https://arxiv.org/abs/2501.18577"
+          },
+          {
+            "title": "Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling",
+            "url": "https://arxiv.org/pdf/2501.18577"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant recent research on this topic:\n\n## Key Findings\n\nPrediction-powered inference has been connected with conformal prediction, where performing imputation through a calibrated conformal set-predictor attains validity while achieving additional guarantees in a natural manner.\n\nThis approach allows leveraging the conformal prediction literature with additional guarantees, spanning privacy, robustness to strategic and adversarial distribution shift (including work by Csillag et al., 2024), continuous distribution shift, robustness to outliers, and censored/missing data.\n\nThe procedure has been instantiated for inference of means, Z- and M-estimation, as well as e-values and e-value-based procedures.\n\nAdditionally, there is recent work on machine learning models that are increasingly used to produce predictions that serve as input data in subsequent statistical analyses, with a 2025 paper titled \"Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling\" addressing this challenge (updated as recently as November 2025).\n\nThe research appears to be actively evolving, with multiple papers from 2025-2026 advancing this intersection of prediction-powered inference, conformal methods, and covariate imputation."
+    ],
+    "durationSeconds": 6.469743635000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f746a6a7-cc5d-448d-ad19-e1854b76e082",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-20T03:49:17.875Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0134XZdrUa9sbX1yCcAqbiLK`</summary>
+
+```json
+{
+  "query": "DoubleLingo Ma et al NeurIPS 2025 LLM doubly robust text causal estimator finite sample"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2137bf11-1d12-4cc0-be8d-e1260b6095f0",
+  "isSidechain": false,
+  "requestId": "req_011CbD8yN2CorBNc8bnjsLHi",
+  "type": "assistant",
+  "uuid": "085f723e-2e5c-4604-860b-a2d2514108d0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018V1EaFwCBPfJFtPFNz89QR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 733,
+      "cache_read_input_tokens": 24457,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 24457,
+          "cache_creation_input_tokens": 733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T03:49:24.205Z_
+
+<details><summary>↩ Tool result · `toolu_0134XZdrUa9sbX1yCcAqbiLK`</summary>
+
+```text
+Web search results for query: "DoubleLingo Ma et al NeurIPS 2025 LLM doubly robust text causal estimator finite sample"
+
+Links: [{"title":"LLM-Driven Treatment Effect Estimation Under Inference Time Text Confounding","url":"https://arxiv.org/html/2507.02843"},{"title":"Estimating Causal Effects of Text Interventions Leveraging LLMs","url":"https://arxiv.org/pdf/2410.21474"},{"title":"Can Large Language Models Infer Causal Relationships from Real-World Text?","url":"https://arxiv.org/pdf/2505.18931"},{"title":"Using LLMs to Directly Guess Conditional Expectations Can Improve Efficiency in Causal Estimation","url":"https://arxiv.org/pdf/2510.09684"},{"title":"Optimizing Language Models for Human Preferences is a Causal Inference   Problem","url":"https://arxiv.org/pdf/2402.14979"}]
+
+Based on the search results, I found relevant information about LLM-driven doubly robust text causal estimation methods. The most directly relevant result is:
+
+The research performs a doubly robust text-conditioned regression to obtain valid and unbiased CATE (Conditional Average Treatment Effect) estimates, and the framework is doubly robust with favorable theoretical properties such as being robust to misspecification in the nuisance functions.
+
+The approach uses LLMs not as causal reasoners – given their documented limitations in reliable inference – but as a semantically rich text generator. The framework decouples treatment effect estimation from inference time adjustments, allowing it to overcome the non-identifiability of CATE from text data alone by conditioning on generated text during training time to learn how to map induced text confounders onto treatment effects.
+
+The first search result appears to be from the arXiv HTML version of a paper on "LLM-Driven Treatment Effect Estimation Under Inference Time Text Confounding," which seems closely aligned with your query about doubly robust text causal estimation with LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "085f723e-2e5c-4604-860b-a2d2514108d0",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "e8086545-314b-41c4-a67c-511fa1e45c6c",
+  "toolUseResult": {
+    "query": "DoubleLingo Ma et al NeurIPS 2025 LLM doubly robust text causal estimator finite sample",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019XSgnVWMeUQYBR3VTpigHd",
+        "content": [
+          {
+            "title": "LLM-Driven Treatment Effect Estimation Under Inference Time Text Confounding",
+            "url": "https://arxiv.org/html/2507.02843"
+          },
+          {
+            "title": "Estimating Causal Effects of Text Interventions Leveraging LLMs",
+            "url": "https://arxiv.org/pdf/2410.21474"
+          },
+          {
+            "title": "Can Large Language Models Infer Causal Relationships from Real-World Text?",
+            "url": "https://arxiv.org/pdf/2505.18931"
+          },
+          {
+            "title": "Using LLMs to Directly Guess Conditional Expectations Can Improve Efficiency in Causal Estimation",
+            "url": "https://arxiv.org/pdf/2510.09684"
+          },
+          {
+            "title": "Optimizing Language Models for Human Preferences is a Causal Inference   Problem",
+            "url": "https://arxiv.org/pdf/2402.14979"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about LLM-driven doubly robust text causal estimation methods. The most directly relevant result is:\n\nThe research performs a doubly robust text-conditioned regression to obtain valid and unbiased CATE (Conditional Average Treatment Effect) estimates, and the framework is doubly robust with favorable theoretical properties such as being robust to misspecification in the nuisance functions.\n\nThe approach uses LLMs not as causal reasoners – given their documented limitations in reliable inference – but as a semantically rich text generator. The framework decouples treatment effect estimation from inference time adjustments, allowing it to overcome the non-identifiability of CATE from text data alone by conditioning on generated text during training time to learn how to map induced text confounders onto treatment effects.\n\nThe first search result appears to be from the arXiv HTML version of a paper on \"LLM-Driven Treatment Effect Estimation Under Inference Time Text Confounding,\" which seems closely aligned with your query about doubly robust text causal estimation with LLMs."
+    ],
+    "durationSeconds": 6.326774494999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "085f723e-2e5c-4604-860b-a2d2514108d0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal and Prediction-Powered Guarantees for Causal Inference with LLM-Extracted Text Confounders  ## Description We propose ConformalPPITextCausal, a framework providing finite-sample coverage g…",
+  "leafUuid": "e8086545-314b-41c4-a67c-511fa1e45c6c",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal prediction for LLM-extracted causal confounders",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T03:49:37.706Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014oNggq67Y3Dfrs3igEdope`</summary>
+
+```json
+{
+  "query": "Zhang et al 2510.04406 modular adaptive conformal prediction sequential models residual decomposition"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8086545-314b-41c4-a67c-511fa1e45c6c",
+  "isSidechain": false,
+  "requestId": "req_011CbD8z3ynEXR4zQThf1xML",
+  "type": "assistant",
+  "uuid": "3e061b9b-e314-48a7-ac6e-c22cdfa2455b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYqrLRL2vBC2h2pAjFJgaz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 589,
+      "cache_read_input_tokens": 25190,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 589,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 25190,
+          "cache_creation_input_tokens": 589,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 589
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T03:49:42.880Z_
+
+<details><summary>↩ Tool result · `toolu_014oNggq67Y3Dfrs3igEdope`</summary>
+
+```text
+Web search results for query: "Zhang et al 2510.04406 modular adaptive conformal prediction sequential models residual decomposition"
+
+Links: [{"title":"[2510.04406] Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition","url":"https://arxiv.org/abs/2510.04406"},{"title":"[2510.04406v1] Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition","url":"https://arxiv.org/abs/2510.04406v1"},{"title":"Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition","url":"https://arxiv.org/pdf/2510.04406"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/stat.ML/2025-10?skip=25&show=25"},{"title":"Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition","url":"https://arxiv.org/html/2510.04406v1"},{"title":"Adaptive Coverage Policies in Conformal Prediction","url":"https://arxiv.org/pdf/2510.04318"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper "Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition" by Zhang et al. (arXiv:2510.04406) introduces a conformal prediction framework for two-stage sequential models where an upstream predictor generates intermediate representations for a downstream model, enabling practitioners to attribute uncertainty to specific pipeline stages by decomposing the overall prediction residual into stage-specific components.
+
+The authors develop a risk-controlled parameter selection procedure using family-wise error rate (FWER) control to calibrate stage-wise scaling parameters, and propose an adaptive extension for non-stationary settings that preserves long-run coverage guarantees.
+
+The paper includes experiments on synthetic distribution shifts, as well as real-world supply chain and stock market data, demonstrating that the approach maintains coverage under conditions that degrade standard methods.
+
+The paper was submitted on October 6, 2025, and the authors are William Zhang, Saurabh Amin, and Georgia Perakis from MIT.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e061b9b-e314-48a7-ac6e-c22cdfa2455b",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "743f9141-535b-4b25-a2e7-a3dd93039597",
+  "toolUseResult": {
+    "query": "Zhang et al 2510.04406 modular adaptive conformal prediction sequential models residual decomposition",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01U6bpsfi7PwMAd3iuZtKxLo",
+        "content": [
+          {
+            "title": "[2510.04406] Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition",
+            "url": "https://arxiv.org/abs/2510.04406"
+          },
+          {
+            "title": "[2510.04406v1] Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition",
+            "url": "https://arxiv.org/abs/2510.04406v1"
+          },
+          {
+            "title": "Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition",
+            "url": "https://arxiv.org/pdf/2510.04406"
+          },
+          {
+            "title": "Machine Learning Oct 2025",
+            "url": "https://arxiv.org/list/stat.ML/2025-10?skip=25&show=25"
+          },
+          {
+            "title": "Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition",
+            "url": "https://arxiv.org/html/2510.04406v1"
+          },
+          {
+            "title": "Adaptive Coverage Policies in Conformal Prediction",
+            "url": "https://arxiv.org/pdf/2510.04318"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper \"Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition\" by Zhang et al. (arXiv:2510.04406) introduces a conformal prediction framework for two-stage sequential models where an upstream predictor generates intermediate representations for a downstream model, enabling practitioners to attribute uncertainty to specific pipeline stages by decomposing the overall prediction residual into stage-specific components.\n\nThe authors develop a risk-controlled parameter selection procedure using family-wise error rate (FWER) control to calibrate stage-wise scaling parameters, and propose an adaptive extension for non-stationary settings that preserves long-run coverage guarantees.\n\nThe paper includes experiments on synthetic distribution shifts, as well as real-world supply chain and stock market data, demonstrating that the approach maintains coverage under conditions that degrade standard methods.\n\nThe paper was submitted on October 6, 2025, and the authors are William Zhang, Saurabh Amin, and Georgia Perakis from MIT."
+    ],
+    "durationSeconds": 5.168079949999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3e061b9b-e314-48a7-ac6e-c22cdfa2455b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-20T03:49:45.572Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S2yWdLgas7tco3UE5yTYAR`</summary>
+
+```json
+{
+  "query": "Barnatchez 2604.03772 conformal counterfactual runtime confounding debiased 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "743f9141-535b-4b25-a2e7-a3dd93039597",
+  "isSidechain": false,
+  "requestId": "req_011CbD91RpxXcmocoUkXRaDp",
+  "type": "assistant",
+  "uuid": "f574b7b1-75f5-4940-bd04-eac14904fb97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017riH4zUuS5YkoqGn541xna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 637,
+      "cache_read_input_tokens": 25779,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 637,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 25779,
+          "cache_creation_input_tokens": 637,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 637
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T03:49:51.500Z_
+
+<details><summary>↩ Tool result · `toolu_01S2yWdLgas7tco3UE5yTYAR`</summary>
+
+```text
+Web search results for query: "Barnatchez 2604.03772 conformal counterfactual runtime confounding debiased 2026"
+
+Links: [{"title":"[2604.03772v1] Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding","url":"https://arxiv.org/abs/2604.03772v1"},{"title":"[2604.03772] Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding","url":"https://arxiv.org/abs/2604.03772"},{"title":"Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding","url":"https://arxiv.org/html/2604.03772"},{"title":"Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding","url":"https://arxiv.org/pdf/2604.03772"},{"title":"Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding - AI Research Paper Analysis | ArxivLens - Arxivlens","url":"https://arxivlens.com/PaperView/Details/debiased-machine-learning-for-conformal-prediction-of-counterfactual-outcomes-under-runtime-confounding-3519-d149b03f"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper is titled "Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding" by Keith Barnatchez, Kevin P. Josey, Rachel C. Nethery, and Giovanni Parmigiani.
+
+The paper introduces a computationally efficient debiased machine learning framework that allows for valid prediction intervals when only a subset of confounders is measured in the target population, a common challenge referred to as runtime confounding.
+
+In practice, researchers commonly train counterfactual prediction models on a source dataset to inform decisions on a possibly separate target population. Conformal prediction has arisen as a popular method for producing assumption-lean prediction intervals for counterfactual outcomes that would arise under different treatment decisions in the target population of interest. However, existing methods require that every confounding factor of the treatment-outcome relationship used for training on the source data is additionally measured in the target population, risking miscoverage if important confounders are unmeasured in the target population.
+
+The paper was published on arXiv on April 4, 2026 (arxiv number 2604.03772).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f574b7b1-75f5-4940-bd04-eac14904fb97",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "1bd37c1b-8e90-45b1-a4a9-1775f48bc594",
+  "toolUseResult": {
+    "query": "Barnatchez 2604.03772 conformal counterfactual runtime confounding debiased 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HCf4a2Epf7RMEQRNt8KHJi",
+        "content": [
+          {
+            "title": "[2604.03772v1] Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding",
+            "url": "https://arxiv.org/abs/2604.03772v1"
+          },
+          {
+            "title": "[2604.03772] Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding",
+            "url": "https://arxiv.org/abs/2604.03772"
+          },
+          {
+            "title": "Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding",
+            "url": "https://arxiv.org/html/2604.03772"
+          },
+          {
+            "title": "Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding",
+            "url": "https://arxiv.org/pdf/2604.03772"
+          },
+          {
+            "title": "Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding - AI Research Paper Analysis | ArxivLens - Arxivlens",
+            "url": "https://arxivlens.com/PaperView/Details/debiased-machine-learning-for-conformal-prediction-of-counterfactual-outcomes-under-runtime-confounding-3519-d149b03f"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper is titled \"Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding\" by Keith Barnatchez, Kevin P. Josey, Rachel C. Nethery, and Giovanni Parmigiani.\n\nThe paper introduces a computationally efficient debiased machine learning framework that allows for valid prediction intervals when only a subset of confounders is measured in the target population, a common challenge referred to as runtime confounding.\n\nIn practice, researchers commonly train counterfactual prediction models on a source dataset to inform decisions on a possibly separate target population. Conformal prediction has arisen as a popular method for producing assumption-lean prediction intervals for counterfactual outcomes that would arise under different treatment decisions in the target population of interest. However, existing methods require that every confounding factor of the treatment-outcome relationship used for training on the source data is additionally measured in the target population, risking miscoverage if important confounders are unmeasured in the target population.\n\nThe paper was published on arXiv on April 4, 2026 (arxiv number 2604.03772)."
+    ],
+    "durationSeconds": 5.924099222000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f574b7b1-75f5-4940-bd04-eac14904fb97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-20T03:49:53.869Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0125nvCRxxnvWc7DFFB5veFy`</summary>
+
+```json
+{
+  "query": "conformal prediction noisy covariates measurement error mismeasured confounders causal 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1bd37c1b-8e90-45b1-a4a9-1775f48bc594",
+  "isSidechain": false,
+  "requestId": "req_011CbD924f1d23vSpxghsLaq",
+  "type": "assistant",
+  "uuid": "df54c8e1-3819-4fc4-8e66-5908c0000070",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FEgV5c6Fju7Evmc9MWBAVp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 722,
+      "cache_read_input_tokens": 26416,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 722,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 26416,
+          "cache_creation_input_tokens": 722,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 722
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T03:50:04.744Z_
+
+<details><summary>↩ Tool result · `toolu_0125nvCRxxnvWc7DFFB5veFy`</summary>
+
+```text
+Web search results for query: "conformal prediction noisy covariates measurement error mismeasured confounders causal 2025 2026"
+
+Links: [{"title":"Causal Inference with Noisy and Missing Covariates via Matrix   Factorization","url":"https://arxiv.org/pdf/1806.00811"},{"title":"Propensity Score–Based Estimators With Multiple Error-Prone Covariates - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC6321809/"},{"title":"A general condition for bias attenuation by a nondifferentially   mismeasured confounder","url":"https://arxiv.org/pdf/2409.12928"},{"title":"Conformal Prediction for Astronomy Data with Measurement Error","url":"https://arxiv.org/pdf/2412.10544"},{"title":"Conformal prediction for astronomy data with measurement error - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025MNRAS.539.1372S/abstract"},{"title":"Identification of confounder in epidemiologic data contaminated by measurement error in covariates","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4870765/"},{"title":"Conformal e-prediction in the presence of confounding","url":"https://arxiv.org/pdf/2603.11134"},{"title":"Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding","url":"https://arxiv.org/pdf/2604.03772"},{"title":"Using Sensitivity Analyses for Unobserved Confounding to Address Covariate Measurement Error in Propensity Score Methods - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC5860046/"}]
+
+I found several relevant research papers on these topics. Here are the key findings:
+
+## Recent Work (2025-2026)
+
+A recent paper by Vovk and Wang (March 2026) extends conformal e-prediction to cover cases where there is observed confounding between the random object X and its label Y, applying conformal prediction to obtain finite-sample guarantees of validity in causal inference settings.
+
+Another recent work addresses conformal prediction for astronomy data with measurement error in covariates and dependent variables, tailoring the conformal prediction approach to handle heteroscedastic non-Gaussian error.
+
+Beginning with Lei and Candès (2021), there has been a growing effort to extend tools from conformal prediction to enable the formation of prediction intervals for counterfactual outcomes and individual treatment effects, with several developments through 2025.
+
+## Measurement Error and Confounders
+
+If confounders are measured with error, the resulting estimates that adjust only for the mismeasured covariates could be biased. In practice, measurements of confounders may be noisy and can lead to biased estimates of causal effects, though bias can be reduced using a large number of noisy measurements of the underlying confounders.
+
+In real-world studies, collected confounders may suffer from measurement error, with mismeasurement typically occurring unintentionally from sources like human oversight or imprecise machinery, though deliberate mismeasurement also occurs and is becoming increasingly more common.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "df54c8e1-3819-4fc4-8e66-5908c0000070",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "fad98a58-f20b-4995-87f0-18c07264fa05",
+  "toolUseResult": {
+    "query": "conformal prediction noisy covariates measurement error mismeasured confounders causal 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012LJG66bVqjxetEJ3Jh34jk",
+        "content": [
+          {
+            "title": "Causal Inference with Noisy and Missing Covariates via Matrix   Factorization",
+            "url": "https://arxiv.org/pdf/1806.00811"
+          },
+          {
+            "title": "Propensity Score–Based Estimators With Multiple Error-Prone Covariates - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6321809/"
+          },
+          {
+            "title": "A general condition for bias attenuation by a nondifferentially   mismeasured confounder",
+            "url": "https://arxiv.org/pdf/2409.12928"
+          },
+          {
+            "title": "Conformal Prediction for Astronomy Data with Measurement Error",
+            "url": "https://arxiv.org/pdf/2412.10544"
+          },
+          {
+            "title": "Conformal prediction for astronomy data with measurement error - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025MNRAS.539.1372S/abstract"
+          },
+          {
+            "title": "Identification of confounder in epidemiologic data contaminated by measurement error in covariates",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4870765/"
+          },
+          {
+            "title": "Conformal e-prediction in the presence of confounding",
+            "url": "https://arxiv.org/pdf/2603.11134"
+          },
+          {
+            "title": "Debiased Machine Learning for Conformal Prediction of Counterfactual Outcomes Under Runtime Confounding",
+            "url": "https://arxiv.org/pdf/2604.03772"
+          },
+          {
+            "title": "Using Sensitivity Analyses for Unobserved Confounding to Address Covariate Measurement Error in Propensity Score Methods - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5860046/"
+          }
+        ]
+      },
+      "I found several relevant research papers on these topics. Here are the key findings:\n\n## Recent Work (2025-2026)\n\nA recent paper by Vovk and Wang (March 2026) extends conformal e-prediction to cover cases where there is observed confounding between the random object X and its label Y, applying conformal prediction to obtain finite-sample guarantees of validity in causal inference settings.\n\nAnother recent work addresses conformal prediction for astronomy data with measurement error in covariates and dependent variables, tailoring the conformal prediction approach to handle heteroscedastic non-Gaussian error.\n\nBeginning with Lei and Candès (2021), there has been a growing effort to extend tools from conformal prediction to enable the formation of prediction intervals for counterfactual outcomes and individual treatment effects, with several developments through 2025.\n\n## Measurement Error and Confounders\n\nIf confounders are measured with error, the resulting estimates that adjust only for the mismeasured covariates could be biased. In practice, measurements of confounders may be noisy and can lead to biased estimates of causal effects, though bias can be reduced using a large number of noisy measurements of the underlying confounders.\n\nIn real-world studies, collected confounders may suffer from measurement error, with mismeasurement typically occurring unintentionally from sources like human oversight or imprecise machinery, though deliberate mismeasurement also occurs and is becoming increasingly more common."
+    ],
+    "durationSeconds": 10.869871606999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "df54c8e1-3819-4fc4-8e66-5908c0000070",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-20T03:50:04.754Z_
+
+```json
+{
+  "parentUuid": "fad98a58-f20b-4995-87f0-18c07264fa05",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d9dabf36-451d-458f-b00c-062aeab6983b",
+  "timestamp": "2026-05-20T03:50:04.754Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T03:50:11.797Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NTJ65AbS2xrKse6WX7tNTx`</summary>
+
+```json
+{
+  "query": "\"prediction-powered inference\" causal treatment effect 2025 2026 arXiv 2502.06343"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9dabf36-451d-458f-b00c-062aeab6983b",
+  "isSidechain": false,
+  "requestId": "req_011CbD933NuA81HT4JE5TgZz",
+  "type": "assistant",
+  "uuid": "ae472823-ef00-4a21-845d-3d28d2c59a80",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vh17BjrJ2TJMVMzC5V8Cw9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 27138,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 27138,
+          "cache_creation_input_tokens": 983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T03:50:18.879Z_
+
+<details><summary>↩ Tool result · `toolu_01NTJ65AbS2xrKse6WX7tNTx`</summary>
+
+```text
+Web search results for query: ""prediction-powered inference" causal treatment effect 2025 2026 arXiv 2502.06343"
+
+Links: [{"title":"[2502.06343] Prediction-Powered Causal Inferences","url":"https://arxiv.org/abs/2502.06343"},{"title":"Prediction-Powered Causal Inferences","url":"https://arxiv.org/html/2502.06343"},{"title":"Causal machine learning for predicting treatment outcomes","url":"https://arxiv.org/pdf/2410.08770"},{"title":"Causal Lifting of Neural Representations: Zero-Shot Generalization for Causal Inferences","url":"https://arxiv.org/html/2502.06343v2"},{"title":"An improved neural network model for treatment effect estimation","url":"https://arxiv.org/pdf/2205.11106"},{"title":"C-XGBoost: A tree boosting model for causal effect estimation","url":"https://arxiv.org/pdf/2404.00751"},{"title":"Prediction-powered generalization of causal inferences | Proceedings of the 41st International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3692070.3692483"},{"title":"Counterfactual Prediction with Deep Instrumental Variables Networks","url":"https://arxiv.org/pdf/1612.09596"}]
+
+Based on the search results, I found the paper you're looking for. Here's the information about arXiv paper 2502.06343:
+
+**Paper Title:** Prediction-Powered Causal Inferences
+
+**Authors:** Riccardo Cadei, Ilker Demirel, Piersilvio De Bartolomeis, Lukas Lindorfer, Sylvia Cremer, Cordelia Schmid, and Francesco Locatello
+
+**Submission Date:** February 10, 2025 (v1), with the latest version (v3) on October 23, 2025
+
+**Main Focus:** The paper focuses on Prediction-Powered Causal Inferences (PPCI), estimating the treatment effect in an unlabeled target experiment, relying on training data with the same outcome annotated but potentially different treatment or effect modifiers.
+
+**Key Contributions:**
+- The paper shows that conditional calibration guarantees valid PPCI at population level.
+- It introduces a sufficient representation constraint transferring validity across experiments, enforced in practice through Deconfounded Empirical Risk Minimization, a new model-agnostic training objective.
+- The method is validated on synthetic and real-world scientific data, solving problem instances that are impossible for standard Empirical Risk Minimization even with standard invariance constraints.
+
+The paper is available on arXiv at https://arxiv.org/abs/2502.06343.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae472823-ef00-4a21-845d-3d28d2c59a80",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "cbcb799a-2ed6-4938-a00e-3dd11cc7b18f",
+  "toolUseResult": {
+    "query": "\"prediction-powered inference\" causal treatment effect 2025 2026 arXiv 2502.06343",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HCrXrnyJ2JWmfjpVPkwmzr",
+        "content": [
+          {
+            "title": "[2502.06343] Prediction-Powered Causal Inferences",
+            "url": "https://arxiv.org/abs/2502.06343"
+          },
+          {
+            "title": "Prediction-Powered Causal Inferences",
+            "url": "https://arxiv.org/html/2502.06343"
+          },
+          {
+            "title": "Causal machine learning for predicting treatment outcomes",
+            "url": "https://arxiv.org/pdf/2410.08770"
+          },
+          {
+            "title": "Causal Lifting of Neural Representations: Zero-Shot Generalization for Causal Inferences",
+            "url": "https://arxiv.org/html/2502.06343v2"
+          },
+          {
+            "title": "An improved neural network model for treatment effect estimation",
+            "url": "https://arxiv.org/pdf/2205.11106"
+          },
+          {
+            "title": "C-XGBoost: A tree boosting model for causal effect estimation",
+            "url": "https://arxiv.org/pdf/2404.00751"
+          },
+          {
+            "title": "Prediction-powered generalization of causal inferences | Proceedings of the 41st International Conference on Machine Learning",
+            "url": "https://dl.acm.org/doi/10.5555/3692070.3692483"
+          },
+          {
+            "title": "Counterfactual Prediction with Deep Instrumental Variables Networks",
+            "url": "https://arxiv.org/pdf/1612.09596"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's the information about arXiv paper 2502.06343:\n\n**Paper Title:** Prediction-Powered Causal Inferences\n\n**Authors:** Riccardo Cadei, Ilker Demirel, Piersilvio De Bartolomeis, Lukas Lindorfer, Sylvia Cremer, Cordelia Schmid, and Francesco Locatello\n\n**Submission Date:** February 10, 2025 (v1), with the latest version (v3) on October 23, 2025\n\n**Main Focus:** The paper focuses on Prediction-Powered Causal Inferences (PPCI), estimating the treatment effect in an unlabeled target experiment, relying on training data with the same outcome annotated but potentially different treatment or effect modifiers.\n\n**Key Contributions:**\n- The paper shows that conditional calibration guarantees valid PPCI at population level.\n- It introduces a sufficient representation constraint transferring validity across experiments, enforced in practice through Deconfounded Empirical Risk Minimization, a new model-agnostic training objective.\n- The method is validated on synthetic and real-world scientific data, solving problem instances that are impossible for standard Empirical Risk Minimization even with standard invariance constraints.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2502.06343."
+    ],
+    "durationSeconds": 7.076816066999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ae472823-ef00-4a21-845d-3d28d2c59a80",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T03:50:21.471Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TvqM99wqxKdhVCApHT8ebw`</summary>
+
+```json
+{
+  "query": "conformal prediction imputed covariates NLP text classification uncertainty quantification finite sample 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbcb799a-2ed6-4938-a00e-3dd11cc7b18f",
+  "isSidechain": false,
+  "requestId": "req_011CbD945jK7sBW64HyfNY6F",
+  "type": "assistant",
+  "uuid": "32358e35-9e11-4c65-be92-ba7e742efbb5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LuGavsQTkRi5UFyytgs8x5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 28121,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 779,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 28121,
+          "cache_creation_input_tokens": 779,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 779
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T03:50:29.186Z_
+
+<details><summary>↩ Tool result · `toolu_01TvqM99wqxKdhVCApHT8ebw`</summary>
+
+```text
+Web search results for query: "conformal prediction imputed covariates NLP text classification uncertainty quantification finite sample 2025 2026"
+
+Links: [{"title":"Fair Conformal Prediction for Incomplete Covariate Data","url":"https://arxiv.org/pdf/2504.12582"},{"title":"Conformal Prediction for Natural Language Processing: A Survey","url":"https://arxiv.org/pdf/2405.01976"},{"title":"Conformal Prediction for Natural Language Processing: A Survey | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00715/125278/Conformal-Prediction-for-Natural-Language"},{"title":"Conformal Prediction with Missing Values","url":"https://proceedings.mlr.press/v202/zaffran23a/zaffran23a.pdf"},{"title":"Conformal Prediction for Natural Language Processing: A Survey","url":"https://arxiv.org/html/2405.01976"},{"title":"COPU: Conformal Prediction for Uncertainty Quantification in Natural   Language Generation","url":"https://arxiv.org/pdf/2502.12601"}]
+
+I've completed the web search for your query. Here are the key findings:
+
+## Relevant Research Results
+
+**1. Fair Conformal Prediction for Incomplete Covariate Data (2025)**
+
+This paper explores conformal prediction in scenarios where covariates are missing and establishes that marginal validity holds for imputed datasets across various mechanisms of missing data and most imputation methods. The approach provides finite-sample coverage guarantees for any underlying predictive algorithm.
+
+**2. Conformal Prediction with Missing Values**
+
+Research on conformal prediction with missing values in the covariates shows that the marginal coverage guarantee holds on imputed data for any missingness distribution and almost all imputation functions. However, the average coverage varies depending on the pattern of missing values, with conformal methods tending to construct prediction intervals that under-cover the response conditionally to some missing patterns.
+
+**3. Conformal Prediction for NLP Survey (2024)**
+
+The rapid proliferation of large language models and NLP applications creates a crucial need for uncertainty quantification, and conformal prediction is emerging as a theoretically sound framework that is model-agnostic and distribution-free.
+
+**4. Recent NLP Applications (2025)**
+
+Recent work on uncertainty quantification for natural language generation uses conformal prediction as a model-agnostic method that generates prediction sets with specified error rates.
+
+The search reveals active research in 2024-2025 combining conformal prediction with imputed covariates, NLP applications, and uncertainty quantification with finite-sample guarantees.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32358e35-9e11-4c65-be92-ba7e742efbb5",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "f7532904-09c8-4789-a672-86ebf0a0110b",
+  "toolUseResult": {
+    "query": "conformal prediction imputed covariates NLP text classification uncertainty quantification finite sample 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SMxThdEWPTwebyznF2T2Jh",
+        "content": [
+          {
+            "title": "Fair Conformal Prediction for Incomplete Covariate Data",
+            "url": "https://arxiv.org/pdf/2504.12582"
+          },
+          {
+            "title": "Conformal Prediction for Natural Language Processing: A Survey",
+            "url": "https://arxiv.org/pdf/2405.01976"
+          },
+          {
+            "title": "Conformal Prediction for Natural Language Processing: A Survey | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00715/125278/Conformal-Prediction-for-Natural-Language"
+          },
+          {
+            "title": "Conformal Prediction with Missing Values",
+            "url": "https://proceedings.mlr.press/v202/zaffran23a/zaffran23a.pdf"
+          },
+          {
+            "title": "Conformal Prediction for Natural Language Processing: A Survey",
+            "url": "https://arxiv.org/html/2405.01976"
+          },
+          {
+            "title": "COPU: Conformal Prediction for Uncertainty Quantification in Natural   Language Generation",
+            "url": "https://arxiv.org/pdf/2502.12601"
+          }
+        ]
+      },
+      "I've completed the web search for your query. Here are the key findings:\n\n## Relevant Research Results\n\n**1. Fair Conformal Prediction for Incomplete Covariate Data (2025)**\n\nThis paper explores conformal prediction in scenarios where covariates are missing and establishes that marginal validity holds for imputed datasets across various mechanisms of missing data and most imputation methods. The approach provides finite-sample coverage guarantees for any underlying predictive algorithm.\n\n**2. Conformal Prediction with Missing Values**\n\nResearch on conformal prediction with missing values in the covariates shows that the marginal coverage guarantee holds on imputed data for any missingness distribution and almost all imputation functions. However, the average coverage varies depending on the pattern of missing values, with conformal methods tending to construct prediction intervals that under-cover the response conditionally to some missing patterns.\n\n**3. Conformal Prediction for NLP Survey (2024)**\n\nThe rapid proliferation of large language models and NLP applications creates a crucial need for uncertainty quantification, and conformal prediction is emerging as a theoretically sound framework that is model-agnostic and distribution-free.\n\n**4. Recent NLP Applications (2025)**\n\nRecent work on uncertainty quantification for natural language generation uses conformal prediction as a model-agnostic method that generates prediction sets with specified error rates.\n\nThe search reveals active research in 2024-2025 combining conformal prediction with imputed covariates, NLP applications, and uncertainty quantification with finite-sample guarantees."
+    ],
+    "durationSeconds": 7.711230540000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "32358e35-9e11-4c65-be92-ba7e742efbb5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal and Prediction-Powered Guarantees for Causal Inference with LLM-Extracted Text Confounders  ## Description We propose ConformalPPITextCausal, a framework providing finite-sample coverage g…",
+  "leafUuid": "f7532904-09c8-4789-a672-86ebf0a0110b",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal prediction for LLM-extracted causal confounders",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T03:50:32.808Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TWNns7sDajh3pM7XwTWYCo`</summary>
+
+```json
+{
+  "query": "Kato 2511.08303 semi-supervised treatment effect unlabeled covariates Riesz regression NeurIPS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7532904-09c8-4789-a672-86ebf0a0110b",
+  "isSidechain": false,
+  "requestId": "req_011CbD94qnSscrvjiF6kBGmd",
+  "type": "assistant",
+  "uuid": "1da4ce1f-204a-4133-ba05-e6efc3fc6481",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ux4RwDEnp2diJseysDpbgo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 28900,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 736,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 28900,
+          "cache_creation_input_tokens": 736,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 736
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T03:50:40.674Z_
+
+<details><summary>↩ Tool result · `toolu_01TWNns7sDajh3pM7XwTWYCo`</summary>
+
+```text
+Web search results for query: "Kato 2511.08303 semi-supervised treatment effect unlabeled covariates Riesz regression NeurIPS 2025"
+
+Links: [{"title":"[2511.08303] Semi-Supervised Treatment Effect Estimation with Unlabeled Covariates via Generalized Riesz Regression","url":"https://arxiv.org/abs/2511.08303"},{"title":"Semi-Supervised Treatment Effect Estimation with Unlabeled Covariates for Prediction-Powered Causal Inference","url":"https://arxiv.org/html/2511.08303"},{"title":"Semi-Supervised Treatment Effect Estimation with Unlabeled Covariates via Generalized Riesz Regression","url":"https://arxiv.org/html/2511.08303v1"},{"title":"Counterfactual Propagation for Semi-Supervised Individual Treatment   Effect Estimation","url":"https://arxiv.org/pdf/2005.05099"},{"title":"[2201.00468] A General Framework for Treatment Effect Estimation in Semi-Supervised and High Dimensional Settings","url":"https://arxiv.org/abs/2201.00468"},{"title":"Semi-supervised inference for treatment heterogeneity","url":"https://arxiv.org/pdf/2509.05048"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper investigates treatment effect estimation in the semi-supervised setting, where we can use not only the standard triple of covariates, treatment indicator, and outcome, but also unlabeled auxiliary covariates. The study develops efficiency bounds and efficient estimators whose asymptotic variance aligns with the efficiency bound.
+
+The analysis introduces two different data-generating processes: the one-sample setting (censoring setting) where treatment indicators and outcomes can be observed for part of the dataset, and the two-sample setting (case-control or stratified setting) with two independent datasets of labeled and unlabeled data.
+
+For the Riesz representer estimation, the paper employs generalized Riesz regression, which generalizes the Riesz regression in Chernozhukov et al. (2021).
+
+The paper was submitted to arXiv on November 11, 2025, by Masahiro Kato. You can access it directly at https://arxiv.org/abs/2511.08303.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1da4ce1f-204a-4133-ba05-e6efc3fc6481",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "c3a35ec7-b094-4de3-8e13-ba927559f943",
+  "toolUseResult": {
+    "query": "Kato 2511.08303 semi-supervised treatment effect unlabeled covariates Riesz regression NeurIPS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Gc6hcyShPFuRPEAjpoKNhr",
+        "content": [
+          {
+            "title": "[2511.08303] Semi-Supervised Treatment Effect Estimation with Unlabeled Covariates via Generalized Riesz Regression",
+            "url": "https://arxiv.org/abs/2511.08303"
+          },
+          {
+            "title": "Semi-Supervised Treatment Effect Estimation with Unlabeled Covariates for Prediction-Powered Causal Inference",
+            "url": "https://arxiv.org/html/2511.08303"
+          },
+          {
+            "title": "Semi-Supervised Treatment Effect Estimation with Unlabeled Covariates via Generalized Riesz Regression",
+            "url": "https://arxiv.org/html/2511.08303v1"
+          },
+          {
+            "title": "Counterfactual Propagation for Semi-Supervised Individual Treatment   Effect Estimation",
+            "url": "https://arxiv.org/pdf/2005.05099"
+          },
+          {
+            "title": "[2201.00468] A General Framework for Treatment Effect Estimation in Semi-Supervised and High Dimensional Settings",
+            "url": "https://arxiv.org/abs/2201.00468"
+          },
+          {
+            "title": "Semi-supervised inference for treatment heterogeneity",
+            "url": "https://arxiv.org/pdf/2509.05048"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper investigates treatment effect estimation in the semi-supervised setting, where we can use not only the standard triple of covariates, treatment indicator, and outcome, but also unlabeled auxiliary covariates. The study develops efficiency bounds and efficient estimators whose asymptotic variance aligns with the efficiency bound.\n\nThe analysis introduces two different data-generating processes: the one-sample setting (censoring setting) where treatment indicators and outcomes can be observed for part of the dataset, and the two-sample setting (case-control or stratified setting) with two independent datasets of labeled and unlabeled data.\n\nFor the Riesz representer estimation, the paper employs generalized Riesz regression, which generalizes the Riesz regression in Chernozhukov et al. (2021).\n\nThe paper was submitted to arXiv on November 11, 2025, by Masahiro Kato. You can access it directly at https://arxiv.org/abs/2511.08303."
+    ],
+    "durationSeconds": 7.861204054999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1da4ce1f-204a-4133-ba05-e6efc3fc6481",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T03:50:43.940Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XQwSjp7JiuaZpREfcKF3Db`</summary>
+
+```json
+{
+  "query": "cross-conformal prediction Gasparin Ramdas ICML 2025 sample efficiency coverage two-way split"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3a35ec7-b094-4de3-8e13-ba927559f943",
+  "isSidechain": false,
+  "requestId": "req_011CbD95gwAgJSzJV7HrXNxb",
+  "type": "assistant",
+  "uuid": "e8299280-8d2c-4478-8951-ab78d73f13f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L6WKGBaGwfTNQs7nzgTJHx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 29636,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 672,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 29636,
+          "cache_creation_input_tokens": 672,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 672
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T03:50:50.557Z_
+
+<details><summary>↩ Tool result · `toolu_01XQwSjp7JiuaZpREfcKF3Db`</summary>
+
+```text
+Web search results for query: "cross-conformal prediction Gasparin Ramdas ICML 2025 sample efficiency coverage two-way split"
+
+Links: [{"title":"Publications - Matteo Gasparin","url":"https://matteogaspa.github.io/publications/"},{"title":"ICML Poster Improving the Statistical Efficiency of Cross-Conformal Prediction","url":"https://icml.cc/virtual/2025/poster/44129"},{"title":"[2503.01495] Improving the statistical efficiency of cross-conformal prediction","url":"https://arxiv.org/abs/2503.01495"},{"title":"Track: Poster Session 2 East","url":"https://icml.cc/virtual/2025/session/50264"},{"title":"Improving the Statistical Efficiency of Cross-Conformal Prediction | OpenReview","url":"https://openreview.net/forum?id=mxNEWzqXFH"},{"title":"Cross-conformal predictors","url":"https://arxiv.org/pdf/1208.0806"},{"title":"Symmetric Aggregation of Conformity Scores for Efficient Uncertainty Sets","url":"https://www.arxiv.org/pdf/2512.06945"},{"title":"provably reliable conformal prediction sets","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4d21a4b33361c40c2142db9511c126-Paper-Conference.pdf"}]
+
+Based on the web search results, I found relevant information about the paper you're asking about:
+
+Gasparin and Ramdas published "Improving the statistical efficiency of cross-conformal prediction" at ICML 2025.
+
+**Key contributions of the paper:**
+
+Vovk (2015) introduced cross-conformal prediction, a modification of split conformal designed to improve the width of prediction sets. The original method, when trained with a miscoverage rate equal to α and n ≫ K, ensures a marginal coverage of at least 1 - 2α - 2(1-α)(K-1)/(n+K), where n is the number of observations and K denotes the number of folds, though a simple modification achieves coverage of at least 1-2α.
+
+The authors propose new variants of both methods that yield smaller prediction sets without compromising the theoretical guarantees, based on recent results deriving more statistically efficient combination of p-values that leverage exchangeability and randomization.
+
+Simulations confirm the theoretical findings and bring out some important tradeoffs.
+
+The paper is available on arXiv and was presented as a poster at ICML 2025 in July 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8299280-8d2c-4478-8951-ab78d73f13f2",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "4b13e0e3-a50d-497a-87ce-1313e95175f5",
+  "toolUseResult": {
+    "query": "cross-conformal prediction Gasparin Ramdas ICML 2025 sample efficiency coverage two-way split",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015F1zpHGtoNQWHo5KnuNdQ1",
+        "content": [
+          {
+            "title": "Publications - Matteo Gasparin",
+            "url": "https://matteogaspa.github.io/publications/"
+          },
+          {
+            "title": "ICML Poster Improving the Statistical Efficiency of Cross-Conformal Prediction",
+            "url": "https://icml.cc/virtual/2025/poster/44129"
+          },
+          {
+            "title": "[2503.01495] Improving the statistical efficiency of cross-conformal prediction",
+            "url": "https://arxiv.org/abs/2503.01495"
+          },
+          {
+            "title": "Track: Poster Session 2 East",
+            "url": "https://icml.cc/virtual/2025/session/50264"
+          },
+          {
+            "title": "Improving the Statistical Efficiency of Cross-Conformal Prediction | OpenReview",
+            "url": "https://openreview.net/forum?id=mxNEWzqXFH"
+          },
+          {
+            "title": "Cross-conformal predictors",
+            "url": "https://arxiv.org/pdf/1208.0806"
+          },
+          {
+            "title": "Symmetric Aggregation of Conformity Scores for Efficient Uncertainty Sets",
+            "url": "https://www.arxiv.org/pdf/2512.06945"
+          },
+          {
+            "title": "provably reliable conformal prediction sets",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4d21a4b33361c40c2142db9511c126-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about the paper you're asking about:\n\nGasparin and Ramdas published \"Improving the statistical efficiency of cross-conformal prediction\" at ICML 2025.\n\n**Key contributions of the paper:**\n\nVovk (2015) introduced cross-conformal prediction, a modification of split conformal designed to improve the width of prediction sets. The original method, when trained with a miscoverage rate equal to α and n ≫ K, ensures a marginal coverage of at least 1 - 2α - 2(1-α)(K-1)/(n+K), where n is the number of observations and K denotes the number of folds, though a simple modification achieves coverage of at least 1-2α.\n\nThe authors propose new variants of both methods that yield smaller prediction sets without compromising the theoretical guarantees, based on recent results deriving more statistically efficient combination of p-values that leverage exchangeability and randomization.\n\nSimulations confirm the theoretical findings and bring out some important tradeoffs.\n\nThe paper is available on arXiv and was presented as a poster at ICML 2025 in July 2025."
+    ],
+    "durationSeconds": 6.612344913999987,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e8299280-8d2c-4478-8951-ab78d73f13f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-20T03:50:53.122Z_
+
+Now let me do a couple more targeted searches to check for potential overlooked related work that could threaten the novelty claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b13e0e3-a50d-497a-87ce-1313e95175f5",
+  "isSidechain": false,
+  "requestId": "req_011CbD96RAuSUw85krZFKqRg",
+  "type": "assistant",
+  "uuid": "1208cff2-6ca0-44ea-b7ec-2a60d0ce3da4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0189bUVZjpvPqazxTkjuv8sN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 30308,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 740,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 30308,
+          "cache_creation_input_tokens": 740,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 740
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-20T03:50:53.836Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wc1edNyAhxtqxUhX2wfwDQ`</summary>
+
+```json
+{
+  "query": "conformal prediction measurement error covariates two-stage pipeline uncertainty propagation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1208cff2-6ca0-44ea-b7ec-2a60d0ce3da4",
+  "isSidechain": false,
+  "requestId": "req_011CbD96RAuSUw85krZFKqRg",
+  "type": "assistant",
+  "uuid": "bdf9fd8a-502a-4c4a-83a2-66c6cd815443",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0189bUVZjpvPqazxTkjuv8sN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 30308,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 740,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 30308,
+          "cache_creation_input_tokens": 740,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 740
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T03:51:00.498Z_
+
+<details><summary>↩ Tool result · `toolu_01Wc1edNyAhxtqxUhX2wfwDQ`</summary>
+
+```text
+Web search results for query: "conformal prediction measurement error covariates two-stage pipeline uncertainty propagation 2025 2026"
+
+Links: [{"title":"Conformal Prediction for Astronomy Data with Measurement Error","url":"https://arxiv.org/pdf/2412.10544"},{"title":"Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition","url":"https://arxiv.org/pdf/2510.04406"},{"title":"[2412.10544] Conformal Prediction for Astronomy Data with Measurement Error","url":"https://arxiv.org/abs/2412.10544"},{"title":"Conformal Prediction = Bayes?","url":"https://arxiv.org/pdf/2512.23308"},{"title":"A Tutorial on Distribution-Free Uncertainty Quantification Using Conformal Prediction - Tim Kaiser, Philipp Herzog, 2025","url":"https://journals.sagepub.com/doi/10.1177/25152459251380452"},{"title":"Model Uncertainty Quantification by Conformal Prediction in Continual Learning | OpenReview","url":"https://openreview.net/forum?id=PHhW4PEm2D"},{"title":"A Step Toward The Use of AI for Polycystic Ovary Syndrome (PCOS): Staged Modelling with Uncertainty-Aware Triage and Conformal Prediction with Cost-Efficient Risk","url":"https://www.medrxiv.org/content/10.1101/2025.10.27.25338898.full.pdf"}]
+
+I found several highly relevant recent papers on your search topic. Here are the key results:
+
+## Most Relevant Recent Work
+
+**Two-Stage Pipeline with Uncertainty Propagation (2025):**
+
+A framework for conformal prediction in two-stage sequential models where an upstream predictor generates intermediate representations for a downstream model, enabling practitioners to attribute uncertainty to specific pipeline stages by decomposing the overall prediction residual into stage-specific components. The method develops a risk-controlled parameter selection procedure using family-wise error rate (FWER) control to calibrate stage-wise scaling parameters, and proposes an adaptive extension for non-stationary settings that preserves long-run coverage guarantees. This paper was published in October 2025.
+
+**Conformal Prediction with Measurement Error (December 2024):**
+
+A paper addressing data where covariates and the dependent variable are measured with heteroscedastic non-Gaussian error, with techniques to construct prediction intervals with finite sample coverage guarantees.
+
+**Distribution-Free Uncertainty Quantification (2025):**
+
+A tutorial on conformal prediction, a model-agnostic, distribution-free method for generating prediction intervals with guaranteed marginal coverage. Published in November 2025.
+
+The most directly relevant to your query appears to be the two-stage sequential models paper from October 2025, which specifically addresses uncertainty propagation across pipeline stages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bdf9fd8a-502a-4c4a-83a2-66c6cd815443",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "08411484-bbd8-4335-96f9-6f71ac8aac55",
+  "toolUseResult": {
+    "query": "conformal prediction measurement error covariates two-stage pipeline uncertainty propagation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KXY67u8jaRRw7JZa9hshcv",
+        "content": [
+          {
+            "title": "Conformal Prediction for Astronomy Data with Measurement Error",
+            "url": "https://arxiv.org/pdf/2412.10544"
+          },
+          {
+            "title": "Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition",
+            "url": "https://arxiv.org/pdf/2510.04406"
+          },
+          {
+            "title": "[2412.10544] Conformal Prediction for Astronomy Data with Measurement Error",
+            "url": "https://arxiv.org/abs/2412.10544"
+          },
+          {
+            "title": "Conformal Prediction = Bayes?",
+            "url": "https://arxiv.org/pdf/2512.23308"
+          },
+          {
+            "title": "A Tutorial on Distribution-Free Uncertainty Quantification Using Conformal Prediction - Tim Kaiser, Philipp Herzog, 2025",
+            "url": "https://journals.sagepub.com/doi/10.1177/25152459251380452"
+          },
+          {
+            "title": "Model Uncertainty Quantification by Conformal Prediction in Continual Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=PHhW4PEm2D"
+          },
+          {
+            "title": "A Step Toward The Use of AI for Polycystic Ovary Syndrome (PCOS): Staged Modelling with Uncertainty-Aware Triage and Conformal Prediction with Cost-Efficient Risk",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.10.27.25338898.full.pdf"
+          }
+        ]
+      },
+      "I found several highly relevant recent papers on your search topic. Here are the key results:\n\n## Most Relevant Recent Work\n\n**Two-Stage Pipeline with Uncertainty Propagation (2025):**\n\nA framework for conformal prediction in two-stage sequential models where an upstream predictor generates intermediate representations for a downstream model, enabling practitioners to attribute uncertainty to specific pipeline stages by decomposing the overall prediction residual into stage-specific components. The method develops a risk-controlled parameter selection procedure using family-wise error rate (FWER) control to calibrate stage-wise scaling parameters, and proposes an adaptive extension for non-stationary settings that preserves long-run coverage guarantees. This paper was published in October 2025.\n\n**Conformal Prediction with Measurement Error (December 2024):**\n\nA paper addressing data where covariates and the dependent variable are measured with heteroscedastic non-Gaussian error, with techniques to construct prediction intervals with finite sample coverage guarantees.\n\n**Distribution-Free Uncertainty Quantification (2025):**\n\nA tutorial on conformal prediction, a model-agnostic, distribution-free method for generating prediction intervals with guaranteed marginal coverage. Published in November 2025.\n\nThe most directly relevant to your query appears to be the two-stage sequential models paper from October 2025, which specifically addresses uncertainty propagation across pipeline stages."
+    ],
+    "durationSeconds": 6.656807423999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bdf9fd8a-502a-4c4a-83a2-66c6cd815443",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-20T03:51:03.090Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DE6BR1CcnrTaAYCp35i4fN`</summary>
+
+```json
+{
+  "query": "causal inference text data conformal finite sample coverage LLM extraction noise uncertainty 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08411484-bbd8-4335-96f9-6f71ac8aac55",
+  "isSidechain": false,
+  "requestId": "req_011CbD979fHKbJStvg77qV8R",
+  "type": "assistant",
+  "uuid": "fd3036ea-fb7e-49f9-b6dd-dc574ac41e63",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTJhiKNeGwthfQLm7ssvFE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 810,
+      "cache_read_input_tokens": 31048,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 810,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 31048,
+          "cache_creation_input_tokens": 810,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 810
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T03:51:08.909Z_
+
+<details><summary>↩ Tool result · `toolu_01DE6BR1CcnrTaAYCp35i4fN`</summary>
+
+```text
+Web search results for query: "causal inference text data conformal finite sample coverage LLM extraction noise uncertainty 2026"
+
+Links: [{"title":"Unsupervised Conformal Inference: Bootstrapping and Alignment to Control LLM Uncertainty","url":"https://arxiv.org/pdf/2509.23002"},{"title":"Causal Understanding by LLMs: The Role of Uncertainty","url":"https://arxiv.org/html/2509.20088v1"},{"title":"Unsupervised Conformal Inference: Bootstrapping and Alignment to Control LLM Uncertainty | Request PDF","url":"https://www.researchgate.net/publication/395970305_Unsupervised_Conformal_Inference_Bootstrapping_and_Alignment_to_Control_LLM_Uncertainty"},{"title":"Addressing Uncertainty in LLMs to Enhance Reliability in Generative AI","url":"https://arxiv.org/pdf/2411.02381"},{"title":"[2509.23002] Unsupervised Conformal Inference: Bootstrapping and Alignment to Control LLM Uncertainty","url":"https://arxiv.org/abs/2509.23002"},{"title":"Causal Understanding by LLMs: The Role of Uncertainty","url":"https://arxiv.org/pdf/2509.20088"},{"title":"Conformal Prediction for Risk-Controlled Medical Entity Extraction Across Clinical Domains","url":"https://arxiv.org/pdf/2603.00924"}]
+
+The search returned several highly relevant recent papers on conformal inference, LLM uncertainty quantification, and related topics. Here are the key findings:
+
+**Primary Results:**
+
+A framework proposes unsupervised conformal inference for generation that integrates an LLM-compatible atypical score from response-embedding Gram matrices, a bootstrapping variant (BB-UCP) aggregating residuals while maintaining distribution-free finite-sample coverage, and conformal alignment calibrating a strictness parameter so user predicates hold on unseen batches with probability ≥ 1 - α.
+
+The approach achieves close-to-nominal coverage and provides tighter, more stable thresholds than split UCP, while consistently reducing hallucination severity and outperforming lightweight per-response detectors.
+
+**Causal Understanding in LLMs:**
+
+Causal understanding from text involves identifying whether text includes causal relations and their direction, and LLMs struggle with such tasks, achieving near-random performance on causal inference benchmarks.
+
+**Medical Entity Extraction Application:**
+
+A conformal prediction framework for medical entity extraction provides finite-sample FDR guarantees across clinical domains, ensuring incorrect extractions are bounded, and finds that LLM miscalibration direction reverses across domains.
+
+These papers address the intersection of conformal inference, uncertainty quantification in LLMs, and finite-sample coverage guarantees, with applications to text-based extraction tasks and handling model uncertainty.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd3036ea-fb7e-49f9-b6dd-dc574ac41e63",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "9a2bc81f-c23b-434a-a4ce-b4ceccb9ddfa",
+  "toolUseResult": {
+    "query": "causal inference text data conformal finite sample coverage LLM extraction noise uncertainty 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XYL3A2s1Hk8uNddanK9Uh7",
+        "content": [
+          {
+            "title": "Unsupervised Conformal Inference: Bootstrapping and Alignment to Control LLM Uncertainty",
+            "url": "https://arxiv.org/pdf/2509.23002"
+          },
+          {
+            "title": "Causal Understanding by LLMs: The Role of Uncertainty",
+            "url": "https://arxiv.org/html/2509.20088v1"
+          },
+          {
+            "title": "Unsupervised Conformal Inference: Bootstrapping and Alignment to Control LLM Uncertainty | Request PDF",
+            "url": "https://www.researchgate.net/publication/395970305_Unsupervised_Conformal_Inference_Bootstrapping_and_Alignment_to_Control_LLM_Uncertainty"
+          },
+          {
+            "title": "Addressing Uncertainty in LLMs to Enhance Reliability in Generative AI",
+            "url": "https://arxiv.org/pdf/2411.02381"
+          },
+          {
+            "title": "[2509.23002] Unsupervised Conformal Inference: Bootstrapping and Alignment to Control LLM Uncertainty",
+            "url": "https://arxiv.org/abs/2509.23002"
+          },
+          {
+            "title": "Causal Understanding by LLMs: The Role of Uncertainty",
+            "url": "https://arxiv.org/pdf/2509.20088"
+          },
+          {
+            "title": "Conformal Prediction for Risk-Controlled Medical Entity Extraction Across Clinical Domains",
+            "url": "https://arxiv.org/pdf/2603.00924"
+          }
+        ]
+      },
+      "The search returned several highly relevant recent papers on conformal inference, LLM uncertainty quantification, and related topics. Here are the key findings:\n\n**Primary Results:**\n\nA framework proposes unsupervised conformal inference for generation that integrates an LLM-compatible atypical score from response-embedding Gram matrices, a bootstrapping variant (BB-UCP) aggregating residuals while maintaining distribution-free finite-sample coverage, and conformal alignment calibrating a strictness parameter so user predicates hold on unseen batches with probability ≥ 1 - α.\n\nThe approach achieves close-to-nominal coverage and provides tighter, more stable thresholds than split UCP, while consistently reducing hallucination severity and outperforming lightweight per-response detectors.\n\n**Causal Understanding in LLMs:**\n\nCausal understanding from text involves identifying whether text includes causal relations and their direction, and LLMs struggle with such tasks, achieving near-random performance on causal inference benchmarks.\n\n**Medical Entity Extraction Application:**\n\nA conformal prediction framework for medical entity extraction provides finite-sample FDR guarantees across clinical domains, ensuring incorrect extractions are bounded, and finds that LLM miscalibration direction reverses across domains.\n\nThese papers address the intersection of conformal inference, uncertainty quantification in LLMs, and finite-sample coverage guarantees, with applications to text-based extraction tasks and handling model uncertainty."
+    ],
+    "durationSeconds": 5.813955883999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fd3036ea-fb7e-49f9-b6dd-dc574ac41e63",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-20T03:51:12.078Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014Uset7aMneYQzRv74nJzHf`</summary>
+
+```json
+{
+  "query": "\"worst case\" conformal prediction set optimization decision making downstream task 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a2bc81f-c23b-434a-a4ce-b4ceccb9ddfa",
+  "isSidechain": false,
+  "requestId": "req_011CbD97mfjAg5kN23jspA7B",
+  "type": "assistant",
+  "uuid": "bc63d1c0-bc4e-46b9-aaeb-2e058f769938",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RLJ3NMFowhisoYYrugBT1n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 31858,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 31858,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T03:51:19.851Z_
+
+<details><summary>↩ Tool result · `toolu_014Uset7aMneYQzRv74nJzHf`</summary>
+
+```text
+Web search results for query: ""worst case" conformal prediction set optimization decision making downstream task 2025 2026"
+
+Links: [{"title":"Optimal Decision-Making Based on Prediction Sets Tao Wang Edgar Dobriban","url":"https://arxiv.org/pdf/2602.00989"},{"title":"Optimal Decision-Making Based on Prediction Sets","url":"https://arxiv.org/html/2602.00989v3"},{"title":"Decision Theoretic Foundations for Conformal Prediction: Optimal Uncertainty Quantification for Risk-Averse Agents | OpenReview","url":"https://openreview.net/forum?id=Ukjl86EsIk"},{"title":"Decision Theoretic Foundations for Conformal Prediction: Optimal Uncertainty Quantification for Risk-Averse Agents","url":"https://proceedings.mlr.press/v267/kiyani25a.html"},{"title":"Optimal Model Selection for Conformalized Robust Optimization","url":"https://arxiv.org/pdf/2507.04716"},{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2410.01767"},{"title":"UTILITY-DRIVEN CONFORMAL PREDICTION","url":"https://openreview.net/notes/edits/attachment?id=oeqxkeEErn&name=pdf"}]
+
+I found several highly relevant results on this topic. Here's what the search returned:
+
+## Key Recent Work (2025-2026)
+
+A decision-theoretic framework seeks to minimize expected loss (risk) against a worst-case distribution consistent with the prediction set's coverage guarantee. The minimax optimal policy for a fixed prediction set balances worst-case loss inside the set with a penalty for losses outside, and optimal prediction set construction minimizes robust risk subject to a coverage constraint.
+
+Risk-Optimal Conformal Prediction (ROCP) is a practical algorithm that targets risk-minimizing sets while maintaining finite-sample distribution-free marginal coverage.
+
+### Decision-Theoretic Approaches
+
+The correct notion of uncertainty quantification for risk-averse decision makers involves prediction sets that are optimal for decision makers who wish to optimize their value at risk. A simple max-min decision policy is optimal for risk-averse decision makers.
+
+### Aligned Set Optimization
+
+Decision-agnostic conformal sets are typically optimized for surrogate criteria such as size or top-k mass, but these objectives need not align with downstream loss. Prediction sets should ideally be aligned with a utility function that captures preferences about downstream decisions and outcomes.
+
+### Contextual Robust Optimization
+
+Contextual Robust Optimization (CRO) minimizes worst-case decision loss over a prediction set, but downstream decisions critically depend on model selection.
+
+The search results show active research in 2025-2026 on optimizing conformal prediction sets directly for decision-making objectives rather than standard statistical criteria.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc63d1c0-bc4e-46b9-aaeb-2e058f769938",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "1d618cf6-6e0d-458c-9c32-4565bdc29b05",
+  "toolUseResult": {
+    "query": "\"worst case\" conformal prediction set optimization decision making downstream task 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Le556MWvbXaYTFzrLy1Xte",
+        "content": [
+          {
+            "title": "Optimal Decision-Making Based on Prediction Sets Tao Wang Edgar Dobriban",
+            "url": "https://arxiv.org/pdf/2602.00989"
+          },
+          {
+            "title": "Optimal Decision-Making Based on Prediction Sets",
+            "url": "https://arxiv.org/html/2602.00989v3"
+          },
+          {
+            "title": "Decision Theoretic Foundations for Conformal Prediction: Optimal Uncertainty Quantification for Risk-Averse Agents | OpenReview",
+            "url": "https://openreview.net/forum?id=Ukjl86EsIk"
+          },
+          {
+            "title": "Decision Theoretic Foundations for Conformal Prediction: Optimal Uncertainty Quantification for Risk-Averse Agents",
+            "url": "https://proceedings.mlr.press/v267/kiyani25a.html"
+          },
+          {
+            "title": "Optimal Model Selection for Conformalized Robust Optimization",
+            "url": "https://arxiv.org/pdf/2507.04716"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2410.01767"
+          },
+          {
+            "title": "UTILITY-DRIVEN CONFORMAL PREDICTION",
+            "url": "https://openreview.net/notes/edits/attachment?id=oeqxkeEErn&name=pdf"
+          }
+        ]
+      },
+      "I found several highly relevant results on this topic. Here's what the search returned:\n\n## Key Recent Work (2025-2026)\n\nA decision-theoretic framework seeks to minimize expected loss (risk) against a worst-case distribution consistent with the prediction set's coverage guarantee. The minimax optimal policy for a fixed prediction set balances worst-case loss inside the set with a penalty for losses outside, and optimal prediction set construction minimizes robust risk subject to a coverage constraint.\n\nRisk-Optimal Conformal Prediction (ROCP) is a practical algorithm that targets risk-minimizing sets while maintaining finite-sample distribution-free marginal coverage.\n\n### Decision-Theoretic Approaches\n\nThe correct notion of uncertainty quantification for risk-averse decision makers involves prediction sets that are optimal for decision makers who wish to optimize their value at risk. A simple max-min decision policy is optimal for risk-averse decision makers.\n\n### Aligned Set Optimization\n\nDecision-agnostic conformal sets are typically optimized for surrogate criteria such as size or top-k mass, but these objectives need not align with downstream loss. Prediction sets should ideally be aligned with a utility function that captures preferences about downstream decisions and outcomes.\n\n### Contextual Robust Optimization\n\nContextual Robust Optimization (CRO) minimizes worst-case decision loss over a prediction set, but downstream decisions critically depend on model selection.\n\nThe search results show active research in 2025-2026 on optimizing conformal prediction sets directly for decision-making objectives rather than standard statistical criteria."
+    ],
+    "durationSeconds": 7.769271567999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bc63d1c0-bc4e-46b9-aaeb-2e058f769938",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal and Prediction-Powered Guarantees for Causal Inference with LLM-Extracted Text Confounders  ## Description We propose ConformalPPITextCausal, a framework providing finite-sample coverage g…",
+  "leafUuid": "1d618cf6-6e0d-458c-9c32-4565bdc29b05",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal prediction for LLM-extracted causal confounders",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-20T03:51:34.554Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DAEGn3z9GxMTMrpE4XH3XZ`</summary>
+
+```json
+{
+  "query": "PPI prediction powered inference imputed covariates causal effect ATE finite sample 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d618cf6-6e0d-458c-9c32-4565bdc29b05",
+  "isSidechain": false,
+  "requestId": "req_011CbD98aQbKP4bg43XfGBnr",
+  "type": "assistant",
+  "uuid": "0affb7f2-15e5-4a8b-accc-27cf0f65bcdd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZc7MVqkDaHAzFQu6akdS6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 773,
+      "cache_read_input_tokens": 32640,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 773,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 32640,
+          "cache_creation_input_tokens": 773,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 773
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T03:51:41.359Z_
+
+<details><summary>↩ Tool result · `toolu_01DAEGn3z9GxMTMrpE4XH3XZ`</summary>
+
+```text
+Web search results for query: "PPI prediction powered inference imputed covariates causal effect ATE finite sample 2025 2026 arXiv"
+
+Links: [{"title":"Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling","url":"https://arxiv.org/pdf/2501.18577"},{"title":"Demystifying Prediction Powered Inference","url":"https://arxiv.org/html/2601.20819v1"},{"title":"Prediction-Powered Inference with Inverse Probability Weighting","url":"https://arxiv.org/html/2508.10149v1"},{"title":"[2501.18577] Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling","url":"https://arxiv.org/abs/2501.18577"},{"title":"Prediction-powered inference for clinical trials: application to linear covariate adjustment - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12395788/"},{"title":"No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference","url":"https://arxiv.org/pdf/2505.20178"},{"title":"A Unified Framework for Inference with General Missingness Patterns and Machine Learning Imputation","url":"https://arxiv.org/html/2508.15162v1"},{"title":"Generalized Prediction-Powered Inference, with Application to Binary Classifier Evaluation","url":"https://arxiv.org/html/2602.10332v1"},{"title":"PPI is the Difference Estimator: Recognizing the Survey Sampling Roots of Prediction-Powered Inference","url":"https://arxiv.org/pdf/2603.19160"}]
+
+I found several relevant papers on prediction-powered inference (PPI) from arXiv. Here are the key findings:
+
+## Main Paper on Imputed Covariates
+
+The paper "Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling" by Dan M. Kluger and co-authors was posted on arXiv on January 30, 2025, with later versions in April and November 2025.
+
+## Recent Extensions in 2025-2026
+
+Kluger et al. (2025) analyzes PPI with imputed covariates and outcomes via a "predict-then-debias" approach, detailing conditions under which intervals remain valid and highlighting pitfalls when naively plugging predicted covariates into PPI.
+
+Additionally, Chen et al. (2025) developed a unified, pattern-stratified framework under MAR with arbitrary missingness patterns, proving asymptotic normality and efficiency dominance over weighted complete-case analyses.
+
+## Finite Sample Analysis
+
+Recent non-asymptotic analysis shows that PPI++ without sample splitting is biased in finite samples, and standard variance-estimation approaches can produce overly optimistic estimates of its variance.
+
+## Related Work on Causal Effects and ATE
+
+Others have proposed the use of PPI for application in causal inference, though the search results don't detail specific causal effect or ATE-focused work in the most recent papers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0affb7f2-15e5-4a8b-accc-27cf0f65bcdd",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "03aec48a-960c-4c63-bdb5-f5d266c3c52a",
+  "toolUseResult": {
+    "query": "PPI prediction powered inference imputed covariates causal effect ATE finite sample 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T6zdofX9P7b3tbkSF9faBG",
+        "content": [
+          {
+            "title": "Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling",
+            "url": "https://arxiv.org/pdf/2501.18577"
+          },
+          {
+            "title": "Demystifying Prediction Powered Inference",
+            "url": "https://arxiv.org/html/2601.20819v1"
+          },
+          {
+            "title": "Prediction-Powered Inference with Inverse Probability Weighting",
+            "url": "https://arxiv.org/html/2508.10149v1"
+          },
+          {
+            "title": "[2501.18577] Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling",
+            "url": "https://arxiv.org/abs/2501.18577"
+          },
+          {
+            "title": "Prediction-powered inference for clinical trials: application to linear covariate adjustment - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12395788/"
+          },
+          {
+            "title": "No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference",
+            "url": "https://arxiv.org/pdf/2505.20178"
+          },
+          {
+            "title": "A Unified Framework for Inference with General Missingness Patterns and Machine Learning Imputation",
+            "url": "https://arxiv.org/html/2508.15162v1"
+          },
+          {
+            "title": "Generalized Prediction-Powered Inference, with Application to Binary Classifier Evaluation",
+            "url": "https://arxiv.org/html/2602.10332v1"
+          },
+          {
+            "title": "PPI is the Difference Estimator: Recognizing the Survey Sampling Roots of Prediction-Powered Inference",
+            "url": "https://arxiv.org/pdf/2603.19160"
+          }
+        ]
+      },
+      "I found several relevant papers on prediction-powered inference (PPI) from arXiv. Here are the key findings:\n\n## Main Paper on Imputed Covariates\n\nThe paper \"Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling\" by Dan M. Kluger and co-authors was posted on arXiv on January 30, 2025, with later versions in April and November 2025.\n\n## Recent Extensions in 2025-2026\n\nKluger et al. (2025) analyzes PPI with imputed covariates and outcomes via a \"predict-then-debias\" approach, detailing conditions under which intervals remain valid and highlighting pitfalls when naively plugging predicted covariates into PPI.\n\nAdditionally, Chen et al. (2025) developed a unified, pattern-stratified framework under MAR with arbitrary missingness patterns, proving asymptotic normality and efficiency dominance over weighted complete-case analyses.\n\n## Finite Sample Analysis\n\nRecent non-asymptotic analysis shows that PPI++ without sample splitting is biased in finite samples, and standard variance-estimation approaches can produce overly optimistic estimates of its variance.\n\n## Related Work on Causal Effects and ATE\n\nOthers have proposed the use of PPI for application in causal inference, though the search results don't detail specific causal effect or ATE-focused work in the most recent papers."
+    ],
+    "durationSeconds": 6.799359755000013,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0affb7f2-15e5-4a8b-accc-27cf0f65bcdd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-20T03:51:44.657Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ChdKHxG3AqaguBi8FhabbL`</summary>
+
+```json
+{
+  "query": "\"No Free Lunch\" prediction-powered inference finite sample bias 2505.20178 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03aec48a-960c-4c63-bdb5-f5d266c3c52a",
+  "isSidechain": false,
+  "requestId": "req_011CbD9AAQGDfL2jFmbM3Bvj",
+  "type": "assistant",
+  "uuid": "9b0dd8cb-8ef0-4e4e-be24-32f89effc6c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YNYaVAtmL6FejfbVE7cKkj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 33413,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 33413,
+          "cache_creation_input_tokens": 858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T03:51:50.866Z_
+
+<details><summary>↩ Tool result · `toolu_01ChdKHxG3AqaguBi8FhabbL`</summary>
+
+```text
+Web search results for query: ""No Free Lunch" prediction-powered inference finite sample bias 2505.20178 2025"
+
+Links: [{"title":"[2505.20178] No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference","url":"https://arxiv.org/abs/2505.20178"},{"title":"Demystifying Prediction Powered Inference","url":"https://arxiv.org/html/2601.20819v1"},{"title":"No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference","url":"https://arxiv.org/pdf/2505.20178"},{"title":"(PDF) No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference","url":"https://www.researchgate.net/publication/392134145_No_Free_Lunch_Non-Asymptotic_Analysis_of_Prediction-Powered_Inference"},{"title":"No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference","url":"https://arxiv.org/html/2505.20178v1"},{"title":"[Literature Review] No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference","url":"https://www.themoonlight.io/en/review/no-free-lunch-non-asymptotic-analysis-of-prediction-powered-inference"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=4325&show=1000"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper titled "No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference" (arXiv 2505.20178) conducts an exact finite-sample analysis of the estimation error of PPI++ on the mean estimation problem.
+
+The key findings are:
+
+- Prior work showed an asymptotic "free lunch" for PPI++, showing that the asymptotic variance of PPI++ is always less than or equal to the variance from using gold-standard labels alone, regardless of the quality of the pseudo-labels.
+
+- However, this paper presents a "no free lunch" result for finite samples, characterizing settings where PPI++ has provably worse estimation error than using gold-standard labels alone. Specifically, PPI++ will outperform if and only if the correlation between pseudo- and gold-standard labels is above a certain level that depends on the number of labeled samples.
+
+- The estimator without sample splitting has two undesirable properties for inference in finite samples: it is biased, and standard variance-estimation approaches can produce overly optimistic estimates of its variance.
+
+Empirical results on the Alphafold dataset support these theoretical findings, showing that PPI++ often has worse mean squared error than the classical estimator at small sample sizes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b0dd8cb-8ef0-4e4e-be24-32f89effc6c8",
+  "isSidechain": false,
+  "promptId": "9a3cffb8-977c-45de-8adf-a907018302bd",
+  "type": "user",
+  "uuid": "24eb55f4-9c53-48cf-909a-e5add5e2ecc7",
+  "toolUseResult": {
+    "query": "\"No Free Lunch\" prediction-powered inference finite sample bias 2505.20178 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DFHsNA5feJ2ZH1mLcuBytT",
+        "content": [
+          {
+            "title": "[2505.20178] No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference",
+            "url": "https://arxiv.org/abs/2505.20178"
+          },
+          {
+            "title": "Demystifying Prediction Powered Inference",
+            "url": "https://arxiv.org/html/2601.20819v1"
+          },
+          {
+            "title": "No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference",
+            "url": "https://arxiv.org/pdf/2505.20178"
+          },
+          {
+            "title": "(PDF) No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference",
+            "url": "https://www.researchgate.net/publication/392134145_No_Free_Lunch_Non-Asymptotic_Analysis_of_Prediction-Powered_Inference"
+          },
+          {
+            "title": "No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference",
+            "url": "https://arxiv.org/html/2505.20178v1"
+          },
+          {
+            "title": "[Literature Review] No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference",
+            "url": "https://www.themoonlight.io/en/review/no-free-lunch-non-asymptotic-analysis-of-prediction-powered-inference"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=4325&show=1000"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper titled \"No Free Lunch: Non-Asymptotic Analysis of Prediction-Powered Inference\" (arXiv 2505.20178) conducts an exact finite-sample analysis of the estimation error of PPI++ on the mean estimation problem.\n\nThe key findings are:\n\n- Prior work showed an asymptotic \"free lunch\" for PPI++, showing that the asymptotic variance of PPI++ is always less than or equal to the variance from using gold-standard labels alone, regardless of the quality of the pseudo-labels.\n\n- However, this paper presents a \"no free lunch\" result for finite samples, characterizing settings where PPI++ has provably worse estimation error than using gold-standard labels alone. Specifically, PPI++ will outperform if and only if the correlation between pseudo- and gold-standard labels is above a certain level that depends on the number of labeled samples.\n\n- The estimator without sample splitting has two undesirable properties for inference in finite samples: it is biased, and standard variance-estimation approaches can produce overly optimistic estimates of its variance.\n\nEmpirical results on the Alphafold dataset support these theoretical findings, showing that PPI++ often has worse mean squared error than the classical estimator at small sample sizes."
+    ],
+    "durationSeconds": 6.205011357999989,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9b0dd8cb-8ef0-4e4e-be24-32f89effc6c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-20T03:51:50.868Z_
+
+```json
+{
+  "parentUuid": "24eb55f4-9c53-48cf-909a-e5add5e2ecc7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7a099719-3251-46f8-be30-d7fc3ba85051",
+  "timestamp": "2026-05-20T03:51:50.868Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-20T03:52:35.713Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture of the research landscape. Let me synthesize my findings and provide my assessment as the "发掘 agent" (Discovery Agent).
+
+Let me analyze this proposal carefully:
+
+## Key Observations from Research
+
+1. **Zhang et al. (2510.04406)**: Modular conformal prediction for sequential models. This is the core technical building block for Track A. The paper handles two-stage pipelines but does NOT address causal settings or weighted exchangeability.
+
+2. **Csillag et al. (2510.16166)**: Extending PPI through conformal prediction. Core building block for Track B. Does NOT address causal treatment effects specifically.
+   
+3. **Barnatchez et al. (2604.03772)**: Addresses conformal prediction under runtime confounding with missing confounders—a different problem setting than noisy extraction.
+
+4. **Kluger et al. (2501.18577)**: Directly tackles PPI with imputed covariates, which aligns closely with Track B's approach.
+
+5. **"No Free Lunch" (2505.20178)**: Demonstrates that PPI++ can underperform classical estimators in finite samples, which poses a significant challenge to Track B's finite-sample validity claims.
+
+6. **Cadei et al. (2502.06343)**: Appears to address prediction-powered causal inference, though the entry is incomplete.
+
+7. **Kato (2511.08303)**: Covers semi-supervised treatment effect estimation with labeled/unlabeled data splits for causal effects.
+
+8. **Wang & Dobriban (2602.00989)**: Discusses optimal decision-making using prediction sets within a worst-case framework, which connects to the continuous track's approach.
+
+Now I'm evaluating the proposal's core strengths and weaknesses. The key question is whether combining modular conformal prediction, conformal PPI, and causal inference with LLM-extracted text confounders actually constitutes a novel contribution, or if it's primarily assembling existing pieces.
+
+The proposal's novelty claim hinges on addressing a specific problem: when confounders are extracted from text via LLMs and are therefore noisy, how do you maintain finite-sample guarantees? The technical contribution would be proving that the modular residual decomposition holds under causal exchangeability conditions for doubly robust pseudo-outcomes with explicit propensity propagation. But I should consider whether simpler alternatives exist—like bootstrap uncertainty quantification over the extraction step, which the proposal claims would undercover, or classical measurement error sensitivity analysis, which the proposal doesn't adequately address.
+
+There are several potential vulnerabilities in the proposal I'm starting to identify.
+
+The framing of "noisy LLM extraction" sidesteps the classical measurement error literature in causal inference, which has well-established methods like SIMEX and regression calibration for handling mismeasured confounders. The proposal needs to explain why conformal prediction is actually preferable to these existing approaches rather than just proposing a new method. Additionally, there's a recent paper (Kluger et al., 2501.18577) on PPI with imputed covariates that seems directly relevant to this track and isn't mentioned—that's a notable gap. And another paper (2505.20178) demonstrates that PPI++ can actually underperform classical estimators in finite samples under certain conditions, which directly challenges the motivation for this approach.
+
+The conservatism analysis in the pilot looks promising but might be overstating things. The assumption that confounders compress to just two dimensions for a "good LLM" needs real validation—modern models handle simple cases fine but often struggle with nuanced distinctions like clinical severity from unstructured notes. The framework itself is quite intricate with its dual-track design, multiple calibration stages, and cross-conformal machinery, so there's a real question about whether the added complexity delivers proportional practical value or if existing methods already handle the key scenarios adequately.
+
+The core novelty deserves sharper positioning around the propensity propagation effect—how conformal uncertainty in confounders cascades through the propensity score in doubly robust estimators. That's the genuinely novel insight and it's buried in the technical details when it should lead the narrative. I should also explicitly contrast this conformal approach against classical measurement error methods, emphasizing that the distribution-free nature and lack of parametric assumptions on error structure are huge advantages for handling the heterogeneous, non-standard noise from LLM extraction. And there's actually something elegant about the method producing vacuously wide intervals when the LLM doesn't provide enough signal—that's honest uncertainty quantification, not a weakness.
+
+I need to engage with Kluger et al. and the recent "No Free Lunch" paper since they directly bear on Track B's claims. The fundamental direction is sound—the problem is real, the approach is principled, and the propensity score propagation adds genuine complexity—but the execution and positioning need work. There's real discovery space here if I sharpen the core novelty claim and fill in the literature gaps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a099719-3251-46f8-be30-d7fc3ba85051",
+  "isSidechain": false,
+  "requestId": "req_011CbD9As1HKBswoxijt6Csr",
+  "type": "assistant",
+  "uuid": "398dca35-7b9b-41b0-8f6c-c3d765919baa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPf9KqPTo1ga5kLzDEmm9w",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 34271,
+      "output_tokens": 6447,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6447,
+          "cache_read_input_tokens": 34271,
+          "cache_creation_input_tokens": 877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-20T03:54:13.946Z_
+
+Now I have a thorough picture of the landscape. Let me compile my assessment.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **Zhang et al. (arXiv 2510.04406, 2025)**: 模块化残差分解框架，处理两阶段 sequential pipeline 的 conformal prediction。不涉及因果设定或 weighted exchangeability。是 Track A 的直接技术基础。
+- **Csillag et al. (arXiv 2510.16166, 2025)**: 将 PPI 扩展至 conformal set-predictor，支持均值估计和 Z/M-estimation。是 Track B 的直接技术基础，但未涉及因果 treatment effect。
+- **Kluger et al. (arXiv 2501.18577, 2025)**: "Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling"——直接研究 PPI 中协变量被 impute/predict 而非直接观测的情形，讨论了 naively plugging predicted covariates 的 pitfalls 和 valid interval 条件。**Proposal 未引用此文，但它与 Track B 的设定高度重叠。**
+- **"No Free Lunch: Non-Asymptotic Analysis of PPI" (arXiv 2505.20178, 2025)**: 证明 PPI++ 在有限样本下可能比仅用 gold-standard labels 更差，特别是当伪标签与真实标签相关性不够高时。这对 Track B 声称的有限样本优势构成直接威胁。
+- **Barnatchez et al. (arXiv 2604.03772, 2026)**: Runtime confounding（部署时 confounder 缺失）的 conformal prediction。Proposal 已做差异化。
+- **Cadei et al. (arXiv 2502.06343, 2025)**: Prediction-Powered Causal Inferences，conditional calibration guarantees valid PPCI。与 Track B 的 PPI+causal 结合有重叠。
+- **Wang & Dobriban (arXiv 2602.00989, 2026)**: 基于 prediction set 的最优决策框架。Proposal 在 continuous track 引用了此工作。
+- **Conformal Prediction for Astronomy Data with Measurement Error (arXiv 2412.10544, 2024)**: 天文学中对协变量和因变量有 measurement error 的 conformal prediction。方法论可借鉴但领域不同。
+- **Conformal Prediction for Medical Entity Extraction (arXiv 2603.00924, 2026)**: 对 LLM 医学实体抽取的 conformal prediction，提供有限样本 FDR 保证。应用场景与本 proposal Stage 1 的 LLM 抽取校准高度相关。
+- 调研总结：这个领域当前的研究者主要在两个方向突破——(1) 将 conformal prediction 从"预测"推广到"因果推断"（处理 counterfactual 的 exchangeability 问题），(2) 将 PPI 从 clean imputation 推广到 noisy/imputed covariates 场景（处理有限样本偏差和 validity 条件）。两条线正在收敛但尚未被统一，本 proposal 瞄准了这个交叉点。
+
+---
+
+【发掘点 1】
+- 维度: 核心 claim 强化 / novelty 锐化
+- 内容: **Propensity score amplification effect 应该被提升为核心 novelty insight，而非技术细节。** 当前 proposal 在技术描述中展示了一个非常有价值的发现：conformal set 中不同 confounder 值通过 propensity score 产生的不确定性放大效应（1/ê(c) 的变异）是区间加宽的主要驱动力，而非 outcome regression 变异。Pilot analysis 已经展示了这一点（ê 从 0.50 变到 0.25 导致 augmentation term 放大 2×）。但这个 insight 目前埋在了 "Explicit Propensity Score Propagation" 的技术细节中。建议将其重构为核心 claim 的一部分：**"在 doubly robust 框架下，confounder 抽取不确定性通过 propensity score 的非线性传播（inverse probability weighting）产生 asymmetric amplification，这种放大效应在现有的 asymptotic 分析中被忽略，但在有限样本中是 interval validity 的决定性因素。"** 这个 claim 不仅比"我们组合了三个 thread"更 sharp，而且指向了一个可以被证明的数学性质：propensity score 对 conformal set variation 的 sensitivity 是可以刻画的，这是一个独立的理论贡献。
+- 价值: 将 novelty 从 "combination of existing methods" 提升到 "reveals a previously uncharacterized uncertainty amplification mechanism in doubly robust estimators"。审稿人对 "combination paper" 的第一反应通常是 "incremental"，但对 "new structural insight about an important estimator" 的反应是 "interesting"。这直接命中 Novelty 维度。
+- 调研依据: 调研中发现，conformal prediction for continuous treatments (arXiv 2407.03094) 已经注意到 propensity estimation 引入额外不确定性，但没有在 doubly robust + conformal set 的框架下分析 propensity propagation 的 amplification structure。本 proposal 的 pilot analysis 已经有了这个 insight 的雏形，需要将其理论化。
+
+【发掘点 2】
+- 维度: related work 差异化 / 前提假设质疑
+- 内容: **Proposal 遗漏了 Kluger et al. (arXiv 2501.18577) "PPI with Imputed Covariates and Nonuniform Sampling"，这是对 Track B novelty claim 的直接威胁。** 该文专门研究了 PPI 中协变量被模型 impute 而非直接观测的情形，讨论了 naive plug-in 的失效条件和 valid interval 的充分条件。Track B 的设定——LLM impute confounders，small labeled + large unlabeled 做 PPI——与 Kluger et al. 的设定高度重叠。**如果不做差异化，审稿人极可能提出 "this is a special case of Kluger et al."。** 建议的差异化角度：Kluger et al. 处理的是 point imputation + debiasing，而 Track B 使用 conformal set-predictor 替代 point imputation，这提供了 distribution-free finite-sample validity（而非 asymptotic）。但这个差异化需要在 proposal 中明确声明，并且需要说明：conformal set-predictor 在什么条件下比 Kluger et al. 的 debiased point imputation 更优。
+- 价值: 避免审稿时被指出关键 related work 遗漏，这通常是 reject 的强信号。同时，主动做差异化可以反过来强化 Track B 的 novelty positioning。命中 Related Work 差异化维度。
+- 调研依据: 直接来自 Kluger et al. (arXiv 2501.18577, January 2025)。
+
+【发掘点 3】
+- 维度: 前提假设质疑 / trivial alternative 威胁
+- 内容: **Proposal 完全未提及经典的 measurement error correction 文献（SIMEX, regression calibration, multiple imputation），这些方法在 causal inference 中处理 mismeasured confounders 已有数十年历史。** LLM 抽取噪声本质上就是 confounder 的 measurement error。审稿人会问：为什么不用经典的 measurement error correction 方法？为什么需要 conformal prediction 这个重型机制？建议的回应框架：(1) 经典方法需要参数化假设（如 classical measurement error 假设噪声 additive Gaussian，与真值独立），但 LLM 抽取噪声是 heterogeneous、context-dependent、非参数的（例如 LLM 对 "critical" 和 "severe" 的混淆率取决于文本的具体内容），不满足经典假设；(2) Conformal prediction 是 distribution-free 的，不需要指定 error 的参数分布；(3) Conformal set 提供的是 finite-sample coverage guarantee，经典方法通常只有 asymptotic guarantees。**但 proposal 必须把这个比较写进去，否则审稿人会认为作者不知道 measurement error 文献的存在。**
+- 价值: 消除"为什么不用更简单的方法"这个 trivial alternative 威胁。同时，与经典方法的对比可以进一步凸显 conformal approach 的优势（distribution-free、finite-sample），直接强化 Significance 维度——将问题从 "niche application" 提升到 "paradigm comparison between parametric measurement error correction and distribution-free conformal approach for ML-extracted variables"。
+- 调研依据: Conformal Prediction for Astronomy Data with Measurement Error (arXiv 2412.10544) 展示了在 measurement error 场景下 conformal prediction 的应用先例；经典 measurement error 文献（SIMEX: Cook & Stefanski 1994; Regression calibration: Carroll et al. 2006）是 causal inference 中处理 mismeasured confounders 的标准方法。
+
+【发掘点 4】
+- 维度: 前提假设质疑
+- 内容: **"No Free Lunch" 结果（arXiv 2505.20178）对 Track B 的有限样本 claim 构成潜在矛盾，必须正面回应。** 该文证明 PPI++ 在有限样本下当伪标签与真实标签相关性不够高时，可能比仅用 labeled data 更差。Track B 依赖 PPI 框架，而 LLM 抽取质量不稳定时恰好对应"相关性不够高"的情形。如果 Track B 声称"有限样本 validity"，但底层 PPI 本身在有限样本下有 bias，那么 conformal set-predictor 能否修复这个问题？建议的处理方式：(1) 明确 conformal PPI（Csillag et al.）与原始 PPI++ 的区别——conformal set-predictor 是否规避了 "No Free Lunch" 中的 bias 来源？(2) 如果不能规避，诚实说明 Track B 的 validity 是 conditional on conformal PPI 自身的 validity conditions，并给出这些条件的可解释版本。**这不是要放弃 Track B，而是要让 claim 更 precise。**
+- 价值: 防止审稿人用 "No Free Lunch" 结果直接否定 Track B 的 finite-sample claim。主动讨论这一点显示理论的严谨性，反而增强可信度。命中 Novelty 维度（更 precise 的 claim = 更 defensible 的 novelty）。
+- 调研依据: 直接来自 "No Free Lunch: Non-Asymptotic Analysis of PPI" (arXiv 2505.20178, May 2025)。
+
+【发掘点 5】
+- 维度: significance 提升
+- 内容: **Proposal 可以将 significance framing 从 "LLM extraction for text confounders" 提升到更一般的 pattern："any pipeline where an ML model extracts features used as inputs to downstream statistical inference"。** 当前的 framing 过于锁定在 NLP/text 场景，但实际上相同的问题出现在：(a) 计算机视觉中用图像模型提取 phenotype 特征再做因果分析（medical imaging），(b) sensor data 中用 ML 提取 activity features 再做 treatment effect evaluation，(c) multimodal data 中用任何 foundation model 提取结构化变量。将 proposal 的 framework 定位为 "the general solution for conformal causal inference with ML-extracted confounders"，LLM+text 作为 primary instantiation 但非唯一适用场景，可以显著提升影响力。但注意：**这个 generalization 必须是理论层面自然支持的**（检查：modular conformal decomposition 和 PPI 框架本身并不依赖于 text/LLM 的特殊性质，所以这个 generalization 是 sound 的）。
+- 价值: 将论文的 impact scope 从 "NLP+causal inference niche" 扩展到 "general ML pipeline + causal inference"，显著提升 Significance。审稿人在评估 significance 时，"general framework with concrete instantiation" 比 "method for a specific application" 更有说服力。
+- 调研依据: 基于领域整体趋势判断——Zhang et al. (2510.04406) 的 modular conformal framework 本身就是 domain-agnostic 的（原文用于 supply chain 和 stock market），说明 generalization 有技术基础。Conformal Prediction for Astronomy Data with Measurement Error (2412.10544) 展示了类似 pattern 在天文学中的存在。
+
+【发掘点 6】
+- 维度: novelty 锐化
+- 内容: **"Graceful degradation" 性质应从技术副产品重新定位为 design principle。** 当前 proposal 在 pilot analysis 末尾提到 "|C|=4+ 时区间变得 vacuously wide"，语气是 apologetic 的（"correctly reflecting that the LLM provides insufficient information"）。但这实际上是一个极有价值的性质：**方法自动检测 LLM 能力不足并拒绝给出虚假确信的因果结论。** 在 LLM-as-tool 的范式中，大量工作默认 LLM 输出是可靠的，而本方法提供了一个内建的 reliability check——如果 conformal set 过大，方法自动 flag "insufficient extraction quality for causal conclusions"。这可以被提炼为一个 principled "abstention mechanism for causal inference with ML tools"，与近期 selective prediction / abstention 文献对接。**将 framing 从 "conservatism is the cost" 转为 "automatic reliability assessment is a feature" 可以让审稿人认为这是一个 insight 而非缺陷。**
+- 价值: 将审稿人可能的负面评价点（"intervals too wide"）转化为 novelty 论点（"principled abstention"），同时命中 Significance 维度——在 responsible AI 和 reliable ML 的大趋势下，"knowing when not to trust your ML tool" 是高价值问题。
+- 调研依据: 基于领域整体趋势判断——Wang & Dobriban (2602.00989) 的 decision-theoretic framework 已经在讨论 "optimal decision under prediction set uncertainty"，说明 community 关注 conformal set 过大时的决策策略。
+
+Sources:
+- [Zhang et al. - Modular Conformal Prediction](https://arxiv.org/abs/2510.04406)
+- [Csillag et al. - Extending PPI through Conformal Prediction](https://arxiv.org/abs/2510.16166)
+- [Kluger et al. - PPI with Imputed Covariates](https://arxiv.org/abs/2501.18577)
+- [No Free Lunch: Non-Asymptotic Analysis of PPI](https://arxiv.org/abs/2505.20178)
+- [Barnatchez et al. - Debiased ML for Conformal Prediction under Runtime Confounding](https://arxiv.org/abs/2604.03772)
+- [Cadei et al. - Prediction-Powered Causal Inferences](https://arxiv.org/abs/2502.06343)
+- [Wang & Dobriban - Optimal Decision-Making Based on Prediction Sets](https://arxiv.org/abs/2602.00989)
+- [Conformal Prediction for Astronomy Data with Measurement Error](https://arxiv.org/abs/2412.10544)
+- [Conformal Prediction for Medical Entity Extraction](https://arxiv.org/abs/2603.00924)
+- [Conformal Prediction for Continuous Treatments](https://arxiv.org/abs/2407.03094)
+- [Systematic Review of Conformal Inference for Treatment Effects](https://arxiv.org/abs/2509.21660)
+- [Vovk & Wang - Conformal e-prediction under Confounding](https://arxiv.org/abs/2603.11134)
+- [Gasparin & Ramdas - Cross-Conformal Prediction](https://arxiv.org/abs/2503.01495)
+- [LLM-based Agents for Confounder Discovery](https://arxiv.org/abs/2508.07221)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "398dca35-7b9b-41b0-8f6c-c3d765919baa",
+  "isSidechain": false,
+  "requestId": "req_011CbD9As1HKBswoxijt6Csr",
+  "type": "assistant",
+  "uuid": "ef586f97-f3e5-4168-896d-16afb6abd0b0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QPf9KqPTo1ga5kLzDEmm9w",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 34271,
+      "output_tokens": 6447,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6447,
+          "cache_read_input_tokens": 34271,
+          "cache_creation_input_tokens": 877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal and Prediction-Powered Guarantees for Causal Inference with LLM-Extracted Text Confounders  ## Description We propose ConformalPPITextCausal, a framework providing finite-sample coverage g…",
+  "leafUuid": "ef586f97-f3e5-4168-896d-16afb6abd0b0",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal prediction for LLM-extracted causal confounders",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal and Prediction-Powered Guarantees for Causal Inference with LLM-Extracted Text Confounders  ## Description We propose ConformalPPITextCausal, a framework providing finite-sample coverage g…",
+  "leafUuid": "ef586f97-f3e5-4168-896d-16afb6abd0b0",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal prediction for LLM-extracted causal confounders",
+  "sessionId": "c34d42a2-ffba-4f07-a7a4-708509a39564"
+}
+```
+
+---

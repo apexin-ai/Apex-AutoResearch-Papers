@@ -1,0 +1,3106 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Non-Monotone Submodular Context C
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-3/8cd2386c-1a2d-4160-8c35-cba7098cbafe.jsonl`
+- **Structured JSON:** [`92956e33750192b47c70.json`](../../sessions/92/92956e33750192b47c70.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T07:39:09.621Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:39:09.621Z",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Non-Monotone Submodular Context Composition with Distraction-Redundancy Decomposition\n\n## Core Problem\n\nHow can post-retrieval context composition for RAG be formalized as a constrained non-monotone submodular optimization problem that provably distinguishes between redundancy (intra-set semantic overlap) and distraction (answer-conditional interference) as separate penalty terms, yielding greedy approximation guarantees even when adding passages can decrease generation quality?\n\n## Broader Motivation\n\nThe problem of \"when does adding more information provably hurt?\" arises across context engineering: in-context learning (where Sub-CP, arXiv:2510.05130, applies submodular optimization to exemplar partitioning), tool-use composition, and multi-document grounding all exhibit non-monotone returns to context size. This work instantiates the question in RAG post-retrieval composition—including both single-hop and multi-hop QA—where it is most acute and empirically measurable, providing the first framework that decomposes the harm into redundancy and distraction with provable optimization guarantees.\n\n## Research Opportunity\n\nThree independently developed building blocks have converged but never been combined: (1) AdaGReS (arXiv Dec 2025) proved ε-approximate submodularity for redundancy-penalized context selection but only handles monotone objectives; (2) The Distracting Effect (ACL 2025) provides a concrete per-passage distraction measure DE_q(p) = 1−P(NO-RESPONSE|q,p) but performs no set-level optimization; (3) the AAMAS 2026 γ-weakly DR-submodular paper provides approximation guarantees Φ_γ for non-monotone objectives but has zero empirical applications to NLP.\n\nThe critical insight: subtracting a modular distraction penalty from AdaGReS's ε-approximately submodular objective makes the combined function non-monotone and non-submodular. The general problem class of maximizing \"approximately submodular minus modular\" functions has been studied theoretically (Qian, arXiv:1910.05492; Buchbinder et al., FOCS 2012 for the exact submodular case), but has never been instantiated in NLP or RAG. This work provides the first such instantiation, deriving the specific γ-weak DR-submodularity parameter for the RAG distraction-redundancy objective and empirically validating the AAMAS double-greedy framework in this domain.\n\n## Why Decompose Redundancy and Distraction?\n\nRedundancy and distraction damage generation quality through fundamentally different causal mechanisms, necessitating independent modeling:\n\n**Redundancy is an opportunity cost.** Repeated information wastes token budget, displacing other useful passages. Its harm is indirect—the model does not get confused by redundant content, but misses out on complementary evidence. Marginal harm diminishes: the n-th duplicate contributes less incremental information loss. This calls for a pairwise similarity penalty with diminishing marginal structure.\n\n**Distraction is an interference cost.** Irrelevant-but-plausible passages actively mislead the LLM's attention and reasoning, producing incorrect answers even when the gold passage is present. Its harm is direct and may compound: multiple distracting passages can reinforce a misleading narrative. This calls for a per-passage penalty tied to answer-conditional interference (DE_q).\n\nBecause these mechanisms have different scaling behavior and different causal pathways, a single penalty term cannot optimally control both. The decomposition into separate β (redundancy) and λ (distraction) hyperparameters allows independent calibration of each failure mode.\n\n## Research Landscape\n\nCurrent SOTA splits into two disjoint camps with a verified gap.\n\n**Camp 1 (formal guarantees, distraction-blind):** AdaGReS achieves ε-approximate submodularity with adaptive β* but only models redundancy, evaluated on 2 benchmarks. CCBQP (arXiv 2604.02554, Apr 2026) provides Frank-Wolfe with O(nd) iterations and landscape analysis via diagonal loading λ≥2, dominating MMR and DPP on the relevance-diversity Pareto frontier (QAMPARI/ASQA), but handles only relevance-diversity with no distraction term. Note that CCBQP's relevance weighting does not substitute for explicit distraction modeling: as shown in The Distracting Effect (ACL 2025), high-DE passages are often topically related to the query (moderate-to-high relevance) but answer-misleading—relevance-based weighting cannot distinguish these from genuinely helpful passages. SMART-RAG (arXiv:2409.13992, Sep 2024) uses DPP to jointly model relevance, diversity, and conflict (inter-passage contradiction), training-free, but \"conflict\" captures contradictory information between passages, not answer-conditional interference from individually misleading content. ScalDPP (arXiv:2604.03240, Apr 2026) scales DPP via P-Adapter with Diverse Margin Loss but remains in the relevance-diversity paradigm and requires training the P-Adapter.\n\n**Camp 2 (distraction-aware, no formal guarantees):** LDAR (ICLR 2026) is a distraction-aware retriever operating at retrieval time across 6 benchmarks but provides no post-retrieval composition or approximation bounds. DynamicRAG (NeurIPS 2025) uses RL with LLM feedback across 7 benchmarks but offers no optimization guarantees. Context-Picker (arXiv Dec 2025) uses two-stage RL for context selection across 5 benchmarks. Vendi-RAG (arXiv:2502.11228, Feb 2025) uses Vendi Score diversity + LLM judge for iterative diversity-quality optimization on multi-hop QA, but provides no formal guarantees and does not explicitly decompose redundancy from distraction. All learned approaches are distribution-dependent with no formal generalization guarantees under domain shift.\n\n**The gap:** No existing method is simultaneously post-retrieval, formally grounded with provable approximation bounds, and distraction-aware.\n\n## Addressing the Trivial Alternative\n\nA natural two-stage pipeline—first filter high-DE passages via threshold, then run AdaGReS's monotone greedy on survivors—appears to achieve both distraction-awareness and formal guarantees without new theory. Joint optimization is necessary because:\n\n**Pre-filtering forfeits optimality guarantees.** Removing passages before optimization shrinks the feasible set in a data-dependent, non-principled way. The resulting solution has no approximation guarantee relative to the optimal subset of the full candidate set. The joint formulation preserves the full candidate set and provides Φ_γ guarantees over it. A passage with high individual DE_q may still be the optimal choice when its relevance contribution outweighs the distraction cost in the joint objective—threshold filtering irrecoverably discards such passages.\n\nAs an empirical hypothesis, we additionally test whether set-level distraction interaction matters: the ablation includes a conditional DE_q(p|S\\{p}) variant to evaluate whether set-conditioned distraction scoring provides benefit beyond modular DE. The two-stage pipeline itself is included as an explicit ablation baseline (Ablation 7).\n\n## Proposed Approach\n\nDefine the set objective:\n\nf(S) = Σ_{p∈S} rel(q,p) − β·Σ_{p,p'∈S} sim(p,p') − λ·Σ_{p∈S} DE_q(p)\n\nwhere rel(q,p) is query-passage relevance (embedding cosine similarity), sim(p,p') is pairwise passage similarity (redundancy), and DE_q(p) is the per-passage Distracting Effect score (ACL 2025) computed via LLM no-response probability.\n\n**Why non-monotone:** The distraction penalty Σ DE_q(p) grows linearly with |S|. Beyond a critical set size, accumulated distraction cost overwhelms relevance gains, making f decrease with added passages. This non-monotonicity invalidates standard monotone greedy guarantees (AdaGReS).\n\n**Computational advantage of modular DE:** Since DE_q(p) depends only on the (q,p) pair, all DE scores can be pre-computed and cached before the greedy optimization begins. The DE computation cost is O(n) LLM calls (one per candidate passage), amortized across the optimization.\n\n**Theoretical contribution:** The relevance − redundancy component inherits AdaGReS's ε-approximate submodularity. Subtracting the modular distraction term yields a non-monotone, non-submodular function in the \"approximately submodular minus modular\" problem class (cf. Qian, arXiv:1910.05492). Our specific contribution is deriving the γ-weak DR-submodularity parameter for this RAG-specific objective under bounded-embedding conditions, enabling the AAMAS 2026 double-greedy framework with Φ_γ > γe^{−γ} approximation guarantee.\n\nThe bounded-embedding conditions require: (a) embedding norms bounded in [c_min, c_max] with c_min > 0; (b) the diminishing-return ratio of the relevance-redundancy component lower-bounded by γ > 0, which depends on the ratio c_min/c_max and the maximum pairwise similarity in the candidate set. When the candidate pool contains near-duplicate passages (sim ≈ 1), γ may degrade; we empirically measure γ on each benchmark and discuss graceful degradation.\n\n**γ as a diagnostic of composition difficulty.** Beyond its role as an algorithm parameter, γ encodes a structural property of the retrieval pool: it characterizes the gap between monotone greedy and non-monotone optimization for a given query's candidate set. When γ ≈ 1 (semantically diverse, low-redundancy pool), monotone greedy suffices and non-monotone optimization offers marginal gains. When γ ≪ 1 (high redundancy, high distraction), non-monotone optimization becomes essential. We empirically validate this by analyzing the correlation between per-query γ values and the accuracy improvement of our method over monotone baselines, establishing γ as a practical diagnostic for when sophisticated context composition is worthwhile.\n\n**Comparison with classical algorithms:** For exact non-monotone submodular functions, Buchbinder et al. (FOCS 2012) provide a 1/2-approximation via randomized double-greedy, tighter than AAMAS's Φ_γ when γ ≈ 1. Our empirically measured γ determines which framework is more appropriate. Both algorithms are included in the experimental comparison.\n\n## Experimental Design\n\n**Benchmarks:** Natural Questions (NQ), ASQA, QAMPARI, HotpotQA.\n\n**Metrics per benchmark:**\n- NQ: Exact Match (EM), token-level F1\n- ASQA: ROUGE-L, Disambig-F1 (D-F1), citation precision/recall (ALCE framework)\n- QAMPARI: Entity-level F1, entity recall\n- HotpotQA: EM, F1, supporting fact precision/recall\n- Cross-benchmark: tokens per query, wall-clock latency per query, redundancy ratio\n\n**Models:** Qwen3-Embedding-8B (retrieval + similarity), Qwen3-8B (DE scoring + secondary generator), Llama-4-Scout (primary generator).\n\n**Baselines (three groups):**\n- Simple heuristic: top-k, MMR\n- Formal optimization: AdaGReS, CCBQP, SMART-RAG\n- Learned: DynamicRAG, LDAR, Context-Picker, Vendi-RAG\n\n**LDAR comparison protocol:** Two settings: (a) Retrieval-controlled—all methods use Qwen3-Embedding-8B top-N candidates, comparing post-retrieval composition only; (b) End-to-end—LDAR uses its own retriever vs. proposed method with Qwen3-Embedding-8B + composition, comparing paradigms.\n\n**Ablation studies:**\n1. Component isolation: (a) f without distraction (= relevance − redundancy), (b) f without redundancy (= relevance − distraction), (c) full f → marginal contribution of each penalty\n2. Hyperparameter sensitivity: β × λ grid (5×5), Pareto surface\n3. Algorithm comparison: AAMAS double-greedy vs. Buchbinder et al. randomized double-greedy vs. standard greedy vs. random\n4. DE scoring model: Qwen3-8B DE vs. Llama-4-Scout self-DE → cross-model transferability\n5. Per-passage DE vs. conditional DE_q(p|S\\{p}): set-conditional scoring benefit vs. cost\n6. Selection set size k: impact on f and downstream accuracy\n7. Joint optimization vs. two-stage pipeline: DE threshold τ ∈ {0.3, 0.5, 0.7} filter → AdaGReS greedy vs. full joint optimization\n8. Cross-generator validation: full comparison on NQ + ASQA with Qwen3-8B as generator, for proposed method + AdaGReS + DynamicRAG\n9. Candidate pool size: top-50 / top-100 / top-200 → sensitivity and DE cost scaling\n\n**Domain-shift evaluation:** Train/tune learned baselines (DynamicRAG, Context-Picker) on one benchmark distribution, evaluate on a different benchmark. Proposed method uses identical hyperparameters across all benchmarks without retuning.\n\n**Compute-normalized comparison:** Decompose costs into three stages: (1) retrieval + embedding (shared); (2) selection/composition (DE pre-computation, optimization algorithm, reranking); (3) generation (variable token count from different selections). Plot accuracy-vs-selection-cost and accuracy-vs-total-cost Pareto curves. Provide concrete wall-clock estimates for DE pre-computation (Qwen3-8B throughput on target hardware).\n\n**Cross-model DE calibration:** On validation subsets, compute DE using both Qwen3-8B and Llama-4-Scout, report Spearman/Pearson correlation.\n\n**γ measurement and analysis:** Compute γ per-query as the minimum diminishing-return ratio over all passage subsets. Report distribution statistics (mean, std, min, percentiles) per benchmark. Analyze correlation between per-query γ and accuracy improvement over monotone baselines. Specifically examine γ behavior in high-redundancy multi-hop scenarios (HotpotQA) vs. single-hop (NQ).\n\n**Bounded-embedding verification:** Report embedding norm distributions and pairwise similarity statistics for Qwen3-Embedding-8B on each benchmark corpus.\n\n**Statistical rigor:** 3-5 independent runs per configuration, mean ± std, paired bootstrap significance tests.\n\n## Key References\n\n- AdaGReS: Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG (arXiv Dec 2025)\n- The Distracting Effect: Understanding Irrelevant Passages in RAG (ACL 2025)\n- Stronger Approximation Guarantees for Non-Monotone γ-Weakly DR-Submodular Maximization (AAMAS 2026)\n- Principled and Scalable Diversity-Aware Retrieval via Cardinality-Constrained Binary Quadratic Programming (arXiv 2604.02554, Apr 2026)\n- Beyond RAG vs. Long-Context: Learning Distraction-Aware Retrieval for Efficient Knowledge Grounding (ICLR 2026)\n- DynamicRAG: Leveraging Outputs of LLM as Feedback for Dynamic Reranking in RAG (NeurIPS 2025)\n- Context-Picker: Dynamic Context Selection Using Multi-stage Reinforcement Learning (arXiv Dec 2025)\n- AdaGATE: Adaptive Gap-Aware Token-Efficient Evidence Assembly for Multi-Hop RAG (arXiv May 2026)\n- SMART-RAG: Selection using Determinantal Matrices for Augmented Retrieval (arXiv:2409.13992, Sep 2024)\n- ScalDPP: Scaling DPPs for RAG — Density Meets Diversity (arXiv:2604.03240, Apr 2026)\n- Vendi-RAG: Adaptively Trading-Off Diversity and Quality (arXiv:2502.11228, Feb 2025)\n- Sub-CP: Submodular Context Partitioning for In-Context Learning (arXiv:2510.05130, Oct 2025)\n- Qian: Multi-objective Evolutionary Algorithms for Approximately Submodular Minus Modular (arXiv:1910.05492)\n- Buchbinder, Feldman, Naor, Schwartz: A Tight (1/2)-Approximation for Unconstrained Submodular Maximization (FOCS 2012)\n- ALCE: Enabling Large Language Models to Generate Text with Citations (Gao et al., EMNLP 2023)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T07:39:09.625Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:39:09.625Z",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+## Round 1
+
+45 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T07:39:09.673Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Non-Monotone Submodular Context Composition with Distraction-Redundancy Decomposition
+
+## Core Problem
+
+How can post-retrieval context composition for RAG be formalized as a constrained non-monotone submodular optimization problem that provably distinguishes between redundancy (intra-set semantic overlap) and distraction (answer-conditional interference) as separate penalty terms, yielding greedy approximation guarantees even when adding passages can decrease generation quality?
+
+## Broader Motivation
+
+The problem of "when does adding more information provably hurt?" arises across context engineering: in-context learning (where Sub-CP, arXiv:2510.05130, applies submodular optimization to exemplar partitioning), tool-use composition, and multi-document grounding all exhibit non-monotone returns to context size. This work instantiates the question in RAG post-retrieval composition—including both single-hop and multi-hop QA—where it is most acute and empirically measurable, providing the first framework that decomposes the harm into redundancy and distraction with provable optimization guarantees.
+
+## Research Opportunity
+
+Three independently developed building blocks have converged but never been combined: (1) AdaGReS (arXiv Dec 2025) proved ε-approximate submodularity for redundancy-penalized context selection but only handles monotone objectives; (2) The Distracting Effect (ACL 2025) provides a concrete per-passage distraction measure DE_q(p) = 1−P(NO-RESPONSE|q,p) but performs no set-level optimization; (3) the AAMAS 2026 γ-weakly DR-submodular paper provides approximation guarantees Φ_γ for non-monotone objectives but has zero empirical applications to NLP.
+
+The critical insight: subtracting a modular distraction penalty from AdaGReS's ε-approximately submodular objective makes the combined function non-monotone and non-submodular. The general problem class of maximizing "approximately submodular minus modular" functions has been studied theoretically (Qian, arXiv:1910.05492; Buchbinder et al., FOCS 2012 for the exact submodular case), but has never been instantiated in NLP or RAG. This work provides the first such instantiation, deriving the specific γ-weak DR-submodularity parameter for the RAG distraction-redundancy objective and empirically validating the AAMAS double-greedy framework in this domain.
+
+## Why Decompose Redundancy and Distraction?
+
+Redundancy and distraction damage generation quality through fundamentally different causal mechanisms, necessitating independent modeling:
+
+**Redundancy is an opportunity cost.** Repeated information wastes token budget, displacing other useful passages. Its harm is indirect—the model does not get confused by redundant content, but misses out on complementary evidence. Marginal harm diminishes: the n-th duplicate contributes less incremental information loss. This calls for a pairwise similarity penalty with diminishing marginal structure.
+
+**Distraction is an interference cost.** Irrelevant-but-plausible passages actively mislead the LLM's attention and reasoning, producing incorrect answers even when the gold passage is present. Its harm is direct and may compound: multiple distracting passages can reinforce a misleading narrative. This calls for a per-passage penalty tied to answer-conditional interference (DE_q).
+
+Because these mechanisms have different scaling behavior and different causal pathways, a single penalty term cannot optimally control both. The decomposition into separate β (redundancy) and λ (distraction) hyperparameters allows independent calibration of each failure mode.
+
+## Research Landscape
+
+Current SOTA splits into two disjoint camps with a verified gap.
+
+**Camp 1 (formal guarantees, distraction-blind):** AdaGReS achieves ε-approximate submodularity with adaptive β* but only models redundancy, evaluated on 2 benchmarks. CCBQP (arXiv 2604.02554, Apr 2026) provides Frank-Wolfe with O(nd) iterations and landscape analysis via diagonal loading λ≥2, dominating MMR and DPP on the relevance-diversity Pareto frontier (QAMPARI/ASQA), but handles only relevance-diversity with no distraction term. Note that CCBQP's relevance weighting does not substitute for explicit distraction modeling: as shown in The Distracting Effect (ACL 2025), high-DE passages are often topically related to the query (moderate-to-high relevance) but answer-misleading—relevance-based weighting cannot distinguish these from genuinely helpful passages. SMART-RAG (arXiv:2409.13992, Sep 2024) uses DPP to jointly model relevance, diversity, and conflict (inter-passage contradiction), training-free, but "conflict" captures contradictory information between passages, not answer-conditional interference from individually misleading content. ScalDPP (arXiv:2604.03240, Apr 2026) scales DPP via P-Adapter with Diverse Margin Loss but remains in the relevance-diversity paradigm and requires training the P-Adapter.
+
+**Camp 2 (distraction-aware, no formal guarantees):** LDAR (ICLR 2026) is a distraction-aware retriever operating at retrieval time across 6 benchmarks but provides no post-retrieval composition or approximation bounds. DynamicRAG (NeurIPS 2025) uses RL with LLM feedback across 7 benchmarks but offers no optimization guarantees. Context-Picker (arXiv Dec 2025) uses two-stage RL for context selection across 5 benchmarks. Vendi-RAG (arXiv:2502.11228, Feb 2025) uses Vendi Score diversity + LLM judge for iterative diversity-quality optimization on multi-hop QA, but provides no formal guarantees and does not explicitly decompose redundancy from distraction. All learned approaches are distribution-dependent with no formal generalization guarantees under domain shift.
+
+**The gap:** No existing method is simultaneously post-retrieval, formally grounded with provable approximation bounds, and distraction-aware.
+
+## Addressing the Trivial Alternative
+
+A natural two-stage pipeline—first filter high-DE passages via threshold, then run AdaGReS's monotone greedy on survivors—appears to achieve both distraction-awareness and formal guarantees without new theory. Joint optimization is necessary because:
+
+**Pre-filtering forfeits optimality guarantees.** Removing passages before optimization shrinks the feasible set in a data-dependent, non-principled way. The resulting solution has no approximation guarantee relative to the optimal subset of the full candidate set. The joint formulation preserves the full candidate set and provides Φ_γ guarantees over it. A passage with high individual DE_q may still be the optimal choice when its relevance contribution outweighs the distraction cost in the joint objective—threshold filtering irrecoverably discards such passages.
+
+As an empirical hypothesis, we additionally test whether set-level distraction interaction matters: the ablation includes a conditional DE_q(p|S\{p}) variant to evaluate whether set-conditioned distraction scoring provides benefit beyond modular DE. The two-stage pipeline itself is included as an explicit ablation baseline (Ablation 7).
+
+## Proposed Approach
+
+Define the set objective:
+
+f(S) = Σ_{p∈S} rel(q,p) − β·Σ_{p,p'∈S} sim(p,p') − λ·Σ_{p∈S} DE_q(p)
+
+where rel(q,p) is query-passage relevance (embedding cosine similarity), sim(p,p') is pairwise passage similarity (redundancy), and DE_q(p) is the per-passage Distracting Effect score (ACL 2025) computed via LLM no-response probability.
+
+**Why non-monotone:** The distraction penalty Σ DE_q(p) grows linearly with |S|. Beyond a critical set size, accumulated distraction cost overwhelms relevance gains, making f decrease with added passages. This non-monotonicity invalidates standard monotone greedy guarantees (AdaGReS).
+
+**Computational advantage of modular DE:** Since DE_q(p) depends only on the (q,p) pair, all DE scores can be pre-computed and cached before the greedy optimization begins. The DE computation cost is O(n) LLM calls (one per candidate passage), amortized across the optimization.
+
+**Theoretical contribution:** The relevance − redundancy component inherits AdaGReS's ε-approximate submodularity. Subtracting the modular distraction term yields a non-monotone, non-submodular function in the "approximately submodular minus modular" problem class (cf. Qian, arXiv:1910.05492). Our specific contribution is deriving the γ-weak DR-submodularity parameter for this RAG-specific objective under bounded-embedding conditions, enabling the AAMAS 2026 double-greedy framework with Φ_γ > γe^{−γ} approximation guarantee.
+
+The bounded-embedding conditions require: (a) embedding norms bounded in [c_min, c_max] with c_min > 0; (b) the diminishing-return ratio of the relevance-redundancy component lower-bounded by γ > 0, which depends on the ratio c_min/c_max and the maximum pairwise similarity in the candidate set. When the candidate pool contains near-duplicate passages (sim ≈ 1), γ may degrade; we empirically measure γ on each benchmark and discuss graceful degradation.
+
+**γ as a diagnostic of composition difficulty.** Beyond its role as an algorithm parameter, γ encodes a structural property of the retrieval pool: it characterizes the gap between monotone greedy and non-monotone optimization for a given query's candidate set. When γ ≈ 1 (semantically diverse, low-redundancy pool), monotone greedy suffices and non-monotone optimization offers marginal gains. When γ ≪ 1 (high redundancy, high distraction), non-monotone optimization becomes essential. We empirically validate this by analyzing the correlation between per-query γ values and the accuracy improvement of our method over monotone baselines, establishing γ as a practical diagnostic for when sophisticated context composition is worthwhile.
+
+**Comparison with classical algorithms:** For exact non-monotone submodular functions, Buchbinder et al. (FOCS 2012) provide a 1/2-approximation via randomized double-greedy, tighter than AAMAS's Φ_γ when γ ≈ 1. Our empirically measured γ determines which framework is more appropriate. Both algorithms are included in the experimental comparison.
+
+## Experimental Design
+
+**Benchmarks:** Natural Questions (NQ), ASQA, QAMPARI, HotpotQA.
+
+**Metrics per benchmark:**
+- NQ: Exact Match (EM), token-level F1
+- ASQA: ROUGE-L, Disambig-F1 (D-F1), citation precision/recall (ALCE framework)
+- QAMPARI: Entity-level F1, entity recall
+- HotpotQA: EM, F1, supporting fact precision/recall
+- Cross-benchmark: tokens per query, wall-clock latency per query, redundancy ratio
+
+**Models:** Qwen3-Embedding-8B (retrieval + similarity), Qwen3-8B (DE scoring + secondary generator), Llama-4-Scout (primary generator).
+
+**Baselines (three groups):**
+- Simple heuristic: top-k, MMR
+- Formal optimization: AdaGReS, CCBQP, SMART-RAG
+- Learned: DynamicRAG, LDAR, Context-Picker, Vendi-RAG
+
+**LDAR comparison protocol:** Two settings: (a) Retrieval-controlled—all methods use Qwen3-Embedding-8B top-N candidates, comparing post-retrieval composition only; (b) End-to-end—LDAR uses its own retriever vs. proposed method with Qwen3-Embedding-8B + composition, comparing paradigms.
+
+**Ablation studies:**
+1. Component isolation: (a) f without distraction (= relevance − redundancy), (b) f without redundancy (= relevance − distraction), (c) full f → marginal contribution of each penalty
+2. Hyperparameter sensitivity: β × λ grid (5×5), Pareto surface
+3. Algorithm comparison: AAMAS double-greedy vs. Buchbinder et al. randomized double-greedy vs. standard greedy vs. random
+4. DE scoring model: Qwen3-8B DE vs. Llama-4-Scout self-DE → cross-model transferability
+5. Per-passage DE vs. conditional DE_q(p|S\{p}): set-conditional scoring benefit vs. cost
+6. Selection set size k: impact on f and downstream accuracy
+7. Joint optimization vs. two-stage pipeline: DE threshold τ ∈ {0.3, 0.5, 0.7} filter → AdaGReS greedy vs. full joint optimization
+8. Cross-generator validation: full comparison on NQ + ASQA with Qwen3-8B as generator, for proposed method + AdaGReS + DynamicRAG
+9. Candidate pool size: top-50 / top-100 / top-200 → sensitivity and DE cost scaling
+
+**Domain-shift evaluation:** Train/tune learned baselines (DynamicRAG, Context-Picker) on one benchmark distribution, evaluate on a different benchmark. Proposed method uses identical hyperparameters across all benchmarks without retuning.
+
+**Compute-normalized comparison:** Decompose costs into three stages: (1) retrieval + embedding (shared); (2) selection/composition (DE pre-computation, optimization algorithm, reranking); (3) generation (variable token count from different selections). Plot accuracy-vs-selection-cost and accuracy-vs-total-cost Pareto curves. Provide concrete wall-clock estimates for DE pre-computation (Qwen3-8B throughput on target hardware).
+
+**Cross-model DE calibration:** On validation subsets, compute DE using both Qwen3-8B and Llama-4-Scout, report Spearman/Pearson correlation.
+
+**γ measurement and analysis:** Compute γ per-query as the minimum diminishing-return ratio over all passage subsets. Report distribution statistics (mean, std, min, percentiles) per benchmark. Analyze correlation between per-query γ and accuracy improvement over monotone baselines. Specifically examine γ behavior in high-redundancy multi-hop scenarios (HotpotQA) vs. single-hop (NQ).
+
+**Bounded-embedding verification:** Report embedding norm distributions and pairwise similarity statistics for Qwen3-Embedding-8B on each benchmark corpus.
+
+**Statistical rigor:** 3-5 independent runs per configuration, mean ± std, paired bootstrap significance tests.
+
+## Key References
+
+- AdaGReS: Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG (arXiv Dec 2025)
+- The Distracting Effect: Understanding Irrelevant Passages in RAG (ACL 2025)
+- Stronger Approximation Guarantees for Non-Monotone γ-Weakly DR-Submodular Maximization (AAMAS 2026)
+- Principled and Scalable Diversity-Aware Retrieval via Cardinality-Constrained Binary Quadratic Programming (arXiv 2604.02554, Apr 2026)
+- Beyond RAG vs. Long-Context: Learning Distraction-Aware Retrieval for Efficient Knowledge Grounding (ICLR 2026)
+- DynamicRAG: Leveraging Outputs of LLM as Feedback for Dynamic Reranking in RAG (NeurIPS 2025)
+- Context-Picker: Dynamic Context Selection Using Multi-stage Reinforcement Learning (arXiv Dec 2025)
+- AdaGATE: Adaptive Gap-Aware Token-Efficient Evidence Assembly for Multi-Hop RAG (arXiv May 2026)
+- SMART-RAG: Selection using Determinantal Matrices for Augmented Retrieval (arXiv:2409.13992, Sep 2024)
+- ScalDPP: Scaling DPPs for RAG — Density Meets Diversity (arXiv:2604.03240, Apr 2026)
+- Vendi-RAG: Adaptively Trading-Off Diversity and Quality (arXiv:2502.11228, Feb 2025)
+- Sub-CP: Submodular Context Partitioning for In-Context Learning (arXiv:2510.05130, Oct 2025)
+- Qian: Multi-objective Evolutionary Algorithms for Approximately Submodular Minus Modular (arXiv:1910.05492)
+- Buchbinder, Feldman, Naor, Schwartz: A Tight (1/2)-Approximation for Unconstrained Submodular Maximization (FOCS 2012)
+- ALCE: Enabling Large Language Models to Generate Text with Citations (Gao et al., EMNLP 2023)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "223970e8-b26f-4912-ad1e-9cd1c8853b51",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T07:39:09.672Z_
+
+```json
+{
+  "parentUuid": "223970e8-b26f-4912-ad1e-9cd1c8853b51",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "0d0b9466-f6b3-4cf9-a932-7a82757da835",
+  "timestamp": "2026-05-30T07:39:09.672Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T07:39:09.672Z_
+
+```json
+{
+  "parentUuid": "0d0b9466-f6b3-4cf9-a932-7a82757da835",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "384612e2-8e28-4fde-9e18-0c1d81ef7161",
+  "timestamp": "2026-05-30T07:39:09.672Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Non-Monotone Submodular Context Composition with Distraction-Redundancy Decomposition  ## Core Problem  How can…",
+  "leafUuid": "384612e2-8e28-4fde-9e18-0c1d81ef7161",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate submodular context composition RAG proposal",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T07:39:14.556Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for AAAI 2026. Let me first do thorough web searches to understand the current landscape, then provide a comprehensive evaluation.
+
+The proposal is about "Non-Monotone Submodular Context Composition with Distraction-Redundancy Decomposition" for RAG systems. Let me search for the key related works and the current state of the field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "384612e2-8e28-4fde-9e18-0c1d81ef7161",
+  "isSidechain": false,
+  "requestId": "req_011CbYNbQoyRFxeFFWrWs9Q2",
+  "type": "assistant",
+  "uuid": "889692b2-e406-4e0a-ad8f-67221cbd9fbb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Foa6Fhfv9XCdoYDy65xcbS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19034,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 19034,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-30T07:39:15.632Z_
+
+I need to conduct thorough literature research before evaluating this proposal. Let me search for the key related works and the current state of the field.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "889692b2-e406-4e0a-ad8f-67221cbd9fbb",
+  "isSidechain": false,
+  "requestId": "req_011CbYNbQoyRFxeFFWrWs9Q2",
+  "type": "assistant",
+  "uuid": "eea19b33-80cc-409e-a303-46a65ac785a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Foa6Fhfv9XCdoYDy65xcbS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19034,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 19034,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-30T07:39:15.978Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XB6E3Q5DMR3tDK3Z3k5sxW`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eea19b33-80cc-409e-a303-46a65ac785a1",
+  "isSidechain": false,
+  "requestId": "req_011CbYNbQoyRFxeFFWrWs9Q2",
+  "type": "assistant",
+  "uuid": "557fe44b-b622-457a-b423-7a499023b838",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Foa6Fhfv9XCdoYDy65xcbS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19034,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 19034,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-30T07:39:15.987Z_
+
+<details><summary>↩ Tool result · `toolu_01XB6E3Q5DMR3tDK3Z3k5sxW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "557fe44b-b622-457a-b423-7a499023b838",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "f15695d1-3591-46f2-8362-57711eaad498",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "557fe44b-b622-457a-b423-7a499023b838",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-30T07:39:18.097Z_
+
+Now let me conduct the required literature searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f15695d1-3591-46f2-8362-57711eaad498",
+  "isSidechain": false,
+  "requestId": "req_011CbYNbs53DbTrECL97yu8X",
+  "type": "assistant",
+  "uuid": "af7019cc-5de6-4241-a5c1-5d09567574fb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1RXGQrdK1uVsXg2wTHpUa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 19034,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 19034,
+          "cache_creation_input_tokens": 739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-30T07:39:19.043Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D3ezVkpRZWsp1FYJM5gLej`</summary>
+
+```json
+{
+  "query": "AdaGReS adaptive greedy context selection RAG submodular optimization 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af7019cc-5de6-4241-a5c1-5d09567574fb",
+  "isSidechain": false,
+  "requestId": "req_011CbYNbs53DbTrECL97yu8X",
+  "type": "assistant",
+  "uuid": "88b5e70c-5bbf-415a-8f9b-e007c8502d35",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1RXGQrdK1uVsXg2wTHpUa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 19034,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 19034,
+          "cache_creation_input_tokens": 739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-30T07:39:19.987Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CRTLgGeCbpUk2bx1JwgpKt`</summary>
+
+```json
+{
+  "query": "distracting effect irrelevant passages RAG ACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88b5e70c-5bbf-415a-8f9b-e007c8502d35",
+  "isSidechain": false,
+  "requestId": "req_011CbYNbs53DbTrECL97yu8X",
+  "type": "assistant",
+  "uuid": "23d6f79c-dd4f-4d8f-8672-7f0cdd92280f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1RXGQrdK1uVsXg2wTHpUa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 19034,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 19034,
+          "cache_creation_input_tokens": 739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-30T07:39:20.461Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0173gW8LDenJPbxM4YQNndVD`</summary>
+
+```json
+{
+  "query": "non-monotone weakly DR-submodular maximization approximation guarantees AAMAS 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23d6f79c-dd4f-4d8f-8672-7f0cdd92280f",
+  "isSidechain": false,
+  "requestId": "req_011CbYNbs53DbTrECL97yu8X",
+  "type": "assistant",
+  "uuid": "24a20a5f-8b8b-4953-aa52-289dbcf0d23a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1RXGQrdK1uVsXg2wTHpUa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 19034,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 19034,
+          "cache_creation_input_tokens": 739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-30T07:39:21.887Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016ZTvSHThwiHk2Gy9SxVvz6`</summary>
+
+```json
+{
+  "query": "DynamicRAG LDAR distraction-aware retrieval context selection 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24a20a5f-8b8b-4953-aa52-289dbcf0d23a",
+  "isSidechain": false,
+  "requestId": "req_011CbYNbs53DbTrECL97yu8X",
+  "type": "assistant",
+  "uuid": "a1a031a7-08aa-4ad6-9c73-3987332fbc64",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1RXGQrdK1uVsXg2wTHpUa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 19034,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 19034,
+          "cache_creation_input_tokens": 739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-30T07:39:22.152Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E7EcxszwfFQtRziTJfKN4f`</summary>
+
+```json
+{
+  "query": "post-retrieval context composition RAG submodular optimization redundancy diversity 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1a031a7-08aa-4ad6-9c73-3987332fbc64",
+  "isSidechain": false,
+  "requestId": "req_011CbYNbs53DbTrECL97yu8X",
+  "type": "assistant",
+  "uuid": "593914a0-fa43-4ffd-8499-8529cd36dab6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1RXGQrdK1uVsXg2wTHpUa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 19034,
+      "output_tokens": 300,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 300,
+          "cache_read_input_tokens": 19034,
+          "cache_creation_input_tokens": 739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-30T07:39:26.008Z_
+
+<details><summary>↩ Tool result · `toolu_01D3ezVkpRZWsp1FYJM5gLej`</summary>
+
+```text
+Web search results for query: "AdaGReS adaptive greedy context selection RAG submodular optimization 2025"
+
+Links: [{"title":"AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG","url":"https://arxiv.org/pdf/2512.25052"},{"title":"[2512.25052] AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG","url":"https://arxiv.org/abs/2512.25052"},{"title":"AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG","url":"https://arxiv.org/html/2512.25052"},{"title":"(PDF) AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG","url":"https://www.researchgate.net/publication/399276683_AdaGReSAdaptive_Greedy_Context_Selection_via_Redundancy-Aware_Scoring_for_Token-Budgeted_RAG"},{"title":"Adaptive Threshold-Driven Continuous Greedy Method for Scalable Submodular Optimization","url":"https://arxiv.org/pdf/2604.03419"}]
+
+Based on the search results, here's what I found about AdaGReS:
+
+AdaGReS is a redundancy-aware context selection framework for token-budgeted RAG that optimizes a set-level objective combining query-chunk relevance and intra-set redundancy penalties. The framework addresses the problem that standard top-k retrieval often returns redundant or near-duplicate chunks that waste token budget and degrade downstream generation.
+
+**Key Features:**
+
+AdaGReS performs greedy selection under a token-budget constraint using marginal gains derived from the objective, and introduces a closed-form, instance-adaptive calibration of the relevance-redundancy trade-off parameter to eliminate manual tuning and to adapt to candidate-pool statistics and budget limits.
+
+**Theoretical Foundation:**
+
+The proposed objective exhibits ε-approximate submodularity under practical embedding similarity conditions, yielding near-optimality guarantees for greedy selection.
+
+**Experimental Results:**
+
+Experiments on open-domain question answering (Natural Questions) and a high-redundancy biomedical (drug) corpus demonstrate consistent improvements in redundancy control and context quality, translating to better end-to-end answer quality and robustness across settings.
+
+The paper was published in December 2025 on arXiv (paper ID: 2512.25052) and comes from researchers at Central South University and Yizhi Intelligent.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88b5e70c-5bbf-415a-8f9b-e007c8502d35",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "08c6380f-b9a6-43fb-9570-dc4fe51b6170",
+  "toolUseResult": {
+    "query": "AdaGReS adaptive greedy context selection RAG submodular optimization 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Aadvj5QYFq13mSFVYH2whR",
+        "content": [
+          {
+            "title": "AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG",
+            "url": "https://arxiv.org/pdf/2512.25052"
+          },
+          {
+            "title": "[2512.25052] AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG",
+            "url": "https://arxiv.org/abs/2512.25052"
+          },
+          {
+            "title": "AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG",
+            "url": "https://arxiv.org/html/2512.25052"
+          },
+          {
+            "title": "(PDF) AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG",
+            "url": "https://www.researchgate.net/publication/399276683_AdaGReSAdaptive_Greedy_Context_Selection_via_Redundancy-Aware_Scoring_for_Token-Budgeted_RAG"
+          },
+          {
+            "title": "Adaptive Threshold-Driven Continuous Greedy Method for Scalable Submodular Optimization",
+            "url": "https://arxiv.org/pdf/2604.03419"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AdaGReS:\n\nAdaGReS is a redundancy-aware context selection framework for token-budgeted RAG that optimizes a set-level objective combining query-chunk relevance and intra-set redundancy penalties. The framework addresses the problem that standard top-k retrieval often returns redundant or near-duplicate chunks that waste token budget and degrade downstream generation.\n\n**Key Features:**\n\nAdaGReS performs greedy selection under a token-budget constraint using marginal gains derived from the objective, and introduces a closed-form, instance-adaptive calibration of the relevance-redundancy trade-off parameter to eliminate manual tuning and to adapt to candidate-pool statistics and budget limits.\n\n**Theoretical Foundation:**\n\nThe proposed objective exhibits ε-approximate submodularity under practical embedding similarity conditions, yielding near-optimality guarantees for greedy selection.\n\n**Experimental Results:**\n\nExperiments on open-domain question answering (Natural Questions) and a high-redundancy biomedical (drug) corpus demonstrate consistent improvements in redundancy control and context quality, translating to better end-to-end answer quality and robustness across settings.\n\nThe paper was published in December 2025 on arXiv (paper ID: 2512.25052) and comes from researchers at Central South University and Yizhi Intelligent."
+    ],
+    "durationSeconds": 6.959785135,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "88b5e70c-5bbf-415a-8f9b-e007c8502d35",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-30T07:39:27.089Z_
+
+<details><summary>↩ Tool result · `toolu_0173gW8LDenJPbxM4YQNndVD`</summary>
+
+```text
+Web search results for query: "non-monotone weakly DR-submodular maximization approximation guarantees AAMAS 2026"
+
+Links: [{"title":"Stronger Approximation Guarantees for Non-Monotone 𝛾-Weakly DR-Submodular Maximization","url":"https://arxiv.org/html/2601.00611"},{"title":"Stronger Approximation Guarantees for Non-Monotone γ-Weakly","url":"https://arxiv.org/pdf/2601.00611"},{"title":"[2601.00611] Stronger Approximation Guarantees for Non-Monotone γ-Weakly DR-Submodular Maximization","url":"https://arxiv.org/abs/2601.00611"},{"title":"Non-monotone DR-submodular Maximization: Approximation and Regret   Guarantees","url":"https://arxiv.org/pdf/1905.09595"},{"title":"Weakly Submodular Function Maximization Using Local Submodularity Ratio","url":"https://arxiv.org/pdf/2004.14650"},{"title":"Guaranteed Non-convex Optimization: Submodular Maximization over   Continuous Domains","url":"https://arxiv.org/pdf/1606.05615"},{"title":"DR-Submodular Maximization","url":"https://www.emergentmind.com/topics/dr-submodular-maximization"}]
+
+Based on the search results, I found a highly relevant paper on this topic:
+
+The paper "Stronger Approximation Guarantees for Non-Monotone γ-Weakly DR-Submodular Maximization" will be presented at the International Conference on Autonomous Agents and Multiagent Systems (AAMAS) in May 2026. 
+
+The work studies the maximization of a nonnegative, non-monotone γ-weakly DR-submodular function over a down-closed convex body. The authors' approach combines a Frank–Wolfe–guided continuous-greedy framework with a γ-aware double-greedy step, yielding a simple yet effective procedure for handling non-monotonicity.
+
+The main result is an approximation algorithm whose guarantee depends smoothly on γ; when γ=1 (the DR-submodular case) the bound recovers the 0.401 approximation factor, while for γ<1 the guarantee degrades gracefully. This results in state-of-the-art guarantees for non-monotone γ-weakly DR-submodular maximization over down-closed convex bodies.
+
+The paper was authored by Hareshkumar Jadav, Ranveer Singh (IIT Indore, India), and Vaneet Aggarwal (Purdue University, USA) and was published on arXiv on January 2, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "24a20a5f-8b8b-4953-aa52-289dbcf0d23a",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "cfd5ee98-3940-47e8-97bc-96ea44c098f5",
+  "toolUseResult": {
+    "query": "non-monotone weakly DR-submodular maximization approximation guarantees AAMAS 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013LDD5Jizg9CjR6NpW6dftH",
+        "content": [
+          {
+            "title": "Stronger Approximation Guarantees for Non-Monotone 𝛾-Weakly DR-Submodular Maximization",
+            "url": "https://arxiv.org/html/2601.00611"
+          },
+          {
+            "title": "Stronger Approximation Guarantees for Non-Monotone γ-Weakly",
+            "url": "https://arxiv.org/pdf/2601.00611"
+          },
+          {
+            "title": "[2601.00611] Stronger Approximation Guarantees for Non-Monotone γ-Weakly DR-Submodular Maximization",
+            "url": "https://arxiv.org/abs/2601.00611"
+          },
+          {
+            "title": "Non-monotone DR-submodular Maximization: Approximation and Regret   Guarantees",
+            "url": "https://arxiv.org/pdf/1905.09595"
+          },
+          {
+            "title": "Weakly Submodular Function Maximization Using Local Submodularity Ratio",
+            "url": "https://arxiv.org/pdf/2004.14650"
+          },
+          {
+            "title": "Guaranteed Non-convex Optimization: Submodular Maximization over   Continuous Domains",
+            "url": "https://arxiv.org/pdf/1606.05615"
+          },
+          {
+            "title": "DR-Submodular Maximization",
+            "url": "https://www.emergentmind.com/topics/dr-submodular-maximization"
+          }
+        ]
+      },
+      "Based on the search results, I found a highly relevant paper on this topic:\n\nThe paper \"Stronger Approximation Guarantees for Non-Monotone γ-Weakly DR-Submodular Maximization\" will be presented at the International Conference on Autonomous Agents and Multiagent Systems (AAMAS) in May 2026. \n\nThe work studies the maximization of a nonnegative, non-monotone γ-weakly DR-submodular function over a down-closed convex body. The authors' approach combines a Frank–Wolfe–guided continuous-greedy framework with a γ-aware double-greedy step, yielding a simple yet effective procedure for handling non-monotonicity.\n\nThe main result is an approximation algorithm whose guarantee depends smoothly on γ; when γ=1 (the DR-submodular case) the bound recovers the 0.401 approximation factor, while for γ<1 the guarantee degrades gracefully. This results in state-of-the-art guarantees for non-monotone γ-weakly DR-submodular maximization over down-closed convex bodies.\n\nThe paper was authored by Hareshkumar Jadav, Ranveer Singh (IIT Indore, India), and Vaneet Aggarwal (Purdue University, USA) and was published on arXiv on January 2, 2026."
+    ],
+    "durationSeconds": 6.625021068999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "24a20a5f-8b8b-4953-aa52-289dbcf0d23a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-30T07:39:28.217Z_
+
+<details><summary>↩ Tool result · `toolu_01CRTLgGeCbpUk2bx1JwgpKt`</summary>
+
+```text
+Web search results for query: "distracting effect irrelevant passages RAG ACL 2025"
+
+Links: [{"title":"The Distracting Effect: Understanding Irrelevant Passages in RAG (ACL 2025) - YouTube","url":"https://www.youtube.com/watch?v=BtLsxjA5D0A"},{"title":"The Distracting Effect: Understanding Irrelevant Passages in RAG - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.892/"},{"title":"RSTLess group on X: \"\"The Distracting Effect: Understanding Irrelevant Passages in RAG\" co-authored by @FlorinCuconasu was accepted at #ACL2025NLP main conference! This work analyzes how different types of distracting passages affect LLMs and achieves 7.5% accuracy gains via targeted fine-tuning.\" / X","url":"https://x.com/RSTLessGroup/status/1923374823595483384"},{"title":"[2505.06914] The Distracting Effect: Understanding Irrelevant Passages in RAG","url":"https://arxiv.org/abs/2505.06914"},{"title":"The Distracting Effect: Understanding Irrelevant Passages in RAG","url":"https://arxiv.org/pdf/2505.06914"},{"title":"The Distracting Effect: Understanding Irrelevant Passages in RAG","url":"https://arxiv.org/html/2505.06914v1"},{"title":"Paper page - The Distracting Effect: Understanding Irrelevant Passages in RAG","url":"https://huggingface.co/papers/2505.06914"},{"title":"Do RAG Systems Really Suffer From Positional Bias?","url":"https://aclanthology.org/2025.emnlp-main.1422.pdf"}]
+
+I found the paper you were searching for! Here are the key details:
+
+**Paper Title:** The Distracting Effect: Understanding Irrelevant Passages in RAG
+
+**Authors and Venue:** Chen Amiraz, Florin Cuconasu, Simone Filice, and Zohar Karnin published this at the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) in 2025.
+
+**Main Contribution:** The paper addresses how retrieved passages that are irrelevant to the query can distract the answer-generating LLM and provides a quantifiable measure of the distracting effect of a passage with respect to a query and an LLM.
+
+**Key Results:** By fine-tuning LLMs with carefully selected distracting passages, the authors achieved up to a 7.5% increase in answering accuracy compared to counterparts fine-tuned on conventional RAG datasets.
+
+**Research Approach:** The contribution is two-fold: they move beyond the simple binary classification of irrelevant passages as either completely unrelated vs. distracting, and develop and analyze multiple methods for finding hard distracting passages.
+
+You can access the full paper on arXiv at arxiv.org/abs/2505.06914 or through the ACL Anthology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23d6f79c-dd4f-4d8f-8672-7f0cdd92280f",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "ae4ef0c2-4a38-4282-98db-480da7b0443d",
+  "toolUseResult": {
+    "query": "distracting effect irrelevant passages RAG ACL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0196MEcdtGL1GJccBzLNKCsM",
+        "content": [
+          {
+            "title": "The Distracting Effect: Understanding Irrelevant Passages in RAG (ACL 2025) - YouTube",
+            "url": "https://www.youtube.com/watch?v=BtLsxjA5D0A"
+          },
+          {
+            "title": "The Distracting Effect: Understanding Irrelevant Passages in RAG - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.892/"
+          },
+          {
+            "title": "RSTLess group on X: \"\"The Distracting Effect: Understanding Irrelevant Passages in RAG\" co-authored by @FlorinCuconasu was accepted at #ACL2025NLP main conference! This work analyzes how different types of distracting passages affect LLMs and achieves 7.5% accuracy gains via targeted fine-tuning.\" / X",
+            "url": "https://x.com/RSTLessGroup/status/1923374823595483384"
+          },
+          {
+            "title": "[2505.06914] The Distracting Effect: Understanding Irrelevant Passages in RAG",
+            "url": "https://arxiv.org/abs/2505.06914"
+          },
+          {
+            "title": "The Distracting Effect: Understanding Irrelevant Passages in RAG",
+            "url": "https://arxiv.org/pdf/2505.06914"
+          },
+          {
+            "title": "The Distracting Effect: Understanding Irrelevant Passages in RAG",
+            "url": "https://arxiv.org/html/2505.06914v1"
+          },
+          {
+            "title": "Paper page - The Distracting Effect: Understanding Irrelevant Passages in RAG",
+            "url": "https://huggingface.co/papers/2505.06914"
+          },
+          {
+            "title": "Do RAG Systems Really Suffer From Positional Bias?",
+            "url": "https://aclanthology.org/2025.emnlp-main.1422.pdf"
+          }
+        ]
+      },
+      "I found the paper you were searching for! Here are the key details:\n\n**Paper Title:** The Distracting Effect: Understanding Irrelevant Passages in RAG\n\n**Authors and Venue:** Chen Amiraz, Florin Cuconasu, Simone Filice, and Zohar Karnin published this at the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) in 2025.\n\n**Main Contribution:** The paper addresses how retrieved passages that are irrelevant to the query can distract the answer-generating LLM and provides a quantifiable measure of the distracting effect of a passage with respect to a query and an LLM.\n\n**Key Results:** By fine-tuning LLMs with carefully selected distracting passages, the authors achieved up to a 7.5% increase in answering accuracy compared to counterparts fine-tuned on conventional RAG datasets.\n\n**Research Approach:** The contribution is two-fold: they move beyond the simple binary classification of irrelevant passages as either completely unrelated vs. distracting, and develop and analyze multiple methods for finding hard distracting passages.\n\nYou can access the full paper on arXiv at arxiv.org/abs/2505.06914 or through the ACL Anthology."
+    ],
+    "durationSeconds": 8.227336782,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "23d6f79c-dd4f-4d8f-8672-7f0cdd92280f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-30T07:39:28.629Z_
+
+<details><summary>↩ Tool result · `toolu_016ZTvSHThwiHk2Gy9SxVvz6`</summary>
+
+```text
+Web search results for query: "DynamicRAG LDAR distraction-aware retrieval context selection 2025 2026"
+
+Links: [{"title":"[2509.21865] Beyond RAG vs. Long-Context: Learning Distraction-Aware Retrieval for Efficient Knowledge Grounding","url":"https://arxiv.org/abs/2509.21865"},{"title":"Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias","url":"https://arxiv.org/html/2512.14313v1"},{"title":"Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias","url":"https://arxiv.org/pdf/2512.14313"},{"title":"Beyond RAG vs. Long-Context: Learning Distraction-Aware Retrieval for Efficient Knowledge Grounding","url":"https://arxiv.org/html/2509.21865v2"},{"title":"Preprint. BEYOND RAG VS. LONG-CONTEXT: LEARNING DISTRACTION-AWARE RETRIEVAL FOR","url":"https://arxiv.org/pdf/2509.21865"},{"title":"[2512.14313] Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias","url":"https://arxiv.org/abs/2512.14313"},{"title":"GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.","url":"https://github.com/liunian-Jay/Awesome-RAG"},{"title":"Cluster-based Adaptive Retrieval: Dynamic Context Selection for RAG Applications","url":"https://arxiv.org/pdf/2511.14769"}]
+
+Based on the search results, I found relevant information about these topics:
+
+## LDAR (Learning Distraction-Aware Retrieval)
+
+LDAR is an adaptive retriever that learns to retrieve contexts in a way that mitigates interference from distracting passages, achieving significantly higher performance with reduced token usage compared to long-context approaches. The approach addresses limitations of supplying full document context including token inefficiency, the "lost in the middle" phenomenon, and distraction that degrades LLM output quality.
+
+## DynamicRAG
+
+DynamicRAG is a 2025 system that adaptively determines both the ranking and the number (k) of retrieved documents for each query. The core component is a dynamic reranker trained using reinforcement learning, where the quality of LLM-generated responses serves as the reward signal.
+
+## Dynamic Context Selection for RAG
+
+Recent work systematically analyzes the impact of distractors on generation quality and investigates how the position of relevant passages within the context window affects their influence on generation. A context-size classifier has been proposed that dynamically predicts the optimal number of documents to retrieve based on query-specific informational needs, demonstrating improved performance over fixed k baselines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1a031a7-08aa-4ad6-9c73-3987332fbc64",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "bafef3b8-c6ef-4f03-a123-fec911c6c7b6",
+  "toolUseResult": {
+    "query": "DynamicRAG LDAR distraction-aware retrieval context selection 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NZj7Snu3kBwd8WpomKY3Wv",
+        "content": [
+          {
+            "title": "[2509.21865] Beyond RAG vs. Long-Context: Learning Distraction-Aware Retrieval for Efficient Knowledge Grounding",
+            "url": "https://arxiv.org/abs/2509.21865"
+          },
+          {
+            "title": "Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias",
+            "url": "https://arxiv.org/html/2512.14313v1"
+          },
+          {
+            "title": "Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias",
+            "url": "https://arxiv.org/pdf/2512.14313"
+          },
+          {
+            "title": "Beyond RAG vs. Long-Context: Learning Distraction-Aware Retrieval for Efficient Knowledge Grounding",
+            "url": "https://arxiv.org/html/2509.21865v2"
+          },
+          {
+            "title": "Preprint. BEYOND RAG VS. LONG-CONTEXT: LEARNING DISTRACTION-AWARE RETRIEVAL FOR",
+            "url": "https://arxiv.org/pdf/2509.21865"
+          },
+          {
+            "title": "[2512.14313] Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias",
+            "url": "https://arxiv.org/abs/2512.14313"
+          },
+          {
+            "title": "GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.",
+            "url": "https://github.com/liunian-Jay/Awesome-RAG"
+          },
+          {
+            "title": "Cluster-based Adaptive Retrieval: Dynamic Context Selection for RAG Applications",
+            "url": "https://arxiv.org/pdf/2511.14769"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about these topics:\n\n## LDAR (Learning Distraction-Aware Retrieval)\n\nLDAR is an adaptive retriever that learns to retrieve contexts in a way that mitigates interference from distracting passages, achieving significantly higher performance with reduced token usage compared to long-context approaches. The approach addresses limitations of supplying full document context including token inefficiency, the \"lost in the middle\" phenomenon, and distraction that degrades LLM output quality.\n\n## DynamicRAG\n\nDynamicRAG is a 2025 system that adaptively determines both the ranking and the number (k) of retrieved documents for each query. The core component is a dynamic reranker trained using reinforcement learning, where the quality of LLM-generated responses serves as the reward signal.\n\n## Dynamic Context Selection for RAG\n\nRecent work systematically analyzes the impact of distractors on generation quality and investigates how the position of relevant passages within the context window affects their influence on generation. A context-size classifier has been proposed that dynamically predicts the optimal number of documents to retrieve based on query-specific informational needs, demonstrating improved performance over fixed k baselines."
+    ],
+    "durationSeconds": 6.740436361000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a1a031a7-08aa-4ad6-9c73-3987332fbc64",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Non-Monotone Submodular Context Composition with Distraction-Redundancy Decomposition  ## Core Problem  How can…",
+  "leafUuid": "bafef3b8-c6ef-4f03-a123-fec911c6c7b6",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate submodular context composition RAG proposal",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-30T07:39:30.641Z_
+
+<details><summary>↩ Tool result · `toolu_01E7EcxszwfFQtRziTJfKN4f`</summary>
+
+```text
+Web search results for query: "post-retrieval context composition RAG submodular optimization redundancy diversity 2025 2026"
+
+Links: [{"title":"AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG","url":"https://arxiv.org/pdf/2512.25052"},{"title":"Scaling DPPs for RAG: Density Meets Diversity","url":"https://arxiv.org/pdf/2604.03240"},{"title":"Structure and Diversity Aware Context Bubble Construction for Enterprise Retrieval Augmented Systems","url":"https://arxiv.org/pdf/2601.10681"},{"title":"Rethinking Retrieval-Augmentation as Synthesis: A Query-Aware Context Merging Approach","url":"https://arxiv.org/pdf/2603.20286"},{"title":"(PDF) The Evolution of Retrieval-Augmented Generation (RAG) in AI","url":"https://www.researchgate.net/publication/399423892_The_Evolution_of_Retrieval-Augmented_Generation_RAG_in_AI"},{"title":"From RAG to Context - A 2025 year-end review of RAG | RAGFlow","url":"https://ragflow.io/blog/rag-review-2025-from-rag-to-context"}]
+
+I found several relevant recent papers and resources on post-retrieval context composition for RAG with a focus on redundancy, diversity, and optimization:
+
+## Key Findings
+
+**Recent Papers on Context Composition and Redundancy:**
+
+AdaGReS proposes an approach with theoretical analysis showing ε-approximate submodularity under practical embedding similarity conditions, yielding near-optimality guarantees for greedy selection. Studies have found that systems tend to return overlapping or near-duplicate chunks under top-k retrieval, especially when documents are chunked densely or the corpus is highly redundant.
+
+A paper titled "Scaling DPPs for RAG: Density Meets Diversity" was published in April 2026. This work addresses how standard RAG models query-chunk relevance but neglect inter-chunk diversity and complementarity, as candidates selected based on similarity to input produce clusters of near-duplicate chunks that dilute the effective token budget under limited context windows.
+
+**Context Merging Approaches:**
+
+The standard retrieve-then-select paradigm retaining only top-k chunks based on semantic similarity inherently suffers from information loss and fragmented context, while greedy selection often introduces significant semantic redundancy that wastefully consumes the limited token budget.
+
+**RAG Evolution 2025-2026:**
+
+As of 2025-2026, RAG has moved into a Modular and Agentic phase with modern systems being iterative and self-correcting.
+
+The search results show active research in this area addressing the core challenges of balancing relevance, diversity, and redundancy in RAG context composition.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "593914a0-fa43-4ffd-8499-8529cd36dab6",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "55d4a67e-7354-40a2-a228-dc0c940ad0bd",
+  "toolUseResult": {
+    "query": "post-retrieval context composition RAG submodular optimization redundancy diversity 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JoGCFFKHNeYZ9TcivntRvy",
+        "content": [
+          {
+            "title": "AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG",
+            "url": "https://arxiv.org/pdf/2512.25052"
+          },
+          {
+            "title": "Scaling DPPs for RAG: Density Meets Diversity",
+            "url": "https://arxiv.org/pdf/2604.03240"
+          },
+          {
+            "title": "Structure and Diversity Aware Context Bubble Construction for Enterprise Retrieval Augmented Systems",
+            "url": "https://arxiv.org/pdf/2601.10681"
+          },
+          {
+            "title": "Rethinking Retrieval-Augmentation as Synthesis: A Query-Aware Context Merging Approach",
+            "url": "https://arxiv.org/pdf/2603.20286"
+          },
+          {
+            "title": "(PDF) The Evolution of Retrieval-Augmented Generation (RAG) in AI",
+            "url": "https://www.researchgate.net/publication/399423892_The_Evolution_of_Retrieval-Augmented_Generation_RAG_in_AI"
+          },
+          {
+            "title": "From RAG to Context - A 2025 year-end review of RAG | RAGFlow",
+            "url": "https://ragflow.io/blog/rag-review-2025-from-rag-to-context"
+          }
+        ]
+      },
+      "I found several relevant recent papers and resources on post-retrieval context composition for RAG with a focus on redundancy, diversity, and optimization:\n\n## Key Findings\n\n**Recent Papers on Context Composition and Redundancy:**\n\nAdaGReS proposes an approach with theoretical analysis showing ε-approximate submodularity under practical embedding similarity conditions, yielding near-optimality guarantees for greedy selection. Studies have found that systems tend to return overlapping or near-duplicate chunks under top-k retrieval, especially when documents are chunked densely or the corpus is highly redundant.\n\nA paper titled \"Scaling DPPs for RAG: Density Meets Diversity\" was published in April 2026. This work addresses how standard RAG models query-chunk relevance but neglect inter-chunk diversity and complementarity, as candidates selected based on similarity to input produce clusters of near-duplicate chunks that dilute the effective token budget under limited context windows.\n\n**Context Merging Approaches:**\n\nThe standard retrieve-then-select paradigm retaining only top-k chunks based on semantic similarity inherently suffers from information loss and fragmented context, while greedy selection often introduces significant semantic redundancy that wastefully consumes the limited token budget.\n\n**RAG Evolution 2025-2026:**\n\nAs of 2025-2026, RAG has moved into a Modular and Agentic phase with modern systems being iterative and self-correcting.\n\nThe search results show active research in this area addressing the core challenges of balancing relevance, diversity, and redundancy in RAG context composition."
+    ],
+    "durationSeconds": 8.487199001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "593914a0-fa43-4ffd-8499-8529cd36dab6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-30T07:39:33.951Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've found key information. Let me do a couple more targeted searches to verify specific claims and find any additional competing works.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55d4a67e-7354-40a2-a228-dc0c940ad0bd",
+  "isSidechain": false,
+  "requestId": "req_011CbYNcwUixcnVnpsSbjM4y",
+  "type": "assistant",
+  "uuid": "6a28fb38-6d1e-47ae-be7b-09328d4a2a2f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KpgK8YtPfeaH4hphqg8PoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 19773,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4006,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 19773,
+          "cache_creation_input_tokens": 4006,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4006
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-30T07:39:34.253Z_
+
+Good, I have initial results. Let me do a few more targeted searches to verify specific claims and check for any additional competing works.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a28fb38-6d1e-47ae-be7b-09328d4a2a2f",
+  "isSidechain": false,
+  "requestId": "req_011CbYNcwUixcnVnpsSbjM4y",
+  "type": "assistant",
+  "uuid": "bbe63fe7-e486-4728-88a5-d2796dc2bffa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KpgK8YtPfeaH4hphqg8PoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 19773,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4006,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 19773,
+          "cache_creation_input_tokens": 4006,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4006
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-30T07:39:35.074Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019ReejQygb5AwEtx9ZMy79X`</summary>
+
+```json
+{
+  "query": "CCBQP cardinality constrained binary quadratic programming retrieval diversity arXiv 2604.02554"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbe63fe7-e486-4728-88a5-d2796dc2bffa",
+  "isSidechain": false,
+  "requestId": "req_011CbYNcwUixcnVnpsSbjM4y",
+  "type": "assistant",
+  "uuid": "4ed70b3d-0a0a-4b5e-aa95-5dd599ec6567",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KpgK8YtPfeaH4hphqg8PoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 19773,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4006,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 19773,
+          "cache_creation_input_tokens": 4006,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4006
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-30T07:39:36.670Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018f2dFNmZbhUh7MtGQnRLPT`</summary>
+
+```json
+{
+  "query": "Context-Picker multi-stage reinforcement learning context selection RAG 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ed70b3d-0a0a-4b5e-aa95-5dd599ec6567",
+  "isSidechain": false,
+  "requestId": "req_011CbYNcwUixcnVnpsSbjM4y",
+  "type": "assistant",
+  "uuid": "fc97b5f6-f6a8-4018-b5be-1eaf8d31bf08",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KpgK8YtPfeaH4hphqg8PoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 19773,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4006,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 19773,
+          "cache_creation_input_tokens": 4006,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4006
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-30T07:39:37.799Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EV6aVSXZDepNyA6NPYwNSu`</summary>
+
+```json
+{
+  "query": "Vendi-RAG diversity quality trading-off RAG arXiv 2502.11228"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc97b5f6-f6a8-4018-b5be-1eaf8d31bf08",
+  "isSidechain": false,
+  "requestId": "req_011CbYNcwUixcnVnpsSbjM4y",
+  "type": "assistant",
+  "uuid": "4c9ded13-d0e6-4629-83c9-3ae5bd0f8350",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KpgK8YtPfeaH4hphqg8PoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4006,
+      "cache_read_input_tokens": 19773,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4006,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 19773,
+          "cache_creation_input_tokens": 4006,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4006
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-30T07:39:43.444Z_
+
+<details><summary>↩ Tool result · `toolu_019ReejQygb5AwEtx9ZMy79X`</summary>
+
+```text
+Web search results for query: "CCBQP cardinality constrained binary quadratic programming retrieval diversity arXiv 2604.02554"
+
+Links: [{"title":"[2604.02554] Principled and Scalable Diversity-Aware Retrieval via Cardinality-Constrained Binary Quadratic Programming","url":"https://arxiv.org/abs/2604.02554"},{"title":"Principled and Scalable Diversity-Aware Retrieval via Cardinality-Constrained Binary Quadratic Programming","url":"https://arxiv.org/html/2604.02554"},{"title":"Principled and Scalable Diversity-Aware Retrieval via Cardinality-Constrained Binary Quadratic Programming","url":"https://arxiv.org/pdf/2604.02554"},{"title":"Towards Exponential Quantum Improvements in Solving Cardinality-Constrained Binary Optimization","url":"https://arxiv.org/pdf/2603.14744"},{"title":"An Algorithm to Solve Cardinality Constrained Quadratic ...","url":"https://arxiv.org/pdf/2504.04043"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper proposes a principled formulation of diversity retrieval as a cardinality-constrained binary quadratic programming (CCBQP), which explicitly balances relevance and semantic diversity through an interpretable trade-off parameter.
+
+**Key Details:**
+
+- **Authors:** Qiheng Lu and Nicholas D. Sidiropoulos from the University of Virginia
+
+- **Problem Addressed:** Diversity-aware retrieval is essential for Retrieval-Augmented Generation (RAG), yet existing methods lack theoretical guarantees and face scalability issues as the number of retrieved passages increases.
+
+- **Solution Approach:** The authors develop a non-convex tight continuous relaxation and a Frank–Wolfe based algorithm with landscape analysis and convergence guarantees.
+
+- **Results:** Extensive experiments demonstrate that the method consistently dominates baselines on the relevance-diversity Pareto frontier, while achieving significant speedup.
+
+- **Code:** All retrieval algorithms are implemented in Python with PyTorch and available at https://github.com/luqh357/CCBQP-RAG
+
+The paper was submitted on April 2, 2026 and is available on arXiv as paper 2604.02554.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4ed70b3d-0a0a-4b5e-aa95-5dd599ec6567",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "d3708431-9a0d-47a2-9684-c3945931c801",
+  "toolUseResult": {
+    "query": "CCBQP cardinality constrained binary quadratic programming retrieval diversity arXiv 2604.02554",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GbQMtZVt83bB1phwd6qnAc",
+        "content": [
+          {
+            "title": "[2604.02554] Principled and Scalable Diversity-Aware Retrieval via Cardinality-Constrained Binary Quadratic Programming",
+            "url": "https://arxiv.org/abs/2604.02554"
+          },
+          {
+            "title": "Principled and Scalable Diversity-Aware Retrieval via Cardinality-Constrained Binary Quadratic Programming",
+            "url": "https://arxiv.org/html/2604.02554"
+          },
+          {
+            "title": "Principled and Scalable Diversity-Aware Retrieval via Cardinality-Constrained Binary Quadratic Programming",
+            "url": "https://arxiv.org/pdf/2604.02554"
+          },
+          {
+            "title": "Towards Exponential Quantum Improvements in Solving Cardinality-Constrained Binary Optimization",
+            "url": "https://arxiv.org/pdf/2603.14744"
+          },
+          {
+            "title": "An Algorithm to Solve Cardinality Constrained Quadratic ...",
+            "url": "https://arxiv.org/pdf/2504.04043"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper proposes a principled formulation of diversity retrieval as a cardinality-constrained binary quadratic programming (CCBQP), which explicitly balances relevance and semantic diversity through an interpretable trade-off parameter.\n\n**Key Details:**\n\n- **Authors:** Qiheng Lu and Nicholas D. Sidiropoulos from the University of Virginia\n\n- **Problem Addressed:** Diversity-aware retrieval is essential for Retrieval-Augmented Generation (RAG), yet existing methods lack theoretical guarantees and face scalability issues as the number of retrieved passages increases.\n\n- **Solution Approach:** The authors develop a non-convex tight continuous relaxation and a Frank–Wolfe based algorithm with landscape analysis and convergence guarantees.\n\n- **Results:** Extensive experiments demonstrate that the method consistently dominates baselines on the relevance-diversity Pareto frontier, while achieving significant speedup.\n\n- **Code:** All retrieval algorithms are implemented in Python with PyTorch and available at https://github.com/luqh357/CCBQP-RAG\n\nThe paper was submitted on April 2, 2026 and is available on arXiv as paper 2604.02554."
+    ],
+    "durationSeconds": 8.363370816000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4ed70b3d-0a0a-4b5e-aa95-5dd599ec6567",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-30T07:39:44.567Z_
+
+<details><summary>↩ Tool result · `toolu_01EV6aVSXZDepNyA6NPYwNSu`</summary>
+
+```text
+Web search results for query: "Vendi-RAG diversity quality trading-off RAG arXiv 2502.11228"
+
+Links: [{"title":"[2502.11228] Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs","url":"https://arxiv.org/abs/2502.11228"},{"title":"[Literature Review] Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs","url":"https://www.themoonlight.io/en/review/vendi-rag-adaptively-trading-off-diversity-and-quality-significantly-improves-retrieval-augmented-generation-with-llms"},{"title":"(PDF) Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs","url":"https://www.researchgate.net/publication/389090989_Vendi-RAG_Adaptively_Trading-Off_Diversity_And_Quality_Significantly_Improves_Retrieval_Augmented_Generation_With_LLMs"},{"title":"Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs","url":"https://powerdrill.ai/discover/summary-vendi-rag-adaptively-trading-off-diversity-and-cm7az3wpr11ep07m0gn8qbdzj"},{"title":"Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs","url":"https://arxiv.org/html/2502.11228v2"},{"title":"Vendi-RAG: Adaptively Trading-Off Diversity And Quality ...","url":"https://arxiv.org/pdf/2502.11228"},{"title":"Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs | Article Information | J-GLOBAL","url":"https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202502218784102922"},{"title":"dblp: Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs.","url":"https://dblp.org/rec/journals/corr/abs-2502-11228.html"},{"title":"Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs | Papers With Code","url":"https://paperswithcode.com/paper/vendi-rag-adaptively-trading-off-diversity"}]
+
+I found the paper you're looking for. Here's what I discovered:
+
+## Vendi-RAG Overview
+
+Vendi-RAG is a framework based on an iterative process that jointly optimizes retrieval diversity and answer quality, leading to significantly higher accuracy for multi-hop QA tasks.
+
+## Problem It Addresses
+
+Retrieval-augmented generation (RAG) enhances large language models (LLMs) for domain-specific question-answering tasks by leveraging external knowledge sources, but traditional RAG systems primarily focus on relevance-based retrieval and often struggle with redundancy, especially when reasoning requires connecting information from multiple sources.
+
+## Key Technical Components
+
+Vendi-RAG leverages the Vendi Score (VS), a flexible similarity-based diversity metric, to promote semantic diversity in document retrieval. It then uses an LLM judge that evaluates candidate answers, generated after a reasoning step, and outputs a score that the retriever uses to balance relevance and diversity among the retrieved documents during each iteration.
+
+## Publication Details
+
+The paper was authored by Mohammad Reza Rezaei and Adji Bousso Dieng, submitted to arXiv on February 16, 2025 (with a version 2 update on May 22, 2025).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c9ded13-d0e6-4629-83c9-3ae5bd0f8350",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "78e77ea1-6fb5-40f7-82c6-28daf7a36cd0",
+  "toolUseResult": {
+    "query": "Vendi-RAG diversity quality trading-off RAG arXiv 2502.11228",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XqB3dQQGpGtgW6P2oS1GUm",
+        "content": [
+          {
+            "title": "[2502.11228] Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs",
+            "url": "https://arxiv.org/abs/2502.11228"
+          },
+          {
+            "title": "[Literature Review] Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs",
+            "url": "https://www.themoonlight.io/en/review/vendi-rag-adaptively-trading-off-diversity-and-quality-significantly-improves-retrieval-augmented-generation-with-llms"
+          },
+          {
+            "title": "(PDF) Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs",
+            "url": "https://www.researchgate.net/publication/389090989_Vendi-RAG_Adaptively_Trading-Off_Diversity_And_Quality_Significantly_Improves_Retrieval_Augmented_Generation_With_LLMs"
+          },
+          {
+            "title": "Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs",
+            "url": "https://powerdrill.ai/discover/summary-vendi-rag-adaptively-trading-off-diversity-and-cm7az3wpr11ep07m0gn8qbdzj"
+          },
+          {
+            "title": "Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs",
+            "url": "https://arxiv.org/html/2502.11228v2"
+          },
+          {
+            "title": "Vendi-RAG: Adaptively Trading-Off Diversity And Quality ...",
+            "url": "https://arxiv.org/pdf/2502.11228"
+          },
+          {
+            "title": "Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs | Article Information | J-GLOBAL",
+            "url": "https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202502218784102922"
+          },
+          {
+            "title": "dblp: Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2502-11228.html"
+          },
+          {
+            "title": "Vendi-RAG: Adaptively Trading-Off Diversity And Quality Significantly Improves Retrieval Augmented Generation With LLMs | Papers With Code",
+            "url": "https://paperswithcode.com/paper/vendi-rag-adaptively-trading-off-diversity"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's what I discovered:\n\n## Vendi-RAG Overview\n\nVendi-RAG is a framework based on an iterative process that jointly optimizes retrieval diversity and answer quality, leading to significantly higher accuracy for multi-hop QA tasks.\n\n## Problem It Addresses\n\nRetrieval-augmented generation (RAG) enhances large language models (LLMs) for domain-specific question-answering tasks by leveraging external knowledge sources, but traditional RAG systems primarily focus on relevance-based retrieval and often struggle with redundancy, especially when reasoning requires connecting information from multiple sources.\n\n## Key Technical Components\n\nVendi-RAG leverages the Vendi Score (VS), a flexible similarity-based diversity metric, to promote semantic diversity in document retrieval. It then uses an LLM judge that evaluates candidate answers, generated after a reasoning step, and outputs a score that the retriever uses to balance relevance and diversity among the retrieved documents during each iteration.\n\n## Publication Details\n\nThe paper was authored by Mohammad Reza Rezaei and Adji Bousso Dieng, submitted to arXiv on February 16, 2025 (with a version 2 update on May 22, 2025)."
+    ],
+    "durationSeconds": 6.764888051000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4c9ded13-d0e6-4629-83c9-3ae5bd0f8350",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-30T07:39:50.074Z_
+
+<details><summary>↩ Tool result · `toolu_018f2dFNmZbhUh7MtGQnRLPT`</summary>
+
+```text
+Web search results for query: "Context-Picker multi-stage reinforcement learning context selection RAG 2025"
+
+Links: [{"title":"[2512.14465] Context-Picker: Dynamic context selection using multi-stage reinforcement learning","url":"https://arxiv.org/abs/2512.14465"},{"title":"Dynamic context selection using multi-stage reinforcement ...","url":"https://arxiv.org/pdf/2512.14465"},{"title":"Context-Picker: Dynamic Context Selection Using Multi-stage Reinforcement Learning","url":"https://arxiv.org/html/2512.14465"},{"title":"Context-Picker: Optimal Context Selection","url":"https://www.emergentmind.com/topics/context-picker"},{"title":"Paper page - Context-Picker: Dynamic context selection using multi-stage reinforcement learning","url":"https://huggingface.co/papers/2512.14465"},{"title":"Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias","url":"https://arxiv.org/html/2512.14313v1"}]
+
+Based on the search results, here's what I found about Context-Picker:
+
+## Overview
+
+Context-Picker is a reasoning-aware framework that reframes context selection as the task of identifying a minimal sufficient evidence subset, moving beyond conventional similarity-based ranking.
+
+## Two-Stage Reinforcement Learning Approach
+
+Context-Picker uses a human-inspired two-stage reinforcement learning schedule: stage 1 focuses on improving the recall rate of critical passages, and stage 2 prioritizes pruning redundancy to distill a compact evidence set.
+
+## Problem It Addresses
+
+In long-context question answering, selecting the appropriate scope of context for a query remains a key and unresolved challenge. Insufficient context can lead to missing essential information, whereas excessive context often introduces noise and degrades answer quality.
+
+## Technical Innovation
+
+To resolve reward sparsity, the framework proposes an offline evidence distillation pipeline that mines "minimal sufficient sets" via a Leave-One-Out (LOO) procedure, providing dense and task-aligned supervision.
+
+## Performance Results
+
+Experiments on five long-context and multi-hop QA datasets demonstrate that the method outperforms strong RAG baselines and achieved higher answer accuracy. Additionally, Context-Picker outperforms Top-K RAG by up to +14.2 percentage points on several benchmarks including LoCoMo, MultiFieldQA, HotpotQA, 2WikiMQA, and MuSiQue.
+
+The paper was published on arXiv in December 2025, representing recent advances in retrieval-augmented generation (RAG) systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc97b5f6-f6a8-4018-b5be-1eaf8d31bf08",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "2caacb1f-b68c-4b0f-ad2b-7bab4b31c7b2",
+  "toolUseResult": {
+    "query": "Context-Picker multi-stage reinforcement learning context selection RAG 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0134gVZLtSy3xD1dDfnPwnoX",
+        "content": [
+          {
+            "title": "[2512.14465] Context-Picker: Dynamic context selection using multi-stage reinforcement learning",
+            "url": "https://arxiv.org/abs/2512.14465"
+          },
+          {
+            "title": "Dynamic context selection using multi-stage reinforcement ...",
+            "url": "https://arxiv.org/pdf/2512.14465"
+          },
+          {
+            "title": "Context-Picker: Dynamic Context Selection Using Multi-stage Reinforcement Learning",
+            "url": "https://arxiv.org/html/2512.14465"
+          },
+          {
+            "title": "Context-Picker: Optimal Context Selection",
+            "url": "https://www.emergentmind.com/topics/context-picker"
+          },
+          {
+            "title": "Paper page - Context-Picker: Dynamic context selection using multi-stage reinforcement learning",
+            "url": "https://huggingface.co/papers/2512.14465"
+          },
+          {
+            "title": "Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias",
+            "url": "https://arxiv.org/html/2512.14313v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Context-Picker:\n\n## Overview\n\nContext-Picker is a reasoning-aware framework that reframes context selection as the task of identifying a minimal sufficient evidence subset, moving beyond conventional similarity-based ranking.\n\n## Two-Stage Reinforcement Learning Approach\n\nContext-Picker uses a human-inspired two-stage reinforcement learning schedule: stage 1 focuses on improving the recall rate of critical passages, and stage 2 prioritizes pruning redundancy to distill a compact evidence set.\n\n## Problem It Addresses\n\nIn long-context question answering, selecting the appropriate scope of context for a query remains a key and unresolved challenge. Insufficient context can lead to missing essential information, whereas excessive context often introduces noise and degrades answer quality.\n\n## Technical Innovation\n\nTo resolve reward sparsity, the framework proposes an offline evidence distillation pipeline that mines \"minimal sufficient sets\" via a Leave-One-Out (LOO) procedure, providing dense and task-aligned supervision.\n\n## Performance Results\n\nExperiments on five long-context and multi-hop QA datasets demonstrate that the method outperforms strong RAG baselines and achieved higher answer accuracy. Additionally, Context-Picker outperforms Top-K RAG by up to +14.2 percentage points on several benchmarks including LoCoMo, MultiFieldQA, HotpotQA, 2WikiMQA, and MuSiQue.\n\nThe paper was published on arXiv in December 2025, representing recent advances in retrieval-augmented generation (RAG) systems."
+    ],
+    "durationSeconds": 13.400230208,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fc97b5f6-f6a8-4018-b5be-1eaf8d31bf08",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-30T07:39:50.081Z_
+
+```json
+{
+  "parentUuid": "2caacb1f-b68c-4b0f-ad2b-7bab4b31c7b2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9bb097aa-2bb4-4251-9083-d50cfb9b8e43",
+  "timestamp": "2026-05-30T07:39:50.081Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-30T07:39:53.044Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me do a couple more searches to check for any very recent works that might be even more directly competitive, and to verify if anyone has already combined submodular optimization with distraction-awareness in RAG.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bb097aa-2bb4-4251-9083-d50cfb9b8e43",
+  "isSidechain": false,
+  "requestId": "req_011CbYNeNb7ErmNtSk5PNQu6",
+  "type": "assistant",
+  "uuid": "7fead3f1-f123-445d-813a-3c2e35ec9488",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016jasFdnkUDzxXmPz3TDDCK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1028,
+      "cache_creation_input_tokens": 1629,
+      "cache_read_input_tokens": 23779,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1028,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 23779,
+          "cache_creation_input_tokens": 1629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-30T07:39:54.034Z_
+
+Let me do two final targeted searches to check for any very recent directly competing works and verify the novelty claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7fead3f1-f123-445d-813a-3c2e35ec9488",
+  "isSidechain": false,
+  "requestId": "req_011CbYNeNb7ErmNtSk5PNQu6",
+  "type": "assistant",
+  "uuid": "aaa47fc1-6337-4918-bbab-3ae676230592",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016jasFdnkUDzxXmPz3TDDCK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1028,
+      "cache_creation_input_tokens": 1629,
+      "cache_read_input_tokens": 23779,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1028,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 23779,
+          "cache_creation_input_tokens": 1629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-30T07:39:54.526Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E5eziW3Kq5S8bQ7PrvDB4x`</summary>
+
+```json
+{
+  "query": "submodular optimization distraction redundancy decomposition RAG context selection 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aaa47fc1-6337-4918-bbab-3ae676230592",
+  "isSidechain": false,
+  "requestId": "req_011CbYNeNb7ErmNtSk5PNQu6",
+  "type": "assistant",
+  "uuid": "5ca5e3c5-3574-48cc-b500-0b064ee887af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016jasFdnkUDzxXmPz3TDDCK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1028,
+      "cache_creation_input_tokens": 1629,
+      "cache_read_input_tokens": 23779,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1028,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 23779,
+          "cache_creation_input_tokens": 1629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-30T07:39:55.124Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UnuiQ1jcaBAXxjyG3P3KXa`</summary>
+
+```json
+{
+  "query": "approximately submodular minus modular optimization NLP application 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ca5e3c5-3574-48cc-b500-0b064ee887af",
+  "isSidechain": false,
+  "requestId": "req_011CbYNeNb7ErmNtSk5PNQu6",
+  "type": "assistant",
+  "uuid": "442b65d3-7d19-4430-b26a-c54361538c97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016jasFdnkUDzxXmPz3TDDCK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1028,
+      "cache_creation_input_tokens": 1629,
+      "cache_read_input_tokens": 23779,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1028,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 23779,
+          "cache_creation_input_tokens": 1629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Non-Monotone Submodular Context Composition with Distraction-Redundancy Decomposition  ## Core Problem  How can…",
+  "leafUuid": "442b65d3-7d19-4430-b26a-c54361538c97",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate submodular context composition RAG proposal",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-30T07:40:00.014Z_
+
+<details><summary>↩ Tool result · `toolu_01UnuiQ1jcaBAXxjyG3P3KXa`</summary>
+
+```text
+Web search results for query: "approximately submodular minus modular optimization NLP application 2025 2026"
+
+Links: [{"title":"Optimal Approximation for Submodular and Supermodular Optimization with Bounded Curvature | Mathematics of Operations Research","url":"https://pubsonline.informs.org/doi/10.1287/moor.2016.0842"},{"title":"Multiobjective Evolutionary Algorithms Are Still Good: Maximizing Monotone Approximately Submodular Minus Modular Functions | MIT Press Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/9655642"},{"title":"Maximizing Monotone Approximately Submodular Minus ...","url":"https://www.lamda.nju.edu.cn/qianc/ecj20-submodular-final.pdf"},{"title":"Multi-objective Evolutionary Algorithms are Still Good: Maximizing   Monotone Approximately Submodular Minus Modular Functions","url":"https://arxiv.org/pdf/1910.05492"},{"title":"[1910.05492] Multi-objective Evolutionary Algorithms are Still Good: Maximizing Monotone Approximately Submodular Minus Modular Functions","url":"https://arxiv.org/abs/1910.05492"}]
+
+Based on the web search results, here's what I found regarding approximately submodular minus modular optimization:
+
+## Overview
+
+The problem class involves maximizing monotone approximately submodular minus modular functions (f = g - c) with a size constraint, where g is a non-negative monotone approximately submodular function and c is a non-negative modular function, resulting in the objective function f being non-monotone nonsubmodular.
+
+## Key Research
+
+A simple multiobjective EA called GSEMO has been shown to be able to achieve good polynomial-time approximation guarantees for submodular optimization, where the objective function is only required to satisfy some properties and its explicit formulation is not needed.
+
+The GSEMO can achieve the best-known polynomial-time approximation guarantee, with empirical studies on the applications of Bayesian experimental design and directed vertex cover showing the excellent performance of the GSEMO.
+
+## Applications
+
+Submodular optimization has wide applications in diverse areas, though the search results primarily reference applications in Bayesian experimental design and directed vertex cover rather than specific NLP applications. The search results don't contain specific information about NLP (Natural Language Processing) applications of this optimization approach in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "442b65d3-7d19-4430-b26a-c54361538c97",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "b7632d32-8054-4d30-a63f-56fdb842e7b2",
+  "toolUseResult": {
+    "query": "approximately submodular minus modular optimization NLP application 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015jL6MCDvD453TRUT3EXMr7",
+        "content": [
+          {
+            "title": "Optimal Approximation for Submodular and Supermodular Optimization with Bounded Curvature | Mathematics of Operations Research",
+            "url": "https://pubsonline.informs.org/doi/10.1287/moor.2016.0842"
+          },
+          {
+            "title": "Multiobjective Evolutionary Algorithms Are Still Good: Maximizing Monotone Approximately Submodular Minus Modular Functions | MIT Press Journals & Magazine | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/9655642"
+          },
+          {
+            "title": "Maximizing Monotone Approximately Submodular Minus ...",
+            "url": "https://www.lamda.nju.edu.cn/qianc/ecj20-submodular-final.pdf"
+          },
+          {
+            "title": "Multi-objective Evolutionary Algorithms are Still Good: Maximizing   Monotone Approximately Submodular Minus Modular Functions",
+            "url": "https://arxiv.org/pdf/1910.05492"
+          },
+          {
+            "title": "[1910.05492] Multi-objective Evolutionary Algorithms are Still Good: Maximizing Monotone Approximately Submodular Minus Modular Functions",
+            "url": "https://arxiv.org/abs/1910.05492"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding approximately submodular minus modular optimization:\n\n## Overview\n\nThe problem class involves maximizing monotone approximately submodular minus modular functions (f = g - c) with a size constraint, where g is a non-negative monotone approximately submodular function and c is a non-negative modular function, resulting in the objective function f being non-monotone nonsubmodular.\n\n## Key Research\n\nA simple multiobjective EA called GSEMO has been shown to be able to achieve good polynomial-time approximation guarantees for submodular optimization, where the objective function is only required to satisfy some properties and its explicit formulation is not needed.\n\nThe GSEMO can achieve the best-known polynomial-time approximation guarantee, with empirical studies on the applications of Bayesian experimental design and directed vertex cover showing the excellent performance of the GSEMO.\n\n## Applications\n\nSubmodular optimization has wide applications in diverse areas, though the search results primarily reference applications in Bayesian experimental design and directed vertex cover rather than specific NLP applications. The search results don't contain specific information about NLP (Natural Language Processing) applications of this optimization approach in 2025-2026."
+    ],
+    "durationSeconds": 4.885171040999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "442b65d3-7d19-4430-b26a-c54361538c97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-30T07:40:01.391Z_
+
+<details><summary>↩ Tool result · `toolu_01E5eziW3Kq5S8bQ7PrvDB4x`</summary>
+
+```text
+Web search results for query: "submodular optimization distraction redundancy decomposition RAG context selection 2026"
+
+Links: [{"title":"AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG","url":"https://arxiv.org/html/2512.25052"},{"title":"AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG","url":"https://arxiv.org/pdf/2512.25052"},{"title":"Submodular Optimization for Text Selection, Passage Reranking & Context Engineering","url":"https://jina.ai/news/submodular-optimization-for-text-selection-passage-reranking-context-engineering/"},{"title":"Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias","url":"https://arxiv.org/pdf/2512.14313"},{"title":"Scaling DPPs for RAG: Density Meets Diversity","url":"https://arxiv.org/pdf/2604.03240"},{"title":"Oreo: A Plug-in Context Reconstructor to Enhance Retrieval-Augmented Generation","url":"https://people.cs.vt.edu/naren/papers/oreo-ictir25.pdf"}]
+
+I found several relevant research papers and resources on this topic. Here are the key findings:
+
+## Recent Work on Submodular Optimization for RAG Context Selection
+
+Submodular set functions have been widely adopted in context selection to model both relevance and diversity. One prominent recent approach is AdaGReS (Adaptive Greedy Context Selection), which proposes a redundancy-aware scoring framework that unifies query relevance and intra-set redundancy into a set-level objective, employing a greedy selection algorithm with theoretical guarantees based on approximate submodularity.
+
+## Addressing Distractions and Redundancy
+
+RAG systems often suffer from two critical challenges: misleading irrelevant retrieved documents (distractors) and the 'lost-in-the-middle' phenomenon. The presence of distractions and redundancy can mislead the downstream LLM, causing it to misinterpret temporal dependencies and generate incorrect answers.
+
+## Query Decomposition Approaches
+
+Techniques such as query decomposition, query rewriting, and query expansion aim to improve retriever performance by refining or enriching the input queries.
+
+## Token-Budgeted Selection
+
+The redundancy-aware scoring function exhibits approximate submodularity under realistic embedding distributions, allowing a greedy selection procedure to provide provable near-optimality for token-budgeted selection tasks in RAG.
+
+These recent papers from late 2025 and early 2026 demonstrate active research in combining submodular optimization with RAG context selection to handle redundancy and distraction issues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ca5e3c5-3574-48cc-b500-0b064ee887af",
+  "isSidechain": false,
+  "promptId": "1165716d-f7a3-49c8-8ee0-fd5512de6a3a",
+  "type": "user",
+  "uuid": "41d2573e-41a7-4f06-9fef-80e1f4824c24",
+  "toolUseResult": {
+    "query": "submodular optimization distraction redundancy decomposition RAG context selection 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0161pTHaWGffanbJiEaPrWr7",
+        "content": [
+          {
+            "title": "AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG",
+            "url": "https://arxiv.org/html/2512.25052"
+          },
+          {
+            "title": "AdaGReS:Adaptive Greedy Context Selection via Redundancy-Aware Scoring for Token-Budgeted RAG",
+            "url": "https://arxiv.org/pdf/2512.25052"
+          },
+          {
+            "title": "Submodular Optimization for Text Selection, Passage Reranking & Context Engineering",
+            "url": "https://jina.ai/news/submodular-optimization-for-text-selection-passage-reranking-context-engineering/"
+          },
+          {
+            "title": "Dynamic Context Selection for Retrieval-Augmented Generation: Mitigating Distractors and Positional Bias",
+            "url": "https://arxiv.org/pdf/2512.14313"
+          },
+          {
+            "title": "Scaling DPPs for RAG: Density Meets Diversity",
+            "url": "https://arxiv.org/pdf/2604.03240"
+          },
+          {
+            "title": "Oreo: A Plug-in Context Reconstructor to Enhance Retrieval-Augmented Generation",
+            "url": "https://people.cs.vt.edu/naren/papers/oreo-ictir25.pdf"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources on this topic. Here are the key findings:\n\n## Recent Work on Submodular Optimization for RAG Context Selection\n\nSubmodular set functions have been widely adopted in context selection to model both relevance and diversity. One prominent recent approach is AdaGReS (Adaptive Greedy Context Selection), which proposes a redundancy-aware scoring framework that unifies query relevance and intra-set redundancy into a set-level objective, employing a greedy selection algorithm with theoretical guarantees based on approximate submodularity.\n\n## Addressing Distractions and Redundancy\n\nRAG systems often suffer from two critical challenges: misleading irrelevant retrieved documents (distractors) and the 'lost-in-the-middle' phenomenon. The presence of distractions and redundancy can mislead the downstream LLM, causing it to misinterpret temporal dependencies and generate incorrect answers.\n\n## Query Decomposition Approaches\n\nTechniques such as query decomposition, query rewriting, and query expansion aim to improve retriever performance by refining or enriching the input queries.\n\n## Token-Budgeted Selection\n\nThe redundancy-aware scoring function exhibits approximate submodularity under realistic embedding distributions, allowing a greedy selection procedure to provide provable near-optimality for token-budgeted selection tasks in RAG.\n\nThese recent papers from late 2025 and early 2026 demonstrate active research in combining submodular optimization with RAG context selection to handle redundancy and distraction issues."
+    ],
+    "durationSeconds": 6.859842081999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5ca5e3c5-3574-48cc-b500-0b064ee887af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-30T07:40:50.980Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture of the field. Let me synthesize my evaluation.
+
+Key findings from the research:
+
+1. **AdaGReS** (arXiv 2512.25052, Dec 2025): Confirmed - provides ε-approximate submodularity for redundancy-penalized context selection, but only handles monotone objectives. Tested on NQ and biomedical data.
+
+2. **The Distracting Effect** (ACL 2025): Confirmed - defines per-passage distraction measure DE_q(p), achieves 7.5% accuracy gains through targeted fine-tuning. 
+
+3. **AAMAS 2026 γ-weakly DR-submodular** (arXiv 2601.00611): Confirmed - provides approximation guarantees for non-monotone γ-weakly DR-submodular maximization, though it lacks NLP applications and set-level optimization.
+
+4. **CCBQP** (arXiv 2604.02554, Apr 2026): Confirmed - Frank-Wolfe based approach that handles relevance-diversity Pareto frontier but doesn't incorporate distraction.
+
+5. **LDAR** (ICLR 2026): Confirmed - distraction-aware retriever, though it lacks post-retrieval composition and formal guarantees.
+
+6. **DynamicRAG** (NeurIPS 2025): RL-based method without formal guarantees.
+
+7. **Context-Picker** (Dec 2025): Two-stage RL approach showing strong results on multi-hop QA.
+
+8. **Vendi-RAG** (Feb 2025): Combines Vendi Score diversity with LLM judging but lacks formal guarantees.
+
+9. **SMART-RAG**: DPP-based method handling relevance, diversity, and conflict, but doesn't account for answer-conditional distraction.
+
+10. **ScalDPP** (Apr 2026): Scales DPP through P-Adapter, though it requires training.
+
+11. **Qian (arXiv 1910.05492)**: Provides theory for approximately submodular minus modular functions with applications in Bayesian experimental design and directed vertex cover, but no NLP applications identified.
+
+The core claim holds up—there really is a gap where no existing method combines post-retrieval filtering, formal approximation guarantees, and distraction awareness. The methods split into two camps: those with theoretical grounding but no distraction modeling versus those handling distractions without formal guarantees. Framing RAG context selection as a γ-weakly DR-submodular problem and applying the AAMAS double-greedy framework is genuinely novel, and applying the approximately submodular minus modular problem class to NLP appears to be new territory. The research gap is well-motivated and clearly articulated.
+
+The proposal has substantial strengths: the theoretical formulation elegantly combines three independent building blocks, the experimental design is rigorous with four benchmarks and nine ablation studies, the redundancy-distraction decomposition is conceptually clean, and γ serves as a useful diagnostic tool. The work also shows methodological sophistication through domain-shift evaluation and compute-normalized comparisons, plus it proactively addresses reviewer concerns about trivial alternatives and includes very recent baselines from 2026. However, the theoretical contribution might be perceived as a straightforward application rather than fundamental innovation—deriving γ for a specific objective under bounded-embedding conditions is solid but could be seen as incremental rather than groundbreaking.
+
+The computational cost is a real concern: each query requires O(n) LLM calls, which adds substantial overhead compared to simple embedding methods. While the proposal plans to measure this, scalability questions will likely arise. The bounded-embedding assumptions may not hold robustly in practice, and the graceful degradation claim relies on empirical validation rather than theoretical guarantees. The modular distraction assumption—treating DE_q(p) as independent across passages—is a strong simplification, and though an ablation explores conditional DE, this remains a theoretical weakness. Additionally, the method builds on several very recent preprints that haven't yet undergone full peer review, which could raise concerns about the stability of the foundational components.
+
+The objective function itself is clean and interpretable, balancing relevance, redundancy, and distraction in a straightforward way. Using the double-greedy algorithm is a sensible choice that makes the modular treatment computationally tractable. The conditional DE ablation helps address concerns about the independence assumption, though questions may remain about whether this simplification is too restrictive.
+
+The experimental setup is exceptionally thorough—four diverse benchmarks spanning single-hop, multi-hop, and ambiguous questions, over eight baselines across multiple categories, nine ablation studies, cross-model validation, domain-shift testing, and compute-normalized comparisons with statistical rigor through bootstrap tests. This is genuinely one of the most comprehensive experimental designs I've encountered.
+
+The main practical constraint is the computational cost of DE scoring—running O(n) LLM calls per query adds up quickly with top-100 candidates, though batched inference on modern hardware makes this feasible. The full experimental pipeline across baselines and benchmarks with proper replication is substantial but achievable for a well-resourced team.
+
+The proposal is elegantly formulated with a genuine research gap, but the risk is that reviewers might see the theoretical contribution as somewhat incremental—essentially applying existing optimization techniques to a specific problem—and the empirical improvements may not feel substantial enough to offset the added complexity. I'm estimating this around 35.
+
+Factoring in the comprehensive experimental design, the solid novelty claim, and the deep engagement with related work, I'd revise upward to the 35-42% range with a median around 38-40%. The main headwinds are whether the formal guarantees translate to meaningful practical value when simpler learned approaches already perform well, and whether the DE overhead is justified by the gains.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41d2573e-41a7-4f06-9fef-80e1f4824c24",
+  "isSidechain": false,
+  "requestId": "req_011CbYNfD68j2otJ19bXyiBz",
+  "type": "assistant",
+  "uuid": "b3f5add4-2254-4c06-8e54-e1d032182a3e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HxeXBFXQX8Gbz568LD1Mu",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 639,
+      "cache_creation_input_tokens": 1951,
+      "cache_read_input_tokens": 25408,
+      "output_tokens": 6905,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1951,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 639,
+          "output_tokens": 6905,
+          "cache_read_input_tokens": 25408,
+          "cache_creation_input_tokens": 1951,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1951
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-30T07:42:37.368Z_
+
+Now I have sufficient information to provide a comprehensive evaluation. Here is my assessment:
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [AdaGReS, arXiv:2512.25052] (preprint, Dec 2025): 最直接的前序工作。证明了冗余惩罚下的ε-近似子模性，但仅处理单调目标，无干扰建模。本 proposal 在其基础上扩展到非单调情形。
+- [The Distracting Effect, ACL 2025] (arXiv:2505.06914): 定义了逐段落干扰度量 DE_q(p)，通过针对性微调实现 7.5% 准确率提升。但仅做分析和微调，无集合级优化。本 proposal 直接借用其 DE 度量作为模块化惩罚项。
+- [γ-Weakly DR-Submodular, AAMAS 2026] (arXiv:2601.00611): 提供了非单调 γ-弱 DR-子模最大化的近似保证 Φ_γ，双贪心框架。理论工具，零 NLP 实证应用。本 proposal 首次将其实例化于 RAG。
+- [CCBQP, arXiv:2604.02554] (preprint, Apr 2026): Frank-Wolfe 求解相关性-多样性 CCBQP，在 QAMPARI/ASQA 上优于 MMR 和 DPP。但仅处理相关性-多样性，无干扰项。proposal 正确指出其相关性权重无法区分高 DE 但话题相关的段落。
+- [LDAR, ICLR 2026] (arXiv:2509.21865): 干扰感知检索器，在检索阶段操作，6 个基准上验证。但无后检索组合，无近似保证。
+- [DynamicRAG, NeurIPS 2025]: 基于 RL + LLM 反馈的动态重排序，7 个基准。无优化保证。
+- [Context-Picker, arXiv:2512.14465] (Dec 2025): 两阶段 RL 上下文选择，5 个基准上表现强劲（+14.2pp）。但无形式化保证。
+- [Vendi-RAG, arXiv:2502.11228] (Feb 2025): Vendi Score 多样性 + LLM 评判迭代优化，适用于多跳 QA。无形式化保证，未显式分解冗余与干扰。
+- [SMART-RAG, arXiv:2409.13992] (Sep 2024): DPP 联合建模相关性、多样性和"冲突"。但"冲突"指段落间矛盾，非答案条件干扰。
+- [ScalDPP, arXiv:2604.03240] (Apr 2026): P-Adapter 缩放 DPP，需训练。仍在相关性-多样性范式内。
+- [Qian, arXiv:1910.05492]: "近似子模减模块"问题类的理论工作（GSEMO），应用于贝叶斯实验设计和有向顶点覆盖。搜索未发现任何 NLP 应用先例。
+
+- 调研总结: Proposal 所识别的研究空白经调研验证属实——当前文献中确实不存在同时满足"后检索"、"有可证明近似保证"和"干扰感知"三个条件的方法。Camp 1（形式化保证方法）全部忽略干扰，Camp 2（干扰感知方法）全部缺乏形式化保证。"近似子模减模块"问题类在 NLP/RAG 领域确实没有先例实例化。这是一个真实且有价值的研究间隙。
+
+【整体印象】:
+作为审稿人，我的第一反应是"这是一篇精心构建的 proposal，展现了对领域非常深入的理解"。研究间隙的识别是真实的、非人造的，三个独立发展的组件（AdaGReS 的近似子模性、ACL 2025 的 DE 度量、AAMAS 2026 的非单调保证）的组合是自然且有说服力的。冗余与干扰的因果机制分解（机会成本 vs. 干扰成本）在概念层面令人信服。实验设计异常全面。我会倾向于 weak accept / borderline accept，主要顾虑在于理论贡献的深度——核心理论步骤可能被视为"将已有框架应用于具体实例"而非深层新理论，以及实际性能增益的不确定性。
+
+【核心贡献】:
+1. **概念贡献**：首次将 RAG 后检索上下文组合形式化为约束非单调子模优化问题，并明确分解冗余（集合内语义重叠）和干扰（答案条件干扰）为独立惩罚项，且论证了为什么两者不可合并。
+2. **理论贡献**：为该 RAG 特定目标函数推导 γ-弱 DR-子模性参数，在有界嵌入条件下获得 Φ_γ 近似保证。这是"近似子模减模块"问题类在 NLP 中的首次实例化。
+3. **诊断工具**：γ 作为组合难度诊断指标的提出，可判断何时需要非单调优化 vs. 单调贪心即可。
+
+这些贡献对领域有中等偏上的价值。概念框架有可能成为后续工作的基础，但单独来看，每个贡献都不是 breakthrough 级别的。
+
+【方法合理性】:
+方法整体合理。f(S) = relevance - β·redundancy - λ·distraction 的目标函数设计简洁、可解释，三项各有明确的语义对应。将 DE_q(p) 作为模块化（modular）项处理使得理论分析成为可能，且支持 O(n) 预计算——这是一个实用的设计选择。
+
+**潜在问题**：
+- **模块化干扰假设**：DE_q(p) 独立于集合中其他段落是一个较强的简化。多个干扰段落可能形成叠加效应（如多个段落共同强化一个错误叙事），使得集合级干扰 > 各段落干扰之和。Proposal 通过消融实验（Ablation 5: conditional DE）部分回应了这一点，但若条件 DE 显著优于模块 DE，则理论保证的基础（模块化惩罚）将被动摇。
+- **更简单的替代方案**：Proposal 已主动讨论了两阶段流水线（先过滤高 DE 段落，再跑单调贪心），并将其作为消融基线。这是加分项。但 reviewers 可能仍会质疑：在实际场景中，如果两阶段流水线性能差距不大，那么引入非单调优化框架的额外复杂性是否值得？
+
+【5 维度打分】:
+
+1. 研究问题: [强] — 
+   "添加更多信息何时可证明地损害生成质量"是一个基础性且实用的问题。冗余与干扰的分解有清晰的因果论证。研究间隙经独立调研验证属实：Camp 1（AdaGReS, CCBQP, SMART-RAG, ScalDPP）全部不建模干扰，Camp 2（LDAR, DynamicRAG, Context-Picker）全部无形式化保证。问题的重要性在实际 RAG 部署中有广泛的工程共鸣。
+
+2. 方法与创新: [中] — 
+   组合三个已有组件（AdaGReS ε-近似子模性 + ACL 2025 DE 度量 + AAMAS 双贪心框架）的方式是自然且合理的，但创新主要在于"组装"而非"发明"。核心理论步骤——在有界嵌入条件下推导 γ 参数——属于标准的参数化分析，理论深度有限。与 Buchbinder et al. (FOCS 2012) 的 1/2-近似相比，AAMAS 框架在 γ≈1 时保证更弱，proposal 需要展示 γ 确实偏离 1 才能体现非单调框架的价值。γ 作为诊断工具的二次贡献有趣但属于实证观察而非理论创新。调研确认"近似子模减模块"未在 NLP 中被实例化（Qian 的工作仅有贝叶斯实验设计和图问题应用），这一首次实例化有一定价值，但可能被部分审稿人视为应用层面的贡献。
+
+3. 实验设计: [强] — 
+   这是 proposal 最突出的优势。4 个基准覆盖单跳（NQ）、多跳（HotpotQA）和模糊/多答案（ASQA, QAMPARI）QA。8+ 基线分三组（启发式、形式化优化、学习型），覆盖了几乎所有直接竞争者（AdaGReS, CCBQP, SMART-RAG, DynamicRAG, LDAR, Context-Picker, Vendi-RAG）。9 项消融设计近乎穷尽：组件隔离、超参敏感度、算法对比、DE 模型迁移、条件 DE、选择集大小、两阶段流水线对比、跨生成器验证、候选池大小。额外包含 LDAR 对比协议（检索控制 vs. 端到端）、领域迁移评估、计算归一化对比、γ 测量分析、有界嵌入验证、统计显著性检验。这一实验设计在 proposal 阶段已达到了大多数已发表论文的实验完备度，甚至超越。
+
+4. 可行性: [中] — 
+   DE 预计算需要 O(n) 次 LLM 调用/查询（如 top-100 候选，每查询 100 次 Qwen3-8B 推理），计算开销显著高于纯嵌入方法。Proposal 使用 Qwen3-8B（8B 参数）进行 DE 评分在当前硬件上可行但需要合理的 GPU 资源。8+ 基线 × 4 基准 × 3-5 次重复 × 多项消融的实验量极大，需要充足的计算资源和实验管理能力。部分学习型基线（DynamicRAG, Context-Picker）的复现可能有困难。整体可行，但实验周期可能较长。
+
+5. 写作与呈现: [强] — 
+   Proposal 的结构清晰，逻辑链完整：问题动机 → 研究间隙 → 方法设计 → 理论分析 → 实验方案。"为什么分解冗余和干扰"部分的因果论证有说服力。"应对平凡替代方案"主动回应了最明显的审稿人质疑。研究格局的两阵营分析精准到位。引用的覆盖面广且紧跟前沿（含 2026 年 4 月的 CCBQP 和 ScalDPP）。γ 作为诊断工具的叙事为理论贡献增加了实用解读。
+
+【概率估计】: [32% - 45%] 中位 38%
+
+【估计理由】:
+正面因素：(1) 研究间隙真实可验证，概念框架清晰有说服力；(2) 实验设计异常全面，远超同阶段 proposal 平均水平——如果实验执行到位，论文将很难在实验方法论上被挑剔；(3) "近似子模减模块"在 NLP 的首次实例化是一个有意义的桥梁贡献；(4) 写作成熟度高，主动预防了多个常见审稿意见。
+
+负面因素：(1) 核心理论贡献可能被视为"应用已有优化框架到具体问题"，创新深度有限——推导 γ 参数是重要但不是 breakthrough 级的工作；(2) 实际性能增益存在不确定性：如果两阶段流水线（Ablation 7）或 CCBQP 等简单方法在大部分基准上表现接近，那么非单调框架的附加复杂性将受到质疑；(3) 模块化 DE 假设的合理性是一个潜在的理论软肋——若 Ablation 5 显示条件 DE 显著更好，将削弱核心公式化的基础；(4) DE 计算的额外开销（O(n) LLM 调用）可能限制实际部署价值；(5) 多个核心构件（AdaGReS、AAMAS 论文）尚未被广泛引用和验证，基础的成熟度有一定风险。
+
+综合来看，这是一篇整体扎实、研究问题有价值、实验设计优秀的 proposal，但方法创新的深度是主要短板。在 AAAI 的竞争环境中，它处于 borderline 位置——遇到欣赏形式化框架 + 实证桥梁工作的审稿人可以拿到 accept，遇到追求深层理论创新或 breakthrough 实证结果的审稿人可能被拒。中位估计 38%。
+
+【主要风险】:
+1. **创新深度质疑**：最可能的拒稿理由是"方法创新主要是组合已有组件（AdaGReS + DE + AAMAS），理论贡献（推导 γ）偏应用层面，缺乏深层新insight"。如果审稿人认为这更像是一个"engineering contribution + theory instantiation"而非"fundamental advance"，则评分会偏低。
+2. **实证增益不确定性**：如果实验结果显示与两阶段流水线或 CCBQP 等更简单方法的差距不够显著，那么整个非单调优化框架的附加价值将被严重质疑。形式化保证在实践中的价值需要通过显著的实证优势来证明——仅有理论保证在 applied ML 社区往往不够。
+
+【实施评估】:
+  - 计算资源: 中等偏高。DE 预计算需 Qwen3-8B 推理（每查询 O(n) 次），主生成使用 Llama-4-Scout。需至少 1-2 块 A100/H100 用于批量推理。8+ 基线 × 4 基准 × 多次重复 + 消融 ≈ 数百次实验配置。
+  - 数据需求: 低。使用公开基准（NQ, ASQA, QAMPARI, HotpotQA），均有成熟的预处理流程和评测框架（ALCE）。
+  - 人工介入: 低。方法为无训练方法，无需人工标注。部分学习型基线复现可能需要一定调试。
+  - 训练需求: 无。提出的方法是 training-free 的，仅需预计算 DE 分数和嵌入。但部分基线（DynamicRAG, Context-Picker, ScalDPP）需要训练/复现。
+  - 新 Benchmark: 否。使用已有基准。
+  - 预估周期: 10-14 周。其中：文献调研和理论推导（2-3 周）、DE 预计算和基础设施搭建（2-3 周）、主实验和基线复现（4-5 周）、消融实验和分析（2-3 周）、论文撰写（2-3 周，可与实验并行）。
+```
+
+Sources:
+- [AdaGReS: Adaptive Greedy Context Selection](https://arxiv.org/abs/2512.25052)
+- [The Distracting Effect: Understanding Irrelevant Passages in RAG (ACL 2025)](https://aclanthology.org/2025.acl-long.892/)
+- [Stronger Approximation Guarantees for Non-Monotone γ-Weakly DR-Submodular Maximization (AAMAS 2026)](https://arxiv.org/abs/2601.00611)
+- [CCBQP: Principled and Scalable Diversity-Aware Retrieval](https://arxiv.org/abs/2604.02554)
+- [LDAR: Beyond RAG vs. Long-Context (ICLR 2026)](https://arxiv.org/abs/2509.21865)
+- [Context-Picker: Dynamic Context Selection Using Multi-stage RL](https://arxiv.org/abs/2512.14465)
+- [Vendi-RAG: Adaptively Trading-Off Diversity And Quality](https://arxiv.org/abs/2502.11228)
+- [Qian: Multi-objective EA for Approximately Submodular Minus Modular](https://arxiv.org/abs/1910.05492)
+- [ScalDPP: Scaling DPPs for RAG](https://arxiv.org/pdf/2604.03240)
+- [Jina AI: Submodular Optimization for Text Selection](https://jina.ai/news/submodular-optimization-for-text-selection-passage-reranking-context-engineering/)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3f5add4-2254-4c06-8e54-e1d032182a3e",
+  "isSidechain": false,
+  "requestId": "req_011CbYNfD68j2otJ19bXyiBz",
+  "type": "assistant",
+  "uuid": "eb0ced7b-ab4c-48eb-9762-dc0178a16591",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014HxeXBFXQX8Gbz568LD1Mu",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 639,
+      "cache_creation_input_tokens": 1951,
+      "cache_read_input_tokens": 25408,
+      "output_tokens": 6905,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1951,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 639,
+          "output_tokens": 6905,
+          "cache_read_input_tokens": 25408,
+          "cache_creation_input_tokens": 1951,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1951
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Non-Monotone Submodular Context Composition with Distraction-Redundancy Decomposition  ## Core Problem  How can…",
+  "leafUuid": "eb0ced7b-ab4c-48eb-9762-dc0178a16591",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate submodular context composition RAG proposal",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Non-Monotone Submodular Context Composition with Distraction-Redundancy Decomposition  ## Core Problem  How can…",
+  "leafUuid": "eb0ced7b-ab4c-48eb-9762-dc0178a16591",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate submodular context composition RAG proposal",
+  "sessionId": "8cd2386c-1a2d-4160-8c35-cba7098cbafe"
+}
+```
+
+---

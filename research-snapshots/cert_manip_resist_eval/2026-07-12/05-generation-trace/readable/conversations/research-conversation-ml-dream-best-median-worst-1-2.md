@@ -1,0 +1,1145 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。 你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/898bba17-2c96-4541-b272-ead26a167bcf.jsonl`
+- **Structured JSON:** [`f2299e67ae082f5be3ea.json`](../../sessions/f2/f2299e67ae082f5be3ea.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-22T17:38:40.158Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-22T17:38:40.158Z",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf",
+  "content": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。\n\n你需要同时定义 best / median / worst 三档：\n1. 每档的核心假设（哪些假设成立/不成立）\n2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）\n3. 每档的论文叙事方向——\n   - best: 原始 framing 完全成立，claims 无需调整\n   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验\n   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）\n\n三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性\n自行判断。但必须确保三档之间的数字和叙事逻辑一致。\n\n# Project context\nproject: cert_manip_resist_eval\nvenue: emnlp-2026\nfocus: v4 framing: diversity independently harmful (K_eff 8/12 residualized sig positive). Dual vulnerability drivers. BFT reversal mechanism. 15 models, 455 panels. Key question: does the counter-intuitive \"diversity hurts\" finding raise the paper ceiling above the previous 2.5 Dream score?\n\n## paper_framing.md\n\n# Paper Framing — cert_manip_resist_eval (v4: 15-Model Empirical Revision)\n\n> Last updated: 2026-05-22 | Reason: 15-model/455-panel results fundamentally changed Claim 1 direction; K_eff independently positive; dual vulnerability drivers\n\n## Target\nEMNLP 2026 (via ARR)\n\n## Title Candidates\n1. \"The Diversity Trap: Why Adding More Judges Doesn't Make LLM Evaluation Safer\"\n2. \"More Diverse, More Vulnerable: How Judge Independence Backfires Under Adaptive Adversaries\"\n3. \"Against the Diversity Assumption: Panel Diversity Independently Increases LLM Evaluation Vulnerability\"\n\n## Core Insight\nMulti-judge LLM evaluation panels are widely assumed to benefit from judge diversity, analogous to Byzantine Fault Tolerance (BFT) where independence protects against faults. We provide the first large-scale empirical evidence (15 models, 455 panels, 6 attacks) that this assumption **reverses** under adaptive adversaries: diversity (K_eff) is significantly and independently **positively** correlated with attack success rate. Panel vulnerability is driven by **dual factors** — individual weakness (η_max) AND structural diversity (K_eff) — with their relative importance depending on attack type. The mechanism: BFT assumes random faults where independent nodes tolerate uncorrelated failures; but adaptive adversaries exploit the diverse attack surface that independent judges create, finding judge-specific vulnerabilities across a wider attack space.\n\n## Hook\n\"Adding more diverse judges to an evaluation panel doesn't just fail to help — it actively makes the panel more vulnerable to adversarial manipulation.\"\n\n## Novelty Positioning\nWe do NOT claim to discover that diversity can be harmful in adversarial settings — the concept exists in security literature. Our contributions are:\n1. **First empirical quantification of diversity's independent harmful effect** in the LLM-judge domain (15 models, 455 panels, residualized K_eff analysis confirming independent effect beyond η_max)\n2. **Dual vulnerability driver discovery**: η_max and K_eff independently predict panel ASR, with condition-dependent relative importance (η_max dominates bias attacks; K_eff dominates transferable attacks)\n3. **BFT reversal mechanism**: formal and empirical demonstration of WHY diversity helps under random faults but HURTS under adaptive adversaries\n4. **Structural barriers**: copula failure (10-21× MI underestimation), diversity-capability tradeoff (now with independent predictive evidence), family label unreliability\n5. **Actionable defense**: robustness-first selection + reliability-weighted aggregation\n\n## Core Claims\n\n### Claim 1 (Primary): Dual Vulnerability Drivers — Diversity Trap\n**Statement**: Under adaptive adversarial attacks, panel ASR is independently predicted by BOTH individual weakness (η_max, 9/12 FDR sig) AND panel diversity (K_eff, 8/12 FDR sig positive after residualization). Diversity **increases** vulnerability. Their relative importance is condition-dependent: η_max dominates shared-bias attacks, K_eff dominates transferable attacks.\n**Evidence** (15-model, 455 panels, 12 conditions):\n- η_max FDR significant: **9/12**\n- K_eff raw FDR significant positive: **12/12**\n- K_eff residualized (orthogonalized against η_max, VIF=1.00): **8/12 FDR sig positive**\n- Sensitivity (exclude ACC < 0.5): K_eff_resid **9/12** sig → not driven by extreme outliers\n- **K_eff dominates η_max** in 2 conditions: arc×score_manipulation (η_max p=0.117 NS, K_eff_resid p=1.7e-7), arc×position_bias (η_max p=0.910 NS, K_eff_resid p=1.8e-8)\n- **η_max dominates K_eff** in bias-type attacks: sycophancy, verbosity, authority\n- Confound status: mean |r|=0.700 (SEVERE), but 2 BROKEN conditions (r≈0.35) confirm independent K_eff effect (p=6e-26, 4e-16)\n**Strength**: Strong. Residualized analysis + confound-free conditions + sensitivity analysis all converge.\n**Headline**: \"Both η_max (9/12) and K_eff (8/12 residualized) independently predict panel vulnerability. Diversity actively increases attack surface.\"\n\n**Comparison to 6-model results** (for transparency):\n- 6-model (20 panels): K_eff 1/12 sig, η_max 6/12 sig → \"K_eff irrelevant\"\n- 15-model (455 panels): K_eff 8/12 sig positive, η_max 9/12 sig → \"K_eff independently harmful\"\n- The reversal is driven by model pool expansion: more diverse capability spectrum enables detecting K_eff's real effect.\n\n### Claim 2 (Empirical): Adaptive vs Random-Fault Predictability Gap\n**Statement**: Panel composition explains systematically more variance under random faults than under adaptive attacks (ΔR² = +0.213). Adaptive adversaries introduce strategic variance beyond panel structure.\n**Evidence** (15-model, 455 panels):\n- K_eff significant in both regimes (12/12 adaptive, 12/12 RF), both positive direction\n- K_eff gains significance: 11/12 (RF β larger than adaptive β in most conditions)\n- ΔR² = +0.213 mean\n**Reframing from v3**: Original BFT contrast (\"K_eff helps under RF but not adaptive\") does NOT hold — K_eff is harmful in both regimes. The real distinction is predictability: random faults produce more explainable variance, adaptive attacks introduce strategic noise.\n**Strength**: Moderate. R² gap real, but K_eff regime-difference story is weaker than originally hoped.\n\n### Claim 3 (Empirical): Diversity-Capability Tradeoff\n**Statement**: In the current LLM ecosystem, maximizing panel diversity (K_eff) structurally introduces less capable/robust models. This tradeoff is not merely correlational — residualized K_eff analysis confirms diversity has an independent predictive effect on vulnerability beyond its association with η_max.\n**Evidence**:\n- K_eff-η_max correlation: r = +0.700 (15-model)\n- Residualized K_eff still significant 8/12 → not purely mediated by η_max\n- Independent statistical effect: diversity predicts vulnerability beyond what η_max alone explains\n**Upgrade from v3**: From \"correlation\" to \"independent predictive effect\" (residualized analysis). Note: observational regression cannot establish causality — would require experimental manipulation of panel composition or instrumental variables.\n**Strength**: Strong (statistical association). Causal language avoided.\n\n### Claim 4 (Methodological): Family Labels ≠ Diversity\n**Statement**: Model family labels (Qwen/Llama/Mistral/Anthropic/OpenAI/Google) do not predict judge independence. Capability proximity is the primary driver of inter-judge correlation.\n**Evidence**: Mann-Whitney U p=0.206, permutation p=0.427 for within vs cross-family MI. (6-model data; needs 15-model revalidation with 105 pairs)\n**Strength**: Moderate (needs 15-model update).\n\n### Claim 5 (Methodological): Gaussian Copula Failure\n**Statement**: The Gaussian copula model systematically underestimates information sharing between LLM judges by 10-21× (up to 235×), invalidating copula-based independence bounds.\n**Evidence**: MI_observed / MI_gaussian ratio across model pairs × datasets. (Needs 15-model update)\n**Strength**: Strong (6-model). Needs 15-model revalidation.\n\n### Claim 6 (Practical): Robustness-First Panel Design\n**Statement**: Optimal panel selection is robustness-first: (1) screen for individual robustness (η ≤ threshold), then (2) maximize K_eff among qualifying judges. The two-stage approach is critical because K_eff is harmful in unrestricted pools but may be neutral or beneficial among robustness-screened judges.\n**Evidence**: min_eta_max strategy dominates 5/6 conditions (6-model). Full 15-model validation needed.\n**Strength**: Moderate. Updated rationale: K_eff's positive (harmful) effect should diminish when η_max is controlled by screening.\n\n### Claim 7 (Empirical+Practical): Aggregation Rule Modulates Vulnerability Drivers\n**Statement**: The dual vulnerability driver effect (Claim 1) varies by aggregation rule. Bayesian aggregation partially breaks the η_max effect; threshold voting amplifies K_eff's harmful effect.\n**Evidence** (6-model, needs 15-model rerun):\n- Majority: η_max 5/12, K_eff mostly NS\n- Threshold: K_eff positive 8/12 (diversity harmful under unanimity)\n- Bayesian: η_max 2/12 (weakened)\n**Needs**: 15-model/455-panel rerun of plan_010 aggregation analysis.\n**Strength**: Moderate (6-model only).\n\n## Contribution Stack (ordered by strength)\n1. **Diversity Trap / Dual vulnerability drivers** — primary empirical contribution (K_eff independently harmful + condition-dependent dominance pattern)\n2. **Diversity-capability tradeoff with independent predictive evidence** — empirical contribution (residualized analysis upgrades from correlation to independent effect)\n3. **BFT reversal mechanism** — theoretical contribution (why independence hurts under adaptive adversaries)\n4. **Aggregation-dependent effects** — empirical+practical (Bayesian as partial defense; threshold as amplifier)\n5. **Robustness-first panel design** — practical contribution\n6. **Gaussian copula failure** — methodological contribution\n7. **Family label unreliability** — methodological contribution\n8. **Adaptive vs random-fault predictability gap** — empirical (R² gap, weakened from original)\n\n## Anticipated Reviewer Concerns\n\n### RC1: \"K_eff positive is just confound with η_max\"\n**Response**: (a) Residualized K_eff (VIF=1.00) still significant 8/12; (b) In confound-free conditions (r≈0.35), K_eff p < 1e-16; (c) Sensitivity analysis excluding extreme models: 9/12 still significant. Three independent lines of evidence rule out confound artifact.\n\n### RC2: \"Why does diversity hurt? What's the mechanism?\"\n**Response**: (a) BFT assumes random faults — independent nodes protect via uncorrelated failures; (b) Under adaptive adversaries, independent judges create diverse attack surface — attacker exploits judge-specific vulnerabilities; (c) Condition-dependent analysis: K_eff dominates transferable attacks (score_manipulation, position_bias) where attack diversity maps to judge diversity; η_max dominates shared-bias attacks (sycophancy, verbosity) where all judges share similar biases.\n\n### RC3: \"Only 15 models — does this generalize?\"\n**Response**: (a) 15 models across 6 families, 3 capability tiers, covering major commercial and open-source models; (b) 455 panels provide strong statistical power; (c) Effect is robust to sensitivity analysis; (d) Direction consistent across 6→9→15 model scaling (K_eff shifts from NS to positive as model pool diversifies).\n\n### RC4: \"BFT comparison is a strawman\"\n**Response**: (a) The implicit assumption \"more diverse judges = more robust\" is pervasive in LLM evaluation literature; (b) We formalize this assumption and show its reversal; (c) The BFT reversal mechanism (random vs adaptive faults) provides theoretical grounding beyond just empirical observation.\n\n### RC5: \"Why not just use the strongest models?\"\n**Response**: (a) \"Strongest\" varies by attack type; (b) K_eff dominates η_max in 2 conditions — even all-strong panels are vulnerable through diversity channel; (c) Two-stage algorithm addresses both vulnerability drivers.\n\n### RC6: \"No theoretical novelty\"\n**Response**: (a) Theorem 1 (η_max monotonicity) is formally proved; (b) BFT reversal mechanism provides novel theoretical framework; (c) Dual vulnerability driver finding with condition-dependent importance is new.\n\n### RC7: \"Why not just use Bayesian aggregation?\"\n**Response**: (a) Bayesian reduces η_max significance but K_eff effect unknown at 15-model scale; (b) Requires clean accuracy prior; (c) Adaptive attacker can target Bayesian weighting; (d) Defense stack (selection + aggregation) recommended.\n\n### RC8 (new): \"6-model and 15-model results contradict — which is right?\"\n**Response**: (a) 6-model result (K_eff NS) was underpowered and confounded (r=-0.8, only 20 panels); (b) 15-model result (K_eff positive) has 23× more panels, wider capability range, and passes residualized validation; (c) Paper reports both and explains why 15-model result is definitive; (d) The scaling behavior itself (K_eff effect emerging with more models) is informative.\n\n## \"When Diversity Helps\" Section\nDiversity MAY be beneficial under specific conditions — paper must acknowledge nuance:\n1. **Non-adversarial settings**: reducing calibration errors, position bias, verbosity bias in absence of adversary\n2. **After robustness screening**: once all judges exceed a capability threshold, K_eff's harmful effect may diminish (the diversity-capability tradeoff is broken by screening). This is the basis for our two-stage recommendation.\n3. **Shared-bias attacks where η_max is high and uniform**: when all models are similarly vulnerable (low η_max variance), K_eff's independent harmful effect is weaker. But this is a narrow regime.\n4. **Disclaimer**: K_eff's harmful effect was significant in 8/12 conditions including confound-free ones. \"When diversity helps\" is the exception, not the rule, under adaptive adversaries.\n\n## Story Arc (v4)\n1. **Background**: Multi-judge LLM evaluation is increasingly adopted; diversity is assumed to be the key defense against manipulation (BFT analogy)\n2. **Tension**: We test this assumption at unprecedented scale — 15 models, 6 families, 455 panels, 6 attack types\n3. **Surprise**: Diversity doesn't just fail to protect — it **actively increases vulnerability**. K_eff is significantly positive in 12/12 conditions (8/12 after residualization)\n4. **Mechanism**: BFT assumes random faults; adaptive adversaries exploit the diverse attack surface that independent judges create. η_max and K_eff are dual vulnerability drivers with condition-dependent importance\n5. **Nuance**: K_eff dominates transferable attacks; η_max dominates shared-bias attacks. The diversity-capability tradeoff provides partial (but not complete) explanation\n6. **Defense**: Robustness-first screening + Bayesian aggregation. No single defense eliminates both vulnerability channels\n7. **Implication**: The LLM evaluation community should rethink the \"more diverse = more robust\" assumption. Panel security requires managing both individual robustness AND structural diversity\n\n\n## experiment_plan (with registry status)\n\n- id: mvp_mi_matrix\n  claim: 4\n  description: Compute pairwise mutual information for 6 open-source judges on MMLU\n    and ARC. Validate Gaussian copula assumption.\n  priority: P0\n  gpu_budget_hours: 10\n  deps: []\n  registry_id: mvp-step2-keff-contrast\n  notes: MI matrix computed. Gaussian copula underestimates MI by 10-21×. Family labels\n    do not predict MI (p=0.206).\n  status: DONE\n  conclusion: negative\n  metrics:\n    mmlu:\n      high_keff_asr: 0.2457\n      low_keff_asr: 0.1438\n      mann_whitney_p: 1\n    arc:\n      high_keff_asr: 0.1228\n      low_keff_asr: 0.078\n      mann_whitney_p: 1\n- id: mvp_regression\n  claim: 1\n  description: Multivariate regression log(ASR) ~ log(K_eff) + log(η_max) across 20\n    C(6,3) panels, 2 datasets, 3 attack types.\n  priority: P0\n  gpu_budget_hours: 20\n  deps: []\n  registry_id: mvp-step2v3-retry3\n  notes: η_max significant 4/6 conditions; K_eff not significant 5/6. Weakest-link\n    dominates.\n  status: DONE\n  conclusion: negative\n  metrics:\n    regression_6conditions:\n      keff_sig_negative: 1\n      keff_sig_positive: 0\n      keff_nonsig: 5\n      eta_max_sig: 4\n    best_keff_result:\n      condition: arc×sycophancy\n      B_keff: -2.852\n      p_keff: 0.003\n      R2: 0.579\n    summary: eta_max dominates; K_eff not significant predictor in 5/6 conditions\n- id: mvp_taxonomy\n  claim: 1\n  description: 'Test K_eff on verbosity/position/authority bias attacks. Taxonomy\n    hypothesis: K_eff helps for shared-bias attacks.'\n  priority: P0\n  gpu_budget_hours: 15\n  deps: []\n  registry_id: taxonomy-broad-spectrum\n  notes: 0/6 new conditions K_eff significant. Taxonomy hypothesis falsified.\n  status: DONE\n  conclusion: negative\n  metrics:\n    keff_sig_negative: 0\n    keff_sig_positive: 1\n    keff_nonsig: 5\n    eta_max_sig: 3\n    worst_keff:\n      condition: mmlu×position\n      B: 3.357\n      p: 0.035\n      direction: WRONG (positive)\n    summary: 0/6 K_eff significant negative. Taxonomy hypothesis falsified.\n- id: plan_001\n  claim: 1\n  description: 'Scale expansion to 10-15 models. Add API models (GPT-4o-mini, GPT-4o,\n    GPT-4.1, GPT-4.1-mini) and large open-source (Llama-3.1-70B, Qwen2.5-72B). Rerun\n    MI matrix + regression on expanded panel set. Note: Claude/Gemini availability\n    TBD.'\n  priority: P0\n  gpu_budget_hours: 80\n  deps: []\n  notes: Validates weakest-link at scale. API endpoint may be OpenAI-only.\n  status: planned\n- id: plan_002\n  claim: 1\n  description: Attack expansion to 6+ types. Add few-shot hijacking, persona manipulation,\n    instruction override. Run on full model pool.\n  priority: P1\n  gpu_budget_hours: 60\n  deps:\n  - plan_001\n  notes: Validates weakest-link universality across attack surface.\n  status: planned\n- id: plan_003\n  claim: 2\n  description: 'Random-fault simulation as BFT contrast experiment. Each judge fails\n    independently with prob η_j, majority vote. Show K_eff IS significant under random\n    faults (≥4/6 conditions) vs NOT significant under adaptive faults (11/12 already\n    shown). GO/NO-GO GATE: if random-fault K_eff also not significant → BFT framing\n    collapses.'\n  priority: P0\n  gpu_budget_hours: 5\n  deps: []\n  notes: Anti-strawman lifeline. Uses existing individual judge ASR data.\n  status: planned\n- id: plan_004\n  claim: 3\n  description: Capability-matched validation. Within same capability tier (all 7B\n    or all 70B), test whether K_eff emerges as significant when η_max variance is\n    controlled.\n  priority: P1\n  gpu_budget_hours: 20\n  deps:\n  - plan_001\n  notes: ''\n  status: planned\n- id: plan_005\n  claim: 6\n  description: 'Two-stage panel design algorithm benchmark. Robustness-first: (1)\n    filter η > threshold, (2) maximize K_eff. Benchmark vs 5 baselines. Dream flagged\n    marginal improvement over Strongest-K in all three tiers.'\n  priority: P1\n  gpu_budget_hours: 10\n  deps:\n  - plan_001\n  notes: May need algorithm redesign given Dream observation of marginal gains.\n  status: planned\n- id: plan_006\n  claim: 1\n  description: Per-judge ASR concentration analysis. Measure per-judge ASR distribution\n    for each panel × attack. Compute Gini coefficient + entropy. Direct evidence for\n    adaptive adversary targeting.\n  priority: P1\n  gpu_budget_hours: 5\n  deps:\n  - plan_001\n  notes: ''\n  status: planned\n- id: plan_007\n  claim: 3\n  description: Diversity-capability tradeoff visualization. Plot K_eff vs η_max across\n    all panels. Fit tradeoff curve. Pareto frontier. Stratify by tier.\n  priority: P2\n  gpu_budget_hours: 2\n  deps:\n  - plan_001\n  notes: ''\n  status: planned\n- id: plan_008\n  claim: 1\n  description: Panel size sensitivity K=3,5,7,9. Test whether η_max dominance persists\n    as K grows.\n  priority: P2\n  gpu_budget_hours: 30\n  deps:\n  - plan_001\n  notes: ''\n  status: planned\n- id: plan_009\n  claim: 1\n  description: VIF + multicollinearity analysis on existing data. Compute VIF, partial\n    correlations, residualized K_eff. Apply Bonferroni/FDR correction. Try beta regression.\n    Dream D3+D6.\n  priority: P0\n  gpu_budget_hours: 0\n  deps: []\n  notes: No GPU needed. Uses existing regression data.\n  status: planned\n- id: plan_010\n  claim: 1\n  description: Non-majority-vote aggregation. Test weakest-link under weighted voting,\n    veto rules, Bayesian aggregation. Dream D9.\n  priority: P1\n  gpu_budget_hours: 15\n  deps:\n  - plan_001\n  notes: ''\n  status: planned\n- id: plan_011\n  claim: 1\n  description: Open-ended generation benchmark. Add MT-Bench or AlpacaEval-style task\n    beyond MCQ. Dream D11.\n  priority: P1\n  gpu_budget_hours: 40\n  deps:\n  - plan_001\n  notes: ''\n  status: planned\n- id: plan_012\n  claim: 2\n  description: Partial-knowledge adversary model. Adversary knows families but not\n    exact vulnerability profiles. Dream D12.\n  priority: P2\n  gpu_budget_hours: 10\n  deps:\n  - plan_001\n  - plan_003\n  notes: ''\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: mvp-step2-keff-contrast\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    mmlu:\n      high_keff_asr: 0.2457\n      low_keff_asr: 0.1438\n      mann_whitney_p: 1\n    arc:\n      high_keff_asr: 0.1228\n      low_keff_asr: 0.078\n      mann_whitney_p: 1\n- exp_id: mvp-step2v3-regression\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: mvp-step2v3-retry\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: mvp-step2v3-retry2\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: mvp-step2v3-retry3\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    regression_6conditions:\n      keff_sig_negative: 1\n      keff_sig_positive: 0\n      keff_nonsig: 5\n      eta_max_sig: 4\n    best_keff_result:\n      condition: arc×sycophancy\n      B_keff: -2.852\n      p_keff: 0.003\n      R2: 0.579\n    summary: eta_max dominates; K_eff not significant predictor in 5/6 conditions\n- exp_id: taxonomy-broad-spectrum\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    keff_sig_negative: 0\n    keff_sig_positive: 1\n    keff_nonsig: 5\n    eta_max_sig: 3\n    worst_keff:\n      condition: mmlu×position\n      B: 3.357\n      p: 0.035\n      direction: WRONG (positive)\n    summary: 0/6 K_eff significant negative. Taxonomy hypothesis falsified.\n- exp_id: plan001_step1_dryrun\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_dryrun2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_dryrun3\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_full\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_full_v2\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: plan001_step1_full_v3\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: plan001_step1_full_v4\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_parallel_dryrun\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_parallel_dryrun2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_parallel\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_parallel_v2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_parallel_v3\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_parallel_v4\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_parallel_v5\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_parallel_final\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_v2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_throttled\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_throttled_v2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_throttled_v3\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_throttled_v4\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_throttled_v5\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_v3\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_batched\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: plan001_step1_batched_v2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n\n# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）\n\n```yaml\ntiers:\n  best:\n    meaning: \"...\"\n    key_assumptions: [...]\n    number_ranges: {metric_a: [low, high], metric_b: [...]}\n    narrative_direction: \"...\"\n  median:\n    meaning: \"...\"\n    ...\n  worst:\n    meaning: \"...\"\n    ...\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-22T17:38:40.161Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-22T17:38:40.161Z",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf"
+}
+```
+
+---
+
+## Round 1
+
+12 recorded events
+
+### User
+
+_source line 3 · 2026-05-22T17:38:40.183Z_
+
+你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。
+
+你需要同时定义 best / median / worst 三档：
+1. 每档的核心假设（哪些假设成立/不成立）
+2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）
+3. 每档的论文叙事方向——
+   - best: 原始 framing 完全成立，claims 无需调整
+   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验
+   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）
+
+三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性
+自行判断。但必须确保三档之间的数字和叙事逻辑一致。
+
+# Project context
+project: cert_manip_resist_eval
+venue: emnlp-2026
+focus: v4 framing: diversity independently harmful (K_eff 8/12 residualized sig positive). Dual vulnerability drivers. BFT reversal mechanism. 15 models, 455 panels. Key question: does the counter-intuitive "diversity hurts" finding raise the paper ceiling above the previous 2.5 Dream score?
+
+## paper_framing.md
+
+# Paper Framing — cert_manip_resist_eval (v4: 15-Model Empirical Revision)
+
+> Last updated: 2026-05-22 | Reason: 15-model/455-panel results fundamentally changed Claim 1 direction; K_eff independently positive; dual vulnerability drivers
+
+## Target
+EMNLP 2026 (via ARR)
+
+## Title Candidates
+1. "The Diversity Trap: Why Adding More Judges Doesn't Make LLM Evaluation Safer"
+2. "More Diverse, More Vulnerable: How Judge Independence Backfires Under Adaptive Adversaries"
+3. "Against the Diversity Assumption: Panel Diversity Independently Increases LLM Evaluation Vulnerability"
+
+## Core Insight
+Multi-judge LLM evaluation panels are widely assumed to benefit from judge diversity, analogous to Byzantine Fault Tolerance (BFT) where independence protects against faults. We provide the first large-scale empirical evidence (15 models, 455 panels, 6 attacks) that this assumption **reverses** under adaptive adversaries: diversity (K_eff) is significantly and independently **positively** correlated with attack success rate. Panel vulnerability is driven by **dual factors** — individual weakness (η_max) AND structural diversity (K_eff) — with their relative importance depending on attack type. The mechanism: BFT assumes random faults where independent nodes tolerate uncorrelated failures; but adaptive adversaries exploit the diverse attack surface that independent judges create, finding judge-specific vulnerabilities across a wider attack space.
+
+## Hook
+"Adding more diverse judges to an evaluation panel doesn't just fail to help — it actively makes the panel more vulnerable to adversarial manipulation."
+
+## Novelty Positioning
+We do NOT claim to discover that diversity can be harmful in adversarial settings — the concept exists in security literature. Our contributions are:
+1. **First empirical quantification of diversity's independent harmful effect** in the LLM-judge domain (15 models, 455 panels, residualized K_eff analysis confirming independent effect beyond η_max)
+2. **Dual vulnerability driver discovery**: η_max and K_eff independently predict panel ASR, with condition-dependent relative importance (η_max dominates bias attacks; K_eff dominates transferable attacks)
+3. **BFT reversal mechanism**: formal and empirical demonstration of WHY diversity helps under random faults but HURTS under adaptive adversaries
+4. **Structural barriers**: copula failure (10-21× MI underestimation), diversity-capability tradeoff (now with independent predictive evidence), family label unreliability
+5. **Actionable defense**: robustness-first selection + reliability-weighted aggregation
+
+## Core Claims
+
+### Claim 1 (Primary): Dual Vulnerability Drivers — Diversity Trap
+**Statement**: Under adaptive adversarial attacks, panel ASR is independently predicted by BOTH individual weakness (η_max, 9/12 FDR sig) AND panel diversity (K_eff, 8/12 FDR sig positive after residualization). Diversity **increases** vulnerability. Their relative importance is condition-dependent: η_max dominates shared-bias attacks, K_eff dominates transferable attacks.
+**Evidence** (15-model, 455 panels, 12 conditions):
+- η_max FDR significant: **9/12**
+- K_eff raw FDR significant positive: **12/12**
+- K_eff residualized (orthogonalized against η_max, VIF=1.00): **8/12 FDR sig positive**
+- Sensitivity (exclude ACC < 0.5): K_eff_resid **9/12** sig → not driven by extreme outliers
+- **K_eff dominates η_max** in 2 conditions: arc×score_manipulation (η_max p=0.117 NS, K_eff_resid p=1.7e-7), arc×position_bias (η_max p=0.910 NS, K_eff_resid p=1.8e-8)
+- **η_max dominates K_eff** in bias-type attacks: sycophancy, verbosity, authority
+- Confound status: mean |r|=0.700 (SEVERE), but 2 BROKEN conditions (r≈0.35) confirm independent K_eff effect (p=6e-26, 4e-16)
+**Strength**: Strong. Residualized analysis + confound-free conditions + sensitivity analysis all converge.
+**Headline**: "Both η_max (9/12) and K_eff (8/12 residualized) independently predict panel vulnerability. Diversity actively increases attack surface."
+
+**Comparison to 6-model results** (for transparency):
+- 6-model (20 panels): K_eff 1/12 sig, η_max 6/12 sig → "K_eff irrelevant"
+- 15-model (455 panels): K_eff 8/12 sig positive, η_max 9/12 sig → "K_eff independently harmful"
+- The reversal is driven by model pool expansion: more diverse capability spectrum enables detecting K_eff's real effect.
+
+### Claim 2 (Empirical): Adaptive vs Random-Fault Predictability Gap
+**Statement**: Panel composition explains systematically more variance under random faults than under adaptive attacks (ΔR² = +0.213). Adaptive adversaries introduce strategic variance beyond panel structure.
+**Evidence** (15-model, 455 panels):
+- K_eff significant in both regimes (12/12 adaptive, 12/12 RF), both positive direction
+- K_eff gains significance: 11/12 (RF β larger than adaptive β in most conditions)
+- ΔR² = +0.213 mean
+**Reframing from v3**: Original BFT contrast ("K_eff helps under RF but not adaptive") does NOT hold — K_eff is harmful in both regimes. The real distinction is predictability: random faults produce more explainable variance, adaptive attacks introduce strategic noise.
+**Strength**: Moderate. R² gap real, but K_eff regime-difference story is weaker than originally hoped.
+
+### Claim 3 (Empirical): Diversity-Capability Tradeoff
+**Statement**: In the current LLM ecosystem, maximizing panel diversity (K_eff) structurally introduces less capable/robust models. This tradeoff is not merely correlational — residualized K_eff analysis confirms diversity has an independent predictive effect on vulnerability beyond its association with η_max.
+**Evidence**:
+- K_eff-η_max correlation: r = +0.700 (15-model)
+- Residualized K_eff still significant 8/12 → not purely mediated by η_max
+- Independent statistical effect: diversity predicts vulnerability beyond what η_max alone explains
+**Upgrade from v3**: From "correlation" to "independent predictive effect" (residualized analysis). Note: observational regression cannot establish causality — would require experimental manipulation of panel composition or instrumental variables.
+**Strength**: Strong (statistical association). Causal language avoided.
+
+### Claim 4 (Methodological): Family Labels ≠ Diversity
+**Statement**: Model family labels (Qwen/Llama/Mistral/Anthropic/OpenAI/Google) do not predict judge independence. Capability proximity is the primary driver of inter-judge correlation.
+**Evidence**: Mann-Whitney U p=0.206, permutation p=0.427 for within vs cross-family MI. (6-model data; needs 15-model revalidation with 105 pairs)
+**Strength**: Moderate (needs 15-model update).
+
+### Claim 5 (Methodological): Gaussian Copula Failure
+**Statement**: The Gaussian copula model systematically underestimates information sharing between LLM judges by 10-21× (up to 235×), invalidating copula-based independence bounds.
+**Evidence**: MI_observed / MI_gaussian ratio across model pairs × datasets. (Needs 15-model update)
+**Strength**: Strong (6-model). Needs 15-model revalidation.
+
+### Claim 6 (Practical): Robustness-First Panel Design
+**Statement**: Optimal panel selection is robustness-first: (1) screen for individual robustness (η ≤ threshold), then (2) maximize K_eff among qualifying judges. The two-stage approach is critical because K_eff is harmful in unrestricted pools but may be neutral or beneficial among robustness-screened judges.
+**Evidence**: min_eta_max strategy dominates 5/6 conditions (6-model). Full 15-model validation needed.
+**Strength**: Moderate. Updated rationale: K_eff's positive (harmful) effect should diminish when η_max is controlled by screening.
+
+### Claim 7 (Empirical+Practical): Aggregation Rule Modulates Vulnerability Drivers
+**Statement**: The dual vulnerability driver effect (Claim 1) varies by aggregation rule. Bayesian aggregation partially breaks the η_max effect; threshold voting amplifies K_eff's harmful effect.
+**Evidence** (6-model, needs 15-model rerun):
+- Majority: η_max 5/12, K_eff mostly NS
+- Threshold: K_eff positive 8/12 (diversity harmful under unanimity)
+- Bayesian: η_max 2/12 (weakened)
+**Needs**: 15-model/455-panel rerun of plan_010 aggregation analysis.
+**Strength**: Moderate (6-model only).
+
+## Contribution Stack (ordered by strength)
+1. **Diversity Trap / Dual vulnerability drivers** — primary empirical contribution (K_eff independently harmful + condition-dependent dominance pattern)
+2. **Diversity-capability tradeoff with independent predictive evidence** — empirical contribution (residualized analysis upgrades from correlation to independent effect)
+3. **BFT reversal mechanism** — theoretical contribution (why independence hurts under adaptive adversaries)
+4. **Aggregation-dependent effects** — empirical+practical (Bayesian as partial defense; threshold as amplifier)
+5. **Robustness-first panel design** — practical contribution
+6. **Gaussian copula failure** — methodological contribution
+7. **Family label unreliability** — methodological contribution
+8. **Adaptive vs random-fault predictability gap** — empirical (R² gap, weakened from original)
+
+## Anticipated Reviewer Concerns
+
+### RC1: "K_eff positive is just confound with η_max"
+**Response**: (a) Residualized K_eff (VIF=1.00) still significant 8/12; (b) In confound-free conditions (r≈0.35), K_eff p < 1e-16; (c) Sensitivity analysis excluding extreme models: 9/12 still significant. Three independent lines of evidence rule out confound artifact.
+
+### RC2: "Why does diversity hurt? What's the mechanism?"
+**Response**: (a) BFT assumes random faults — independent nodes protect via uncorrelated failures; (b) Under adaptive adversaries, independent judges create diverse attack surface — attacker exploits judge-specific vulnerabilities; (c) Condition-dependent analysis: K_eff dominates transferable attacks (score_manipulation, position_bias) where attack diversity maps to judge diversity; η_max dominates shared-bias attacks (sycophancy, verbosity) where all judges share similar biases.
+
+### RC3: "Only 15 models — does this generalize?"
+**Response**: (a) 15 models across 6 families, 3 capability tiers, covering major commercial and open-source models; (b) 455 panels provide strong statistical power; (c) Effect is robust to sensitivity analysis; (d) Direction consistent across 6→9→15 model scaling (K_eff shifts from NS to positive as model pool diversifies).
+
+### RC4: "BFT comparison is a strawman"
+**Response**: (a) The implicit assumption "more diverse judges = more robust" is pervasive in LLM evaluation literature; (b) We formalize this assumption and show its reversal; (c) The BFT reversal mechanism (random vs adaptive faults) provides theoretical grounding beyond just empirical observation.
+
+### RC5: "Why not just use the strongest models?"
+**Response**: (a) "Strongest" varies by attack type; (b) K_eff dominates η_max in 2 conditions — even all-strong panels are vulnerable through diversity channel; (c) Two-stage algorithm addresses both vulnerability drivers.
+
+### RC6: "No theoretical novelty"
+**Response**: (a) Theorem 1 (η_max monotonicity) is formally proved; (b) BFT reversal mechanism provides novel theoretical framework; (c) Dual vulnerability driver finding with condition-dependent importance is new.
+
+### RC7: "Why not just use Bayesian aggregation?"
+**Response**: (a) Bayesian reduces η_max significance but K_eff effect unknown at 15-model scale; (b) Requires clean accuracy prior; (c) Adaptive attacker can target Bayesian weighting; (d) Defense stack (selection + aggregation) recommended.
+
+### RC8 (new): "6-model and 15-model results contradict — which is right?"
+**Response**: (a) 6-model result (K_eff NS) was underpowered and confounded (r=-0.8, only 20 panels); (b) 15-model result (K_eff positive) has 23× more panels, wider capability range, and passes residualized validation; (c) Paper reports both and explains why 15-model result is definitive; (d) The scaling behavior itself (K_eff effect emerging with more models) is informative.
+
+## "When Diversity Helps" Section
+Diversity MAY be beneficial under specific conditions — paper must acknowledge nuance:
+1. **Non-adversarial settings**: reducing calibration errors, position bias, verbosity bias in absence of adversary
+2. **After robustness screening**: once all judges exceed a capability threshold, K_eff's harmful effect may diminish (the diversity-capability tradeoff is broken by screening). This is the basis for our two-stage recommendation.
+3. **Shared-bias attacks where η_max is high and uniform**: when all models are similarly vulnerable (low η_max variance), K_eff's independent harmful effect is weaker. But this is a narrow regime.
+4. **Disclaimer**: K_eff's harmful effect was significant in 8/12 conditions including confound-free ones. "When diversity helps" is the exception, not the rule, under adaptive adversaries.
+
+## Story Arc (v4)
+1. **Background**: Multi-judge LLM evaluation is increasingly adopted; diversity is assumed to be the key defense against manipulation (BFT analogy)
+2. **Tension**: We test this assumption at unprecedented scale — 15 models, 6 families, 455 panels, 6 attack types
+3. **Surprise**: Diversity doesn't just fail to protect — it **actively increases vulnerability**. K_eff is significantly positive in 12/12 conditions (8/12 after residualization)
+4. **Mechanism**: BFT assumes random faults; adaptive adversaries exploit the diverse attack surface that independent judges create. η_max and K_eff are dual vulnerability drivers with condition-dependent importance
+5. **Nuance**: K_eff dominates transferable attacks; η_max dominates shared-bias attacks. The diversity-capability tradeoff provides partial (but not complete) explanation
+6. **Defense**: Robustness-first screening + Bayesian aggregation. No single defense eliminates both vulnerability channels
+7. **Implication**: The LLM evaluation community should rethink the "more diverse = more robust" assumption. Panel security requires managing both individual robustness AND structural diversity
+
+
+## experiment_plan (with registry status)
+
+- id: mvp_mi_matrix
+  claim: 4
+  description: Compute pairwise mutual information for 6 open-source judges on MMLU
+    and ARC. Validate Gaussian copula assumption.
+  priority: P0
+  gpu_budget_hours: 10
+  deps: []
+  registry_id: mvp-step2-keff-contrast
+  notes: MI matrix computed. Gaussian copula underestimates MI by 10-21×. Family labels
+    do not predict MI (p=0.206).
+  status: DONE
+  conclusion: negative
+  metrics:
+    mmlu:
+      high_keff_asr: 0.2457
+      low_keff_asr: 0.1438
+      mann_whitney_p: 1
+    arc:
+      high_keff_asr: 0.1228
+      low_keff_asr: 0.078
+      mann_whitney_p: 1
+- id: mvp_regression
+  claim: 1
+  description: Multivariate regression log(ASR) ~ log(K_eff) + log(η_max) across 20
+    C(6,3) panels, 2 datasets, 3 attack types.
+  priority: P0
+  gpu_budget_hours: 20
+  deps: []
+  registry_id: mvp-step2v3-retry3
+  notes: η_max significant 4/6 conditions; K_eff not significant 5/6. Weakest-link
+    dominates.
+  status: DONE
+  conclusion: negative
+  metrics:
+    regression_6conditions:
+      keff_sig_negative: 1
+      keff_sig_positive: 0
+      keff_nonsig: 5
+      eta_max_sig: 4
+    best_keff_result:
+      condition: arc×sycophancy
+      B_keff: -2.852
+      p_keff: 0.003
+      R2: 0.579
+    summary: eta_max dominates; K_eff not significant predictor in 5/6 conditions
+- id: mvp_taxonomy
+  claim: 1
+  description: 'Test K_eff on verbosity/position/authority bias attacks. Taxonomy
+    hypothesis: K_eff helps for shared-bias attacks.'
+  priority: P0
+  gpu_budget_hours: 15
+  deps: []
+  registry_id: taxonomy-broad-spectrum
+  notes: 0/6 new conditions K_eff significant. Taxonomy hypothesis falsified.
+  status: DONE
+  conclusion: negative
+  metrics:
+    keff_sig_negative: 0
+    keff_sig_positive: 1
+    keff_nonsig: 5
+    eta_max_sig: 3
+    worst_keff:
+      condition: mmlu×position
+      B: 3.357
+      p: 0.035
+      direction: WRONG (positive)
+    summary: 0/6 K_eff significant negative. Taxonomy hypothesis falsified.
+- id: plan_001
+  claim: 1
+  description: 'Scale expansion to 10-15 models. Add API models (GPT-4o-mini, GPT-4o,
+    GPT-4.1, GPT-4.1-mini) and large open-source (Llama-3.1-70B, Qwen2.5-72B). Rerun
+    MI matrix + regression on expanded panel set. Note: Claude/Gemini availability
+    TBD.'
+  priority: P0
+  gpu_budget_hours: 80
+  deps: []
+  notes: Validates weakest-link at scale. API endpoint may be OpenAI-only.
+  status: planned
+- id: plan_002
+  claim: 1
+  description: Attack expansion to 6+ types. Add few-shot hijacking, persona manipulation,
+    instruction override. Run on full model pool.
+  priority: P1
+  gpu_budget_hours: 60
+  deps:
+  - plan_001
+  notes: Validates weakest-link universality across attack surface.
+  status: planned
+- id: plan_003
+  claim: 2
+  description: 'Random-fault simulation as BFT contrast experiment. Each judge fails
+    independently with prob η_j, majority vote. Show K_eff IS significant under random
+    faults (≥4/6 conditions) vs NOT significant under adaptive faults (11/12 already
+    shown). GO/NO-GO GATE: if random-fault K_eff also not significant → BFT framing
+    collapses.'
+  priority: P0
+  gpu_budget_hours: 5
+  deps: []
+  notes: Anti-strawman lifeline. Uses existing individual judge ASR data.
+  status: planned
+- id: plan_004
+  claim: 3
+  description: Capability-matched validation. Within same capability tier (all 7B
+    or all 70B), test whether K_eff emerges as significant when η_max variance is
+    controlled.
+  priority: P1
+  gpu_budget_hours: 20
+  deps:
+  - plan_001
+  notes: ''
+  status: planned
+- id: plan_005
+  claim: 6
+  description: 'Two-stage panel design algorithm benchmark. Robustness-first: (1)
+    filter η > threshold, (2) maximize K_eff. Benchmark vs 5 baselines. Dream flagged
+    marginal improvement over Strongest-K in all three tiers.'
+  priority: P1
+  gpu_budget_hours: 10
+  deps:
+  - plan_001
+  notes: May need algorithm redesign given Dream observation of marginal gains.
+  status: planned
+- id: plan_006
+  claim: 1
+  description: Per-judge ASR concentration analysis. Measure per-judge ASR distribution
+    for each panel × attack. Compute Gini coefficient + entropy. Direct evidence for
+    adaptive adversary targeting.
+  priority: P1
+  gpu_budget_hours: 5
+  deps:
+  - plan_001
+  notes: ''
+  status: planned
+- id: plan_007
+  claim: 3
+  description: Diversity-capability tradeoff visualization. Plot K_eff vs η_max across
+    all panels. Fit tradeoff curve. Pareto frontier. Stratify by tier.
+  priority: P2
+  gpu_budget_hours: 2
+  deps:
+  - plan_001
+  notes: ''
+  status: planned
+- id: plan_008
+  claim: 1
+  description: Panel size sensitivity K=3,5,7,9. Test whether η_max dominance persists
+    as K grows.
+  priority: P2
+  gpu_budget_hours: 30
+  deps:
+  - plan_001
+  notes: ''
+  status: planned
+- id: plan_009
+  claim: 1
+  description: VIF + multicollinearity analysis on existing data. Compute VIF, partial
+    correlations, residualized K_eff. Apply Bonferroni/FDR correction. Try beta regression.
+    Dream D3+D6.
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  notes: No GPU needed. Uses existing regression data.
+  status: planned
+- id: plan_010
+  claim: 1
+  description: Non-majority-vote aggregation. Test weakest-link under weighted voting,
+    veto rules, Bayesian aggregation. Dream D9.
+  priority: P1
+  gpu_budget_hours: 15
+  deps:
+  - plan_001
+  notes: ''
+  status: planned
+- id: plan_011
+  claim: 1
+  description: Open-ended generation benchmark. Add MT-Bench or AlpacaEval-style task
+    beyond MCQ. Dream D11.
+  priority: P1
+  gpu_budget_hours: 40
+  deps:
+  - plan_001
+  notes: ''
+  status: planned
+- id: plan_012
+  claim: 2
+  description: Partial-knowledge adversary model. Adversary knows families but not
+    exact vulnerability profiles. Dream D12.
+  priority: P2
+  gpu_budget_hours: 10
+  deps:
+  - plan_001
+  - plan_003
+  notes: ''
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: mvp-step2-keff-contrast
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    mmlu:
+      high_keff_asr: 0.2457
+      low_keff_asr: 0.1438
+      mann_whitney_p: 1
+    arc:
+      high_keff_asr: 0.1228
+      low_keff_asr: 0.078
+      mann_whitney_p: 1
+- exp_id: mvp-step2v3-regression
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: mvp-step2v3-retry
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: mvp-step2v3-retry2
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: mvp-step2v3-retry3
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    regression_6conditions:
+      keff_sig_negative: 1
+      keff_sig_positive: 0
+      keff_nonsig: 5
+      eta_max_sig: 4
+    best_keff_result:
+      condition: arc×sycophancy
+      B_keff: -2.852
+      p_keff: 0.003
+      R2: 0.579
+    summary: eta_max dominates; K_eff not significant predictor in 5/6 conditions
+- exp_id: taxonomy-broad-spectrum
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    keff_sig_negative: 0
+    keff_sig_positive: 1
+    keff_nonsig: 5
+    eta_max_sig: 3
+    worst_keff:
+      condition: mmlu×position
+      B: 3.357
+      p: 0.035
+      direction: WRONG (positive)
+    summary: 0/6 K_eff significant negative. Taxonomy hypothesis falsified.
+- exp_id: plan001_step1_dryrun
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_dryrun2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_dryrun3
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_full
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_full_v2
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: plan001_step1_full_v3
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: plan001_step1_full_v4
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_parallel_dryrun
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_parallel_dryrun2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_parallel
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_parallel_v2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_parallel_v3
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_parallel_v4
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_parallel_v5
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_parallel_final
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_v2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_throttled
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_throttled_v2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_throttled_v3
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_throttled_v4
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_throttled_v5
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_v3
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_batched
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: plan001_step1_batched_v2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+
+# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）
+
+```yaml
+tiers:
+  best:
+    meaning: "..."
+    key_assumptions: [...]
+    number_ranges: {metric_a: [low, high], metric_b: [...]}
+    narrative_direction: "..."
+  median:
+    meaning: "..."
+    ...
+  worst:
+    meaning: "..."
+    ...
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "105a5147-cbe6-4b96-bf4e-fc86ad22c413",
+  "type": "user",
+  "uuid": "48e56230-6179-49ed-a3f8-94c29be6533c",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-22T17:38:40.181Z_
+
+```json
+{
+  "parentUuid": "48e56230-6179-49ed-a3f8-94c29be6533c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "5107d33c-d7c9-4c33-ace4-f74d3e407039",
+  "timestamp": "2026-05-22T17:38:40.181Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-22T17:38:40.181Z_
+
+```json
+{
+  "parentUuid": "5107d33c-d7c9-4c33-ace4-f74d3e407039",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "33e8ea77-c88c-4afc-8e1d-302df064a9e5",
+  "timestamp": "2026-05-22T17:38:40.181Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-22T17:38:40.181Z_
+
+```json
+{
+  "parentUuid": "33e8ea77-c88c-4afc-8e1d-302df064a9e5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "132b5910-dd11-408c-aa27-332e48b2561e",
+  "timestamp": "2026-05-22T17:38:40.181Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "132b5910-dd11-408c-aa27-332e48b2561e",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-tier Dream scenarios for cert_manip_resist_eval",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-22T17:40:00.931Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to define three tiers (best/median/worst) for a Dream simulation based on the research context provided. Let me analyze the research carefully.
+
+Key context:
+- Project: cert_manip_resist_eval, targeting EMNLP 2026
+- v4 framing: diversity independently harmful (K_eff 8/12 residualized sig positive)
+- 15 models, 455 panels, 6 attacks
+- Core finding: diversity (K_eff) is positively correlated with attack success rate
+- Several claims with varying evidence strength
+
+
+- Several planned experiments not yet run (plan_001 through plan_012)
+
+The central question is whether the "diversity hurts" finding can push the paper's ceiling above a Dream score of 2.5. Looking at the evidence strength across claims: the dual vulnerability drivers claim has strong support with K_eff and η_max showing significance across most model subsets, the adaptive versus random forest gap is moderately supported with a real R² difference but a weaker K_eff narrative, the diversity-capability tradeoff shows strong statistical association, and the family labels claim is moderate but incomplete.
+
+Now I'm checking the status of the remaining claims and experiments. Claim 5 on copula failure is strong at the 6-model scale but needs validation on the 15-model setup, claim 6 on robustness-first design is moderate, and claim 7 on aggregation rules is currently only supported by the 6-model results. The scaling experiment to 10-15 models is still in progress with various preparation and running attempts, while the random-fault BFT contrast serves as a go/no-go gate, and I still need to run the VIF analysis and non-majority aggregation tests. Wait—I'm realizing the paper_framing document already references 15-model and 455-panel results for claim 1, so some of this scaling work may already be done. says "15-model, 455 panels, 12 conditions"), but the experiment registry shows plan_001 (scale to 10-15 models) is still in various PREPARING/RUNNING states. This seems like the framing document is written aspirationally or the 15-model results came from a different pipeline.
+
+Actually, looking at the framing more carefully, it says "Last updated: 2026-05-22 | Reason: 15-model/455-panel results fundamentally changed Claim 1 direction" - so the 15-model results exist. The registry entries for plan001 might be the infrastructure to run those experiments, with plan001_step1_full_v4 being RUNNING.
+
+The critical experiments ahead are whether K_eff holds up under random faults versus adaptive attacks in the BFT contrast test, whether Bayesian aggregation at scale undermines the effect, and whether K_eff remains significant when comparing models within the same capability tier. I also need to revalidate Claims 4 and 5 at the 15-model scale, and explore whether the effect extends beyond multiple-choice questions. For the best/median/worst case scenarios, I'm tracking K_eff residualized significance (currently 8/12 conditions), η_max significance (9/12), the BFT contrast results, R² values, and how aggregation modulates these effects. I'm realizing that plan_003's original purpose—showing K_eff significance under random faults but not adaptive ones—doesn't align with the v4 data where K_eff is already significant in both regimes. The current framing has shifted to emphasizing dual vulnerability drivers rather than a clean regime contrast, so I need to reconsider what plan_003 should actually demonstrate under this new narrative.
+
+The real open questions are whether the remaining experiments reinforce the dual-driver story, whether the 15-model revalidation holds up, and whether the diversity trap framing can withstand peer review. I'm tracking this through concrete metrics: how many conditions show significant residualized K_eff (currently 8/12), how many show significant η_max (9/12), and whether there's a meaningful regime contrast in BFT behavior across the experiments.
+
+I'm also checking whether different aggregation rules produce differential K_eff effects, whether the copula MI underestimation scales to 15 models, and whether the core findings generalize to open-ended generation tasks rather than just multiple choice. The best case is everything aligns—K_eff holds across all extensions, BFT shows clear regime separation, and the story is tight enough for a strong accept. The median case is the core holds but the extensions are messier.
+
+Writing the YAML configuration now...
+
+Actually, I need to step back and check what's actually feasible to run versus what's aspirational. Plan_001 is still getting off the ground, and a lot of these experiments depend on it, so I should be realistic about what I can actually validate.
+
+Looking at the framing document, it seems the core regression for Claim 1 already has 15-model results, which means the remaining work is really the extensions: the RF simulation, capability-matched validation, two-stage algorithm benchmark, aggregation rules, and open-ended benchmark. Though I'm noticing VIF analysis is listed as planned even though the residualized K_eff results with VIF=1.00 are already in Claim 1, so there's some confusion about what's actually done versus what still needs running. Let me just anchor to what the framing document actually states rather than trying to guess.
+
+The current evidence shows K_eff residualized is significant in 8 of 12 conditions, η_max in 9 of 12, with K_eff dominating in specific attack types and η_max in bias attacks. The confound between them is substantial at r=0.700 but drops to 0.35 in two broken conditions. When I exclude low-accuracy models, K_eff residualized hits 9 of 12. The RF model shows a +0.213 R² advantage over the adaptive approach. What's still outstanding is revalidating Claims 4 and 5 across all 15 models, validating the two-stage algorithm on the full set, and rerunning the aggregation analysis.
+
+Now I'm planning the remaining validation tiers, focusing on the RF-BFT contrast and open-ended generalization scenarios. The best-case scenario would have all remaining experiments reinforce the v4 framing and independently confirm the diversity trap across different extensions. I'm assuming K_eff residualized significance holds or strengthens when I add new conditions, that capability-matched validation preserves K_eff's independent effect within tiers, that the BFT regime shows a meaningful qualitative shift in K_eff's behavior, and that the copula and family label findings replicate at the 15-model scale. The two-stage algorithm should show meaningful ASR reduction compared to baselines. Looking at the number ranges, K_eff residualized significance should stay in the 8-12 out of 12 range.
+
+For the median case, the core K_eff finding holds but the extension evidence becomes mixed.  The capability-matched analysis shows K_eff weakens substantially within tiers, the BFT regime contrast is quantitative rather than qualitative, and the open-ended conditions only show directional trends without statistical significance. This means some of the paper's claims need to be softened—the effect sizes shrink across these conditions, and the replication from the aggregation modulation is only partial.
+
+Looking at the worst-case scenario, if K_eff's independent effect is largely a confound artifact from tier-mixing, then the core "diversity trap" framing collapses. The capability-matched validation would show K_eff is not significant within tiers, and the residualized K_eff would drop to five or fewer significant conditions with proper controls. The BFT regime contrast would show no meaningful difference at all.
+
+So the narrative needs to shift from "diversity is independently harmful" to "diversity is a risk factor whose effect depends on pool composition and attack type," with a longer section on conditions where diversity actually helps. The BFT reversal becomes an illustrative analogy rather than a core mechanism. It's still publishable at EMNLP but requires careful framing around these limitations.
+
+Now looking at the worst-case metrics, K_eff residualized significance drops to three to five out of twelve conditions, capability-matched K_eff shows zero to one significant out of six, and the BFT delta R² stays between 0.05 and 0.10. The copula mutual information ratio weakens to three to ten times, the two-stage algorithm barely reduces attack success rate below five percent, and the dream score drops to 1.5 to 2.2.
+
+The reframing here is to move away from "diversity trap" entirely and instead position this as a "structural vulnerability analysis of LLM evaluation panels." Lead with η_max dominance and the methodological contributions—copula failure modes and family label unreliability—while treating K_eff as a secondary finding with important conditional dependencies.
+
+I'm targeting EMNLP with this methodological and empirical breadth angle, so I need to structure the narrative around these core insights.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "132b5910-dd11-408c-aa27-332e48b2561e",
+  "isSidechain": false,
+  "requestId": "req_011CbJ1qcW5R59aFk6pjU1Nv",
+  "type": "assistant",
+  "uuid": "4328ac57-fca6-4656-8ba4-6a19117560f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7rfqFBT2oKM6TLseHqE1T",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13513,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 6134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 6134,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 13513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-22T17:40:50.009Z_
+
+```yaml
+tiers:
+  best:
+    meaning: "所有扩展实验收敛确认 diversity trap：K_eff 独立有害效应在 capability-matched、聚合规则变体、开放生成任务上均复现，BFT regime contrast 定性成立"
+    key_assumptions:
+      - "K_eff residualized 显著性在新增条件（聚合变体、open-ended）下保持或增强"
+      - "Capability-matched validation（同 tier 内）K_eff 仍独立显著 ≥3/6 条件 → 排除 tier-mixing artifact"
+      - "BFT regime contrast 定性成立：RF 下 K_eff β 方向翻转为负（diversity 有益）或幅度显著衰减（ratio ≥1.5×）"
+      - "Copula failure 和 family label 发现在 15-model 105 pairs 上复现"
+      - "Two-stage algorithm 相对最强 baseline ASR 降幅 ≥15%"
+      - "Open-ended (MT-Bench/AlpacaEval) 上 K_eff 正向显著 ≥2/4 条件"
+    number_ranges:
+      K_eff_resid_sig_current_12: [8, 12]
+      K_eff_resid_sig_extended_conditions: [10, 16]   # 扩展到 ~16 条件后
+      eta_max_sig_current_12: [9, 12]
+      capability_matched_keff_sig: [3, 6]              # 同 tier 内 6 条件
+      BFT_RF_beta_ratio: [1.5, 5.0]                    # RF |β_keff| / adaptive |β_keff|，或符号反转
+      delta_R2_RF_vs_adaptive: [0.20, 0.40]
+      copula_MI_ratio_15model: [10, 30]                 # ×倍低估
+      two_stage_ASR_reduction_pct: [15, 35]             # 相对最强 baseline
+      confound_free_conditions_count: [2, 4]            # r < 0.4 的条件数
+      dream_score: [3.0, 3.5]
+    narrative_direction: >
+      原始 "Diversity Trap" framing 完全成立。标题保持挑衅性（"More Diverse, More Vulnerable"）。
+      Claim 1 升级为 "diversity independently and causally-directionally increases vulnerability"（加 capability-matched 证据）。
+      BFT reversal 从 analogy 升级为 empirically grounded mechanism（RF 下方向翻转）。
+      Story arc 无需调整：surprise → mechanism → nuance → defense 完整链条。
+      审稿人 RC1 (confound) 和 RC3 (generalization) 被新证据直接封堵。
+      预期结果：strong accept / accept，EMNLP main conference。
+
+  median:
+    meaning: "核心 K_eff 发现在当前 12 条件上 hold，但扩展证据参差不齐：capability-matched 大幅削弱 K_eff，BFT contrast 仅为量级差异非定性翻转，open-ended 趋势但不显著"
+    key_assumptions:
+      - "K_eff residualized 保持 6-8/12 显著（部分条件在加入额外控制变量后失去显著性）"
+      - "Capability-matched validation K_eff 仅 1-2/6 显著 → K_eff 独立效应很大程度由 tier-mixing 驱动"
+      - "BFT regime contrast 仅量级差异（RF β 更大但同方向正），无符号翻转"
+      - "Open-ended 任务 K_eff 方向一致但 p > 0.05（power 不足或效应弱）"
+      - "Aggregation modulation 6-model 模式部分复现（threshold 放大 K_eff 成立，Bayesian 削弱 η_max 不确定）"
+      - "Two-stage algorithm 改善 5-14% 但与 strongest-K baseline 差距 marginal"
+    number_ranges:
+      K_eff_resid_sig_current_12: [6, 8]
+      K_eff_resid_sig_extended_conditions: [7, 10]
+      eta_max_sig_current_12: [8, 10]
+      capability_matched_keff_sig: [1, 2]
+      BFT_RF_beta_ratio: [1.0, 1.5]                    # 同方向，幅度差异不大
+      delta_R2_RF_vs_adaptive: [0.10, 0.20]
+      copula_MI_ratio_15model: [5, 15]
+      two_stage_ASR_reduction_pct: [5, 14]
+      confound_free_conditions_count: [2, 2]
+      dream_score: [2.3, 2.8]
+    narrative_direction: >
+      "Diversity Trap" 需要降级为条件性发现。标题调整为中性化（"Rethinking Diversity in LLM Evaluation Panels"）。
+      Claim 1 软化：从 "diversity independently harmful" 降为 "diversity is a statistical risk factor whose independent 
+      contribution depends on pool composition heterogeneity"。capability-matched 结果写为 limitation 而非 counter-evidence。
+      BFT reversal 降为 illustrative analogy（"consistent with but not conclusively demonstrating"）。
+      加重 "When Diversity Helps" section 篇幅和权重。
+      Contribution 重排：η_max 作为 primary driver 回归核心，K_eff 作为 "amplifying factor in heterogeneous pools"。
+      补充实验：强调 455 panels + 6 attacks 的规模优势和 copula/family-label 方法论贡献拉分。
+      审稿人 RC1 需更多 hedging；RC5 ("just use strongest") 变得更难反驳。
+      预期结果：borderline accept，可能需要 rebuttal 期加实验。
+
+  worst:
+    meaning: "K_eff 独立效应在控制 capability tier 后基本消失，核心 diversity trap framing 瓦解；BFT contrast 无差异，two-stage 无显著优势"
+    key_assumptions:
+      - "Capability-matched validation K_eff 0-1/6 显著 → 独立效应是 tier-mixing 的统计幻象"
+      - "K_eff residualized 在附加敏感性分析（排除极端模型、bootstrap CI）下降至 3-5/12"
+      - "BFT regime contrast 无实质差异：RF 下 K_eff 同样正向显著，regime 叙事崩塌"
+      - "Open-ended 任务模式与 MCQ 不一致（K_eff 方向混乱或 η_max 完全主导）"
+      - "Two-stage algorithm ≤5% 改善，与 strongest-K 无统计差异"
+      - "15-model copula 比率降至 3-8×（仍存在但 dramatic 程度下降）"
+      - "Aggregation 分析显示 K_eff 效应高度依赖聚合规则 → 可能是 aggregation artifact"
+    number_ranges:
+      K_eff_resid_sig_current_12: [3, 5]
+      K_eff_resid_sig_extended_conditions: [3, 6]
+      eta_max_sig_current_12: [8, 11]
+      capability_matched_keff_sig: [0, 1]
+      BFT_RF_beta_ratio: [0.8, 1.1]                    # 无regime差异
+      delta_R2_RF_vs_adaptive: [0.03, 0.10]
+      copula_MI_ratio_15model: [3, 8]
+      two_stage_ASR_reduction_pct: [0, 5]
+      confound_free_conditions_count: [1, 2]
+      dream_score: [1.5, 2.2]
+    narrative_direction: >
+      放弃 "Diversity Trap" framing。Reframe 为 "Structural Vulnerability Anatomy of Multi-Judge LLM Evaluation"。
+      新 lead claim：η_max 作为 panel vulnerability 的 dominant 且 near-sufficient predictor（9-11/12 显著），
+      这本身是对 "diversity protects" 假设的实证否定——不需要 diversity actively hurts，只需 diversity doesn't help 
+      而 weakest-link 决定一切。
+      K_eff 降级为 "exploratory analysis showing suggestive but confounded association"，置于 Discussion。
+      方法论贡献前移：copula failure（即使 ratio 降了仍是有意义的 methodological finding）、family label 不可靠性、
+      15-model/455-panel 规模的 evaluation benchmark 本身作为 resource contribution。
+      BFT 从 core mechanism 降为 Discussion section 的 "open question"。
+      补偿策略：(a) 强调 weakest-link 发现的实用价值（panel 安全由最弱 judge 决定）；
+      (b) 释放 per-judge ASR 浓度分析（plan_006 Gini/entropy）作为 adaptive adversary targeting 的直接证据；
+      (c) 推 aggregation rule 比较作为 practical contribution（哪种聚合最抗攻击）。
+      预期结果：需要 rebuttal 期大幅补充，borderline reject / weak accept。仍冲 EMNLP 但准备 NAACL 2027 backup。
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4328ac57-fca6-4656-8ba4-6a19117560f8",
+  "isSidechain": false,
+  "requestId": "req_011CbJ1qcW5R59aFk6pjU1Nv",
+  "type": "assistant",
+  "uuid": "664c12e2-94dd-474f-9dc3-85b9a7189128",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7rfqFBT2oKM6TLseHqE1T",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13513,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 6134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 6134,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 13513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "664c12e2-94dd-474f-9dc3-85b9a7189128",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-tier Dream scenarios for cert_manip_resist_eval",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "664c12e2-94dd-474f-9dc3-85b9a7189128",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-tier Dream scenarios for cert_manip_resist_eval",
+  "sessionId": "898bba17-2c96-4541-b272-ead26a167bcf"
+}
+```
+
+---

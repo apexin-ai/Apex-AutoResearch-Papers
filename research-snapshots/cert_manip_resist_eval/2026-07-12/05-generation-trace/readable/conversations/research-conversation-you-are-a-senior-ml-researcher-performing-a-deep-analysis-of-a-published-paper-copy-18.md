@@ -1,0 +1,3119 @@
+# Research conversation: You are a senior ML researcher performing a deep analysis of a published paper. **Today's date: 2026-05-27 (UTC).** ## Y
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 1
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-1/59831ef5-561e-432f-9a80-21febe0fb5e8.jsonl`
+- **Structured JSON:** [`2c31f3f4902ddccf0677.json`](../../sessions/2c/2c31f3f4902ddccf0677.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T16:16:24.047Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T16:16:24.047Z",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "content": "You are a senior ML researcher performing a deep analysis of a published paper.\n\n**Today's date: 2026-05-27 (UTC).**\n\n## Your goal\n\nAnalyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?\n\n## Research context\n\nWe are generating ideas in the area of: **Multi-Modal Mathematical Reasoning — Integrating Visual, Symbolic, and Textual Understanding**\n\n## Paper to analyze\n\n{\n  \"title\": \"VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\",\n  \"authors\": \"Weiyun Wang et al.\",\n  \"venue\": \"arXiv 2025 (from InternVL team, Shanghai AI Lab)\",\n  \"url\": \"https://arxiv.org/abs/2503.10291\",\n  \"why_important\": \"From top lab (Shanghai AI Lab/InternVL); introduced the first large-scale multimodal PRM with VisualPRM400K dataset and VisualProcessBench; improves InternVL2.5-78B by 5.9 points\",\n  \"one_line_summary\": \"Introduces an 8B multimodal process reward model with a 400K automated supervision dataset and a human-annotated step-correctness benchmark, boosting diverse MLLMs via Best-of-N selection.\"\n}\n\n## Instructions\n\n1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.\n\n2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:\n   - What gap did they identify and HOW did they find it?\n   - What was the key insight that others missed?\n   - How did they formulate the problem differently from prior work?\n   - What existing technique did they adapt/combine/simplify?\n\n3. **Learn from reviewers**: If you can find reviewer comments, extract:\n   - What did reviewers praise most?\n   - What concerns were raised and how were they addressed?\n   - What would have made this paper even stronger?\n\n## Output format\n\nOutput a single JSON object:\n{\n  \"title\": \"Paper title\",\n  \"venue\": \"Where published\",\n  \"problem_identification\": \"What gap/problem did they identify? How did they find it? (2-3 sentences)\",\n  \"key_insight\": \"The core intellectual contribution — the aha moment (1-2 sentences)\",\n  \"innovation_type\": \"new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis\",\n  \"method_summary\": \"Technical approach in 3-5 sentences — enough to understand the machinery\",\n  \"what_makes_it_good\": \"Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)\",\n  \"limitations_acknowledged\": \"What gaps did the authors themselves identify? (1-2 sentences)\",\n  \"open_questions\": \"What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)\",\n  \"building_blocks\": [\"List of methods/tools/datasets used that could be reused\"],\n  \"reviewer_feedback_summary\": \"If found on OpenReview: key praise and concerns. Otherwise: null\",\n  \"relevance_to_seed\": \"How does this paper relate to our research area? What can we learn from it? (1-2 sentences)\"\n}\n\nBe analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T16:16:24.051Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T16:16:24.051Z",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+## Round 1
+
+48 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T16:16:24.089Z_
+
+You are a senior ML researcher performing a deep analysis of a published paper.
+
+**Today's date: 2026-05-27 (UTC).**
+
+## Your goal
+
+Analyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?
+
+## Research context
+
+We are generating ideas in the area of: **Multi-Modal Mathematical Reasoning — Integrating Visual, Symbolic, and Textual Understanding**
+
+## Paper to analyze
+
+{
+  "title": "VisualPRM: An Effective Process Reward Model for Multimodal Reasoning",
+  "authors": "Weiyun Wang et al.",
+  "venue": "arXiv 2025 (from InternVL team, Shanghai AI Lab)",
+  "url": "https://arxiv.org/abs/2503.10291",
+  "why_important": "From top lab (Shanghai AI Lab/InternVL); introduced the first large-scale multimodal PRM with VisualPRM400K dataset and VisualProcessBench; improves InternVL2.5-78B by 5.9 points",
+  "one_line_summary": "Introduces an 8B multimodal process reward model with a 400K automated supervision dataset and a human-annotated step-correctness benchmark, boosting diverse MLLMs via Best-of-N selection."
+}
+
+## Instructions
+
+1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.
+
+2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:
+   - What gap did they identify and HOW did they find it?
+   - What was the key insight that others missed?
+   - How did they formulate the problem differently from prior work?
+   - What existing technique did they adapt/combine/simplify?
+
+3. **Learn from reviewers**: If you can find reviewer comments, extract:
+   - What did reviewers praise most?
+   - What concerns were raised and how were they addressed?
+   - What would have made this paper even stronger?
+
+## Output format
+
+Output a single JSON object:
+{
+  "title": "Paper title",
+  "venue": "Where published",
+  "problem_identification": "What gap/problem did they identify? How did they find it? (2-3 sentences)",
+  "key_insight": "The core intellectual contribution — the aha moment (1-2 sentences)",
+  "innovation_type": "new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis",
+  "method_summary": "Technical approach in 3-5 sentences — enough to understand the machinery",
+  "what_makes_it_good": "Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)",
+  "limitations_acknowledged": "What gaps did the authors themselves identify? (1-2 sentences)",
+  "open_questions": "What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)",
+  "building_blocks": ["List of methods/tools/datasets used that could be reused"],
+  "reviewer_feedback_summary": "If found on OpenReview: key praise and concerns. Otherwise: null",
+  "relevance_to_seed": "How does this paper relate to our research area? What can we learn from it? (1-2 sentences)"
+}
+
+Be analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "7583ac28-2a30-4531-8cf3-dc14d08190e1",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T16:16:24.089Z_
+
+```json
+{
+  "parentUuid": "7583ac28-2a30-4531-8cf3-dc14d08190e1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "258524d2-7406-46e5-9b3e-ed69e32b6e9b",
+  "timestamp": "2026-05-27T16:16:24.089Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T16:16:24.089Z_
+
+```json
+{
+  "parentUuid": "258524d2-7406-46e5-9b3e-ed69e32b6e9b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "9da6dea4-6268-4a4d-8a52-07084155ecb5",
+  "timestamp": "2026-05-27T16:16:24.089Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-27T16:16:24.089Z_
+
+```json
+{
+  "parentUuid": "9da6dea4-6268-4a4d-8a52-07084155ecb5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a4d529b7-95cb-48bb-9503-cb0529bb11ce",
+  "timestamp": "2026-05-27T16:16:24.089Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze VisualPRM paper innovation and research craft",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T16:16:27.758Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to deeply analyze the paper "VisualPRM: An Effective Process Reward Model for Multimodal Reasoning" from arXiv (2503.10291). Let me fetch the paper content first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4d529b7-95cb-48bb-9503-cb0529bb11ce",
+  "isSidechain": false,
+  "requestId": "req_011CbTNcLEtmCH9xRSAx98mQ",
+  "type": "assistant",
+  "uuid": "57924178-bfcb-4350-a50c-4a17afda120d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuFqnV4Ssm9GCcLTw6d2VE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 10620,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 10620,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T16:16:27.772Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HFnVkiY4UdL4BqA7rR8uHS`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57924178-bfcb-4350-a50c-4a17afda120d",
+  "isSidechain": false,
+  "requestId": "req_011CbTNcLEtmCH9xRSAx98mQ",
+  "type": "assistant",
+  "uuid": "a22e8786-9dd1-48b7-8b90-ae06e0e8836c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuFqnV4Ssm9GCcLTw6d2VE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2638,
+      "cache_read_input_tokens": 10620,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2638,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 10620,
+          "cache_creation_input_tokens": 2638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2638
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T16:16:27.782Z_
+
+<details><summary>↩ Tool result · `toolu_01HFnVkiY4UdL4BqA7rR8uHS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a22e8786-9dd1-48b7-8b90-ae06e0e8836c",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "a497ae87-3922-4593-abb4-561902907d0d",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "a22e8786-9dd1-48b7-8b90-ae06e0e8836c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-27T16:16:30.581Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch the paper from arXiv. I'll fetch both the abstract page and the full paper HTML version to get as much detail as possible.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a497ae87-3922-4593-abb4-561902907d0d",
+  "isSidechain": false,
+  "requestId": "req_011CbTNcc1vQAd5cWVWDAHWh",
+  "type": "assistant",
+  "uuid": "8905cdfd-c6be-4f8a-a5d5-ccc84e819ede",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CC4wKTdB8Kibrvmx5L2UAR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 13258,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 13258,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-27T16:16:31.765Z_
+
+Let me fetch the paper from multiple sources to get a comprehensive view.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8905cdfd-c6be-4f8a-a5d5-ccc84e819ede",
+  "isSidechain": false,
+  "requestId": "req_011CbTNcc1vQAd5cWVWDAHWh",
+  "type": "assistant",
+  "uuid": "72459fbc-b643-47be-85ad-6a4c18e5c7f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CC4wKTdB8Kibrvmx5L2UAR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 13258,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 13258,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T16:16:33.156Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MPtZTnWosCpJCbG3xArNCW`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2503.10291",
+  "prompt": "Extract the full abstract, author list, and any other metadata available on this arXiv page for the paper \"VisualPRM\". Give me everything verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72459fbc-b643-47be-85ad-6a4c18e5c7f8",
+  "isSidechain": false,
+  "requestId": "req_011CbTNcc1vQAd5cWVWDAHWh",
+  "type": "assistant",
+  "uuid": "d7b8a765-daac-4a68-8277-0e6d542e6fe7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CC4wKTdB8Kibrvmx5L2UAR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 13258,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 13258,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T16:16:37.537Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01M4VZmWbf2qWkaTRquoBZts`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2503.10291",
+  "prompt": "Extract the FULL text of the following sections from this paper, as completely as possible:\n1. Introduction (all of it)\n2. Related Work \n3. Method / Approach section (all subsections, all details about VisualPRM400K dataset construction, the process reward model training, and VisualProcessBench)\n4. Experiments (key results, ablations, tables)\n5. Conclusion and Limitations\n\nBe as thorough as possible. Include details about:\n- How the automated annotation pipeline works (Monte Carlo estimation, step-level correctness)\n- The VisualProcessBench benchmark design\n- Training details of the PRM\n- Best-of-N selection results\n- Any ablation studies\n- What datasets were used\n- Key numerical results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7b8a765-daac-4a68-8277-0e6d542e6fe7",
+  "isSidechain": false,
+  "requestId": "req_011CbTNcc1vQAd5cWVWDAHWh",
+  "type": "assistant",
+  "uuid": "8a923c44-86ce-423a-8da7-e41d21f7173d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CC4wKTdB8Kibrvmx5L2UAR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 13258,
+      "output_tokens": 416,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 416,
+          "cache_read_input_tokens": 13258,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T16:16:38.160Z_
+
+<details><summary>↩ Tool result · `toolu_01MPtZTnWosCpJCbG3xArNCW`</summary>
+
+```text
+# VisualPRM Paper Metadata
+
+**Title:** "VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"
+
+**ArXiv ID:** 2503.10291
+
+**Submission Date:** March 13, 2025
+
+**Authors:** Weiyun Wang, Zhangwei Gao, Lianjie Chen, Zhe Chen, Jinguo Zhu, Xiangyu Zhao, Yangzhou Liu, Yue Cao, Shenglong Ye, Xizhou Zhu, Lewei Lu, Haodong Duan, Yu Qiao, Jifeng Dai, Wenhai Wang
+
+**Subject Areas:** Computer Vision and Pattern Recognition (cs.CV); Computation and Language (cs.CL)
+
+**Abstract Summary:**
+
+The paper introduces an 8-parameter billion multimodal Process Reward Model designed to improve reasoning capabilities of existing Multimodal Large Language Models. Key contributions include achieving a 5.9-point performance improvement on InternVL2.5-78B across seven benchmarks, constructing VisualPRM400K (a multimodal process supervision dataset), and proposing VisualProcessBench with human-annotated step-level correctness evaluations for assessing PRM abilities in detecting reasoning errors.
+
+**License:** CC BY 4.0
+
+**DOI:** https://doi.org/10.48550/arXiv.2503.10291
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7b8a765-daac-4a68-8277-0e6d542e6fe7",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "e21faa1a-5a7b-42f5-bfc4-79582a6a4db4",
+  "toolUseResult": {
+    "bytes": 47887,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# VisualPRM Paper Metadata\n\n**Title:** \"VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"\n\n**ArXiv ID:** 2503.10291\n\n**Submission Date:** March 13, 2025\n\n**Authors:** Weiyun Wang, Zhangwei Gao, Lianjie Chen, Zhe Chen, Jinguo Zhu, Xiangyu Zhao, Yangzhou Liu, Yue Cao, Shenglong Ye, Xizhou Zhu, Lewei Lu, Haodong Duan, Yu Qiao, Jifeng Dai, Wenhai Wang\n\n**Subject Areas:** Computer Vision and Pattern Recognition (cs.CV); Computation and Language (cs.CL)\n\n**Abstract Summary:**\n\nThe paper introduces an 8-parameter billion multimodal Process Reward Model designed to improve reasoning capabilities of existing Multimodal Large Language Models. Key contributions include achieving a 5.9-point performance improvement on InternVL2.5-78B across seven benchmarks, constructing VisualPRM400K (a multimodal process supervision dataset), and proposing VisualProcessBench with human-annotated step-level correctness evaluations for assessing PRM abilities in detecting reasoning errors.\n\n**License:** CC BY 4.0\n\n**DOI:** https://doi.org/10.48550/arXiv.2503.10291",
+    "durationMs": 5000,
+    "url": "https://arxiv.org/abs/2503.10291"
+  },
+  "sourceToolAssistantUUID": "d7b8a765-daac-4a68-8277-0e6d542e6fe7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T16:17:08.600Z_
+
+<details><summary>↩ Tool result · `toolu_01M4VZmWbf2qWkaTRquoBZts`</summary>
+
+```text
+# Summary of VisualPRM: An Effective Process Reward Model for Multimodal Reasoning
+
+## 1. Introduction
+
+The paper addresses a critical gap in multimodal reasoning capabilities. While MLLMs excel at perception tasks, they lag in reasoning compared to proprietary models. The authors investigate test-time scaling (TTS) for MLLMs through Best-of-N (BoN) evaluation strategies.
+
+**Core Challenge**: Existing open-source MLLMs struggle as effective "critic models" for evaluating multiple reasoning attempts. Figure 1 demonstrates that InternVL2.5-8B provides marginal improvements compared to their proposed VisualPRM.
+
+The work identifies two key problems: (1) lack of effective multimodal critic models due to insufficient training data, and (2) absence of evaluation benchmarks specifically designed for multimodal PRMs.
+
+**Main Contributions**:
+- **VisualPRM400K**: Approximately 400K samples with step-wise correctness annotations using automated Monte Carlo sampling
+- **VisualPRM**: An 8B-parameter multimodal process reward model
+- **VisualProcessBench**: A 2,866-sample benchmark with 26,950 human-annotated step-level labels
+
+Results show substantial improvements across model scales: InternVL2.5-8B gains 8.4 points, MiniCPM-V2.6 gains 8.0 points, and even InternVL2.5-78B achieves 5.9-point improvement across seven multimodal reasoning benchmarks.
+
+## 2. Related Work
+
+### Multimodal Large Language Models
+Prior work focuses on architectural innovations (vision connector designs), data construction (high-quality instruction datasets), and training algorithms. However, "test-time scaling applications for MLLMs remain largely unexplored."
+
+### Process Reward Models
+PRMs estimate quality at intermediate reasoning steps rather than final outputs. Prior work includes PRM800K (human-annotated), MathShepherd, and OmegaPRM (automated pipelines). This work introduces the first multimodal process supervision dataset.
+
+### Benchmarks for Reward Models
+Existing benchmarks evaluate reward models on preference judgments. Recent work extends to step-wise evaluation, but "no multimodal process benchmark" existed previously.
+
+## 3. Method
+
+### 3.1 VisualPRM400K Dataset
+
+**Definition**: Each sample contains:
+- Image and question from MMPR v1.1
+- Step-by-step solution from InternVL2.5 models
+- Expected accuracy annotation (mc_i) for each step
+
+**Automated Annotation Pipeline**:
+The process estimates expected accuracy using Monte Carlo sampling. For each step s_i, the model generates completions: "s̃_{>i} ~ M(s̃_{>i}|I,q,s_{≤i})"
+
+Expected accuracy is computed as: "mc_i = num(correct completions)/num(sampled completions)"
+
+**Key Details**:
+- 4 solutions sampled per image-question pair
+- Maximum 12 steps (merged if exceeded)
+- 16 continuations sampled per step
+- Dataset comprises ~400K samples, ~2 million steps
+- Average response: 126.9 words, 5.6 steps
+- Step imbalance: ~10% incorrect steps
+
+### 3.2 VisualPRM Model
+
+**Training Formulation**: Multi-turn chat where each turn presents a solution step. The model predicts step quality: "y_i ~ M(y_i|I,q,s_{≤i})"
+
+**Value-Based PRM**: Step quality determined by expected accuracy m_c_i. Step is correct if "m_c_i > 0". Output space discretized to {+, −} tokens.
+
+**Advantage-Based PRM**: Quality determined by improvement over previous step. Output space: {+, =, −}, where a step is good if "m_c_i - m_c_{i-1} > 0"
+
+**Key Distinction**: Unlike prior work supervising only until first error, this approach "always supervises all steps."
+
+**Inference**: Step scores computed as weighted sum of generation probabilities. For value-based: weights {1,0} for {+,−}. For advantage-based: weights {1,0,−1} for {+,=,−}. Response score calculated by averaging step scores.
+
+### 3.3 VisualProcessBench
+
+**Scale**: 2,866 samples, 26,950 human-annotated step-wise labels
+
+**Data Sources**:
+- Questions from MMMU, MathVision, MathVerse, DynaMath, WeMath
+- Solutions generated by GPT-4o, Claude-3.5-Sonnet, QvQ-72B, InternVL2.5-78B, Gemini-2.0-Flash
+
+**Annotation Process**: 13 annotators across 39 person-days. Each step labeled: positive (correct), negative (incorrect), or neutral (no reasoning content). Authors reviewed ~10% of each annotation batch for quality control.
+
+**Unique Aspect**: Unlike prior benchmarks requiring only first error identification, this benchmark "requires the model to identify all erroneous steps" reflecting modern model reflection capabilities.
+
+**Evaluation Metric**: Macro F1 score (average of F1 scores for correct and incorrect steps) to address class imbalance.
+
+**Statistics**: Average 9.4 steps per solution; correct steps comprise 61.6%, incorrect 28.6%, neutral 9.9%
+
+## 4. Experiments
+
+### 4.1 Best-of-N Evaluation Results
+
+**Benchmarks Tested**: Seven multimodal reasoning benchmarks including MMMU (multidisciplinary), MathVista, MathVision, MathVerse, DynaMath, WeMath (mathematics), LogicVista (logical reasoning)
+
+**Key Findings** (Table 2):
+- MiniCPM-V2.6-8B: +8.0 points overall
+- Qwen2.5-VL-7B: +3.7 points
+- InternVL2.5-8B: +8.4 points
+- InternVL2.5-26B: +8.9 points
+- InternVL2.5-38B: +6.3 points
+- InternVL2.5-78B: +5.9 points
+
+Improvements consistent across different model families and scales. Best-of-8 evaluation used with temperature 0.7.
+
+### 4.2 VisualProcessBench Results
+
+**Critical Finding**: "Most existing MLLMs struggle to accurately assess the correctness of each step."
+
+**Performance** (Table 3):
+- Random guessing baseline: 50.0 F1
+- InternVL2.5-8B: 48.0 F1
+- InternVL2.5-78B: 52.6 F1
+- VisualPRM: 62.0 F1 (competitive with Gemini-2.0-Flash at 62.3)
+
+Analysis reveals that open-source MLLMs exhibit "positive bias," rarely identifying steps as incorrect. For example, InternVL2.5-8B achieves 76.8 F1 on correct steps but only 19.2 on incorrect steps.
+
+### 4.3 Ablation Studies
+
+**PRM Effectiveness**: 
+- PRM outperforms Self-Consistency and Outcome Reward Models (ORMs)
+- At Best-of-8: PRM exceeds SC by 2.4 points, ORM by 1.5 points
+- Gap widens with larger N (Best-of-128: PRM leads by 3.1 and 4.3 points)
+
+**Modeling Methods** (Table 4):
+- Value-based PRM outperforms advantage-based PRM
+- Reason: inherent noise in automatically-generated labels makes advantage estimation unreliable
+- Supervising all steps (w/o early stop) yields better performance than early stopping at first error
+- Score aggregation: averaging outperforms maximum (which relies on single high-scored early step)
+
+**Generation Hyperparameters**:
+- Optimal temperature around 0.7-1.0 (balance between diversity and accuracy)
+- Too low (0.3): insufficient response diversity
+- Too high (1.3): responses become too random
+
+**Expected Accuracy Threshold**:
+- Setting threshold to 0 for step correctness determination performs best
+- Higher thresholds degrade performance
+
+**Text-Only Performance** (Table 5):
+Model demonstrates effectiveness beyond multimodal contexts:
+- Qwen2.5-7B: +6.1 points on MATH-500, +5.0 on GPQA
+- InternVL2.5-8B: +9.4 on MATH-500, +5.0 on GPQA
+
+**MLLM-as-Judger Analysis**:
+Direct prompting of MLLMs as critics produces marginal gains because these models "assign similar scores to most solutions" and exhibit strong positive bias. Additionally, autoregressive generation for step-by-step scoring proves computationally expensive compared to VisualPRM's single forward pass approach.
+
+## 5. Conclusion
+
+The paper successfully demonstrates that process reward models can serve as effective critic models for test-time scaling of MLLMs. Key achievements:
+
+1. **Dataset Contribution**: VisualPRM400K enables training multimodal PRMs at scale using automated annotation
+2. **Model Innovation**: VisualPRM consistently improves reasoning across model families and scales
+3. **Benchmark Creation**: VisualProcessBench provides rigorous evaluation showing open-source MLLMs struggle with step-level correctness assessment
+4. **Practical Impact**: PRMs outperform both outcome reward models and self-consistency approaches
+
+The work reveals that "existing open-source MLLMs struggle to effectively judge the correctness of each step," motivating future development of specialized multimodal critic models.
+
+**Limitations** (implicit in text): The dataset has inherent noise from automated annotation; approximately 10% incorrect steps creates class imbalance; the approach requires generating multiple reasoning paths, increasing inference costs proportionally with N.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a923c44-86ce-423a-8da7-e41d21f7173d",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "6b224540-6caf-4805-a48b-b7ef9583f903",
+  "toolUseResult": {
+    "bytes": 508536,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\n\n## 1. Introduction\n\nThe paper addresses a critical gap in multimodal reasoning capabilities. While MLLMs excel at perception tasks, they lag in reasoning compared to proprietary models. The authors investigate test-time scaling (TTS) for MLLMs through Best-of-N (BoN) evaluation strategies.\n\n**Core Challenge**: Existing open-source MLLMs struggle as effective \"critic models\" for evaluating multiple reasoning attempts. Figure 1 demonstrates that InternVL2.5-8B provides marginal improvements compared to their proposed VisualPRM.\n\nThe work identifies two key problems: (1) lack of effective multimodal critic models due to insufficient training data, and (2) absence of evaluation benchmarks specifically designed for multimodal PRMs.\n\n**Main Contributions**:\n- **VisualPRM400K**: Approximately 400K samples with step-wise correctness annotations using automated Monte Carlo sampling\n- **VisualPRM**: An 8B-parameter multimodal process reward model\n- **VisualProcessBench**: A 2,866-sample benchmark with 26,950 human-annotated step-level labels\n\nResults show substantial improvements across model scales: InternVL2.5-8B gains 8.4 points, MiniCPM-V2.6 gains 8.0 points, and even InternVL2.5-78B achieves 5.9-point improvement across seven multimodal reasoning benchmarks.\n\n## 2. Related Work\n\n### Multimodal Large Language Models\nPrior work focuses on architectural innovations (vision connector designs), data construction (high-quality instruction datasets), and training algorithms. However, \"test-time scaling applications for MLLMs remain largely unexplored.\"\n\n### Process Reward Models\nPRMs estimate quality at intermediate reasoning steps rather than final outputs. Prior work includes PRM800K (human-annotated), MathShepherd, and OmegaPRM (automated pipelines). This work introduces the first multimodal process supervision dataset.\n\n### Benchmarks for Reward Models\nExisting benchmarks evaluate reward models on preference judgments. Recent work extends to step-wise evaluation, but \"no multimodal process benchmark\" existed previously.\n\n## 3. Method\n\n### 3.1 VisualPRM400K Dataset\n\n**Definition**: Each sample contains:\n- Image and question from MMPR v1.1\n- Step-by-step solution from InternVL2.5 models\n- Expected accuracy annotation (mc_i) for each step\n\n**Automated Annotation Pipeline**:\nThe process estimates expected accuracy using Monte Carlo sampling. For each step s_i, the model generates completions: \"s̃_{>i} ~ M(s̃_{>i}|I,q,s_{≤i})\"\n\nExpected accuracy is computed as: \"mc_i = num(correct completions)/num(sampled completions)\"\n\n**Key Details**:\n- 4 solutions sampled per image-question pair\n- Maximum 12 steps (merged if exceeded)\n- 16 continuations sampled per step\n- Dataset comprises ~400K samples, ~2 million steps\n- Average response: 126.9 words, 5.6 steps\n- Step imbalance: ~10% incorrect steps\n\n### 3.2 VisualPRM Model\n\n**Training Formulation**: Multi-turn chat where each turn presents a solution step. The model predicts step quality: \"y_i ~ M(y_i|I,q,s_{≤i})\"\n\n**Value-Based PRM**: Step quality determined by expected accuracy m_c_i. Step is correct if \"m_c_i > 0\". Output space discretized to {+, −} tokens.\n\n**Advantage-Based PRM**: Quality determined by improvement over previous step. Output space: {+, =, −}, where a step is good if \"m_c_i - m_c_{i-1} > 0\"\n\n**Key Distinction**: Unlike prior work supervising only until first error, this approach \"always supervises all steps.\"\n\n**Inference**: Step scores computed as weighted sum of generation probabilities. For value-based: weights {1,0} for {+,−}. For advantage-based: weights {1,0,−1} for {+,=,−}. Response score calculated by averaging step scores.\n\n### 3.3 VisualProcessBench\n\n**Scale**: 2,866 samples, 26,950 human-annotated step-wise labels\n\n**Data Sources**:\n- Questions from MMMU, MathVision, MathVerse, DynaMath, WeMath\n- Solutions generated by GPT-4o, Claude-3.5-Sonnet, QvQ-72B, InternVL2.5-78B, Gemini-2.0-Flash\n\n**Annotation Process**: 13 annotators across 39 person-days. Each step labeled: positive (correct), negative (incorrect), or neutral (no reasoning content). Authors reviewed ~10% of each annotation batch for quality control.\n\n**Unique Aspect**: Unlike prior benchmarks requiring only first error identification, this benchmark \"requires the model to identify all erroneous steps\" reflecting modern model reflection capabilities.\n\n**Evaluation Metric**: Macro F1 score (average of F1 scores for correct and incorrect steps) to address class imbalance.\n\n**Statistics**: Average 9.4 steps per solution; correct steps comprise 61.6%, incorrect 28.6%, neutral 9.9%\n\n## 4. Experiments\n\n### 4.1 Best-of-N Evaluation Results\n\n**Benchmarks Tested**: Seven multimodal reasoning benchmarks including MMMU (multidisciplinary), MathVista, MathVision, MathVerse, DynaMath, WeMath (mathematics), LogicVista (logical reasoning)\n\n**Key Findings** (Table 2):\n- MiniCPM-V2.6-8B: +8.0 points overall\n- Qwen2.5-VL-7B: +3.7 points\n- InternVL2.5-8B: +8.4 points\n- InternVL2.5-26B: +8.9 points\n- InternVL2.5-38B: +6.3 points\n- InternVL2.5-78B: +5.9 points\n\nImprovements consistent across different model families and scales. Best-of-8 evaluation used with temperature 0.7.\n\n### 4.2 VisualProcessBench Results\n\n**Critical Finding**: \"Most existing MLLMs struggle to accurately assess the correctness of each step.\"\n\n**Performance** (Table 3):\n- Random guessing baseline: 50.0 F1\n- InternVL2.5-8B: 48.0 F1\n- InternVL2.5-78B: 52.6 F1\n- VisualPRM: 62.0 F1 (competitive with Gemini-2.0-Flash at 62.3)\n\nAnalysis reveals that open-source MLLMs exhibit \"positive bias,\" rarely identifying steps as incorrect. For example, InternVL2.5-8B achieves 76.8 F1 on correct steps but only 19.2 on incorrect steps.\n\n### 4.3 Ablation Studies\n\n**PRM Effectiveness**: \n- PRM outperforms Self-Consistency and Outcome Reward Models (ORMs)\n- At Best-of-8: PRM exceeds SC by 2.4 points, ORM by 1.5 points\n- Gap widens with larger N (Best-of-128: PRM leads by 3.1 and 4.3 points)\n\n**Modeling Methods** (Table 4):\n- Value-based PRM outperforms advantage-based PRM\n- Reason: inherent noise in automatically-generated labels makes advantage estimation unreliable\n- Supervising all steps (w/o early stop) yields better performance than early stopping at first error\n- Score aggregation: averaging outperforms maximum (which relies on single high-scored early step)\n\n**Generation Hyperparameters**:\n- Optimal temperature around 0.7-1.0 (balance between diversity and accuracy)\n- Too low (0.3): insufficient response diversity\n- Too high (1.3): responses become too random\n\n**Expected Accuracy Threshold**:\n- Setting threshold to 0 for step correctness determination performs best\n- Higher thresholds degrade performance\n\n**Text-Only Performance** (Table 5):\nModel demonstrates effectiveness beyond multimodal contexts:\n- Qwen2.5-7B: +6.1 points on MATH-500, +5.0 on GPQA\n- InternVL2.5-8B: +9.4 on MATH-500, +5.0 on GPQA\n\n**MLLM-as-Judger Analysis**:\nDirect prompting of MLLMs as critics produces marginal gains because these models \"assign similar scores to most solutions\" and exhibit strong positive bias. Additionally, autoregressive generation for step-by-step scoring proves computationally expensive compared to VisualPRM's single forward pass approach.\n\n## 5. Conclusion\n\nThe paper successfully demonstrates that process reward models can serve as effective critic models for test-time scaling of MLLMs. Key achievements:\n\n1. **Dataset Contribution**: VisualPRM400K enables training multimodal PRMs at scale using automated annotation\n2. **Model Innovation**: VisualPRM consistently improves reasoning across model families and scales\n3. **Benchmark Creation**: VisualProcessBench provides rigorous evaluation showing open-source MLLMs struggle with step-level correctness assessment\n4. **Practical Impact**: PRMs outperform both outcome reward models and self-consistency approaches\n\nThe work reveals that \"existing open-source MLLMs struggle to effectively judge the correctness of each step,\" motivating future development of specialized multimodal critic models.\n\n**Limitations** (implicit in text): The dataset has inherent noise from automated annotation; approximately 10% incorrect steps creates class imbalance; the approach requires generating multiple reasoning paths, increasing inference costs proportionally with N.",
+    "durationMs": 31059,
+    "url": "https://arxiv.org/html/2503.10291"
+  },
+  "sourceToolAssistantUUID": "8a923c44-86ce-423a-8da7-e41d21f7173d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "6b224540-6caf-4805-a48b-b7ef9583f903",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze VisualPRM paper innovation and research craft",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-27T16:17:12.711Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have a very thorough extraction of the paper. Now let me also check if there are any OpenReview comments or other review feedback available. Let me also try to get more details on specific aspects that would help my analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b224540-6caf-4805-a48b-b7ef9583f903",
+  "isSidechain": false,
+  "requestId": "req_011CbTNfcHP6WMK7ExZGKhqH",
+  "type": "assistant",
+  "uuid": "e6b4600a-b55c-4035-8c54-a5648d5f637e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DuPRhMJCd4hKozbj9wUGuo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3200,
+      "cache_read_input_tokens": 13920,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 13920,
+          "cache_creation_input_tokens": 3200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-27T16:17:13.671Z_
+
+Excellent, very detailed extraction. Let me also check for any OpenReview reviews and look for additional details on the methodology.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6b4600a-b55c-4035-8c54-a5648d5f637e",
+  "isSidechain": false,
+  "requestId": "req_011CbTNfcHP6WMK7ExZGKhqH",
+  "type": "assistant",
+  "uuid": "d94fc9f3-cc7d-4ba1-998c-85a1bdde44d8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DuPRhMJCd4hKozbj9wUGuo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3200,
+      "cache_read_input_tokens": 13920,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 13920,
+          "cache_creation_input_tokens": 3200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-27T16:17:15.760Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TZroS86GHLdDuvzJp4xp6n`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=VisualPRM+process+reward+model+multimodal",
+  "prompt": "Look for any OpenReview submission of the paper \"VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\". If found, provide the link to the paper's forum page and any reviewer scores or comments visible. If not found, say so clearly."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d94fc9f3-cc7d-4ba1-998c-85a1bdde44d8",
+  "isSidechain": false,
+  "requestId": "req_011CbTNfcHP6WMK7ExZGKhqH",
+  "type": "assistant",
+  "uuid": "5c0d71f3-a8fd-44ed-9ab9-6862985708eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DuPRhMJCd4hKozbj9wUGuo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3200,
+      "cache_read_input_tokens": 13920,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 13920,
+          "cache_creation_input_tokens": 3200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-27T16:17:18.092Z_
+
+<details><summary>↩ Tool result · `toolu_01TZroS86GHLdDuvzJp4xp6n`</summary>
+
+```text
+I cannot find the paper "VisualPRM: An Effective Process Reward Model for Multimodal Reasoning" in the provided web page content.
+
+The content shown is merely the OpenReview.net homepage with navigation links, footer information, and general site details. It does not contain any search results, paper submissions, reviewer scores, or comments related to the paper you're asking about.
+
+To locate this paper, you would need to visit OpenReview.net directly and use their search functionality.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c0d71f3-a8fd-44ed-9ab9-6862985708eb",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "b4919155-ee98-4c43-94c1-5be3ab18d825",
+  "toolUseResult": {
+    "bytes": 62313,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot find the paper \"VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\" in the provided web page content.\n\nThe content shown is merely the OpenReview.net homepage with navigation links, footer information, and general site details. It does not contain any search results, paper submissions, reviewer scores, or comments related to the paper you're asking about.\n\nTo locate this paper, you would need to visit OpenReview.net directly and use their search functionality.",
+    "durationMs": 2328,
+    "url": "https://openreview.net/search?term=VisualPRM+process+reward+model+multimodal"
+  },
+  "sourceToolAssistantUUID": "5c0d71f3-a8fd-44ed-9ab9-6862985708eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-27T16:17:20.442Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TQBtXMbnRecYmpZXmT6dTT`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2503.10291",
+  "prompt": "Focus on extracting details I may have missed:\n1. What is the exact base model used for VisualPRM? (architecture, pretraining)\n2. How exactly is the Monte Carlo estimation done - what model generates completions? \n3. How are the source questions selected from MMPR v1.1?\n4. What is the exact training setup (learning rate, epochs, batch size)?\n5. Any discussion of why they chose 8B scale?\n6. What is the scoring formula during inference (exact math for aggregation)?\n7. Any comparison to concurrent/related work like Math-Shepherd or other PRMs?\n8. Details on the \"always supervise all steps\" vs \"early stopping\" comparison\n9. Figure descriptions - what do the key figures show?\n10. Any discussion of failure cases or qualitative analysis?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4919155-ee98-4c43-94c1-5be3ab18d825",
+  "isSidechain": false,
+  "requestId": "req_011CbTNfcHP6WMK7ExZGKhqH",
+  "type": "assistant",
+  "uuid": "40175edd-f245-425f-ab30-cd8b4a1ac282",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DuPRhMJCd4hKozbj9wUGuo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3200,
+      "cache_read_input_tokens": 13920,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 13920,
+          "cache_creation_input_tokens": 3200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T16:17:30.473Z_
+
+<details><summary>↩ Tool result · `toolu_01TQBtXMbnRecYmpZXmT6dTT`</summary>
+
+```text
+# Key Details from VisualPRM Paper
+
+## 1. Base Model Architecture
+The paper does not explicitly name the base model architecture. VisualPRM is described as "an advanced multimodal Process Reward Model (PRM) with 8B parameters" but the underlying architecture details (vision encoder, LLM backbone) are not provided in this document.
+
+## 2. Monte Carlo Completion Generation
+"The model is required to complete the solution" by sampling continuations using the formula: s̃>i ∼ M(s̃>i | I, q, s≤i). The document states they "sample 16 continuations" per step but does not specify which model M performs this generation. Based on context, it appears to be InternVL2.5 series models.
+
+## 3. MMPR v1.1 Source Selection
+The paper mentions "Image sets ℐ and question sets 𝒬 are collected from MMPR v1.1" but provides no details on selection criteria or filtering methodology.
+
+## 4. Training Setup Details
+From Section 6: "learning rate is initialized as 1e-5," with "linear warmup that lasts until the first 5% of training steps" followed by cosine decay. "Training epoch to 1" is set. Batch size is not disclosed.
+
+## 5. 8B Scale Rationale
+No explicit justification is provided for the 8B parameter choice in the document.
+
+## 6. Inference Scoring Formula
+"The score for each step is defined as the weighted sum of the generation probability for the discretized scores." For value-based: weights {1,0} for {+,−}. For advantage-based: weights {1,0,−1} for {+,=,−}. Final response score is computed by averaging step scores.
+
+## 7. Comparison to Related Work
+The paper compares against Self-Consistency and Outcome Reward Models (ORMs) empirically but discusses Math-Shepherd and MathShepherd only in the Related Work section as prior process supervision datasets.
+
+## 8. All-Steps vs. Early-Stopping Supervision
+"Experiments show that the former yields better performance" (supervising all steps), attributed to reduced noise impact in automatic data generation.
+
+## 9. Key Figure Contributions
+- Figure 1: Demonstrates VisualPRM superiority in Best-of-8 evaluation across benchmarks
+- Figure 2: Shows data pipeline and annotation examples
+- Figure 4: Illustrates VisualPRM's consistent gains as N increases
+
+## 10. Failure Case Analysis
+The document lacks qualitative failure analysis. It notes open-source MLLMs "tend to provide positive analysis and label most steps as correct" but doesn't analyze VisualPRM failure modes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40175edd-f245-425f-ab30-cd8b4a1ac282",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "de44d386-2008-4ca6-89ff-ed56157662d6",
+  "toolUseResult": {
+    "bytes": 508536,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Details from VisualPRM Paper\n\n## 1. Base Model Architecture\nThe paper does not explicitly name the base model architecture. VisualPRM is described as \"an advanced multimodal Process Reward Model (PRM) with 8B parameters\" but the underlying architecture details (vision encoder, LLM backbone) are not provided in this document.\n\n## 2. Monte Carlo Completion Generation\n\"The model is required to complete the solution\" by sampling continuations using the formula: s̃>i ∼ M(s̃>i | I, q, s≤i). The document states they \"sample 16 continuations\" per step but does not specify which model M performs this generation. Based on context, it appears to be InternVL2.5 series models.\n\n## 3. MMPR v1.1 Source Selection\nThe paper mentions \"Image sets ℐ and question sets 𝒬 are collected from MMPR v1.1\" but provides no details on selection criteria or filtering methodology.\n\n## 4. Training Setup Details\nFrom Section 6: \"learning rate is initialized as 1e-5,\" with \"linear warmup that lasts until the first 5% of training steps\" followed by cosine decay. \"Training epoch to 1\" is set. Batch size is not disclosed.\n\n## 5. 8B Scale Rationale\nNo explicit justification is provided for the 8B parameter choice in the document.\n\n## 6. Inference Scoring Formula\n\"The score for each step is defined as the weighted sum of the generation probability for the discretized scores.\" For value-based: weights {1,0} for {+,−}. For advantage-based: weights {1,0,−1} for {+,=,−}. Final response score is computed by averaging step scores.\n\n## 7. Comparison to Related Work\nThe paper compares against Self-Consistency and Outcome Reward Models (ORMs) empirically but discusses Math-Shepherd and MathShepherd only in the Related Work section as prior process supervision datasets.\n\n## 8. All-Steps vs. Early-Stopping Supervision\n\"Experiments show that the former yields better performance\" (supervising all steps), attributed to reduced noise impact in automatic data generation.\n\n## 9. Key Figure Contributions\n- Figure 1: Demonstrates VisualPRM superiority in Best-of-8 evaluation across benchmarks\n- Figure 2: Shows data pipeline and annotation examples\n- Figure 4: Illustrates VisualPRM's consistent gains as N increases\n\n## 10. Failure Case Analysis\nThe document lacks qualitative failure analysis. It notes open-source MLLMs \"tend to provide positive analysis and label most steps as correct\" but doesn't analyze VisualPRM failure modes.",
+    "durationMs": 10027,
+    "url": "https://arxiv.org/html/2503.10291"
+  },
+  "sourceToolAssistantUUID": "40175edd-f245-425f-ab30-cd8b4a1ac282",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-27T16:17:33.758Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for the paper on OpenReview more specifically - it may have been submitted to a conference like ICML 2025 or NeurIPS 2025.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de44d386-2008-4ca6-89ff-ed56157662d6",
+  "isSidechain": false,
+  "requestId": "req_011CbTNhDqKk1EqjwzMB1P2S",
+  "type": "assistant",
+  "uuid": "ee9e5709-dbec-41fe-ace6-516657a65358",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CvuR4Vbn9QLMKqmkCTyDja",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 17120,
+      "output_tokens": 322,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 322,
+          "cache_read_input_tokens": 17120,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-27T16:17:34.257Z_
+
+Let me check if this paper was submitted to a conference on OpenReview:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee9e5709-dbec-41fe-ace6-516657a65358",
+  "isSidechain": false,
+  "requestId": "req_011CbTNhDqKk1EqjwzMB1P2S",
+  "type": "assistant",
+  "uuid": "12bb1540-2832-4afd-9837-8c17be70f2ff",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CvuR4Vbn9QLMKqmkCTyDja",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 17120,
+      "output_tokens": 322,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 322,
+          "cache_read_input_tokens": 17120,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T16:17:36.139Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014CEnbLfTujNUxQA1PBM9m9`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=VisualPRM&venue=ICML",
+  "prompt": "Is there any submission of \"VisualPRM\" or \"Visual Process Reward Model\" listed here? Extract any reviewer comments, scores, or discussion if found. If the page doesn't show search results, say so."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12bb1540-2832-4afd-9837-8c17be70f2ff",
+  "isSidechain": false,
+  "requestId": "req_011CbTNhDqKk1EqjwzMB1P2S",
+  "type": "assistant",
+  "uuid": "fc593a97-429d-44f0-8e3a-02d031476a48",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CvuR4Vbn9QLMKqmkCTyDja",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 17120,
+      "output_tokens": 322,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 322,
+          "cache_read_input_tokens": 17120,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T16:17:37.565Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017YfscrEsHV4BoeAK3yCRje`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/OpenGVLab/VisualPRM-8B",
+  "prompt": "Extract all information about the VisualPRM model card: base model used, training details, architecture, datasets, any additional technical details not in the paper. What is the underlying model architecture?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc593a97-429d-44f0-8e3a-02d031476a48",
+  "isSidechain": false,
+  "requestId": "req_011CbTNhDqKk1EqjwzMB1P2S",
+  "type": "assistant",
+  "uuid": "3472c74a-391c-4197-a584-3f66669e61b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CvuR4Vbn9QLMKqmkCTyDja",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1295,
+      "cache_read_input_tokens": 17120,
+      "output_tokens": 322,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 322,
+          "cache_read_input_tokens": 17120,
+          "cache_creation_input_tokens": 1295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T16:17:37.828Z_
+
+<details><summary>↩ Tool result · `toolu_014CEnbLfTujNUxQA1PBM9m9`</summary>
+
+```text
+# Search Results for "VisualPRM" / "Visual Process Reward Model"
+
+The page content provided does not display any search results. It only shows the OpenReview.net navigation menu, footer links, and general site information. 
+
+No submissions, reviewer comments, scores, or discussions related to "VisualPRM" or "Visual Process Reward Model" are present in this page content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc593a97-429d-44f0-8e3a-02d031476a48",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "1af0bd20-ed7b-4b4d-a6dd-f4e7f17d29ee",
+  "toolUseResult": {
+    "bytes": 62279,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Search Results for \"VisualPRM\" / \"Visual Process Reward Model\"\n\nThe page content provided does not display any search results. It only shows the OpenReview.net navigation menu, footer links, and general site information. \n\nNo submissions, reviewer comments, scores, or discussions related to \"VisualPRM\" or \"Visual Process Reward Model\" are present in this page content.",
+    "durationMs": 1685,
+    "url": "https://openreview.net/search?term=VisualPRM&venue=ICML"
+  },
+  "sourceToolAssistantUUID": "fc593a97-429d-44f0-8e3a-02d031476a48",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-27T16:17:44.807Z_
+
+<details><summary>↩ Tool result · `toolu_017YfscrEsHV4BoeAK3yCRje`</summary>
+
+````text
+# VisualPRM-8B Model Card Information
+
+## Base Model
+- **Base Model**: [OpenGVLab/InternVL2_5-8B](https://huggingface.co/OpenGVLab/InternVL2_5-8B)
+- **Model Size**: 8B parameters
+- **Tensor Type**: BF16 (bfloat16)
+- **Model Architecture**: Multimodal Large Language Model (MLLM) fine-tuned as a Process Reward Model (PRM)
+
+## Architecture Overview
+VisualPRM-8B is built on top of **InternVL2.5-8B**, a multimodal vision-language model. The model is specifically designed as a **Process Reward Model (PRM)** that:
+- Evaluates reasoning steps in multimodal tasks
+- Scores intermediate steps in problem-solving chains
+- Detects erroneous steps in multimodal reasoning
+
+## Training Datasets
+1. **VisualPRM400K** - Automated data pipeline for multimodal process supervision
+   - Contains step-wise correctness annotations
+   - 400K examples for training the PRM
+
+2. **MMPR-v1.1** - Multimodal Process Reward dataset
+
+## Key Technical Details
+
+### Model Capabilities
+- **Task**: Image-Text-to-Text (image-text-to-text pipeline tag)
+- **Function**: Best-of-N (BoN) evaluation and response selection
+- **Performance**: Improves reasoning across MLLMs of different scales
+
+### Core Functionality
+The model includes a specialized method for selecting best responses:
+
+```python
+sorted_response_list = model.select_best_response(
+    tokenizer=tokenizer,
+    question=question,
+    response_list=response_list,
+    pixel_values=pixel_values,
+    return_scores=True,
+)
+```
+
+## Evaluation Benchmark
+- **VisualProcessBench**: Proprietary benchmark with human-annotated step-wise correctness labels for evaluating PRM capabilities
+
+## Performance Highlights
+- Improves reasoning performance across three types of MLLMs and four different model scales
+- When applied to InternVL2.5-78B, achieves **5.9-point improvement** across seven multimodal reasoning benchmarks
+- Outperforms Outcome Reward Models and Self-Consistency approaches
+
+## Dependencies
+- Uses `internlm2_5-7b-chat` as a pre-trained component (Apache License 2.0)
+- Licensed under MIT License
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "3472c74a-391c-4197-a584-3f66669e61b1",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "ef67e941-dccb-4f4e-aa5a-4dc67fe6147f",
+  "toolUseResult": {
+    "bytes": 216471,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# VisualPRM-8B Model Card Information\n\n## Base Model\n- **Base Model**: [OpenGVLab/InternVL2_5-8B](https://huggingface.co/OpenGVLab/InternVL2_5-8B)\n- **Model Size**: 8B parameters\n- **Tensor Type**: BF16 (bfloat16)\n- **Model Architecture**: Multimodal Large Language Model (MLLM) fine-tuned as a Process Reward Model (PRM)\n\n## Architecture Overview\nVisualPRM-8B is built on top of **InternVL2.5-8B**, a multimodal vision-language model. The model is specifically designed as a **Process Reward Model (PRM)** that:\n- Evaluates reasoning steps in multimodal tasks\n- Scores intermediate steps in problem-solving chains\n- Detects erroneous steps in multimodal reasoning\n\n## Training Datasets\n1. **VisualPRM400K** - Automated data pipeline for multimodal process supervision\n   - Contains step-wise correctness annotations\n   - 400K examples for training the PRM\n\n2. **MMPR-v1.1** - Multimodal Process Reward dataset\n\n## Key Technical Details\n\n### Model Capabilities\n- **Task**: Image-Text-to-Text (image-text-to-text pipeline tag)\n- **Function**: Best-of-N (BoN) evaluation and response selection\n- **Performance**: Improves reasoning across MLLMs of different scales\n\n### Core Functionality\nThe model includes a specialized method for selecting best responses:\n\n```python\nsorted_response_list = model.select_best_response(\n    tokenizer=tokenizer,\n    question=question,\n    response_list=response_list,\n    pixel_values=pixel_values,\n    return_scores=True,\n)\n```\n\n## Evaluation Benchmark\n- **VisualProcessBench**: Proprietary benchmark with human-annotated step-wise correctness labels for evaluating PRM capabilities\n\n## Performance Highlights\n- Improves reasoning performance across three types of MLLMs and four different model scales\n- When applied to InternVL2.5-78B, achieves **5.9-point improvement** across seven multimodal reasoning benchmarks\n- Outperforms Outcome Reward Models and Self-Consistency approaches\n\n## Dependencies\n- Uses `internlm2_5-7b-chat` as a pre-trained component (Apache License 2.0)\n- Licensed under MIT License",
+    "durationMs": 7239,
+    "url": "https://huggingface.co/OpenGVLab/VisualPRM-8B"
+  },
+  "sourceToolAssistantUUID": "3472c74a-391c-4197-a584-3f66669e61b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-27T16:17:44.813Z_
+
+```json
+{
+  "parentUuid": "ef67e941-dccb-4f4e-aa5a-4dc67fe6147f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "551545fb-9bca-4188-8d9b-ed20a975df84",
+  "timestamp": "2026-05-27T16:17:44.813Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-27T16:17:59.725Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the paper. Let me also try to find the paper on Papers With Code or Semantic Scholar for any additional community discussion.
+
+Actually, I have enough information now. Let me compose the analysis JSON.
+
+Key observations for my analysis:
+
+1. **Problem identification**: The gap they found was that while PRMs have been successful for text-only math reasoning (PRM800K, Math-Shepherd), nobody had built one for multimodal reasoning. They also identified that existing MLLMs are terrible at step-level criticism (exhibiting strong positive bias).
+
+2. **Key insight**: The authors realized that the Monte Carlo estimation approach from Math-Shepherd could be adapted to multimodal settings, and that a relatively small 8B model specifically trained for process reward estimation could dramatically outperform much larger general-purpose models (even 78B) at judging reasoning quality.
+   
+3. **Innovation type**: This is primarily a "combination" + "cross_domain" paper—taking PRMs from text-only math and bringing them to multimodal, plus creating the benchmark and dataset needed. The three-pronged contribution (dataset + model + benchmark) is quite complete, and it demonstrates generalization across model families and scales while addressing both the data gap and the evaluation gap. The insight about "always supervise all steps" versus "early stopping" is particularly non-obvious, and the empirical results are strong with thorough ablations backing them up.
+
+4. **Building blocks**: The approach uses Monte Carlo estimation for step-level supervision, InternVL2.5 as the base model, MMPR v1.1 as the source data, and discretized token prediction for reward modeling. Now I'm ready to generate the final JSON output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "551545fb-9bca-4188-8d9b-ed20a975df84",
+  "isSidechain": false,
+  "requestId": "req_011CbTNiH92g873cK66Pfgk2",
+  "type": "assistant",
+  "uuid": "f24dd326-0479-4400-826c-67fc1758330e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015mo3boGhMQbNPCwmeKzSCL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 18415,
+      "output_tokens": 537,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 537,
+          "cache_read_input_tokens": 18415,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-27T16:17:59.731Z_
+
+Now I have comprehensive information. Let me also check for any community discussion or follow-up work:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f24dd326-0479-4400-826c-67fc1758330e",
+  "isSidechain": false,
+  "requestId": "req_011CbTNiH92g873cK66Pfgk2",
+  "type": "assistant",
+  "uuid": "04c2fd72-d893-4473-bd9a-7588595bc770",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015mo3boGhMQbNPCwmeKzSCL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 18415,
+      "output_tokens": 537,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 537,
+          "cache_read_input_tokens": 18415,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-27T16:17:59.797Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01D5pSNaVaMB2RWRnj3Q2tsg`</summary>
+
+```json
+{
+  "url": "https://paperswithcode.com/paper/visualprm-an-effective-process-reward-model",
+  "prompt": "Extract any information about this paper: tasks, results, leaderboard entries, code availability, datasets, and any community annotations or follow-up papers that cite it."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04c2fd72-d893-4473-bd9a-7588595bc770",
+  "isSidechain": false,
+  "requestId": "req_011CbTNiH92g873cK66Pfgk2",
+  "type": "assistant",
+  "uuid": "f9380c99-ca35-4087-a2f9-8b54a677cafb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015mo3boGhMQbNPCwmeKzSCL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 18415,
+      "output_tokens": 537,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1161,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 537,
+          "cache_read_input_tokens": 18415,
+          "cache_creation_input_tokens": 1161,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1161
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "f9380c99-ca35-4087-a2f9-8b54a677cafb",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze VisualPRM paper innovation and research craft",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-27T16:18:00.411Z_
+
+<details><summary>↩ Tool result · `toolu_01D5pSNaVaMB2RWRnj3Q2tsg`</summary>
+
+```text
+REDIRECT DETECTED: The URL redirects to a different host.
+
+Original URL: https://paperswithcode.com/paper/visualprm-an-effective-process-reward-model
+Redirect URL: https://huggingface.co/papers/2503.10291
+Status: 302 Found
+
+To complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:
+- url: "https://huggingface.co/papers/2503.10291"
+- prompt: "Extract any information about this paper: tasks, results, leaderboard entries, code availability, datasets, and any community annotations or follow-up papers that cite it."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9380c99-ca35-4087-a2f9-8b54a677cafb",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "91328d9d-1aa3-4cf9-aae1-6d2357e44435",
+  "toolUseResult": {
+    "bytes": 581,
+    "code": 302,
+    "codeText": "Found",
+    "result": "REDIRECT DETECTED: The URL redirects to a different host.\n\nOriginal URL: https://paperswithcode.com/paper/visualprm-an-effective-process-reward-model\nRedirect URL: https://huggingface.co/papers/2503.10291\nStatus: 302 Found\n\nTo complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:\n- url: \"https://huggingface.co/papers/2503.10291\"\n- prompt: \"Extract any information about this paper: tasks, results, leaderboard entries, code availability, datasets, and any community annotations or follow-up papers that cite it.\"",
+    "durationMs": 611,
+    "url": "https://paperswithcode.com/paper/visualprm-an-effective-process-reward-model"
+  },
+  "sourceToolAssistantUUID": "f9380c99-ca35-4087-a2f9-8b54a677cafb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-27T16:18:03.411Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VDfx6m1hrYVohaoCXtM2uc`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/papers/2503.10291",
+  "prompt": "Extract any information about this paper: community upvotes, comments, discussion, related models/datasets, and any community reactions or follow-up work."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91328d9d-1aa3-4cf9-aae1-6d2357e44435",
+  "isSidechain": false,
+  "requestId": "req_011CbTNjRoxMv7Wp6koth98X",
+  "type": "assistant",
+  "uuid": "09374d78-8c1f-4daa-8852-a23a30094d2d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4RDgWA73qP8Yd3P9pxyjJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 707,
+      "cache_read_input_tokens": 19576,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 707,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 19576,
+          "cache_creation_input_tokens": 707,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 707
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-27T16:18:04.086Z_
+
+<details><summary>↩ Tool result · `toolu_01VDfx6m1hrYVohaoCXtM2uc`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (80.4KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/59831ef5-561e-432f-9a80-21febe0fb5e8/tool-results/toolu_01VDfx6m1hrYVohaoCXtM2uc.txt
+
+Preview (first 2KB):
+Title: VisualPRM: An Effective Process Reward Model for Multimodal Reasoning
+
+URL Source: https://arxiv.org/html/2503.10291
+
+Published Time: Fri, 14 Mar 2025 00:51:57 GMT
+
+Markdown Content:
+Weiyun Wang 1,2, Zhangwei Gao 3,2, Lianjie Chen 4,2, Zhe Chen 5,2, Jinguo Zhu 2, 
+
+ Xiangyu Zhao 3,2, Yangzhou Liu 5,2, Yue Cao 5,2, Shenglong Ye 2, Xizhou Zhu 4,2, 
+
+ Lewei Lu 7, Haodong Duan 2, Yu Qiao 2, Jifeng Dai 4,2, Wenhai Wang 6,2🖂
+
+1 Fudan University, 2 Shanghai AI Laboratory, 
+
+3 Shanghai Jiaotong University, 4 Tsinghua University, 
+
+5 Nanjing University, 6 The Chinese University of Hong Kong, 7 SenseTime Research
+
+###### Abstract
+
+We introduce VisualPRM, an advanced multimodal Process Reward Model (PRM) with 8B parameters, which improves the reasoning abilities of existing Multimodal Large Language Models (MLLMs) across different model scales and families with Best-of-N (BoN) evaluation strategies. Specifically, our model improves the reasoning performance of three types of MLLMs and four different model scales. Even when applied to the highly capable InternVL2.5-78B, it achieves a 5.9-point improvement across seven multimodal reasoning benchmarks. Experimental results show that our model exhibits superior performance compared to Outcome Reward Models and Self-Consistency during BoN evaluation. To facilitate the training of multimodal PRMs, we construct a multimodal process supervision dataset VisualPRM400K using an automated data pipeline. For the evaluation of multimodal PRMs, we propose VisualProcessBench, a benchmark with human-annotated step-wise correctness labels, to measure the abilities of PRMs to detect erroneous steps in multimodal reasoning tasks. We hope that our work can inspire more future research and contribute to the development of MLLMs. Our model, data, and benchmark are released in this [page](https://internvl.github.io/blog/2025-03-13-VisualPRM/).
+
+🖂 Corresponding Author: wangwenhai@pjlab.org.cn
+1 Introduction
+--------------
+
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09374d78-8c1f-4daa-8852-a23a30094d2d",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "4b8097fb-fff9-4c12-a179-7e0a91e4596c",
+  "toolUseResult": {
+    "bytes": 83026,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Title: VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\n\nURL Source: https://arxiv.org/html/2503.10291\n\nPublished Time: Fri, 14 Mar 2025 00:51:57 GMT\n\nMarkdown Content:\nWeiyun Wang 1,2, Zhangwei Gao 3,2, Lianjie Chen 4,2, Zhe Chen 5,2, Jinguo Zhu 2, \n\n Xiangyu Zhao 3,2, Yangzhou Liu 5,2, Yue Cao 5,2, Shenglong Ye 2, Xizhou Zhu 4,2, \n\n Lewei Lu 7, Haodong Duan 2, Yu Qiao 2, Jifeng Dai 4,2, Wenhai Wang 6,2🖂\n\n1 Fudan University, 2 Shanghai AI Laboratory, \n\n3 Shanghai Jiaotong University, 4 Tsinghua University, \n\n5 Nanjing University, 6 The Chinese University of Hong Kong, 7 SenseTime Research\n\n###### Abstract\n\nWe introduce VisualPRM, an advanced multimodal Process Reward Model (PRM) with 8B parameters, which improves the reasoning abilities of existing Multimodal Large Language Models (MLLMs) across different model scales and families with Best-of-N (BoN) evaluation strategies. Specifically, our model improves the reasoning performance of three types of MLLMs and four different model scales. Even when applied to the highly capable InternVL2.5-78B, it achieves a 5.9-point improvement across seven multimodal reasoning benchmarks. Experimental results show that our model exhibits superior performance compared to Outcome Reward Models and Self-Consistency during BoN evaluation. To facilitate the training of multimodal PRMs, we construct a multimodal process supervision dataset VisualPRM400K using an automated data pipeline. For the evaluation of multimodal PRMs, we propose VisualProcessBench, a benchmark with human-annotated step-wise correctness labels, to measure the abilities of PRMs to detect erroneous steps in multimodal reasoning tasks. We hope that our work can inspire more future research and contribute to the development of MLLMs. Our model, data, and benchmark are released in this [page](https://internvl.github.io/blog/2025-03-13-VisualPRM/).\n\n🖂 Corresponding Author: wangwenhai@pjlab.org.cn\n1 Introduction\n--------------\n\n![Image 1: Refer to caption](https://arxiv.org/html/2503.10291v1/x1.png)\n\nFigure 1: The overall Best-of-8 evaluation results across seven multimodal reasoning benchmarks with different critic models. Our VisualPRM greatly enhances the overall performance, while InternVL2.5-8B struggles to be an effective critic model. \n\nWith the remarkable success of Large Language Models (LLMs) [[75](https://arxiv.org/html/2503.10291v1#bib.bib75), [76](https://arxiv.org/html/2503.10291v1#bib.bib76), [21](https://arxiv.org/html/2503.10291v1#bib.bib21), [5](https://arxiv.org/html/2503.10291v1#bib.bib5), [71](https://arxiv.org/html/2503.10291v1#bib.bib71), [10](https://arxiv.org/html/2503.10291v1#bib.bib10), [9](https://arxiv.org/html/2503.10291v1#bib.bib9), [1](https://arxiv.org/html/2503.10291v1#bib.bib1), [4](https://arxiv.org/html/2503.10291v1#bib.bib4)] in natural language processing, Multimodal Large Language Models (MLLMs) [[80](https://arxiv.org/html/2503.10291v1#bib.bib80), [36](https://arxiv.org/html/2503.10291v1#bib.bib36), [41](https://arxiv.org/html/2503.10291v1#bib.bib41), [42](https://arxiv.org/html/2503.10291v1#bib.bib42), [6](https://arxiv.org/html/2503.10291v1#bib.bib6), [84](https://arxiv.org/html/2503.10291v1#bib.bib84), [83](https://arxiv.org/html/2503.10291v1#bib.bib83), [14](https://arxiv.org/html/2503.10291v1#bib.bib14), [16](https://arxiv.org/html/2503.10291v1#bib.bib16), [15](https://arxiv.org/html/2503.10291v1#bib.bib15), [58](https://arxiv.org/html/2503.10291v1#bib.bib58), [61](https://arxiv.org/html/2503.10291v1#bib.bib61), [89](https://arxiv.org/html/2503.10291v1#bib.bib89)] have also achieved significant advancements across various vision-language tasks. Despite their strong performance in perception and recognition, a large gap remains in reasoning capabilities between open-source and proprietary models. A series of studies have explored methods to enhance reasoning abilities, focusing on the perspectives of data collection and construction[[57](https://arxiv.org/html/2503.10291v1#bib.bib57), [74](https://arxiv.org/html/2503.10291v1#bib.bib74), [38](https://arxiv.org/html/2503.10291v1#bib.bib38), [43](https://arxiv.org/html/2503.10291v1#bib.bib43)], offline preference optimization[[59](https://arxiv.org/html/2503.10291v1#bib.bib59), [82](https://arxiv.org/html/2503.10291v1#bib.bib82), [32](https://arxiv.org/html/2503.10291v1#bib.bib32)], and online reinforcement learning[[66](https://arxiv.org/html/2503.10291v1#bib.bib66), [24](https://arxiv.org/html/2503.10291v1#bib.bib24), [2](https://arxiv.org/html/2503.10291v1#bib.bib2), [26](https://arxiv.org/html/2503.10291v1#bib.bib26)]. Additionally, another line of research [[68](https://arxiv.org/html/2503.10291v1#bib.bib68), [20](https://arxiv.org/html/2503.10291v1#bib.bib20), [94](https://arxiv.org/html/2503.10291v1#bib.bib94), [79](https://arxiv.org/html/2503.10291v1#bib.bib79)] investigates utilizing Test-Time Scaling (TTS) to enhance the reasoning abilities of LLMs. This approach requires the policy model to generate multiple response candidates and select the best one, based on the quality estimation of a critic model, thereby improving the response quality at the cost of higher inference time. However, TTS for MLLMs remains largely unexplored.\n\nThis work investigates the application of TTS for MLLMs, focusing on the Best-of-N (BoN) evaluation strategies. The challenges of adapting TTS for MLLMs involves: (1) Lack of effective critic models. In BoN evaluation, a critic model is required to estimate the quality of each response candidate. However, as shown in Figure[1](https://arxiv.org/html/2503.10291v1#S1.F1 \"Figure 1 ‣ 1 Introduction ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), existing open-source MLLMs struggle to serve as critic models, leading to marginal improvements compared to models without TTS. This limitation stems from the lack of sufficient critic data in their training corpus. (2) Lack of evaluation benchmarks for multimodal critic models. The effectiveness of TTS heavily depends on the performance of the critic model. However, directly evaluating critics under BoN settings poses two key issues. First, the evaluation cost of BoN is expensive. Although the focus is on the performance of critic models, the policy model is required to generate N 𝑁 N italic_N reasoning processes, with the majority of computational costs arising from the policy model. Second, BoN performance is also affected by the policy model, making it difficult to compare different critic models when paired with varying policy models.\n\nTo solve these challenges, we first introduce VisualPRM400K, a dataset comprising approximately 400K multimodal process supervision data. Each sample includes an image, a question, a step-by-step solution, and correctness annotations for each step. Specifically, we collect question prompts from MMPR v1.1[[82](https://arxiv.org/html/2503.10291v1#bib.bib82)] and then generate process correctness using an automatic data pipeline[[79](https://arxiv.org/html/2503.10291v1#bib.bib79)]. This pipeline samples multiple continuations starting from a certain step and computes the expected accuracy of that step as the average accuracy of its continuations.\n\nTo facilitate the evaluation of multimodal critic models, we introduce VisualProcessBench, a benchmark for evaluating PRMs and MLLMs in detecting erroneous steps in multimodal reasoning tasks. This benchmark includes 2,866 samples with 26,950 human-annotated step-wise correctness labels. Each sample includes a multimodal reasoning question, a step-by-step solution, and correctness labels for each step. To ensure annotation accuracy, we employ human experts with at least a university degree to manually assess the correctness of each step. Unlike prior benchmarks[[96](https://arxiv.org/html/2503.10291v1#bib.bib96), [39](https://arxiv.org/html/2503.10291v1#bib.bib39)], which require identifying only the first erroneous step, VisualProcessBench challenges models to detect all errors within a given solution. This adjustment aligns with recent advancements in model reflection abilities, helping to reduce false negatives in evaluations. Evaluation results reveal that existing open-source MLLMs struggle to accurately assess step-wise correctness, highlighting the need for improved multimodal critic models.\n\nBuilding upon the dataset and benchmark, we develop VisualPRM, an advanced multimodal Process Reward Model (PRM) with 8B parameters, to serve as the critic model in BoN evaluation. Each training sample is formulated as a multi-turn chat. The first turn includes the image, the question, and the first solution step, while each subsequent turn presents a new step. The model is trained to predict the correctness of the given step at each turn. Experimental results demonstrate that VisualPRM enhances MLLM reasoning across different model families and scales. Specifically, VisualPRM improves the overall reasoning performance of MiniCPM-V2.6, QwenVL2.5-7B, InternVL2.5-8B, and InternVL2.5-78B by 8.0, 3.7, 8.4, and 5.9 points, respectively, across seven multimodal reasoning benchmarks[[90](https://arxiv.org/html/2503.10291v1#bib.bib90), [50](https://arxiv.org/html/2503.10291v1#bib.bib50), [78](https://arxiv.org/html/2503.10291v1#bib.bib78), [93](https://arxiv.org/html/2503.10291v1#bib.bib93), [99](https://arxiv.org/html/2503.10291v1#bib.bib99), [60](https://arxiv.org/html/2503.10291v1#bib.bib60), [87](https://arxiv.org/html/2503.10291v1#bib.bib87)]. Additionally, we compare PRMs with Outcome Reward Models and Self-Consistency in BoN evaluation, finding that PRMs consistently outperform both approaches.\n\nIn summary, our main contributions are as follows:\n\n(1) We introduce VisualPRM400K, a dataset comprising approximately 400K multimodal process supervision data. Building upon this dataset, we develop VisualPRM, an advanced multimodal PRM to serve as the critic model in the BoN evaluation.\n\n(2) We construct VisualProcessBench, a benchmark designed to measure the abilities of PRMs and MLLMs to identify erroneous steps in multimodal reasoning tasks. This benchmark comprises 2,866 samples with a total of 26,950 human-annotated step-wise correctness labels.\n\n(3) Through extensive experiments, we demonstrate that PRMs can serve as effective critic models for test-time scaling of MLLMs. Specifically, VisualPRM enhances the overall multimodal reasoning performance of MiniCPM-V2.6, QwenVL2.5-7B, InternVL2.5-8B, and InternVL2.5-78B by 8.0, 3.7, 8.4, and 5.9 points, respectively, across seven multimodal reasoning benchmarks. Furthermore, our results show that PRMs consistently outperform both ORMs and SC in BoN evaluation. Additionally, experiments on VisualProcessBench reveal that existing open-source MLLMs struggle to accurately assess the correctness of each step.\n\n![Image 2: Refer to caption](https://arxiv.org/html/2503.10291v1/x2.png)\n\nFigure 2: Data examples in VisualPRM400K and VisualProcessBench. For VisualPRM400K, we generate the data using an automatic data pipeline. The key idea is to estimate the expected accuracy m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT of the given step s≤i subscript 𝑠 absent 𝑖 s_{\\leq i}italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT based on Monte Carlo sampling and consider the step correct if m⁢c i>0 𝑚 subscript 𝑐 𝑖 0 mc_{i}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT > 0. During the training process of VisualPRM, the data is formulated as multi-turn conversations and the model is required to predict the correctness of each step conditioned on the image, question, and previous steps. For VisualProcessBench, we collect questions from existing multimodal reasoning benchmarks[[90](https://arxiv.org/html/2503.10291v1#bib.bib90), [78](https://arxiv.org/html/2503.10291v1#bib.bib78), [93](https://arxiv.org/html/2503.10291v1#bib.bib93), [99](https://arxiv.org/html/2503.10291v1#bib.bib99), [60](https://arxiv.org/html/2503.10291v1#bib.bib60)] and generate the solutions using leading MLLMs[[58](https://arxiv.org/html/2503.10291v1#bib.bib58), [4](https://arxiv.org/html/2503.10291v1#bib.bib4), [15](https://arxiv.org/html/2503.10291v1#bib.bib15), [82](https://arxiv.org/html/2503.10291v1#bib.bib82), [72](https://arxiv.org/html/2503.10291v1#bib.bib72)]. Based on these questions and solutions, we employ a team of human experts with at least a university degree to manually annotate the correctness of each step in the solutions. \n\n2 Related Work\n--------------\n\nMultimodal Large Language Models. A wide range of efforts has been made to advance the development of MLLMs, including improvements in model architecture, data construction, and training algorithms. From an architectural perspective, several studies[[41](https://arxiv.org/html/2503.10291v1#bib.bib41), [42](https://arxiv.org/html/2503.10291v1#bib.bib42), [89](https://arxiv.org/html/2503.10291v1#bib.bib89), [15](https://arxiv.org/html/2503.10291v1#bib.bib15), [16](https://arxiv.org/html/2503.10291v1#bib.bib16), [84](https://arxiv.org/html/2503.10291v1#bib.bib84), [83](https://arxiv.org/html/2503.10291v1#bib.bib83), [45](https://arxiv.org/html/2503.10291v1#bib.bib45), [85](https://arxiv.org/html/2503.10291v1#bib.bib85), [7](https://arxiv.org/html/2503.10291v1#bib.bib7), [89](https://arxiv.org/html/2503.10291v1#bib.bib89)] employ connectors to align visual embeddings from Vision Foundation Models (VFMs)[[14](https://arxiv.org/html/2503.10291v1#bib.bib14), [91](https://arxiv.org/html/2503.10291v1#bib.bib91)] with the latent space of LLMs[[5](https://arxiv.org/html/2503.10291v1#bib.bib5), [75](https://arxiv.org/html/2503.10291v1#bib.bib75), [76](https://arxiv.org/html/2503.10291v1#bib.bib76), [71](https://arxiv.org/html/2503.10291v1#bib.bib71)], achieving promising performance. Another series of works[[3](https://arxiv.org/html/2503.10291v1#bib.bib3), [21](https://arxiv.org/html/2503.10291v1#bib.bib21), [73](https://arxiv.org/html/2503.10291v1#bib.bib73), [81](https://arxiv.org/html/2503.10291v1#bib.bib81)] extends pre-trained LLMs with additional layers to fuse visual features, reducing the number of required visual tokens while introducing extra training cost. In terms of data construction, recent studies have made significant progress[[63](https://arxiv.org/html/2503.10291v1#bib.bib63), [98](https://arxiv.org/html/2503.10291v1#bib.bib98), [34](https://arxiv.org/html/2503.10291v1#bib.bib34), [38](https://arxiv.org/html/2503.10291v1#bib.bib38), [43](https://arxiv.org/html/2503.10291v1#bib.bib43), [82](https://arxiv.org/html/2503.10291v1#bib.bib82), [95](https://arxiv.org/html/2503.10291v1#bib.bib95)]. For example, OmniCorpus[[38](https://arxiv.org/html/2503.10291v1#bib.bib38)] offers a noisy but large-scale multimodal corpus for pre-training, while MMInstruct[[43](https://arxiv.org/html/2503.10291v1#bib.bib43)] provides an open-source, high-quality instruction-tuning dataset. Additionally, MMPR[[82](https://arxiv.org/html/2503.10291v1#bib.bib82)] constructs a preference dataset focusing on multimodal reasoning abilities. Regarding training algorithms, the InternVL2.5 series[[15](https://arxiv.org/html/2503.10291v1#bib.bib15), [82](https://arxiv.org/html/2503.10291v1#bib.bib82)] proposes square loss and Mix Preference Optimization to enhance MLLM capabilities. Despite these advancements, existing works primarily focus on the training process of MLLMs, leaving Test-Time Scaling (TTS) for MLLMs largely underexplored. In this work, we investigate TTS applications for MLLMs, specifically focusing on the Best-of-N evaluation to improve multimodal reasoning performance.\n\nProcess Reward Models. Reward models play a crucial role in Reinforcement Learning (RL)[[64](https://arxiv.org/html/2503.10291v1#bib.bib64), [66](https://arxiv.org/html/2503.10291v1#bib.bib66), [2](https://arxiv.org/html/2503.10291v1#bib.bib2), [26](https://arxiv.org/html/2503.10291v1#bib.bib26)] and TTS[[68](https://arxiv.org/html/2503.10291v1#bib.bib68), [79](https://arxiv.org/html/2503.10291v1#bib.bib79), [20](https://arxiv.org/html/2503.10291v1#bib.bib20), [51](https://arxiv.org/html/2503.10291v1#bib.bib51)]. Outcome Reward Models (ORMs)[[55](https://arxiv.org/html/2503.10291v1#bib.bib55), [92](https://arxiv.org/html/2503.10291v1#bib.bib92), [77](https://arxiv.org/html/2503.10291v1#bib.bib77)] directly assign an overall score to the given response. In contrast, Process Reward Models (PRMs) first estimate the quality of each step in the given response and then aggregate them into a final score. PRM800K[[39](https://arxiv.org/html/2503.10291v1#bib.bib39)] is the first open-source process supervision dataset, entirely annotated by human experts. To reduce annotation costs, MathShepherd[[79](https://arxiv.org/html/2503.10291v1#bib.bib79)] and OmegaPRM[[51](https://arxiv.org/html/2503.10291v1#bib.bib51)] introduce a Monte Carlo sampling-based data pipeline to automatically estimate the quality of each step. Despite these advancements in natural language processing, multimodal PRMs remain largely underexplored. In this work, we introduce VisualPRM400K, the first multimodal process supervision dataset, and develop VisualPRM, a multimodal PRM trained on this dataset.\n\nBenchmarks for Reward Models. The evaluation of reward models (RMs) is a crucial research topic. A series of benchmarks[[33](https://arxiv.org/html/2503.10291v1#bib.bib33), [37](https://arxiv.org/html/2503.10291v1#bib.bib37), [44](https://arxiv.org/html/2503.10291v1#bib.bib44)] have been proposed to assess the effectiveness of RMs, typically formulated as a binary preference judgment task. Building on this, subsequent work[[97](https://arxiv.org/html/2503.10291v1#bib.bib97)] extends the evaluation settings and includes both pairwise and Best-of-N evaluations, providing a more comprehensive evaluation of RM performance. With the rapid advancement of PRMs, a series of benchmarks[[96](https://arxiv.org/html/2503.10291v1#bib.bib96), [69](https://arxiv.org/html/2503.10291v1#bib.bib69)] have been introduced to evaluate their step-wise judgment capabilities. Despite these developments, there remains a lack of a multimodal process benchmark. To bridge this gap and support the development of multimodal PRMs, we introduce VisualProcessBench, a benchmark designed to evaluate the ability of PRMs and MLLMs to detect erroneous steps in multimodal reasoning tasks.\n\n3 Method\n--------\n\n![Image 3: Refer to caption](https://arxiv.org/html/2503.10291v1/x3.png)\n\nFigure 3: Different modeling methods for PRMs. PRMs are developed to estimate the quality of each step in a given solution. For value-based PRMs, the quality of a certain step is determined by its expected accuracy m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT, where a step is considered correct if m⁢c i>0 𝑚 subscript 𝑐 𝑖 0 mc_{i}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT > 0. For advantage-based PRMs, the quality of a certain step is determined by the improvement of m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT over m⁢c i−1 𝑚 subscript 𝑐 𝑖 1 mc_{i-1}italic_m italic_c start_POSTSUBSCRIPT italic_i - 1 end_POSTSUBSCRIPT, where a step is considered good if m⁢c i−m⁢c i−1>0 𝑚 subscript 𝑐 𝑖 𝑚 subscript 𝑐 𝑖 1 0 mc_{i}-mc_{i-1}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT - italic_m italic_c start_POSTSUBSCRIPT italic_i - 1 end_POSTSUBSCRIPT > 0. During the training stage, the output space of PRMs is discretized into specific tokens, while during the inference stage, we compute the step score as the weighted sum of the generation probability for these discretized tokens. \n\nDuring Best-of-N (BoN) evaluation, a critic model is required to estimate the quality of each response candidate. In this work, we formulate the critic model as a Process Reward Model (PRM). To develop a multimodal PRM, we first construct VisualPRM400K, a dataset comprising about 400K multimodal process supervision data, as detailed in Section[3.1](https://arxiv.org/html/2503.10291v1#S3.SS1 \"3.1 VisualPRM400K ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). We then describe our PRM’s modeling approach in Section[3.2](https://arxiv.org/html/2503.10291v1#S3.SS2 \"3.2 VisualPRM ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). Furthermore, to support the evaluation of critic models, we establish VisualProcessBench to measure the abilities of critic models to detect erroneous steps in multimodal reasoning, as introduced in Section[3.3](https://arxiv.org/html/2503.10291v1#S3.SS3 \"3.3 VisualProcessBench ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\n### 3.1 VisualPRM400K\n\nDefinition. As shown in Figure[2](https://arxiv.org/html/2503.10291v1#S1.F2 \"Figure 2 ‣ 1 Introduction ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), each data sample in our VisualPRM400K consists of an image I∈ℐ 𝐼 ℐ I\\in\\mathcal{I}italic_I ∈ caligraphic_I, a question q∈𝒬 𝑞 𝒬 q\\in\\mathcal{Q}italic_q ∈ caligraphic_Q, a step-by-step solution s={s 0,s 1,⋯,s n}∈𝒮 𝑠 subscript 𝑠 0 subscript 𝑠 1⋯subscript 𝑠 𝑛 𝒮 s=\\{s_{0},s_{1},\\cdots,s_{n}\\}\\in\\mathcal{S}italic_s = { italic_s start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT , italic_s start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT , ⋯ , italic_s start_POSTSUBSCRIPT italic_n end_POSTSUBSCRIPT } ∈ caligraphic_S, and the expected accuracy annotation m⁢c={m⁢c 0,m⁢c 1,⋯,m⁢c n},m⁢c i∈ℝ≥0 formulae-sequence 𝑚 𝑐 𝑚 subscript 𝑐 0 𝑚 subscript 𝑐 1⋯𝑚 subscript 𝑐 𝑛 𝑚 subscript 𝑐 𝑖 subscript ℝ absent 0 mc=\\{mc_{0},mc_{1},\\cdots,mc_{n}\\},mc_{i}\\in\\mathbb{R}_{\\geq 0}italic_m italic_c = { italic_m italic_c start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT , italic_m italic_c start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT , ⋯ , italic_m italic_c start_POSTSUBSCRIPT italic_n end_POSTSUBSCRIPT } , italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∈ blackboard_R start_POSTSUBSCRIPT ≥ 0 end_POSTSUBSCRIPT for each step, where n 𝑛 n italic_n is the number of steps of a certain solution and m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT denotes the expected accuracy of step s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT. The image sets ℐ ℐ\\mathcal{I}caligraphic_I and question sets 𝒬 𝒬\\mathcal{Q}caligraphic_Q are collected from MMPR v1.1[[82](https://arxiv.org/html/2503.10291v1#bib.bib82)], while the step-by-step solutions 𝒮 𝒮\\mathcal{S}caligraphic_S are sampled using InternVL2.5 series models[[15](https://arxiv.org/html/2503.10291v1#bib.bib15), [82](https://arxiv.org/html/2503.10291v1#bib.bib82)].\n\nProcess Supervision Generation. Given an image I 𝐼 I italic_I, a question q 𝑞 q italic_q, and a solution s={s 0,s 1,⋯,s n}𝑠 subscript 𝑠 0 subscript 𝑠 1⋯subscript 𝑠 𝑛 s=\\{s_{0},s_{1},\\cdots,s_{n}\\}italic_s = { italic_s start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT , italic_s start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT , ⋯ , italic_s start_POSTSUBSCRIPT italic_n end_POSTSUBSCRIPT }, we annotate the correctness of each step s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT using an automatic data pipeline. The key idea is to estimate the expected accuracy of given steps s≤i subscript 𝑠 absent 𝑖 s_{\\leq i}italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT based on Monte Carlo sampling. Specifically, the model is required to complete the solution as follows:\n\ns~>i∼M⁢(s~>i∣I,q,s≤i),similar-to subscript~𝑠 absent 𝑖 𝑀 conditional subscript~𝑠 absent 𝑖 𝐼 𝑞 subscript 𝑠 absent 𝑖\\tilde{s}_{>i}\\sim M(\\tilde{s}_{>i}\\mid I,q,s_{\\leq i}),over~ start_ARG italic_s end_ARG start_POSTSUBSCRIPT > italic_i end_POSTSUBSCRIPT ∼ italic_M ( over~ start_ARG italic_s end_ARG start_POSTSUBSCRIPT > italic_i end_POSTSUBSCRIPT ∣ italic_I , italic_q , italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT ) ,(1)\n\nwhere s~>i subscript~𝑠 absent 𝑖\\tilde{s}_{>i}over~ start_ARG italic_s end_ARG start_POSTSUBSCRIPT > italic_i end_POSTSUBSCRIPT is the completion of s≤i subscript 𝑠 absent 𝑖 s_{\\leq i}italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT. Besides, the expected accuracy of s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT is defined as:\n\nm⁢c i=num(correct completions)num(sampled completions).𝑚 subscript 𝑐 𝑖 num(correct completions)num(sampled completions)mc_{i}=\\frac{\\text{num(correct completions)}}{\\text{num(sampled completions)}}.italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT = divide start_ARG num(correct completions) end_ARG start_ARG num(sampled completions) end_ARG .(2)\n\nNotably, to reduce the data construction costs, we set the max number of steps to 12 and evenly merge the steps if the number of current steps exceeds the threshold.\n\nStatistics. During the construction process, we sample 4 4 4 4 solutions for each image-question pair and split each of them into at most 12 12 12 12 steps. For each step, we sample 16 16 16 16 continuations and compute m i subscript 𝑚 𝑖 m_{i}italic_m start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT according to these continuations. The resulting dataset comprises approximately 400K samples and 2 million steps with process supervision. Each response averages 126.9 words and 5.6 steps, while each step averages 22.6 words. Among these steps, about 10% are incorrect steps. Despite the imbalanced distribution of correct and incorrect steps, our PRM demonstrates promising performance, as shown in Section[4](https://arxiv.org/html/2503.10291v1#S4 \"4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\n### 3.2 VisualPRM\n\nOverview. During the training process, we formulate the process supervision problem as a multi-turn chat task so that we can effectively leverage the generation ability of MLLMs. The image I 𝐼 I italic_I, question q 𝑞 q italic_q, and the first step s 0 subscript 𝑠 0 s_{0}italic_s start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT of the solution to this question are included in the first turn and a new step is presented in each subsequent turn. The model is required to predict the quality of the given step in each turn as follows:\n\ny i∼M⁢(y i∣I,q,s≤i),similar-to subscript 𝑦 𝑖 𝑀 conditional subscript 𝑦 𝑖 𝐼 𝑞 subscript 𝑠 absent 𝑖 y_{i}\\sim M(y_{i}\\mid I,q,s_{\\leq i}),italic_y start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∼ italic_M ( italic_y start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∣ italic_I , italic_q , italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT ) ,(3)\n\nwhere y i subscript 𝑦 𝑖 y_{i}italic_y start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT denotes the quality of i 𝑖 i italic_i-th step.\n\nFor value-based PRMs, the quality of a certain step is determined by its expected accuracy m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT, which is similar to the definition of the value function in reinforcement learning. Following Math-Shepherd[[79](https://arxiv.org/html/2503.10291v1#bib.bib79), [20](https://arxiv.org/html/2503.10291v1#bib.bib20)], we require the model to predict the correctness c i∈{+,−}subscript 𝑐 𝑖 c_{i}\\in\\{+,-\\}italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∈ { + , - } of the given step, rather than the exact score of m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT. The i 𝑖 i italic_i-th step is considered correct if m⁢c i>0 𝑚 subscript 𝑐 𝑖 0 mc_{i}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT > 0. We also try to set a threshold to reduce false positive steps, but find that such a threshold negatively impacts the PRM performance, as shown in Section[7](https://arxiv.org/html/2503.10291v1#S7 \"7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). Notably, unlike previous works[[79](https://arxiv.org/html/2503.10291v1#bib.bib79), [39](https://arxiv.org/html/2503.10291v1#bib.bib39), [20](https://arxiv.org/html/2503.10291v1#bib.bib20)], which choose to supervise only up to the first incorrect step, we always supervise all steps.\n\nFor advantage-based PRMs, the quality of a certain step is determined by the improvement of m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT over m⁢c i−1 𝑚 subscript 𝑐 𝑖 1 mc_{i-1}italic_m italic_c start_POSTSUBSCRIPT italic_i - 1 end_POSTSUBSCRIPT, which is analogous to the definition of the advantage function in reinforcement learning. Similar to value-based PRMs, the quality space is discretized into predefined values {+,=,−}\\{+,=,-\\}{ + , = , - }, meaning that the i 𝑖 i italic_i-th step s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT results in a superior, comparable, or inferior situation.\n\nDuring inference stage, we first compute the scores of each step and then merge them to obtain the response score. Specifically, the score for each step is defined as the weighted sum of the generation probability for the discretized scores. For value-based PRMs, the weights for {+,−}\\{+,-\\}{ + , - } are {1,0}1 0\\{1,0\\}{ 1 , 0 }. For advantage-based PRMs, the weights for {+,=,−}\\{+,=,-\\}{ + , = , - } are {1,0,−1}1 0 1\\{1,0,-1\\}{ 1 , 0 , - 1 }. Without further explanation, we average the scores of each step as the response score.\n\n### 3.3 VisualProcessBench\n\nTable 1: Statistics of VisualProcessBench.\n\nDefinition. Each sample in our benchmark consists of a multimodal reasoning question, a step-by-step solution, and correctness annotations for each step. Considering that recent models begin to demonstrate reflection abilities to rectify their own reasoning process, the evaluation setting used in previous works[[96](https://arxiv.org/html/2503.10291v1#bib.bib96), [39](https://arxiv.org/html/2503.10291v1#bib.bib39)], which only requires the model to find the first erroneous step, may lead to a false negative estimation. Therefore, our benchmark requires the model to identify all erroneous steps in the given solution instead of only the first erroneous step.\n\nData Source. Our benchmark focuses on multimodal reasoning tasks, collecting images and questions from existing representative multimodal reasoning benchmarks, including MMMU[[90](https://arxiv.org/html/2503.10291v1#bib.bib90)], MathVision[[78](https://arxiv.org/html/2503.10291v1#bib.bib78)], MathVerse[[93](https://arxiv.org/html/2503.10291v1#bib.bib93)], DynaMath[[99](https://arxiv.org/html/2503.10291v1#bib.bib99)], and WeMath[[60](https://arxiv.org/html/2503.10291v1#bib.bib60)]. Given these questions, we generate step-by-step solutions using leading MLLMs, including GPT-4o[[58](https://arxiv.org/html/2503.10291v1#bib.bib58)], Claude-3.5-Sonnet[[4](https://arxiv.org/html/2503.10291v1#bib.bib4)], Gemini-2.0-Flash[[70](https://arxiv.org/html/2503.10291v1#bib.bib70)], QvQ-72B-Preview[[72](https://arxiv.org/html/2503.10291v1#bib.bib72)], and InternVL2.5-78B[[15](https://arxiv.org/html/2503.10291v1#bib.bib15)]. The solutions are sampled from different MLLMs to ensure their diversity.\n\nStep Correctness Annotation. We employ a team of human experts with at least a university degree to manually annotate the correctness of each step in the solutions. Specifically, 13 people worked for 3 days, resulting in a workload of 39 person-days. The cost per person-day is approximately 37 dollars. During the annotation process, annotators are provided with the image, question, ground truth answer, and each step of the solution. Their task is to assign each step in the solution a label of positive, negative, or neutral, as illustrated in Figure[2](https://arxiv.org/html/2503.10291v1#S1.F2 \"Figure 2 ‣ 1 Introduction ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). A positive label indicates that the step is correct, while a negative label signifies an incorrect step. The neural label is assigned to steps that do not involve any reasoning process or provide no additional information. To ensure the annotation quality, annotators are permitted to skip questions they do not understand. During the annotation process, our dataset is divided into 10 splits, each containing approximately 300 samples. For each split, the authors of this paper manually review about 10% of the samples. Splits with erroneous annotations are sent back for re-annotation. See Section[10](https://arxiv.org/html/2503.10291v1#S10 \"10 More Data Examples in VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\") for more data examples.\n\nStatistics. As shown in Table[1](https://arxiv.org/html/2503.10291v1#S3.T1 \"Table 1 ‣ 3.3 VisualProcessBench ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), our benchmark comprises 2866 samples. To enhance the diversity of our evaluation samples, we gather questions and solutions from a wide range of benchmarks and models while carefully regulating their distribution. The statistics of step distribution are presented in Section[8](https://arxiv.org/html/2503.10291v1#S8 \"8 More Statistics for VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\nMetrics. In this work, we use macro F1 scores to compare model performance, aiming to mitigate the impact of the imbalanced distribution between correct and incorrect steps. Specifically, we first compute the F1 scores separately for correct and incorrect steps and then take their average to obtain the overall score.\n\n4 Experiments\n-------------\n\nIn this section, we first employ VisualPRM to evaluate various MLLMs using BoN evaluation strategies in Section[4.1](https://arxiv.org/html/2503.10291v1#S4.SS1 \"4.1 Results with Best-of-N evaluation ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), demonstrating that PRMs can significantly enhance the reasoning abilities of MLLMs. Next, we evaluate our VisualPRM and other leading MLLMs on VisualProcessBench in Section[4.2](https://arxiv.org/html/2503.10291v1#S4.SS2 \"4.2 Results on VisualProcessBench ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). Finally, the ablation studies are presented in Section[4.3](https://arxiv.org/html/2503.10291v1#S4.SS3 \"4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\") and Section[7](https://arxiv.org/html/2503.10291v1#S7 \"7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\nTable 2: Results on seven multimodal reasoning benchmarks. MMMU[[90](https://arxiv.org/html/2503.10291v1#bib.bib90)] is a multidisciplinary reasoning benchmark. MathVista[[50](https://arxiv.org/html/2503.10291v1#bib.bib50)], MathVision[[78](https://arxiv.org/html/2503.10291v1#bib.bib78)], MathVerse[[93](https://arxiv.org/html/2503.10291v1#bib.bib93)], DynaMath[[99](https://arxiv.org/html/2503.10291v1#bib.bib99)], and WeMath[[60](https://arxiv.org/html/2503.10291v1#bib.bib60)] are mathematics benchmarks. For MathVerse, we report the performance on Vision-Only (VO) split. LogicVista[[87](https://arxiv.org/html/2503.10291v1#bib.bib87)] is a logical reasoning benchmark. Part of the results are collected from the OpenCompass leaderboard[[19](https://arxiv.org/html/2503.10291v1#bib.bib19)]. The overall score is the average score of the above benchmarks. By using VisualPRM as the critic model, existing open-source MLLMs achieve significant improvements in reasoning ability under the Best-of-8 evaluation strategy. \n\n### 4.1 Results with Best-of-N evaluation\n\nBenchmarks. We evaluate the reasoning abilities of MLLMs across seven benchmarks, including MMMU[[90](https://arxiv.org/html/2503.10291v1#bib.bib90)], MathVista[[50](https://arxiv.org/html/2503.10291v1#bib.bib50)], MathVision[[78](https://arxiv.org/html/2503.10291v1#bib.bib78)], MathVerse[[93](https://arxiv.org/html/2503.10291v1#bib.bib93)], DynaMath[[99](https://arxiv.org/html/2503.10291v1#bib.bib99)], WeMath[[60](https://arxiv.org/html/2503.10291v1#bib.bib60)], and LogicVista[[87](https://arxiv.org/html/2503.10291v1#bib.bib87)]. The evaluation samples include subject-based, mathematical, and logical reasoning problems. We report the worst-case accuracy for DynaMath and the overall accuracy for the remaining benchmarks. For MathVerse, we report the performance on the Vision-Only split.\n\nSettings. Without further explanation, we use VisualPRM as the critic model for BoN evaluation and set N 𝑁 N italic_N to 8 8 8 8 by default. The policy model is required to generate N 𝑁 N italic_N distinct step-by-step Chain-of-Thought (CoT) reasoning processes with a temperature of 0.7. The response with the highest score is then selected to determine the correctness.\n\nResults. As shown in Table[2](https://arxiv.org/html/2503.10291v1#S4.T2 \"Table 2 ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), VisualPRM greatly enhances the reasoning abilities of MLLMs across different model scales and families. Specifically, for models with fewer than 10 billion parameters, the overall performance of InternVL2.5-8B, MiniCPM-V-8B, and Qwen2.5-VL-7B improves by 8.4, 8.0, and 3.7 points, respectively, demonstrating the effectiveness of test-time scaling across different model families. For larger models, InternVL2.5-26B, InternVL2.5-38B, and InternVL2.5-78B also achieve substantial performance gains over their counterparts without TTS, further validating the scalability and effectiveness of TTS across different model sizes.\n\n### 4.2 Results on VisualProcessBench\n\nSettings. For the evaluation of PRMs, a step is considered correct if the probability of outputting “+++” exceeds that of outputting “−--” by a certain threshold. For the evaluation of MLLMs, the model is prompted to analyze each step and determine its correctness, classifying it as either correct or incorrect. When computing the F1 score, we exclude steps labeled as neural by human annotators in Section[3.3](https://arxiv.org/html/2503.10291v1#S3.SS3 \"3.3 VisualProcessBench ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\nResults. As shown in Table[3](https://arxiv.org/html/2503.10291v1#S4.T3 \"Table 3 ‣ 4.2 Results on VisualProcessBench ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), most existing MLLMs struggle to accurately assess the correctness of each step. Specifically, the overall F1 score for random guessing is 50.0, while most open-source MLLMs achieve scores close to this baseline, highlighting their limitations as critic models. We manually check the judgments of these open-source MLLMs and observe that these models tend to provide positive analysis and label most steps as correct. For example, InternVL2.5-8B achieves an F1 score of 76.8 for positive steps, while its F1 score for negative steps is only 19.2, indicating that InternVL2.5-8B rarely identifies steps as incorrect. Furthermore, compared to proprietary models, our VisualPRM demonstrates competitive performance, achieving an overall F1 score of 62.0—outperforming GPT-4o and GPT-4o-Mini, and performing on par with Gemini-2.0-Flash. Notably, our model, with only 8 billion parameters, is more efficient than these proprietary counterparts.\n\nTable 3: Results on VisualProcessBench. We report the macro F1 of the correct and incorrect steps. The overall score is the micro average of the score from different data sources. Our VisualPRM exhibits state-of-the-art performance among open-source models. \n\n### 4.3 Ablation Studies\n\nEffects of BoN. Here, we increase the number of response candidates sampled from InternVL2.5-8B and select the final response using Self-Consistency (SC)[[86](https://arxiv.org/html/2503.10291v1#bib.bib86)], Outcome Reward Model (ORM), and PRM. The training data for ORM are nearly identical to those used for PRM, except that all steps are concatenated into a single step and step-wise correctness annotations are converted into a single correctness label for the outcome. As shown in Figure[4](https://arxiv.org/html/2503.10291v1#S4.F4 \"Figure 4 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), increasing the number of response candidates N 𝑁 N italic_N improves the reasoning performance of InternVL2.5-8B and MiniCPM-V2.6-8B when using SC, ORM, or PRM, with PRM yielding the most significant improvements. Specifically, when using InternVL2.5-8B as the policy model, PRM outperforms SC and ORM by 2.4 and 1.5 points, respectively, under the Best-of-8 evaluation setting. Moreover, this performance gap widens as N 𝑁 N italic_N increases, reaching 3.1 and 4.3 points when N 𝑁 N italic_N is set to 128 128 128 128. Notably, when using ORM as the critic model, although performance improves during Best-of-8 evaluation, further increasing N 𝑁 N italic_N does not lead to consistent gains for InternVL2.5-8B. For example, the Best-of-128 performance is inferior to the Best-of-64 performance. These results highlight the effectiveness of PRM in TTS.\n\nEffects of PRM modeling methods. Here, we compare the value-based PRM and the advantage-based PRM introduced in Section[3.2](https://arxiv.org/html/2503.10291v1#S3.SS2 \"3.2 VisualPRM ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), along with different methods for aggregating step scores into a final score, including averaging, as well as selecting the maximum or minimum value. The results are presented in Table[4](https://arxiv.org/html/2503.10291v1#S4.T4 \"Table 4 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). We find that value-based PRMs outperform advantage-based PRMs in both BoN evaluation settings and VL-ProcessBench. We attribute this to the inherent noise in our training data, which is generated through an automatic data pipeline, making it challenging to accurately determine whether a given step contributes to higher or lower expected accuracy. We also compare two training strategies: supervising all steps (_i.e_., w/o early stop) versus supervising only up to the first incorrect step (_i.e_., w. early stop) during training. Experimental results show that the former yields better performance. Regarding different score aggregation methods, we find that selecting the maximum value results in poorer performance compared to averaging or taking the minimum value. Analyzing the generated scores reveals that most responses contain a high-scored step, close to 1 1 1 1, at the beginning of the solution. This phenomenon likely arises because most erroneous steps appear in the middle of the solution. Our statistics of VisualProcessBench presented in Section[8](https://arxiv.org/html/2503.10291v1#S8 \"8 More Statistics for VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\") further demonstrate this conclusion. Furthermore, averaging performs better than selecting the maximum value, likely because the latter relies on a single step’s score, while averaging accounts for multiple steps and can be considered as an ensemble approach, which benefits the step quality estimation.\n\n![Image 4: Refer to caption](https://arxiv.org/html/2503.10291v1/x4.png)\n\n(a)\n\n![Image 5: Refer to caption](https://arxiv.org/html/2503.10291v1/x5.png)\n\n(b)\n\nFigure 4: Overall Best-of-N results across seven multimodal reasoning benchmarks with different policy and critic models. VisualPRM consistently enhances reasoning performance of both InternVL2.5-8B and MiniCPM-V as N 𝑁 N italic_N increases and outperforms the improvement introduced by Self-Consistency and ORM, highlighting the effectiveness of PRM in Test-Time Scaling. \n\nTable 4: Comparison of different critic models and score aggregation methods. Note that score aggregation methods do not affect performance on VisualProcessBench, which focuses on step correctness judgement. We find that supervising all steps (w/o early stop) during training perform slightly better than supervising only up to the first incorrect step (w. early steop). \n\nMLLM-as-a-Judger. Existing MLLMs can be prompted to serve as a critic model. However, as shown in Table[4](https://arxiv.org/html/2503.10291v1#S4.T4 \"Table 4 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), the InternVL2.5 series struggle to improve BoN performance, resulting in only marginal improvements. Upon analyzing the generated scores, we find that these models assign similar scores to most solutions. Consistent with our observations in Section[4.2](https://arxiv.org/html/2503.10291v1#S4.SS2 \"4.2 Results on VisualProcessBench ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), the InternVL2.5 series tend to generate positive judgments for most steps, which hinders their ability to effectively distinguish and select the truly superior response. In addition to their effectiveness as critic models for MLLMs, their inference latency also limits efficiency. Specifically, MLLMs generate judgments for each step in an autoregressive manner, which is time-consuming. In contrast, our VisualPRM computes scores for all steps in a single forward pass by using a “+” as a placeholder for model responses and interpreting its generation probability as the step score.\n\nResults on text-only performance. To assess the effectiveness of VisualPRM on text-only inputs, we evaluate the Qwen2.5 series[[88](https://arxiv.org/html/2503.10291v1#bib.bib88)] and InternVL2.5 series[[15](https://arxiv.org/html/2503.10291v1#bib.bib15)] on three text reasoning benchmarks under BoN evaluation settings: GSM8K[[18](https://arxiv.org/html/2503.10291v1#bib.bib18)], MATH-500[[25](https://arxiv.org/html/2503.10291v1#bib.bib25)], and GPQA-Diamond[[62](https://arxiv.org/html/2503.10291v1#bib.bib62)]. We report accuracy as the evaluation metric for these benchmarks. As shown in Table[5](https://arxiv.org/html/2503.10291v1#S4.T5 \"Table 5 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), our model enhances the text reasoning abilities of both the Qwen2.5 series and the InternVL2.5 series. Specifically, Qwen2.5-7B achieves improvements of 6.1 and 5.0 points on MATH-500 and GPQA-Diamond, respectively. Similarly, Qwen2.5-72B demonstrates gains of 2.1 and 6.6 points on these benchmarks. For the InternVL2.5 series, InternVL2.5-8B, InternVL2.5-38B, and InternVL2.5-78B achieve improvements of 9.4 and 5.0, 4.6 and 8.1, and 7.4 and 3.5 points, respectively, on MATH-500 and GPQA-Diamond. These results demonstrate the effectiveness of our VisualPRM in text-only scenarios.\n\nTable 5: Results on text reasoning benchmarks. GSM8K and MATH500 are mathematics benchmarks, while GPQA is a multidisciplinary reasoning benchmark. For GPQA, we report the performance on the Diamond split. Our VisualPRM enhances the text reasoning abilities of both LLMs and MLLMs under the Best-of-8 evaluation settings. \n\n5 Conclusion\n------------\n\nIn this work, we construct VisualPRM400K, a dataset comprising about 400K multimodal process supervision data. Building upon this dataset, we develop VisualPRM, an advanced multimodal Process Reward Model (PRM) capable of estimating the value score of each step during the reasoning process. With the Best-of-N (BoN) evaluation strategies, our model improves the reasoning abilities of existing Multimodal Large Language Models (MLLMs) across different model scales and families. Experimental results show that our model exhibits superior performance compared to Outcome Reward Models and Self-Consistency during BoN evaluation, highlighting the effectiveness of PRMs in Test-Time Scaling. To further facilitate the development of multimodal critic models, we construct VisualProcessBench, a benchmark designed to measure the abilities of PRMs and MLLMs to detect incorrect steps in multimodal reasoning tasks. Evaluation results show that existing open-source MLLMs struggle to effectively judge the correctness of each step. We hope that our work can inspire more future research and contribute to the development of MLLMs.\n\nReferences\n----------\n\n*   Achiam et al. [2023] Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et al. Gpt-4 technical report. _arXiv preprint arXiv:2303.08774_, 2023. \n*   Ahmadian et al. [2024] Arash Ahmadian, Chris Cremer, Matthias Gallé, Marzieh Fadaee, Julia Kreutzer, Olivier Pietquin, Ahmet Üstün, and Sara Hooker. Back to basics: Revisiting reinforce style optimization for learning from human feedback in llms. _arXiv preprint arXiv:2402.14740_, 2024. \n*   Alayrac et al. [2022] Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, Antoine Miech, Iain Barr, Yana Hasson, Karel Lenc, Arthur Mensch, Katherine Millican, Malcolm Reynolds, et al. Flamingo: a visual language model for few-shot learning. _NIPS_, 35:23716–23736, 2022. \n*   Anthropic [2024] Anthropic. The claude 3 model family: Opus, sonnet, haiku. [https://www.anthropic.com](https://www.anthropic.com/), 2024. \n*   Bai et al. [2023a] Jinze Bai, Shuai Bai, Yunfei Chu, Zeyu Cui, Kai Dang, Xiaodong Deng, Yang Fan, Wenbin Ge, Yu Han, Fei Huang, et al. Qwen technical report. _arXiv preprint arXiv:2309.16609_, 2023a. \n*   Bai et al. [2023b] Jinze Bai, Shuai Bai, Shusheng Yang, Shijie Wang, Sinan Tan, Peng Wang, Junyang Lin, Chang Zhou, and Jingren Zhou. Qwen-vl: A frontier large vision-language model with versatile abilities. _arXiv preprint arXiv:2308.12966_, 2023b. \n*   Bai et al. [2025] Shuai Bai, Keqin Chen, Xuejing Liu, Jialin Wang, Wenbin Ge, Sibo Song, Kai Dang, Peng Wang, Shijie Wang, Jun Tang, et al. Qwen2. 5-vl technical report. _arXiv preprint arXiv:2502.13923_, 2025. \n*   Biten et al. [2019] Ali Furkan Biten, Ruben Tito, Andres Mafla, Lluis Gomez, Marçal Rusinol, Ernest Valveny, CV Jawahar, and Dimosthenis Karatzas. Scene text visual question answering. In _ICCV_, pages 4291–4301, 2019. \n*   Brown et al. [2020] Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et al. Language models are few-shot learners. _NIPS_, 2020. \n*   Cai et al. [2024] Zheng Cai, Maosong Cao, Haojiong Chen, Kai Chen, Keyu Chen, Xin Chen, Xun Chen, Zehui Chen, Zhi Chen, Pei Chu, et al. Internlm2 technical report. _arXiv preprint arXiv:2403.17297_, 2024. \n*   Cao and Xiao [2022] Jie Cao and Jing Xiao. An augmented benchmark dataset for geometric question answering through dual parallel text encoding. In _COLING_, pages 1511–1520, 2022. \n*   Chang et al. [2022] Shuaichen Chang, David Palzer, Jialin Li, Eric Fosler-Lussier, and Ningchuan Xiao. Mapqa: A dataset for question answering on choropleth maps. _arXiv preprint arXiv:2211.08545_, 2022. \n*   Chen et al. [2024a] Qiguang Chen, Libo Qin, Jin Zhang, Zhi Chen, Xiao Xu, and Wanxiang Che. M3cot: A novel benchmark for multi-domain multi-step multi-modal chain-of-thought. _arXiv preprint arXiv:2405.16473_, 2024a. \n*   Chen et al. [2023] Zhe Chen, Jiannan Wu, Wenhai Wang, Weijie Su, Guo Chen, Sen Xing, Zhong Muyan, Qinglong Zhang, Xizhou Zhu, Lewei Lu, et al. Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks. _arXiv preprint arXiv:2312.14238_, 2023. \n*   Chen et al. [2024b] Zhe Chen, Weiyun Wang, Yue Cao, Yangzhou Liu, Zhangwei Gao, Erfei Cui, Jinguo Zhu, Shenglong Ye, Hao Tian, Zhaoyang Liu, et al. Expanding performance boundaries of open-source multimodal models with model, data, and test-time scaling. _arXiv preprint arXiv:2412.05271_, 2024b. \n*   Chen et al. [2024c] Zhe Chen, Weiyun Wang, Hao Tian, Shenglong Ye, Zhangwei Gao, Erfei Cui, Wenwen Tong, Kongzhi Hu, Jiapeng Luo, Zheng Ma, et al. How far are we to gpt-4v? closing the gap to commercial multimodal models with open-source suites. _arXiv preprint arXiv:2404.16821_, 2024c. \n*   Clark and Gardner [2018] Christopher Clark and Matt Gardner. Simple and effective multi-paragraph reading comprehension. In _ACL_, pages 845–855, 2018. \n*   Cobbe et al. [2021] Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, et al. Training verifiers to solve math word problems. _arXiv preprint arXiv:2110.14168_, 2021. \n*   Contributors [2023] OpenCompass Contributors. Opencompass: A universal evaluation platform for foundation models. [https://github.com/open-compass/opencompass](https://github.com/open-compass/opencompass), 2023. \n*   Dong et al. [2024] Hanze Dong, Wei Xiong, Bo Pang, Haoxiang Wang, Han Zhao, Yingbo Zhou, Nan Jiang, Doyen Sahoo, Caiming Xiong, and Tong Zhang. Rlhf workflow: From reward modeling to online rlhf. _arXiv preprint arXiv:2405.07863_, 2024. \n*   Dubey et al. [2024] Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Amy Yang, Angela Fan, et al. The llama 3 herd of models. _arXiv preprint arXiv:2407.21783_, 2024. \n*   Gao et al. [2023] Jiahui Gao, Renjie Pi, Jipeng Zhang, Jiacheng Ye, Wanjun Zhong, Yufei Wang, Lanqing Hong, Jianhua Han, Hang Xu, Zhenguo Li, et al. G-llava: Solving geometric problem with multi-modal large language model. _arXiv preprint arXiv:2312.11370_, 2023. \n*   Goyal et al. [2017] Yash Goyal, Tejas Khot, Douglas Summers-Stay, Dhruv Batra, and Devi Parikh. Making the v in vqa matter: Elevating the role of image understanding in visual question answering. In _CVPR_, pages 6904–6913, 2017. \n*   Guo et al. [2025] Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, et al. Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning. _arXiv preprint arXiv:2501.12948_, 2025. \n*   Hendrycks et al. [2021] Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, and Jacob Steinhardt. Measuring mathematical problem solving with the math dataset. _arXiv preprint arXiv:2103.03874_, 2021. \n*   Hu [2025] Jian Hu. Reinforce++: A simple and efficient approach for aligning large language models. _arXiv preprint arXiv:2501.03262_, 2025. \n*   Huang et al. [2019] Zheng Huang, Kai Chen, Jianhua He, Xiang Bai, Dimosthenis Karatzas, Shijian Lu, and CV Jawahar. Icdar2019 competition on scanned receipt ocr and information extraction. In _2019 International Conference on Document Analysis and Recognition (ICDAR)_, pages 1516–1520. IEEE, 2019. \n*   Hudson and Manning [2019] Drew A Hudson and Christopher D Manning. Gqa: A new dataset for real-world visual reasoning and compositional question answering. In _CVPR_, pages 6700–6709, 2019. \n*   Kafle et al. [2018] Kushal Kafle, Brian Price, Scott Cohen, and Christopher Kanan. Dvqa: Understanding data visualizations via question answering. In _CVPR_, pages 5648–5656, 2018. \n*   Kazemi et al. [2023] Mehran Kazemi, Hamidreza Alvari, Ankit Anand, Jialin Wu, Xi Chen, and Radu Soricut. Geomverse: A systematic evaluation of large models for geometric reasoning. _arXiv preprint arXiv:2312.12241_, 2023. \n*   Kembhavi et al. [2016] Aniruddha Kembhavi, Mike Salvato, Eric Kolve, Minjoon Seo, Hannaneh Hajishirzi, and Ali Farhadi. A diagram is worth a dozen images. In _ECCV_, pages 235–251, 2016. \n*   Lai et al. [2024] Xin Lai, Zhuotao Tian, Yukang Chen, Senqiao Yang, Xiangru Peng, and Jiaya Jia. Step-dpo: Step-wise preference optimization for long-chain reasoning of llms. _arXiv preprint arXiv:2406.18629_, 2024. \n*   Lambert et al. [2024] Nathan Lambert, Valentina Pyatkin, Jacob Morrison, LJ Miranda, Bill Yuchen Lin, Khyathi Chandu, Nouha Dziri, Sachin Kumar, Tom Zick, Yejin Choi, et al. Rewardbench: Evaluating reward models for language modeling. _arXiv preprint arXiv:2403.13787_, 2024. \n*   Laurençon et al. [2024] Hugo Laurençon, Lucile Saulnier, Léo Tronchon, Stas Bekman, Amanpreet Singh, Anton Lozhkov, Thomas Wang, Siddharth Karamcheti, Alexander Rush, Douwe Kiela, et al. Obelics: An open web-scale filtered dataset of interleaved image-text documents. _NIPS_, 36, 2024. \n*   Li et al. [2024a] Bo Li, Yuanhan Zhang, Dong Guo, Renrui Zhang, Feng Li, Hao Zhang, Kaichen Zhang, Yanwei Li, Ziwei Liu, and Chunyuan Li. Llava-onevision: Easy visual task transfer. _arXiv preprint arXiv:2408.03326_, 2024a. \n*   Li et al. [2023] Junnan Li, Dongxu Li, Silvio Savarese, and Steven Hoi. Blip-2: Bootstrapping language-image pre-training with frozen image encoders and large language models. In _ICML_, pages 19730–19742. PMLR, 2023. \n*   Li et al. [2024b] Lei Li, Yuancheng Wei, Zhihui Xie, Xuqing Yang, Yifan Song, Peiyi Wang, Chenxin An, Tianyu Liu, Sujian Li, Bill Yuchen Lin, et al. Vlrewardbench: A challenging benchmark for vision-language generative reward models. _arXiv preprint arXiv:2411.17451_, 2024b. \n*   Li et al. [2024c] Qingyun Li, Zhe Chen, Weiyun Wang, Wenhai Wang, Shenglong Ye, Zhenjiang Jin, Guanzhou Chen, Yinan He, Zhangwei Gao, Erfei Cui, et al. Omnicorpus: An unified multimodal corpus of 10 billion-level images interleaved with text. _arXiv preprint arXiv:2406.08418_, 2024c. \n*   Lightman et al. [2023] Hunter Lightman, Vineet Kosaraju, Yuri Burda, Harrison Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. Let’s verify step by step. In _The Twelfth International Conference on Learning Representations_, 2023. \n*   Lindström and Abraham [2022] Adam Dahlgren Lindström and Savitha Sam Abraham. Clevr-math: A dataset for compositional language, visual and mathematical reasoning. _arXiv preprint arXiv:2208.05358_, 2022. \n*   Liu et al. [2023a] Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong Jae Lee. Visual instruction tuning. _NIPS_, 36, 2023a. \n*   Liu et al. [2024a] Haotian Liu, Chunyuan Li, Yuheng Li, Bo Li, Yuanhan Zhang, Sheng Shen, and Yong Jae Lee. Llava-next: Improved reasoning, ocr, and world knowledge, 2024a. \n*   Liu et al. [2024b] Yangzhou Liu, Yue Cao, Zhangwei Gao, Weiyun Wang, Zhe Chen, Wenhai Wang, Hao Tian, Lewei Lu, Xizhou Zhu, Tong Lu, et al. Mminstruct: A high-quality multi-modal instruction tuning dataset with extensive diversity. _arXiv preprint arXiv:2407.15838_, 2024b. \n*   Liu et al. [2024c] Yantao Liu, Zijun Yao, Rui Min, Yixin Cao, Lei Hou, and Juanzi Li. Rm-bench: Benchmarking reward models of language models with subtlety and style. _arXiv preprint arXiv:2410.16184_, 2024c. \n*   Liu et al. [2023b] Zhaoyang Liu, Yinan He, Wenhai Wang, Weiyun Wang, Yi Wang, Shoufa Chen, Qinglong Zhang, Zeqiang Lai, Yang Yang, Qingyun Li, Jiashuo Yu, et al. Interngpt: Solving vision-centric tasks by interacting with chatgpt beyond language. _arXiv preprint arXiv:2305.05662_, 2023b. \n*   Loshchilov and Hutter [2017] Ilya Loshchilov and Frank Hutter. Decoupled weight decay regularization. _arXiv preprint arXiv:1711.05101_, 2017. \n*   Lu et al. [2021a] Pan Lu, Ran Gong, Shibiao Jiang, Liang Qiu, Siyuan Huang, Xiaodan Liang, and Song-Chun Zhu. Inter-gps: Interpretable geometry problem solving with formal language and symbolic reasoning. _arXiv preprint arXiv:2105.04165_, 2021a. \n*   Lu et al. [2021b] Pan Lu, Liang Qiu, Jiaqi Chen, Tony Xia, Yizhou Zhao, Wei Zhang, Zhou Yu, Xiaodan Liang, and Song-Chun Zhu. Iconqa: A new benchmark for abstract diagram understanding and visual language reasoning. _arXiv preprint arXiv:2110.13214_, 2021b. \n*   Lu et al. [2022] Pan Lu, Swaroop Mishra, Tanglin Xia, Liang Qiu, Kai-Wei Chang, Song-Chun Zhu, Oyvind Tafjord, Peter Clark, and Ashwin Kalyan. Learn to explain: Multimodal reasoning via thought chains for science question answering. _NIPS_, 35:2507–2521, 2022. \n*   Lu et al. [2023] Pan Lu, Hritik Bansal, Tony Xia, Jiacheng Liu, Chunyuan Li, Hannaneh Hajishirzi, Hao Cheng, Kai-Wei Chang, Michel Galley, and Jianfeng Gao. Mathvista: Evaluating mathematical reasoning of foundation models in visual contexts. _arXiv preprint arXiv:2310.02255_, 2023. \n*   Luo et al. [2024] Liangchen Luo, Yinxiao Liu, Rosanne Liu, Samrat Phatale, Harsh Lara, Yunxuan Li, Lei Shu, Yun Zhu, Lei Meng, Jiao Sun, et al. Improve mathematical reasoning in language models by automated process supervision. _arXiv preprint arXiv:2406.06592_, 2, 2024. \n*   Marino et al. [2019] Kenneth Marino, Mohammad Rastegari, Ali Farhadi, and Roozbeh Mottaghi. Ok-vqa: A visual question answering benchmark requiring external knowledge. In _CVPR_, pages 3195–3204, 2019. \n*   Masry et al. [2022] Ahmed Masry, Xuan Long Do, Jia Qing Tan, Shafiq Joty, and Enamul Hoque. Chartqa: A benchmark for question answering about charts with visual and logical reasoning. In _ACL_, pages 2263–2279, 2022. \n*   Mathew et al. [2022] Minesh Mathew, Viraj Bagal, Rubèn Tito, Dimosthenis Karatzas, Ernest Valveny, and CV Jawahar. Infographicvqa. In _WACV_, pages 1697–1706, 2022. \n*   McAleese et al. [2024] Nat McAleese, Rai Michael Pokorny, Juan Felipe Ceron Uribe, Evgenia Nitishinskaya, Maja Trebacz, and Jan Leike. Llm critics help catch llm bugs. _arXiv preprint arXiv:2407.00215_, 2024. \n*   Mishra et al. [2019] Anand Mishra, Shashank Shekhar, Ajeet Kumar Singh, and Anirban Chakraborty. Ocr-vqa: Visual question answering by reading text in images. In _ICDAR_, pages 947–952, 2019. \n*   Muennighoff et al. [2025] Niklas Muennighoff, Zitong Yang, Weijia Shi, Xiang Lisa Li, Li Fei-Fei, Hannaneh Hajishirzi, Luke Zettlemoyer, Percy Liang, Emmanuel Candès, and Tatsunori Hashimoto. s1: Simple test-time scaling. _arXiv preprint arXiv:2501.19393_, 2025. \n*   OpenAI [2024] OpenAI. Gpt-4o system card. [https://openai.com/index/gpt-4o-system-card/](https://openai.com/index/gpt-4o-system-card/), 2024. \n*   Pang et al. [2024] Richard Yuanzhe Pang, Weizhe Yuan, Kyunghyun Cho, He He, Sainbayar Sukhbaatar, and Jason Weston. Iterative reasoning preference optimization. _arXiv preprint arXiv:2404.19733_, 2024. \n*   Qiao et al. [2024] Runqi Qiao, Qiuna Tan, Guanting Dong, Minhui Wu, Chong Sun, Xiaoshuai Song, Zhuoma GongQue, Shanglin Lei, Zhe Wei, Miaoxuan Zhang, et al. We-math: Does your large multimodal model achieve human-like mathematical reasoning? _arXiv preprint arXiv:2407.01284_, 2024. \n*   Reid et al. [2024] Machel Reid, Nikolay Savinov, Denis Teplyashin, Dmitry Lepikhin, Timothy Lillicrap, Jean-baptiste Alayrac, Radu Soricut, Angeliki Lazaridou, Orhan Firat, Julian Schrittwieser, et al. Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context. _arXiv preprint arXiv:2403.05530_, 2024. \n*   Rein et al. [2024] David Rein, Betty Li Hou, Asa Cooper Stickland, Jackson Petty, Richard Yuanzhe Pang, Julien Dirani, Julian Michael, and Samuel R Bowman. Gpqa: A graduate-level google-proof q&a benchmark. In _First Conference on Language Modeling_, 2024. \n*   Schuhmann et al. [2022] Christoph Schuhmann, Romain Beaumont, Richard Vencu, Cade Gordon, Ross Wightman, Mehdi Cherti, Theo Coombes, Aarush Katta, Clayton Mullis, Mitchell Wortsman, et al. Laion-5b: An open large-scale dataset for training next generation image-text models. _NIPS_, 35:25278–25294, 2022. \n*   Schulman et al. [2017] John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov. Proximal policy optimization algorithms. _arXiv preprint arXiv:1707.06347_, 2017. \n*   Seo et al. [2015] Minjoon Seo, Hannaneh Hajishirzi, Ali Farhadi, Oren Etzioni, and Clint Malcolm. Solving geometry problems: Combining text and diagram interpretation. In _Proceedings of the 2015 conference on empirical methods in natural language processing_, pages 1466–1476, 2015. \n*   Shao et al. [2024] Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, YK Li, Y Wu, et al. Deepseekmath: Pushing the limits of mathematical reasoning in open language models. _arXiv preprint arXiv:2402.03300_, 2024. \n*   Singh et al. [2019] Amanpreet Singh, Vivek Natarajan, Meet Shah, Yu Jiang, Xinlei Chen, Dhruv Batra, Devi Parikh, and Marcus Rohrbach. Towards vqa models that can read. In _CVPR_, pages 8317–8326, 2019. \n*   Snell et al. [2024] Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. Scaling llm test-time compute optimally can be more effective than scaling model parameters. _arXiv preprint arXiv:2408.03314_, 2024. \n*   Song et al. [2025] Mingyang Song, Zhaochen Su, Xiaoye Qu, Jiawei Zhou, and Yu Cheng. Prmbench: A fine-grained and challenging benchmark for process-level reward models. _arXiv preprint arXiv:2501.03124_, 2025. \n*   Team et al. [2023] Gemini Team, Rohan Anil, Sebastian Borgeaud, Yonghui Wu, Jean-Baptiste Alayrac, Jiahui Yu, Radu Soricut, Johan Schalkwyk, Andrew M Dai, Anja Hauth, et al. Gemini: a family of highly capable multimodal models. _arXiv preprint arXiv:2312.11805_, 2023. \n*   Team [2023] InternLM Team. Internlm: A multilingual language model with progressively enhanced capabilities. [https://github.com/InternLM/InternLM](https://github.com/InternLM/InternLM), 2023. \n*   Team [2024] Qwen Team. Qvq: To see the world with wisdom, 2024. \n*   Tian et al. [2024] Changyao Tian, Xizhou Zhu, Yuwen Xiong, Weiyun Wang, Zhe Chen, Wenhai Wang, Yuntao Chen, Lewei Lu, Tong Lu, Jie Zhou, et al. Mm-interleaved: Interleaved image-text generative modeling via multi-modal feature synchronizer. _arXiv preprint arXiv:2401.10208_, 2024. \n*   Toshniwal et al. [2025] Shubham Toshniwal, Ivan Moshkov, Sean Narenthiran, Daria Gitman, Fei Jia, and Igor Gitman. Openmathinstruct-1: A 1.8 million math instruction tuning dataset. _Advances in Neural Information Processing Systems_, 37:34737–34774, 2025. \n*   Touvron et al. [2023a] Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timothée Lacroix, Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal Azhar, et al. Llama: Open and efficient foundation language models. _arXiv preprint arXiv:2302.13971_, 2023a. \n*   Touvron et al. [2023b] Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert, Amjad Almahairi, Yasmine Babaei, Nikolay Bashlykov, Soumya Batra, Prajjwal Bhargava, Shruti Bhosale, et al. Llama 2: Open foundation and fine-tuned chat models. _arXiv preprint arXiv:2307.09288_, 2023b. \n*   Wang et al. [2024a] Haoxiang Wang, Wei Xiong, Tengyang Xie, Han Zhao, and Tong Zhang. Interpretable preferences via multi-objective reward modeling and mixture-of-experts. In _EMNLP_, 2024a. \n*   Wang et al. [2024b] Ke Wang, Junting Pan, Weikang Shi, Zimu Lu, Mingjie Zhan, and Hongsheng Li. Measuring multimodal mathematical reasoning with math-vision dataset. _arXiv preprint arXiv:2402.14804_, 2024b. \n*   Wang et al. [2023a] Peiyi Wang, Lei Li, Zhihong Shao, RX Xu, Damai Dai, Yifei Li, Deli Chen, Yu Wu, and Zhifang Sui. Math-shepherd: Verify and reinforce llms step-by-step without human annotations. _arXiv preprint arXiv:2312.08935_, 2023a. \n*   Wang et al. [2023b] Wenhai Wang, Zhe Chen, Xiaokang Chen, Jiannan Wu, Xizhou Zhu, Gang Zeng, Ping Luo, Tong Lu, Jie Zhou, Yu Qiao, et al. Visionllm: Large language model is also an open-ended decoder for vision-centric tasks. _NIPS_, 36, 2023b. \n*   Wang et al. [2023c] Weihan Wang, Qingsong Lv, Wenmeng Yu, Wenyi Hong, Ji Qi, Yan Wang, Junhui Ji, Zhuoyi Yang, Lei Zhao, Xixuan Song, et al. Cogvlm: Visual expert for pretrained language models. _arXiv preprint arXiv:2311.03079_, 2023c. \n*   Wang et al. [2024c] Weiyun Wang, Zhe Chen, Wenhai Wang, Yue Cao, Yangzhou Liu, Zhangwei Gao, Jinguo Zhu, Xizhou Zhu, Lewei Lu, Yu Qiao, et al. Enhancing the reasoning ability of multimodal large language models via mixed preference optimization. _arXiv preprint arXiv:2411.10442_, 2024c. \n*   Wang et al. [2024d] Weiyun Wang, Yiming Ren, Haowen Luo, Tiantong Li, Chenxiang Yan, Zhe Chen, Wenhai Wang, Qingyun Li, Lewei Lu, Xizhou Zhu, et al. The all-seeing project v2: Towards general relation comprehension of the open world. _arXiv preprint arXiv:2402.19474_, 2024d. \n*   Wang et al. [2024e] Weiyun Wang, Min Shi, Qingyun Li, Wenhai Wang, Zhenhang Huang, Linjie Xing, Zhe Chen, Hao Li, Xizhou Zhu, Zhiguo Cao, et al. The all-seeing project: Towards panoptic visual recognition and understanding of the open world. In _ICLR_, 2024e. \n*   Wang et al. [2024f] Weiyun Wang, Shuibo Zhang, Yiming Ren, Yuchen Duan, Tiantong Li, Shuo Liu, Mengkang Hu, Zhe Chen, Kaipeng Zhang, Lewei Lu, et al. Needle in a multimodal haystack. _arXiv preprint arXiv:2406.07230_, 2024f. \n*   Wang et al. [2022] Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. Self-consistency improves chain of thought reasoning in language models. _arXiv preprint arXiv:2203.11171_, 2022. \n*   Xiao et al. [2024] Yijia Xiao, Edward Sun, Tianyu Liu, and Wei Wang. Logicvista: Multimodal llm logical reasoning benchmark in visual contexts. _arXiv preprint arXiv:2407.04973_, 2024. \n*   Yang et al. [2024] An Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chengyuan Li, Dayiheng Liu, Fei Huang, Haoran Wei, et al. Qwen2. 5 technical report. _arXiv preprint arXiv:2412.15115_, 2024. \n*   Yao et al. [2024] Yuan Yao, Tianyu Yu, Ao Zhang, Chongyi Wang, Junbo Cui, Hongji Zhu, Tianchi Cai, Haoyu Li, Weilin Zhao, Zhihui He, et al. Minicpm-v: A gpt-4v level mllm on your phone. _arXiv preprint arXiv:2408.01800_, 2024. \n*   Yue et al. [2024] Xiang Yue, Yuansheng Ni, Kai Zhang, Tianyu Zheng, Ruoqi Liu, Ge Zhang, Samuel Stevens, Dongfu Jiang, Weiming Ren, Yuxuan Sun, Cong Wei, Botao Yu, Ruibin Yuan, Renliang Sun, Ming Yin, Boyuan Zheng, Zhenzhu Yang, Yibo Liu, Wenhao Huang, Huan Sun, Yu Su, and Wenhu Chen. Mmmu: A massive multi-discipline multimodal understanding and reasoning benchmark for expert agi. In _CVPR_, 2024. \n*   Zhai et al. [2023] Xiaohua Zhai, Basil Mustafa, Alexander Kolesnikov, and Lucas Beyer. Sigmoid loss for language image pre-training. In _ICCV_, pages 11975–11986, 2023. \n*   Zhang et al. [2024a] Lunjun Zhang, Arian Hosseini, Hritik Bansal, Mehran Kazemi, Aviral Kumar, and Rishabh Agarwal. Generative verifiers: Reward modeling as next-token prediction. _arXiv preprint arXiv:2408.15240_, 2024a. \n*   Zhang et al. [2024b] Renrui Zhang, Dongzhi Jiang, Yichi Zhang, Haokun Lin, Ziyu Guo, Pengshuo Qiu, Aojun Zhou, Pan Lu, Kai-Wei Chang, Peng Gao, et al. Mathverse: Does your multi-modal llm truly see the diagrams in visual math problems? _arXiv preprint arXiv:2403.14624_, 2024b. \n*   Zhang et al. [2025] Zhenru Zhang, Chujie Zheng, Yangzhen Wu, Beichen Zhang, Runji Lin, Bowen Yu, Dayiheng Liu, Jingren Zhou, and Junyang Lin. The lessons of developing process reward models in mathematical reasoning. _arXiv preprint arXiv:2501.07301_, 2025. \n*   Zhao et al. [2025] Xiangyu Zhao, Shengyuan Ding, Zicheng Zhang, Haian Huang, Maosong Cao, Weiyun Wang, Jiaqi Wang, Xinyu Fang, Wenhai Wang, Guangtao Zhai, et al. Omnialign-v: Towards enhanced alignment of mllms with human preference. _arXiv preprint arXiv:2502.18411_, 2025. \n*   Zheng et al. [2024] Chujie Zheng, Zhenru Zhang, Beichen Zhang, Runji Lin, Keming Lu, Bowen Yu, Dayiheng Liu, Jingren Zhou, and Junyang Lin. Processbench: Identifying process errors in mathematical reasoning. _arXiv preprint arXiv:2412.06559_, 2024. \n*   Zhou et al. [2024] Enyu Zhou, Guodong Zheng, Binghai Wang, Zhiheng Xi, Shihan Dou, Rong Bao, Wei Shen, Limao Xiong, Jessica Fan, Yurong Mou, et al. Rmb: Comprehensively benchmarking reward models in llm alignment. _arXiv preprint arXiv:2410.09893_, 2024. \n*   Zhu et al. [2024] Wanrong Zhu, Jack Hessel, Anas Awadalla, Samir Yitzhak Gadre, Jesse Dodge, Alex Fang, Youngjae Yu, Ludwig Schmidt, William Yang Wang, and Yejin Choi. Multimodal c4: An open, billion-scale corpus of images interleaved with text. _NIPS_, 36, 2024. \n*   Zou et al. [2024] Chengke Zou, Xingang Guo, Rui Yang, Junyu Zhang, Bin Hu, and Huan Zhang. Dynamath: A dynamic visual benchmark for evaluating mathematical reasoning robustness of vision language models. _arXiv preprint arXiv:2411.00836_, 2024. \n\n\\thetitle\n\nSupplementary Material\n\n6 Training Hyper-parameters\n---------------------------\n\nDuring the training process of VisualPRM, the data-packing strategy[[15](https://arxiv.org/html/2503.10291v1#bib.bib15)] is enabled during training. We employ the AdamW optimizer[[46](https://arxiv.org/html/2503.10291v1#bib.bib46)] with the β 1 subscript 𝛽 1\\beta_{1}italic_β start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT of 0.9 0.9 0.9 0.9, the β 2 subscript 𝛽 2\\beta_{2}italic_β start_POSTSUBSCRIPT 2 end_POSTSUBSCRIPT of 0.999 0.999 0.999 0.999, and the weight decay of 0.05 0.05 0.05 0.05. The learning rate is initialized as 1⁢e⁢-⁢5 1 𝑒-5 1e\\text{-}5 1 italic_e - 5. The training phases include a linear warmup that lasts until the first 5% of training steps. The warmup is followed by a cosine decay strategy with a minimum learning rate of 0. We set the training epoch to 1.\n\n7 More Ablation Studies\n-----------------------\n\n### 7.1 Effects of Training Hyper-parameters\n\nWhen training our value-based Process Reward Model (PRM) using VisualPRM400K, we define a step as correct if its expected accuracy exceeds 0. In this section, we analyze the impact of varying expected accuracy thresholds for determining step correctness. As shown in Table[8](https://arxiv.org/html/2503.10291v1#S7.T8 \"Table 8 ‣ 7.3 Effects of Best-of-N evaluation ‣ 7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), increasing the threshold results in a decline in both Best-of-8 evaluation performance and VisualProcessBench scores. These results are consistent with the observation in Qwen2.5-Math-PRM[[94](https://arxiv.org/html/2503.10291v1#bib.bib94)]. Therefore, we suggest setting the threshold to 0 0 during training.\n\n### 7.2 Effects of Generation Hyper-parameters\n\nIn this section, we analyze the impact of generation temperature on the Best-of-8 evaluation. As shown in Table[8](https://arxiv.org/html/2503.10291v1#S7.T8 \"Table 8 ‣ 7.3 Effects of Best-of-N evaluation ‣ 7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), as the temperature increases from 0.3 to 1.3, the overall performance of InternVL2.5-8B first improves and then declines. We attribute this phenomenon to the trade-off between response diversity and accuracy. When the temperature is low (_e.g_., set to 0.3), the generated responses lack diversity, limiting the model’s performance upper bound. Conversely, when the temperature is high (_e.g_., set to 1.3), the responses become more random, reducing the accuracy of individual responses and lowering the model’s overall performance ceiling.\n\n### 7.3 Effects of Best-of-N evaluation\n\nIn this section, we present the Best-of-N evaluation results as N 𝑁 N italic_N increases, as shown in Table[6](https://arxiv.org/html/2503.10291v1#S7.T6 \"Table 6 ‣ 7.3 Effects of Best-of-N evaluation ‣ 7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\") and Table[7](https://arxiv.org/html/2503.10291v1#S7.T7 \"Table 7 ‣ 7.3 Effects of Best-of-N evaluation ‣ 7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). Our results indicate that as N 𝑁 N italic_N increases, VisualPRM consistently enhances the reasoning abilities of InternVL2.5-8B[[15](https://arxiv.org/html/2503.10291v1#bib.bib15)] and MiniCPM-V2.6[[89](https://arxiv.org/html/2503.10291v1#bib.bib89)]. Specifically, as N 𝑁 N italic_N increases from 8 8 8 8 to 128 128 128 128, the overall performance of InternVL2.5-8B improves from 41.2 to 44.0, while MiniCPM-V2.6 improves from 37.5 to 40.4, demonstrating the scalability of Test-Time Scaling for MLLMs.\n\nTable 6: Overall Best-of-N results of InternVL2.5-8B across seven multimodal reasoning benchmarks with different critic models.\n\nTable 7: Overall Best-of-N results of MiniCPM-V2.6 across seven multimodal reasoning benchmarks with different critic models.\n\nTable 8: Ablation studies about the effects of expected accuracy threshold and generationo temperaure.\n\n8 More Statistics for VisualProcessBench\n----------------------------------------\n\n![Image 6: Refer to caption](https://arxiv.org/html/2503.10291v1/x6.png)\n\n(a)\n\n![Image 7: Refer to caption](https://arxiv.org/html/2503.10291v1/x7.png)\n\n(b)\n\nFigure 5: Step Distribution of VisualProcessBench. The X-axis represents the step index. (a) The Y-axis indicates the proportion of steps at each index relative to the total number of steps, reflecting the distribution of step positions in solutions. (b) The Y-axis represents the error rate of steps at each index, showing the likelihood of errors occurring at different step positions. \n\nThe statistics for step distribution of VisualProcessBench is presented in Figure[5](https://arxiv.org/html/2503.10291v1#S8.F5 \"Figure 5 ‣ 8 More Statistics for VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). We observe that most solutions consist of fewer than 15 steps. Among these solutions with fewer than 15 steps, most solutions contain about 7 or 13 steps. For the correctness of each step, we observe that the error rate is lower in the first three steps and then increases as the step index grows. We attribute this to the fact that problems requiring more reasoning steps tend to be more challenging, leading to a gradual rise in step error rates. Notably, starting from step 15, the error rate drops sharply. This is because the number of steps in this range is relatively small, resulting in significant statistical fluctuations.\n\n9 More Data Examples in VisualPRM400K\n-------------------------------------\n\nIn this section, we provide more data examples of VisualPRM400K in Figure[6](https://arxiv.org/html/2503.10291v1#S10.F6 \"Figure 6 ‣ 10 More Data Examples in VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\") from different domains, including general visual question answering (VQA)[[23](https://arxiv.org/html/2503.10291v1#bib.bib23), [28](https://arxiv.org/html/2503.10291v1#bib.bib28), [52](https://arxiv.org/html/2503.10291v1#bib.bib52), [48](https://arxiv.org/html/2503.10291v1#bib.bib48)], science[[31](https://arxiv.org/html/2503.10291v1#bib.bib31), [13](https://arxiv.org/html/2503.10291v1#bib.bib13), [49](https://arxiv.org/html/2503.10291v1#bib.bib49)], chart[[53](https://arxiv.org/html/2503.10291v1#bib.bib53), [29](https://arxiv.org/html/2503.10291v1#bib.bib29), [12](https://arxiv.org/html/2503.10291v1#bib.bib12)], mathematics[[40](https://arxiv.org/html/2503.10291v1#bib.bib40), [65](https://arxiv.org/html/2503.10291v1#bib.bib65), [11](https://arxiv.org/html/2503.10291v1#bib.bib11), [47](https://arxiv.org/html/2503.10291v1#bib.bib47), [30](https://arxiv.org/html/2503.10291v1#bib.bib30), [22](https://arxiv.org/html/2503.10291v1#bib.bib22)], OCR[[54](https://arxiv.org/html/2503.10291v1#bib.bib54), [67](https://arxiv.org/html/2503.10291v1#bib.bib67), [8](https://arxiv.org/html/2503.10291v1#bib.bib8), [27](https://arxiv.org/html/2503.10291v1#bib.bib27), [56](https://arxiv.org/html/2503.10291v1#bib.bib56)], and document[[17](https://arxiv.org/html/2503.10291v1#bib.bib17)].\n\n10 More Data Examples in VisualProcessBench\n-------------------------------------------\n\nIn this section, we provide more data examples in VisualProcessBench from different data sources. Specifically, we randomly choose three examples from our benchmark and visualize them in Figure[7](https://arxiv.org/html/2503.10291v1#S10.F7 \"Figure 7 ‣ 10 More Data Examples in VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). Additionally, in Figure[8](https://arxiv.org/html/2503.10291v1#S10.F8 \"Figure 8 ‣ 10 More Data Examples in VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), we provide an example where the model initially generates an incorrect answer and then autonomously corrects it.\n\n![Image 8: Refer to caption](https://arxiv.org/html/2503.10291v1/x8.png)\n\n(a)\n\n![Image 9: Refer to caption](https://arxiv.org/html/2503.10291v1/x9.png)\n\n(b)\n\n![Image 10: Refer to caption](https://arxiv.org/html/2503.10291v1/x10.png)\n\n(c)\n\n![Image 11: Refer to caption](https://arxiv.org/html/2503.10291v1/x11.png)\n\n(d)\n\n![Image 12: Refer to caption](https://arxiv.org/html/2503.10291v1/x12.png)\n\n(e)\n\n![Image 13: Refer to caption](https://arxiv.org/html/2503.10291v1/x13.png)\n\n(f)\n\nFigure 6: More data examples from VisualPRM400K.\n\n![Image 14: Refer to caption](https://arxiv.org/html/2503.10291v1/x14.png)\n\n(a)\n\n![Image 15: Refer to caption](https://arxiv.org/html/2503.10291v1/x15.png)\n\n(b)\n\n![Image 16: Refer to caption](https://arxiv.org/html/2503.10291v1/x16.png)\n\n(c)\n\n![Image 17: Refer to caption](https://arxiv.org/html/2503.10291v1/x17.png)\n\n(d)\n\n![Image 18: Refer to caption](https://arxiv.org/html/2503.10291v1/x18.png)\n\n(e)\n\n![Image 19: Refer to caption](https://arxiv.org/html/2503.10291v1/x19.png)\n\n(f)\n\n![Image 20: Refer to caption](https://arxiv.org/html/2503.10291v1/x20.png)\n\n(g)\n\n![Image 21: Refer to caption](https://arxiv.org/html/2503.10291v1/x21.png)\n\n(h)\n\n![Image 22: Refer to caption](https://arxiv.org/html/2503.10291v1/x22.png)\n\n(i)\n\n![Image 23: Refer to caption](https://arxiv.org/html/2503.10291v1/x23.png)\n\n(j)\n\n![Image 24: Refer to caption](https://arxiv.org/html/2503.10291v1/x24.png)\n\n(k)\n\n![Image 25: Refer to caption](https://arxiv.org/html/2503.10291v1/x25.png)\n\n(l)\n\n![Image 26: Refer to caption](https://arxiv.org/html/2503.10291v1/x26.png)\n\n(m)\n\n![Image 27: Refer to caption](https://arxiv.org/html/2503.10291v1/x27.png)\n\n(n)\n\n![Image 28: Refer to caption](https://arxiv.org/html/2503.10291v1/x28.png)\n\n(o)\n\nFigure 7: More data examples from VisualProcessBench.\n\n![Image 29: Refer to caption](https://arxiv.org/html/2503.10291v1/x29.png)\n\nFigure 8: Data example with model reflection from VisualProcessBench.Red highlights the incorrect answer, orange highlights the reflection words, and green highlights the correct answer.\n",
+    "durationMs": 671,
+    "url": "https://huggingface.co/papers/2503.10291"
+  },
+  "sourceToolAssistantUUID": "09374d78-8c1f-4daa-8852-a23a30094d2d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "4b8097fb-fff9-4c12-a179-7e0a91e4596c",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze VisualPRM paper innovation and research craft",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-27T16:18:07.038Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read some more of the detailed content that was saved to the file to get additional details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b8097fb-fff9-4c12-a179-7e0a91e4596c",
+  "isSidechain": false,
+  "requestId": "req_011CbTNjhXkhcKvdkiNPWCDk",
+  "type": "assistant",
+  "uuid": "c2c12bb0-fffe-4a1e-9b58-b15dd6a91638",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156iotXPuhre7c8n7qLEhMW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 20283,
+      "output_tokens": 195,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 195,
+          "cache_read_input_tokens": 20283,
+          "cache_creation_input_tokens": 856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-27T16:18:08.004Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018cNcuxWzBmcpkVGyt3j93r`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/59831ef5-561e-432f-9a80-21febe0fb5e8/tool-results/toolu_01VDfx6m1hrYVohaoCXtM2uc.txt",
+  "offset": 0,
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2c12bb0-fffe-4a1e-9b58-b15dd6a91638",
+  "isSidechain": false,
+  "requestId": "req_011CbTNjhXkhcKvdkiNPWCDk",
+  "type": "assistant",
+  "uuid": "97d8e833-7ff3-4209-a1c0-d42b5b5225ff",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0156iotXPuhre7c8n7qLEhMW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 20283,
+      "output_tokens": 195,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 195,
+          "cache_read_input_tokens": 20283,
+          "cache_creation_input_tokens": 856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-27T16:18:08.293Z_
+
+<details><summary>↩ Tool result · `toolu_018cNcuxWzBmcpkVGyt3j93r`</summary>
+
+```text
+0	Title: VisualPRM: An Effective Process Reward Model for Multimodal Reasoning
+1	
+2	URL Source: https://arxiv.org/html/2503.10291
+3	
+4	Published Time: Fri, 14 Mar 2025 00:51:57 GMT
+5	
+6	Markdown Content:
+7	Weiyun Wang 1,2, Zhangwei Gao 3,2, Lianjie Chen 4,2, Zhe Chen 5,2, Jinguo Zhu 2, 
+8	
+9	 Xiangyu Zhao 3,2, Yangzhou Liu 5,2, Yue Cao 5,2, Shenglong Ye 2, Xizhou Zhu 4,2, 
+10	
+11	 Lewei Lu 7, Haodong Duan 2, Yu Qiao 2, Jifeng Dai 4,2, Wenhai Wang 6,2🖂
+12	
+13	1 Fudan University, 2 Shanghai AI Laboratory, 
+14	
+15	3 Shanghai Jiaotong University, 4 Tsinghua University, 
+16	
+17	5 Nanjing University, 6 The Chinese University of Hong Kong, 7 SenseTime Research
+18	
+19	###### Abstract
+20	
+21	We introduce VisualPRM, an advanced multimodal Process Reward Model (PRM) with 8B parameters, which improves the reasoning abilities of existing Multimodal Large Language Models (MLLMs) across different model scales and families with Best-of-N (BoN) evaluation strategies. Specifically, our model improves the reasoning performance of three types of MLLMs and four different model scales. Even when applied to the highly capable InternVL2.5-78B, it achieves a 5.9-point improvement across seven multimodal reasoning benchmarks. Experimental results show that our model exhibits superior performance compared to Outcome Reward Models and Self-Consistency during BoN evaluation. To facilitate the training of multimodal PRMs, we construct a multimodal process supervision dataset VisualPRM400K using an automated data pipeline. For the evaluation of multimodal PRMs, we propose VisualProcessBench, a benchmark with human-annotated step-wise correctness labels, to measure the abilities of PRMs to detect erroneous steps in multimodal reasoning tasks. We hope that our work can inspire more future research and contribute to the development of MLLMs. Our model, data, and benchmark are released in this [page](https://internvl.github.io/blog/2025-03-13-VisualPRM/).
+22	
+23	🖂 Corresponding Author: wangwenhai@pjlab.org.cn
+24	1 Introduction
+25	--------------
+26	
+27	![Image 1: Refer to caption](https://arxiv.org/html/2503.10291v1/x1.png)
+28	
+29	Figure 1: The overall Best-of-8 evaluation results across seven multimodal reasoning benchmarks with different critic models. Our VisualPRM greatly enhances the overall performance, while InternVL2.5-8B struggles to be an effective critic model. 
+30	
+31	With the remarkable success of Large Language Models (LLMs) [[75](https://arxiv.org/html/2503.10291v1#bib.bib75), [76](https://arxiv.org/html/2503.10291v1#bib.bib76), [21](https://arxiv.org/html/2503.10291v1#bib.bib21), [5](https://arxiv.org/html/2503.10291v1#bib.bib5), [71](https://arxiv.org/html/2503.10291v1#bib.bib71), [10](https://arxiv.org/html/2503.10291v1#bib.bib10), [9](https://arxiv.org/html/2503.10291v1#bib.bib9), [1](https://arxiv.org/html/2503.10291v1#bib.bib1), [4](https://arxiv.org/html/2503.10291v1#bib.bib4)] in natural language processing, Multimodal Large Language Models (MLLMs) [[80](https://arxiv.org/html/2503.10291v1#bib.bib80), [36](https://arxiv.org/html/2503.10291v1#bib.bib36), [41](https://arxiv.org/html/2503.10291v1#bib.bib41), [42](https://arxiv.org/html/2503.10291v1#bib.bib42), [6](https://arxiv.org/html/2503.10291v1#bib.bib6), [84](https://arxiv.org/html/2503.10291v1#bib.bib84), [83](https://arxiv.org/html/2503.10291v1#bib.bib83), [14](https://arxiv.org/html/2503.10291v1#bib.bib14), [16](https://arxiv.org/html/2503.10291v1#bib.bib16), [15](https://arxiv.org/html/2503.10291v1#bib.bib15), [58](https://arxiv.org/html/2503.10291v1#bib.bib58), [61](https://arxiv.org/html/2503.10291v1#bib.bib61), [89](https://arxiv.org/html/2503.10291v1#bib.bib89)] have also achieved significant advancements across various vision-language tasks. Despite their strong performance in perception and recognition, a large gap remains in reasoning capabilities between open-source and proprietary models. A series of studies have explored methods to enhance reasoning abilities, focusing on the perspectives of data collection and construction[[57](https://arxiv.org/html/2503.10291v1#bib.bib57), [74](https://arxiv.org/html/2503.10291v1#bib.bib74), [38](https://arxiv.org/html/2503.10291v1#bib.bib38), [43](https://arxiv.org/html/2503.10291v1#bib.bib43)], offline preference optimization[[59](https://arxiv.org/html/2503.10291v1#bib.bib59), [82](https://arxiv.org/html/2503.10291v1#bib.bib82), [32](https://arxiv.org/html/2503.10291v1#bib.bib32)], and online reinforcement learning[[66](https://arxiv.org/html/2503.10291v1#bib.bib66), [24](https://arxiv.org/html/2503.10291v1#bib.bib24), [2](https://arxiv.org/html/2503.10291v1#bib.bib2), [26](https://arxiv.org/html/2503.10291v1#bib.bib26)]. Additionally, another line of research [[68](https://arxiv.org/html/2503.10291v1#bib.bib68), [20](https://arxiv.org/html/2503.10291v1#bib.bib20), [94](https://arxiv.org/html/2503.10291v1#bib.bib94), [79](https://arxiv.org/html/2503.10291v1#bib.bib79)] investigates utilizing Test-Time Scaling (TTS) to enhance the reasoning abilities of LLMs. This approach requires the policy model to generate multiple response candidates and select the best one, based on the quality estimation of a critic model, thereby improving the response quality at the cost of higher inference time. However, TTS for MLLMs remains largely unexplored.
+32	
+33	This work investigates the application of TTS for MLLMs, focusing on the Best-of-N (BoN) evaluation strategies. The challenges of adapting TTS for MLLMs involves: (1) Lack of effective critic models. In BoN evaluation, a critic model is required to estimate the quality of each response candidate. However, as shown in Figure[1](https://arxiv.org/html/2503.10291v1#S1.F1 "Figure 1 ‣ 1 Introduction ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), existing open-source MLLMs struggle to serve as critic models, leading to marginal improvements compared to models without TTS. This limitation stems from the lack of sufficient critic data in their training corpus. (2) Lack of evaluation benchmarks for multimodal critic models. The effectiveness of TTS heavily depends on the performance of the critic model. However, directly evaluating critics under BoN settings poses two key issues. First, the evaluation cost of BoN is expensive. Although the focus is on the performance of critic models, the policy model is required to generate N 𝑁 N italic_N reasoning processes, with the majority of computational costs arising from the policy model. Second, BoN performance is also affected by the policy model, making it difficult to compare different critic models when paired with varying policy models.
+34	
+35	To solve these challenges, we first introduce VisualPRM400K, a dataset comprising approximately 400K multimodal process supervision data. Each sample includes an image, a question, a step-by-step solution, and correctness annotations for each step. Specifically, we collect question prompts from MMPR v1.1[[82](https://arxiv.org/html/2503.10291v1#bib.bib82)] and then generate process correctness using an automatic data pipeline[[79](https://arxiv.org/html/2503.10291v1#bib.bib79)]. This pipeline samples multiple continuations starting from a certain step and computes the expected accuracy of that step as the average accuracy of its continuations.
+36	
+37	To facilitate the evaluation of multimodal critic models, we introduce VisualProcessBench, a benchmark for evaluating PRMs and MLLMs in detecting erroneous steps in multimodal reasoning tasks. This benchmark includes 2,866 samples with 26,950 human-annotated step-wise correctness labels. Each sample includes a multimodal reasoning question, a step-by-step solution, and correctness labels for each step. To ensure annotation accuracy, we employ human experts with at least a university degree to manually assess the correctness of each step. Unlike prior benchmarks[[96](https://arxiv.org/html/2503.10291v1#bib.bib96), [39](https://arxiv.org/html/2503.10291v1#bib.bib39)], which require identifying only the first erroneous step, VisualProcessBench challenges models to detect all errors within a given solution. This adjustment aligns with recent advancements in model reflection abilities, helping to reduce false negatives in evaluations. Evaluation results reveal that existing open-source MLLMs struggle to accurately assess step-wise correctness, highlighting the need for improved multimodal critic models.
+38	
+39	Building upon the dataset and benchmark, we develop VisualPRM, an advanced multimodal Process Reward Model (PRM) with 8B parameters, to serve as the critic model in BoN evaluation. Each training sample is formulated as a multi-turn chat. The first turn includes the image, the question, and the first solution step, while each subsequent turn presents a new step. The model is trained to predict the correctness of the given step at each turn. Experimental results demonstrate that VisualPRM enhances MLLM reasoning across different model families and scales. Specifically, VisualPRM improves the overall reasoning performance of MiniCPM-V2.6, QwenVL2.5-7B, InternVL2.5-8B, and InternVL2.5-78B by 8.0, 3.7, 8.4, and 5.9 points, respectively, across seven multimodal reasoning benchmarks[[90](https://arxiv.org/html/2503.10291v1#bib.bib90), [50](https://arxiv.org/html/2503.10291v1#bib.bib50), [78](https://arxiv.org/html/2503.10291v1#bib.bib78), [93](https://arxiv.org/html/2503.10291v1#bib.bib93), [99](https://arxiv.org/html/2503.10291v1#bib.bib99), [60](https://arxiv.org/html/2503.10291v1#bib.bib60), [87](https://arxiv.org/html/2503.10291v1#bib.bib87)]. Additionally, we compare PRMs with Outcome Reward Models and Self-Consistency in BoN evaluation, finding that PRMs consistently outperform both approaches.
+40	
+41	In summary, our main contributions are as follows:
+42	
+43	(1) We introduce VisualPRM400K, a dataset comprising approximately 400K multimodal process supervision data. Building upon this dataset, we develop VisualPRM, an advanced multimodal PRM to serve as the critic model in the BoN evaluation.
+44	
+45	(2) We construct VisualProcessBench, a benchmark designed to measure the abilities of PRMs and MLLMs to identify erroneous steps in multimodal reasoning tasks. This benchmark comprises 2,866 samples with a total of 26,950 human-annotated step-wise correctness labels.
+46	
+47	(3) Through extensive experiments, we demonstrate that PRMs can serve as effective critic models for test-time scaling of MLLMs. Specifically, VisualPRM enhances the overall multimodal reasoning performance of MiniCPM-V2.6, QwenVL2.5-7B, InternVL2.5-8B, and InternVL2.5-78B by 8.0, 3.7, 8.4, and 5.9 points, respectively, across seven multimodal reasoning benchmarks. Furthermore, our results show that PRMs consistently outperform both ORMs and SC in BoN evaluation. Additionally, experiments on VisualProcessBench reveal that existing open-source MLLMs struggle to accurately assess the correctness of each step.
+48	
+49	![Image 2: Refer to caption](https://arxiv.org/html/2503.10291v1/x2.png)
+50	
+51	Figure 2: Data examples in VisualPRM400K and VisualProcessBench. For VisualPRM400K, we generate the data using an automatic data pipeline. The key idea is to estimate the expected accuracy m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT of the given step s≤i subscript 𝑠 absent 𝑖 s_{\leq i}italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT based on Monte Carlo sampling and consider the step correct if m⁢c i>0 𝑚 subscript 𝑐 𝑖 0 mc_{i}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT > 0. During the training process of VisualPRM, the data is formulated as multi-turn conversations and the model is required to predict the correctness of each step conditioned on the image, question, and previous steps. For VisualProcessBench, we collect questions from existing multimodal reasoning benchmarks[[90](https://arxiv.org/html/2503.10291v1#bib.bib90), [78](https://arxiv.org/html/2503.10291v1#bib.bib78), [93](https://arxiv.org/html/2503.10291v1#bib.bib93), [99](https://arxiv.org/html/2503.10291v1#bib.bib99), [60](https://arxiv.org/html/2503.10291v1#bib.bib60)] and generate the solutions using leading MLLMs[[58](https://arxiv.org/html/2503.10291v1#bib.bib58), [4](https://arxiv.org/html/2503.10291v1#bib.bib4), [15](https://arxiv.org/html/2503.10291v1#bib.bib15), [82](https://arxiv.org/html/2503.10291v1#bib.bib82), [72](https://arxiv.org/html/2503.10291v1#bib.bib72)]. Based on these questions and solutions, we employ a team of human experts with at least a university degree to manually annotate the correctness of each step in the solutions. 
+52	
+53	2 Related Work
+54	--------------
+55	
+56	Multimodal Large Language Models. A wide range of efforts has been made to advance the development of MLLMs, including improvements in model architecture, data construction, and training algorithms. From an architectural perspective, several studies[[41](https://arxiv.org/html/2503.10291v1#bib.bib41), [42](https://arxiv.org/html/2503.10291v1#bib.bib42), [89](https://arxiv.org/html/2503.10291v1#bib.bib89), [15](https://arxiv.org/html/2503.10291v1#bib.bib15), [16](https://arxiv.org/html/2503.10291v1#bib.bib16), [84](https://arxiv.org/html/2503.10291v1#bib.bib84), [83](https://arxiv.org/html/2503.10291v1#bib.bib83), [45](https://arxiv.org/html/2503.10291v1#bib.bib45), [85](https://arxiv.org/html/2503.10291v1#bib.bib85), [7](https://arxiv.org/html/2503.10291v1#bib.bib7), [89](https://arxiv.org/html/2503.10291v1#bib.bib89)] employ connectors to align visual embeddings from Vision Foundation Models (VFMs)[[14](https://arxiv.org/html/2503.10291v1#bib.bib14), [91](https://arxiv.org/html/2503.10291v1#bib.bib91)] with the latent space of LLMs[[5](https://arxiv.org/html/2503.10291v1#bib.bib5), [75](https://arxiv.org/html/2503.10291v1#bib.bib75), [76](https://arxiv.org/html/2503.10291v1#bib.bib76), [71](https://arxiv.org/html/2503.10291v1#bib.bib71)], achieving promising performance. Another series of works[[3](https://arxiv.org/html/2503.10291v1#bib.bib3), [21](https://arxiv.org/html/2503.10291v1#bib.bib21), [73](https://arxiv.org/html/2503.10291v1#bib.bib73), [81](https://arxiv.org/html/2503.10291v1#bib.bib81)] extends pre-trained LLMs with additional layers to fuse visual features, reducing the number of required visual tokens while introducing extra training cost. In terms of data construction, recent studies have made significant progress[[63](https://arxiv.org/html/2503.10291v1#bib.bib63), [98](https://arxiv.org/html/2503.10291v1#bib.bib98), [34](https://arxiv.org/html/2503.10291v1#bib.bib34), [38](https://arxiv.org/html/2503.10291v1#bib.bib38), [43](https://arxiv.org/html/2503.10291v1#bib.bib43), [82](https://arxiv.org/html/2503.10291v1#bib.bib82), [95](https://arxiv.org/html/2503.10291v1#bib.bib95)]. For example, OmniCorpus[[38](https://arxiv.org/html/2503.10291v1#bib.bib38)] offers a noisy but large-scale multimodal corpus for pre-training, while MMInstruct[[43](https://arxiv.org/html/2503.10291v1#bib.bib43)] provides an open-source, high-quality instruction-tuning dataset. Additionally, MMPR[[82](https://arxiv.org/html/2503.10291v1#bib.bib82)] constructs a preference dataset focusing on multimodal reasoning abilities. Regarding training algorithms, the InternVL2.5 series[[15](https://arxiv.org/html/2503.10291v1#bib.bib15), [82](https://arxiv.org/html/2503.10291v1#bib.bib82)] proposes square loss and Mix Preference Optimization to enhance MLLM capabilities. Despite these advancements, existing works primarily focus on the training process of MLLMs, leaving Test-Time Scaling (TTS) for MLLMs largely underexplored. In this work, we investigate TTS applications for MLLMs, specifically focusing on the Best-of-N evaluation to improve multimodal reasoning performance.
+57	
+58	Process Reward Models. Reward models play a crucial role in Reinforcement Learning (RL)[[64](https://arxiv.org/html/2503.10291v1#bib.bib64), [66](https://arxiv.org/html/2503.10291v1#bib.bib66), [2](https://arxiv.org/html/2503.10291v1#bib.bib2), [26](https://arxiv.org/html/2503.10291v1#bib.bib26)] and TTS[[68](https://arxiv.org/html/2503.10291v1#bib.bib68), [79](https://arxiv.org/html/2503.10291v1#bib.bib79), [20](https://arxiv.org/html/2503.10291v1#bib.bib20), [51](https://arxiv.org/html/2503.10291v1#bib.bib51)]. Outcome Reward Models (ORMs)[[55](https://arxiv.org/html/2503.10291v1#bib.bib55), [92](https://arxiv.org/html/2503.10291v1#bib.bib92), [77](https://arxiv.org/html/2503.10291v1#bib.bib77)] directly assign an overall score to the given response. In contrast, Process Reward Models (PRMs) first estimate the quality of each step in the given response and then aggregate them into a final score. PRM800K[[39](https://arxiv.org/html/2503.10291v1#bib.bib39)] is the first open-source process supervision dataset, entirely annotated by human experts. To reduce annotation costs, MathShepherd[[79](https://arxiv.org/html/2503.10291v1#bib.bib79)] and OmegaPRM[[51](https://arxiv.org/html/2503.10291v1#bib.bib51)] introduce a Monte Carlo sampling-based data pipeline to automatically estimate the quality of each step. Despite these advancements in natural language processing, multimodal PRMs remain largely underexplored. In this work, we introduce VisualPRM400K, the first multimodal process supervision dataset, and develop VisualPRM, a multimodal PRM trained on this dataset.
+59	
+60	Benchmarks for Reward Models. The evaluation of reward models (RMs) is a crucial research topic. A series of benchmarks[[33](https://arxiv.org/html/2503.10291v1#bib.bib33), [37](https://arxiv.org/html/2503.10291v1#bib.bib37), [44](https://arxiv.org/html/2503.10291v1#bib.bib44)] have been proposed to assess the effectiveness of RMs, typically formulated as a binary preference judgment task. Building on this, subsequent work[[97](https://arxiv.org/html/2503.10291v1#bib.bib97)] extends the evaluation settings and includes both pairwise and Best-of-N evaluations, providing a more comprehensive evaluation of RM performance. With the rapid advancement of PRMs, a series of benchmarks[[96](https://arxiv.org/html/2503.10291v1#bib.bib96), [69](https://arxiv.org/html/2503.10291v1#bib.bib69)] have been introduced to evaluate their step-wise judgment capabilities. Despite these developments, there remains a lack of a multimodal process benchmark. To bridge this gap and support the development of multimodal PRMs, we introduce VisualProcessBench, a benchmark designed to evaluate the ability of PRMs and MLLMs to detect erroneous steps in multimodal reasoning tasks.
+61	
+62	3 Method
+63	--------
+64	
+65	![Image 3: Refer to caption](https://arxiv.org/html/2503.10291v1/x3.png)
+66	
+67	Figure 3: Different modeling methods for PRMs. PRMs are developed to estimate the quality of each step in a given solution. For value-based PRMs, the quality of a certain step is determined by its expected accuracy m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT, where a step is considered correct if m⁢c i>0 𝑚 subscript 𝑐 𝑖 0 mc_{i}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT > 0. For advantage-based PRMs, the quality of a certain step is determined by the improvement of m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT over m⁢c i−1 𝑚 subscript 𝑐 𝑖 1 mc_{i-1}italic_m italic_c start_POSTSUBSCRIPT italic_i - 1 end_POSTSUBSCRIPT, where a step is considered good if m⁢c i−m⁢c i−1>0 𝑚 subscript 𝑐 𝑖 𝑚 subscript 𝑐 𝑖 1 0 mc_{i}-mc_{i-1}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT - italic_m italic_c start_POSTSUBSCRIPT italic_i - 1 end_POSTSUBSCRIPT > 0. During the training stage, the output space of PRMs is discretized into specific tokens, while during the inference stage, we compute the step score as the weighted sum of the generation probability for these discretized tokens. 
+68	
+69	During Best-of-N (BoN) evaluation, a critic model is required to estimate the quality of each response candidate. In this work, we formulate the critic model as a Process Reward Model (PRM). To develop a multimodal PRM, we first construct VisualPRM400K, a dataset comprising about 400K multimodal process supervision data, as detailed in Section[3.1](https://arxiv.org/html/2503.10291v1#S3.SS1 "3.1 VisualPRM400K ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"). We then describe our PRM’s modeling approach in Section[3.2](https://arxiv.org/html/2503.10291v1#S3.SS2 "3.2 VisualPRM ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"). Furthermore, to support the evaluation of critic models, we establish VisualProcessBench to measure the abilities of critic models to detect erroneous steps in multimodal reasoning, as introduced in Section[3.3](https://arxiv.org/html/2503.10291v1#S3.SS3 "3.3 VisualProcessBench ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning").
+70	
+71	### 3.1 VisualPRM400K
+72	
+73	Definition. As shown in Figure[2](https://arxiv.org/html/2503.10291v1#S1.F2 "Figure 2 ‣ 1 Introduction ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), each data sample in our VisualPRM400K consists of an image I∈ℐ 𝐼 ℐ I\in\mathcal{I}italic_I ∈ caligraphic_I, a question q∈𝒬 𝑞 𝒬 q\in\mathcal{Q}italic_q ∈ caligraphic_Q, a step-by-step solution s={s 0,s 1,⋯,s n}∈𝒮 𝑠 subscript 𝑠 0 subscript 𝑠 1⋯subscript 𝑠 𝑛 𝒮 s=\{s_{0},s_{1},\cdots,s_{n}\}\in\mathcal{S}italic_s = { italic_s start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT , italic_s start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT , ⋯ , italic_s start_POSTSUBSCRIPT italic_n end_POSTSUBSCRIPT } ∈ caligraphic_S, and the expected accuracy annotation m⁢c={m⁢c 0,m⁢c 1,⋯,m⁢c n},m⁢c i∈ℝ≥0 formulae-sequence 𝑚 𝑐 𝑚 subscript 𝑐 0 𝑚 subscript 𝑐 1⋯𝑚 subscript 𝑐 𝑛 𝑚 subscript 𝑐 𝑖 subscript ℝ absent 0 mc=\{mc_{0},mc_{1},\cdots,mc_{n}\},mc_{i}\in\mathbb{R}_{\geq 0}italic_m italic_c = { italic_m italic_c start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT , italic_m italic_c start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT , ⋯ , italic_m italic_c start_POSTSUBSCRIPT italic_n end_POSTSUBSCRIPT } , italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∈ blackboard_R start_POSTSUBSCRIPT ≥ 0 end_POSTSUBSCRIPT for each step, where n 𝑛 n italic_n is the number of steps of a certain solution and m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT denotes the expected accuracy of step s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT. The image sets ℐ ℐ\mathcal{I}caligraphic_I and question sets 𝒬 𝒬\mathcal{Q}caligraphic_Q are collected from MMPR v1.1[[82](https://arxiv.org/html/2503.10291v1#bib.bib82)], while the step-by-step solutions 𝒮 𝒮\mathcal{S}caligraphic_S are sampled using InternVL2.5 series models[[15](https://arxiv.org/html/2503.10291v1#bib.bib15), [82](https://arxiv.org/html/2503.10291v1#bib.bib82)].
+74	
+75	Process Supervision Generation. Given an image I 𝐼 I italic_I, a question q 𝑞 q italic_q, and a solution s={s 0,s 1,⋯,s n}𝑠 subscript 𝑠 0 subscript 𝑠 1⋯subscript 𝑠 𝑛 s=\{s_{0},s_{1},\cdots,s_{n}\}italic_s = { italic_s start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT , italic_s start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT , ⋯ , italic_s start_POSTSUBSCRIPT italic_n end_POSTSUBSCRIPT }, we annotate the correctness of each step s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT using an automatic data pipeline. The key idea is to estimate the expected accuracy of given steps s≤i subscript 𝑠 absent 𝑖 s_{\leq i}italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT based on Monte Carlo sampling. Specifically, the model is required to complete the solution as follows:
+76	
+77	s~>i∼M⁢(s~>i∣I,q,s≤i),similar-to subscript~𝑠 absent 𝑖 𝑀 conditional subscript~𝑠 absent 𝑖 𝐼 𝑞 subscript 𝑠 absent 𝑖\tilde{s}_{>i}\sim M(\tilde{s}_{>i}\mid I,q,s_{\leq i}),over~ start_ARG italic_s end_ARG start_POSTSUBSCRIPT > italic_i end_POSTSUBSCRIPT ∼ italic_M ( over~ start_ARG italic_s end_ARG start_POSTSUBSCRIPT > italic_i end_POSTSUBSCRIPT ∣ italic_I , italic_q , italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT ) ,(1)
+78	
+79	where s~>i subscript~𝑠 absent 𝑖\tilde{s}_{>i}over~ start_ARG italic_s end_ARG start_POSTSUBSCRIPT > italic_i end_POSTSUBSCRIPT is the completion of s≤i subscript 𝑠 absent 𝑖 s_{\leq i}italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT. Besides, the expected accuracy of s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT is defined as:
+80	
+81	m⁢c i=num(correct completions)num(sampled completions).𝑚 subscript 𝑐 𝑖 num(correct completions)num(sampled completions)mc_{i}=\frac{\text{num(correct completions)}}{\text{num(sampled completions)}}.italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT = divide start_ARG num(correct completions) end_ARG start_ARG num(sampled completions) end_ARG .(2)
+82	
+83	Notably, to reduce the data construction costs, we set the max number of steps to 12 and evenly merge the steps if the number of current steps exceeds the threshold.
+84	
+85	Statistics. During the construction process, we sample 4 4 4 4 solutions for each image-question pair and split each of them into at most 12 12 12 12 steps. For each step, we sample 16 16 16 16 continuations and compute m i subscript 𝑚 𝑖 m_{i}italic_m start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT according to these continuations. The resulting dataset comprises approximately 400K samples and 2 million steps with process supervision. Each response averages 126.9 words and 5.6 steps, while each step averages 22.6 words. Among these steps, about 10% are incorrect steps. Despite the imbalanced distribution of correct and incorrect steps, our PRM demonstrates promising performance, as shown in Section[4](https://arxiv.org/html/2503.10291v1#S4 "4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning").
+86	
+87	### 3.2 VisualPRM
+88	
+89	Overview. During the training process, we formulate the process supervision problem as a multi-turn chat task so that we can effectively leverage the generation ability of MLLMs. The image I 𝐼 I italic_I, question q 𝑞 q italic_q, and the first step s 0 subscript 𝑠 0 s_{0}italic_s start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT of the solution to this question are included in the first turn and a new step is presented in each subsequent turn. The model is required to predict the quality of the given step in each turn as follows:
+90	
+91	y i∼M⁢(y i∣I,q,s≤i),similar-to subscript 𝑦 𝑖 𝑀 conditional subscript 𝑦 𝑖 𝐼 𝑞 subscript 𝑠 absent 𝑖 y_{i}\sim M(y_{i}\mid I,q,s_{\leq i}),italic_y start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∼ italic_M ( italic_y start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∣ italic_I , italic_q , italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT ) ,(3)
+92	
+93	where y i subscript 𝑦 𝑖 y_{i}italic_y start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT denotes the quality of i 𝑖 i italic_i-th step.
+94	
+95	For value-based PRMs, the quality of a certain step is determined by its expected accuracy m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT, which is similar to the definition of the value function in reinforcement learning. Following Math-Shepherd[[79](https://arxiv.org/html/2503.10291v1#bib.bib79), [20](https://arxiv.org/html/2503.10291v1#bib.bib20)], we require the model to predict the correctness c i∈{+,−}subscript 𝑐 𝑖 c_{i}\in\{+,-\}italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∈ { + , - } of the given step, rather than the exact score of m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT. The i 𝑖 i italic_i-th step is considered correct if m⁢c i>0 𝑚 subscript 𝑐 𝑖 0 mc_{i}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT > 0. We also try to set a threshold to reduce false positive steps, but find that such a threshold negatively impacts the PRM performance, as shown in Section[7](https://arxiv.org/html/2503.10291v1#S7 "7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"). Notably, unlike previous works[[79](https://arxiv.org/html/2503.10291v1#bib.bib79), [39](https://arxiv.org/html/2503.10291v1#bib.bib39), [20](https://arxiv.org/html/2503.10291v1#bib.bib20)], which choose to supervise only up to the first incorrect step, we always supervise all steps.
+96	
+97	For advantage-based PRMs, the quality of a certain step is determined by the improvement of m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT over m⁢c i−1 𝑚 subscript 𝑐 𝑖 1 mc_{i-1}italic_m italic_c start_POSTSUBSCRIPT italic_i - 1 end_POSTSUBSCRIPT, which is analogous to the definition of the advantage function in reinforcement learning. Similar to value-based PRMs, the quality space is discretized into predefined values {+,=,−}\{+,=,-\}{ + , = , - }, meaning that the i 𝑖 i italic_i-th step s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT results in a superior, comparable, or inferior situation.
+98	
+99	During inference stage, we first compute the scores of each step and then merge them to obtain the response score. Specifically, the score for each step is defined as the weighted sum of the generation probability for the discretized scores. For value-based PRMs, the weights for {+,−}\{+,-\}{ + , - } are {1,0}1 0\{1,0\}{ 1 , 0 }. For advantage-based PRMs, the weights for {+,=,−}\{+,=,-\}{ + , = , - } are {1,0,−1}1 0 1\{1,0,-1\}{ 1 , 0 , - 1 }. Without further explanation, we average the scores of each step as the response score.
+100	
+101	### 3.3 VisualProcessBench
+102	
+103	Table 1: Statistics of VisualProcessBench.
+104	
+105	Definition. Each sample in our benchmark consists of a multimodal reasoning question, a step-by-step solution, and correctness annotations for each step. Considering that recent models begin to demonstrate reflection abilities to rectify their own reasoning process, the evaluation setting used in previous works[[96](https://arxiv.org/html/2503.10291v1#bib.bib96), [39](https://arxiv.org/html/2503.10291v1#bib.bib39)], which only requires the model to find the first erroneous step, may lead to a false negative estimation. Therefore, our benchmark requires the model to identify all erroneous steps in the given solution instead of only the first erroneous step.
+106	
+107	Data Source. Our benchmark focuses on multimodal reasoning tasks, collecting images and questions from existing representative multimodal reasoning benchmarks, including MMMU[[90](https://arxiv.org/html/2503.10291v1#bib.bib90)], MathVision[[78](https://arxiv.org/html/2503.10291v1#bib.bib78)], MathVerse[[93](https://arxiv.org/html/2503.10291v1#bib.bib93)], DynaMath[[99](https://arxiv.org/html/2503.10291v1#bib.bib99)], and WeMath[[60](https://arxiv.org/html/2503.10291v1#bib.bib60)]. Given these questions, we generate step-by-step solutions using leading MLLMs, including GPT-4o[[58](https://arxiv.org/html/2503.10291v1#bib.bib58)], Claude-3.5-Sonnet[[4](https://arxiv.org/html/2503.10291v1#bib.bib4)], Gemini-2.0-Flash[[70](https://arxiv.org/html/2503.10291v1#bib.bib70)], QvQ-72B-Preview[[72](https://arxiv.org/html/2503.10291v1#bib.bib72)], and InternVL2.5-78B[[15](https://arxiv.org/html/2503.10291v1#bib.bib15)]. The solutions are sampled from different MLLMs to ensure their diversity.
+108	
+109	Step Correctness Annotation. We employ a team of human experts with at least a university degree to manually annotate the correctness of each step in the solutions. Specifically, 13 people worked for 3 days, resulting in a workload of 39 person-days. The cost per person-day is approximately 37 dollars. During the annotation process, annotators are provided with the image, question, ground truth answer, and each step of the solution. Their task is to assign each step in the solution a label of positive, negative, or neutral, as illustrated in Figure[2](https://arxiv.org/html/2503.10291v1#S1.F2 "Figure 2 ‣ 1 Introduction ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"). A positive label indicates that the step is correct, while a negative label signifies an incorrect step. The neural label is assigned to steps that do not involve any reasoning process or provide no additional information. To ensure the annotation quality, annotators are permitted to skip questions they do not understand. During the annotation process, our dataset is divided into 10 splits, each containing approximately 300 samples. For each split, the authors of this paper manually review about 10% of the samples. Splits with erroneous annotations are sent back for re-annotation. See Section[10](https://arxiv.org/html/2503.10291v1#S10 "10 More Data Examples in VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning") for more data examples.
+110	
+111	Statistics. As shown in Table[1](https://arxiv.org/html/2503.10291v1#S3.T1 "Table 1 ‣ 3.3 VisualProcessBench ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), our benchmark comprises 2866 samples. To enhance the diversity of our evaluation samples, we gather questions and solutions from a wide range of benchmarks and models while carefully regulating their distribution. The statistics of step distribution are presented in Section[8](https://arxiv.org/html/2503.10291v1#S8 "8 More Statistics for VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning").
+112	
+113	Metrics. In this work, we use macro F1 scores to compare model performance, aiming to mitigate the impact of the imbalanced distribution between correct and incorrect steps. Specifically, we first compute the F1 scores separately for correct and incorrect steps and then take their average to obtain the overall score.
+114	
+115	4 Experiments
+116	-------------
+117	
+118	In this section, we first employ VisualPRM to evaluate various MLLMs using BoN evaluation strategies in Section[4.1](https://arxiv.org/html/2503.10291v1#S4.SS1 "4.1 Results with Best-of-N evaluation ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), demonstrating that PRMs can significantly enhance the reasoning abilities of MLLMs. Next, we evaluate our VisualPRM and other leading MLLMs on VisualProcessBench in Section[4.2](https://arxiv.org/html/2503.10291v1#S4.SS2 "4.2 Results on VisualProcessBench ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"). Finally, the ablation studies are presented in Section[4.3](https://arxiv.org/html/2503.10291v1#S4.SS3 "4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning") and Section[7](https://arxiv.org/html/2503.10291v1#S7 "7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning").
+119	
+120	Table 2: Results on seven multimodal reasoning benchmarks. MMMU[[90](https://arxiv.org/html/2503.10291v1#bib.bib90)] is a multidisciplinary reasoning benchmark. MathVista[[50](https://arxiv.org/html/2503.10291v1#bib.bib50)], MathVision[[78](https://arxiv.org/html/2503.10291v1#bib.bib78)], MathVerse[[93](https://arxiv.org/html/2503.10291v1#bib.bib93)], DynaMath[[99](https://arxiv.org/html/2503.10291v1#bib.bib99)], and WeMath[[60](https://arxiv.org/html/2503.10291v1#bib.bib60)] are mathematics benchmarks. For MathVerse, we report the performance on Vision-Only (VO) split. LogicVista[[87](https://arxiv.org/html/2503.10291v1#bib.bib87)] is a logical reasoning benchmark. Part of the results are collected from the OpenCompass leaderboard[[19](https://arxiv.org/html/2503.10291v1#bib.bib19)]. The overall score is the average score of the above benchmarks. By using VisualPRM as the critic model, existing open-source MLLMs achieve significant improvements in reasoning ability under the Best-of-8 evaluation strategy. 
+121	
+122	### 4.1 Results with Best-of-N evaluation
+123	
+124	Benchmarks. We evaluate the reasoning abilities of MLLMs across seven benchmarks, including MMMU[[90](https://arxiv.org/html/2503.10291v1#bib.bib90)], MathVista[[50](https://arxiv.org/html/2503.10291v1#bib.bib50)], MathVision[[78](https://arxiv.org/html/2503.10291v1#bib.bib78)], MathVerse[[93](https://arxiv.org/html/2503.10291v1#bib.bib93)], DynaMath[[99](https://arxiv.org/html/2503.10291v1#bib.bib99)], WeMath[[60](https://arxiv.org/html/2503.10291v1#bib.bib60)], and LogicVista[[87](https://arxiv.org/html/2503.10291v1#bib.bib87)]. The evaluation samples include subject-based, mathematical, and logical reasoning problems. We report the worst-case accuracy for DynaMath and the overall accuracy for the remaining benchmarks. For MathVerse, we report the performance on the Vision-Only split.
+125	
+126	Settings. Without further explanation, we use VisualPRM as the critic model for BoN evaluation and set N 𝑁 N italic_N to 8 8 8 8 by default. The policy model is required to generate N 𝑁 N italic_N distinct step-by-step Chain-of-Thought (CoT) reasoning processes with a temperature of 0.7. The response with the highest score is then selected to determine the correctness.
+127	
+128	Results. As shown in Table[2](https://arxiv.org/html/2503.10291v1#S4.T2 "Table 2 ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), VisualPRM greatly enhances the reasoning abilities of MLLMs across different model scales and families. Specifically, for models with fewer than 10 billion parameters, the overall performance of InternVL2.5-8B, MiniCPM-V-8B, and Qwen2.5-VL-7B improves by 8.4, 8.0, and 3.7 points, respectively, demonstrating the effectiveness of test-time scaling across different model families. For larger models, InternVL2.5-26B, InternVL2.5-38B, and InternVL2.5-78B also achieve substantial performance gains over their counterparts without TTS, further validating the scalability and effectiveness of TTS across different model sizes.
+129	
+130	### 4.2 Results on VisualProcessBench
+131	
+132	Settings. For the evaluation of PRMs, a step is considered correct if the probability of outputting “+++” exceeds that of outputting “−--” by a certain threshold. For the evaluation of MLLMs, the model is prompted to analyze each step and determine its correctness, classifying it as either correct or incorrect. When computing the F1 score, we exclude steps labeled as neural by human annotators in Section[3.3](https://arxiv.org/html/2503.10291v1#S3.SS3 "3.3 VisualProcessBench ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning").
+133	
+134	Results. As shown in Table[3](https://arxiv.org/html/2503.10291v1#S4.T3 "Table 3 ‣ 4.2 Results on VisualProcessBench ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), most existing MLLMs struggle to accurately assess the correctness of each step. Specifically, the overall F1 score for random guessing is 50.0, while most open-source MLLMs achieve scores close to this baseline, highlighting their limitations as critic models. We manually check the judgments of these open-source MLLMs and observe that these models tend to provide positive analysis and label most steps as correct. For example, InternVL2.5-8B achieves an F1 score of 76.8 for positive steps, while its F1 score for negative steps is only 19.2, indicating that InternVL2.5-8B rarely identifies steps as incorrect. Furthermore, compared to proprietary models, our VisualPRM demonstrates competitive performance, achieving an overall F1 score of 62.0—outperforming GPT-4o and GPT-4o-Mini, and performing on par with Gemini-2.0-Flash. Notably, our model, with only 8 billion parameters, is more efficient than these proprietary counterparts.
+135	
+136	Table 3: Results on VisualProcessBench. We report the macro F1 of the correct and incorrect steps. The overall score is the micro average of the score from different data sources. Our VisualPRM exhibits state-of-the-art performance among open-source models. 
+137	
+138	### 4.3 Ablation Studies
+139	
+140	Effects of BoN. Here, we increase the number of response candidates sampled from InternVL2.5-8B and select the final response using Self-Consistency (SC)[[86](https://arxiv.org/html/2503.10291v1#bib.bib86)], Outcome Reward Model (ORM), and PRM. The training data for ORM are nearly identical to those used for PRM, except that all steps are concatenated into a single step and step-wise correctness annotations are converted into a single correctness label for the outcome. As shown in Figure[4](https://arxiv.org/html/2503.10291v1#S4.F4 "Figure 4 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), increasing the number of response candidates N 𝑁 N italic_N improves the reasoning performance of InternVL2.5-8B and MiniCPM-V2.6-8B when using SC, ORM, or PRM, with PRM yielding the most significant improvements. Specifically, when using InternVL2.5-8B as the policy model, PRM outperforms SC and ORM by 2.4 and 1.5 points, respectively, under the Best-of-8 evaluation setting. Moreover, this performance gap widens as N 𝑁 N italic_N increases, reaching 3.1 and 4.3 points when N 𝑁 N italic_N is set to 128 128 128 128. Notably, when using ORM as the critic model, although performance improves during Best-of-8 evaluation, further increasing N 𝑁 N italic_N does not lead to consistent gains for InternVL2.5-8B. For example, the Best-of-128 performance is inferior to the Best-of-64 performance. These results highlight the effectiveness of PRM in TTS.
+141	
+142	Effects of PRM modeling methods. Here, we compare the value-based PRM and the advantage-based PRM introduced in Section[3.2](https://arxiv.org/html/2503.10291v1#S3.SS2 "3.2 VisualPRM ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), along with different methods for aggregating step scores into a final score, including averaging, as well as selecting the maximum or minimum value. The results are presented in Table[4](https://arxiv.org/html/2503.10291v1#S4.T4 "Table 4 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"). We find that value-based PRMs outperform advantage-based PRMs in both BoN evaluation settings and VL-ProcessBench. We attribute this to the inherent noise in our training data, which is generated through an automatic data pipeline, making it challenging to accurately determine whether a given step contributes to higher or lower expected accuracy. We also compare two training strategies: supervising all steps (_i.e_., w/o early stop) versus supervising only up to the first incorrect step (_i.e_., w. early stop) during training. Experimental results show that the former yields better performance. Regarding different score aggregation methods, we find that selecting the maximum value results in poorer performance compared to averaging or taking the minimum value. Analyzing the generated scores reveals that most responses contain a high-scored step, close to 1 1 1 1, at the beginning of the solution. This phenomenon likely arises because most erroneous steps appear in the middle of the solution. Our statistics of VisualProcessBench presented in Section[8](https://arxiv.org/html/2503.10291v1#S8 "8 More Statistics for VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning") further demonstrate this conclusion. Furthermore, averaging performs better than selecting the maximum value, likely because the latter relies on a single step’s score, while averaging accounts for multiple steps and can be considered as an ensemble approach, which benefits the step quality estimation.
+143	
+144	![Image 4: Refer to caption](https://arxiv.org/html/2503.10291v1/x4.png)
+145	
+146	(a)
+147	
+148	![Image 5: Refer to caption](https://arxiv.org/html/2503.10291v1/x5.png)
+149	
+150	(b)
+151	
+152	Figure 4: Overall Best-of-N results across seven multimodal reasoning benchmarks with different policy and critic models. VisualPRM consistently enhances reasoning performance of both InternVL2.5-8B and MiniCPM-V as N 𝑁 N italic_N increases and outperforms the improvement introduced by Self-Consistency and ORM, highlighting the effectiveness of PRM in Test-Time Scaling. 
+153	
+154	Table 4: Comparison of different critic models and score aggregation methods. Note that score aggregation methods do not affect performance on VisualProcessBench, which focuses on step correctness judgement. We find that supervising all steps (w/o early stop) during training perform slightly better than supervising only up to the first incorrect step (w. early steop). 
+155	
+156	MLLM-as-a-Judger. Existing MLLMs can be prompted to serve as a critic model. However, as shown in Table[4](https://arxiv.org/html/2503.10291v1#S4.T4 "Table 4 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), the InternVL2.5 series struggle to improve BoN performance, resulting in only marginal improvements. Upon analyzing the generated scores, we find that these models assign similar scores to most solutions. Consistent with our observations in Section[4.2](https://arxiv.org/html/2503.10291v1#S4.SS2 "4.2 Results on VisualProcessBench ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), the InternVL2.5 series tend to generate positive judgments for most steps, which hinders their ability to effectively distinguish and select the truly superior response. In addition to their effectiveness as critic models for MLLMs, their inference latency also limits efficiency. Specifically, MLLMs generate judgments for each step in an autoregressive manner, which is time-consuming. In contrast, our VisualPRM computes scores for all steps in a single forward pass by using a “+” as a placeholder for model responses and interpreting its generation probability as the step score.
+157	
+158	Results on text-only performance. To assess the effectiveness of VisualPRM on text-only inputs, we evaluate the Qwen2.5 series[[88](https://arxiv.org/html/2503.10291v1#bib.bib88)] and InternVL2.5 series[[15](https://arxiv.org/html/2503.10291v1#bib.bib15)] on three text reasoning benchmarks under BoN evaluation settings: GSM8K[[18](https://arxiv.org/html/2503.10291v1#bib.bib18)], MATH-500[[25](https://arxiv.org/html/2503.10291v1#bib.bib25)], and GPQA-Diamond[[62](https://arxiv.org/html/2503.10291v1#bib.bib62)]. We report accuracy as the evaluation metric for these benchmarks. As shown in Table[5](https://arxiv.org/html/2503.10291v1#S4.T5 "Table 5 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning"), our model enhances the text reasoning abilities of both the Qwen2.5 series and the InternVL2.5 series. Specifically, Qwen2.5-7B achieves improvements of 6.1 and 5.0 points on MATH-500 and GPQA-Diamond, respectively. Similarly, Qwen2.5-72B demonstrates gains of 2.1 and 6.6 points on these benchmarks. For the InternVL2.5 series, InternVL2.5-8B, InternVL2.5-38B, and InternVL2.5-78B achieve improvements of 9.4 and 5.0, 4.6 and 8.1, and 7.4 and 3.5 points, respectively, on MATH-500 and GPQA-Diamond. These results demonstrate the effectiveness of our VisualPRM in text-only scenarios.
+159	
+160	Table 5: Results on text reasoning benchmarks. GSM8K and MATH500 are mathematics benchmarks, while GPQA is a multidisciplinary reasoning benchmark. For GPQA, we report the performance on the Diamond split. Our VisualPRM enhances the text reasoning abilities of both LLMs and MLLMs under the Best-of-8 evaluation settings. 
+161	
+162	5 Conclusion
+163	------------
+164	
+165	In this work, we construct VisualPRM400K, a dataset comprising about 400K multimodal process supervision data. Building upon this dataset, we develop VisualPRM, an advanced multimodal Process Reward Model (PRM) capable of estimating the value score of each step during the reasoning process. With the Best-of-N (BoN) evaluation strategies, our model improves the reasoning abilities of existing Multimodal Large Language Models (MLLMs) across different model scales and families. Experimental results show that our model exhibits superior performance compared to Outcome Reward Models and Self-Consistency during BoN evaluation, highlighting the effectiveness of PRMs in Test-Time Scaling. To further facilitate the development of multimodal critic models, we construct VisualProcessBench, a benchmark designed to measure the abilities of PRMs and MLLMs to detect incorrect steps in multimodal reasoning tasks. Evaluation results show that existing open-source MLLMs struggle to effectively judge the correctness of each step. We hope that our work can inspire more future research and contribute to the development of MLLMs.
+166	
+167	References
+168	----------
+169	
+170	*   Achiam et al. [2023] Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et al. Gpt-4 technical report. _arXiv preprint arXiv:2303.08774_, 2023. 
+171	*   Ahmadian et al. [2024] Arash Ahmadian, Chris Cremer, Matthias Gallé, Marzieh Fadaee, Julia Kreutzer, Olivier Pietquin, Ahmet Üstün, and Sara Hooker. Back to basics: Revisiting reinforce style optimization for learning from human feedback in llms. _arXiv preprint arXiv:2402.14740_, 2024. 
+172	*   Alayrac et al. [2022] Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, Antoine Miech, Iain Barr, Yana Hasson, Karel Lenc, Arthur Mensch, Katherine Millican, Malcolm Reynolds, et al. Flamingo: a visual language model for few-shot learning. _NIPS_, 35:23716–23736, 2022. 
+173	*   Anthropic [2024] Anthropic. The claude 3 model family: Opus, sonnet, haiku. [https://www.anthropic.com](https://www.anthropic.com/), 2024. 
+174	*   Bai et al. [2023a] Jinze Bai, Shuai Bai, Yunfei Chu, Zeyu Cui, Kai Dang, Xiaodong Deng, Yang Fan, Wenbin Ge, Yu Han, Fei Huang, et al. Qwen technical report. _arXiv preprint arXiv:2309.16609_, 2023a. 
+175	*   Bai et al. [2023b] Jinze Bai, Shuai Bai, Shusheng Yang, Shijie Wang, Sinan Tan, Peng Wang, Junyang Lin, Chang Zhou, and Jingren Zhou. Qwen-vl: A frontier large vision-language model with versatile abilities. _arXiv preprint arXiv:2308.12966_, 2023b. 
+176	*   Bai et al. [2025] Shuai Bai, Keqin Chen, Xuejing Liu, Jialin Wang, Wenbin Ge, Sibo Song, Kai Dang, Peng Wang, Shijie Wang, Jun Tang, et al. Qwen2. 5-vl technical report. _arXiv preprint arXiv:2502.13923_, 2025. 
+177	*   Biten et al. [2019] Ali Furkan Biten, Ruben Tito, Andres Mafla, Lluis Gomez, Marçal Rusinol, Ernest Valveny, CV Jawahar, and Dimosthenis Karatzas. Scene text visual question answering. In _ICCV_, pages 4291–4301, 2019. 
+178	*   Brown et al. [2020] Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et al. Language models are few-shot learners. _NIPS_, 2020. 
+179	*   Cai et al. [2024] Zheng Cai, Maosong Cao, Haojiong Chen, Kai Chen, Keyu Chen, Xin Chen, Xun Chen, Zehui Chen, Zhi Chen, Pei Chu, et al. Internlm2 technical report. _arXiv preprint arXiv:2403.17297_, 2024. 
+180	*   Cao and Xiao [2022] Jie Cao and Jing Xiao. An augmented benchmark dataset for geometric question answering through dual parallel text encoding. In _COLING_, pages 1511–1520, 2022. 
+181	*   Chang et al. [2022] Shuaichen Chang, David Palzer, Jialin Li, Eric Fosler-Lussier, and Ningchuan Xiao. Mapqa: A dataset for question answering on choropleth maps. _arXiv preprint arXiv:2211.08545_, 2022. 
+182	*   Chen et al. [2024a] Qiguang Chen, Libo Qin, Jin Zhang, Zhi Chen, Xiao Xu, and Wanxiang Che. M3cot: A novel benchmark for multi-domain multi-step multi-modal chain-of-thought. _arXiv preprint arXiv:2405.16473_, 2024a. 
+183	*   Chen et al. [2023] Zhe Chen, Jiannan Wu, Wenhai Wang, Weijie Su, Guo Chen, Sen Xing, Zhong Muyan, Qinglong Zhang, Xizhou Zhu, Lewei Lu, et al. Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks. _arXiv preprint arXiv:2312.14238_, 2023. 
+184	*   Chen et al. [2024b] Zhe Chen, Weiyun Wang, Yue Cao, Yangzhou Liu, Zhangwei Gao, Erfei Cui, Jinguo Zhu, Shenglong Ye, Hao Tian, Zhaoyang Liu, et al. Expanding performance boundaries of open-source multimodal models with model, data, and test-time scaling. _arXiv preprint arXiv:2412.05271_, 2024b. 
+185	*   Chen et al. [2024c] Zhe Chen, Weiyun Wang, Hao Tian, Shenglong Ye, Zhangwei Gao, Erfei Cui, Wenwen Tong, Kongzhi Hu, Jiapeng Luo, Zheng Ma, et al. How far are we to gpt-4v? closing the gap to commercial multimodal models with open-source suites. _arXiv preprint arXiv:2404.16821_, 2024c. 
+186	*   Clark and Gardner [2018] Christopher Clark and Matt Gardner. Simple and effective multi-paragraph reading comprehension. In _ACL_, pages 845–855, 2018. 
+187	*   Cobbe et al. [2021] Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, et al. Training verifiers to solve math word problems. _arXiv preprint arXiv:2110.14168_, 2021. 
+188	*   Contributors [2023] OpenCompass Contributors. Opencompass: A universal evaluation platform for foundation models. [https://github.com/open-compass/opencompass](https://github.com/open-compass/opencompass), 2023. 
+189	*   Dong et al. [2024] Hanze Dong, Wei Xiong, Bo Pang, Haoxiang Wang, Han Zhao, Yingbo Zhou, Nan Jiang, Doyen Sahoo, Caiming Xiong, and Tong Zhang. Rlhf workflow: From reward modeling to online rlhf. _arXiv preprint arXiv:2405.07863_, 2024. 
+190	*   Dubey et al. [2024] Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Amy Yang, Angela Fan, et al. The llama 3 herd of models. _arXiv preprint arXiv:2407.21783_, 2024. 
+191	*   Gao et al. [2023] Jiahui Gao, Renjie Pi, Jipeng Zhang, Jiacheng Ye, Wanjun Zhong, Yufei Wang, Lanqing Hong, Jianhua Han, Hang Xu, Zhenguo Li, et al. G-llava: Solving geometric problem with multi-modal large language model. _arXiv preprint arXiv:2312.11370_, 2023. 
+192	*   Goyal et al. [2017] Yash Goyal, Tejas Khot, Douglas Summers-Stay, Dhruv Batra, and Devi Parikh. Making the v in vqa matter: Elevating the role of image understanding in visual question answering. In _CVPR_, pages 6904–6913, 2017. 
+193	*   Guo et al. [2025] Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, et al. Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning. _arXiv preprint arXiv:2501.12948_, 2025. 
+194	*   Hendrycks et al. [2021] Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, and Jacob Steinhardt. Measuring mathematical problem solving with the math dataset. _arXiv preprint arXiv:2103.03874_, 2021. 
+195	*   Hu [2025] Jian Hu. Reinforce++: A simple and efficient approach for aligning large language models. _arXiv preprint arXiv:2501.03262_, 2025. 
+196	*   Huang et al. [2019] Zheng Huang, Kai Chen, Jianhua He, Xiang Bai, Dimosthenis Karatzas, Shijian Lu, and CV Jawahar. Icdar2019 competition on scanned receipt ocr and information extraction. In _2019 International Conference on Document Analysis and Recognition (ICDAR)_, pages 1516–1520. IEEE, 2019. 
+197	*   Hudson and Manning [2019] Drew A Hudson and Christopher D Manning. Gqa: A new dataset for real-world visual reasoning and compositional question answering. In _CVPR_, pages 6700–6709, 2019. 
+198	*   Kafle et al. [2018] Kushal Kafle, Brian Price, Scott Cohen, and Christopher Kanan. Dvqa: Understanding data visualizations via question answering. In _CVPR_, pages 5648–5656, 2018. 
+199	*   Kazemi et al. [2023] Mehran Kazemi, Hamidreza Alvari, Ankit Anand, Jialin Wu, Xi Chen, and Radu Soricut. Geomverse: A systematic evaluation of large models for geometric reasoning. _arXiv preprint arXiv:2312.12241_, 2023. 
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97d8e833-7ff3-4209-a1c0-d42b5b5225ff",
+  "isSidechain": false,
+  "promptId": "71f875e5-9802-4211-bf30-6b5ea5868395",
+  "type": "user",
+  "uuid": "4ec1295a-62fc-4be1-b81a-04b882ff6f8b",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/59831ef5-561e-432f-9a80-21febe0fb5e8/tool-results/toolu_01VDfx6m1hrYVohaoCXtM2uc.txt",
+      "content": "Title: VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\n\nURL Source: https://arxiv.org/html/2503.10291\n\nPublished Time: Fri, 14 Mar 2025 00:51:57 GMT\n\nMarkdown Content:\nWeiyun Wang 1,2, Zhangwei Gao 3,2, Lianjie Chen 4,2, Zhe Chen 5,2, Jinguo Zhu 2, \n\n Xiangyu Zhao 3,2, Yangzhou Liu 5,2, Yue Cao 5,2, Shenglong Ye 2, Xizhou Zhu 4,2, \n\n Lewei Lu 7, Haodong Duan 2, Yu Qiao 2, Jifeng Dai 4,2, Wenhai Wang 6,2🖂\n\n1 Fudan University, 2 Shanghai AI Laboratory, \n\n3 Shanghai Jiaotong University, 4 Tsinghua University, \n\n5 Nanjing University, 6 The Chinese University of Hong Kong, 7 SenseTime Research\n\n###### Abstract\n\nWe introduce VisualPRM, an advanced multimodal Process Reward Model (PRM) with 8B parameters, which improves the reasoning abilities of existing Multimodal Large Language Models (MLLMs) across different model scales and families with Best-of-N (BoN) evaluation strategies. Specifically, our model improves the reasoning performance of three types of MLLMs and four different model scales. Even when applied to the highly capable InternVL2.5-78B, it achieves a 5.9-point improvement across seven multimodal reasoning benchmarks. Experimental results show that our model exhibits superior performance compared to Outcome Reward Models and Self-Consistency during BoN evaluation. To facilitate the training of multimodal PRMs, we construct a multimodal process supervision dataset VisualPRM400K using an automated data pipeline. For the evaluation of multimodal PRMs, we propose VisualProcessBench, a benchmark with human-annotated step-wise correctness labels, to measure the abilities of PRMs to detect erroneous steps in multimodal reasoning tasks. We hope that our work can inspire more future research and contribute to the development of MLLMs. Our model, data, and benchmark are released in this [page](https://internvl.github.io/blog/2025-03-13-VisualPRM/).\n\n🖂 Corresponding Author: wangwenhai@pjlab.org.cn\n1 Introduction\n--------------\n\n![Image 1: Refer to caption](https://arxiv.org/html/2503.10291v1/x1.png)\n\nFigure 1: The overall Best-of-8 evaluation results across seven multimodal reasoning benchmarks with different critic models. Our VisualPRM greatly enhances the overall performance, while InternVL2.5-8B struggles to be an effective critic model. \n\nWith the remarkable success of Large Language Models (LLMs) [[75](https://arxiv.org/html/2503.10291v1#bib.bib75), [76](https://arxiv.org/html/2503.10291v1#bib.bib76), [21](https://arxiv.org/html/2503.10291v1#bib.bib21), [5](https://arxiv.org/html/2503.10291v1#bib.bib5), [71](https://arxiv.org/html/2503.10291v1#bib.bib71), [10](https://arxiv.org/html/2503.10291v1#bib.bib10), [9](https://arxiv.org/html/2503.10291v1#bib.bib9), [1](https://arxiv.org/html/2503.10291v1#bib.bib1), [4](https://arxiv.org/html/2503.10291v1#bib.bib4)] in natural language processing, Multimodal Large Language Models (MLLMs) [[80](https://arxiv.org/html/2503.10291v1#bib.bib80), [36](https://arxiv.org/html/2503.10291v1#bib.bib36), [41](https://arxiv.org/html/2503.10291v1#bib.bib41), [42](https://arxiv.org/html/2503.10291v1#bib.bib42), [6](https://arxiv.org/html/2503.10291v1#bib.bib6), [84](https://arxiv.org/html/2503.10291v1#bib.bib84), [83](https://arxiv.org/html/2503.10291v1#bib.bib83), [14](https://arxiv.org/html/2503.10291v1#bib.bib14), [16](https://arxiv.org/html/2503.10291v1#bib.bib16), [15](https://arxiv.org/html/2503.10291v1#bib.bib15), [58](https://arxiv.org/html/2503.10291v1#bib.bib58), [61](https://arxiv.org/html/2503.10291v1#bib.bib61), [89](https://arxiv.org/html/2503.10291v1#bib.bib89)] have also achieved significant advancements across various vision-language tasks. Despite their strong performance in perception and recognition, a large gap remains in reasoning capabilities between open-source and proprietary models. A series of studies have explored methods to enhance reasoning abilities, focusing on the perspectives of data collection and construction[[57](https://arxiv.org/html/2503.10291v1#bib.bib57), [74](https://arxiv.org/html/2503.10291v1#bib.bib74), [38](https://arxiv.org/html/2503.10291v1#bib.bib38), [43](https://arxiv.org/html/2503.10291v1#bib.bib43)], offline preference optimization[[59](https://arxiv.org/html/2503.10291v1#bib.bib59), [82](https://arxiv.org/html/2503.10291v1#bib.bib82), [32](https://arxiv.org/html/2503.10291v1#bib.bib32)], and online reinforcement learning[[66](https://arxiv.org/html/2503.10291v1#bib.bib66), [24](https://arxiv.org/html/2503.10291v1#bib.bib24), [2](https://arxiv.org/html/2503.10291v1#bib.bib2), [26](https://arxiv.org/html/2503.10291v1#bib.bib26)]. Additionally, another line of research [[68](https://arxiv.org/html/2503.10291v1#bib.bib68), [20](https://arxiv.org/html/2503.10291v1#bib.bib20), [94](https://arxiv.org/html/2503.10291v1#bib.bib94), [79](https://arxiv.org/html/2503.10291v1#bib.bib79)] investigates utilizing Test-Time Scaling (TTS) to enhance the reasoning abilities of LLMs. This approach requires the policy model to generate multiple response candidates and select the best one, based on the quality estimation of a critic model, thereby improving the response quality at the cost of higher inference time. However, TTS for MLLMs remains largely unexplored.\n\nThis work investigates the application of TTS for MLLMs, focusing on the Best-of-N (BoN) evaluation strategies. The challenges of adapting TTS for MLLMs involves: (1) Lack of effective critic models. In BoN evaluation, a critic model is required to estimate the quality of each response candidate. However, as shown in Figure[1](https://arxiv.org/html/2503.10291v1#S1.F1 \"Figure 1 ‣ 1 Introduction ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), existing open-source MLLMs struggle to serve as critic models, leading to marginal improvements compared to models without TTS. This limitation stems from the lack of sufficient critic data in their training corpus. (2) Lack of evaluation benchmarks for multimodal critic models. The effectiveness of TTS heavily depends on the performance of the critic model. However, directly evaluating critics under BoN settings poses two key issues. First, the evaluation cost of BoN is expensive. Although the focus is on the performance of critic models, the policy model is required to generate N 𝑁 N italic_N reasoning processes, with the majority of computational costs arising from the policy model. Second, BoN performance is also affected by the policy model, making it difficult to compare different critic models when paired with varying policy models.\n\nTo solve these challenges, we first introduce VisualPRM400K, a dataset comprising approximately 400K multimodal process supervision data. Each sample includes an image, a question, a step-by-step solution, and correctness annotations for each step. Specifically, we collect question prompts from MMPR v1.1[[82](https://arxiv.org/html/2503.10291v1#bib.bib82)] and then generate process correctness using an automatic data pipeline[[79](https://arxiv.org/html/2503.10291v1#bib.bib79)]. This pipeline samples multiple continuations starting from a certain step and computes the expected accuracy of that step as the average accuracy of its continuations.\n\nTo facilitate the evaluation of multimodal critic models, we introduce VisualProcessBench, a benchmark for evaluating PRMs and MLLMs in detecting erroneous steps in multimodal reasoning tasks. This benchmark includes 2,866 samples with 26,950 human-annotated step-wise correctness labels. Each sample includes a multimodal reasoning question, a step-by-step solution, and correctness labels for each step. To ensure annotation accuracy, we employ human experts with at least a university degree to manually assess the correctness of each step. Unlike prior benchmarks[[96](https://arxiv.org/html/2503.10291v1#bib.bib96), [39](https://arxiv.org/html/2503.10291v1#bib.bib39)], which require identifying only the first erroneous step, VisualProcessBench challenges models to detect all errors within a given solution. This adjustment aligns with recent advancements in model reflection abilities, helping to reduce false negatives in evaluations. Evaluation results reveal that existing open-source MLLMs struggle to accurately assess step-wise correctness, highlighting the need for improved multimodal critic models.\n\nBuilding upon the dataset and benchmark, we develop VisualPRM, an advanced multimodal Process Reward Model (PRM) with 8B parameters, to serve as the critic model in BoN evaluation. Each training sample is formulated as a multi-turn chat. The first turn includes the image, the question, and the first solution step, while each subsequent turn presents a new step. The model is trained to predict the correctness of the given step at each turn. Experimental results demonstrate that VisualPRM enhances MLLM reasoning across different model families and scales. Specifically, VisualPRM improves the overall reasoning performance of MiniCPM-V2.6, QwenVL2.5-7B, InternVL2.5-8B, and InternVL2.5-78B by 8.0, 3.7, 8.4, and 5.9 points, respectively, across seven multimodal reasoning benchmarks[[90](https://arxiv.org/html/2503.10291v1#bib.bib90), [50](https://arxiv.org/html/2503.10291v1#bib.bib50), [78](https://arxiv.org/html/2503.10291v1#bib.bib78), [93](https://arxiv.org/html/2503.10291v1#bib.bib93), [99](https://arxiv.org/html/2503.10291v1#bib.bib99), [60](https://arxiv.org/html/2503.10291v1#bib.bib60), [87](https://arxiv.org/html/2503.10291v1#bib.bib87)]. Additionally, we compare PRMs with Outcome Reward Models and Self-Consistency in BoN evaluation, finding that PRMs consistently outperform both approaches.\n\nIn summary, our main contributions are as follows:\n\n(1) We introduce VisualPRM400K, a dataset comprising approximately 400K multimodal process supervision data. Building upon this dataset, we develop VisualPRM, an advanced multimodal PRM to serve as the critic model in the BoN evaluation.\n\n(2) We construct VisualProcessBench, a benchmark designed to measure the abilities of PRMs and MLLMs to identify erroneous steps in multimodal reasoning tasks. This benchmark comprises 2,866 samples with a total of 26,950 human-annotated step-wise correctness labels.\n\n(3) Through extensive experiments, we demonstrate that PRMs can serve as effective critic models for test-time scaling of MLLMs. Specifically, VisualPRM enhances the overall multimodal reasoning performance of MiniCPM-V2.6, QwenVL2.5-7B, InternVL2.5-8B, and InternVL2.5-78B by 8.0, 3.7, 8.4, and 5.9 points, respectively, across seven multimodal reasoning benchmarks. Furthermore, our results show that PRMs consistently outperform both ORMs and SC in BoN evaluation. Additionally, experiments on VisualProcessBench reveal that existing open-source MLLMs struggle to accurately assess the correctness of each step.\n\n![Image 2: Refer to caption](https://arxiv.org/html/2503.10291v1/x2.png)\n\nFigure 2: Data examples in VisualPRM400K and VisualProcessBench. For VisualPRM400K, we generate the data using an automatic data pipeline. The key idea is to estimate the expected accuracy m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT of the given step s≤i subscript 𝑠 absent 𝑖 s_{\\leq i}italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT based on Monte Carlo sampling and consider the step correct if m⁢c i>0 𝑚 subscript 𝑐 𝑖 0 mc_{i}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT > 0. During the training process of VisualPRM, the data is formulated as multi-turn conversations and the model is required to predict the correctness of each step conditioned on the image, question, and previous steps. For VisualProcessBench, we collect questions from existing multimodal reasoning benchmarks[[90](https://arxiv.org/html/2503.10291v1#bib.bib90), [78](https://arxiv.org/html/2503.10291v1#bib.bib78), [93](https://arxiv.org/html/2503.10291v1#bib.bib93), [99](https://arxiv.org/html/2503.10291v1#bib.bib99), [60](https://arxiv.org/html/2503.10291v1#bib.bib60)] and generate the solutions using leading MLLMs[[58](https://arxiv.org/html/2503.10291v1#bib.bib58), [4](https://arxiv.org/html/2503.10291v1#bib.bib4), [15](https://arxiv.org/html/2503.10291v1#bib.bib15), [82](https://arxiv.org/html/2503.10291v1#bib.bib82), [72](https://arxiv.org/html/2503.10291v1#bib.bib72)]. Based on these questions and solutions, we employ a team of human experts with at least a university degree to manually annotate the correctness of each step in the solutions. \n\n2 Related Work\n--------------\n\nMultimodal Large Language Models. A wide range of efforts has been made to advance the development of MLLMs, including improvements in model architecture, data construction, and training algorithms. From an architectural perspective, several studies[[41](https://arxiv.org/html/2503.10291v1#bib.bib41), [42](https://arxiv.org/html/2503.10291v1#bib.bib42), [89](https://arxiv.org/html/2503.10291v1#bib.bib89), [15](https://arxiv.org/html/2503.10291v1#bib.bib15), [16](https://arxiv.org/html/2503.10291v1#bib.bib16), [84](https://arxiv.org/html/2503.10291v1#bib.bib84), [83](https://arxiv.org/html/2503.10291v1#bib.bib83), [45](https://arxiv.org/html/2503.10291v1#bib.bib45), [85](https://arxiv.org/html/2503.10291v1#bib.bib85), [7](https://arxiv.org/html/2503.10291v1#bib.bib7), [89](https://arxiv.org/html/2503.10291v1#bib.bib89)] employ connectors to align visual embeddings from Vision Foundation Models (VFMs)[[14](https://arxiv.org/html/2503.10291v1#bib.bib14), [91](https://arxiv.org/html/2503.10291v1#bib.bib91)] with the latent space of LLMs[[5](https://arxiv.org/html/2503.10291v1#bib.bib5), [75](https://arxiv.org/html/2503.10291v1#bib.bib75), [76](https://arxiv.org/html/2503.10291v1#bib.bib76), [71](https://arxiv.org/html/2503.10291v1#bib.bib71)], achieving promising performance. Another series of works[[3](https://arxiv.org/html/2503.10291v1#bib.bib3), [21](https://arxiv.org/html/2503.10291v1#bib.bib21), [73](https://arxiv.org/html/2503.10291v1#bib.bib73), [81](https://arxiv.org/html/2503.10291v1#bib.bib81)] extends pre-trained LLMs with additional layers to fuse visual features, reducing the number of required visual tokens while introducing extra training cost. In terms of data construction, recent studies have made significant progress[[63](https://arxiv.org/html/2503.10291v1#bib.bib63), [98](https://arxiv.org/html/2503.10291v1#bib.bib98), [34](https://arxiv.org/html/2503.10291v1#bib.bib34), [38](https://arxiv.org/html/2503.10291v1#bib.bib38), [43](https://arxiv.org/html/2503.10291v1#bib.bib43), [82](https://arxiv.org/html/2503.10291v1#bib.bib82), [95](https://arxiv.org/html/2503.10291v1#bib.bib95)]. For example, OmniCorpus[[38](https://arxiv.org/html/2503.10291v1#bib.bib38)] offers a noisy but large-scale multimodal corpus for pre-training, while MMInstruct[[43](https://arxiv.org/html/2503.10291v1#bib.bib43)] provides an open-source, high-quality instruction-tuning dataset. Additionally, MMPR[[82](https://arxiv.org/html/2503.10291v1#bib.bib82)] constructs a preference dataset focusing on multimodal reasoning abilities. Regarding training algorithms, the InternVL2.5 series[[15](https://arxiv.org/html/2503.10291v1#bib.bib15), [82](https://arxiv.org/html/2503.10291v1#bib.bib82)] proposes square loss and Mix Preference Optimization to enhance MLLM capabilities. Despite these advancements, existing works primarily focus on the training process of MLLMs, leaving Test-Time Scaling (TTS) for MLLMs largely underexplored. In this work, we investigate TTS applications for MLLMs, specifically focusing on the Best-of-N evaluation to improve multimodal reasoning performance.\n\nProcess Reward Models. Reward models play a crucial role in Reinforcement Learning (RL)[[64](https://arxiv.org/html/2503.10291v1#bib.bib64), [66](https://arxiv.org/html/2503.10291v1#bib.bib66), [2](https://arxiv.org/html/2503.10291v1#bib.bib2), [26](https://arxiv.org/html/2503.10291v1#bib.bib26)] and TTS[[68](https://arxiv.org/html/2503.10291v1#bib.bib68), [79](https://arxiv.org/html/2503.10291v1#bib.bib79), [20](https://arxiv.org/html/2503.10291v1#bib.bib20), [51](https://arxiv.org/html/2503.10291v1#bib.bib51)]. Outcome Reward Models (ORMs)[[55](https://arxiv.org/html/2503.10291v1#bib.bib55), [92](https://arxiv.org/html/2503.10291v1#bib.bib92), [77](https://arxiv.org/html/2503.10291v1#bib.bib77)] directly assign an overall score to the given response. In contrast, Process Reward Models (PRMs) first estimate the quality of each step in the given response and then aggregate them into a final score. PRM800K[[39](https://arxiv.org/html/2503.10291v1#bib.bib39)] is the first open-source process supervision dataset, entirely annotated by human experts. To reduce annotation costs, MathShepherd[[79](https://arxiv.org/html/2503.10291v1#bib.bib79)] and OmegaPRM[[51](https://arxiv.org/html/2503.10291v1#bib.bib51)] introduce a Monte Carlo sampling-based data pipeline to automatically estimate the quality of each step. Despite these advancements in natural language processing, multimodal PRMs remain largely underexplored. In this work, we introduce VisualPRM400K, the first multimodal process supervision dataset, and develop VisualPRM, a multimodal PRM trained on this dataset.\n\nBenchmarks for Reward Models. The evaluation of reward models (RMs) is a crucial research topic. A series of benchmarks[[33](https://arxiv.org/html/2503.10291v1#bib.bib33), [37](https://arxiv.org/html/2503.10291v1#bib.bib37), [44](https://arxiv.org/html/2503.10291v1#bib.bib44)] have been proposed to assess the effectiveness of RMs, typically formulated as a binary preference judgment task. Building on this, subsequent work[[97](https://arxiv.org/html/2503.10291v1#bib.bib97)] extends the evaluation settings and includes both pairwise and Best-of-N evaluations, providing a more comprehensive evaluation of RM performance. With the rapid advancement of PRMs, a series of benchmarks[[96](https://arxiv.org/html/2503.10291v1#bib.bib96), [69](https://arxiv.org/html/2503.10291v1#bib.bib69)] have been introduced to evaluate their step-wise judgment capabilities. Despite these developments, there remains a lack of a multimodal process benchmark. To bridge this gap and support the development of multimodal PRMs, we introduce VisualProcessBench, a benchmark designed to evaluate the ability of PRMs and MLLMs to detect erroneous steps in multimodal reasoning tasks.\n\n3 Method\n--------\n\n![Image 3: Refer to caption](https://arxiv.org/html/2503.10291v1/x3.png)\n\nFigure 3: Different modeling methods for PRMs. PRMs are developed to estimate the quality of each step in a given solution. For value-based PRMs, the quality of a certain step is determined by its expected accuracy m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT, where a step is considered correct if m⁢c i>0 𝑚 subscript 𝑐 𝑖 0 mc_{i}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT > 0. For advantage-based PRMs, the quality of a certain step is determined by the improvement of m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT over m⁢c i−1 𝑚 subscript 𝑐 𝑖 1 mc_{i-1}italic_m italic_c start_POSTSUBSCRIPT italic_i - 1 end_POSTSUBSCRIPT, where a step is considered good if m⁢c i−m⁢c i−1>0 𝑚 subscript 𝑐 𝑖 𝑚 subscript 𝑐 𝑖 1 0 mc_{i}-mc_{i-1}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT - italic_m italic_c start_POSTSUBSCRIPT italic_i - 1 end_POSTSUBSCRIPT > 0. During the training stage, the output space of PRMs is discretized into specific tokens, while during the inference stage, we compute the step score as the weighted sum of the generation probability for these discretized tokens. \n\nDuring Best-of-N (BoN) evaluation, a critic model is required to estimate the quality of each response candidate. In this work, we formulate the critic model as a Process Reward Model (PRM). To develop a multimodal PRM, we first construct VisualPRM400K, a dataset comprising about 400K multimodal process supervision data, as detailed in Section[3.1](https://arxiv.org/html/2503.10291v1#S3.SS1 \"3.1 VisualPRM400K ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). We then describe our PRM’s modeling approach in Section[3.2](https://arxiv.org/html/2503.10291v1#S3.SS2 \"3.2 VisualPRM ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). Furthermore, to support the evaluation of critic models, we establish VisualProcessBench to measure the abilities of critic models to detect erroneous steps in multimodal reasoning, as introduced in Section[3.3](https://arxiv.org/html/2503.10291v1#S3.SS3 \"3.3 VisualProcessBench ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\n### 3.1 VisualPRM400K\n\nDefinition. As shown in Figure[2](https://arxiv.org/html/2503.10291v1#S1.F2 \"Figure 2 ‣ 1 Introduction ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), each data sample in our VisualPRM400K consists of an image I∈ℐ 𝐼 ℐ I\\in\\mathcal{I}italic_I ∈ caligraphic_I, a question q∈𝒬 𝑞 𝒬 q\\in\\mathcal{Q}italic_q ∈ caligraphic_Q, a step-by-step solution s={s 0,s 1,⋯,s n}∈𝒮 𝑠 subscript 𝑠 0 subscript 𝑠 1⋯subscript 𝑠 𝑛 𝒮 s=\\{s_{0},s_{1},\\cdots,s_{n}\\}\\in\\mathcal{S}italic_s = { italic_s start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT , italic_s start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT , ⋯ , italic_s start_POSTSUBSCRIPT italic_n end_POSTSUBSCRIPT } ∈ caligraphic_S, and the expected accuracy annotation m⁢c={m⁢c 0,m⁢c 1,⋯,m⁢c n},m⁢c i∈ℝ≥0 formulae-sequence 𝑚 𝑐 𝑚 subscript 𝑐 0 𝑚 subscript 𝑐 1⋯𝑚 subscript 𝑐 𝑛 𝑚 subscript 𝑐 𝑖 subscript ℝ absent 0 mc=\\{mc_{0},mc_{1},\\cdots,mc_{n}\\},mc_{i}\\in\\mathbb{R}_{\\geq 0}italic_m italic_c = { italic_m italic_c start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT , italic_m italic_c start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT , ⋯ , italic_m italic_c start_POSTSUBSCRIPT italic_n end_POSTSUBSCRIPT } , italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∈ blackboard_R start_POSTSUBSCRIPT ≥ 0 end_POSTSUBSCRIPT for each step, where n 𝑛 n italic_n is the number of steps of a certain solution and m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT denotes the expected accuracy of step s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT. The image sets ℐ ℐ\\mathcal{I}caligraphic_I and question sets 𝒬 𝒬\\mathcal{Q}caligraphic_Q are collected from MMPR v1.1[[82](https://arxiv.org/html/2503.10291v1#bib.bib82)], while the step-by-step solutions 𝒮 𝒮\\mathcal{S}caligraphic_S are sampled using InternVL2.5 series models[[15](https://arxiv.org/html/2503.10291v1#bib.bib15), [82](https://arxiv.org/html/2503.10291v1#bib.bib82)].\n\nProcess Supervision Generation. Given an image I 𝐼 I italic_I, a question q 𝑞 q italic_q, and a solution s={s 0,s 1,⋯,s n}𝑠 subscript 𝑠 0 subscript 𝑠 1⋯subscript 𝑠 𝑛 s=\\{s_{0},s_{1},\\cdots,s_{n}\\}italic_s = { italic_s start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT , italic_s start_POSTSUBSCRIPT 1 end_POSTSUBSCRIPT , ⋯ , italic_s start_POSTSUBSCRIPT italic_n end_POSTSUBSCRIPT }, we annotate the correctness of each step s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT using an automatic data pipeline. The key idea is to estimate the expected accuracy of given steps s≤i subscript 𝑠 absent 𝑖 s_{\\leq i}italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT based on Monte Carlo sampling. Specifically, the model is required to complete the solution as follows:\n\ns~>i∼M⁢(s~>i∣I,q,s≤i),similar-to subscript~𝑠 absent 𝑖 𝑀 conditional subscript~𝑠 absent 𝑖 𝐼 𝑞 subscript 𝑠 absent 𝑖\\tilde{s}_{>i}\\sim M(\\tilde{s}_{>i}\\mid I,q,s_{\\leq i}),over~ start_ARG italic_s end_ARG start_POSTSUBSCRIPT > italic_i end_POSTSUBSCRIPT ∼ italic_M ( over~ start_ARG italic_s end_ARG start_POSTSUBSCRIPT > italic_i end_POSTSUBSCRIPT ∣ italic_I , italic_q , italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT ) ,(1)\n\nwhere s~>i subscript~𝑠 absent 𝑖\\tilde{s}_{>i}over~ start_ARG italic_s end_ARG start_POSTSUBSCRIPT > italic_i end_POSTSUBSCRIPT is the completion of s≤i subscript 𝑠 absent 𝑖 s_{\\leq i}italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT. Besides, the expected accuracy of s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT is defined as:\n\nm⁢c i=num(correct completions)num(sampled completions).𝑚 subscript 𝑐 𝑖 num(correct completions)num(sampled completions)mc_{i}=\\frac{\\text{num(correct completions)}}{\\text{num(sampled completions)}}.italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT = divide start_ARG num(correct completions) end_ARG start_ARG num(sampled completions) end_ARG .(2)\n\nNotably, to reduce the data construction costs, we set the max number of steps to 12 and evenly merge the steps if the number of current steps exceeds the threshold.\n\nStatistics. During the construction process, we sample 4 4 4 4 solutions for each image-question pair and split each of them into at most 12 12 12 12 steps. For each step, we sample 16 16 16 16 continuations and compute m i subscript 𝑚 𝑖 m_{i}italic_m start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT according to these continuations. The resulting dataset comprises approximately 400K samples and 2 million steps with process supervision. Each response averages 126.9 words and 5.6 steps, while each step averages 22.6 words. Among these steps, about 10% are incorrect steps. Despite the imbalanced distribution of correct and incorrect steps, our PRM demonstrates promising performance, as shown in Section[4](https://arxiv.org/html/2503.10291v1#S4 \"4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\n### 3.2 VisualPRM\n\nOverview. During the training process, we formulate the process supervision problem as a multi-turn chat task so that we can effectively leverage the generation ability of MLLMs. The image I 𝐼 I italic_I, question q 𝑞 q italic_q, and the first step s 0 subscript 𝑠 0 s_{0}italic_s start_POSTSUBSCRIPT 0 end_POSTSUBSCRIPT of the solution to this question are included in the first turn and a new step is presented in each subsequent turn. The model is required to predict the quality of the given step in each turn as follows:\n\ny i∼M⁢(y i∣I,q,s≤i),similar-to subscript 𝑦 𝑖 𝑀 conditional subscript 𝑦 𝑖 𝐼 𝑞 subscript 𝑠 absent 𝑖 y_{i}\\sim M(y_{i}\\mid I,q,s_{\\leq i}),italic_y start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∼ italic_M ( italic_y start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∣ italic_I , italic_q , italic_s start_POSTSUBSCRIPT ≤ italic_i end_POSTSUBSCRIPT ) ,(3)\n\nwhere y i subscript 𝑦 𝑖 y_{i}italic_y start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT denotes the quality of i 𝑖 i italic_i-th step.\n\nFor value-based PRMs, the quality of a certain step is determined by its expected accuracy m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT, which is similar to the definition of the value function in reinforcement learning. Following Math-Shepherd[[79](https://arxiv.org/html/2503.10291v1#bib.bib79), [20](https://arxiv.org/html/2503.10291v1#bib.bib20)], we require the model to predict the correctness c i∈{+,−}subscript 𝑐 𝑖 c_{i}\\in\\{+,-\\}italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT ∈ { + , - } of the given step, rather than the exact score of m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT. The i 𝑖 i italic_i-th step is considered correct if m⁢c i>0 𝑚 subscript 𝑐 𝑖 0 mc_{i}>0 italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT > 0. We also try to set a threshold to reduce false positive steps, but find that such a threshold negatively impacts the PRM performance, as shown in Section[7](https://arxiv.org/html/2503.10291v1#S7 \"7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). Notably, unlike previous works[[79](https://arxiv.org/html/2503.10291v1#bib.bib79), [39](https://arxiv.org/html/2503.10291v1#bib.bib39), [20](https://arxiv.org/html/2503.10291v1#bib.bib20)], which choose to supervise only up to the first incorrect step, we always supervise all steps.\n\nFor advantage-based PRMs, the quality of a certain step is determined by the improvement of m⁢c i 𝑚 subscript 𝑐 𝑖 mc_{i}italic_m italic_c start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT over m⁢c i−1 𝑚 subscript 𝑐 𝑖 1 mc_{i-1}italic_m italic_c start_POSTSUBSCRIPT italic_i - 1 end_POSTSUBSCRIPT, which is analogous to the definition of the advantage function in reinforcement learning. Similar to value-based PRMs, the quality space is discretized into predefined values {+,=,−}\\{+,=,-\\}{ + , = , - }, meaning that the i 𝑖 i italic_i-th step s i subscript 𝑠 𝑖 s_{i}italic_s start_POSTSUBSCRIPT italic_i end_POSTSUBSCRIPT results in a superior, comparable, or inferior situation.\n\nDuring inference stage, we first compute the scores of each step and then merge them to obtain the response score. Specifically, the score for each step is defined as the weighted sum of the generation probability for the discretized scores. For value-based PRMs, the weights for {+,−}\\{+,-\\}{ + , - } are {1,0}1 0\\{1,0\\}{ 1 , 0 }. For advantage-based PRMs, the weights for {+,=,−}\\{+,=,-\\}{ + , = , - } are {1,0,−1}1 0 1\\{1,0,-1\\}{ 1 , 0 , - 1 }. Without further explanation, we average the scores of each step as the response score.\n\n### 3.3 VisualProcessBench\n\nTable 1: Statistics of VisualProcessBench.\n\nDefinition. Each sample in our benchmark consists of a multimodal reasoning question, a step-by-step solution, and correctness annotations for each step. Considering that recent models begin to demonstrate reflection abilities to rectify their own reasoning process, the evaluation setting used in previous works[[96](https://arxiv.org/html/2503.10291v1#bib.bib96), [39](https://arxiv.org/html/2503.10291v1#bib.bib39)], which only requires the model to find the first erroneous step, may lead to a false negative estimation. Therefore, our benchmark requires the model to identify all erroneous steps in the given solution instead of only the first erroneous step.\n\nData Source. Our benchmark focuses on multimodal reasoning tasks, collecting images and questions from existing representative multimodal reasoning benchmarks, including MMMU[[90](https://arxiv.org/html/2503.10291v1#bib.bib90)], MathVision[[78](https://arxiv.org/html/2503.10291v1#bib.bib78)], MathVerse[[93](https://arxiv.org/html/2503.10291v1#bib.bib93)], DynaMath[[99](https://arxiv.org/html/2503.10291v1#bib.bib99)], and WeMath[[60](https://arxiv.org/html/2503.10291v1#bib.bib60)]. Given these questions, we generate step-by-step solutions using leading MLLMs, including GPT-4o[[58](https://arxiv.org/html/2503.10291v1#bib.bib58)], Claude-3.5-Sonnet[[4](https://arxiv.org/html/2503.10291v1#bib.bib4)], Gemini-2.0-Flash[[70](https://arxiv.org/html/2503.10291v1#bib.bib70)], QvQ-72B-Preview[[72](https://arxiv.org/html/2503.10291v1#bib.bib72)], and InternVL2.5-78B[[15](https://arxiv.org/html/2503.10291v1#bib.bib15)]. The solutions are sampled from different MLLMs to ensure their diversity.\n\nStep Correctness Annotation. We employ a team of human experts with at least a university degree to manually annotate the correctness of each step in the solutions. Specifically, 13 people worked for 3 days, resulting in a workload of 39 person-days. The cost per person-day is approximately 37 dollars. During the annotation process, annotators are provided with the image, question, ground truth answer, and each step of the solution. Their task is to assign each step in the solution a label of positive, negative, or neutral, as illustrated in Figure[2](https://arxiv.org/html/2503.10291v1#S1.F2 \"Figure 2 ‣ 1 Introduction ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). A positive label indicates that the step is correct, while a negative label signifies an incorrect step. The neural label is assigned to steps that do not involve any reasoning process or provide no additional information. To ensure the annotation quality, annotators are permitted to skip questions they do not understand. During the annotation process, our dataset is divided into 10 splits, each containing approximately 300 samples. For each split, the authors of this paper manually review about 10% of the samples. Splits with erroneous annotations are sent back for re-annotation. See Section[10](https://arxiv.org/html/2503.10291v1#S10 \"10 More Data Examples in VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\") for more data examples.\n\nStatistics. As shown in Table[1](https://arxiv.org/html/2503.10291v1#S3.T1 \"Table 1 ‣ 3.3 VisualProcessBench ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), our benchmark comprises 2866 samples. To enhance the diversity of our evaluation samples, we gather questions and solutions from a wide range of benchmarks and models while carefully regulating their distribution. The statistics of step distribution are presented in Section[8](https://arxiv.org/html/2503.10291v1#S8 \"8 More Statistics for VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\nMetrics. In this work, we use macro F1 scores to compare model performance, aiming to mitigate the impact of the imbalanced distribution between correct and incorrect steps. Specifically, we first compute the F1 scores separately for correct and incorrect steps and then take their average to obtain the overall score.\n\n4 Experiments\n-------------\n\nIn this section, we first employ VisualPRM to evaluate various MLLMs using BoN evaluation strategies in Section[4.1](https://arxiv.org/html/2503.10291v1#S4.SS1 \"4.1 Results with Best-of-N evaluation ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), demonstrating that PRMs can significantly enhance the reasoning abilities of MLLMs. Next, we evaluate our VisualPRM and other leading MLLMs on VisualProcessBench in Section[4.2](https://arxiv.org/html/2503.10291v1#S4.SS2 \"4.2 Results on VisualProcessBench ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). Finally, the ablation studies are presented in Section[4.3](https://arxiv.org/html/2503.10291v1#S4.SS3 \"4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\") and Section[7](https://arxiv.org/html/2503.10291v1#S7 \"7 More Ablation Studies ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\nTable 2: Results on seven multimodal reasoning benchmarks. MMMU[[90](https://arxiv.org/html/2503.10291v1#bib.bib90)] is a multidisciplinary reasoning benchmark. MathVista[[50](https://arxiv.org/html/2503.10291v1#bib.bib50)], MathVision[[78](https://arxiv.org/html/2503.10291v1#bib.bib78)], MathVerse[[93](https://arxiv.org/html/2503.10291v1#bib.bib93)], DynaMath[[99](https://arxiv.org/html/2503.10291v1#bib.bib99)], and WeMath[[60](https://arxiv.org/html/2503.10291v1#bib.bib60)] are mathematics benchmarks. For MathVerse, we report the performance on Vision-Only (VO) split. LogicVista[[87](https://arxiv.org/html/2503.10291v1#bib.bib87)] is a logical reasoning benchmark. Part of the results are collected from the OpenCompass leaderboard[[19](https://arxiv.org/html/2503.10291v1#bib.bib19)]. The overall score is the average score of the above benchmarks. By using VisualPRM as the critic model, existing open-source MLLMs achieve significant improvements in reasoning ability under the Best-of-8 evaluation strategy. \n\n### 4.1 Results with Best-of-N evaluation\n\nBenchmarks. We evaluate the reasoning abilities of MLLMs across seven benchmarks, including MMMU[[90](https://arxiv.org/html/2503.10291v1#bib.bib90)], MathVista[[50](https://arxiv.org/html/2503.10291v1#bib.bib50)], MathVision[[78](https://arxiv.org/html/2503.10291v1#bib.bib78)], MathVerse[[93](https://arxiv.org/html/2503.10291v1#bib.bib93)], DynaMath[[99](https://arxiv.org/html/2503.10291v1#bib.bib99)], WeMath[[60](https://arxiv.org/html/2503.10291v1#bib.bib60)], and LogicVista[[87](https://arxiv.org/html/2503.10291v1#bib.bib87)]. The evaluation samples include subject-based, mathematical, and logical reasoning problems. We report the worst-case accuracy for DynaMath and the overall accuracy for the remaining benchmarks. For MathVerse, we report the performance on the Vision-Only split.\n\nSettings. Without further explanation, we use VisualPRM as the critic model for BoN evaluation and set N 𝑁 N italic_N to 8 8 8 8 by default. The policy model is required to generate N 𝑁 N italic_N distinct step-by-step Chain-of-Thought (CoT) reasoning processes with a temperature of 0.7. The response with the highest score is then selected to determine the correctness.\n\nResults. As shown in Table[2](https://arxiv.org/html/2503.10291v1#S4.T2 \"Table 2 ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), VisualPRM greatly enhances the reasoning abilities of MLLMs across different model scales and families. Specifically, for models with fewer than 10 billion parameters, the overall performance of InternVL2.5-8B, MiniCPM-V-8B, and Qwen2.5-VL-7B improves by 8.4, 8.0, and 3.7 points, respectively, demonstrating the effectiveness of test-time scaling across different model families. For larger models, InternVL2.5-26B, InternVL2.5-38B, and InternVL2.5-78B also achieve substantial performance gains over their counterparts without TTS, further validating the scalability and effectiveness of TTS across different model sizes.\n\n### 4.2 Results on VisualProcessBench\n\nSettings. For the evaluation of PRMs, a step is considered correct if the probability of outputting “+++” exceeds that of outputting “−--” by a certain threshold. For the evaluation of MLLMs, the model is prompted to analyze each step and determine its correctness, classifying it as either correct or incorrect. When computing the F1 score, we exclude steps labeled as neural by human annotators in Section[3.3](https://arxiv.org/html/2503.10291v1#S3.SS3 \"3.3 VisualProcessBench ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\").\n\nResults. As shown in Table[3](https://arxiv.org/html/2503.10291v1#S4.T3 \"Table 3 ‣ 4.2 Results on VisualProcessBench ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), most existing MLLMs struggle to accurately assess the correctness of each step. Specifically, the overall F1 score for random guessing is 50.0, while most open-source MLLMs achieve scores close to this baseline, highlighting their limitations as critic models. We manually check the judgments of these open-source MLLMs and observe that these models tend to provide positive analysis and label most steps as correct. For example, InternVL2.5-8B achieves an F1 score of 76.8 for positive steps, while its F1 score for negative steps is only 19.2, indicating that InternVL2.5-8B rarely identifies steps as incorrect. Furthermore, compared to proprietary models, our VisualPRM demonstrates competitive performance, achieving an overall F1 score of 62.0—outperforming GPT-4o and GPT-4o-Mini, and performing on par with Gemini-2.0-Flash. Notably, our model, with only 8 billion parameters, is more efficient than these proprietary counterparts.\n\nTable 3: Results on VisualProcessBench. We report the macro F1 of the correct and incorrect steps. The overall score is the micro average of the score from different data sources. Our VisualPRM exhibits state-of-the-art performance among open-source models. \n\n### 4.3 Ablation Studies\n\nEffects of BoN. Here, we increase the number of response candidates sampled from InternVL2.5-8B and select the final response using Self-Consistency (SC)[[86](https://arxiv.org/html/2503.10291v1#bib.bib86)], Outcome Reward Model (ORM), and PRM. The training data for ORM are nearly identical to those used for PRM, except that all steps are concatenated into a single step and step-wise correctness annotations are converted into a single correctness label for the outcome. As shown in Figure[4](https://arxiv.org/html/2503.10291v1#S4.F4 \"Figure 4 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), increasing the number of response candidates N 𝑁 N italic_N improves the reasoning performance of InternVL2.5-8B and MiniCPM-V2.6-8B when using SC, ORM, or PRM, with PRM yielding the most significant improvements. Specifically, when using InternVL2.5-8B as the policy model, PRM outperforms SC and ORM by 2.4 and 1.5 points, respectively, under the Best-of-8 evaluation setting. Moreover, this performance gap widens as N 𝑁 N italic_N increases, reaching 3.1 and 4.3 points when N 𝑁 N italic_N is set to 128 128 128 128. Notably, when using ORM as the critic model, although performance improves during Best-of-8 evaluation, further increasing N 𝑁 N italic_N does not lead to consistent gains for InternVL2.5-8B. For example, the Best-of-128 performance is inferior to the Best-of-64 performance. These results highlight the effectiveness of PRM in TTS.\n\nEffects of PRM modeling methods. Here, we compare the value-based PRM and the advantage-based PRM introduced in Section[3.2](https://arxiv.org/html/2503.10291v1#S3.SS2 \"3.2 VisualPRM ‣ 3 Method ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), along with different methods for aggregating step scores into a final score, including averaging, as well as selecting the maximum or minimum value. The results are presented in Table[4](https://arxiv.org/html/2503.10291v1#S4.T4 \"Table 4 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"). We find that value-based PRMs outperform advantage-based PRMs in both BoN evaluation settings and VL-ProcessBench. We attribute this to the inherent noise in our training data, which is generated through an automatic data pipeline, making it challenging to accurately determine whether a given step contributes to higher or lower expected accuracy. We also compare two training strategies: supervising all steps (_i.e_., w/o early stop) versus supervising only up to the first incorrect step (_i.e_., w. early stop) during training. Experimental results show that the former yields better performance. Regarding different score aggregation methods, we find that selecting the maximum value results in poorer performance compared to averaging or taking the minimum value. Analyzing the generated scores reveals that most responses contain a high-scored step, close to 1 1 1 1, at the beginning of the solution. This phenomenon likely arises because most erroneous steps appear in the middle of the solution. Our statistics of VisualProcessBench presented in Section[8](https://arxiv.org/html/2503.10291v1#S8 \"8 More Statistics for VisualProcessBench ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\") further demonstrate this conclusion. Furthermore, averaging performs better than selecting the maximum value, likely because the latter relies on a single step’s score, while averaging accounts for multiple steps and can be considered as an ensemble approach, which benefits the step quality estimation.\n\n![Image 4: Refer to caption](https://arxiv.org/html/2503.10291v1/x4.png)\n\n(a)\n\n![Image 5: Refer to caption](https://arxiv.org/html/2503.10291v1/x5.png)\n\n(b)\n\nFigure 4: Overall Best-of-N results across seven multimodal reasoning benchmarks with different policy and critic models. VisualPRM consistently enhances reasoning performance of both InternVL2.5-8B and MiniCPM-V as N 𝑁 N italic_N increases and outperforms the improvement introduced by Self-Consistency and ORM, highlighting the effectiveness of PRM in Test-Time Scaling. \n\nTable 4: Comparison of different critic models and score aggregation methods. Note that score aggregation methods do not affect performance on VisualProcessBench, which focuses on step correctness judgement. We find that supervising all steps (w/o early stop) during training perform slightly better than supervising only up to the first incorrect step (w. early steop). \n\nMLLM-as-a-Judger. Existing MLLMs can be prompted to serve as a critic model. However, as shown in Table[4](https://arxiv.org/html/2503.10291v1#S4.T4 \"Table 4 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), the InternVL2.5 series struggle to improve BoN performance, resulting in only marginal improvements. Upon analyzing the generated scores, we find that these models assign similar scores to most solutions. Consistent with our observations in Section[4.2](https://arxiv.org/html/2503.10291v1#S4.SS2 \"4.2 Results on VisualProcessBench ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), the InternVL2.5 series tend to generate positive judgments for most steps, which hinders their ability to effectively distinguish and select the truly superior response. In addition to their effectiveness as critic models for MLLMs, their inference latency also limits efficiency. Specifically, MLLMs generate judgments for each step in an autoregressive manner, which is time-consuming. In contrast, our VisualPRM computes scores for all steps in a single forward pass by using a “+” as a placeholder for model responses and interpreting its generation probability as the step score.\n\nResults on text-only performance. To assess the effectiveness of VisualPRM on text-only inputs, we evaluate the Qwen2.5 series[[88](https://arxiv.org/html/2503.10291v1#bib.bib88)] and InternVL2.5 series[[15](https://arxiv.org/html/2503.10291v1#bib.bib15)] on three text reasoning benchmarks under BoN evaluation settings: GSM8K[[18](https://arxiv.org/html/2503.10291v1#bib.bib18)], MATH-500[[25](https://arxiv.org/html/2503.10291v1#bib.bib25)], and GPQA-Diamond[[62](https://arxiv.org/html/2503.10291v1#bib.bib62)]. We report accuracy as the evaluation metric for these benchmarks. As shown in Table[5](https://arxiv.org/html/2503.10291v1#S4.T5 \"Table 5 ‣ 4.3 Ablation Studies ‣ 4 Experiments ‣ VisualPRM: An Effective Process Reward Model for Multimodal Reasoning\"), our model enhances the text reasoning abilities of both the Qwen2.5 series and the InternVL2.5 series. Specifically, Qwen2.5-7B achieves improvements of 6.1 and 5.0 points on MATH-500 and GPQA-Diamond, respectively. Similarly, Qwen2.5-72B demonstrates gains of 2.1 and 6.6 points on these benchmarks. For the InternVL2.5 series, InternVL2.5-8B, InternVL2.5-38B, and InternVL2.5-78B achieve improvements of 9.4 and 5.0, 4.6 and 8.1, and 7.4 and 3.5 points, respectively, on MATH-500 and GPQA-Diamond. These results demonstrate the effectiveness of our VisualPRM in text-only scenarios.\n\nTable 5: Results on text reasoning benchmarks. GSM8K and MATH500 are mathematics benchmarks, while GPQA is a multidisciplinary reasoning benchmark. For GPQA, we report the performance on the Diamond split. Our VisualPRM enhances the text reasoning abilities of both LLMs and MLLMs under the Best-of-8 evaluation settings. \n\n5 Conclusion\n------------\n\nIn this work, we construct VisualPRM400K, a dataset comprising about 400K multimodal process supervision data. Building upon this dataset, we develop VisualPRM, an advanced multimodal Process Reward Model (PRM) capable of estimating the value score of each step during the reasoning process. With the Best-of-N (BoN) evaluation strategies, our model improves the reasoning abilities of existing Multimodal Large Language Models (MLLMs) across different model scales and families. Experimental results show that our model exhibits superior performance compared to Outcome Reward Models and Self-Consistency during BoN evaluation, highlighting the effectiveness of PRMs in Test-Time Scaling. To further facilitate the development of multimodal critic models, we construct VisualProcessBench, a benchmark designed to measure the abilities of PRMs and MLLMs to detect incorrect steps in multimodal reasoning tasks. Evaluation results show that existing open-source MLLMs struggle to effectively judge the correctness of each step. We hope that our work can inspire more future research and contribute to the development of MLLMs.\n\nReferences\n----------\n\n*   Achiam et al. [2023] Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et al. Gpt-4 technical report. _arXiv preprint arXiv:2303.08774_, 2023. \n*   Ahmadian et al. [2024] Arash Ahmadian, Chris Cremer, Matthias Gallé, Marzieh Fadaee, Julia Kreutzer, Olivier Pietquin, Ahmet Üstün, and Sara Hooker. Back to basics: Revisiting reinforce style optimization for learning from human feedback in llms. _arXiv preprint arXiv:2402.14740_, 2024. \n*   Alayrac et al. [2022] Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, Antoine Miech, Iain Barr, Yana Hasson, Karel Lenc, Arthur Mensch, Katherine Millican, Malcolm Reynolds, et al. Flamingo: a visual language model for few-shot learning. _NIPS_, 35:23716–23736, 2022. \n*   Anthropic [2024] Anthropic. The claude 3 model family: Opus, sonnet, haiku. [https://www.anthropic.com](https://www.anthropic.com/), 2024. \n*   Bai et al. [2023a] Jinze Bai, Shuai Bai, Yunfei Chu, Zeyu Cui, Kai Dang, Xiaodong Deng, Yang Fan, Wenbin Ge, Yu Han, Fei Huang, et al. Qwen technical report. _arXiv preprint arXiv:2309.16609_, 2023a. \n*   Bai et al. [2023b] Jinze Bai, Shuai Bai, Shusheng Yang, Shijie Wang, Sinan Tan, Peng Wang, Junyang Lin, Chang Zhou, and Jingren Zhou. Qwen-vl: A frontier large vision-language model with versatile abilities. _arXiv preprint arXiv:2308.12966_, 2023b. \n*   Bai et al. [2025] Shuai Bai, Keqin Chen, Xuejing Liu, Jialin Wang, Wenbin Ge, Sibo Song, Kai Dang, Peng Wang, Shijie Wang, Jun Tang, et al. Qwen2. 5-vl technical report. _arXiv preprint arXiv:2502.13923_, 2025. \n*   Biten et al. [2019] Ali Furkan Biten, Ruben Tito, Andres Mafla, Lluis Gomez, Marçal Rusinol, Ernest Valveny, CV Jawahar, and Dimosthenis Karatzas. Scene text visual question answering. In _ICCV_, pages 4291–4301, 2019. \n*   Brown et al. [2020] Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et al. Language models are few-shot learners. _NIPS_, 2020. \n*   Cai et al. [2024] Zheng Cai, Maosong Cao, Haojiong Chen, Kai Chen, Keyu Chen, Xin Chen, Xun Chen, Zehui Chen, Zhi Chen, Pei Chu, et al. Internlm2 technical report. _arXiv preprint arXiv:2403.17297_, 2024. \n*   Cao and Xiao [2022] Jie Cao and Jing Xiao. An augmented benchmark dataset for geometric question answering through dual parallel text encoding. In _COLING_, pages 1511–1520, 2022. \n*   Chang et al. [2022] Shuaichen Chang, David Palzer, Jialin Li, Eric Fosler-Lussier, and Ningchuan Xiao. Mapqa: A dataset for question answering on choropleth maps. _arXiv preprint arXiv:2211.08545_, 2022. \n*   Chen et al. [2024a] Qiguang Chen, Libo Qin, Jin Zhang, Zhi Chen, Xiao Xu, and Wanxiang Che. M3cot: A novel benchmark for multi-domain multi-step multi-modal chain-of-thought. _arXiv preprint arXiv:2405.16473_, 2024a. \n*   Chen et al. [2023] Zhe Chen, Jiannan Wu, Wenhai Wang, Weijie Su, Guo Chen, Sen Xing, Zhong Muyan, Qinglong Zhang, Xizhou Zhu, Lewei Lu, et al. Internvl: Scaling up vision foundation models and aligning for generic visual-linguistic tasks. _arXiv preprint arXiv:2312.14238_, 2023. \n*   Chen et al. [2024b] Zhe Chen, Weiyun Wang, Yue Cao, Yangzhou Liu, Zhangwei Gao, Erfei Cui, Jinguo Zhu, Shenglong Ye, Hao Tian, Zhaoyang Liu, et al. Expanding performance boundaries of open-source multimodal models with model, data, and test-time scaling. _arXiv preprint arXiv:2412.05271_, 2024b. \n*   Chen et al. [2024c] Zhe Chen, Weiyun Wang, Hao Tian, Shenglong Ye, Zhangwei Gao, Erfei Cui, Wenwen Tong, Kongzhi Hu, Jiapeng Luo, Zheng Ma, et al. How far are we to gpt-4v? closing the gap to commercial multimodal models with open-source suites. _arXiv preprint arXiv:2404.16821_, 2024c. \n*   Clark and Gardner [2018] Christopher Clark and Matt Gardner. Simple and effective multi-paragraph reading comprehension. In _ACL_, pages 845–855, 2018. \n*   Cobbe et al. [2021] Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, et al. Training verifiers to solve math word problems. _arXiv preprint arXiv:2110.14168_, 2021. \n*   Contributors [2023] OpenCompass Contributors. Opencompass: A universal evaluation platform for foundation models. [https://github.com/open-compass/opencompass](https://github.com/open-compass/opencompass), 2023. \n*   Dong et al. [2024] Hanze Dong, Wei Xiong, Bo Pang, Haoxiang Wang, Han Zhao, Yingbo Zhou, Nan Jiang, Doyen Sahoo, Caiming Xiong, and Tong Zhang. Rlhf workflow: From reward modeling to online rlhf. _arXiv preprint arXiv:2405.07863_, 2024. \n*   Dubey et al. [2024] Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Amy Yang, Angela Fan, et al. The llama 3 herd of models. _arXiv preprint arXiv:2407.21783_, 2024. \n*   Gao et al. [2023] Jiahui Gao, Renjie Pi, Jipeng Zhang, Jiacheng Ye, Wanjun Zhong, Yufei Wang, Lanqing Hong, Jianhua Han, Hang Xu, Zhenguo Li, et al. G-llava: Solving geometric problem with multi-modal large language model. _arXiv preprint arXiv:2312.11370_, 2023. \n*   Goyal et al. [2017] Yash Goyal, Tejas Khot, Douglas Summers-Stay, Dhruv Batra, and Devi Parikh. Making the v in vqa matter: Elevating the role of image understanding in visual question answering. In _CVPR_, pages 6904–6913, 2017. \n*   Guo et al. [2025] Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, et al. Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning. _arXiv preprint arXiv:2501.12948_, 2025. \n*   Hendrycks et al. [2021] Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, and Jacob Steinhardt. Measuring mathematical problem solving with the math dataset. _arXiv preprint arXiv:2103.03874_, 2021. \n*   Hu [2025] Jian Hu. Reinforce++: A simple and efficient approach for aligning large language models. _arXiv preprint arXiv:2501.03262_, 2025. \n*   Huang et al. [2019] Zheng Huang, Kai Chen, Jianhua He, Xiang Bai, Dimosthenis Karatzas, Shijian Lu, and CV Jawahar. Icdar2019 competition on scanned receipt ocr and information extraction. In _2019 International Conference on Document Analysis and Recognition (ICDAR)_, pages 1516–1520. IEEE, 2019. \n*   Hudson and Manning [2019] Drew A Hudson and Christopher D Manning. Gqa: A new dataset for real-world visual reasoning and compositional question answering. In _CVPR_, pages 6700–6709, 2019. \n*   Kafle et al. [2018] Kushal Kafle, Brian Price, Scott Cohen, and Christopher Kanan. Dvqa: Understanding data visualizations via question answering. In _CVPR_, pages 5648–5656, 2018. \n*   Kazemi et al. [2023] Mehran Kazemi, Hamidreza Alvari, Ankit Anand, Jialin Wu, Xi Chen, and Radu Soricut. Geomverse: A systematic evaluation of large models for geometric reasoning. _arXiv preprint arXiv:2312.12241_, 2023. ",
+      "numLines": 200,
+      "startLine": 0,
+      "totalLines": 417
+    }
+  },
+  "sourceToolAssistantUUID": "97d8e833-7ff3-4209-a1c0-d42b5b5225ff",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "4ec1295a-62fc-4be1-b81a-04b882ff6f8b",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze VisualPRM paper innovation and research craft",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-27T16:18:27.752Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have a comprehensive understanding of the paper. Let me also check for reviews - it may have been submitted to a venue. Let me check if there are any reviews available.
+
+Actually, I have enough information to produce the analysis. The paper is from arXiv (March 2025) and based on my search, it doesn't appear to be on OpenReview. Let me compose the final JSON analysis now.
+
+Key analytical observations:
+
+1. **Problem Identification**: The authors identified a very specific gap at the intersection of two trends: (a) PRMs were proven effective for text-only math reasoning (PRM800K, Math-Shepherd), and (b) MLLMs were improving in perception but lagging in reasoning. 
+
+The critical realization was that no one had yet applied process reward modeling to multimodal settings, especially given that existing MLLMs make poor critics—they show strong positive bias when evaluating reasoning steps, as evidenced by InternVL2.5-8B's dismal 19.2 F1 score on negative examples.
+
+2. **Key Insight**: A small 8B parameter PRM trained specifically for this task could dramatically outperform much larger general-purpose MLLMs (up to 78B) at the critic role, and the Monte Carlo estimation technique from Math-Shepherd translated directly to the multimodal domain with minimal adaptation.
+
+3. **Innovation Type**: This is fundamentally a combination paper—taking established techniques like Monte Carlo-based process reward modeling and adapting them to multimodal reasoning.
+
+The real contribution lies in the systematic engineering work and recognizing the gap rather than inventing new algorithms. The three-pronged approach of building a dataset, training a model, and creating a benchmark provides a complete package that addresses a genuine evaluation gap. The empirical results are strong across different model scales, the ablations are thorough, and the finding about positive bias in open-source MLLMs is genuinely valuable. A 5.9 point improvement on a 78B model has real practical significance. The craft lesson here is to look across domains—seeing what works in text and identifying what's missing in multimodal—then build the full ecosystem needed to solve it properly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ec1295a-62fc-4be1-b81a-04b882ff6f8b",
+  "isSidechain": false,
+  "requestId": "req_011CbTNk1ZiPkz1KZYWVmCZk",
+  "type": "assistant",
+  "uuid": "afae9562-03b2-4d01-a33a-48a65f57f08a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BKzwihnMvEzNFvj3rZAsgb",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19862,
+      "cache_read_input_tokens": 21139,
+      "output_tokens": 2462,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19862,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2462,
+          "cache_read_input_tokens": 21139,
+          "cache_creation_input_tokens": 19862,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19862
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-27T16:19:14.627Z_
+
+Now I have a thorough understanding of the paper. Let me synthesize my deep analysis.
+
+```json
+{
+  "title": "VisualPRM: An Effective Process Reward Model for Multimodal Reasoning",
+  "venue": "arXiv 2025 (Shanghai AI Lab / InternVL team; not yet confirmed at a peer-reviewed venue)",
+
+  "problem_identification": "The authors identified a gap at the intersection of two established trends: (1) Process Reward Models had proven highly effective for text-only math reasoning (PRM800K, Math-Shepherd, OmegaPRM), and (2) MLLMs were rapidly improving at perception but still lagged at reasoning compared to proprietary models. Nobody had connected these—there was no multimodal PRM, no multimodal process supervision dataset, and no benchmark to evaluate step-level correctness in multimodal reasoning. They diagnosed this not just by surveying the literature, but by empirically showing that existing open-source MLLMs (even strong ones like InternVL2.5-8B) are catastrophically bad at criticism—exhibiting a strong 'positive bias' where they label nearly all reasoning steps as correct (F1 of 76.8 on positive steps vs. 19.2 on negative steps).",
+
+  "key_insight": "A small (8B) model specifically trained with automated process supervision can massively outperform much larger general-purpose MLLMs (including 78B models) as a reasoning critic—because the bottleneck for test-time scaling in multimodal reasoning was never model size but the absence of step-level reward training data and a purpose-built critic architecture. The second key insight is that Monte Carlo sampling for step-level annotation, proven in text math, transfers directly to multimodal with almost no architectural modification needed.",
+
+  "innovation_type": "combination",
+
+  "method_summary": "The approach has three pillars. First, VisualPRM400K: an automated dataset of ~400K multimodal solutions (~2M steps) where step correctness is estimated via Monte Carlo sampling—for each step in a solution, 16 completions are sampled from InternVL2.5 and the fraction yielding correct final answers becomes the step's expected accuracy (mc_i). Second, the VisualPRM model itself: InternVL2.5-8B is fine-tuned as a multi-turn chat model where each turn presents one reasoning step, and the model predicts a discretized correctness token (+/−); during inference the generation probability over these tokens is used as a step score, and step scores are averaged to rank candidate responses for Best-of-N selection. A critical design choice is supervising ALL steps (not stopping at the first error), which outperforms the traditional early-stopping approach. Third, VisualProcessBench: 2,866 samples with 26,950 human-annotated step labels requiring identification of ALL erroneous steps (not just the first), evaluated via macro F1 to handle class imbalance.",
+
+  "what_makes_it_good": "This paper succeeds because it delivers a complete ecosystem—dataset, model, AND benchmark—filling a gap that was obvious in retrospect but that nobody had systematically addressed. The empirical story is compelling: improvements are shown across three model families (InternVL, MiniCPM, Qwen) and four scales (7B to 78B), with thorough ablations that provide genuinely useful insights (value > advantage, average > min/max aggregation, no-early-stop > early-stop, positive bias diagnosis). The benchmark contribution is especially strategic—by creating the evaluation infrastructure, the authors ensure their work becomes the reference point for all subsequent multimodal PRM research.",
+
+  "limitations_acknowledged": "The authors implicitly acknowledge that the automated annotation pipeline introduces inherent noise (only ~10% of steps are negative, creating severe class imbalance), and that the Monte Carlo estimation quality depends on the generator model's capabilities. The approach also requires N forward passes through the policy model plus scoring, making inference cost proportional to N.",
+
+  "open_questions": [
+    "Can the PRM be used beyond Best-of-N selection—e.g., as a reward signal for online RL/RLHF to directly improve the policy model's reasoning, or for guided tree search (MCTS) over reasoning steps? The paper only explores the simplest test-time scaling strategy.",
+    "How does PRM quality scale with dataset size and model size? The paper presents only one dataset scale (~400K) and one model size (8B). Would a 70B PRM or a 4M-sample dataset yield diminishing or compounding returns? Is there a compute-optimal tradeoff between policy model size and PRM size?",
+    "The positive bias finding is striking—WHY do MLLMs systematically fail at criticism? Is this a fundamental issue with next-token prediction training (models learn to continue rather than evaluate), or is it addressable with targeted training beyond process supervision?"
+  ],
+
+  "building_blocks": [
+    "Monte Carlo sampling for automated step-level annotation (adapted from Math-Shepherd/OmegaPRM)",
+    "InternVL2.5-8B as base multimodal model",
+    "MMPR v1.1 as source of multimodal question-image pairs",
+    "Multi-turn chat formulation for step-wise scoring",
+    "Discretized token prediction (+/−) with generation probability as score",
+    "Best-of-N selection framework for test-time scaling",
+    "Macro F1 evaluation metric for imbalanced step classification",
+    "VisualPRM400K dataset (publicly released, ~400K samples, ~2M annotated steps)",
+    "VisualProcessBench benchmark (2,866 samples, 26,950 human annotations)"
+  ],
+
+  "reviewer_feedback_summary": null,
+
+  "relevance_to_seed": "This paper is directly central to multi-modal mathematical reasoning. It demonstrates that the critical bottleneck for improving MLLM reasoning is not architecture or training algorithms but the ability to evaluate intermediate reasoning steps—particularly steps that involve visual understanding (reading diagrams, interpreting charts, parsing geometric figures). For our research area, the key takeaway is that integrating visual, symbolic, and textual understanding may benefit more from better verification/reward mechanisms than from larger policy models. The VisualPRM400K pipeline and VisualProcessBench provide immediate infrastructure we could build upon—e.g., extending process supervision to handle explicit symbolic manipulation steps, or designing PRMs that separately evaluate visual grounding correctness vs. symbolic computation correctness."
+}
+```
+
+---
+
+## Meta-Analysis: What Can We Learn About Research Craft?
+
+Beyond the content, here's what this paper teaches about **doing good research**:
+
+**1. The "Gap Transfer" Strategy.** The authors didn't invent PRMs or Monte Carlo step annotation—these existed in text-only NLP. Their innovation was recognizing that an entire successful paradigm (process reward modeling) had not been transferred to a neighboring domain (multimodal reasoning). This is a reliable research template: find a technique proven in Domain A, identify the missing infrastructure needed to apply it in Domain B, and build that infrastructure systematically.
+
+**2. Three-Pillar Completeness.** The paper delivers *data + model + benchmark*. Any one of these alone would be a weaker contribution. By providing all three, the authors make their work the de facto starting point for the subfield. This is especially strategic for the benchmark—whoever defines how a problem is *evaluated* shapes all future work.
+
+**3. The Diagnostic Insight as Motivation.** The finding that MLLMs exhibit "positive bias" (near-random F1 on negative steps) isn't just a result—it's the *motivation* for the entire paper. By quantifying exactly *why* existing models fail as critics, they make the problem legible and urgent. This is stronger than simply saying "no multimodal PRM exists."
+
+**4. Ablations That Teach.** The ablation on "supervise all steps vs. early stopping at first error" overturns conventional wisdom from PRM800K. This kind of finding—where the multimodal setting changes best practices established in text—is what elevates the paper from "straightforward transfer" to "contribution with genuine insight."
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afae9562-03b2-4d01-a33a-48a65f57f08a",
+  "isSidechain": false,
+  "requestId": "req_011CbTNk1ZiPkz1KZYWVmCZk",
+  "type": "assistant",
+  "uuid": "3b555b19-59f0-41a4-8289-ba0f3fcf9612",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BKzwihnMvEzNFvj3rZAsgb",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19862,
+      "cache_read_input_tokens": 21139,
+      "output_tokens": 2462,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19862,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2462,
+          "cache_read_input_tokens": 21139,
+          "cache_creation_input_tokens": 19862,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19862
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "3b555b19-59f0-41a4-8289-ba0f3fcf9612",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze VisualPRM paper innovation and research craft",
+  "sessionId": "59831ef5-561e-432f-9a80-21febe0fb5e8"
+}
+```
+
+---

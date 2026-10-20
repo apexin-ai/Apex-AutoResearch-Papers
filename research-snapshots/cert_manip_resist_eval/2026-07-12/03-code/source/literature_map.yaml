@@ -1,0 +1,156 @@
+papers:
+  robertson2025tvdmi:
+    title: "Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes"
+    authors: ["Robertson", "Koyejo"]
+    year: 2025
+    venue: "arXiv (under TMLR review)"
+    url: "https://arxiv.org/abs/2508.05469"
+    category: "evaluation_framework"
+    role: "foundation"
+    relevance: "Foundational TVD-MI theory for LLM evaluation. Theorem 3.3 proves bounded f-divergences (TVD) maintain polynomial certification under mode-collapse attacks while unbounded (KL) fail. We extend from pairwise to N-agent multi-judge settings."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  yang2026diversity_scaling:
+    title: "Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity"
+    authors: ["Yang et al."]
+    year: 2026
+    venue: "ICLR 2026 Workshop AIMS"
+    url: "https://arxiv.org/abs/2602.03794"
+    category: "multi_agent_scaling"
+    role: "foundation"
+    relevance: "Information-theoretic diversity-scaling framework: K* = 2^{H(ρ)}, residual uncertainty (1-α_c)^{K*} geometric contraction (Theorem 4.3). We provide the adversarial dual — while their K* governs performance improvement rate, the same correlation structure governs manipulation cost increase rate. Core duality insight."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  turkmen2026copula:
+    title: "Don't Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection"
+    authors: ["Turkmen et al."]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2602.08003"
+    category: "ensemble_theory"
+    role: "foundation"
+    relevance: "Gaussian-copula correlated error model (Z_j = √ρ·U + √(1-ρ)·ξ_j), error floor Φ(Φ⁻¹(1-p)/√ρ) (Theorem 4.4), three-term MI decomposition (Theorem 4.3). Copula model is the mathematical foundation for our K_eff = 1+(K-1)·exp(-2·I_max) derivation. Within-family ρ~0.7-0.8, cross-family ρ~0.4-0.5."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  kaneko2025bits_leaked:
+    title: "Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs"
+    authors: ["Kaneko", "Baldwin"]
+    year: 2025
+    venue: "NeurIPS 2025 spotlight"
+    url: "https://arxiv.org/abs/2510.17000"
+    category: "adversarial_bounds"
+    role: "foundation"
+    relevance: "Tight single-model attack cost bound N_min ≥ log₂(1/ε)/I_max via Fano inequality (Theorem 1), achieved by SPRT (Theorem 2). Validated across 7 LLMs. Provides single-channel foundation; we extend to multi-judge composition where adversary must simultaneously fool K correlated judges."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  chen2025peg:
+    title: "Incentivizing Truthful Language Models via Peer Elicitation Games"
+    authors: ["Chen et al."]
+    year: 2025
+    venue: "NeurIPS 2025"
+    url: "https://arxiv.org/abs/2505.13636"
+    category: "peer_prediction"
+    role: "direct-competitor"
+    relevance: "DMI-based multi-agent peer elicitation with dominant strategy truthfulness (Lemma 1), O(√T) regret (Theorem 2). Requires conditional independence (Assumption 4) but does not characterize degradation when violated. We prove ε = f(ρ) continuous degradation curve as co-primary contribution."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  qiu2026truthfulness:
+    title: "Truthfulness Despite Weak Supervision: Evaluating and Training LLMs Using Peer Prediction"
+    authors: ["Qiu et al."]
+    year: 2026
+    venue: "ICLR 2026"
+    url: "https://arxiv.org/abs/2601.20299"
+    category: "peer_prediction"
+    role: "direct-competitor"
+    relevance: "BNE incentive-compatibility for LLM peer prediction with inverse scaling property. Targets output truthfulness not adversarial robustness of protocol. No polynomial cost bounds tied to judge count. We provide the robustness guarantee that complements their truthfulness guarantee."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  kim2025correlated_errors:
+    title: "Correlated Errors in Large Language Models"
+    authors: ["Kim", "Garg", "Peng", "Garg"]
+    year: 2025
+    venue: "ICML 2025"
+    url: "https://arxiv.org/abs/2506.07962"
+    category: "error_correlation"
+    role: "empirical-basis"
+    relevance: "60% pairwise agreement when both err (vs 33% baseline), same-company +0.066, same-architecture +0.076. Key empirical data for α regime analysis and K_eff estimation. 350+ LLMs. Motivates cross-family diversity for maximizing K_eff."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  sok2026llm_judge_security:
+    title: "Security in LLM-as-a-Judge: A Comprehensive SoK"
+    authors: ["Various"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2603.29403"
+    category: "adversarial_evaluation"
+    role: "empirical-basis"
+    relevance: "Comprehensive vulnerability catalog: open-source 50-68% ASR, frontier 27-44%. 7-model diverse committees reduce ASR to 10-19% empirically but WITHOUT formal explanation. We provide the formal explanation via K_eff framework."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  feng2026noisy_valid:
+    title: "Noisy but Valid: Robust Statistical Evaluation of LLMs with Imperfect Judges"
+    authors: ["Feng", "Shen", "Balashankar", "Gerner-Beuerle", "Rodrigues"]
+    year: 2026
+    venue: "ICLR 2026"
+    url: "https://arxiv.org/abs/2601.20913"
+    category: "certified_evaluation"
+    role: "adjacent"
+    relevance: "Statistical hypothesis testing for LLM evaluation with finite-sample Type-I error control (Theorem 5.1) despite calibration uncertainty. Assumes honest but fallible judges. Complements our work: they certify statistical validity, we certify manipulation resistance."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  jung2026logarithmic_scores:
+    title: "Logarithmic Scores, Power-Law Discoveries: Disentangling Measurement from Coverage in Agent-Based Evaluation"
+    authors: ["Jung", "Na"]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2604.00477"
+    category: "multi_agent_scaling"
+    role: "empirical-basis"
+    relevance: "Score-coverage dissociation: scoring reliability scales logarithmically with panel size N while discovery follows power law N^0.69. Direct implications for our K-scaling claims — certified bounds may saturate faster than empirical ASR gains."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  chen2026behavioral_entanglement:
+    title: "How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement"
+    authors: ["Chen et al."]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2604.07650"
+    category: "error_correlation"
+    role: "empirical-basis"
+    relevance: "BEI and CIG metrics across 18 LLMs from 6 families. Cross-family entanglement 40-60% lower than intra-family. Provides independent validation of cross-family diversity benefit for K_eff estimation."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"
+
+  keppo2026collusion_fragility:
+    title: "On the Fragility of AI Agent Collusion"
+    authors: ["Keppo et al."]
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2603.20281"
+    category: "multi_agent_robustness"
+    role: "supporting"
+    relevance: "Increasing LLM count 2→5 breaks collusion (+22%→+3%). Same-family size heterogeneity stabilizes via leader-follower dynamics. Motivates cross-family diversity requirement in our protocol design."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21"

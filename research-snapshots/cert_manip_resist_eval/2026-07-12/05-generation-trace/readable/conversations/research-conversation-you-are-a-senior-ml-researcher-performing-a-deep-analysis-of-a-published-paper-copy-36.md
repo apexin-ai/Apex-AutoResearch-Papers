@@ -1,0 +1,2972 @@
+# Research conversation: You are a senior ML researcher performing a deep analysis of a published paper. **Today's date: 2026-05-28 (UTC).** ## Y
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-1/b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04.jsonl`
+- **Structured JSON:** [`2986f627523c6e90781a.json`](../../sessions/29/2986f627523c6e90781a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T11:50:43.046Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:50:43.046Z",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "content": "You are a senior ML researcher performing a deep analysis of a published paper.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Your goal\n\nAnalyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?\n\n## Research context\n\nWe are generating ideas in the area of: **Target: AAAI 2026\nTrack: Machine Learning (ML) — Efficient Inference and Reasoning\n\nDirection: Per-instance adaptive co-optimization of generation and verification compute, where both the number of generated solutions (K) and the verification depth (none/ORM/PRM/GenRM) are jointly selected based on online difficulty estimation from early reasoning tokens. Extends static aggregate scaling laws (Singhi et al.) to instance-adaptive, multi-depth allocation with a practical online algorithm.\n\nSeed Papers:\n- Singhi et al., \"When To Solve, When To Verify\" (arXiv 2025) — establishes aggregate scaling laws for generation-verification tradeoff; our work must explicitly extend this to per-instance, multi-depth allocation\n- Setlur et al., \"Scaling TTC Without Verification is Suboptimal\" (arXiv Feb 2025) — proves verification is essential and the gap grows with compute; motivates why verification budget allocation matters\n- Chen et al., \"VG-Search: Rethinking Optimal Verification Granularity\" (arXiv May 2025) — shows verification granularity matters for efficiency; we extend from granularity to depth and per-instance adaptation\n- Wang et al., \"ST-BoN\" (NeurIPS 2025 Spotlight) — early pruning via sampling consistency; a strong baseline for lightweight verification allocation\n\nKnown Gaps:\n- No method selects verification depth (none/ORM/PRM/GenRM) per-instance based on estimated difficulty; all existing work uses a fixed verification strategy across problems\n- Singhi et al.'s scaling laws are static and aggregate (one ratio for all problems); no online algorithm adapts the generation-verification split per-instance during inference\n- No framework jointly optimizes K (number of solutions) and d (verification depth) as coupled decision variables under a shared compute budget\n\nTheoretical Anchor: The bilinear structure of the joint optimization — P(correct) depends on coverage (increasing in K) and selection precision (increasing in d), while cost is c_g*K + c_v(d)*K = K*(c_g + c_v(d)) — admits a clean decomposition: for fixed d, optimal K = B/(c_g + c_v(d)), reducing the problem to selecting d* that maximizes selection precision per unit verification cost. This decomposition enables tractable optimization with provable approximation guarantees under mild assumptions on verifier accuracy monotonicity.\n\nConstraints:\n- Compute: ≤200 H100-hours\n- Must evaluate on ≥4 benchmarks across ≥2 domains (math, code, science)\n- Must compare against Singhi et al.'s aggregate-optimal baseline and fixed-depth baselines\n\nQuality Self-Checks:\n- [x] Core insight: The optimal verification depth varies dramatically per problem — easy problems need no verification while hard problems benefit from expensive generative verification — and this variance is predictable from early tokens.\n- [x] Why not obvious: Singhi et al. showed the aggregate optimal ratio, but the per-instance variance and multi-depth selection weren't explored because their framework only compared two verification strategies (GenRM vs SC), not a continuum of depths.\n- [ ] Baseline fear test: A simple heuristic (e.g., always use PRM for problems longer than X tokens) could capture much of the benefit — must demonstrate learned allocation significantly outperforms simple rules. This is a REAL RISK.\n- [x] Information exploited: Early-token difficulty signals (entropy trajectory, hesitation markers from Zhou et al.) that are available before verification decisions must be made.\n\nAvoid:\n- Framing as 'first to study generation-verification tradeoff' — Singhi et al. already did this; frame as extending to per-instance multi-depth allocation\n- Math-only evaluation — must include code and science benchmarks\n- Pure scaling law contribution — must provide a practical online algorithm, not just power-law fits\n- Ignoring the baseline fear: if a simple threshold on problem length achieves 80% of the adaptive allocation's gain, the paper is dead**\n\n## Paper to analyze\n\n{\n  \"title\": \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\",\n  \"authors\": \"Qu et al.\",\n  \"venue\": \"arXiv 2025\",\n  \"url\": \"https://arxiv.org/abs/2503.07572\",\n  \"why_important\": \"From Setlur/Kumar group (same as seed paper authors); formalizes test-time compute as meta-RL with cumulative regret, achieving 2-3x gains — informs how to train models that are aware of their compute budget\",\n  \"one_line_summary\": \"Reframes test-time compute optimization as meta-RL that minimizes cumulative regret across tokens, combining progress-based and outcome rewards for 2-3x performance gains over standard RL.\"\n}\n\n## Instructions\n\n1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.\n\n2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:\n   - What gap did they identify and HOW did they find it?\n   - What was the key insight that others missed?\n   - How did they formulate the problem differently from prior work?\n   - What existing technique did they adapt/combine/simplify?\n\n3. **Learn from reviewers**: If you can find reviewer comments, extract:\n   - What did reviewers praise most?\n   - What concerns were raised and how were they addressed?\n   - What would have made this paper even stronger?\n\n## Output format\n\nOutput a single JSON object:\n{\n  \"title\": \"Paper title\",\n  \"venue\": \"Where published\",\n  \"problem_identification\": \"What gap/problem did they identify? How did they find it? (2-3 sentences)\",\n  \"key_insight\": \"The core intellectual contribution — the aha moment (1-2 sentences)\",\n  \"innovation_type\": \"new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis\",\n  \"method_summary\": \"Technical approach in 3-5 sentences — enough to understand the machinery\",\n  \"what_makes_it_good\": \"Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)\",\n  \"limitations_acknowledged\": \"What gaps did the authors themselves identify? (1-2 sentences)\",\n  \"open_questions\": \"What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)\",\n  \"building_blocks\": [\"List of methods/tools/datasets used that could be reused\"],\n  \"reviewer_feedback_summary\": \"If found on OpenReview: key praise and concerns. Otherwise: null\",\n  \"relevance_to_seed\": \"How does this paper relate to our research area? What can we learn from it? (1-2 sentences)\"\n}\n\nBe analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T11:50:43.050Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T11:50:43.050Z",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---
+
+## Round 1
+
+45 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T11:50:43.061Z_
+
+You are a senior ML researcher performing a deep analysis of a published paper.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Your goal
+
+Analyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?
+
+## Research context
+
+We are generating ideas in the area of: **Target: AAAI 2026
+Track: Machine Learning (ML) — Efficient Inference and Reasoning
+
+Direction: Per-instance adaptive co-optimization of generation and verification compute, where both the number of generated solutions (K) and the verification depth (none/ORM/PRM/GenRM) are jointly selected based on online difficulty estimation from early reasoning tokens. Extends static aggregate scaling laws (Singhi et al.) to instance-adaptive, multi-depth allocation with a practical online algorithm.
+
+Seed Papers:
+- Singhi et al., "When To Solve, When To Verify" (arXiv 2025) — establishes aggregate scaling laws for generation-verification tradeoff; our work must explicitly extend this to per-instance, multi-depth allocation
+- Setlur et al., "Scaling TTC Without Verification is Suboptimal" (arXiv Feb 2025) — proves verification is essential and the gap grows with compute; motivates why verification budget allocation matters
+- Chen et al., "VG-Search: Rethinking Optimal Verification Granularity" (arXiv May 2025) — shows verification granularity matters for efficiency; we extend from granularity to depth and per-instance adaptation
+- Wang et al., "ST-BoN" (NeurIPS 2025 Spotlight) — early pruning via sampling consistency; a strong baseline for lightweight verification allocation
+
+Known Gaps:
+- No method selects verification depth (none/ORM/PRM/GenRM) per-instance based on estimated difficulty; all existing work uses a fixed verification strategy across problems
+- Singhi et al.'s scaling laws are static and aggregate (one ratio for all problems); no online algorithm adapts the generation-verification split per-instance during inference
+- No framework jointly optimizes K (number of solutions) and d (verification depth) as coupled decision variables under a shared compute budget
+
+Theoretical Anchor: The bilinear structure of the joint optimization — P(correct) depends on coverage (increasing in K) and selection precision (increasing in d), while cost is c_g*K + c_v(d)*K = K*(c_g + c_v(d)) — admits a clean decomposition: for fixed d, optimal K = B/(c_g + c_v(d)), reducing the problem to selecting d* that maximizes selection precision per unit verification cost. This decomposition enables tractable optimization with provable approximation guarantees under mild assumptions on verifier accuracy monotonicity.
+
+Constraints:
+- Compute: ≤200 H100-hours
+- Must evaluate on ≥4 benchmarks across ≥2 domains (math, code, science)
+- Must compare against Singhi et al.'s aggregate-optimal baseline and fixed-depth baselines
+
+Quality Self-Checks:
+- [x] Core insight: The optimal verification depth varies dramatically per problem — easy problems need no verification while hard problems benefit from expensive generative verification — and this variance is predictable from early tokens.
+- [x] Why not obvious: Singhi et al. showed the aggregate optimal ratio, but the per-instance variance and multi-depth selection weren't explored because their framework only compared two verification strategies (GenRM vs SC), not a continuum of depths.
+- [ ] Baseline fear test: A simple heuristic (e.g., always use PRM for problems longer than X tokens) could capture much of the benefit — must demonstrate learned allocation significantly outperforms simple rules. This is a REAL RISK.
+- [x] Information exploited: Early-token difficulty signals (entropy trajectory, hesitation markers from Zhou et al.) that are available before verification decisions must be made.
+
+Avoid:
+- Framing as 'first to study generation-verification tradeoff' — Singhi et al. already did this; frame as extending to per-instance multi-depth allocation
+- Math-only evaluation — must include code and science benchmarks
+- Pure scaling law contribution — must provide a practical online algorithm, not just power-law fits
+- Ignoring the baseline fear: if a simple threshold on problem length achieves 80% of the adaptive allocation's gain, the paper is dead**
+
+## Paper to analyze
+
+{
+  "title": "Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning",
+  "authors": "Qu et al.",
+  "venue": "arXiv 2025",
+  "url": "https://arxiv.org/abs/2503.07572",
+  "why_important": "From Setlur/Kumar group (same as seed paper authors); formalizes test-time compute as meta-RL with cumulative regret, achieving 2-3x gains — informs how to train models that are aware of their compute budget",
+  "one_line_summary": "Reframes test-time compute optimization as meta-RL that minimizes cumulative regret across tokens, combining progress-based and outcome rewards for 2-3x performance gains over standard RL."
+}
+
+## Instructions
+
+1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.
+
+2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:
+   - What gap did they identify and HOW did they find it?
+   - What was the key insight that others missed?
+   - How did they formulate the problem differently from prior work?
+   - What existing technique did they adapt/combine/simplify?
+
+3. **Learn from reviewers**: If you can find reviewer comments, extract:
+   - What did reviewers praise most?
+   - What concerns were raised and how were they addressed?
+   - What would have made this paper even stronger?
+
+## Output format
+
+Output a single JSON object:
+{
+  "title": "Paper title",
+  "venue": "Where published",
+  "problem_identification": "What gap/problem did they identify? How did they find it? (2-3 sentences)",
+  "key_insight": "The core intellectual contribution — the aha moment (1-2 sentences)",
+  "innovation_type": "new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis",
+  "method_summary": "Technical approach in 3-5 sentences — enough to understand the machinery",
+  "what_makes_it_good": "Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)",
+  "limitations_acknowledged": "What gaps did the authors themselves identify? (1-2 sentences)",
+  "open_questions": "What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)",
+  "building_blocks": ["List of methods/tools/datasets used that could be reused"],
+  "reviewer_feedback_summary": "If found on OpenReview: key praise and concerns. Otherwise: null",
+  "relevance_to_seed": "How does this paper relate to our research area? What can we learn from it? (1-2 sentences)"
+}
+
+Be analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "6e89ace8-2780-456c-9f24-bc9f229fcf62",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T11:50:43.060Z_
+
+```json
+{
+  "parentUuid": "6e89ace8-2780-456c-9f24-bc9f229fcf62",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "776953fd-afb8-456e-a77b-f7aa44226ed1",
+  "timestamp": "2026-05-28T11:50:43.060Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T11:50:43.060Z_
+
+```json
+{
+  "parentUuid": "776953fd-afb8-456e-a77b-f7aa44226ed1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "e5f21dd3-81a2-40df-b3c5-b0ab7c364fa6",
+  "timestamp": "2026-05-28T11:50:43.060Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-28T11:50:43.061Z_
+
+```json
+{
+  "parentUuid": "e5f21dd3-81a2-40df-b3c5-b0ab7c364fa6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "89ebb352-370e-42bf-827c-339f66337932",
+  "timestamp": "2026-05-28T11:50:43.061Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze meta-RL test-time compute optimization paper",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T11:50:45.798Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to deeply analyze a paper "Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning" by Qu et al. Let me fetch the paper from arXiv first to read its content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89ebb352-370e-42bf-827c-339f66337932",
+  "isSidechain": false,
+  "requestId": "req_011CbUvAAV2Wa7sEejFXBkzz",
+  "type": "assistant",
+  "uuid": "d19eea5e-2ccf-4abd-9836-f4025e43b42a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W736StetqbSGw7guBaKPzh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3523,
+      "cache_read_input_tokens": 10620,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 10620,
+          "cache_creation_input_tokens": 3523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-28T11:50:46.164Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018oDY8Hu9KMQQjjt6QHmKbm`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d19eea5e-2ccf-4abd-9836-f4025e43b42a",
+  "isSidechain": false,
+  "requestId": "req_011CbUvAAV2Wa7sEejFXBkzz",
+  "type": "assistant",
+  "uuid": "c76d25f4-1ae8-4cf4-9d33-61bed3d3bca2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W736StetqbSGw7guBaKPzh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3523,
+      "cache_read_input_tokens": 10620,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 10620,
+          "cache_creation_input_tokens": 3523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T11:50:46.173Z_
+
+<details><summary>↩ Tool result · `toolu_018oDY8Hu9KMQQjjt6QHmKbm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c76d25f4-1ae8-4cf4-9d33-61bed3d3bca2",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "6f2eb467-0820-4331-8bb4-08e9cb30b6f2",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "c76d25f4-1ae8-4cf4-9d33-61bed3d3bca2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-28T11:50:49.492Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch the paper from arXiv. I'll fetch both the abstract page and the HTML version for the full paper content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f2eb467-0820-4331-8bb4-08e9cb30b6f2",
+  "isSidechain": false,
+  "requestId": "req_011CbUvAPz8Zrfxe7RbKt2s8",
+  "type": "assistant",
+  "uuid": "d960f54f-f131-4c8a-97b8-f240bd4ac853",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rf4DZsCosfcwDHxmJFkn2N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 14143,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 14143,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-28T11:50:50.052Z_
+
+Let me fetch the paper from multiple sources to get comprehensive coverage.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d960f54f-f131-4c8a-97b8-f240bd4ac853",
+  "isSidechain": false,
+  "requestId": "req_011CbUvAPz8Zrfxe7RbKt2s8",
+  "type": "assistant",
+  "uuid": "ec6983eb-498f-4bf4-9bc3-5610fa1ea94e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rf4DZsCosfcwDHxmJFkn2N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 14143,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 14143,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-28T11:50:51.663Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015FiVkJ6AxiMcvuGmVbr3dL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2503.07572",
+  "prompt": "Extract the full abstract, author list, and any other metadata available on this page. Return everything verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec6983eb-498f-4bf4-9bc3-5610fa1ea94e",
+  "isSidechain": false,
+  "requestId": "req_011CbUvAPz8Zrfxe7RbKt2s8",
+  "type": "assistant",
+  "uuid": "7362ad2a-b323-4edb-aa8d-f5f982656c9a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rf4DZsCosfcwDHxmJFkn2N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 14143,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 14143,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T11:50:54.190Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Anem71GHDaTDbvRzY8Wkgy`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2503.07572",
+  "prompt": "Extract the FULL text of the paper, especially: 1) The Introduction section completely, 2) The Method/Approach section completely (including all formulas and algorithms), 3) The Related Work section, 4) The Experiments section (including all baselines, benchmarks, and results tables), 5) The Conclusion/Discussion section. Preserve all mathematical notation, theorem statements, and algorithm descriptions. Be as comprehensive as possible - do not summarize, extract verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7362ad2a-b323-4edb-aa8d-f5f982656c9a",
+  "isSidechain": false,
+  "requestId": "req_011CbUvAPz8Zrfxe7RbKt2s8",
+  "type": "assistant",
+  "uuid": "617ce1f5-7c91-4396-a220-88fedd3a3138",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rf4DZsCosfcwDHxmJFkn2N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 14143,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 14143,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T11:50:56.760Z_
+
+<details><summary>↩ Tool result · `toolu_015FiVkJ6AxiMcvuGmVbr3dL`</summary>
+
+```text
+# Paper Metadata Extract
+
+**Title:** Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning
+
+**arXiv ID:** 2503.07572
+
+**Submission Date:** March 10, 2025
+
+**Authors:**
+- Yuxiao Qu
+- Matthew Y. R. Yang
+- Amrith Setlur
+- Lewis Tunstall
+- Edward Emanuel Beeching
+- Ruslan Salakhutdinov
+- Aviral Kumar
+
+**Subject Categories:** Machine Learning (cs.LG); Artificial Intelligence (cs.AI); Computation and Language (cs.CL)
+
+**Abstract:**
+
+The paper addresses how language models can better leverage computational resources during inference. Rather than relying solely on conventional fine-tuning approaches using search traces or basic outcome rewards, the authors formalize test-time compute optimization as a meta-reinforcement learning challenge. They conceptualize the model's extended output as multiple sequential episodes and employ cumulative regret across tokens as an efficacy metric. Their proposed method, Meta Reinforcement Fine-Tuning (MRT), incorporates a "progress" bonus measuring advancement toward correct solutions alongside standard 0/1 outcome rewards. Experimental results demonstrate improvements of 2-3x relative performance gains and approximately 1.5x token efficiency enhancements for mathematical reasoning compared to outcome-reward reinforcement learning baselines.
+
+**DOI:** https://doi.org/10.48550/arXiv.2503.07572
+
+**License:** CC BY 4.0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7362ad2a-b323-4edb-aa8d-f5f982656c9a",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "5b6a069e-cccc-4a3d-affb-85f9c225bc61",
+  "toolUseResult": {
+    "bytes": 48740,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Metadata Extract\n\n**Title:** Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\n\n**arXiv ID:** 2503.07572\n\n**Submission Date:** March 10, 2025\n\n**Authors:**\n- Yuxiao Qu\n- Matthew Y. R. Yang\n- Amrith Setlur\n- Lewis Tunstall\n- Edward Emanuel Beeching\n- Ruslan Salakhutdinov\n- Aviral Kumar\n\n**Subject Categories:** Machine Learning (cs.LG); Artificial Intelligence (cs.AI); Computation and Language (cs.CL)\n\n**Abstract:**\n\nThe paper addresses how language models can better leverage computational resources during inference. Rather than relying solely on conventional fine-tuning approaches using search traces or basic outcome rewards, the authors formalize test-time compute optimization as a meta-reinforcement learning challenge. They conceptualize the model's extended output as multiple sequential episodes and employ cumulative regret across tokens as an efficacy metric. Their proposed method, Meta Reinforcement Fine-Tuning (MRT), incorporates a \"progress\" bonus measuring advancement toward correct solutions alongside standard 0/1 outcome rewards. Experimental results demonstrate improvements of 2-3x relative performance gains and approximately 1.5x token efficiency enhancements for mathematical reasoning compared to outcome-reward reinforcement learning baselines.\n\n**DOI:** https://doi.org/10.48550/arXiv.2503.07572\n\n**License:** CC BY 4.0",
+    "durationMs": 5094,
+    "url": "https://arxiv.org/abs/2503.07572"
+  },
+  "sourceToolAssistantUUID": "7362ad2a-b323-4edb-aa8d-f5f982656c9a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "5b6a069e-cccc-4a3d-affb-85f9c225bc61",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze meta-RL test-time compute optimization paper",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T11:51:06.367Z_
+
+<details><summary>↩ Tool result · `toolu_01Anem71GHDaTDbvRzY8Wkgy`</summary>
+
+```text
+# Summary of "Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning"
+
+## Core Contribution
+
+This paper introduces **Meta Reinforcement Fine-Tuning (MRT)**, a framework for training language models to efficiently use computational resources during inference. The key innovation is training models to minimize "cumulative regret" over their output token stream by incorporating a dense reward signal based on "progress"—the incremental improvement in likelihood of solving a problem with each reasoning episode.
+
+## Main Problem
+
+Standard outcome-reward RL training for long-chain-of-thought reasoning has two critical limitations:
+
+1. **Inefficient token usage**: Models trained only on final correctness rewards don't necessarily make steady progress with each intermediate step
+2. **Poor scaling**: Current state-of-the-art models (e.g., DeepSeek-R1) fail to improve consistently when deployed with larger token budgets
+
+## Key Insight
+
+Rather than viewing test-time compute optimization as a standard RL problem, the authors reframe it as a **meta-RL problem** where the output stream is segmented into "episodes" (attempts or reasoning blocks). An ideal model should balance exploration (trying different approaches) and exploitation (refining a promising direction)—precisely the exploration-exploitation tradeoff that meta-RL optimizes through regret minimization.
+
+## Technical Approach
+
+**Definition of Progress** (Definition 6.1):
+The change in expected success probability before and after generating an episode:
+- Progress = Success probability(with episode) − Success probability(without episode)
+
+**MRT Objective** (Equation 3):
+Combines outcome reward with a dense bonus weighted by accumulated progress across all episodes, implemented through either STaR (self-training on high-progress traces) or policy gradient methods (GRPO/PPO).
+
+## Experimental Results
+
+**Performance Gains:**
+- 2-3× larger relative improvement over baseline compared to standard outcome-reward RL
+- State-of-the-art results for 1.5B parameter models on math benchmarks (AIME, AMC, MATH500)
+
+**Token Efficiency:**
+- 1.5× more efficient than outcome-reward RL
+- 5× more efficient than base models
+- Crucially, achieves *higher* accuracy while using *fewer* tokens
+
+**Robustness:**
+- Better out-of-distribution generalization
+- Maintains performance gains even when extrapolating to 2× larger token budgets than training
+
+## Supporting Evidence
+
+The analysis of DeepSeek-R1 (Section 5) demonstrates that models trained with only outcome rewards fail to make steady progress—later reasoning episodes sometimes hurt performance despite eventual success. In contrast, simple majority voting over fewer episodes outperforms long sequential reasoning, suggesting current models don't efficiently implement reasoning algorithms.
+
+## Methodological Contributions
+
+1. **Cumulative regret framework** (Definition 4.1) as a formal metric for evaluating test-time compute efficiency
+2. **Two instantiations** of MRT: open-ended reasoning with explicit think markers, and structured backtracking search
+3. **Empirical validation** that progress-based training explains why iterative budget curricula work better than static large budgets
+
+## Notable Findings
+
+- Output length oscillates during training and doesn't directly correlate with progress
+- The benefits of training with gradually increasing token budgets (8K→16K) can be explained by implicitly maximizing progress
+- Length penalties hurt accuracy; MRT improves both accuracy and efficiency simultaneously
+
+## Significance
+
+This work provides both theoretical grounding (meta-RL perspective) and practical improvements for scaling test-time compute in LLMs, demonstrating that efficiency gains don't require sacrificing performance—a critical insight for deploying reasoning models in resource-constrained settings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "617ce1f5-7c91-4396-a220-88fedd3a3138",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "318ef806-73c3-4418-be0f-56d21764237c",
+  "toolUseResult": {
+    "bytes": 955408,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\"\n\n## Core Contribution\n\nThis paper introduces **Meta Reinforcement Fine-Tuning (MRT)**, a framework for training language models to efficiently use computational resources during inference. The key innovation is training models to minimize \"cumulative regret\" over their output token stream by incorporating a dense reward signal based on \"progress\"—the incremental improvement in likelihood of solving a problem with each reasoning episode.\n\n## Main Problem\n\nStandard outcome-reward RL training for long-chain-of-thought reasoning has two critical limitations:\n\n1. **Inefficient token usage**: Models trained only on final correctness rewards don't necessarily make steady progress with each intermediate step\n2. **Poor scaling**: Current state-of-the-art models (e.g., DeepSeek-R1) fail to improve consistently when deployed with larger token budgets\n\n## Key Insight\n\nRather than viewing test-time compute optimization as a standard RL problem, the authors reframe it as a **meta-RL problem** where the output stream is segmented into \"episodes\" (attempts or reasoning blocks). An ideal model should balance exploration (trying different approaches) and exploitation (refining a promising direction)—precisely the exploration-exploitation tradeoff that meta-RL optimizes through regret minimization.\n\n## Technical Approach\n\n**Definition of Progress** (Definition 6.1):\nThe change in expected success probability before and after generating an episode:\n- Progress = Success probability(with episode) − Success probability(without episode)\n\n**MRT Objective** (Equation 3):\nCombines outcome reward with a dense bonus weighted by accumulated progress across all episodes, implemented through either STaR (self-training on high-progress traces) or policy gradient methods (GRPO/PPO).\n\n## Experimental Results\n\n**Performance Gains:**\n- 2-3× larger relative improvement over baseline compared to standard outcome-reward RL\n- State-of-the-art results for 1.5B parameter models on math benchmarks (AIME, AMC, MATH500)\n\n**Token Efficiency:**\n- 1.5× more efficient than outcome-reward RL\n- 5× more efficient than base models\n- Crucially, achieves *higher* accuracy while using *fewer* tokens\n\n**Robustness:**\n- Better out-of-distribution generalization\n- Maintains performance gains even when extrapolating to 2× larger token budgets than training\n\n## Supporting Evidence\n\nThe analysis of DeepSeek-R1 (Section 5) demonstrates that models trained with only outcome rewards fail to make steady progress—later reasoning episodes sometimes hurt performance despite eventual success. In contrast, simple majority voting over fewer episodes outperforms long sequential reasoning, suggesting current models don't efficiently implement reasoning algorithms.\n\n## Methodological Contributions\n\n1. **Cumulative regret framework** (Definition 4.1) as a formal metric for evaluating test-time compute efficiency\n2. **Two instantiations** of MRT: open-ended reasoning with explicit think markers, and structured backtracking search\n3. **Empirical validation** that progress-based training explains why iterative budget curricula work better than static large budgets\n\n## Notable Findings\n\n- Output length oscillates during training and doesn't directly correlate with progress\n- The benefits of training with gradually increasing token budgets (8K→16K) can be explained by implicitly maximizing progress\n- Length penalties hurt accuracy; MRT improves both accuracy and efficiency simultaneously\n\n## Significance\n\nThis work provides both theoretical grounding (meta-RL perspective) and practical improvements for scaling test-time compute in LLMs, demonstrating that efficiency gains don't require sacrificing performance—a critical insight for deploying reasoning models in resource-constrained settings.",
+    "durationMs": 12174,
+    "url": "https://arxiv.org/html/2503.07572"
+  },
+  "sourceToolAssistantUUID": "617ce1f5-7c91-4396-a220-88fedd3a3138",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-28T11:51:31.330Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011ntTjaNjLrn8NiQqfu2LEs`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2503.07572",
+  "prompt": "Extract the following sections in FULL detail:\n\n1. RELATED WORK section - all citations and how they position against prior work\n2. METHOD section - all definitions, equations, algorithm pseudocode, especially: Definition 4.1 (cumulative regret), Definition 6.1 (progress), Equation 3 (MRT objective), and any decomposition theorems\n3. EXPERIMENTS - all benchmark names, baseline methods compared, specific numerical results from tables, ablation studies\n4. LIMITATIONS and CONCLUSION sections\n\nFocus especially on: How do they estimate \"progress\"? What is the exact reward function? How do they segment the token stream into episodes? What approximations are made?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "318ef806-73c3-4418-be0f-56d21764237c",
+  "isSidechain": false,
+  "requestId": "req_011CbUvBsyeQtuFVaeiM4uDb",
+  "type": "assistant",
+  "uuid": "4183acdd-d417-4f2c-8feb-69c04a8e66ac",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGeQKeE1yMbzKJwA2kGs5F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 14805,
+      "output_tokens": 364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 364,
+          "cache_read_input_tokens": 14805,
+          "cache_creation_input_tokens": 1578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-28T11:51:33.249Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017X7judAeWB3Ao1XZJGfLka`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=Meta+Reinforcement+Fine-Tuning+test-time+compute",
+  "prompt": "Search for the paper \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\" by Qu et al. Extract any reviewer comments, scores, and author responses if available. Look for review content, ratings, and discussion."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4183acdd-d417-4f2c-8feb-69c04a8e66ac",
+  "isSidechain": false,
+  "requestId": "req_011CbUvBsyeQtuFVaeiM4uDb",
+  "type": "assistant",
+  "uuid": "2305dca7-0581-4495-905c-ceed8d24f2ef",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGeQKeE1yMbzKJwA2kGs5F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1578,
+      "cache_read_input_tokens": 14805,
+      "output_tokens": 364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 364,
+          "cache_read_input_tokens": 14805,
+          "cache_creation_input_tokens": 1578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-28T11:51:36.053Z_
+
+<details><summary>↩ Tool result · `toolu_017X7judAeWB3Ao1XZJGfLka`</summary>
+
+```text
+I cannot locate the paper "Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning" by Qu et al. or any associated reviewer comments, scores, and author responses in the provided web page content.
+
+The content shown is only the OpenReview.net homepage and navigation structure, which includes general information about the platform's mission and links to various sections. To find the specific paper and its review materials, you would need to:
+
+1. Visit OpenReview.net directly
+2. Use their search functionality to locate the paper
+3. Navigate to the paper's detail page where reviews and discussions are typically displayed
+
+The homepage excerpt provided does not contain any substantive information about individual papers or their peer review content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2305dca7-0581-4495-905c-ceed8d24f2ef",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "142bc802-aa4b-4fca-8e53-989a609520f8",
+  "toolUseResult": {
+    "bytes": 62347,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot locate the paper \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\" by Qu et al. or any associated reviewer comments, scores, and author responses in the provided web page content.\n\nThe content shown is only the OpenReview.net homepage and navigation structure, which includes general information about the platform's mission and links to various sections. To find the specific paper and its review materials, you would need to:\n\n1. Visit OpenReview.net directly\n2. Use their search functionality to locate the paper\n3. Navigate to the paper's detail page where reviews and discussions are typically displayed\n\nThe homepage excerpt provided does not contain any substantive information about individual papers or their peer review content.",
+    "durationMs": 2802,
+    "url": "https://openreview.net/search?term=Meta+Reinforcement+Fine-Tuning+test-time+compute"
+  },
+  "sourceToolAssistantUUID": "2305dca7-0581-4495-905c-ceed8d24f2ef",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T11:52:07.816Z_
+
+<details><summary>↩ Tool result · `toolu_011ntTjaNjLrn8NiQqfu2LEs`</summary>
+
+```text
+# Comprehensive Technical Extraction: "Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning"
+
+## 1. RELATED WORK
+
+### Positioning Against Prior Work
+
+**Scaling Test-Time Compute:**
+The authors differentiate from earlier approaches that employ separate verifiers for best-of-N or beam search. They note that recent methods train LLMs to simulate in-context search via fine-tuning on search traces, but acknowledge limitations: "gains from such approaches are limited since fine-tuning on search traces that are unfamiliar to the base model can lead to memorization."
+
+**Chain-of-Thought Reasoning:**
+The paper positions MRT against concurrent work using length penalties and dense rewards. While some approaches add length penalties to outcome rewards to discourage inefficiency on easy problems or encourage length on hard ones, the authors cite evidence that "length may not have a direct correlation with accuracy." They distinguish MRT's dense reward design: inspired by regret minimization and not requiring LLM judges, unlike concurrent work leveraging likelihood of successful traces or length penalties.
+
+**Meta RL Framework:**
+The authors connect their formulation to classical meta-RL literature while noting a key difference. They reference how "prior work in RL shows that it is necessary to solve a meta RL problem to effectively generalize to unseen initial contexts." MRT differs from standard meta-RL by operating at the episode level (assessing complete reasoning trajectories) rather than step-level supervision, positioning it between RL² (which rewards all episodes) and E-RL² (exploration-only).
+
+**Key Distinctions from Related Methods:**
+- **STaR and SCoRe:** MRT's progress bonus doesn't require each episode to contain a better solution
+- **RISE:** Uses self-correction without explicit progress tracking
+- **Length-penalty approaches:** MRT achieves efficiency gains while improving accuracy, contrasting with accuracy-efficiency tradeoffs in baseline methods
+
+---
+
+## 2. METHOD SECTION
+
+### Definition 4.1: Cumulative Regret
+
+The paper formalizes cumulative regret as:
+
+"Δₖᵘ(𝐱;π) = 𝔼_{𝐳∼π(·|𝐱)} [∑_{j=0}^{k-1} Jᵣ(𝐱;πⱼ*) - Jᵣ(𝐱;μ(·|𝐱,𝐳_{0:j}))]"
+
+Where:
+- **k** = number of episodes in the output stream
+- **πⱼ*** = optimal comparator policy with j-episode budget
+- **Jᵣ** = expected 0/1 outcome reward
+- **μ** = meta-prover policy (estimates best answer given episodes so far)
+- **𝐳₀:ⱼ** = episodes from 0 to j-1
+
+The red shaded area in Figure 1(b) visualizes this cumulative regret. The definition measures "the cumulative difference between the likelihoods of success of the LLM and an oracle comparator."
+
+### Definition 6.1: Progress
+
+"rₚᵣ𝓰ᵘ(𝐳ⱼ;𝐜) := Jᵣ(μ(·|𝐳ⱼ,𝐜)) - Jᵣ(μ(·|𝐜))"
+
+Progress captures "the change in the likelihood of finishing at a correct answer, before and after a given episode is generated." This measures how much each episode increases the probability of eventual success.
+
+**Implementation Detail:**
+For open-ended parameterizations, the meta-prover μ is instantiated by forcing early termination with a "time is up" prompt:
+
+"μ(·|𝐱,𝐳₀:ⱼ) := πᵦ(·|𝐱,𝐳₀:ⱼ,[time is up],&lt;/think>)"
+
+### Equation 3: MRT Training Objective
+
+"ℓ_{MRT}(π;π_{old}) := ℓ_{FT}(π) + α·𝔼_{𝐱∼𝒟_{train}} [∑_{j=0}^{k-1} 𝔼_{𝐜_{j-1}∼π_{old}(·|𝐱), 𝐳ⱼ∼π(·|𝐜_{j-1})} [rₚᵣ𝓰ᵘ(𝐳ⱼ;𝐜_{j-1})]]"
+
+The objective combines:
+1. **Standard fine-tuning loss** (ℓ_{FT}): outcome reward on final episode
+2. **Progress bonus** (red term): weighted sum of progress across all episodes
+
+**Key Design Choices:**
+- Uses previous checkpoint πₒₗ𝒹 rather than current π for context distribution (enabling trust-region improvements and off-policy implementation)
+- α is a hyperparameter controlling progress bonus weight
+- Progress is computed at episode level rather than token level
+
+### Problem Formulation (Equation 1)
+
+"max_π 𝔼_{𝐱∼𝒫_{test}, 𝐳∼π(·|𝐱)} [r(𝐱,𝐳) | 𝒟_{train}] s.t. ∀𝐱, 𝔼_{𝐳∼π(·|𝐱)} |𝐳| ≤ C₀"
+
+Seeks to maximize test performance within token budget C₀, which exceeds typical solution length to allow exploration.
+
+### Episode Segmentation
+
+The paper segments output streams into episodes in two parameterizations:
+
+**Open-Ended Parameterization:**
+Episodes are continuous segments enclosed between '&lt;think>' and '&lt;/think>' markers, uninterrupted by logical breaks (words like "Wait" or "Alternatively").
+
+**Backtracking Search Parameterization:**
+Episodes alternate between complete solution attempts and explicit error-detection-revision cycles, enabling structured exploration with identifiable rollback points.
+
+### Surrogate Objective Justification
+
+The authors note that minimizing regret directly requires access to oracle πⱼ*, which is unavailable. Instead, they leverage a bandit-learning analogy: "Each subsequent arm pull should lead to non-zero and ideally positive improvement in the performance of an 'exploitation' policy that aims to simply produce the best guess estimate of the optimal arm given the episodes so far."
+
+This justifies using progress as a surrogate: if μ makes consistent progress with more episodes, cumulative regret minimization should follow.
+
+---
+
+## 3. EXPERIMENTS
+
+### Benchmark Datasets
+
+**Primary Benchmarks:**
+- AIME 2024, AIME 2025 (competition mathematics)
+- AMC 2023 (American Mathematics Competition)
+- MinervaMATH (curriculum-based)
+- MATH500 (subset evaluation)
+- OmniMATH (used for DeepSeek-R1 analysis)
+
+**Secondary Benchmarks:**
+- NuminaMath (10,000 problems for open-ended STaR; 4,000 for RL Qwen-1.5B; 20,000 for backtracking)
+- AIME 1989-2023 (backtracking evaluation, hold-out set)
+
+### Base Models Tested
+
+| Model | Setting | Results |
+|-------|---------|---------|
+| DeepScaleR-1.5B-Preview | RL (open-ended) | 47.2% AIME2024 (vs 44.5% GRPO baseline) |
+| DeepSeek-R1-Distill-Qwen-1.5B | STaR + RL (open-ended) | 30.3% AIME2024 (vs 29.8% GRPO) |
+| DeepSeek-R1-Distill-Qwen-7B | STaR (open-ended) | Results in Appendix C.1 |
+| Llama-3.1-8B | STaR (backtracking) | ~30% pass@10 on AIME |
+| Llama-3.1-3B | RL (backtracking) | Compared against RISE and GRPO |
+
+### Key Numerical Results (Table 1)
+
+**DeepScaleR-1.5B-Preview Results:**
+- Base: 54.5% average (across 5 benchmarks)
+- GRPO outcome-reward RL: 55.0% (+0.5 absolute)
+- MRT (ours): 55.9% (+1.4 absolute)
+- **Relative improvement:** MRT gains 2-3× larger than GRPO
+
+**DeepSeek-R1-Distill-Qwen-1.5B:**
+- Base: 44.9% average
+- GRPO: 46.0% (+1.1)
+- MRT: 47.1% (+2.2)
+
+### Token Efficiency Results (Figure 7)
+
+**Maj@k Performance:**
+- MRT achieves 5× fewer tokens than base model on AIME 2024 for equivalent pass@k
+- MRT improves 1.2-1.6× over outcome-reward RL on same token budget
+- On MATH500: ~4× token reduction vs base model
+
+### Backtracking Search Results (Figure 8)
+
+**Llama-3.1-8B (STaR variant):**
+- Linearized evaluation: 30%+ token efficiency improvement over baseline
+- Outperforms RISE (self-correction without backtracking)
+
+**Llama-3.1-3B (RL variant):**
+- 1.6× linearized token efficiency improvement over outcome-reward GRPO
+
+### Cumulative Regret Analysis (Figure 9)
+
+**STaR variant:**
+- MRT shows lower normalized regret across all token budgets (4K-16K)
+- Maintains lower regret even when extrapolating to 2× training budget (32K tokens)
+
+**RL variant (DeepScaleR):**
+- MRT normalized regret decreases faster than GRPO
+- When outcome-reward training plateaus, MRT continues improving
+
+### Ablation Studies
+
+**Question 1 - Progress vs Outcome Reward:**
+MRT achieves lower cumulative regret (measured as area under curve) compared to outcome-reward RL when evaluated across varying token budgets C₀.
+
+**Question 2 - Length Evolution:**
+- Figure 10: During RL training, completion length oscillates around ~5,000 tokens
+- MRT slightly reduces length compared to GRPO (+0.5-1.4% accuracy improvement)
+- Length penalties alone worsen accuracy (Table 1: -2.5% to -6.4%)
+
+**Budget Curriculum Analysis (Figure 12):**
+Demonstrates that iteratively expanding token budget (8K→16K) implicitly maximizes progress. The 8K checkpoint maintains lower normalized regret even when extrapolated to 16K evaluation.
+
+---
+
+## 4. LIMITATIONS AND CONCLUSION
+
+### Limitations
+
+The paper does not explicitly detail a dedicated limitations section, but acknowledges several constraints:
+
+1. **Progress Estimation:** Requires querying μ multiple times (20 rollouts per prefix for STaR), increasing computational overhead. The paper states that computing progress "can be convenient implementation on top of RL or STaR infrastructure."
+
+2. **Episode Definition:** Segmentation strategy depends on problem structure. The method's effectiveness may vary with different parameterizations of what constitutes an "episode."
+
+3. **Meta-Prover Selection:** Choice of μ impacts progress computation. The paper uses base model with forced termination but acknowledges this could be "any other LLM."
+
+4. **Evaluation on Long Traces:** While linearized evaluation enables extrapolation beyond training budgets, budget forcing is an approximation that may not perfectly capture model behavior at extreme token counts.
+
+### Conclusions
+
+The paper synthesizes findings across three dimensions:
+
+**Theoretical Contribution:**
+"We formalize the problem of optimizing test-time compute as a meta RL problem, which provides a principled perspective on spending test-time compute." This perspective enables viewing the output stream as multiple in-context adaptation episodes.
+
+**Empirical Contribution:**
+"MRT leads to a 2-3x relative gain in performance and roughly a 1.5x gain in token efficiency for math reasoning compared to outcome-reward RL." State-of-the-art results achieved at 1.5B parameter scale.
+
+**Mechanistic Insight:**
+"While training with long completion length alone does not always encourage steady progress, some form of an iterative budget curriculum or the dense reward bonus in MRT can optimize progress." This explains why curriculum-based training schedules outperform fixed large budgets.
+
+**Practical Guidance:**
+The analysis suggests that training approaches implicitly maximizing progress (whether through dense rewards or curriculum scheduling) will generalize better to out-of-distribution test-time budgets than outcome-reward RL alone.
+
+---
+
+## Summary of Key Technical Distinctions
+
+| Aspect | MRT | Outcome-Reward RL |
+|--------|-----|-------------------|
+| Reward Signal | Outcome (0/1) + Progress bonus | Only outcome (0/1) |
+| Episode Awareness | Explicit; tracks improvement per episode | Implicit; final reward only |
+| Budget Agnosticism | Designed for varying test budgets | Optimized for training budget |
+| Efficiency-Accuracy Tradeoff | Improves both simultaneously | Typical tradeoff present |
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4183acdd-d417-4f2c-8feb-69c04a8e66ac",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "b514e5da-5277-4e18-897f-4d8173424100",
+  "toolUseResult": {
+    "bytes": 955408,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Comprehensive Technical Extraction: \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\"\n\n## 1. RELATED WORK\n\n### Positioning Against Prior Work\n\n**Scaling Test-Time Compute:**\nThe authors differentiate from earlier approaches that employ separate verifiers for best-of-N or beam search. They note that recent methods train LLMs to simulate in-context search via fine-tuning on search traces, but acknowledge limitations: \"gains from such approaches are limited since fine-tuning on search traces that are unfamiliar to the base model can lead to memorization.\"\n\n**Chain-of-Thought Reasoning:**\nThe paper positions MRT against concurrent work using length penalties and dense rewards. While some approaches add length penalties to outcome rewards to discourage inefficiency on easy problems or encourage length on hard ones, the authors cite evidence that \"length may not have a direct correlation with accuracy.\" They distinguish MRT's dense reward design: inspired by regret minimization and not requiring LLM judges, unlike concurrent work leveraging likelihood of successful traces or length penalties.\n\n**Meta RL Framework:**\nThe authors connect their formulation to classical meta-RL literature while noting a key difference. They reference how \"prior work in RL shows that it is necessary to solve a meta RL problem to effectively generalize to unseen initial contexts.\" MRT differs from standard meta-RL by operating at the episode level (assessing complete reasoning trajectories) rather than step-level supervision, positioning it between RL² (which rewards all episodes) and E-RL² (exploration-only).\n\n**Key Distinctions from Related Methods:**\n- **STaR and SCoRe:** MRT's progress bonus doesn't require each episode to contain a better solution\n- **RISE:** Uses self-correction without explicit progress tracking\n- **Length-penalty approaches:** MRT achieves efficiency gains while improving accuracy, contrasting with accuracy-efficiency tradeoffs in baseline methods\n\n---\n\n## 2. METHOD SECTION\n\n### Definition 4.1: Cumulative Regret\n\nThe paper formalizes cumulative regret as:\n\n\"Δₖᵘ(𝐱;π) = 𝔼_{𝐳∼π(·|𝐱)} [∑_{j=0}^{k-1} Jᵣ(𝐱;πⱼ*) - Jᵣ(𝐱;μ(·|𝐱,𝐳_{0:j}))]\"\n\nWhere:\n- **k** = number of episodes in the output stream\n- **πⱼ*** = optimal comparator policy with j-episode budget\n- **Jᵣ** = expected 0/1 outcome reward\n- **μ** = meta-prover policy (estimates best answer given episodes so far)\n- **𝐳₀:ⱼ** = episodes from 0 to j-1\n\nThe red shaded area in Figure 1(b) visualizes this cumulative regret. The definition measures \"the cumulative difference between the likelihoods of success of the LLM and an oracle comparator.\"\n\n### Definition 6.1: Progress\n\n\"rₚᵣ𝓰ᵘ(𝐳ⱼ;𝐜) := Jᵣ(μ(·|𝐳ⱼ,𝐜)) - Jᵣ(μ(·|𝐜))\"\n\nProgress captures \"the change in the likelihood of finishing at a correct answer, before and after a given episode is generated.\" This measures how much each episode increases the probability of eventual success.\n\n**Implementation Detail:**\nFor open-ended parameterizations, the meta-prover μ is instantiated by forcing early termination with a \"time is up\" prompt:\n\n\"μ(·|𝐱,𝐳₀:ⱼ) := πᵦ(·|𝐱,𝐳₀:ⱼ,[time is up],&lt;/think>)\"\n\n### Equation 3: MRT Training Objective\n\n\"ℓ_{MRT}(π;π_{old}) := ℓ_{FT}(π) + α·𝔼_{𝐱∼𝒟_{train}} [∑_{j=0}^{k-1} 𝔼_{𝐜_{j-1}∼π_{old}(·|𝐱), 𝐳ⱼ∼π(·|𝐜_{j-1})} [rₚᵣ𝓰ᵘ(𝐳ⱼ;𝐜_{j-1})]]\"\n\nThe objective combines:\n1. **Standard fine-tuning loss** (ℓ_{FT}): outcome reward on final episode\n2. **Progress bonus** (red term): weighted sum of progress across all episodes\n\n**Key Design Choices:**\n- Uses previous checkpoint πₒₗ𝒹 rather than current π for context distribution (enabling trust-region improvements and off-policy implementation)\n- α is a hyperparameter controlling progress bonus weight\n- Progress is computed at episode level rather than token level\n\n### Problem Formulation (Equation 1)\n\n\"max_π 𝔼_{𝐱∼𝒫_{test}, 𝐳∼π(·|𝐱)} [r(𝐱,𝐳) | 𝒟_{train}] s.t. ∀𝐱, 𝔼_{𝐳∼π(·|𝐱)} |𝐳| ≤ C₀\"\n\nSeeks to maximize test performance within token budget C₀, which exceeds typical solution length to allow exploration.\n\n### Episode Segmentation\n\nThe paper segments output streams into episodes in two parameterizations:\n\n**Open-Ended Parameterization:**\nEpisodes are continuous segments enclosed between '&lt;think>' and '&lt;/think>' markers, uninterrupted by logical breaks (words like \"Wait\" or \"Alternatively\").\n\n**Backtracking Search Parameterization:**\nEpisodes alternate between complete solution attempts and explicit error-detection-revision cycles, enabling structured exploration with identifiable rollback points.\n\n### Surrogate Objective Justification\n\nThe authors note that minimizing regret directly requires access to oracle πⱼ*, which is unavailable. Instead, they leverage a bandit-learning analogy: \"Each subsequent arm pull should lead to non-zero and ideally positive improvement in the performance of an 'exploitation' policy that aims to simply produce the best guess estimate of the optimal arm given the episodes so far.\"\n\nThis justifies using progress as a surrogate: if μ makes consistent progress with more episodes, cumulative regret minimization should follow.\n\n---\n\n## 3. EXPERIMENTS\n\n### Benchmark Datasets\n\n**Primary Benchmarks:**\n- AIME 2024, AIME 2025 (competition mathematics)\n- AMC 2023 (American Mathematics Competition)\n- MinervaMATH (curriculum-based)\n- MATH500 (subset evaluation)\n- OmniMATH (used for DeepSeek-R1 analysis)\n\n**Secondary Benchmarks:**\n- NuminaMath (10,000 problems for open-ended STaR; 4,000 for RL Qwen-1.5B; 20,000 for backtracking)\n- AIME 1989-2023 (backtracking evaluation, hold-out set)\n\n### Base Models Tested\n\n| Model | Setting | Results |\n|-------|---------|---------|\n| DeepScaleR-1.5B-Preview | RL (open-ended) | 47.2% AIME2024 (vs 44.5% GRPO baseline) |\n| DeepSeek-R1-Distill-Qwen-1.5B | STaR + RL (open-ended) | 30.3% AIME2024 (vs 29.8% GRPO) |\n| DeepSeek-R1-Distill-Qwen-7B | STaR (open-ended) | Results in Appendix C.1 |\n| Llama-3.1-8B | STaR (backtracking) | ~30% pass@10 on AIME |\n| Llama-3.1-3B | RL (backtracking) | Compared against RISE and GRPO |\n\n### Key Numerical Results (Table 1)\n\n**DeepScaleR-1.5B-Preview Results:**\n- Base: 54.5% average (across 5 benchmarks)\n- GRPO outcome-reward RL: 55.0% (+0.5 absolute)\n- MRT (ours): 55.9% (+1.4 absolute)\n- **Relative improvement:** MRT gains 2-3× larger than GRPO\n\n**DeepSeek-R1-Distill-Qwen-1.5B:**\n- Base: 44.9% average\n- GRPO: 46.0% (+1.1)\n- MRT: 47.1% (+2.2)\n\n### Token Efficiency Results (Figure 7)\n\n**Maj@k Performance:**\n- MRT achieves 5× fewer tokens than base model on AIME 2024 for equivalent pass@k\n- MRT improves 1.2-1.6× over outcome-reward RL on same token budget\n- On MATH500: ~4× token reduction vs base model\n\n### Backtracking Search Results (Figure 8)\n\n**Llama-3.1-8B (STaR variant):**\n- Linearized evaluation: 30%+ token efficiency improvement over baseline\n- Outperforms RISE (self-correction without backtracking)\n\n**Llama-3.1-3B (RL variant):**\n- 1.6× linearized token efficiency improvement over outcome-reward GRPO\n\n### Cumulative Regret Analysis (Figure 9)\n\n**STaR variant:**\n- MRT shows lower normalized regret across all token budgets (4K-16K)\n- Maintains lower regret even when extrapolating to 2× training budget (32K tokens)\n\n**RL variant (DeepScaleR):**\n- MRT normalized regret decreases faster than GRPO\n- When outcome-reward training plateaus, MRT continues improving\n\n### Ablation Studies\n\n**Question 1 - Progress vs Outcome Reward:**\nMRT achieves lower cumulative regret (measured as area under curve) compared to outcome-reward RL when evaluated across varying token budgets C₀.\n\n**Question 2 - Length Evolution:**\n- Figure 10: During RL training, completion length oscillates around ~5,000 tokens\n- MRT slightly reduces length compared to GRPO (+0.5-1.4% accuracy improvement)\n- Length penalties alone worsen accuracy (Table 1: -2.5% to -6.4%)\n\n**Budget Curriculum Analysis (Figure 12):**\nDemonstrates that iteratively expanding token budget (8K→16K) implicitly maximizes progress. The 8K checkpoint maintains lower normalized regret even when extrapolated to 16K evaluation.\n\n---\n\n## 4. LIMITATIONS AND CONCLUSION\n\n### Limitations\n\nThe paper does not explicitly detail a dedicated limitations section, but acknowledges several constraints:\n\n1. **Progress Estimation:** Requires querying μ multiple times (20 rollouts per prefix for STaR), increasing computational overhead. The paper states that computing progress \"can be convenient implementation on top of RL or STaR infrastructure.\"\n\n2. **Episode Definition:** Segmentation strategy depends on problem structure. The method's effectiveness may vary with different parameterizations of what constitutes an \"episode.\"\n\n3. **Meta-Prover Selection:** Choice of μ impacts progress computation. The paper uses base model with forced termination but acknowledges this could be \"any other LLM.\"\n\n4. **Evaluation on Long Traces:** While linearized evaluation enables extrapolation beyond training budgets, budget forcing is an approximation that may not perfectly capture model behavior at extreme token counts.\n\n### Conclusions\n\nThe paper synthesizes findings across three dimensions:\n\n**Theoretical Contribution:**\n\"We formalize the problem of optimizing test-time compute as a meta RL problem, which provides a principled perspective on spending test-time compute.\" This perspective enables viewing the output stream as multiple in-context adaptation episodes.\n\n**Empirical Contribution:**\n\"MRT leads to a 2-3x relative gain in performance and roughly a 1.5x gain in token efficiency for math reasoning compared to outcome-reward RL.\" State-of-the-art results achieved at 1.5B parameter scale.\n\n**Mechanistic Insight:**\n\"While training with long completion length alone does not always encourage steady progress, some form of an iterative budget curriculum or the dense reward bonus in MRT can optimize progress.\" This explains why curriculum-based training schedules outperform fixed large budgets.\n\n**Practical Guidance:**\nThe analysis suggests that training approaches implicitly maximizing progress (whether through dense rewards or curriculum scheduling) will generalize better to out-of-distribution test-time budgets than outcome-reward RL alone.\n\n---\n\n## Summary of Key Technical Distinctions\n\n| Aspect | MRT | Outcome-Reward RL |\n|--------|-----|-------------------|\n| Reward Signal | Outcome (0/1) + Progress bonus | Only outcome (0/1) |\n| Episode Awareness | Explicit; tracks improvement per episode | Implicit; final reward only |\n| Budget Agnosticism | Designed for varying test budgets | Optimized for training budget |\n| Efficiency-Accuracy Tradeoff | Improves both simultaneously | Typical tradeoff present |",
+    "durationMs": 36480,
+    "url": "https://arxiv.org/html/2503.07572"
+  },
+  "sourceToolAssistantUUID": "4183acdd-d417-4f2c-8feb-69c04a8e66ac",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "b514e5da-5277-4e18-897f-4d8173424100",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze meta-RL test-time compute optimization paper",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-28T11:52:11.722Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01R1uRo5EhurmgvDXMuyKrzZ`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=%22Meta+Reinforcement+Fine-Tuning%22",
+  "prompt": "Find the paper \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\" and extract any reviewer comments, scores, ratings, and author responses. List all reviews verbatim if possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b514e5da-5277-4e18-897f-4d8173424100",
+  "isSidechain": false,
+  "requestId": "req_011CbUvGQihDgErBDCLCEn1J",
+  "type": "assistant",
+  "uuid": "b704779d-868f-451d-9678-f02eea0ae568",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RjBr83fX9Q2itSuSfa5MUK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 186,
+      "cache_creation_input_tokens": 3643,
+      "cache_read_input_tokens": 16383,
+      "output_tokens": 393,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3643,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 186,
+          "output_tokens": 393,
+          "cache_read_input_tokens": 16383,
+          "cache_creation_input_tokens": 3643,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3643
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-28T11:52:14.067Z_
+
+<details><summary>↩ Tool result · `toolu_01R1uRo5EhurmgvDXMuyKrzZ`</summary>
+
+```text
+I cannot find the paper "Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning" in the content provided. The web page excerpt only shows OpenReview's navigation menu, footer, and general site information—it does not contain any specific paper, reviews, scores, ratings, or author responses.
+
+To locate this paper and its review materials, you would need to:
+
+1. Visit OpenReview.net directly
+2. Use their search function to find the paper title
+3. Access the paper's page to view associated reviews and responses
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b704779d-868f-451d-9678-f02eea0ae568",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "9233d076-0306-49ed-b3e4-d1db3d67b569",
+  "toolUseResult": {
+    "bytes": 62310,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot find the paper \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\" in the content provided. The web page excerpt only shows OpenReview's navigation menu, footer, and general site information—it does not contain any specific paper, reviews, scores, ratings, or author responses.\n\nTo locate this paper and its review materials, you would need to:\n\n1. Visit OpenReview.net directly\n2. Use their search function to find the paper title\n3. Access the paper's page to view associated reviews and responses",
+    "durationMs": 2338,
+    "url": "https://openreview.net/search?term=%22Meta+Reinforcement+Fine-Tuning%22"
+  },
+  "sourceToolAssistantUUID": "b704779d-868f-451d-9678-f02eea0ae568",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-28T11:52:17.822Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FZXirnMqrDZLEH3nufAw2g`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2503.07572",
+  "prompt": "Extract the following specific details I'm missing:\n\n1. The FULL Section 5 \"Analysis of DeepSeek-R1\" - what specific observations do they make about how R1 fails to make progress? What evidence do they present?\n\n2. How EXACTLY is the meta-prover μ implemented? What is the \"time is up\" forcing mechanism? How many rollouts?\n\n3. The decomposition in Section 4 - how do they go from regret minimization to the progress-based objective? What are the formal steps?\n\n4. Any discussion of difficulty estimation or per-instance adaptation - do they condition on problem difficulty at all?\n\n5. Training details: learning rates, number of GPUs, training time, GRPO/PPO specifics\n\n6. Figure 1 description - what does it show and how does it motivate the approach?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9233d076-0306-49ed-b3e4-d1db3d67b569",
+  "isSidechain": false,
+  "requestId": "req_011CbUvGQihDgErBDCLCEn1J",
+  "type": "assistant",
+  "uuid": "a6235189-8eec-4347-99be-baee6c6ff70e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RjBr83fX9Q2itSuSfa5MUK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 186,
+      "cache_creation_input_tokens": 3643,
+      "cache_read_input_tokens": 16383,
+      "output_tokens": 393,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3643,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 186,
+          "output_tokens": 393,
+          "cache_read_input_tokens": 16383,
+          "cache_creation_input_tokens": 3643,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3643
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-28T11:52:26.975Z_
+
+<details><summary>↩ Tool result · `toolu_01FZXirnMqrDZLEH3nufAw2g`</summary>
+
+```text
+# Key Details from the Paper
+
+## 1. Section 5 Analysis of DeepSeek-R1
+
+The paper demonstrates that R1 fails to maintain consistent progress with additional episodes:
+
+> "accuracy (blue line) does not increase with each episode, and sometimes degrades with each subsequent episode"
+
+For problems requiring many episodes (41-45), they show R1's performance plateaus or declines, despite majority voting over multiple independent attempts substantially outperforming the sequential chain. This indicates the model cannot effectively implement even simple strategies like ensemble voting through its sequential reasoning.
+
+## 2. Meta-Prover μ Implementation
+
+The meta-prover policy terminates thinking and forces answer generation:
+
+> "π_b(⋅|𝐱,𝐳_{0:j}, [time is up], &lt;/think>)"
+
+For STaR variant, they sample each prefix 20 times to estimate reward. The mechanism simply inserts a special token prompt telling the model time has expired, forcing it to produce its best guess answer given the context so far.
+
+## 3. Regret Minimization to Progress Objective
+
+The decomposition uses a bandit learning analogy. Episodes function as "arm pulls," and they argue regret minimizes when the meta-prover policy makes progress—that is, when:
+
+J_r(μ(⋅|𝐱,𝐳_{0:j})) increases with additional episodes
+
+They formalize this as the progress reward in Definition 6.1, measuring the change in success probability before/after each episode, avoiding requiring access to the oracle comparator π*.
+
+## 4. Difficulty Estimation & Adaptation
+
+The paper does not condition on explicit per-instance difficulty estimation. However, the budget-agnostic framework implicitly adapts: harder problems naturally utilize more episodes within the fixed budget.
+
+## 5. Training Details
+
+**Learning rates/hyperparameters:** Deferred to Appendix B.2 (not fully provided in excerpt)
+
+**Computational resources:** Not specified in the provided content
+
+**GRPO/RL specifics:** They use GRPO as the baseline RL algorithm but don't detail learning rates or convergence criteria in the main text sections provided
+
+## 6. Figure 1 Description
+
+Figure 1 contrasts two approaches visually:
+
+**(a) Standard outcome-reward RL:** Reinforces long traces ending in success without rewarding intermediate progress, producing unnecessarily long outputs that fail on out-of-distribution problems
+
+**(b) MRT approach:** Optimizes cumulative regret (shaded red area) by rewarding progress throughout the trace, enabling efficient scaling and steady improvement across problem difficulties
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6235189-8eec-4347-99be-baee6c6ff70e",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "b0f2ea90-ed1e-4713-be4d-c8960b94ffc4",
+  "toolUseResult": {
+    "bytes": 955408,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Details from the Paper\n\n## 1. Section 5 Analysis of DeepSeek-R1\n\nThe paper demonstrates that R1 fails to maintain consistent progress with additional episodes:\n\n> \"accuracy (blue line) does not increase with each episode, and sometimes degrades with each subsequent episode\"\n\nFor problems requiring many episodes (41-45), they show R1's performance plateaus or declines, despite majority voting over multiple independent attempts substantially outperforming the sequential chain. This indicates the model cannot effectively implement even simple strategies like ensemble voting through its sequential reasoning.\n\n## 2. Meta-Prover μ Implementation\n\nThe meta-prover policy terminates thinking and forces answer generation:\n\n> \"π_b(⋅|𝐱,𝐳_{0:j}, [time is up], &lt;/think>)\"\n\nFor STaR variant, they sample each prefix 20 times to estimate reward. The mechanism simply inserts a special token prompt telling the model time has expired, forcing it to produce its best guess answer given the context so far.\n\n## 3. Regret Minimization to Progress Objective\n\nThe decomposition uses a bandit learning analogy. Episodes function as \"arm pulls,\" and they argue regret minimizes when the meta-prover policy makes progress—that is, when:\n\nJ_r(μ(⋅|𝐱,𝐳_{0:j})) increases with additional episodes\n\nThey formalize this as the progress reward in Definition 6.1, measuring the change in success probability before/after each episode, avoiding requiring access to the oracle comparator π*.\n\n## 4. Difficulty Estimation & Adaptation\n\nThe paper does not condition on explicit per-instance difficulty estimation. However, the budget-agnostic framework implicitly adapts: harder problems naturally utilize more episodes within the fixed budget.\n\n## 5. Training Details\n\n**Learning rates/hyperparameters:** Deferred to Appendix B.2 (not fully provided in excerpt)\n\n**Computational resources:** Not specified in the provided content\n\n**GRPO/RL specifics:** They use GRPO as the baseline RL algorithm but don't detail learning rates or convergence criteria in the main text sections provided\n\n## 6. Figure 1 Description\n\nFigure 1 contrasts two approaches visually:\n\n**(a) Standard outcome-reward RL:** Reinforces long traces ending in success without rewarding intermediate progress, producing unnecessarily long outputs that fail on out-of-distribution problems\n\n**(b) MRT approach:** Optimizes cumulative regret (shaded red area) by rewarding progress throughout the trace, enabling efficient scaling and steady improvement across problem difficulties",
+    "durationMs": 9148,
+    "url": "https://arxiv.org/html/2503.07572"
+  },
+  "sourceToolAssistantUUID": "a6235189-8eec-4347-99be-baee6c6ff70e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-28T11:52:29.886Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also try to find the paper on OpenReview through a different search, and get more details about the theoretical framework.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0f2ea90-ed1e-4713-be4d-c8960b94ffc4",
+  "isSidechain": false,
+  "requestId": "req_011CbUvHpk6R6JpBJjH7du9D",
+  "type": "assistant",
+  "uuid": "7feedc4e-b582-4310-85f6-491e2504e6c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119EvPtYqRCdEQRCVVx55C7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1354,
+      "cache_read_input_tokens": 20026,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 20026,
+          "cache_creation_input_tokens": 1354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-28T11:52:35.657Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FViie3LKTr8ppJLgiNKNtk`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2503.07572",
+  "prompt": "I need the following specific technical details:\n\n1. Section 4 in full - \"Formalizing Test-Time Compute via Meta-RL\" - what exactly is the connection to meta-RL? How do they define episodes? What is the formal regret decomposition?\n\n2. Section 6 in full - the MRT algorithm details, including: How are the two instantiations (STaR and RL) different? What is the exact algorithm for computing progress?\n\n3. Section 7 - Experimental setup: What are the EXACT numbers in Table 1? What training infrastructure was used? How many GPUs?\n\n4. Any mention of \"online\" difficulty estimation, routing, or adaptive compute allocation per problem.\n\n5. The connection between progress and \"budget curriculum\" - why does training with increasing budgets help?\n\n6. Theorem or Proposition statements if any exist."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7feedc4e-b582-4310-85f6-491e2504e6c6",
+  "isSidechain": false,
+  "requestId": "req_011CbUvHpk6R6JpBJjH7du9D",
+  "type": "assistant",
+  "uuid": "afacaa22-839d-4f8a-bf7a-5dc265eee54c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119EvPtYqRCdEQRCVVx55C7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1354,
+      "cache_read_input_tokens": 20026,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 20026,
+          "cache_creation_input_tokens": 1354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-28T11:52:54.595Z_
+
+<details><summary>↩ Tool result · `toolu_01FViie3LKTr8ppJLgiNKNtk`</summary>
+
+```text
+# Technical Details from "Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning"
+
+## 1. Meta-RL Formulation (Section 4)
+
+**Connection to Meta-RL:**
+The paper frames test-time compute optimization as a meta-RL problem by segmenting the LLM's output stream into multiple "episodes." Each episode represents an adaptation attempt, analogous to a task in traditional meta-RL. The key insight is that an LLM should learn to implement exploration-exploitation algorithms within a single test query, making this fundamentally a "meta" learning problem.
+
+**Episode Definition:**
+Episodes are contiguous segments of output: 𝐳 = [𝐳₀, 𝐳₁, ..., 𝐳ₖ₋₁]. In practice, episodes correspond to thinking blocks enclosed in `&lt;think>` markers or complete solution attempts in backtracking settings.
+
+**Cumulative Regret (Definition 4.1):**
+The formalization measures cumulative regret as the sum of gaps between an oracle comparator πⱼ* (best possible policy with j-episode budget) and the meta-prover policy μ's performance after conditioning on prior episodes:
+
+"Δᵏᵘ(𝐱;π) = 𝔼[∑ⱼ₌₀ᵏ⁻¹ Jᵣ(πⱼ*) - Jᵣ(μ(·|𝐱,𝐳₀:ⱼ))]"
+
+This metric captures efficiency: low regret indicates steady progress toward solutions.
+
+---
+
+## 2. MRT Algorithm Details (Section 6)
+
+**Core Insight:**
+Rather than directly optimizing regret (oracle π* unavailable), the paper proposes maximizing "progress"—the change in solution probability after each episode.
+
+**Progress Definition (6.1):**
+"rₚᵣ ᵤ(𝐳ⱼ;𝐜) := Jᵣ(μ(·|𝐳ⱼ,𝐜)) - Jᵣ(μ(·|𝐜))"
+
+This measures the increase in likelihood of correctness from adding episode 𝐳ⱼ.
+
+**Training Objective (Equation 3):**
+"ℓₘᵣₜ(π;πₒₗ) = ℓFT(π) + α·𝔼[∑ⱼ Eᵣₚᵣ ᵤ(𝐳ⱼ;𝐜ⱼ₋₁)]"
+
+The second term (in red) is a dense reward bonus added to standard outcome-reward training.
+
+**Two Instantiations:**
+
+| Aspect | STaR Variant | RL Variant |
+|--------|--------------|-----------|
+| **Core Method** | Behavior cloning filtered traces | Policy gradient (GRPO/PPO) |
+| **Data Generation** | Single rollout per query | Multiple on-policy rollouts |
+| **Filtering** | Retain traces with max cumulative progress AND correct final answer | Implicit via reward weighting |
+| **Meta-Prover μ** | Model forced to terminate thinking and produce answer (Eq. 4) | Same LLM after `&lt;/think>` |
+
+---
+
+## 3. Experimental Setup & Results (Section 8)
+
+**Table 1 Exact Results (Pass@1 on DeepScaleR-1.5B):**
+
+| Benchmark | Base | GRPO | Length Penalty | MRT |
+|-----------|------|------|------------------|-----|
+| AIME 2024 | 42.8 | 44.5 (+1.7) | 40.3 (-2.5) | **47.2 (+4.4)** |
+| AIME 2025 | 36.7 | 39.3 (+2.6) | 30.3 (-6.4) | **39.7 (+3.0)** |
+| AMC 2023 | 83.0 | 81.5 (-1.5) | 77.3 (-5.7) | **83.1 (+0.1)** |
+| Average | 54.5 | 55.0 (+0.5) | 50.8 (-3.7) | **55.9 (+1.4)** |
+
+**Key Metric:** "2-3x relative gain in performance" vs. GRPO, and "~1.5x gain in token efficiency"
+
+**Training Details:**
+- DeepScaleR-1.5B: Fine-tuned on 919 AIME problems (post-existing RL)
+- DeepSeek-R1-Distill-Qwen-1.5B: 4,000 NuminaMath problems (STaR)
+- DeepSeek-R1-Distill-Qwen-7B: 10,000 NuminaMath pairs (STaR only)
+- Progress computation: 20 rollouts per prefix for estimation
+
+**GPU/Infrastructure:** Not explicitly stated in provided text.
+
+---
+
+## 4. Online Difficulty & Adaptive Compute
+
+**Not Present:** The paper contains no explicit mechanism for per-problem difficulty estimation or adaptive routing. However, the cumulative regret framework implicitly addresses this: "budget-agnostic" LLMs learn to spend tokens proportional to problem hardness via progress signals.
+
+---
+
+## 5. Budget Curriculum Connection (Section 8.5.2)
+
+**The Mechanism:**
+Training with increasing token budgets (8K→16K) works because it implicitly maximizes progress. The paper demonstrates this through Figure 12:
+
+- **8K Phase:** Performance increases while length *decreases*, indicating high progress-per-token
+- **16K Phase:** Both performance and length increase, but progress-per-token is lower
+- **Extrapolation:** The 8K checkpoint maintains lower normalized regret even when budget-forced to 16K
+
+**Insight:** "While training with long completion length alone does not always encourage steady progress... iterative budget curriculum... can optimize progress."
+
+This suggests curricula work not because of length itself, but because constrained budgets force the model to maximize information gain per token.
+
+---
+
+## 6. Formal Theorems/Propositions
+
+The paper contains **no formal theorems** with proofs. Instead, it provides:
+- **Definitions** (4.1: Cumulative Regret; 6.1: Progress)
+- **Conceptual framework** grounded in meta-RL literature
+- **Empirical validation** rather than theoretical guarantees
+
+The regret analysis in Appendix E is diagnostic (measuring post-hoc regret) rather than prescriptive.
+
+---
+
+## Summary
+
+MRT optimizes test-time compute by treating output as episodic meta-RL and maximizing progress (probability-of-success improvements) as a dense reward. Two variants (STaR/RL) filter or weight trajectories accordingly, achieving 2-3× relative accuracy gains over outcome-reward baselines with 1.5-1.7× token efficiency improvements.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "afacaa22-839d-4f8a-bf7a-5dc265eee54c",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "6d6c4f3b-dec2-48bc-af9a-14a601cd046b",
+  "toolUseResult": {
+    "bytes": 955408,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Technical Details from \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\"\n\n## 1. Meta-RL Formulation (Section 4)\n\n**Connection to Meta-RL:**\nThe paper frames test-time compute optimization as a meta-RL problem by segmenting the LLM's output stream into multiple \"episodes.\" Each episode represents an adaptation attempt, analogous to a task in traditional meta-RL. The key insight is that an LLM should learn to implement exploration-exploitation algorithms within a single test query, making this fundamentally a \"meta\" learning problem.\n\n**Episode Definition:**\nEpisodes are contiguous segments of output: 𝐳 = [𝐳₀, 𝐳₁, ..., 𝐳ₖ₋₁]. In practice, episodes correspond to thinking blocks enclosed in `&lt;think>` markers or complete solution attempts in backtracking settings.\n\n**Cumulative Regret (Definition 4.1):**\nThe formalization measures cumulative regret as the sum of gaps between an oracle comparator πⱼ* (best possible policy with j-episode budget) and the meta-prover policy μ's performance after conditioning on prior episodes:\n\n\"Δᵏᵘ(𝐱;π) = 𝔼[∑ⱼ₌₀ᵏ⁻¹ Jᵣ(πⱼ*) - Jᵣ(μ(·|𝐱,𝐳₀:ⱼ))]\"\n\nThis metric captures efficiency: low regret indicates steady progress toward solutions.\n\n---\n\n## 2. MRT Algorithm Details (Section 6)\n\n**Core Insight:**\nRather than directly optimizing regret (oracle π* unavailable), the paper proposes maximizing \"progress\"—the change in solution probability after each episode.\n\n**Progress Definition (6.1):**\n\"rₚᵣ ᵤ(𝐳ⱼ;𝐜) := Jᵣ(μ(·|𝐳ⱼ,𝐜)) - Jᵣ(μ(·|𝐜))\"\n\nThis measures the increase in likelihood of correctness from adding episode 𝐳ⱼ.\n\n**Training Objective (Equation 3):**\n\"ℓₘᵣₜ(π;πₒₗ) = ℓFT(π) + α·𝔼[∑ⱼ Eᵣₚᵣ ᵤ(𝐳ⱼ;𝐜ⱼ₋₁)]\"\n\nThe second term (in red) is a dense reward bonus added to standard outcome-reward training.\n\n**Two Instantiations:**\n\n| Aspect | STaR Variant | RL Variant |\n|--------|--------------|-----------|\n| **Core Method** | Behavior cloning filtered traces | Policy gradient (GRPO/PPO) |\n| **Data Generation** | Single rollout per query | Multiple on-policy rollouts |\n| **Filtering** | Retain traces with max cumulative progress AND correct final answer | Implicit via reward weighting |\n| **Meta-Prover μ** | Model forced to terminate thinking and produce answer (Eq. 4) | Same LLM after `&lt;/think>` |\n\n---\n\n## 3. Experimental Setup & Results (Section 8)\n\n**Table 1 Exact Results (Pass@1 on DeepScaleR-1.5B):**\n\n| Benchmark | Base | GRPO | Length Penalty | MRT |\n|-----------|------|------|------------------|-----|\n| AIME 2024 | 42.8 | 44.5 (+1.7) | 40.3 (-2.5) | **47.2 (+4.4)** |\n| AIME 2025 | 36.7 | 39.3 (+2.6) | 30.3 (-6.4) | **39.7 (+3.0)** |\n| AMC 2023 | 83.0 | 81.5 (-1.5) | 77.3 (-5.7) | **83.1 (+0.1)** |\n| Average | 54.5 | 55.0 (+0.5) | 50.8 (-3.7) | **55.9 (+1.4)** |\n\n**Key Metric:** \"2-3x relative gain in performance\" vs. GRPO, and \"~1.5x gain in token efficiency\"\n\n**Training Details:**\n- DeepScaleR-1.5B: Fine-tuned on 919 AIME problems (post-existing RL)\n- DeepSeek-R1-Distill-Qwen-1.5B: 4,000 NuminaMath problems (STaR)\n- DeepSeek-R1-Distill-Qwen-7B: 10,000 NuminaMath pairs (STaR only)\n- Progress computation: 20 rollouts per prefix for estimation\n\n**GPU/Infrastructure:** Not explicitly stated in provided text.\n\n---\n\n## 4. Online Difficulty & Adaptive Compute\n\n**Not Present:** The paper contains no explicit mechanism for per-problem difficulty estimation or adaptive routing. However, the cumulative regret framework implicitly addresses this: \"budget-agnostic\" LLMs learn to spend tokens proportional to problem hardness via progress signals.\n\n---\n\n## 5. Budget Curriculum Connection (Section 8.5.2)\n\n**The Mechanism:**\nTraining with increasing token budgets (8K→16K) works because it implicitly maximizes progress. The paper demonstrates this through Figure 12:\n\n- **8K Phase:** Performance increases while length *decreases*, indicating high progress-per-token\n- **16K Phase:** Both performance and length increase, but progress-per-token is lower\n- **Extrapolation:** The 8K checkpoint maintains lower normalized regret even when budget-forced to 16K\n\n**Insight:** \"While training with long completion length alone does not always encourage steady progress... iterative budget curriculum... can optimize progress.\"\n\nThis suggests curricula work not because of length itself, but because constrained budgets force the model to maximize information gain per token.\n\n---\n\n## 6. Formal Theorems/Propositions\n\nThe paper contains **no formal theorems** with proofs. Instead, it provides:\n- **Definitions** (4.1: Cumulative Regret; 6.1: Progress)\n- **Conceptual framework** grounded in meta-RL literature\n- **Empirical validation** rather than theoretical guarantees\n\nThe regret analysis in Appendix E is diagnostic (measuring post-hoc regret) rather than prescriptive.\n\n---\n\n## Summary\n\nMRT optimizes test-time compute by treating output as episodic meta-RL and maximizing progress (probability-of-success improvements) as a dense reward. Two variants (STaR/RL) filter or weight trajectories accordingly, achieving 2-3× relative accuracy gains over outcome-reward baselines with 1.5-1.7× token efficiency improvements.",
+    "durationMs": 18934,
+    "url": "https://arxiv.org/html/2503.07572"
+  },
+  "sourceToolAssistantUUID": "afacaa22-839d-4f8a-bf7a-5dc265eee54c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-28T11:52:57.604Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive information about this paper. Let me also check if there are any reviews on OpenReview for this paper, perhaps under a different venue submission.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d6c4f3b-dec2-48bc-af9a-14a601cd046b",
+  "isSidechain": false,
+  "requestId": "req_011CbUvKrhyZwyAYDPgbKAFY",
+  "type": "assistant",
+  "uuid": "2229a2f2-88c4-4b50-83bc-605aa23f6025",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3jf6Afyf5Th95izu9Kikj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2053,
+      "cache_read_input_tokens": 21380,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 21380,
+          "cache_creation_input_tokens": 2053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-28T11:52:58.563Z_
+
+Now let me check if this paper has been submitted to any venue with reviews available:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2229a2f2-88c4-4b50-83bc-605aa23f6025",
+  "isSidechain": false,
+  "requestId": "req_011CbUvKrhyZwyAYDPgbKAFY",
+  "type": "assistant",
+  "uuid": "86dee363-1dba-4500-9ece-0302885b41e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3jf6Afyf5Th95izu9Kikj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2053,
+      "cache_read_input_tokens": 21380,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 21380,
+          "cache_creation_input_tokens": 2053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-28T11:53:01.104Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QEAearfxUPVz4oPaQHKPib`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=MRT+meta+reinforcement+fine-tuning+test-time+compute+Qu",
+  "prompt": "Search for any paper matching \"Meta Reinforcement Fine-Tuning\" or \"MRT\" by Qu et al. related to test-time compute. Extract any reviews, scores, or discussion if found."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86dee363-1dba-4500-9ece-0302885b41e5",
+  "isSidechain": false,
+  "requestId": "req_011CbUvKrhyZwyAYDPgbKAFY",
+  "type": "assistant",
+  "uuid": "6b626d79-3bbe-4b2b-a5fc-fd7e1eb65f2d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3jf6Afyf5Th95izu9Kikj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2053,
+      "cache_read_input_tokens": 21380,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 21380,
+          "cache_creation_input_tokens": 2053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T11:53:03.093Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01L6npLgwubyYEhCwo43f148`</summary>
+
+```json
+{
+  "url": "https://scholar.google.com/scholar?q=%22Meta+Reinforcement+Fine-Tuning%22+test-time+compute",
+  "prompt": "Find the paper \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\" and check: 1) Has it been accepted at any venue (ICML, NeurIPS, ICLR, etc.)? 2) How many citations does it have? 3) Any related papers that cite or discuss it?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b626d79-3bbe-4b2b-a5fc-fd7e1eb65f2d",
+  "isSidechain": false,
+  "requestId": "req_011CbUvKrhyZwyAYDPgbKAFY",
+  "type": "assistant",
+  "uuid": "f157ffe6-6d7f-4a8b-97a4-3f18623a3b44",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3jf6Afyf5Th95izu9Kikj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2053,
+      "cache_read_input_tokens": 21380,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 21380,
+          "cache_creation_input_tokens": 2053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "f157ffe6-6d7f-4a8b-97a4-3f18623a3b44",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze meta-RL test-time compute optimization paper",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-28T11:53:03.534Z_
+
+<details><summary>↩ Tool result · `toolu_01L6npLgwubyYEhCwo43f148`</summary>
+
+```text
+The server returned HTTP 403 Forbidden.
+
+The response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f157ffe6-6d7f-4a8b-97a4-3f18623a3b44",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "afb012f8-45f9-483e-a4b9-c9bdc508a2e9",
+  "toolUseResult": {
+    "bytes": 0,
+    "code": 403,
+    "codeText": "Forbidden",
+    "result": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.",
+    "durationMs": 436,
+    "url": "https://scholar.google.com/scholar?q=%22Meta+Reinforcement+Fine-Tuning%22+test-time+compute"
+  },
+  "sourceToolAssistantUUID": "f157ffe6-6d7f-4a8b-97a4-3f18623a3b44",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-28T11:53:03.550Z_
+
+<details><summary>↩ Tool result · `toolu_01QEAearfxUPVz4oPaQHKPib`</summary>
+
+```text
+I cannot locate the paper you're referencing in the provided web page content. The excerpt shows only OpenReview.net's navigation menu, footer, and general site information—it does not contain search results, paper details, reviews, or scores for "Meta Reinforcement Fine-Tuning," "MRT," or any work by Qu et al.
+
+To find this paper and its peer review information, you would need to:
+1. Visit OpenReview.net directly
+2. Use their search function to query the paper title or authors
+3. Navigate to the paper's page to view available reviews and discussion
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b626d79-3bbe-4b2b-a5fc-fd7e1eb65f2d",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "a6614228-37b9-4f70-b098-e8aceaa8e1ad",
+  "toolUseResult": {
+    "bytes": 62368,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot locate the paper you're referencing in the provided web page content. The excerpt shows only OpenReview.net's navigation menu, footer, and general site information—it does not contain search results, paper details, reviews, or scores for \"Meta Reinforcement Fine-Tuning,\" \"MRT,\" or any work by Qu et al.\n\nTo find this paper and its peer review information, you would need to:\n1. Visit OpenReview.net directly\n2. Use their search function to query the paper title or authors\n3. Navigate to the paper's page to view available reviews and discussion",
+    "durationMs": 2443,
+    "url": "https://openreview.net/search?term=MRT+meta+reinforcement+fine-tuning+test-time+compute+Qu"
+  },
+  "sourceToolAssistantUUID": "6b626d79-3bbe-4b2b-a5fc-fd7e1eb65f2d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40 · 2026-05-28T11:53:03.555Z_
+
+```json
+{
+  "parentUuid": "a6614228-37b9-4f70-b098-e8aceaa8e1ad",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2ec9d737-b4b1-48bd-a1e7-d327ccefd718",
+  "timestamp": "2026-05-28T11:53:03.555Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-28T11:53:06.616Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me try to search for the paper on semantic scholar or another academic search engine to see if it's been accepted anywhere.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ec9d737-b4b1-48bd-a1e7-d327ccefd718",
+  "isSidechain": false,
+  "requestId": "req_011CbUvLWzayDXeueXu2Jb5m",
+  "type": "assistant",
+  "uuid": "beb3c86f-07d4-4a19-a79c-24447b7e15f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MZQ2QQGAKhrsMWDXeey93K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 85,
+      "cache_creation_input_tokens": 630,
+      "cache_read_input_tokens": 23433,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 85,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 23433,
+          "cache_creation_input_tokens": 630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-28T11:53:08.069Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WdGhswYbUu8A8oTCr1Zw4j`</summary>
+
+```json
+{
+  "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Meta+Reinforcement+Fine-Tuning+test-time+compute&limit=5",
+  "prompt": "Find the paper \"Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning\" and extract: venue, citation count, and any other metadata available."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "beb3c86f-07d4-4a19-a79c-24447b7e15f3",
+  "isSidechain": false,
+  "requestId": "req_011CbUvLWzayDXeueXu2Jb5m",
+  "type": "assistant",
+  "uuid": "620e51e0-0a49-4ca3-b76d-1b15596f4b4e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MZQ2QQGAKhrsMWDXeey93K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 85,
+      "cache_creation_input_tokens": 630,
+      "cache_read_input_tokens": 23433,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 85,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 23433,
+          "cache_creation_input_tokens": 630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-28T11:53:08.410Z_
+
+<details><summary>↩ Tool result · `toolu_01WdGhswYbUu8A8oTCr1Zw4j`</summary>
+
+```text
+The server returned HTTP 429 Too Many Requests.
+
+The response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "620e51e0-0a49-4ca3-b76d-1b15596f4b4e",
+  "isSidechain": false,
+  "promptId": "c1ec4dc0-8416-4a40-819f-0229cfa6049b",
+  "type": "user",
+  "uuid": "d73d2096-fcf0-4c59-a05d-7aa8fb6087e2",
+  "toolUseResult": {
+    "bytes": 0,
+    "code": 429,
+    "codeText": "Too Many Requests",
+    "result": "The server returned HTTP 429 Too Many Requests.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.",
+    "durationMs": 337,
+    "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=Meta+Reinforcement+Fine-Tuning+test-time+compute&limit=5"
+  },
+  "sourceToolAssistantUUID": "620e51e0-0a49-4ca3-b76d-1b15596f4b4e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-28T11:53:28.894Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have enough information to do a thorough analysis now. Let me synthesize everything I've gathered about this paper and produce the JSON analysis.
+
+Let me think carefully about each dimension:
+
+**Problem Identification**: The authors identified that current RL-trained reasoning models (like DeepSeek-R1) don't make steady progress with additional reasoning tokens. They showed empirically that later episodes can actually *hurt* performance. This is a gap because standard outcome-reward RL only rewards the final answer, giving no signal about intermediate progress.
+
+**Key Insight**: The reframing of test-time compute optimization as meta-RL is the core insight. The model's output stream is viewed as multiple "episodes" of a meta-learning process, where each episode should contribute to exploration or exploitation. 
+
+Cumulative regret becomes the efficiency metric, and they use a progress reward—measuring the change in success probability across episodes—as a practical proxy for minimizing that regret.
+
+**Innovation Type**: This is a "new_formulation" - they didn't invent new RL algorithms, but reframed the problem through a meta-RL lens which led to a natural dense reward signal (progress).
+
+**Method Summary**: They formalize test-time compute as meta-RL, segment output into episodes, define cumulative regret across episodes, then derive progress as a dense reward. They instantiate this in two settings: STaR (filtering traces by cumulative progress) and RL (GRPO with progress bonus).
+
+**What Makes It Good**: The theoretical framing is clean—the meta-RL perspective naturally yields a practical algorithm—and it explains why budget curricula work through the progress lens. Notably, they improve both accuracy and efficiency simultaneously, which is rare, and the empirical results are strong at small model scales.
+
+**Relevance to our seed direction**: This directly addresses efficient test-time compute allocation, though from the training side rather than our inference-time perspective. Their progress metric could inform our difficulty estimation (low early progress signals hard problems), their forced-termination approach gives us a practical way to estimate solution probability at any prefix, and their observation that R1 lacks steady progress motivates our direction.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d73d2096-fcf0-4c59-a05d-7aa8fb6087e2",
+  "isSidechain": false,
+  "requestId": "req_011CbUvLskkbrEvKutQX8Udh",
+  "type": "assistant",
+  "uuid": "746f26e2-c71f-4572-becc-ca11854a5548",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EtFXHEoArfGnmNwsdefqvA",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 338,
+      "cache_read_input_tokens": 24063,
+      "output_tokens": 2468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 338,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2468,
+          "cache_read_input_tokens": 24063,
+          "cache_creation_input_tokens": 338,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 338
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-28T11:54:20.174Z_
+
+Now I have comprehensive information about the paper. Let me synthesize my analysis.
+
+```json
+{
+  "title": "Optimizing Test-Time Compute via Meta Reinforcement Fine-Tuning",
+  "venue": "arXiv 2025 (preprint, March 2025; no confirmed venue acceptance found)",
+  "problem_identification": "The authors identified that models trained with standard outcome-reward RL (like DeepSeek-R1) fail to make steady progress across reasoning episodes — later episodes sometimes *degrade* performance, and simple majority voting over independent shorter traces outperforms a single long sequential chain. They found this gap by empirically analyzing R1's per-episode accuracy trajectory on OmniMATH, revealing that outcome-reward RL produces long traces without guaranteeing each additional token is useful. This exposed a fundamental misalignment: outcome rewards incentivize eventual success but not efficient intermediate progress.",
+  "key_insight": "Test-time compute optimization is structurally a meta-RL problem — the model's output stream consists of sequential 'episodes' (reasoning attempts), and an efficient model must implement exploration-exploitation within a single query. This reframing yields a natural dense reward: 'progress,' defined as the change in success probability before and after each episode, which serves as a tractable surrogate for cumulative regret minimization without requiring access to an oracle comparator.",
+  "innovation_type": "new_formulation",
+  "method_summary": "MRT segments a model's output into episodes (bounded by &lt;think> markers or solution attempts) and defines cumulative regret as the summed gap between an oracle and a 'meta-prover' μ that estimates the best answer given episodes so far. Since the oracle is unavailable, they use 'progress' — the change in μ's success probability after each episode — as a surrogate dense reward. μ is implemented by forcing early termination via a 'time is up' prompt and sampling 20 rollouts to estimate success probability. The MRT objective adds a progress bonus (weighted by α) to standard outcome-reward training, instantiated in two variants: STaR (filter traces by cumulative progress + correctness) and RL (GRPO/PPO with progress as additional reward). Training uses NuminaMath problems at 1.5B-8B scale, achieving 2-3× relative performance gains over outcome-reward GRPO and ~1.5× token efficiency improvements on AIME/AMC/MATH benchmarks.",
+  "what_makes_it_good": "Three things make this paper compelling: (1) The meta-RL reframing is genuinely clarifying — it transforms a vague notion ('use compute efficiently') into a precise optimization target (cumulative regret), which then decomposes cleanly into a practical algorithm. (2) It achieves the rare feat of improving both accuracy AND efficiency simultaneously, whereas length-penalty baselines sacrifice accuracy (-2.5% to -6.4%) for efficiency. (3) The framework has explanatory power beyond its own method — it explains *why* budget curricula (8K→16K training) work (they implicitly maximize progress), unifying several prior observations under one lens. This kind of 'theory that explains existing practice' is highly valued by reviewers.",
+  "limitations_acknowledged": "The paper acknowledges that progress estimation requires 20 rollouts per prefix (substantial computational overhead), the episode segmentation strategy is domain-dependent, and the meta-prover μ choice affects results. No formal theoretical guarantees are provided — the regret-to-progress connection is justified by analogy to bandit learning rather than proven. Evaluation is limited to math reasoning with no code or science benchmarks.",
+  "open_questions": [
+    "Can progress be estimated cheaply without 20 rollouts per prefix? A learned progress predictor (analogous to a value function) could amortize this cost and enable online difficulty estimation — directly connecting to our proposed per-instance verification depth selection.",
+    "How does MRT interact with external verification (ORM/PRM/GenRM)? The paper treats verification as implicit (meta-prover μ is the model itself), but combining MRT-trained models with explicit verifiers could yield compounding gains — or the progress reward might make external verification less necessary.",
+    "Does the progress reward scale to harder problems where even 20 rollouts produce near-zero success probability? The meta-prover's success estimate may become degenerate on problems beyond the model's capability frontier, where progress is effectively unmeasurable."
+  ],
+  "building_blocks": [
+    "Meta-prover μ via forced early termination ('time is up' + &lt;/think>) — a practical technique for estimating solution probability at any reasoning prefix",
+    "Progress reward: r_prog(z_j; c) = J_r(μ(·|z_j, c)) - J_r(μ(·|c)) as a dense reward signal",
+    "Budget-forced evaluation (linearized evaluation) — evaluating at token budgets different from training by forcing early termination",
+    "GRPO as base RL algorithm for reasoning model fine-tuning",
+    "Episode segmentation of long reasoning traces via think markers or backtracking structure",
+    "Cumulative regret as a diagnostic metric for test-time compute efficiency",
+    "NuminaMath as a large-scale math training corpus (4K-20K problems)"
+  ],
+  "reviewer_feedback_summary": null,
+  "relevance_to_seed": "This paper is highly relevant because it solves the *training-side* complement of our *inference-side* problem: MRT trains models to allocate their own compute efficiently via progress rewards, while our work would allocate external verification compute per-instance. Three direct connections: (1) Their meta-prover μ (forced termination + rollouts) is essentially a difficulty estimator — problems where μ shows low success probability after early episodes are 'hard,' which is precisely the signal we need for selecting verification depth d. (2) Their finding that progress is measurable from early episodes validates our core assumption that difficulty is predictable from early reasoning tokens. (3) MRT-trained models would be stronger base models for our framework, since they already produce efficient reasoning traces — the question becomes whether per-instance verification allocation on top of MRT yields additive or redundant gains. The baseline fear from our direction (simple heuristics capturing most benefit) may be addressable by showing that MRT's implicit adaptation is insufficient for verification depth selection, which requires explicit per-instance routing."
+}
+```
+
+## Key Takeaways for Our Research Direction
+
+**What we can learn from the *craft* of this paper:**
+
+1. **The power of reframing**: The paper's core contribution isn't a complex new algorithm — it's seeing the problem through a meta-RL lens. This reframing made the solution (progress reward) almost *obvious*. For our work, we should look for similarly clarifying formalizations of the joint (K, d) optimization rather than jumping straight to a complex routing algorithm.
+
+2. **Explanatory power as a differentiator**: MRT doesn't just propose a method — it *explains why existing heuristics work* (budget curricula ≈ implicit progress maximization). For our paper, we should ensure our framework explains why existing fixed-depth strategies work when they do (e.g., PRM is optimal for medium-difficulty problems because...), not just beat them empirically.
+
+3. **The "improves both axes" move**: Length penalties trade accuracy for efficiency. MRT improves both. This is a powerful narrative. Our paper should similarly aim to show that adaptive verification depth improves both accuracy AND reduces average verification cost (not just one or the other).
+
+4. **Actionable connection**: Their meta-prover μ's success probability after early episodes is *exactly* the difficulty signal we need for per-instance verification depth selection. We could literally use their forced-termination technique to estimate difficulty, then route to none/ORM/PRM/GenRM based on that estimate. This is a concrete, citable building block.
+
+5. **The gap they left**: MRT has no explicit per-instance routing — adaptation is implicit through the model's learned behavior. They don't use external verifiers at all. This is precisely the gap our work would fill: explicit, interpretable per-instance allocation of *external* verification compute based on difficulty signals that MRT's own framework validates as measurable.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "746f26e2-c71f-4572-becc-ca11854a5548",
+  "isSidechain": false,
+  "requestId": "req_011CbUvLskkbrEvKutQX8Udh",
+  "type": "assistant",
+  "uuid": "8c26f661-385e-4656-b6fb-98411f34f6bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EtFXHEoArfGnmNwsdefqvA",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 338,
+      "cache_read_input_tokens": 24063,
+      "output_tokens": 2468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 338,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2468,
+          "cache_read_input_tokens": 24063,
+          "cache_creation_input_tokens": 338,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 338
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "8c26f661-385e-4656-b6fb-98411f34f6bf",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze meta-RL test-time compute optimization paper",
+  "sessionId": "b59fc1fe-4716-4e5c-a8c1-4250a6ea3d04"
+}
+```
+
+---

@@ -1,0 +1,816 @@
+# Research conversation: Read the Probabilistic Tokenization paper HTML to verify specific numbers. Fetch https://arxiv.org/html/2407.03678 and e
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-abfd77b2fb8a1c545.jsonl`
+- **Structured JSON:** [`bdc3acea432aaa1a5b69.json`](../../sessions/bd/bdc3acea432aaa1a5b69.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+13 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T15:05:09.256Z_
+
+Read the Probabilistic Tokenization paper HTML to verify specific numbers. Fetch https://arxiv.org/html/2407.03678 and extract from Table 2: the EXACT cross-model average improvement percentages for AQuA and PIQA benchmarks (majority voting column). Also verify what the paper itself claims as the overall average improvement across all benchmarks. I need to know if the paper itself states "+17.11% average" or some other number.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "328b6391-187c-48c8-90b0-f5a1afb95f08",
+  "agentId": "abfd77b2fb8a1c545",
+  "type": "user",
+  "uuid": "22345e67-1b27-4005-a06a-f1013c9a94a6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T15:05:09.260Z_
+
+```json
+{
+  "parentUuid": "22345e67-1b27-4005-a06a-f1013c9a94a6",
+  "isSidechain": true,
+  "agentId": "abfd77b2fb8a1c545",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "bfc4fa0d-fd23-424a-85f9-c5cf0dc6de10",
+  "timestamp": "2026-05-19T15:05:09.260Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-19T15:05:09.260Z_
+
+```json
+{
+  "parentUuid": "bfc4fa0d-fd23-424a-85f9-c5cf0dc6de10",
+  "isSidechain": true,
+  "agentId": "abfd77b2fb8a1c545",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "1c598ae9-c024-49b0-b5af-901337a56a22",
+  "timestamp": "2026-05-19T15:05:09.260Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-19T15:05:12.737Z_
+
+
+
+I'll fetch the paper's HTML to extract the specific numbers from Table 2.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c598ae9-c024-49b0-b5af-901337a56a22",
+  "isSidechain": true,
+  "agentId": "abfd77b2fb8a1c545",
+  "requestId": "req_011CbC8htRc2M59sxsu7UV3i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3a58ddb7-ee69-4395-a7fc-934208366e16",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZEXBrfbJgKcyqmmqnjGKo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9205,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9205,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T15:05:12.758Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AbqYmEgN6qgVpdEjHYYXjf`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a58ddb7-ee69-4395-a7fc-934208366e16",
+  "isSidechain": true,
+  "agentId": "abfd77b2fb8a1c545",
+  "requestId": "req_011CbC8htRc2M59sxsu7UV3i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "59db14a9-1c6a-4bfb-86ee-850438a8b0d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZEXBrfbJgKcyqmmqnjGKo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9205,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9205,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T15:05:12.761Z_
+
+<details><summary>↩ Tool result · `toolu_01AbqYmEgN6qgVpdEjHYYXjf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59db14a9-1c6a-4bfb-86ee-850438a8b0d9",
+  "isSidechain": true,
+  "promptId": "328b6391-187c-48c8-90b0-f5a1afb95f08",
+  "agentId": "abfd77b2fb8a1c545",
+  "type": "user",
+  "uuid": "d00c9fb9-56de-4560-a1a4-7069a559dc94",
+  "sourceToolAssistantUUID": "59db14a9-1c6a-4bfb-86ee-850438a8b0d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-19T15:05:15.365Z_
+
+
+
+Now let me fetch the paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d00c9fb9-56de-4560-a1a4-7069a559dc94",
+  "isSidechain": true,
+  "agentId": "abfd77b2fb8a1c545",
+  "requestId": "req_011CbC8i9vWi8iFaDRZuFPPP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2e150b91-0619-4681-8cd4-1b46db8848db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W61hVYJXZ6YQFf6xjaPJRy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 617,
+      "cache_read_input_tokens": 9205,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 617,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T15:05:20.132Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XV2BGqSds6TqZqNay1D1vU`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2407.03678",
+  "prompt": "I need EXACT numbers from Table 2 in this paper about Probabilistic Tokenization. \n\n1. Find Table 2 which shows benchmark results. Extract the EXACT cross-model average improvement percentages for the AQuA benchmark and the PIQA benchmark specifically in the \"majority voting\" column (or the column that aggregates multiple tokenizations). Give me the exact numbers with decimal places as printed in the table.\n\n2. Also look for any claim in the paper about the OVERALL average improvement across ALL benchmarks. Does the paper state \"+17.11% average\" or some other number? Search for any mention of an overall average improvement percentage. Quote the exact text.\n\n3. List ALL benchmarks in Table 2 and their corresponding cross-model average improvement percentages (majority voting column) so I can verify every number.\n\nBe extremely precise - I need the exact numbers as they appear in the paper, not rounded or approximated."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e150b91-0619-4681-8cd4-1b46db8848db",
+  "isSidechain": true,
+  "agentId": "abfd77b2fb8a1c545",
+  "requestId": "req_011CbC8i9vWi8iFaDRZuFPPP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "384d6ed5-3155-4e6d-99c3-d12302995fc0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W61hVYJXZ6YQFf6xjaPJRy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 617,
+      "cache_read_input_tokens": 9205,
+      "output_tokens": 292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 617
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 292,
+          "cache_read_input_tokens": 9205,
+          "cache_creation_input_tokens": 617,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 617,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T15:05:23.493Z_
+
+<details><summary>↩ Tool result · `toolu_01XV2BGqSds6TqZqNay1D1vU`</summary>
+
+```text
+# Exact Numbers from Table 2
+
+## 1. AQuA and PIQA Majority Voting Improvements
+
+From Table 2's "Probabilistic Majority" column:
+- **AQuA**: +17.17% average
+- **PIQA**: +18.57% average
+
+## 2. Overall Average Improvement Claim
+
+The paper states: "Average ΔΔ\\Deltaroman\_Δ +17.11%" in the final row of Table 2, referring to the Probabilistic Tokenization majority voting results across all benchmarks.
+
+## 3. All Benchmarks with Majority Voting Improvements
+
+| Benchmark | Improvement |
+|-----------|------------|
+| MATH | +20.10% |
+| AQuA | +17.17% |
+| GSM8k | +16.88% |
+| PIQA | +18.57% |
+| **Overall Average** | **+17.11%** |
+
+These represent the cross-model average improvements in the "Probabilistic Majority" column of Table 2.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "384d6ed5-3155-4e6d-99c3-d12302995fc0",
+  "isSidechain": true,
+  "promptId": "328b6391-187c-48c8-90b0-f5a1afb95f08",
+  "agentId": "abfd77b2fb8a1c545",
+  "type": "user",
+  "uuid": "5dc1b0f0-c620-40ac-ab54-d5f9547453eb",
+  "sourceToolAssistantUUID": "384d6ed5-3155-4e6d-99c3-d12302995fc0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-19T15:05:26.508Z_
+
+Let me do a second fetch to double-check these numbers and look more carefully at the full table structure, since I want to make sure nothing was missed or hallucinated by the extraction model.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5dc1b0f0-c620-40ac-ab54-d5f9547453eb",
+  "isSidechain": true,
+  "agentId": "abfd77b2fb8a1c545",
+  "requestId": "req_011CbC8iwEoWftsjxvfCfG8V",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7f2ab79a-8ba9-444c-9176-24d4ffaee5a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGGA2gzBZYR7EKnMqW7RGZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 553,
+      "cache_read_input_tokens": 9822,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 553,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T15:05:32.408Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PvUXbF8ZFtQthk8aQDPKqt`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2407.03678",
+  "prompt": "I need to very carefully verify numbers from Table 2. Please do the following:\n\n1. List EVERY row and EVERY column in Table 2, including all individual model results (not just averages). I need the full table reproduced as accurately as possible.\n\n2. Specifically, for the \"Average\" or \"Avg\" row at the bottom of Table 2, list every single number across all columns. Is the overall average improvement exactly +17.11%, or is it some different number like +17.18%, +17.68%, etc.?\n\n3. Are there exactly 4 benchmarks (MATH, AQuA, GSM8k, PIQA) or are there more? List every benchmark name exactly.\n\n4. What are the exact column headers in Table 2? Is the column called \"Probabilistic Majority\" or \"Majority Voting\" or something else?\n\n5. Does the paper mention the +17.11% number anywhere in the body text (outside the table)? If so, quote the exact sentence.\n\nPlease be extremely careful and precise."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f2ab79a-8ba9-444c-9176-24d4ffaee5a8",
+  "isSidechain": true,
+  "agentId": "abfd77b2fb8a1c545",
+  "requestId": "req_011CbC8iwEoWftsjxvfCfG8V",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "835f09c0-8cf5-4702-ad7d-8ae8510006d3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGGA2gzBZYR7EKnMqW7RGZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 553,
+      "cache_read_input_tokens": 9822,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 553
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 9822,
+          "cache_creation_input_tokens": 553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 553,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T15:05:46.392Z_
+
+<details><summary>↩ Tool result · `toolu_01PvUXbF8ZFtQthk8aQDPKqt`</summary>
+
+```text
+# Table 2 Verification from "Improving Self Consistency in LLMs through Probabilistic Tokenization"
+
+## 1. Complete Table 2 Contents
+
+**Benchmarks (4 total):** MATH, AQuA, GSM8k, PIQA
+
+**Column Headers:**
+- Task
+- Model
+- Baseline
+- CoT + SC Majority
+- CoT + SC Oracle
+- Probabilistic Majority
+- Probabilistic Oracle
+
+**All Rows:**
+
+| Task | Model | Baseline | CoT+SC Maj | CoT+SC Oracle | Prob Maj | Prob Oracle |
+|------|-------|----------|-----------|---------------|----------|------------|
+| MATH | OLMo-7B | 3.90 | +45.64% | +54.08% | +15.34% | +90.77% |
+| MATH | Gemma-2B | 5.97 | +22.45% | +85.37% | +19.03% | +94.97% |
+| MATH | Gemma-7B | 10.91 | +18.97% | +42.45% | +20.87% | +120.99% |
+| MATH | LLaMA3-8B | 12.99 | +28.87% | +82.92% | +17.45% | +81.60% |
+| MATH | LLaMA3-70B | 18.18 | +16.66% | +81.18% | +17.91% | +83.20% |
+| MATH | Mistral-7B | 9.35 | +45.99% | +78.86% | +20.10% | +67.27% |
+| MATH | Mamba-2.8B | 3.12 | -23.72% | +83.01% | +18.29% | +216.03% |
+| AQuA | OLMo-7B | 23.08 | +23.35% | +53.27% | +18.45% | +38.60% |
+| AQuA | Gemma-2B | 15.38 | +15.99% | +96.52% | +18.63% | +68.79% |
+| AQuA | Gemma-7B | 23.08 | +19.67% | +37.63% | +16.62% | +31.63% |
+| AQuA | LLaMA3-8B | 11.54 | +17.68% | +258.46% | +16.84% | +242.29% |
+| AQuA | LLaMA3-70B | 30.77 | +11.25% | +13.85% | +12.22% | +15.15% |
+| AQuA | Mistral-7B | 23.54 | +19.75% | +67.14% | +17.80% | +51.44% |
+| AQuA | Mamba-2.8B | 15.38 | -7.67% | +95.85% | +10.21% | +91.81% |
+| GSM8k | OLMo-7B | 25.71 | +12.29% | +99.04% | +13.22% | +96.42% |
+| GSM8k | Gemma-2B | 5.91 | +3.38% | +64.91% | +20.81% | +155.84% |
+| GSM8k | Gemma-7B | 25.37 | +20.10% | +89.27% | +12.61% | +79.90% |
+| GSM8k | LLaMA3-8B | 37.71 | +20.53% | +20.03% | +13.66% | +21.03% |
+| GSM8k | LLaMA3-70B | 55.55 | +19.15% | +35.54% | +21.11% | +32.33% |
+| GSM8k | Mistral-7B | 29.66 | +20.18% | +87.57% | +20.40% | +86.01% |
+| GSM8k | Mamba-2.8B | 3.12 | +5.45% | +113.46% | +28.85% | +68.59% |
+| PIQA | OLMo-7B | 75.89 | +17.35% | +31.77% | +20.04% | +31.77% |
+| PIQA | Gemma-2B | 77.17 | +16.77% | +22.46% | +20.41% | +22.46% |
+| PIQA | Gemma-7B | 79.89 | +18.02% | +25.17% | +19.40% | +25.17% |
+| PIQA | LLaMA3-8B | 80.43 | +16.26% | +17.49% | +17.02% | +17.49% |
+| PIQA | LLaMA3-70B | 80.98 | +12.61% | +13.67% | +13.67% | +13.67% |
+| PIQA | Mistral-7B | 79.35 | +20.82% | +26.02% | +16.52% | +26.02% |
+| PIQA | Mamba-2.8B | 73.91 | +1.10% | +27.86% | +1.62% | +27.86% |
+| **Average Δ** | — | — | **+16.39%** | **+64.46%** | **+17.11%** | **+71.40%** |
+
+## 2. Average Row Numbers
+
+The stated averages are: **+16.39%**, **+64.46%**, **+17.11%**, **+71.40%**
+
+## 3. Benchmarks
+
+Exactly 4: MATH, AQuA, GSM8k, PIQA
+
+## 4. Column Headers
+
+"Probabilistic Majority" and "Probabilistic Oracle" (not simplified variants)
+
+## 5. Body Text Reference to +17.11%
+
+The paper states: "we find that average performance gain obtained from 'Probabilistic Tokenization' is higher than the average performance gain obtained by 'CoT + SC'." The specific +17.11% figure appears only in Table 2 caption.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "835f09c0-8cf5-4702-ad7d-8ae8510006d3",
+  "isSidechain": true,
+  "promptId": "328b6391-187c-48c8-90b0-f5a1afb95f08",
+  "agentId": "abfd77b2fb8a1c545",
+  "type": "user",
+  "uuid": "65a66be8-2d02-4afa-a23b-5850db8e07d0",
+  "sourceToolAssistantUUID": "835f09c0-8cf5-4702-ad7d-8ae8510006d3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-19T15:05:58.420Z_
+
+Here are the verified findings from the paper (arxiv 2407.03678):
+
+---
+
+**Table 2 structure:** 4 benchmarks (MATH, AQuA, GSM8k, PIQA), 7 models each, with columns: Baseline, CoT+SC Majority, CoT+SC Oracle, Probabilistic Majority, Probabilistic Oracle.
+
+**Cross-model average improvement in the "Probabilistic Majority" column:**
+
+| Benchmark | Per-benchmark avg improvement |
+|-----------|-------------------------------|
+| AQuA | Models range from +10.21% to +18.63% |
+| PIQA | Models range from +1.62% to +20.41% |
+
+The table does **not** list per-benchmark averages as separate rows. Instead, there is a single **overall Average Delta row** at the bottom spanning all 28 model-benchmark combinations.
+
+**The key numbers from the Average Delta row:**
+
+- **CoT + SC Majority:** +16.39%
+- **CoT + SC Oracle:** +64.46%
+- **Probabilistic Majority:** +17.11%
+- **Probabilistic Oracle:** +71.40%
+
+**To your specific questions:**
+
+1. **AQuA (Probabilistic Majority):** Individual model improvements are +18.45%, +18.63%, +16.62%, +16.84%, +12.22%, +17.80%, +10.21% (averaging approximately +15.82% across the 7 models for AQuA alone).
+
+2. **PIQA (Probabilistic Majority):** Individual model improvements are +20.04%, +20.41%, +19.40%, +17.02%, +13.67%, +16.52%, +1.62% (averaging approximately +15.53% across the 7 models for PIQA alone).
+
+3. **The paper does state +17.11% as the overall average improvement** across all benchmarks and models in the Probabilistic Majority column. This number appears in the final "Average Delta" row of Table 2. That +17.11% is the grand average across all 28 data points (4 benchmarks x 7 models), not a per-benchmark average.
+
+So to directly answer: **yes, the paper itself states "+17.11% average"** for the Probabilistic Majority method, and this is the overall average across all benchmarks and models combined.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65a66be8-2d02-4afa-a23b-5850db8e07d0",
+  "isSidechain": true,
+  "agentId": "abfd77b2fb8a1c545",
+  "requestId": "req_011CbC8kd8gHvJ759vk4Rn8q",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "64fa07c6-3ed0-4dfa-93db-9e353f9a33bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "1664a514-6960-4326-af9b-028d891812e7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016JhYPhDD1wZbt9Zktnihsd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1974,
+      "cache_read_input_tokens": 10375,
+      "output_tokens": 560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1974
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 560,
+          "cache_read_input_tokens": 10375,
+          "cache_creation_input_tokens": 1974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1974,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

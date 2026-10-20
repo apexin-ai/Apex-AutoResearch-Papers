@@ -1,0 +1,902 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 12
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/e16f2a63-15e8-4795-9a4d-e15b0410b0dd.jsonl`
+- **Structured JSON:** [`974d0c971b1caeb46831.json`](../../sessions/97/974d0c971b1caeb46831.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T04:41:13.258Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T04:41:13.258Z",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient information from my literature search. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. Wang et al. \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\" (arXiv 2510.02386, ICLR 2026):\n   - 验证了 proposal 的核心前提：GRPO/PPO 训练确实会使 reference-free 检测方法 AUROC 降低 14-20pp，Min-K% 降至接近随机（~50%）。Proposal 对此文献的引用和描述准确。\n   - 与本 proposal 关系：proposal 的 DIF 方案直接回应此论文揭示的问题。该论文没有提出 group-level DIF 方法，只展示了 individual-level 方法的脆弱性。\n\n2. \"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\" (arXiv 2604.12843, April 2026):\n   - 使用 multidimensional IRT + fixed-parameter calibration + 100 anchor items，实现跨时间的 LLM 评估可比性（Spearman ρ ≥ 0.9，400+ models）。\n   - 与本 proposal 关系：最直接的并发竞争者。但 Growing Pains 只做 evaluation extensibility，不做 contamination detection 或 item regeneration。Proposal 对此文献定位准确。差异真实存在——但 Growing Pains 已经占据了\"IRT for LLM benchmark\"的核心叙事位置。\n\n3. DVD \"A Robust Method for Detecting Variant Contamination\" (arXiv 2601.04895, Jan 2026):\n   - 通过 generation variance 检测 variant contamination，AUC 0.73-0.74 vs Min-K%++ 的 0.43-0.68。但仅在 SFT 模型上验证。\n   - 与本 proposal 关系：被整合为 ensemble 的一个 signal。Proposal 诚实地标注 DVD 未在 RL 模型上测试，并将此设为实验目标。\n\n4. BeTaL \"Automating Benchmark Design\" (ICLR 2026):\n   - LLM-in-the-loop 自动化 benchmark 设计，聚焦于调控 difficulty。\n   - 与本 proposal 关系：BeTaL 追求\"增加难度\"，本 proposal 追求\"保持等值\"——方向不同。Proposal 定位准确。\n\n5. Wang & Heckel \"Test-time RL alignment exposes task familiarity artifacts\" (arXiv 2603.12875, March 2026):\n   - TTRA 使 base model 性能接近 fine-tuned model，表明很多 fine-tuning gains 是 task familiarity artifacts。\n   - 与本 proposal 关系：proposal 用此区分 DIF 信号（item-specific contamination → DIF signal）vs. task familiarity（uniform improvement → no DIF signal）。论点逻辑上成立。\n\n6. Cross-Context Verification CCV (arXiv 2603.21454, March 2026):\n   - 通过 session-isolated solution diversity 检测 coding benchmark contamination，在 SWE-bench 上达到完美分离。\n   - 与本 proposal 关系：CCV 仅验证于 coding tasks（9 problems），泛化性存疑。Proposal 正确指出其局限。\n\n7. Hardy et al. \"Efficient Detection of Bad Benchmark Items\" (arXiv 2603.24999, March 2026):\n   - 提出 signed isotonic R² scalability coefficients，在 HS Math/GSM8K/MMLU 上 AUC 优于 IRT-based diagnostics。\n   - 与本 proposal 关系：被整合为 pre-filter。合理但非核心贡献。\n\n8. BenchBench \"Benchmarking Automated Benchmark Generation\" (arXiv 2603.20807, March 2026):\n   - 系统化评估 automated benchmark generation pipeline 的 discrimination 和 validity。\n   - 与本 proposal 关系：评估 generation quality 但不做 equating。Proposal 定位准确。\n\n9. arXiv 2602.06631 \"Estimating Exam Item Difficulty with LLMs\" (Feb 2026):\n   - LLM 直接估计难度仅达 ρ=0.10-0.45。Proposal 引用准确，并据此放弃直接 IRT parameter conditioning。\n\n10. arXiv 2601.09953 \"Take Out Your Calculators\" (Jan 2026):\n    - Student simulation 难度估计达 r=0.75-0.82。Proposal 引用准确。\n\n- **调研总结**：该领域当前处于\"各组件分散发展\"阶段——contamination detection（Wang et al., DVD, ConStat）、IRT-based evaluation（Growing Pains, PSN-IRT, ATLAS）、item generation（BenchBench, BeTaL, ReQUESTA）各自独立。没有现有工作完成 detection → generation → equating 的全闭环。Proposal 处于\"系统集成+一个新检测信号（DIF）\"的位置。DIF 用于 LLM contamination detection 是检索范围内的首次提出。\n\n【Trivial Alternative 检验】:\n\n存在两个重要的 trivial alternative：\n\n(1) **LiveBench 模式（时间隔离法）**：直接从训练截止日期之后的新来源创建评估题目，从根本上避免 contamination。无需检测、无需 equating。Proposal 的增量价值在于：(a) 不是所有 benchmark 都能用时间隔离（如 MMLU 的知识域题目）；(b) LiveBench 式刷新不保证 psychometric equivalence，分数不可跨版本比较。但问题是：**NLP 社区实际上多大程度上需要跨版本分数严格可比？** 现实中 leaderboard 定期重置，旧排名被丢弃。这个增量价值是真实的但可能被高估。\n\n(2) **简单跨 cohort accuracy delta**：不用完整的 logistic regression DIF，只是直接比较新旧 cohort 在各 item 上的 accuracy 差异（控制总分后做 residual analysis）。这种 trivial version 可能捕获 DIF 所检测信号的大部分。Proposal 的增量价值在于：DIF 提供正式的 psychometric 框架、effect size 分类（ETS A/B/C）、和 FDR 控制。但核心信号（跨 cohort 的 item-level differential performance）可以用更简单的方法获取。\n\n**判断**：trivial alternative 威胁中等。全闭环管道确实比任何单一替代方案更完整，但核心检测信号（DIF）的简化版本可能效果接近。Proposal 的不可替代价值主要在 equating guarantee + graceful degradation，而非 detection 本身。\n\n【前提假设检验】:\n\n核心逻辑链中以下假设未经验证：\n\n(1) **\"Contamination 必然产生 item-specific advantage → DIF signal\"**——这是最关键的假设。Proposal 论证：contamination 必须创造 differential item advantage，否则 contamination 就失去了意义（\"RL cannot conceal without negating the purpose of contamination\"）。这个论证在逻辑上成立，但忽略了一个微妙情况：**如果一个 model 被 contaminated 但 contamination 效果分散在大量 items 上（例如整个 dataset 都泄露了），则每个 item 的 DIF effect size 可能很小，导致 DIF underpowered**。Proposal 部分承认了这一点（\"DIF is underpowered for small effects\"），但将此定位为\"检测大效应的工具\"。问题是：如果整个 benchmark 都泄露了（这在 MMLU 等知名 benchmark 中很常见），effect sizes 可能是 medium-small 而非 large，因为所有 items 都有 boost。\n\n(2) **\"200-300 diverse LLMs 的 calibration panel 可以提供足够的 IRT calibration\"**——教育测试中 IRT calibration 通常需要 N≥500 examinees。Proposal 使用 OH2PL 在 N≥50 时声称 unbiased estimates，但这些结论来自人类考试场景（item responses 更接近 IRT 假设），LLM responses 的 IRT model fit 可能完全不同（如 4PL 或 more complex patterns）。\n\n(3) **\"Bifactor IRT 适合 LLM benchmark 的 latent structure\"**——这假设 LLM 能力可以分解为 general factor + domain-specific factors。但 LLM 的能力结构可能更复杂（不同 training recipe 导致完全不同的 factor structure），bifactor 模型可能不够灵活。Growing Pains 使用 MIRT 而非 bifactor，暗示 factor structure 选择是开放问题。\n\n(4) **\"Student simulation pre-screening (r=0.75-0.82) 足以替代 direct difficulty targeting\"**——这些相关系数来自教育测试场景，在 LLM benchmark 场景中未经验证。LLM-as-student 和 LLM-as-examinee 的一致性可能更低。\n\n【3 维度打分】:\n\n1. **Novelty: 中** — DIF 用于 LLM contamination detection 在我的调研范围内确实是首次提出，且 RL-robustness 论证有逻辑说服力——这是真实的 novelty delta。但透过 surface 看本质：(a) DIF 本身是 1980s 就有的成熟方法，应用到新场景是\"novel application\"而非\"novel methodology\"；(b) 全闭环管道的各组件（ConStat perturbation testing, DVD variance detection, IRT equating, student simulation）均为已有方法的组装，system-level novelty 但非 methodological novelty；(c) DIF 的 RL-robustness 论证虽然 sound，但核心洞察（\"behavioral response pattern 不受 output distribution smoothing 影响\"）一旦说出来是 intuitive 的，审稿人不太会说\"surprising\"。与 Growing Pains（MIRT + fixed-parameter calibration for temporal extension）相比，本 proposal 的 novelty 在 contamination detection + remediation 维度，但在 IRT methodology 维度是 incremental。\n\n2. **Significance: 中偏强** — 研究问题（benchmark contamination + score comparability over time）是 LLM 社区真正关心的问题。Wang et al. (ICLR 2026) 揭示 RL 训练破坏现有检测方法的事实让这个方向格外重要和及时。如果 DIF 方法被验证有效，它将是社区应对 RL contamination 的一个重要工具。但显著性受限于：(a) 系统的实际部署门槛极高（需要 200-300 model calibration panel），可能限制社区采用；(b) 论文可能过于 systems-oriented——\"我们把很多东西粘在一起\"可能被视为 engineering contribution 而非 scientific insight；(c) 最有洞察力的单一贡献（DIF for RL-robust detection）可能足以独立成篇，而将其埋在一个巨型 pipeline 中反而稀释了它的 impact。\n\n3. **Related Work: 强** — 这是该 proposal 最突出的优点。对几乎所有相关工作的覆盖都是准确的、有差异化定位的：Wang et al. (RL fragility), Growing Pains (temporal extension without detection), DVD (variant detection without remediation), BeTaL (difficulty evolution not preservation), CCV (coding-only), ConStat (detection without remediation), Sander et al. (watermarking = prevention not post-hoc), Wang & Heckel (task familiarity).每篇工作的引用和描述经搜索验证基本准确。差异化清晰且公正。唯一的小瑕疵：对 Growing Pains 的区分虽然准确，但审稿人可能会问\"为什么不在 Growing Pains 的 framework 上增加 contamination detection module\"——proposal 应该更明确地回应这个自然的 follow-up。\n\n【概率估计】: [22% - 35%] 中位 27%\n\n【估计理由】:\n- Novelty 为\"中\"限制了上界。核心贡献（DIF for RL-robust contamination detection）是一个 sound 但 unsurprising 的 insight——将教育测试的成熟方法应用到 LLM 评估的新场景。审稿人看到后大概率反应是\"makes sense\"而非\"I wouldn't have guessed this\"。全闭环管道是 system-level novelty，但 NLP 会议对 systems paper 的评价标准更侧重于 empirical impact 而非 pipeline 完整性。\n- Significance 中偏强为本 proposal 提供了一些上行空间——问题确实重要且及时，Wang et al. (ICLR 2026) 的发现让 RL-robust detection 成为一个真实需求。\n- Related Work 的出色覆盖降低了被拒的下行风险（不太可能因为 missing related work 被拒），但 related work 好只能防止扣分，不能加分。\n- 概率主要被 novelty 的\"中\"评级锚定在 25-30% 区间。如果 DIF 实验结果强势（特别是 RL contamination condition 展示 DIF 成功检测而其他方法失败），empirical contribution 可以将概率推向上界（~35%）。但 idea 本身的 ceiling 大约就在这里。\n- 此外，论文可能面临\"too much for one paper\"的审稿批评——四个组件中任何一个都可以是一篇独立论文，压缩在一起可能导致每个组件都不够深入。\n\n【主要风险】:\n1. **\"Novel application of existing methodology\" vs. \"novel methodology\"**：审稿人可能认为 DIF 用于 contamination detection 是一个 straightforward application，novelty 不足以支撑顶会论文。这尤其危险，因为 DIF 的 RL-robustness 论证虽然 sound，但一旦说出来就显得 obvious——\"当然 behavioral patterns 不受 output distribution smoothing 影响\"。\n2. **Pipeline 过于庞大导致 depth 不足**：四个 contribution（detection ensemble + generation pipeline + bifactor equating + graceful degradation）在一篇论文中可能无法充分展示任何一个的深度。审稿人可能建议\"focus on DIF detection and do it thoroughly\"或\"focus on the equating framework\"，认为当前 scope 太广。这是 idea framing 层面的风险，不是执行层面的——即使实验做得很好，\"我们做了一个大 pipeline\"的 narrative 在 novelty 评审中天然处于劣势。\n```\n\nSources:\n- [On The Fragility of Benchmark Contamination Detection in Reasoning Models](https://arxiv.org/abs/2510.02386)\n- [Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration](https://arxiv.org/html/2604.12843)\n- [DVD: A Robust Method for Detecting Variant Contamination](https://arxiv.org/abs/2601.04895)\n- [Automating Benchmark Design (BeTaL)](https://arxiv.org/abs/2510.25039)\n- [Test-time RL alignment exposes task familiarity artifacts](https://arxiv.org/abs/2603.12875)\n- [Cross-Context Verification (CCV)](https://arxiv.org/abs/2603.21454)\n- [Efficient Detection of Bad Benchmark Items (Hardy et al.)](https://arxiv.org/abs/2603.24999)\n- [Estimating Exam Item Difficulty with LLMs](https://arxiv.org/abs/2602.06631)\n- [Take Out Your Calculators: LLM Student Simulations](https://arxiv.org/abs/2601.09953)\n- [BenchBench: Benchmarking Automated Benchmark Generation](https://arxiv.org/abs/2603.20807)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have comprehensive research to provide a well-grounded evaluation. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **Wang et al., \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\" (arXiv 2510.02386, ICLR 2026)**: 系统性证明了 GRPO/PPO 训练可在约 156 步内将 reference-free 检测方法的 AUROC 降低 14-20pp，部分方法降至接近随机（~50%）。这是本 proposal 的核心动机之一，论文真实存在且描述准确。\n\n2. **Tao et al., \"Detecting Data Contamination from Reinforcement Learning Post-training\" / Self-Critique (arXiv 2510.09259, ICLR 2026)**: 提出 RL-MIA benchmark 和 Self-Critique 方法，通过检测 policy collapse 来识别 RL 后训练中的污染，AUC 提升最高 30%。这是目前**唯一**直接针对 RL 后训练污染检测的已发表方法，是 proposal 的直接竞争者。\n\n3. **\"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\" (arXiv 2604.12843, April 2026)**: 用多维 IRT + 固定参数校准 + 100 个 anchor items 实现跨时段 LLM 评估，400+ 模型上 Spearman ρ≥0.9。**最直接的 concurrent work**——也用了 IRT equating，但只做 cross-time evaluation，不做 contamination detection 或 item regeneration。\n\n4. **DVD: Detection via Variance of Generation Distribution (arXiv 2601.04895, Jan 2026)**: 检测 variant contamination（改写后的测试题），AUC 0.73-0.74 vs. Min-K%++ 的 0.43-0.68。但仅在 SFT 模型上验证，未测试 RL 训练模型。论文真实，描述准确。\n\n5. **CCV: Cross-Context Verification (arXiv 2603.21454, March 2026)**: 通过多 session 独立求解同一题目并测量 solution diversity 来检测污染，在 SWE-bench 上实现完美分离。但仅验证了 9 个编码问题，泛化性未知。\n\n6. **Wang & Heckel, \"Test-time RL alignment exposes task familiarity artifacts\" (arXiv 2603.12875, March 2026)**: 证明 TTRA 可弥合 base model 与 fine-tuned model ~27pp 的性能差距，暗示很多 fine-tuning gains 是 task familiarity artifact 而非真实能力提升。论文真实，proposal 中的引用准确。\n\n7. **arXiv 2602.06631 (Estimating Exam Item Difficulty with LLMs)** 和 **arXiv 2601.09953 (Student Simulation for Difficulty)**: 前者证明 LLM 直接估计难度仅 ρ=0.10-0.45；后者 student simulation 可达 r=0.75-0.82。两篇论文均真实，描述准确。\n\n8. **Kim (2022), Journal of Educational Measurement**: Bifactor IRT True Score Equating 和 PIRT 确实存在，是教育测量领域的成熟方法论。\n\n9. **Han et al., \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\" (arXiv 2510.07175, 2025)**: 用 IRT 框架量化 LLM 心理测量评估中的数据污染，但**未使用 DIF 作为污染检测手段**。\n\n10. **Benchmark Self-Evolving (COLING 2025)**: 多 agent 框架动态扩展 benchmark，但无 IRT equating，无 contamination detection。\n\n- **调研总结**: 这个领域目前呈\"碎片化\"格局——contamination detection（ConStat, DVD, Self-Critique）、dynamic evaluation（LiveBench, BeTaL）、IRT-based evaluation（Growing Pains, ATLAS, PSN-IRT）各自为阵，**没有工作尝试将 contamination detection → item regeneration → psychometric equating 闭环整合**。此外，**DIF 作为 contamination detection 手段**在 LLM benchmark 领域确实**尚无先例**——这是一个真实的 novelty claim。然而，将 DIF 从教育测量迁移到 LLM 评估面临严重的样本量问题（LLM cohort 远小于人类考生群体），这一点 proposal 已有所讨论但解决方案说服力有限。\n\n\n【Trivial Alternative 检验】:\n\n**存在部分 trivial alternative 威胁，但不致命。** \n\n最显然的 trivial alternative 是：\"直接定期更新 benchmark（LiveBench 模式）+ 用 ConStat/DVD 等现有方法做 contamination detection，不需要 IRT equating\"。这已经是社区的主流做法。增量价值在于：(1) 现有定期更新方式**不保证难度等价性**，无法进行跨版本公平比较；(2) 现有检测方法**对 RL 模型无效**，而 DIF 提供了一个理论上 RL-robust 的信号。\n\n但第二点的增量价值取决于 DIF 在 LLM 场景下是否真的可行（样本量问题，见下），以及 Self-Critique（Tao et al.）是否已经\"够用\"地解决了 RL contamination detection。如果 Self-Critique 在实际场景中表现良好，DIF 的增量价值就变成了\"多一个互补信号\"而不是\"唯一可行方案\"。\n\n另一个 trivial alternative：对于 equating，Growing Pains 已经展示了用 IRT fixed-parameter calibration + anchor items 做跨时段评估的可行性。虽然 Growing Pains 不做 regeneration，但加上简单的 item generation（甚至人工出题）+ Growing Pains 式的 equating，可能就够用了——不需要整个 bifactor IRT + PIRT 管线。\n\n**增量价值的核心**在于\"全闭环自动化\"和\"DIF as RL-robust signal\"。前者是系统工程贡献（有价值但 novelty 有限），后者是方法论贡献（genuinely novel 但可行性存疑）。\n\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条中有以下**未经验证的关键假设**：\n\n1. **DIF 在 LLM cohort 上的可行性是最大的未验证假设。** Proposal 承认了小样本问题但给出的解决方案（temporal aggregation 到 N=40-80、Bayesian priors、Item-Focused Trees）尚无实证支持——没有人在 LLM benchmark 上跑过 DIF。\"模型即考生\"这一映射是否满足 DIF 的统计前提（如 local independence、unidimensionality within matched groups）完全未知。LLM 的 response patterns 与人类考生有本质不同（deterministic at temperature=0, correlated architectures, training data overlap），这些可能严重违反 DIF 的统计假设。\n\n2. **\"RL 不能在不消除污染收益的情况下消除 DIF 信号\"这一论证是理论推导而非实证。** Proposal 给出了一个 analytical demonstration，但其核心论点——\"RL smoothing 修改的是 NLL surface 而非 binary response pattern\"——假设 RL 训练不会改变模型在 contaminated items 上的准确率。这在大多数情况下可能成立，但并非绝对：如果 RL 训练导致模型对 memorized items 的 accuracy 小幅下降（从 0.80 到 0.70），DIF 效应量就会显著缩小。这个\"RL 不影响 behavioral accuracy\"的假设需要实验验证。\n\n3. **200-300 LLMs 的 calibration panel 假设 response independence。** IRT 模型要求 examinees 独立，但同一 family 的 LLMs（Llama 系列各版本）高度相关，这会 inflate effective sample size 并影响参数估计的可靠性。这个问题在 Growing Pains 中也存在但未被充分讨论。\n\n4. **Bifactor IRT 对 LLM benchmark 的适用性未经验证。** 人类考生的 bifactor 结构（general + domain-specific abilities）是否同样适用于 LLMs 是开放问题。LLM 的能力结构可能不符合 bifactor 假设。\n\n\n【3 维度打分】:\n\n1. **Novelty: 中（偏强）**\n   - **正面**: DIF 作为 contamination detection 信号应用于 LLM benchmark 确实是全新的（调研中未找到任何先例，包括 Han et al. 2510.07175 使用 IRT 分析污染但未用 DIF）。\"Detection → Regeneration → Equating\"全闭环整合也确实无人做过。将教育测量的成熟方法论（bifactor IRT, PIRT equating）系统性迁移到 LLM 评估是一个有价值的 cross-domain transfer。\n   - **负面**: 核心 novelty 可以概括为\"把教育测量的现有工具迁移到 LLM benchmark 场景\"——这是 application novelty 而非 methodological novelty。每个组件（DIF, bifactor IRT, PIRT, ConStat, DVD）都是现有方法，proposal 的贡献是**整合而非发明**。Growing Pains 已经走了类似路线（IRT + fixed-parameter calibration for LLM benchmarks），只是没做 contamination detection 和 regeneration。此外，Self-Critique（Tao et al., ICLR 2026）已经提出了针对 RL 后训练的 contamination detection 方法，这削弱了 DIF 作为\"唯一 RL-robust 方案\"的独特性。\n   - **总评**: 有真实的 novelty delta（DIF for contamination + 闭环整合），但属于 systems integration + cross-domain application 类型的贡献，而非开创性方法论突破。对 EMNLP 审稿人而言，\"educational measurement → NLP evaluation\" 的迁移本身有吸引力，但 contribution 的技术深度可能被质疑。\n\n2. **Significance: 中**\n   - **正面**: Benchmark contamination 是 NLP/AI 社区公认的重大问题。RL 训练逃逸 contamination detection 的发现（Wang et al., ICLR 2026）使问题更加紧迫。一个可行的 self-healing benchmark 框架如果成功将有广泛影响。\n   - **负面**: 框架的复杂度（5-signal ensemble, bifactor IRT, PIRT, graceful degradation）意味着实际部署可能性较低——社区更可能采用 LiveBench 式的简单定期更新。影响力还取决于 DIF 是否真的能在 LLM 场景下 work（可行性风险直接限制 significance 的实现）。此外，如果核心实验结果是 positive（DIF 确实能检测 RL 训练后的污染），审稿人的反应可能是\"interesting but expected\"——DIF 检测 group-level 差异是它设计的本意，证明它能 work 并不算 surprising。\n   - **总评**: 问题重要性毋庸置疑，但方案的实际影响力受限于复杂度和可行性。\n\n3. **Related Work: 强**\n   - Proposal 对相关工作的覆盖**异常全面**。涵盖了 contamination detection（ConStat, DVD, Self-Critique, CCV, watermarking）、dynamic evaluation（LiveBench, LiveCodeBench, BeTaL, VarBench, DyVal）、IRT for LLM（Growing Pains, PSN-IRT, ATLAS, RIDE）、item generation（arXiv 2602.06631, arXiv 2601.09953, ReQUESTA）、task familiarity（Wang & Heckel）等多个子领域。差异化定位清晰——明确指出了与 Growing Pains（不做 detection/regeneration）、CCV（仅 coding tasks）、DVD（未测 RL）、Self-Critique（individual-level method）等的区别。我在调研中发现的所有关键竞争工作 proposal 都已覆盖，未发现显著遗漏。\n   - **唯一轻微不足**: Benchmark Self-Evolving (COLING 2025) 未被提及，但该工作与 proposal 差异较大，非关键遗漏。\n\n\n【概率估计】: [22% - 32%] 中位 27%\n\n【估计理由】: \n这个 proposal 的 idea 内核处于\"有实质 novelty 但不够 surprising\"的区间。DIF for contamination detection 是一个 genuinely novel 的 cross-domain transfer，但属于 \"application of existing methodology to new domain\" 类型的贡献。核心发现如果 positive（DIF 能检测 RL contamination），审稿人大概率反应是 \"makes sense — DIF tests group-level differences by design\" 而非 \"surprising\"。全闭环整合是系统贡献，有价值但不是 idea-level breakthrough。\n\n**上界受限于 Novelty 的技术深度**: 审稿人可能认为\"把 educational measurement 的现有工具搬到 LLM evaluation\"虽然有用但 novelty 有限，尤其是 Growing Pains 已经走了 IRT-for-LLM-evaluation 的路线。\n\n**下界受支撑于**: 问题的重要性和 related work 的覆盖质量；DIF 确实是全新应用；闭环框架确实填补了 gap。\n\n概率未能进入 35%+ 区间的核心原因：(1) DIF 的小样本可行性是未经验证的关键假设，如果 DIF 在 LLM cohort 上根本 work 不了，整个框架的核心 novelty 就坍塌了；(2) contribution 以 integration 为主，methodological novelty 深度有限；(3) 核心发现的 surprise factor 不足——\"DIF 能检测 group-level contamination\"几乎是 tautological。\n\n【主要风险】: \n1. **DIF 在 LLM cohort 上的可行性风险**: 这是存在性风险。如果小样本 + 违反 independence 假设 + LLM response patterns 的特殊性导致 DIF 在实际场景中不可靠，proposal 的核心 novelty 和 RL-robustness claim 同时失效。审稿人会问 \"did you actually test DIF on real LLM cohorts or is this all analytical speculation?\"\n2. **Contribution 被认为是 \"engineering integration\" 而非 \"scientific contribution\"**: 每个组件都是现有方法的直接迁移或整合（DIF from educational testing, IRT equating from psychometrics, DVD/ConStat from prior work），审稿人可能认为 technical contribution 不足以支撑主会论文。\n```\n\nSources:\n- [On The Fragility of Benchmark Contamination Detection in Reasoning Models](https://arxiv.org/abs/2510.02386)\n- [Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration](https://arxiv.org/abs/2604.12843)\n- [DVD: A Robust Method for Detecting Variant Contamination in LLM Evaluation](https://arxiv.org/abs/2601.04895)\n- [Cross-Context Verification: Hierarchical Detection of Benchmark Contamination](https://arxiv.org/abs/2603.21454)\n- [Test-time RL alignment exposes task familiarity artifacts in LLM benchmarks](https://arxiv.org/abs/2603.12875)\n- [Detecting Data Contamination from Reinforcement Learning Post-training for LLMs (Self-Critique)](https://arxiv.org/abs/2510.09259)\n- [Estimating Exam Item Difficulty with LLMs (arXiv 2602.06631)](https://arxiv.org/abs/2602.06631)\n- [Take Out Your Calculators: Student Simulation for Difficulty Estimation](https://arxiv.org/abs/2601.09953)\n- [Quantifying Data Contamination in Psychometric Evaluations of LLMs](https://arxiv.org/abs/2510.07175)\n- [Kim (2022) IRT True Score Equating for the Bifactor Model](https://journals.sagepub.com/doi/10.1177/01466216221108995)\n- [Approximating Bifactor IRT with Projective IRT (PIRT)](https://pubmed.ncbi.nlm.nih.gov/32341608/)\n- [BeTaL: Automating Benchmark Design (ICLR 2026)](https://arxiv.org/abs/2510.25039)\n- [Benchmark Self-Evolving: A Multi-Agent Framework for Dynamic LLM Evaluation](https://arxiv.org/abs/2402.11443)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient research to provide a grounded assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- Growing Pains (arXiv 2604.12843, April 2026): 最直接的竞争者。使用多维IRT + 固定参数校准 + 100个锚题/数据集，实现跨时间的LLM评估可比性，400+模型上达到Spearman ρ≥0.9。但不做污染检测也不做题目再生。Proposal正确识别了这个差异。\n- ConStat (NeurIPS 2024): 基于性能的污染检测，有FDR控制，检测89-98%的污染模型。但不做修复/再生。Proposal将其作为ensemble信号之一。\n- DVD (arXiv 2601.04895, Jan 2026): 变体污染检测，通过generation variance实现。在SFT模型上AUC 0.73-0.74，优于Min-K%的0.43-0.68。但仅在SFT模型上验证，未测试RL模型。Proposal正确指出此限制。\n- Wang et al. (arXiv 2510.02386, ICLR 2026): 证明GRPO/PPO训练使reference-free污染检测方法AUROC降14-20pp至近随机水平。这是proposal中DIF方法的核心动机。\n- Wang & Heckel (arXiv 2603.12875, March 2026): 证明test-time RL alignment可消除~27pp的fine-tuning性能差距，表明部分\"污染信号\"实为task familiarity artifact。Proposal引用了此工作来论证DIF能区分uniform familiarity vs. item-specific contamination。\n- BeTaL (ICLR 2026): LLM-in-the-loop的benchmark设计框架，专注于调整难度而非保持等值。\n- RIDE (ICLR 2026): IRT引导的数学题扰动框架，增加难度而非保持等值。\n- Hardy et al. (arXiv 2603.24999, March 2026): 非参数signed isotonic R²用于benchmark item质量检测，优于IRT诊断。Proposal将其作为pre-filter。\n- CCV (arXiv 2603.21454, March 2026): session-isolated的黑盒污染检测，在SWE-bench上达到完美分离，但仅验证于9个coding问题。\n- BenchBench (arXiv 2603.20807, March 2026): benchmark自动生成的meta-benchmark，但不做IRT equating。\n- ATLAS (arXiv 2511.04689, 2025): IRT自适应测试减少评估成本，不处理污染。\n- PSN-IRT (AAAI 2026 Oral): 4PL IRT分析benchmark质量，不做再生。\n- Sander et al. (arXiv 2502.17259, Feb 2025): benchmark水印方案，事前预防而非事后修复。\n- arXiv 2602.06631 (Feb 2026): LLM估计题目难度仅达rho=0.10-0.45，验证了proposal放弃直接IRT参数conditioning的合理性。\n- arXiv 2601.09953 (Jan 2026): student simulation达到r=0.75-0.82的难度估计，支持proposal的pre-screening策略。\n\n- 调研总结: 这个领域在2025-2026年非常活跃，各子问题（污染检测、benchmark生成、IRT评估、RL鲁棒性）都有独立工作，但确实没有工作将\"RL-robust检测 → 构念约束生成 → bifactor IRT等值 → graceful degradation\"组成闭环。Proposal的\"全环路\"整合claim和DIF用于跨cohort污染检测的应用在文献中没有直接先例。\n\n【Trivial Alternative 检验】:\n存在一个显著的trivial alternative威胁：**定期创建全新benchmark（如LiveBench的月更策略）**。LiveBench每月从新数据源构建新题目，完全回避了污染问题，无需检测-再生-等值的复杂流程。虽然LiveBench不做psychometric equating（难度可能漂移），但Growing Pains (April 2026)已经证明用100个锚题+固定参数校准就能在400+模型上达到ρ≥0.9的ranking preservation。将LiveBench的持续更新 + Growing Pains的固定参数校准组合，就可能以远低的复杂度达到\"抗污染+跨时间可比\"的效果。\n\nProposal的增量价值在于：(1) 不需要持续的人工新题源（LiveBench依赖外部新数据），(2) 保持对已有benchmark（如MMLU、GSM8K）的直接可比性（而非创建全新benchmark再做linking），(3) DIF检测可区分真实能力提升与污染。但这些增量价值需要整个pipeline真正work才能兑现，且(1)和(2)更多是工程便利性而非科学发现。\n\n【前提假设检验】:\n核心逻辑链中有以下未经验证的关键假设：\n\n1. **\"LLM ≈ 考生\"假设**：整个框架建立在将LLM视为IRT框架中\"考生\"的类比上。但LLM不是独立抽样的人类考生——它们共享训练数据、架构家族、甚至distillation关系。IRT的局部独立性(local independence)和单调性假设在LLM群体上是否成立，是一个已知的conceptual tension（Growing Pains也面临这个问题但至少展示了经验上的有效性）。\n\n2. **\"污染产生item-specific DIF，familiarity产生uniform提升\"假设**：这是DIF区分污染与能力提升的核心假设。但现实中更复杂：(a) 污染可能是partial的（模型记住了解题模板而非具体答案），这会产生domain-level而非item-level的DIF，可能与familiarity信号混淆；(b) 不同模型对不同item的记忆程度不同，在cohort-level聚合后DIF信号可能被稀释；(c) task familiarity本身可能也有item-specific成分（某些题型格式比其他的更受益于format alignment）。\n\n3. **N=80/cohort足够做DIF**：Proposal自己引用了classical DIF需要N≥200/group的文献，然后提出了4个缓解策略。但这些策略本身都有假设：temporal aggregation假设年度cohort模型数量足够且cohort内异质性可控；Bayesian priors假设先验估计是可靠的；Item-Focused Trees假设release date是一个有意义的连续变量。核心矛盾未解决：DIF在小样本上的power确实不足以做可靠检测。\n\n4. **30-50%的再生成功率假设**：这直接影响pipeline的可行性，但完全基于\"analogous AIG literature\"的类比推断，没有在LLM benchmark等值场景下的任何经验数据。\n\n5. **Bifactor IRT模型在LLM上fit良好**：假设MMLU等benchmark的多维结构可以被bifactor模型合理捕获，且PIRT投影不会引入系统性偏差。这在LLM评估上是未验证的。\n\n【3 维度打分】:\n1. Novelty: 【中】\n   — DIF用于跨model-cohort的污染检测是genuinely novel的应用，在文献中确实没有先例。\"DIF分析between-group pattern而非within-model distribution，因此对RL smoothing鲁棒\"的论证是non-trivial的insight。但除DIF外，pipeline的其他组件（ConStat、DVD、membership inference、student simulation、bifactor IRT、equating gate）都是对现有方法的组合应用（cross-domain transfer from educational testing），而非方法论创新。Growing Pains已经将IRT固定参数校准引入LLM evaluation，RIDE已经将IRT difficulty引入benchmark扰动，BenchBench已经做了自动benchmark生成——本proposal的主要novelty是\"集成\"，而集成本身的新颖性有限。核心DIF贡献足以支撑一个focused paper，但被埋在了一个过于庞大的系统中。\n\n2. Significance: 【中偏强】\n   — 研究问题本身（benchmark污染与评估有效性）是NLP/CL领域2024-2026年最热门的话题之一。Wang et al. (ICLR 2026)证明RL训练破坏了几乎所有现有检测方法，创造了一个明确的open problem。Proposal试图解决这个open problem的方向是有意义的。但significance被两个因素限制：(a) LiveBench+Growing Pains的trivial alternative降低了full-loop pipeline的边际价值；(b) 如果实验表明DIF确实能检测RL-concealed污染，这个发现虽然有价值，但审稿人可能会说\"I would have guessed that between-group behavioral differences would survive RL smoothing\"——核心insight不够counterintuitive。\n\n3. Related Work: 【强】\n   — 这是proposal最突出的优点。对领域的覆盖非常全面且准确：Growing Pains、ConStat、DVD、Wang et al.、Wang & Heckel、BeTaL、RIDE、CCV、Hardy et al.、BenchBench、ATLAS、PSN-IRT等关键工作都被正确引用和差异化定位。对每篇工作的limitation识别是准确的（DVD未测试RL模型、CCV仅验证于coding任务、Growing Pains不做检测/再生）。唯一可挑剔的是对watermarking方向（Sander et al.）的处理可以更深入，以及可能遗漏了一些2026年中期的最新工作。\n\n【概率估计】: [22% - 32%] 中位 26%\n\n【估计理由】: \nNovelty是限制上界的主要维度。核心DIF贡献是genuine但不够surprising——\"between-group behavioral patterns survive within-model distribution smoothing\"在概念上是合理的甚至可预期的。Pipeline整合作为贡献容易被视为\"systems engineering rather than scientific contribution\"。Significance因为trivial alternative（LiveBench+Growing Pains组合）的存在而受限——审稿人可能会问\"why not just make new benchmarks regularly?\"Related work的覆盖度是真正的加分项，显示了对领域的深刻理解。\n\n此外，proposal过于庞大（5个检测信号 + 生成pipeline + bifactor IRT + graceful degradation），在8页正文中几乎不可能充分展开每个组件的技术细节和消融实验。*ACL审稿人往往偏好focused contribution over broad system，这可能进一步降低接受概率。概率上界被Novelty的\"中\"限制在~32%。\n\n【主要风险】:\n1. **\"系统论文 vs. 科学论文\"的定位模糊**：Pipeline整合是工程贡献，DIF是科学贡献，两者混在一起会导致审稿人觉得\"什么都沾一点但哪个都不够深\"。核心DIF claim如果正面，审稿人可能的反应是\"reasonable and expected\"而非\"surprising\"。\n2. **Trivial alternative威胁**：LiveBench（持续更新）+ Growing Pains（IRT等值）的组合可能以1/10的复杂度达到80%的效果，审稿人可能质疑整个pipeline的边际价值。Proposal需要非常convincing地论证为什么不能\"just make new benchmarks\"。\n```\n\nSources:\n- [Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration](https://arxiv.org/abs/2604.12843)\n- [On The Fragility of Benchmark Contamination Detection in Reasoning Models (Wang et al.)](https://arxiv.org/abs/2510.02386)\n- [DVD: A Robust Method for Detecting Variant Contamination](https://arxiv.org/abs/2601.04895)\n- [Test-time RL alignment exposes task familiarity artifacts (Wang & Heckel)](https://arxiv.org/abs/2603.12875)\n- [ConStat: Performance-Based Contamination Detection](https://arxiv.org/abs/2405.16281)\n- [Cross-Context Verification (CCV)](https://arxiv.org/abs/2603.21454)\n- [Hardy et al. - Efficient Detection of Bad Benchmark Items](https://arxiv.org/abs/2603.24999)\n- [BeTaL: Automating Benchmark Design](https://arxiv.org/abs/2510.25039)\n- [RIDE: Difficulty Evolving Perturbation](https://arxiv.org/abs/2511.04120)\n- [BenchBench: Benchmarking Automated Benchmark Generation](https://arxiv.org/abs/2603.20807)\n- [Detecting Benchmark Contamination Through Watermarking (Sander et al.)](https://arxiv.org/abs/2502.17259)\n- [Benchmarking LLMs Under Data Contamination: Survey](https://arxiv.org/abs/2502.17521)\n- [ATLAS: Adaptive Testing for LLM Evaluation](https://arxiv.org/abs/2511.04689)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Contamination-Triggered Benchmark Regeneration with Bifactor IRT Equating\n\n## Description\nWe propose a self-healing benchmark framework that closes the full loop from multi-signal contamination detection through construct-constrained generation to bifactor IRT-equated replacement, with formal graceful-degradation guarantees. The system makes four integrated contributions: (1) A multi-signal contamination sentinel with explicit RL-robustness guarantees, now supported by an analytical demonstration. The ensemble combines five signals: ConStat-style perturbation testing, a novel Differential Item Functioning (DIF) analysis across model release cohorts, IRT aberrance detection, DVD-style generation-variance testing (adapted from Liang et al., arXiv 2601.04895), and membership-inference probes — with formal FDR control. The DIF-based cohort analysis is both novel and analytically RL-robust: we demonstrate via a concrete scenario (200 items, N=80/cohort, 20 contaminated items with P(correct) boosted from 0.50 to 0.80) that logistic regression DIF detects contamination as large uniform DIF (ETS Category C, |Δ_MH|≈3.3) because it examines between-group item-level performance conditional on ability, not within-model output distributions that RL smoothing affects. Quantitative power analysis grounded in PMC5978487 simulations establishes that at N=80/group with contamination-typical effect sizes (δ≈0.8-1.4 logits, consistent with GSM1K's 10-13% accuracy drops), DIF power reaches 60-85%, further enhanced by cumulative Bayesian priors (Sinharay et al., 2006), Item-Focused Trees (Tutz & Berger, 2016), and the 2-of-5 ensemble voting threshold. We acknowledge DIF is underpowered for small effects (14.4% at δ=0.4, N=50/group) — its value is detecting the large effects that threaten benchmark validity, complemented by other signals for subtler contamination. We further address the interaction with task familiarity artifacts (Wang & Heckel, arXiv 2603.12875): task familiarity produces uniform improvements (no DIF signal) while contamination produces item-specific advantages (DIF signal), making DIF a principled discriminator between the two. DVD is labeled as promising but untested against RL-trained models; our RL-contamination experimental condition will resolve this empirical gap. (2) A construct-constrained generation pipeline that abandons direct IRT-parameter conditioning (shown to achieve only rho=0.10-0.45 by arXiv 2602.06631) in favor of construct/taxonomy-based generation, student-simulation pre-screening (r=0.75-0.82), optional pre-filtering via signed isotonic R² scalability coefficients (Hardy et al., arXiv 2603.24999) for fast nonparametric quality control, multi-agent iterative refinement, and empirical calibration on a panel of 200-300 diverse LLMs via Bayesian fixed-parameter calibration (OH2PL, König et al., 2020, achieving unbiased estimates at N≥50). (3) A bifactor IRT equating gate using Projective IRT (PIRT) to handle the multi-construct nature of benchmarks like MMLU — fitting a general ability factor plus domain-specific factors, then projecting to unidimensional equivalents for standard equating (Kim, 2022). Only items whose projected parameters fall within 95% CIs of originals and preserve test information, construct coverage, and model rankings (rho >= 0.95) are accepted. (4) A formal graceful-degradation framework defining validity boundaries grounded in the test equating literature: minimum 20% anchor set for standard equating (Kolen & Brennan, 2004), degraded-but-valid operation via robust LAV equating at 15-20%, halt-and-review below 15%, minimum marginal reliability ≥ 0.80 for benchmark release, and transparent partial-release protocols when full regeneration fails for >15% of items. This uniquely differentiates from Growing Pains (cross-time evaluation without contamination detection or regeneration), from CCV (solution-diversity detection for coding tasks without remediation or psychometric equating), from watermarking approaches (Sander et al., arXiv 2502.17259; proactive prevention requiring pre-release embedding, complementary to our post-hoc detection and remediation), from Wang et al./Self-Critique (identifying the RL-fragility problem without providing a robust detection alternative), from DVD (detecting variant contamination without remediation and untested on RL models), from RIDE/BeTaL (altering difficulty rather than preserving it), and from ConStat (detecting but not remediating contamination). We validate on LiveBench subsets and MMLU-CF under simulated contamination at 10-50% rates — including an RL-contamination condition using GRPO fine-tuning following Wang et al.'s protocol to empirically test DIF robustness and DVD behavior under RL — with naturally-contaminated MMLU/GSM8K as positive controls, and include a pilot feasibility study reporting the first empirical convergence statistics for IRT-equated benchmark item generation.\n\n## Core Problem\nHow can we build self-healing benchmarks that automatically detect contaminated items via multi-signal triangulation — including a novel DIF-based cohort analysis robust to RL-trained reasoning models — and regenerate psychometrically equivalent replacements through empirically calibrated generation with bifactor IRT equating, while maintaining benchmark validity through formal graceful-degradation guarantees?\n\n## Opportunity\nDynamic benchmarks face a fundamental tension: increased contamination resistance via strong rewriting degrades question fidelity and may alter intended difficulty. LiveBench updates monthly but without psychometric calibration; VarBench perturbs inputs but difficulty shifts unpredictably; BenchBench evaluates generation quality but without equating. Educational testing has solved the analogous problem of maintaining test comparability across administrations using IRT equating with anchor items — a mature methodology with decades of validation. However, directly applying this to LLM benchmarks requires solving four underappreciated sub-problems: (1) distinguishing contamination from genuine capability gains — this is especially critical for RL-trained reasoning models (o1, o3, DeepSeek-R1), where Wang et al. (ICLR 2026) demonstrate that GRPO/PPO training conceals contamination signals that reference-free detection methods rely on, with AUROC degradation of 14-20 percentage points (Loss: 14.22pp, Min-K%: 16.42pp, Max-K%: 19.84pp after only ~156 GRPO steps), reducing most to near-random (~50%) AUROC; furthermore, Wang & Heckel (arXiv 2603.12875) show that test-time RL alignment can close fine-tuning performance gaps by ~27 percentage points on average, suggesting some apparent contamination signals may reflect task familiarity artifacts rather than memorization, making item-specific detection even more critical; (2) detecting variant contamination (paraphrased/restructured benchmark items in training data) which evades standard detectors — DVD (arXiv 2601.04895) shows conventional methods achieve only 0.43-0.68 AUC on variant contamination; (3) generating replacement items with controlled psychometric properties (LLMs systematically underestimate difficulty with correlations of only rho=0.10-0.45, per arXiv 2602.06631, necessitating empirical calibration rather than prompt-based difficulty targeting); and (4) equating across multi-construct benchmarks (requiring bifactor or multidimensional IRT rather than naive unidimensional models). No existing work addresses all four sub-problems in an integrated pipeline with formal graceful-degradation guarantees.\n\n## Landscape\nLiveBench (ICLR 2025) updates monthly from recent sources but applies objective scoring without difficulty calibration. LiveCodeBench (ICLR 2025) uses time-segmented evaluation but doesn't ensure psychometric equivalence across segments. BeTaL (ICLR 2026) performs dynamic benchmark design with LLM-in-the-loop but focuses on increasing difficulty, not preserving it. BenchBench (March 2026) evaluates automated benchmark generation using discrimination and validity metrics but without IRT equating. ArenaBencher progressively generates harder items but provides no formal difficulty-equivalence guarantees. CRITICAL CONCURRENT WORK: 'Growing Pains' (arXiv April 2026) uses multidimensional IRT with fixed-parameter calibration and 100 anchor items per dataset to make LLM evaluation extensible across time — achieving Spearman rho >= 0.9 for ranking preservation using 400+ models. However, it addresses efficient evaluation (comparing scores across time), NOT contamination detection or item regeneration. PSN-IRT (AAAI 2026 Oral) analyzes benchmark quality via 4PL IRT but does not regenerate items. RIDE (ICLR 2026) uses IRT-guided perturbation for difficulty evolution in math but does not perform equating. ATLAS (arXiv 2025) applies adaptive testing with IRT to reduce evaluation cost but does not handle contamination. Cross-Context Verification (CCV; arXiv 2603.21454, March 2026) achieves perfect separation between contaminated and genuine reasoning (Mann-Whitney U=0, r=1.0) on SWE-bench Verified by measuring solution diversity across independent sessions — a powerful black-box method, but currently validated only on coding tasks (9 SWE-bench problems, 45 trials) and relying on temperature-0 determinism that may not generalize to knowledge/reasoning benchmarks with inherent answer variability. Hardy et al. (arXiv 2603.24999, March 2026) introduce nonparametric signed isotonic R² scalability coefficients that outperform IRT-based item diagnostics for detecting bad benchmark items on HS Math, GSM8K, and MMLU — lightweight (bivariate monotone fits in seconds) and robust under small-n/large-p conditions; this complements our IRT-based quality control by providing a fast model-agnostic pre-filter for item quality before parametric calibration. On proactive contamination prevention: Sander et al. (arXiv 2502.17259, Feb 2025) propose watermarking benchmarks before release, reformulating questions with a watermarked LLM and detecting 'radioactivity' traces via statistical tests; validated on ARC and MMLU with 1B models, this represents a fundamentally different paradigm (prevention at release time vs. post-hoc detection and remediation). Our approach is complementary: watermarking prevents future contamination, while our pipeline detects and remediates existing contamination in already-deployed benchmarks — the two could be combined in a defense-in-depth strategy. On contamination detection: ConStat (2024) provides performance-based detection with formal FDR control; shortcut neuron analysis (ACL 2025) can isolate contamination to ~1.1-1.4% of neurons with only ~3% false positive impact; 'Test of Time' (arXiv 2025) demonstrates temporal signals are unreliable as standalone contamination indicators. CRITICALLY, 'On The Fragility of Benchmark Contamination Detection in Reasoning Models' (Wang et al., arXiv 2510.02386, ICLR 2026) systematically demonstrates that GRPO/PPO-style RL training conceals contamination signals: reference-free methods show AUROC degradation of 14-20 percentage points after only ~156 GRPO steps (Loss: 14.22pp drop from 75.48% to 61.26%; Min-K%: 16.42pp drop from 74.96% to 58.54%; Max-K%: 19.84pp drop from 69.83% to 49.99% — essentially random), while perturbation-based methods show different degradation patterns. The concealment mechanism is PPO's clipping objective, which contracts the NLL gap between contaminated and clean items. Self-Critique (Tao et al., arXiv 2510.09259, ICLR 2026) partially addresses this via policy-collapse detection but remains an individual-model-level method. DVD (Liang et al., arXiv 2601.04895, Jan 2026) introduces detection via variance of generation distribution and is specifically designed for variant contamination, achieving 0.73-0.74 AUC where Min-K%++ achieves only 0.43-0.68; however, DVD was validated only on SFT-contaminated models and its behavior under RL training is untested. On task familiarity vs. contamination: Wang & Heckel (arXiv 2603.12875, March 2026) show that test-time RL alignment (TTRA) closes the performance gap between base and fine-tuned models by ~27 percentage points on average, suggesting many reported fine-tuning gains are task familiarity artifacts rather than genuine capability improvements; this has a dual implication — it strengthens the need for item-specific contamination detection (since task familiarity produces uniform improvements with no DIF signal, while contamination produces item-specific advantages that DIF detects), but also suggests that contamination-driven DIF effects may be partially confounded with format-familiarity effects that TTRA could remove. On item generation: arXiv 2602.06631 shows LLMs achieve only rho=0.10-0.45 for difficulty estimation, but student simulation approaches (arXiv 2601.09953) achieve r=0.75-0.82 and multi-agent frameworks like ReQUESTA improve discrimination from 0.17 to 0.39. On IRT methodology: bifactor models with Projective IRT (PIRT) enable equating of multidimensional tests while remaining tractable; fixed-parameter calibration requires only N>=200 examinees vs N>=500 for full calibration (Kim & Kolen, 2019); the OH2PL (König, Spoden, & Frey, 2020) achieves unbiased estimates at N>=50 using optimized Bayesian hierarchical priors. No existing work closes the full loop from multi-signal contamination detection (robust to RL-trained models) through construct-constrained generation to bifactor IRT-equated regeneration with graceful-degradation guarantees.\n\n## Approach\nBuild a closed-loop pipeline with three stages plus a formal graceful-degradation framework, each substantially revised to address known limitations:\n\n**Stage 1: Multi-Signal Contamination Sentinel (with RL-Robustness Guarantees).** Deploy an ensemble of five complementary detection signals, explicitly designed so that at least two signals remain informative even against RL-trained reasoning models:\n\n(a) *ConStat-style perturbation testing* — compare model performance on original items vs. semantically-equivalent reformulations, with formal False Discovery Rate (FDR) control. NOTE: Wang et al. (ICLR 2026) show reference-free detectors degrade 14-20pp under RL training (Loss: 14.22pp, Min-K%: 16.42pp, Max-K%: 19.84pp after ~156 GRPO steps); we retain perturbation testing as effective against non-RL models (which still constitute the majority of the model ecosystem) but do not rely on it alone.\n\n(b) *Differential Item Functioning (DIF) across model release cohorts* — a novel application treating model release date as a grouping variable and flagging items that become differentially easier for newer cohorts beyond what general ability gains predict. **This is our primary RL-robust signal.** The key argument: DIF operates on group-level statistical patterns (comparing Item Characteristic Curves across model cohorts matched on overall ability), not individual output distributions. Wang et al. prove that PPO/GRPO clipping contracts the NLL gap *within a single model* between seen and unseen items — but DIF does not examine within-model NLL gaps. It detects whether the structural relationship between ability and item response differs across groups. A contaminated cohort shows anomalous ICCs on specific items regardless of how smooth individual output distributions appear, because contamination must, by definition, create differential item advantage — the one signal RL cannot conceal without negating the purpose of contamination. Furthermore, DIF leverages IRT's invariance principle: item parameters should be group-invariant after controlling for ability, and systematic DIF violations on specific items constitute contamination evidence that is orthogonal to all 10 methods shown to fail.\n\n**Analytical Demonstration of DIF RL-Robustness.** Consider a concrete scenario: 200 binary items evaluated by two annual model cohorts (pre-2026, post-2026) with N=80 models each. Suppose 20 items are contaminated in the newer cohort, boosting P(correct) from 0.50 to 0.80 on those items (δ≈1.4 logits — a conservative estimate given GSM1K's documented 13% average accuracy drop across models, which implies item-level boosts of 20-40% on memorized items for heavily contaminated models). RL smoothing via GRPO/PPO contracts the NLL gap between contaminated and clean items within each individual model's output distribution — this is the mechanism Wang et al. demonstrate. However, the 30-percentage-point accuracy advantage on contaminated items persists at the behavioral level: RL training does not cause models to answer memorized items incorrectly, because doing so would negate the purpose of contamination. Logistic regression DIF with sum-score matching compares the probability of correctly answering each item across the two cohorts, conditioning on total score (overall ability). On the 180 uncontaminated items, both cohorts show similar ICCs after controlling for ability. On the 20 contaminated items, the newer cohort shows systematically higher probability of correct response at every matched ability level — large uniform DIF (ETS Category C: |Δ_MH| = -2.35 × ln(odds ratio) = -2.35 × ln(4.0) ≈ 3.3 delta units, far exceeding the C threshold of 1.5). This differential pattern is detectable because DIF examines between-group item-level performance conditional on ability, not within-model output distributions. RL smoothing is irrelevant to DIF: it modifies how confidently a model generates its answer (the NLL surface), not whether it gets the answer right or wrong (the binary response pattern that DIF analyzes).\n\n**Quantitative DIF Power Analysis.** Independent simulation evidence (PMC5978487) establishes that logistic regression DIF at N=50/group achieves 14.4% power for small effects (δ=0.4) and 31.0% for medium effects (δ=0.6); at N=100/group, these rise to 24.7% and 55.2% respectively. These figures appear concerning for small-sample detection, but benchmark contamination typically produces large effects: GSM1K documents 10-13% average accuracy drops from contamination across models, corresponding to item-level δ≈0.8-1.4 logits on memorized items. DIF power scales super-linearly with effect size; at δ=1.4 with N=80/group (annual cohorts), power is estimated at 60-85% based on extrapolation from PMC5978487 simulation curves, consistent with the general finding that the likelihood ratio test achieves the highest statistical power in most DIF configurations. Furthermore, three factors substantially improve effective power beyond these baseline estimates: (i) cumulative Bayesian priors (Sinharay et al., 2006) accumulate evidence across successive benchmark administrations, borrowing strength from previous DIF estimates to improve detection over time — particularly effective for persistent contamination that affects multiple administrations; (ii) Item-Focused Trees (Tutz & Berger, 2016) avoid arbitrary categorical group splits by treating release date as a continuous covariate, leveraging the full model sample (N=160 rather than two groups of 80) and letting the method identify natural breakpoints where DIF emerges; (iii) the 2-of-5 ensemble voting threshold means even 40-50% individual DIF power yields acceptable ensemble sensitivity when combined with DVD and ConStat signals on non-RL models. We acknowledge that DIF alone is underpowered for small contamination effects (δ<0.6); its value lies in detecting the large effects that matter most for benchmark validity, complemented by other ensemble signals for smaller effects.\n\n**Interaction with Task Familiarity Artifacts.** Wang & Heckel (arXiv 2603.12875, March 2026) demonstrate that test-time RL alignment (TTRA) closes the performance gap between base and fine-tuned models by ~27 percentage points on average, suggesting many reported fine-tuning gains reflect task familiarity rather than genuine capability. This has a dual implication for DIF-based detection. First, it *strengthens* the DIF rationale: task familiarity artifacts produce uniform improvements across all items (no DIF signal), while memorization-based contamination produces item-specific advantages (DIF signal) — DIF thus provides a principled way to distinguish the two, a distinction no other detection method explicitly makes. Second, it introduces a nuance: if some contamination manifests partially as enhanced task-format familiarity rather than item-specific memorization, the item-level DIF effect sizes may be modestly smaller than the raw accuracy gaps suggest. We address this by: (a) noting that DIF would be computed on models as deployed (without TTRA), since TTRA is an analysis tool, not a standard deployment procedure; (b) observing that DIF controls for overall ability via sum-score matching, so any uniform familiarity-driven improvements are absorbed into the ability estimate, leaving item-specific contamination signals intact; (c) reporting DIF effect sizes with uncertainty intervals rather than relying on significance thresholds alone, making the analysis transparent about power limitations.\n\n**DIF Small-Sample Strategy (detailed).** Classical DIF methods (Mantel-Haenszel, logistic regression) require N≥200 per group for optimal performance (Mazor et al., 1992; Scott et al., 2009), far exceeding our ~10-20 models per quarterly cohort. We address this through a four-pronged strategy: (i) *Temporal aggregation*: use semi-annual or annual cohorts rather than quarterly, yielding N=40-80 per group; as the model ecosystem grows (~100+ new models per year as of 2026), annual cohorts will approach the N≥100 threshold where regularized methods become viable. (ii) *Cumulative Bayesian DIF*: following Sinharay et al. (2006, ETS), use DIF estimates from previous benchmark administrations as informative priors for new cohorts, accumulating statistical power over time rather than analyzing each cohort in isolation. (iii) *Item-Focused Trees* (Tutz & Berger, 2016): treat release date as a continuous covariate rather than creating arbitrary categorical cohorts, letting the method identify natural breakpoints where DIF emerges — this avoids the small-group problem entirely while leveraging the full model sample. (iv) *Parsimonious models*: following Belzak (2020, Multivariate Behavioral Research), use logistic regression with sum scores rather than complex IRT models for DIF detection, as simpler models outperform complex ones in small samples even when misspecified. We report DIF effect sizes (ETS delta classification: A/B/C, where C indicates |Δ_MH|≥1.5) with uncertainty intervals rather than relying solely on significance tests, acknowledging power limitations transparently.\n\n(c) *IRT aberrance detection* — flag items whose observed easiness significantly exceeds calibrated difficulty, used as one signal among several rather than a standalone detector.\n\n(d) *DVD-style generation variance testing* (adapted from Liang et al., arXiv 2601.04895) — for models with inference access, generate 50 responses per item via temperature sampling and compute the variance of synthetic-difficulty scores. Contaminated items exhibit bimodal generation distributions (alternating between memorized templates and free generation) yielding high variance, while clean items show unimodal low-variance distributions. This specifically detects variant contamination (paraphrased/restructured benchmark items) where ConStat and Min-K% fail (AUC 0.43-0.68 vs. DVD's 0.73-0.74). NOTE: DVD is promising but untested against RL-trained models — it was validated only on SFT-contaminated models (Qwen2.5, Llama3.1 fine-tuned). Whether the bimodal variance signature persists after GRPO/PPO training is an open empirical question that our RL-contamination experimental condition will directly test. DVD's value in the ensemble is therefore primarily for detecting variant contamination in the non-RL model majority, with DIF providing the RL-robust complement.\n\n(e) *Membership-inference probes* (Min-K% Prob / ReCaLL) where white-box access is available — retained as a cheap first-pass filter effective against non-RL models, but explicitly acknowledged as fragile against GRPO/PPO-trained models per Wang et al. (AUROC drops to ~50% after ~156 GRPO steps).\n\nTrigger regeneration when an item is flagged by >= 2 independent signals, with FDR-controlled thresholds. The ensemble is explicitly designed so that DIF (group-level, analytically RL-robust as demonstrated above) and DVD (generation-variance, variant-robust on SFT models) provide coverage where individual-level methods fail. Genuine capability gains will produce uniform improvement across original and perturbed items (no ConStat signal), across cohorts controlling for ability (no DIF signal), and across temperature samples (no DVD signal), while contamination produces item-specific anomalies in at least two of these dimensions.\n\n**Stage 2: Construct-Constrained Generation with Empirical Calibration.** Critically, we abandon the original approach of conditioning generators on raw IRT parameters — research shows LLMs achieve only rho=0.10-0.45 correlation with actual difficulty (arXiv 2602.06631). Instead: (a) For each flagged item, prompt a frontier generator (DeepSeek-V4-Pro or Qwen-3.5-397B) conditioned on the item's construct tag, cognitive complexity level (Bloom's taxonomy), format template, and 3-5 exemplar items from the same difficulty band — but NOT explicit IRT parameters; (b) Generate 8-10 candidates per flagged item using a multi-agent framework (generator + evaluator + refiner) inspired by ReQUESTA, with iterative critique loops; (c) Pre-screen candidates using student simulation — have a diverse panel of weaker/mid-tier LLMs (4B-14B parameters) role-play as examinees at varying ability levels, estimating approximate difficulty via simulated IRT (achieving r=0.75-0.82 per arXiv 2601.09953), and discard candidates whose estimated difficulty deviates by >1.5 logits from the target; (d) Optionally pre-filter candidates using Hardy et al.'s signed isotonic R² scalability coefficients (arXiv 2603.24999) as a fast, nonparametric quality check — items with anomalously low scalability coefficients (indicating poor construct alignment) are discarded before expensive panel calibration; (e) Empirically calibrate surviving candidates on the full calibration panel of 200-300 diverse LLMs via Bayesian fixed-parameter calibration (OH2PL, König, Spoden, & Frey, 2020), anchored to a preserved clean set (>= 20% of items, following the Kolen & Brennan 20% rule for stable equating). This generate-screen-calibrate pipeline is expected to achieve 30-50% rejection rates based on analogous AIG literature; we report convergence statistics as a key empirical contribution.\n\n**Stage 3: Bifactor IRT Equating Gate.** Move from naive unidimensional 2PL to a bifactor model (general LLM ability + domain-specific factors), which captures the inherently multi-construct nature of benchmarks like MMLU while remaining tractable for equating. Use Projective IRT (PIRT) to project bifactor parameters onto unidimensional equivalents compatible with standard equating software (demonstrated to produce very similar equating outcomes to full numerical integration, with practical advantages for implementation; Kim, 2022). Accept only replacements whose projected difficulty and discrimination fall within the 95% CI of the original item's parameters. Verify that the regenerated benchmark's test information function, construct coverage vector, and model ranking (Spearman rho >= 0.95) match the pre-contamination gold standard. Reject and re-generate otherwise, with a maximum of 3 regeneration cycles per item before flagging for human review.\n\n**Graceful Degradation Framework.** We define formal validity boundaries and fallback strategies for each failure mode, grounded in the test equating literature (Kolen & Brennan, 2004; Angoff, 1984):\n\n(i) *Anchor set integrity*: Maintain a minimum of 20% clean (uncontaminated) anchor items. If contamination detection flags items bringing the clean set below 20%, enter a degraded-but-valid operating mode: switch from standard Stocking-Lord equating to robust Area-Weighted or Least Absolute Values (LAV) equating methods (which tolerate outlying anchor items) and widen acceptance CIs to 99%. If the clean set drops below 15%, halt automated regeneration and flag the entire benchmark version for human review and potential full re-calibration. Below 10%, do not release.\n\n(ii) *Stage 1 error propagation*: False positives (flagging clean items as contaminated) trigger unnecessary regeneration but do not compromise validity — the equating gate (Stage 3) ensures replacements are psychometrically equivalent regardless of whether the original was truly contaminated. False negatives (missing contaminated items) are the more dangerous failure mode; we mitigate this by requiring only 2-of-5 signal agreement, with the understanding that DIF and DVD provide complementary coverage against RL-concealment and variant contamination respectively.\n\n(iii) *Stage 2 generation failure*: If <50% of candidates survive pre-screening for a given item (below the expected 50-70% survival rate), the system relaxes the logit-deviation threshold from 1.5 to 2.0 and generates a second batch of 8-10 candidates. If the item still fails after 3 regeneration cycles, it is flagged for human review but the benchmark continues operating with the original (potentially contaminated) item marked with a quality warning — preferable to reducing test length.\n\n(iv) *Stage 3 equating failure*: If >15% of items fail the equating gate after all regeneration cycles (meaning the benchmark cannot be fully regenerated), we release a partial-regeneration version with: (a) adjusted test information function reported alongside all scores, (b) model rankings computed on both the full benchmark and the clean-items-only subset for comparison, (c) marginal reliability coefficient reported — release only if marginal reliability ≥ 0.80 for group-level comparisons (per APA standards). This partial-release strategy provides transparent validity information rather than silently degraded scores.\n\n(v) *Minimum viable benchmark*: Formally, a regenerated benchmark version is released only if: marginal IRT reliability ≥ 0.80, Spearman rho ≥ 0.90 with the pre-contamination gold standard (relaxed from 0.95 in degraded mode), anchor set ≥ 15%, and SEM ≤ 0.35 across ≥ 70% of the target ability range. These thresholds are derived from operational testing standards (Kolen & Brennan, 2004) adapted for the LLM evaluation context where group-level comparisons (model rankings) are the primary use case.\n\n**Evaluation Strategy.** Validate on three tiers: (a) Primary — LiveBench subsets (math, reasoning, coding) as currently-uncontaminated benchmarks with diverse task types and temporal structure; simulate contamination by fine-tuning open-weight models on specific LiveBench items at controlled rates (10-50%) and measuring detection sensitivity and ranking recovery. Critically, include an RL-contamination condition: apply GRPO fine-tuning (following Wang et al.'s protocol of ~156 steps on contaminated data) to open-weight models on benchmark items and verify that DIF-based detection remains effective while individual-level methods degrade — this directly tests the analytical demonstration's predictions. Additionally, test DVD's bimodal variance signature under RL contamination to determine whether it is robust, partially robust, or fragile (resolving the current empirical gap). (b) Secondary — MMLU-CF (the contamination-free MMLU replacement, ACL 2025) for knowledge-domain evaluation, running the full regeneration pipeline on synthetically contaminated subsets. (c) Positive control — use naturally-contaminated MMLU/GSM8K items (with documented contamination evidence from GSM1K studies) to verify that the contamination sentinel detects known real-world contamination. Additionally, include a **pilot feasibility study** on a single LiveBench math subset (~200 items): run the full generate-screen-calibrate-gate pipeline and report rejection rates, convergence speed, parameter recovery accuracy, ranking preservation, and graceful-degradation trigger rates — providing the first empirical evidence of generate-test-reject convergence for IRT-equated benchmark items.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '900-1300 (inference of 200-300 models on ~5K items each for IRT calibration across multiple rounds, plus item generation with 70B+ models, plus student simulation panel, plus DVD temperature-sampling at 50 generations/item)', 'timeline': '5-6 months (1.5 months multi-signal contamination detector including DIF infrastructure and DVD adaptation, 1.5 months bifactor IRT calibration infrastructure, 1.5 months generation pipeline with student simulation, 1.5 months experiments including RL-contamination condition, pilot feasibility study, and writing)', 'estimated_gpu_cost': '$1800-$2600 at ~$2/hr H100 spot pricing', 'closed_source_api_cost': '$800-$2000 (API calls for ~30-50 closed-source models in calibration panel: GPT-4o, Claude, Gemini, etc. at ~5K items each, plus student simulation inference, plus DVD temperature-sampling for closed-source models)'}, 'human_in_loop': {'gpu_hours': '800-1100 (same inference needs, Claude handles generation orchestration, IRT analysis code, DIF implementation, and DVD adaptation)', 'timeline': '3.5-4.5 months (Claude drafts contamination detection, equating code, DIF pipeline, and student simulation; human validates IRT assumptions, bifactor model specification, DIF power analysis, and experimental design)', 'claude_api_cost': '$400-$700 (Sonnet 4.6 for code generation and pipeline orchestration, ~120M tokens total with caching)', 'estimated_gpu_cost': '$1600-$2200', 'closed_source_api_cost': '$800-$2000'}, 'auto_research': {'gpu_hours': '900-1200 (cannot reduce inference needs for 200-300 model calibration panel; DVD temperature-sampling adds ~10% overhead)', 'timeline': '8-12 weeks (parallelized model evaluation is the critical path; 200-300 model panel requires ~3 weeks per calibration round even with full parallelism; pilot feasibility study adds ~2 weeks; RL-contamination condition adds ~1 week for GRPO training)', 'claude_api_cost': '$800-$1200 (Opus 4.7 for experimental design and IRT analysis, Sonnet 4.6 for implementation, ~180M tokens with caching)', 'estimated_gpu_cost': '$1800-$2400', 'closed_source_api_cost': '$800-$2000', 'speed_bottleneck': 'IRT calibration panel: collecting responses from 200-300 diverse LLMs on pilot items requires sequential API calls to closed-source models (rate limits) and batched inference on open-weight models (GPU scheduling). Minimum ~3 weeks for a single calibration round with full parallelism across ~150 open-weight models and ~50 closed-source APIs. The pilot feasibility study requires at least 2 full calibration rounds. DVD temperature-sampling (50 generations/item) adds ~10% to inference costs.'}}\n\n## Inspired By\nField guide finding that 'contamination resistance degrades question fidelity'; gap between dynamic evaluation (LiveBench, DyVal) and psychometric rigor (IRT, ATLAS); cross-domain transfer of IRT equating from educational testing to benchmark maintenance; arXiv 2602.06631's demonstration that LLMs cannot directly target difficulty parameters, motivating empirical calibration; 'Test of Time' (2025) showing temporal contamination signals are unreliable, motivating multi-signal approaches; Wang et al. (ICLR 2026) showing RL conceals all individual-level contamination signals, motivating group-level DIF analysis; Wang & Heckel (2026) showing task familiarity artifacts produce uniform improvements distinguishable from item-specific contamination via DIF; DVD's demonstration that variant contamination requires specialized detection signals; Hardy et al.'s signed isotonic R² as a lightweight pre-filter complementing parametric IRT; Sander et al.'s watermarking paradigm motivating a complementary post-hoc remediation approach; bifactor IRT and PIRT as a practical bridge between unidimensional oversimplification and intractable full MIRT; Kolen & Brennan's anchor-set theory providing formal graceful-degradation thresholds.\n\n## Target Venues\n- ICLR 2027 (deadline expected ~October 2026 based on historical pattern — not yet announced; ideal timeline for thorough experiments including pilot feasibility study and RL-contamination condition; PRIMARY TARGET)\n- AAAI 2027 (abstract July 21, paper July 28, 2026 — tight but feasible if pilot study is scoped to single domain; 2 months)\n- EACL 2027 via ARR August 2026 cycle (submission August 3, 2026 — feasible with focused experiments on LiveBench math subset)\n\n## Key References\n- LiveBench: A Challenging, Contamination-Free LLM Benchmark (ICLR 2025)\n- LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code (ICLR 2025)\n- Automating Benchmark Design [BeTaL] (ICLR 2026)\n- BenchBench: Benchmarking Automated Benchmark Generation (arXiv 2026)\n- Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration (arXiv April 2026)\n- Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory [PSN-IRT] (AAAI 2026 Oral)\n- The stability of IRT parameters under several test equating conditions (Frontiers in Psychology 2026)\n- Estimating Exam Item Difficulty with LLMs: A Benchmark on Brazil's ENEM Corpus (arXiv 2602.06631, Feb 2026)\n- Take Out Your Calculators: Estimating Real Difficulty with LLM Student Simulations (arXiv 2601.09953, Jan 2026)\n- Reconstructing Item Characteristic Curves with Fine-Tuned LLMs (arXiv 2601.02580, Jan 2026)\n- ReQUESTA: Hybrid Multi-Agent Framework for MCQ Generation (arXiv 2602.03704, Feb 2026)\n- Test of Time: Rethinking Temporal Signal of Benchmark Contamination (arXiv 2509.00072, 2025)\n- ConStat: Performance-Based Contamination Detection with FDR Control (ETH Zurich 2024)\n- Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis (ACL 2025)\n- On The Fragility of Benchmark Contamination Detection in Reasoning Models (Wang et al., arXiv 2510.02386, ICLR 2026)\n- Detecting Data Contamination from Reinforcement Learning Post-training [Self-Critique / RL-MIA] (Tao et al., arXiv 2510.09259, ICLR 2026)\n- DVD: Detection via Variance of Generation Distribution for Variant Contamination (Liang et al., arXiv 2601.04895, Jan 2026)\n- Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis [CCV] (arXiv 2603.21454, March 2026)\n- Efficient Detection of Bad Benchmark Items with Novel Scalability Coefficients (Hardy et al., arXiv 2603.24999, March 2026)\n- Detecting Benchmark Contamination Through Watermarking (Sander et al., arXiv 2502.17259, Feb 2025)\n- Test-time RL alignment exposes task familiarity artifacts in LLM benchmarks (Wang & Heckel, arXiv 2603.12875, March 2026)\n- Application of IRT Fixed Parameter Calibration to Multiple-Group Test Data (Kim & Kolen, Applied Measurement in Education 2019)\n- An Optimized Bayesian Hierarchical Two-Parameter Logistic Model for Small-Sample Item Calibration [OH2PL] (König, Spoden, & Frey, Applied Psychological Measurement 2020, PMC7262992)\n- Robustness of the OH2PL for Small-Sample Item Calibration (König, Spoden, & Frey, Behavior Research Methods 2022)\n- Approximating Bifactor IRT Equating with Projective IRT [PIRT] (PMC 2020)\n- Item Response Theory True Score Equating for the Bifactor Model (Kim, Journal of Educational Measurement 2022)\n- Several Variations of Simple-Structure MIRT Equating (Kim, Journal of Educational Measurement 2023)\n- MMLU-CF: A Contamination-Free Multi-task Language Understanding Benchmark (ACL 2025)\n- Simulating Training Data Leakage in Multiple-Choice Benchmarks (arXiv 2505.24263, 2025)\n- VarBench: Robust Language Model Benchmarking Through Dynamic Variable Perturbation (EMNLP 2024)\n- DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks (ICLR 2024)\n- RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning (arXiv 2025)\n- Adaptive Testing for LLM Evaluation [ATLAS] (arXiv 2025)\n- Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation (EMNLP 2025)\n- Automatic- and Transformer-Based AIG: A Critical Review (Sommer & Arendasy, Intelligence 2025)\n- Can LLMs Estimate Student Struggles? The Curse of Knowledge Effect (arXiv 2512.18880, 2025)\n- Quantifying Data Contamination in Psychometric Evaluations of LLMs (Han et al., arXiv 2510.07175, 2025)\n- Using Past Data to Enhance Small-Sample DIF Estimation: A Bayesian Approach (Sinharay et al., ETS Research Report RR-06-09, 2006)\n- Testing Differential Item Functioning in Small Samples (Belzak, Multivariate Behavioral Research 2020)\n- Item-Focused Trees for the Detection of Differential Item Functioning (Tutz & Berger, Psychometrika 2016)\n- Test Equating, Scaling, and Linking: Methods and Practices 3rd ed. (Kolen & Brennan, Springer 2014)\n- A Careful Examination of Large Language Model Performance on Grade School Arithmetic [GSM1K] (arXiv 2405.00332, 2024)\n- Power and Sample Size Calculations for Logistic Regression Tests for Differential Item Functioning (PMC5978487)\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T04:41:13.261Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T04:41:13.261Z",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd"
+}
+```
+
+---
+
+## Round 1
+
+10 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T04:41:13.275Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient information from my literature search. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. Wang et al. "On The Fragility of Benchmark Contamination Detection in Reasoning Models" (arXiv 2510.02386, ICLR 2026):
+   - 验证了 proposal 的核心前提：GRPO/PPO 训练确实会使 reference-free 检测方法 AUROC 降低 14-20pp，Min-K% 降至接近随机（~50%）。Proposal 对此文献的引用和描述准确。
+   - 与本 proposal 关系：proposal 的 DIF 方案直接回应此论文揭示的问题。该论文没有提出 group-level DIF 方法，只展示了 individual-level 方法的脆弱性。
+
+2. "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration" (arXiv 2604.12843, April 2026):
+   - 使用 multidimensional IRT + fixed-parameter calibration + 100 anchor items，实现跨时间的 LLM 评估可比性（Spearman ρ ≥ 0.9，400+ models）。
+   - 与本 proposal 关系：最直接的并发竞争者。但 Growing Pains 只做 evaluation extensibility，不做 contamination detection 或 item regeneration。Proposal 对此文献定位准确。差异真实存在——但 Growing Pains 已经占据了"IRT for LLM benchmark"的核心叙事位置。
+
+3. DVD "A Robust Method for Detecting Variant Contamination" (arXiv 2601.04895, Jan 2026):
+   - 通过 generation variance 检测 variant contamination，AUC 0.73-0.74 vs Min-K%++ 的 0.43-0.68。但仅在 SFT 模型上验证。
+   - 与本 proposal 关系：被整合为 ensemble 的一个 signal。Proposal 诚实地标注 DVD 未在 RL 模型上测试，并将此设为实验目标。
+
+4. BeTaL "Automating Benchmark Design" (ICLR 2026):
+   - LLM-in-the-loop 自动化 benchmark 设计，聚焦于调控 difficulty。
+   - 与本 proposal 关系：BeTaL 追求"增加难度"，本 proposal 追求"保持等值"——方向不同。Proposal 定位准确。
+
+5. Wang & Heckel "Test-time RL alignment exposes task familiarity artifacts" (arXiv 2603.12875, March 2026):
+   - TTRA 使 base model 性能接近 fine-tuned model，表明很多 fine-tuning gains 是 task familiarity artifacts。
+   - 与本 proposal 关系：proposal 用此区分 DIF 信号（item-specific contamination → DIF signal）vs. task familiarity（uniform improvement → no DIF signal）。论点逻辑上成立。
+
+6. Cross-Context Verification CCV (arXiv 2603.21454, March 2026):
+   - 通过 session-isolated solution diversity 检测 coding benchmark contamination，在 SWE-bench 上达到完美分离。
+   - 与本 proposal 关系：CCV 仅验证于 coding tasks（9 problems），泛化性存疑。Proposal 正确指出其局限。
+
+7. Hardy et al. "Efficient Detection of Bad Benchmark Items" (arXiv 2603.24999, March 2026):
+   - 提出 signed isotonic R² scalability coefficients，在 HS Math/GSM8K/MMLU 上 AUC 优于 IRT-based diagnostics。
+   - 与本 proposal 关系：被整合为 pre-filter。合理但非核心贡献。
+
+8. BenchBench "Benchmarking Automated Benchmark Generation" (arXiv 2603.20807, March 2026):
+   - 系统化评估 automated benchmark generation pipeline 的 discrimination 和 validity。
+   - 与本 proposal 关系：评估 generation quality 但不做 equating。Proposal 定位准确。
+
+9. arXiv 2602.06631 "Estimating Exam Item Difficulty with LLMs" (Feb 2026):
+   - LLM 直接估计难度仅达 ρ=0.10-0.45。Proposal 引用准确，并据此放弃直接 IRT parameter conditioning。
+
+10. arXiv 2601.09953 "Take Out Your Calculators" (Jan 2026):
+    - Student simulation 难度估计达 r=0.75-0.82。Proposal 引用准确。
+
+- **调研总结**：该领域当前处于"各组件分散发展"阶段——contamination detection（Wang et al., DVD, ConStat）、IRT-based evaluation（Growing Pains, PSN-IRT, ATLAS）、item generation（BenchBench, BeTaL, ReQUESTA）各自独立。没有现有工作完成 detection → generation → equating 的全闭环。Proposal 处于"系统集成+一个新检测信号（DIF）"的位置。DIF 用于 LLM contamination detection 是检索范围内的首次提出。
+
+【Trivial Alternative 检验】:
+
+存在两个重要的 trivial alternative：
+
+(1) **LiveBench 模式（时间隔离法）**：直接从训练截止日期之后的新来源创建评估题目，从根本上避免 contamination。无需检测、无需 equating。Proposal 的增量价值在于：(a) 不是所有 benchmark 都能用时间隔离（如 MMLU 的知识域题目）；(b) LiveBench 式刷新不保证 psychometric equivalence，分数不可跨版本比较。但问题是：**NLP 社区实际上多大程度上需要跨版本分数严格可比？** 现实中 leaderboard 定期重置，旧排名被丢弃。这个增量价值是真实的但可能被高估。
+
+(2) **简单跨 cohort accuracy delta**：不用完整的 logistic regression DIF，只是直接比较新旧 cohort 在各 item 上的 accuracy 差异（控制总分后做 residual analysis）。这种 trivial version 可能捕获 DIF 所检测信号的大部分。Proposal 的增量价值在于：DIF 提供正式的 psychometric 框架、effect size 分类（ETS A/B/C）、和 FDR 控制。但核心信号（跨 cohort 的 item-level differential performance）可以用更简单的方法获取。
+
+**判断**：trivial alternative 威胁中等。全闭环管道确实比任何单一替代方案更完整，但核心检测信号（DIF）的简化版本可能效果接近。Proposal 的不可替代价值主要在 equating guarantee + graceful degradation，而非 detection 本身。
+
+【前提假设检验】:
+
+核心逻辑链中以下假设未经验证：
+
+(1) **"Contamination 必然产生 item-specific advantage → DIF signal"**——这是最关键的假设。Proposal 论证：contamination 必须创造 differential item advantage，否则 contamination 就失去了意义（"RL cannot conceal without negating the purpose of contamination"）。这个论证在逻辑上成立，但忽略了一个微妙情况：**如果一个 model 被 contaminated 但 contamination 效果分散在大量 items 上（例如整个 dataset 都泄露了），则每个 item 的 DIF effect size 可能很小，导致 DIF underpowered**。Proposal 部分承认了这一点（"DIF is underpowered for small effects"），但将此定位为"检测大效应的工具"。问题是：如果整个 benchmark 都泄露了（这在 MMLU 等知名 benchmark 中很常见），effect sizes 可能是 medium-small 而非 large，因为所有 items 都有 boost。
+
+(2) **"200-300 diverse LLMs 的 calibration panel 可以提供足够的 IRT calibration"**——教育测试中 IRT calibration 通常需要 N≥500 examinees。Proposal 使用 OH2PL 在 N≥50 时声称 unbiased estimates，但这些结论来自人类考试场景（item responses 更接近 IRT 假设），LLM responses 的 IRT model fit 可能完全不同（如 4PL 或 more complex patterns）。
+
+(3) **"Bifactor IRT 适合 LLM benchmark 的 latent structure"**——这假设 LLM 能力可以分解为 general factor + domain-specific factors。但 LLM 的能力结构可能更复杂（不同 training recipe 导致完全不同的 factor structure），bifactor 模型可能不够灵活。Growing Pains 使用 MIRT 而非 bifactor，暗示 factor structure 选择是开放问题。
+
+(4) **"Student simulation pre-screening (r=0.75-0.82) 足以替代 direct difficulty targeting"**——这些相关系数来自教育测试场景，在 LLM benchmark 场景中未经验证。LLM-as-student 和 LLM-as-examinee 的一致性可能更低。
+
+【3 维度打分】:
+
+1. **Novelty: 中** — DIF 用于 LLM contamination detection 在我的调研范围内确实是首次提出，且 RL-robustness 论证有逻辑说服力——这是真实的 novelty delta。但透过 surface 看本质：(a) DIF 本身是 1980s 就有的成熟方法，应用到新场景是"novel application"而非"novel methodology"；(b) 全闭环管道的各组件（ConStat perturbation testing, DVD variance detection, IRT equating, student simulation）均为已有方法的组装，system-level novelty 但非 methodological novelty；(c) DIF 的 RL-robustness 论证虽然 sound，但核心洞察（"behavioral response pattern 不受 output distribution smoothing 影响"）一旦说出来是 intuitive 的，审稿人不太会说"surprising"。与 Growing Pains（MIRT + fixed-parameter calibration for temporal extension）相比，本 proposal 的 novelty 在 contamination detection + remediation 维度，但在 IRT methodology 维度是 incremental。
+
+2. **Significance: 中偏强** — 研究问题（benchmark contamination + score comparability over time）是 LLM 社区真正关心的问题。Wang et al. (ICLR 2026) 揭示 RL 训练破坏现有检测方法的事实让这个方向格外重要和及时。如果 DIF 方法被验证有效，它将是社区应对 RL contamination 的一个重要工具。但显著性受限于：(a) 系统的实际部署门槛极高（需要 200-300 model calibration panel），可能限制社区采用；(b) 论文可能过于 systems-oriented——"我们把很多东西粘在一起"可能被视为 engineering contribution 而非 scientific insight；(c) 最有洞察力的单一贡献（DIF for RL-robust detection）可能足以独立成篇，而将其埋在一个巨型 pipeline 中反而稀释了它的 impact。
+
+3. **Related Work: 强** — 这是该 proposal 最突出的优点。对几乎所有相关工作的覆盖都是准确的、有差异化定位的：Wang et al. (RL fragility), Growing Pains (temporal extension without detection), DVD (variant detection without remediation), BeTaL (difficulty evolution not preservation), CCV (coding-only), ConStat (detection without remediation), Sander et al. (watermarking = prevention not post-hoc), Wang & Heckel (task familiarity).每篇工作的引用和描述经搜索验证基本准确。差异化清晰且公正。唯一的小瑕疵：对 Growing Pains 的区分虽然准确，但审稿人可能会问"为什么不在 Growing Pains 的 framework 上增加 contamination detection module"——proposal 应该更明确地回应这个自然的 follow-up。
+
+【概率估计】: [22% - 35%] 中位 27%
+
+【估计理由】:
+- Novelty 为"中"限制了上界。核心贡献（DIF for RL-robust contamination detection）是一个 sound 但 unsurprising 的 insight——将教育测试的成熟方法应用到 LLM 评估的新场景。审稿人看到后大概率反应是"makes sense"而非"I wouldn't have guessed this"。全闭环管道是 system-level novelty，但 NLP 会议对 systems paper 的评价标准更侧重于 empirical impact 而非 pipeline 完整性。
+- Significance 中偏强为本 proposal 提供了一些上行空间——问题确实重要且及时，Wang et al. (ICLR 2026) 的发现让 RL-robust detection 成为一个真实需求。
+- Related Work 的出色覆盖降低了被拒的下行风险（不太可能因为 missing related work 被拒），但 related work 好只能防止扣分，不能加分。
+- 概率主要被 novelty 的"中"评级锚定在 25-30% 区间。如果 DIF 实验结果强势（特别是 RL contamination condition 展示 DIF 成功检测而其他方法失败），empirical contribution 可以将概率推向上界（~35%）。但 idea 本身的 ceiling 大约就在这里。
+- 此外，论文可能面临"too much for one paper"的审稿批评——四个组件中任何一个都可以是一篇独立论文，压缩在一起可能导致每个组件都不够深入。
+
+【主要风险】:
+1. **"Novel application of existing methodology" vs. "novel methodology"**：审稿人可能认为 DIF 用于 contamination detection 是一个 straightforward application，novelty 不足以支撑顶会论文。这尤其危险，因为 DIF 的 RL-robustness 论证虽然 sound，但一旦说出来就显得 obvious——"当然 behavioral patterns 不受 output distribution smoothing 影响"。
+2. **Pipeline 过于庞大导致 depth 不足**：四个 contribution（detection ensemble + generation pipeline + bifactor equating + graceful degradation）在一篇论文中可能无法充分展示任何一个的深度。审稿人可能建议"focus on DIF detection and do it thoroughly"或"focus on the equating framework"，认为当前 scope 太广。这是 idea framing 层面的风险，不是执行层面的——即使实验做得很好，"我们做了一个大 pipeline"的 narrative 在 novelty 评审中天然处于劣势。
+```
+
+Sources:
+- [On The Fragility of Benchmark Contamination Detection in Reasoning Models](https://arxiv.org/abs/2510.02386)
+- [Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration](https://arxiv.org/html/2604.12843)
+- [DVD: A Robust Method for Detecting Variant Contamination](https://arxiv.org/abs/2601.04895)
+- [Automating Benchmark Design (BeTaL)](https://arxiv.org/abs/2510.25039)
+- [Test-time RL alignment exposes task familiarity artifacts](https://arxiv.org/abs/2603.12875)
+- [Cross-Context Verification (CCV)](https://arxiv.org/abs/2603.21454)
+- [Efficient Detection of Bad Benchmark Items (Hardy et al.)](https://arxiv.org/abs/2603.24999)
+- [Estimating Exam Item Difficulty with LLMs](https://arxiv.org/abs/2602.06631)
+- [Take Out Your Calculators: LLM Student Simulations](https://arxiv.org/abs/2601.09953)
+- [BenchBench: Benchmarking Automated Benchmark Generation](https://arxiv.org/abs/2603.20807)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have comprehensive research to provide a well-grounded evaluation. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. **Wang et al., "On The Fragility of Benchmark Contamination Detection in Reasoning Models" (arXiv 2510.02386, ICLR 2026)**: 系统性证明了 GRPO/PPO 训练可在约 156 步内将 reference-free 检测方法的 AUROC 降低 14-20pp，部分方法降至接近随机（~50%）。这是本 proposal 的核心动机之一，论文真实存在且描述准确。
+
+2. **Tao et al., "Detecting Data Contamination from Reinforcement Learning Post-training" / Self-Critique (arXiv 2510.09259, ICLR 2026)**: 提出 RL-MIA benchmark 和 Self-Critique 方法，通过检测 policy collapse 来识别 RL 后训练中的污染，AUC 提升最高 30%。这是目前**唯一**直接针对 RL 后训练污染检测的已发表方法，是 proposal 的直接竞争者。
+
+3. **"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration" (arXiv 2604.12843, April 2026)**: 用多维 IRT + 固定参数校准 + 100 个 anchor items 实现跨时段 LLM 评估，400+ 模型上 Spearman ρ≥0.9。**最直接的 concurrent work**——也用了 IRT equating，但只做 cross-time evaluation，不做 contamination detection 或 item regeneration。
+
+4. **DVD: Detection via Variance of Generation Distribution (arXiv 2601.04895, Jan 2026)**: 检测 variant contamination（改写后的测试题），AUC 0.73-0.74 vs. Min-K%++ 的 0.43-0.68。但仅在 SFT 模型上验证，未测试 RL 训练模型。论文真实，描述准确。
+
+5. **CCV: Cross-Context Verification (arXiv 2603.21454, March 2026)**: 通过多 session 独立求解同一题目并测量 solution diversity 来检测污染，在 SWE-bench 上实现完美分离。但仅验证了 9 个编码问题，泛化性未知。
+
+6. **Wang & Heckel, "Test-time RL alignment exposes task familiarity artifacts" (arXiv 2603.12875, March 2026)**: 证明 TTRA 可弥合 base model 与 fine-tuned model ~27pp 的性能差距，暗示很多 fine-tuning gains 是 task familiarity artifact 而非真实能力提升。论文真实，proposal 中的引用准确。
+
+7. **arXiv 2602.06631 (Estimating Exam Item Difficulty with LLMs)** 和 **arXiv 2601.09953 (Student Simulation for Difficulty)**: 前者证明 LLM 直接估计难度仅 ρ=0.10-0.45；后者 student simulation 可达 r=0.75-0.82。两篇论文均真实，描述准确。
+
+8. **Kim (2022), Journal of Educational Measurement**: Bifactor IRT True Score Equating 和 PIRT 确实存在，是教育测量领域的成熟方法论。
+
+9. **Han et al., "Quantifying Data Contamination in Psychometric Evaluations of LLMs" (arXiv 2510.07175, 2025)**: 用 IRT 框架量化 LLM 心理测量评估中的数据污染，但**未使用 DIF 作为污染检测手段**。
+
+10. **Benchmark Self-Evolving (COLING 2025)**: 多 agent 框架动态扩展 benchmark，但无 IRT equating，无 contamination detection。
+
+- **调研总结**: 这个领域目前呈"碎片化"格局——contamination detection（ConStat, DVD, Self-Critique）、dynamic evaluation（LiveBench, BeTaL）、IRT-based evaluation（Growing Pains, ATLAS, PSN-IRT）各自为阵，**没有工作尝试将 contamination detection → item regeneration → psychometric equating 闭环整合**。此外，**DIF 作为 contamination detection 手段**在 LLM benchmark 领域确实**尚无先例**——这是一个真实的 novelty claim。然而，将 DIF 从教育测量迁移到 LLM 评估面临严重的样本量问题（LLM cohort 远小于人类考生群体），这一点 proposal 已有所讨论但解决方案说服力有限。
+
+
+【Trivial Alternative 检验】:
+
+**存在部分 trivial alternative 威胁，但不致命。** 
+
+最显然的 trivial alternative 是："直接定期更新 benchmark（LiveBench 模式）+ 用 ConStat/DVD 等现有方法做 contamination detection，不需要 IRT equating"。这已经是社区的主流做法。增量价值在于：(1) 现有定期更新方式**不保证难度等价性**，无法进行跨版本公平比较；(2) 现有检测方法**对 RL 模型无效**，而 DIF 提供了一个理论上 RL-robust 的信号。
+
+但第二点的增量价值取决于 DIF 在 LLM 场景下是否真的可行（样本量问题，见下），以及 Self-Critique（Tao et al.）是否已经"够用"地解决了 RL contamination detection。如果 Self-Critique 在实际场景中表现良好，DIF 的增量价值就变成了"多一个互补信号"而不是"唯一可行方案"。
+
+另一个 trivial alternative：对于 equating，Growing Pains 已经展示了用 IRT fixed-parameter calibration + anchor items 做跨时段评估的可行性。虽然 Growing Pains 不做 regeneration，但加上简单的 item generation（甚至人工出题）+ Growing Pains 式的 equating，可能就够用了——不需要整个 bifactor IRT + PIRT 管线。
+
+**增量价值的核心**在于"全闭环自动化"和"DIF as RL-robust signal"。前者是系统工程贡献（有价值但 novelty 有限），后者是方法论贡献（genuinely novel 但可行性存疑）。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链条中有以下**未经验证的关键假设**：
+
+1. **DIF 在 LLM cohort 上的可行性是最大的未验证假设。** Proposal 承认了小样本问题但给出的解决方案（temporal aggregation 到 N=40-80、Bayesian priors、Item-Focused Trees）尚无实证支持——没有人在 LLM benchmark 上跑过 DIF。"模型即考生"这一映射是否满足 DIF 的统计前提（如 local independence、unidimensionality within matched groups）完全未知。LLM 的 response patterns 与人类考生有本质不同（deterministic at temperature=0, correlated architectures, training data overlap），这些可能严重违反 DIF 的统计假设。
+
+2. **"RL 不能在不消除污染收益的情况下消除 DIF 信号"这一论证是理论推导而非实证。** Proposal 给出了一个 analytical demonstration，但其核心论点——"RL smoothing 修改的是 NLL surface 而非 binary response pattern"——假设 RL 训练不会改变模型在 contaminated items 上的准确率。这在大多数情况下可能成立，但并非绝对：如果 RL 训练导致模型对 memorized items 的 accuracy 小幅下降（从 0.80 到 0.70），DIF 效应量就会显著缩小。这个"RL 不影响 behavioral accuracy"的假设需要实验验证。
+
+3. **200-300 LLMs 的 calibration panel 假设 response independence。** IRT 模型要求 examinees 独立，但同一 family 的 LLMs（Llama 系列各版本）高度相关，这会 inflate effective sample size 并影响参数估计的可靠性。这个问题在 Growing Pains 中也存在但未被充分讨论。
+
+4. **Bifactor IRT 对 LLM benchmark 的适用性未经验证。** 人类考生的 bifactor 结构（general + domain-specific abilities）是否同样适用于 LLMs 是开放问题。LLM 的能力结构可能不符合 bifactor 假设。
+
+
+【3 维度打分】:
+
+1. **Novelty: 中（偏强）**
+   - **正面**: DIF 作为 contamination detection 信号应用于 LLM benchmark 确实是全新的（调研中未找到任何先例，包括 Han et al. 2510.07175 使用 IRT 分析污染但未用 DIF）。"Detection → Regeneration → Equating"全闭环整合也确实无人做过。将教育测量的成熟方法论（bifactor IRT, PIRT equating）系统性迁移到 LLM 评估是一个有价值的 cross-domain transfer。
+   - **负面**: 核心 novelty 可以概括为"把教育测量的现有工具迁移到 LLM benchmark 场景"——这是 application novelty 而非 methodological novelty。每个组件（DIF, bifactor IRT, PIRT, ConStat, DVD）都是现有方法，proposal 的贡献是**整合而非发明**。Growing Pains 已经走了类似路线（IRT + fixed-parameter calibration for LLM benchmarks），只是没做 contamination detection 和 regeneration。此外，Self-Critique（Tao et al., ICLR 2026）已经提出了针对 RL 后训练的 contamination detection 方法，这削弱了 DIF 作为"唯一 RL-robust 方案"的独特性。
+   - **总评**: 有真实的 novelty delta（DIF for contamination + 闭环整合），但属于 systems integration + cross-domain application 类型的贡献，而非开创性方法论突破。对 EMNLP 审稿人而言，"educational measurement → NLP evaluation" 的迁移本身有吸引力，但 contribution 的技术深度可能被质疑。
+
+2. **Significance: 中**
+   - **正面**: Benchmark contamination 是 NLP/AI 社区公认的重大问题。RL 训练逃逸 contamination detection 的发现（Wang et al., ICLR 2026）使问题更加紧迫。一个可行的 self-healing benchmark 框架如果成功将有广泛影响。
+   - **负面**: 框架的复杂度（5-signal ensemble, bifactor IRT, PIRT, graceful degradation）意味着实际部署可能性较低——社区更可能采用 LiveBench 式的简单定期更新。影响力还取决于 DIF 是否真的能在 LLM 场景下 work（可行性风险直接限制 significance 的实现）。此外，如果核心实验结果是 positive（DIF 确实能检测 RL 训练后的污染），审稿人的反应可能是"interesting but expected"——DIF 检测 group-level 差异是它设计的本意，证明它能 work 并不算 surprising。
+   - **总评**: 问题重要性毋庸置疑，但方案的实际影响力受限于复杂度和可行性。
+
+3. **Related Work: 强**
+   - Proposal 对相关工作的覆盖**异常全面**。涵盖了 contamination detection（ConStat, DVD, Self-Critique, CCV, watermarking）、dynamic evaluation（LiveBench, LiveCodeBench, BeTaL, VarBench, DyVal）、IRT for LLM（Growing Pains, PSN-IRT, ATLAS, RIDE）、item generation（arXiv 2602.06631, arXiv 2601.09953, ReQUESTA）、task familiarity（Wang & Heckel）等多个子领域。差异化定位清晰——明确指出了与 Growing Pains（不做 detection/regeneration）、CCV（仅 coding tasks）、DVD（未测 RL）、Self-Critique（individual-level method）等的区别。我在调研中发现的所有关键竞争工作 proposal 都已覆盖，未发现显著遗漏。
+   - **唯一轻微不足**: Benchmark Self-Evolving (COLING 2025) 未被提及，但该工作与 proposal 差异较大，非关键遗漏。
+
+
+【概率估计】: [22% - 32%] 中位 27%
+
+【估计理由】: 
+这个 proposal 的 idea 内核处于"有实质 novelty 但不够 surprising"的区间。DIF for contamination detection 是一个 genuinely novel 的 cross-domain transfer，但属于 "application of existing methodology to new domain" 类型的贡献。核心发现如果 positive（DIF 能检测 RL contamination），审稿人大概率反应是 "makes sense — DIF tests group-level differences by design" 而非 "surprising"。全闭环整合是系统贡献，有价值但不是 idea-level breakthrough。
+
+**上界受限于 Novelty 的技术深度**: 审稿人可能认为"把 educational measurement 的现有工具搬到 LLM evaluation"虽然有用但 novelty 有限，尤其是 Growing Pains 已经走了 IRT-for-LLM-evaluation 的路线。
+
+**下界受支撑于**: 问题的重要性和 related work 的覆盖质量；DIF 确实是全新应用；闭环框架确实填补了 gap。
+
+概率未能进入 35%+ 区间的核心原因：(1) DIF 的小样本可行性是未经验证的关键假设，如果 DIF 在 LLM cohort 上根本 work 不了，整个框架的核心 novelty 就坍塌了；(2) contribution 以 integration 为主，methodological novelty 深度有限；(3) 核心发现的 surprise factor 不足——"DIF 能检测 group-level contamination"几乎是 tautological。
+
+【主要风险】: 
+1. **DIF 在 LLM cohort 上的可行性风险**: 这是存在性风险。如果小样本 + 违反 independence 假设 + LLM response patterns 的特殊性导致 DIF 在实际场景中不可靠，proposal 的核心 novelty 和 RL-robustness claim 同时失效。审稿人会问 "did you actually test DIF on real LLM cohorts or is this all analytical speculation?"
+2. **Contribution 被认为是 "engineering integration" 而非 "scientific contribution"**: 每个组件都是现有方法的直接迁移或整合（DIF from educational testing, IRT equating from psychometrics, DVD/ConStat from prior work），审稿人可能认为 technical contribution 不足以支撑主会论文。
+```
+
+Sources:
+- [On The Fragility of Benchmark Contamination Detection in Reasoning Models](https://arxiv.org/abs/2510.02386)
+- [Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration](https://arxiv.org/abs/2604.12843)
+- [DVD: A Robust Method for Detecting Variant Contamination in LLM Evaluation](https://arxiv.org/abs/2601.04895)
+- [Cross-Context Verification: Hierarchical Detection of Benchmark Contamination](https://arxiv.org/abs/2603.21454)
+- [Test-time RL alignment exposes task familiarity artifacts in LLM benchmarks](https://arxiv.org/abs/2603.12875)
+- [Detecting Data Contamination from Reinforcement Learning Post-training for LLMs (Self-Critique)](https://arxiv.org/abs/2510.09259)
+- [Estimating Exam Item Difficulty with LLMs (arXiv 2602.06631)](https://arxiv.org/abs/2602.06631)
+- [Take Out Your Calculators: Student Simulation for Difficulty Estimation](https://arxiv.org/abs/2601.09953)
+- [Quantifying Data Contamination in Psychometric Evaluations of LLMs](https://arxiv.org/abs/2510.07175)
+- [Kim (2022) IRT True Score Equating for the Bifactor Model](https://journals.sagepub.com/doi/10.1177/01466216221108995)
+- [Approximating Bifactor IRT with Projective IRT (PIRT)](https://pubmed.ncbi.nlm.nih.gov/32341608/)
+- [BeTaL: Automating Benchmark Design (ICLR 2026)](https://arxiv.org/abs/2510.25039)
+- [Benchmark Self-Evolving: A Multi-Agent Framework for Dynamic LLM Evaluation](https://arxiv.org/abs/2402.11443)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient research to provide a grounded assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- Growing Pains (arXiv 2604.12843, April 2026): 最直接的竞争者。使用多维IRT + 固定参数校准 + 100个锚题/数据集，实现跨时间的LLM评估可比性，400+模型上达到Spearman ρ≥0.9。但不做污染检测也不做题目再生。Proposal正确识别了这个差异。
+- ConStat (NeurIPS 2024): 基于性能的污染检测，有FDR控制，检测89-98%的污染模型。但不做修复/再生。Proposal将其作为ensemble信号之一。
+- DVD (arXiv 2601.04895, Jan 2026): 变体污染检测，通过generation variance实现。在SFT模型上AUC 0.73-0.74，优于Min-K%的0.43-0.68。但仅在SFT模型上验证，未测试RL模型。Proposal正确指出此限制。
+- Wang et al. (arXiv 2510.02386, ICLR 2026): 证明GRPO/PPO训练使reference-free污染检测方法AUROC降14-20pp至近随机水平。这是proposal中DIF方法的核心动机。
+- Wang & Heckel (arXiv 2603.12875, March 2026): 证明test-time RL alignment可消除~27pp的fine-tuning性能差距，表明部分"污染信号"实为task familiarity artifact。Proposal引用了此工作来论证DIF能区分uniform familiarity vs. item-specific contamination。
+- BeTaL (ICLR 2026): LLM-in-the-loop的benchmark设计框架，专注于调整难度而非保持等值。
+- RIDE (ICLR 2026): IRT引导的数学题扰动框架，增加难度而非保持等值。
+- Hardy et al. (arXiv 2603.24999, March 2026): 非参数signed isotonic R²用于benchmark item质量检测，优于IRT诊断。Proposal将其作为pre-filter。
+- CCV (arXiv 2603.21454, March 2026): session-isolated的黑盒污染检测，在SWE-bench上达到完美分离，但仅验证于9个coding问题。
+- BenchBench (arXiv 2603.20807, March 2026): benchmark自动生成的meta-benchmark，但不做IRT equating。
+- ATLAS (arXiv 2511.04689, 2025): IRT自适应测试减少评估成本，不处理污染。
+- PSN-IRT (AAAI 2026 Oral): 4PL IRT分析benchmark质量，不做再生。
+- Sander et al. (arXiv 2502.17259, Feb 2025): benchmark水印方案，事前预防而非事后修复。
+- arXiv 2602.06631 (Feb 2026): LLM估计题目难度仅达rho=0.10-0.45，验证了proposal放弃直接IRT参数conditioning的合理性。
+- arXiv 2601.09953 (Jan 2026): student simulation达到r=0.75-0.82的难度估计，支持proposal的pre-screening策略。
+
+- 调研总结: 这个领域在2025-2026年非常活跃，各子问题（污染检测、benchmark生成、IRT评估、RL鲁棒性）都有独立工作，但确实没有工作将"RL-robust检测 → 构念约束生成 → bifactor IRT等值 → graceful degradation"组成闭环。Proposal的"全环路"整合claim和DIF用于跨cohort污染检测的应用在文献中没有直接先例。
+
+【Trivial Alternative 检验】:
+存在一个显著的trivial alternative威胁：**定期创建全新benchmark（如LiveBench的月更策略）**。LiveBench每月从新数据源构建新题目，完全回避了污染问题，无需检测-再生-等值的复杂流程。虽然LiveBench不做psychometric equating（难度可能漂移），但Growing Pains (April 2026)已经证明用100个锚题+固定参数校准就能在400+模型上达到ρ≥0.9的ranking preservation。将LiveBench的持续更新 + Growing Pains的固定参数校准组合，就可能以远低的复杂度达到"抗污染+跨时间可比"的效果。
+
+Proposal的增量价值在于：(1) 不需要持续的人工新题源（LiveBench依赖外部新数据），(2) 保持对已有benchmark（如MMLU、GSM8K）的直接可比性（而非创建全新benchmark再做linking），(3) DIF检测可区分真实能力提升与污染。但这些增量价值需要整个pipeline真正work才能兑现，且(1)和(2)更多是工程便利性而非科学发现。
+
+【前提假设检验】:
+核心逻辑链中有以下未经验证的关键假设：
+
+1. **"LLM ≈ 考生"假设**：整个框架建立在将LLM视为IRT框架中"考生"的类比上。但LLM不是独立抽样的人类考生——它们共享训练数据、架构家族、甚至distillation关系。IRT的局部独立性(local independence)和单调性假设在LLM群体上是否成立，是一个已知的conceptual tension（Growing Pains也面临这个问题但至少展示了经验上的有效性）。
+
+2. **"污染产生item-specific DIF，familiarity产生uniform提升"假设**：这是DIF区分污染与能力提升的核心假设。但现实中更复杂：(a) 污染可能是partial的（模型记住了解题模板而非具体答案），这会产生domain-level而非item-level的DIF，可能与familiarity信号混淆；(b) 不同模型对不同item的记忆程度不同，在cohort-level聚合后DIF信号可能被稀释；(c) task familiarity本身可能也有item-specific成分（某些题型格式比其他的更受益于format alignment）。
+
+3. **N=80/cohort足够做DIF**：Proposal自己引用了classical DIF需要N≥200/group的文献，然后提出了4个缓解策略。但这些策略本身都有假设：temporal aggregation假设年度cohort模型数量足够且cohort内异质性可控；Bayesian priors假设先验估计是可靠的；Item-Focused Trees假设release date是一个有意义的连续变量。核心矛盾未解决：DIF在小样本上的power确实不足以做可靠检测。
+
+4. **30-50%的再生成功率假设**：这直接影响pipeline的可行性，但完全基于"analogous AIG literature"的类比推断，没有在LLM benchmark等值场景下的任何经验数据。
+
+5. **Bifactor IRT模型在LLM上fit良好**：假设MMLU等benchmark的多维结构可以被bifactor模型合理捕获，且PIRT投影不会引入系统性偏差。这在LLM评估上是未验证的。
+
+【3 维度打分】:
+1. Novelty: 【中】
+   — DIF用于跨model-cohort的污染检测是genuinely novel的应用，在文献中确实没有先例。"DIF分析between-group pattern而非within-model distribution，因此对RL smoothing鲁棒"的论证是non-trivial的insight。但除DIF外，pipeline的其他组件（ConStat、DVD、membership inference、student simulation、bifactor IRT、equating gate）都是对现有方法的组合应用（cross-domain transfer from educational testing），而非方法论创新。Growing Pains已经将IRT固定参数校准引入LLM evaluation，RIDE已经将IRT difficulty引入benchmark扰动，BenchBench已经做了自动benchmark生成——本proposal的主要novelty是"集成"，而集成本身的新颖性有限。核心DIF贡献足以支撑一个focused paper，但被埋在了一个过于庞大的系统中。
+
+2. Significance: 【中偏强】
+   — 研究问题本身（benchmark污染与评估有效性）是NLP/CL领域2024-2026年最热门的话题之一。Wang et al. (ICLR 2026)证明RL训练破坏了几乎所有现有检测方法，创造了一个明确的open problem。Proposal试图解决这个open problem的方向是有意义的。但significance被两个因素限制：(a) LiveBench+Growing Pains的trivial alternative降低了full-loop pipeline的边际价值；(b) 如果实验表明DIF确实能检测RL-concealed污染，这个发现虽然有价值，但审稿人可能会说"I would have guessed that between-group behavioral differences would survive RL smoothing"——核心insight不够counterintuitive。
+
+3. Related Work: 【强】
+   — 这是proposal最突出的优点。对领域的覆盖非常全面且准确：Growing Pains、ConStat、DVD、Wang et al.、Wang & Heckel、BeTaL、RIDE、CCV、Hardy et al.、BenchBench、ATLAS、PSN-IRT等关键工作都被正确引用和差异化定位。对每篇工作的limitation识别是准确的（DVD未测试RL模型、CCV仅验证于coding任务、Growing Pains不做检测/再生）。唯一可挑剔的是对watermarking方向（Sander et al.）的处理可以更深入，以及可能遗漏了一些2026年中期的最新工作。
+
+【概率估计】: [22% - 32%] 中位 26%
+
+【估计理由】: 
+Novelty是限制上界的主要维度。核心DIF贡献是genuine但不够surprising——"between-group behavioral patterns survive within-model distribution smoothing"在概念上是合理的甚至可预期的。Pipeline整合作为贡献容易被视为"systems engineering rather than scientific contribution"。Significance因为trivial alternative（LiveBench+Growing Pains组合）的存在而受限——审稿人可能会问"why not just make new benchmarks regularly?"Related work的覆盖度是真正的加分项，显示了对领域的深刻理解。
+
+此外，proposal过于庞大（5个检测信号 + 生成pipeline + bifactor IRT + graceful degradation），在8页正文中几乎不可能充分展开每个组件的技术细节和消融实验。*ACL审稿人往往偏好focused contribution over broad system，这可能进一步降低接受概率。概率上界被Novelty的"中"限制在~32%。
+
+【主要风险】:
+1. **"系统论文 vs. 科学论文"的定位模糊**：Pipeline整合是工程贡献，DIF是科学贡献，两者混在一起会导致审稿人觉得"什么都沾一点但哪个都不够深"。核心DIF claim如果正面，审稿人可能的反应是"reasonable and expected"而非"surprising"。
+2. **Trivial alternative威胁**：LiveBench（持续更新）+ Growing Pains（IRT等值）的组合可能以1/10的复杂度达到80%的效果，审稿人可能质疑整个pipeline的边际价值。Proposal需要非常convincing地论证为什么不能"just make new benchmarks"。
+```
+
+Sources:
+- [Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration](https://arxiv.org/abs/2604.12843)
+- [On The Fragility of Benchmark Contamination Detection in Reasoning Models (Wang et al.)](https://arxiv.org/abs/2510.02386)
+- [DVD: A Robust Method for Detecting Variant Contamination](https://arxiv.org/abs/2601.04895)
+- [Test-time RL alignment exposes task familiarity artifacts (Wang & Heckel)](https://arxiv.org/abs/2603.12875)
+- [ConStat: Performance-Based Contamination Detection](https://arxiv.org/abs/2405.16281)
+- [Cross-Context Verification (CCV)](https://arxiv.org/abs/2603.21454)
+- [Hardy et al. - Efficient Detection of Bad Benchmark Items](https://arxiv.org/abs/2603.24999)
+- [BeTaL: Automating Benchmark Design](https://arxiv.org/abs/2510.25039)
+- [RIDE: Difficulty Evolving Perturbation](https://arxiv.org/abs/2511.04120)
+- [BenchBench: Benchmarking Automated Benchmark Generation](https://arxiv.org/abs/2603.20807)
+- [Detecting Benchmark Contamination Through Watermarking (Sander et al.)](https://arxiv.org/abs/2502.17259)
+- [Benchmarking LLMs Under Data Contamination: Survey](https://arxiv.org/abs/2502.17521)
+- [ATLAS: Adaptive Testing for LLM Evaluation](https://arxiv.org/abs/2511.04689)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Contamination-Triggered Benchmark Regeneration with Bifactor IRT Equating
+
+## Description
+We propose a self-healing benchmark framework that closes the full loop from multi-signal contamination detection through construct-constrained generation to bifactor IRT-equated replacement, with formal graceful-degradation guarantees. The system makes four integrated contributions: (1) A multi-signal contamination sentinel with explicit RL-robustness guarantees, now supported by an analytical demonstration. The ensemble combines five signals: ConStat-style perturbation testing, a novel Differential Item Functioning (DIF) analysis across model release cohorts, IRT aberrance detection, DVD-style generation-variance testing (adapted from Liang et al., arXiv 2601.04895), and membership-inference probes — with formal FDR control. The DIF-based cohort analysis is both novel and analytically RL-robust: we demonstrate via a concrete scenario (200 items, N=80/cohort, 20 contaminated items with P(correct) boosted from 0.50 to 0.80) that logistic regression DIF detects contamination as large uniform DIF (ETS Category C, |Δ_MH|≈3.3) because it examines between-group item-level performance conditional on ability, not within-model output distributions that RL smoothing affects. Quantitative power analysis grounded in PMC5978487 simulations establishes that at N=80/group with contamination-typical effect sizes (δ≈0.8-1.4 logits, consistent with GSM1K's 10-13% accuracy drops), DIF power reaches 60-85%, further enhanced by cumulative Bayesian priors (Sinharay et al., 2006), Item-Focused Trees (Tutz & Berger, 2016), and the 2-of-5 ensemble voting threshold. We acknowledge DIF is underpowered for small effects (14.4% at δ=0.4, N=50/group) — its value is detecting the large effects that threaten benchmark validity, complemented by other signals for subtler contamination. We further address the interaction with task familiarity artifacts (Wang & Heckel, arXiv 2603.12875): task familiarity produces uniform improvements (no DIF signal) while contamination produces item-specific advantages (DIF signal), making DIF a principled discriminator between the two. DVD is labeled as promising but untested against RL-trained models; our RL-contamination experimental condition will resolve this empirical gap. (2) A construct-constrained generation pipeline that abandons direct IRT-parameter conditioning (shown to achieve only rho=0.10-0.45 by arXiv 2602.06631) in favor of construct/taxonomy-based generation, student-simulation pre-screening (r=0.75-0.82), optional pre-filtering via signed isotonic R² scalability coefficients (Hardy et al., arXiv 2603.24999) for fast nonparametric quality control, multi-agent iterative refinement, and empirical calibration on a panel of 200-300 diverse LLMs via Bayesian fixed-parameter calibration (OH2PL, König et al., 2020, achieving unbiased estimates at N≥50). (3) A bifactor IRT equating gate using Projective IRT (PIRT) to handle the multi-construct nature of benchmarks like MMLU — fitting a general ability factor plus domain-specific factors, then projecting to unidimensional equivalents for standard equating (Kim, 2022). Only items whose projected parameters fall within 95% CIs of originals and preserve test information, construct coverage, and model rankings (rho >= 0.95) are accepted. (4) A formal graceful-degradation framework defining validity boundaries grounded in the test equating literature: minimum 20% anchor set for standard equating (Kolen & Brennan, 2004), degraded-but-valid operation via robust LAV equating at 15-20%, halt-and-review below 15%, minimum marginal reliability ≥ 0.80 for benchmark release, and transparent partial-release protocols when full regeneration fails for >15% of items. This uniquely differentiates from Growing Pains (cross-time evaluation without contamination detection or regeneration), from CCV (solution-diversity detection for coding tasks without remediation or psychometric equating), from watermarking approaches (Sander et al., arXiv 2502.17259; proactive prevention requiring pre-release embedding, complementary to our post-hoc detection and remediation), from Wang et al./Self-Critique (identifying the RL-fragility problem without providing a robust detection alternative), from DVD (detecting variant contamination without remediation and untested on RL models), from RIDE/BeTaL (altering difficulty rather than preserving it), and from ConStat (detecting but not remediating contamination). We validate on LiveBench subsets and MMLU-CF under simulated contamination at 10-50% rates — including an RL-contamination condition using GRPO fine-tuning following Wang et al.'s protocol to empirically test DIF robustness and DVD behavior under RL — with naturally-contaminated MMLU/GSM8K as positive controls, and include a pilot feasibility study reporting the first empirical convergence statistics for IRT-equated benchmark item generation.
+
+## Core Problem
+How can we build self-healing benchmarks that automatically detect contaminated items via multi-signal triangulation — including a novel DIF-based cohort analysis robust to RL-trained reasoning models — and regenerate psychometrically equivalent replacements through empirically calibrated generation with bifactor IRT equating, while maintaining benchmark validity through formal graceful-degradation guarantees?
+
+## Opportunity
+Dynamic benchmarks face a fundamental tension: increased contamination resistance via strong rewriting degrades question fidelity and may alter intended difficulty. LiveBench updates monthly but without psychometric calibration; VarBench perturbs inputs but difficulty shifts unpredictably; BenchBench evaluates generation quality but without equating. Educational testing has solved the analogous problem of maintaining test comparability across administrations using IRT equating with anchor items — a mature methodology with decades of validation. However, directly applying this to LLM benchmarks requires solving four underappreciated sub-problems: (1) distinguishing contamination from genuine capability gains — this is especially critical for RL-trained reasoning models (o1, o3, DeepSeek-R1), where Wang et al. (ICLR 2026) demonstrate that GRPO/PPO training conceals contamination signals that reference-free detection methods rely on, with AUROC degradation of 14-20 percentage points (Loss: 14.22pp, Min-K%: 16.42pp, Max-K%: 19.84pp after only ~156 GRPO steps), reducing most to near-random (~50%) AUROC; furthermore, Wang & Heckel (arXiv 2603.12875) show that test-time RL alignment can close fine-tuning performance gaps by ~27 percentage points on average, suggesting some apparent contamination signals may reflect task familiarity artifacts rather than memorization, making item-specific detection even more critical; (2) detecting variant contamination (paraphrased/restructured benchmark items in training data) which evades standard detectors — DVD (arXiv 2601.04895) shows conventional methods achieve only 0.43-0.68 AUC on variant contamination; (3) generating replacement items with controlled psychometric properties (LLMs systematically underestimate difficulty with correlations of only rho=0.10-0.45, per arXiv 2602.06631, necessitating empirical calibration rather than prompt-based difficulty targeting); and (4) equating across multi-construct benchmarks (requiring bifactor or multidimensional IRT rather than naive unidimensional models). No existing work addresses all four sub-problems in an integrated pipeline with formal graceful-degradation guarantees.
+
+## Landscape
+LiveBench (ICLR 2025) updates monthly from recent sources but applies objective scoring without difficulty calibration. LiveCodeBench (ICLR 2025) uses time-segmented evaluation but doesn't ensure psychometric equivalence across segments. BeTaL (ICLR 2026) performs dynamic benchmark design with LLM-in-the-loop but focuses on increasing difficulty, not preserving it. BenchBench (March 2026) evaluates automated benchmark generation using discrimination and validity metrics but without IRT equating. ArenaBencher progressively generates harder items but provides no formal difficulty-equivalence guarantees. CRITICAL CONCURRENT WORK: 'Growing Pains' (arXiv April 2026) uses multidimensional IRT with fixed-parameter calibration and 100 anchor items per dataset to make LLM evaluation extensible across time — achieving Spearman rho >= 0.9 for ranking preservation using 400+ models. However, it addresses efficient evaluation (comparing scores across time), NOT contamination detection or item regeneration. PSN-IRT (AAAI 2026 Oral) analyzes benchmark quality via 4PL IRT but does not regenerate items. RIDE (ICLR 2026) uses IRT-guided perturbation for difficulty evolution in math but does not perform equating. ATLAS (arXiv 2025) applies adaptive testing with IRT to reduce evaluation cost but does not handle contamination. Cross-Context Verification (CCV; arXiv 2603.21454, March 2026) achieves perfect separation between contaminated and genuine reasoning (Mann-Whitney U=0, r=1.0) on SWE-bench Verified by measuring solution diversity across independent sessions — a powerful black-box method, but currently validated only on coding tasks (9 SWE-bench problems, 45 trials) and relying on temperature-0 determinism that may not generalize to knowledge/reasoning benchmarks with inherent answer variability. Hardy et al. (arXiv 2603.24999, March 2026) introduce nonparametric signed isotonic R² scalability coefficients that outperform IRT-based item diagnostics for detecting bad benchmark items on HS Math, GSM8K, and MMLU — lightweight (bivariate monotone fits in seconds) and robust under small-n/large-p conditions; this complements our IRT-based quality control by providing a fast model-agnostic pre-filter for item quality before parametric calibration. On proactive contamination prevention: Sander et al. (arXiv 2502.17259, Feb 2025) propose watermarking benchmarks before release, reformulating questions with a watermarked LLM and detecting 'radioactivity' traces via statistical tests; validated on ARC and MMLU with 1B models, this represents a fundamentally different paradigm (prevention at release time vs. post-hoc detection and remediation). Our approach is complementary: watermarking prevents future contamination, while our pipeline detects and remediates existing contamination in already-deployed benchmarks — the two could be combined in a defense-in-depth strategy. On contamination detection: ConStat (2024) provides performance-based detection with formal FDR control; shortcut neuron analysis (ACL 2025) can isolate contamination to ~1.1-1.4% of neurons with only ~3% false positive impact; 'Test of Time' (arXiv 2025) demonstrates temporal signals are unreliable as standalone contamination indicators. CRITICALLY, 'On The Fragility of Benchmark Contamination Detection in Reasoning Models' (Wang et al., arXiv 2510.02386, ICLR 2026) systematically demonstrates that GRPO/PPO-style RL training conceals contamination signals: reference-free methods show AUROC degradation of 14-20 percentage points after only ~156 GRPO steps (Loss: 14.22pp drop from 75.48% to 61.26%; Min-K%: 16.42pp drop from 74.96% to 58.54%; Max-K%: 19.84pp drop from 69.83% to 49.99% — essentially random), while perturbation-based methods show different degradation patterns. The concealment mechanism is PPO's clipping objective, which contracts the NLL gap between contaminated and clean items. Self-Critique (Tao et al., arXiv 2510.09259, ICLR 2026) partially addresses this via policy-collapse detection but remains an individual-model-level method. DVD (Liang et al., arXiv 2601.04895, Jan 2026) introduces detection via variance of generation distribution and is specifically designed for variant contamination, achieving 0.73-0.74 AUC where Min-K%++ achieves only 0.43-0.68; however, DVD was validated only on SFT-contaminated models and its behavior under RL training is untested. On task familiarity vs. contamination: Wang & Heckel (arXiv 2603.12875, March 2026) show that test-time RL alignment (TTRA) closes the performance gap between base and fine-tuned models by ~27 percentage points on average, suggesting many reported fine-tuning gains are task familiarity artifacts rather than genuine capability improvements; this has a dual implication — it strengthens the need for item-specific contamination detection (since task familiarity produces uniform improvements with no DIF signal, while contamination produces item-specific advantages that DIF detects), but also suggests that contamination-driven DIF effects may be partially confounded with format-familiarity effects that TTRA could remove. On item generation: arXiv 2602.06631 shows LLMs achieve only rho=0.10-0.45 for difficulty estimation, but student simulation approaches (arXiv 2601.09953) achieve r=0.75-0.82 and multi-agent frameworks like ReQUESTA improve discrimination from 0.17 to 0.39. On IRT methodology: bifactor models with Projective IRT (PIRT) enable equating of multidimensional tests while remaining tractable; fixed-parameter calibration requires only N>=200 examinees vs N>=500 for full calibration (Kim & Kolen, 2019); the OH2PL (König, Spoden, & Frey, 2020) achieves unbiased estimates at N>=50 using optimized Bayesian hierarchical priors. No existing work closes the full loop from multi-signal contamination detection (robust to RL-trained models) through construct-constrained generation to bifactor IRT-equated regeneration with graceful-degradation guarantees.
+
+## Approach
+Build a closed-loop pipeline with three stages plus a formal graceful-degradation framework, each substantially revised to address known limitations:
+
+**Stage 1: Multi-Signal Contamination Sentinel (with RL-Robustness Guarantees).** Deploy an ensemble of five complementary detection signals, explicitly designed so that at least two signals remain informative even against RL-trained reasoning models:
+
+(a) *ConStat-style perturbation testing* — compare model performance on original items vs. semantically-equivalent reformulations, with formal False Discovery Rate (FDR) control. NOTE: Wang et al. (ICLR 2026) show reference-free detectors degrade 14-20pp under RL training (Loss: 14.22pp, Min-K%: 16.42pp, Max-K%: 19.84pp after ~156 GRPO steps); we retain perturbation testing as effective against non-RL models (which still constitute the majority of the model ecosystem) but do not rely on it alone.
+
+(b) *Differential Item Functioning (DIF) across model release cohorts* — a novel application treating model release date as a grouping variable and flagging items that become differentially easier for newer cohorts beyond what general ability gains predict. **This is our primary RL-robust signal.** The key argument: DIF operates on group-level statistical patterns (comparing Item Characteristic Curves across model cohorts matched on overall ability), not individual output distributions. Wang et al. prove that PPO/GRPO clipping contracts the NLL gap *within a single model* between seen and unseen items — but DIF does not examine within-model NLL gaps. It detects whether the structural relationship between ability and item response differs across groups. A contaminated cohort shows anomalous ICCs on specific items regardless of how smooth individual output distributions appear, because contamination must, by definition, create differential item advantage — the one signal RL cannot conceal without negating the purpose of contamination. Furthermore, DIF leverages IRT's invariance principle: item parameters should be group-invariant after controlling for ability, and systematic DIF violations on specific items constitute contamination evidence that is orthogonal to all 10 methods shown to fail.
+
+**Analytical Demonstration of DIF RL-Robustness.** Consider a concrete scenario: 200 binary items evaluated by two annual model cohorts (pre-2026, post-2026) with N=80 models each. Suppose 20 items are contaminated in the newer cohort, boosting P(correct) from 0.50 to 0.80 on those items (δ≈1.4 logits — a conservative estimate given GSM1K's documented 13% average accuracy drop across models, which implies item-level boosts of 20-40% on memorized items for heavily contaminated models). RL smoothing via GRPO/PPO contracts the NLL gap between contaminated and clean items within each individual model's output distribution — this is the mechanism Wang et al. demonstrate. However, the 30-percentage-point accuracy advantage on contaminated items persists at the behavioral level: RL training does not cause models to answer memorized items incorrectly, because doing so would negate the purpose of contamination. Logistic regression DIF with sum-score matching compares the probability of correctly answering each item across the two cohorts, conditioning on total score (overall ability). On the 180 uncontaminated items, both cohorts show similar ICCs after controlling for ability. On the 20 contaminated items, the newer cohort shows systematically higher probability of correct response at every matched ability level — large uniform DIF (ETS Category C: |Δ_MH| = -2.35 × ln(odds ratio) = -2.35 × ln(4.0) ≈ 3.3 delta units, far exceeding the C threshold of 1.5). This differential pattern is detectable because DIF examines between-group item-level performance conditional on ability, not within-model output distributions. RL smoothing is irrelevant to DIF: it modifies how confidently a model generates its answer (the NLL surface), not whether it gets the answer right or wrong (the binary response pattern that DIF analyzes).
+
+**Quantitative DIF Power Analysis.** Independent simulation evidence (PMC5978487) establishes that logistic regression DIF at N=50/group achieves 14.4% power for small effects (δ=0.4) and 31.0% for medium effects (δ=0.6); at N=100/group, these rise to 24.7% and 55.2% respectively. These figures appear concerning for small-sample detection, but benchmark contamination typically produces large effects: GSM1K documents 10-13% average accuracy drops from contamination across models, corresponding to item-level δ≈0.8-1.4 logits on memorized items. DIF power scales super-linearly with effect size; at δ=1.4 with N=80/group (annual cohorts), power is estimated at 60-85% based on extrapolation from PMC5978487 simulation curves, consistent with the general finding that the likelihood ratio test achieves the highest statistical power in most DIF configurations. Furthermore, three factors substantially improve effective power beyond these baseline estimates: (i) cumulative Bayesian priors (Sinharay et al., 2006) accumulate evidence across successive benchmark administrations, borrowing strength from previous DIF estimates to improve detection over time — particularly effective for persistent contamination that affects multiple administrations; (ii) Item-Focused Trees (Tutz & Berger, 2016) avoid arbitrary categorical group splits by treating release date as a continuous covariate, leveraging the full model sample (N=160 rather than two groups of 80) and letting the method identify natural breakpoints where DIF emerges; (iii) the 2-of-5 ensemble voting threshold means even 40-50% individual DIF power yields acceptable ensemble sensitivity when combined with DVD and ConStat signals on non-RL models. We acknowledge that DIF alone is underpowered for small contamination effects (δ<0.6); its value lies in detecting the large effects that matter most for benchmark validity, complemented by other ensemble signals for smaller effects.
+
+**Interaction with Task Familiarity Artifacts.** Wang & Heckel (arXiv 2603.12875, March 2026) demonstrate that test-time RL alignment (TTRA) closes the performance gap between base and fine-tuned models by ~27 percentage points on average, suggesting many reported fine-tuning gains reflect task familiarity rather than genuine capability. This has a dual implication for DIF-based detection. First, it *strengthens* the DIF rationale: task familiarity artifacts produce uniform improvements across all items (no DIF signal), while memorization-based contamination produces item-specific advantages (DIF signal) — DIF thus provides a principled way to distinguish the two, a distinction no other detection method explicitly makes. Second, it introduces a nuance: if some contamination manifests partially as enhanced task-format familiarity rather than item-specific memorization, the item-level DIF effect sizes may be modestly smaller than the raw accuracy gaps suggest. We address this by: (a) noting that DIF would be computed on models as deployed (without TTRA), since TTRA is an analysis tool, not a standard deployment procedure; (b) observing that DIF controls for overall ability via sum-score matching, so any uniform familiarity-driven improvements are absorbed into the ability estimate, leaving item-specific contamination signals intact; (c) reporting DIF effect sizes with uncertainty intervals rather than relying on significance thresholds alone, making the analysis transparent about power limitations.
+
+**DIF Small-Sample Strategy (detailed).** Classical DIF methods (Mantel-Haenszel, logistic regression) require N≥200 per group for optimal performance (Mazor et al., 1992; Scott et al., 2009), far exceeding our ~10-20 models per quarterly cohort. We address this through a four-pronged strategy: (i) *Temporal aggregation*: use semi-annual or annual cohorts rather than quarterly, yielding N=40-80 per group; as the model ecosystem grows (~100+ new models per year as of 2026), annual cohorts will approach the N≥100 threshold where regularized methods become viable. (ii) *Cumulative Bayesian DIF*: following Sinharay et al. (2006, ETS), use DIF estimates from previous benchmark administrations as informative priors for new cohorts, accumulating statistical power over time rather than analyzing each cohort in isolation. (iii) *Item-Focused Trees* (Tutz & Berger, 2016): treat release date as a continuous covariate rather than creating arbitrary categorical cohorts, letting the method identify natural breakpoints where DIF emerges — this avoids the small-group problem entirely while leveraging the full model sample. (iv) *Parsimonious models*: following Belzak (2020, Multivariate Behavioral Research), use logistic regression with sum scores rather than complex IRT models for DIF detection, as simpler models outperform complex ones in small samples even when misspecified. We report DIF effect sizes (ETS delta classification: A/B/C, where C indicates |Δ_MH|≥1.5) with uncertainty intervals rather than relying solely on significance tests, acknowledging power limitations transparently.
+
+(c) *IRT aberrance detection* — flag items whose observed easiness significantly exceeds calibrated difficulty, used as one signal among several rather than a standalone detector.
+
+(d) *DVD-style generation variance testing* (adapted from Liang et al., arXiv 2601.04895) — for models with inference access, generate 50 responses per item via temperature sampling and compute the variance of synthetic-difficulty scores. Contaminated items exhibit bimodal generation distributions (alternating between memorized templates and free generation) yielding high variance, while clean items show unimodal low-variance distributions. This specifically detects variant contamination (paraphrased/restructured benchmark items) where ConStat and Min-K% fail (AUC 0.43-0.68 vs. DVD's 0.73-0.74). NOTE: DVD is promising but untested against RL-trained models — it was validated only on SFT-contaminated models (Qwen2.5, Llama3.1 fine-tuned). Whether the bimodal variance signature persists after GRPO/PPO training is an open empirical question that our RL-contamination experimental condition will directly test. DVD's value in the ensemble is therefore primarily for detecting variant contamination in the non-RL model majority, with DIF providing the RL-robust complement.
+
+(e) *Membership-inference probes* (Min-K% Prob / ReCaLL) where white-box access is available — retained as a cheap first-pass filter effective against non-RL models, but explicitly acknowledged as fragile against GRPO/PPO-trained models per Wang et al. (AUROC drops to ~50% after ~156 GRPO steps).
+
+Trigger regeneration when an item is flagged by >= 2 independent signals, with FDR-controlled thresholds. The ensemble is explicitly designed so that DIF (group-level, analytically RL-robust as demonstrated above) and DVD (generation-variance, variant-robust on SFT models) provide coverage where individual-level methods fail. Genuine capability gains will produce uniform improvement across original and perturbed items (no ConStat signal), across cohorts controlling for ability (no DIF signal), and across temperature samples (no DVD signal), while contamination produces item-specific anomalies in at least two of these dimensions.
+
+**Stage 2: Construct-Constrained Generation with Empirical Calibration.** Critically, we abandon the original approach of conditioning generators on raw IRT parameters — research shows LLMs achieve only rho=0.10-0.45 correlation with actual difficulty (arXiv 2602.06631). Instead: (a) For each flagged item, prompt a frontier generator (DeepSeek-V4-Pro or Qwen-3.5-397B) conditioned on the item's construct tag, cognitive complexity level (Bloom's taxonomy), format template, and 3-5 exemplar items from the same difficulty band — but NOT explicit IRT parameters; (b) Generate 8-10 candidates per flagged item using a multi-agent framework (generator + evaluator + refiner) inspired by ReQUESTA, with iterative critique loops; (c) Pre-screen candidates using student simulation — have a diverse panel of weaker/mid-tier LLMs (4B-14B parameters) role-play as examinees at varying ability levels, estimating approximate difficulty via simulated IRT (achieving r=0.75-0.82 per arXiv 2601.09953), and discard candidates whose estimated difficulty deviates by >1.5 logits from the target; (d) Optionally pre-filter candidates using Hardy et al.'s signed isotonic R² scalability coefficients (arXiv 2603.24999) as a fast, nonparametric quality check — items with anomalously low scalability coefficients (indicating poor construct alignment) are discarded before expensive panel calibration; (e) Empirically calibrate surviving candidates on the full calibration panel of 200-300 diverse LLMs via Bayesian fixed-parameter calibration (OH2PL, König, Spoden, & Frey, 2020), anchored to a preserved clean set (>= 20% of items, following the Kolen & Brennan 20% rule for stable equating). This generate-screen-calibrate pipeline is expected to achieve 30-50% rejection rates based on analogous AIG literature; we report convergence statistics as a key empirical contribution.
+
+**Stage 3: Bifactor IRT Equating Gate.** Move from naive unidimensional 2PL to a bifactor model (general LLM ability + domain-specific factors), which captures the inherently multi-construct nature of benchmarks like MMLU while remaining tractable for equating. Use Projective IRT (PIRT) to project bifactor parameters onto unidimensional equivalents compatible with standard equating software (demonstrated to produce very similar equating outcomes to full numerical integration, with practical advantages for implementation; Kim, 2022). Accept only replacements whose projected difficulty and discrimination fall within the 95% CI of the original item's parameters. Verify that the regenerated benchmark's test information function, construct coverage vector, and model ranking (Spearman rho >= 0.95) match the pre-contamination gold standard. Reject and re-generate otherwise, with a maximum of 3 regeneration cycles per item before flagging for human review.
+
+**Graceful Degradation Framework.** We define formal validity boundaries and fallback strategies for each failure mode, grounded in the test equating literature (Kolen & Brennan, 2004; Angoff, 1984):
+
+(i) *Anchor set integrity*: Maintain a minimum of 20% clean (uncontaminated) anchor items. If contamination detection flags items bringing the clean set below 20%, enter a degraded-but-valid operating mode: switch from standard Stocking-Lord equating to robust Area-Weighted or Least Absolute Values (LAV) equating methods (which tolerate outlying anchor items) and widen acceptance CIs to 99%. If the clean set drops below 15%, halt automated regeneration and flag the entire benchmark version for human review and potential full re-calibration. Below 10%, do not release.
+
+(ii) *Stage 1 error propagation*: False positives (flagging clean items as contaminated) trigger unnecessary regeneration but do not compromise validity — the equating gate (Stage 3) ensures replacements are psychometrically equivalent regardless of whether the original was truly contaminated. False negatives (missing contaminated items) are the more dangerous failure mode; we mitigate this by requiring only 2-of-5 signal agreement, with the understanding that DIF and DVD provide complementary coverage against RL-concealment and variant contamination respectively.
+
+(iii) *Stage 2 generation failure*: If <50% of candidates survive pre-screening for a given item (below the expected 50-70% survival rate), the system relaxes the logit-deviation threshold from 1.5 to 2.0 and generates a second batch of 8-10 candidates. If the item still fails after 3 regeneration cycles, it is flagged for human review but the benchmark continues operating with the original (potentially contaminated) item marked with a quality warning — preferable to reducing test length.
+
+(iv) *Stage 3 equating failure*: If >15% of items fail the equating gate after all regeneration cycles (meaning the benchmark cannot be fully regenerated), we release a partial-regeneration version with: (a) adjusted test information function reported alongside all scores, (b) model rankings computed on both the full benchmark and the clean-items-only subset for comparison, (c) marginal reliability coefficient reported — release only if marginal reliability ≥ 0.80 for group-level comparisons (per APA standards). This partial-release strategy provides transparent validity information rather than silently degraded scores.
+
+(v) *Minimum viable benchmark*: Formally, a regenerated benchmark version is released only if: marginal IRT reliability ≥ 0.80, Spearman rho ≥ 0.90 with the pre-contamination gold standard (relaxed from 0.95 in degraded mode), anchor set ≥ 15%, and SEM ≤ 0.35 across ≥ 70% of the target ability range. These thresholds are derived from operational testing standards (Kolen & Brennan, 2004) adapted for the LLM evaluation context where group-level comparisons (model rankings) are the primary use case.
+
+**Evaluation Strategy.** Validate on three tiers: (a) Primary — LiveBench subsets (math, reasoning, coding) as currently-uncontaminated benchmarks with diverse task types and temporal structure; simulate contamination by fine-tuning open-weight models on specific LiveBench items at controlled rates (10-50%) and measuring detection sensitivity and ranking recovery. Critically, include an RL-contamination condition: apply GRPO fine-tuning (following Wang et al.'s protocol of ~156 steps on contaminated data) to open-weight models on benchmark items and verify that DIF-based detection remains effective while individual-level methods degrade — this directly tests the analytical demonstration's predictions. Additionally, test DVD's bimodal variance signature under RL contamination to determine whether it is robust, partially robust, or fragile (resolving the current empirical gap). (b) Secondary — MMLU-CF (the contamination-free MMLU replacement, ACL 2025) for knowledge-domain evaluation, running the full regeneration pipeline on synthetically contaminated subsets. (c) Positive control — use naturally-contaminated MMLU/GSM8K items (with documented contamination evidence from GSM1K studies) to verify that the contamination sentinel detects known real-world contamination. Additionally, include a **pilot feasibility study** on a single LiveBench math subset (~200 items): run the full generate-screen-calibrate-gate pipeline and report rejection rates, convergence speed, parameter recovery accuracy, ranking preservation, and graceful-degradation trigger rates — providing the first empirical evidence of generate-test-reject convergence for IRT-equated benchmark items.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '900-1300 (inference of 200-300 models on ~5K items each for IRT calibration across multiple rounds, plus item generation with 70B+ models, plus student simulation panel, plus DVD temperature-sampling at 50 generations/item)', 'timeline': '5-6 months (1.5 months multi-signal contamination detector including DIF infrastructure and DVD adaptation, 1.5 months bifactor IRT calibration infrastructure, 1.5 months generation pipeline with student simulation, 1.5 months experiments including RL-contamination condition, pilot feasibility study, and writing)', 'estimated_gpu_cost': '$1800-$2600 at ~$2/hr H100 spot pricing', 'closed_source_api_cost': '$800-$2000 (API calls for ~30-50 closed-source models in calibration panel: GPT-4o, Claude, Gemini, etc. at ~5K items each, plus student simulation inference, plus DVD temperature-sampling for closed-source models)'}, 'human_in_loop': {'gpu_hours': '800-1100 (same inference needs, Claude handles generation orchestration, IRT analysis code, DIF implementation, and DVD adaptation)', 'timeline': '3.5-4.5 months (Claude drafts contamination detection, equating code, DIF pipeline, and student simulation; human validates IRT assumptions, bifactor model specification, DIF power analysis, and experimental design)', 'claude_api_cost': '$400-$700 (Sonnet 4.6 for code generation and pipeline orchestration, ~120M tokens total with caching)', 'estimated_gpu_cost': '$1600-$2200', 'closed_source_api_cost': '$800-$2000'}, 'auto_research': {'gpu_hours': '900-1200 (cannot reduce inference needs for 200-300 model calibration panel; DVD temperature-sampling adds ~10% overhead)', 'timeline': '8-12 weeks (parallelized model evaluation is the critical path; 200-300 model panel requires ~3 weeks per calibration round even with full parallelism; pilot feasibility study adds ~2 weeks; RL-contamination condition adds ~1 week for GRPO training)', 'claude_api_cost': '$800-$1200 (Opus 4.7 for experimental design and IRT analysis, Sonnet 4.6 for implementation, ~180M tokens with caching)', 'estimated_gpu_cost': '$1800-$2400', 'closed_source_api_cost': '$800-$2000', 'speed_bottleneck': 'IRT calibration panel: collecting responses from 200-300 diverse LLMs on pilot items requires sequential API calls to closed-source models (rate limits) and batched inference on open-weight models (GPU scheduling). Minimum ~3 weeks for a single calibration round with full parallelism across ~150 open-weight models and ~50 closed-source APIs. The pilot feasibility study requires at least 2 full calibration rounds. DVD temperature-sampling (50 generations/item) adds ~10% to inference costs.'}}
+
+## Inspired By
+Field guide finding that 'contamination resistance degrades question fidelity'; gap between dynamic evaluation (LiveBench, DyVal) and psychometric rigor (IRT, ATLAS); cross-domain transfer of IRT equating from educational testing to benchmark maintenance; arXiv 2602.06631's demonstration that LLMs cannot directly target difficulty parameters, motivating empirical calibration; 'Test of Time' (2025) showing temporal contamination signals are unreliable, motivating multi-signal approaches; Wang et al. (ICLR 2026) showing RL conceals all individual-level contamination signals, motivating group-level DIF analysis; Wang & Heckel (2026) showing task familiarity artifacts produce uniform improvements distinguishable from item-specific contamination via DIF; DVD's demonstration that variant contamination requires specialized detection signals; Hardy et al.'s signed isotonic R² as a lightweight pre-filter complementing parametric IRT; Sander et al.'s watermarking paradigm motivating a complementary post-hoc remediation approach; bifactor IRT and PIRT as a practical bridge between unidimensional oversimplification and intractable full MIRT; Kolen & Brennan's anchor-set theory providing formal graceful-degradation thresholds.
+
+## Target Venues
+- ICLR 2027 (deadline expected ~October 2026 based on historical pattern — not yet announced; ideal timeline for thorough experiments including pilot feasibility study and RL-contamination condition; PRIMARY TARGET)
+- AAAI 2027 (abstract July 21, paper July 28, 2026 — tight but feasible if pilot study is scoped to single domain; 2 months)
+- EACL 2027 via ARR August 2026 cycle (submission August 3, 2026 — feasible with focused experiments on LiveBench math subset)
+
+## Key References
+- LiveBench: A Challenging, Contamination-Free LLM Benchmark (ICLR 2025)
+- LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code (ICLR 2025)
+- Automating Benchmark Design [BeTaL] (ICLR 2026)
+- BenchBench: Benchmarking Automated Benchmark Generation (arXiv 2026)
+- Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration (arXiv April 2026)
+- Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory [PSN-IRT] (AAAI 2026 Oral)
+- The stability of IRT parameters under several test equating conditions (Frontiers in Psychology 2026)
+- Estimating Exam Item Difficulty with LLMs: A Benchmark on Brazil's ENEM Corpus (arXiv 2602.06631, Feb 2026)
+- Take Out Your Calculators: Estimating Real Difficulty with LLM Student Simulations (arXiv 2601.09953, Jan 2026)
+- Reconstructing Item Characteristic Curves with Fine-Tuned LLMs (arXiv 2601.02580, Jan 2026)
+- ReQUESTA: Hybrid Multi-Agent Framework for MCQ Generation (arXiv 2602.03704, Feb 2026)
+- Test of Time: Rethinking Temporal Signal of Benchmark Contamination (arXiv 2509.00072, 2025)
+- ConStat: Performance-Based Contamination Detection with FDR Control (ETH Zurich 2024)
+- Establishing Trustworthy LLM Evaluation via Shortcut Neuron Analysis (ACL 2025)
+- On The Fragility of Benchmark Contamination Detection in Reasoning Models (Wang et al., arXiv 2510.02386, ICLR 2026)
+- Detecting Data Contamination from Reinforcement Learning Post-training [Self-Critique / RL-MIA] (Tao et al., arXiv 2510.09259, ICLR 2026)
+- DVD: Detection via Variance of Generation Distribution for Variant Contamination (Liang et al., arXiv 2601.04895, Jan 2026)
+- Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis [CCV] (arXiv 2603.21454, March 2026)
+- Efficient Detection of Bad Benchmark Items with Novel Scalability Coefficients (Hardy et al., arXiv 2603.24999, March 2026)
+- Detecting Benchmark Contamination Through Watermarking (Sander et al., arXiv 2502.17259, Feb 2025)
+- Test-time RL alignment exposes task familiarity artifacts in LLM benchmarks (Wang & Heckel, arXiv 2603.12875, March 2026)
+- Application of IRT Fixed Parameter Calibration to Multiple-Group Test Data (Kim & Kolen, Applied Measurement in Education 2019)
+- An Optimized Bayesian Hierarchical Two-Parameter Logistic Model for Small-Sample Item Calibration [OH2PL] (König, Spoden, & Frey, Applied Psychological Measurement 2020, PMC7262992)
+- Robustness of the OH2PL for Small-Sample Item Calibration (König, Spoden, & Frey, Behavior Research Methods 2022)
+- Approximating Bifactor IRT Equating with Projective IRT [PIRT] (PMC 2020)
+- Item Response Theory True Score Equating for the Bifactor Model (Kim, Journal of Educational Measurement 2022)
+- Several Variations of Simple-Structure MIRT Equating (Kim, Journal of Educational Measurement 2023)
+- MMLU-CF: A Contamination-Free Multi-task Language Understanding Benchmark (ACL 2025)
+- Simulating Training Data Leakage in Multiple-Choice Benchmarks (arXiv 2505.24263, 2025)
+- VarBench: Robust Language Model Benchmarking Through Dynamic Variable Perturbation (EMNLP 2024)
+- DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks (ICLR 2024)
+- RIDE: Difficulty Evolving Perturbation with Item Response Theory for Mathematical Reasoning (arXiv 2025)
+- Adaptive Testing for LLM Evaluation [ATLAS] (arXiv 2025)
+- Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation (EMNLP 2025)
+- Automatic- and Transformer-Based AIG: A Critical Review (Sommer & Arendasy, Intelligence 2025)
+- Can LLMs Estimate Student Struggles? The Curse of Knowledge Effect (arXiv 2512.18880, 2025)
+- Quantifying Data Contamination in Psychometric Evaluations of LLMs (Han et al., arXiv 2510.07175, 2025)
+- Using Past Data to Enhance Small-Sample DIF Estimation: A Bayesian Approach (Sinharay et al., ETS Research Report RR-06-09, 2006)
+- Testing Differential Item Functioning in Small Samples (Belzak, Multivariate Behavioral Research 2020)
+- Item-Focused Trees for the Detection of Differential Item Functioning (Tutz & Berger, Psychometrika 2016)
+- Test Equating, Scaling, and Linking: Methods and Practices 3rd ed. (Kolen & Brennan, Springer 2014)
+- A Careful Examination of Large Language Model Performance on Grade School Arithmetic [GSM1K] (arXiv 2405.00332, 2024)
+- Power and Sample Size Calculations for Logistic Regression Tests for Differential Item Functioning (PMC5978487)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "5342d5dc-67cf-42a7-b214-9c3704d6aedf",
+  "type": "user",
+  "uuid": "ca962899-74d5-421b-bf35-8649c5c8381e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T04:41:13.273Z_
+
+```json
+{
+  "parentUuid": "ca962899-74d5-421b-bf35-8649c5c8381e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "6f863bd8-03b5-4eee-a4cc-690f0d17e371",
+  "timestamp": "2026-05-20T04:41:13.273Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T04:41:13.273Z_
+
+```json
+{
+  "parentUuid": "6f863bd8-03b5-4eee-a4cc-690f0d17e371",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "8f3e2a6d-414a-4b01-b6ff-eaf1edcf592c",
+  "timestamp": "2026-05-20T04:41:13.273Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-20T04:41:13.273Z_
+
+```json
+{
+  "parentUuid": "8f3e2a6d-414a-4b01-b6ff-eaf1edcf592c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "dddd4375-2b2d-40d8-b1a2-aee9b1ed7477",
+  "timestamp": "2026-05-20T04:41:13.273Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient information from my literature search. L…",
+  "leafUuid": "dddd4375-2b2d-40d8-b1a2-aee9b1ed7477",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "DIF-based contamination detection with IRT equating for benchmarks",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T04:41:36.829Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three independent reviews and synthesize them according to the Meta Judge format.
+
+First, let me extract the key numbers and judgments:
+
+**Reviewer 1:**
+- Novelty: 中
+- Significance: 中偏强
+- Related Work: 强
+- Probability: [22% - 35%] 中位 27%
+
+**Reviewer 2:**
+- Novelty: 中（偏强）
+
+
+- Significance: 中
+- Related Work: 强
+- Probability: [22% - 32%] 中位 27%
+
+**Reviewer 3:**
+- Novelty: 中
+- Significance: 中偏强
+- Related Work: 强
+- Probability: [22% - 32%] 中位 26%
+
+The three median probabilities cluster tightly at 27%, 27%, and 26%, averaging 26.67% with minimal variation, indicating strong agreement across reviewers. Looking at the consensus patterns, all three reviewers rate novelty as 中, related work as 强, while significance shows two reviewers at 中偏强 and one at 中.
+
+The reviewers converge on several key points: the application of DIF to LLM contamination detection is genuinely novel, but it's primarily an application-level contribution rather than a methodological one. They all flag concerns about the pipeline being too broad for a single paper, with a trivial alternative existing through combining LiveBench and Growing Pains. Critical unverified assumptions include DIF's feasibility with small samples and whether IRT assumptions like local independence and bifactor fit actually hold for LLMs. While the RL-robustness argument is logically sound, reviewers find it unsurprising once articulated, and there's a positioning risk around whether this constitutes systems/engineering work versus genuine scientific contribution.
+
+R2 makes a particularly important point that Self-Critique from Tao et al. (ICLR 2026) directly competes with DIF as an RL-robust contamination detection method, which undermines the claim that DIF is the only such approach. R1 raises the scenario where the entire dataset leaks, potentially making per-item DIF effect sizes negligible, while R2 notes the omission of Benchmark Self-Evolving (COLING 2025) and R3 explicitly mentions RIDE (ICLR 2026) in the landscape. The extremely tight standard deviation around 0.47% shows remarkable consensus across all three reviewers, with median scores clustering around 26-27%, suggesting I should anchor toward the middle of this narrow range rather than exploring the extremes.
+
+Now I'm moving to assess the implementation feasibility by cross-referencing the proposal's resource estimates against the reviewers' concerns about practical execution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dddd4375-2b2d-40d8-b1a2-aee9b1ed7477",
+  "isSidechain": false,
+  "requestId": "req_011CbDCwEgLnd1mDboE4KU5y",
+  "type": "assistant",
+  "uuid": "096e1bd4-1294-4170-82dd-12a8451ff407",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012HtesZHhpTzfDjgwiKun1y",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 25942,
+      "cache_read_input_tokens": 16514,
+      "output_tokens": 3378,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3378,
+          "cache_read_input_tokens": 16514,
+          "cache_creation_input_tokens": 25942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-20T04:42:42.739Z_
+
+【阶段】: Meta Judge
+【三次中位】: [27%, 27%, 26%]  std=0.5%
+【共识维度】:
+- **Novelty = 中**（3/3）：DIF 用于 LLM contamination detection 是 genuinely novel application，但属于"成熟方法迁移到新场景"（application novelty），非 methodological breakthrough。核心 insight（"behavioral response pattern 不受 RL output distribution smoothing 影响"）一旦陈述即显 intuitive，surprise factor 不足。全闭环管道是 systems integration，各组件（ConStat, DVD, bifactor IRT, PIRT, student simulation）均为已有方法组装。
+- **Related Work = 强**（3/3）：对领域覆盖异常全面且差异化定位准确，所有审稿人验证后均未发现显著遗漏。这是 proposal 最突出的优点，可有效防止"missing related work"导致的下行风险。
+- **Significance = 中至中偏强**（3/3 在此区间）：问题本身重要且及时（Wang et al. ICLR 2026 揭示的 RL fragility 创造了明确 open problem），但方案复杂度过高限制实际部署可能性，trivial alternative（LiveBench + Growing Pains 组合）削弱边际价值。
+- **Pipeline 过于庞大 / "too much for one paper"**（3/3）：四大组件（detection ensemble + generation pipeline + bifactor equating + graceful degradation）在 8 页正文中无法充分展开，审稿人倾向 focused contribution。
+- **Trivial alternative 威胁 = 中等**（3/3）：LiveBench 定期更新 + Growing Pains IRT equating 的组合可能以 1/10 复杂度达到 80% 效果。增量价值（对已部署 benchmark 的原位修复 + DIF 的 RL-robustness）真实但可能被高估。
+- **DIF 小样本可行性 = 核心未验证假设**（3/3）：N=40-80/cohort 远低于经典 DIF 所需的 N≥200，缓解策略（temporal aggregation, Bayesian priors, Item-Focused Trees）本身也有未经验证的假设。LLM 不满足 IRT 的 local independence 假设（同 family 模型高度相关）。
+- **"Engineering integration vs. scientific contribution" 定位风险**（3/3）：每个组件都是现有方法的直接迁移或整合，审稿人可能认为 technical contribution 深度不足以支撑主会论文。
+- **DIF RL-robustness 论证 sound 但 unsurprising**（3/3）："DIF 检测 group-level behavioral differences" 几乎是 DIF 设计本意的 tautological application，positive 结果的预期反应是 "makes sense" 而非 "surprising"。
+
+【异常维度】:
+- **R2 独有：Self-Critique (Tao et al., arXiv 2510.09259, ICLR 2026) 作为直接竞争者**。R2 指出 Self-Critique 已提出针对 RL 后训练的 contamination detection（通过 policy collapse 检测），削弱 DIF 作为"唯一 RL-robust 方案"的独特性。R1 和 R3 未单独强调此竞争威胁的严重程度。**判断：应适度加权**——Self-Critique 确实是 proposal 中已提及的工作，但其作为"individual-model-level method"与 DIF 的"group-level method"有明确差异。然而 R2 的 concern 合理：如果 Self-Critique 在实践中已经"够用"，DIF 的增量价值就从"唯一可行方案"降为"互补信号"。
+- **R1 独有：整个 dataset 泄露时 per-item DIF effect size 可能 uniformly medium-small**。这是一个有价值的 edge case 但非致命——因为全 dataset 泄露的场景中，uniform boost 也可能被 ability matching 吸收（类似 task familiarity），此时 DIF 本身的设计逻辑就不适用，需要其他 ensemble signals。
+- **R3 独有：30-50% 再生成功率假设完全基于类比推断**。合理 concern 但属于实验层面可验证的风险，非 idea 层面致命问题。
+
+【最终概率】: [22% - 32%] 中位 26%
+【一致性】: 高（std=0.5%，三份评审在 rubric 判决和概率区间上高度一致）
+【综合理由】:
+1. **极高一致性处理**：std=0.5% 是极低分歧，三位审稿人在所有核心维度上达成共识。按规则取中位附近、缩窄区间。三份下界均为 22%，上界在 32-35% 之间。取保守端 32% 作为上界（2/3 审稿人的上界），中位取三者中较低值 26%（宁缺毋滥原则）。
+2. **Novelty 是锚定维度**：三位一致评为"中"，且理由高度重叠——application novelty 而非 methodological novelty，core insight unsurprising。Novelty="中"将概率天花板锚定在 ~32-35%。
+3. **Significance 受 trivial alternative 压制**：三位均提到 LiveBench + Growing Pains 组合的替代威胁，将增量价值定位为"真实但可能被高估"。这限制了 Significance 从"中偏强"进一步上推的空间。
+4. **Related Work 的"强"只能防守不能进攻**：三位一致认为 related work 覆盖出色，但这只降低下行风险（不会因 missing work 被拒），不提升 novelty 或 significance 的评分。
+5. **R2 的 Self-Critique 竞争者 concern 适度加权**：虽然只有 R2 重点强调，但 concern 合理——Self-Critique 的存在确实削弱了 DIF 的"唯一 RL-robust 方案"叙事。这将上界从 R1 的 35% 压至 32%。
+6. **概率未达 30% 中位的核心原因**：(a) contribution 以 integration 为主，methodological depth 有限；(b) 核心发现（DIF works for RL contamination）的 surprise factor 不足；(c) pipeline 过于庞大，8 页正文中深度展开困难；(d) DIF 小样本可行性风险直接影响核心 claim 的可信度。
+
+【建议】: 边缘（中位 26% 低于 36% 通过线，但 idea 内核有真实价值，如果 refocusing 到 DIF-only focused paper 可能有上行空间）
+【实施评估】:
+  - 计算资源: 900-1300 GPU 小时（H100），主要用于 200-300 模型的 IRT 校准面板推理（每模型 ~5K items）、70B+ 模型的题目生成、student simulation、DVD temperature sampling（50 generations/item）。预估 GPU 成本 $1800-$2600（H100 spot）。另需 $800-$2000 闭源模型 API 费用（GPT-4o, Claude, Gemini 等 30-50 个闭源模型）。
+  - 数据需求: LiveBench subsets（公开可得）、MMLU-CF（ACL 2025，公开可得）、MMLU/GSM8K（公开可得）。需收集 200-300 个 diverse LLMs 的推理结果作为校准面板——开源模型可自行推理，闭源模型需 API 调用。无需私有数据集。
+  - 人工介入: 需要具备 psychometrics/IRT 专业知识的研究者验证 bifactor 模型规范、DIF power analysis、equating 假设。部分失败 items 需人工审核（graceful degradation 中的 human review 环节）。人工介入量中等。
+  - 训练需求: 需要 GRPO fine-tuning 开源模型（模拟 RL contamination condition，遵循 Wang et al. 的 ~156 步协议）。训练规模适中（7B-14B 模型级别，数百步 RL 训练），非大规模预训练。
+  - 新 Benchmark: 不需要构建全新 benchmark，但需要在现有 benchmark（LiveBench, MMLU-CF）上运行完整的 detect-generate-equate pipeline 并报告 convergence statistics。Pilot feasibility study 本身即为新的评估贡献。
+  - 预估周期: 人机协作模式 3.5-4.5 个月；纯自主模式 8-12 周（瓶颈在 200-300 模型校准面板的推理收集，即使全并行也需 ~3 周/轮）。总体 5-6 个月从启动到可投稿。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "096e1bd4-1294-4170-82dd-12a8451ff407",
+  "isSidechain": false,
+  "requestId": "req_011CbDCwEgLnd1mDboE4KU5y",
+  "type": "assistant",
+  "uuid": "6b56c794-2abe-4864-b335-ec61453a2ae1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012HtesZHhpTzfDjgwiKun1y",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 25942,
+      "cache_read_input_tokens": 16514,
+      "output_tokens": 3378,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3378,
+          "cache_read_input_tokens": 16514,
+          "cache_creation_input_tokens": 25942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient information from my literature search. L…",
+  "leafUuid": "6b56c794-2abe-4864-b335-ec61453a2ae1",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "DIF-based contamination detection with IRT equating for benchmarks",
+  "sessionId": "e16f2a63-15e8-4795-9a4d-e15b0410b0dd"
+}
+```
+
+---

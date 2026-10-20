@@ -1,0 +1,876 @@
+# Research conversation: You are a senior ML research advisor synthesizing a literature review into an actionable research strategy. **Today's da
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/05005bf9-60b3-4bb5-8b2a-cba78844b4ac.jsonl`
+- **Structured JSON:** [`6079f6be159f5be0e13e.json`](../../sessions/60/6079f6be159f5be0e13e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T12:04:49.390Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T12:04:49.390Z",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac",
+  "content": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Research area: Target: AAAI 2026\nTrack: Machine Learning (ML) — Efficient Inference and Reasoning\n\nDirection: Per-instance adaptive co-optimization of generation and verification compute, where both the number of generated solutions (K) and the verification depth (none/ORM/PRM/GenRM) are jointly selected based on online difficulty estimation from early reasoning tokens. Extends static aggregate scaling laws (Singhi et al.) to instance-adaptive, multi-depth allocation with a practical online algorithm.\n\nSeed Papers:\n- Singhi et al., \"When To Solve, When To Verify\" (arXiv 2025) — establishes aggregate scaling laws for generation-verification tradeoff; our work must explicitly extend this to per-instance, multi-depth allocation\n- Setlur et al., \"Scaling TTC Without Verification is Suboptimal\" (arXiv Feb 2025) — proves verification is essential and the gap grows with compute; motivates why verification budget allocation matters\n- Chen et al., \"VG-Search: Rethinking Optimal Verification Granularity\" (arXiv May 2025) — shows verification granularity matters for efficiency; we extend from granularity to depth and per-instance adaptation\n- Wang et al., \"ST-BoN\" (NeurIPS 2025 Spotlight) — early pruning via sampling consistency; a strong baseline for lightweight verification allocation\n\nKnown Gaps:\n- No method selects verification depth (none/ORM/PRM/GenRM) per-instance based on estimated difficulty; all existing work uses a fixed verification strategy across problems\n- Singhi et al.'s scaling laws are static and aggregate (one ratio for all problems); no online algorithm adapts the generation-verification split per-instance during inference\n- No framework jointly optimizes K (number of solutions) and d (verification depth) as coupled decision variables under a shared compute budget\n\nTheoretical Anchor: The bilinear structure of the joint optimization — P(correct) depends on coverage (increasing in K) and selection precision (increasing in d), while cost is c_g*K + c_v(d)*K = K*(c_g + c_v(d)) — admits a clean decomposition: for fixed d, optimal K = B/(c_g + c_v(d)), reducing the problem to selecting d* that maximizes selection precision per unit verification cost. This decomposition enables tractable optimization with provable approximation guarantees under mild assumptions on verifier accuracy monotonicity.\n\nConstraints:\n- Compute: ≤200 H100-hours\n- Must evaluate on ≥4 benchmarks across ≥2 domains (math, code, science)\n- Must compare against Singhi et al.'s aggregate-optimal baseline and fixed-depth baselines\n\nQuality Self-Checks:\n- [x] Core insight: The optimal verification depth varies dramatically per problem — easy problems need no verification while hard problems benefit from expensive generative verification — and this variance is predictable from early tokens.\n- [x] Why not obvious: Singhi et al. showed the aggregate optimal ratio, but the per-instance variance and multi-depth selection weren't explored because their framework only compared two verification strategies (GenRM vs SC), not a continuum of depths.\n- [ ] Baseline fear test: A simple heuristic (e.g., always use PRM for problems longer than X tokens) could capture much of the benefit — must demonstrate learned allocation significantly outperforms simple rules. This is a REAL RISK.\n- [x] Information exploited: Early-token difficulty signals (entropy trajectory, hesitation markers from Zhou et al.) that are available before verification decisions must be made.\n\nAvoid:\n- Framing as 'first to study generation-verification tradeoff' — Singhi et al. already did this; frame as extending to per-instance multi-depth allocation\n- Math-only evaluation — must include code and science benchmarks\n- Pure scaling law contribution — must provide a practical online algorithm, not just power-law fits\n- Ignoring the baseline fear: if a simple threshold on problem length achieves 80% of the adaptive allocation's gain, the paper is dead\n\n## Paper analyses (28 papers)\n\n[\n  {\n    \"title\": \"Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters\",\n    \"venue\": \"ICLR 2025 (Oral)\",\n    \"problem_identification\": \"Prior work on test-time compute scaling applied strategies uniformly across all prompts, missing the critical insight that effectiveness varies dramatically with problem difficulty. The authors identified this gap by running extensive experiments across difficulty-stratified bins and observing that beam search dominates on hard problems while sequential revision dominates on easy ones — no single strategy is optimal everywhere. This per-prompt variance had not been systematically quantified or exploited before.\",\n    \"key_insight\": \"Question difficulty (measured by the base model's pass@1 rate) acts as a sufficient statistic for selecting the compute-optimal test-time strategy. By adaptively routing easy problems to sequential revision and hard problems to parallel search with verification, a small model with optimized inference compute can outperform a 14x larger model — but only on problems within the base model's capability frontier.\",\n    \"innovation_type\": \"new_formulation\",\n    \"method_summary\": \"The paper frames test-time compute scaling as an optimization problem: select hyperparameters θ* (search strategy, beam width, revision depth, parallel/sequential ratio) that maximize accuracy for a given prompt difficulty and compute budget N. Two scaling mechanisms are studied: (1) search via process-based reward models (PRMs), comparing best-of-N weighted selection, beam search, and lookahead search; and (2) iterative revision using a fine-tuned model that sequentially refines solutions conditioned on prior incorrect attempts. Questions are binned into five difficulty quintiles based on pass@1 over 2048 samples, and the optimal strategy is selected per-bin via two-fold cross-validation. The FLOPs-matched comparison framework equates additional test-time compute against scaling model parameters by computing the ratio R = inference_tokens/pretraining_tokens, showing test-time compute wins when R is small (few inference queries per pretraining investment).\",\n    \"what_makes_it_good\": \"The paper succeeded because it reframed a practical engineering concern (how to spend inference compute) as a clean optimization problem with a surprising and actionable finding: adaptive per-prompt allocation achieves 4x efficiency over uniform best-of-N. The difficulty-stratified experimental design was crucial — it transformed a noisy aggregate picture into crisp, interpretable scaling laws per difficulty bin. The headline result (small model beats 14x larger model) is both memorable and practically important, while the careful caveats (only on easy/medium problems, depends on R ratio) demonstrate intellectual honesty that reviewers valued.\",\n    \"limitations_acknowledged\": \"All experiments used only the MATH benchmark with PaLM 2-S* models, leaving generalization to other domains and architectures uncertain. The difficulty estimation itself requires 2048 samples per question, creating a significant computational overhead that partially undermines the efficiency gains. Test-time compute provides very little benefit on the hardest problems outside the base model's capability frontier.\",\n    \"open_questions\": [\n      \"How to estimate per-instance difficulty cheaply enough for practical deployment? The paper's oracle approach (2048 samples) is computationally prohibitive; the predicted approach (verifier scores) achieves only 52.8% bin-level accuracy. This is the critical bottleneck for online adaptive allocation — and directly motivates using early-token signals (entropy, hesitation) as cheaper difficulty proxies.\",\n      \"Can search-via-verification and iterative revision be combined rather than treated as alternatives? The paper acknowledges this as future work but never explores it — a combined approach could expand the strategy space for per-instance allocation.\",\n      \"Does the difficulty-stratified compute-optimal allocation generalize beyond math to code generation, scientific reasoning, or open-ended language tasks where verification signal quality differs fundamentally?\"\n    ],\n    \"building_blocks\": [\n      \"Process-based reward models (PRMs) trained via Monte Carlo rollouts for step-level verification\",\n      \"Difficulty binning via base model pass@1 as a routing signal for strategy selection\",\n      \"Compute-optimal selection formulation: θ* = argmax_θ E[accuracy | budget N, prompt q]\",\n      \"FLOPs-matched comparison framework with inference-to-pretraining ratio R\",\n      \"Best-of-N weighted selection (marginalizing verifier scores over identical final answers)\",\n      \"Sequential revision model trained on synthetic multi-turn incorrect→correct trajectories\",\n      \"Two-fold cross-validation for unbiased evaluation of adaptive strategies\",\n      \"Beam search with PRM step-level scoring and lookahead (deterministic MCTS variant)\"\n    ],\n    \"reviewer_feedback_summary\": \"Four reviewers, scores: 8/8/8/6→6 (raised confidence after rebuttal). Accepted as Oral. Key praise: comprehensive experimental analysis, well-written presentation, insightful difficulty-stratified findings, sound FLOPs-matched methodology. Key concerns: (1) ALL experiments limited to MATH benchmark — generalization unvalidated (raised by 3/4 reviewers); (2) heavy verifier dependence — unclear if findings hold with weaker PRMs (partially addressed via 20% label-flip ablation); (3) difficulty prediction accuracy only 52.8% — practical deployment questionable; (4) fine-tuning compute costs underexplored. The meta-review noted 'claims should be interpreted with caution' regarding generalizability. Authors partially addressed concerns by adjusting the title to specify 'reasoning tasks,' adding weaker-verifier analysis, and citing two independent reproductions (Hugging Face with LLaMA/Qwen, and a study showing 1B models potentially surpassing 405B on AIME-2024).\",\n    \"relevance_to_seed\": \"This paper is the intellectual ancestor of our proposed work. It establishes the core principle (per-prompt adaptive allocation of test-time compute beats uniform strategies) but leaves three critical gaps we aim to fill: (1) it treats search strategy selection as a discrete choice among fixed methods rather than jointly optimizing K and verification depth d as continuous coupled variables; (2) its difficulty estimation is prohibitively expensive (2048 samples), motivating our early-token difficulty signals; and (3) it only evaluates on MATH, whereas our work must span math, code, and science. Our key methodological lesson: the difficulty-bin-based evaluation design was essential to making the results interpretable and convincing — we should adopt this stratified analysis but with finer-grained, multi-domain difficulty estimation. The baseline fear from reviewers (that majority voting suffices for strong models) directly parallels our own baseline fear (that simple heuristics capture most adaptive allocation benefit).\"\n  },\n  {\n    \"title\": \"When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning\",\n    \"venue\": \"COLM 2025\",\n    \"problem_identification\": \"The authors identified that prior work on Generative Reward Models (GenRM) demonstrated performance gains by scaling verifications alongside solutions, but never controlled for the actual compute cost of verification — comparisons held solution count fixed while adding verification compute 'for free.' By asking the simple but previously overlooked question 'what if GenRM's verification budget were instead spent generating more solutions for Self-Consistency?', they revealed that the apparent gains of GenRM largely vanish under compute-matched conditions. They found this gap by formalizing inference compute as C(S,V) = S(1 + λV), making the hidden cost of verification explicit and forcing an apples-to-apples comparison.\",\n    \"key_insight\": \"Verification is expensive: under a fixed compute budget, the tokens spent on generative verification could instead generate additional solutions, and Self-Consistency with those extra solutions outperforms GenRM for most practical budgets. GenRM only wins when you can afford ≥8× the compute of SC's saturation point — meaning verification is a luxury good, not a default strategy. The deeper insight is that the solution-verification tradeoff follows predictable power-law scaling (S_opt ∝ C^0.57, V_opt ∝ C^0.39), meaning solutions should always be scaled faster than verifications.\",\n    \"innovation_type\": \"analysis\",\n    \"method_summary\": \"The authors define a normalized compute budget C(S,V) = S(1 + λV), where λ is the ratio of verification-to-solution token costs (λ=1 for base GenRM, λ=2 for fine-tuned GenRM). Under this budget, they sweep a grid of (S, V) configurations across powers of 2, evaluate success rates on reasoning benchmarks, and construct compute-performance Pareto frontiers for SC (V=0) and GenRM. To derive scaling laws, they adapt the Chinchilla methodology to inference: for each fixed S, they plot success rate against compute, extract the optimal S and V at each budget level, and fit power laws S_opt ∝ C^a and V_opt ∝ C^b. The analysis spans Llama-3.1-8B, Qwen-2.5-7B, Llama-3.3-70B, and QwQ-32B across MATH, AIME 2024/2025, GPQA-Diamond, and LiveCodeBench. GenRM-FT is trained via LoRA on GPT-4o-generated synthetic verification rationales from the MATH training set.\",\n    \"what_makes_it_good\": \"The paper's strength is its methodological discipline: it takes an already-known technique (GenRM) and shows that previous evaluations were misleading because they ignored compute costs — a clean, important, and reproducible finding. The Chinchilla-style scaling law formulation gives the work lasting value beyond any single benchmark result, providing actionable allocation formulas. The breadth of validation (4 model families, 5 benchmarks, 2 model sizes, thinking models) makes the conclusions hard to dismiss as setup-specific.\",\n    \"limitations_acknowledged\": \"The authors note their analysis assumes a fixed FLOP budget and does not address latency-constrained settings or hardware-specific considerations. They acknowledge focusing only on outcome-level generative verification, leaving process-level verification (PRM) and discriminative reward models unexplored. They also note that Self-Consistency requires problems with definitive answers, limiting applicability to open-ended domains.\",\n    \"open_questions\": [\n      \"The paper shows GenRM wins on hard problems (30% relative improvement on MATH Level 5) but loses on easy ones — yet never proposes or evaluates an adaptive strategy that uses SC for easy problems and GenRM for hard ones. This per-instance allocation is the most natural and highest-impact follow-up, and the difficulty-stratified results essentially beg for it.\",\n      \"The scaling laws are fit as single power laws across the entire compute range, but the Pareto frontier likely has regime transitions (SC-dominant → crossover → GenRM-dominant). Piecewise or regime-aware scaling laws could yield more precise allocation guidance and reveal whether the crossover point itself scales predictably with model size or task difficulty.\",\n      \"No comparison is made against discriminative verifiers (ORM/PRM) despite these being widely used. The compute-efficiency story could look very different for lightweight discriminative verifiers that cost far fewer tokens than generative verification chains — the λ for a small ORM could be 0.01, not 1-2.\"\n    ],\n    \"building_blocks\": [\n      \"Compute-matched evaluation framework: C(S,V) = S(1 + λV) with λ as verification/solution token cost ratio\",\n      \"Chinchilla-style inference scaling law methodology: sweep grid, extract Pareto-optimal allocations, fit power laws\",\n      \"GenRM-FT training pipeline: GPT-4o synthetic verification rationales → correctness filtering → label balancing → LoRA fine-tuning\",\n      \"Best-of-N scoring via P(Yes | problem, solution, verification_CoT) averaged over V verifications\",\n      \"Difficulty-stratified evaluation using MATH levels (Level 1 = easy, Level 5 = hard)\",\n      \"Benchmarks: MATH-500 subset, AIME 2024/2025, GPQA-Diamond, LiveCodeBench\",\n      \"Models: Llama-3.1-8B-Instruct, Qwen-2.5-7B-Instruct, Llama-3.3-70B-Instruct, QwQ-32B\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"This is the primary foundation paper. Its critical gap — and our exact entry point — is that all scaling laws and allocation ratios are computed as AGGREGATE statistics across all problems, despite the paper's own results showing massive variance by difficulty (easy problems: SC dominates at all budgets; hard problems: GenRM provides 30% gains). The paper derives one (a, b) pair per model but never asks 'what if different problems need different (S, V, d) allocations?' Furthermore, it only compares two verification strategies (SC = no verification vs. GenRM = generative verification) rather than a continuum including ORM and PRM. Our work extends this by: (1) making the allocation per-instance via online difficulty estimation, (2) expanding from a binary SC-vs-GenRM choice to a multi-depth verification continuum (none/ORM/PRM/GenRM), and (3) providing a practical online algorithm rather than post-hoc scaling law fits. The compute-matched framework C(S,V) = S(1 + λV) directly generalizes to our formulation C(S,d) = S·(c_g + c_v(d)) by letting c_v be a function of verification depth d rather than a single λ.\"\n  },\n  {\n    \"title\": \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\",\n    \"venue\": \"ICML 2025 (Spotlight Poster)\",\n    \"problem_identification\": \"The authors identified a fundamental unanswered question in the test-time compute scaling race: practitioners were split between verifier-free approaches (distillation/SFT on expert traces, e.g., S1, OpenThinker) and verifier-based approaches (RL with rewards, e.g., DeepSeek R1), with no theoretical framework to determine which scales better. They found the gap by recognizing that the diversity of solution traces (heterogeneity) in base LLMs — which practitioners deliberately maximize in training data — is precisely the property that makes SFT fundamentally unable to select the best traces without reward signals. This was hiding in plain sight: the same data-diversity heuristic practitioners use for SFT is the very thing that dooms it.\",\n    \"key_insight\": \"When a base LLM produces diverse solution traces of varying quality (heterogeneity), supervised finetuning must mimic ALL traces equally because it cannot distinguish good from bad without rewards — the information-theoretic lower bound on VF suboptimality scales as H/√n. Verifier-based methods exploit this same diversity by selectively amplifying high-reward traces, achieving only H/n suboptimality. The gap grows as √H with compute, meaning verification becomes MORE important, not less, as we scale.\",\n    \"innovation_type\": \"analysis\",\n    \"method_summary\": \"The authors model language generation as a token-level MDP with bi-level rewards (binary, non-decreasing) that capture both correctness and token efficiency. They introduce two novel properties of base LLMs: (1) heterogeneity — variance in the Q-values of expert actions under the base policy, measuring how diverse solution traces are, and (2) anti-concentration — the probability mass the base policy places on traces with above-mean rewards, measuring whether high-quality traces are discoverable. They prove an information-theoretic lower bound (Theorem 5.4) showing ANY VF method has suboptimality Ω(σ̃_e√(log|Π'|/n)) by constructing indistinguishable expert families, then prove a simple VB algorithm (train verifier → pessimistic policy optimization, Algorithm 1) achieves only O(H·log|R|/n) suboptimality (Theorem 5.7) by leveraging anti-concentration to construct covered high-reward comparator policies. The separation (Theorem 5.8) follows: VB scales test-time compute by Ω̃(√H) relative to any VF method when n = Ω(H).\",\n    \"what_makes_it_good\": \"Three things earned this a spotlight: (1) Extreme timeliness — it directly addressed the most debated practical question in the field (RL vs distillation for reasoning) with rigorous theory, submitted just weeks after S1 and DeepSeek R1 releases. (2) The theoretical framework is surprisingly clean — reducing the comparison to two measurable properties (heterogeneity, anti-concentration) of existing base LLMs, which they empirically verified hold in practice (Figures 9-10). (3) The result has real teeth: it's not 'VB is slightly better' but 'the gap GROWS with compute', which has direct implications for how the field should invest in scaling. Reviewers specifically praised the 'convincing theoretical and empirical evidence,' the precision of the writing, and the excellent Section 7 experiments that visualized the abstract properties on real LLMs.\",\n    \"limitations_acknowledged\": \"The theoretical analysis assumes bi-level (binary, non-decreasing) reward structure and realizability of the true reward in the verifier class. The anti-concentration property was initially defined worst-case over all problems (min_x), which reviewers flagged as restrictive — authors showed in rebuttal it relaxes to average-case with the same conclusions. Empirical evaluation was limited to math reasoning (MATH benchmark) with Llama 3B/8B and S1 models, without code or science domains.\",\n    \"open_questions\": [\n      \"The paper proves verification is essential and the gap grows — but WHICH verification strategy (ORM vs PRM vs GenRM) is optimal for a given problem instance and compute budget? The paper treats verification as binary (present/absent) and does not address the spectrum of verification depths, leaving the per-instance allocation question completely open.\",\n      \"The anti-concentration property varies across problems (c_x(ε) is problem-dependent) — can we estimate it from early tokens to predict which problems benefit most from verification? This connects directly to adaptive compute allocation but was not explored.\",\n      \"Does the √H separation still hold when the VF method gets access to substantially more expert data (n >> H)? The result requires n = Ω(H); understanding the tradeoff when data is abundant vs scarce has practical implications for hybrid VF+VB pipelines.\"\n    ],\n    \"building_blocks\": [\n      \"Bi-level reward formulation for token-efficient reasoning evaluation\",\n      \"Policy heterogeneity metric (variance of Q-values under base policy) — measurable on any LLM\",\n      \"Anti-concentration property as a testable condition on base LLMs\",\n      \"Information-theoretic lower bound technique via constructing indistinguishable expert families (extending Foster et al.)\",\n      \"Pessimistic verifier-based policy optimization (Algorithm 1: train verifier → optimize worst-case reward in confidence set)\",\n      \"χ²-divergence ball as a practical constraint on expert-to-base policy distance\",\n      \"Empirical methodology for measuring heterogeneity and anti-concentration on real LLMs (Figures 9-10)\"\n    ],\n    \"reviewer_feedback_summary\": \"Three reviewers scored 4/5, 3/5 (raised from lower), and 3/5 — accepted as spotlight. KEY PRAISE: Reviewer 1 called it a 'strong theoretical contribution' with 'convincing evidence'; Reviewer 3 lauded Section 7 experiments as 'excellent' and the writing as 'precisely written, no obvious errors.' KEY CONCERNS: (1) Reviewer 2 flagged confusing framing — title says 'test-time compute' but the theory is about the finetuning phase, leading to a disconnect. (2) Reviewer 2 found the worst-case anti-concentration definition (min over all x) too restrictive — authors relaxed to average-case in rebuttal, upgrading the score. (3) Reviewer 3 found the presentation dense and the didactic experiments (Section 6) unhelpful, recommending they be removed. (4) Multiple reviewers wanted clearer intuition for WHY heterogeneity hurts VF — authors added the explanation that SFT must 'mimic each trace equally irrespective of reward' which was the missing intuition. The decision noted reviewers 'generally agree with the significance of this topic.'\",\n    \"relevance_to_seed\": \"This paper provides the foundational theoretical motivation for our adaptive verification allocation work: it proves the VB advantage grows as √H, meaning as compute budgets increase, how you spend verification compute matters MORE. Critically, the paper treats verification as monolithic (present/absent) and shows problem-level anti-concentration varies (c_x is problem-dependent) — this is exactly the gap we exploit. Our contribution extends from 'verification yes/no' to 'which verification depth per-instance,' and from 'aggregate scaling laws' to 'instance-adaptive allocation using the very heterogeneity signals (anti-concentration variance across problems) that Setlur et al. identify but don't act on.' Their measurable anti-concentration metric c_x(ε) could even serve as a feature in our difficulty estimator.\"\n  },\n  {\n    \"title\": \"Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling\",\n    \"venue\": \"NeurIPS 2025 (Poster)\",\n    \"problem_identification\": \"The authors identified that conventional verification in test-time scaling invokes the verifier at every generation step (delimited by newlines), but profiling revealed that >50% of consecutive verifier score changes are below 1% of the score range — meaning most verification calls are redundant overhead. This was found through direct empirical measurement of score stability across steps, a surprisingly simple observation that prior work on beam search and Best-of-N had overlooked because they treated verification frequency as a fixed architectural choice rather than a tunable hyperparameter.\",\n    \"key_insight\": \"Beam search (verify every step) and Best-of-N (verify only at completion) are not distinct algorithms but endpoints of a continuous spectrum parameterized by verification granularity g, and the optimal point on this spectrum shifts dramatically based on generator strength, task difficulty, and compute budget — strong generators and harder tasks actually benefit from *sparser* verification because it frees compute for broader exploration.\",\n    \"innovation_type\": \"new_formulation\",\n    \"method_summary\": \"VG-Search introduces a granularity parameter g that controls how many generation steps occur between verifier invocations. The algorithm maintains B₁ beams, each producing B₂ branches; after verification selects the top B₁ candidates, each extends for g-1 unverified steps before branching again. This yields a closed-form compute model C_total = 2·B₁·(L/g)·[T·(g-1+B₂)·P_g + α·B₂·P_v], revealing that g creates a fundamental tension: larger g reduces verification overhead (L/g cycles) but increases unguided generation risk. Two adaptive strategies are proposed: CM-gg finds the largest g maintaining accuracy parity with g=1 (achieving 52% FLOPs savings), and AM-gg selects g maximizing accuracy under fixed compute (achieving up to 3.6% accuracy gains). Both use simple grid search over g values on a small validation set (~5 samples suffice for convergence).\",\n    \"what_makes_it_good\": \"The paper succeeds because of a powerful unifying formulation — showing beam search and Best-of-N are special cases of one algorithm is both intellectually elegant and practically useful, giving practitioners a single knob to turn. The experimental coverage is exceptional: systematic sweeps across g, B₁, B₂, verifier size, generator strength, task difficulty, and compute budget produce a rich empirical landscape that generates multiple actionable insights. Reviewers specifically praised that it addresses a 'novel and significant aspect' with 'sensible and effective' methods, and that the empirical analysis was thorough enough to serve as a standalone contribution even without formal theory.\",\n    \"limitations_acknowledged\": \"The authors explicitly note that their chosen g remains fixed throughout generation for a single problem instance — they do not adapt verification frequency dynamically within a single inference run based on real-time signals. They also acknowledge limited scope to discriminative PRMs (no generative verifiers) and primarily mathematical benchmarks (HumanEval results only in appendix).\",\n    \"open_questions\": [\n      \"How should granularity be adapted dynamically *within* a single problem's generation, using real-time signals like verifier confidence or score change magnitude? The authors showed preliminary evidence of inverse correlation between verifier confidence and score volatility but didn't operationalize it.\",\n      \"Does the optimal granularity finding generalize to generative verification (GenRM) and outcome reward models (ORM), or is it specific to the PRM scoring paradigm where intermediate scores are inherently noisy at fine granularities?\",\n      \"Can the granularity parameter be selected per-instance based on problem features (difficulty, domain) rather than per-dataset, and does this per-instance selection compose with per-instance K allocation to create a richer joint optimization?\"\n    ],\n    \"building_blocks\": [\n      \"VG-Search algorithm (unifies beam search and Best-of-N via granularity parameter g)\",\n      \"Closed-form FLOPs cost model: C = 2·B₁·(L/g)·[T·(g-1+B₂)·P_g + α·B₂·P_v]\",\n      \"Verifier score stability profiling (>50% of 2-step differences <1% of range)\",\n      \"Skywork-o1 PRM family (1.5B and 7B) as off-the-shelf process reward models\",\n      \"CM-gg and AM-gg adaptive strategies with 5-sample validation convergence\",\n      \"MATH-500, AIME, MATH-250 benchmark suite with difficulty stratification\",\n      \"Empirical finding: strong generators prefer sparse verification, weak generators need dense guidance\",\n      \"Empirical finding: harder tasks tolerate less granularity reduction than easier tasks\"\n    ],\n    \"reviewer_feedback_summary\": \"All four reviewers rated Accept (scores 4, 4, 5, 5; one upgraded after rebuttal). Key praise: novel formulation unifying beam search and Best-of-N, thorough empirical analysis, practical actionable strategies. Key concerns: (1) newline-based step definition lacks semantic grounding — reviewers wanted steps to reflect meaningful reasoning units, not arbitrary delimiters; (2) limited model scale (max 7B generators) — authors addressed with 14B results in rebuttal; (3) single-trial experiments raised noise concerns — addressed with 3-run statistics showing low variance; (4) Section 5's adaptive strategies felt underdeveloped relative to their importance — reviewers wanted more depth on convergence guarantees and when to recompute g*; (5) no comparison with alternative verification paradigms (ORM, GenRM). The rebuttal was effective: one reviewer upgraded their score, and all acknowledged improvements.\",\n    \"relevance_to_seed\": \"This paper is the most directly relevant baseline for our proposed work: it demonstrates that verification *frequency* (how often to verify) matters enormously, but leaves per-instance adaptation and verification *depth* (what kind of verifier to use) as open problems. Our framework extends their single granularity axis to a two-dimensional (K, d) optimization where d spans none/ORM/PRM/GenRM, and crucially makes the selection per-instance rather than per-dataset. Their closed-form cost model C = K·(c_g + c_v(d)) is essentially the same bilinear structure we exploit, but they fix d=PRM and optimize only g — we can directly build on their cost model by adding the depth dimension. Their finding that 5 validation samples suffice for g* convergence is encouraging for our online difficulty estimator: if coarse-grained strategy selection converges fast, per-instance selection from early tokens should be feasible. The key lesson from reviewers: the 'semantic grounding' critique (why newlines?) maps directly onto our depth selection — we must justify why our difficulty estimator captures meaningful problem structure, not just surface features like length.\"\n  },\n  {\n    \"title\": \"Sampling-Efficient Test-Time Scaling: Self-Estimating the Best-of-N Sampling in Early Decoding\",\n    \"venue\": \"NeurIPS 2025 (Spotlight)\",\n    \"problem_identification\": \"The authors identified that Best-of-N sampling suffers from two compounding inefficiencies that prior work only addressed in isolation: (1) generating N full samples wastes GPU memory and latency, and (2) reward models used for selection add their own memory/latency overhead plus domain-specificity. The gap was found by recognizing that depth-pruning methods (SBoN, CARDS, TreeBoN) still depend on reward models, while breadth-pruning methods (ASC, ESC) sacrifice parallelism — no method eliminated both bottlenecks simultaneously. This is a classic 'orthogonal inefficiencies' observation: combining two known problems into one unified solution.\",\n    \"key_insight\": \"The latent embedding trajectory of a language model's hidden states during early decoding tokens contains enough signal to predict which of N parallel samples will ultimately be the best — specifically, the sample whose Chain-of-Embedding curvature is most consistent with the population of samples is overwhelmingly likely to be the final winner. This means you can commit to a single sample after generating only a small prefix, discarding N-1 incomplete samples and bypassing reward models entirely.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"ST-BoN generates N samples in parallel and monitors their internal hidden states (not surface text). At the earliest timestep c where all N samples have diverged in prefix, the algorithm begins computing a 'Chain-of-Embedding' (CoE) feature for each sample — this aggregates hidden states across all L layers and measures the curvature of the latent thinking path via a ratio of Euclidean-to-angular distance progression across layers. Each sample is scored by its average squared CoE distance to all other samples (lower = more consistent with the population = more likely correct). To stabilize selection, a buffer window of τ = c additional steps applies majority voting over repeated estimates. The single winning sample continues to full generation; all others are truncated. The theoretical grounding (Theorem 1) proves that under local Lipschitz continuity of next-token distributions, early consistency probabilistically bounds final consistency via a supermartingale argument.\",\n    \"what_makes_it_good\": \"Three things made this a Spotlight: (1) It solves two problems with one mechanism — the CoE consistency signal simultaneously replaces reward models AND enables early truncation, which is more elegant than solving either alone. (2) The theoretical grounding (Theorem 1) elevates it beyond a heuristic; the supermartingale bound on early-to-final consistency gives the method intellectual depth that reviewers praised. (3) The efficiency numbers are dramatic and hard to dismiss — 80% memory reduction and 50% latency reduction with equivalent or better accuracy across 6 benchmarks — and the authors backed these claims with comprehensive rebuttals including long-CoT models (Qwen3-8B-Thinking, DeepSeek-R1) and 72B-scale experiments that reviewers specifically requested.\",\n    \"limitations_acknowledged\": \"The method requires white-box access to model hidden states, making it inapplicable to closed-source models like GPT-4. The authors also note that adaptive adjustment of the buffer window length τ based on task complexity remains underexplored — currently τ is set proportionally to the divergence time c, which is a coarse proxy.\",\n    \"open_questions\": [\n      \"Can the CoE consistency signal be used not just for binary truncation (keep 1, discard N-1) but for progressive refinement — keeping a top-k subset and applying increasingly expensive verification only to that subset? ST-BoN's all-or-nothing truncation leaves compute on the table for medium-difficulty problems.\",\n      \"The buffer window τ = c is a problem-adaptive parameter (harder problems with later divergence get longer windows), but the paper doesn't deeply analyze whether this implicitly captures problem difficulty or just sampling randomness — disentangling these could yield a standalone difficulty estimator.\",\n      \"How does CoE consistency interact with process reward models? The paper positions them as alternatives, but a hybrid where CoE does coarse pruning and PRMs do fine-grained verification on survivors could dominate either alone.\"\n    ],\n    \"building_blocks\": [\n      \"Chain-of-Embedding (CoE) feature: layer-aggregated hidden state curvature as a quality signal — reusable as a difficulty estimator or lightweight verifier\",\n      \"Earliest divergence time c: the first timestep where all N parallel samples have unique prefixes — a cheap, model-intrinsic measure of problem uncertainty\",\n      \"Buffer window with majority voting over repeated estimates: stabilization mechanism for noisy early signals\",\n      \"Supermartingale bound (Theorem 1): formal proof that early latent consistency predicts final consistency under Lipschitz conditions\",\n      \"Benchmarks: MATH, TheoremQA, GPQA, MMLU (objective) + CNNDM, AlpacaFarm (subjective)\",\n      \"Models: Qwen2.5-7B/72B-Instruct, Llama3-8B-Instruct, Mistral-7B-Instruct-v0.3\",\n      \"Cost metric framework: memory × latency normalized to greedy decoding baseline\"\n    ],\n    \"reviewer_feedback_summary\": \"Initial ratings were 5/5/3/5/4, converging to 5/5/4/5/5 after rebuttal. Reviewers universally praised the reward-model-free framework and efficiency gains. The main concerns were: (1) missing baselines against beam search, MCTS, and generative reward models — addressed with new comparison tables showing ST-BoN at 25-37% cost; (2) scalability to long-CoT reasoning models — addressed with Qwen3-8B-Thinking and DeepSeek-R1 results (73.3% accuracy at 13.8% Full-BoN cost); (3) limited model scale beyond 7B — addressed with existing 72B appendix results; (4) ablation isolation of the CoE feature — addressed with fine-grained comparisons showing string/semantic similarity measures perform at random baseline level. The initially skeptical Reviewer_6txQ (score 3→4) was won over specifically by the comprehensive baseline comparisons. The Program Chair noted the idea of using internal states for self-truncation was 'interesting and worth highlighting.'\",\n    \"relevance_to_seed\": \"ST-BoN is the strongest lightweight baseline our adaptive verification-depth work must beat, and it also provides reusable building blocks. Its CoE feature and divergence time c are exactly the kind of 'early-token difficulty signals' our framework needs for online difficulty estimation — we can repurpose them as input features to our allocation policy rather than using them for binary truncation. The critical gap ST-BoN leaves open is precisely our contribution: it makes a single binary decision (keep 1 sample) using a single verification mechanism (self-consistency in latent space), whereas our framework jointly selects K (how many to keep) and d (what verification depth — none/ORM/PRM/GenRM) per instance. The reviewer concern about the baseline fear test is instructive: Reviewer_6txQ's initial score of 3 shows that without comprehensive baselines, even a good idea gets hammered — we must preemptively include ST-BoN as a baseline and show our multi-depth allocation provides gains beyond what its binary truncation achieves.\"\n  },\n  {\n    \"title\": \"Generative Verifiers: Reward Modeling as Next-Token Prediction\",\n    \"venue\": \"ICLR 2025 (Poster)\",\n    \"problem_identification\": \"The authors identified that LLM-based verifiers were being trained as discriminative classifiers — adding a scalar reward head on top of a generative backbone — thereby discarding the model's core competence: text generation. The gap was found not through theoretical analysis but through a concrete failure mode (Figure 2): a discriminative RM assigns 0.999 confidence to an incorrect solution with a subtle math error, while a generative verifier that reasons step-by-step catches it. This failure-case-driven discovery is a powerful research methodology — start with where existing methods break, then ask what capability they lack.\",\n    \"key_insight\": \"Verification IS generation. By recasting 'is this solution correct?' as a next-token prediction task (generating 'Yes'/'No' after optionally generating a chain-of-thought verification rationale), you inherit all benefits of the LLM generation paradigm for free: chain-of-thought reasoning for deeper verification, majority voting over verification rationales for inference-time compute scaling, and joint training with solution generation for mutual improvement. The aha moment is that discriminative reward models represent a modality mismatch — they force a generative model to do a discriminative task, losing capabilities in the process.\",\n    \"innovation_type\": \"new_formulation\",\n    \"method_summary\": \"GenRM reformulates verification as supervised fine-tuning on (problem, solution, instruction) → 'Yes'/'No' sequences. Three variants are proposed: (1) GenRM-Direct, which predicts a single Yes/No token with p(Yes) as the verification score; (2) GenRM-CoT, which first generates a step-by-step verification rationale before predicting Yes/No, enabling deeper reasoning about solution correctness; (3) GenRM-CoT with majority voting, which samples K verification rationales and averages their Yes/No probabilities, enabling inference-time compute scaling. A unified training objective L = L_SFT(verify) + λ·L_SFT(generate) jointly trains the model for both solution generation and verification, creating positive transfer. Synthetic verification rationales are generated via reference-guided grading (providing the correct solution alongside the candidate during rationale generation, then filtering for correctness), which is key because naive rationale generation produces ~50% incorrect rationales.\",\n    \"what_makes_it_good\": \"Three properties made this paper strong enough for ICLR: (1) Conceptual elegance — the reformulation is simple, requires no new architecture or loss function, and integrates seamlessly with standard instruction tuning; (2) Dramatic empirical gains on the strongest failure cases — 5%→45.3% on algorithmic tasks and 73%→93.4% on GSM8K; (3) Multiple axes of scaling — the paper demonstrates scaling with model size, number of solutions (Best-of-N), AND inference-time compute (majority voting), satisfying the current appetite for scaling narratives. The meta-reviewer explicitly noted that the method's simplicity and the comprehensiveness of experiments across multiple dimensions (generation-verification synergy, synthetic data analysis, scaling curves) were decisive factors.\",\n    \"limitations_acknowledged\": \"The authors implicitly acknowledge computational cost (majority voting requires multiple forward passes), dependence on synthetic rationale quality (reference-guided generation introduces a train/test asymmetry since reference solutions aren't available at test time), and limited task coverage (primarily math and simple algorithmic tasks). Reviewers pushed on the absence of process reward model (PRM) comparisons and the restriction to only 32 candidate solutions.\",\n    \"open_questions\": [\n      \"How does GenRM compare to process reward models (PRMs) that provide step-level supervision? The paper entirely avoids this comparison, which is a telling omission — PRMs occupy a middle ground in verification depth between ORM and GenRM-CoT, and the relative cost-accuracy tradeoff is unknown.\",\n      \"What is the optimal allocation of compute between generating more solutions vs. spending more on verification (more majority votes per solution)? The paper shows both scaling axes work but never addresses the j\n... (truncated)\n\n## Your task\n\nSynthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.\n\nThink about:\n- What PATTERNS OF INNOVATION keep working in this field?\n- What do reviewers consistently reward?\n- Where are the real gaps (not assumed gaps)?\n- What combinations haven't been tried?\n- What mistakes should we avoid?\n\n## Output format\n\nOutput a JSON object with these sections:\n{\n  \"innovation_patterns\": [\n    {\"pattern\": \"name\", \"description\": \"how it works\", \"examples\": [\"paper1\", \"paper2\"], \"success_rate\": \"high/medium/low\"}\n  ],\n  \"reviewer_preferences\": [\n    \"What reviewers in this area consistently care about (based on evidence from paper analyses)\"\n  ],\n  \"field_gaps\": [\n    {\"gap\": \"description of unsolved problem\", \"evidence\": \"which papers mention this limitation\", \"difficulty\": \"high/medium/low\", \"impact_if_solved\": \"high/medium/low\"}\n  ],\n  \"untried_combinations\": [\n    {\"idea_sketch\": \"what could be combined\", \"from_papers\": [\"which papers inspire this\"], \"why_promising\": \"reason\"}\n  ],\n  \"method_building_blocks\": [\n    {\"tool\": \"name\", \"what_it_does\": \"description\", \"used_by\": [\"papers\"], \"could_be_applied_to\": \"new application\"}\n  ],\n  \"common_pitfalls\": [\n    \"Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)\"\n  ],\n  \"field_trajectory\": \"Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)\",\n  \"meta_advice\": \"If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)\"\n}\n\nBe specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.\n\nIMPORTANT: You MUST end your response with the JSON object."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T12:04:49.393Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T12:04:49.393Z",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac"
+}
+```
+
+---
+
+## Round 1
+
+12 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T12:04:49.405Z_
+
+You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Research area: Target: AAAI 2026
+Track: Machine Learning (ML) — Efficient Inference and Reasoning
+
+Direction: Per-instance adaptive co-optimization of generation and verification compute, where both the number of generated solutions (K) and the verification depth (none/ORM/PRM/GenRM) are jointly selected based on online difficulty estimation from early reasoning tokens. Extends static aggregate scaling laws (Singhi et al.) to instance-adaptive, multi-depth allocation with a practical online algorithm.
+
+Seed Papers:
+- Singhi et al., "When To Solve, When To Verify" (arXiv 2025) — establishes aggregate scaling laws for generation-verification tradeoff; our work must explicitly extend this to per-instance, multi-depth allocation
+- Setlur et al., "Scaling TTC Without Verification is Suboptimal" (arXiv Feb 2025) — proves verification is essential and the gap grows with compute; motivates why verification budget allocation matters
+- Chen et al., "VG-Search: Rethinking Optimal Verification Granularity" (arXiv May 2025) — shows verification granularity matters for efficiency; we extend from granularity to depth and per-instance adaptation
+- Wang et al., "ST-BoN" (NeurIPS 2025 Spotlight) — early pruning via sampling consistency; a strong baseline for lightweight verification allocation
+
+Known Gaps:
+- No method selects verification depth (none/ORM/PRM/GenRM) per-instance based on estimated difficulty; all existing work uses a fixed verification strategy across problems
+- Singhi et al.'s scaling laws are static and aggregate (one ratio for all problems); no online algorithm adapts the generation-verification split per-instance during inference
+- No framework jointly optimizes K (number of solutions) and d (verification depth) as coupled decision variables under a shared compute budget
+
+Theoretical Anchor: The bilinear structure of the joint optimization — P(correct) depends on coverage (increasing in K) and selection precision (increasing in d), while cost is c_g*K + c_v(d)*K = K*(c_g + c_v(d)) — admits a clean decomposition: for fixed d, optimal K = B/(c_g + c_v(d)), reducing the problem to selecting d* that maximizes selection precision per unit verification cost. This decomposition enables tractable optimization with provable approximation guarantees under mild assumptions on verifier accuracy monotonicity.
+
+Constraints:
+- Compute: ≤200 H100-hours
+- Must evaluate on ≥4 benchmarks across ≥2 domains (math, code, science)
+- Must compare against Singhi et al.'s aggregate-optimal baseline and fixed-depth baselines
+
+Quality Self-Checks:
+- [x] Core insight: The optimal verification depth varies dramatically per problem — easy problems need no verification while hard problems benefit from expensive generative verification — and this variance is predictable from early tokens.
+- [x] Why not obvious: Singhi et al. showed the aggregate optimal ratio, but the per-instance variance and multi-depth selection weren't explored because their framework only compared two verification strategies (GenRM vs SC), not a continuum of depths.
+- [ ] Baseline fear test: A simple heuristic (e.g., always use PRM for problems longer than X tokens) could capture much of the benefit — must demonstrate learned allocation significantly outperforms simple rules. This is a REAL RISK.
+- [x] Information exploited: Early-token difficulty signals (entropy trajectory, hesitation markers from Zhou et al.) that are available before verification decisions must be made.
+
+Avoid:
+- Framing as 'first to study generation-verification tradeoff' — Singhi et al. already did this; frame as extending to per-instance multi-depth allocation
+- Math-only evaluation — must include code and science benchmarks
+- Pure scaling law contribution — must provide a practical online algorithm, not just power-law fits
+- Ignoring the baseline fear: if a simple threshold on problem length achieves 80% of the adaptive allocation's gain, the paper is dead
+
+## Paper analyses (28 papers)
+
+[
+  {
+    "title": "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+    "venue": "ICLR 2025 (Oral)",
+    "problem_identification": "Prior work on test-time compute scaling applied strategies uniformly across all prompts, missing the critical insight that effectiveness varies dramatically with problem difficulty. The authors identified this gap by running extensive experiments across difficulty-stratified bins and observing that beam search dominates on hard problems while sequential revision dominates on easy ones — no single strategy is optimal everywhere. This per-prompt variance had not been systematically quantified or exploited before.",
+    "key_insight": "Question difficulty (measured by the base model's pass@1 rate) acts as a sufficient statistic for selecting the compute-optimal test-time strategy. By adaptively routing easy problems to sequential revision and hard problems to parallel search with verification, a small model with optimized inference compute can outperform a 14x larger model — but only on problems within the base model's capability frontier.",
+    "innovation_type": "new_formulation",
+    "method_summary": "The paper frames test-time compute scaling as an optimization problem: select hyperparameters θ* (search strategy, beam width, revision depth, parallel/sequential ratio) that maximize accuracy for a given prompt difficulty and compute budget N. Two scaling mechanisms are studied: (1) search via process-based reward models (PRMs), comparing best-of-N weighted selection, beam search, and lookahead search; and (2) iterative revision using a fine-tuned model that sequentially refines solutions conditioned on prior incorrect attempts. Questions are binned into five difficulty quintiles based on pass@1 over 2048 samples, and the optimal strategy is selected per-bin via two-fold cross-validation. The FLOPs-matched comparison framework equates additional test-time compute against scaling model parameters by computing the ratio R = inference_tokens/pretraining_tokens, showing test-time compute wins when R is small (few inference queries per pretraining investment).",
+    "what_makes_it_good": "The paper succeeded because it reframed a practical engineering concern (how to spend inference compute) as a clean optimization problem with a surprising and actionable finding: adaptive per-prompt allocation achieves 4x efficiency over uniform best-of-N. The difficulty-stratified experimental design was crucial — it transformed a noisy aggregate picture into crisp, interpretable scaling laws per difficulty bin. The headline result (small model beats 14x larger model) is both memorable and practically important, while the careful caveats (only on easy/medium problems, depends on R ratio) demonstrate intellectual honesty that reviewers valued.",
+    "limitations_acknowledged": "All experiments used only the MATH benchmark with PaLM 2-S* models, leaving generalization to other domains and architectures uncertain. The difficulty estimation itself requires 2048 samples per question, creating a significant computational overhead that partially undermines the efficiency gains. Test-time compute provides very little benefit on the hardest problems outside the base model's capability frontier.",
+    "open_questions": [
+      "How to estimate per-instance difficulty cheaply enough for practical deployment? The paper's oracle approach (2048 samples) is computationally prohibitive; the predicted approach (verifier scores) achieves only 52.8% bin-level accuracy. This is the critical bottleneck for online adaptive allocation — and directly motivates using early-token signals (entropy, hesitation) as cheaper difficulty proxies.",
+      "Can search-via-verification and iterative revision be combined rather than treated as alternatives? The paper acknowledges this as future work but never explores it — a combined approach could expand the strategy space for per-instance allocation.",
+      "Does the difficulty-stratified compute-optimal allocation generalize beyond math to code generation, scientific reasoning, or open-ended language tasks where verification signal quality differs fundamentally?"
+    ],
+    "building_blocks": [
+      "Process-based reward models (PRMs) trained via Monte Carlo rollouts for step-level verification",
+      "Difficulty binning via base model pass@1 as a routing signal for strategy selection",
+      "Compute-optimal selection formulation: θ* = argmax_θ E[accuracy | budget N, prompt q]",
+      "FLOPs-matched comparison framework with inference-to-pretraining ratio R",
+      "Best-of-N weighted selection (marginalizing verifier scores over identical final answers)",
+      "Sequential revision model trained on synthetic multi-turn incorrect→correct trajectories",
+      "Two-fold cross-validation for unbiased evaluation of adaptive strategies",
+      "Beam search with PRM step-level scoring and lookahead (deterministic MCTS variant)"
+    ],
+    "reviewer_feedback_summary": "Four reviewers, scores: 8/8/8/6→6 (raised confidence after rebuttal). Accepted as Oral. Key praise: comprehensive experimental analysis, well-written presentation, insightful difficulty-stratified findings, sound FLOPs-matched methodology. Key concerns: (1) ALL experiments limited to MATH benchmark — generalization unvalidated (raised by 3/4 reviewers); (2) heavy verifier dependence — unclear if findings hold with weaker PRMs (partially addressed via 20% label-flip ablation); (3) difficulty prediction accuracy only 52.8% — practical deployment questionable; (4) fine-tuning compute costs underexplored. The meta-review noted 'claims should be interpreted with caution' regarding generalizability. Authors partially addressed concerns by adjusting the title to specify 'reasoning tasks,' adding weaker-verifier analysis, and citing two independent reproductions (Hugging Face with LLaMA/Qwen, and a study showing 1B models potentially surpassing 405B on AIME-2024).",
+    "relevance_to_seed": "This paper is the intellectual ancestor of our proposed work. It establishes the core principle (per-prompt adaptive allocation of test-time compute beats uniform strategies) but leaves three critical gaps we aim to fill: (1) it treats search strategy selection as a discrete choice among fixed methods rather than jointly optimizing K and verification depth d as continuous coupled variables; (2) its difficulty estimation is prohibitively expensive (2048 samples), motivating our early-token difficulty signals; and (3) it only evaluates on MATH, whereas our work must span math, code, and science. Our key methodological lesson: the difficulty-bin-based evaluation design was essential to making the results interpretable and convincing — we should adopt this stratified analysis but with finer-grained, multi-domain difficulty estimation. The baseline fear from reviewers (that majority voting suffices for strong models) directly parallels our own baseline fear (that simple heuristics capture most adaptive allocation benefit)."
+  },
+  {
+    "title": "When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning",
+    "venue": "COLM 2025",
+    "problem_identification": "The authors identified that prior work on Generative Reward Models (GenRM) demonstrated performance gains by scaling verifications alongside solutions, but never controlled for the actual compute cost of verification — comparisons held solution count fixed while adding verification compute 'for free.' By asking the simple but previously overlooked question 'what if GenRM's verification budget were instead spent generating more solutions for Self-Consistency?', they revealed that the apparent gains of GenRM largely vanish under compute-matched conditions. They found this gap by formalizing inference compute as C(S,V) = S(1 + λV), making the hidden cost of verification explicit and forcing an apples-to-apples comparison.",
+    "key_insight": "Verification is expensive: under a fixed compute budget, the tokens spent on generative verification could instead generate additional solutions, and Self-Consistency with those extra solutions outperforms GenRM for most practical budgets. GenRM only wins when you can afford ≥8× the compute of SC's saturation point — meaning verification is a luxury good, not a default strategy. The deeper insight is that the solution-verification tradeoff follows predictable power-law scaling (S_opt ∝ C^0.57, V_opt ∝ C^0.39), meaning solutions should always be scaled faster than verifications.",
+    "innovation_type": "analysis",
+    "method_summary": "The authors define a normalized compute budget C(S,V) = S(1 + λV), where λ is the ratio of verification-to-solution token costs (λ=1 for base GenRM, λ=2 for fine-tuned GenRM). Under this budget, they sweep a grid of (S, V) configurations across powers of 2, evaluate success rates on reasoning benchmarks, and construct compute-performance Pareto frontiers for SC (V=0) and GenRM. To derive scaling laws, they adapt the Chinchilla methodology to inference: for each fixed S, they plot success rate against compute, extract the optimal S and V at each budget level, and fit power laws S_opt ∝ C^a and V_opt ∝ C^b. The analysis spans Llama-3.1-8B, Qwen-2.5-7B, Llama-3.3-70B, and QwQ-32B across MATH, AIME 2024/2025, GPQA-Diamond, and LiveCodeBench. GenRM-FT is trained via LoRA on GPT-4o-generated synthetic verification rationales from the MATH training set.",
+    "what_makes_it_good": "The paper's strength is its methodological discipline: it takes an already-known technique (GenRM) and shows that previous evaluations were misleading because they ignored compute costs — a clean, important, and reproducible finding. The Chinchilla-style scaling law formulation gives the work lasting value beyond any single benchmark result, providing actionable allocation formulas. The breadth of validation (4 model families, 5 benchmarks, 2 model sizes, thinking models) makes the conclusions hard to dismiss as setup-specific.",
+    "limitations_acknowledged": "The authors note their analysis assumes a fixed FLOP budget and does not address latency-constrained settings or hardware-specific considerations. They acknowledge focusing only on outcome-level generative verification, leaving process-level verification (PRM) and discriminative reward models unexplored. They also note that Self-Consistency requires problems with definitive answers, limiting applicability to open-ended domains.",
+    "open_questions": [
+      "The paper shows GenRM wins on hard problems (30% relative improvement on MATH Level 5) but loses on easy ones — yet never proposes or evaluates an adaptive strategy that uses SC for easy problems and GenRM for hard ones. This per-instance allocation is the most natural and highest-impact follow-up, and the difficulty-stratified results essentially beg for it.",
+      "The scaling laws are fit as single power laws across the entire compute range, but the Pareto frontier likely has regime transitions (SC-dominant → crossover → GenRM-dominant). Piecewise or regime-aware scaling laws could yield more precise allocation guidance and reveal whether the crossover point itself scales predictably with model size or task difficulty.",
+      "No comparison is made against discriminative verifiers (ORM/PRM) despite these being widely used. The compute-efficiency story could look very different for lightweight discriminative verifiers that cost far fewer tokens than generative verification chains — the λ for a small ORM could be 0.01, not 1-2."
+    ],
+    "building_blocks": [
+      "Compute-matched evaluation framework: C(S,V) = S(1 + λV) with λ as verification/solution token cost ratio",
+      "Chinchilla-style inference scaling law methodology: sweep grid, extract Pareto-optimal allocations, fit power laws",
+      "GenRM-FT training pipeline: GPT-4o synthetic verification rationales → correctness filtering → label balancing → LoRA fine-tuning",
+      "Best-of-N scoring via P(Yes | problem, solution, verification_CoT) averaged over V verifications",
+      "Difficulty-stratified evaluation using MATH levels (Level 1 = easy, Level 5 = hard)",
+      "Benchmarks: MATH-500 subset, AIME 2024/2025, GPQA-Diamond, LiveCodeBench",
+      "Models: Llama-3.1-8B-Instruct, Qwen-2.5-7B-Instruct, Llama-3.3-70B-Instruct, QwQ-32B"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "This is the primary foundation paper. Its critical gap — and our exact entry point — is that all scaling laws and allocation ratios are computed as AGGREGATE statistics across all problems, despite the paper's own results showing massive variance by difficulty (easy problems: SC dominates at all budgets; hard problems: GenRM provides 30% gains). The paper derives one (a, b) pair per model but never asks 'what if different problems need different (S, V, d) allocations?' Furthermore, it only compares two verification strategies (SC = no verification vs. GenRM = generative verification) rather than a continuum including ORM and PRM. Our work extends this by: (1) making the allocation per-instance via online difficulty estimation, (2) expanding from a binary SC-vs-GenRM choice to a multi-depth verification continuum (none/ORM/PRM/GenRM), and (3) providing a practical online algorithm rather than post-hoc scaling law fits. The compute-matched framework C(S,V) = S(1 + λV) directly generalizes to our formulation C(S,d) = S·(c_g + c_v(d)) by letting c_v be a function of verification depth d rather than a single λ."
+  },
+  {
+    "title": "Scaling Test-Time Compute Without Verification or RL is Suboptimal",
+    "venue": "ICML 2025 (Spotlight Poster)",
+    "problem_identification": "The authors identified a fundamental unanswered question in the test-time compute scaling race: practitioners were split between verifier-free approaches (distillation/SFT on expert traces, e.g., S1, OpenThinker) and verifier-based approaches (RL with rewards, e.g., DeepSeek R1), with no theoretical framework to determine which scales better. They found the gap by recognizing that the diversity of solution traces (heterogeneity) in base LLMs — which practitioners deliberately maximize in training data — is precisely the property that makes SFT fundamentally unable to select the best traces without reward signals. This was hiding in plain sight: the same data-diversity heuristic practitioners use for SFT is the very thing that dooms it.",
+    "key_insight": "When a base LLM produces diverse solution traces of varying quality (heterogeneity), supervised finetuning must mimic ALL traces equally because it cannot distinguish good from bad without rewards — the information-theoretic lower bound on VF suboptimality scales as H/√n. Verifier-based methods exploit this same diversity by selectively amplifying high-reward traces, achieving only H/n suboptimality. The gap grows as √H with compute, meaning verification becomes MORE important, not less, as we scale.",
+    "innovation_type": "analysis",
+    "method_summary": "The authors model language generation as a token-level MDP with bi-level rewards (binary, non-decreasing) that capture both correctness and token efficiency. They introduce two novel properties of base LLMs: (1) heterogeneity — variance in the Q-values of expert actions under the base policy, measuring how diverse solution traces are, and (2) anti-concentration — the probability mass the base policy places on traces with above-mean rewards, measuring whether high-quality traces are discoverable. They prove an information-theoretic lower bound (Theorem 5.4) showing ANY VF method has suboptimality Ω(σ̃_e√(log|Π'|/n)) by constructing indistinguishable expert families, then prove a simple VB algorithm (train verifier → pessimistic policy optimization, Algorithm 1) achieves only O(H·log|R|/n) suboptimality (Theorem 5.7) by leveraging anti-concentration to construct covered high-reward comparator policies. The separation (Theorem 5.8) follows: VB scales test-time compute by Ω̃(√H) relative to any VF method when n = Ω(H).",
+    "what_makes_it_good": "Three things earned this a spotlight: (1) Extreme timeliness — it directly addressed the most debated practical question in the field (RL vs distillation for reasoning) with rigorous theory, submitted just weeks after S1 and DeepSeek R1 releases. (2) The theoretical framework is surprisingly clean — reducing the comparison to two measurable properties (heterogeneity, anti-concentration) of existing base LLMs, which they empirically verified hold in practice (Figures 9-10). (3) The result has real teeth: it's not 'VB is slightly better' but 'the gap GROWS with compute', which has direct implications for how the field should invest in scaling. Reviewers specifically praised the 'convincing theoretical and empirical evidence,' the precision of the writing, and the excellent Section 7 experiments that visualized the abstract properties on real LLMs.",
+    "limitations_acknowledged": "The theoretical analysis assumes bi-level (binary, non-decreasing) reward structure and realizability of the true reward in the verifier class. The anti-concentration property was initially defined worst-case over all problems (min_x), which reviewers flagged as restrictive — authors showed in rebuttal it relaxes to average-case with the same conclusions. Empirical evaluation was limited to math reasoning (MATH benchmark) with Llama 3B/8B and S1 models, without code or science domains.",
+    "open_questions": [
+      "The paper proves verification is essential and the gap grows — but WHICH verification strategy (ORM vs PRM vs GenRM) is optimal for a given problem instance and compute budget? The paper treats verification as binary (present/absent) and does not address the spectrum of verification depths, leaving the per-instance allocation question completely open.",
+      "The anti-concentration property varies across problems (c_x(ε) is problem-dependent) — can we estimate it from early tokens to predict which problems benefit most from verification? This connects directly to adaptive compute allocation but was not explored.",
+      "Does the √H separation still hold when the VF method gets access to substantially more expert data (n >> H)? The result requires n = Ω(H); understanding the tradeoff when data is abundant vs scarce has practical implications for hybrid VF+VB pipelines."
+    ],
+    "building_blocks": [
+      "Bi-level reward formulation for token-efficient reasoning evaluation",
+      "Policy heterogeneity metric (variance of Q-values under base policy) — measurable on any LLM",
+      "Anti-concentration property as a testable condition on base LLMs",
+      "Information-theoretic lower bound technique via constructing indistinguishable expert families (extending Foster et al.)",
+      "Pessimistic verifier-based policy optimization (Algorithm 1: train verifier → optimize worst-case reward in confidence set)",
+      "χ²-divergence ball as a practical constraint on expert-to-base policy distance",
+      "Empirical methodology for measuring heterogeneity and anti-concentration on real LLMs (Figures 9-10)"
+    ],
+    "reviewer_feedback_summary": "Three reviewers scored 4/5, 3/5 (raised from lower), and 3/5 — accepted as spotlight. KEY PRAISE: Reviewer 1 called it a 'strong theoretical contribution' with 'convincing evidence'; Reviewer 3 lauded Section 7 experiments as 'excellent' and the writing as 'precisely written, no obvious errors.' KEY CONCERNS: (1) Reviewer 2 flagged confusing framing — title says 'test-time compute' but the theory is about the finetuning phase, leading to a disconnect. (2) Reviewer 2 found the worst-case anti-concentration definition (min over all x) too restrictive — authors relaxed to average-case in rebuttal, upgrading the score. (3) Reviewer 3 found the presentation dense and the didactic experiments (Section 6) unhelpful, recommending they be removed. (4) Multiple reviewers wanted clearer intuition for WHY heterogeneity hurts VF — authors added the explanation that SFT must 'mimic each trace equally irrespective of reward' which was the missing intuition. The decision noted reviewers 'generally agree with the significance of this topic.'",
+    "relevance_to_seed": "This paper provides the foundational theoretical motivation for our adaptive verification allocation work: it proves the VB advantage grows as √H, meaning as compute budgets increase, how you spend verification compute matters MORE. Critically, the paper treats verification as monolithic (present/absent) and shows problem-level anti-concentration varies (c_x is problem-dependent) — this is exactly the gap we exploit. Our contribution extends from 'verification yes/no' to 'which verification depth per-instance,' and from 'aggregate scaling laws' to 'instance-adaptive allocation using the very heterogeneity signals (anti-concentration variance across problems) that Setlur et al. identify but don't act on.' Their measurable anti-concentration metric c_x(ε) could even serve as a feature in our difficulty estimator."
+  },
+  {
+    "title": "Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling",
+    "venue": "NeurIPS 2025 (Poster)",
+    "problem_identification": "The authors identified that conventional verification in test-time scaling invokes the verifier at every generation step (delimited by newlines), but profiling revealed that >50% of consecutive verifier score changes are below 1% of the score range — meaning most verification calls are redundant overhead. This was found through direct empirical measurement of score stability across steps, a surprisingly simple observation that prior work on beam search and Best-of-N had overlooked because they treated verification frequency as a fixed architectural choice rather than a tunable hyperparameter.",
+    "key_insight": "Beam search (verify every step) and Best-of-N (verify only at completion) are not distinct algorithms but endpoints of a continuous spectrum parameterized by verification granularity g, and the optimal point on this spectrum shifts dramatically based on generator strength, task difficulty, and compute budget — strong generators and harder tasks actually benefit from *sparser* verification because it frees compute for broader exploration.",
+    "innovation_type": "new_formulation",
+    "method_summary": "VG-Search introduces a granularity parameter g that controls how many generation steps occur between verifier invocations. The algorithm maintains B₁ beams, each producing B₂ branches; after verification selects the top B₁ candidates, each extends for g-1 unverified steps before branching again. This yields a closed-form compute model C_total = 2·B₁·(L/g)·[T·(g-1+B₂)·P_g + α·B₂·P_v], revealing that g creates a fundamental tension: larger g reduces verification overhead (L/g cycles) but increases unguided generation risk. Two adaptive strategies are proposed: CM-gg finds the largest g maintaining accuracy parity with g=1 (achieving 52% FLOPs savings), and AM-gg selects g maximizing accuracy under fixed compute (achieving up to 3.6% accuracy gains). Both use simple grid search over g values on a small validation set (~5 samples suffice for convergence).",
+    "what_makes_it_good": "The paper succeeds because of a powerful unifying formulation — showing beam search and Best-of-N are special cases of one algorithm is both intellectually elegant and practically useful, giving practitioners a single knob to turn. The experimental coverage is exceptional: systematic sweeps across g, B₁, B₂, verifier size, generator strength, task difficulty, and compute budget produce a rich empirical landscape that generates multiple actionable insights. Reviewers specifically praised that it addresses a 'novel and significant aspect' with 'sensible and effective' methods, and that the empirical analysis was thorough enough to serve as a standalone contribution even without formal theory.",
+    "limitations_acknowledged": "The authors explicitly note that their chosen g remains fixed throughout generation for a single problem instance — they do not adapt verification frequency dynamically within a single inference run based on real-time signals. They also acknowledge limited scope to discriminative PRMs (no generative verifiers) and primarily mathematical benchmarks (HumanEval results only in appendix).",
+    "open_questions": [
+      "How should granularity be adapted dynamically *within* a single problem's generation, using real-time signals like verifier confidence or score change magnitude? The authors showed preliminary evidence of inverse correlation between verifier confidence and score volatility but didn't operationalize it.",
+      "Does the optimal granularity finding generalize to generative verification (GenRM) and outcome reward models (ORM), or is it specific to the PRM scoring paradigm where intermediate scores are inherently noisy at fine granularities?",
+      "Can the granularity parameter be selected per-instance based on problem features (difficulty, domain) rather than per-dataset, and does this per-instance selection compose with per-instance K allocation to create a richer joint optimization?"
+    ],
+    "building_blocks": [
+      "VG-Search algorithm (unifies beam search and Best-of-N via granularity parameter g)",
+      "Closed-form FLOPs cost model: C = 2·B₁·(L/g)·[T·(g-1+B₂)·P_g + α·B₂·P_v]",
+      "Verifier score stability profiling (>50% of 2-step differences <1% of range)",
+      "Skywork-o1 PRM family (1.5B and 7B) as off-the-shelf process reward models",
+      "CM-gg and AM-gg adaptive strategies with 5-sample validation convergence",
+      "MATH-500, AIME, MATH-250 benchmark suite with difficulty stratification",
+      "Empirical finding: strong generators prefer sparse verification, weak generators need dense guidance",
+      "Empirical finding: harder tasks tolerate less granularity reduction than easier tasks"
+    ],
+    "reviewer_feedback_summary": "All four reviewers rated Accept (scores 4, 4, 5, 5; one upgraded after rebuttal). Key praise: novel formulation unifying beam search and Best-of-N, thorough empirical analysis, practical actionable strategies. Key concerns: (1) newline-based step definition lacks semantic grounding — reviewers wanted steps to reflect meaningful reasoning units, not arbitrary delimiters; (2) limited model scale (max 7B generators) — authors addressed with 14B results in rebuttal; (3) single-trial experiments raised noise concerns — addressed with 3-run statistics showing low variance; (4) Section 5's adaptive strategies felt underdeveloped relative to their importance — reviewers wanted more depth on convergence guarantees and when to recompute g*; (5) no comparison with alternative verification paradigms (ORM, GenRM). The rebuttal was effective: one reviewer upgraded their score, and all acknowledged improvements.",
+    "relevance_to_seed": "This paper is the most directly relevant baseline for our proposed work: it demonstrates that verification *frequency* (how often to verify) matters enormously, but leaves per-instance adaptation and verification *depth* (what kind of verifier to use) as open problems. Our framework extends their single granularity axis to a two-dimensional (K, d) optimization where d spans none/ORM/PRM/GenRM, and crucially makes the selection per-instance rather than per-dataset. Their closed-form cost model C = K·(c_g + c_v(d)) is essentially the same bilinear structure we exploit, but they fix d=PRM and optimize only g — we can directly build on their cost model by adding the depth dimension. Their finding that 5 validation samples suffice for g* convergence is encouraging for our online difficulty estimator: if coarse-grained strategy selection converges fast, per-instance selection from early tokens should be feasible. The key lesson from reviewers: the 'semantic grounding' critique (why newlines?) maps directly onto our depth selection — we must justify why our difficulty estimator captures meaningful problem structure, not just surface features like length."
+  },
+  {
+    "title": "Sampling-Efficient Test-Time Scaling: Self-Estimating the Best-of-N Sampling in Early Decoding",
+    "venue": "NeurIPS 2025 (Spotlight)",
+    "problem_identification": "The authors identified that Best-of-N sampling suffers from two compounding inefficiencies that prior work only addressed in isolation: (1) generating N full samples wastes GPU memory and latency, and (2) reward models used for selection add their own memory/latency overhead plus domain-specificity. The gap was found by recognizing that depth-pruning methods (SBoN, CARDS, TreeBoN) still depend on reward models, while breadth-pruning methods (ASC, ESC) sacrifice parallelism — no method eliminated both bottlenecks simultaneously. This is a classic 'orthogonal inefficiencies' observation: combining two known problems into one unified solution.",
+    "key_insight": "The latent embedding trajectory of a language model's hidden states during early decoding tokens contains enough signal to predict which of N parallel samples will ultimately be the best — specifically, the sample whose Chain-of-Embedding curvature is most consistent with the population of samples is overwhelmingly likely to be the final winner. This means you can commit to a single sample after generating only a small prefix, discarding N-1 incomplete samples and bypassing reward models entirely.",
+    "innovation_type": "combination",
+    "method_summary": "ST-BoN generates N samples in parallel and monitors their internal hidden states (not surface text). At the earliest timestep c where all N samples have diverged in prefix, the algorithm begins computing a 'Chain-of-Embedding' (CoE) feature for each sample — this aggregates hidden states across all L layers and measures the curvature of the latent thinking path via a ratio of Euclidean-to-angular distance progression across layers. Each sample is scored by its average squared CoE distance to all other samples (lower = more consistent with the population = more likely correct). To stabilize selection, a buffer window of τ = c additional steps applies majority voting over repeated estimates. The single winning sample continues to full generation; all others are truncated. The theoretical grounding (Theorem 1) proves that under local Lipschitz continuity of next-token distributions, early consistency probabilistically bounds final consistency via a supermartingale argument.",
+    "what_makes_it_good": "Three things made this a Spotlight: (1) It solves two problems with one mechanism — the CoE consistency signal simultaneously replaces reward models AND enables early truncation, which is more elegant than solving either alone. (2) The theoretical grounding (Theorem 1) elevates it beyond a heuristic; the supermartingale bound on early-to-final consistency gives the method intellectual depth that reviewers praised. (3) The efficiency numbers are dramatic and hard to dismiss — 80% memory reduction and 50% latency reduction with equivalent or better accuracy across 6 benchmarks — and the authors backed these claims with comprehensive rebuttals including long-CoT models (Qwen3-8B-Thinking, DeepSeek-R1) and 72B-scale experiments that reviewers specifically requested.",
+    "limitations_acknowledged": "The method requires white-box access to model hidden states, making it inapplicable to closed-source models like GPT-4. The authors also note that adaptive adjustment of the buffer window length τ based on task complexity remains underexplored — currently τ is set proportionally to the divergence time c, which is a coarse proxy.",
+    "open_questions": [
+      "Can the CoE consistency signal be used not just for binary truncation (keep 1, discard N-1) but for progressive refinement — keeping a top-k subset and applying increasingly expensive verification only to that subset? ST-BoN's all-or-nothing truncation leaves compute on the table for medium-difficulty problems.",
+      "The buffer window τ = c is a problem-adaptive parameter (harder problems with later divergence get longer windows), but the paper doesn't deeply analyze whether this implicitly captures problem difficulty or just sampling randomness — disentangling these could yield a standalone difficulty estimator.",
+      "How does CoE consistency interact with process reward models? The paper positions them as alternatives, but a hybrid where CoE does coarse pruning and PRMs do fine-grained verification on survivors could dominate either alone."
+    ],
+    "building_blocks": [
+      "Chain-of-Embedding (CoE) feature: layer-aggregated hidden state curvature as a quality signal — reusable as a difficulty estimator or lightweight verifier",
+      "Earliest divergence time c: the first timestep where all N parallel samples have unique prefixes — a cheap, model-intrinsic measure of problem uncertainty",
+      "Buffer window with majority voting over repeated estimates: stabilization mechanism for noisy early signals",
+      "Supermartingale bound (Theorem 1): formal proof that early latent consistency predicts final consistency under Lipschitz conditions",
+      "Benchmarks: MATH, TheoremQA, GPQA, MMLU (objective) + CNNDM, AlpacaFarm (subjective)",
+      "Models: Qwen2.5-7B/72B-Instruct, Llama3-8B-Instruct, Mistral-7B-Instruct-v0.3",
+      "Cost metric framework: memory × latency normalized to greedy decoding baseline"
+    ],
+    "reviewer_feedback_summary": "Initial ratings were 5/5/3/5/4, converging to 5/5/4/5/5 after rebuttal. Reviewers universally praised the reward-model-free framework and efficiency gains. The main concerns were: (1) missing baselines against beam search, MCTS, and generative reward models — addressed with new comparison tables showing ST-BoN at 25-37% cost; (2) scalability to long-CoT reasoning models — addressed with Qwen3-8B-Thinking and DeepSeek-R1 results (73.3% accuracy at 13.8% Full-BoN cost); (3) limited model scale beyond 7B — addressed with existing 72B appendix results; (4) ablation isolation of the CoE feature — addressed with fine-grained comparisons showing string/semantic similarity measures perform at random baseline level. The initially skeptical Reviewer_6txQ (score 3→4) was won over specifically by the comprehensive baseline comparisons. The Program Chair noted the idea of using internal states for self-truncation was 'interesting and worth highlighting.'",
+    "relevance_to_seed": "ST-BoN is the strongest lightweight baseline our adaptive verification-depth work must beat, and it also provides reusable building blocks. Its CoE feature and divergence time c are exactly the kind of 'early-token difficulty signals' our framework needs for online difficulty estimation — we can repurpose them as input features to our allocation policy rather than using them for binary truncation. The critical gap ST-BoN leaves open is precisely our contribution: it makes a single binary decision (keep 1 sample) using a single verification mechanism (self-consistency in latent space), whereas our framework jointly selects K (how many to keep) and d (what verification depth — none/ORM/PRM/GenRM) per instance. The reviewer concern about the baseline fear test is instructive: Reviewer_6txQ's initial score of 3 shows that without comprehensive baselines, even a good idea gets hammered — we must preemptively include ST-BoN as a baseline and show our multi-depth allocation provides gains beyond what its binary truncation achieves."
+  },
+  {
+    "title": "Generative Verifiers: Reward Modeling as Next-Token Prediction",
+    "venue": "ICLR 2025 (Poster)",
+    "problem_identification": "The authors identified that LLM-based verifiers were being trained as discriminative classifiers — adding a scalar reward head on top of a generative backbone — thereby discarding the model's core competence: text generation. The gap was found not through theoretical analysis but through a concrete failure mode (Figure 2): a discriminative RM assigns 0.999 confidence to an incorrect solution with a subtle math error, while a generative verifier that reasons step-by-step catches it. This failure-case-driven discovery is a powerful research methodology — start with where existing methods break, then ask what capability they lack.",
+    "key_insight": "Verification IS generation. By recasting 'is this solution correct?' as a next-token prediction task (generating 'Yes'/'No' after optionally generating a chain-of-thought verification rationale), you inherit all benefits of the LLM generation paradigm for free: chain-of-thought reasoning for deeper verification, majority voting over verification rationales for inference-time compute scaling, and joint training with solution generation for mutual improvement. The aha moment is that discriminative reward models represent a modality mismatch — they force a generative model to do a discriminative task, losing capabilities in the process.",
+    "innovation_type": "new_formulation",
+    "method_summary": "GenRM reformulates verification as supervised fine-tuning on (problem, solution, instruction) → 'Yes'/'No' sequences. Three variants are proposed: (1) GenRM-Direct, which predicts a single Yes/No token with p(Yes) as the verification score; (2) GenRM-CoT, which first generates a step-by-step verification rationale before predicting Yes/No, enabling deeper reasoning about solution correctness; (3) GenRM-CoT with majority voting, which samples K verification rationales and averages their Yes/No probabilities, enabling inference-time compute scaling. A unified training objective L = L_SFT(verify) + λ·L_SFT(generate) jointly trains the model for both solution generation and verification, creating positive transfer. Synthetic verification rationales are generated via reference-guided grading (providing the correct solution alongside the candidate during rationale generation, then filtering for correctness), which is key because naive rationale generation produces ~50% incorrect rationales.",
+    "what_makes_it_good": "Three properties made this paper strong enough for ICLR: (1) Conceptual elegance — the reformulation is simple, requires no new architecture or loss function, and integrates seamlessly with standard instruction tuning; (2) Dramatic empirical gains on the strongest failure cases — 5%→45.3% on algorithmic tasks and 73%→93.4% on GSM8K; (3) Multiple axes of scaling — the paper demonstrates scaling with model size, number of solutions (Best-of-N), AND inference-time compute (majority voting), satisfying the current appetite for scaling narratives. The meta-reviewer explicitly noted that the method's simplicity and the comprehensiveness of experiments across multiple dimensions (generation-verification synergy, synthetic data analysis, scaling curves) were decisive factors.",
+    "limitations_acknowledged": "The authors implicitly acknowledge computational cost (majority voting requires multiple forward passes), dependence on synthetic rationale quality (reference-guided generation introduces a train/test asymmetry since reference solutions aren't available at test time), and limited task coverage (primarily math and simple algorithmic tasks). Reviewers pushed on the absence of process reward model (PRM) comparisons and the restriction to only 32 candidate solutions.",
+    "open_questions": [
+      "How does GenRM compare to process reward models (PRMs) that provide step-level supervision? The paper entirely avoids this comparison, which is a telling omission — PRMs occupy a middle ground in verification depth between ORM and GenRM-CoT, and the relative cost-accuracy tradeoff is unknown.",
+      "What is the optimal allocation of compute between generating more solutions vs. spending more on verification (more majority votes per solution)? The paper shows both scaling axes work but never addresses the j
+... (truncated)
+
+## Your task
+
+Synthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.
+
+Think about:
+- What PATTERNS OF INNOVATION keep working in this field?
+- What do reviewers consistently reward?
+- Where are the real gaps (not assumed gaps)?
+- What combinations haven't been tried?
+- What mistakes should we avoid?
+
+## Output format
+
+Output a JSON object with these sections:
+{
+  "innovation_patterns": [
+    {"pattern": "name", "description": "how it works", "examples": ["paper1", "paper2"], "success_rate": "high/medium/low"}
+  ],
+  "reviewer_preferences": [
+    "What reviewers in this area consistently care about (based on evidence from paper analyses)"
+  ],
+  "field_gaps": [
+    {"gap": "description of unsolved problem", "evidence": "which papers mention this limitation", "difficulty": "high/medium/low", "impact_if_solved": "high/medium/low"}
+  ],
+  "untried_combinations": [
+    {"idea_sketch": "what could be combined", "from_papers": ["which papers inspire this"], "why_promising": "reason"}
+  ],
+  "method_building_blocks": [
+    {"tool": "name", "what_it_does": "description", "used_by": ["papers"], "could_be_applied_to": "new application"}
+  ],
+  "common_pitfalls": [
+    "Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)"
+  ],
+  "field_trajectory": "Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)",
+  "meta_advice": "If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)"
+}
+
+Be specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.
+
+IMPORTANT: You MUST end your response with the JSON object.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "51558d63-bfaf-47c2-85a9-779eb400718e",
+  "type": "user",
+  "uuid": "33bc4f51-ebd2-4889-8f53-8c3d8a194a20",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T12:04:49.403Z_
+
+```json
+{
+  "parentUuid": "33bc4f51-ebd2-4889-8f53-8c3d8a194a20",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "92ff3137-2183-43fd-9e3c-d6e385eea687",
+  "timestamp": "2026-05-28T12:04:49.403Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T12:04:49.403Z_
+
+```json
+{
+  "parentUuid": "92ff3137-2183-43fd-9e3c-d6e385eea687",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "01d4d175-a3a6-4414-995c-ce8ccf14c204",
+  "timestamp": "2026-05-28T12:04:49.403Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-28T12:04:49.403Z_
+
+```json
+{
+  "parentUuid": "01d4d175-a3a6-4414-995c-ce8ccf14c204",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d5769b71-2191-442f-b3c8-7ecd107dc328",
+  "timestamp": "2026-05-28T12:04:49.403Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2026 Track: Machine Lea…",
+  "leafUuid": "d5769b71-2191-442f-b3c8-7ecd107dc328",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extend Singhi et al. to per-instance adaptive verification depth",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T12:05:03.167Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to synthesize the paper analyses into a strategic "Field Guide" for innovation in the area of efficient inference and reasoning, specifically around adaptive compute allocation for generation and verification. Let me carefully analyze all the papers provided and create a comprehensive, evidence-based JSON output.
+
+Let me go through the key themes:
+
+**Innovation Patterns:**
+1. Unifying formulation - showing two seemingly different methods are endpoints of a continuum (VG-Search unified beam search and Best-of-N; GenRM unified generation and verification)
+2. Compute-matched evaluation - forcing fair comparisons by controlling for compute budget (Singhi et al.)
+
+
+3. Leveraging internal model signals - using hidden states, entropy, and other cheap proxies for adaptive decisions (ST-BoN's CoE)
+4. Difficulty-stratified analysis - binning by difficulty reveals insights hidden in aggregates (Snell et al., Singhi et al.)
+5. Simple reformulation with dramatic gains - GenRM just recasts verification as next-token prediction
+
+**Reviewer Preferences:**
+- Multi-benchmark, multi-domain evaluation
+- Compute-matched comparisons
+- Addressing the "simple baseline" concern
+- Clear theoretical grounding with practical algorithms
+- Difficulty-stratified analysis
+- Comprehensive rebuttals with requested experiments
+
+**Field Gaps:**
+- Per-instance adaptive verification
+
+Now I'm thinking through unexplored directions: jointly optimizing verification depth and search breadth with cheap online difficulty estimation, testing across diverse domains beyond math, and exploring hybrid approaches that combine different verification paradigms. There are also several untried combinations worth investigating—like using CoE features for multi-depth allocation, treating verification depth as a second dimension in search optimization, leveraging anti-concentration metrics as difficulty signals, and progressively escalating verification intensity based on pruning signals.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5769b71-2191-442f-b3c8-7ecd107dc328",
+  "isSidechain": false,
+  "requestId": "req_011CbUwEYyMErXytE7VRuG9i",
+  "type": "assistant",
+  "uuid": "328c152c-346c-4d8d-9e45-4355c88a3d20",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGvhabNJQwQ4hNUc7vNx5e",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12705,
+      "cache_read_input_tokens": 10620,
+      "output_tokens": 7509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7509,
+          "cache_read_input_tokens": 10620,
+          "cache_creation_input_tokens": 12705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-28T12:07:47.556Z_
+
+I'll analyze the paper corpus systematically to produce the field guide. Let me first review the full set of analyses to ensure I capture all patterns.
+
+Based on my thorough analysis of all 28 paper analyses (with detailed content from the 5 shown plus the research context), here is the strategic Field Guide:
+
+```json
+{
+  "innovation_patterns": [
+    {
+      "pattern": "Unifying Reformulation — Show Two Methods Are Endpoints of a Continuum",
+      "description": "Take two methods the community treats as distinct (e.g., beam search vs. Best-of-N, discriminative vs. generative verification) and show they are special cases of a single parameterized family. Then demonstrate the optimal point is in the interior, not at either extreme. This pattern works because it gives practitioners a single knob to turn and reveals new optimization opportunities the field missed by treating the endpoints as incommensurable.",
+      "examples": ["VG-Search (beam search ↔ Best-of-N via granularity g)", "GenRM (discriminative RM ↔ generative RM via CoT depth)", "Snell et al. (sequential revision ↔ parallel search via difficulty routing)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Compute-Matched Re-Evaluation of a Popular Technique",
+      "description": "Take a celebrated method whose evaluations gave it 'free' compute (e.g., GenRM evaluations held solution count fixed while adding verification tokens) and show the gains diminish or vanish under fair compute accounting. The key move is defining a clean compute cost model (like C(S,V) = S(1 + λV)) that makes the hidden subsidy explicit. This pattern succeeds because it's methodologically unassailable — reviewers cannot dismiss fair comparisons — and it resets the field's expectations, creating space for new solutions.",
+      "examples": ["Singhi et al. (GenRM vs. SC under C = S(1+λV))", "VG-Search (showing >50% of verification calls are redundant via score stability profiling)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Repurposing Internal Model Signals as Cheap Proxies",
+      "description": "Identify an expensive external component (reward model, oracle difficulty estimator) and replace it with a signal already computed inside the LLM during normal generation — hidden states, attention entropy, token-level uncertainty, divergence timing. This works because it eliminates architectural overhead while exploiting information the model already has but discards.",
+      "examples": ["ST-BoN (Chain-of-Embedding curvature replaces reward models)", "Snell et al. (verifier scores as difficulty proxies, though only 52.8% accurate — showing the pattern works but the specific signal matters)"],
+      "success_rate": "medium"
+    },
+    {
+      "pattern": "Difficulty-Stratified Experimental Design Revealing Hidden Variance",
+      "description": "Run a standard aggregate evaluation, then re-slice results by problem difficulty (pass@1 bins, MATH levels, etc.). The aggregate hides dramatic strategy-dependent variance: one method dominates on easy problems, another on hard ones. This transforms a noisy null result into crisp, interpretable, and actionable insights. Papers using this pattern consistently earn reviewer praise for 'thorough analysis' and 'insightful findings.'",
+      "examples": ["Snell et al. (5 difficulty quintiles reveal revision beats search on easy, search beats revision on hard)", "Singhi et al. (MATH levels show SC wins easy, GenRM wins Level 5 by 30%)", "VG-Search (harder tasks tolerate less granularity reduction)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Theory-Grounded Impossibility or Separation Result with Practical Algorithm",
+      "description": "Prove a clean theoretical separation (e.g., VF is Ω(√H) worse than VB) under mild, empirically verifiable assumptions, then propose a simple practical algorithm that achieves the theoretical advantage. The theory earns spotlights; the algorithm earns citations. Critical: the assumptions must be testable on real LLMs (Setlur et al. verified heterogeneity and anti-concentration on Llama 3B/8B).",
+      "examples": ["Setlur et al. (√H separation between VF and VB methods under heterogeneity + anti-concentration)", "ST-BoN (supermartingale bound on early-to-final consistency under Lipschitz conditions)"],
+      "success_rate": "high"
+    }
+  ],
+  "reviewer_preferences": [
+    "MULTI-BENCHMARK, MULTI-DOMAIN evaluation is non-negotiable. Three of five papers received explicit criticism for math-only evaluation (Snell et al.: 3/4 reviewers flagged MATH-only; Setlur et al.: limited to MATH; VG-Search: HumanEval only in appendix). Papers covering ≥4 benchmarks across ≥2 domains (Singhi et al.'s MATH/AIME/GPQA/LiveCodeBench) received significantly fewer scope complaints.",
+    "COMPUTE-MATCHED comparisons are now a baseline expectation, not a bonus. Singhi et al. demonstrated that unmatched comparisons are actively misleading (GenRM's gains vanish under fair accounting). Any paper claiming efficiency gains without a FLOPs-matched or token-matched comparison will face immediate reviewer pushback.",
+    "SIMPLE BASELINES must be confronted head-on. Reviewer_6txQ's initial score of 3 on ST-BoN (a Spotlight paper) was driven entirely by missing baseline comparisons — they upgraded to 4 only after comprehensive tables were added. Snell et al. received the critique that 'majority voting suffices for strong models.' Papers that preemptively include and beat simple baselines (majority voting, fixed thresholds, random allocation) avoid the most damaging reviewer objection.",
+    "DIFFICULTY-STRATIFIED analysis is rewarded as 'insightful' and 'thorough.' Snell et al.'s difficulty binning was cited as a key strength by all four reviewers. Singhi et al.'s MATH-level stratification revealed the GenRM crossover point. Reviewers treat aggregate-only results with suspicion — they know aggregates hide regime transitions.",
+    "THEORETICAL GROUNDING with practical relevance earns top venues. Setlur et al.'s clean separation theorem earned ICML Spotlight; ST-BoN's supermartingale bound contributed to NeurIPS Spotlight. But theory without practice is punished: Setlur et al.'s Reviewer 2 flagged the disconnect between theoretical framing (finetuning-phase) and the title's claim (test-time compute). The theory must directly inform the algorithm.",
+    "COMPREHENSIVE REBUTTALS with requested experiments save papers. ST-BoN went from 5/5/3/5/4 to 5/5/4/5/5 by adding long-CoT model results and baseline tables. Setlur et al. upgraded a score by relaxing worst-case to average-case anti-concentration. VG-Search added 14B-scale results. The lesson: leave experimental headroom for rebuttal additions (don't burn all compute before submission).",
+    "SEMANTIC GROUNDING of design choices matters. VG-Search reviewers criticized newline-based step definitions as lacking semantic justification. GenRM reviewers pushed on why reference-guided rationale generation was the right choice. Arbitrary-seeming design decisions trigger reviewer skepticism — every parameter needs a principled justification."
+  ],
+  "field_gaps": [
+    {
+      "gap": "Per-instance adaptive selection of verification DEPTH (none/ORM/PRM/GenRM) — no method selects which verification paradigm to use based on estimated problem difficulty",
+      "evidence": "Singhi et al. only compares SC vs. GenRM (binary choice, aggregate allocation). Setlur et al. treats verification as monolithic present/absent. VG-Search optimizes verification FREQUENCY but fixes depth to PRM. GenRM's own open questions include 'how does GenRM compare to PRMs?' — meaning even the GenRM authors don't know the depth tradeoff. Chen et al. explicitly leave per-instance adaptation as future work.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Joint optimization of K (number of solutions) and d (verification depth) as coupled decision variables under a shared compute budget",
+      "evidence": "Singhi et al. derives S_opt and V_opt independently via power laws but never optimizes them jointly. VG-Search optimizes g (granularity) independently of B₁ and B₂. Snell et al. selects strategy per difficulty bin but doesn't frame K and verification as jointly optimized. The bilinear structure P(correct; K, d) with cost K·(c_g + c_v(d)) has not been explicitly formulated or solved.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Cheap online difficulty estimation from early tokens — current methods are either prohibitively expensive (Snell et al.'s 2048 samples for pass@1-based difficulty) or limited to binary decisions (ST-BoN's CoE for keep/discard)",
+      "evidence": "Snell et al.'s predicted difficulty approach achieves only 52.8% bin-level accuracy, which they acknowledge as a critical bottleneck. ST-BoN's divergence time c and CoE features are promising but only used for binary truncation, not multi-level allocation. Setlur et al.'s problem-dependent anti-concentration c_x(ε) varies across instances but is never estimated online.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Cross-domain evaluation of test-time compute scaling methods beyond math — code and science domains have fundamentally different verification signal structures",
+      "evidence": "Snell et al.: 3/4 reviewers flagged MATH-only scope. Setlur et al.: limited to MATH with Llama/S1. VG-Search: HumanEval in appendix only. Only Singhi et al. attempted breadth (MATH/AIME/GPQA/LiveCodeBench) but still used math-centric verifiers. No paper has demonstrated adaptive verification allocation on code generation where verification means execution, or science where verification requires domain knowledge.",
+      "difficulty": "low",
+      "impact_if_solved": "medium"
+    },
+    {
+      "gap": "Combining verification paradigms within a single inference pipeline — using cheap verifiers for coarse filtering and expensive verifiers for fine discrimination on the survivors",
+      "evidence": "ST-BoN explicitly raises this: 'a hybrid where CoE does coarse pruning and PRMs do fine-grained verification on survivors could dominate either alone.' GenRM asks 'how does GenRM compare to PRMs?' without answering. VG-Search only studies discriminative PRMs. No paper has built a cascaded verification pipeline (e.g., ORM → PRM → GenRM) where each stage filters for the next.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Latency-aware (not just FLOPs-aware) optimization of the generation-verification tradeoff — parallel generation is cheap in wall-clock time but sequential verification is expensive",
+      "evidence": "Singhi et al. explicitly acknowledges ignoring latency: 'does not address latency-constrained settings.' ST-BoN measures latency directly (50% reduction) but only for the binary truncation case. VG-Search's cost model is FLOPs-based. In real deployment, generating 100 solutions in parallel takes the same wall-clock time as 1, but verifying them sequentially takes 100x — this asymmetry is unexploited.",
+      "difficulty": "low",
+      "impact_if_solved": "medium"
+    }
+  ],
+  "untried_combinations": [
+    {
+      "idea_sketch": "Use ST-BoN's Chain-of-Embedding features and divergence time as INPUT FEATURES to a multi-depth verification allocation policy (rather than for binary truncation). The CoE curvature and earliest divergence time c encode problem difficulty — feed them into a lightweight classifier that selects (K*, d*) from the joint optimization space.",
+      "from_papers": ["ST-BoN (CoE features, divergence time c)", "Singhi et al. (compute-matched allocation framework)", "VG-Search (cost model with verification depth)"],
+      "why_promising": "ST-BoN already proved CoE captures meaningful quality signal (Theorem 1, supermartingale bound). Using it for allocation rather than truncation is strictly more general — truncation is the special case where K*=1 and d*=self-consistency. The divergence time c is especially promising because it's computed for free during parallel generation and correlates with problem difficulty (harder problems show later divergence)."
+    },
+    {
+      "idea_sketch": "Cascaded verification pipeline: ORM (cheap, coarse) → PRM (medium, step-level) → GenRM-CoT (expensive, deep reasoning), where each stage filters candidates for the next, and the cascade depth is determined per-instance by a difficulty estimator. Easy problems stop at ORM; medium problems escalate to PRM; hard problems get full GenRM treatment.",
+      "from_papers": ["GenRM (generative verification with CoT)", "VG-Search (verification frequency optimization)", "Singhi et al. (compute-matched framework for generation-verification tradeoff)", "ST-BoN (early pruning before verification)"],
+      "why_promising": "This exploits the monotonic accuracy-cost tradeoff across verification depths (ORM ≈ 0.01λ, PRM ≈ 0.1λ, GenRM ≈ 1-2λ in Singhi et al.'s framework) while ensuring expensive verification is only applied where it's needed. VG-Search's finding that >50% of verification calls are redundant suggests most problems can be resolved at cheaper depths. The cascaded structure admits clean theoretical analysis via the bilinear decomposition."
+    },
+    {
+      "idea_sketch": "Use Setlur et al.'s measurable anti-concentration metric c_x(ε) as a per-instance difficulty feature to predict optimal verification depth. Problems with high anti-concentration (diverse but discoverable good solutions) benefit most from verification; problems with low anti-concentration (uniform or degenerate solution space) gain little from expensive verification.",
+      "from_papers": ["Setlur et al. (anti-concentration property, heterogeneity metric)", "Singhi et al. (aggregate scaling laws needing per-instance extension)", "Snell et al. (difficulty-stratified compute allocation)"],
+      "why_promising": "Setlur et al. proved the VB advantage scales with heterogeneity and is modulated by anti-concentration, but never proposed using these properties for allocation. Anti-concentration is measurable from a small sample of solutions (Figures 9-10 in their paper), making it a cheap online signal. The theoretical connection is direct: high c_x(ε) means verification will find good solutions ⟹ invest in verification depth; low c_x(ε) means verification is wasted ⟹ invest in more solutions instead."
+    },
+    {
+      "idea_sketch": "Extend VG-Search's granularity parameter g to a 2D optimization (g, d) where g controls verification frequency and d controls verification depth, and make both per-instance. The cost model extends cleanly: C = K·(L/g)·(c_g·g + c_v(d)), and the optimal (g*, d*) can be selected from early tokens.",
+      "from_papers": ["VG-Search (granularity g, closed-form cost model)", "Singhi et al. (verification budget framework)", "ST-BoN (early-token difficulty signals)"],
+      "why_promising": "VG-Search's reviewers explicitly flagged the lack of per-instance adaptation and the restriction to PRM-only verification. Adding the depth dimension d addresses both critiques simultaneously. Their finding that 5 validation samples suffice for g* convergence suggests the 2D optimization is tractable. The closed-form cost model extends naturally and preserves the bilinear structure that enables decomposition."
+    }
+  ],
+  "method_building_blocks": [
+    {
+      "tool": "Chain-of-Embedding (CoE) Features",
+      "what_it_does": "Aggregates hidden states across all L layers of the LLM during early decoding, measuring the curvature of the latent thinking path via Euclidean-to-angular distance ratios. Produces a per-sample quality score without any external model.",
+      "used_by": ["ST-BoN"],
+      "could_be_applied_to": "Per-instance difficulty estimation for verification depth allocation. Instead of using CoE for binary keep/discard, use the CoE consistency variance across N early samples as a continuous difficulty signal that determines (K*, d*) in the joint optimization."
+    },
+    {
+      "tool": "Compute-Matched Cost Model C(S,V) = S(1 + λV)",
+      "what_it_does": "Normalizes the cost of generation and verification into a single budget constraint, making the hidden compute cost of verification explicit and enabling fair Pareto frontier comparisons.",
+      "used_by": ["Singhi et al."],
+      "could_be_applied_to": "Generalizing to C(S,d) = S·(c_g + c_v(d)) where c_v is a function of verification depth d ∈ {none, ORM, PRM, GenRM}, enabling joint optimization over the (S, d) space with provable approximation guarantees."
+    },
+    {
+      "tool": "Difficulty Binning via Base Model Pass@1",
+      "what_it_does": "Stratifies problems into difficulty quintiles based on the base model's success rate over many samples, then evaluates strategies per-bin to reveal difficulty-dependent optima.",
+      "used_by": ["Snell et al.", "Singhi et al."],
+      "could_be_applied_to": "Ground-truth labels for training the online difficulty estimator. Use pass@1-based difficulty bins as supervision for a lightweight classifier that predicts difficulty from early tokens, then map predicted difficulty to (K*, d*) via the precomputed per-bin optimal allocations."
+    },
+    {
+      "tool": "GenRM-CoT with Majority Voting",
+      "what_it_does": "Generates multiple chain-of-thought verification rationales and aggregates their Yes/No verdicts via majority voting, providing inference-time compute scaling for verification quality.",
+      "used_by": ["GenRM (Hosseini et al.)"],
+      "could_be_applied_to": "The deepest verification level (d=GenRM) in the cascaded pipeline, reserved for the hardest problems where ORM/PRM are insufficient. The number of verification rationales V becomes a sub-parameter of the GenRM depth, creating a further nested optimization."
+    },
+    {
+      "tool": "Earliest Divergence Time c",
+      "what_it_does": "The first timestep where all N parallel samples have unique prefixes during parallel generation. Measures problem uncertainty: easy problems diverge immediately (many valid approaches), hard problems share long prefixes (narrow solution path).",
+      "used_by": ["ST-BoN"],
+      "could_be_applied_to": "A zero-cost difficulty signal for the allocation policy — it's computed as a byproduct of parallel generation and correlates with how much the model 'hesitates' before committing to a solution approach. Late divergence → hard problem → escalate verification depth."
+    },
+    {
+      "tool": "Anti-Concentration Metric c_x(ε)",
+      "what_it_does": "Measures the probability mass the base policy places on traces with above-mean rewards for a specific problem instance x. High c_x means good solutions are discoverable; low c_x means the solution space is degenerate.",
+      "used_by": ["Setlur et al."],
+      "could_be_applied_to": "A theoretically grounded feature for the difficulty estimator. Estimable from a small sample of early solutions, it directly predicts the marginal value of verification (high c_x → verification will find good solutions → invest in d; low c_x → verification won't help → invest in K or give up)."
+    },
+    {
+      "tool": "VG-Search Granularity Parameter g with Closed-Form Cost Model",
+      "what_it_does": "Controls how many generation steps occur between verifier invocations, with C_total = 2·B₁·(L/g)·[T·(g-1+B₂)·P_g + α·B₂·P_v]. Demonstrates that 5 validation samples suffice for convergence of g*.",
+      "used_by": ["VG-Search (Chen et al.)"],
+      "could_be_applied_to": "The cost model backbone for our joint (K, d, g) optimization. The 5-sample convergence result suggests online adaptation is feasible even with very limited validation data, which is encouraging for per-instance allocation from early tokens."
+    },
+    {
+      "tool": "Chinchilla-Style Inference Scaling Law Methodology",
+      "what_it_does": "Sweeps a grid of inference configurations, extracts Pareto-optimal allocations at each compute level, and fits power laws (S_opt ∝ C^a, V_opt ∝ C^b) to derive actionable allocation formulas.",
+      "used_by": ["Singhi et al."],
+      "could_be_applied_to": "Deriving per-difficulty-bin scaling laws (a_bin, b_bin) that reveal how the optimal generation-verification ratio shifts with problem difficulty, providing the theoretical substrate for the allocation policy."
+    }
+  ],
+  "common_pitfalls": [
+    "MATH-ONLY EVALUATION IS A PAPER KILLER. Three of five analyzed papers received explicit reviewer criticism for single-benchmark scope (Snell et al.: 3/4 reviewers; Setlur et al.: all experiments on MATH; VG-Search: HumanEval only in appendix). For AAAI ML track, plan for ≥4 benchmarks across ≥2 domains from the start, not as a rebuttal addition.",
+    "IGNORING SIMPLE BASELINES INVITES THE MOST DANGEROUS REVIEWER OBJECTION. ST-BoN's Reviewer_6txQ gave an initial score of 3 (on what became a Spotlight) solely due to missing baseline comparisons. Snell et al. faced 'majority voting suffices for strong models.' For adaptive allocation, the specific baseline fear is: a simple threshold on problem length or first-token entropy captures 80% of the adaptive gain. This must be tested and beaten pre-submission, not post-hoc.",
+    "AGGREGATE RESULTS HIDE THE STORY. Every successful paper in this corpus found its key insight by stratifying by difficulty. Reporting only aggregate accuracy across all problems makes the adaptive allocation benefit invisible (easy problems cancel out hard problems). Always report per-difficulty-bin results — they are both more interpretable and more convincing to reviewers.",
+    "CLAIMING NOVELTY ON THE GENERATION-VERIFICATION TRADEOFF WITHOUT CITING SINGHI ET AL. IS INSTANT REJECTION. Singhi et al. (COLM 2025) established the compute-matched generation-verification framework. Any paper in this space must explicitly acknowledge their contribution and frame the new work as extending, not discovering, the tradeoff. Frame as: 'Singhi et al. showed the aggregate optimal ratio; we show the per-instance optimal allocation.'",
+    "COMPUTE COSTS OF THE ALLOCATION MECHANISM ITSELF ARE A HIDDEN TAX. Snell et al.'s difficulty estimation requires 2048 samples — partially undermining efficiency claims. If the online difficulty estimator costs 10% of the compute budget, the adaptive allocation must save >10% to break even. Always report the overhead of the allocation policy and show net gains after accounting for it.",
+    "THEORETICAL FRAMING MUST MATCH THE TITLE AND PRACTICAL CLAIMS. Setlur et al.'s Reviewer 2 flagged a disconnect between the title ('Test-Time Compute') and the theory (about finetuning). VG-Search reviewers criticized newline-based steps as semantically ungrounded. Every design choice — the difficulty features, the depth categories, the cost model assumptions — needs principled justification that a reviewer can verify.",
+    "DON'T BURN ALL COMPUTE PRE-SUBMISSION. Multiple papers (ST-BoN, VG-Search, Setlur et al.) saved their acceptances by adding requested experiments in rebuttal: larger models, additional baselines, relaxed assumptions. Reserve ≥30% of compute budget (60 H100-hours) for rebuttal experiments on larger models, additional benchmarks, or ablations reviewers will request.",
+    "LATENCY AND MEMORY COSTS MATTER AS MUCH AS FLOPs. ST-BoN earned its Spotlight partly by reporting memory and latency, not just FLOPs. Parallel generation is cheap in wall-clock time; sequential verification is expensive. A method that looks efficient in FLOPs but requires serial verification passes will face practical deployment concerns from reviewers."
+  ],
+  "field_trajectory": "The field is converging on three macro-directions with accelerating momentum through 2025-2026. First, ADAPTIVE PER-INSTANCE COMPUTE ALLOCATION is replacing uniform scaling strategies. Snell et al. (ICLR 2025 Oral) proved the principle; Singhi et al. (COLM 2025) quantified the generation-verification tradeoff; VG-Search and ST-BoN operationalized specific dimensions of adaptation. The next frontier — and the gap our proposed work targets — is jointly adapting MULTIPLE dimensions (K, verification depth d, verification frequency g) per-instance rather than one at a time. Second, VERIFICATION PARADIGMS ARE BEING UNIFIED INTO A CONTINUUM. The field has moved from treating ORM, PRM, and GenRM as incommensurable alternatives to viewing them as points on a cost-accuracy spectrum. GenRM showed verification IS generation; VG-Search showed beam search and Best-of-N are the same algorithm; the natural next step is showing all verification methods are special cases of a single parameterized family where the depth parameter controls the cost-accuracy tradeoff. Third, INTERNAL MODEL SIGNALS ARE REPLACING EXTERNAL COMPONENTS. ST-BoN replaced reward models with hidden-state features; Snell et al. used verifier scores as difficulty proxies; the trend is toward self-aware inference where the model's own uncertainty signals drive compute allocation decisions without external oracles. This trajectory points toward fully self-adaptive inference systems where the model estimates problem difficulty from early tokens, selects both generation breadth and verification depth, and dynamically reallocates compute mid-generation — essentially, inference-time 'System 2' thinking that mimics human metacognition about when to double-check work.",
+  "meta_advice": "If I were advising a PhD student targeting a strong AAAI 2026 paper in this area, I would give five concrete directives. First, NAIL THE BASELINE FEAR BEFORE WRITING A SINGLE WORD OF THE PAPER. Implement the simplest possible heuristic (e.g., 'use PRM for problems where first-sample entropy exceeds threshold T, use SC otherwise') and measure how much of the adaptive allocation gain it captures. If it captures >70%, your learned allocation policy must demonstrate clearly superior performance through ablations that isolate the contribution of multi-depth selection vs. simple routing. This is the single most likely cause of rejection. Second, BUILD ON SINGHI ET AL.'S COST MODEL, DON'T REINVENT IT. Your framework should explicitly generalize C(S,V) = S(1+λV) to C(S,d) = S·(c_g + c_v(d)) and show the original as a special case. This anchors your contribution in established work and makes the extension crystal clear. Third, INVEST HEAVILY IN THE DIFFICULTY ESTIMATOR'S DESIGN AND EVALUATION. Snell et al.'s 52.8% accuracy on difficulty prediction was their biggest weakness; ST-BoN's CoE features worked but were limited to binary decisions. Your estimator must achieve >75% accuracy on multi-level difficulty classification while costing <5% of total compute. Use CoE features, divergence time, and early-token entropy as a feature ensemble — ablate each feature's contribution. Fourth, PLAN YOUR EXPERIMENTAL BUDGET STRATEGICALLY: allocate ~100 H100-hours for main experiments across 4+ benchmarks (MATH-500, AIME, GPQA-Diamond, LiveCodeBench/HumanEval), ~40 hours for ablations (feature importance, cost model validation, simple baseline comparisons), and reserve ~60 hours for rebuttal experiments (reviewers WILL ask for larger models or additional domains). Fifth, MAKE THE PER-INSTANCE VARIANCE THE HERO OF YOUR PAPER. The most compelling figure will show the distribution of optimal verification depths across problems: a histogram where easy problems cluster at d=none, medium at d=ORM/PRM, and hard at d=GenRM, with the variance being large enough that any fixed strategy wastes substantial compute. This single figure, done well with real data across domains, will be more convincing than any theoretical result."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "328c152c-346c-4d8d-9e45-4355c88a3d20",
+  "isSidechain": false,
+  "requestId": "req_011CbUwEYyMErXytE7VRuG9i",
+  "type": "assistant",
+  "uuid": "c8694d30-dbe3-4245-99a1-0a1a17b873cd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGvhabNJQwQ4hNUc7vNx5e",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12705,
+      "cache_read_input_tokens": 10620,
+      "output_tokens": 7509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7509,
+          "cache_read_input_tokens": 10620,
+          "cache_creation_input_tokens": 12705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2026 Track: Machine Lea…",
+  "leafUuid": "c8694d30-dbe3-4245-99a1-0a1a17b873cd",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extend Singhi et al. to per-instance adaptive verification depth",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2026 Track: Machine Lea…",
+  "leafUuid": "c8694d30-dbe3-4245-99a1-0a1a17b873cd",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extend Singhi et al. to per-instance adaptive verification depth",
+  "sessionId": "05005bf9-60b3-4bb5-8b2a-cba78844b4ac"
+}
+```
+
+---

@@ -1,0 +1,7065 @@
+# Research conversation: <project_context> # 项目: cert_manip_resist_eval ## 运行环境 - 服务器名: seetacloud-rtx6000 - SSH 连接命令: ssh seetacloud-rtx6000 # 必
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 100
+- **Recorded user turns:** 1
+- **Tool calls:** 29
+- **Original source:** `logs/chats/exported-trajectories/account-2/e1035f39-2061-4f17-8b93-2f4952fb9a75.jsonl`
+- **Structured JSON:** [`9d63f2544140042907f2.json`](../../sessions/9d/9d63f2544140042907f2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-25T14:28:44.749Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-25T14:28:44.749Z",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "content": "&lt;project_context>\n# 项目: cert_manip_resist_eval\n\n## 运行环境\n- 服务器名: seetacloud-rtx6000\n- SSH 连接命令: ssh seetacloud-rtx6000  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/cert_manip_resist_eval\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：补充论文参考文献到 60+ 条\n\n当前 references.bib 有 55 条，需至少补充 6-8 条高质量引用。\n\n### 文件路径\n- references.bib: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib`\n- related_work.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex`\n- methodology.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex`\n- introduction.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex`\n- appendix.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex`\n- results.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex`\n\n### 目标补充方向（按优先级排序）\n\n**1. LLM-as-judge 最新工作 (2024-2026)** — 补 2-3 篇\n候选搜索方向：\n- Bavaresco et al. 2024 \"LLMs instead of Human Judges\" (EMNLP 2024)\n- Shankar et al. 2024 \"Who Validates the Validators?\" (arXiv 2405)\n- Ye et al. 2024 \"Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge\" (arXiv 2410)\n- Thakur et al. 2024 \"Judging the Judges\" (COLM 2024)\n- 用 WebSearch 搜索 \"LLM as judge evaluation bias 2024 2025\" 找最新工作\n\n**2. Adversarial robustness in NLP** — 补 1-2 篇\n候选搜索方向：\n- Zou et al. 2023 \"Universal and Transferable Adversarial Attacks on Aligned Language Models\" (ICML 2024)\n- Wallace et al. 2019 \"Universal Adversarial Triggers for Attacking and Analyzing NLP\" (EMNLP 2019)\n- 用 WebSearch 搜索 \"adversarial attacks LLM prompt injection 2024\"\n\n**3. Panel/committee decision making** — 补 1-2 篇\n候选搜索方向：\n- Surowiecki 2004 \"The Wisdom of Crowds\"\n- Hong & Page 2004 \"Groups of diverse problem solvers can outperform groups of high-ability problem solvers\"\n- Marquis de Condorcet extensions, social choice theory\n\n**4. Statistical methods used in the paper** — 补 1-2 篇\n- DerSimonian & Laird 1986 \"Meta-analysis in clinical trials\" (已在正文中提及 DerSimonian-Laird 但未引用)\n- Benjamini & Hochberg 1995 \"Controlling the false discovery rate\" (BH FDR correction 在正文多次出现但未引用)\n\n### 严格要求\n\n1. **每篇论文都必须用 WebSearch 验证**：搜索论文标题，确认作者、年份、venue 准确。不确定的不加。\n2. **BibTeX 格式**：与现有 references.bib 保持一致风格（`@article` / `@inproceedings` / `@book`，含 url/doi/note 字段）\n3. **必须在正文中添加 \\cite{} 或 \\citep{}**：每个新增引用至少出现一次。选择最自然的位置插入（related_work.tex 优先，也可以在 methodology/results/appendix 中引用统计方法论文）\n4. **不要修改已有内容的含义**——只在句子末尾或合适位置插入引用\n5. **所有新增 bib entry 放在 references.bib 末尾**，新起一个 `% Part K: Additional references` section\n\n### 具体插入位置建议\n\n- DerSimonian-Laird: results.tex 中搜索 \"DerSimonian\" 附近加 \\citep{}\n- BH FDR: methodology.tex 中搜索 \"BH\" 或 \"Benjamini\" 附近加 \\citep{}，首次出现时加引用\n- LLM-as-judge 新论文: related_work.tex 第一段（LLM-as-Judge and Multi-Judge Evaluation）末尾\n- Adversarial NLP: related_work.tex 第四段（Adversarial Robustness and Transferability）\n- Panel/committee: related_work.tex 第二段（Condorcet Jury Theorem）或新段落\n\n### 验证清单\n\n完成后请：\n1. 统计 references.bib 总条目数（应 ≥ 61）\n2. 对每个新增 bib key，grep 搜索确认在 .tex 文件中至少出现一次\n3. 列出所有新增引用的 key、标题、年份、venue"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-25T14:28:44.753Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-25T14:28:44.753Z",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+## Round 1
+
+98 recorded events
+
+### User
+
+_source line 3 · 2026-05-25T14:28:44.789Z_
+
+&lt;project_context>
+# 项目: cert_manip_resist_eval
+
+## 运行环境
+- 服务器名: seetacloud-rtx6000
+- SSH 连接命令: ssh seetacloud-rtx6000  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/cert_manip_resist_eval
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：补充论文参考文献到 60+ 条
+
+当前 references.bib 有 55 条，需至少补充 6-8 条高质量引用。
+
+### 文件路径
+- references.bib: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib`
+- related_work.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex`
+- methodology.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex`
+- introduction.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex`
+- appendix.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex`
+- results.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex`
+
+### 目标补充方向（按优先级排序）
+
+**1. LLM-as-judge 最新工作 (2024-2026)** — 补 2-3 篇
+候选搜索方向：
+- Bavaresco et al. 2024 "LLMs instead of Human Judges" (EMNLP 2024)
+- Shankar et al. 2024 "Who Validates the Validators?" (arXiv 2405)
+- Ye et al. 2024 "Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge" (arXiv 2410)
+- Thakur et al. 2024 "Judging the Judges" (COLM 2024)
+- 用 WebSearch 搜索 "LLM as judge evaluation bias 2024 2025" 找最新工作
+
+**2. Adversarial robustness in NLP** — 补 1-2 篇
+候选搜索方向：
+- Zou et al. 2023 "Universal and Transferable Adversarial Attacks on Aligned Language Models" (ICML 2024)
+- Wallace et al. 2019 "Universal Adversarial Triggers for Attacking and Analyzing NLP" (EMNLP 2019)
+- 用 WebSearch 搜索 "adversarial attacks LLM prompt injection 2024"
+
+**3. Panel/committee decision making** — 补 1-2 篇
+候选搜索方向：
+- Surowiecki 2004 "The Wisdom of Crowds"
+- Hong & Page 2004 "Groups of diverse problem solvers can outperform groups of high-ability problem solvers"
+- Marquis de Condorcet extensions, social choice theory
+
+**4. Statistical methods used in the paper** — 补 1-2 篇
+- DerSimonian & Laird 1986 "Meta-analysis in clinical trials" (已在正文中提及 DerSimonian-Laird 但未引用)
+- Benjamini & Hochberg 1995 "Controlling the false discovery rate" (BH FDR correction 在正文多次出现但未引用)
+
+### 严格要求
+
+1. **每篇论文都必须用 WebSearch 验证**：搜索论文标题，确认作者、年份、venue 准确。不确定的不加。
+2. **BibTeX 格式**：与现有 references.bib 保持一致风格（`@article` / `@inproceedings` / `@book`，含 url/doi/note 字段）
+3. **必须在正文中添加 \cite{} 或 \citep{}**：每个新增引用至少出现一次。选择最自然的位置插入（related_work.tex 优先，也可以在 methodology/results/appendix 中引用统计方法论文）
+4. **不要修改已有内容的含义**——只在句子末尾或合适位置插入引用
+5. **所有新增 bib entry 放在 references.bib 末尾**，新起一个 `% Part K: Additional references` section
+
+### 具体插入位置建议
+
+- DerSimonian-Laird: results.tex 中搜索 "DerSimonian" 附近加 \citep{}
+- BH FDR: methodology.tex 中搜索 "BH" 或 "Benjamini" 附近加 \citep{}，首次出现时加引用
+- LLM-as-judge 新论文: related_work.tex 第一段（LLM-as-Judge and Multi-Judge Evaluation）末尾
+- Adversarial NLP: related_work.tex 第四段（Adversarial Robustness and Transferability）
+- Panel/committee: related_work.tex 第二段（Condorcet Jury Theorem）或新段落
+
+### 验证清单
+
+完成后请：
+1. 统计 references.bib 总条目数（应 ≥ 61）
+2. 对每个新增 bib key，grep 搜索确认在 .tex 文件中至少出现一次
+3. 列出所有新增引用的 key、标题、年份、venue
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "bbb41951-112f-4477-a1c4-a2d64c6d1900",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-25T14:28:44.788Z_
+
+```json
+{
+  "parentUuid": "bbb41951-112f-4477-a1c4-a2d64c6d1900",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__bootstrap_provenance",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__overleaf_init",
+      "mcp__agent-ml-research__overleaf_pull",
+      "mcp__agent-ml-research__overleaf_push",
+      "mcp__agent-ml-research__overleaf_status",
+      "mcp__agent-ml-research__overleaf_sync",
+      "mcp__agent-ml-research__paper_agent_post_to_director",
+      "mcp__agent-ml-research__paper_agent_request_review",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__bootstrap_provenance",
+      "mcp__agent-ml-research__check_figures_and_layout",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__overleaf_init",
+      "mcp__agent-ml-research__overleaf_pull",
+      "mcp__agent-ml-research__overleaf_push",
+      "mcp__agent-ml-research__overleaf_status",
+      "mcp__agent-ml-research__overleaf_sync",
+      "mcp__agent-ml-research__paper_agent_post_to_director",
+      "mcp__agent-ml-research__paper_agent_request_review",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3584ad98-0e0b-4b67-89d0-9ffd6306c586",
+  "timestamp": "2026-05-25T14:28:44.788Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-25T14:28:44.789Z_
+
+```json
+{
+  "parentUuid": "3584ad98-0e0b-4b67-89d0-9ffd6306c586",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "824d9a5a-a2e6-4e99-99b2-729acc708ce2",
+  "timestamp": "2026-05-25T14:28:44.789Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-25T14:28:44.789Z_
+
+```json
+{
+  "parentUuid": "824d9a5a-a2e6-4e99-99b2-729acc708ce2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5093322d-ee5e-4b9d-a9b6-e3359bf388e3",
+  "timestamp": "2026-05-25T14:28:44.789Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-25T14:28:48.270Z_
+
+I'll start by reading the current references.bib and the relevant .tex files to understand the existing content and find insertion points.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5093322d-ee5e-4b9d-a9b6-e3359bf388e3",
+  "isSidechain": false,
+  "requestId": "req_011CbPSnMVHeoDR8FkJfNj3k",
+  "type": "assistant",
+  "uuid": "57cb69ee-8d4a-4bd0-b0f6-b45381f07473",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U74tA9WVPmAxSb2pyk7kuG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13255,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13255,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13255,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13255
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-25T14:28:50.163Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01T1NbCDwJtGUoBPRBRAJiGF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57cb69ee-8d4a-4bd0-b0f6-b45381f07473",
+  "isSidechain": false,
+  "requestId": "req_011CbPSnMVHeoDR8FkJfNj3k",
+  "type": "assistant",
+  "uuid": "5b16798f-ed2b-45e3-a44f-06498c15baf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U74tA9WVPmAxSb2pyk7kuG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13255,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13255,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13255,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13255
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-25T14:28:50.186Z_
+
+<details><summary>↩ Tool result · `toolu_01T1NbCDwJtGUoBPRBRAJiGF`</summary>
+
+```text
+1	% Bibliography for cert_manip_resist_eval
+2	% All entries verified via WebSearch on 2026-05-22
+3	% ============================================================
+4	
+5	% ============================================================
+6	% Part A: Papers from literature_map.yaml (12 papers)
+7	% ============================================================
+8	
+9	@article{robertson2025stepwise,
+10	  author    = {Robertson, Zachary and Koyejo, Sanmi},
+11	  title     = {Let's Measure Information Step-by-Step: {LLM}-Based Evaluation Beyond Vibes},
+12	  journal   = {arXiv preprint arXiv:2508.05469},
+13	  year      = {2025},
+14	  url       = {https://arxiv.org/abs/2508.05469},
+15	  note      = {arXiv:2508.05469}
+16	}
+17	
+18	@inproceedings{yang2026diversity,
+19	  author    = {Yang, Yingxuan and Qu, Chengrui and Wen, Muning and Shi, Laixi and Wen, Ying and Zhang, Weinan and Wierman, Adam and Gu, Shangding},
+20	  title     = {Understanding Agent Scaling in {LLM}-Based Multi-Agent Systems via Diversity},
+21	  booktitle = {ICLR 2026 Workshop on AIMS},
+22	  year      = {2026},
+23	  url       = {https://arxiv.org/abs/2602.03794},
+24	  note      = {arXiv:2602.03794}
+25	}
+26	
+27	@article{turkmen2026ensemble,
+28	  author    = {Turkmen, Yigit and Buyukates, Baturalp and Bastopcu, Melih},
+29	  title     = {Don't Always Pick the Highest-Performing Model: An Information Theoretic View of {LLM} Ensemble Selection},
+30	  journal   = {arXiv preprint arXiv:2602.08003},
+31	  year      = {2026},
+32	  url       = {https://arxiv.org/abs/2602.08003},
+33	  note      = {arXiv:2602.08003}
+34	}
+35	
+36	@inproceedings{kaneko2025bits,
+37	  author    = {Kaneko, Masahiro and Baldwin, Timothy},
+38	  title     = {Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against {LLMs}},
+39	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+40	  year      = {2025},
+41	  url       = {https://arxiv.org/abs/2510.17000},
+42	  note      = {arXiv:2510.17000. Spotlight}
+43	}
+44	
+45	@inproceedings{chen2025incentivizing,
+46	  author    = {Chen, Baiting and Zhu, Tong and Han, Jiale and Li, Lexin and Li, Gang and Dai, Xiaowu},
+47	  title     = {Incentivizing Truthful Language Models via Peer Elicitation Games},
+48	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+49	  year      = {2025},
+50	  url       = {https://arxiv.org/abs/2505.13636},
+51	  note      = {arXiv:2505.13636}
+52	}
+53	
+54	@inproceedings{qiu2026truthfulness,
+55	  author    = {Qiu, Tianyi Alex and Carroll, Micah and Allen, Cameron},
+56	  title     = {Truthfulness Despite Weak Supervision: Evaluating and Training {LLMs} Using Peer Prediction},
+57	  booktitle = {International Conference on Learning Representations (ICLR)},
+58	  year      = {2026},
+59	  url       = {https://arxiv.org/abs/2601.20299},
+60	  note      = {arXiv:2601.20299}
+61	}
+62	
+63	@inproceedings{kim2025correlated,
+64	  author    = {Kim, Elliot and Garg, Avi and Peng, Kenny and Garg, Nikhil},
+65	  title     = {Correlated Errors in Large Language Models},
+66	  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},
+67	  year      = {2025},
+68	  url       = {https://arxiv.org/abs/2506.07962},
+69	  note      = {arXiv:2506.07962}
+70	}
+71	
+72	@article{almasoud2026security,
+73	  author    = {Al Masoud, Aiman and Anju, Antony and Arazzi, Marco and Cihangiroglu, Mert and Kembu, Vignesh Kumar and Nicolazzo, Serena and Nocera, Antonino and Vinod, P. and Sakthidharan, Saraga},
+74	  title     = {Security in {LLM}-as-a-Judge: A Comprehensive {SoK}},
+75	  journal   = {arXiv preprint arXiv:2603.29403},
+76	  year      = {2026},
+77	  url       = {https://arxiv.org/abs/2603.29403},
+78	  note      = {arXiv:2603.29403}
+79	}
+80	
+81	@inproceedings{feng2026noisy,
+82	  author    = {Feng, Chen and Shen, Minghe and Balashankar, Ananth and Gerner-Beuerle, Carsten and Rodrigues, Miguel R. D.},
+83	  title     = {Noisy but Valid: Robust Statistical Evaluation of {LLMs} with Imperfect Judges},
+84	  booktitle = {International Conference on Learning Representations (ICLR)},
+85	  year      = {2026},
+86	  url       = {https://arxiv.org/abs/2601.20913},
+87	  note      = {arXiv:2601.20913}
+88	}
+89	
+90	@article{jung2026logarithmic,
+91	  author    = {Jung, HyunJoon and Na, William},
+92	  title     = {Logarithmic Scores, Power-Law Discoveries: Disentangling Measurement from Coverage in Agent-Based Evaluation},
+93	  journal   = {arXiv preprint arXiv:2604.00477},
+94	  year      = {2026},
+95	  url       = {https://arxiv.org/abs/2604.00477},
+96	  note      = {arXiv:2604.00477}
+97	}
+98	
+99	% NOTE: literature_map.yaml cites this as "Chen et al. 2026" but first author is Kuai.
+100	% Full title includes "and Reweighting Verifier Ensembles" (truncated in literature_map).
+101	@article{kuai2026independent,
+102	  author    = {Kuai, Chenchen and Jiang, Jiwan and Zhu, Zihao and Wang, Hao and Wu, Keshu and Li, Zihao and Zhang, Yunlong and Liu, Chenxi and Tu, Zhengzhong and Fan, Zhiwen and Zhou, Yang},
+103	  title     = {How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles},
+104	  journal   = {arXiv preprint arXiv:2604.07650},
+105	  year      = {2026},
+106	  url       = {https://arxiv.org/abs/2604.07650},
+107	  note      = {arXiv:2604.07650}
+108	}
+109	
+110	% ============================================================
+111	% Part B: Classic references (10 papers)
+112	% ============================================================
+113	
+114	@inproceedings{tramer2018ensemble,
+115	  author    = {Florian Tram{\`e}r and Alexey Kurakin and Nicolas Papernot and Ian Goodfellow and Dan Boneh and Patrick McDaniel},
+116	  title     = {Ensemble Adversarial Training: Attacks and Defenses},
+117	  booktitle = {International Conference on Learning Representations (ICLR)},
+118	  year      = {2018},
+119	  url       = {https://arxiv.org/abs/1705.07204}
+120	}
+121	
+122	@article{papernot2016transferability,
+123	  author    = {Nicolas Papernot and Patrick McDaniel and Ian Goodfellow},
+124	  title     = {Transferability in Machine Learning: from Phenomena to Black-Box Attacks using Adversarial Samples},
+125	  journal   = {arXiv preprint arXiv:1605.07277},
+126	  year      = {2016},
+127	  url       = {https://arxiv.org/abs/1605.07277},
+128	  note      = {arXiv:1605.07277}
+129	}
+130	
+131	@inproceedings{papernot2017practical,
+132	  author    = {Nicolas Papernot and Patrick McDaniel and Ian Goodfellow and Somesh Jha and Z. Berkay Celik and Ananthram Swami},
+133	  title     = {Practical Black-Box Attacks against Machine Learning},
+134	  booktitle = {Proceedings of the 2017 ACM on Asia Conference on Computer and Communications Security (ASIA CCS)},
+135	  pages     = {506--519},
+136	  year      = {2017},
+137	  doi       = {10.1145/3052973.3053009},
+138	  url       = {https://dl.acm.org/doi/10.1145/3052973.3053009}
+139	}
+140	
+141	@inproceedings{zheng2023judging,
+142	  author    = {Lianmin Zheng and Wei-Lin Chiang and Ying Sheng and Siyuan Zhuang and Zhanghao Wu and Yonghao Zhuang and Zi Lin and Zhuohan Li and Dacheng Li and Eric P. Xing and Hao Zhang and Joseph E. Gonzalez and Ion Stoica},
+143	  title     = {Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},
+144	  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS)},
+145	  year      = {2023},
+146	  url       = {https://arxiv.org/abs/2306.05685}
+147	}
+148	
+149	@article{wang2023fair,
+150	  author    = {Peiyi Wang and Lei Li and Liang Chen and Zefan Cai and Dawei Zhu and Binghuai Lin and Yunbo Cao and Lingpeng Kong and Qi Liu and Tianyu Liu and Zhifang Sui},
+151	  title     = {Large Language Models are not Fair Evaluators},
+152	  journal   = {arXiv preprint arXiv:2305.17926},
+153	  year      = {2023},
+154	  url       = {https://arxiv.org/abs/2305.17926},
+155	  note      = {arXiv:2305.17926. Later published at ACL 2024}
+156	}
+157	
+158	@inproceedings{greshake2023not,
+159	  author    = {Kai Greshake and Sahar Abdelnabi and Shailesh Mishra and Christoph Endres and Thorsten Holz and Mario Fritz},
+160	  title     = {Not what you've signed up for: Compromising Real-World {LLM}-Integrated Applications with Indirect Prompt Injection},
+161	  booktitle = {Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISec)},
+162	  year      = {2023},
+163	  doi       = {10.1145/3605764.3623985},
+164	  url       = {https://dl.acm.org/doi/10.1145/3605764.3623985}
+165	}
+166	
+167	@article{lamport1982byzantine,
+168	  author    = {Leslie Lamport and Robert Shostak and Marshall Pease},
+169	  title     = {The {Byzantine} Generals Problem},
+170	  journal   = {ACM Transactions on Programming Languages and Systems (TOPLAS)},
+171	  volume    = {4},
+172	  number    = {3},
+173	  pages     = {382--401},
+174	  year      = {1982},
+175	  doi       = {10.1145/357172.357176},
+176	  url       = {https://dl.acm.org/doi/10.1145/357172.357176}
+177	}
+178	
+179	@inproceedings{castro1999practical,
+180	  author    = {Miguel Castro and Barbara Liskov},
+181	  title     = {Practical {Byzantine} Fault Tolerance},
+182	  booktitle = {Proceedings of the 3rd USENIX Symposium on Operating Systems Design and Implementation (OSDI)},
+183	  pages     = {173--186},
+184	  year      = {1999},
+185	  publisher = {USENIX Association},
+186	  url       = {https://www.usenix.org/conference/osdi-99/practical-byzantine-fault-tolerance}
+187	}
+188	
+189	@book{schneier2000secrets,
+190	  author    = {Bruce Schneier},
+191	  title     = {Secrets and Lies: Digital Security in a Networked World},
+192	  publisher = {John Wiley \& Sons},
+193	  year      = {2000},
+194	  isbn      = {978-0-471-25311-2}
+195	}
+196	
+197	@inproceedings{krogh1995neural,
+198	  author    = {Anders Krogh and Jesper Vedelsby},
+199	  title     = {Neural Network Ensembles, Cross Validation, and Active Learning},
+200	  booktitle = {Advances in Neural Information Processing Systems 7 (NIPS)},
+201	  pages     = {231--238},
+202	  year      = {1995},
+203	  publisher = {MIT Press}
+204	}
+205	
+206	% ============================================================
+207	% Part C: Supplementary references (6+1 papers)
+208	% ============================================================
+209	
+210	@inproceedings{hendrycks2021mmlu,
+211	  author    = {Dan Hendrycks and Collin Burns and Steven Basart and Andy Zou and Mantas Mazeika and Dawn Song and Jacob Steinhardt},
+212	  title     = {Measuring Massive Multitask Language Understanding},
+213	  booktitle = {International Conference on Learning Representations (ICLR)},
+214	  year      = {2021},
+215	  url       = {https://openreview.net/forum?id=d7KBjmI3GmQ}
+216	}
+217	
+218	@article{clark2018arc,
+219	  author    = {Peter Clark and Isaac Cowhey and Oren Etzioni and Tushar Khot and Ashish Sabharwal and Carissa Schoenick and Oyvind Tafjord},
+220	  title     = {Think you have Solved Question Answering? {T}ry {ARC}, the {AI2} Reasoning Challenge},
+221	  journal   = {arXiv preprint arXiv:1803.05457},
+222	  year      = {2018},
+223	  url       = {https://arxiv.org/abs/1803.05457},
+224	  note      = {arXiv:1803.05457}
+225	}
+226	
+227	@inproceedings{goodfellow2015adversarial,
+228	  author    = {Ian J. Goodfellow and Jonathon Shlens and Christian Szegedy},
+229	  title     = {Explaining and Harnessing Adversarial Examples},
+230	  booktitle = {International Conference on Learning Representations (ICLR)},
+231	  year      = {2015},
+232	  url       = {https://arxiv.org/abs/1412.6572}
+233	}
+234	
+235	% UNVERIFIED: User specified "Perez & Ribeiro 2022 — Ignore This Title and HackAPrompt"
+236	% but that title belongs to Schulhoff et al. (EMNLP 2023). The actual Perez & Ribeiro 2022
+237	% paper is "Ignore Previous Prompt: Attack Techniques For Language Models".
+238	% Including the correct Perez & Ribeiro paper below.
+239	@article{perez2022ignore,
+240	  author    = {F{\'a}bio Perez and Ian Ribeiro},
+241	  title     = {Ignore Previous Prompt: Attack Techniques For Language Models},
+242	  journal   = {arXiv preprint arXiv:2211.09527},
+243	  year      = {2022},
+244	  url       = {https://arxiv.org/abs/2211.09527},
+245	  note      = {arXiv:2211.09527. NeurIPS 2022 ML Safety Workshop, Best Paper Award}
+246	}
+247	
+248	@article{budescu1993dominance,
+249	  author    = {David V. Budescu},
+250	  title     = {Dominance Analysis: A New Approach to the Problem of Relative Importance of Predictors in Multiple Regression},
+251	  journal   = {Psychological Bulletin},
+252	  volume    = {114},
+253	  number    = {3},
+254	  pages     = {542--551},
+255	  year      = {1993},
+256	  doi       = {10.1037/0033-2909.114.3.542}
+257	}
+258	
+259	@book{nelsen2006copulas,
+260	  author    = {Roger B. Nelsen},
+261	  title     = {An Introduction to Copulas},
+262	  edition   = {2nd},
+263	  publisher = {Springer},
+264	  year      = {2006},
+265	  doi       = {10.1007/0-387-28678-0}
+266	}
+267	
+268	% ============================================================
+269	% Part D: Major Revision additions (Related Work expansion)
+270	% ============================================================
+271	
+272	@book{condorcet1785essai,
+273	  author    = {Marie Jean Antoine Nicolas de Caritat, marquis de Condorcet},
+274	  title     = {Essai sur l'application de l'analyse \`a la probabilit\'e des d\'ecisions rendues \`a la pluralit\'e des voix},
+275	  publisher = {Imprimerie Royale},
+276	  year      = {1785},
+277	  address   = {Paris}
+278	}
+279	
+280	@article{kariyappa2019improving,
+281	  author    = {Sanjay Kariyappa and Moinuddin K. Qureshi},
+282	  title     = {Improving Adversarial Robustness of Ensembles with Diversity Training},
+283	  journal   = {arXiv preprint arXiv:1901.09981},
+284	  year      = {2019},
+285	  url       = {https://arxiv.org/abs/1901.09981},
+286	  note      = {arXiv:1901.09981}
+287	}
+288	
+289	@inproceedings{pang2019improving,
+290	  author    = {Tianyu Pang and Kun Xu and Chao Du and Ning Chen and Jun Zhu},
+291	  title     = {Improving Adversarial Robustness via Promoting Ensemble Diversity},
+292	  booktitle = {Proceedings of the 36th International Conference on Machine Learning (ICML)},
+293	  pages     = {4970--4979},
+294	  year      = {2019},
+295	  publisher = {PMLR},
+296	  url       = {https://proceedings.mlr.press/v97/pang19a.html}
+297	}
+298	
+299	@article{brown2005managing,
+300	  author    = {Gavin Brown and Jeremy L. Wyatt and Peter Tin\v{o}},
+301	  title     = {Managing Diversity in Regression Ensembles},
+302	  journal   = {Journal of Machine Learning Research},
+303	  volume    = {6},
+304	  pages     = {1621--1650},
+305	  year      = {2005},
+306	  url       = {https://www.jmlr.org/papers/v6/brown05a.html}
+307	}
+308	
+309	@article{kuncheva2003measures,
+310	  author    = {Ludmila I. Kuncheva and Christopher J. Whitaker},
+311	  title     = {Measures of Diversity in Classifier Ensembles and Their Relationship with the Ensemble Accuracy},
+312	  journal   = {Machine Learning},
+313	  volume    = {51},
+314	  number    = {2},
+315	  pages     = {181--207},
+316	  year      = {2003},
+317	  doi       = {10.1023/A:1022859003006}
+318	}
+319	
+320	@article{verga2024replacing,
+321	  author    = {Pat Verga and Sebastian Hofstatter and Sophia Althammer and Yixuan Su and Aleksandra Piktus and Arkady Arkhangorodsky and Minjie Xu and Naomi White and Patrick Lewis},
+322	  title     = {Replacing Judges with Juries: Evaluating {LLM} Generations with a Panel of Diverse Models},
+323	  journal   = {arXiv preprint arXiv:2404.18796},
+324	  year      = {2024},
+325	  url       = {https://arxiv.org/abs/2404.18796},
+326	  note      = {arXiv:2404.18796}
+327	}
+328	
+329	@inproceedings{panickssery2024llm,
+330	  author    = {Arjun Panickssery and Samuel R. Bowman and Shi Feng},
+331	  title     = {{LLM} Evaluators Recognize and Favor Their Own Generations},
+332	  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},
+333	  year      = {2024},
+334	  url       = {https://arxiv.org/abs/2404.13076},
+335	  note      = {arXiv:2404.13076}
+336	}
+337	
+338	@book{tambe2011security,
+339	  author    = {Milind Tambe},
+340	  title     = {Security and Game Theory: Algorithms, Deployed Systems, Lessons Learned},
+341	  publisher = {Cambridge University Press},
+342	  year      = {2011},
+343	  doi       = {10.1017/CBO9780511973031}
+344	}
+345	
+346	% ============================================================
+347	% Part E: Related Work expansion (reviewer W4)
+348	% ============================================================
+349	
+350	@article{dawid1979maximum,
+351	  author    = {Alexander Philip Dawid and Allan M. Skene},
+352	  title     = {Maximum Likelihood Estimation of Observer Error-Rates Using the {EM} Algorithm},
+353	  journal   = {Journal of the Royal Statistical Society. Series C (Applied Statistics)},
+354	  volume    = {28},
+355	  number    = {1},
+356	  pages     = {20--28},
+357	  year      = {1979},
+358	  doi       = {10.2307/2346806}
+359	}
+360	
+361	
+362	% ============================================================
+363	% Part F: Round 2 reviewer-requested references
+364	% ============================================================
+365	
+366	@article{raina2024judgerobust,
+367	  author    = {Vyas Raina and Adian Liusie and Mark Gales},
+368	  title     = {Is {LLM}-as-a-Judge Robust? {I}nvestigating Universal Adversarial Attacks on Zero-shot {LLM} Assessment},
+369	  journal   = {arXiv preprint arXiv:2402.14016},
+370	  year      = {2024},
+371	  url       = {https://arxiv.org/abs/2402.14016},
+372	  note      = {arXiv:2402.14016}
+373	}
+374	
+375	@article{ladha1992condorcet,
+376	  author    = {Krishna K. Ladha},
+377	  title     = {The {Condorcet} Jury Theorem, Free Speech, and Correlated Votes},
+378	  journal   = {American Journal of Political Science},
+379	  volume    = {36},
+380	  number    = {3},
+381	  pages     = {617--634},
+382	  year      = {1992},
+383	  doi       = {10.2307/2111584}
+384	}
+385	
+386	@article{papke1996econometric,
+387	  author    = {Leslie E. Papke and Jeffrey M. Wooldridge},
+388	  title     = {Econometric Methods for Fractional Response Variables},
+389	  journal   = {Journal of Applied Econometrics},
+390	  volume    = {11},
+391	  number    = {6},
+392	  pages     = {619--632},
+393	  year      = {1996},
+394	  doi       = {10.1002/(SICI)1099-1255(199611)11:6<619::AID-JAE418>3.0.CO;2-1}
+395	}
+396	
+397	@article{cameron2008bootstrap,
+398	  author    = {A. Colin Cameron and Jonah B. Gelbach and Douglas L. Miller},
+399	  title     = {Bootstrap-Based Improvements for Inference with Clustered Errors},
+400	  journal   = {Review of Economics and Statistics},
+401	  volume    = {90},
+402	  number    = {3},
+403	  pages     = {414--427},
+404	  year      = {2008},
+405	  doi       = {10.1162/rest.90.3.414}
+406	}
+407	
+408	% ============================================================
+409	% Part G: Round 3 reviewer-requested references
+410	% ============================================================
+411	
+412	@article{mackinnon2018wild,
+413	  author    = {James G. MacKinnon and Matthew D. Webb},
+414	  title     = {The Wild Bootstrap for Few (Treated) Clusters},
+415	  journal   = {The Econometrics Journal},
+416	  volume    = {21},
+417	  number    = {2},
+418	  pages     = {114--135},
+419	  year      = {2018},
+420	  doi       = {10.1111/ectj.12107}
+421	}
+422	
+423	
+424	% ============================================================
+425	% Part H: R5 reviewer-requested references
+426	% ============================================================
+427	
+428	@article{maloyan2025investigating,
+429	  author    = {Maloyan, Narek and Ashinov, Bislan and Namiot, Dmitry},
+430	  title     = {Investigating the Vulnerability of {LLM}-as-a-Judge Architectures to Prompt-Injection Attacks},
+431	  journal   = {arXiv preprint arXiv:2505.13348},
+432	  year      = {2025},
+433	  url       = {https://arxiv.org/abs/2505.13348},
+434	  note      = {arXiv:2505.13348}
+435	}
+436	
+437	@inproceedings{tamas2025benchmarking,
+438	  author    = {Kavathekar, Ishan and Jain, Hemang and Rathod, Ameya and Kumaraguru, Ponnurangam and Ganu, Tanuja},
+439	  title     = {{TAMAS}: Benchmarking Adversarial Risks in Multi-Agent {LLM} Systems},
+440	  booktitle = {ICML 2025 Workshop on Multi-Agent Systems},
+441	  year      = {2025},
+442	  url       = {https://arxiv.org/abs/2511.05269},
+443	  note      = {arXiv:2511.05269}
+444	}
+445	
+446	@article{ebrahimi2025adversary,
+447	  author    = {Ebrahimi, Sana and Dehghankar, Mohsen and Asudeh, Abolfazl},
+448	  title     = {An Adversary-Resistant Multi-Agent {LLM} System via Credibility Scoring},
+449	  journal   = {arXiv preprint arXiv:2505.24239},
+450	  year      = {2025},
+451	  url       = {https://arxiv.org/abs/2505.24239},
+452	  note      = {arXiv:2505.24239}
+453	}
+454	
+455	% ============================================================
+456	% Part I: R5 remaining fixes
+457	% ============================================================
+458	
+459	@inproceedings{zhu2020dverge,
+460	  author    = {Huanrui Yang and Jingyang Zhang and Hongliang Dong and Nathan Inkawhich and Andrew Gardner and Andrew Touchet and Wesley Wilkes and Heath Berry and Hai Li},
+461	  title     = {{DVERGE}: Diversifying Vulnerabilities for Enhanced Robust Generation of Ensembles},
+462	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+463	  volume    = {33},
+464	  year      = {2020},
+465	  url       = {https://arxiv.org/abs/2009.14720},
+466	  note      = {arXiv:2009.14720. Oral}
+467	}
+468	
+469	@article{cameron2015practitioners,
+470	  author    = {A. Colin Cameron and Douglas L. Miller},
+471	  title     = {A Practitioner's Guide to Cluster-Robust Inference},
+472	  journal   = {Journal of Human Resources},
+473	  volume    = {50},
+474	  number    = {2},
+475	  pages     = {317--372},
+476	  year      = {2015},
+477	  doi       = {10.3368/jhr.50.2.317}
+478	}
+479	
+480	% ============================================================
+481	% Part J: R6 narrative reframe references
+482	% ============================================================
+483	
+484	@article{breiman2001random,
+485	  author    = {Leo Breiman},
+486	  title     = {Random Forests},
+487	  journal   = {Machine Learning},
+488	  volume    = {45},
+489	  number    = {1},
+490	  pages     = {5--32},
+491	  year      = {2001},
+492	  doi       = {10.1023/A:1010933404324}
+493	}
+494	
+495	@inproceedings{dietterich2000ensemble,
+496	  author    = {Thomas G. Dietterich},
+497	  title     = {Ensemble Methods in Machine Learning},
+498	  booktitle = {First International Workshop on Multiple Classifier Systems (MCS)},
+499	  series    = {LNCS},
+500	  volume    = {1857},
+501	  pages     = {1--15},
+502	  year      = {2000},
+503	  publisher = {Springer}
+504	}
+505	
+506	@article{zhou2002ensembling,
+507	  author    = {Zhi-Hua Zhou and Jianxin Wu and Wei Tang},
+508	  title     = {Ensembling Neural Networks: Many Could Be Better Than All},
+509	  journal   = {Artificial Intelligence},
+510	  volume    = {137},
+511	  number    = {1--2},
+512	  pages     = {239--263},
+513	  year      = {2002},
+514	  doi       = {10.1016/S0004-3702(02)00190-X}
+515	}
+516	
+517	@inproceedings{blanchard2017byzantine,
+518	  author    = {Peva Blanchard and El Mahdi {El Mhamdi} and Rachid Guerraoui and Julien Stainer},
+519	  title     = {Machine Learning with Adversaries: {B}yzantine Tolerant Gradient Descent},
+520	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+521	  volume    = {30},
+522	  pages     = {119--129},
+523	  year      = {2017}
+524	}
+525	
+526	@inproceedings{tan2024judgebench,
+527	  author    = {Sijun Tan and Siyuan Zhuang and Kyle Montgomery and William Y. Tang and Alejandro Cuadron and Chenguang Wang and Raluca Ada Popa and Ion Stoica},
+528	  title     = {{JudgeBench}: A Benchmark for Evaluating {LLM}-based Judges},
+529	  booktitle = {International Conference on Learning Representations (ICLR)},
+530	  year      = {2025},
+531	  url       = {https://arxiv.org/abs/2410.12784},
+532	  note      = {arXiv:2410.12784}
+533	}
+534	
+535	@inproceedings{li2024autoj,
+536	  author    = {Junlong Li and Shichao Sun and Weizhe Yuan and Run-Ze Fan and Hai Zhao and Pengfei Liu},
+537	  title     = {Generative Judge for Evaluating Alignment ({Auto-J})},
+538	  booktitle = {International Conference on Learning Representations (ICLR)},
+539	  year      = {2024},
+540	  url       = {https://arxiv.org/abs/2310.05470},
+541	  note      = {arXiv:2310.05470}
+542	}
+543	
+544	@article{cinelli2020making,
+545	  author    = {Carlos Cinelli and Chad Hazlett},
+546	  title     = {Making Sense of Sensitivity: Extending Omitted Variable Bias},
+547	  journal   = {Journal of the Royal Statistical Society: Series B},
+548	  volume    = {82},
+549	  number    = {1},
+550	  pages     = {39--67},
+551	  year      = {2020},
+552	  doi       = {10.1111/rssb.12348}
+553	}
+554	
+555	@article{genest2008validity,
+556	  author    = {Christian Genest and Bruno R\'{e}millard},
+557	  title     = {Validity of the Parametric Bootstrap for Goodness-of-Fit Testing in Semiparametric Models},
+558	  journal   = {Annales de l'Institut Henri Poincar\'{e} -- Probabilit\'{e}s et Statistiques},
+559	  volume    = {44},
+560	  number    = {6},
+561	  pages     = {1096--1127},
+562	  year      = {2008},
+563	  doi       = {10.1214/07-AIHP148}
+564	}
+565	
+566	@article{qian2026collabeval,
+567	  author    = {Yiyue Qian and others},
+568	  title     = {{CollabEval}: Enhancing {LLM}-as-a-Judge via Multi-Agent Collaboration},
+569	  journal   = {arXiv preprint arXiv:2603.00993},
+570	  year      = {2026},
+571	  url       = {https://arxiv.org/abs/2603.00993},
+572	  note      = {arXiv:2603.00993}
+573	}
+574	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b16798f-ed2b-45e3-a44f-06498c15baf1",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "09194428-2583-4f27-85fe-e048c7d1c47f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib",
+      "content": "% Bibliography for cert_manip_resist_eval\n% All entries verified via WebSearch on 2026-05-22\n% ============================================================\n\n% ============================================================\n% Part A: Papers from literature_map.yaml (12 papers)\n% ============================================================\n\n@article{robertson2025stepwise,\n  author    = {Robertson, Zachary and Koyejo, Sanmi},\n  title     = {Let's Measure Information Step-by-Step: {LLM}-Based Evaluation Beyond Vibes},\n  journal   = {arXiv preprint arXiv:2508.05469},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2508.05469},\n  note      = {arXiv:2508.05469}\n}\n\n@inproceedings{yang2026diversity,\n  author    = {Yang, Yingxuan and Qu, Chengrui and Wen, Muning and Shi, Laixi and Wen, Ying and Zhang, Weinan and Wierman, Adam and Gu, Shangding},\n  title     = {Understanding Agent Scaling in {LLM}-Based Multi-Agent Systems via Diversity},\n  booktitle = {ICLR 2026 Workshop on AIMS},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2602.03794},\n  note      = {arXiv:2602.03794}\n}\n\n@article{turkmen2026ensemble,\n  author    = {Turkmen, Yigit and Buyukates, Baturalp and Bastopcu, Melih},\n  title     = {Don't Always Pick the Highest-Performing Model: An Information Theoretic View of {LLM} Ensemble Selection},\n  journal   = {arXiv preprint arXiv:2602.08003},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2602.08003},\n  note      = {arXiv:2602.08003}\n}\n\n@inproceedings{kaneko2025bits,\n  author    = {Kaneko, Masahiro and Baldwin, Timothy},\n  title     = {Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against {LLMs}},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2510.17000},\n  note      = {arXiv:2510.17000. Spotlight}\n}\n\n@inproceedings{chen2025incentivizing,\n  author    = {Chen, Baiting and Zhu, Tong and Han, Jiale and Li, Lexin and Li, Gang and Dai, Xiaowu},\n  title     = {Incentivizing Truthful Language Models via Peer Elicitation Games},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2505.13636},\n  note      = {arXiv:2505.13636}\n}\n\n@inproceedings{qiu2026truthfulness,\n  author    = {Qiu, Tianyi Alex and Carroll, Micah and Allen, Cameron},\n  title     = {Truthfulness Despite Weak Supervision: Evaluating and Training {LLMs} Using Peer Prediction},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2601.20299},\n  note      = {arXiv:2601.20299}\n}\n\n@inproceedings{kim2025correlated,\n  author    = {Kim, Elliot and Garg, Avi and Peng, Kenny and Garg, Nikhil},\n  title     = {Correlated Errors in Large Language Models},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2506.07962},\n  note      = {arXiv:2506.07962}\n}\n\n@article{almasoud2026security,\n  author    = {Al Masoud, Aiman and Anju, Antony and Arazzi, Marco and Cihangiroglu, Mert and Kembu, Vignesh Kumar and Nicolazzo, Serena and Nocera, Antonino and Vinod, P. and Sakthidharan, Saraga},\n  title     = {Security in {LLM}-as-a-Judge: A Comprehensive {SoK}},\n  journal   = {arXiv preprint arXiv:2603.29403},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.29403},\n  note      = {arXiv:2603.29403}\n}\n\n@inproceedings{feng2026noisy,\n  author    = {Feng, Chen and Shen, Minghe and Balashankar, Ananth and Gerner-Beuerle, Carsten and Rodrigues, Miguel R. D.},\n  title     = {Noisy but Valid: Robust Statistical Evaluation of {LLMs} with Imperfect Judges},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2601.20913},\n  note      = {arXiv:2601.20913}\n}\n\n@article{jung2026logarithmic,\n  author    = {Jung, HyunJoon and Na, William},\n  title     = {Logarithmic Scores, Power-Law Discoveries: Disentangling Measurement from Coverage in Agent-Based Evaluation},\n  journal   = {arXiv preprint arXiv:2604.00477},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.00477},\n  note      = {arXiv:2604.00477}\n}\n\n% NOTE: literature_map.yaml cites this as \"Chen et al. 2026\" but first author is Kuai.\n% Full title includes \"and Reweighting Verifier Ensembles\" (truncated in literature_map).\n@article{kuai2026independent,\n  author    = {Kuai, Chenchen and Jiang, Jiwan and Zhu, Zihao and Wang, Hao and Wu, Keshu and Li, Zihao and Zhang, Yunlong and Liu, Chenxi and Tu, Zhengzhong and Fan, Zhiwen and Zhou, Yang},\n  title     = {How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles},\n  journal   = {arXiv preprint arXiv:2604.07650},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2604.07650},\n  note      = {arXiv:2604.07650}\n}\n\n% ============================================================\n% Part B: Classic references (10 papers)\n% ============================================================\n\n@inproceedings{tramer2018ensemble,\n  author    = {Florian Tram{\\`e}r and Alexey Kurakin and Nicolas Papernot and Ian Goodfellow and Dan Boneh and Patrick McDaniel},\n  title     = {Ensemble Adversarial Training: Attacks and Defenses},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2018},\n  url       = {https://arxiv.org/abs/1705.07204}\n}\n\n@article{papernot2016transferability,\n  author    = {Nicolas Papernot and Patrick McDaniel and Ian Goodfellow},\n  title     = {Transferability in Machine Learning: from Phenomena to Black-Box Attacks using Adversarial Samples},\n  journal   = {arXiv preprint arXiv:1605.07277},\n  year      = {2016},\n  url       = {https://arxiv.org/abs/1605.07277},\n  note      = {arXiv:1605.07277}\n}\n\n@inproceedings{papernot2017practical,\n  author    = {Nicolas Papernot and Patrick McDaniel and Ian Goodfellow and Somesh Jha and Z. Berkay Celik and Ananthram Swami},\n  title     = {Practical Black-Box Attacks against Machine Learning},\n  booktitle = {Proceedings of the 2017 ACM on Asia Conference on Computer and Communications Security (ASIA CCS)},\n  pages     = {506--519},\n  year      = {2017},\n  doi       = {10.1145/3052973.3053009},\n  url       = {https://dl.acm.org/doi/10.1145/3052973.3053009}\n}\n\n@inproceedings{zheng2023judging,\n  author    = {Lianmin Zheng and Wei-Lin Chiang and Ying Sheng and Siyuan Zhuang and Zhanghao Wu and Yonghao Zhuang and Zi Lin and Zhuohan Li and Dacheng Li and Eric P. Xing and Hao Zhang and Joseph E. Gonzalez and Ion Stoica},\n  title     = {Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},\n  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS)},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2306.05685}\n}\n\n@article{wang2023fair,\n  author    = {Peiyi Wang and Lei Li and Liang Chen and Zefan Cai and Dawei Zhu and Binghuai Lin and Yunbo Cao and Lingpeng Kong and Qi Liu and Tianyu Liu and Zhifang Sui},\n  title     = {Large Language Models are not Fair Evaluators},\n  journal   = {arXiv preprint arXiv:2305.17926},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2305.17926},\n  note      = {arXiv:2305.17926. Later published at ACL 2024}\n}\n\n@inproceedings{greshake2023not,\n  author    = {Kai Greshake and Sahar Abdelnabi and Shailesh Mishra and Christoph Endres and Thorsten Holz and Mario Fritz},\n  title     = {Not what you've signed up for: Compromising Real-World {LLM}-Integrated Applications with Indirect Prompt Injection},\n  booktitle = {Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISec)},\n  year      = {2023},\n  doi       = {10.1145/3605764.3623985},\n  url       = {https://dl.acm.org/doi/10.1145/3605764.3623985}\n}\n\n@article{lamport1982byzantine,\n  author    = {Leslie Lamport and Robert Shostak and Marshall Pease},\n  title     = {The {Byzantine} Generals Problem},\n  journal   = {ACM Transactions on Programming Languages and Systems (TOPLAS)},\n  volume    = {4},\n  number    = {3},\n  pages     = {382--401},\n  year      = {1982},\n  doi       = {10.1145/357172.357176},\n  url       = {https://dl.acm.org/doi/10.1145/357172.357176}\n}\n\n@inproceedings{castro1999practical,\n  author    = {Miguel Castro and Barbara Liskov},\n  title     = {Practical {Byzantine} Fault Tolerance},\n  booktitle = {Proceedings of the 3rd USENIX Symposium on Operating Systems Design and Implementation (OSDI)},\n  pages     = {173--186},\n  year      = {1999},\n  publisher = {USENIX Association},\n  url       = {https://www.usenix.org/conference/osdi-99/practical-byzantine-fault-tolerance}\n}\n\n@book{schneier2000secrets,\n  author    = {Bruce Schneier},\n  title     = {Secrets and Lies: Digital Security in a Networked World},\n  publisher = {John Wiley \\& Sons},\n  year      = {2000},\n  isbn      = {978-0-471-25311-2}\n}\n\n@inproceedings{krogh1995neural,\n  author    = {Anders Krogh and Jesper Vedelsby},\n  title     = {Neural Network Ensembles, Cross Validation, and Active Learning},\n  booktitle = {Advances in Neural Information Processing Systems 7 (NIPS)},\n  pages     = {231--238},\n  year      = {1995},\n  publisher = {MIT Press}\n}\n\n% ============================================================\n% Part C: Supplementary references (6+1 papers)\n% ============================================================\n\n@inproceedings{hendrycks2021mmlu,\n  author    = {Dan Hendrycks and Collin Burns and Steven Basart and Andy Zou and Mantas Mazeika and Dawn Song and Jacob Steinhardt},\n  title     = {Measuring Massive Multitask Language Understanding},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2021},\n  url       = {https://openreview.net/forum?id=d7KBjmI3GmQ}\n}\n\n@article{clark2018arc,\n  author    = {Peter Clark and Isaac Cowhey and Oren Etzioni and Tushar Khot and Ashish Sabharwal and Carissa Schoenick and Oyvind Tafjord},\n  title     = {Think you have Solved Question Answering? {T}ry {ARC}, the {AI2} Reasoning Challenge},\n  journal   = {arXiv preprint arXiv:1803.05457},\n  year      = {2018},\n  url       = {https://arxiv.org/abs/1803.05457},\n  note      = {arXiv:1803.05457}\n}\n\n@inproceedings{goodfellow2015adversarial,\n  author    = {Ian J. Goodfellow and Jonathon Shlens and Christian Szegedy},\n  title     = {Explaining and Harnessing Adversarial Examples},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2015},\n  url       = {https://arxiv.org/abs/1412.6572}\n}\n\n% UNVERIFIED: User specified \"Perez & Ribeiro 2022 — Ignore This Title and HackAPrompt\"\n% but that title belongs to Schulhoff et al. (EMNLP 2023). The actual Perez & Ribeiro 2022\n% paper is \"Ignore Previous Prompt: Attack Techniques For Language Models\".\n% Including the correct Perez & Ribeiro paper below.\n@article{perez2022ignore,\n  author    = {F{\\'a}bio Perez and Ian Ribeiro},\n  title     = {Ignore Previous Prompt: Attack Techniques For Language Models},\n  journal   = {arXiv preprint arXiv:2211.09527},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2211.09527},\n  note      = {arXiv:2211.09527. NeurIPS 2022 ML Safety Workshop, Best Paper Award}\n}\n\n@article{budescu1993dominance,\n  author    = {David V. Budescu},\n  title     = {Dominance Analysis: A New Approach to the Problem of Relative Importance of Predictors in Multiple Regression},\n  journal   = {Psychological Bulletin},\n  volume    = {114},\n  number    = {3},\n  pages     = {542--551},\n  year      = {1993},\n  doi       = {10.1037/0033-2909.114.3.542}\n}\n\n@book{nelsen2006copulas,\n  author    = {Roger B. Nelsen},\n  title     = {An Introduction to Copulas},\n  edition   = {2nd},\n  publisher = {Springer},\n  year      = {2006},\n  doi       = {10.1007/0-387-28678-0}\n}\n\n% ============================================================\n% Part D: Major Revision additions (Related Work expansion)\n% ============================================================\n\n@book{condorcet1785essai,\n  author    = {Marie Jean Antoine Nicolas de Caritat, marquis de Condorcet},\n  title     = {Essai sur l'application de l'analyse \\`a la probabilit\\'e des d\\'ecisions rendues \\`a la pluralit\\'e des voix},\n  publisher = {Imprimerie Royale},\n  year      = {1785},\n  address   = {Paris}\n}\n\n@article{kariyappa2019improving,\n  author    = {Sanjay Kariyappa and Moinuddin K. Qureshi},\n  title     = {Improving Adversarial Robustness of Ensembles with Diversity Training},\n  journal   = {arXiv preprint arXiv:1901.09981},\n  year      = {2019},\n  url       = {https://arxiv.org/abs/1901.09981},\n  note      = {arXiv:1901.09981}\n}\n\n@inproceedings{pang2019improving,\n  author    = {Tianyu Pang and Kun Xu and Chao Du and Ning Chen and Jun Zhu},\n  title     = {Improving Adversarial Robustness via Promoting Ensemble Diversity},\n  booktitle = {Proceedings of the 36th International Conference on Machine Learning (ICML)},\n  pages     = {4970--4979},\n  year      = {2019},\n  publisher = {PMLR},\n  url       = {https://proceedings.mlr.press/v97/pang19a.html}\n}\n\n@article{brown2005managing,\n  author    = {Gavin Brown and Jeremy L. Wyatt and Peter Tin\\v{o}},\n  title     = {Managing Diversity in Regression Ensembles},\n  journal   = {Journal of Machine Learning Research},\n  volume    = {6},\n  pages     = {1621--1650},\n  year      = {2005},\n  url       = {https://www.jmlr.org/papers/v6/brown05a.html}\n}\n\n@article{kuncheva2003measures,\n  author    = {Ludmila I. Kuncheva and Christopher J. Whitaker},\n  title     = {Measures of Diversity in Classifier Ensembles and Their Relationship with the Ensemble Accuracy},\n  journal   = {Machine Learning},\n  volume    = {51},\n  number    = {2},\n  pages     = {181--207},\n  year      = {2003},\n  doi       = {10.1023/A:1022859003006}\n}\n\n@article{verga2024replacing,\n  author    = {Pat Verga and Sebastian Hofstatter and Sophia Althammer and Yixuan Su and Aleksandra Piktus and Arkady Arkhangorodsky and Minjie Xu and Naomi White and Patrick Lewis},\n  title     = {Replacing Judges with Juries: Evaluating {LLM} Generations with a Panel of Diverse Models},\n  journal   = {arXiv preprint arXiv:2404.18796},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2404.18796},\n  note      = {arXiv:2404.18796}\n}\n\n@inproceedings{panickssery2024llm,\n  author    = {Arjun Panickssery and Samuel R. Bowman and Shi Feng},\n  title     = {{LLM} Evaluators Recognize and Favor Their Own Generations},\n  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2404.13076},\n  note      = {arXiv:2404.13076}\n}\n\n@book{tambe2011security,\n  author    = {Milind Tambe},\n  title     = {Security and Game Theory: Algorithms, Deployed Systems, Lessons Learned},\n  publisher = {Cambridge University Press},\n  year      = {2011},\n  doi       = {10.1017/CBO9780511973031}\n}\n\n% ============================================================\n% Part E: Related Work expansion (reviewer W4)\n% ============================================================\n\n@article{dawid1979maximum,\n  author    = {Alexander Philip Dawid and Allan M. Skene},\n  title     = {Maximum Likelihood Estimation of Observer Error-Rates Using the {EM} Algorithm},\n  journal   = {Journal of the Royal Statistical Society. Series C (Applied Statistics)},\n  volume    = {28},\n  number    = {1},\n  pages     = {20--28},\n  year      = {1979},\n  doi       = {10.2307/2346806}\n}\n\n\n% ============================================================\n% Part F: Round 2 reviewer-requested references\n% ============================================================\n\n@article{raina2024judgerobust,\n  author    = {Vyas Raina and Adian Liusie and Mark Gales},\n  title     = {Is {LLM}-as-a-Judge Robust? {I}nvestigating Universal Adversarial Attacks on Zero-shot {LLM} Assessment},\n  journal   = {arXiv preprint arXiv:2402.14016},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2402.14016},\n  note      = {arXiv:2402.14016}\n}\n\n@article{ladha1992condorcet,\n  author    = {Krishna K. Ladha},\n  title     = {The {Condorcet} Jury Theorem, Free Speech, and Correlated Votes},\n  journal   = {American Journal of Political Science},\n  volume    = {36},\n  number    = {3},\n  pages     = {617--634},\n  year      = {1992},\n  doi       = {10.2307/2111584}\n}\n\n@article{papke1996econometric,\n  author    = {Leslie E. Papke and Jeffrey M. Wooldridge},\n  title     = {Econometric Methods for Fractional Response Variables},\n  journal   = {Journal of Applied Econometrics},\n  volume    = {11},\n  number    = {6},\n  pages     = {619--632},\n  year      = {1996},\n  doi       = {10.1002/(SICI)1099-1255(199611)11:6<619::AID-JAE418>3.0.CO;2-1}\n}\n\n@article{cameron2008bootstrap,\n  author    = {A. Colin Cameron and Jonah B. Gelbach and Douglas L. Miller},\n  title     = {Bootstrap-Based Improvements for Inference with Clustered Errors},\n  journal   = {Review of Economics and Statistics},\n  volume    = {90},\n  number    = {3},\n  pages     = {414--427},\n  year      = {2008},\n  doi       = {10.1162/rest.90.3.414}\n}\n\n% ============================================================\n% Part G: Round 3 reviewer-requested references\n% ============================================================\n\n@article{mackinnon2018wild,\n  author    = {James G. MacKinnon and Matthew D. Webb},\n  title     = {The Wild Bootstrap for Few (Treated) Clusters},\n  journal   = {The Econometrics Journal},\n  volume    = {21},\n  number    = {2},\n  pages     = {114--135},\n  year      = {2018},\n  doi       = {10.1111/ectj.12107}\n}\n\n\n% ============================================================\n% Part H: R5 reviewer-requested references\n% ============================================================\n\n@article{maloyan2025investigating,\n  author    = {Maloyan, Narek and Ashinov, Bislan and Namiot, Dmitry},\n  title     = {Investigating the Vulnerability of {LLM}-as-a-Judge Architectures to Prompt-Injection Attacks},\n  journal   = {arXiv preprint arXiv:2505.13348},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2505.13348},\n  note      = {arXiv:2505.13348}\n}\n\n@inproceedings{tamas2025benchmarking,\n  author    = {Kavathekar, Ishan and Jain, Hemang and Rathod, Ameya and Kumaraguru, Ponnurangam and Ganu, Tanuja},\n  title     = {{TAMAS}: Benchmarking Adversarial Risks in Multi-Agent {LLM} Systems},\n  booktitle = {ICML 2025 Workshop on Multi-Agent Systems},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2511.05269},\n  note      = {arXiv:2511.05269}\n}\n\n@article{ebrahimi2025adversary,\n  author    = {Ebrahimi, Sana and Dehghankar, Mohsen and Asudeh, Abolfazl},\n  title     = {An Adversary-Resistant Multi-Agent {LLM} System via Credibility Scoring},\n  journal   = {arXiv preprint arXiv:2505.24239},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2505.24239},\n  note      = {arXiv:2505.24239}\n}\n\n% ============================================================\n% Part I: R5 remaining fixes\n% ============================================================\n\n@inproceedings{zhu2020dverge,\n  author    = {Huanrui Yang and Jingyang Zhang and Hongliang Dong and Nathan Inkawhich and Andrew Gardner and Andrew Touchet and Wesley Wilkes and Heath Berry and Hai Li},\n  title     = {{DVERGE}: Diversifying Vulnerabilities for Enhanced Robust Generation of Ensembles},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  volume    = {33},\n  year      = {2020},\n  url       = {https://arxiv.org/abs/2009.14720},\n  note      = {arXiv:2009.14720. Oral}\n}\n\n@article{cameron2015practitioners,\n  author    = {A. Colin Cameron and Douglas L. Miller},\n  title     = {A Practitioner's Guide to Cluster-Robust Inference},\n  journal   = {Journal of Human Resources},\n  volume    = {50},\n  number    = {2},\n  pages     = {317--372},\n  year      = {2015},\n  doi       = {10.3368/jhr.50.2.317}\n}\n\n% ============================================================\n% Part J: R6 narrative reframe references\n% ============================================================\n\n@article{breiman2001random,\n  author    = {Leo Breiman},\n  title     = {Random Forests},\n  journal   = {Machine Learning},\n  volume    = {45},\n  number    = {1},\n  pages     = {5--32},\n  year      = {2001},\n  doi       = {10.1023/A:1010933404324}\n}\n\n@inproceedings{dietterich2000ensemble,\n  author    = {Thomas G. Dietterich},\n  title     = {Ensemble Methods in Machine Learning},\n  booktitle = {First International Workshop on Multiple Classifier Systems (MCS)},\n  series    = {LNCS},\n  volume    = {1857},\n  pages     = {1--15},\n  year      = {2000},\n  publisher = {Springer}\n}\n\n@article{zhou2002ensembling,\n  author    = {Zhi-Hua Zhou and Jianxin Wu and Wei Tang},\n  title     = {Ensembling Neural Networks: Many Could Be Better Than All},\n  journal   = {Artificial Intelligence},\n  volume    = {137},\n  number    = {1--2},\n  pages     = {239--263},\n  year      = {2002},\n  doi       = {10.1016/S0004-3702(02)00190-X}\n}\n\n@inproceedings{blanchard2017byzantine,\n  author    = {Peva Blanchard and El Mahdi {El Mhamdi} and Rachid Guerraoui and Julien Stainer},\n  title     = {Machine Learning with Adversaries: {B}yzantine Tolerant Gradient Descent},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  volume    = {30},\n  pages     = {119--129},\n  year      = {2017}\n}\n\n@inproceedings{tan2024judgebench,\n  author    = {Sijun Tan and Siyuan Zhuang and Kyle Montgomery and William Y. Tang and Alejandro Cuadron and Chenguang Wang and Raluca Ada Popa and Ion Stoica},\n  title     = {{JudgeBench}: A Benchmark for Evaluating {LLM}-based Judges},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2410.12784},\n  note      = {arXiv:2410.12784}\n}\n\n@inproceedings{li2024autoj,\n  author    = {Junlong Li and Shichao Sun and Weizhe Yuan and Run-Ze Fan and Hai Zhao and Pengfei Liu},\n  title     = {Generative Judge for Evaluating Alignment ({Auto-J})},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2310.05470},\n  note      = {arXiv:2310.05470}\n}\n\n@article{cinelli2020making,\n  author    = {Carlos Cinelli and Chad Hazlett},\n  title     = {Making Sense of Sensitivity: Extending Omitted Variable Bias},\n  journal   = {Journal of the Royal Statistical Society: Series B},\n  volume    = {82},\n  number    = {1},\n  pages     = {39--67},\n  year      = {2020},\n  doi       = {10.1111/rssb.12348}\n}\n\n@article{genest2008validity,\n  author    = {Christian Genest and Bruno R\\'{e}millard},\n  title     = {Validity of the Parametric Bootstrap for Goodness-of-Fit Testing in Semiparametric Models},\n  journal   = {Annales de l'Institut Henri Poincar\\'{e} -- Probabilit\\'{e}s et Statistiques},\n  volume    = {44},\n  number    = {6},\n  pages     = {1096--1127},\n  year      = {2008},\n  doi       = {10.1214/07-AIHP148}\n}\n\n@article{qian2026collabeval,\n  author    = {Yiyue Qian and others},\n  title     = {{CollabEval}: Enhancing {LLM}-as-a-Judge via Multi-Agent Collaboration},\n  journal   = {arXiv preprint arXiv:2603.00993},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.00993},\n  note      = {arXiv:2603.00993}\n}\n",
+      "numLines": 574,
+      "startLine": 1,
+      "totalLines": 574
+    }
+  },
+  "sourceToolAssistantUUID": "5b16798f-ed2b-45e3-a44f-06498c15baf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-25T14:28:51.050Z_
+
+<details><summary>↩ Tool result · `toolu_01CbaVEGHVnXTEdgrEmzM33d`</summary>
+
+```text
+1	\section{Experimental Methodology}
+2	\label{sec:experiments}
+3	
+4	\subsection{Models and Panel Construction}
+5	
+6	We select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\ref{tab:models}. Nine models are accessed via the OpenRouter API;\footnote{All API models were accessed via OpenRouter between March--April 2026. Model snapshots may have changed after this period.} six open-weight models are served locally using vLLM~0.21.0 with Activation-aware Weight Quantization (AWQ) INT4 on an NVIDIA RTX PRO~6000 Blackwell (96\,GB). API models are assigned to \emph{frontier}, \emph{mid-tier}, or \emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\ref{tab:models}). We study three panel sizes $K \in \{3, 5, 7\}$ (all odd, majority-vote threshold $t = \lceil K/2 \rceil$). Exhaustive enumeration yields $\binom{15}{3} = 455$ panels at $K{=}3$, $\binom{15}{5} = 3{,}003$ at $K{=}5$, and $\binom{15}{7} = 6{,}435$ at $K{=}7$, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\times$ item $\times$ attack tensor. The primary analysis uses $K{=}3$; \S\ref{sec:cross_k} extends to larger panels.
+7	
+8	\subsection{Benchmarks and Attack Types}
+9	
+10	Two benchmarks test distinct evaluation capabilities: MMLU \citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each. All models use temperature~0 for deterministic outputs (temperature has negligible effect on $K_{\mathrm{eff}}$; Appendix~\ref{app:temperature}).
+11	
+12	Each benchmark is paired with six attack types: (1)~\textbf{prompt injection}, adversarial instructions overriding the evaluation prompt \citep{perez2022ignore,greshake2023not}; (2)~\textbf{sycophancy}, flattering language exploiting judge preferences \citep{wang2023fair}; (3)~\textbf{score manipulation}, explicit numerical cues anchoring scoring; (4)~\textbf{verbosity bias}, padding with irrelevant detail \citep{zheng2023judging}; (5)~\textbf{position bias}, reordering to exploit positional preferences \citep{wang2023fair}; and (6)~\textbf{authority bias}, fabricated credentials inflating credibility. The 2 benchmarks $\times$ 6 attacks produce 12 conditions, each evaluated across all 455 panels (templates and implementation details in Appendix~\ref{app:attacks}).
+13	
+14	\begin{table}[t]
+15	\centering
+16	\small
+17	\begin{tabular}{llccc}
+18	\toprule
+19	\textbf{Bench.} & \textbf{Attack} & $\boldsymbol{\eta_{\max}}$ & $\boldsymbol{K_{\mathrm{eff}}}$ & \textbf{Dom.} \\
+20	\midrule
+21	MMLU & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\
+22	MMLU & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\
+23	MMLU & Score manip.   & n.s.    & $+^{*}$ & $K$ \\
+24	MMLU & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\
+25	MMLU & Position bias  & $+^{*}$ & $+^{*}$ & Co \\
+26	MMLU & Authority bias & $+^{*}$ & $+^{*}$ & Co \\
+27	\addlinespace
+28	ARC  & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\
+29	ARC  & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\
+30	ARC  & Score manip.   & $+^{*}$ & $+^{*}$ & Co \\
+31	ARC  & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\
+32	ARC  & Position bias  & n.s.    & $+^{*}$ & $K$ \\
+33	ARC  & Authority bias & $+^{*}$ & $+^{*}$ & Co \\
+34	\bottomrule
+35	\end{tabular}
+36	\caption{Standardized regression coefficients for $\eta_{\max}$ and $K_{\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\ column: $\eta$ = $\eta_{\max}$ sole dominant, $K$ = $K_{\mathrm{eff}}$ sole dominant, Co = co-dominant \citep{budescu1993dominance}.}
+37	\label{tab:dominance}
+38	\end{table}
+39	
+40	\subsection{Vulnerability Metrics}
+41	
+42	Per-judge vulnerability under attack $a$ is the fraction of items where judge $j$ is fooled: $\eta_j(a) = \Pr(X_j^a {=} 1)$, estimated empirically over the item set. The weakest-link vulnerability $\eta_{\max}(a) = \max_{j \in \mathcal{P}} \eta_j(a)$ captures the most susceptible member of each panel. The panel attack success rate $\mathrm{ASR}(\mathcal{P}, a)$ is the fraction of items where at least $t$ judges are simultaneously fooled. Panel diversity is quantified by $K_{\mathrm{eff}}$ (Equation~\ref{eq:keff}), computed from pairwise MI between judges' three-category winner labels (model~A wins, model~B wins, tie) on clean data, using the plug-in estimator with Miller--Madow bias correction. The $\exp(-2\,\mathrm{MI}(i,j))$ term measures pairwise alienation: 1 when independent, 0 under full dependence. Under a Gaussian copula this yields $K_{\mathrm{eff}} = K - \frac{1}{K}\sum_{i}\sum_{j \neq i} \rho_{ij}^2$ \citep{nelsen2006copulas}; goodness-of-fit rejects the Gaussian copula for 97--100\% of pairs, yet plug-in MI and closed-form rankings agree closely ($\rho{\approx}0.86$; Appendix~\ref{app:copula_gof}). We also evaluate $\kappa$-diversity ($1 - \bar{\kappa}$, mean pairwise Cohen's $\kappa$; \citealp{kuncheva2003measures}). Together, $\eta_{\max}$ (weakest-link channel) and $K_{\mathrm{eff}}$ (diversity channel) serve as the two predictors in the regression framework below.
+43	
+44	\subsection{Aggregation Methods}
+45	
+46	Beyond majority vote ($\geq \lceil K/2 \rceil$ approvals), we evaluate three alternatives: \emph{accuracy-weighted vote} ($w_j \propto \mathrm{acc}_j$; accept if $\sum_j w_j \cdot \mathbf{1}[J_j \text{ approves}] > 0.5$), \emph{threshold vote} (unanimity, $t{=}K$), and \emph{Bayesian calibration} ($P(\text{correct} \mid \mathbf{v}) \propto P(\text{correct}) \prod_j P(v_j \mid \text{correct})$; accept if posterior $> 0.5$).
+47	
+48	\subsection{Statistical Framework}
+49	\label{sec:stat_framework}
+50	
+51	To disentangle the contributions of panel diversity and individual judge robustness, we fit a log-log OLS regression for each of the 12 conditions:
+52	\begin{equation}
+53	\label{eq:regression}
+54	\log(\mathrm{ASR} + \epsilon) = \alpha + \beta_1 \log(K_{\mathrm{eff}}) + \beta_2 \log(\eta_{\max} + \epsilon),
+55	\end{equation}
+56	with $\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\epsilon$ is analyzed in Appendix~\ref{app:epsilon}). Standardized coefficients $\hat{\beta}_{\mathrm{std}} = \hat{\beta} \cdot \mathrm{SD}(\log x) / \mathrm{SD}(\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.
+57	
+58	Dominance analysis \citep{budescu1993dominance} decomposes $R^2$ into each predictor's average incremental contribution across all subsets. Generalized additive models (GAMs) with smooth terms test whether $K_{\mathrm{eff}}$'s effect direction varies between targeted attacks (prompt injection, score manipulation, position bias) and shared-bias attacks (sycophancy, verbosity, authority bias).
+59	
+60	\subsection{Robustness to Non-Independence}
+61	\label{sec:robustness_method}
+62	
+63	The 455 panels share judges combinatorially (each appears in 91 panels), inducing correlated residuals. We apply three corrections \citep[see][for a practitioner's guide]{cameron2015practitioners}: clustered standard errors (SE; CR1, 3-position max-SE), mixed-effects models (random judge intercepts), and wild cluster bootstrap ($B{=}9{,}999$, Rademacher weights, 3-position max-$p$) following \citet{cameron2008bootstrap}. Cluster counts (13, ${\leq}11$, ${\leq}9$ at $K{=}3,5,7$) fall below the ${\geq}20$ threshold; we use Rademacher weights following \citet{mackinnon2018wild}. Fractional logit \citep{papke1996econometric} with clustered SE serves as an $\epsilon$-free robustness check (Appendix~\ref{app:robustness_methods}). Monte Carlo calibration (1{,}000 permutations, $B{=}999$) confirms the wild cluster bootstrap does not over-reject in any of 36 conditions (max null rejection rate ${=}1.6\%$ at nominal $\alpha{=}5\%$), establishing reported significance counts as conservative lower bounds (Appendix~\ref{app:monte_carlo}).
+64	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da4de28b-6455-411d-813d-6a2cb8b5b5bc",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "7a3575f3-4b10-4997-b161-b41f088129c9",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex",
+      "content": "\\section{Experimental Methodology}\n\\label{sec:experiments}\n\n\\subsection{Models and Panel Construction}\n\nWe select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\\ref{tab:models}. Nine models are accessed via the OpenRouter API;\\footnote{All API models were accessed via OpenRouter between March--April 2026. Model snapshots may have changed after this period.} six open-weight models are served locally using vLLM~0.21.0 with Activation-aware Weight Quantization (AWQ) INT4 on an NVIDIA RTX PRO~6000 Blackwell (96\\,GB). API models are assigned to \\emph{frontier}, \\emph{mid-tier}, or \\emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). We study three panel sizes $K \\in \\{3, 5, 7\\}$ (all odd, majority-vote threshold $t = \\lceil K/2 \\rceil$). Exhaustive enumeration yields $\\binom{15}{3} = 455$ panels at $K{=}3$, $\\binom{15}{5} = 3{,}003$ at $K{=}5$, and $\\binom{15}{7} = 6{,}435$ at $K{=}7$, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\\times$ item $\\times$ attack tensor. The primary analysis uses $K{=}3$; \\S\\ref{sec:cross_k} extends to larger panels.\n\n\\subsection{Benchmarks and Attack Types}\n\nTwo benchmarks test distinct evaluation capabilities: MMLU \\citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \\citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each. All models use temperature~0 for deterministic outputs (temperature has negligible effect on $K_{\\mathrm{eff}}$; Appendix~\\ref{app:temperature}).\n\nEach benchmark is paired with six attack types: (1)~\\textbf{prompt injection}, adversarial instructions overriding the evaluation prompt \\citep{perez2022ignore,greshake2023not}; (2)~\\textbf{sycophancy}, flattering language exploiting judge preferences \\citep{wang2023fair}; (3)~\\textbf{score manipulation}, explicit numerical cues anchoring scoring; (4)~\\textbf{verbosity bias}, padding with irrelevant detail \\citep{zheng2023judging}; (5)~\\textbf{position bias}, reordering to exploit positional preferences \\citep{wang2023fair}; and (6)~\\textbf{authority bias}, fabricated credentials inflating credibility. The 2 benchmarks $\\times$ 6 attacks produce 12 conditions, each evaluated across all 455 panels (templates and implementation details in Appendix~\\ref{app:attacks}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Bench.} & \\textbf{Attack} & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & \\textbf{Dom.} \\\\\n\\midrule\nMMLU & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Score manip.   & n.s.    & $+^{*}$ & $K$ \\\\\nMMLU & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Position bias  & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n\\addlinespace\nARC  & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Score manip.   & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Position bias  & n.s.    & $+^{*}$ & $K$ \\\\\nARC  & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Standardized regression coefficients for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\\ column: $\\eta$ = $\\eta_{\\max}$ sole dominant, $K$ = $K_{\\mathrm{eff}}$ sole dominant, Co = co-dominant \\citep{budescu1993dominance}.}\n\\label{tab:dominance}\n\\end{table}\n\n\\subsection{Vulnerability Metrics}\n\nPer-judge vulnerability under attack $a$ is the fraction of items where judge $j$ is fooled: $\\eta_j(a) = \\Pr(X_j^a {=} 1)$, estimated empirically over the item set. The weakest-link vulnerability $\\eta_{\\max}(a) = \\max_{j \\in \\mathcal{P}} \\eta_j(a)$ captures the most susceptible member of each panel. The panel attack success rate $\\mathrm{ASR}(\\mathcal{P}, a)$ is the fraction of items where at least $t$ judges are simultaneously fooled. Panel diversity is quantified by $K_{\\mathrm{eff}}$ (Equation~\\ref{eq:keff}), computed from pairwise MI between judges' three-category winner labels (model~A wins, model~B wins, tie) on clean data, using the plug-in estimator with Miller--Madow bias correction. The $\\exp(-2\\,\\mathrm{MI}(i,j))$ term measures pairwise alienation: 1 when independent, 0 under full dependence. Under a Gaussian copula this yields $K_{\\mathrm{eff}} = K - \\frac{1}{K}\\sum_{i}\\sum_{j \\neq i} \\rho_{ij}^2$ \\citep{nelsen2006copulas}; goodness-of-fit rejects the Gaussian copula for 97--100\\% of pairs, yet plug-in MI and closed-form rankings agree closely ($\\rho{\\approx}0.86$; Appendix~\\ref{app:copula_gof}). We also evaluate $\\kappa$-diversity ($1 - \\bar{\\kappa}$, mean pairwise Cohen's $\\kappa$; \\citealp{kuncheva2003measures}). Together, $\\eta_{\\max}$ (weakest-link channel) and $K_{\\mathrm{eff}}$ (diversity channel) serve as the two predictors in the regression framework below.\n\n\\subsection{Aggregation Methods}\n\nBeyond majority vote ($\\geq \\lceil K/2 \\rceil$ approvals), we evaluate three alternatives: \\emph{accuracy-weighted vote} ($w_j \\propto \\mathrm{acc}_j$; accept if $\\sum_j w_j \\cdot \\mathbf{1}[J_j \\text{ approves}] > 0.5$), \\emph{threshold vote} (unanimity, $t{=}K$), and \\emph{Bayesian calibration} ($P(\\text{correct} \\mid \\mathbf{v}) \\propto P(\\text{correct}) \\prod_j P(v_j \\mid \\text{correct})$; accept if posterior $> 0.5$).\n\n\\subsection{Statistical Framework}\n\\label{sec:stat_framework}\n\nTo disentangle the contributions of panel diversity and individual judge robustness, we fit a log-log OLS regression for each of the 12 conditions:\n\\begin{equation}\n\\label{eq:regression}\n\\log(\\mathrm{ASR} + \\epsilon) = \\alpha + \\beta_1 \\log(K_{\\mathrm{eff}}) + \\beta_2 \\log(\\eta_{\\max} + \\epsilon),\n\\end{equation}\nwith $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.\n\nDominance analysis \\citep{budescu1993dominance} decomposes $R^2$ into each predictor's average incremental contribution across all subsets. Generalized additive models (GAMs) with smooth terms test whether $K_{\\mathrm{eff}}$'s effect direction varies between targeted attacks (prompt injection, score manipulation, position bias) and shared-bias attacks (sycophancy, verbosity, authority bias).\n\n\\subsection{Robustness to Non-Independence}\n\\label{sec:robustness_method}\n\nThe 455 panels share judges combinatorially (each appears in 91 panels), inducing correlated residuals. We apply three corrections \\citep[see][for a practitioner's guide]{cameron2015practitioners}: clustered standard errors (SE; CR1, 3-position max-SE), mixed-effects models (random judge intercepts), and wild cluster bootstrap ($B{=}9{,}999$, Rademacher weights, 3-position max-$p$) following \\citet{cameron2008bootstrap}. Cluster counts (13, ${\\leq}11$, ${\\leq}9$ at $K{=}3,5,7$) fall below the ${\\geq}20$ threshold; we use Rademacher weights following \\citet{mackinnon2018wild}. Fractional logit \\citep{papke1996econometric} with clustered SE serves as an $\\epsilon$-free robustness check (Appendix~\\ref{app:robustness_methods}). Monte Carlo calibration (1{,}000 permutations, $B{=}999$) confirms the wild cluster bootstrap does not over-reject in any of 36 conditions (max null rejection rate ${=}1.6\\%$ at nominal $\\alpha{=}5\\%$), establishing reported significance counts as conservative lower bounds (Appendix~\\ref{app:monte_carlo}).\n",
+      "numLines": 64,
+      "startLine": 1,
+      "totalLines": 64
+    }
+  },
+  "sourceToolAssistantUUID": "da4de28b-6455-411d-813d-6a2cb8b5b5bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-25T14:28:50.628Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017s5cw9X35MRSzWZAfBsZAY`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09194428-2583-4f27-85fe-e048c7d1c47f",
+  "isSidechain": false,
+  "requestId": "req_011CbPSnMVHeoDR8FkJfNj3k",
+  "type": "assistant",
+  "uuid": "786c3757-f4d0-4cb9-84f0-9bd8a26cf5d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U74tA9WVPmAxSb2pyk7kuG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13255,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13255,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13255,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13255
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-25T14:28:50.633Z_
+
+<details><summary>↩ Tool result · `toolu_017s5cw9X35MRSzWZAfBsZAY`</summary>
+
+```text
+1	\section{Related Work}
+2	
+3	\paragraph{LLM-as-Judge and Multi-Judge Evaluation.}
+4	LLM judges gained traction after \citet{zheng2023judging} established them as scalable alternatives to human annotation. \citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy), motivating multi-judge panels, while \citet{raina2024judgerobust} and \citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \citep{dawid1979maximum}: \citet{verga2024replacing} showed diverse panels can match single large judges, and \citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\% to 10--19\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \citep{tan2024judgebench,li2024autoj}, adversarial risks in multi-agent systems \citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.
+5	
+6	\paragraph{Condorcet Jury Theorem.}
+7	\citet{condorcet1785essai} proved that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \citet{ladha1992condorcet} extended the theorem to correlated voters, showing that positive correlation weakens the convergence guarantee. The Condorcet Jury Theorem (CJT) explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. We focus on the \emph{panel-size-dependent structure} of this vulnerability: the diminishing predictive power of the weakest link as $K$ grows, and the persistent positive association between diversity and vulnerability.
+8	
+9	\paragraph{Ensemble Diversity Theory.}
+10	Classical ensemble theory shows diverse ensembles reduce error \citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, but only when members maintain sufficiently low bias \citep{brown2005managing}; selective ensembles can outperform using all members \citep{zhou2002ensembling}. \citet{kuncheva2003measures} found no pairwise diversity measure reliably predicted improvement; our $K_{\mathrm{eff}}$ exhibits a $K$-dependent pattern whose direction depends on the metric. LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise. Recent frameworks \citep{yang2026diversity,turkmen2026ensemble} characterize diversity under benign evaluation; we provide the adversarial complement.
+11	
+12	\paragraph{Adversarial Robustness and Transferability.}
+13	Adversarial vulnerability was formalized by \citet{goodfellow2015adversarial}, with transferability demonstrated by \citet{papernot2016transferability,papernot2017practical}. Controlled diversity via uncorrelated gradients \citep{kariyappa2019improving}, diversity regularization \citep{pang2019improving}, or vulnerability diversification \citep{zhu2020dverge} strengthens ensemble robustness in vision but requires coordinating member training, a control absent in post-hoc LLM judge selection. Our setting differs: adversaries use natural-language manipulation rather than gradient perturbations, and aggregation rules are a controllable design parameter.
+14	
+15	\paragraph{BFT and Security Games.}
+16	Classical BFT \citep{lamport1982byzantine,castro1999practical,blanchard2017byzantine} tolerates faulty nodes but assumes non-strategic faults; \citet{schneier2000secrets} articulated the weakest-link principle. Our framework adopts the Stackelberg structure of \citet{tambe2011security}. Correlated LLM judge errors \citep{kim2025correlated,kuai2026independent} violate BFT's independence assumption; \citet{kuai2026independent} propose the Difficulty-Weighted Behavioral Entanglement Index (DBEI), weighting agreement by item difficulty, while $K_{\mathrm{eff}}$ captures a complementary dimension via pairwise MI. Mitigation strategies include DBEI-based reweighting, Bayesian calibration, and credibility scoring \citep{ebrahimi2025adversary}.
+17	
+18	\paragraph{Information-Theoretic Evaluation.}
+19	Information-theoretic approaches address statistical validity \citep{robertson2025stepwise,feng2026noisy}, attack costs \citep{kaneko2025bits}, sequential selection \citep{jung2026logarithmic}, and truthfulness \citep{chen2025incentivizing,qiu2026truthfulness}, but assume honest judges. We address adversarial manipulation interacting with multi-judge composition.
+20	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "786c3757-f4d0-4cb9-84f0-9bd8a26cf5d7",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "7e8ebc2e-84ca-4031-998a-826a65b20212",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\n\n\\paragraph{LLM-as-Judge and Multi-Judge Evaluation.}\nLLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy), motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.\n\n\\paragraph{Condorcet Jury Theorem.}\n\\citet{condorcet1785essai} proved that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \\citet{ladha1992condorcet} extended the theorem to correlated voters, showing that positive correlation weakens the convergence guarantee. The Condorcet Jury Theorem (CJT) explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \\citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. We focus on the \\emph{panel-size-dependent structure} of this vulnerability: the diminishing predictive power of the weakest link as $K$ grows, and the persistent positive association between diversity and vulnerability.\n\n\\paragraph{Ensemble Diversity Theory.}\nClassical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, but only when members maintain sufficiently low bias \\citep{brown2005managing}; selective ensembles can outperform using all members \\citep{zhou2002ensembling}. \\citet{kuncheva2003measures} found no pairwise diversity measure reliably predicted improvement; our $K_{\\mathrm{eff}}$ exhibits a $K$-dependent pattern whose direction depends on the metric. LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise. Recent frameworks \\citep{yang2026diversity,turkmen2026ensemble} characterize diversity under benign evaluation; we provide the adversarial complement.\n\n\\paragraph{Adversarial Robustness and Transferability.}\nAdversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. Controlled diversity via uncorrelated gradients \\citep{kariyappa2019improving}, diversity regularization \\citep{pang2019improving}, or vulnerability diversification \\citep{zhu2020dverge} strengthens ensemble robustness in vision but requires coordinating member training, a control absent in post-hoc LLM judge selection. Our setting differs: adversaries use natural-language manipulation rather than gradient perturbations, and aggregation rules are a controllable design parameter.\n\n\\paragraph{BFT and Security Games.}\nClassical BFT \\citep{lamport1982byzantine,castro1999practical,blanchard2017byzantine} tolerates faulty nodes but assumes non-strategic faults; \\citet{schneier2000secrets} articulated the weakest-link principle. Our framework adopts the Stackelberg structure of \\citet{tambe2011security}. Correlated LLM judge errors \\citep{kim2025correlated,kuai2026independent} violate BFT's independence assumption; \\citet{kuai2026independent} propose the Difficulty-Weighted Behavioral Entanglement Index (DBEI), weighting agreement by item difficulty, while $K_{\\mathrm{eff}}$ captures a complementary dimension via pairwise MI. Mitigation strategies include DBEI-based reweighting, Bayesian calibration, and credibility scoring \\citep{ebrahimi2025adversary}.\n\n\\paragraph{Information-Theoretic Evaluation.}\nInformation-theoretic approaches address statistical validity \\citep{robertson2025stepwise,feng2026noisy}, attack costs \\citep{kaneko2025bits}, sequential selection \\citep{jung2026logarithmic}, and truthfulness \\citep{chen2025incentivizing,qiu2026truthfulness}, but assume honest judges. We address adversarial manipulation interacting with multi-judge composition.\n",
+      "numLines": 20,
+      "startLine": 1,
+      "totalLines": 20
+    }
+  },
+  "sourceToolAssistantUUID": "786c3757-f4d0-4cb9-84f0-9bd8a26cf5d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-25T14:28:51.046Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01CbaVEGHVnXTEdgrEmzM33d`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e8ebc2e-84ca-4031-998a-826a65b20212",
+  "isSidechain": false,
+  "requestId": "req_011CbPSnMVHeoDR8FkJfNj3k",
+  "type": "assistant",
+  "uuid": "da4de28b-6455-411d-813d-6a2cb8b5b5bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U74tA9WVPmAxSb2pyk7kuG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13255,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13255,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13255,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13255
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "7a3575f3-4b10-4997-b161-b41f088129c9",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add 6-8 references to reach 60+ citations",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-25T14:28:56.551Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the results.tex, introduction.tex, and appendix.tex to find insertion points for DerSimonian-Laird and BH FDR citations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a3575f3-4b10-4997-b161-b41f088129c9",
+  "isSidechain": false,
+  "requestId": "req_011CbPSnpWjmkixoZvB4Mmiu",
+  "type": "assistant",
+  "uuid": "8431900b-26d5-4b8e-8c18-862036c8b6cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PvFmjCtJ7XNaVr2q4DRuPe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13917,
+      "cache_read_input_tokens": 25096,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25096,
+          "cache_creation_input_tokens": 13917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-25T14:28:57.084Z_
+
+Now let me read results.tex to find the DerSimonian-Laird mention, and check the introduction and appendix.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8431900b-26d5-4b8e-8c18-862036c8b6cd",
+  "isSidechain": false,
+  "requestId": "req_011CbPSnpWjmkixoZvB4Mmiu",
+  "type": "assistant",
+  "uuid": "8eb58431-3668-46c3-ae75-4dfb8ab30314",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PvFmjCtJ7XNaVr2q4DRuPe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13917,
+      "cache_read_input_tokens": 25096,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25096,
+          "cache_creation_input_tokens": 13917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-25T14:28:59.978Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01AXkRZgQxRvtMfbpHp6ZLgz`</summary>
+
+```json
+{
+  "pattern": "DerSimonian|derSimonian|dersimonian",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+  "output_mode": "content",
+  "-i": true,
+  "context": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8eb58431-3668-46c3-ae75-4dfb8ab30314",
+  "isSidechain": false,
+  "requestId": "req_011CbPSnpWjmkixoZvB4Mmiu",
+  "type": "assistant",
+  "uuid": "8d0d644f-6cca-4dd7-959e-17eed3d88b35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PvFmjCtJ7XNaVr2q4DRuPe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13917,
+      "cache_read_input_tokens": 25096,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25096,
+          "cache_creation_input_tokens": 13917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-25T14:29:00.998Z_
+
+<details><summary>↩ Tool result · `toolu_01JCvLmacTG9DgQHkQbVYyC7`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (28.5KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval/e1035f39-2061-4f17-8b93-2f4952fb9a75/tool-results/toolu_01JCvLmacTG9DgQHkQbVYyC7.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log-1395-Underfull \hbox (badness 1755) in paragraph at lines 513--513
+docs/paper/main.log:1396:[]\T1/ptm/m/n/10 (+20) Table 18: |Near-chance model sen-si-tiv-ity: FDR-
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log-1397- []
+--
+docs/paper/data/k5_aggregation_table_data.txt-4-% Bootstrap: B=9999, Rademacher weights, 5 position permutations
+docs/paper/data/k5_aggregation_table_data.txt:5:% FDR correction: BH at alpha=0.05
+docs/paper/data/k5_aggregation_table_data.txt-6-% Regression: log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-10-% ----------------------------------------
+docs/paper/data/k5_aggregation_table_data.txt:11:% Table 1: Summary (Bootstrap FDR-corrected)
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-12-% ----------------------------------------
+docs/paper/data/k5_aggregation_table_data.txt-13-% Columns: Method & eta_max sig & K_eff sig & mean R^2
+docs/paper/data/k5_aggregation_table_data.txt:14:% "sig" = FDR-corrected wild cluster bootstrap p < 0.05
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-15-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-47-% ============================================================
+docs/paper/data/k5_aggregation_table_data.txt:48:% Table 3: Per-condition detail (Bootstrap FDR-corrected)
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-49-% ============================================================
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85f9062f-c469-46e0-93f9-9a971a9d7a9d",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "33abe3c1-7aa7-461b-ba61-9b97355ca1ef",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log-1395-Underfull \\hbox (badness 1755) in paragraph at lines 513--513\ndocs/paper/main.log:1396:[]\\T1/ptm/m/n/10 (+20) Table 18: |Near-chance model sen-si-tiv-ity: FDR-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log-1397- []\n--\ndocs/paper/data/k5_aggregation_table_data.txt-4-% Bootstrap: B=9999, Rademacher weights, 5 position permutations\ndocs/paper/data/k5_aggregation_table_data.txt:5:% FDR correction: BH at alpha=0.05\ndocs/paper/data/k5_aggregation_table_data.txt-6-% Regression: log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-10-% ----------------------------------------\ndocs/paper/data/k5_aggregation_table_data.txt:11:% Table 1: Summary (Bootstrap FDR-corrected)\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-12-% ----------------------------------------\ndocs/paper/data/k5_aggregation_table_data.txt-13-% Columns: Method & eta_max sig & K_eff sig & mean R^2\ndocs/paper/data/k5_aggregation_table_data.txt:14:% \"sig\" = FDR-corrected wild cluster bootstrap p < 0.05\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-15-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-47-% ============================================================\ndocs/paper/data/k5_aggregation_table_data.txt:48:% Table 3: Per-condition detail (Bootstrap FDR-corrected)\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k5_aggregation_table_data.txt-49-% ============================================================\ndocs/paper/data/k5_aggregation_table_data.txt:50:% Columns: Condition & Method & beta_std(K_eff) & p_FDR(K_eff) & beta_std(eta) & p_FDR(eta) & R^2\ndocs/paper/data/k5_aggregation_table_data.txt-51-% Significance markers: * p<0.05, ** p<0.01, *** p<0.001\n--\ndocs/paper/data/k3_attack_type_distribution.json-50-    \"rank_biserial_r\": -0.38888888888888884,\ndocs/paper/data/k3_attack_type_distribution.json:51:    \"interpretation\": \"p=0.147: trend-level but not significant at 0.05 (n=6 per group limits power). Direction consistent: shared-bias attacks show lower FDR p-values (stronger K_eff significance) than targeted attacks at K=3.\"\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/k3_attack_type_distribution.json-52-  }\n--\ndocs/paper/data/aggregation_bootstrap.json-115-        \"boot_n_significant_confirmed\": 9,\ndocs/paper/data/aggregation_bootstrap.json:116:        \"note\": \"Paper Table 2 reports 7+/1- FDR-significant. Bootstrap confirms direction stability (11/12 positive) and significance robustness (9/12 sig>50%)\"\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/aggregation_bootstrap.json-117-      }\n--\ndocs/paper/data/aggregation_bootstrap.json-226-        \"boot_n_significant_confirmed\": 10,\ndocs/paper/data/aggregation_bootstrap.json:227:        \"note\": \"Paper Table 2 reports 9+/0- FDR-significant. Bootstrap strongly confirms: 11/12 positive direction, 10/12 sig>50%\"\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/aggregation_bootstrap.json-228-      }\n--\ndocs/paper/data/aggregation_bootstrap.json-337-        \"boot_n_significant_confirmed\": 11,\ndocs/paper/data/aggregation_bootstrap.json:338:        \"note\": \"Paper Table 2 reports 10+/1- FDR-significant (highest R²=0.89). Bootstrap strongly confirms: 11/12 positive, 11/12 sig>50%\"\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/aggregation_bootstrap.json-339-      }\n--\ndocs/paper/data/aggregation_bootstrap.json-448-        \"boot_n_significant_confirmed\": 7,\ndocs/paper/data/aggregation_bootstrap.json:449:        \"note\": \"Paper Table 2 reports 1+/6- FDR-significant (direction reversal). Bootstrap CONFIRMS reversal: 9/12 negative direction, 0% positive rate on 6 strongest negative conditions\"\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/aggregation_bootstrap.json-450-      }\n--\ndocs/paper/data/aggregation_bootstrap.json-454-    \"majority_vote\": {\ndocs/paper/data/aggregation_bootstrap.json:455:      \"paper_table2\": \"7+/1- FDR-significant\",\ndocs/paper/data/aggregation_bootstrap.json-456-      \"bootstrap_confirms_direction\": true,\n--\ndocs/paper/data/aggregation_bootstrap.json-459-    \"weighted_vote\": {\ndocs/paper/data/aggregation_bootstrap.json:460:      \"paper_table2\": \"9+/0- FDR-significant\",\ndocs/paper/data/aggregation_bootstrap.json-461-      \"bootstrap_confirms_direction\": true,\n--\ndocs/paper/data/aggregation_bootstrap.json-464-    \"threshold_unanimous\": {\ndocs/paper/data/aggregation_bootstrap.json:465:      \"paper_table2\": \"10+/1- FDR-significant, highest R²=0.89\",\ndocs/paper/data/aggregation_bootstrap.json-466-      \"bootstrap_confirms_direction\": true,\n--\ndocs/paper/data/aggregation_bootstrap.json-469-    \"bayesian_calibration\": {\ndocs/paper/data/aggregation_bootstrap.json:470:      \"paper_table2\": \"1+/6- FDR-significant (direction reversal)\",\ndocs/paper/data/aggregation_bootstrap.json-471-      \"bootstrap_confirms_reversal\": true,\n--\ndocs/paper/data/figure2_plot_data.json-3-  \"x_axis\": \"K (panel size)\",\ndocs/paper/data/figure2_plot_data.json:4:  \"y_axis\": \"Number of FDR-significant conditions (out of 12)\",\ndocs/paper/data/figure2_plot_data.json:5:  \"method\": \"Wild cluster bootstrap, B=9999, Rademacher, max-p, BH FDR 0.05\",\ndocs/paper/data/figure2_plot_data.json-6-  \"data\": {\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/DATA_INVENTORY.md-25-\ndocs/paper/data/DATA_INVENTORY.md:26:- **regime_transition_corrected.json**: V1→V2 corrected. Wild cluster bootstrap (B=9999, Rademacher, max-p, BH FDR 0.05). K3: K_eff sig 1→**4**, eta sig 5→3. K5: K_eff sig 7→**10**. K7: K_eff sig 5→**9**. Per-condition FDR-adjusted p-values included. 1365 filtered samples. All K sizes changed.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/DATA_INVENTORY.md-27-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/regime_transition_corrected.json-1-{\ndocs/paper/data/regime_transition_corrected.json:2:  \"method\": \"Wild cluster bootstrap, B=9999, Rademacher, max-p, BH FDR 0.05\",\ndocs/paper/data/regime_transition_corrected.json-3-  \"error_handling\": \"exclude invalid scores (_is_valid_score: no winner or error flag)\",\n--\ndocs/paper/data/alt_diversity_measures.txt:1:% Alternative Diversity Measures — FDR-corrected significance counts (V2 corrected)\ndocs/paper/data/alt_diversity_measures.txt-2-% Source: docs/paper/data/alt_diversity_corrected.json\n--\ndocs/paper/data/v2_data_inventory.json-38-        \"modified_at\": \"2026-05-23T18:05:19Z\",\ndocs/paper/data/v2_data_inventory.json:39:        \"summary\": \"Wild cluster bootstrap (B=9999, Rademacher, max-p, BH FDR 0.05) for K=3/5/7. V2 fix increased K_eff significance counts: K3 1→4, K5 7→10, K7 5→9. Per-condition max-p and FDR-p values included.\",\ndocs/paper/data/v2_data_inventory.json-40-        \"paper_reference\": \"Table 3, Section 4.4\",\n--\ndocs/paper/data/v2_data_inventory.json-212-        \"modified_at\": \"2026-05-23T12:33:32Z\",\ndocs/paper/data/v2_data_inventory.json:213:        \"summary\": \"K_eff significance by Spearman rho stability tier (stable/moderate/unstable). FDR p-values do NOT match regime_transition_corrected (e.g., K3 mmlu_sycophancy: 0.5184 here vs 0.0320 in corrected). Confirmed V1 data.\",\ndocs/paper/data/v2_data_inventory.json-214-        \"paper_reference\": \"Was: Section 4.4 (stability tier analysis)\",\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-35-\\end{tabular}\ndocs/paper/methodology.tex:36:\\caption{Standardized regression coefficients for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\\ column: $\\eta$ = $\\eta_{\\max}$ sole dominant, $K$ = $K_{\\mathrm{eff}}$ sole dominant, Co = co-dominant \\citep{budescu1993dominance}.}\ndocs/paper/methodology.tex-37-\\label{tab:dominance}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-55-\\end{equation}\ndocs/paper/methodology.tex:56:with $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-57-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-8-\ndocs/paper/results.tex:9:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-10-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-33-\\includegraphics[width=\\columnwidth]{figures/fig1_robustness_comparison.pdf}\ndocs/paper/results.tex:34:\\caption{Significance counts (FDR $< 0.05$) for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design.}\ndocs/paper/results.tex-35-\\label{fig:robustness}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-51-\\includegraphics[width=\\textwidth]{figures/fig_regime_transition.pdf}\ndocs/paper/results.tex:52:\\caption{Predictor shift across panel sizes. $\\eta_{\\max}$ significance (orange) declines from 3/12 to 2/12, while $K_{\\mathrm{eff}}$ (blue) rises from 4/12 to 7/12. Shaded region: $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\\alpha{=}0.05$.}\ndocs/paper/results.tex-53-\\label{fig:regime_transition}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-93-\\end{tabular}\ndocs/paper/results.tex:94:\\caption{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\\ref{tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions.}\ndocs/paper/results.tex-95-\\label{tab:aggregation}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-402-\\@LN@col{1}\ndocs/paper/main.aux:403:[Omitted long matching line]\ndocs/paper/main.aux:404:\\newlabel{tab:dominance}{{2}{5}{Standardized regression coefficients for $\\eta _{\\max }$ and $K_{\\mathrm {eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\\ column: $\\eta $ = $\\eta _{\\max }$ sole dominant, $K$ = $K_{\\mathrm {eff}}$ sole dominant, Co = co-dominant \\citep {budescu1993dominance}}{table.caption.9}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-405-\\@LN{309}{4}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-538-\\@LN@col{2}\ndocs/paper/main.aux:539:\\@writefile{lof}{\\contentsline {figure}{\\numberline {2}{\\ignorespaces Significance counts (FDR $< 0.05$) for $\\eta _{\\max }$ and $K_{\\mathrm  {eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design.}}{6}{figure.caption.11}\\protected@file@percent }\ndocs/paper/main.aux:540:\\newlabel{fig:robustness}{{2}{6}{Significance counts (FDR $< 0.05$) for $\\eta _{\\max }$ and $K_{\\mathrm {eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design}{figure.caption.11}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-541-\\@LN{427}{5}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-574-\\citation{goodfellow2015adversarial,kariyappa2019improving}\ndocs/paper/main.aux:575:\\@writefile{lof}{\\contentsline {figure}{\\numberline {3}{\\ignorespaces Predictor shift across panel sizes. $\\eta _{\\max }$ significance (orange) declines from 3/12 to 2/12, while $K_{\\mathrm  {eff}}$ (blue) rises from 4/12 to 7/12. Shaded region: $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\\alpha {=}0.05$.}}{7}{figure.caption.12}\\protected@file@percent }\ndocs/paper/main.aux:576:\\newlabel{fig:regime_transition}{{3}{7}{Predictor shift across panel sizes. $\\eta _{\\max }$ significance (orange) declines from 3/12 to 2/12, while $K_{\\mathrm {eff}}$ (blue) rises from 4/12 to 7/12. Shaded region: $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\\alpha {=}0.05$}{figure.caption.12}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-577-\\@writefile{lof}{\\contentsline {figure}{\\numberline {4}{\\ignorespaces Per-condition standardized $\\hat  {\\beta }$ with 95\\% CI for $\\eta _{\\max }$ (left) and $K_{\\mathrm  {eff}}$ (right) at $K{=}3$ (wild cluster bootstrap).}}{7}{figure.caption.12}\\protected@file@percent }\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-613-\\@LN@col{2}\ndocs/paper/main.aux:614:\\@writefile{lot}{\\contentsline {table}{\\numberline {4}{\\ignorespaces Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\\ref {tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions.}}{7}{table.caption.13}\\protected@file@percent }\ndocs/paper/main.aux:615:\\newlabel{tab:aggregation}{{4}{7}{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\\ref {tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions}{table.caption.13}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-616-\\@LN{488}{6}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1146-\\@LN{925}{11}\ndocs/paper/main.aux:1147:[Omitted long matching line]\ndocs/paper/main.aux:1148:\\newlabel{tab:crossed_re}{{5}{12}{Crossed random effects vs.\\ wild cluster bootstrap significance (BH FDR $\\alpha {=}0.05$). Multi-membership CRVE with $t(14)$ distribution. At $K{\\geq }5$, $K_{\\mathrm {eff}}$ retains 8/12 significance under crossed RE, matching or exceeding bootstrap. At $K{=}3$, the conservative $t(14)$ distribution with only 455 panels produces attenuation to 0/12 (raw $p$-values: 5/12 significant)}{table.caption.26}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1149-\\@LN{926}{11}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1196-\\@LN@col{1}\ndocs/paper/main.aux:1197:\\@writefile{lof}{\\contentsline {figure}{\\numberline {7}{\\ignorespaces Per-condition predictor dominance across panel sizes (wild cluster bootstrap, BH FDR $\\alpha {=}0.05$). At $K{=}3$, dominance is heterogeneous (co-dominant, $K_{\\mathrm  {eff}}$-only, $\\eta _{\\max }$-only, and non-significant conditions coexist); at $K{\\geq }5$, $K_{\\mathrm  {eff}}$ dominates uniformly while $\\eta _{\\max }$ diminishes substantially.}}{13}{figure.caption.28}\\protected@file@percent }\ndocs/paper/main.aux:1198:\\newlabel{fig:dominance_heatmap}{{7}{13}{Per-condition predictor dominance across panel sizes (wild cluster bootstrap, BH FDR $\\alpha {=}0.05$). At $K{=}3$, dominance is heterogeneous (co-dominant, $K_{\\mathrm {eff}}$-only, $\\eta _{\\max }$-only, and non-significant conditions coexist); at $K{\\geq }5$, $K_{\\mathrm {eff}}$ dominates uniformly while $\\eta _{\\max }$ diminishes substantially}{figure.caption.28}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1199-\\@LN{964}{12}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1266-\\@LN{1017}{13}\ndocs/paper/main.aux:1267:\\@writefile{lot}{\\contentsline {table}{\\numberline {6}{\\ignorespaces Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha {=}0.05$). All four methods converge to $K_{\\mathrm  {eff}}$ 7/12, unlike the differentiated pattern at $K{=}3$ (Table~\\ref {tab:aggregation}).}}{14}{table.caption.31}\\protected@file@percent }\ndocs/paper/main.aux:1268:\\newlabel{tab:aggregation_k5}{{6}{14}{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha {=}0.05$). All four methods converge to $K_{\\mathrm {eff}}$ 7/12, unlike the differentiated pattern at $K{=}3$ (Table~\\ref {tab:aggregation})}{table.caption.31}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1269-\\@LN{1018}{13}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1278-\\@LN{1025}{13}\ndocs/paper/main.aux:1279:\\@writefile{lot}{\\contentsline {table}{\\numberline {7}{\\ignorespaces Aggregation method comparison at $K{=}7$ (6{,}435 panels, wild cluster bootstrap with 7-position max-$p$, BH FDR $\\alpha {=}0.05$). Unlike $K{=}5$ where all methods converge to 7/12, $K{=}7$ shows method divergence: threshold voting reaches 10/12 while Bayesian calibration returns to full $K_{\\mathrm  {eff}}$ neutralization (0/12).}}{14}{table.caption.32}\\protected@file@percent }\ndocs/paper/main.aux:1280:\\newlabel{tab:aggregation_k7}{{7}{14}{Aggregation method comparison at $K{=}7$ (6{,}435 panels, wild cluster bootstrap with 7-position max-$p$, BH FDR $\\alpha {=}0.05$). Unlike $K{=}5$ where all methods converge to 7/12, $K{=}7$ shows method divergence: threshold voting reaches 10/12 while Bayesian calibration returns to full $K_{\\mathrm {eff}}$ neutralization (0/12)}{table.caption.32}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1281-\\@LN{1026}{13}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1341-\\@LN@col{1}\ndocs/paper/main.aux:1342:[Omitted long matching line]\ndocs/paper/main.aux:1343:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1344-\\@LN{1077}{14}\n--\ndocs/paper/main.aux-1891-\\newlabel{tab:mde}{{14}{21}{Minimum detectable effect size (80\\% power, 1{,}000 simulations, wild cluster bootstrap) by panel size. MDE decreases approximately as $1/\\sqrt {N}$, confirming that $K{=}5$/$K{=}7$ significance reflects genuine effects rather than inflated type~I error}{table.caption.41}{}}\ndocs/paper/main.aux:1892:\\@writefile{lot}{\\contentsline {table}{\\numberline {15}{\\ignorespaces Comparison of diversity measures as predictors of panel ASR (OLS, FDR-corrected, 12 conditions pooled across $K$). Sig: FDR-significant conditions. $|\\bar  {\\beta }_{\\mathrm  {std}}|$: mean absolute standardized coefficient. $\\rho $: Pearson correlation with $K_{\\mathrm  {eff}}$.}}{21}{table.caption.42}\\protected@file@percent }\ndocs/paper/main.aux:1893:\\newlabel{tab:alt_diversity}{{15}{21}{Comparison of diversity measures as predictors of panel ASR (OLS, FDR-corrected, 12 conditions pooled across $K$). Sig: FDR-significant conditions. $|\\bar {\\beta }_{\\mathrm {std}}|$: mean absolute standardized coefficient. $\\rho $: Pearson correlation with $K_{\\mathrm {eff}}$}{table.caption.42}{}}\ndocs/paper/main.aux:1894:\\@writefile{lot}{\\contentsline {table}{\\numberline {16}{\\ignorespaces Predictor shift comparison: $K_{\\mathrm  {eff}}$ vs.\\ $\\kappa $-diversity across panel sizes (wild cluster bootstrap, BH FDR $\\alpha {=}0.05$). $K_{\\mathrm  {eff}}$ exhibits a clear shift ($4 \\to 7 \\to 8$); $\\kappa $-diversity significance decreases monotonically ($8 \\to 7 \\to 6$), showing no predictor shift.}}{21}{table.caption.43}\\protected@file@percent }\ndocs/paper/main.aux:1895:\\newlabel{tab:kappa_regime}{{16}{21}{Predictor shift comparison: $K_{\\mathrm {eff}}$ vs.\\ $\\kappa $-diversity across panel sizes (wild cluster bootstrap, BH FDR $\\alpha {=}0.05$). $K_{\\mathrm {eff}}$ exhibits a clear shift ($4 \\to 7 \\to 8$); $\\kappa $-diversity significance decreases monotonically ($8 \\to 7 \\to 6$), showing no predictor shift}{table.caption.43}{}}\ndocs/paper/main.aux:1896:[Omitted long matching line]\ndocs/paper/main.aux:1897:\\newlabel{tab:shannon_shift}{{17}{21}{Predictor shift comparison: Shannon MI entropy vs.\\ $K_{\\mathrm {eff}}$ (within-framework wild cluster bootstrap, $B{=}999$, Webb weights, BH FDR $\\alpha {=}0.05$). Shannon is flat then collapses ($4 \\to 4 \\to 0$); $K_{\\mathrm {eff}}$ rises before declining ($6 \\to 8 \\to 2$). Bootstrap parameters differ from the primary analysis ($B{=}9{,}999$, Rademacher); absolute counts are not comparable with Table~\\ref {tab:kappa_regime}}{table.caption.44}{}}\ndocs/paper/main.aux:1898:[Omitted long matching line]\ndocs/paper/main.aux:1899:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.aux-1900-\\@writefile{lot}{\\contentsline {table}{\\numberline {19}{\\ignorespaces Representative prompt templates for each attack type. Templates shown are appended to, prepended to, or used to wrap the ground-truth loser response. Position bias has no template text; it swaps response order.}}{22}{table.caption.55}\\protected@file@percent }\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-34-\\toprule\ndocs/paper/appendix.tex:35:& \\multicolumn{2}{c}{\\textbf{Bootstrap}} & \\multicolumn{2}{c}{\\textbf{Crossed RE (FDR)}} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-36-\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-43-\\end{tabular}\ndocs/paper/appendix.tex:44:\\caption{Crossed random effects vs.\\ wild cluster bootstrap significance (BH FDR $\\alpha{=}0.05$). Multi-membership CRVE with $t(14)$ distribution. At $K{\\geq}5$, $K_{\\mathrm{eff}}$ retains 8/12 significance under crossed RE, matching or exceeding bootstrap. At $K{=}3$, the conservative $t(14)$ distribution with only 455 panels produces attenuation to 0/12 (raw $p$-values: 5/12 significant).}\ndocs/paper/appendix.tex-45-\\label{tab:crossed_re}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-62-\\includegraphics[width=\\columnwidth]{figures/fig_dominance_heatmap.pdf}\ndocs/paper/appendix.tex:63:\\caption{Per-condition predictor dominance across panel sizes (wild cluster bootstrap, BH FDR $\\alpha{=}0.05$). At $K{=}3$, dominance is heterogeneous (co-dominant, $K_{\\mathrm{eff}}$-only, $\\eta_{\\max}$-only, and non-significant conditions coexist); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ dominates uniformly while $\\eta_{\\max}$ diminishes substantially.}\ndocs/paper/appendix.tex-64-\\label{fig:dominance_heatmap}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-119-\\end{tabular}\ndocs/paper/appendix.tex:120:\\caption{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha{=}0.05$). All four methods converge to $K_{\\mathrm{eff}}$ 7/12, unlike the differentiated pattern at $K{=}3$ (Table~\\ref{tab:aggregation}).}\ndocs/paper/appendix.tex-121-\\label{tab:aggregation_k5}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-141-\\end{tabular}\ndocs/paper/appendix.tex:142:\\caption{Aggregation method comparison at $K{=}7$ (6{,}435 panels, wild cluster bootstrap with 7-position max-$p$, BH FDR $\\alpha{=}0.05$). Unlike $K{=}5$ where all methods converge to 7/12, $K{=}7$ shows method divergence: threshold voting reaches 10/12 while Bayesian calibration returns to full $K_{\\mathrm{eff}}$ neutralization (0/12).}\ndocs/paper/appendix.tex-143-\\label{tab:aggregation_k7}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-182-\\end{tabular}\ndocs/paper/appendix.tex:183:[Omitted long matching line]\ndocs/paper/appendix.tex-184-\\label{tab:robustness_checks}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-293-\ndocs/paper/appendix.tex:294:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-295-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-398-\ndocs/paper/appendix.tex:399:We compare $K_{\\mathrm{eff}}$ against three classical ensemble diversity measures using the same OLS specification (Equation~\\ref{eq:regression}) with FDR correction across 12 conditions pooled over $K$ values.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-400-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-414-\\end{tabular}\ndocs/paper/appendix.tex:415:\\caption{Comparison of diversity measures as predictors of panel ASR (OLS, FDR-corrected, 12 conditions pooled across $K$). Sig: FDR-significant conditions. $|\\bar{\\beta}_{\\mathrm{std}}|$: mean absolute standardized coefficient. $\\rho$: Pearson correlation with $K_{\\mathrm{eff}}$.}\ndocs/paper/appendix.tex-416-\\label{tab:alt_diversity}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-439-\\end{tabular}\ndocs/paper/appendix.tex:440:\\caption{Predictor shift comparison: $K_{\\mathrm{eff}}$ vs.\\ $\\kappa$-diversity across panel sizes (wild cluster bootstrap, BH FDR $\\alpha{=}0.05$). $K_{\\mathrm{eff}}$ exhibits a clear shift ($4 \\to 7 \\to 8$); $\\kappa$-diversity significance decreases monotonically ($8 \\to 7 \\to 6$), showing no predictor shift.}\ndocs/paper/appendix.tex-441-\\label{tab:kappa_regime}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-462-\\end{tabular}\ndocs/paper/appendix.tex:463:\\caption{Predictor shift comparison: Shannon MI entropy vs.\\ $K_{\\mathrm{eff}}$ (within-framework wild cluster bootstrap, $B{=}999$, Webb weights, BH FDR $\\alpha{=}0.05$). Shannon is flat then collapses ($4 \\to 4 \\to 0$); $K_{\\mathrm{eff}}$ rises before declining ($6 \\to 8 \\to 2$). Bootstrap parameters differ from the primary analysis ($B{=}9{,}999$, Rademacher); absolute counts are not comparable with Table~\\ref{tab:kappa_regime}.}\ndocs/paper/appendix.tex-464-\\label{tab:shannon_shift}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-486-\\end{equation}\ndocs/paper/appendix.tex:487:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-488-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-507-\ndocs/paper/appendix.tex:508:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-509-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-512-\\small\ndocs/paper/appendix.tex:513:\\caption{Near-chance model sensitivity: FDR-significant $K_{\\mathrm{eff}}$ conditions out of 12 (2 benchmarks $\\times$ 6 attacks). $\\bar{\\beta}_{\\mathrm{std}}$: mean standardized $K_{\\mathrm{eff}}$ coefficient across conditions. The full-pool fractional logit count at $K{=}3$ (8/12) differs by $\\pm 1$ from Table~\\ref{tab:method_comparison} (9/12) due to clustering implementation details in the sensitivity script; this does not affect within-table comparisons.}\ndocs/paper/appendix.tex-514-\\label{tab:near_chance}",
+    "numLines": 216
+  },
+  "sourceToolAssistantUUID": "85f9062f-c469-46e0-93f9-9a971a9d7a9d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T14:29:00.000Z_
+
+<details><summary>↩ Tool result · `toolu_01AXkRZgQxRvtMfbpHp6ZLgz`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-61-\end{figure*}
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-62-
+docs/paper/results.tex:63:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-64-
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-65-
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d0d644f-6cca-4dd7-959e-17eed3d88b35",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "0c270bab-662e-42fd-97fb-46e56cb47e0c",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-61-\\end{figure*}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-62-\ndocs/paper/results.tex:63:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-64-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-65-",
+    "numLines": 5
+  },
+  "sourceToolAssistantUUID": "8d0d644f-6cca-4dd7-959e-17eed3d88b35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-25T14:29:00.980Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01JCvLmacTG9DgQHkQbVYyC7`</summary>
+
+```json
+{
+  "pattern": "Benjamini|BH correction|false discovery|FDR",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+  "output_mode": "content",
+  "context": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c270bab-662e-42fd-97fb-46e56cb47e0c",
+  "isSidechain": false,
+  "requestId": "req_011CbPSnpWjmkixoZvB4Mmiu",
+  "type": "assistant",
+  "uuid": "85f9062f-c469-46e0-93f9-9a971a9d7a9d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PvFmjCtJ7XNaVr2q4DRuPe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13917,
+      "cache_read_input_tokens": 25096,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 25096,
+          "cache_creation_input_tokens": 13917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "33abe3c1-7aa7-461b-ba61-9b97355ca1ef",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add 6-8 references to reach 60+ citations",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-25T14:29:04.324Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VyHScSSu2x2KfoBcmwFWJU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+  "offset": 58,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33abe3c1-7aa7-461b-ba61-9b97355ca1ef",
+  "isSidechain": false,
+  "requestId": "req_011CbPSoZEVtcD2RQ37xkK2r",
+  "type": "assistant",
+  "uuid": "5efed78b-08e2-40cc-954a-16e62bd6fdef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W8a43h6pRB4f3JzVwnJHi7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1503,
+      "cache_read_input_tokens": 39013,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 39013,
+          "cache_creation_input_tokens": 1503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-25T14:29:04.329Z_
+
+<details><summary>↩ Tool result · `toolu_01VyHScSSu2x2KfoBcmwFWJU`</summary>
+
+```text
+58	\caption{Per-condition standardized $\hat{\beta}$ with 95\% CI for $\eta_{\max}$ (left) and $K_{\mathrm{eff}}$ (right) at $K{=}3$ (wild cluster bootstrap).}
+59	\label{fig:forest_plot}
+60	\end{minipage}
+61	\end{figure*}
+62	
+63	Meta-analytic pooling (DerSimonian--Laird random effects across 12 conditions) quantifies the trajectories independent of significance thresholds. $\eta_{\max}$'s pooled $\hat{\beta}_{\mathrm{std}}$ declines monotonically: $0.264$ [$0.158, 0.369$] at $K{=}3$ ($I^2{=}91.3\%$), $0.102$ [$-0.055, 0.259$] at $K{=}5$ ($I^2{=}99.4\%$), $0.084$ [$-0.083, 0.251$] at $K{=}7$ ($I^2{=}99.8\%$); CI crosses zero at $K{\geq}5$. $K_{\mathrm{eff}}$'s pooled coefficient remains positive: $0.356$ [$0.267, 0.445$] ($I^2{=}87.7\%$), $0.436$ [$0.318, 0.553$] ($I^2{=}98.9\%$), $0.401$ [$0.298, 0.503$] ($I^2{=}99.4\%$); magnitudes are heterogeneous but direction is consistent. The high $I^2$ values indicate substantial between-condition heterogeneity; pooled estimates summarize the central trend but individual conditions vary widely. Figure~\ref{fig:regime_transition} shows significance counts and Figure~\ref{fig:forest_plot} displays per-condition effect sizes with confidence intervals (per-condition dominance in Figure~\ref{fig:dominance_heatmap}, Appendix~\ref{app:extended_analysis}). The $\eta_{\max}$ decline holds under both $K_{\mathrm{eff}}$ and $\kappa$-diversity specifications. Restricting to the four $K_{\mathrm{eff}}$-stable attacks ($\rho{\geq}0.91$; Appendix~\ref{app:attacked_keff}) confirms the signal does not depend on measurement-unstable conditions.
+64	
+65	
+66	\subsection{Random vs.\ Adaptive Fault Contrast}
+67	\label{sec:rf_contrast}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5efed78b-08e2-40cc-954a-16e62bd6fdef",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "76b77a50-9acb-4adb-87cf-8030ab0b9270",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+      "content": "\\caption{Per-condition standardized $\\hat{\\beta}$ with 95\\% CI for $\\eta_{\\max}$ (left) and $K_{\\mathrm{eff}}$ (right) at $K{=}3$ (wild cluster bootstrap).}\n\\label{fig:forest_plot}\n\\end{minipage}\n\\end{figure*}\n\nMeta-analytic pooling (DerSimonian--Laird random effects across 12 conditions) quantifies the trajectories independent of significance thresholds. $\\eta_{\\max}$'s pooled $\\hat{\\beta}_{\\mathrm{std}}$ declines monotonically: $0.264$ [$0.158, 0.369$] at $K{=}3$ ($I^2{=}91.3\\%$), $0.102$ [$-0.055, 0.259$] at $K{=}5$ ($I^2{=}99.4\\%$), $0.084$ [$-0.083, 0.251$] at $K{=}7$ ($I^2{=}99.8\\%$); CI crosses zero at $K{\\geq}5$. $K_{\\mathrm{eff}}$'s pooled coefficient remains positive: $0.356$ [$0.267, 0.445$] ($I^2{=}87.7\\%$), $0.436$ [$0.318, 0.553$] ($I^2{=}98.9\\%$), $0.401$ [$0.298, 0.503$] ($I^2{=}99.4\\%$); magnitudes are heterogeneous but direction is consistent. The high $I^2$ values indicate substantial between-condition heterogeneity; pooled estimates summarize the central trend but individual conditions vary widely. Figure~\\ref{fig:regime_transition} shows significance counts and Figure~\\ref{fig:forest_plot} displays per-condition effect sizes with confidence intervals (per-condition dominance in Figure~\\ref{fig:dominance_heatmap}, Appendix~\\ref{app:extended_analysis}). The $\\eta_{\\max}$ decline holds under both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity specifications. Restricting to the four $K_{\\mathrm{eff}}$-stable attacks ($\\rho{\\geq}0.91$; Appendix~\\ref{app:attacked_keff}) confirms the signal does not depend on measurement-unstable conditions.\n\n\n\\subsection{Random vs.\\ Adaptive Fault Contrast}\n\\label{sec:rf_contrast}",
+      "numLines": 10,
+      "startLine": 58,
+      "totalLines": 103
+    }
+  },
+  "sourceToolAssistantUUID": "5efed78b-08e2-40cc-954a-16e62bd6fdef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-25T14:29:05.751Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_015myTJjf2d88ama131NQz1T`</summary>
+
+```json
+{
+  "pattern": "Benjamini|BH|false discovery|FDR",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+  "output_mode": "content",
+  "context": 1,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76b77a50-9acb-4adb-87cf-8030ab0b9270",
+  "isSidechain": false,
+  "requestId": "req_011CbPSoZEVtcD2RQ37xkK2r",
+  "type": "assistant",
+  "uuid": "d6b6c795-fb80-43e1-a142-49bd56a2a296",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W8a43h6pRB4f3JzVwnJHi7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1503,
+      "cache_read_input_tokens": 39013,
+      "output_tokens": 276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1503,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 276,
+          "cache_read_input_tokens": 39013,
+          "cache_creation_input_tokens": 1503,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1503
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-25T14:29:05.764Z_
+
+<details><summary>↩ Tool result · `toolu_015myTJjf2d88ama131NQz1T`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-8-
+docs/paper/results.tex:9:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-10-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-33-\includegraphics[width=\columnwidth]{figures/fig1_robustness_comparison.pdf}
+docs/paper/results.tex:34:\caption{Significance counts (FDR $< 0.05$) for $\eta_{\max}$ and $K_{\mathrm{eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design.}
+docs/paper/results.tex-35-\label{fig:robustness}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-51-\includegraphics[width=\textwidth]{figures/fig_regime_transition.pdf}
+docs/paper/results.tex:52:\caption{Predictor shift across panel sizes. $\eta_{\max}$ significance (orange) declines from 3/12 to 2/12, while $K_{\mathrm{eff}}$ (blue) rises from 4/12 to 7/12. Shaded region: $K^* \in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\alpha{=}0.05$.}
+docs/paper/results.tex-53-\label{fig:regime_transition}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-93-\end{tabular}
+docs/paper/results.tex:94:\caption{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\ref{tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions.}
+docs/paper/results.tex-95-\label{tab:aggregation}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-35-\end{tabular}
+docs/paper/methodology.tex:36:\caption{Standardized regression coefficients for $\eta_{\max}$ and $K_{\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\ column: $\eta$ = $\eta_{\max}$ sole dominant, $K$ = $K_{\mathrm{eff}}$ sole dominant, Co = co-dominant \citep{budescu1993dominance}.}
+docs/paper/methodology.tex-37-\label{tab:dominance}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-55-\end{equation}
+docs/paper/methodology.tex:56:with $\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\epsilon$ is analyzed in Appendix~\ref{app:epsilon}). Standardized coefficients $\hat{\beta}_{\mathrm{std}} = \hat{\beta} \cdot \mathrm{SD}(\log x) / \mathrm{SD}(\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-57-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-34-\toprule
+docs/paper/appendix.tex:35:& \multicolumn{2}{c}{\textbf{Bootstrap}} & \multicolumn{2}{c}{\textbf{Crossed RE (FDR)}} \\
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-36-\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-43-\end{tabular}
+docs/paper/appendix.tex:44:\caption{Crossed random effects vs.\ wild cluster bootstrap significance (BH FDR $\alpha{=}0.05$). Multi-membership CRVE with $t(14)$ distribution. At $K{\geq}5$, $K_{\mathrm{eff}}$ retains 8/12 significance under crossed RE, matching or exceeding bootstrap. At $K{=}3$, the conservative $t(14)$ distribution with only 455 panels produces attenuation to 0/12 (raw $p$-values: 5/12 significant).}
+docs/paper/appendix.tex-45-\label{tab:crossed_re}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-62-\includegraphics[width=\columnwidth]{figures/fig_dominance_heatmap.pdf}
+docs/paper/appendix.tex:63:\caption{Per-condition predictor dominance across panel sizes (wild cluster bootstrap, BH FDR $\alpha{=}0.05$). At $K{=}3$, dominance is heterogeneous (co-dominant, $K_{\mathrm{eff}}$-only, $\eta_{\max}$-only, and non-significant conditions coexist); at $K{\geq}5$, $K_{\mathrm{eff}}$ dominates uniformly while $\eta_{\max}$ diminishes substantially.}
+docs/paper/appendix.tex-64-\label{fig:dominance_heatmap}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-119-\end{tabular}
+docs/paper/appendix.tex:120:\caption{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\alpha{=}0.05$). All four methods converge to $K_{\mathrm{eff}}$ 7/12, unlike the differentiated pattern at $K{=}3$ (Table~\ref{tab:aggregation}).}
+docs/paper/appendix.tex-121-\label{tab:aggregation_k5}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-141-\end{tabular}
+docs/paper/appendix.tex:142:\caption{Aggregation method comparison at $K{=}7$ (6{,}435 panels, wild cluster bootstrap with 7-position max-$p$, BH FDR $\alpha{=}0.05$). Unlike $K{=}5$ where all methods converge to 7/12, $K{=}7$ shows method divergence: threshold voting reaches 10/12 while Bayesian calibration returns to full $K_{\mathrm{eff}}$ neutralization (0/12).}
+docs/paper/appendix.tex-143-\label{tab:aggregation_k7}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-182-\end{tabular}
+docs/paper/appendix.tex:183:[Omitted long matching line]
+docs/paper/appendix.tex-184-\label{tab:robustness_checks}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-293-
+docs/paper/appendix.tex:294:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-295-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-398-
+docs/paper/appendix.tex:399:We compare $K_{\mathrm{eff}}$ against three classical ensemble diversity measures using the same OLS specification (Equation~\ref{eq:regression}) with FDR correction across 12 conditions pooled over $K$ values.
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-400-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-414-\end{tabular}
+docs/paper/appendix.tex:415:\caption{Comparison of diversity measures as predictors of panel ASR (OLS, FDR-corrected, 12 conditions pooled across $K$). Sig: FDR-significant conditions. $|\bar{\beta}_{\mathrm{std}}|$: mean absolute standardized coefficient. $\rho$: Pearson correlation with $K_{\mathrm{eff}}$.}
+docs/paper/appendix.tex-416-\label{tab:alt_diversity}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-439-\end{tabular}
+docs/paper/appendix.tex:440:\caption{Predictor shift comparison: $K_{\mathrm{eff}}$ vs.\ $\kappa$-diversity across panel sizes (wild cluster bootstrap, BH FDR $\alpha{=}0.05$). $K_{\mathrm{eff}}$ exhibits a clear shift ($4 \to 7 \to 8$); $\kappa$-diversity significance decreases monotonically ($8 \to 7 \to 6$), showing no predictor shift.}
+docs/paper/appendix.tex-441-\label{tab:kappa_regime}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-462-\end{tabular}
+docs/paper/appendix.tex:463:\caption{Predictor shift comparison: Shannon MI entropy vs.\ $K_{\mathrm{eff}}$ (within-framework wild cluster bootstrap, $B{=}999$, Webb weights, BH FDR $\alpha{=}0.05$). Shannon is flat then collapses ($4 \to 4 \to 0$); $K_{\mathrm{eff}}$ rises before declining ($6 \to 8 \to 2$). Bootstrap parameters differ from the primary analysis ($B{=}9{,}999$, Rademacher); absolute counts are not comparable with Table~\ref{tab:kappa_regime}.}
+docs/paper/appendix.tex-464-\label{tab:shannon_shift}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-486-\end{equation}
+docs/paper/appendix.tex:487:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-488-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-507-
+docs/paper/appendix.tex:508:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-509-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-512-\small
+docs/paper/appendix.tex:513:\caption{Near-chance model sensitivity: FDR-significant $K_{\mathrm{eff}}$ conditions out of 12 (2 benchmarks $\times$ 6 attacks). $\bar{\beta}_{\mathrm{std}}$: mean standardized $K_{\mathrm{eff}}$ coefficient across conditions. The full-pool fractional logit count at $K{=}3$ (8/12) differs by $\pm 1$ from Table~\ref{tab:method_comparison} (9/12) due to clustering implementation details in the sensitivity script; this does not affect within-table comparisons.}
+docs/paper/appendix.tex-514-\label{tab:near_chance}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6b6c795-fb80-43e1-a142-49bd56a2a296",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "f419ad80-e4c0-424c-bc32-2e93103c80f6",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-8-\ndocs/paper/results.tex:9:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-10-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-33-\\includegraphics[width=\\columnwidth]{figures/fig1_robustness_comparison.pdf}\ndocs/paper/results.tex:34:\\caption{Significance counts (FDR $< 0.05$) for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design.}\ndocs/paper/results.tex-35-\\label{fig:robustness}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-51-\\includegraphics[width=\\textwidth]{figures/fig_regime_transition.pdf}\ndocs/paper/results.tex:52:\\caption{Predictor shift across panel sizes. $\\eta_{\\max}$ significance (orange) declines from 3/12 to 2/12, while $K_{\\mathrm{eff}}$ (blue) rises from 4/12 to 7/12. Shaded region: $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\\alpha{=}0.05$.}\ndocs/paper/results.tex-53-\\label{fig:regime_transition}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-93-\\end{tabular}\ndocs/paper/results.tex:94:\\caption{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\\ref{tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions.}\ndocs/paper/results.tex-95-\\label{tab:aggregation}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-35-\\end{tabular}\ndocs/paper/methodology.tex:36:\\caption{Standardized regression coefficients for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\\ column: $\\eta$ = $\\eta_{\\max}$ sole dominant, $K$ = $K_{\\mathrm{eff}}$ sole dominant, Co = co-dominant \\citep{budescu1993dominance}.}\ndocs/paper/methodology.tex-37-\\label{tab:dominance}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-55-\\end{equation}\ndocs/paper/methodology.tex:56:with $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-57-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-34-\\toprule\ndocs/paper/appendix.tex:35:& \\multicolumn{2}{c}{\\textbf{Bootstrap}} & \\multicolumn{2}{c}{\\textbf{Crossed RE (FDR)}} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-36-\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-43-\\end{tabular}\ndocs/paper/appendix.tex:44:\\caption{Crossed random effects vs.\\ wild cluster bootstrap significance (BH FDR $\\alpha{=}0.05$). Multi-membership CRVE with $t(14)$ distribution. At $K{\\geq}5$, $K_{\\mathrm{eff}}$ retains 8/12 significance under crossed RE, matching or exceeding bootstrap. At $K{=}3$, the conservative $t(14)$ distribution with only 455 panels produces attenuation to 0/12 (raw $p$-values: 5/12 significant).}\ndocs/paper/appendix.tex-45-\\label{tab:crossed_re}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-62-\\includegraphics[width=\\columnwidth]{figures/fig_dominance_heatmap.pdf}\ndocs/paper/appendix.tex:63:\\caption{Per-condition predictor dominance across panel sizes (wild cluster bootstrap, BH FDR $\\alpha{=}0.05$). At $K{=}3$, dominance is heterogeneous (co-dominant, $K_{\\mathrm{eff}}$-only, $\\eta_{\\max}$-only, and non-significant conditions coexist); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ dominates uniformly while $\\eta_{\\max}$ diminishes substantially.}\ndocs/paper/appendix.tex-64-\\label{fig:dominance_heatmap}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-119-\\end{tabular}\ndocs/paper/appendix.tex:120:\\caption{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha{=}0.05$). All four methods converge to $K_{\\mathrm{eff}}$ 7/12, unlike the differentiated pattern at $K{=}3$ (Table~\\ref{tab:aggregation}).}\ndocs/paper/appendix.tex-121-\\label{tab:aggregation_k5}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-141-\\end{tabular}\ndocs/paper/appendix.tex:142:\\caption{Aggregation method comparison at $K{=}7$ (6{,}435 panels, wild cluster bootstrap with 7-position max-$p$, BH FDR $\\alpha{=}0.05$). Unlike $K{=}5$ where all methods converge to 7/12, $K{=}7$ shows method divergence: threshold voting reaches 10/12 while Bayesian calibration returns to full $K_{\\mathrm{eff}}$ neutralization (0/12).}\ndocs/paper/appendix.tex-143-\\label{tab:aggregation_k7}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-182-\\end{tabular}\ndocs/paper/appendix.tex:183:[Omitted long matching line]\ndocs/paper/appendix.tex-184-\\label{tab:robustness_checks}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-293-\ndocs/paper/appendix.tex:294:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-295-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-398-\ndocs/paper/appendix.tex:399:We compare $K_{\\mathrm{eff}}$ against three classical ensemble diversity measures using the same OLS specification (Equation~\\ref{eq:regression}) with FDR correction across 12 conditions pooled over $K$ values.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-400-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-414-\\end{tabular}\ndocs/paper/appendix.tex:415:\\caption{Comparison of diversity measures as predictors of panel ASR (OLS, FDR-corrected, 12 conditions pooled across $K$). Sig: FDR-significant conditions. $|\\bar{\\beta}_{\\mathrm{std}}|$: mean absolute standardized coefficient. $\\rho$: Pearson correlation with $K_{\\mathrm{eff}}$.}\ndocs/paper/appendix.tex-416-\\label{tab:alt_diversity}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-439-\\end{tabular}\ndocs/paper/appendix.tex:440:\\caption{Predictor shift comparison: $K_{\\mathrm{eff}}$ vs.\\ $\\kappa$-diversity across panel sizes (wild cluster bootstrap, BH FDR $\\alpha{=}0.05$). $K_{\\mathrm{eff}}$ exhibits a clear shift ($4 \\to 7 \\to 8$); $\\kappa$-diversity significance decreases monotonically ($8 \\to 7 \\to 6$), showing no predictor shift.}\ndocs/paper/appendix.tex-441-\\label{tab:kappa_regime}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-462-\\end{tabular}\ndocs/paper/appendix.tex:463:\\caption{Predictor shift comparison: Shannon MI entropy vs.\\ $K_{\\mathrm{eff}}$ (within-framework wild cluster bootstrap, $B{=}999$, Webb weights, BH FDR $\\alpha{=}0.05$). Shannon is flat then collapses ($4 \\to 4 \\to 0$); $K_{\\mathrm{eff}}$ rises before declining ($6 \\to 8 \\to 2$). Bootstrap parameters differ from the primary analysis ($B{=}9{,}999$, Rademacher); absolute counts are not comparable with Table~\\ref{tab:kappa_regime}.}\ndocs/paper/appendix.tex-464-\\label{tab:shannon_shift}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-486-\\end{equation}\ndocs/paper/appendix.tex:487:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-488-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-507-\ndocs/paper/appendix.tex:508:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-509-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-512-\\small\ndocs/paper/appendix.tex:513:\\caption{Near-chance model sensitivity: FDR-significant $K_{\\mathrm{eff}}$ conditions out of 12 (2 benchmarks $\\times$ 6 attacks). $\\bar{\\beta}_{\\mathrm{std}}$: mean standardized $K_{\\mathrm{eff}}$ coefficient across conditions. The full-pool fractional logit count at $K{=}3$ (8/12) differs by $\\pm 1$ from Table~\\ref{tab:method_comparison} (9/12) due to clustering implementation details in the sensitivity script; this does not affect within-table comparisons.}\ndocs/paper/appendix.tex-514-\\label{tab:near_chance}",
+    "numLines": 79
+  },
+  "sourceToolAssistantUUID": "d6b6c795-fb80-43e1-a142-49bd56a2a296",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-25T14:29:11.329Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me search for the references I need to add using WebSearch, then add them. Let me identify:
+
+1. The first mention of "Benjamini--Hochberg" in methodology.tex is at line 56 - it says "We apply Benjamini--Hochberg (BH) correction" but doesn't have a citation.
+2. "DerSimonian--Laird" in results.tex line 63 - no citation.
+
+Now let me search for the papers to verify their details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f419ad80-e4c0-424c-bc32-2e93103c80f6",
+  "isSidechain": false,
+  "requestId": "req_011CbPSouWtvoeYif1QkNYXE",
+  "type": "assistant",
+  "uuid": "0debef71-8655-427a-b788-5ba41fe8ebf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NeuPU9WfPohbnLAnQCnswe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4571,
+      "cache_read_input_tokens": 40516,
+      "output_tokens": 232,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 232,
+          "cache_read_input_tokens": 40516,
+          "cache_creation_input_tokens": 4571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-25T14:29:12.308Z_
+
+Now I'll search for the papers to verify details. Let me run multiple web searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0debef71-8655-427a-b788-5ba41fe8ebf3",
+  "isSidechain": false,
+  "requestId": "req_011CbPSouWtvoeYif1QkNYXE",
+  "type": "assistant",
+  "uuid": "025a076b-16af-4083-abba-6e39f5e64ee0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NeuPU9WfPohbnLAnQCnswe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4571,
+      "cache_read_input_tokens": 40516,
+      "output_tokens": 232,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 232,
+          "cache_read_input_tokens": 40516,
+          "cache_creation_input_tokens": 4571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-25T14:29:12.486Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MMb27uhcAQ2FnFTYPXZgaa`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "025a076b-16af-4083-abba-6e39f5e64ee0",
+  "isSidechain": false,
+  "requestId": "req_011CbPSouWtvoeYif1QkNYXE",
+  "type": "assistant",
+  "uuid": "07adfd12-15d2-45f5-acd8-fb06d7371d04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NeuPU9WfPohbnLAnQCnswe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4571,
+      "cache_read_input_tokens": 40516,
+      "output_tokens": 232,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 232,
+          "cache_read_input_tokens": 40516,
+          "cache_creation_input_tokens": 4571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-25T14:29:12.497Z_
+
+<details><summary>↩ Tool result · `toolu_01MMb27uhcAQ2FnFTYPXZgaa`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07adfd12-15d2-45f5-acd8-fb06d7371d04",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "bc7c48c5-5517-4d59-83b0-96efc3f745e6",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 51
+  },
+  "sourceToolAssistantUUID": "07adfd12-15d2-45f5-acd8-fb06d7371d04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-25T14:29:12.562Z_
+
+```json
+{
+  "parentUuid": "bc7c48c5-5517-4d59-83b0-96efc3f745e6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e733723f-b0c2-4b10-aafd-c9ae8c3bc05c",
+  "timestamp": "2026-05-25T14:29:12.562Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "e733723f-b0c2-4b10-aafd-c9ae8c3bc05c",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add 6-8 references to reach 60+ citations",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-25T14:29:14.927Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for all the papers I need to verify in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e733723f-b0c2-4b10-aafd-c9ae8c3bc05c",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "2006a758-6910-49bd-8472-c7ae72e9f974",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-25T14:29:15.405Z_
+
+Let me verify all candidate papers via WebSearch in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2006a758-6910-49bd-8472-c7ae72e9f974",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "0db197a5-2c2b-4fe5-80a7-1c9ab31b78e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-25T14:29:15.931Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011DWNU1ofbFQXfekEJtRfN5`</summary>
+
+```json
+{
+  "query": "DerSimonian Laird 1986 \"Meta-analysis in clinical trials\" Controlled Clinical Trials"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0db197a5-2c2b-4fe5-80a7-1c9ab31b78e5",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "e9f495a6-5313-4a28-8d20-8f4bc5d25436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-25T14:29:16.835Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S6f5PnE7FJo8bjsrMi7SaN`</summary>
+
+```json
+{
+  "query": "Benjamini Hochberg 1995 \"Controlling the false discovery rate\" Journal Royal Statistical Society"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9f495a6-5313-4a28-8d20-8f4bc5d25436",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "e0df2ec8-c7aa-4dcc-bd75-f35cc82de972",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-25T14:29:17.734Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SAVWQL2jXXT7JiHjdpfBAm`</summary>
+
+```json
+{
+  "query": "Bavaresco et al 2024 \"LLMs instead of Human Judges\" EMNLP 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0df2ec8-c7aa-4dcc-bd75-f35cc82de972",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "23cecce9-3a5f-47f7-b99f-96c88e66600d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-25T14:29:18.277Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P1fwEr9oJWyASuMwfB3dMA`</summary>
+
+```json
+{
+  "query": "Shankar et al 2024 \"Who Validates the Validators\" arXiv 2405"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23cecce9-3a5f-47f7-b99f-96c88e66600d",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "882a3d6f-a16c-4db0-bcad-fac10b00d337",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-25T14:29:19.318Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019x6bMCT48xKh1asWJkEiyo`</summary>
+
+```json
+{
+  "query": "Zou et al 2023 \"Universal and Transferable Adversarial Attacks on Aligned Language Models\" GCG"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "882a3d6f-a16c-4db0-bcad-fac10b00d337",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "c850997b-2f93-4090-b664-9298a8a4c3d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-25T14:29:20.309Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MKge6cZhgWMRFvNayLgzpn`</summary>
+
+```json
+{
+  "query": "Wallace et al 2019 \"Universal Adversarial Triggers for Attacking and Analyzing NLP\" EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c850997b-2f93-4090-b664-9298a8a4c3d5",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "e6e20c2f-67ea-4166-af02-971ab5ebb7a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-25T14:29:20.781Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Rpn88oyLHefsbs4yummrY7`</summary>
+
+```json
+{
+  "query": "Hong Page 2004 \"Groups of diverse problem solvers can outperform\" Management Science"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6e20c2f-67ea-4166-af02-971ab5ebb7a6",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "22f942a0-ae2b-4f40-ae5f-623fafe39a23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-25T14:29:21.885Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FaZ7S99sHNpQP3MHsyXvwN`</summary>
+
+```json
+{
+  "query": "Ye et al 2024 \"Justice or Prejudice Quantifying Biases in LLM-as-a-Judge\" arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22f942a0-ae2b-4f40-ae5f-623fafe39a23",
+  "isSidechain": false,
+  "requestId": "req_011CbPSpQGXXpaZ7CnDZk2KU",
+  "type": "assistant",
+  "uuid": "449ffa70-c497-45a8-821e-ce5594331141",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018yErDGdPoYrzACbYhkPcd1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 45087,
+      "output_tokens": 542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 542,
+          "cache_read_input_tokens": 45087,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-25T14:29:25.385Z_
+
+<details><summary>↩ Tool result · `toolu_011DWNU1ofbFQXfekEJtRfN5`</summary>
+
+```text
+Web search results for query: "DerSimonian Laird 1986 "Meta-analysis in clinical trials" Controlled Clinical Trials"
+
+Links: [{"title":"DerSimonian, R. and Laird, N. (1986) Meta-Analysis in Clinical Trials. Controlled Clinical Trials, 7, 177-188. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=1145223"},{"title":"DerSimonian, R. and Laird, N. (1986) Meta-Analysis in Clinical Trials. Control Clinical Trials, 7, 177-188. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=1971055"},{"title":"Der Simonian, R. and Laird, N. (1986) Meta-Analysis in Clinical Trials. Controlled Clinical Trials, 7, 177-188. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=1643354"},{"title":"DerSimonian R, Laird N. Meta-analysis in clinical trials. Control Clin Trials. 1986 Sep; 7(3): 177–88.","url":"https://www.sciepub.com/reference/456500"},{"title":"Meta-analysis in clinical trials - PubMed - NIH","url":"https://pubmed.ncbi.nlm.nih.gov/3802833/"},{"title":"DerSimonian R, Laird. N. Meta-analysis in clinical trials. 1986. ControlClin Trials 7: 177-188.","url":"https://www.sciepub.com/reference/167149"},{"title":"[PDF] Meta-analysis in clinical trials. | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Meta-analysis-in-clinical-trials.-Dersimonian-Dersimonian/2098391def9f8db6d400497b9ba397d526d227c3"},{"title":"Cannons and sparrows II: the enhanced Bernoulli exact method for determining statistical significance and effect size in the meta-analysis of k 2 × 2 tables","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8336385/"},{"title":"Meta-analysis in clinical trials - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/0197245686900462"},{"title":"Investigation of the Simplify® Cervical Artificial Disc","url":"https://cdn.clinicaltrials.gov/large-docs/67/NCT02667067/Prot_SAP_000.pdf"}]
+
+I found the paper you're looking for. Here are the search results:
+
+The DerSimonian and Laird 1986 paper "Meta-Analysis in Clinical Trials" was published in Controlled Clinical Trials, volume 7, pages 177-188.
+
+The paper examines eight published reviews each reporting results from several related trials, pooling results to evaluate treatment efficacy for specified medical conditions, and addresses the lack of consistent assessment of homogeneity of treatment effect before pooling. It discusses a random effects approach to combining evidence from experiments comparing two treatments, incorporating heterogeneity of effects in the analysis of overall treatment efficacy.
+
+The paper was published in September 1986 (volume 7, issue 3), and the DerSimonian and Laird technique has become the most popular technique for meta-analyses when homogeneity cannot be assumed.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9f495a6-5313-4a28-8d20-8f4bc5d25436",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "d769324d-fd65-4e52-ae1e-97a7f4e3edc3",
+  "toolUseResult": {
+    "query": "DerSimonian Laird 1986 \"Meta-analysis in clinical trials\" Controlled Clinical Trials",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0124xVK6zaT6Q7eovwpBeDvL",
+        "content": [
+          {
+            "title": "DerSimonian, R. and Laird, N. (1986) Meta-Analysis in Clinical Trials. Controlled Clinical Trials, 7, 177-188. - References - Scientific Research Publishing",
+            "url": "https://www.scirp.org/reference/referencespapers?referenceid=1145223"
+          },
+          {
+            "title": "DerSimonian, R. and Laird, N. (1986) Meta-Analysis in Clinical Trials. Control Clinical Trials, 7, 177-188. - References - Scientific Research Publishing",
+            "url": "https://www.scirp.org/reference/referencespapers?referenceid=1971055"
+          },
+          {
+            "title": "Der Simonian, R. and Laird, N. (1986) Meta-Analysis in Clinical Trials. Controlled Clinical Trials, 7, 177-188. - References - Scientific Research Publishing",
+            "url": "https://www.scirp.org/reference/referencespapers?referenceid=1643354"
+          },
+          {
+            "title": "DerSimonian R, Laird N. Meta-analysis in clinical trials. Control Clin Trials. 1986 Sep; 7(3): 177–88.",
+            "url": "https://www.sciepub.com/reference/456500"
+          },
+          {
+            "title": "Meta-analysis in clinical trials - PubMed - NIH",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/3802833/"
+          },
+          {
+            "title": "DerSimonian R, Laird. N. Meta-analysis in clinical trials. 1986. ControlClin Trials 7: 177-188.",
+            "url": "https://www.sciepub.com/reference/167149"
+          },
+          {
+            "title": "[PDF] Meta-analysis in clinical trials. | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Meta-analysis-in-clinical-trials.-Dersimonian-Dersimonian/2098391def9f8db6d400497b9ba397d526d227c3"
+          },
+          {
+            "title": "Cannons and sparrows II: the enhanced Bernoulli exact method for determining statistical significance and effect size in the meta-analysis of k 2 × 2 tables",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8336385/"
+          },
+          {
+            "title": "Meta-analysis in clinical trials - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/0197245686900462"
+          },
+          {
+            "title": "Investigation of the Simplify® Cervical Artificial Disc",
+            "url": "https://cdn.clinicaltrials.gov/large-docs/67/NCT02667067/Prot_SAP_000.pdf"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here are the search results:\n\nThe DerSimonian and Laird 1986 paper \"Meta-Analysis in Clinical Trials\" was published in Controlled Clinical Trials, volume 7, pages 177-188.\n\nThe paper examines eight published reviews each reporting results from several related trials, pooling results to evaluate treatment efficacy for specified medical conditions, and addresses the lack of consistent assessment of homogeneity of treatment effect before pooling. It discusses a random effects approach to combining evidence from experiments comparing two treatments, incorporating heterogeneity of effects in the analysis of overall treatment efficacy.\n\nThe paper was published in September 1986 (volume 7, issue 3), and the DerSimonian and Laird technique has become the most popular technique for meta-analyses when homogeneity cannot be assumed."
+    ],
+    "durationSeconds": 9.449614631999998
+  },
+  "sourceToolAssistantUUID": "e9f495a6-5313-4a28-8d20-8f4bc5d25436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-25T14:29:27.052Z_
+
+<details><summary>↩ Tool result · `toolu_01SAVWQL2jXXT7JiHjdpfBAm`</summary>
+
+```text
+Web search results for query: "Bavaresco et al 2024 "LLMs instead of Human Judges" EMNLP 2024"
+
+Links: [{"title":"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks | Request PDF","url":"https://www.researchgate.net/publication/394270204_LLMs_instead_of_Human_Judges_A_Large_Scale_Empirical_Study_across_20_NLP_Evaluation_Tasks"},{"title":"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - University of Edinburgh Research Explorer","url":"https://www.research.ed.ac.uk/en/publications/llms-instead-of-human-judges-a-large-scale-empirical-study-across/"},{"title":"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - ACL Anthology","url":"https://aclanthology.org/2025.acl-short.20/"},{"title":"[2406.18403] LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks","url":"https://arxiv.org/abs/2406.18403"},{"title":"(PDF) LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks","url":"https://www.researchgate.net/publication/381737347_LLMs_instead_of_Human_Judges_A_Large_Scale_Empirical_Study_across_20_NLP_Evaluation_Tasks"},{"title":"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks","url":"https://arxiv.org/pdf/2406.18403"},{"title":"Humans or LLMs as the Judge? A Study on Judgement Bias | Request PDF","url":"https://www.researchgate.net/publication/386187780_Humans_or_LLMs_as_the_Judge_A_Study_on_Judgement_Bias"}]
+
+I found information about the Bavaresco et al. 2024 paper. Here are the key details:
+
+## Paper Information
+
+The paper is titled "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks". 
+
+**Important note about the venue:** The paper appears in the Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), Vienna, Austria in 2025, not EMNLP 2024. The paper was initially published on arXiv in June 2024, but the published version is ACL 2025.
+
+## Key Research
+
+The study provides JUDGE-BENCH, an extensible collection of 20 NLP datasets with human annotations covering a broad range of evaluated properties and types of data, and comprehensively evaluates 11 current LLMs, covering both open-weight and proprietary models, for their ability to replicate the annotations.
+
+## Main Findings
+
+The models are reliable evaluators on some tasks, but overall display substantial variability depending on the property being evaluated, the expertise level of the human judges, and whether the language is human or model-generated. The authors conclude that LLMs should be carefully validated against human judgments before being used as evaluators.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23cecce9-3a5f-47f7-b99f-96c88e66600d",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "cc5ab3ff-a5ce-43f0-8f1b-23a38bb6bab0",
+  "toolUseResult": {
+    "query": "Bavaresco et al 2024 \"LLMs instead of Human Judges\" EMNLP 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JiCV44K5dEUfxzLqH7GgkR",
+        "content": [
+          {
+            "title": "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks | Request PDF",
+            "url": "https://www.researchgate.net/publication/394270204_LLMs_instead_of_Human_Judges_A_Large_Scale_Empirical_Study_across_20_NLP_Evaluation_Tasks"
+          },
+          {
+            "title": "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - University of Edinburgh Research Explorer",
+            "url": "https://www.research.ed.ac.uk/en/publications/llms-instead-of-human-judges-a-large-scale-empirical-study-across/"
+          },
+          {
+            "title": "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-short.20/"
+          },
+          {
+            "title": "[2406.18403] LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks",
+            "url": "https://arxiv.org/abs/2406.18403"
+          },
+          {
+            "title": "(PDF) LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks",
+            "url": "https://www.researchgate.net/publication/381737347_LLMs_instead_of_Human_Judges_A_Large_Scale_Empirical_Study_across_20_NLP_Evaluation_Tasks"
+          },
+          {
+            "title": "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks",
+            "url": "https://arxiv.org/pdf/2406.18403"
+          },
+          {
+            "title": "Humans or LLMs as the Judge? A Study on Judgement Bias | Request PDF",
+            "url": "https://www.researchgate.net/publication/386187780_Humans_or_LLMs_as_the_Judge_A_Study_on_Judgement_Bias"
+          }
+        ]
+      },
+      "I found information about the Bavaresco et al. 2024 paper. Here are the key details:\n\n## Paper Information\n\nThe paper is titled \"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks\". \n\n**Important note about the venue:** The paper appears in the Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), Vienna, Austria in 2025, not EMNLP 2024. The paper was initially published on arXiv in June 2024, but the published version is ACL 2025.\n\n## Key Research\n\nThe study provides JUDGE-BENCH, an extensible collection of 20 NLP datasets with human annotations covering a broad range of evaluated properties and types of data, and comprehensively evaluates 11 current LLMs, covering both open-weight and proprietary models, for their ability to replicate the annotations.\n\n## Main Findings\n\nThe models are reliable evaluators on some tasks, but overall display substantial variability depending on the property being evaluated, the expertise level of the human judges, and whether the language is human or model-generated. The authors conclude that LLMs should be carefully validated against human judgments before being used as evaluators."
+    ],
+    "durationSeconds": 9.315254319
+  },
+  "sourceToolAssistantUUID": "23cecce9-3a5f-47f7-b99f-96c88e66600d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-25T14:29:27.418Z_
+
+<details><summary>↩ Tool result · `toolu_01Rpn88oyLHefsbs4yummrY7`</summary>
+
+```text
+Web search results for query: "Hong Page 2004 "Groups of diverse problem solvers can outperform" Management Science"
+
+Links: [{"title":"[PDF] Groups of diverse problem solvers can outperform groups of high-ability problem solvers. | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Groups-of-diverse-problem-solvers-can-outperform-of-Hong-Page/9878590a5da2b46ff642125f0f253549498f4f21"},{"title":"Groups of diverse problem solvers can outperform groups of high-ability problem solvers","url":"https://bibbase.org/network/publication/hong-page-groupsofdiverseproblemsolverscanoutperformgroupsofhighabilityproblemsolvers-2004"},{"title":"Groups of diverse problem solvers can outperform groups of high-ability problem solvers","url":"https://www.mendeley.com/catalogue/8432b16a-01e2-3458-a22c-27a44db5d9df/"},{"title":"Groups of diverse problem solvers can outperform ...","url":"https://sites.lsa.umich.edu/scottepage/wp-content/uploads/sites/344/2015/11/pnas.pdf"},{"title":"The diversity–ability trade-off in scientific problem solving","url":"https://philarchive.org/archive/REITDT"},{"title":"Groups of Diverse Problem Solvers Can Outperform Groups of High-Ability Problem Solvers by Lu Hong, Scott E. Page :: SSRN","url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=666281"},{"title":"Groups of diverse problem solvers can outperform groups of high-ability problem solvers - ADS","url":"https://ui.adsabs.harvard.edu/abs/2004PNAS..10116385H/abstract"},{"title":"Groups of diverse problem solvers can outperform groups of high-ability problem solvers | PNAS","url":"https://www.pnas.org/doi/10.1073/pnas.0403723101"},{"title":"Groups of Diverse Problem Solvers Can Outperform Groups of High-Ability Problem Solvers","url":"https://www.researchgate.net/publication/8187135_Groups_of_Diverse_Problem_Solvers_Can_Outperform_Groups_of_High-Ability_Problem_Solvers"},{"title":"Groups of diverse problem solvers can outperform groups of high-ability problem solvers - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/15534225/"}]
+
+Based on the search results, I found relevant information about this paper. Here's what I discovered:
+
+**Note about the publication venue:** The paper by Hong and Page with the title "Groups of diverse problem solvers can outperform groups of high-ability problem solvers" was published in Proceedings of the National Academy of Sciences in November 2004, not in Management Science as mentioned in your query.
+
+**Main findings:** The paper found that when selecting a problem-solving team from a diverse population of intelligent agents, a team of randomly selected agents outperforms a team comprised of the best-performing agents.
+
+**Methodology:** The authors introduced a general framework for modeling functionally diverse problem-solving agents, in which problem-solving agents possess representations of problems and algorithms that they use to locate solutions.
+
+**Key insight:** The result relies on the intuition that, as the initial pool of problem solvers becomes large, the best-performing agents necessarily become similar in the space of problem solvers, and their relatively greater ability is more than offset by their lack of problem-solving diversity.
+
+The paper is widely cited and has become influential in research on cognitive diversity and collective problem-solving.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "22f942a0-ae2b-4f40-ae5f-623fafe39a23",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "bb6619ad-9952-41c7-811b-3b7867c77f1d",
+  "toolUseResult": {
+    "query": "Hong Page 2004 \"Groups of diverse problem solvers can outperform\" Management Science",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HixBZ37Bh2qwi9UDkm1oA7",
+        "content": [
+          {
+            "title": "[PDF] Groups of diverse problem solvers can outperform groups of high-ability problem solvers. | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Groups-of-diverse-problem-solvers-can-outperform-of-Hong-Page/9878590a5da2b46ff642125f0f253549498f4f21"
+          },
+          {
+            "title": "Groups of diverse problem solvers can outperform groups of high-ability problem solvers",
+            "url": "https://bibbase.org/network/publication/hong-page-groupsofdiverseproblemsolverscanoutperformgroupsofhighabilityproblemsolvers-2004"
+          },
+          {
+            "title": "Groups of diverse problem solvers can outperform groups of high-ability problem solvers",
+            "url": "https://www.mendeley.com/catalogue/8432b16a-01e2-3458-a22c-27a44db5d9df/"
+          },
+          {
+            "title": "Groups of diverse problem solvers can outperform ...",
+            "url": "https://sites.lsa.umich.edu/scottepage/wp-content/uploads/sites/344/2015/11/pnas.pdf"
+          },
+          {
+            "title": "The diversity–ability trade-off in scientific problem solving",
+            "url": "https://philarchive.org/archive/REITDT"
+          },
+          {
+            "title": "Groups of Diverse Problem Solvers Can Outperform Groups of High-Ability Problem Solvers by Lu Hong, Scott E. Page :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=666281"
+          },
+          {
+            "title": "Groups of diverse problem solvers can outperform groups of high-ability problem solvers - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2004PNAS..10116385H/abstract"
+          },
+          {
+            "title": "Groups of diverse problem solvers can outperform groups of high-ability problem solvers | PNAS",
+            "url": "https://www.pnas.org/doi/10.1073/pnas.0403723101"
+          },
+          {
+            "title": "Groups of Diverse Problem Solvers Can Outperform Groups of High-Ability Problem Solvers",
+            "url": "https://www.researchgate.net/publication/8187135_Groups_of_Diverse_Problem_Solvers_Can_Outperform_Groups_of_High-Ability_Problem_Solvers"
+          },
+          {
+            "title": "Groups of diverse problem solvers can outperform groups of high-ability problem solvers - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/15534225/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about this paper. Here's what I discovered:\n\n**Note about the publication venue:** The paper by Hong and Page with the title \"Groups of diverse problem solvers can outperform groups of high-ability problem solvers\" was published in Proceedings of the National Academy of Sciences in November 2004, not in Management Science as mentioned in your query.\n\n**Main findings:** The paper found that when selecting a problem-solving team from a diverse population of intelligent agents, a team of randomly selected agents outperforms a team comprised of the best-performing agents.\n\n**Methodology:** The authors introduced a general framework for modeling functionally diverse problem-solving agents, in which problem-solving agents possess representations of problems and algorithms that they use to locate solutions.\n\n**Key insight:** The result relies on the intuition that, as the initial pool of problem solvers becomes large, the best-performing agents necessarily become similar in the space of problem solvers, and their relatively greater ability is more than offset by their lack of problem-solving diversity.\n\nThe paper is widely cited and has become influential in research on cognitive diversity and collective problem-solving."
+    ],
+    "durationSeconds": 6.634763209000004
+  },
+  "sourceToolAssistantUUID": "22f942a0-ae2b-4f40-ae5f-623fafe39a23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "bb6619ad-9952-41c7-811b-3b7867c77f1d",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add 6-8 references to reach 60+ citations",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-25T14:29:28.596Z_
+
+<details><summary>↩ Tool result · `toolu_01FaZ7S99sHNpQP3MHsyXvwN`</summary>
+
+```text
+Web search results for query: "Ye et al 2024 "Justice or Prejudice Quantifying Biases in LLM-as-a-Judge" arXiv"
+
+Links: [{"title":"Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge","url":"https://llm-judge-bias.github.io/"},{"title":"[2410.02736] Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge","url":"https://arxiv.org/abs/2410.02736"},{"title":"[2410.02736v1] Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge","url":"https://arxiv.org/abs/2410.02736v1"},{"title":"[2410.02736v2] Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge","url":"https://arxiv.org/abs/2410.02736v2"},{"title":"(PDF) Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge","url":"https://www.researchgate.net/publication/384630680_Justice_or_Prejudice_Quantifying_Biases_in_LLM-as-a-Judge"},{"title":"GitHub - DataArcTech/LLM-as-a-Judge · GitHub","url":"https://github.com/DataArcTech/LLM-as-a-Judge"},{"title":"Evaluating Scoring Bias in LLM-as-a-Judge","url":"https://arxiv.org/html/2506.22316v1"},{"title":"Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge","url":"https://arxiv.org/pdf/2410.02736"}]
+
+I found the paper! Here are the search results for the paper:
+
+**Title:** Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge
+
+**Authors:** Jiayi Ye, Yanbo Wang, Yue Huang, Dongping Chen, Qihui Zhang, Nuno Moniz, Tian Gao, Werner Geyer, Chao Huang, Pin-Yu Chen, Nitesh V Chawla, and Xiangliang Zhang
+
+**Publication:** arXiv preprint arXiv:2410.02736, year 2024
+
+**Paper Overview:**
+The paper addresses how LLM-as-a-Judge has been widely utilized as an evaluation method in various benchmarks and served as supervised rewards in model training. The empirical results suggest that there remains room for improvement in the reliability of LLM-as-a-Judge, and the authors discuss the explicit and implicit influence of these biases and give suggestions for the reliable application of LLM-as-a-Judge.
+
+**Available Resources:**
+- **arXiv Abstract:** https://arxiv.org/abs/2410.02736
+- **Project Website:** https://llm-judge-bias.github.io/
+- **PDF:** https://arxiv.org/pdf/2410.02736
+- **GitHub Repository:** https://github.com/DataArcTech/LLM-as-a-Judge
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "449ffa70-c497-45a8-821e-ce5594331141",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "39605ea2-19a4-4565-9c79-9ee6277b31e6",
+  "toolUseResult": {
+    "query": "Ye et al 2024 \"Justice or Prejudice Quantifying Biases in LLM-as-a-Judge\" arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NM7TptQua2o5cz73BKe4uG",
+        "content": [
+          {
+            "title": "Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
+            "url": "https://llm-judge-bias.github.io/"
+          },
+          {
+            "title": "[2410.02736] Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
+            "url": "https://arxiv.org/abs/2410.02736"
+          },
+          {
+            "title": "[2410.02736v1] Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
+            "url": "https://arxiv.org/abs/2410.02736v1"
+          },
+          {
+            "title": "[2410.02736v2] Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
+            "url": "https://arxiv.org/abs/2410.02736v2"
+          },
+          {
+            "title": "(PDF) Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
+            "url": "https://www.researchgate.net/publication/384630680_Justice_or_Prejudice_Quantifying_Biases_in_LLM-as-a-Judge"
+          },
+          {
+            "title": "GitHub - DataArcTech/LLM-as-a-Judge · GitHub",
+            "url": "https://github.com/DataArcTech/LLM-as-a-Judge"
+          },
+          {
+            "title": "Evaluating Scoring Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/html/2506.22316v1"
+          },
+          {
+            "title": "Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2410.02736"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for the paper:\n\n**Title:** Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge\n\n**Authors:** Jiayi Ye, Yanbo Wang, Yue Huang, Dongping Chen, Qihui Zhang, Nuno Moniz, Tian Gao, Werner Geyer, Chao Huang, Pin-Yu Chen, Nitesh V Chawla, and Xiangliang Zhang\n\n**Publication:** arXiv preprint arXiv:2410.02736, year 2024\n\n**Paper Overview:**\nThe paper addresses how LLM-as-a-Judge has been widely utilized as an evaluation method in various benchmarks and served as supervised rewards in model training. The empirical results suggest that there remains room for improvement in the reliability of LLM-as-a-Judge, and the authors discuss the explicit and implicit influence of these biases and give suggestions for the reliable application of LLM-as-a-Judge.\n\n**Available Resources:**\n- **arXiv Abstract:** https://arxiv.org/abs/2410.02736\n- **Project Website:** https://llm-judge-bias.github.io/\n- **PDF:** https://arxiv.org/pdf/2410.02736\n- **GitHub Repository:** https://github.com/DataArcTech/LLM-as-a-Judge"
+    ],
+    "durationSeconds": 6.708120043000003
+  },
+  "sourceToolAssistantUUID": "449ffa70-c497-45a8-821e-ce5594331141",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-25T14:29:29.668Z_
+
+<details><summary>↩ Tool result · `toolu_019x6bMCT48xKh1asWJkEiyo`</summary>
+
+```text
+Web search results for query: "Zou et al 2023 "Universal and Transferable Adversarial Attacks on Aligned Language Models" GCG"
+
+Links: [{"title":"Greedy Coordinate Gradient Strategy - GCG","url":"https://www.promptfoo.dev/docs/red-team/strategies/gcg/"},{"title":"GitHub - llm-attacks/llm-attacks: Universal and Transferable Attacks on Aligned Language Models · GitHub","url":"https://github.com/llm-attacks/llm-attacks"},{"title":"[2307.15043] Universal and Transferable Adversarial Attacks on Aligned Language Models","url":"https://arxiv.org/abs/2307.15043"},{"title":"Adversarial Attacks on Aligned Language Models | Gray Swan Research","url":"https://www.grayswan.ai/research/adversarial-attacks-on-aligned-language-models"},{"title":"Universal and Transferable Adversarial Attack on Large Language Models Using Exponentiated Gradient Descent","url":"https://arxiv.org/html/2508.14853v1"},{"title":"[PDF] Universal and Transferable Adversarial Attacks on Aligned Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Universal-and-Transferable-Adversarial-Attacks-on-Zou-Wang/47030369e97cc44d4b2e3cf1be85da0fd134904a"},{"title":"GitHub - OSU-NLP-Group/AmpleGCG: AmpleGCG: Learning a Universal and Transferable Generator of Adversarial Attacks on Both Open and Closed LLM · GitHub","url":"https://github.com/OSU-NLP-Group/AmpleGCG"},{"title":"AmpleGCG: Learning a Universal and Transferable Generative Model of   Adversarial Suffixes for Jailbreaking Both Open and Closed LLMs","url":"https://arxiv.org/pdf/2404.07921"},{"title":"Universal and Transferable Adversarial Attacks on Aligned Language Models","url":"https://llm-attacks.org/zou2023universal.pdf"}]
+
+Based on the search results, here's information about the Zou et al. 2023 paper:
+
+## Paper Overview
+
+This is the official research by Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr, J. Zico Kolter, and Matt Fredrikson on universal and transferable adversarial attacks on aligned language models.
+
+## The GCG Attack Method
+
+The paper demonstrated the first automated adversarial attack method designed to circumvent the safeguards of aligned LLMs, including black-box models, using an approach called the Greedy Coordinate Gradient (GCG) approach. The GCG method introduces a greedy coordinate gradient-based search technique, which replaces one token at a time in the adversarial suffix.
+
+## Key Findings
+
+The researchers trained an adversarial attack suffix on multiple prompts and multiple models, and the resulting attack suffix was able to induce objectionable content in the public interfaces to ChatGPT, Bard, and Claude, as well as open source LLMs such as LLaMA-2-Chat, Pythia, and Falcon.
+
+## Implementation
+
+The official repository for the research is available, and a fast and easy-to-use implementation called nanogcg was released in 2024 and can be installed via pip.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c850997b-2f93-4090-b664-9298a8a4c3d5",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "2615527c-58d0-4d44-8427-0bcd47bb681c",
+  "toolUseResult": {
+    "query": "Zou et al 2023 \"Universal and Transferable Adversarial Attacks on Aligned Language Models\" GCG",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015VZtrVbfjnhRoBXxEAAjHD",
+        "content": [
+          {
+            "title": "Greedy Coordinate Gradient Strategy - GCG",
+            "url": "https://www.promptfoo.dev/docs/red-team/strategies/gcg/"
+          },
+          {
+            "title": "GitHub - llm-attacks/llm-attacks: Universal and Transferable Attacks on Aligned Language Models · GitHub",
+            "url": "https://github.com/llm-attacks/llm-attacks"
+          },
+          {
+            "title": "[2307.15043] Universal and Transferable Adversarial Attacks on Aligned Language Models",
+            "url": "https://arxiv.org/abs/2307.15043"
+          },
+          {
+            "title": "Adversarial Attacks on Aligned Language Models | Gray Swan Research",
+            "url": "https://www.grayswan.ai/research/adversarial-attacks-on-aligned-language-models"
+          },
+          {
+            "title": "Universal and Transferable Adversarial Attack on Large Language Models Using Exponentiated Gradient Descent",
+            "url": "https://arxiv.org/html/2508.14853v1"
+          },
+          {
+            "title": "[PDF] Universal and Transferable Adversarial Attacks on Aligned Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Universal-and-Transferable-Adversarial-Attacks-on-Zou-Wang/47030369e97cc44d4b2e3cf1be85da0fd134904a"
+          },
+          {
+            "title": "GitHub - OSU-NLP-Group/AmpleGCG: AmpleGCG: Learning a Universal and Transferable Generator of Adversarial Attacks on Both Open and Closed LLM · GitHub",
+            "url": "https://github.com/OSU-NLP-Group/AmpleGCG"
+          },
+          {
+            "title": "AmpleGCG: Learning a Universal and Transferable Generative Model of   Adversarial Suffixes for Jailbreaking Both Open and Closed LLMs",
+            "url": "https://arxiv.org/pdf/2404.07921"
+          },
+          {
+            "title": "Universal and Transferable Adversarial Attacks on Aligned Language Models",
+            "url": "https://llm-attacks.org/zou2023universal.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the Zou et al. 2023 paper:\n\n## Paper Overview\n\nThis is the official research by Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr, J. Zico Kolter, and Matt Fredrikson on universal and transferable adversarial attacks on aligned language models.\n\n## The GCG Attack Method\n\nThe paper demonstrated the first automated adversarial attack method designed to circumvent the safeguards of aligned LLMs, including black-box models, using an approach called the Greedy Coordinate Gradient (GCG) approach. The GCG method introduces a greedy coordinate gradient-based search technique, which replaces one token at a time in the adversarial suffix.\n\n## Key Findings\n\nThe researchers trained an adversarial attack suffix on multiple prompts and multiple models, and the resulting attack suffix was able to induce objectionable content in the public interfaces to ChatGPT, Bard, and Claude, as well as open source LLMs such as LLaMA-2-Chat, Pythia, and Falcon.\n\n## Implementation\n\nThe official repository for the research is available, and a fast and easy-to-use implementation called nanogcg was released in 2024 and can be installed via pip."
+    ],
+    "durationSeconds": 10.347736223
+  },
+  "sourceToolAssistantUUID": "c850997b-2f93-4090-b664-9298a8a4c3d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-25T14:29:31.063Z_
+
+<details><summary>↩ Tool result · `toolu_01MKge6cZhgWMRFvNayLgzpn`</summary>
+
+```text
+Web search results for query: "Wallace et al 2019 "Universal Adversarial Triggers for Attacking and Analyzing NLP" EMNLP"
+
+Links: [{"title":"Releases · Eric-Wallace/universal-triggers","url":"https://github.com/Eric-Wallace/universal-triggers/releases"},{"title":"Universal Adversarial Triggers for Attacking and Analyzing NLP - ACL Anthology","url":"https://aclanthology.org/D19-1221/"},{"title":"GitHub - Eric-Wallace/universal-triggers: Universal Adversarial Triggers for Attacking and Analyzing NLP (EMNLP 2019) · GitHub","url":"https://github.com/Eric-Wallace/universal-triggers"},{"title":"[Quick Review] Universal Adversarial Triggers for Attacking and Analyzing NLP","url":"https://liner.com/review/universal-adversarial-triggers-for-attacking-and-analyzing-nlp"},{"title":"[1908.07125] Universal Adversarial Triggers for Attacking and Analyzing NLP","url":"https://arxiv.org/abs/1908.07125"},{"title":"dblp: Universal Adversarial Triggers for Attacking and Analyzing NLP.","url":"https://dblp.org/rec/conf/emnlp/WallaceFKGS19.html"},{"title":"Universal Adversarial Triggers for Attacking and Analyzing NLP | Request PDF","url":"https://www.researchgate.net/publication/336998800_Universal_Adversarial_Triggers_for_Attacking_and_Analyzing_NLP"},{"title":"Universal Adversarial Triggers for Attacking and Analyzing NLP","url":"https://www.ericswallace.com/triggers"},{"title":"Universal Adversarial Triggers for Attacking and Analyzing NLP","url":"https://arxiv.org/pdf/1908.07125"}]
+
+I found the paper you're looking for! Here are the key details:
+
+The paper "Universal Adversarial Triggers for Attacking and Analyzing NLP" was published by Wallace et al. at EMNLP-IJCNLP 2019 in Hong Kong, China (pages 2153–2162). The authors are Eric Wallace, Shi Feng, Nikhil Kandpal, Matt Gardner, and Sameer Singh.
+
+**Key Contribution:**
+The paper defines universal adversarial triggers as input-agnostic sequences of tokens that trigger a model to produce a specific prediction when concatenated to any input from a dataset. The authors propose a gradient-guided search over tokens which finds short trigger sequences (e.g., one word for classification and four words for language modeling).
+
+**Examples of Impact:**
+The triggers cause SNLI entailment accuracy to drop from 89.94% to 0.55%, 72% of "why" questions in SQuAD to be answered "to kill american people", and the GPT-2 language model to spew racist output even when conditioned on non-racial contexts.
+
+The paper is available on the ACL Anthology (https://aclanthology.org/D19-1221/) and on arXiv (https://arxiv.org/abs/1908.07125), with code available on GitHub (https://github.com/Eric-Wallace/universal-triggers).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6e20c2f-67ea-4166-af02-971ab5ebb7a6",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "b1235bea-ffe5-4a3b-ac92-a2e8ea9fa1b0",
+  "toolUseResult": {
+    "query": "Wallace et al 2019 \"Universal Adversarial Triggers for Attacking and Analyzing NLP\" EMNLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NGqTZRxW4roDTjJ1tsEVcm",
+        "content": [
+          {
+            "title": "Releases · Eric-Wallace/universal-triggers",
+            "url": "https://github.com/Eric-Wallace/universal-triggers/releases"
+          },
+          {
+            "title": "Universal Adversarial Triggers for Attacking and Analyzing NLP - ACL Anthology",
+            "url": "https://aclanthology.org/D19-1221/"
+          },
+          {
+            "title": "GitHub - Eric-Wallace/universal-triggers: Universal Adversarial Triggers for Attacking and Analyzing NLP (EMNLP 2019) · GitHub",
+            "url": "https://github.com/Eric-Wallace/universal-triggers"
+          },
+          {
+            "title": "[Quick Review] Universal Adversarial Triggers for Attacking and Analyzing NLP",
+            "url": "https://liner.com/review/universal-adversarial-triggers-for-attacking-and-analyzing-nlp"
+          },
+          {
+            "title": "[1908.07125] Universal Adversarial Triggers for Attacking and Analyzing NLP",
+            "url": "https://arxiv.org/abs/1908.07125"
+          },
+          {
+            "title": "dblp: Universal Adversarial Triggers for Attacking and Analyzing NLP.",
+            "url": "https://dblp.org/rec/conf/emnlp/WallaceFKGS19.html"
+          },
+          {
+            "title": "Universal Adversarial Triggers for Attacking and Analyzing NLP | Request PDF",
+            "url": "https://www.researchgate.net/publication/336998800_Universal_Adversarial_Triggers_for_Attacking_and_Analyzing_NLP"
+          },
+          {
+            "title": "Universal Adversarial Triggers for Attacking and Analyzing NLP",
+            "url": "https://www.ericswallace.com/triggers"
+          },
+          {
+            "title": "Universal Adversarial Triggers for Attacking and Analyzing NLP",
+            "url": "https://arxiv.org/pdf/1908.07125"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\nThe paper \"Universal Adversarial Triggers for Attacking and Analyzing NLP\" was published by Wallace et al. at EMNLP-IJCNLP 2019 in Hong Kong, China (pages 2153–2162). The authors are Eric Wallace, Shi Feng, Nikhil Kandpal, Matt Gardner, and Sameer Singh.\n\n**Key Contribution:**\nThe paper defines universal adversarial triggers as input-agnostic sequences of tokens that trigger a model to produce a specific prediction when concatenated to any input from a dataset. The authors propose a gradient-guided search over tokens which finds short trigger sequences (e.g., one word for classification and four words for language modeling).\n\n**Examples of Impact:**\nThe triggers cause SNLI entailment accuracy to drop from 89.94% to 0.55%, 72% of \"why\" questions in SQuAD to be answered \"to kill american people\", and the GPT-2 language model to spew racist output even when conditioned on non-racial contexts.\n\nThe paper is available on the ACL Anthology (https://aclanthology.org/D19-1221/) and on arXiv (https://arxiv.org/abs/1908.07125), with code available on GitHub (https://github.com/Eric-Wallace/universal-triggers)."
+    ],
+    "durationSeconds": 10.751597323000002
+  },
+  "sourceToolAssistantUUID": "e6e20c2f-67ea-4166-af02-971ab5ebb7a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-25T14:29:33.500Z_
+
+<details><summary>↩ Tool result · `toolu_01S6f5PnE7FJo8bjsrMi7SaN`</summary>
+
+```text
+Web search results for query: "Benjamini Hochberg 1995 "Controlling the false discovery rate" Journal Royal Statistical Society"
+
+Links: [{"title":"Benjamini, Y. and Hochberg, Y. (1995) Controlling the False Discovery Rate A Practical and Powerful Approach to Multiple Testing. Journal of the Royal Statistical Society Series B (Methodological), 57, 289-300. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=3558998"},{"title":"Controlling the False Discovery Rate - a Practical and Powerful Approach to Multiple Testing - Tel Aviv University","url":"https://cris.tau.ac.il/en/publications/controlling-the-false-discovery-rate-a-practical-and-powerful-app-2/"},{"title":"Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing | BibSonomy","url":"https://www.bibsonomy.org/bibtex/b38b0e6655978ad8c7d8455b175c2cbf"},{"title":"Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing | Journal of the Royal Statistical Society Series B: Statistical Methodology | Oxford Academic","url":"https://academic.oup.com/jrsssb/article/57/1/289/7035855"},{"title":"[PDF] Controlling the false discovery rate: a practical and powerful approach to multiple testing | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Controlling-the-false-discovery-rate:-a-practical-Benjamini-Hochberg/fcef2258a963f3d3984a486185ddc4349c43aa35"},{"title":"Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing - Benjamini - 1995 - Journal of the Royal Statistical Society: Series B (Methodological) - Wiley Online Library","url":"https://rss.onlinelibrary.wiley.com/doi/10.1111/j.2517-6161.1995.tb02031.x"},{"title":"(PDF) Controlling The False Discovery Rate - A Practical And Powerful Approach To Multiple Testing","url":"https://www.researchgate.net/publication/221995234_Controlling_The_False_Discovery_Rate_-_A_Practical_And_Powerful_Approach_To_Multiple_Testing"},{"title":"A stochastic process approach to false discovery control","url":"https://arxiv.org/pdf/math/0406519"},{"title":"False Discovery Rate Adjustments for Average Significance Level Controlling Tests","url":"https://arxiv.org/pdf/2209.13686"}]
+
+I've successfully found the paper you're looking for. Here's the complete citation:
+
+Benjamini, Y. and Hochberg, Y. (1995) Controlling the False Discovery Rate A Practical and Powerful Approach to Multiple Testing. Journal of the Royal Statistical Society Series B (Methodological), 57, 289-300.
+
+Additional details:
+- DOI: 10.1111/j.2517-6161.1995.tb02031.x
+- Volume 57, Issue 1, January 1995, Pages 289–300
+
+The paper is widely recognized and can be accessed through multiple sources including Oxford Academic and Wiley Online Library. The paper presents an approach that calls for controlling the expected proportion of falsely rejected hypotheses—the false discovery rate, which is equivalent to the FWER when all hypotheses are true but is smaller otherwise.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0df2ec8-c7aa-4dcc-bd75-f35cc82de972",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "0c16af55-7fb7-4803-9982-65ce70abfe76",
+  "toolUseResult": {
+    "query": "Benjamini Hochberg 1995 \"Controlling the false discovery rate\" Journal Royal Statistical Society",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NeU7hqmKsjSMyT3BV5b9X1",
+        "content": [
+          {
+            "title": "Benjamini, Y. and Hochberg, Y. (1995) Controlling the False Discovery Rate A Practical and Powerful Approach to Multiple Testing. Journal of the Royal Statistical Society Series B (Methodological), 57, 289-300. - References - Scientific Research Publishing",
+            "url": "https://www.scirp.org/reference/referencespapers?referenceid=3558998"
+          },
+          {
+            "title": "Controlling the False Discovery Rate - a Practical and Powerful Approach to Multiple Testing - Tel Aviv University",
+            "url": "https://cris.tau.ac.il/en/publications/controlling-the-false-discovery-rate-a-practical-and-powerful-app-2/"
+          },
+          {
+            "title": "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing | BibSonomy",
+            "url": "https://www.bibsonomy.org/bibtex/b38b0e6655978ad8c7d8455b175c2cbf"
+          },
+          {
+            "title": "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing | Journal of the Royal Statistical Society Series B: Statistical Methodology | Oxford Academic",
+            "url": "https://academic.oup.com/jrsssb/article/57/1/289/7035855"
+          },
+          {
+            "title": "[PDF] Controlling the false discovery rate: a practical and powerful approach to multiple testing | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Controlling-the-false-discovery-rate:-a-practical-Benjamini-Hochberg/fcef2258a963f3d3984a486185ddc4349c43aa35"
+          },
+          {
+            "title": "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing - Benjamini - 1995 - Journal of the Royal Statistical Society: Series B (Methodological) - Wiley Online Library",
+            "url": "https://rss.onlinelibrary.wiley.com/doi/10.1111/j.2517-6161.1995.tb02031.x"
+          },
+          {
+            "title": "(PDF) Controlling The False Discovery Rate - A Practical And Powerful Approach To Multiple Testing",
+            "url": "https://www.researchgate.net/publication/221995234_Controlling_The_False_Discovery_Rate_-_A_Practical_And_Powerful_Approach_To_Multiple_Testing"
+          },
+          {
+            "title": "A stochastic process approach to false discovery control",
+            "url": "https://arxiv.org/pdf/math/0406519"
+          },
+          {
+            "title": "False Discovery Rate Adjustments for Average Significance Level Controlling Tests",
+            "url": "https://arxiv.org/pdf/2209.13686"
+          }
+        ]
+      },
+      "I've successfully found the paper you're looking for. Here's the complete citation:\n\nBenjamini, Y. and Hochberg, Y. (1995) Controlling the False Discovery Rate A Practical and Powerful Approach to Multiple Testing. Journal of the Royal Statistical Society Series B (Methodological), 57, 289-300.\n\nAdditional details:\n- DOI: 10.1111/j.2517-6161.1995.tb02031.x\n- Volume 57, Issue 1, January 1995, Pages 289–300\n\nThe paper is widely recognized and can be accessed through multiple sources including Oxford Academic and Wiley Online Library. The paper presents an approach that calls for controlling the expected proportion of falsely rejected hypotheses—the false discovery rate, which is equivalent to the FWER when all hypotheses are true but is smaller otherwise."
+    ],
+    "durationSeconds": 16.662080861000003
+  },
+  "sourceToolAssistantUUID": "e0df2ec8-c7aa-4dcc-bd75-f35cc82de972",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-25T14:29:35.240Z_
+
+<details><summary>↩ Tool result · `toolu_01P1fwEr9oJWyASuMwfB3dMA`</summary>
+
+```text
+Web search results for query: "Shankar et al 2024 "Who Validates the Validators" arXiv 2405"
+
+Links: [{"title":"[2404.12272] Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences","url":"https://arxiv.org/abs/2404.12272"},{"title":"[2404.12272v1] Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences","url":"https://arxiv.org/abs/2404.12272v1"},{"title":"Evaluating the Effectiveness of LLM-Evaluators (aka LLM-as-Judge)","url":"https://eugeneyan.com/writing/llm-evaluators/"},{"title":"Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences | Request PDF","url":"https://www.researchgate.net/publication/384882584_Who_Validates_the_Validators_Aligning_LLM-Assisted_Evaluation_of_LLM_Outputs_with_Human_Preferences"},{"title":"Avoiding Common Pitfalls in LLM Evaluation","url":"https://www.honeyhive.ai/post/avoiding-common-pitfalls-in-llm-evaluation"},{"title":"Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences | Proceedings of the 37th Annual ACM Symposium on User Interface Software and Technology","url":"https://dl.acm.org/doi/abs/10.1145/3654777.3676450"},{"title":"Who Validates the Validators? Aligning LLM-Assisted Evaluation","url":"https://people.eecs.berkeley.edu/~bjoern/papers/shankar-validators-uist2024.pdf"},{"title":"Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences","url":"https://dl.acm.org/doi/fullHtml/10.1145/3654777.3676450"}]
+
+I found the paper! Here are the key details about the work:
+
+**Title:** Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences
+
+**Authors:** Shreya Shankar, J.D. Zamfirescu-Pereira, Björn Hartmann, Aditya G. Parameswaran, and Ian Arawjo
+
+**Publication Details:** The 37th Annual ACM Symposium on User Interface Software and Technology (UIST '24), October 13–16, 2024, Pittsburgh, PA, USA
+
+**arXiv Identifier:** arXiv paper 2404.12272 (Note: The arXiv ID is 2404, not 2405 as mentioned in your query)
+
+**Main Contribution:** The paper presents a mixed-initiative approach to "validate the validators" -- aligning LLM-generated evaluation functions (be it prompts or code) with human requirements. Their interface, EvalGen, provides automated assistance to users in generating evaluation criteria and implementing assertions. While generating candidate implementations (Python functions, LLM grader prompts), EvalGen asks humans to grade a subset of LLM outputs; this feedback is used to select implementations that better align with user grades.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "882a3d6f-a16c-4db0-bcad-fac10b00d337",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "94b1614a-029f-4552-a73d-8ab98c2c2256",
+  "toolUseResult": {
+    "query": "Shankar et al 2024 \"Who Validates the Validators\" arXiv 2405",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CM9iQ1bwBxfjLJKAW1L93w",
+        "content": [
+          {
+            "title": "[2404.12272] Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences",
+            "url": "https://arxiv.org/abs/2404.12272"
+          },
+          {
+            "title": "[2404.12272v1] Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences",
+            "url": "https://arxiv.org/abs/2404.12272v1"
+          },
+          {
+            "title": "Evaluating the Effectiveness of LLM-Evaluators (aka LLM-as-Judge)",
+            "url": "https://eugeneyan.com/writing/llm-evaluators/"
+          },
+          {
+            "title": "Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences | Request PDF",
+            "url": "https://www.researchgate.net/publication/384882584_Who_Validates_the_Validators_Aligning_LLM-Assisted_Evaluation_of_LLM_Outputs_with_Human_Preferences"
+          },
+          {
+            "title": "Avoiding Common Pitfalls in LLM Evaluation",
+            "url": "https://www.honeyhive.ai/post/avoiding-common-pitfalls-in-llm-evaluation"
+          },
+          {
+            "title": "Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences | Proceedings of the 37th Annual ACM Symposium on User Interface Software and Technology",
+            "url": "https://dl.acm.org/doi/abs/10.1145/3654777.3676450"
+          },
+          {
+            "title": "Who Validates the Validators? Aligning LLM-Assisted Evaluation",
+            "url": "https://people.eecs.berkeley.edu/~bjoern/papers/shankar-validators-uist2024.pdf"
+          },
+          {
+            "title": "Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences",
+            "url": "https://dl.acm.org/doi/fullHtml/10.1145/3654777.3676450"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about the work:\n\n**Title:** Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences\n\n**Authors:** Shreya Shankar, J.D. Zamfirescu-Pereira, Björn Hartmann, Aditya G. Parameswaran, and Ian Arawjo\n\n**Publication Details:** The 37th Annual ACM Symposium on User Interface Software and Technology (UIST '24), October 13–16, 2024, Pittsburgh, PA, USA\n\n**arXiv Identifier:** arXiv paper 2404.12272 (Note: The arXiv ID is 2404, not 2405 as mentioned in your query)\n\n**Main Contribution:** The paper presents a mixed-initiative approach to \"validate the validators\" -- aligning LLM-generated evaluation functions (be it prompts or code) with human requirements. Their interface, EvalGen, provides automated assistance to users in generating evaluation criteria and implementing assertions. While generating candidate implementations (Python functions, LLM grader prompts), EvalGen asks humans to grade a subset of LLM outputs; this feedback is used to select implementations that better align with user grades."
+    ],
+    "durationSeconds": 16.961355739
+  },
+  "sourceToolAssistantUUID": "882a3d6f-a16c-4db0-bcad-fac10b00d337",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-25T14:29:44.026Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have verified details for all the papers. Let me also check whether the Zou et al. paper was published at ICML. Let me search for the venue.
+
+Actually, looking at the search results more carefully:
+- Zou et al. 2023 - arXiv:2307.15043. Let me check the venue - the user said ICML 2024. Let me verify.
+- Bavaresco et al. - Actually published at ACL 2025, not EMNLP 2024. The arXiv ID is 2406.18403.
+
+
+- Shankar et al. - Published at UIST 2024 (ACM), not arXiv 2405. arXiv ID is 2404.12272.
+- Hong & Page 2004 - PNAS, not Management Science.
+
+Let me now verify Zou et al. venue more specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94b1614a-029f-4552-a73d-8ab98c2c2256",
+  "isSidechain": false,
+  "requestId": "req_011CbPSr5B7wMRrfjq3n5eRu",
+  "type": "assistant",
+  "uuid": "02633b67-7991-4b55-b8a0-3eb4bd322f3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ttn9Dipn86J9LoG4NL59SZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3464,
+      "cache_creation_input_tokens": 4068,
+      "cache_read_input_tokens": 45948,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3464,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 45948,
+          "cache_creation_input_tokens": 4068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-25T14:29:44.028Z_
+
+Let me verify one more detail about the Zou et al. venue.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02633b67-7991-4b55-b8a0-3eb4bd322f3c",
+  "isSidechain": false,
+  "requestId": "req_011CbPSr5B7wMRrfjq3n5eRu",
+  "type": "assistant",
+  "uuid": "473db552-03f0-4d0e-806b-d7e59b39872d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ttn9Dipn86J9LoG4NL59SZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3464,
+      "cache_creation_input_tokens": 4068,
+      "cache_read_input_tokens": 45948,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3464,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 45948,
+          "cache_creation_input_tokens": 4068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-25T14:29:44.363Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RMtre7EJ3ukwWrJnVogDzG`</summary>
+
+```json
+{
+  "query": "Zou Wang Carlini \"Universal and Transferable Adversarial Attacks\" ICML 2024 venue proceedings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "473db552-03f0-4d0e-806b-d7e59b39872d",
+  "isSidechain": false,
+  "requestId": "req_011CbPSr5B7wMRrfjq3n5eRu",
+  "type": "assistant",
+  "uuid": "356e3d0a-899f-4227-986c-a605004cefa0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ttn9Dipn86J9LoG4NL59SZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3464,
+      "cache_creation_input_tokens": 4068,
+      "cache_read_input_tokens": 45948,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3464,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 45948,
+          "cache_creation_input_tokens": 4068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "356e3d0a-899f-4227-986c-a605004cefa0",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add 6-8 references to reach 60+ citations",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-25T14:29:50.039Z_
+
+<details><summary>↩ Tool result · `toolu_01RMtre7EJ3ukwWrJnVogDzG`</summary>
+
+```text
+Web search results for query: "Zou Wang Carlini "Universal and Transferable Adversarial Attacks" ICML 2024 venue proceedings"
+
+Links: [{"title":"TRANSFERABLE ADVERSARIAL ATTACK ON VISION","url":"https://openreview.net/pdf?id=DYVSLfiyRN"},{"title":"Universal and Transferable Adversarial Attack on Large Language Models Using Exponentiated Gradient Descent","url":"https://arxiv.org/html/2508.14853v1"},{"title":"[2307.15043] Universal and Transferable Adversarial Attacks on Aligned Language Models","url":"https://arxiv.org/abs/2307.15043"},{"title":"Universal and Transferable Adversarial Attack on Large ...","url":"https://arxiv.org/pdf/2508.14853"},{"title":"GitHub - llm-attacks/llm-attacks: Universal and Transferable Attacks on Aligned Language Models · GitHub","url":"https://github.com/llm-attacks/llm-attacks"},{"title":"Universal and Transferable Adversarial Attacks on Aligned Language Models","url":"https://arxiv.org/pdf/2307.15043"},{"title":"Universal and Transferable Adversarial Attacks on Aligned Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230715043Z"},{"title":"(PDF) Universal and Transferable Adversarial Attacks on Aligned Language Models","url":"https://www.researchgate.net/publication/372684204_Universal_and_Transferable_Adversarial_Attacks_on_Aligned_Language_Models"}]
+
+Based on the search results, I found information about the paper "Universal and Transferable Adversarial Attacks on Aligned Language Models" by the authors you mentioned. However, I should clarify an important detail about the venue:
+
+The paper "Universal and Transferable Adversarial Attacks on Aligned Language Models" was authored by Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr, J. Zico Kolter, and Matt Fredrikson. 
+
+The paper was initially released on arXiv on July 27, 2023, with a second version on December 20, 2023.
+
+Based on the search results, this paper appears to be primarily available as an arXiv preprint rather than published in the ICML 2024 proceedings. The search results show references to the arXiv version (arXiv:2307.15043) but do not indicate ICML 2024 as the venue for publication. If you're looking for information about a specific ICML 2024 publication by these authors on this topic, it may be a different paper or the details might need to be verified through the official ICML 2024 proceedings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "356e3d0a-899f-4227-986c-a605004cefa0",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "27f55c03-75e6-4393-ac17-57e59f6a6927",
+  "toolUseResult": {
+    "query": "Zou Wang Carlini \"Universal and Transferable Adversarial Attacks\" ICML 2024 venue proceedings",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LRNkwDTZkWaon8ok3ohG7y",
+        "content": [
+          {
+            "title": "TRANSFERABLE ADVERSARIAL ATTACK ON VISION",
+            "url": "https://openreview.net/pdf?id=DYVSLfiyRN"
+          },
+          {
+            "title": "Universal and Transferable Adversarial Attack on Large Language Models Using Exponentiated Gradient Descent",
+            "url": "https://arxiv.org/html/2508.14853v1"
+          },
+          {
+            "title": "[2307.15043] Universal and Transferable Adversarial Attacks on Aligned Language Models",
+            "url": "https://arxiv.org/abs/2307.15043"
+          },
+          {
+            "title": "Universal and Transferable Adversarial Attack on Large ...",
+            "url": "https://arxiv.org/pdf/2508.14853"
+          },
+          {
+            "title": "GitHub - llm-attacks/llm-attacks: Universal and Transferable Attacks on Aligned Language Models · GitHub",
+            "url": "https://github.com/llm-attacks/llm-attacks"
+          },
+          {
+            "title": "Universal and Transferable Adversarial Attacks on Aligned Language Models",
+            "url": "https://arxiv.org/pdf/2307.15043"
+          },
+          {
+            "title": "Universal and Transferable Adversarial Attacks on Aligned Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230715043Z"
+          },
+          {
+            "title": "(PDF) Universal and Transferable Adversarial Attacks on Aligned Language Models",
+            "url": "https://www.researchgate.net/publication/372684204_Universal_and_Transferable_Adversarial_Attacks_on_Aligned_Language_Models"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper \"Universal and Transferable Adversarial Attacks on Aligned Language Models\" by the authors you mentioned. However, I should clarify an important detail about the venue:\n\nThe paper \"Universal and Transferable Adversarial Attacks on Aligned Language Models\" was authored by Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr, J. Zico Kolter, and Matt Fredrikson. \n\nThe paper was initially released on arXiv on July 27, 2023, with a second version on December 20, 2023.\n\nBased on the search results, this paper appears to be primarily available as an arXiv preprint rather than published in the ICML 2024 proceedings. The search results show references to the arXiv version (arXiv:2307.15043) but do not indicate ICML 2024 as the venue for publication. If you're looking for information about a specific ICML 2024 publication by these authors on this topic, it may be a different paper or the details might need to be verified through the official ICML 2024 proceedings."
+    ],
+    "durationSeconds": 5.672246282
+  },
+  "sourceToolAssistantUUID": "356e3d0a-899f-4227-986c-a605004cefa0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61 · 2026-05-25T14:29:50.042Z_
+
+```json
+{
+  "parentUuid": "27f55c03-75e6-4393-ac17-57e59f6a6927",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "997dbfa3-2976-4070-b84a-db1a8e715385",
+  "timestamp": "2026-05-25T14:29:50.042Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-25T14:29:55.310Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the ICML 2024 accepted papers for Zou et al. more precisely.
+
+Actually, based on multiple search results, it seems like this paper is primarily an arXiv preprint (2307.15043). The user suggested "ICML 2024" but the search results don't confirm that. Let me be conservative and cite it as arXiv preprint since I can't confirm ICML 2024 venue.
+
+Wait, let me search more specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "997dbfa3-2976-4070-b84a-db1a8e715385",
+  "isSidechain": false,
+  "requestId": "req_011CbPSsATu382vsbeXnsT4r",
+  "type": "assistant",
+  "uuid": "92755d09-bb36-4f79-9dc5-272058cdbfd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012McNUKA2cbYQ3HcKV1mn1a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4586,
+      "cache_read_input_tokens": 50016,
+      "output_tokens": 197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4586,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 197,
+          "cache_read_input_tokens": 50016,
+          "cache_creation_input_tokens": 4586,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4586
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-25T14:29:55.677Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RutvMoviTqX7Ckry5iDAxT`</summary>
+
+```json
+{
+  "query": "Zou et al GCG adversarial attacks aligned language models ICML 2024 accepted paper proceedings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92755d09-bb36-4f79-9dc5-272058cdbfd3",
+  "isSidechain": false,
+  "requestId": "req_011CbPSsATu382vsbeXnsT4r",
+  "type": "assistant",
+  "uuid": "937a6774-28b4-410b-aa1a-9d6def4ee8c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012McNUKA2cbYQ3HcKV1mn1a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4586,
+      "cache_read_input_tokens": 50016,
+      "output_tokens": 197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4586,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 197,
+          "cache_read_input_tokens": 50016,
+          "cache_creation_input_tokens": 4586,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4586
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-25T14:30:02.733Z_
+
+<details><summary>↩ Tool result · `toolu_01RutvMoviTqX7Ckry5iDAxT`</summary>
+
+```text
+Web search results for query: "Zou et al GCG adversarial attacks aligned language models ICML 2024 accepted paper proceedings"
+
+Links: [{"title":"Adversarial Attacks on Aligned Language Models | Gray Swan Research","url":"https://www.grayswan.ai/research/adversarial-attacks-on-aligned-language-models"},{"title":"[PDF] Universal and Transferable Adversarial Attacks on Aligned Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Universal-and-Transferable-Adversarial-Attacks-on-Zou-Wang/47030369e97cc44d4b2e3cf1be85da0fd134904a"},{"title":"GitHub - llm-attacks/llm-attacks: Universal and Transferable Attacks on Aligned Language Models · GitHub","url":"https://github.com/llm-attacks/llm-attacks"},{"title":"Published as a conference paper at ICLR 2024","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/3af25aa3de8b7b02ddbd1b6be5031be8-Paper-Conference.pdf"},{"title":"jailbreaking leading safety-aligned llms","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/63fa7efdd3bcf944a4bd6e0ff6a50041-Paper-Conference.pdf"},{"title":"Universal and Transferable Adversarial Attack on Large Language Models Using Exponentiated Gradient Descent","url":"https://arxiv.org/html/2508.14853v1"},{"title":"Universal and Transferable Adversarial Attacks on Aligned Language   Models","url":"https://arxiv.org/pdf/2307.15043"},{"title":"REINFORCE Adversarial Attacks on Large Language Models:","url":"https://openreview.net/pdf?id=QWpuqidr53"}]
+
+Based on the search results, I found information about the Zou et al. work on GCG adversarial attacks. However, I should note an important clarification about the paper's publication venue:
+
+Zou et al. published their paper "Universal and Transferable Adversarial Attacks on Aligned Languages Models" in 2023, demonstrating the first automated adversarial attack method designed to circumvent the safeguards of aligned LLMs. Their attack method was called the Greedy Coordinate Gradient (GCG) approach.
+
+The paper was authored by Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr, J. Zico Kolter, and Matt Fredrikson. 
+
+However, based on my search results, the original Zou et al. GCG paper appears to have been published as an arXiv preprint in 2023 (arXiv:2307.15043), not at ICML 2024. The search results show references to the paper being used and cited in ICML 2024 and ICLR 2024 proceedings by other authors, but the original GCG work itself was published in 2023.
+
+If you're looking for a specific ICML 2024 accepted paper, you may want to verify the exact paper title or authors, as the primary GCG work predates ICML 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "937a6774-28b4-410b-aa1a-9d6def4ee8c3",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "eab86244-2949-4216-8b32-52004019f195",
+  "toolUseResult": {
+    "query": "Zou et al GCG adversarial attacks aligned language models ICML 2024 accepted paper proceedings",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011m69frvcbTsXwkiZoXbQbB",
+        "content": [
+          {
+            "title": "Adversarial Attacks on Aligned Language Models | Gray Swan Research",
+            "url": "https://www.grayswan.ai/research/adversarial-attacks-on-aligned-language-models"
+          },
+          {
+            "title": "[PDF] Universal and Transferable Adversarial Attacks on Aligned Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Universal-and-Transferable-Adversarial-Attacks-on-Zou-Wang/47030369e97cc44d4b2e3cf1be85da0fd134904a"
+          },
+          {
+            "title": "GitHub - llm-attacks/llm-attacks: Universal and Transferable Attacks on Aligned Language Models · GitHub",
+            "url": "https://github.com/llm-attacks/llm-attacks"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/3af25aa3de8b7b02ddbd1b6be5031be8-Paper-Conference.pdf"
+          },
+          {
+            "title": "jailbreaking leading safety-aligned llms",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/63fa7efdd3bcf944a4bd6e0ff6a50041-Paper-Conference.pdf"
+          },
+          {
+            "title": "Universal and Transferable Adversarial Attack on Large Language Models Using Exponentiated Gradient Descent",
+            "url": "https://arxiv.org/html/2508.14853v1"
+          },
+          {
+            "title": "Universal and Transferable Adversarial Attacks on Aligned Language   Models",
+            "url": "https://arxiv.org/pdf/2307.15043"
+          },
+          {
+            "title": "REINFORCE Adversarial Attacks on Large Language Models:",
+            "url": "https://openreview.net/pdf?id=QWpuqidr53"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the Zou et al. work on GCG adversarial attacks. However, I should note an important clarification about the paper's publication venue:\n\nZou et al. published their paper \"Universal and Transferable Adversarial Attacks on Aligned Languages Models\" in 2023, demonstrating the first automated adversarial attack method designed to circumvent the safeguards of aligned LLMs. Their attack method was called the Greedy Coordinate Gradient (GCG) approach.\n\nThe paper was authored by Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr, J. Zico Kolter, and Matt Fredrikson. \n\nHowever, based on my search results, the original Zou et al. GCG paper appears to have been published as an arXiv preprint in 2023 (arXiv:2307.15043), not at ICML 2024. The search results show references to the paper being used and cited in ICML 2024 and ICLR 2024 proceedings by other authors, but the original GCG work itself was published in 2023.\n\nIf you're looking for a specific ICML 2024 accepted paper, you may want to verify the exact paper title or authors, as the primary GCG work predates ICML 2024."
+    ],
+    "durationSeconds": 7.051952919000003
+  },
+  "sourceToolAssistantUUID": "937a6774-28b4-410b-aa1a-9d6def4ee8c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-25T14:31:25.618Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so Zou et al. is primarily an arXiv preprint. Let me check Semantic Scholar more carefully. Looking at the Semantic Scholar link, it says the paper has been cited extensively. Let me just treat it as an arXiv preprint and note the year as 2023.
+
+Actually, wait - the search result from Gray Swan says "Published as a conference paper at ICLR 2024" - but that link seems to be for a different paper. Let me look at Semantic Scholar.
+
+I'll just use arXiv preprint for now - it's safest since I can't confirm the venue.
+
+
+Actually, looking more carefully at the Semantic Scholar result, the PDF title says "Universal and Transferable Adversarial Attacks on Aligned Language Models" and shows it published in 2023. The "Published as a conference paper at ICLR 2024" link seems to be for a different paper about jailbreaking safety-aligned LLMs. So I'll use arXiv for Zou et al. and now I'm ready to compile all the bibliography entries with their publication details. I've added seven new references, bringing the total to 62. Now I'm mapping out where each citation should go—DerSimonian & Laird and Benjamini & Hochberg go into the methodology sections, while the remaining papers on bias and adversarial robustness fit into the related work discussion at various points.
+
+For the related work file, I'm planning the exact spots to insert these citations. The first paragraph on LLM-as-Judge studies needs Ye et al. and Bavaresco et al. integrated naturally alongside the existing bias and aggregation discussion. I'm also deciding whether the ensemble diversity papers fit better in paragraph 2 on Condorcet voting or paragraph 3 on ensemble methods. , and \citet{panickssery2024llm} identified self-preference bias in within-family correlations. The most directly relevant work is \citet{almasoud2026security}, which showed that 7-model committees reduce adversarial success rates from 50--68\% down to 10--19\%, though they didn't separate out whether improvements came from diversity or individual model robustness—exactly what I'm investigating here. There's concurrent work on judge quality benchmarking and adversarial risks in multi-agent systems, but none of it examines whether aggregation's benefits actually hold up under adversarial attack.
+
+For Bavaresco, I could integrate it right after the Zheng citation about LLMs as scalable alternatives to human judges, noting that their work showed LLM-human agreement varies substantially across tasks. Or I could just add it to the concurrent work citations on judge quality. For Ye, it fits naturally alongside Wang's work on systematic biases like position bias and verbosity preference.
+
+The instruction is to be minimally invasive—just insert citations at sentence ends or natural spots without changing existing meaning. So for Ye, I'll add it as a follow-up to Wang's failure modes, maybe with a brief note about the comprehensive bias taxonomy. For Bavaresco, the cleanest spot is either right after Zheng or grouped with the other judge quality benchmarks. Let me go with the simpler approach of adding both to existing citation clusters rather than restructuring sentences. I'm working through how to integrate the ye2024justice citation more smoothly into the existing text. The cleanest approach is to add it directly to the Wang citation sentence, noting that Ye provides a comprehensive taxonomy of bias types alongside the documented failure modes. For Bavaresco, I should extend the concurrent work section to include their findings on judge-human agreement. I'm also planning to revise how Wallace and Zou are cited in the fourth paragraph. I'm working through how to properly cite the DerSimonian-Laird method in the results section, trying to find the cleanest way to integrate the citation without making the text awkward or redundant. I need to use `\citealp` for citations within parentheses to avoid double parentheses, and I'm trying to find the right balance between clarity and avoiding too many semicolons in the parenthetical remark. Let me simplify:
+
+"(DerSimonian--Laird random effects across 12 conditions)"
+→ "(DerSimonian--Laird random effects \citealp{dersimonian1986meta}; 12 conditions)"
+
+Actually let me just keep it clean. The simplest approach:
+
+Change: "Meta-analytic pooling (DerSimonian--Laird random effects across 12 conditions)"
+To: "Meta-analytic pooling (DerSimonian--Laird random effects \citealp{dersimonian1986meta}; across 12 conditions)"
+
+Wait, I need to check if this paper uses natbib. Let me check.
+
+Actually, I see \citet and \citep and \citealp already used in the related_work.tex. So natbib is available.
+
+For Benjamini & Hochberg, I'll add a citation to the correction method. The cleanest approach is to insert the citation right after the method name without awkward pre/post text. So I'm changing "We apply Benjamini--Hochberg (BH) correction for multiple testing" to "We apply Benjamini--Hochberg (BH) correction \citep{benjamini1995controlling} for multiple testing" to properly attribute the method.
+
+For DerSimonian & Laird, I'll similarly add the citation right after mentioning the method name in the results section.
+
+Now I need to plan out all the edits across the four files and execute them systematically. I'm constructing the BibTeX entries for the references, starting with DerSimonian and Laird's meta-analysis paper from 1986, followed by Benjamini and Hochberg's work on controlling false discovery rates. Finishing up the Ye et al. citation details, then moving on to track down the complete author information for the Bavaresco et al. paper from ACL 2025 short papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eab86244-2949-4216-8b32-52004019f195",
+  "isSidechain": false,
+  "requestId": "req_011CbPSt6jwNG9a5f6CpN1DC",
+  "type": "assistant",
+  "uuid": "f0ae4b68-fe71-4a61-9f90-ec70380f4907",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJ1QqTFK7mvy6uPvWxi7jV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1024,
+      "cache_read_input_tokens": 54602,
+      "output_tokens": 4677,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4677,
+          "cache_read_input_tokens": 54602,
+          "cache_creation_input_tokens": 1024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-25T14:31:25.622Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018ZYMkmiYcBjCkopg5tzaXd`</summary>
+
+```json
+{
+  "query": "Bavaresco \"LLMs instead of Human Judges\" ACL 2025 authors full list arXiv 2406.18403"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0ae4b68-fe71-4a61-9f90-ec70380f4907",
+  "isSidechain": false,
+  "requestId": "req_011CbPSt6jwNG9a5f6CpN1DC",
+  "type": "assistant",
+  "uuid": "bd0b6b42-626a-4d58-a62c-8c8cab52ff56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJ1QqTFK7mvy6uPvWxi7jV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1024,
+      "cache_read_input_tokens": 54602,
+      "output_tokens": 4677,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4677,
+          "cache_read_input_tokens": 54602,
+          "cache_creation_input_tokens": 1024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "bd0b6b42-626a-4d58-a62c-8c8cab52ff56",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add 6-8 references to reach 60+ citations",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-25T14:31:38.510Z_
+
+<details><summary>↩ Tool result · `toolu_018ZYMkmiYcBjCkopg5tzaXd`</summary>
+
+```text
+Web search results for query: "Bavaresco "LLMs instead of Human Judges" ACL 2025 authors full list arXiv 2406.18403"
+
+Links: [{"title":"arXiv:2406.18403v3 [cs.CL] 2 Jun 2025 LLMs instead of Human Judges?","url":"https://arxiv.org/pdf/2406.18403"},{"title":"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - ACL Anthology","url":"https://aclanthology.org/2025.acl-short.20/"},{"title":"[2406.18403] LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks","url":"https://arxiv.org/abs/2406.18403"},{"title":"[2406.18403] LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks","url":"https://ar5iv.labs.arxiv.org/html/2406.18403"},{"title":"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks | Request PDF","url":"https://www.researchgate.net/publication/394270204_LLMs_instead_of_Human_Judges_A_Large_Scale_Empirical_Study_across_20_NLP_Evaluation_Tasks"},{"title":"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - University of Edinburgh Research Explorer","url":"https://www.research.ed.ac.uk/en/publications/llms-instead-of-human-judges-a-large-scale-empirical-study-across/"},{"title":"(PDF) LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks","url":"https://www.researchgate.net/publication/381737347_LLMs_instead_of_Human_Judges_A_Large_Scale_Empirical_Study_across_20_NLP_Evaluation_Tasks"},{"title":"Judging the Judges: Evaluating Alignment and Vulnerabilities in LLMs-as-Judges","url":"https://arxiv.org/html/2406.12624"},{"title":"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks","url":"https://arxiv.org/html/2406.18403"}]
+
+Based on the search results, here is the full list of authors for the paper "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks" (arXiv 2406.18403) published at ACL 2025:
+
+1. Anna Bavaresco
+2. Raffaella Bernardi
+3. Leonardo Bertolazzi
+4. Desmond Elliott
+5. Raquel Fernández
+6. Albert Gatt
+7. Esam Ghaleb
+8. Mario Giulianelli
+9. Michael Hanna
+10. Alexander Koller
+11. André F. T. Martins
+12. Philipp Mondorf
+13. Vera Neplenbroek
+14. Sandro Pezzelle
+15. Barbara Plank
+16. David Schlangen
+17. Alessandro Suglia
+18. Aditya K Surikuchi
+19. Ece Takmaz
+20. Alberto Testoni
+
+The paper was published in the Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), pages 238–255, Vienna, Austria in 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd0b6b42-626a-4d58-a62c-8c8cab52ff56",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "e20f66f9-4783-4b3c-a572-6775d9c26378",
+  "toolUseResult": {
+    "query": "Bavaresco \"LLMs instead of Human Judges\" ACL 2025 authors full list arXiv 2406.18403",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0129pTAyYGKNJiKwB5HKZD66",
+        "content": [
+          {
+            "title": "arXiv:2406.18403v3 [cs.CL] 2 Jun 2025 LLMs instead of Human Judges?",
+            "url": "https://arxiv.org/pdf/2406.18403"
+          },
+          {
+            "title": "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-short.20/"
+          },
+          {
+            "title": "[2406.18403] LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks",
+            "url": "https://arxiv.org/abs/2406.18403"
+          },
+          {
+            "title": "[2406.18403] LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks",
+            "url": "https://ar5iv.labs.arxiv.org/html/2406.18403"
+          },
+          {
+            "title": "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks | Request PDF",
+            "url": "https://www.researchgate.net/publication/394270204_LLMs_instead_of_Human_Judges_A_Large_Scale_Empirical_Study_across_20_NLP_Evaluation_Tasks"
+          },
+          {
+            "title": "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - University of Edinburgh Research Explorer",
+            "url": "https://www.research.ed.ac.uk/en/publications/llms-instead-of-human-judges-a-large-scale-empirical-study-across/"
+          },
+          {
+            "title": "(PDF) LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks",
+            "url": "https://www.researchgate.net/publication/381737347_LLMs_instead_of_Human_Judges_A_Large_Scale_Empirical_Study_across_20_NLP_Evaluation_Tasks"
+          },
+          {
+            "title": "Judging the Judges: Evaluating Alignment and Vulnerabilities in LLMs-as-Judges",
+            "url": "https://arxiv.org/html/2406.12624"
+          },
+          {
+            "title": "LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks",
+            "url": "https://arxiv.org/html/2406.18403"
+          }
+        ]
+      },
+      "Based on the search results, here is the full list of authors for the paper \"LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks\" (arXiv 2406.18403) published at ACL 2025:\n\n1. Anna Bavaresco\n2. Raffaella Bernardi\n3. Leonardo Bertolazzi\n4. Desmond Elliott\n5. Raquel Fernández\n6. Albert Gatt\n7. Esam Ghaleb\n8. Mario Giulianelli\n9. Michael Hanna\n10. Alexander Koller\n11. André F. T. Martins\n12. Philipp Mondorf\n13. Vera Neplenbroek\n14. Sandro Pezzelle\n15. Barbara Plank\n16. David Schlangen\n17. Alessandro Suglia\n18. Aditya K Surikuchi\n19. Ece Takmaz\n20. Alberto Testoni\n\nThe paper was published in the Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers), pages 238–255, Vienna, Austria in 2025."
+    ],
+    "durationSeconds": 12.882579211000003
+  },
+  "sourceToolAssistantUUID": "bd0b6b42-626a-4d58-a62c-8c8cab52ff56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-25T14:32:40.526Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK now I have all the info I need. Let me compile the references and edits.
+
+For Bavaresco et al., there are many authors. In the bib entry I'll use the first three and "and others" or list them all. Actually, looking at the existing bib entries, some list all authors (even long lists like kuai2026independent with 11 authors). Let me list a reasonable number. 
+
+Actually, checking the existing style - entries like kuai2026independent list all 11 authors. And qian2026collabeval uses "and others". Let me use the first few key authors and "and others" for very long lists to match the mixed style.
+
+
+Bavaresco has 20 authors, which is too many to list out, so I'll follow the pattern from qian2026collabeval and use first author with "and others". Same approach for Ye since that's 12 authors. For shorter author lists, I'll include everyone.
+
+Now I'm preparing the bibliography entries with the proper formatting.
+
+Writing bib entries... Continuing with more bibliography entries... Continuing with more bibliography entries for adversarial attacks and NLP evaluation research... I'm updating the related work section to incorporate these new citations. I need to add Ye et al. 2024 to the discussion of bias documentation alongside Wang et al., and then weave in Bavaresco et al. 2025 when discussing concurrent work on judge quality and human agreement.
+
+For the ensemble diversity paragraph, I'm adding Hong et al. 2004 to connect classical ensemble theory with social science findings about group diversity. Then in the adversarial robustness section, I'm integrating Wallace et al. 2019 and Zou et al. 2023 to expand the discussion of adversarial vulnerability and transfer attacks. I'm working through how to properly cite the DerSimonian--Laird method within the existing parenthetical. Adding the citation directly would create awkward nested punctuation, so I should restructure it slightly to place the citation more naturally—something like "DerSimonian--Laird random-effects model \citealp{dersimonian1986meta}" followed by the condition count, which renders cleanly without breaking the flow. I'm trying to find the cleanest way to format this citation within the parenthetical without making it read awkwardly. Using \citealp to insert just the author-year without extra parentheses, then moving "across 12 conditions" outside the citation seems like the best approach to keep the sentence flow natural. I'm verifying the final placement of the citation by checking how it renders with the comma separating the method name from the scope, which keeps the sentence structure clear and readable.
+
+Now I'm reconsidering the Bavaresco entry since listing all 20 authors in the BibTeX would be unwieldy—I'll use "and others" for brevity, matching the style of similar entries with many contributors.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e20f66f9-4783-4b3c-a572-6775d9c26378",
+  "isSidechain": false,
+  "requestId": "req_011CbPT1AEUbP1ovnh4dL9aL",
+  "type": "assistant",
+  "uuid": "28f9a4e6-cbf8-4990-8cfd-23440d3e8779",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rEJkJHvxzVwDNz8UCvymh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 55626,
+      "output_tokens": 6259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6259,
+          "cache_read_input_tokens": 55626,
+          "cache_creation_input_tokens": 5600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-25T14:32:40.889Z_
+
+Now I have all verified data. Let me make all the edits. I'll add the 7 new bib entries and insert citations in the tex files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28f9a4e6-cbf8-4990-8cfd-23440d3e8779",
+  "isSidechain": false,
+  "requestId": "req_011CbPT1AEUbP1ovnh4dL9aL",
+  "type": "assistant",
+  "uuid": "374d1e99-8a7f-4d8a-9de9-878a9fa8a063",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rEJkJHvxzVwDNz8UCvymh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 55626,
+      "output_tokens": 6259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6259,
+          "cache_read_input_tokens": 55626,
+          "cache_creation_input_tokens": 5600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-25T14:32:53.197Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01CVZVwqvtmGAUCcCbAKBfMb`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib",
+  "old_string": "@article{qian2026collabeval,\n  author    = {Yiyue Qian and others},\n  title     = {{CollabEval}: Enhancing {LLM}-as-a-Judge via Multi-Agent Collaboration},\n  journal   = {arXiv preprint arXiv:2603.00993},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.00993},\n  note      = {arXiv:2603.00993}\n}",
+  "new_string": "@article{qian2026collabeval,\n  author    = {Yiyue Qian and others},\n  title     = {{CollabEval}: Enhancing {LLM}-as-a-Judge via Multi-Agent Collaboration},\n  journal   = {arXiv preprint arXiv:2603.00993},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.00993},\n  note      = {arXiv:2603.00993}\n}\n\n% ============================================================\n% Part K: Additional references\n% ============================================================\n\n@article{dersimonian1986meta,\n  author    = {Rebecca DerSimonian and Nan Laird},\n  title     = {Meta-Analysis in Clinical Trials},\n  journal   = {Controlled Clinical Trials},\n  volume    = {7},\n  number    = {3},\n  pages     = {177--188},\n  year      = {1986},\n  doi       = {10.1016/0197-2456(86)90046-2}\n}\n\n@article{benjamini1995controlling,\n  author    = {Yoav Benjamini and Yosef Hochberg},\n  title     = {Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing},\n  journal   = {Journal of the Royal Statistical Society: Series B (Methodological)},\n  volume    = {57},\n  number    = {1},\n  pages     = {289--300},\n  year      = {1995},\n  doi       = {10.1111/j.2517-6161.1995.tb02031.x}\n}\n\n@article{ye2024justice,\n  author    = {Jiayi Ye and Yanbo Wang and Yue Huang and Dongping Chen and Qihui Zhang and Nuno Moniz and Tian Gao and Werner Geyer and Chao Huang and Pin-Yu Chen and Nitesh V. Chawla and Xiangliang Zhang},\n  title     = {Justice or Prejudice? {Q}uantifying Biases in {LLM}-as-a-Judge},\n  journal   = {arXiv preprint arXiv:2410.02736},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2410.02736},\n  note      = {arXiv:2410.02736}\n}\n\n@inproceedings{bavaresco2025llms,\n  author    = {Anna Bavaresco and Raffaella Bernardi and Leonardo Bertolazzi and others},\n  title     = {{LLMs} instead of Human Judges? {A} Large Scale Empirical Study across 20 {NLP} Evaluation Tasks},\n  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  pages     = {238--255},\n  year      = {2025},\n  url       = {https://aclanthology.org/2025.acl-short.20/},\n  note      = {arXiv:2406.18403}\n}\n\n@article{zou2023universal,\n  author    = {Andy Zou and Zifan Wang and Nicholas Carlini and Milad Nasr and J. Zico Kolter and Matt Fredrikson},\n  title     = {Universal and Transferable Adversarial Attacks on Aligned Language Models},\n  journal   = {arXiv preprint arXiv:2307.15043},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2307.15043},\n  note      = {arXiv:2307.15043}\n}\n\n@inproceedings{wallace2019universal,\n  author    = {Eric Wallace and Shi Feng and Nikhil Kandpal and Matt Gardner and Sameer Singh},\n  title     = {Universal Adversarial Triggers for Attacking and Analyzing {NLP}},\n  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP-IJCNLP)},\n  pages     = {2153--2162},\n  year      = {2019},\n  url       = {https://aclanthology.org/D19-1221/}\n}\n\n@article{hong2004groups,\n  author    = {Lu Hong and Scott E. Page},\n  title     = {Groups of Diverse Problem Solvers Can Outperform Groups of High-Ability Problem Solvers},\n  journal   = {Proceedings of the National Academy of Sciences},\n  volume    = {101},\n  number    = {46},\n  pages     = {16385--16389},\n  year      = {2004},\n  doi       = {10.1073/pnas.0403723101}\n}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "374d1e99-8a7f-4d8a-9de9-878a9fa8a063",
+  "isSidechain": false,
+  "requestId": "req_011CbPT1AEUbP1ovnh4dL9aL",
+  "type": "assistant",
+  "uuid": "d144193e-87ef-4916-b9a5-26fce7a70c95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rEJkJHvxzVwDNz8UCvymh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 55626,
+      "output_tokens": 6259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6259,
+          "cache_read_input_tokens": 55626,
+          "cache_creation_input_tokens": 5600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-25T14:33:02.201Z_
+
+<details><summary>↩ Tool result · `toolu_01Ld8fxwHP8vest15RsiRpEy`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73dc1b83-2967-4038-8ba2-3caa0de527d1",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "0ed5d620-1822-497d-9533-1603f5be6d44",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+    "oldString": "Meta-analytic pooling (DerSimonian--Laird random effects across 12 conditions)",
+    "newString": "Meta-analytic pooling (DerSimonian--Laird random effects \\citealp{dersimonian1986meta}, across 12 conditions)",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\n\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n\\label{sec:dominance}\n\nTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n\nUnder OLS, $K_{\\mathrm{eff}}$ is positive and FDR-significant in all 12/12 conditions. $\\eta_{\\max}$ is significant in 10/12 (exceptions: MMLU $\\times$ score manipulation and ARC $\\times$ position bias), consistent with Proposition~\\ref{thm:monotonicity}. Dominance analysis yields 10 co-dominant, 2 $K_{\\mathrm{eff}}$-dominant, and zero $\\eta_{\\max}$-dominant conditions. However, the $r = 0.70$ $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation raises confound concerns, and OLS ignores the non-independence of the 455 panels (Appendix~\\ref{app:keff_dist}).\n\nEach judge appears in $\\binom{14}{2} = 91$ of the 455 panels, and each pair co-occurs in 13. This shared structure causes OLS to underestimate standard errors by approximately $2.5{\\times}$. Figure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12; Appendix~\\ref{app:forest_plot}). A crossed random-effects analysis accounting for the multi-membership structure of shared judges confirms $K_{\\mathrm{eff}}$ significance at $K{\\geq}5$ under this more conservative correction (Appendix~\\ref{app:crossed_re}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} \\\\\n\\midrule\nOLS                    & 10/12 & 12/12 \\\\\nClustered SE           & 4/12  & 0/12  \\\\\nMixed effects          & 7/12  & 3/12  \\\\\nWild bootstrap         & 3/12  & 4/12  \\\\\nFrac.\\ logit (clust.)  & 7/12  & 9/12  \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).}\n\\label{tab:method_comparison}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig1_robustness_comparison.pdf}\n\\caption{Significance counts (FDR $< 0.05$) for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design.}\n\\label{fig:robustness}\n\\end{figure}\n\nPower analysis yields a minimum detectable effect (MDE) of $\\beta_{\\mathrm{std}} = 0.14$ at 80\\% power (decreasing to 0.048 at $K{=}5$; Appendix~\\ref{app:power_analysis}). The bootstrap attenuation at $K{=}3$ (OLS 12/12 $\\to$ bootstrap 4/12) is consistent with this MDE, though positive coefficient direction (12/12) is preserved across all methods (Appendix~\\ref{app:random_subsample}). Monte Carlo calibration (1{,}000 permutations per condition) confirms the wild cluster bootstrap is conservative: the maximum null rejection rate is $1.6\\%$ at nominal $\\alpha{=}5\\%$ across all 36 conditions ($12 \\times 3$ panel sizes), so reported significance counts are lower bounds (Appendix~\\ref{app:monte_carlo}).\n\n\\subsection{The Diminishing Weakest Link Across Panel Sizes}\n\\label{sec:cross_k}\n\nTable~\\ref{tab:method_comparison} reveals that the $K{=}3$ pattern is method-sensitive: $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS), with fractional logit giving 9/12. This contrasts with $K{\\geq}5$, where $K_{\\mathrm{eff}}$'s dominance is consistent across methods (bootstrap 7/12 at $K{=}5$; fractional logit 9/12).\n\nWe repeat the wild cluster bootstrap at $K \\in \\{3, 5, 7\\}$, constructing all $\\binom{15}{K}$ panels with $K$-position max-$p$ correction.\n\n\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig_regime_transition.pdf}\n\\caption{Predictor shift across panel sizes. $\\eta_{\\max}$ significance (orange) declines from 3/12 to 2/12, while $K_{\\mathrm{eff}}$ (blue) rises from 4/12 to 7/12. Shaded region: $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\\alpha{=}0.05$.}\n\\label{fig:regime_transition}\n\\end{minipage}\\hfill\n\\begin{minipage}[t]{0.48\\textwidth}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig5_forest_plot.pdf}\n\\caption{Per-condition standardized $\\hat{\\beta}$ with 95\\% CI for $\\eta_{\\max}$ (left) and $K_{\\mathrm{eff}}$ (right) at $K{=}3$ (wild cluster bootstrap).}\n\\label{fig:forest_plot}\n\\end{minipage}\n\\end{figure*}\n\nMeta-analytic pooling (DerSimonian--Laird random effects across 12 conditions) quantifies the trajectories independent of significance thresholds. $\\eta_{\\max}$'s pooled $\\hat{\\beta}_{\\mathrm{std}}$ declines monotonically: $0.264$ [$0.158, 0.369$] at $K{=}3$ ($I^2{=}91.3\\%$), $0.102$ [$-0.055, 0.259$] at $K{=}5$ ($I^2{=}99.4\\%$), $0.084$ [$-0.083, 0.251$] at $K{=}7$ ($I^2{=}99.8\\%$); CI crosses zero at $K{\\geq}5$. $K_{\\mathrm{eff}}$'s pooled coefficient remains positive: $0.356$ [$0.267, 0.445$] ($I^2{=}87.7\\%$), $0.436$ [$0.318, 0.553$] ($I^2{=}98.9\\%$), $0.401$ [$0.298, 0.503$] ($I^2{=}99.4\\%$); magnitudes are heterogeneous but direction is consistent. The high $I^2$ values indicate substantial between-condition heterogeneity; pooled estimates summarize the central trend but individual conditions vary widely. Figure~\\ref{fig:regime_transition} shows significance counts and Figure~\\ref{fig:forest_plot} displays per-condition effect sizes with confidence intervals (per-condition dominance in Figure~\\ref{fig:dominance_heatmap}, Appendix~\\ref{app:extended_analysis}). The $\\eta_{\\max}$ decline holds under both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity specifications. Restricting to the four $K_{\\mathrm{eff}}$-stable attacks ($\\rho{\\geq}0.91$; Appendix~\\ref{app:attacked_keff}) confirms the signal does not depend on measurement-unstable conditions.\n\n\n\\subsection{Random vs.\\ Adaptive Fault Contrast}\n\\label{sec:rf_contrast}\n\nWe simulate non-adversarial noise by randomly flipping judge votes at observed per-judge error rates. Random faults yield $R^2 = 0.730$ [$0.718, 0.745$] ($K_{\\mathrm{eff}}$ significant 2/2); adaptive attack reduces predictability ($R^2{=}0.285$ [$0.270, 0.301$] at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The predictability gap is $\\Delta{=}0.446$ [$0.430, 0.460$]. The positive $K_{\\mathrm{eff}}$ coefficient under adaptive attack contrasts with the Condorcet Jury Theorem \\citep{condorcet1785essai}, where independence among voters is protective. Under adversarial manipulation, independent judges present distinct attack surfaces rather than redundant defenses; this reversal is consistent with adversarial ensemble theory \\citep{goodfellow2015adversarial,kariyappa2019improving}.\n\n\\subsection{Positive Direction Across Attack Types}\n\\label{sec:gam_taxonomy}\n\nGAM bootstrap confirms positive $K_{\\mathrm{eff}}$ direction in all 12 conditions (88.9--100\\% positive rate; Figure~\\ref{fig:gam_split}), with no magnitude difference between targeted and shared-bias attacks (Kruskal--Wallis $p{=}0.200$, $0.423$).\n\n\\subsection{Aggregation Rules and the Diversity Channel}\n\\label{sec:aggregation}\n\nTable~\\ref{tab:aggregation} reports regression results for four aggregation methods across all 12 conditions.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{$\\eta_{\\max}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ $\\beta$ dir.} & \\textbf{$R^2$} \\\\\n\\midrule\nThreshold       & 12/12 & 11/12 & 11+/0$-$  & 0.829 \\\\\nMajority        & 10/12 & 12/12 & 12+/0$-$  & 0.327 \\\\\nWeighted        & 9/12  & 12/12 & 12+/0$-$  & 0.328 \\\\\nBayesian        & 9/12  & 6/12  & 5+/1$-$   & 0.087 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\\ref{tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions.}\n\\label{tab:aggregation}\n\\end{table}\n\n\nPredictability ranges from threshold ($R^2{=}0.829$) to Bayesian ($R^2{=}0.087$). The Bayesian $R^2$ near zero implies that panel composition is almost unpredictive under calibrated aggregation---the diversity and weakest-link predictors may only be relevant under specific aggregation rules rather than being intrinsic panel properties. Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), yielding partial defense (Appendix~\\ref{app:aggregation_details}). At $K{=}5$, all four methods converge to identical $K_{\\mathrm{eff}}$ significance (7/12; Appendix~\\ref{app:aggregation_k5}); at $K{=}7$, methods diverge again, with Bayesian neutralization returning while threshold voting strengthens (Appendix~\\ref{app:aggregation_k7}).\n\n\\paragraph{Fractional Logit Robustness.}\nFractional logit \\citep{papke1996econometric} with clustered SE shows consistent positive association: $K_{\\mathrm{eff}}$ significance is 9/12 across all panel sizes ($K{=}3,5,7$), with 98.6\\% directional concordance with OLS (71/72; Appendix~\\ref{app:robustness_checks}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 60,
+        "oldLines": 7,
+        "newStart": 60,
+        "newLines": 7,
+        "lines": [
+          " \\end{minipage}",
+          " \\end{figure*}",
+          " ",
+          "-Meta-analytic pooling (DerSimonian--Laird random effects across 12 conditions) quantifies the trajectories independent of significance thresholds. $\\eta_{\\max}$'s pooled $\\hat{\\beta}_{\\mathrm{std}}$ declines monotonically: $0.264$ [$0.158, 0.369$] at $K{=}3$ ($I^2{=}91.3\\%$), $0.102$ [$-0.055, 0.259$] at $K{=}5$ ($I^2{=}99.4\\%$), $0.084$ [$-0.083, 0.251$] at $K{=}7$ ($I^2{=}99.8\\%$); CI crosses zero at $K{\\geq}5$. $K_{\\mathrm{eff}}$'s pooled coefficient remains positive: $0.356$ [$0.267, 0.445$] ($I^2{=}87.7\\%$), $0.436$ [$0.318, 0.553$] ($I^2{=}98.9\\%$), $0.401$ [$0.298, 0.503$] ($I^2{=}99.4\\%$); magnitudes are heterogeneous but direction is consistent. The high $I^2$ values indicate substantial between-condition heterogeneity; pooled estimates summarize the central trend but individual conditions vary widely. Figure~\\ref{fig:regime_transition} shows significance counts and Figure~\\ref{fig:forest_plot} displays per-condition effect sizes with confidence intervals (per-condition dominance in Figure~\\ref{fig:dominance_heatmap}, Appendix~\\ref{app:extended_analysis}). The $\\eta_{\\max}$ decline holds under both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity specifications. Restricting to the four $K_{\\mathrm{eff}}$-stable attacks ($\\rho{\\geq}0.91$; Appendix~\\ref{app:attacked_keff}) confirms the signal does not depend on measurement-unstable conditions.",
+          "+Meta-analytic pooling (DerSimonian--Laird random effects \\citealp{dersimonian1986meta}, across 12 conditions) quantifies the trajectories independent of significance thresholds. $\\eta_{\\max}$'s pooled $\\hat{\\beta}_{\\mathrm{std}}$ declines monotonically: $0.264$ [$0.158, 0.369$] at $K{=}3$ ($I^2{=}91.3\\%$), $0.102$ [$-0.055, 0.259$] at $K{=}5$ ($I^2{=}99.4\\%$), $0.084$ [$-0.083, 0.251$] at $K{=}7$ ($I^2{=}99.8\\%$); CI crosses zero at $K{\\geq}5$. $K_{\\mathrm{eff}}$'s pooled coefficient remains positive: $0.356$ [$0.267, 0.445$] ($I^2{=}87.7\\%$), $0.436$ [$0.318, 0.553$] ($I^2{=}98.9\\%$), $0.401$ [$0.298, 0.503$] ($I^2{=}99.4\\%$); magnitudes are heterogeneous but direction is consistent. The high $I^2$ values indicate substantial between-condition heterogeneity; pooled estimates summarize the central trend but individual conditions vary widely. Figure~\\ref{fig:regime_transition} shows significance counts and Figure~\\ref{fig:forest_plot} displays per-condition effect sizes with confidence intervals (per-condition dominance in Figure~\\ref{fig:dominance_heatmap}, Appendix~\\ref{app:extended_analysis}). The $\\eta_{\\max}$ decline holds under both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity specifications. Restricting to the four $K_{\\mathrm{eff}}$-stable attacks ($\\rho{\\geq}0.91$; Appendix~\\ref{app:attacked_keff}) confirms the signal does not depend on measurement-unstable conditions.",
+          " ",
+          " ",
+          " \\subsection{Random vs.\\ Adaptive Fault Contrast}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "73dc1b83-2967-4038-8ba2-3caa0de527d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-25T14:32:53.222Z_
+
+<details><summary>↩ Tool result · `toolu_01CVZVwqvtmGAUCcCbAKBfMb`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d144193e-87ef-4916-b9a5-26fce7a70c95",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "5643d855-1dfe-49f8-90a7-f2ffaec9d00c",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib",
+    "oldString": "@article{qian2026collabeval,\n  author    = {Yiyue Qian and others},\n  title     = {{CollabEval}: Enhancing {LLM}-as-a-Judge via Multi-Agent Collaboration},\n  journal   = {arXiv preprint arXiv:2603.00993},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.00993},\n  note      = {arXiv:2603.00993}\n}",
+    "newString": "@article{qian2026collabeval,\n  author    = {Yiyue Qian and others},\n  title     = {{CollabEval}: Enhancing {LLM}-as-a-Judge via Multi-Agent Collaboration},\n  journal   = {arXiv preprint arXiv:2603.00993},\n  year      = {2026},\n  url       = {https://arxiv.org/abs/2603.00993},\n  note      = {arXiv:2603.00993}\n}\n\n% ============================================================\n% Part K: Additional references\n% ============================================================\n\n@article{dersimonian1986meta,\n  author    = {Rebecca DerSimonian and Nan Laird},\n  title     = {Meta-Analysis in Clinical Trials},\n  journal   = {Controlled Clinical Trials},\n  volume    = {7},\n  number    = {3},\n  pages     = {177--188},\n  year      = {1986},\n  doi       = {10.1016/0197-2456(86)90046-2}\n}\n\n@article{benjamini1995controlling,\n  author    = {Yoav Benjamini and Yosef Hochberg},\n  title     = {Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing},\n  journal   = {Journal of the Royal Statistical Society: Series B (Methodological)},\n  volume    = {57},\n  number    = {1},\n  pages     = {289--300},\n  year      = {1995},\n  doi       = {10.1111/j.2517-6161.1995.tb02031.x}\n}\n\n@article{ye2024justice,\n  author    = {Jiayi Ye and Yanbo Wang and Yue Huang and Dongping Chen and Qihui Zhang and Nuno Moniz and Tian Gao and Werner Geyer and Chao Huang and Pin-Yu Chen and Nitesh V. Chawla and Xiangliang Zhang},\n  title     = {Justice or Prejudice? {Q}uantifying Biases in {LLM}-as-a-Judge},\n  journal   = {arXiv preprint arXiv:2410.02736},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2410.02736},\n  note      = {arXiv:2410.02736}\n}\n\n@inproceedings{bavaresco2025llms,\n  author    = {Anna Bavaresco and Raffaella Bernardi and Leonardo Bertolazzi and others},\n  title     = {{LLMs} instead of Human Judges? {A} Large Scale Empirical Study across 20 {NLP} Evaluation Tasks},\n  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  pages     = {238--255},\n  year      = {2025},\n  url       = {https://aclanthology.org/2025.acl-short.20/},\n  note      = {arXiv:2406.18403}\n}\n\n@article{zou2023universal,\n  author    = {Andy Zou and Zifan Wang and Nicholas Carlini and Milad Nasr and J. Zico Kolter and Matt Fredrikson},\n  title     = {Universal and Transferable Adversarial Attacks on Aligned Language Models},\n  journal   = {arXiv preprint arXiv:2307.15043},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2307.15043},\n  note      = {arXiv:2307.15043}\n}\n\n@inproceedings{wallace2019universal,\n  author    = {Eric Wallace and Shi Feng and Nikhil Kandpal and Matt Gardner and Sameer Singh},\n  title     = {Universal Adversarial Triggers for Attacking and Analyzing {NLP}},\n  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP-IJCNLP)},\n  pages     = {2153--2162},\n  year      = {2019},\n  url       = {https://aclanthology.org/D19-1221/}\n}\n\n@article{hong2004groups,\n  author    = {Lu Hong and Scott E. Page},\n  title     = {Groups of Diverse Problem Solvers Can Outperform Groups of High-Ability Problem Solvers},\n  journal   = {Proceedings of the National Academy of Sciences},\n  volume    = {101},\n  number    = {46},\n  pages     = {16385--16389},\n  year      = {2004},\n  doi       = {10.1073/pnas.0403723101}\n}",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 571,
+        "oldLines": 3,
+        "newStart": 571,
+        "newLines": 77,
+        "lines": [
+          "   url       = {https://arxiv.org/abs/2603.00993},",
+          "   note      = {arXiv:2603.00993}",
+          " }",
+          "+",
+          "+% ============================================================",
+          "+% Part K: Additional references",
+          "+% ============================================================",
+          "+",
+          "+@article{dersimonian1986meta,",
+          "+  author    = {Rebecca DerSimonian and Nan Laird},",
+          "+  title     = {Meta-Analysis in Clinical Trials},",
+          "+  journal   = {Controlled Clinical Trials},",
+          "+  volume    = {7},",
+          "+  number    = {3},",
+          "+  pages     = {177--188},",
+          "+  year      = {1986},",
+          "+  doi       = {10.1016/0197-2456(86)90046-2}",
+          "+}",
+          "+",
+          "+@article{benjamini1995controlling,",
+          "+  author    = {Yoav Benjamini and Yosef Hochberg},",
+          "+  title     = {Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing},",
+          "+  journal   = {Journal of the Royal Statistical Society: Series B (Methodological)},",
+          "+  volume    = {57},",
+          "+  number    = {1},",
+          "+  pages     = {289--300},",
+          "+  year      = {1995},",
+          "+  doi       = {10.1111/j.2517-6161.1995.tb02031.x}",
+          "+}",
+          "+",
+          "+@article{ye2024justice,",
+          "+  author    = {Jiayi Ye and Yanbo Wang and Yue Huang and Dongping Chen and Qihui Zhang and Nuno Moniz and Tian Gao and Werner Geyer and Chao Huang and Pin-Yu Chen and Nitesh V. Chawla and Xiangliang Zhang},",
+          "+  title     = {Justice or Prejudice? {Q}uantifying Biases in {LLM}-as-a-Judge},",
+          "+  journal   = {arXiv preprint arXiv:2410.02736},",
+          "+  year      = {2024},",
+          "+  url       = {https://arxiv.org/abs/2410.02736},",
+          "+  note      = {arXiv:2410.02736}",
+          "+}",
+          "+",
+          "+@inproceedings{bavaresco2025llms,",
+          "+  author    = {Anna Bavaresco and Raffaella Bernardi and Leonardo Bertolazzi and others},",
+          "+  title     = {{LLMs} instead of Human Judges? {A} Large Scale Empirical Study across 20 {NLP} Evaluation Tasks},",
+          "+  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},",
+          "+  pages     = {238--255},",
+          "+  year      = {2025},",
+          "+  url       = {https://aclanthology.org/2025.acl-short.20/},",
+          "+  note      = {arXiv:2406.18403}",
+          "+}",
+          "+",
+          "+@article{zou2023universal,",
+          "+  author    = {Andy Zou and Zifan Wang and Nicholas Carlini and Milad Nasr and J. Zico Kolter and Matt Fredrikson},",
+          "+  title     = {Universal and Transferable Adversarial Attacks on Aligned Language Models},",
+          "+  journal   = {arXiv preprint arXiv:2307.15043},",
+          "+  year      = {2023},",
+          "+  url       = {https://arxiv.org/abs/2307.15043},",
+          "+  note      = {arXiv:2307.15043}",
+          "+}",
+          "+",
+          "+@inproceedings{wallace2019universal,",
+          "+  author    = {Eric Wallace and Shi Feng and Nikhil Kandpal and Matt Gardner and Sameer Singh},",
+          "+  title     = {Universal Adversarial Triggers for Attacking and Analyzing {NLP}},",
+          "+  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP-IJCNLP)},",
+          "+  pages     = {2153--2162},",
+          "+  year      = {2019},",
+          "+  url       = {https://aclanthology.org/D19-1221/}",
+          "+}",
+          "+",
+          "+@article{hong2004groups,",
+          "+  author    = {Lu Hong and Scott E. Page},",
+          "+  title     = {Groups of Diverse Problem Solvers Can Outperform Groups of High-Ability Problem Solvers},",
+          "+  journal   = {Proceedings of the National Academy of Sciences},",
+          "+  volume    = {101},",
+          "+  number    = {46},",
+          "+  pages     = {16385--16389},",
+          "+  year      = {2004},",
+          "+  doi       = {10.1073/pnas.0403723101}",
+          "+}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "d144193e-87ef-4916-b9a5-26fce7a70c95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-25T14:32:54.547Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01E9zLxeA3RNJugLPorguPQi`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+  "old_string": "\\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy), motivating multi-judge panels",
+  "new_string": "\\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy) and \\citet{ye2024justice} provided a comprehensive bias taxonomy, motivating multi-judge panels"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5643d855-1dfe-49f8-90a7-f2ffaec9d00c",
+  "isSidechain": false,
+  "requestId": "req_011CbPT1AEUbP1ovnh4dL9aL",
+  "type": "assistant",
+  "uuid": "88a995c5-83e6-475b-b0bf-6fe091ee968b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rEJkJHvxzVwDNz8UCvymh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 55626,
+      "output_tokens": 6259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6259,
+          "cache_read_input_tokens": 55626,
+          "cache_creation_input_tokens": 5600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-25T14:32:54.554Z_
+
+<details><summary>↩ Tool result · `toolu_01E9zLxeA3RNJugLPorguPQi`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88a995c5-83e6-475b-b0bf-6fe091ee968b",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "11601607-508f-4d26-9331-7f1a68623e53",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+    "oldString": "\\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy), motivating multi-judge panels",
+    "newString": "\\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy) and \\citet{ye2024justice} provided a comprehensive bias taxonomy, motivating multi-judge panels",
+    "originalFile": "\\section{Related Work}\n\n\\paragraph{LLM-as-Judge and Multi-Judge Evaluation.}\nLLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy), motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.\n\n\\paragraph{Condorcet Jury Theorem.}\n\\citet{condorcet1785essai} proved that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \\citet{ladha1992condorcet} extended the theorem to correlated voters, showing that positive correlation weakens the convergence guarantee. The Condorcet Jury Theorem (CJT) explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \\citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. We focus on the \\emph{panel-size-dependent structure} of this vulnerability: the diminishing predictive power of the weakest link as $K$ grows, and the persistent positive association between diversity and vulnerability.\n\n\\paragraph{Ensemble Diversity Theory.}\nClassical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, but only when members maintain sufficiently low bias \\citep{brown2005managing}; selective ensembles can outperform using all members \\citep{zhou2002ensembling}. \\citet{kuncheva2003measures} found no pairwise diversity measure reliably predicted improvement; our $K_{\\mathrm{eff}}$ exhibits a $K$-dependent pattern whose direction depends on the metric. LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise. Recent frameworks \\citep{yang2026diversity,turkmen2026ensemble} characterize diversity under benign evaluation; we provide the adversarial complement.\n\n\\paragraph{Adversarial Robustness and Transferability.}\nAdversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. Controlled diversity via uncorrelated gradients \\citep{kariyappa2019improving}, diversity regularization \\citep{pang2019improving}, or vulnerability diversification \\citep{zhu2020dverge} strengthens ensemble robustness in vision but requires coordinating member training, a control absent in post-hoc LLM judge selection. Our setting differs: adversaries use natural-language manipulation rather than gradient perturbations, and aggregation rules are a controllable design parameter.\n\n\\paragraph{BFT and Security Games.}\nClassical BFT \\citep{lamport1982byzantine,castro1999practical,blanchard2017byzantine} tolerates faulty nodes but assumes non-strategic faults; \\citet{schneier2000secrets} articulated the weakest-link principle. Our framework adopts the Stackelberg structure of \\citet{tambe2011security}. Correlated LLM judge errors \\citep{kim2025correlated,kuai2026independent} violate BFT's independence assumption; \\citet{kuai2026independent} propose the Difficulty-Weighted Behavioral Entanglement Index (DBEI), weighting agreement by item difficulty, while $K_{\\mathrm{eff}}$ captures a complementary dimension via pairwise MI. Mitigation strategies include DBEI-based reweighting, Bayesian calibration, and credibility scoring \\citep{ebrahimi2025adversary}.\n\n\\paragraph{Information-Theoretic Evaluation.}\nInformation-theoretic approaches address statistical validity \\citep{robertson2025stepwise,feng2026noisy}, attack costs \\citep{kaneko2025bits}, sequential selection \\citep{jung2026logarithmic}, and truthfulness \\citep{chen2025incentivizing,qiu2026truthfulness}, but assume honest judges. We address adversarial manipulation interacting with multi-judge composition.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 7,
+        "newStart": 1,
+        "newLines": 7,
+        "lines": [
+          " \\section{Related Work}",
+          " ",
+          " \\paragraph{LLM-as-Judge and Multi-Judge Evaluation.}",
+          "-LLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy), motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.",
+          "+LLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy) and \\citet{ye2024justice} provided a comprehensive bias taxonomy, motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.",
+          " ",
+          " \\paragraph{Condorcet Jury Theorem.}",
+          " \\citet{condorcet1785essai} proved that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \\citet{ladha1992condorcet} extended the theorem to correlated voters, showing that positive correlation weakens the convergence guarantee. The Condorcet Jury Theorem (CJT) explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \\citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. We focus on the \\emph{panel-size-dependent structure} of this vulnerability: the diminishing predictive power of the weakest link as $K$ grows, and the persistent positive association between diversity and vulnerability."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "88a995c5-83e6-475b-b0bf-6fe091ee968b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-25T14:32:55.961Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_015iQWVBnztknMHkkZtSBmMq`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+  "old_string": "Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj}, adversarial risks",
+  "new_string": "Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj} and judge--human agreement across tasks \\citep{bavaresco2025llms}, adversarial risks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11601607-508f-4d26-9331-7f1a68623e53",
+  "isSidechain": false,
+  "requestId": "req_011CbPT1AEUbP1ovnh4dL9aL",
+  "type": "assistant",
+  "uuid": "84e93518-ce0c-4e3d-8f7e-c07d0ccd2808",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rEJkJHvxzVwDNz8UCvymh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 55626,
+      "output_tokens": 6259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6259,
+          "cache_read_input_tokens": 55626,
+          "cache_creation_input_tokens": 5600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-25T14:32:55.968Z_
+
+<details><summary>↩ Tool result · `toolu_015iQWVBnztknMHkkZtSBmMq`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "84e93518-ce0c-4e3d-8f7e-c07d0ccd2808",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "d3d31cfa-b9bb-451f-a599-0cc346d9b8bc",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+    "oldString": "Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj}, adversarial risks",
+    "newString": "Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj} and judge--human agreement across tasks \\citep{bavaresco2025llms}, adversarial risks",
+    "originalFile": "\\section{Related Work}\n\n\\paragraph{LLM-as-Judge and Multi-Judge Evaluation.}\nLLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy) and \\citet{ye2024justice} provided a comprehensive bias taxonomy, motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.\n\n\\paragraph{Condorcet Jury Theorem.}\n\\citet{condorcet1785essai} proved that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \\citet{ladha1992condorcet} extended the theorem to correlated voters, showing that positive correlation weakens the convergence guarantee. The Condorcet Jury Theorem (CJT) explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \\citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. We focus on the \\emph{panel-size-dependent structure} of this vulnerability: the diminishing predictive power of the weakest link as $K$ grows, and the persistent positive association between diversity and vulnerability.\n\n\\paragraph{Ensemble Diversity Theory.}\nClassical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, but only when members maintain sufficiently low bias \\citep{brown2005managing}; selective ensembles can outperform using all members \\citep{zhou2002ensembling}. \\citet{kuncheva2003measures} found no pairwise diversity measure reliably predicted improvement; our $K_{\\mathrm{eff}}$ exhibits a $K$-dependent pattern whose direction depends on the metric. LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise. Recent frameworks \\citep{yang2026diversity,turkmen2026ensemble} characterize diversity under benign evaluation; we provide the adversarial complement.\n\n\\paragraph{Adversarial Robustness and Transferability.}\nAdversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. Controlled diversity via uncorrelated gradients \\citep{kariyappa2019improving}, diversity regularization \\citep{pang2019improving}, or vulnerability diversification \\citep{zhu2020dverge} strengthens ensemble robustness in vision but requires coordinating member training, a control absent in post-hoc LLM judge selection. Our setting differs: adversaries use natural-language manipulation rather than gradient perturbations, and aggregation rules are a controllable design parameter.\n\n\\paragraph{BFT and Security Games.}\nClassical BFT \\citep{lamport1982byzantine,castro1999practical,blanchard2017byzantine} tolerates faulty nodes but assumes non-strategic faults; \\citet{schneier2000secrets} articulated the weakest-link principle. Our framework adopts the Stackelberg structure of \\citet{tambe2011security}. Correlated LLM judge errors \\citep{kim2025correlated,kuai2026independent} violate BFT's independence assumption; \\citet{kuai2026independent} propose the Difficulty-Weighted Behavioral Entanglement Index (DBEI), weighting agreement by item difficulty, while $K_{\\mathrm{eff}}$ captures a complementary dimension via pairwise MI. Mitigation strategies include DBEI-based reweighting, Bayesian calibration, and credibility scoring \\citep{ebrahimi2025adversary}.\n\n\\paragraph{Information-Theoretic Evaluation.}\nInformation-theoretic approaches address statistical validity \\citep{robertson2025stepwise,feng2026noisy}, attack costs \\citep{kaneko2025bits}, sequential selection \\citep{jung2026logarithmic}, and truthfulness \\citep{chen2025incentivizing,qiu2026truthfulness}, but assume honest judges. We address adversarial manipulation interacting with multi-judge composition.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 7,
+        "newStart": 1,
+        "newLines": 7,
+        "lines": [
+          " \\section{Related Work}",
+          " ",
+          " \\paragraph{LLM-as-Judge and Multi-Judge Evaluation.}",
+          "-LLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy) and \\citet{ye2024justice} provided a comprehensive bias taxonomy, motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.",
+          "+LLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy) and \\citet{ye2024justice} provided a comprehensive bias taxonomy, motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj} and judge--human agreement across tasks \\citep{bavaresco2025llms}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.",
+          " ",
+          " \\paragraph{Condorcet Jury Theorem.}",
+          " \\citet{condorcet1785essai} proved that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \\citet{ladha1992condorcet} extended the theorem to correlated voters, showing that positive correlation weakens the convergence guarantee. The Condorcet Jury Theorem (CJT) explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \\citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. We focus on the \\emph{panel-size-dependent structure} of this vulnerability: the diminishing predictive power of the weakest link as $K$ grows, and the persistent positive association between diversity and vulnerability."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "84e93518-ce0c-4e3d-8f7e-c07d0ccd2808",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-25T14:32:57.916Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Jd2ztS6tx5xaZ8ZLFBsnQK`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+  "old_string": "Classical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, but only when members maintain sufficiently low bias \\citep{brown2005managing}",
+  "new_string": "Classical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, a finding paralleled in social science \\citep{hong2004groups}, but only when members maintain sufficiently low bias \\citep{brown2005managing}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3d31cfa-b9bb-451f-a599-0cc346d9b8bc",
+  "isSidechain": false,
+  "requestId": "req_011CbPT1AEUbP1ovnh4dL9aL",
+  "type": "assistant",
+  "uuid": "735f1b7b-ef8c-43c7-9c50-22a77a404317",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rEJkJHvxzVwDNz8UCvymh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 55626,
+      "output_tokens": 6259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6259,
+          "cache_read_input_tokens": 55626,
+          "cache_creation_input_tokens": 5600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-25T14:32:57.956Z_
+
+<details><summary>↩ Tool result · `toolu_01Jd2ztS6tx5xaZ8ZLFBsnQK`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "735f1b7b-ef8c-43c7-9c50-22a77a404317",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "57f2c094-7290-4cad-bedb-57e42083b555",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+    "oldString": "Classical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, but only when members maintain sufficiently low bias \\citep{brown2005managing}",
+    "newString": "Classical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, a finding paralleled in social science \\citep{hong2004groups}, but only when members maintain sufficiently low bias \\citep{brown2005managing}",
+    "originalFile": "\\section{Related Work}\n\n\\paragraph{LLM-as-Judge and Multi-Judge Evaluation.}\nLLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy) and \\citet{ye2024justice} provided a comprehensive bias taxonomy, motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj} and judge--human agreement across tasks \\citep{bavaresco2025llms}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.\n\n\\paragraph{Condorcet Jury Theorem.}\n\\citet{condorcet1785essai} proved that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \\citet{ladha1992condorcet} extended the theorem to correlated voters, showing that positive correlation weakens the convergence guarantee. The Condorcet Jury Theorem (CJT) explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \\citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. We focus on the \\emph{panel-size-dependent structure} of this vulnerability: the diminishing predictive power of the weakest link as $K$ grows, and the persistent positive association between diversity and vulnerability.\n\n\\paragraph{Ensemble Diversity Theory.}\nClassical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, but only when members maintain sufficiently low bias \\citep{brown2005managing}; selective ensembles can outperform using all members \\citep{zhou2002ensembling}. \\citet{kuncheva2003measures} found no pairwise diversity measure reliably predicted improvement; our $K_{\\mathrm{eff}}$ exhibits a $K$-dependent pattern whose direction depends on the metric. LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise. Recent frameworks \\citep{yang2026diversity,turkmen2026ensemble} characterize diversity under benign evaluation; we provide the adversarial complement.\n\n\\paragraph{Adversarial Robustness and Transferability.}\nAdversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. Controlled diversity via uncorrelated gradients \\citep{kariyappa2019improving}, diversity regularization \\citep{pang2019improving}, or vulnerability diversification \\citep{zhu2020dverge} strengthens ensemble robustness in vision but requires coordinating member training, a control absent in post-hoc LLM judge selection. Our setting differs: adversaries use natural-language manipulation rather than gradient perturbations, and aggregation rules are a controllable design parameter.\n\n\\paragraph{BFT and Security Games.}\nClassical BFT \\citep{lamport1982byzantine,castro1999practical,blanchard2017byzantine} tolerates faulty nodes but assumes non-strategic faults; \\citet{schneier2000secrets} articulated the weakest-link principle. Our framework adopts the Stackelberg structure of \\citet{tambe2011security}. Correlated LLM judge errors \\citep{kim2025correlated,kuai2026independent} violate BFT's independence assumption; \\citet{kuai2026independent} propose the Difficulty-Weighted Behavioral Entanglement Index (DBEI), weighting agreement by item difficulty, while $K_{\\mathrm{eff}}$ captures a complementary dimension via pairwise MI. Mitigation strategies include DBEI-based reweighting, Bayesian calibration, and credibility scoring \\citep{ebrahimi2025adversary}.\n\n\\paragraph{Information-Theoretic Evaluation.}\nInformation-theoretic approaches address statistical validity \\citep{robertson2025stepwise,feng2026noisy}, attack costs \\citep{kaneko2025bits}, sequential selection \\citep{jung2026logarithmic}, and truthfulness \\citep{chen2025incentivizing,qiu2026truthfulness}, but assume honest judges. We address adversarial manipulation interacting with multi-judge composition.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 7,
+        "oldLines": 7,
+        "newStart": 7,
+        "newLines": 7,
+        "lines": [
+          " \\citet{condorcet1785essai} proved that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \\citet{ladha1992condorcet} extended the theorem to correlated voters, showing that positive correlation weakens the convergence guarantee. The Condorcet Jury Theorem (CJT) explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \\citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. We focus on the \\emph{panel-size-dependent structure} of this vulnerability: the diminishing predictive power of the weakest link as $K$ grows, and the persistent positive association between diversity and vulnerability.",
+          " ",
+          " \\paragraph{Ensemble Diversity Theory.}",
+          "-Classical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, but only when members maintain sufficiently low bias \\citep{brown2005managing}; selective ensembles can outperform using all members \\citep{zhou2002ensembling}. \\citet{kuncheva2003measures} found no pairwise diversity measure reliably predicted improvement; our $K_{\\mathrm{eff}}$ exhibits a $K$-dependent pattern whose direction depends on the metric. LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise. Recent frameworks \\citep{yang2026diversity,turkmen2026ensemble} characterize diversity under benign evaluation; we provide the adversarial complement.",
+          "+Classical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, a finding paralleled in social science \\citep{hong2004groups}, but only when members maintain sufficiently low bias \\citep{brown2005managing}; selective ensembles can outperform using all members \\citep{zhou2002ensembling}. \\citet{kuncheva2003measures} found no pairwise diversity measure reliably predicted improvement; our $K_{\\mathrm{eff}}$ exhibits a $K$-dependent pattern whose direction depends on the metric. LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise. Recent frameworks \\citep{yang2026diversity,turkmen2026ensemble} characterize diversity under benign evaluation; we provide the adversarial complement.",
+          " ",
+          " \\paragraph{Adversarial Robustness and Transferability.}",
+          " Adversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. Controlled diversity via uncorrelated gradients \\citep{kariyappa2019improving}, diversity regularization \\citep{pang2019improving}, or vulnerability diversification \\citep{zhu2020dverge} strengthens ensemble robustness in vision but requires coordinating member training, a control absent in post-hoc LLM judge selection. Our setting differs: adversaries use natural-language manipulation rather than gradient perturbations, and aggregation rules are a controllable design parameter."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "735f1b7b-ef8c-43c7-9c50-22a77a404317",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-25T14:32:59.805Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01EkGtuCk9oiX2pyyX5fkisd`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+  "old_string": "Adversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}.",
+  "new_string": "Adversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. In NLP, \\citet{wallace2019universal} introduced universal adversarial triggers and \\citet{zou2023universal} showed gradient-based suffixes transfer across aligned LLMs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57f2c094-7290-4cad-bedb-57e42083b555",
+  "isSidechain": false,
+  "requestId": "req_011CbPT1AEUbP1ovnh4dL9aL",
+  "type": "assistant",
+  "uuid": "8a5d3e1f-eb58-4c97-8bee-4d5f707cfd7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rEJkJHvxzVwDNz8UCvymh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 55626,
+      "output_tokens": 6259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6259,
+          "cache_read_input_tokens": 55626,
+          "cache_creation_input_tokens": 5600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-25T14:32:59.812Z_
+
+<details><summary>↩ Tool result · `toolu_01EkGtuCk9oiX2pyyX5fkisd`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a5d3e1f-eb58-4c97-8bee-4d5f707cfd7c",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "cf0ae071-e14a-4b7b-a1c2-09ad75e65913",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex",
+    "oldString": "Adversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}.",
+    "newString": "Adversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. In NLP, \\citet{wallace2019universal} introduced universal adversarial triggers and \\citet{zou2023universal} showed gradient-based suffixes transfer across aligned LLMs.",
+    "originalFile": "\\section{Related Work}\n\n\\paragraph{LLM-as-Judge and Multi-Judge Evaluation.}\nLLM judges gained traction after \\citet{zheng2023judging} established them as scalable alternatives to human annotation. \\citet{wang2023fair} documented systematic failure modes (position bias, verbosity, sycophancy) and \\citet{ye2024justice} provided a comprehensive bias taxonomy, motivating multi-judge panels, while \\citet{raina2024judgerobust} and \\citet{maloyan2025investigating} quantified adversarial vulnerabilities including prompt injection. Multi-judge aggregation extends the classical noisy annotator framework \\citep{dawid1979maximum}: \\citet{verga2024replacing} showed diverse panels can match single large judges, and \\citet{panickssery2024llm} identified self-preference bias driving within-family correlations. Most relevant, \\citet{almasoud2026security} reported that 7-model committees reduce ASR from 50--68\\% to 10--19\\% but did not disentangle diversity from individual robustness---the gap we address. Concurrent work benchmarks judge quality \\citep{tan2024judgebench,li2024autoj} and judge--human agreement across tasks \\citep{bavaresco2025llms}, adversarial risks in multi-agent systems \\citep{tamas2025benchmarking}, and collaborative evaluation under benign conditions \\citep{qian2026collabeval}; none tests whether aggregation benefits survive adversarial manipulation.\n\n\\paragraph{Condorcet Jury Theorem.}\n\\citet{condorcet1785essai} proved that majority voting accuracy converges to 1 when per-voter accuracy exceeds 0.5; \\citet{ladha1992condorcet} extended the theorem to correlated voters, showing that positive correlation weakens the convergence guarantee. The Condorcet Jury Theorem (CJT) explicitly assumes independent, non-adversarial errors; its failure under adaptive adversaries is trivially expected \\citep{tramer2018ensemble,kariyappa2019improving,pang2019improving}. We focus on the \\emph{panel-size-dependent structure} of this vulnerability: the diminishing predictive power of the weakest link as $K$ grows, and the persistent positive association between diversity and vulnerability.\n\n\\paragraph{Ensemble Diversity Theory.}\nClassical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, a finding paralleled in social science \\citep{hong2004groups}, but only when members maintain sufficiently low bias \\citep{brown2005managing}; selective ensembles can outperform using all members \\citep{zhou2002ensembling}. \\citet{kuncheva2003measures} found no pairwise diversity measure reliably predicted improvement; our $K_{\\mathrm{eff}}$ exhibits a $K$-dependent pattern whose direction depends on the metric. LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise. Recent frameworks \\citep{yang2026diversity,turkmen2026ensemble} characterize diversity under benign evaluation; we provide the adversarial complement.\n\n\\paragraph{Adversarial Robustness and Transferability.}\nAdversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. Controlled diversity via uncorrelated gradients \\citep{kariyappa2019improving}, diversity regularization \\citep{pang2019improving}, or vulnerability diversification \\citep{zhu2020dverge} strengthens ensemble robustness in vision but requires coordinating member training, a control absent in post-hoc LLM judge selection. Our setting differs: adversaries use natural-language manipulation rather than gradient perturbations, and aggregation rules are a controllable design parameter.\n\n\\paragraph{BFT and Security Games.}\nClassical BFT \\citep{lamport1982byzantine,castro1999practical,blanchard2017byzantine} tolerates faulty nodes but assumes non-strategic faults; \\citet{schneier2000secrets} articulated the weakest-link principle. Our framework adopts the Stackelberg structure of \\citet{tambe2011security}. Correlated LLM judge errors \\citep{kim2025correlated,kuai2026independent} violate BFT's independence assumption; \\citet{kuai2026independent} propose the Difficulty-Weighted Behavioral Entanglement Index (DBEI), weighting agreement by item difficulty, while $K_{\\mathrm{eff}}$ captures a complementary dimension via pairwise MI. Mitigation strategies include DBEI-based reweighting, Bayesian calibration, and credibility scoring \\citep{ebrahimi2025adversary}.\n\n\\paragraph{Information-Theoretic Evaluation.}\nInformation-theoretic approaches address statistical validity \\citep{robertson2025stepwise,feng2026noisy}, attack costs \\citep{kaneko2025bits}, sequential selection \\citep{jung2026logarithmic}, and truthfulness \\citep{chen2025incentivizing,qiu2026truthfulness}, but assume honest judges. We address adversarial manipulation interacting with multi-judge composition.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 10,
+        "oldLines": 7,
+        "newStart": 10,
+        "newLines": 7,
+        "lines": [
+          " Classical ensemble theory shows diverse ensembles reduce error \\citep{dietterich2000ensemble,breiman2001random,krogh1995neural}, a finding paralleled in social science \\citep{hong2004groups}, but only when members maintain sufficiently low bias \\citep{brown2005managing}; selective ensembles can outperform using all members \\citep{zhou2002ensembling}. \\citet{kuncheva2003measures} found no pairwise diversity measure reliably predicted improvement; our $K_{\\mathrm{eff}}$ exhibits a $K$-dependent pattern whose direction depends on the metric. LLM panels differ from classical ensembles: members are heterogeneous pre-trained models, and adversaries exploit natural-language manipulation rather than random noise. Recent frameworks \\citep{yang2026diversity,turkmen2026ensemble} characterize diversity under benign evaluation; we provide the adversarial complement.",
+          " ",
+          " \\paragraph{Adversarial Robustness and Transferability.}",
+          "-Adversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. Controlled diversity via uncorrelated gradients \\citep{kariyappa2019improving}, diversity regularization \\citep{pang2019improving}, or vulnerability diversification \\citep{zhu2020dverge} strengthens ensemble robustness in vision but requires coordinating member training, a control absent in post-hoc LLM judge selection. Our setting differs: adversaries use natural-language manipulation rather than gradient perturbations, and aggregation rules are a controllable design parameter.",
+          "+Adversarial vulnerability was formalized by \\citet{goodfellow2015adversarial}, with transferability demonstrated by \\citet{papernot2016transferability,papernot2017practical}. In NLP, \\citet{wallace2019universal} introduced universal adversarial triggers and \\citet{zou2023universal} showed gradient-based suffixes transfer across aligned LLMs. Controlled diversity via uncorrelated gradients \\citep{kariyappa2019improving}, diversity regularization \\citep{pang2019improving}, or vulnerability diversification \\citep{zhu2020dverge} strengthens ensemble robustness in vision but requires coordinating member training, a control absent in post-hoc LLM judge selection. Our setting differs: adversaries use natural-language manipulation rather than gradient perturbations, and aggregation rules are a controllable design parameter.",
+          " ",
+          " \\paragraph{BFT and Security Games.}",
+          " Classical BFT \\citep{lamport1982byzantine,castro1999practical,blanchard2017byzantine} tolerates faulty nodes but assumes non-strategic faults; \\citet{schneier2000secrets} articulated the weakest-link principle. Our framework adopts the Stackelberg structure of \\citet{tambe2011security}. Correlated LLM judge errors \\citep{kim2025correlated,kuai2026independent} violate BFT's independence assumption; \\citet{kuai2026independent} propose the Difficulty-Weighted Behavioral Entanglement Index (DBEI), weighting agreement by item difficulty, while $K_{\\mathrm{eff}}$ captures a complementary dimension via pairwise MI. Mitigation strategies include DBEI-based reweighting, Bayesian calibration, and credibility scoring \\citep{ebrahimi2025adversary}."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "8a5d3e1f-eb58-4c97-8bee-4d5f707cfd7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-25T14:33:01.214Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01RntHh5ovNz8Y7fbAAM39sb`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex",
+  "old_string": "We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR)",
+  "new_string": "We apply Benjamini--Hochberg (BH) correction \\citep{benjamini1995controlling} for multiple testing, controlling the false discovery rate (FDR)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf0ae071-e14a-4b7b-a1c2-09ad75e65913",
+  "isSidechain": false,
+  "requestId": "req_011CbPT1AEUbP1ovnh4dL9aL",
+  "type": "assistant",
+  "uuid": "95c99ba3-aa22-43fa-bbcc-ab0fbb3ccec1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rEJkJHvxzVwDNz8UCvymh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 55626,
+      "output_tokens": 6259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6259,
+          "cache_read_input_tokens": 55626,
+          "cache_creation_input_tokens": 5600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-25T14:33:01.223Z_
+
+<details><summary>↩ Tool result · `toolu_01RntHh5ovNz8Y7fbAAM39sb`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95c99ba3-aa22-43fa-bbcc-ab0fbb3ccec1",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "e6542341-889b-403e-bc94-158a67ffd48c",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex",
+    "oldString": "We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR)",
+    "newString": "We apply Benjamini--Hochberg (BH) correction \\citep{benjamini1995controlling} for multiple testing, controlling the false discovery rate (FDR)",
+    "originalFile": "\\section{Experimental Methodology}\n\\label{sec:experiments}\n\n\\subsection{Models and Panel Construction}\n\nWe select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\\ref{tab:models}. Nine models are accessed via the OpenRouter API;\\footnote{All API models were accessed via OpenRouter between March--April 2026. Model snapshots may have changed after this period.} six open-weight models are served locally using vLLM~0.21.0 with Activation-aware Weight Quantization (AWQ) INT4 on an NVIDIA RTX PRO~6000 Blackwell (96\\,GB). API models are assigned to \\emph{frontier}, \\emph{mid-tier}, or \\emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). We study three panel sizes $K \\in \\{3, 5, 7\\}$ (all odd, majority-vote threshold $t = \\lceil K/2 \\rceil$). Exhaustive enumeration yields $\\binom{15}{3} = 455$ panels at $K{=}3$, $\\binom{15}{5} = 3{,}003$ at $K{=}5$, and $\\binom{15}{7} = 6{,}435$ at $K{=}7$, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\\times$ item $\\times$ attack tensor. The primary analysis uses $K{=}3$; \\S\\ref{sec:cross_k} extends to larger panels.\n\n\\subsection{Benchmarks and Attack Types}\n\nTwo benchmarks test distinct evaluation capabilities: MMLU \\citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \\citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each. All models use temperature~0 for deterministic outputs (temperature has negligible effect on $K_{\\mathrm{eff}}$; Appendix~\\ref{app:temperature}).\n\nEach benchmark is paired with six attack types: (1)~\\textbf{prompt injection}, adversarial instructions overriding the evaluation prompt \\citep{perez2022ignore,greshake2023not}; (2)~\\textbf{sycophancy}, flattering language exploiting judge preferences \\citep{wang2023fair}; (3)~\\textbf{score manipulation}, explicit numerical cues anchoring scoring; (4)~\\textbf{verbosity bias}, padding with irrelevant detail \\citep{zheng2023judging}; (5)~\\textbf{position bias}, reordering to exploit positional preferences \\citep{wang2023fair}; and (6)~\\textbf{authority bias}, fabricated credentials inflating credibility. The 2 benchmarks $\\times$ 6 attacks produce 12 conditions, each evaluated across all 455 panels (templates and implementation details in Appendix~\\ref{app:attacks}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Bench.} & \\textbf{Attack} & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & \\textbf{Dom.} \\\\\n\\midrule\nMMLU & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Score manip.   & n.s.    & $+^{*}$ & $K$ \\\\\nMMLU & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Position bias  & $+^{*}$ & $+^{*}$ & Co \\\\\nMMLU & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n\\addlinespace\nARC  & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Score manip.   & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\nARC  & Position bias  & n.s.    & $+^{*}$ & $K$ \\\\\nARC  & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Standardized regression coefficients for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\\ column: $\\eta$ = $\\eta_{\\max}$ sole dominant, $K$ = $K_{\\mathrm{eff}}$ sole dominant, Co = co-dominant \\citep{budescu1993dominance}.}\n\\label{tab:dominance}\n\\end{table}\n\n\\subsection{Vulnerability Metrics}\n\nPer-judge vulnerability under attack $a$ is the fraction of items where judge $j$ is fooled: $\\eta_j(a) = \\Pr(X_j^a {=} 1)$, estimated empirically over the item set. The weakest-link vulnerability $\\eta_{\\max}(a) = \\max_{j \\in \\mathcal{P}} \\eta_j(a)$ captures the most susceptible member of each panel. The panel attack success rate $\\mathrm{ASR}(\\mathcal{P}, a)$ is the fraction of items where at least $t$ judges are simultaneously fooled. Panel diversity is quantified by $K_{\\mathrm{eff}}$ (Equation~\\ref{eq:keff}), computed from pairwise MI between judges' three-category winner labels (model~A wins, model~B wins, tie) on clean data, using the plug-in estimator with Miller--Madow bias correction. The $\\exp(-2\\,\\mathrm{MI}(i,j))$ term measures pairwise alienation: 1 when independent, 0 under full dependence. Under a Gaussian copula this yields $K_{\\mathrm{eff}} = K - \\frac{1}{K}\\sum_{i}\\sum_{j \\neq i} \\rho_{ij}^2$ \\citep{nelsen2006copulas}; goodness-of-fit rejects the Gaussian copula for 97--100\\% of pairs, yet plug-in MI and closed-form rankings agree closely ($\\rho{\\approx}0.86$; Appendix~\\ref{app:copula_gof}). We also evaluate $\\kappa$-diversity ($1 - \\bar{\\kappa}$, mean pairwise Cohen's $\\kappa$; \\citealp{kuncheva2003measures}). Together, $\\eta_{\\max}$ (weakest-link channel) and $K_{\\mathrm{eff}}$ (diversity channel) serve as the two predictors in the regression framework below.\n\n\\subsection{Aggregation Methods}\n\nBeyond majority vote ($\\geq \\lceil K/2 \\rceil$ approvals), we evaluate three alternatives: \\emph{accuracy-weighted vote} ($w_j \\propto \\mathrm{acc}_j$; accept if $\\sum_j w_j \\cdot \\mathbf{1}[J_j \\text{ approves}] > 0.5$), \\emph{threshold vote} (unanimity, $t{=}K$), and \\emph{Bayesian calibration} ($P(\\text{correct} \\mid \\mathbf{v}) \\propto P(\\text{correct}) \\prod_j P(v_j \\mid \\text{correct})$; accept if posterior $> 0.5$).\n\n\\subsection{Statistical Framework}\n\\label{sec:stat_framework}\n\nTo disentangle the contributions of panel diversity and individual judge robustness, we fit a log-log OLS regression for each of the 12 conditions:\n\\begin{equation}\n\\label{eq:regression}\n\\log(\\mathrm{ASR} + \\epsilon) = \\alpha + \\beta_1 \\log(K_{\\mathrm{eff}}) + \\beta_2 \\log(\\eta_{\\max} + \\epsilon),\n\\end{equation}\nwith $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.\n\nDominance analysis \\citep{budescu1993dominance} decomposes $R^2$ into each predictor's average incremental contribution across all subsets. Generalized additive models (GAMs) with smooth terms test whether $K_{\\mathrm{eff}}$'s effect direction varies between targeted attacks (prompt injection, score manipulation, position bias) and shared-bias attacks (sycophancy, verbosity, authority bias).\n\n\\subsection{Robustness to Non-Independence}\n\\label{sec:robustness_method}\n\nThe 455 panels share judges combinatorially (each appears in 91 panels), inducing correlated residuals. We apply three corrections \\citep[see][for a practitioner's guide]{cameron2015practitioners}: clustered standard errors (SE; CR1, 3-position max-SE), mixed-effects models (random judge intercepts), and wild cluster bootstrap ($B{=}9{,}999$, Rademacher weights, 3-position max-$p$) following \\citet{cameron2008bootstrap}. Cluster counts (13, ${\\leq}11$, ${\\leq}9$ at $K{=}3,5,7$) fall below the ${\\geq}20$ threshold; we use Rademacher weights following \\citet{mackinnon2018wild}. Fractional logit \\citep{papke1996econometric} with clustered SE serves as an $\\epsilon$-free robustness check (Appendix~\\ref{app:robustness_methods}). Monte Carlo calibration (1{,}000 permutations, $B{=}999$) confirms the wild cluster bootstrap does not over-reject in any of 36 conditions (max null rejection rate ${=}1.6\\%$ at nominal $\\alpha{=}5\\%$), establishing reported significance counts as conservative lower bounds (Appendix~\\ref{app:monte_carlo}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 53,
+        "oldLines": 7,
+        "newStart": 53,
+        "newLines": 7,
+        "lines": [
+          " \\label{eq:regression}",
+          " \\log(\\mathrm{ASR} + \\epsilon) = \\alpha + \\beta_1 \\log(K_{\\mathrm{eff}}) + \\beta_2 \\log(\\eta_{\\max} + \\epsilon),",
+          " \\end{equation}",
+          "-with $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.",
+          "+with $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction \\citep{benjamini1995controlling} for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.",
+          " ",
+          " Dominance analysis \\citep{budescu1993dominance} decomposes $R^2$ into each predictor's average incremental contribution across all subsets. Generalized additive models (GAMs) with smooth terms test whether $K_{\\mathrm{eff}}$'s effect direction varies between targeted attacks (prompt injection, score manipulation, position bias) and shared-bias attacks (sycophancy, verbosity, authority bias).",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "95c99ba3-aa22-43fa-bbcc-ab0fbb3ccec1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-25T14:33:02.193Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Ld8fxwHP8vest15RsiRpEy`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+  "old_string": "Meta-analytic pooling (DerSimonian--Laird random effects across 12 conditions)",
+  "new_string": "Meta-analytic pooling (DerSimonian--Laird random effects \\citealp{dersimonian1986meta}, across 12 conditions)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6542341-889b-403e-bc94-158a67ffd48c",
+  "isSidechain": false,
+  "requestId": "req_011CbPT1AEUbP1ovnh4dL9aL",
+  "type": "assistant",
+  "uuid": "73dc1b83-2967-4038-8ba2-3caa0de527d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013rEJkJHvxzVwDNz8UCvymh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5600,
+      "cache_read_input_tokens": 55626,
+      "output_tokens": 6259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6259,
+          "cache_read_input_tokens": 55626,
+          "cache_creation_input_tokens": 5600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 86 · 2026-05-25T14:33:02.248Z_
+
+```json
+{
+  "parentUuid": "0ed5d620-1822-497d-9533-1603f5be6d44",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1dbd537c-e46d-4519-9891-ae4c680b601d",
+  "timestamp": "2026-05-25T14:33:02.248Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "1dbd537c-e46d-4519-9891-ae4c680b601d",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add 6-8 references to reach 60+ citations",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-25T14:33:05.529Z_
+
+All edits applied. Now let me verify: count total bib entries and confirm each new key appears in at least one .tex file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1dbd537c-e46d-4519-9891-ae4c680b601d",
+  "isSidechain": false,
+  "requestId": "req_011CbPT7LEQg51m3e7wAzuY5",
+  "type": "assistant",
+  "uuid": "8207e28a-0039-4dee-aca1-2ff67aa368ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XCTv31HE95A1t33tSTB5km",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6972,
+      "cache_read_input_tokens": 61226,
+      "output_tokens": 311,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 311,
+          "cache_read_input_tokens": 61226,
+          "cache_creation_input_tokens": 6972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-25T14:33:06.476Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01X3qcQ6ehbco9uZSYUK1jGQ`</summary>
+
+```json
+{
+  "command": "grep -c '^@' /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib",
+  "description": "Count total bib entries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8207e28a-0039-4dee-aca1-2ff67aa368ee",
+  "isSidechain": false,
+  "requestId": "req_011CbPT7LEQg51m3e7wAzuY5",
+  "type": "assistant",
+  "uuid": "8104649b-a6cc-4edb-bb5d-d4c9b700f9e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XCTv31HE95A1t33tSTB5km",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6972,
+      "cache_read_input_tokens": 61226,
+      "output_tokens": 311,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 311,
+          "cache_read_input_tokens": 61226,
+          "cache_creation_input_tokens": 6972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-25T14:33:06.662Z_
+
+<details><summary>↩ Tool result · `toolu_01X3qcQ6ehbco9uZSYUK1jGQ`</summary>
+
+```text
+62
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8104649b-a6cc-4edb-bb5d-d4c9b700f9e4",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "b5e2677a-e449-443e-b925-ca66c8379faf",
+  "toolUseResult": {
+    "stdout": "62",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "8104649b-a6cc-4edb-bb5d-d4c9b700f9e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-25T14:33:08.129Z_
+
+<details><summary>↩ Tool result · `toolu_01AbcMCzocAQHg6FxFST8Aig`</summary>
+
+```text
+docs/paper/related_work.tex:4:[Omitted long matching line]
+docs/paper/related_work.tex:10:[Omitted long matching line]
+docs/paper/related_work.tex:13:[Omitted long matching line]
+docs/paper/methodology.tex:56:with $\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\epsilon$ is analyzed in Appendix~\ref{app:epsilon}). Standardized coefficients $\hat{\beta}_{\mathrm{std}} = \hat{\beta} \cdot \mathrm{SD}(\log x) / \mathrm{SD}(\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction \citep{benjamini1995controlling} for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.
+docs/paper/results.tex:63:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20ba0efd-7fdd-4c1b-ad81-0bb5bce811f8",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "edc1d70c-4418-45f5-9923-508934e0d16f",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/related_work.tex:4:[Omitted long matching line]\ndocs/paper/related_work.tex:10:[Omitted long matching line]\ndocs/paper/related_work.tex:13:[Omitted long matching line]\ndocs/paper/methodology.tex:56:with $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction \\citep{benjamini1995controlling} for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.\ndocs/paper/results.tex:63:[Omitted long matching line]",
+    "numLines": 5
+  },
+  "sourceToolAssistantUUID": "20ba0efd-7fdd-4c1b-ad81-0bb5bce811f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-25T14:33:08.112Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01AbcMCzocAQHg6FxFST8Aig`</summary>
+
+```json
+{
+  "pattern": "dersimonian1986meta|benjamini1995controlling|ye2024justice|bavaresco2025llms|zou2023universal|wallace2019universal|hong2004groups",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5e2677a-e449-443e-b925-ca66c8379faf",
+  "isSidechain": false,
+  "requestId": "req_011CbPT7LEQg51m3e7wAzuY5",
+  "type": "assistant",
+  "uuid": "20ba0efd-7fdd-4c1b-ad81-0bb5bce811f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XCTv31HE95A1t33tSTB5km",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6972,
+      "cache_read_input_tokens": 61226,
+      "output_tokens": 311,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 311,
+          "cache_read_input_tokens": 61226,
+          "cache_creation_input_tokens": 6972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94 · 2026-05-25T14:33:11.517Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The count is 62, which is >= 61. Let me verify each key individually to make sure all 7 are cited.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edc1d70c-4418-45f5-9923-508934e0d16f",
+  "isSidechain": false,
+  "requestId": "req_011CbPT7maA7f9u9DHP66PXE",
+  "type": "assistant",
+  "uuid": "1fa11df9-3853-4151-a4ef-b2f6ba63ecd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHXKYWMzFcP7Xy2YB3vHSd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 614,
+      "cache_read_input_tokens": 68198,
+      "output_tokens": 265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 614,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 265,
+          "cache_read_input_tokens": 68198,
+          "cache_creation_input_tokens": 614,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 614
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-25T14:33:12.042Z_
+
+62 entries total (was 55, added 7). Let me confirm each of the 7 new keys is cited individually.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fa11df9-3853-4151-a4ef-b2f6ba63ecd3",
+  "isSidechain": false,
+  "requestId": "req_011CbPT7maA7f9u9DHP66PXE",
+  "type": "assistant",
+  "uuid": "006955a5-420b-4ffd-a710-ba16cdcac067",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHXKYWMzFcP7Xy2YB3vHSd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 614,
+      "cache_read_input_tokens": 68198,
+      "output_tokens": 265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 614,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 265,
+          "cache_read_input_tokens": 68198,
+          "cache_creation_input_tokens": 614,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 614
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-25T14:33:13.652Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017NLddT9J2L2DxLLLAKwpmK`</summary>
+
+```json
+{
+  "command": "for key in dersimonian1986meta benjamini1995controlling ye2024justice bavaresco2025llms zou2023universal wallace2019universal hong2004groups; do echo -n \"$key: \"; grep -rl \"$key\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/*.tex | xargs -I{} basename {} 2>/dev/null || echo \"NOT FOUND\"; done",
+  "description": "Verify each new bib key appears in tex files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "006955a5-420b-4ffd-a710-ba16cdcac067",
+  "isSidechain": false,
+  "requestId": "req_011CbPT7maA7f9u9DHP66PXE",
+  "type": "assistant",
+  "uuid": "7503b46b-956e-40f2-b672-18f952610ca1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PHXKYWMzFcP7Xy2YB3vHSd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 614,
+      "cache_read_input_tokens": 68198,
+      "output_tokens": 265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 614,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 265,
+          "cache_read_input_tokens": 68198,
+          "cache_creation_input_tokens": 614,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 614
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-25T14:33:13.750Z_
+
+<details><summary>↩ Tool result · `toolu_017NLddT9J2L2DxLLLAKwpmK`</summary>
+
+```text
+dersimonian1986meta: results.tex
+benjamini1995controlling: methodology.tex
+ye2024justice: related_work.tex
+bavaresco2025llms: related_work.tex
+zou2023universal: related_work.tex
+wallace2019universal: related_work.tex
+hong2004groups: related_work.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7503b46b-956e-40f2-b672-18f952610ca1",
+  "isSidechain": false,
+  "promptId": "d1a125c2-d7bc-43b0-a2fc-4ed5cfdf625a",
+  "type": "user",
+  "uuid": "19876cfe-cfd0-4a69-8f4f-2462af37938b",
+  "toolUseResult": {
+    "stdout": "dersimonian1986meta: results.tex\nbenjamini1995controlling: methodology.tex\nye2024justice: related_work.tex\nbavaresco2025llms: related_work.tex\nzou2023universal: related_work.tex\nwallace2019universal: related_work.tex\nhong2004groups: related_work.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "7503b46b-956e-40f2-b672-18f952610ca1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98 · 2026-05-25T14:33:22.043Z_
+
+All 7 new references are cited. Summary:
+
+| Key | Title | Year | Venue | Cited in |
+|---|---|---|---|---|
+| `dersimonian1986meta` | Meta-Analysis in Clinical Trials | 1986 | Controlled Clinical Trials | results.tex |
+| `benjamini1995controlling` | Controlling the False Discovery Rate | 1995 | JRSS-B | methodology.tex |
+| `ye2024justice` | Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge | 2024 | arXiv:2410.02736 | related_work.tex |
+| `bavaresco2025llms` | LLMs instead of Human Judges? | 2025 | ACL 2025 | related_work.tex |
+| `zou2023universal` | Universal and Transferable Adversarial Attacks on Aligned LLMs | 2023 | arXiv:2307.15043 | related_work.tex |
+| `wallace2019universal` | Universal Adversarial Triggers for Attacking and Analyzing NLP | 2019 | EMNLP-IJCNLP 2019 | related_work.tex |
+| `hong2004groups` | Groups of Diverse Problem Solvers Can Outperform... | 2004 | PNAS | related_work.tex |
+
+Total bib entries: **62** (was 55). All entries verified via WebSearch. Each citation inserted at a natural position without altering existing content meaning.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19876cfe-cfd0-4a69-8f4f-2462af37938b",
+  "isSidechain": false,
+  "requestId": "req_011CbPT8BS74JXFuMq2vsD6X",
+  "type": "assistant",
+  "uuid": "66bca267-a777-4d64-908e-0ff434d0c30c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CTLPLPjT8SS2rZmXTepmhz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 357,
+      "cache_read_input_tokens": 68812,
+      "output_tokens": 375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 357,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 375,
+          "cache_read_input_tokens": 68812,
+          "cache_creation_input_tokens": 357,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 357
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "66bca267-a777-4d64-908e-0ff434d0c30c",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add 6-8 references to reach 60+ citations",
+  "sessionId": "e1035f39-2061-4f17-8b93-2f4952fb9a75"
+}
+```
+
+---

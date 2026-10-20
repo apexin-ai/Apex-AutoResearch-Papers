@@ -1,0 +1,3027 @@
+# Research conversation: Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines ## Description We propose the first formal multi
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-3/d76037f9-7404-46c4-a52b-8650f7a00fd3.jsonl`
+- **Structured JSON:** [`1afef65067bffe4a02f3.json`](../../sessions/1a/1afef65067bffe4a02f3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T03:49:10.487Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T03:49:10.487Z",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "content": "# Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines\n\n## Description\nWe propose the first formal multiverse analysis framework for LLM-mediated social science annotation pipelines, combining principled configuration selection with joint statistical inference. While recent work documents that LLM pipeline choices produce contradictory conclusions (Baumann et al., 2025: ~31% error rate) and that interaction effects between choices dominate main effects (McLaren et al., 2026), no existing framework applies formal multiverse methodology — and the methodological community is actively debating whether exhaustive enumeration overstates uncertainty (Auspurg, PNAS 2025). We address both gaps. First, we adapt Del Giudice & Gangestad's (2021) E/N/U (Equivalence/Nonequivalence/Uncertainty) classification framework to LLM annotation, providing a principled methodology for constructing task-conditional multiverses: dimensions where one configuration is objectively superior (e.g., temperature=0 for deterministic tasks) are resolved rather than enumerated, while genuinely equivalent alternatives (e.g., semantically equivalent prompt rephrasings) populate the multiverse. Task-conditional constraints expressed in a Boba-style DSL reduce the naïve 810-configuration Cartesian product to ~90–270 principled specifications per task. Second, we adapt specification curve analysis (Simonsohn et al., 2020) with permutation-based joint inference to classify substantive social-science hypotheses as robust, fragile, or sign-inconsistent across the annotation multiverse. Third, we perform formal variance decomposition (factorial ANOVA over specification space) to quantify which pipeline dimensions and interactions drive the most inferential instability — extending McLaren et al.'s descriptive benchmarking to statistical attribution. We validate on 10 tasks from Baumann et al.'s publicly available replication data (37 tasks, MIT license) spanning binary, multi-class, ordinal, and subjective annotation, with supplementary validation on the SALT-NLP CSS benchmark. All inference is run via API on 6 models spanning diverse architectures (Llama 4 Maverick, Qwen 3.5, DeepSeek V4 Flash, Gemma 4, Mistral Medium 3.5, plus one proprietary anchor). We engage directly with Auspurg's (PNAS 2025) critique of brute-force multiverse analysis, arguing that LLM annotation is precisely the setting where her concerns do not apply: the estimand remains constant across configurations, no configuration is statistically misspecified, and no established theory ranks pipeline choices a priori. We release an open-source Python toolkit (llm-multiverse) integrating E/N/U classification, constraint-based configuration enumeration, batched API annotation, specification curve visualization, and joint inference — with SMART-compatible pre-registration templates enabling researchers to document and justify their multiverse construction before running experiments.\n\n## Core Problem\nWhen researchers use LLMs to annotate text for social science, numerous pipeline choices (model, prompt, temperature, aggregation) constitute researcher degrees of freedom that can produce contradictory conclusions — yet no formal framework systematically quantifies how these choices jointly affect downstream statistical inference. This is not merely a benchmarking problem: existing work documents that choices matter and interact (Baumann et al., 2025; McLaren et al., 2026), but none applies formal joint inference methods to determine whether a substantive social-science finding is robust across the space of defensible pipeline configurations.\n\n## Opportunity\nThe 'LLM hacking' paper (Baumann et al., 2025) showed ~31% of hypotheses yield incorrect conclusions from arbitrary LLM configuration choices, and Carlson & Burbano (2026, SMJ) recommend sensitivity analysis but provide no formal methodology. McLaren et al. (2026) demonstrate that interaction effects between pipeline choices dominate main effects, yet use only one-at-a-time variation without joint inference. Meanwhile, multiverse analysis / specification curve methods are mature in psychology and economics but have never been adapted to the unique structure of LLM annotation pipelines, where the degrees of freedom (prompt wording, model family, temperature, role, output parsing) are qualitatively different from traditional analytic choices — and, crucially, where Auspurg's (PNAS 2025) critique of brute-force multiverse enumeration does not apply because (a) the estimand remains constant across pipeline configurations, (b) no configuration is 'statistically misspecified' in the way a regression omitting fixed effects is, and (c) no established theory ranks one prompt or model above another a priori. The NLP+CSS community explicitly calls for work on 'LLMs for measurement and downstream statistical inference.'\n\n## Landscape\nThe LLM hacking paper (Baumann et al., 2025) tested 18 LLMs × 2,361 hypotheses × 13M labels, documenting the problem's scale but only evaluating 21 ad-hoc mitigations — no formal multiverse inference. 'Magic Words or Methodical Work?' (McLaren et al., arXiv March 2026) systematically varied model, prompt template, and learning approach for LLM annotation in political science and found that interaction effects dominate main effects; however, their design is one-factor-at-a-time (not full factorial), produces no specification curve or joint inference test, and their question is 'which pipeline performs best?' rather than 'is a substantive finding robust across pipelines?' — making their work complementary benchmarking, not a multiverse analysis. The variance-aware annotation framework (2026) identifies 5 variance sources but offers protocol guidance, not statistical inference. The benchmarking debiasing paper (Audinet de Pieuchon et al., EMNLP 2025) compares DSL vs PPI but only for fixed pipeline configurations. Brittlebench (2026) measures prompt sensitivity but not downstream inferential consequences. 'Prompt-Hacking: The New p-Hacking?' (Kosch & Feger, CACM 2026) draws the conceptual analogy but offers no formal method. 'Navigating the Conceptual Multiverse' (Ye et al., arXiv April 2026) applies multiverse thinking to LLM conceptual framing as an interactive HCI system, but does not address annotation pipelines or statistical inference. 'Multi-Perspective LLM Annotations' (Mehrotra et al., arXiv March 2026) introduces Perspective-Driven Inference for subjective tasks but assumes a single pipeline per perspective. The PNAS debate between Auspurg (2025) and Ganslmeier & Vlandas (2025) on whether exhaustive multiverse enumeration overstates uncertainty provides the key methodological foil: we adopt Del Giudice & Gangestad's (2021) E/N/U classification framework to construct principled, task-conditional multiverses rather than naïve Cartesian products. No existing work provides a formal multiverse analysis with principled configuration selection and joint statistical inference for LLM annotation pipelines.\n\n## Approach\nWe propose a three-stage framework: (1) Principled Multiverse Construction using Del Giudice & Gangestad's (2021) E/N/U (Equivalence / Nonequivalence / Uncertainty) classification. For each annotation task, we classify every pipeline dimension: dimensions where alternatives are effectively equivalent (Type E: e.g., semantically equivalent prompt rephrasings) populate the multiverse; dimensions where one option is objectively superior (Type N: e.g., temperature=0 for deterministic classification tasks, label-based output over numerical scores) are resolved to the best option only; dimensions where defensibility is uncertain (Type U: e.g., model family, definition inclusion) generate separate stratified multiverses. Task-conditional constraints are expressed formally using a Boba-style DSL: e.g., IF task_type='classification' AND num_classes≤3 THEN temperature∈{0.0, 0.3} AND output_format∈{'label'}. This reduces the naïve Cartesian product (~810 configurations from 6 models × 5 prompts × 3 temperatures × 3 roles × 3 aggregation strategies) to a principled, task-specific multiverse of ~90–270 defensible configurations per task, with explicit justification for every inclusion/exclusion. (2) Full-factorial execution across the principled multiverse. The six models span diverse architectures: Llama 4 Maverick (400B MoE), Qwen 3.5 (397B MoE), DeepSeek V4 Flash (284B MoE), Gemma 4 (26B MoE), Mistral Medium 3.5 (128B dense), plus one proprietary anchor (GPT-4o or Claude). All models are accessed via API (DeepSeek API, Together AI, OpenRouter, Google AI) for cost-efficiency; batched annotation (25 items/prompt) minimizes token costs. For each configuration, generate labels for the full corpus, then compute the downstream statistical estimate (e.g., regression coefficient, group difference). (3) Specification curve analysis with joint inference (Simonsohn et al., 2020): rank all specifications by effect size, display the specification curve with indicator rows for each pipeline dimension, and apply a permutation-based joint inference test to classify hypotheses as robust (sign-consistent and jointly significant), fragile (sign-inconsistent or significance-dependent on configuration), or null (no configuration yields significance). Additionally, perform variance decomposition (ANOVA over the specification space) to quantify which pipeline dimensions and their interactions drive the most inferential instability — extending McLaren et al.'s descriptive interaction findings to formal statistical attribution. Validate on 10 annotation tasks drawn from Baumann et al.'s publicly available replication data (37 tasks, MIT license, github.com/joebaumann/llmhacking), selected to span binary classification, multi-class categorization, ordinal scaling, and subjective judgment. Supplementary validation uses Gilardi et al.'s (PNAS 2023) Harvard Dataverse data and the SALT-NLP CSS benchmark (Ziems et al., 2024). Release an open-source Python toolkit (llm-multiverse) that wraps the full pipeline: E/N/U classification interface → task-conditional constraint specification → configuration enumeration → batched API annotation → specification curve visualization → joint inference test. The toolkit integrates with the SMART pre-registration framework (2025) so researchers can document and justify their multiverse construction before running experiments.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '0 (all inference via API — no self-hosted GPU needed)', 'api_cost': '$1,200–$2,000 for open-weight models via API providers (DeepSeek V4 Flash: ~$100–200 via DeepSeek API; Llama 4 Maverick: ~$250–470 via Together AI; Qwen 3.5: ~$475–950 via OpenRouter; Gemma 4: ~$65–130 via Google; Mistral Medium 3.5: ~$300–650 via Mistral/OpenRouter; proprietary anchor: ~$200–400). Estimates assume batched annotation (25 items/prompt) across ~90–270 configs × 10 tasks × 1,000–3,000 samples. Total: ~500M–1.2B tokens across all models.', 'timeline': '5–6 months (1 month framework design + E/N/U methodology, 2 months implementation + experiments, 1 month analysis + variance decomposition, 1 month writing + revision)', 'estimated_total_cost': '$1,200–$2,000'}, 'human_in_loop': {'gpu_hours': '0 (API-based)', 'api_cost': '$1,000–$1,600 (same API inference, slightly optimized configuration space with Claude-assisted E/N/U classification)', 'timeline': '3.5–4.5 months (2 weeks framework design with Claude scaffolding, 6 weeks experiments, 3 weeks analysis, 3 weeks writing)', 'claude_api_cost': '$150–$250 (Sonnet for code generation, experiment orchestration, and paper drafting; ~50M input tokens with caching)', 'estimated_total_cost': '$1,150–$1,850'}, 'auto_research': {'gpu_hours': '0 (API-based)', 'api_cost': '$1,000–$1,600 (same inference costs)', 'timeline': '2–3 months (automated experiment sweeps, parallelized API calls, auto-generated specification curves)', 'claude_api_cost': '$400–$600 (Opus for research design + Sonnet for bulk code generation and analysis; ~100M tokens total)', 'estimated_total_cost': '$1,400–$2,200', 'speed_bottleneck': 'API rate limits on proprietary LLMs (GPT, Claude) for anchor comparisons; sequential dependency between label generation and downstream inference computation; OpenRouter rate limits for Qwen 3.5 and Mistral Medium 3.5'}}\n\n## Inspired By\nGap: LLM hacking paper shows the problem (31% error rate), McLaren et al. show interaction effects dominate, but no formal multiverse framework with joint inference exists. Pattern: Cross-domain transfer of specification curve analysis (psychology/economics) and the E/N/U defensibility framework (Del Giudice & Gangestad, 2021) to LLM annotation pipelines. Epistemological justification: Auspurg's (PNAS 2025) critique of brute-force multiverse analysis does not apply to LLM pipelines because the estimand is constant and no configuration is statistically misspecified — making this precisely the setting where multiverse analysis is epistemically justified. Field guide evidence: Carlson & Burbano (2026) guidelines call for sensitivity analysis; variance-aware annotation (2026) identifies 5 variance sources; the NLP+CSS workshop explicitly seeks work on 'LLMs for measurement and downstream statistical inference.'\n\n## Target Venues\n- AAAI 2027 (full paper deadline: ~July 28, 2026 — strong fit for methods + empirical validation paper; primary target)\n- TACL (rolling submission, any month — ideal for extended journal-length treatment with theoretical results on E/N/U framework + formal variance decomposition)\n- CSCW 2027 (rolling submission — fits the sociotechnical framing of researcher-tool interaction and pre-registration protocol)\n- EMNLP 2026 Industry Track (deadline: ~June 16, 2026 — if framed around practitioner toolkit; stretch target)\n- FAccT 2027 (fits the transparency/accountability angle of documenting researcher degrees of freedom in LLM-mediated research)\n\n## Key References\n- Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation (arXiv 2025, Baumann et al.) — documents the 31% error rate problem; replication data publicly available under MIT license at github.com/joebaumann/llmhacking\n- Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation (arXiv 2603.26898, McLaren et al., March 2026) — one-at-a-time benchmarking showing interaction effects dominate; releases CodeBook Lab tools; complementary but no joint inference\n- Specification Curve Analysis (Nature Human Behaviour 2020, Simonsohn, Simmons & Nelson) — canonical joint inference method we adapt\n- Increasing Transparency Through a Multiverse Analysis (Perspectives on Psychological Science 2016, Steegen, Tuerlinckx, Gelman & Vanpaemel) — original multiverse analysis framework\n- A Traveler's Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions (Advances in Methods and Practices in Psychological Science 2021, Del Giudice & Gangestad) — E/N/U classification framework for principled configuration selection\n- Robustness is better assessed with a few thoughtful models than with billions of regressions (PNAS 2025, Auspurg) — critique of exhaustive multiverse enumeration; we argue LLM annotation is precisely the case where her critique does not apply\n- Reply to Auspurg: On the limits of 'justified' model spaces (PNAS 2025, Ganslmeier & Vlandas) — defense of comprehensive multiverse analysis when theory cannot adjudicate\n- The Use of LLMs to Annotate Data in Management Research: Foundational Guidelines and Warnings (SMJ 2026, Carlson & Burbano)\n- Variance-Aware LLM Annotation for Strategy Research (arXiv 2026)\n- Benchmarking Debiasing Methods for LLM-based Parameter Estimates (EMNLP 2025, Audinet de Pieuchon et al.)\n- Brittlebench: Quantifying LLM Robustness via Prompt Sensitivity (arXiv 2026)\n- Can Unconfident LLM Annotations Be Used for Confident Conclusions? (NAACL 2025, Gligorić et al.)\n- Prompt-Hacking: The New p-Hacking? (Communications of the ACM 2026, Kosch & Feger)\n- Navigating the Conceptual Multiverse (arXiv 2026, Ye et al.)\n- Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks (arXiv 2026, Mehrotra et al.)\n- Same Prompt, Different Outcomes: Evaluating the Reproducibility of Data Analysis by LLMs (arXiv 2026, Cui & Alexander)\n- To Err Is Human; To Annotate, SILICON? Reducing Measurement Error in LLM Annotation (arXiv 2024)\n- SMART: Systematic Multiverse Analysis Registration Tool (Royal Society Open Science 2025) — pre-registration workflow for multiverse construction\n- Boba: Authoring and Visualizing Multiverse Analyses (Liu et al., 2021) — DSL with constraint specification for principled multiverse pruning\n- Prompt Design Matters for Computational Social Science Tasks but in Unpredictable Ways (arXiv 2024) — empirical evidence for task-conditional configuration defensibility\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T03:49:10.490Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T03:49:10.490Z",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+## Round 1
+
+44 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T03:49:10.504Z_
+
+# Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines
+
+## Description
+We propose the first formal multiverse analysis framework for LLM-mediated social science annotation pipelines, combining principled configuration selection with joint statistical inference. While recent work documents that LLM pipeline choices produce contradictory conclusions (Baumann et al., 2025: ~31% error rate) and that interaction effects between choices dominate main effects (McLaren et al., 2026), no existing framework applies formal multiverse methodology — and the methodological community is actively debating whether exhaustive enumeration overstates uncertainty (Auspurg, PNAS 2025). We address both gaps. First, we adapt Del Giudice & Gangestad's (2021) E/N/U (Equivalence/Nonequivalence/Uncertainty) classification framework to LLM annotation, providing a principled methodology for constructing task-conditional multiverses: dimensions where one configuration is objectively superior (e.g., temperature=0 for deterministic tasks) are resolved rather than enumerated, while genuinely equivalent alternatives (e.g., semantically equivalent prompt rephrasings) populate the multiverse. Task-conditional constraints expressed in a Boba-style DSL reduce the naïve 810-configuration Cartesian product to ~90–270 principled specifications per task. Second, we adapt specification curve analysis (Simonsohn et al., 2020) with permutation-based joint inference to classify substantive social-science hypotheses as robust, fragile, or sign-inconsistent across the annotation multiverse. Third, we perform formal variance decomposition (factorial ANOVA over specification space) to quantify which pipeline dimensions and interactions drive the most inferential instability — extending McLaren et al.'s descriptive benchmarking to statistical attribution. We validate on 10 tasks from Baumann et al.'s publicly available replication data (37 tasks, MIT license) spanning binary, multi-class, ordinal, and subjective annotation, with supplementary validation on the SALT-NLP CSS benchmark. All inference is run via API on 6 models spanning diverse architectures (Llama 4 Maverick, Qwen 3.5, DeepSeek V4 Flash, Gemma 4, Mistral Medium 3.5, plus one proprietary anchor). We engage directly with Auspurg's (PNAS 2025) critique of brute-force multiverse analysis, arguing that LLM annotation is precisely the setting where her concerns do not apply: the estimand remains constant across configurations, no configuration is statistically misspecified, and no established theory ranks pipeline choices a priori. We release an open-source Python toolkit (llm-multiverse) integrating E/N/U classification, constraint-based configuration enumeration, batched API annotation, specification curve visualization, and joint inference — with SMART-compatible pre-registration templates enabling researchers to document and justify their multiverse construction before running experiments.
+
+## Core Problem
+When researchers use LLMs to annotate text for social science, numerous pipeline choices (model, prompt, temperature, aggregation) constitute researcher degrees of freedom that can produce contradictory conclusions — yet no formal framework systematically quantifies how these choices jointly affect downstream statistical inference. This is not merely a benchmarking problem: existing work documents that choices matter and interact (Baumann et al., 2025; McLaren et al., 2026), but none applies formal joint inference methods to determine whether a substantive social-science finding is robust across the space of defensible pipeline configurations.
+
+## Opportunity
+The 'LLM hacking' paper (Baumann et al., 2025) showed ~31% of hypotheses yield incorrect conclusions from arbitrary LLM configuration choices, and Carlson & Burbano (2026, SMJ) recommend sensitivity analysis but provide no formal methodology. McLaren et al. (2026) demonstrate that interaction effects between pipeline choices dominate main effects, yet use only one-at-a-time variation without joint inference. Meanwhile, multiverse analysis / specification curve methods are mature in psychology and economics but have never been adapted to the unique structure of LLM annotation pipelines, where the degrees of freedom (prompt wording, model family, temperature, role, output parsing) are qualitatively different from traditional analytic choices — and, crucially, where Auspurg's (PNAS 2025) critique of brute-force multiverse enumeration does not apply because (a) the estimand remains constant across pipeline configurations, (b) no configuration is 'statistically misspecified' in the way a regression omitting fixed effects is, and (c) no established theory ranks one prompt or model above another a priori. The NLP+CSS community explicitly calls for work on 'LLMs for measurement and downstream statistical inference.'
+
+## Landscape
+The LLM hacking paper (Baumann et al., 2025) tested 18 LLMs × 2,361 hypotheses × 13M labels, documenting the problem's scale but only evaluating 21 ad-hoc mitigations — no formal multiverse inference. 'Magic Words or Methodical Work?' (McLaren et al., arXiv March 2026) systematically varied model, prompt template, and learning approach for LLM annotation in political science and found that interaction effects dominate main effects; however, their design is one-factor-at-a-time (not full factorial), produces no specification curve or joint inference test, and their question is 'which pipeline performs best?' rather than 'is a substantive finding robust across pipelines?' — making their work complementary benchmarking, not a multiverse analysis. The variance-aware annotation framework (2026) identifies 5 variance sources but offers protocol guidance, not statistical inference. The benchmarking debiasing paper (Audinet de Pieuchon et al., EMNLP 2025) compares DSL vs PPI but only for fixed pipeline configurations. Brittlebench (2026) measures prompt sensitivity but not downstream inferential consequences. 'Prompt-Hacking: The New p-Hacking?' (Kosch & Feger, CACM 2026) draws the conceptual analogy but offers no formal method. 'Navigating the Conceptual Multiverse' (Ye et al., arXiv April 2026) applies multiverse thinking to LLM conceptual framing as an interactive HCI system, but does not address annotation pipelines or statistical inference. 'Multi-Perspective LLM Annotations' (Mehrotra et al., arXiv March 2026) introduces Perspective-Driven Inference for subjective tasks but assumes a single pipeline per perspective. The PNAS debate between Auspurg (2025) and Ganslmeier & Vlandas (2025) on whether exhaustive multiverse enumeration overstates uncertainty provides the key methodological foil: we adopt Del Giudice & Gangestad's (2021) E/N/U classification framework to construct principled, task-conditional multiverses rather than naïve Cartesian products. No existing work provides a formal multiverse analysis with principled configuration selection and joint statistical inference for LLM annotation pipelines.
+
+## Approach
+We propose a three-stage framework: (1) Principled Multiverse Construction using Del Giudice & Gangestad's (2021) E/N/U (Equivalence / Nonequivalence / Uncertainty) classification. For each annotation task, we classify every pipeline dimension: dimensions where alternatives are effectively equivalent (Type E: e.g., semantically equivalent prompt rephrasings) populate the multiverse; dimensions where one option is objectively superior (Type N: e.g., temperature=0 for deterministic classification tasks, label-based output over numerical scores) are resolved to the best option only; dimensions where defensibility is uncertain (Type U: e.g., model family, definition inclusion) generate separate stratified multiverses. Task-conditional constraints are expressed formally using a Boba-style DSL: e.g., IF task_type='classification' AND num_classes≤3 THEN temperature∈{0.0, 0.3} AND output_format∈{'label'}. This reduces the naïve Cartesian product (~810 configurations from 6 models × 5 prompts × 3 temperatures × 3 roles × 3 aggregation strategies) to a principled, task-specific multiverse of ~90–270 defensible configurations per task, with explicit justification for every inclusion/exclusion. (2) Full-factorial execution across the principled multiverse. The six models span diverse architectures: Llama 4 Maverick (400B MoE), Qwen 3.5 (397B MoE), DeepSeek V4 Flash (284B MoE), Gemma 4 (26B MoE), Mistral Medium 3.5 (128B dense), plus one proprietary anchor (GPT-4o or Claude). All models are accessed via API (DeepSeek API, Together AI, OpenRouter, Google AI) for cost-efficiency; batched annotation (25 items/prompt) minimizes token costs. For each configuration, generate labels for the full corpus, then compute the downstream statistical estimate (e.g., regression coefficient, group difference). (3) Specification curve analysis with joint inference (Simonsohn et al., 2020): rank all specifications by effect size, display the specification curve with indicator rows for each pipeline dimension, and apply a permutation-based joint inference test to classify hypotheses as robust (sign-consistent and jointly significant), fragile (sign-inconsistent or significance-dependent on configuration), or null (no configuration yields significance). Additionally, perform variance decomposition (ANOVA over the specification space) to quantify which pipeline dimensions and their interactions drive the most inferential instability — extending McLaren et al.'s descriptive interaction findings to formal statistical attribution. Validate on 10 annotation tasks drawn from Baumann et al.'s publicly available replication data (37 tasks, MIT license, github.com/joebaumann/llmhacking), selected to span binary classification, multi-class categorization, ordinal scaling, and subjective judgment. Supplementary validation uses Gilardi et al.'s (PNAS 2023) Harvard Dataverse data and the SALT-NLP CSS benchmark (Ziems et al., 2024). Release an open-source Python toolkit (llm-multiverse) that wraps the full pipeline: E/N/U classification interface → task-conditional constraint specification → configuration enumeration → batched API annotation → specification curve visualization → joint inference test. The toolkit integrates with the SMART pre-registration framework (2025) so researchers can document and justify their multiverse construction before running experiments.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '0 (all inference via API — no self-hosted GPU needed)', 'api_cost': '$1,200–$2,000 for open-weight models via API providers (DeepSeek V4 Flash: ~$100–200 via DeepSeek API; Llama 4 Maverick: ~$250–470 via Together AI; Qwen 3.5: ~$475–950 via OpenRouter; Gemma 4: ~$65–130 via Google; Mistral Medium 3.5: ~$300–650 via Mistral/OpenRouter; proprietary anchor: ~$200–400). Estimates assume batched annotation (25 items/prompt) across ~90–270 configs × 10 tasks × 1,000–3,000 samples. Total: ~500M–1.2B tokens across all models.', 'timeline': '5–6 months (1 month framework design + E/N/U methodology, 2 months implementation + experiments, 1 month analysis + variance decomposition, 1 month writing + revision)', 'estimated_total_cost': '$1,200–$2,000'}, 'human_in_loop': {'gpu_hours': '0 (API-based)', 'api_cost': '$1,000–$1,600 (same API inference, slightly optimized configuration space with Claude-assisted E/N/U classification)', 'timeline': '3.5–4.5 months (2 weeks framework design with Claude scaffolding, 6 weeks experiments, 3 weeks analysis, 3 weeks writing)', 'claude_api_cost': '$150–$250 (Sonnet for code generation, experiment orchestration, and paper drafting; ~50M input tokens with caching)', 'estimated_total_cost': '$1,150–$1,850'}, 'auto_research': {'gpu_hours': '0 (API-based)', 'api_cost': '$1,000–$1,600 (same inference costs)', 'timeline': '2–3 months (automated experiment sweeps, parallelized API calls, auto-generated specification curves)', 'claude_api_cost': '$400–$600 (Opus for research design + Sonnet for bulk code generation and analysis; ~100M tokens total)', 'estimated_total_cost': '$1,400–$2,200', 'speed_bottleneck': 'API rate limits on proprietary LLMs (GPT, Claude) for anchor comparisons; sequential dependency between label generation and downstream inference computation; OpenRouter rate limits for Qwen 3.5 and Mistral Medium 3.5'}}
+
+## Inspired By
+Gap: LLM hacking paper shows the problem (31% error rate), McLaren et al. show interaction effects dominate, but no formal multiverse framework with joint inference exists. Pattern: Cross-domain transfer of specification curve analysis (psychology/economics) and the E/N/U defensibility framework (Del Giudice & Gangestad, 2021) to LLM annotation pipelines. Epistemological justification: Auspurg's (PNAS 2025) critique of brute-force multiverse analysis does not apply to LLM pipelines because the estimand is constant and no configuration is statistically misspecified — making this precisely the setting where multiverse analysis is epistemically justified. Field guide evidence: Carlson & Burbano (2026) guidelines call for sensitivity analysis; variance-aware annotation (2026) identifies 5 variance sources; the NLP+CSS workshop explicitly seeks work on 'LLMs for measurement and downstream statistical inference.'
+
+## Target Venues
+- AAAI 2027 (full paper deadline: ~July 28, 2026 — strong fit for methods + empirical validation paper; primary target)
+- TACL (rolling submission, any month — ideal for extended journal-length treatment with theoretical results on E/N/U framework + formal variance decomposition)
+- CSCW 2027 (rolling submission — fits the sociotechnical framing of researcher-tool interaction and pre-registration protocol)
+- EMNLP 2026 Industry Track (deadline: ~June 16, 2026 — if framed around practitioner toolkit; stretch target)
+- FAccT 2027 (fits the transparency/accountability angle of documenting researcher degrees of freedom in LLM-mediated research)
+
+## Key References
+- Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation (arXiv 2025, Baumann et al.) — documents the 31% error rate problem; replication data publicly available under MIT license at github.com/joebaumann/llmhacking
+- Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation (arXiv 2603.26898, McLaren et al., March 2026) — one-at-a-time benchmarking showing interaction effects dominate; releases CodeBook Lab tools; complementary but no joint inference
+- Specification Curve Analysis (Nature Human Behaviour 2020, Simonsohn, Simmons & Nelson) — canonical joint inference method we adapt
+- Increasing Transparency Through a Multiverse Analysis (Perspectives on Psychological Science 2016, Steegen, Tuerlinckx, Gelman & Vanpaemel) — original multiverse analysis framework
+- A Traveler's Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions (Advances in Methods and Practices in Psychological Science 2021, Del Giudice & Gangestad) — E/N/U classification framework for principled configuration selection
+- Robustness is better assessed with a few thoughtful models than with billions of regressions (PNAS 2025, Auspurg) — critique of exhaustive multiverse enumeration; we argue LLM annotation is precisely the case where her critique does not apply
+- Reply to Auspurg: On the limits of 'justified' model spaces (PNAS 2025, Ganslmeier & Vlandas) — defense of comprehensive multiverse analysis when theory cannot adjudicate
+- The Use of LLMs to Annotate Data in Management Research: Foundational Guidelines and Warnings (SMJ 2026, Carlson & Burbano)
+- Variance-Aware LLM Annotation for Strategy Research (arXiv 2026)
+- Benchmarking Debiasing Methods for LLM-based Parameter Estimates (EMNLP 2025, Audinet de Pieuchon et al.)
+- Brittlebench: Quantifying LLM Robustness via Prompt Sensitivity (arXiv 2026)
+- Can Unconfident LLM Annotations Be Used for Confident Conclusions? (NAACL 2025, Gligorić et al.)
+- Prompt-Hacking: The New p-Hacking? (Communications of the ACM 2026, Kosch & Feger)
+- Navigating the Conceptual Multiverse (arXiv 2026, Ye et al.)
+- Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks (arXiv 2026, Mehrotra et al.)
+- Same Prompt, Different Outcomes: Evaluating the Reproducibility of Data Analysis by LLMs (arXiv 2026, Cui & Alexander)
+- To Err Is Human; To Annotate, SILICON? Reducing Measurement Error in LLM Annotation (arXiv 2024)
+- SMART: Systematic Multiverse Analysis Registration Tool (Royal Society Open Science 2025) — pre-registration workflow for multiverse construction
+- Boba: Authoring and Visualizing Multiverse Analyses (Liu et al., 2021) — DSL with constraint specification for principled multiverse pruning
+- Prompt Design Matters for Computational Social Science Tasks but in Unpredictable Ways (arXiv 2024) — empirical evidence for task-conditional configuration defensibility
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "891b76e9-1b23-499a-83d8-f2c76603f8f4",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T03:49:10.503Z_
+
+```json
+{
+  "parentUuid": "891b76e9-1b23-499a-83d8-f2c76603f8f4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "ee23c1ee-af03-4810-bf76-b7617a05e4e9",
+  "timestamp": "2026-05-20T03:49:10.503Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T03:49:10.503Z_
+
+```json
+{
+  "parentUuid": "ee23c1ee-af03-4810-bf76-b7617a05e4e9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b6cb8c68-a7f9-4de9-a709-26b870c468c3",
+  "timestamp": "2026-05-20T03:49:10.503Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first formal multiverse analysis framework for LLM-mediated social science annotation pipelines…",
+  "leafUuid": "b6cb8c68-a7f9-4de9-a709-26b870c468c3",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T03:49:21.712Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal as the 补救 agent (rescue/remediation agent), focusing exclusively on experimental design and technical execution completeness. I need to first do thorough literature research to understand the current experimental standards in this field before giving any suggestions.
+
+Let me start by reading the proposal carefully and identifying the key experimental claims and design elements:
+
+1. **Core claims to be supported by experiments:**
+   - E/N/U classification reduces naïve Cartesian product (~810) to ~90-270 principled specs
+   - Specification curve analysis + permutation-based joint inference can classify hypotheses as robust/fragile/sign-inconsistent
+   - Variance decomposition can quantify which pipeline dimensions drive inferential instability
+   - The framework is validated on 10 tasks from Baumann et al.'s data
+
+2. **Proposed experimental design:**
+   - 10 tasks from Baumann et al. (37 tasks, MIT license)
+   - 6 models: Llama 4 Maverick, Qwen 3.5, DeepSeek V4 Flash, Gemma 4, Mistral Medium 3.5, + 1 proprietary
+   - Pipeline dimensions: model, prompt (5), temperature (3), role (3), aggregation (3)
+   - Full-factorial execution across the principled multiverse with specification curve analysis
+
+, permutation testing, and ANOVA-based variance decomposition
+   - Supplementary validation planned on SALT-NLP CSS benchmark and Gilardi et al.'s data
+
+3. **Baselines for comparison:**
+   - Baumann et al.'s ad-hoc mitigations and McLaren et al.'s one-at-a-time variation approach
+   - Contrasting against a naïve Cartesian product to highlight the value of the principled multiverse design
+
+Now I'm looking into the latest experimental standards in this field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6cb8c68-a7f9-4de9-a709-26b870c468c3",
+  "isSidechain": false,
+  "requestId": "req_011CbD8y3XTt34hRQfnE2h6Q",
+  "type": "assistant",
+  "uuid": "78123b3a-dd3b-430f-b147-a6114123eb79",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KxptcWyTta9Fquj4tR4uB8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8770,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 558,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8770,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 558,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 8770,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8770
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T03:49:21.862Z_
+
+I'll start by reading the proposal carefully and then conducting thorough literature research on the experimental standards in this field before making any recommendations.
+
+Let me do my prerequisite research searches now:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78123b3a-dd3b-430f-b147-a6114123eb79",
+  "isSidechain": false,
+  "requestId": "req_011CbD8y3XTt34hRQfnE2h6Q",
+  "type": "assistant",
+  "uuid": "47450b52-705d-41a1-b328-e592c2421962",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KxptcWyTta9Fquj4tR4uB8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8770,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 558,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8770,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 558,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 8770,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8770
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T03:49:22.009Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012jZaWuQ4E5rRKrzL5mhxZR`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47450b52-705d-41a1-b328-e592c2421962",
+  "isSidechain": false,
+  "requestId": "req_011CbD8y3XTt34hRQfnE2h6Q",
+  "type": "assistant",
+  "uuid": "2502f397-c066-45dd-8463-52955a912ef1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KxptcWyTta9Fquj4tR4uB8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8770,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 558,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8770,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 558,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 8770,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8770
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T03:49:22.016Z_
+
+<details><summary>↩ Tool result · `toolu_012jZaWuQ4E5rRKrzL5mhxZR`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2502f397-c066-45dd-8463-52955a912ef1",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "1e21bbb2-1868-4e2b-b248-1233f784083b",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "2502f397-c066-45dd-8463-52955a912ef1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T03:49:24.397Z_
+
+Now let me conduct my prerequisite research with multiple targeted searches:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e21bbb2-1868-4e2b-b248-1233f784083b",
+  "isSidechain": false,
+  "requestId": "req_011CbD8yttagF4unTaZJ3Yss",
+  "type": "assistant",
+  "uuid": "c8bde491-47d1-441f-87fa-20fa6cc8fce1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014a9ZvQ6mhqHMFaoF1MKiz9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 20144,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 20144,
+          "cache_creation_input_tokens": 1082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T03:49:25.190Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y8eBFp1MbHjrV9AKh3bRXE`</summary>
+
+```json
+{
+  "query": "Baumann et al 2025 \"LLM hacking\" annotation experiment design baselines evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8bde491-47d1-441f-87fa-20fa6cc8fce1",
+  "isSidechain": false,
+  "requestId": "req_011CbD8yttagF4unTaZJ3Yss",
+  "type": "assistant",
+  "uuid": "7100f25b-72fc-4695-907f-7b17f93dcfbc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014a9ZvQ6mhqHMFaoF1MKiz9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 20144,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 20144,
+          "cache_creation_input_tokens": 1082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T03:49:31.726Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8eBFp1MbHjrV9AKh3bRXE`</summary>
+
+```text
+Web search results for query: "Baumann et al 2025 "LLM hacking" annotation experiment design baselines evaluation"
+
+Links: [{"title":"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation","url":"https://arxiv.org/html/2509.08825v1"},{"title":"[2509.08825] Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation","url":"https://arxiv.org/abs/2509.08825"},{"title":"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/large-language-model-hacking-quantifying-hidden-risks"},{"title":"[2509.08825v2] Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation","url":"https://arxiv.org/abs/2509.08825v2"},{"title":"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs","url":"https://arxiv.org/pdf/2509.08825"},{"title":"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation | Request PDF","url":"https://www.researchgate.net/publication/395402972_Large_Language_Model_Hacking_Quantifying_the_Hidden_Risks_of_Using_LLMs_for_Text_Annotation"},{"title":"PhD Seminar Series: LLM Hacking - Are LLMs reliable annotators? | Icrios","url":"https://icrios.unibocconi.eu/phd-seminar-series-llm-hacking-are-llms-reliable-annotators"},{"title":"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation - Paper Detail","url":"https://deeplearn.org/arxiv/635819/large-language-model-hacking:-quantifying-the-hidden-risks-of-using-llms-for-text-annotation"},{"title":"LLM Hacking Risks in Text Annotation","url":"https://www.emergentmind.com/papers/2509.08825"}]
+
+Based on the search results, here's information about the Baumann et al. 2025 paper on LLM hacking:
+
+## Overview
+The paper is titled "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation" by Joachim Baumann, Paul Röttger, Aleksandra Urman, Albert Wendsjö, Flor Miriam Plaza-del-Arco, Johannes B. Gruber, and Dirk Hovy.
+
+## Experiment Design
+The researchers quantified the risk of LLM hacking by replicating 37 data annotation tasks from 21 published social science research studies with 18 different models, analyzing 13 million LLM labels and testing 2,361 realistic hypotheses to measure how plausible researcher choices affect statistical conclusions.
+
+## Baselines
+Two baselines were used: baseline 1 (random conclusions) yielded 62.3% LLM hacking risk, while baseline 2 (random labels) produced 52.5% risk, with random labels showing extremely low Type I risk (7.8%) but extremely high Type II risk (92.9%).
+
+## Key Findings
+The researchers found incorrect conclusions based on LLM-annotated data in approximately one in three hypotheses for state-of-the-art models, and in half the hypotheses for small language models. Testing 21 different approaches combining human annotation sampling strategies with statistical corrections showed that even optimal mitigation strategies achieve only modest risk reductions, with using 1,000 human annotations reducing overall LLM hacking risk to about 20%, compared to 31-50% baseline risk.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7100f25b-72fc-4695-907f-7b17f93dcfbc",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "aa1f73ca-1e9f-4340-8c9e-3695d6b06463",
+  "toolUseResult": {
+    "query": "Baumann et al 2025 \"LLM hacking\" annotation experiment design baselines evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012tDd3mEHJ2nfkYKsurUaeX",
+        "content": [
+          {
+            "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation",
+            "url": "https://arxiv.org/html/2509.08825v1"
+          },
+          {
+            "title": "[2509.08825] Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation",
+            "url": "https://arxiv.org/abs/2509.08825"
+          },
+          {
+            "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/large-language-model-hacking-quantifying-hidden-risks"
+          },
+          {
+            "title": "[2509.08825v2] Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation",
+            "url": "https://arxiv.org/abs/2509.08825v2"
+          },
+          {
+            "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs",
+            "url": "https://arxiv.org/pdf/2509.08825"
+          },
+          {
+            "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation | Request PDF",
+            "url": "https://www.researchgate.net/publication/395402972_Large_Language_Model_Hacking_Quantifying_the_Hidden_Risks_of_Using_LLMs_for_Text_Annotation"
+          },
+          {
+            "title": "PhD Seminar Series: LLM Hacking - Are LLMs reliable annotators? | Icrios",
+            "url": "https://icrios.unibocconi.eu/phd-seminar-series-llm-hacking-are-llms-reliable-annotators"
+          },
+          {
+            "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/635819/large-language-model-hacking:-quantifying-the-hidden-risks-of-using-llms-for-text-annotation"
+          },
+          {
+            "title": "LLM Hacking Risks in Text Annotation",
+            "url": "https://www.emergentmind.com/papers/2509.08825"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the Baumann et al. 2025 paper on LLM hacking:\n\n## Overview\nThe paper is titled \"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\" by Joachim Baumann, Paul Röttger, Aleksandra Urman, Albert Wendsjö, Flor Miriam Plaza-del-Arco, Johannes B. Gruber, and Dirk Hovy.\n\n## Experiment Design\nThe researchers quantified the risk of LLM hacking by replicating 37 data annotation tasks from 21 published social science research studies with 18 different models, analyzing 13 million LLM labels and testing 2,361 realistic hypotheses to measure how plausible researcher choices affect statistical conclusions.\n\n## Baselines\nTwo baselines were used: baseline 1 (random conclusions) yielded 62.3% LLM hacking risk, while baseline 2 (random labels) produced 52.5% risk, with random labels showing extremely low Type I risk (7.8%) but extremely high Type II risk (92.9%).\n\n## Key Findings\nThe researchers found incorrect conclusions based on LLM-annotated data in approximately one in three hypotheses for state-of-the-art models, and in half the hypotheses for small language models. Testing 21 different approaches combining human annotation sampling strategies with statistical corrections showed that even optimal mitigation strategies achieve only modest risk reductions, with using 1,000 human annotations reducing overall LLM hacking risk to about 20%, compared to 31-50% baseline risk."
+    ],
+    "durationSeconds": 6.531020002999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7100f25b-72fc-4695-907f-7b17f93dcfbc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T03:49:34.427Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DbF3pzjtZH5VZpgTETAPjW`</summary>
+
+```json
+{
+  "query": "McLaren et al 2026 \"Magic Words or Methodical Work\" LLM annotation political science interaction effects experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa1f73ca-1e9f-4340-8c9e-3695d6b06463",
+  "isSidechain": false,
+  "requestId": "req_011CbD8zcAnLf42pNYtVdX4g",
+  "type": "assistant",
+  "uuid": "8d3455c0-c770-4fb4-b83d-94d0b29510d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ru164FByV9cdhTTtXRzaj4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1057,
+      "cache_read_input_tokens": 21226,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 21226,
+          "cache_creation_input_tokens": 1057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T03:49:40.358Z_
+
+<details><summary>↩ Tool result · `toolu_01DbF3pzjtZH5VZpgTETAPjW`</summary>
+
+```text
+Web search results for query: "McLaren et al 2026 "Magic Words or Methodical Work" LLM annotation political science interaction effects experiment"
+
+Links: [{"title":"[2603.26898] Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation","url":"https://arxiv.org/abs/2603.26898"},{"title":"Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation","url":"https://arxiv.org/html/2603.26898"},{"title":"Bias in LLMs as Annotators: The Effect of Party Cues on Labelling   Decision by Large Language Models","url":"https://arxiv.org/pdf/2408.15895"},{"title":"Fact or Fiction? Can LLMs be Reliable Annotators for Political Truths?","url":"https://arxiv.org/pdf/2411.05775"},{"title":"Open-Source LLMs for Text Annotation: A Practical Guide for Model   Setting and Fine-Tuning","url":"https://arxiv.org/pdf/2307.02179"},{"title":"Agent-Enhanced Large Language Models for Researching Political Institutions","url":"https://arxiv.org/pdf/2503.13524"}]
+
+Great! I found the paper you're looking for. Here are the key details:
+
+**Paper:** Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation
+
+**Authors:** Lorcan McLaren and 3 other authors
+
+**Publication:** arXiv paper 2603.26898, published March 27, 2026
+
+**Key Research Questions:** The paper examines how sensitive annotation results are to implementation choices, testing how model choice, model size, learning approach, and prompt style interact, and whether popular "best practices" survive controlled comparison.
+
+**Methodology:** The authors conducted a controlled evaluation testing six open-weight models across four political science annotation tasks under identical quantisation, hardware, and prompt-template conditions.
+
+**Main Finding:** The central finding is methodological: interaction effects dominate main effects, so seemingly reasonable pipeline choices can become consequential researcher degrees of freedom. Additionally, no single model, prompt style, or learning approach is uniformly superior, and the best-performing model varies across tasks.
+
+You can access the full paper on arXiv at: https://arxiv.org/abs/2603.26898
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d3455c0-c770-4fb4-b83d-94d0b29510d7",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "5bab4939-4bda-4c4d-ba1b-5b1e95a3f606",
+  "toolUseResult": {
+    "query": "McLaren et al 2026 \"Magic Words or Methodical Work\" LLM annotation political science interaction effects experiment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019z9gvmZHjf2oMThsimdmrt",
+        "content": [
+          {
+            "title": "[2603.26898] Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation",
+            "url": "https://arxiv.org/abs/2603.26898"
+          },
+          {
+            "title": "Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation",
+            "url": "https://arxiv.org/html/2603.26898"
+          },
+          {
+            "title": "Bias in LLMs as Annotators: The Effect of Party Cues on Labelling   Decision by Large Language Models",
+            "url": "https://arxiv.org/pdf/2408.15895"
+          },
+          {
+            "title": "Fact or Fiction? Can LLMs be Reliable Annotators for Political Truths?",
+            "url": "https://arxiv.org/pdf/2411.05775"
+          },
+          {
+            "title": "Open-Source LLMs for Text Annotation: A Practical Guide for Model   Setting and Fine-Tuning",
+            "url": "https://arxiv.org/pdf/2307.02179"
+          },
+          {
+            "title": "Agent-Enhanced Large Language Models for Researching Political Institutions",
+            "url": "https://arxiv.org/pdf/2503.13524"
+          }
+        ]
+      },
+      "Great! I found the paper you're looking for. Here are the key details:\n\n**Paper:** Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation\n\n**Authors:** Lorcan McLaren and 3 other authors\n\n**Publication:** arXiv paper 2603.26898, published March 27, 2026\n\n**Key Research Questions:** The paper examines how sensitive annotation results are to implementation choices, testing how model choice, model size, learning approach, and prompt style interact, and whether popular \"best practices\" survive controlled comparison.\n\n**Methodology:** The authors conducted a controlled evaluation testing six open-weight models across four political science annotation tasks under identical quantisation, hardware, and prompt-template conditions.\n\n**Main Finding:** The central finding is methodological: interaction effects dominate main effects, so seemingly reasonable pipeline choices can become consequential researcher degrees of freedom. Additionally, no single model, prompt style, or learning approach is uniformly superior, and the best-performing model varies across tasks.\n\nYou can access the full paper on arXiv at: https://arxiv.org/abs/2603.26898"
+    ],
+    "durationSeconds": 5.927613519999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8d3455c0-c770-4fb4-b83d-94d0b29510d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T03:49:43.080Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xw5SBjjzmEVFDqyBqT6VDB`</summary>
+
+```json
+{
+  "query": "specification curve analysis multiverse analysis LLM NLP annotation 2025 2026 experiment design permutation test"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5bab4939-4bda-4c4d-ba1b-5b1e95a3f606",
+  "isSidechain": false,
+  "requestId": "req_011CbD91F2KsZTyvbzAu6kFd",
+  "type": "assistant",
+  "uuid": "850315e6-caa0-4055-b863-13dcb39a05bd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mr8GdTYXgQhvrrYmAo2qsV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 670,
+      "cache_read_input_tokens": 22283,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 670,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 22283,
+          "cache_creation_input_tokens": 670,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 670
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T03:49:50.158Z_
+
+<details><summary>↩ Tool result · `toolu_01Xw5SBjjzmEVFDqyBqT6VDB`</summary>
+
+```text
+Web search results for query: "specification curve analysis multiverse analysis LLM NLP annotation 2025 2026 experiment design permutation test"
+
+Links: [{"title":"Evaluation of Linguistic Consistency of LLM-Generated Text Personalization Using Natural Language Processing","url":"https://www.mdpi.com/2079-9292/15/6/1262"},{"title":"Visualizing vastness: Graphical methods for multiverse analysis","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12875576/"},{"title":"Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks","url":"https://arxiv.org/html/2603.21404"},{"title":"Specification curve analysis and the multiverse | Statistical Modeling, Causal Inference, and Social Science","url":"https://statmodeling.stat.columbia.edu/2024/11/12/specification-curve-analysis-and-the-multiverse/"},{"title":"Exploring the multiverse of analysis options for the alcohol Stroop","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11133151/"},{"title":"Using Multiverse Analysis to Highlight Differences in Convergent Correlation Outcomes Due to Data Analytical and Study Design Choices","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10363922/"}]
+
+I found several relevant results related to your search topics. Here's what the search revealed:
+
+**Recent Research on Multiverse and Specification Curve Analysis:**
+
+Multiverse analysis is an increasingly popular tool for improving the robustness and transparency of empirical research. Specification curves and density plots are existing visualization techniques for multiverse analysis, though multiverse plots have been introduced as a novel alternative that overcomes key limitations by eliminating arbitrary sampling and information loss on analytical decisions. A recent 2026 publication by Krähmer and Young provides graphical methods for multiverse analysis.
+
+**LLM and NLP Annotation Research (2025-2026):**
+
+A framework called Perspective-Driven Inference has been introduced for valid corpus inference in subjective annotation tasks where no single ground truth exists, aiming to leverage LLM annotations to conduct robust downstream statistical inference that faithfully retains annotator disagreement. Additionally, a Natural Language Processing-based evaluation framework has been proposed to examine the linguistic consistency of large language model-generated personalized texts over time, using NLP metrics to quantify and compare linguistic patterns.
+
+**Multiverse Analysis Applications:**
+
+Specification curve analyses have been used to examine the robustness of various measures to different analysis strategies, encouraging researchers to adopt such analytical methods to increase confidence in their inferences.
+
+The search results show active recent work combining multiverse/specification curve analysis with LLM and NLP research, particularly around annotation tasks and experiment design robustness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "850315e6-caa0-4055-b863-13dcb39a05bd",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "e7ee5349-b6bf-432c-a2bf-d8161160f31c",
+  "toolUseResult": {
+    "query": "specification curve analysis multiverse analysis LLM NLP annotation 2025 2026 experiment design permutation test",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XvcwXqAMWFwdju7wRdgQs2",
+        "content": [
+          {
+            "title": "Evaluation of Linguistic Consistency of LLM-Generated Text Personalization Using Natural Language Processing",
+            "url": "https://www.mdpi.com/2079-9292/15/6/1262"
+          },
+          {
+            "title": "Visualizing vastness: Graphical methods for multiverse analysis",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12875576/"
+          },
+          {
+            "title": "Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks",
+            "url": "https://arxiv.org/html/2603.21404"
+          },
+          {
+            "title": "Specification curve analysis and the multiverse | Statistical Modeling, Causal Inference, and Social Science",
+            "url": "https://statmodeling.stat.columbia.edu/2024/11/12/specification-curve-analysis-and-the-multiverse/"
+          },
+          {
+            "title": "Exploring the multiverse of analysis options for the alcohol Stroop",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11133151/"
+          },
+          {
+            "title": "Using Multiverse Analysis to Highlight Differences in Convergent Correlation Outcomes Due to Data Analytical and Study Design Choices",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10363922/"
+          }
+        ]
+      },
+      "I found several relevant results related to your search topics. Here's what the search revealed:\n\n**Recent Research on Multiverse and Specification Curve Analysis:**\n\nMultiverse analysis is an increasingly popular tool for improving the robustness and transparency of empirical research. Specification curves and density plots are existing visualization techniques for multiverse analysis, though multiverse plots have been introduced as a novel alternative that overcomes key limitations by eliminating arbitrary sampling and information loss on analytical decisions. A recent 2026 publication by Krähmer and Young provides graphical methods for multiverse analysis.\n\n**LLM and NLP Annotation Research (2025-2026):**\n\nA framework called Perspective-Driven Inference has been introduced for valid corpus inference in subjective annotation tasks where no single ground truth exists, aiming to leverage LLM annotations to conduct robust downstream statistical inference that faithfully retains annotator disagreement. Additionally, a Natural Language Processing-based evaluation framework has been proposed to examine the linguistic consistency of large language model-generated personalized texts over time, using NLP metrics to quantify and compare linguistic patterns.\n\n**Multiverse Analysis Applications:**\n\nSpecification curve analyses have been used to examine the robustness of various measures to different analysis strategies, encouraging researchers to adopt such analytical methods to increase confidence in their inferences.\n\nThe search results show active recent work combining multiverse/specification curve analysis with LLM and NLP research, particularly around annotation tasks and experiment design robustness."
+    ],
+    "durationSeconds": 7.075695466999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "850315e6-caa0-4055-b863-13dcb39a05bd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first formal multiverse analysis framework for LLM-mediated social science annotation pipelines…",
+  "leafUuid": "e7ee5349-b6bf-432c-a2bf-d8161160f31c",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T03:49:52.999Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Gsp7LN43zcJSmn2xKYriQ3`</summary>
+
+```json
+{
+  "query": "Gligoric et al \"Unconfident LLM Annotations\" NAACL 2025 prediction-powered inference PPI annotation experiment baselines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7ee5349-b6bf-432c-a2bf-d8161160f31c",
+  "isSidechain": false,
+  "requestId": "req_011CbD91xvjArJgcw7YS7wwi",
+  "type": "assistant",
+  "uuid": "b08c875e-2272-4fa5-9e4c-84fb4f8438db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fVLnfNpQU3ZJevB8Fkj7a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 767,
+      "cache_read_input_tokens": 22953,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 22953,
+          "cache_creation_input_tokens": 767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T03:49:59.130Z_
+
+<details><summary>↩ Tool result · `toolu_01Gsp7LN43zcJSmn2xKYriQ3`</summary>
+
+```text
+Web search results for query: "Gligoric et al "Unconfident LLM Annotations" NAACL 2025 prediction-powered inference PPI annotation experiment baselines"
+
+Links: [{"title":"Can Unconfident LLM Annotations Be Used for Confident Conclusions? - ACL Anthology","url":"https://aclanthology.org/2025.naacl-long.179/"},{"title":"Accepted Papers - NAACL-HLT 2025","url":"https://2025.naacl.org/program/accepted_papers/"},{"title":"Can Unconfident LLM Annotations Be Used for Confident Conclusions? | Request PDF","url":"https://www.researchgate.net/publication/392504893_Can_Unconfident_LLM_Annotations_Be_Used_for_Confident_Conclusions"},{"title":"GitHub - kristinagligoric/cdi-tutorial","url":"https://github.com/kristinagligoric/cdi-tutorial"},{"title":"[2408.15204] Can Unconfident LLM Annotations Be Used for Confident Conclusions?","url":"https://arxiv.org/abs/2408.15204"},{"title":"Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks","url":"https://arxiv.org/html/2603.21404"},{"title":"Can Unconfident LLM Annotations Be Used for Confident Conclusions?","url":"https://arxiv.org/html/2408.15204v1"},{"title":"[Literature Review] Can Unconfident LLM Annotations Be Used for Confident Conclusions?","url":"https://www.themoonlight.io/en/review/can-unconfident-llm-annotations-be-used-for-confident-conclusions"}]
+
+I found the paper you're looking for! Here are the details about the Gligoric et al. NAACL 2025 paper:
+
+**Paper Title:** Can Unconfident LLM Annotations Be Used for Confident Conclusions?
+
+**Authors:** Kristina Gligorić, Tijana Zrnic, Cinoo Lee, Emmanuel Candès, and Dan Jurafsky
+
+**Publication:** Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), pages 3514–3533, Albuquerque, New Mexico
+
+**Key Methodology:** The paper introduces Confidence-Driven Inference: a method that combines LLM annotations and LLM confidence indicators to strategically select which human annotations should be collected, with the goal of producing accurate statistical estimates and provably valid confidence intervals while reducing the number of human annotations needed.
+
+**Experimental Results:** The approach demonstrates effectiveness over baselines in statistical estimation tasks across three CSS settings—text politeness, stance, and bias—reducing the needed number of human annotations by over 25% in each.
+
+**Connection to Prediction-Powered Inference (PPI):** The approach builds on active inference to strategically choose a small number of human annotations, guided by LLM annotations and the LLM's verbalized confidence scores.
+
+The paper is available on the ACL Anthology at https://aclanthology.org/2025.naacl-long.179/ and on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b08c875e-2272-4fa5-9e4c-84fb4f8438db",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "0f5108b0-9784-4432-8da4-4abc99e314d6",
+  "toolUseResult": {
+    "query": "Gligoric et al \"Unconfident LLM Annotations\" NAACL 2025 prediction-powered inference PPI annotation experiment baselines",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wz2f2y1phxPJnZqezY5omF",
+        "content": [
+          {
+            "title": "Can Unconfident LLM Annotations Be Used for Confident Conclusions? - ACL Anthology",
+            "url": "https://aclanthology.org/2025.naacl-long.179/"
+          },
+          {
+            "title": "Accepted Papers - NAACL-HLT 2025",
+            "url": "https://2025.naacl.org/program/accepted_papers/"
+          },
+          {
+            "title": "Can Unconfident LLM Annotations Be Used for Confident Conclusions? | Request PDF",
+            "url": "https://www.researchgate.net/publication/392504893_Can_Unconfident_LLM_Annotations_Be_Used_for_Confident_Conclusions"
+          },
+          {
+            "title": "GitHub - kristinagligoric/cdi-tutorial",
+            "url": "https://github.com/kristinagligoric/cdi-tutorial"
+          },
+          {
+            "title": "[2408.15204] Can Unconfident LLM Annotations Be Used for Confident Conclusions?",
+            "url": "https://arxiv.org/abs/2408.15204"
+          },
+          {
+            "title": "Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks",
+            "url": "https://arxiv.org/html/2603.21404"
+          },
+          {
+            "title": "Can Unconfident LLM Annotations Be Used for Confident Conclusions?",
+            "url": "https://arxiv.org/html/2408.15204v1"
+          },
+          {
+            "title": "[Literature Review] Can Unconfident LLM Annotations Be Used for Confident Conclusions?",
+            "url": "https://www.themoonlight.io/en/review/can-unconfident-llm-annotations-be-used-for-confident-conclusions"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the details about the Gligoric et al. NAACL 2025 paper:\n\n**Paper Title:** Can Unconfident LLM Annotations Be Used for Confident Conclusions?\n\n**Authors:** Kristina Gligorić, Tijana Zrnic, Cinoo Lee, Emmanuel Candès, and Dan Jurafsky\n\n**Publication:** Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), pages 3514–3533, Albuquerque, New Mexico\n\n**Key Methodology:** The paper introduces Confidence-Driven Inference: a method that combines LLM annotations and LLM confidence indicators to strategically select which human annotations should be collected, with the goal of producing accurate statistical estimates and provably valid confidence intervals while reducing the number of human annotations needed.\n\n**Experimental Results:** The approach demonstrates effectiveness over baselines in statistical estimation tasks across three CSS settings—text politeness, stance, and bias—reducing the needed number of human annotations by over 25% in each.\n\n**Connection to Prediction-Powered Inference (PPI):** The approach builds on active inference to strategically choose a small number of human annotations, guided by LLM annotations and the LLM's verbalized confidence scores.\n\nThe paper is available on the ACL Anthology at https://aclanthology.org/2025.naacl-long.179/ and on arXiv."
+    ],
+    "durationSeconds": 6.126022322000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b08c875e-2272-4fa5-9e4c-84fb4f8438db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T03:50:02.049Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017jkyRqbtYxB1jSvvLVGmjA`</summary>
+
+```json
+{
+  "query": "Audinet de Pieuchon EMNLP 2025 \"benchmarking debiasing\" LLM parameter estimates DSL PPI experiment design"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f5108b0-9784-4432-8da4-4abc99e314d6",
+  "isSidechain": false,
+  "requestId": "req_011CbD92dJoK4uswjLXe46ib",
+  "type": "assistant",
+  "uuid": "67ce0a78-64af-4269-9b83-7524ee504945",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XikNMQWmaLdaydwEVd49Lh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 23720,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 23720,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T03:50:09.064Z_
+
+<details><summary>↩ Tool result · `toolu_017jkyRqbtYxB1jSvvLVGmjA`</summary>
+
+```text
+Web search results for query: "Audinet de Pieuchon EMNLP 2025 "benchmarking debiasing" LLM parameter estimates DSL PPI experiment design"
+
+Links: [{"title":"Transcript - \"Benchmarking Debiasing Methods for LLM-based Parameter Estimates\" - Connor T. Jerzak","url":"https://connorjerzak.com/transcript-benchmarking-debiasing-methods/"},{"title":"Benchmarking Debiasing Methods for LLM-based Parameter Estimates - Connor T. Jerzak","url":"https://connorjerzak.com/benchmarking-ppi-dsl/"},{"title":"Benchmarking Debiasing Methods for LLM-based Parameter Estimates - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1000/"},{"title":"Benchmarking Debiasing Methods for LLM-based Parameter Estimates","url":"https://arxiv.org/pdf/2506.09627"},{"title":"Research - Connor T. Jerzak","url":"https://connorjerzak.com/research/"},{"title":"Benchmarking Debiasing Methods for LLM-based ...","url":"https://aclanthology.org/2025.emnlp-main.1000.pdf"},{"title":"[2506.09627] Benchmarking Debiasing Methods for LLM-based Parameter Estimates","url":"https://arxiv.org/abs/2506.09627"},{"title":"(PDF) Benchmarking Debiasing Methods for LLM-based Parameter Estimates","url":"https://www.researchgate.net/publication/397421052_Benchmarking_Debiasing_Methods_for_LLM-based_Parameter_Estimates"}]
+
+Perfect! I found comprehensive information about this paper. Here are the search results:
+
+## Summary of Results
+
+The paper "Benchmarking Debiasing Methods for LLM-based Parameter Estimates" is authored by Nicolas Audinet de Pieuchon, Adel Daoud, Connor T. Jerzak, Moa Johansson, and Richard Johansson, and was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP).
+
+**Main Research Question:**
+The paper addresses how LLM-based classifiers are being used to generate annotations to reduce annotation costs, but this risks introducing unwanted and poorly understood biases from the LLM into downstream analysis.
+
+**Key Findings:**
+The researchers compared DSL (Design-based Supervised Learning) and PPI (Prediction-Powered Inference) across a range of tasks, finding that although both achieve low bias with large datasets, DSL often outperforms PPI on bias reduction and empirical efficiency, but its performance is less consistent across datasets.
+
+**Experimental Design:**
+The study examined how each method's performance scales with the number of expert annotations, highlighting regimes where LLM bias or limited expert labels significantly affect results.
+
+**Broader Implication:**
+Debiasing methods that combine LLM predictions with a smaller set of expert labels generally yield more accurate estimates than using the expert labels alone.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67ce0a78-64af-4269-9b83-7524ee504945",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "b5bbd038-e7c0-438b-97e9-bec63d298e3c",
+  "toolUseResult": {
+    "query": "Audinet de Pieuchon EMNLP 2025 \"benchmarking debiasing\" LLM parameter estimates DSL PPI experiment design",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K4hz9fSeiEw41j4CyqTvZA",
+        "content": [
+          {
+            "title": "Transcript - \"Benchmarking Debiasing Methods for LLM-based Parameter Estimates\" - Connor T. Jerzak",
+            "url": "https://connorjerzak.com/transcript-benchmarking-debiasing-methods/"
+          },
+          {
+            "title": "Benchmarking Debiasing Methods for LLM-based Parameter Estimates - Connor T. Jerzak",
+            "url": "https://connorjerzak.com/benchmarking-ppi-dsl/"
+          },
+          {
+            "title": "Benchmarking Debiasing Methods for LLM-based Parameter Estimates - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.1000/"
+          },
+          {
+            "title": "Benchmarking Debiasing Methods for LLM-based Parameter Estimates",
+            "url": "https://arxiv.org/pdf/2506.09627"
+          },
+          {
+            "title": "Research - Connor T. Jerzak",
+            "url": "https://connorjerzak.com/research/"
+          },
+          {
+            "title": "Benchmarking Debiasing Methods for LLM-based ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1000.pdf"
+          },
+          {
+            "title": "[2506.09627] Benchmarking Debiasing Methods for LLM-based Parameter Estimates",
+            "url": "https://arxiv.org/abs/2506.09627"
+          },
+          {
+            "title": "(PDF) Benchmarking Debiasing Methods for LLM-based Parameter Estimates",
+            "url": "https://www.researchgate.net/publication/397421052_Benchmarking_Debiasing_Methods_for_LLM-based_Parameter_Estimates"
+          }
+        ]
+      },
+      "Perfect! I found comprehensive information about this paper. Here are the search results:\n\n## Summary of Results\n\nThe paper \"Benchmarking Debiasing Methods for LLM-based Parameter Estimates\" is authored by Nicolas Audinet de Pieuchon, Adel Daoud, Connor T. Jerzak, Moa Johansson, and Richard Johansson, and was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP).\n\n**Main Research Question:**\nThe paper addresses how LLM-based classifiers are being used to generate annotations to reduce annotation costs, but this risks introducing unwanted and poorly understood biases from the LLM into downstream analysis.\n\n**Key Findings:**\nThe researchers compared DSL (Design-based Supervised Learning) and PPI (Prediction-Powered Inference) across a range of tasks, finding that although both achieve low bias with large datasets, DSL often outperforms PPI on bias reduction and empirical efficiency, but its performance is less consistent across datasets.\n\n**Experimental Design:**\nThe study examined how each method's performance scales with the number of expert annotations, highlighting regimes where LLM bias or limited expert labels significantly affect results.\n\n**Broader Implication:**\nDebiasing methods that combine LLM predictions with a smaller set of expert labels generally yield more accurate estimates than using the expert labels alone."
+    ],
+    "durationSeconds": 7.011114039,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "67ce0a78-64af-4269-9b83-7524ee504945",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T03:50:11.486Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019brmBKzZfSKAeK1yEzXTB8`</summary>
+
+```json
+{
+  "query": "Mehrotra et al 2026 \"Multi-Perspective LLM Annotations\" perspective-driven inference subjective tasks experiment evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5bbd038-e7c0-438b-97e9-bec63d298e3c",
+  "isSidechain": false,
+  "requestId": "req_011CbD93MjwrJbA8u8tKWTPP",
+  "type": "assistant",
+  "uuid": "03e07fd2-af2a-416c-9dd0-ed68e92b3b15",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgNhW2fZ4vYGiPHRXj8Zrg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 880,
+      "cache_read_input_tokens": 24617,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 24617,
+          "cache_creation_input_tokens": 880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T03:50:18.401Z_
+
+<details><summary>↩ Tool result · `toolu_019brmBKzZfSKAeK1yEzXTB8`</summary>
+
+```text
+Web search results for query: "Mehrotra et al 2026 "Multi-Perspective LLM Annotations" perspective-driven inference subjective tasks experiment evaluation"
+
+Links: [{"title":"Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks","url":"https://arxiv.org/html/2603.21404"},{"title":"[2603.21404] Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks","url":"https://arxiv.org/abs/2603.21404"},{"title":"Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks","url":"https://arxiv.org/pdf/2603.21404"},{"title":"DiPT: Enhancing LLM reasoning through diversified perspective-taking","url":"https://arxiv.org/pdf/2409.06241"},{"title":"Bridging the Gap: In-Context Learning for Modeling Human Disagreement","url":"https://arxiv.org/pdf/2506.06113"},{"title":"Multiperspectivity as a Resource for Narrative Similarity Prediction","url":"https://arxiv.org/pdf/2603.22103"}]
+
+I found the paper you're looking for! Here's what the search revealed:
+
+## Mehrotra et al. 2026: Multi-Perspective LLM Annotations
+
+The paper is authored by Navya Mehrotra (Johns Hopkins University) and Adam Visokay (University of Washington), along with Kristina Gligorić (Johns Hopkins University), and was published on March 22, 2026.
+
+### Core Contribution
+
+The paper introduces Perspective-Driven Inference, a method that treats the distribution of annotations across groups as the quantity of interest, and estimates it using a small human annotation budget.
+
+### Key Problem Addressed
+
+The existing methods for correcting LLM annotation error assume a single ground truth, but this assumption fails in subjective tasks where disagreement across demographic groups is meaningful.
+
+### Methodology and Evaluation
+
+The approach contributes an adaptive sampling strategy that concentrates human annotation effort on groups where LLM proxies are least accurate, and is evaluated on politeness and offensiveness rating tasks, showing targeted improvements for harder-to-model demographic groups relative to uniform sampling baselines, while maintaining coverage.
+
+The paper is available on arXiv (identifier 2603.21404) and addresses an important challenge in using large language models for annotation tasks where human perspectives legitimately differ.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03e07fd2-af2a-416c-9dd0-ed68e92b3b15",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "25b8db28-27dd-497a-9f3a-2c53e8e99cd9",
+  "toolUseResult": {
+    "query": "Mehrotra et al 2026 \"Multi-Perspective LLM Annotations\" perspective-driven inference subjective tasks experiment evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012mV1usb9rzsNd6NzVqEeWK",
+        "content": [
+          {
+            "title": "Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks",
+            "url": "https://arxiv.org/html/2603.21404"
+          },
+          {
+            "title": "[2603.21404] Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks",
+            "url": "https://arxiv.org/abs/2603.21404"
+          },
+          {
+            "title": "Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks",
+            "url": "https://arxiv.org/pdf/2603.21404"
+          },
+          {
+            "title": "DiPT: Enhancing LLM reasoning through diversified perspective-taking",
+            "url": "https://arxiv.org/pdf/2409.06241"
+          },
+          {
+            "title": "Bridging the Gap: In-Context Learning for Modeling Human Disagreement",
+            "url": "https://arxiv.org/pdf/2506.06113"
+          },
+          {
+            "title": "Multiperspectivity as a Resource for Narrative Similarity Prediction",
+            "url": "https://arxiv.org/pdf/2603.22103"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search revealed:\n\n## Mehrotra et al. 2026: Multi-Perspective LLM Annotations\n\nThe paper is authored by Navya Mehrotra (Johns Hopkins University) and Adam Visokay (University of Washington), along with Kristina Gligorić (Johns Hopkins University), and was published on March 22, 2026.\n\n### Core Contribution\n\nThe paper introduces Perspective-Driven Inference, a method that treats the distribution of annotations across groups as the quantity of interest, and estimates it using a small human annotation budget.\n\n### Key Problem Addressed\n\nThe existing methods for correcting LLM annotation error assume a single ground truth, but this assumption fails in subjective tasks where disagreement across demographic groups is meaningful.\n\n### Methodology and Evaluation\n\nThe approach contributes an adaptive sampling strategy that concentrates human annotation effort on groups where LLM proxies are least accurate, and is evaluated on politeness and offensiveness rating tasks, showing targeted improvements for harder-to-model demographic groups relative to uniform sampling baselines, while maintaining coverage.\n\nThe paper is available on arXiv (identifier 2603.21404) and addresses an important challenge in using large language models for annotation tasks where human perspectives legitimately differ."
+    ],
+    "durationSeconds": 6.909702417,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "03e07fd2-af2a-416c-9dd0-ed68e92b3b15",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T03:50:21.019Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K97apBiQeRUyQHzcwSFf5M`</summary>
+
+```json
+{
+  "query": "SALT-NLP CSS benchmark Ziems et al 2024 computational social science NLP tasks evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25b8db28-27dd-497a-9f3a-2c53e8e99cd9",
+  "isSidechain": false,
+  "requestId": "req_011CbD943gXhx3s4PvjHHtoc",
+  "type": "assistant",
+  "uuid": "af4ac639-14e1-48bc-a1c9-f4b42e199807",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YTXGpg9vcc1krjw2ahw2gW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 679,
+      "cache_read_input_tokens": 25497,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 25497,
+          "cache_creation_input_tokens": 679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T03:50:28.833Z_
+
+<details><summary>↩ Tool result · `toolu_01K97apBiQeRUyQHzcwSFf5M`</summary>
+
+```text
+Web search results for query: "SALT-NLP CSS benchmark Ziems et al 2024 computational social science NLP tasks evaluation"
+
+Links: [{"title":"[NAACL 2024] Can LLMs Transform CSS","url":"https://calebziems.com/assets/pdf/slides/llms_css.pdf"},{"title":"Caleb Ziems","url":"https://calebziems.com/"},{"title":"GitHub - SALT-NLP/LLMs_for_CSS · GitHub","url":"https://github.com/SALT-NLP/LLMs_for_CSS"},{"title":"GitHub - SALT-NLP/Social-Intelligence-Data-Infrastructure: This is the official repository for the paper: Social Intelligence Data Infrastructure: Structuring the Present and Navigating the Future","url":"https://github.com/SALT-NLP/Social-Intelligence-Data-Infrastructure"},{"title":"Can Large Language Models Transform Computational Social Science? Caleb Ziems","url":"https://aclanthology.org/2024.cl-1.8.pdf"},{"title":"Can Large Language Models Transform Computational Social Science? Caleb Ziems∗","url":"https://arxiv.org/pdf/2305.03514"},{"title":"Enhancing Data Quality through Simple De-duplication","url":"https://aclanthology.org/2024.emnlp-main.694.pdf"},{"title":"Caleb Ziems Curriculum Vitae B cziems@stanford.edu Í www.calebziems.com cjziems","url":"https://calebziems.com/assets/pdf/cv.pdf"}]
+
+Based on the search results, I found information about the work by Ziems et al. 2024 on computational social science and NLP tasks:
+
+The paper is titled "Can Large Language Models Transform Computational Social Science?" by Ziems, Caleb and Held, William and Shaikh, Omar and Chen, Jiaao and Zhang, Zhehao and Yang, Diyi, published in 2024 in the journal Computational Linguistics.
+
+The work evaluates structured parsing, summarization, and natural language generation tasks for CSS. For evaluation, the researchers compute the macro F1 score for all classification and structured parsing tasks.
+
+The findings conclude that the performance of today's LLMs can augment the CSS research pipeline in two ways: (1) serving as zero-shot data annotators on human annotation teams, and (2) bootstrapping challenging creative generation tasks.
+
+The GitHub repository for this work is available at https://github.com/SALT-NLP/LLMs_for_CSS, and the paper was published in the ACL Anthology at https://aclanthology.org/2024.cl-1.8.pdf.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af4ac639-14e1-48bc-a1c9-f4b42e199807",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "2ef5438f-216b-483f-9523-88cbb3195e9b",
+  "toolUseResult": {
+    "query": "SALT-NLP CSS benchmark Ziems et al 2024 computational social science NLP tasks evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CKUkys1b13t6SF4xrQRsMm",
+        "content": [
+          {
+            "title": "[NAACL 2024] Can LLMs Transform CSS",
+            "url": "https://calebziems.com/assets/pdf/slides/llms_css.pdf"
+          },
+          {
+            "title": "Caleb Ziems",
+            "url": "https://calebziems.com/"
+          },
+          {
+            "title": "GitHub - SALT-NLP/LLMs_for_CSS · GitHub",
+            "url": "https://github.com/SALT-NLP/LLMs_for_CSS"
+          },
+          {
+            "title": "GitHub - SALT-NLP/Social-Intelligence-Data-Infrastructure: This is the official repository for the paper: Social Intelligence Data Infrastructure: Structuring the Present and Navigating the Future",
+            "url": "https://github.com/SALT-NLP/Social-Intelligence-Data-Infrastructure"
+          },
+          {
+            "title": "Can Large Language Models Transform Computational Social Science? Caleb Ziems",
+            "url": "https://aclanthology.org/2024.cl-1.8.pdf"
+          },
+          {
+            "title": "Can Large Language Models Transform Computational Social Science? Caleb Ziems∗",
+            "url": "https://arxiv.org/pdf/2305.03514"
+          },
+          {
+            "title": "Enhancing Data Quality through Simple De-duplication",
+            "url": "https://aclanthology.org/2024.emnlp-main.694.pdf"
+          },
+          {
+            "title": "Caleb Ziems Curriculum Vitae B cziems@stanford.edu Í www.calebziems.com cjziems",
+            "url": "https://calebziems.com/assets/pdf/cv.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the work by Ziems et al. 2024 on computational social science and NLP tasks:\n\nThe paper is titled \"Can Large Language Models Transform Computational Social Science?\" by Ziems, Caleb and Held, William and Shaikh, Omar and Chen, Jiaao and Zhang, Zhehao and Yang, Diyi, published in 2024 in the journal Computational Linguistics.\n\nThe work evaluates structured parsing, summarization, and natural language generation tasks for CSS. For evaluation, the researchers compute the macro F1 score for all classification and structured parsing tasks.\n\nThe findings conclude that the performance of today's LLMs can augment the CSS research pipeline in two ways: (1) serving as zero-shot data annotators on human annotation teams, and (2) bootstrapping challenging creative generation tasks.\n\nThe GitHub repository for this work is available at https://github.com/SALT-NLP/LLMs_for_CSS, and the paper was published in the ACL Anthology at https://aclanthology.org/2024.cl-1.8.pdf."
+    ],
+    "durationSeconds": 7.808904301999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "af4ac639-14e1-48bc-a1c9-f4b42e199807",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-20T03:50:28.841Z_
+
+```json
+{
+  "parentUuid": "2ef5438f-216b-483f-9523-88cbb3195e9b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "99bb5ab0-ab8f-4cbe-b8a3-d4cca6204483",
+  "timestamp": "2026-05-20T03:50:28.841Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T03:50:31.405Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011PExyRTuA6v12ReC2dFGUo`</summary>
+
+```json
+{
+  "query": "variance decomposition ANOVA factorial design LLM pipeline choices annotation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99bb5ab0-ab8f-4cbe-b8a3-d4cca6204483",
+  "isSidechain": false,
+  "requestId": "req_011CbD94pKdzZzRcUHSyQW2Z",
+  "type": "assistant",
+  "uuid": "e653249d-c49b-4c4e-aa83-478eaa7be89e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018RqgNKhug3XkUzYsxWXUv7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 26176,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 26176,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T03:50:37.720Z_
+
+<details><summary>↩ Tool result · `toolu_011PExyRTuA6v12ReC2dFGUo`</summary>
+
+```text
+Web search results for query: "variance decomposition ANOVA factorial design LLM pipeline choices annotation 2025 2026"
+
+Links: [{"title":"Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking","url":"https://arxiv.org/html/2604.11581"},{"title":"Hidden Measurement Error in LLM Pipelines Distorts Annotation,","url":"https://arxiv.org/pdf/2604.11581"},{"title":"[2601.02370] Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement","url":"https://arxiv.org/abs/2601.02370"},{"title":"Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement","url":"https://arxiv.org/html/2601.02370"},{"title":"Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement","url":"https://arxiv.org/pdf/2601.02370"},{"title":"A large-scale pipeline for automatic corpus annotation using LLMs: variation and change in the English consider construction","url":"https://arxiv.org/pdf/2510.12306"}]
+
+The search results reveal recent research on variance decomposition and ANOVA in the context of LLM pipelines and annotation. Here are the key findings:
+
+## Recent Work on Variance Decomposition in LLM Annotation (2025-2026)
+
+A 2026 study develops a variance taxonomy for LLM annotation (construct, interface, model, output, aggregation) and ties annotation variance to bias in downstream estimates.
+
+Research decomposes LLM pipeline uncertainty into its sources, distinguishes variance that shrinks with more data from sensitivity to researcher design choices, and uses design-study projections to reduce total evaluation error (TEE). Across demonstrations, naive standard errors are 40-60% smaller than the TEE-corrected standard error.
+
+## Variance Sources and Design Choices
+
+Research grounded in generalizability theory diagnoses five variance sources (construct specification, interface effects, model preferences, output extraction, and system-level aggregation), and shows that minor design choices—prompt phrasing, model selection—can shift outcomes by 12–85 percentage points.
+
+Such variance threatens not only reproducibility but econometric identification: annotation errors correlated with covariates bias parameter estimates regardless of average accuracy.
+
+## ANOVA Applications
+
+One-way ANOVA has been used to analyze outcome differences across different LLM annotation formulations.
+
+These papers highlight the critical importance of systematic variance decomposition analysis when using LLMs for annotation tasks in research pipelines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e653249d-c49b-4c4e-aa83-478eaa7be89e",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "f74d938d-270e-4d78-b4c8-c1b3fe0ecf94",
+  "toolUseResult": {
+    "query": "variance decomposition ANOVA factorial design LLM pipeline choices annotation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LvVTmz6cspc2An47NQowC9",
+        "content": [
+          {
+            "title": "Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking",
+            "url": "https://arxiv.org/html/2604.11581"
+          },
+          {
+            "title": "Hidden Measurement Error in LLM Pipelines Distorts Annotation,",
+            "url": "https://arxiv.org/pdf/2604.11581"
+          },
+          {
+            "title": "[2601.02370] Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement",
+            "url": "https://arxiv.org/abs/2601.02370"
+          },
+          {
+            "title": "Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement",
+            "url": "https://arxiv.org/html/2601.02370"
+          },
+          {
+            "title": "Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement",
+            "url": "https://arxiv.org/pdf/2601.02370"
+          },
+          {
+            "title": "A large-scale pipeline for automatic corpus annotation using LLMs: variation and change in the English consider construction",
+            "url": "https://arxiv.org/pdf/2510.12306"
+          }
+        ]
+      },
+      "The search results reveal recent research on variance decomposition and ANOVA in the context of LLM pipelines and annotation. Here are the key findings:\n\n## Recent Work on Variance Decomposition in LLM Annotation (2025-2026)\n\nA 2026 study develops a variance taxonomy for LLM annotation (construct, interface, model, output, aggregation) and ties annotation variance to bias in downstream estimates.\n\nResearch decomposes LLM pipeline uncertainty into its sources, distinguishes variance that shrinks with more data from sensitivity to researcher design choices, and uses design-study projections to reduce total evaluation error (TEE). Across demonstrations, naive standard errors are 40-60% smaller than the TEE-corrected standard error.\n\n## Variance Sources and Design Choices\n\nResearch grounded in generalizability theory diagnoses five variance sources (construct specification, interface effects, model preferences, output extraction, and system-level aggregation), and shows that minor design choices—prompt phrasing, model selection—can shift outcomes by 12–85 percentage points.\n\nSuch variance threatens not only reproducibility but econometric identification: annotation errors correlated with covariates bias parameter estimates regardless of average accuracy.\n\n## ANOVA Applications\n\nOne-way ANOVA has been used to analyze outcome differences across different LLM annotation formulations.\n\nThese papers highlight the critical importance of systematic variance decomposition analysis when using LLMs for annotation tasks in research pipelines."
+    ],
+    "durationSeconds": 6.310796558000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e653249d-c49b-4c4e-aa83-478eaa7be89e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first formal multiverse analysis framework for LLM-mediated social science annotation pipelines…",
+  "leafUuid": "f74d938d-270e-4d78-b4c8-c1b3fe0ecf94",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-20T03:50:40.837Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018i7Q8rwJB923bTiDMaUans`</summary>
+
+```json
+{
+  "query": "\"Boba\" DSL multiverse analysis specification constraint \"LLM\" OR \"annotation\" OR \"pipeline\" 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f74d938d-270e-4d78-b4c8-c1b3fe0ecf94",
+  "isSidechain": false,
+  "requestId": "req_011CbD95UHAG6rL29CSeXtrM",
+  "type": "assistant",
+  "uuid": "5da55d46-10b8-4326-bda5-f491f1bed7d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwD6vQ1VxLfkGNiCnmvVG2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 736,
+      "cache_read_input_tokens": 27025,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 736,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 27025,
+          "cache_creation_input_tokens": 736,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 736
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T03:50:49.482Z_
+
+<details><summary>↩ Tool result · `toolu_018i7Q8rwJB923bTiDMaUans`</summary>
+
+```text
+Web search results for query: ""Boba" DSL multiverse analysis specification constraint "LLM" OR "annotation" OR "pipeline" 2024 2025 2026"
+
+Links: [{"title":"Boba: Authoring and Visualizing Multiverse Analyses","url":"https://arxiv.org/pdf/2007.05551"},{"title":"boba · PyPI","url":"https://pypi.org/project/boba/"},{"title":"A large-scale pipeline for automatic corpus annotation using LLMs: variation and change in the English consider construction","url":"https://arxiv.org/pdf/2510.12306"},{"title":"Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement","url":"https://arxiv.org/pdf/2601.02370"},{"title":"Optimizing LLM Annotation of Classroom Discourse through Multi-Agent Orchestration","url":"https://arxiv.org/pdf/2603.13353"},{"title":"A step-by-step method for cultural annotation by LLMs","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11097685/"}]
+
+Based on the search results, I found relevant information about Boba DSL and multiverse analysis:
+
+## Key Findings
+
+Boba is an integrated domain-specific language (DSL) and visual analysis system for authoring and reviewing multiverse analyses. With the Boba DSL, analysts write the shared portion of analysis code only once, alongside local variations defining alternative decisions, from which the compiler generates a multiplex of scripts representing all possible analysis paths.
+
+Boba comes with a command line tool to parse your DSL specification and generate universe scripts, execute all scripts with a single command, merges outputs into a table, and invoke the visualizer.
+
+The search results show extensive research on related topics including LLM-based annotation pipelines and strategies (with multiple 2024-2025 papers on LLM annotation methodologies), but the specific Boba DSL research appears to be from 2020 (arxiv.org/pdf/2007.05551). The more recent results demonstrate growing applications of LLMs in annotation pipelines across various domains, though they don't directly combine all your specified terms (multiverse analysis + LLM constraint specifications together).
+
+If you're looking for more recent work specifically combining Boba DSL with LLM constraints or annotation pipelines, that particular combination may not have extensive publication coverage yet.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5da55d46-10b8-4326-bda5-f491f1bed7d5",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "8c1db03c-d9bf-490d-9014-d60df68c99bc",
+  "toolUseResult": {
+    "query": "\"Boba\" DSL multiverse analysis specification constraint \"LLM\" OR \"annotation\" OR \"pipeline\" 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0195e4FFLWx75gjo5zWY23J8",
+        "content": [
+          {
+            "title": "Boba: Authoring and Visualizing Multiverse Analyses",
+            "url": "https://arxiv.org/pdf/2007.05551"
+          },
+          {
+            "title": "boba · PyPI",
+            "url": "https://pypi.org/project/boba/"
+          },
+          {
+            "title": "A large-scale pipeline for automatic corpus annotation using LLMs: variation and change in the English consider construction",
+            "url": "https://arxiv.org/pdf/2510.12306"
+          },
+          {
+            "title": "Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement",
+            "url": "https://arxiv.org/pdf/2601.02370"
+          },
+          {
+            "title": "Optimizing LLM Annotation of Classroom Discourse through Multi-Agent Orchestration",
+            "url": "https://arxiv.org/pdf/2603.13353"
+          },
+          {
+            "title": "A step-by-step method for cultural annotation by LLMs",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11097685/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Boba DSL and multiverse analysis:\n\n## Key Findings\n\nBoba is an integrated domain-specific language (DSL) and visual analysis system for authoring and reviewing multiverse analyses. With the Boba DSL, analysts write the shared portion of analysis code only once, alongside local variations defining alternative decisions, from which the compiler generates a multiplex of scripts representing all possible analysis paths.\n\nBoba comes with a command line tool to parse your DSL specification and generate universe scripts, execute all scripts with a single command, merges outputs into a table, and invoke the visualizer.\n\nThe search results show extensive research on related topics including LLM-based annotation pipelines and strategies (with multiple 2024-2025 papers on LLM annotation methodologies), but the specific Boba DSL research appears to be from 2020 (arxiv.org/pdf/2007.05551). The more recent results demonstrate growing applications of LLMs in annotation pipelines across various domains, though they don't directly combine all your specified terms (multiverse analysis + LLM constraint specifications together).\n\nIf you're looking for more recent work specifically combining Boba DSL with LLM constraints or annotation pipelines, that particular combination may not have extensive publication coverage yet."
+    ],
+    "durationSeconds": 8.641878950999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5da55d46-10b8-4326-bda5-f491f1bed7d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-20T03:50:52.348Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MzZDMRmDsJScmkfCTmkSAZ`</summary>
+
+```json
+{
+  "query": "Simonsohn specification curve permutation test joint inference implementation sample size requirements statistical power 2020 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c1db03c-d9bf-490d-9014-d60df68c99bc",
+  "isSidechain": false,
+  "requestId": "req_011CbD96LZqT32ZWtaf3Bow1",
+  "type": "assistant",
+  "uuid": "1e4ab02d-23a6-4afd-b4f6-6623fc5dfcb5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NpSSRqy8pNYGunNXGXid1o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 693,
+      "cache_read_input_tokens": 27761,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 693,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 27761,
+          "cache_creation_input_tokens": 693,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 693
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T03:50:59.979Z_
+
+<details><summary>↩ Tool result · `toolu_01MzZDMRmDsJScmkfCTmkSAZ`</summary>
+
+```text
+Web search results for query: "Simonsohn specification curve permutation test joint inference implementation sample size requirements statistical power 2020 2024"
+
+Links: [{"title":"Specification Curve: Descriptive and Inferential Statistics on All Reasonable Specifications | Request PDF","url":"https://www.researchgate.net/publication/314513418_Specification_Curve_Descriptive_and_Inferential_Statistics_on_All_Reasonable_Specifications"},{"title":"Inference with specification curve analysis • specr","url":"https://masurp.github.io/specr/articles/inferences.html"},{"title":"Specification Curve: Descriptive and Inferential Statistics ...","url":"https://sticerd.lse.ac.uk/seminarpapers/psyc16022016.pdf"},{"title":"Specification curve analysis","url":"http://urisohn.com/sohn_files/wp/wordpress/wp-content/uploads/specification-curve-published-hand-corrected.pdf"},{"title":"Specification curve analysis - Wharton Faculty Platform","url":"https://faculty.wharton.upenn.edu/wp-content/uploads/2016/11/33-Simonsohn-Simmons-Nelson-2020.pdf"},{"title":"Specification curve analysis and the multiverse | Statistical Modeling, Causal Inference, and Social Science","url":"https://statmodeling.stat.columbia.edu/2024/11/12/specification-curve-analysis-and-the-multiverse/"},{"title":"Specification curve analysis - Ramon Llull University","url":"https://merit.url.edu/en/publications/specification-curve-analysis-3/"},{"title":"Specification curve analysis | Nature Human Behaviour","url":"https://www.nature.com/articles/s41562-020-0912-z"}]
+
+Based on the search results, here's what I found about Simonsohn's specification curve analysis with permutation tests and joint inference:
+
+## Overview of Specification Curve Analysis
+
+Specification curve analysis consists of three steps: (1) identifying the set of theoretically justified, statistically valid and non-redundant specifications; (2) displaying the results graphically, allowing readers to identify consequential specifications decisions; and (3) conducting joint inference across all specifications.
+
+## Permutation Testing Approach
+
+The permutation test method involves shuffling the randomly assigned variable, with the shuffled datasets maintaining all the other features of the original one (e.g., collinearity, time trends, skewness, etc.) except we now know there is no link between the shuffled variable and the outcome. The analysis involves generating all possible analytic specifications and examining if a dataset with randomly permuted values would be likely to have similar results using identical analytic specifications, using joint tests for inference which utilize metrics comparing median beta weights and p-values.
+
+## Joint Inference
+
+Simonsohn et al. (2020) propose conducting inference tests across the entire range of the specification curve, which aims to address the question: Considering the full set of reasonable specifications jointly, how inconsistent are the results with the null hypothesis of no effect?
+
+The search results did not contain specific information about sample size requirements or statistical power considerations for specification curve analysis. The 2020 publication you mentioned appears to be the key paper introducing this inferential framework.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e4ab02d-23a6-4afd-b4f6-6623fc5dfcb5",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "ace6d278-8ba2-4a67-8459-15bbce027235",
+  "toolUseResult": {
+    "query": "Simonsohn specification curve permutation test joint inference implementation sample size requirements statistical power 2020 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018yMEtt5Dn4LW6gzxVPr2Jy",
+        "content": [
+          {
+            "title": "Specification Curve: Descriptive and Inferential Statistics on All Reasonable Specifications | Request PDF",
+            "url": "https://www.researchgate.net/publication/314513418_Specification_Curve_Descriptive_and_Inferential_Statistics_on_All_Reasonable_Specifications"
+          },
+          {
+            "title": "Inference with specification curve analysis • specr",
+            "url": "https://masurp.github.io/specr/articles/inferences.html"
+          },
+          {
+            "title": "Specification Curve: Descriptive and Inferential Statistics ...",
+            "url": "https://sticerd.lse.ac.uk/seminarpapers/psyc16022016.pdf"
+          },
+          {
+            "title": "Specification curve analysis",
+            "url": "http://urisohn.com/sohn_files/wp/wordpress/wp-content/uploads/specification-curve-published-hand-corrected.pdf"
+          },
+          {
+            "title": "Specification curve analysis - Wharton Faculty Platform",
+            "url": "https://faculty.wharton.upenn.edu/wp-content/uploads/2016/11/33-Simonsohn-Simmons-Nelson-2020.pdf"
+          },
+          {
+            "title": "Specification curve analysis and the multiverse | Statistical Modeling, Causal Inference, and Social Science",
+            "url": "https://statmodeling.stat.columbia.edu/2024/11/12/specification-curve-analysis-and-the-multiverse/"
+          },
+          {
+            "title": "Specification curve analysis - Ramon Llull University",
+            "url": "https://merit.url.edu/en/publications/specification-curve-analysis-3/"
+          },
+          {
+            "title": "Specification curve analysis | Nature Human Behaviour",
+            "url": "https://www.nature.com/articles/s41562-020-0912-z"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Simonsohn's specification curve analysis with permutation tests and joint inference:\n\n## Overview of Specification Curve Analysis\n\nSpecification curve analysis consists of three steps: (1) identifying the set of theoretically justified, statistically valid and non-redundant specifications; (2) displaying the results graphically, allowing readers to identify consequential specifications decisions; and (3) conducting joint inference across all specifications.\n\n## Permutation Testing Approach\n\nThe permutation test method involves shuffling the randomly assigned variable, with the shuffled datasets maintaining all the other features of the original one (e.g., collinearity, time trends, skewness, etc.) except we now know there is no link between the shuffled variable and the outcome. The analysis involves generating all possible analytic specifications and examining if a dataset with randomly permuted values would be likely to have similar results using identical analytic specifications, using joint tests for inference which utilize metrics comparing median beta weights and p-values.\n\n## Joint Inference\n\nSimonsohn et al. (2020) propose conducting inference tests across the entire range of the specification curve, which aims to address the question: Considering the full set of reasonable specifications jointly, how inconsistent are the results with the null hypothesis of no effect?\n\nThe search results did not contain specific information about sample size requirements or statistical power considerations for specification curve analysis. The 2020 publication you mentioned appears to be the key paper introducing this inferential framework."
+    ],
+    "durationSeconds": 7.624326133000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1e4ab02d-23a6-4afd-b4f6-6623fc5dfcb5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-20T03:51:04.152Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EoQbGAumAhGgjdMiYRK6D3`</summary>
+
+```json
+{
+  "query": "\"hidden measurement error\" LLM pipelines 2026 annotation evaluation benchmarking variance decomposition"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ace6d278-8ba2-4a67-8459-15bbce027235",
+  "isSidechain": false,
+  "requestId": "req_011CbD977uMyRYKWqrbVLccq",
+  "type": "assistant",
+  "uuid": "6e25e231-c919-407b-8a3d-2ac77c28b084",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HtToQDfpYwpAzmU9Pdh8rp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 857,
+      "cache_read_input_tokens": 28454,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 28454,
+          "cache_creation_input_tokens": 857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T03:51:13.347Z_
+
+<details><summary>↩ Tool result · `toolu_01EoQbGAumAhGgjdMiYRK6D3`</summary>
+
+```text
+Web search results for query: ""hidden measurement error" LLM pipelines 2026 annotation evaluation benchmarking variance decomposition"
+
+Links: [{"title":"[2604.11581] Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking","url":"https://arxiv.org/abs/2604.11581"},{"title":"Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking","url":"https://arxiv.org/html/2604.11581v4"},{"title":"Hidden Measurement Error in LLM Pipelines Distorts Annotation,","url":"https://arxiv.org/pdf/2604.11581"},{"title":"Benchmark Illusion: Disagreement among LLMs and Its Scientific Consequences","url":"https://arxiv.org/pdf/2602.11898"},{"title":"Benchmark Illusion: Disagreement among LLMs and Its Scientific Consequences","url":"https://arxiv.org/html/2602.11898"},{"title":"Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement","url":"https://arxiv.org/pdf/2601.02370"},{"title":"Notes on LLM Evaluation | Towards Data Science","url":"https://towardsdatascience.com/notes-on-llm-evaluation/"},{"title":"To Err Is Human; To Annotate, SILICON? Reducing Measurement Error in LLM Annotation","url":"https://arxiv.org/pdf/2412.14461"}]
+
+Based on the search results, I found highly relevant research on this topic. Here are the key findings:
+
+## Hidden Measurement Error in LLM Pipelines (2026)
+
+LLM evaluations drive deployment decisions and research conclusions, yet standard confidence intervals ignore variability from prompt phrasing, model temperature, and judge model choice, producing under-coverage that worsens with more data.
+
+### Variance Decomposition
+
+The research decomposes LLM pipeline uncertainty into its sources, distinguishes variance that shrinks with more data from sensitivity to researcher design choices, and uses design-study projections to reduce total evaluation error (TEE). Single-configuration confidence intervals omit prompt sensitivity, judge disagreement, generation noise, and their interactions, with these components contributing substantial shares of total pipeline variance across demonstrations—approximately 30% in MMLU.
+
+### Impact on Benchmarking and Evaluation
+
+Across demonstrations, naive standard errors are 40-60% smaller than TEE-corrected standard errors, and using Chatbot Arena data, naive 95% CI coverage drops as sample size grows while TEE-corrected coverage holds at 95%.
+
+The omitted variance can shift results enough to reverse conclusions and opens benchmarks to exploitation.
+
+### Related Finding: Model Disagreement
+
+When LLMs are used for scientific data annotation, their hidden disagreements propagate into research results: in re-analyses of published studies, switching the annotation model can change estimated treatment effects by more than 80%, and in some cases reverses their sign.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6e25e231-c919-407b-8a3d-2ac77c28b084",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "7d94f251-67a6-47ed-9f82-9303b4d1688a",
+  "toolUseResult": {
+    "query": "\"hidden measurement error\" LLM pipelines 2026 annotation evaluation benchmarking variance decomposition",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011ThpSgYbcksKjQtK3NkpuS",
+        "content": [
+          {
+            "title": "[2604.11581] Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking",
+            "url": "https://arxiv.org/abs/2604.11581"
+          },
+          {
+            "title": "Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking",
+            "url": "https://arxiv.org/html/2604.11581v4"
+          },
+          {
+            "title": "Hidden Measurement Error in LLM Pipelines Distorts Annotation,",
+            "url": "https://arxiv.org/pdf/2604.11581"
+          },
+          {
+            "title": "Benchmark Illusion: Disagreement among LLMs and Its Scientific Consequences",
+            "url": "https://arxiv.org/pdf/2602.11898"
+          },
+          {
+            "title": "Benchmark Illusion: Disagreement among LLMs and Its Scientific Consequences",
+            "url": "https://arxiv.org/html/2602.11898"
+          },
+          {
+            "title": "Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement",
+            "url": "https://arxiv.org/pdf/2601.02370"
+          },
+          {
+            "title": "Notes on LLM Evaluation | Towards Data Science",
+            "url": "https://towardsdatascience.com/notes-on-llm-evaluation/"
+          },
+          {
+            "title": "To Err Is Human; To Annotate, SILICON? Reducing Measurement Error in LLM Annotation",
+            "url": "https://arxiv.org/pdf/2412.14461"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant research on this topic. Here are the key findings:\n\n## Hidden Measurement Error in LLM Pipelines (2026)\n\nLLM evaluations drive deployment decisions and research conclusions, yet standard confidence intervals ignore variability from prompt phrasing, model temperature, and judge model choice, producing under-coverage that worsens with more data.\n\n### Variance Decomposition\n\nThe research decomposes LLM pipeline uncertainty into its sources, distinguishes variance that shrinks with more data from sensitivity to researcher design choices, and uses design-study projections to reduce total evaluation error (TEE). Single-configuration confidence intervals omit prompt sensitivity, judge disagreement, generation noise, and their interactions, with these components contributing substantial shares of total pipeline variance across demonstrations—approximately 30% in MMLU.\n\n### Impact on Benchmarking and Evaluation\n\nAcross demonstrations, naive standard errors are 40-60% smaller than TEE-corrected standard errors, and using Chatbot Arena data, naive 95% CI coverage drops as sample size grows while TEE-corrected coverage holds at 95%.\n\nThe omitted variance can shift results enough to reverse conclusions and opens benchmarks to exploitation.\n\n### Related Finding: Model Disagreement\n\nWhen LLMs are used for scientific data annotation, their hidden disagreements propagate into research results: in re-analyses of published studies, switching the annotation model can change estimated treatment effects by more than 80%, and in some cases reverses their sign."
+    ],
+    "durationSeconds": 9.190726224999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6e25e231-c919-407b-8a3d-2ac77c28b084",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-20T03:51:16.069Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XZZX3oEeY2qVj6re6QNKL9`</summary>
+
+```json
+{
+  "query": "Carlson Burbano 2026 Strategic Management Journal LLM annotate management research guidelines sensitivity analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d94f251-67a6-47ed-9f82-9303b4d1688a",
+  "isSidechain": false,
+  "requestId": "req_011CbD986amPNzxr8GVk55rF",
+  "type": "assistant",
+  "uuid": "cd274e8f-36d0-48ef-8732-87942405233f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118gwAi36of2WywApGiFuVE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 29311,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 29311,
+          "cache_creation_input_tokens": 821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T03:51:22.286Z_
+
+<details><summary>↩ Tool result · `toolu_01XZZX3oEeY2qVj6re6QNKL9`</summary>
+
+```text
+Web search results for query: "Carlson Burbano 2026 Strategic Management Journal LLM annotate management research guidelines sensitivity analysis"
+
+Links: [{"title":"The use of LLMs to annotate data in management research: Foundational guidelines and warnings - Carlson - 2026 - Strategic Management Journal - Wiley Online Library","url":"https://sms.onlinelibrary.wiley.com/doi/10.1002/smj.70023"},{"title":"The use of &lt;scp>LLMs&lt;/scp> to annotate data in management research: Foundational guidelines and warnings","url":"https://scite.ai/reports/the-use-of-scp-llms-scp-to-1ZP2bYV6"},{"title":"Strategic Management Journal, Wiley Blackwell | IDEAS/RePEc","url":"https://ideas.repec.org/s/bla/stratm.html"},{"title":"The Use of LLMs to Annotate Data in Management Research: Foundational Guidelines and Warnings by Natalie Carlson, Vanessa Burbano :: SSRN","url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4836620"},{"title":"(PDF) The use of LLMs to annotate data in management research: Foundational guidelines and warnings","url":"https://www.researchgate.net/publication/397018682_The_use_of_LLMs_to_annotate_data_in_management_research_Foundational_guidelines_and_warnings"},{"title":"Natalie Carlson – Management Department","url":"https://mgmt.wharton.upenn.edu/profile/ncarlson/"},{"title":"Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement","url":"https://arxiv.org/pdf/2601.02370"},{"title":"Strategic Management Journal","url":"https://www.researchgate.net/journal/Strategic-Management-Journal-1097-0266"},{"title":"Research - Vanessa C. Burbano","url":"https://www.vanessaburbano.com/research.html"}]
+
+Based on the search results, here's information about the Carlson and Burbano 2026 paper:
+
+## Publication Details
+
+Carlson, N. A., & Burbano, V. (2026). The use of LLMs to annotate data in management research: Foundational guidelines and warnings. Strategic Management Journal, 47(3), 699–725.
+
+## Overview
+
+The emergence of large language models (LLMs) offers new opportunities for AI integration in research, particularly for data annotation and text classification. However, researchers lack guidance on implementation best practices, as the benefits and risks of these tools remain poorly understood. The authors develop a foundational framework for effective LLM implementation in management research, providing structured guidance on key decisions throughout the research process.
+
+## Key Findings
+
+The framework is illustrated through an empirical application: classifying sustainability claims in crowdfunding projects. While LLMs can match or exceed traditional methods' performance at lower cost, variations in prompt design can significantly affect results and downstream analyses.
+
+## Authors
+
+Natalie A. Carlson is affiliated with The Wharton School, University of Pennsylvania, Philadelphia, PA, USA. Vanessa Burbano is affiliated with Columbia Business School, Columbia University, New York, New York, USA.
+
+The paper addresses an important gap in management research by providing researchers with foundational guidelines for implementing LLMs in their work while also highlighting important warnings about potential pitfalls.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd274e8f-36d0-48ef-8732-87942405233f",
+  "isSidechain": false,
+  "promptId": "0c2e1c79-5011-434e-8f84-4f185d0e73f8",
+  "type": "user",
+  "uuid": "a5945bf5-797a-4917-b91f-6f2dd0be0a3c",
+  "toolUseResult": {
+    "query": "Carlson Burbano 2026 Strategic Management Journal LLM annotate management research guidelines sensitivity analysis",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QK6C3Ug2FBkNFJd4Cyx7cR",
+        "content": [
+          {
+            "title": "The use of LLMs to annotate data in management research: Foundational guidelines and warnings - Carlson - 2026 - Strategic Management Journal - Wiley Online Library",
+            "url": "https://sms.onlinelibrary.wiley.com/doi/10.1002/smj.70023"
+          },
+          {
+            "title": "The use of &lt;scp>LLMs&lt;/scp> to annotate data in management research: Foundational guidelines and warnings",
+            "url": "https://scite.ai/reports/the-use-of-scp-llms-scp-to-1ZP2bYV6"
+          },
+          {
+            "title": "Strategic Management Journal, Wiley Blackwell | IDEAS/RePEc",
+            "url": "https://ideas.repec.org/s/bla/stratm.html"
+          },
+          {
+            "title": "The Use of LLMs to Annotate Data in Management Research: Foundational Guidelines and Warnings by Natalie Carlson, Vanessa Burbano :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4836620"
+          },
+          {
+            "title": "(PDF) The use of LLMs to annotate data in management research: Foundational guidelines and warnings",
+            "url": "https://www.researchgate.net/publication/397018682_The_use_of_LLMs_to_annotate_data_in_management_research_Foundational_guidelines_and_warnings"
+          },
+          {
+            "title": "Natalie Carlson – Management Department",
+            "url": "https://mgmt.wharton.upenn.edu/profile/ncarlson/"
+          },
+          {
+            "title": "Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement",
+            "url": "https://arxiv.org/pdf/2601.02370"
+          },
+          {
+            "title": "Strategic Management Journal",
+            "url": "https://www.researchgate.net/journal/Strategic-Management-Journal-1097-0266"
+          },
+          {
+            "title": "Research - Vanessa C. Burbano",
+            "url": "https://www.vanessaburbano.com/research.html"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the Carlson and Burbano 2026 paper:\n\n## Publication Details\n\nCarlson, N. A., & Burbano, V. (2026). The use of LLMs to annotate data in management research: Foundational guidelines and warnings. Strategic Management Journal, 47(3), 699–725.\n\n## Overview\n\nThe emergence of large language models (LLMs) offers new opportunities for AI integration in research, particularly for data annotation and text classification. However, researchers lack guidance on implementation best practices, as the benefits and risks of these tools remain poorly understood. The authors develop a foundational framework for effective LLM implementation in management research, providing structured guidance on key decisions throughout the research process.\n\n## Key Findings\n\nThe framework is illustrated through an empirical application: classifying sustainability claims in crowdfunding projects. While LLMs can match or exceed traditional methods' performance at lower cost, variations in prompt design can significantly affect results and downstream analyses.\n\n## Authors\n\nNatalie A. Carlson is affiliated with The Wharton School, University of Pennsylvania, Philadelphia, PA, USA. Vanessa Burbano is affiliated with Columbia Business School, Columbia University, New York, New York, USA.\n\nThe paper addresses an important gap in management research by providing researchers with foundational guidelines for implementing LLMs in their work while also highlighting important warnings about potential pitfalls."
+    ],
+    "durationSeconds": 6.211696740000014,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cd274e8f-36d0-48ef-8732-87942405233f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-20T03:53:32.458Z_
+
+Now I have sufficient background research. Let me compile my analysis.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- [Baumann et al., arXiv 2509.08825](https://arxiv.org/abs/2509.08825) (2025): 实验设计：18 LLMs × 37 tasks × 13M labels；用两个 baseline（random conclusions: 62.3% risk, random labels: 52.5% risk）；评估了 21 种缓解策略；评测指标为 LLM hacking risk（Type I/II error rate）。数据集公开（MIT license）。
+- [McLaren et al., arXiv 2603.26898](https://arxiv.org/abs/2603.26898) (2026): 6 个开源模型 × 4 个政治学标注任务；受控变量：model, model size, learning approach, prompt style；核心发现是 interaction effects dominate main effects；但实验设计是 one-factor-at-a-time，无 full factorial，无 specification curve 或 joint inference。
+- [Gligorić et al., NAACL 2025](https://aclanthology.org/2025.naacl-long.179/): Confidence-Driven Inference; 用 PPI 框架 + LLM confidence 进行统计估计；baseline 为 uniform sampling + naïve LLM labels；评估了 politeness, stance, bias 三个 CSS 任务；减少 >25% human annotations。
+- [Audinet de Pieuchon et al., EMNLP 2025](https://aclanthology.org/2025.emnlp-main.1000/): 比较 DSL vs PPI debiasing methods；评估 LLM bias 在不同 human annotation budget 下的表现；固定 pipeline configuration；发现 DSL 在 bias reduction 上通常优于 PPI 但 consistency 更差。
+- [Hidden Measurement Error in LLM Pipelines, arXiv 2604.11581](https://arxiv.org/abs/2604.11581) (2026): 将 LLM pipeline uncertainty 分解为多个 variance component（prompt sensitivity, judge disagreement, generation noise 及其 interactions）；提出 TEE (Total Evaluation Error)；发现 naive SE 比 TEE-corrected SE 小 40-60%；与 proposal 的 variance decomposition 目标高度相关。
+- [Mehrotra et al., arXiv 2603.21404](https://arxiv.org/abs/2603.21404) (2026): Perspective-Driven Inference；处理 subjective tasks 中 annotator disagreement；adaptive sampling strategy；评估 politeness 和 offensiveness tasks。
+- [Simonsohn et al., Nature Human Behaviour 2020](https://www.nature.com/articles/s41562-020-0912-z): Specification curve analysis 标准方法：(1) 确定 justified specifications, (2) 图形展示, (3) permutation-based joint inference；permutation test 通过 shuffle 随机分配变量生成 null 分布。
+- [Variance-Aware LLM Annotation, arXiv 2601.02370](https://arxiv.org/abs/2601.02370) (2026): 基于 generalizability theory 诊断 5 个 variance source（construct, interface, model, output, aggregation）；发现 minor design choices 可 shift outcomes by 12-85 pp；提供 protocol guidance 而非 statistical inference。
+
+- **调研总结**: 这个领域当前的实验设计标准要求：(1) 覆盖多种 task types（binary, multi-class, ordinal, subjective），(2) 与 PPI/DSL debiasing 方法进行对比作为 statistical inference baselines，(3) 进行 variance decomposition 来量化各 pipeline dimension 的贡献，(4) 在 downstream inference 层面（而非仅 annotation accuracy）评估方法效果。审稿人普遍期望在多个 CSS tasks 上验证、使用公认的评估指标、并与 2025-2026 最新的 debiasing/correction 方法进行对比。
+
+---
+
+【缺陷 1】
+- 类别: baseline 不足或过时
+- 问题: Proposal 的 specification curve analysis + joint inference 声称能判断 findings 是否 robust across pipeline configurations，但**没有与任何现有的 statistical correction 方法进行对比**。具体而言，PPI (Prediction-Powered Inference, Gligorić et al., NAACL 2025) 和 DSL (Design-based Supervised Learning, Audinet de Pieuchon et al., EMNLP 2025) 是当前最成熟的 LLM annotation debiasing/correction 方法，它们通过少量 human labels 来校正 LLM annotation error 对下游 inference 的影响。Proposal 完全没有讨论与这些方法的关系——multiverse analysis 发现 findings 是 "fragile" 之后，研究者该怎么办？PPI/DSL 提供了一条替代路径（直接校正 bias），而 proposal 的框架只能诊断但不能修正。如果不与 PPI/DSL 做对比，审稿人会问：**"为什么不直接用 PPI 校正 LLM annotation error，而要做一个昂贵的 multiverse analysis？"**
+- 严重度: 可补救
+- 补救方案: 在实验设计中增加一个 comparative evaluation section：(1) 对同样的 10 个 tasks，选择 2-3 个 representative tasks，运行 PPI 和 DSL 方法（使用 Baumann et al. 数据中的 gold labels 作为 human annotations），与 multiverse analysis 的 robustness 判断进行对比。具体对比维度：当 multiverse 判定 finding 为 "robust" 时，PPI/DSL 校正后的结论是否一致？当 multiverse 判定 "fragile" 时，PPI/DSL 是否能修复？(2) 这不需要改变核心 framework，只是增加一个 positioning 实验，帮助论文回答 "multiverse analysis vs. correction methods 的互补性"。API 成本增量很小（只需对少数 tasks 额外运行）。
+- 调研依据: Gligorić et al. (NAACL 2025) 和 Audinet de Pieuchon et al. (EMNLP 2025) 是该领域 2025 年最被认可的 statistical correction baselines，审稿人必然会要求与之对比或至少讨论关系。
+
+【缺陷 2】
+- 类别: 实验设计不足
+- 问题: Proposal 声称进行 "full-factorial execution"，但 naïve Cartesian product 是 810 configurations，pruned multiverse 是 ~90-270 configurations/task × 10 tasks × 6 models = potentially **5,400-16,200 独立标注运行**（每个配置需标注完整 corpus）。然而 proposal 同时声明 sample size 为 "1,000-3,000 samples per task"。**问题一**：Baumann et al. 的 37 个 tasks 中样本量差异很大（有些只有几百条），proposal 没有说明 10 个 tasks 的选择标准和具体样本量。**问题二**：如果每 task 有 3,000 samples × 270 configs = 810,000 次 LLM calls per task，10 tasks = 8.1M calls，batched at 25 items/prompt = 324,000 API calls，加上 6 models = 这个计算量的 token 估算是否准确？**问题三**：permutation-based joint inference 需要多少 permutations（通常 ≥500-1000），每次 permutation 需要 re-shuffle 并重新计算 specification curve——但这部分不需要重新 LLM annotation，只需 re-compute downstream statistics，所以计算上可行，但 proposal 应明确说明。
+- 严重度: 可补救
+- 补救方案: (1) 明确 10 个 tasks 的选择标准（覆盖哪些 task types, 每个 task 的样本量范围，是否有 gold standard labels）。建议列出具体的 10 个 tasks 或至少给出选择规则。(2) 更精确地计算总 token 消耗：每 task 的 avg sample size × configs/task × 6 models × avg tokens per item（including prompt overhead for 25-item batches），验证 $1,200-$2,000 的成本估算是否合理。(3) 明确说明 permutation test 的计算在 downstream statistics 层面完成（不需重新 annotation），消除审稿人对计算可行性的疑虑。
+- 调研依据: Simonsohn et al. (2020) 标准做法要求 ≥500 permutations；Baumann et al. 数据集中 tasks 的 sample sizes 差异较大，实验设计需要透明选择标准。
+
+【缺陷 3】
+- 类别: 评估方案缺陷
+- 问题: Proposal 将 hypothesis 分为三类 "robust / fragile / sign-inconsistent"，但**缺乏 ground truth 来验证这个分类是否正确**。具体而言：当 multiverse analysis 说一个 finding 是 "robust" 时，这意味着它在所有 defensible configurations 下都成立——但 "defensible" 本身取决于 E/N/U 分类的正确性。如果 E/N/U 分类将某些 configurations 不当排除（分类为 N 但实际是 U），那 "robust" 判断可能是假的。**Proposal 没有设计实验来验证 E/N/U 分类本身的稳健性**。
+- 严重度: 可补救
+- 补救方案: 增加一个 **sensitivity analysis over E/N/U classification**：(1) 对 E/N/U 分类中边界决策进行 perturbation（将某些 N 类决策改为 U，或将某些 E 类扩展范围），检查 downstream robustness 判断是否改变。(2) 比较 "principled multiverse"（E/N/U pruned）vs "naïve Cartesian multiverse" 的 specification curve 和 robustness 分类结果——如果两者结论大体一致，说明 pruning 有效但不关键；如果结论不同，说明 E/N/U 分类的选择对最终结论有重大影响，需要更多 justification。这也是回应 Auspurg (PNAS 2025) critique 的关键实验证据。
+- 调研依据: Auspurg (PNAS 2025) vs Ganslmeier & Vlandas (PNAS 2025) 辩论的核心就是 multiverse 的边界划定是否影响结论；Del Giudice & Gangestad (2021) 的 E/N/U 框架本身建议对 U 类进行 sensitivity analysis。
+
+【缺陷 4】
+- 类别: ablation 不完整
+- 问题: Proposal 设计了 variance decomposition（factorial ANOVA over specification space），这能量化每个 pipeline dimension 的 main effect 和 interaction effects。但**缺少以下关键 ablation**：(1) **E/N/U pruning 的效果**：pruned multiverse vs naïve full multiverse 对 robustness 判断的影响（与缺陷 3 相关但侧重不同——这里是量化 pruning 对 inference 结论的影响大小）。(2) **Task-conditional constraints 的效果**：如果移除 task-type-specific constraints（e.g., 不再根据 task type 限制 temperature 范围），specification curve 如何变化？(3) **Model diversity 的贡献**：6 models 是否必要？如果只用 3 models，robustness 判断是否稳定？这对实际 adoption 很重要——研究者可能没有资源运行 6 models。(4) **Batch size 对 annotation quality 的影响**：25 items/prompt 的 batching 是否引入质量损失？至少需要一个 pilot 比较 batch vs single-item annotation。
+- 严重度: 可补救
+- 补救方案: 增加以下 ablation studies（可在 2-3 个 representative tasks 上运行，不需全部 10 tasks）：(a) Pruned vs naïve multiverse → compare specification curves and robustness classification。(b) With vs without task-conditional constraints → quantify constraint impact。(c) 6 models vs 3 models vs single model → robustness stability curve。(d) Batch=25 vs batch=1 on ≥1 task with ≥1 model → measure annotation quality difference。其中 (a) 和 (b) 不增加 API 成本（只需重新分析 subset），(c) 也只需 re-analyze existing results，(d) 需要少量额外 API calls。
+- 调研依据: McLaren et al. (2026) 的核心发现是 interaction effects dominate，这意味着审稿人会要求验证 model selection 对结论的敏感性；Baumann et al. (2025) 使用 18 models 但未量化减少 models 的影响；batch annotation quality 在 CSS annotation 文献中是已知 concern。
+
+【缺陷 5】
+- 类别: compute 公平性问题
+- 问题: 6 models 的 scale 差异极大：Gemma 4 (26B MoE) vs Llama 4 Maverick (400B MoE) vs Qwen 3.5 (397B MoE)。在 variance decomposition 中 "model" 作为一个 factor，其 effect 会混淆 **model capability difference**（大模型 vs 小模型）与 **model family/architecture difference**（MoE vs dense）。如果 model 是最大 variance contributor，审稿人会问：是因为模型家族间存在系统性差异，还是仅仅因为小模型更差？**Proposal 没有设计 size-controlled comparison** 来 disentangle 这两个因素。
+- 严重度: 可补救
+- 补救方案: 在 variance decomposition 的 ANOVA 设计中，(1) 增加 model size 作为一个 covariate 或 nested factor（如将 models 分为 large: >250B 和 medium: <130B 两组），分析 model family effect 在控制 size 后是否仍显著。(2) 或者更简单地：在 variance decomposition 结果讨论中，明确报告 Gemma 4 (26B) 对 specification curve 的影响是否异常，并展示 exclude-smallest-model sensitivity analysis。这不需要额外的 API calls，只需对现有数据做分层分析。
+- 调研依据: McLaren et al. (2026) 在控制 quantization 和 hardware 的条件下仍发现 model choice 是重要 factor，但他们使用的是 similar-scale 开源模型（未跨越 26B-400B 范围）；Baumann et al. (2025) 发现 small language models 的 hacking risk 几乎翻倍（~50% vs ~31%），进一步说明 model size confound 的重要性。
+
+【缺陷 6】
+- 类别: 评估方案缺陷
+- 问题: Proposal 将 "Hidden Measurement Error" (arXiv 2604.11581, 2026) 这篇非常相关的新工作**完全遗漏**——该论文恰好也做 LLM pipeline 的 variance decomposition，提出了 TEE (Total Evaluation Error) 概念，发现 naive SE 比 TEE-corrected SE 小 40-60%。这篇论文的实验方法（如何分解 variance、如何量化各 component）与 proposal 的 Stage 3（variance decomposition via ANOVA）高度重叠，但 estimand 不同（TEE 关注 evaluation accuracy，proposal 关注 downstream social science inference）。**如果不在实验设计中明确与 TEE 方法的异同和互补关系，审稿人会质疑 novelty 和 positioning。**
+- 严重度: 可补救
+- 补救方案: (1) 在 landscape/related work 中增加对 "Hidden Measurement Error in LLM Pipelines" (2604.11581) 的讨论，明确区分：TEE focuses on evaluation/benchmarking accuracy，while our variance decomposition focuses on downstream social science inference。(2) 在实验中，对相同的 pipeline configurations，分别计算 TEE-style variance decomposition（focus on annotation accuracy variance）和 proposal 的 downstream-inference variance decomposition，展示两者的 correlation 和 divergence——这能成为一个有价值的 contribution（annotation accuracy variance ≠ inference instability）。这不需额外 API calls，只需额外分析。
+- 调研依据: "Hidden Measurement Error in LLM Pipelines" (arXiv 2604.11581, April 2026) 是 2026 年 4 月的新工作，与 proposal 的 variance decomposition 组件高度相关，审稿人很可能已读过或会在 review 期间发现。
+
+【缺陷 7】
+- 类别: 可行性问题
+- 问题: API cost 估算为 $1,200-$2,000，但存在以下可行性风险：(1) **Qwen 3.5 via OpenRouter 估算为 $475-$950**——OpenRouter 的 pricing 和 rate limits 变动频繁，且 Qwen 3.5 (397B MoE) 在 OpenRouter 上的 availability 不确定（搜索未找到 Qwen 3.5 的确认信息，该模型可能尚未发布或名称有误）。(2) **"proprietary anchor (GPT-4o or Claude)"** 用词模糊——这两个模型的 pricing 差异大，且如果使用 Claude 作为 anchor 而论文同时使用 Claude 辅助 E/N/U classification（human_in_loop scenario），存在 circularity concern。(3) **500M-1.2B tokens 的估算跨度太大（2.4x range）**，说明实验规模尚不确定。
+- 严重度: 可补救
+- 补救方案: (1) 确认 Qwen 3.5 (397B MoE) 是否已发布且可通过 API 访问；如果不可用，准备替代模型（如 Qwen 2.5 72B 或 Qwen QwQ 等）。(2) 明确 proprietary anchor 的选择（建议选 GPT-4o 以避免与 Claude-assisted E/N/U classification 的 circularity），并计算该 anchor 的具体成本。(3) 在 1-2 个 tasks 上先做 pilot run（仅需 ~$50-100），验证 token 消耗估算，然后精确化总预算。(4) 考虑设置 fallback plan：如果某个 model API 不可用或 rate-limited，哪个模型可以替换，替换是否影响实验结论。
+- 调研依据: 基于领域实验规范判断——API-based 实验论文需要 reproducibility，模型可用性和具体成本需明确。
+
+---
+
+**总结**: 这个 proposal 的实验框架（multiverse construction → full-factorial execution → specification curve + variance decomposition）在方法论层面是清晰的，核心实验逻辑成立。但有 7 个可补救缺陷需要在实验设计中解决，其中最关键的是：**缺陷 1**（缺乏与 PPI/DSL correction methods 的对比，审稿人必问）、**缺陷 3**（E/N/U 分类的 sensitivity analysis，这是核心 contribution 的可信度基础）、和**缺陷 6**（遗漏高度相关的 "Hidden Measurement Error" 2026 工作）。所有缺陷均可补救且增量成本可控。
+
+Sources:
+- [Baumann et al. 2025 - LLM Hacking](https://arxiv.org/abs/2509.08825)
+- [McLaren et al. 2026 - Magic Words or Methodical Work](https://arxiv.org/abs/2603.26898)
+- [Gligorić et al. NAACL 2025 - Unconfident LLM Annotations](https://aclanthology.org/2025.naacl-long.179/)
+- [Audinet de Pieuchon et al. EMNLP 2025 - Benchmarking Debiasing Methods](https://aclanthology.org/2025.emnlp-main.1000/)
+- [Hidden Measurement Error in LLM Pipelines 2026](https://arxiv.org/abs/2604.11581)
+- [Mehrotra et al. 2026 - Multi-Perspective LLM Annotations](https://arxiv.org/abs/2603.21404)
+- [Simonsohn et al. 2020 - Specification Curve Analysis](https://www.nature.com/articles/s41562-020-0912-z)
+- [Variance-Aware LLM Annotation 2026](https://arxiv.org/abs/2601.02370)
+- [Carlson & Burbano 2026 - SMJ LLM Guidelines](https://sms.onlinelibrary.wiley.com/doi/10.1002/smj.70023)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5945bf5-797a-4917-b91f-6f2dd0be0a3c",
+  "isSidechain": false,
+  "requestId": "req_011CbD98kqPxHLgzmVcvCS7a",
+  "type": "assistant",
+  "uuid": "e22a517f-48f1-43cb-9718-c87deea8e157",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jVo4kpeuQ68Ak9YTQBfWr",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 945,
+      "cache_read_input_tokens": 30132,
+      "output_tokens": 6040,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6040,
+          "cache_read_input_tokens": 30132,
+          "cache_creation_input_tokens": 945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first formal multiverse analysis framework for LLM-mediated social science annotation pipelines…",
+  "leafUuid": "e22a517f-48f1-43cb-9718-c87deea8e157",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first formal multiverse analysis framework for LLM-mediated social science annotation pipelines…",
+  "leafUuid": "e22a517f-48f1-43cb-9718-c87deea8e157",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+  "sessionId": "d76037f9-7404-46c4-a52b-8650f7a00fd3"
+}
+```
+
+---

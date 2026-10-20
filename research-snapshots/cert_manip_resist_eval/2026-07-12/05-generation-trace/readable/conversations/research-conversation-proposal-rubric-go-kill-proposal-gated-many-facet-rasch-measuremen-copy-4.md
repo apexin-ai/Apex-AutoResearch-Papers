@@ -1,0 +1,3066 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Gated Many-Facet Rasch Measuremen
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-2/49d6ca78-0ad1-4228-aa99-5ed5d94b7634.jsonl`
+- **Structured JSON:** [`b8448406fad9bb27b0b2.json`](../../sessions/b8/b8448406fad9bb27b0b2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T04:28:42.394Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T04:28:42.394Z",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Gated Many-Facet Rasch Measurement for Joint Judge Bias and Contamination Correction in LLM Evaluation\n\n## Description\nWe propose the Gated Many-Facet Rasch Model (G-MFRM), which extends the standard MFRM from educational measurement with a DG-IRT-inspired contamination gating mechanism to jointly calibrate model ability, item difficulty, judge severity, and contamination susceptibility within a single psychometric framework. The critical methodological advance over the original proposal is a hierarchical contamination parameterization: instead of an overparameterized per-(model,item) contamination term c_nk (N×I free parameters, unidentifiable), we decompose contamination into per-model susceptibility c_n modulated by per-item exposure indicators e_i, giving c_n · e_i (N+I parameters). This follows the LLTM (Fischer 1973) design-matrix tradition and the AMMI multiplicative interaction decomposition, both with established identifiability guarantees. Crucially, exposure indicators e_i are estimated externally via ConStat reference benchmark comparison (fully black-box, validated r²=0.94), temporal pre/post-cutoff signals, and LogProber Safe Scores (gray-box) — resolving the circularity of using model-internal residuals to identify contamination. A three-stage estimation strategy ensures identification: (1) standard 3-facet MFRM producing ability, difficulty, and severity estimates plus person-fit diagnostics; (2) external exposure estimation from ConStat and temporal proxies; (3) joint Gated MFRM with fixed exposure indicators and informative priors from Stages 1–2, implemented via Bayesian MCMC in NumPyro. The n-gram overlap signal is dropped for proprietary models (training data undisclosed) and retained only as supplementary validation for open-weight models. Validation spans MT-Bench, Arena-Hard, and WildBench using 8+ LLM judges (GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Kimi K2.6, Qwen3-235B-A22B, Qwen3.6-27B, Llama 4 Maverick). We demonstrate that G-MFRM fair scores achieve higher Kendall-τ rank correlation with held-out Chatbot Arena human votes than raw multi-judge averages, CyclicJudge bias-only correction, DCR contamination-only adjustment, Preference Leakage calibration, and a naive two-stage pipeline (CyclicJudge → DCR). Additional analyses include exposure indicator ablation, judge count sensitivity, facet fit statistics, person-fit validation of contamination estimates, and robustness to adversarial contamination (per ICLR 2026 fragility findings). The unified framework yields interpretable per-model contamination estimates, per-judge severity calibrations, and fair ability rankings — bridging the gap between the judge bias correction and contamination detection research silos.\n\n## Core Problem\nCan a hierarchical psychometric measurement model jointly estimate model ability, item difficulty, judge severity, and contamination susceptibility — with the contamination facet decomposed into identifiable per-model and per-item components anchored by external exposure proxies — to produce bias-and-contamination-corrected evaluation scores that outperform both siloed corrections and naive multi-judge averaging?\n\n## Opportunity\nThe LLM-as-a-judge evaluation literature has bifurcated into two silos: (1) judge bias correction methods (CyclicJudge round-robin, Bias-Bounded Evaluation, Soumik's 9-strategy comparison, UDA neural calibration, Fiedler's classical test theory diagnostics) and (2) contamination detection/adjustment methods (DCR Factor, ConStat, Preference Leakage calibration, person-fit screening). No existing work — including all arXiv submissions through May 2026 and ICLR/EMNLP 2026 proceedings — jointly models judge severity and contamination susceptibility within a single calibration framework. The Many-Facet Rasch Model (MFRM) from educational testing naturally accommodates multiple facets in a unified calibration. Recent work has applied MFRM to LLM raters (arXiv:2505.18486) but treats contamination as external. Critically, the Deterministic Gated IRT (DG-IRT) model from psychometric cheating detection (Shu, Henson & Luecht, Psychometrika 2013) provides the missing link: a principled gating mechanism that decomposes observed performance into genuine ability and contamination-inflated components. By combining MFRM's multi-facet structure with DG-IRT's gating logic and externally-anchored exposure indicators from ConStat, we obtain a unified, identifiable model that bridges the gap between these two research silos.\n\n## Landscape\n**Judge bias silo:** CyclicJudge (March 2026) eliminates judge bias via round-robin assignment but ignores contamination. IRT-GRM for judge reliability (Feb 2026) diagnoses judge consistency without modeling contamination. 'Judging the Judges' (Soumik, arXiv:2604.23178, April 2026) empirically compares 9 debiasing strategies across 5 judges, finding style bias dominant (0.76–0.92) but provides no measurement model explaining why strategies work. 'Bias and Uncertainty in LLM-as-a-Judge Estimation' (Fiedler, arXiv:2605.06939, May 2026) introduces formal J/delta-J diagnostics and identifies sign-reversal failure modes in shared-calibration comparisons, but stays within classical test theory without latent trait modeling. BiasScope (ICLR 2026) automates bias discovery post-hoc. Bias-Bounded Evaluation (March 2026) provides formal guarantees retaining 61–99% ranking correlation. JudgeBiasBench (March 2026) defines a taxonomy of 12 bias types across 4 dimensions. UDA (AAAI 2026) uses neural K-factor adjustment to reduce inter-judge standard deviation by 63.4%. **Contamination silo:** DCR Factor (EMNLP 2025) adjusts accuracy for contamination via fuzzy inference but ignores judge effects. Preference Leakage (ICLR 2026) quantifies generator-judge relatedness bias but proposes only post-hoc calibration. ConStat (NeurIPS 2024) computes contamination effects via reference benchmark comparison (r²=0.94 with true effects) — fully black-box. LogProber (2024) estimates per-item Safe Scores from token log-probabilities. 'On The Fragility of Benchmark Contamination Detection in Reasoning Models' (ICLR 2026) shows RL post-training obscures contamination signals, motivating multi-indicator approaches. **IRT for LLMs (no judge + contamination unification):** PSN-IRT (AAAI 2026) applies neural 4PL IRT to benchmark evaluation. MFRM has been applied to compare 10 LLM raters with human experts (May 2025) and to ChatGPT-4 essay scoring (RMAL 2024). **Gap:** No existing work jointly models judge severity and contamination susceptibility within a single psychometric calibration framework, nor has anyone adapted DG-IRT's gating mechanism from educational cheating detection to LLM benchmark contamination.\n\n## Approach\nWe propose a Gated Many-Facet Rasch Model (G-MFRM) that extends the standard MFRM with a DG-IRT-inspired contamination gating mechanism, using a three-stage estimation strategy that ensures identifiability.\n\n**Model formulation.** The core log-odds model is:\n\n  logit(P_nij) = θ_n − b_i − d_j + c_n · e_i\n\nwhere θ_n is model ability, b_i is item difficulty, d_j is judge severity, c_n is per-model contamination susceptibility, and e_i is per-item exposure level. The contamination term c_n · e_i replaces the overparameterized per-(model,item) c_nk from the original proposal: instead of N×I free parameters, this hierarchical decomposition requires only N + I parameters (or just N when e_i is externally anchored). This follows the LLTM (Linear Logistic Test Model, Fischer 1973) tradition of decomposing item parameters via a known or estimable design matrix, and is a rank-1 special case of the AMMI (Additive Main Effects and Multiplicative Interaction) decomposition, both with well-established identifiability guarantees.\n\nThe DG-IRT gating interpretation: when e_i ≈ 0 (unexposed item), the model reduces to the standard 3-facet MFRM measuring genuine ability; when e_i > 0, performance is inflated by c_n · e_i, where c_n captures how much each model benefits from data leakage. This directly mirrors DG-IRT's decomposition of observed performance into genuine and cheating-inflated distributions.\n\n**Three-stage estimation (resolving circularity).**\n\n*Stage 1 — Standard 3-facet MFRM:* Fit θ_n, b_i, d_j via Bayesian MCMC (NumPyro on GPU), ignoring contamination. This produces uncontaminated ability estimates and, critically, standardized residuals r_ni and person-fit statistics (lz, EMRi) per model.\n\n*Stage 2 — External exposure estimation:* Estimate e_i from external proxies that are independent of the MFRM fit, resolving the circularity the reviewer identified:\n  (a) ConStat delta scores: compare model performance on original benchmark items vs. rephrased/synthetic reference variants (fully black-box, validated r²=0.94 with true contamination effects);\n  (b) Temporal signals: performance gaps on items with pre-cutoff vs. post-cutoff variants (available for benchmarks with versioned items);\n  (c) LogProber Safe Scores: per-item memorization indicators from token log-probability analysis (gray-box; for models exposing logprobs: GPT-5.5, DeepSeek-V4, Qwen3, Llama 4).\n  These indicators are combined via a weighted composite (weights tuned on a held-out validation split) to produce ê_i. Person-fit statistics from Stage 1 serve as validation — models with high contamination should exhibit difficulty-insensitive response patterns (high Guttman errors, low lz) — but are NOT used to estimate e_i, avoiding circularity.\n\n*Stage 3 — Joint Gated MFRM:* Refit the full 4-facet model with ê_i as fixed (observed) covariates and c_n as latent parameters, using Stage 1 estimates as informative priors. Identifiability constraints: sum(c_n) = 0 (centered contamination susceptibility) and ê_i scale fixed from Stage 2. This yields contamination-corrected 'fair scores' θ̂_n — model ability estimates purged of both judge bias (via d_j) and contamination inflation (via c_n · ê_i).\n\n**N-gram overlap dropped for proprietary models.** Following the reviewer's feedback, we remove n-gram overlap as a contamination signal since OpenAI, Anthropic, and Google do not disclose training data. ConStat and temporal signals are fully black-box; LogProber requires only logprob access. For open-weight models with documented training data (DeepSeek-V4, Kimi K2.6, Qwen3, Llama 4), n-gram overlap can serve as supplementary validation of ê_i estimates.\n\n**Validation.** Experiments span MT-Bench, Arena-Hard, and WildBench using 8+ LLM judges: proprietary (GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6) and open-weight (DeepSeek-V4-Pro, Kimi K2.6, Qwen3-235B-A22B, Qwen3.6-27B, Llama 4 Maverick). We construct reference benchmark variants for ConStat by GPT-5.5/Claude-assisted rephrasing (validated by human equivalence checking). We evaluate by demonstrating that G-MFRM fair scores θ̂_n achieve higher Kendall-τ rank correlation with held-out Chatbot Arena human votes than five baselines: (1) raw multi-judge averages, (2) CyclicJudge bias-only correction, (3) DCR Factor contamination-only adjustment, (4) Preference Leakage post-hoc calibration, and (5) a naive two-stage pipeline (CyclicJudge bias correction → DCR contamination adjustment) — the 'simpler baseline' that reviewers would demand to justify the psychometric overhead. Additional analyses include: (a) ablation of each exposure indicator's contribution to ê_i; (b) sensitivity analysis varying the number of judges (2, 4, 6, 8+); (c) facet fit statistics (infit/outfit MNSQ) to validate measurement quality; (d) comparison of Stage 1 person-fit flagging (lz, EMRi) against Stage 3 contamination estimates c_n as a validation of construct coherence; (e) robustness check against adversarial contamination following Wang et al. (ICLR 2026) fragility findings.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '180–250 (open-source judge inference via vLLM ~130h on A100-80GB; ConStat reference variant generation + evaluation ~30h; Bayesian MCMC fitting ~15h; ablations and sensitivity analysis ~50h)', 'timeline': '10–12 weeks (G-MFRM implementation + ConStat integration 3w, reference benchmark variant construction 2w, multi-judge data collection 3w, experiments and analysis 2w, paper writing 2w)', 'estimated_gpu_cost': '$450–625 (A100 spot at ~$2.50/hr) + ~$900 proprietary judge API calls (GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6)'}, 'human_in_loop': {'gpu_hours': '180–250', 'timeline': '7–9 weeks (Claude accelerates G-MFRM implementation, ConStat integration, experiment scripting, and drafting)', 'claude_api_cost': '$100–150', 'estimated_gpu_cost': '$450–625 + ~$900 proprietary judge API calls'}, 'auto_research': {'gpu_hours': '180–250', 'timeline': '5–7 weeks', 'claude_api_cost': '$250–400 (end-to-end code generation, three-stage estimation pipeline, hyperparameter search, convergence diagnostics, paper writing)', 'estimated_gpu_cost': '$450–625 + ~$900 proprietary judge API calls', 'speed_bottleneck': 'Proprietary judge API rate limits (GPT-5.5/Claude batch quotas); ConStat reference variant quality validation; sequential three-stage MCMC convergence requiring iterative checks'}}\n\n## Inspired By\nCross-domain transfer of DG-IRT (Shu et al., Psychometrika 2013) gating mechanism from educational cheating detection to LLM contamination; MFRM multi-facet calibration for judge bias; LLTM (Fischer 1973) design-matrix decomposition for identifiable contamination parameterization; ConStat (NeurIPS 2024) external exposure indicators; combination of CyclicJudge judge modeling + ConStat contamination quantification + IRT measurement backbone.\n\n## Target Venues\n- AAAI 2027 (full paper: July 28, 2026)\n- ACL 2027 (ARR submission: August 3, 2026)\n- EACL 2027 (ARR submission: August 3, 2026)\n- NAACL 2027 (ARR submission: October 15, 2026)\n\n## Key References\n- Using Deterministic, Gated IRT Model to Detect Test Cheating due to Item Compromise (Shu, Henson & Luecht, Psychometrika 2013)\n- Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model (arXiv 2025)\n- ConStat: Statistical Detection and Quantification of Benchmark Contamination (NeurIPS 2024)\n- CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation (arXiv 2026)\n- Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory (arXiv 2026)\n- Preference Leakage: A Contamination Problem in LLM-as-a-judge (ICLR 2026)\n- DCR: Quantifying Data Contamination in LLMs Evaluation (EMNLP 2025)\n- Bias and Uncertainty in LLM-as-a-Judge Estimation (Fiedler, arXiv:2605.06939, May 2026)\n- Judging the Judges: Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines (Soumik, arXiv:2604.23178, April 2026)\n- On The Fragility of Benchmark Contamination Detection in Reasoning Models (ICLR 2026)\n- BiasScope: Towards Automated Detection of Bias in LLM-as-a-Judge Evaluation (ICLR 2026)\n- LogProber: Detecting Data Contamination via Token Log-Probability Analysis (arXiv 2024)\n- An application of many-facet Rasch measurement to evaluate automated essay scoring: A case of ChatGPT-4.0 (RMAL 2024)\n- Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation (arXiv 2026)\n- JudgeBiasBench: Evaluating and Mitigating Bias in LLM-Based Judges (arXiv 2026)\n- The Linear Logistic Test Model (Fischer, Psychometrika 1973)\n- Lost in Benchmarks? Rethinking LLM Benchmarking with IRT — PSN-IRT (AAAI 2026)\n- Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena (NeurIPS 2023)\n- py-irt: A Scalable Item Response Theory Library for Python (INFORMS JoC 2023)\n- UDA: Unsupervised Debiasing Alignment for LLM Judges (AAAI 2026)\n- Evaluating Rater Effects of Large Language Models in Automated Essay Scoring (Educational Measurement 2026)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T04:28:42.398Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T04:28:42.398Z",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+## Round 1
+
+45 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T04:28:42.409Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Gated Many-Facet Rasch Measurement for Joint Judge Bias and Contamination Correction in LLM Evaluation
+
+## Description
+We propose the Gated Many-Facet Rasch Model (G-MFRM), which extends the standard MFRM from educational measurement with a DG-IRT-inspired contamination gating mechanism to jointly calibrate model ability, item difficulty, judge severity, and contamination susceptibility within a single psychometric framework. The critical methodological advance over the original proposal is a hierarchical contamination parameterization: instead of an overparameterized per-(model,item) contamination term c_nk (N×I free parameters, unidentifiable), we decompose contamination into per-model susceptibility c_n modulated by per-item exposure indicators e_i, giving c_n · e_i (N+I parameters). This follows the LLTM (Fischer 1973) design-matrix tradition and the AMMI multiplicative interaction decomposition, both with established identifiability guarantees. Crucially, exposure indicators e_i are estimated externally via ConStat reference benchmark comparison (fully black-box, validated r²=0.94), temporal pre/post-cutoff signals, and LogProber Safe Scores (gray-box) — resolving the circularity of using model-internal residuals to identify contamination. A three-stage estimation strategy ensures identification: (1) standard 3-facet MFRM producing ability, difficulty, and severity estimates plus person-fit diagnostics; (2) external exposure estimation from ConStat and temporal proxies; (3) joint Gated MFRM with fixed exposure indicators and informative priors from Stages 1–2, implemented via Bayesian MCMC in NumPyro. The n-gram overlap signal is dropped for proprietary models (training data undisclosed) and retained only as supplementary validation for open-weight models. Validation spans MT-Bench, Arena-Hard, and WildBench using 8+ LLM judges (GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Kimi K2.6, Qwen3-235B-A22B, Qwen3.6-27B, Llama 4 Maverick). We demonstrate that G-MFRM fair scores achieve higher Kendall-τ rank correlation with held-out Chatbot Arena human votes than raw multi-judge averages, CyclicJudge bias-only correction, DCR contamination-only adjustment, Preference Leakage calibration, and a naive two-stage pipeline (CyclicJudge → DCR). Additional analyses include exposure indicator ablation, judge count sensitivity, facet fit statistics, person-fit validation of contamination estimates, and robustness to adversarial contamination (per ICLR 2026 fragility findings). The unified framework yields interpretable per-model contamination estimates, per-judge severity calibrations, and fair ability rankings — bridging the gap between the judge bias correction and contamination detection research silos.
+
+## Core Problem
+Can a hierarchical psychometric measurement model jointly estimate model ability, item difficulty, judge severity, and contamination susceptibility — with the contamination facet decomposed into identifiable per-model and per-item components anchored by external exposure proxies — to produce bias-and-contamination-corrected evaluation scores that outperform both siloed corrections and naive multi-judge averaging?
+
+## Opportunity
+The LLM-as-a-judge evaluation literature has bifurcated into two silos: (1) judge bias correction methods (CyclicJudge round-robin, Bias-Bounded Evaluation, Soumik's 9-strategy comparison, UDA neural calibration, Fiedler's classical test theory diagnostics) and (2) contamination detection/adjustment methods (DCR Factor, ConStat, Preference Leakage calibration, person-fit screening). No existing work — including all arXiv submissions through May 2026 and ICLR/EMNLP 2026 proceedings — jointly models judge severity and contamination susceptibility within a single calibration framework. The Many-Facet Rasch Model (MFRM) from educational testing naturally accommodates multiple facets in a unified calibration. Recent work has applied MFRM to LLM raters (arXiv:2505.18486) but treats contamination as external. Critically, the Deterministic Gated IRT (DG-IRT) model from psychometric cheating detection (Shu, Henson & Luecht, Psychometrika 2013) provides the missing link: a principled gating mechanism that decomposes observed performance into genuine ability and contamination-inflated components. By combining MFRM's multi-facet structure with DG-IRT's gating logic and externally-anchored exposure indicators from ConStat, we obtain a unified, identifiable model that bridges the gap between these two research silos.
+
+## Landscape
+**Judge bias silo:** CyclicJudge (March 2026) eliminates judge bias via round-robin assignment but ignores contamination. IRT-GRM for judge reliability (Feb 2026) diagnoses judge consistency without modeling contamination. 'Judging the Judges' (Soumik, arXiv:2604.23178, April 2026) empirically compares 9 debiasing strategies across 5 judges, finding style bias dominant (0.76–0.92) but provides no measurement model explaining why strategies work. 'Bias and Uncertainty in LLM-as-a-Judge Estimation' (Fiedler, arXiv:2605.06939, May 2026) introduces formal J/delta-J diagnostics and identifies sign-reversal failure modes in shared-calibration comparisons, but stays within classical test theory without latent trait modeling. BiasScope (ICLR 2026) automates bias discovery post-hoc. Bias-Bounded Evaluation (March 2026) provides formal guarantees retaining 61–99% ranking correlation. JudgeBiasBench (March 2026) defines a taxonomy of 12 bias types across 4 dimensions. UDA (AAAI 2026) uses neural K-factor adjustment to reduce inter-judge standard deviation by 63.4%. **Contamination silo:** DCR Factor (EMNLP 2025) adjusts accuracy for contamination via fuzzy inference but ignores judge effects. Preference Leakage (ICLR 2026) quantifies generator-judge relatedness bias but proposes only post-hoc calibration. ConStat (NeurIPS 2024) computes contamination effects via reference benchmark comparison (r²=0.94 with true effects) — fully black-box. LogProber (2024) estimates per-item Safe Scores from token log-probabilities. 'On The Fragility of Benchmark Contamination Detection in Reasoning Models' (ICLR 2026) shows RL post-training obscures contamination signals, motivating multi-indicator approaches. **IRT for LLMs (no judge + contamination unification):** PSN-IRT (AAAI 2026) applies neural 4PL IRT to benchmark evaluation. MFRM has been applied to compare 10 LLM raters with human experts (May 2025) and to ChatGPT-4 essay scoring (RMAL 2024). **Gap:** No existing work jointly models judge severity and contamination susceptibility within a single psychometric calibration framework, nor has anyone adapted DG-IRT's gating mechanism from educational cheating detection to LLM benchmark contamination.
+
+## Approach
+We propose a Gated Many-Facet Rasch Model (G-MFRM) that extends the standard MFRM with a DG-IRT-inspired contamination gating mechanism, using a three-stage estimation strategy that ensures identifiability.
+
+**Model formulation.** The core log-odds model is:
+
+  logit(P_nij) = θ_n − b_i − d_j + c_n · e_i
+
+where θ_n is model ability, b_i is item difficulty, d_j is judge severity, c_n is per-model contamination susceptibility, and e_i is per-item exposure level. The contamination term c_n · e_i replaces the overparameterized per-(model,item) c_nk from the original proposal: instead of N×I free parameters, this hierarchical decomposition requires only N + I parameters (or just N when e_i is externally anchored). This follows the LLTM (Linear Logistic Test Model, Fischer 1973) tradition of decomposing item parameters via a known or estimable design matrix, and is a rank-1 special case of the AMMI (Additive Main Effects and Multiplicative Interaction) decomposition, both with well-established identifiability guarantees.
+
+The DG-IRT gating interpretation: when e_i ≈ 0 (unexposed item), the model reduces to the standard 3-facet MFRM measuring genuine ability; when e_i > 0, performance is inflated by c_n · e_i, where c_n captures how much each model benefits from data leakage. This directly mirrors DG-IRT's decomposition of observed performance into genuine and cheating-inflated distributions.
+
+**Three-stage estimation (resolving circularity).**
+
+*Stage 1 — Standard 3-facet MFRM:* Fit θ_n, b_i, d_j via Bayesian MCMC (NumPyro on GPU), ignoring contamination. This produces uncontaminated ability estimates and, critically, standardized residuals r_ni and person-fit statistics (lz, EMRi) per model.
+
+*Stage 2 — External exposure estimation:* Estimate e_i from external proxies that are independent of the MFRM fit, resolving the circularity the reviewer identified:
+  (a) ConStat delta scores: compare model performance on original benchmark items vs. rephrased/synthetic reference variants (fully black-box, validated r²=0.94 with true contamination effects);
+  (b) Temporal signals: performance gaps on items with pre-cutoff vs. post-cutoff variants (available for benchmarks with versioned items);
+  (c) LogProber Safe Scores: per-item memorization indicators from token log-probability analysis (gray-box; for models exposing logprobs: GPT-5.5, DeepSeek-V4, Qwen3, Llama 4).
+  These indicators are combined via a weighted composite (weights tuned on a held-out validation split) to produce ê_i. Person-fit statistics from Stage 1 serve as validation — models with high contamination should exhibit difficulty-insensitive response patterns (high Guttman errors, low lz) — but are NOT used to estimate e_i, avoiding circularity.
+
+*Stage 3 — Joint Gated MFRM:* Refit the full 4-facet model with ê_i as fixed (observed) covariates and c_n as latent parameters, using Stage 1 estimates as informative priors. Identifiability constraints: sum(c_n) = 0 (centered contamination susceptibility) and ê_i scale fixed from Stage 2. This yields contamination-corrected 'fair scores' θ̂_n — model ability estimates purged of both judge bias (via d_j) and contamination inflation (via c_n · ê_i).
+
+**N-gram overlap dropped for proprietary models.** Following the reviewer's feedback, we remove n-gram overlap as a contamination signal since OpenAI, Anthropic, and Google do not disclose training data. ConStat and temporal signals are fully black-box; LogProber requires only logprob access. For open-weight models with documented training data (DeepSeek-V4, Kimi K2.6, Qwen3, Llama 4), n-gram overlap can serve as supplementary validation of ê_i estimates.
+
+**Validation.** Experiments span MT-Bench, Arena-Hard, and WildBench using 8+ LLM judges: proprietary (GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6) and open-weight (DeepSeek-V4-Pro, Kimi K2.6, Qwen3-235B-A22B, Qwen3.6-27B, Llama 4 Maverick). We construct reference benchmark variants for ConStat by GPT-5.5/Claude-assisted rephrasing (validated by human equivalence checking). We evaluate by demonstrating that G-MFRM fair scores θ̂_n achieve higher Kendall-τ rank correlation with held-out Chatbot Arena human votes than five baselines: (1) raw multi-judge averages, (2) CyclicJudge bias-only correction, (3) DCR Factor contamination-only adjustment, (4) Preference Leakage post-hoc calibration, and (5) a naive two-stage pipeline (CyclicJudge bias correction → DCR contamination adjustment) — the 'simpler baseline' that reviewers would demand to justify the psychometric overhead. Additional analyses include: (a) ablation of each exposure indicator's contribution to ê_i; (b) sensitivity analysis varying the number of judges (2, 4, 6, 8+); (c) facet fit statistics (infit/outfit MNSQ) to validate measurement quality; (d) comparison of Stage 1 person-fit flagging (lz, EMRi) against Stage 3 contamination estimates c_n as a validation of construct coherence; (e) robustness check against adversarial contamination following Wang et al. (ICLR 2026) fragility findings.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '180–250 (open-source judge inference via vLLM ~130h on A100-80GB; ConStat reference variant generation + evaluation ~30h; Bayesian MCMC fitting ~15h; ablations and sensitivity analysis ~50h)', 'timeline': '10–12 weeks (G-MFRM implementation + ConStat integration 3w, reference benchmark variant construction 2w, multi-judge data collection 3w, experiments and analysis 2w, paper writing 2w)', 'estimated_gpu_cost': '$450–625 (A100 spot at ~$2.50/hr) + ~$900 proprietary judge API calls (GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6)'}, 'human_in_loop': {'gpu_hours': '180–250', 'timeline': '7–9 weeks (Claude accelerates G-MFRM implementation, ConStat integration, experiment scripting, and drafting)', 'claude_api_cost': '$100–150', 'estimated_gpu_cost': '$450–625 + ~$900 proprietary judge API calls'}, 'auto_research': {'gpu_hours': '180–250', 'timeline': '5–7 weeks', 'claude_api_cost': '$250–400 (end-to-end code generation, three-stage estimation pipeline, hyperparameter search, convergence diagnostics, paper writing)', 'estimated_gpu_cost': '$450–625 + ~$900 proprietary judge API calls', 'speed_bottleneck': 'Proprietary judge API rate limits (GPT-5.5/Claude batch quotas); ConStat reference variant quality validation; sequential three-stage MCMC convergence requiring iterative checks'}}
+
+## Inspired By
+Cross-domain transfer of DG-IRT (Shu et al., Psychometrika 2013) gating mechanism from educational cheating detection to LLM contamination; MFRM multi-facet calibration for judge bias; LLTM (Fischer 1973) design-matrix decomposition for identifiable contamination parameterization; ConStat (NeurIPS 2024) external exposure indicators; combination of CyclicJudge judge modeling + ConStat contamination quantification + IRT measurement backbone.
+
+## Target Venues
+- AAAI 2027 (full paper: July 28, 2026)
+- ACL 2027 (ARR submission: August 3, 2026)
+- EACL 2027 (ARR submission: August 3, 2026)
+- NAACL 2027 (ARR submission: October 15, 2026)
+
+## Key References
+- Using Deterministic, Gated IRT Model to Detect Test Cheating due to Item Compromise (Shu, Henson & Luecht, Psychometrika 2013)
+- Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model (arXiv 2025)
+- ConStat: Statistical Detection and Quantification of Benchmark Contamination (NeurIPS 2024)
+- CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation (arXiv 2026)
+- Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory (arXiv 2026)
+- Preference Leakage: A Contamination Problem in LLM-as-a-judge (ICLR 2026)
+- DCR: Quantifying Data Contamination in LLMs Evaluation (EMNLP 2025)
+- Bias and Uncertainty in LLM-as-a-Judge Estimation (Fiedler, arXiv:2605.06939, May 2026)
+- Judging the Judges: Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines (Soumik, arXiv:2604.23178, April 2026)
+- On The Fragility of Benchmark Contamination Detection in Reasoning Models (ICLR 2026)
+- BiasScope: Towards Automated Detection of Bias in LLM-as-a-Judge Evaluation (ICLR 2026)
+- LogProber: Detecting Data Contamination via Token Log-Probability Analysis (arXiv 2024)
+- An application of many-facet Rasch measurement to evaluate automated essay scoring: A case of ChatGPT-4.0 (RMAL 2024)
+- Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation (arXiv 2026)
+- JudgeBiasBench: Evaluating and Mitigating Bias in LLM-Based Judges (arXiv 2026)
+- The Linear Logistic Test Model (Fischer, Psychometrika 1973)
+- Lost in Benchmarks? Rethinking LLM Benchmarking with IRT — PSN-IRT (AAAI 2026)
+- Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena (NeurIPS 2023)
+- py-irt: A Scalable Item Response Theory Library for Python (INFORMS JoC 2023)
+- UDA: Unsupervised Debiasing Alignment for LLM Judges (AAAI 2026)
+- Evaluating Rater Effects of Large Language Models in Automated Essay Scoring (Educational Measurement 2026)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "192e1acd-b19c-4b33-ac19-6b92b2f793d9",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T04:28:42.408Z_
+
+```json
+{
+  "parentUuid": "192e1acd-b19c-4b33-ac19-6b92b2f793d9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "6972aae5-fe1b-4488-8968-935751dd8cb2",
+  "timestamp": "2026-05-20T04:28:42.408Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T04:28:42.408Z_
+
+```json
+{
+  "parentUuid": "6972aae5-fe1b-4488-8968-935751dd8cb2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0084b0a0-f543-42e9-b118-f91ee84d1938",
+  "timestamp": "2026-05-20T04:28:42.408Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Gated Many-Facet Rasch Measurement for Joint Judge Bias and Contamination Correction in LLM Evaluation  ## Descr…",
+  "leafUuid": "0084b0a0-f543-42e9-b118-f91ee84d1938",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Gated Rasch model for LLM judge bias and contamination",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T04:28:47.871Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for EMNLP 2026 submission potential. Before I can give a proper assessment, I need to do thorough literature research on the key topics:
+
+1. Many-Facet Rasch Model (MFRM) applied to LLM evaluation
+2. DG-IRT for contamination detection
+3. LLM-as-a-judge bias correction methods
+4. Contamination detection in LLM benchmarks
+5. The intersection of these areas
+
+Let me start by searching for the most relevant recent work in these areas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0084b0a0-f543-42e9-b118-f91ee84d1938",
+  "isSidechain": false,
+  "requestId": "req_011CbDBytpiGN6ZDQqU6vkbm",
+  "type": "assistant",
+  "uuid": "6d6b08d7-90b8-4f0f-a4f6-af9cf8ddde59",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SeZZkjXe7Ec1qtBQvacsM8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6029,
+      "cache_read_input_tokens": 14333,
+      "output_tokens": 248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 248,
+          "cache_read_input_tokens": 14333,
+          "cache_creation_input_tokens": 6029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T04:28:48.430Z_
+
+I'll start by conducting thorough literature research before making any assessment. Let me search for the key topics in this proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d6b08d7-90b8-4f0f-a4f6-af9cf8ddde59",
+  "isSidechain": false,
+  "requestId": "req_011CbDBytpiGN6ZDQqU6vkbm",
+  "type": "assistant",
+  "uuid": "517f12c5-d5ff-411d-b744-e103f50ad387",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SeZZkjXe7Ec1qtBQvacsM8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6029,
+      "cache_read_input_tokens": 14333,
+      "output_tokens": 248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 248,
+          "cache_read_input_tokens": 14333,
+          "cache_creation_input_tokens": 6029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T04:28:49.033Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01T8aUFwRELX6s8YikTLJs9t`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "517f12c5-d5ff-411d-b744-e103f50ad387",
+  "isSidechain": false,
+  "requestId": "req_011CbDBytpiGN6ZDQqU6vkbm",
+  "type": "assistant",
+  "uuid": "bae687b4-05c9-4701-9ff7-b1acd5e2631f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SeZZkjXe7Ec1qtBQvacsM8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6029,
+      "cache_read_input_tokens": 14333,
+      "output_tokens": 248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 248,
+          "cache_read_input_tokens": 14333,
+          "cache_creation_input_tokens": 6029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T04:28:49.039Z_
+
+<details><summary>↩ Tool result · `toolu_01T8aUFwRELX6s8YikTLJs9t`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bae687b4-05c9-4701-9ff7-b1acd5e2631f",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "fdac00b5-696e-493c-9a12-21cc830a3c71",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "bae687b4-05c9-4701-9ff7-b1acd5e2631f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T04:28:53.224Z_
+
+Now let me conduct the required literature searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fdac00b5-696e-493c-9a12-21cc830a3c71",
+  "isSidechain": false,
+  "requestId": "req_011CbDBzNwQ1q8YW62AzWDkZ",
+  "type": "assistant",
+  "uuid": "1a70fdd4-d643-4968-be2e-62a344285398",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdmPrmMhcBisaXUxfAoWHT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 20362,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 20362,
+          "cache_creation_input_tokens": 775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T04:28:53.759Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VmPvrfoLpNaGKBMcnpRD1t`</summary>
+
+```json
+{
+  "query": "Many-Facet Rasch Model LLM evaluation judge bias 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a70fdd4-d643-4968-be2e-62a344285398",
+  "isSidechain": false,
+  "requestId": "req_011CbDBzNwQ1q8YW62AzWDkZ",
+  "type": "assistant",
+  "uuid": "a3b63ec6-64b5-41f8-b2e5-685c72123fb5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdmPrmMhcBisaXUxfAoWHT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 20362,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 20362,
+          "cache_creation_input_tokens": 775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T04:28:54.916Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CBe6D2hjqQxPyVzXq8egh7`</summary>
+
+```json
+{
+  "query": "DG-IRT deterministic gated item response theory contamination detection LLM benchmark 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3b63ec6-64b5-41f8-b2e5-685c72123fb5",
+  "isSidechain": false,
+  "requestId": "req_011CbDBzNwQ1q8YW62AzWDkZ",
+  "type": "assistant",
+  "uuid": "e040425d-015e-408e-ab96-323405ddfa77",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdmPrmMhcBisaXUxfAoWHT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 20362,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 20362,
+          "cache_creation_input_tokens": 775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T04:28:55.172Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GjwkgRjq6pefXe9BNY9j9Z`</summary>
+
+```json
+{
+  "query": "LLM-as-a-judge bias correction contamination joint model 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e040425d-015e-408e-ab96-323405ddfa77",
+  "isSidechain": false,
+  "requestId": "req_011CbDBzNwQ1q8YW62AzWDkZ",
+  "type": "assistant",
+  "uuid": "cd4c1c3f-5e60-4625-9ab8-34fe90ee2a88",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdmPrmMhcBisaXUxfAoWHT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 20362,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 20362,
+          "cache_creation_input_tokens": 775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T04:28:56.324Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PpddG5KeT88vEdxQXaKjt4`</summary>
+
+```json
+{
+  "query": "CyclicJudge ConStat DCR contamination LLM evaluation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd4c1c3f-5e60-4625-9ab8-34fe90ee2a88",
+  "isSidechain": false,
+  "requestId": "req_011CbDBzNwQ1q8YW62AzWDkZ",
+  "type": "assistant",
+  "uuid": "9181beef-249f-40c0-a4a8-0b382afbceda",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdmPrmMhcBisaXUxfAoWHT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 20362,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 20362,
+          "cache_creation_input_tokens": 775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T04:28:56.572Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V1W8r61JjuZEHcNWgwxdfp`</summary>
+
+```json
+{
+  "query": "IRT item response theory LLM benchmark evaluation psychometric 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9181beef-249f-40c0-a4a8-0b382afbceda",
+  "isSidechain": false,
+  "requestId": "req_011CbDBzNwQ1q8YW62AzWDkZ",
+  "type": "assistant",
+  "uuid": "53906434-e7c3-4b0c-a16e-ccab0517b3e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FdmPrmMhcBisaXUxfAoWHT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 20362,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 20362,
+          "cache_creation_input_tokens": 775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T04:29:01.409Z_
+
+<details><summary>↩ Tool result · `toolu_01VmPvrfoLpNaGKBMcnpRD1t`</summary>
+
+```text
+Web search results for query: "Many-Facet Rasch Model LLM evaluation judge bias 2025 2026"
+
+Links: [{"title":"The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge","url":"https://arxiv.org/pdf/2509.26072"},{"title":"LLM-as-a-Judge: Why Frontier Models Fail 50%+ Bias Tests | Adaline","url":"https://www.adaline.ai/blog/llm-as-a-judge-reliability-bias"},{"title":"[2506.22316] Evaluating Scoring Bias in LLM-as-a-Judge","url":"https://arxiv.org/abs/2506.22316"},{"title":"CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation","url":"https://arxiv.org/pdf/2603.01865"},{"title":"BiasScope: Towards Automated Detection of Bias in LLM-as-a-Judge Evaluation","url":"https://arxiv.org/pdf/2602.09383"},{"title":"The Judge Who Never Admits: Hidden Shortcuts in LLM-based Evaluation","url":"https://arxiv.org/pdf/2602.07996"},{"title":"Curse of Knowledge: When Complex Evaluation Context Benefits yet Biases LLM Judges","url":"https://arxiv.org/pdf/2509.03419"}]
+
+I've performed a web search on your query. Here are the key findings:
+
+## Recent Research on LLM Judge Bias (2025-2026)
+
+Studies published in 2025 and early 2026 have systematically documented where LLM judges fail, why they fail, and how often.
+
+### Documented Biases in LLM Evaluation
+
+Both GPT-40 and Gemini-2.5-Flash exhibit a strong recency bias, systematically favoring "new" responses over "old", as well as a clear provenance hierarchy (EXPERT > HUMAN > LLM > UNKNOWN).
+
+LLM judges are systematically biased: some models are consistently lenient, others strict, with additional position, verbosity, and self-preference effects.
+
+### Specific Bias Types Identified
+
+Common types of bias include gender bias, length bias, self-bias, and position bias. Additionally, LLM judges often rely on shortcut biases—preferences driven by superficial cues rather than response quality, including position bias, verbosity bias, and self-preference bias.
+
+### Mitigation Approaches
+
+CyclicJudge, a round-robin assignment of judges to scenarios, is demonstrated to be the optimal strategy for a fixed judge-call budget, eliminating bias precisely while requiring each judge only once per cycle.
+
+The research highlights that while LLM-as-judge evaluation has become mainstream, recent studies confirm significant reliability challenges that need to be addressed.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a3b63ec6-64b5-41f8-b2e5-685c72123fb5",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "cca1fc7f-119e-4d0b-b1dd-19d6ce17a5ff",
+  "toolUseResult": {
+    "query": "Many-Facet Rasch Model LLM evaluation judge bias 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ucr9vHMt3uAGwvyDzz8gDA",
+        "content": [
+          {
+            "title": "The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2509.26072"
+          },
+          {
+            "title": "LLM-as-a-Judge: Why Frontier Models Fail 50%+ Bias Tests | Adaline",
+            "url": "https://www.adaline.ai/blog/llm-as-a-judge-reliability-bias"
+          },
+          {
+            "title": "[2506.22316] Evaluating Scoring Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/abs/2506.22316"
+          },
+          {
+            "title": "CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation",
+            "url": "https://arxiv.org/pdf/2603.01865"
+          },
+          {
+            "title": "BiasScope: Towards Automated Detection of Bias in LLM-as-a-Judge Evaluation",
+            "url": "https://arxiv.org/pdf/2602.09383"
+          },
+          {
+            "title": "The Judge Who Never Admits: Hidden Shortcuts in LLM-based Evaluation",
+            "url": "https://arxiv.org/pdf/2602.07996"
+          },
+          {
+            "title": "Curse of Knowledge: When Complex Evaluation Context Benefits yet Biases LLM Judges",
+            "url": "https://arxiv.org/pdf/2509.03419"
+          }
+        ]
+      },
+      "I've performed a web search on your query. Here are the key findings:\n\n## Recent Research on LLM Judge Bias (2025-2026)\n\nStudies published in 2025 and early 2026 have systematically documented where LLM judges fail, why they fail, and how often.\n\n### Documented Biases in LLM Evaluation\n\nBoth GPT-40 and Gemini-2.5-Flash exhibit a strong recency bias, systematically favoring \"new\" responses over \"old\", as well as a clear provenance hierarchy (EXPERT > HUMAN > LLM > UNKNOWN).\n\nLLM judges are systematically biased: some models are consistently lenient, others strict, with additional position, verbosity, and self-preference effects.\n\n### Specific Bias Types Identified\n\nCommon types of bias include gender bias, length bias, self-bias, and position bias. Additionally, LLM judges often rely on shortcut biases—preferences driven by superficial cues rather than response quality, including position bias, verbosity bias, and self-preference bias.\n\n### Mitigation Approaches\n\nCyclicJudge, a round-robin assignment of judges to scenarios, is demonstrated to be the optimal strategy for a fixed judge-call budget, eliminating bias precisely while requiring each judge only once per cycle.\n\nThe research highlights that while LLM-as-judge evaluation has become mainstream, recent studies confirm significant reliability challenges that need to be addressed."
+    ],
+    "durationSeconds": 7.646003571999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a3b63ec6-64b5-41f8-b2e5-685c72123fb5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T04:29:02.148Z_
+
+<details><summary>↩ Tool result · `toolu_01CBe6D2hjqQxPyVzXq8egh7`</summary>
+
+```text
+Web search results for query: "DG-IRT deterministic gated item response theory contamination detection LLM benchmark 2025 2026"
+
+Links: [{"title":"(PDF) Using Deterministic, Gated Item Response Theory Model to Detect Test Cheating due to Item Compromise","url":"https://www.researchgate.net/publication/257678777_Using_Deterministic_Gated_Item_Response_Theory_Model_to_Detect_Test_Cheating_due_to_Item_Compromise"},{"title":"Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking","url":"https://arxiv.org/pdf/2603.23506"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v1"},{"title":"[Literature Review] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://www.themoonlight.io/en/review/lost-in-benchmarks-rethinking-large-language-model-benchmarking-with-item-response-theory"},{"title":"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory","url":"https://arxiv.org/pdf/2602.00521"},{"title":"Using Deterministic, Gated Item Response Theory Model to Detect Test Cheating Due to Item Compromise IRT","url":"https://www.ets.org/research/policy_research_reports/publications/article/2013/jqft.html"}]
+
+Based on the web search results, here's what I found:
+
+The search reveals several relevant topics, though not all directly matching the exact query:
+
+**Item Response Theory (IRT) for LLM Benchmarking:**
+
+PSN-IRT is a framework that combines psychometrics with neural networks to provide comprehensive and reliable analyses of LLM benchmarks, demonstrating that current benchmarks often suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination.
+
+**Data Contamination Detection:**
+
+LLM benchmarks exhibit data contamination in numerous items, compromising their reliability. A considerable number of items across benchmarks show unusually high estimated guessing parameters, suggesting potential data contamination where item content or answers may have been present in models' training data.
+
+**Deterministic Gated IRT (DG-IRT):**
+
+The original DG-IRT model was developed in an educational testing context. The Deterministic Gated Item Response Theory Model was developed to provide information about cheating effectiveness of examinees, measure the extent of item fit for the compromised items, assess the sensitivity and ascertain the specificity to detect cheating due to item compromise.
+
+The search results show active work on IRT-based approaches for LLM evaluation and contamination detection, particularly with the PSN-IRT framework from 2025, but I did not find specific papers explicitly titled "DG-IRT" applied to LLM benchmark contamination detection for 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e040425d-015e-408e-ab96-323405ddfa77",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "83f0a333-07c6-4683-839b-b3653f32ec79",
+  "toolUseResult": {
+    "query": "DG-IRT deterministic gated item response theory contamination detection LLM benchmark 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JQhTXgKFqR82DnaB6wesPp",
+        "content": [
+          {
+            "title": "(PDF) Using Deterministic, Gated Item Response Theory Model to Detect Test Cheating due to Item Compromise",
+            "url": "https://www.researchgate.net/publication/257678777_Using_Deterministic_Gated_Item_Response_Theory_Model_to_Detect_Test_Cheating_due_to_Item_Compromise"
+          },
+          {
+            "title": "Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking",
+            "url": "https://arxiv.org/pdf/2603.23506"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v1"
+          },
+          {
+            "title": "[Literature Review] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://www.themoonlight.io/en/review/lost-in-benchmarks-rethinking-large-language-model-benchmarking-with-item-response-theory"
+          },
+          {
+            "title": "Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory",
+            "url": "https://arxiv.org/pdf/2602.00521"
+          },
+          {
+            "title": "Using Deterministic, Gated Item Response Theory Model to Detect Test Cheating Due to Item Compromise IRT",
+            "url": "https://www.ets.org/research/policy_research_reports/publications/article/2013/jqft.html"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found:\n\nThe search reveals several relevant topics, though not all directly matching the exact query:\n\n**Item Response Theory (IRT) for LLM Benchmarking:**\n\nPSN-IRT is a framework that combines psychometrics with neural networks to provide comprehensive and reliable analyses of LLM benchmarks, demonstrating that current benchmarks often suffer from uneven measurement properties, insufficient difficulty ceilings, item saturation, and data contamination.\n\n**Data Contamination Detection:**\n\nLLM benchmarks exhibit data contamination in numerous items, compromising their reliability. A considerable number of items across benchmarks show unusually high estimated guessing parameters, suggesting potential data contamination where item content or answers may have been present in models' training data.\n\n**Deterministic Gated IRT (DG-IRT):**\n\nThe original DG-IRT model was developed in an educational testing context. The Deterministic Gated Item Response Theory Model was developed to provide information about cheating effectiveness of examinees, measure the extent of item fit for the compromised items, assess the sensitivity and ascertain the specificity to detect cheating due to item compromise.\n\nThe search results show active work on IRT-based approaches for LLM evaluation and contamination detection, particularly with the PSN-IRT framework from 2025, but I did not find specific papers explicitly titled \"DG-IRT\" applied to LLM benchmark contamination detection for 2025-2026."
+    ],
+    "durationSeconds": 7.229901942000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e040425d-015e-408e-ab96-323405ddfa77",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T04:29:02.682Z_
+
+<details><summary>↩ Tool result · `toolu_01PpddG5KeT88vEdxQXaKjt4`</summary>
+
+```text
+Web search results for query: "CyclicJudge ConStat DCR contamination LLM evaluation 2026"
+
+Links: [{"title":"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide","url":"https://llm-stats.com/blog/research/what-is-a-contaminated-llm"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/pdf/2507.11405"},{"title":"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub","url":"https://github.com/lyy1994/awesome-data-contamination"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1173/"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/html/2507.11405"},{"title":"CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation","url":"https://arxiv.org/pdf/2603.01865"},{"title":"CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation","url":"https://arxiv.org/html/2603.01865"},{"title":"[2507.11405] DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/abs/2507.11405"}]
+
+Based on the search results, I found information about the topics you queried:
+
+**CyclicJudge:** CyclicJudge is a round-robin assignment of judges to scenarios that eliminates bias while requiring each judge only once per cycle, matching the cost of single-judge evaluation. Empirical results on MT-Bench and MindEval validate the effectiveness of CyclicJudge across both general-purpose and domain-specific evaluation settings.
+
+**ConStat:** ConStat is a detection method for data contamination that works through performance gaps on rephrased samples. ConStat: Performance-Based Contamination Detection in Large Language Models was published at NeurIPS 2024.
+
+**DCR:** The DCR framework synthesizes contamination scores via a fuzzy inference system to produce a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance, and has been validated on 9 LLMs across sentiment analysis, fake news detection, and arithmetic reasoning tasks.
+
+**Contamination in LLM Evaluation:** Data contamination is the presence of evaluation test data in a model's training set. Five detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9181beef-249f-40c0-a4a8-0b382afbceda",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "1ad23c5d-77c2-491f-a095-bb91ad739823",
+  "toolUseResult": {
+    "query": "CyclicJudge ConStat DCR contamination LLM evaluation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014ht3T71reQcQ6G5e5vE3UY",
+        "content": [
+          {
+            "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+            "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/pdf/2507.11405"
+          },
+          {
+            "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+            "url": "https://github.com/lyy1994/awesome-data-contamination"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.1173/"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/html/2507.11405"
+          },
+          {
+            "title": "CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation",
+            "url": "https://arxiv.org/pdf/2603.01865"
+          },
+          {
+            "title": "CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation",
+            "url": "https://arxiv.org/html/2603.01865"
+          },
+          {
+            "title": "[2507.11405] DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/abs/2507.11405"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the topics you queried:\n\n**CyclicJudge:** CyclicJudge is a round-robin assignment of judges to scenarios that eliminates bias while requiring each judge only once per cycle, matching the cost of single-judge evaluation. Empirical results on MT-Bench and MindEval validate the effectiveness of CyclicJudge across both general-purpose and domain-specific evaluation settings.\n\n**ConStat:** ConStat is a detection method for data contamination that works through performance gaps on rephrased samples. ConStat: Performance-Based Contamination Detection in Large Language Models was published at NeurIPS 2024.\n\n**DCR:** The DCR framework synthesizes contamination scores via a fuzzy inference system to produce a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance, and has been validated on 9 LLMs across sentiment analysis, fake news detection, and arithmetic reasoning tasks.\n\n**Contamination in LLM Evaluation:** Data contamination is the presence of evaluation test data in a model's training set. Five detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization."
+    ],
+    "durationSeconds": 6.355439903000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9181beef-249f-40c0-a4a8-0b382afbceda",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T04:29:03.618Z_
+
+<details><summary>↩ Tool result · `toolu_01GjwkgRjq6pefXe9BNY9j9Z`</summary>
+
+```text
+Web search results for query: "LLM-as-a-judge bias correction contamination joint model 2025 2026"
+
+Links: [{"title":"Preference Leakage: A Contamination Problem in LLM-as- ...","url":"https://arxiv.org/pdf/2502.01534"},{"title":"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"},{"title":"LLM-as-a-judge","url":"https://llm-as-a-judge.github.io/"},{"title":"Bias and Uncertainty in LLM-as-a-Judge Estimation","url":"https://arxiv.org/html/2605.06939"},{"title":"LLM as a Judge: A 2026 Guide to Automated Model Assessment | Label Your Data","url":"https://labelyourdata.com/articles/llm-as-a-judge"},{"title":"LLM-As-a-Judge Bias - AI Centre for Educational Technologies (AICET)","url":"https://aicet.comp.nus.edu.sg/llm-as-a-judge-bias/"},{"title":"Contrastive Decoding Mitigates Score Range Bias in LLM-as-a-Judge","url":"https://arxiv.org/pdf/2510.18196"},{"title":"The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge","url":"https://arxiv.org/pdf/2509.26072"},{"title":"Gold-Like Answers Reveal LLM Judge Bias in Coding Benchmarks","url":"https://www.ai21.com/blog/gold-like-answers-benchmarks/"}]
+
+Based on the web search results, here's what I found on this topic:
+
+## Key Research Areas (2025-2026)
+
+### Preference Leakage and Contamination
+
+A paper titled "Preference Leakage: A Contamination Problem in LLM-as-a-judge" (accepted by ICLR 2026) exposes preference leakage, a contamination problem in LLM-as-a-judge caused by the relatedness of data generator and evaluator LLMs. This issue is particularly pervasive in popular LLM-as-a-judge benchmarks (e.g., AlpacaEval 2.0 and Arena-Hard) and LLM-relevant studies, due to the common reliance on the most advanced LLMs, such as GPT-4, for both data synthesis and evaluation.
+
+### Bias Correction Methods
+
+The newest methodological frontier is bias-corrected and psychometric judge evaluation. Two 2025–2026 lines of work are especially important here: one proposes calibration-based bias correction and confidence intervals that account for imperfect judge sensitivity and specificity; the other applies item response theory to the judges themselves.
+
+Lee et al. (2026) showed that naive LaaJ estimates are biased and proposed applying the Rogan-Gladen estimator to correct for judge sensitivity and specificity.
+
+### Joint Model Approaches
+
+J-Detector, a lightweight and transparent neural detector augmented with explicitly extracted linguistic and LLM-enhanced features, was introduced to link LLM judges' biases with candidates' properties for accurate detection, demonstrating effectiveness across diverse datasets.
+
+These developments reflect a shift toward more rigorous statistical treatment of LLM-as-a-judge evaluation, addressing fundamental contamination and bias issues in the field.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd4c1c3f-5e60-4625-9ab8-34fe90ee2a88",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "501a6ba9-2158-41c2-8af2-3bb16f085d54",
+  "toolUseResult": {
+    "query": "LLM-as-a-judge bias correction contamination joint model 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Br2yy39rz2aecfcXFDqN8n",
+        "content": [
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as- ...",
+            "url": "https://arxiv.org/pdf/2502.01534"
+          },
+          {
+            "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+          },
+          {
+            "title": "LLM-as-a-judge",
+            "url": "https://llm-as-a-judge.github.io/"
+          },
+          {
+            "title": "Bias and Uncertainty in LLM-as-a-Judge Estimation",
+            "url": "https://arxiv.org/html/2605.06939"
+          },
+          {
+            "title": "LLM as a Judge: A 2026 Guide to Automated Model Assessment | Label Your Data",
+            "url": "https://labelyourdata.com/articles/llm-as-a-judge"
+          },
+          {
+            "title": "LLM-As-a-Judge Bias - AI Centre for Educational Technologies (AICET)",
+            "url": "https://aicet.comp.nus.edu.sg/llm-as-a-judge-bias/"
+          },
+          {
+            "title": "Contrastive Decoding Mitigates Score Range Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2510.18196"
+          },
+          {
+            "title": "The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2509.26072"
+          },
+          {
+            "title": "Gold-Like Answers Reveal LLM Judge Bias in Coding Benchmarks",
+            "url": "https://www.ai21.com/blog/gold-like-answers-benchmarks/"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found on this topic:\n\n## Key Research Areas (2025-2026)\n\n### Preference Leakage and Contamination\n\nA paper titled \"Preference Leakage: A Contamination Problem in LLM-as-a-judge\" (accepted by ICLR 2026) exposes preference leakage, a contamination problem in LLM-as-a-judge caused by the relatedness of data generator and evaluator LLMs. This issue is particularly pervasive in popular LLM-as-a-judge benchmarks (e.g., AlpacaEval 2.0 and Arena-Hard) and LLM-relevant studies, due to the common reliance on the most advanced LLMs, such as GPT-4, for both data synthesis and evaluation.\n\n### Bias Correction Methods\n\nThe newest methodological frontier is bias-corrected and psychometric judge evaluation. Two 2025–2026 lines of work are especially important here: one proposes calibration-based bias correction and confidence intervals that account for imperfect judge sensitivity and specificity; the other applies item response theory to the judges themselves.\n\nLee et al. (2026) showed that naive LaaJ estimates are biased and proposed applying the Rogan-Gladen estimator to correct for judge sensitivity and specificity.\n\n### Joint Model Approaches\n\nJ-Detector, a lightweight and transparent neural detector augmented with explicitly extracted linguistic and LLM-enhanced features, was introduced to link LLM judges' biases with candidates' properties for accurate detection, demonstrating effectiveness across diverse datasets.\n\nThese developments reflect a shift toward more rigorous statistical treatment of LLM-as-a-judge evaluation, addressing fundamental contamination and bias issues in the field."
+    ],
+    "durationSeconds": 8.442402885000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cd4c1c3f-5e60-4625-9ab8-34fe90ee2a88",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Gated Many-Facet Rasch Measurement for Joint Judge Bias and Contamination Correction in LLM Evaluation  ## Descr…",
+  "leafUuid": "501a6ba9-2158-41c2-8af2-3bb16f085d54",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Gated Rasch model for LLM judge bias and contamination",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T04:29:03.755Z_
+
+<details><summary>↩ Tool result · `toolu_01V1W8r61JjuZEHcNWgwxdfp`</summary>
+
+```text
+Web search results for query: "IRT item response theory LLM benchmark evaluation psychometric 2025 2026"
+
+Links: [{"title":"Lifting the benchmark iceberg with item-response theory | OpenReview","url":"https://openreview.net/forum?id=ZyVQqK7mcP"},{"title":"[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/abs/2511.04689"},{"title":"Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory","url":"https://arxiv.org/html/2605.00238"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v1"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/pdf/2511.04689"},{"title":"Learning Compact Representations of LLM Abilities via Item Response Theory","url":"https://arxiv.org/pdf/2510.00844"},{"title":"Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks","url":"https://arxiv.org/pdf/2509.24186"},{"title":"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/abs/2505.15055"},{"title":"Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking","url":"https://arxiv.org/pdf/2603.23506"},{"title":"(PDF) Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://www.researchgate.net/publication/391954139_Lost_in_Benchmarks_Rethinking_Large_Language_Model_Benchmarking_with_Item_Response_Theory"}]
+
+Based on the search results, here are the key findings on IRT (Item Response Theory) for LLM benchmark evaluation:
+
+## Recent Research (2025-2026)
+
+A recent paper from April 2025 proposes item response theory (IRT) as a solution for more transparent and reliable LLM evaluations, revealing how hidden implementation choices in LLM benchmarks bias model rankings.
+
+ATLAS is an adaptive testing framework based on Item Response Theory that estimates model ability using Fisher information-guided item selection, reducing the number of required items by up to 90% while maintaining measurement precision, matching whole-bank ability estimates using only 41 items on HellaSwag (5,600 items).
+
+Researchers have proposed the Pseudo-Siamese Network for IRT (PSN-IRT), a framework for comprehensive and interpretable analysis of benchmark test sets, with extensive analysis on 11 LLM benchmarks comprising 41,871 items, revealing significant and varied shortcomings in their measurement quality.
+
+## Medical Benchmark Applications
+
+MEDIRT is a psychometric evaluation framework grounded in Item Response Theory that jointly models latent competency and item-level difficulty and discrimination. Additionally, a computerized adaptive testing (CAT) framework grounded in item response theory (IRT) has been proposed for efficient assessment of standardized medical knowledge in LLMs.
+
+## Key Advantages
+
+ATLAS uses Fisher information-guided item selection to reduce required items by up to 90% while maintaining measurement precision, making IRT-based evaluation more scalable and cost-effective for LLM assessment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53906434-e7c3-4b0c-a16e-ccab0517b3e4",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "590b8355-a21b-4e26-8e3d-acd0618fa52f",
+  "toolUseResult": {
+    "query": "IRT item response theory LLM benchmark evaluation psychometric 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017buP5StRaJ5J2S4DPYs2GR",
+        "content": [
+          {
+            "title": "Lifting the benchmark iceberg with item-response theory | OpenReview",
+            "url": "https://openreview.net/forum?id=ZyVQqK7mcP"
+          },
+          {
+            "title": "[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/abs/2511.04689"
+          },
+          {
+            "title": "Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory",
+            "url": "https://arxiv.org/html/2605.00238"
+          },
+          {
+            "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/html/2505.15055v1"
+          },
+          {
+            "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+            "url": "https://arxiv.org/pdf/2511.04689"
+          },
+          {
+            "title": "Learning Compact Representations of LLM Abilities via Item Response Theory",
+            "url": "https://arxiv.org/pdf/2510.00844"
+          },
+          {
+            "title": "Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks",
+            "url": "https://arxiv.org/pdf/2509.24186"
+          },
+          {
+            "title": "[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://arxiv.org/abs/2505.15055"
+          },
+          {
+            "title": "Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking",
+            "url": "https://arxiv.org/pdf/2603.23506"
+          },
+          {
+            "title": "(PDF) Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+            "url": "https://www.researchgate.net/publication/391954139_Lost_in_Benchmarks_Rethinking_Large_Language_Model_Benchmarking_with_Item_Response_Theory"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings on IRT (Item Response Theory) for LLM benchmark evaluation:\n\n## Recent Research (2025-2026)\n\nA recent paper from April 2025 proposes item response theory (IRT) as a solution for more transparent and reliable LLM evaluations, revealing how hidden implementation choices in LLM benchmarks bias model rankings.\n\nATLAS is an adaptive testing framework based on Item Response Theory that estimates model ability using Fisher information-guided item selection, reducing the number of required items by up to 90% while maintaining measurement precision, matching whole-bank ability estimates using only 41 items on HellaSwag (5,600 items).\n\nResearchers have proposed the Pseudo-Siamese Network for IRT (PSN-IRT), a framework for comprehensive and interpretable analysis of benchmark test sets, with extensive analysis on 11 LLM benchmarks comprising 41,871 items, revealing significant and varied shortcomings in their measurement quality.\n\n## Medical Benchmark Applications\n\nMEDIRT is a psychometric evaluation framework grounded in Item Response Theory that jointly models latent competency and item-level difficulty and discrimination. Additionally, a computerized adaptive testing (CAT) framework grounded in item response theory (IRT) has been proposed for efficient assessment of standardized medical knowledge in LLMs.\n\n## Key Advantages\n\nATLAS uses Fisher information-guided item selection to reduce required items by up to 90% while maintaining measurement precision, making IRT-based evaluation more scalable and cost-effective for LLM assessment."
+    ],
+    "durationSeconds": 7.1809297480000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "53906434-e7c3-4b0c-a16e-ccab0517b3e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-20T04:29:07.004Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have initial results. Let me do a few more targeted searches to verify specific claims and look for the most directly competing work - particularly any work that jointly models judge bias AND contamination.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "590b8355-a21b-4e26-8e3d-acd0618fa52f",
+  "isSidechain": false,
+  "requestId": "req_011CbDC1TajD1kPq7Jrpq4YY",
+  "type": "assistant",
+  "uuid": "045b2350-fa3c-4963-abf2-7b1335a84d70",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hGgFdApv5dwY6RJTSFBCn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4406,
+      "cache_read_input_tokens": 21137,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4406,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 21137,
+          "cache_creation_input_tokens": 4406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4406
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-20T04:29:07.493Z_
+
+Let me do a few more targeted searches to verify specific claims and look for the most directly competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "045b2350-fa3c-4963-abf2-7b1335a84d70",
+  "isSidechain": false,
+  "requestId": "req_011CbDC1TajD1kPq7Jrpq4YY",
+  "type": "assistant",
+  "uuid": "c8f2d15b-5540-4b90-afad-69a1c1c665f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hGgFdApv5dwY6RJTSFBCn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4406,
+      "cache_read_input_tokens": 21137,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4406,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 21137,
+          "cache_creation_input_tokens": 4406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4406
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T04:29:08.451Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VRaDr5ZCPM3Lzkkvs7hHA2`</summary>
+
+```json
+{
+  "query": "arXiv 2505.18486 Many-Facet Rasch Model LLM raters 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8f2d15b-5540-4b90-afad-69a1c1c665f6",
+  "isSidechain": false,
+  "requestId": "req_011CbDC1TajD1kPq7Jrpq4YY",
+  "type": "assistant",
+  "uuid": "a4745893-d548-4aa0-9747-7846a65c2b58",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hGgFdApv5dwY6RJTSFBCn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4406,
+      "cache_read_input_tokens": 21137,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4406,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 21137,
+          "cache_creation_input_tokens": 4406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4406
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-20T04:29:08.938Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QbTdcMUbE9uu8TUZX2thEB`</summary>
+
+```json
+{
+  "query": "\"joint calibration\" \"judge bias\" \"contamination\" LLM evaluation unified framework 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4745893-d548-4aa0-9747-7846a65c2b58",
+  "isSidechain": false,
+  "requestId": "req_011CbDC1TajD1kPq7Jrpq4YY",
+  "type": "assistant",
+  "uuid": "af03b3a7-fd4d-4b4e-b4cd-01ce2a06a379",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hGgFdApv5dwY6RJTSFBCn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4406,
+      "cache_read_input_tokens": 21137,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4406,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 21137,
+          "cache_creation_input_tokens": 4406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4406
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T04:29:09.690Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014DA39jSdDpZkAfzK4GvBEp`</summary>
+
+```json
+{
+  "query": "Preference Leakage ICLR 2026 LLM judge contamination calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af03b3a7-fd4d-4b4e-b4cd-01ce2a06a379",
+  "isSidechain": false,
+  "requestId": "req_011CbDC1TajD1kPq7Jrpq4YY",
+  "type": "assistant",
+  "uuid": "89ac58a3-c9a7-419e-9e54-a4692f1a52c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hGgFdApv5dwY6RJTSFBCn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4406,
+      "cache_read_input_tokens": 21137,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4406,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 21137,
+          "cache_creation_input_tokens": 4406,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4406
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T04:29:14.970Z_
+
+<details><summary>↩ Tool result · `toolu_01VRaDr5ZCPM3Lzkkvs7hHA2`</summary>
+
+```text
+Web search results for query: "arXiv 2505.18486 Many-Facet Rasch Model LLM raters 2025"
+
+Links: [{"title":"[2505.18486] Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model","url":"https://arxiv.org/abs/2505.18486"},{"title":"Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250518486J/abstract"},{"title":"Machine Learning May 2025","url":"https://www.arxiv.org/list/cs.LG/2025-05?skip=4175&show=2000"},{"title":"Computation and Language May 2025","url":"https://www.arxiv.org/list/cs.CL/2025-05?skip=1325&show=500"},{"title":"arXiv:2505.19266v1 [cs.AI] 25 May 2025","url":"https://arxiv.org/pdf/2505.19266"},{"title":"A Bayesian many-facet Rasch model with Markov modeling for rater severity drift","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10615980/"}]
+
+I found the paper! Here are the key details about arXiv 2505.18486:
+
+**Title:** Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model
+
+**Authors:** Hong Jiao, Dan Song, Won-Chan Lee
+
+**Publication Date:** Submitted on 24 May 2025
+
+**Overview:** Large language models (LLMs) have been widely explored for automated scoring in low-stakes assessment to facilitate learning and instruction.
+
+**Study Design:** The study compared ten LLMs (ChatGPT 3.5, ChatGPT 4, ChatGPT 4o, OpenAI o1, Claude 3.5 Sonnet, Gemini 1.5, Gemini 1.5 Pro, Gemini 2.0, as well as DeepSeek V3, and DeepSeek R1) with human expert raters in scoring two types of writing tasks.
+
+**Methodology:** Rater effects of LLMs were evaluated and compared with human raters using the Many-Facet Rasch model.
+
+**Key Findings:** The results in general supported the use of ChatGPT 4o, Gemini 1.5 Pro, and Claude 3.5 Sonnet with high scoring accuracy, better rater reliability, and less rater effects.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4745893-d548-4aa0-9747-7846a65c2b58",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "5fc7de9e-8d8f-494a-8986-b4a4fb5315ff",
+  "toolUseResult": {
+    "query": "arXiv 2505.18486 Many-Facet Rasch Model LLM raters 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QC3B3TzvEwLmXJx32VkdWP",
+        "content": [
+          {
+            "title": "[2505.18486] Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model",
+            "url": "https://arxiv.org/abs/2505.18486"
+          },
+          {
+            "title": "Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250518486J/abstract"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-05?skip=4175&show=2000"
+          },
+          {
+            "title": "Computation and Language May 2025",
+            "url": "https://www.arxiv.org/list/cs.CL/2025-05?skip=1325&show=500"
+          },
+          {
+            "title": "arXiv:2505.19266v1 [cs.AI] 25 May 2025",
+            "url": "https://arxiv.org/pdf/2505.19266"
+          },
+          {
+            "title": "A Bayesian many-facet Rasch model with Markov modeling for rater severity drift",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10615980/"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about arXiv 2505.18486:\n\n**Title:** Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model\n\n**Authors:** Hong Jiao, Dan Song, Won-Chan Lee\n\n**Publication Date:** Submitted on 24 May 2025\n\n**Overview:** Large language models (LLMs) have been widely explored for automated scoring in low-stakes assessment to facilitate learning and instruction.\n\n**Study Design:** The study compared ten LLMs (ChatGPT 3.5, ChatGPT 4, ChatGPT 4o, OpenAI o1, Claude 3.5 Sonnet, Gemini 1.5, Gemini 1.5 Pro, Gemini 2.0, as well as DeepSeek V3, and DeepSeek R1) with human expert raters in scoring two types of writing tasks.\n\n**Methodology:** Rater effects of LLMs were evaluated and compared with human raters using the Many-Facet Rasch model.\n\n**Key Findings:** The results in general supported the use of ChatGPT 4o, Gemini 1.5 Pro, and Claude 3.5 Sonnet with high scoring accuracy, better rater reliability, and less rater effects."
+    ],
+    "durationSeconds": 6.5129542790000015,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a4745893-d548-4aa0-9747-7846a65c2b58",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T04:29:15.654Z_
+
+<details><summary>↩ Tool result · `toolu_01QbTdcMUbE9uu8TUZX2thEB`</summary>
+
+```text
+Web search results for query: ""joint calibration" "judge bias" "contamination" LLM evaluation unified framework 2026"
+
+Links: [{"title":"How to Correctly Report LLM-as-a-Judge Evaluations","url":"https://arxiv.org/pdf/2511.21140"},{"title":"A survey on LLM-as-a-judge - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2666675825004564"},{"title":"A Survey on LLM-as-a-Judge","url":"https://arxiv.org/html/2411.15594v4"},{"title":"CalibraEval: Calibrating Prediction Distribution to Mitigate Selection   Bias in LLMs-as-Judges","url":"https://arxiv.org/pdf/2410.15393"},{"title":"Mitigating the Bias of Large Language Model Evaluation","url":"https://arxiv.org/pdf/2409.16788"},{"title":"Evaluating Scoring Bias in LLM-as-a-Judge","url":"https://arxiv.org/html/2506.22316v1"},{"title":"BEYOND CONSENSUS: MITIGATING THE AGREEABLE- NESS BIAS IN LLM JUDGE EVALUATIONS","url":"https://aicet.comp.nus.edu.sg/wp-content/uploads/2025/10/Beyond-Consensus-Mitigating-the-agreeableness-bias-in-LLM-judge-evaluations.pdf"}]
+
+Based on the search results, I found several relevant papers on LLM-as-a-Judge evaluation that address judge bias and calibration frameworks:
+
+## Key Findings
+
+**Recent Unified Frameworks:**
+
+A comprehensive survey on LLM-as-a-Judge offers a formal definition and detailed classification while addressing reliability through a unified framework, examining metrics, datasets, and methodologies used to evaluate systems while highlighting potential sources of bias and methods for their mitigation.
+
+**Calibration Methods for Judge Bias:**
+
+Wang et al. analyzed and validated the impact of position bias on LLM-as-a-Judge and proposed a calibration framework to mitigate this bias by swapping the contents and averaging the scores. Additionally, three methods have been proposed to calibrate positional bias in LLM-as-a-Judge, including multiple evidence calibration, balanced position calibration, and human-in-the-loop calibration.
+
+**Contamination and Bias Mitigation:**
+
+A method that leverages a small set of human-annotated ground-truth data jointly estimates a generator's precision and a validator's reliability (TPR/TNR), explicitly correcting for the validator's bias.
+
+**Robustness Under Distribution Shift:**
+
+Some estimators from existing bias-correction methods can still be biased under distribution shift between the test and calibration datasets, whereas newer estimators remain unbiased under such shifts.
+
+The search results reveal that 2024-2026 has seen significant progress in developing unified frameworks for evaluating LLM judges while addressing multiple types of biases through calibration and contamination correction methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af03b3a7-fd4d-4b4e-b4cd-01ce2a06a379",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "d9262a08-4f03-4c28-aa66-07cf330b7284",
+  "toolUseResult": {
+    "query": "\"joint calibration\" \"judge bias\" \"contamination\" LLM evaluation unified framework 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M8J2kNGyPyu5Ty6hvkTFkV",
+        "content": [
+          {
+            "title": "How to Correctly Report LLM-as-a-Judge Evaluations",
+            "url": "https://arxiv.org/pdf/2511.21140"
+          },
+          {
+            "title": "A survey on LLM-as-a-judge - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2666675825004564"
+          },
+          {
+            "title": "A Survey on LLM-as-a-Judge",
+            "url": "https://arxiv.org/html/2411.15594v4"
+          },
+          {
+            "title": "CalibraEval: Calibrating Prediction Distribution to Mitigate Selection   Bias in LLMs-as-Judges",
+            "url": "https://arxiv.org/pdf/2410.15393"
+          },
+          {
+            "title": "Mitigating the Bias of Large Language Model Evaluation",
+            "url": "https://arxiv.org/pdf/2409.16788"
+          },
+          {
+            "title": "Evaluating Scoring Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/html/2506.22316v1"
+          },
+          {
+            "title": "BEYOND CONSENSUS: MITIGATING THE AGREEABLE- NESS BIAS IN LLM JUDGE EVALUATIONS",
+            "url": "https://aicet.comp.nus.edu.sg/wp-content/uploads/2025/10/Beyond-Consensus-Mitigating-the-agreeableness-bias-in-LLM-judge-evaluations.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on LLM-as-a-Judge evaluation that address judge bias and calibration frameworks:\n\n## Key Findings\n\n**Recent Unified Frameworks:**\n\nA comprehensive survey on LLM-as-a-Judge offers a formal definition and detailed classification while addressing reliability through a unified framework, examining metrics, datasets, and methodologies used to evaluate systems while highlighting potential sources of bias and methods for their mitigation.\n\n**Calibration Methods for Judge Bias:**\n\nWang et al. analyzed and validated the impact of position bias on LLM-as-a-Judge and proposed a calibration framework to mitigate this bias by swapping the contents and averaging the scores. Additionally, three methods have been proposed to calibrate positional bias in LLM-as-a-Judge, including multiple evidence calibration, balanced position calibration, and human-in-the-loop calibration.\n\n**Contamination and Bias Mitigation:**\n\nA method that leverages a small set of human-annotated ground-truth data jointly estimates a generator's precision and a validator's reliability (TPR/TNR), explicitly correcting for the validator's bias.\n\n**Robustness Under Distribution Shift:**\n\nSome estimators from existing bias-correction methods can still be biased under distribution shift between the test and calibration datasets, whereas newer estimators remain unbiased under such shifts.\n\nThe search results reveal that 2024-2026 has seen significant progress in developing unified frameworks for evaluating LLM judges while addressing multiple types of biases through calibration and contamination correction methods."
+    ],
+    "durationSeconds": 6.712830749000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "af03b3a7-fd4d-4b4e-b4cd-01ce2a06a379",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T04:29:17.430Z_
+
+<details><summary>↩ Tool result · `toolu_014DA39jSdDpZkAfzK4GvBEp`</summary>
+
+```text
+Web search results for query: "Preference Leakage ICLR 2026 LLM judge contamination calibration"
+
+Links: [{"title":"[Paper Note] Preference Leakage: A Contamination Problem in LLM-as-a-judge - 📚 AI Paper Notes","url":"https://en.papernotes.org/ICLR2026/llm_evaluation/preference_leakage_a_contamination_problem_in_llm-as-a-judge/"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge | OpenReview","url":"https://openreview.net/forum?id=grIvSXVJ65"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge [Quick Review]","url":"https://liner.com/review/preference-leakage-a-contamination-problem-in-llmasajudge"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://arxiv.org/html/2502.01534v3"},{"title":"ICLR Poster Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://iclr.cc/virtual/2026/poster/10008112"},{"title":"Preference Leakage: A Contamination Problem in LLM-as- ...","url":"https://arxiv.org/pdf/2502.01534"},{"title":"[2502.01534] Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://arxiv.org/abs/2502.01534"},{"title":"Paper page - Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://huggingface.co/papers/2502.01534"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://howiehwong.github.io/preference_leakage.pdf"}]
+
+Based on the search results, I found comprehensive information about "Preference Leakage: A Contamination Problem in LLM-as-a-Judge," which was presented at ICLR 2026.
+
+## Overview
+
+Preference leakage is a contamination problem in LLM-as-a-judge caused by the relatedness between the synthetic data generators and LLM-based evaluators. While the combination of LLMs as judges and LLM-based data synthesis significantly enhances the efficiency of model training and evaluation, little attention has been given to the potential contamination brought by this new model development paradigm.
+
+## Research Design
+
+The researchers defined three common relatednesses between the data generator LLM and the judge LLM: being the same model, having an inheritance relationship, and belonging to the same model family. Through extensive experiments, they empirically confirmed the bias of judges towards their related student models caused by preference leakage across multiple LLM baselines and benchmarks.
+
+## Key Findings
+
+Only Contextual Calibration (post-hoc calibration on a held-out set) effectively mitigates preference leakage, reducing Error Bias from 17.8 to 7.3. Simple prompting and paraphrase are largely ineffective.
+
+Smaller models such as LLaMA-3-1B and Qwen-2.5-3B exhibit higher preference leakage scores than larger models.
+
+Preference leakage is a pervasive and real-world problem that is harder to detect compared to previously identified biases in LLM-as-a-judge scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89ac58a3-c9a7-419e-9e54-a4692f1a52c5",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "b2ee3365-889e-4efe-85ae-f2646b837eba",
+  "toolUseResult": {
+    "query": "Preference Leakage ICLR 2026 LLM judge contamination calibration",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MuP4YAJQ4FrWLfPtgw1uLM",
+        "content": [
+          {
+            "title": "[Paper Note] Preference Leakage: A Contamination Problem in LLM-as-a-judge - 📚 AI Paper Notes",
+            "url": "https://en.papernotes.org/ICLR2026/llm_evaluation/preference_leakage_a_contamination_problem_in_llm-as-a-judge/"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge | OpenReview",
+            "url": "https://openreview.net/forum?id=grIvSXVJ65"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge [Quick Review]",
+            "url": "https://liner.com/review/preference-leakage-a-contamination-problem-in-llmasajudge"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://arxiv.org/html/2502.01534v3"
+          },
+          {
+            "title": "ICLR Poster Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://iclr.cc/virtual/2026/poster/10008112"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as- ...",
+            "url": "https://arxiv.org/pdf/2502.01534"
+          },
+          {
+            "title": "[2502.01534] Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://arxiv.org/abs/2502.01534"
+          },
+          {
+            "title": "Paper page - Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://huggingface.co/papers/2502.01534"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://howiehwong.github.io/preference_leakage.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about \"Preference Leakage: A Contamination Problem in LLM-as-a-Judge,\" which was presented at ICLR 2026.\n\n## Overview\n\nPreference leakage is a contamination problem in LLM-as-a-judge caused by the relatedness between the synthetic data generators and LLM-based evaluators. While the combination of LLMs as judges and LLM-based data synthesis significantly enhances the efficiency of model training and evaluation, little attention has been given to the potential contamination brought by this new model development paradigm.\n\n## Research Design\n\nThe researchers defined three common relatednesses between the data generator LLM and the judge LLM: being the same model, having an inheritance relationship, and belonging to the same model family. Through extensive experiments, they empirically confirmed the bias of judges towards their related student models caused by preference leakage across multiple LLM baselines and benchmarks.\n\n## Key Findings\n\nOnly Contextual Calibration (post-hoc calibration on a held-out set) effectively mitigates preference leakage, reducing Error Bias from 17.8 to 7.3. Simple prompting and paraphrase are largely ineffective.\n\nSmaller models such as LLaMA-3-1B and Qwen-2.5-3B exhibit higher preference leakage scores than larger models.\n\nPreference leakage is a pervasive and real-world problem that is harder to detect compared to previously identified biases in LLM-as-a-judge scenarios."
+    ],
+    "durationSeconds": 7.737182937999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "89ac58a3-c9a7-419e-9e54-a4692f1a52c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-20T04:29:17.435Z_
+
+```json
+{
+  "parentUuid": "b2ee3365-889e-4efe-85ae-f2646b837eba",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "74f101fe-9a0d-46f5-ade6-8b659b3e6079",
+  "timestamp": "2026-05-20T04:29:17.435Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-20T04:29:20.694Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have a solid picture of the research landscape. Let me do one more search to check if there's any work that specifically combines judge bias and contamination in a unified psychometric framework, which is the key novelty claim of this proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74f101fe-9a0d-46f5-ade6-8b659b3e6079",
+  "isSidechain": false,
+  "requestId": "req_011CbDC2U42e8bQvGS5567to",
+  "type": "assistant",
+  "uuid": "43d7f482-7928-4429-85fa-81ad31ac4637",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDT7Pn8CG4HESXFqxKgToX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 25543,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 25543,
+          "cache_creation_input_tokens": 2755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-20T04:29:21.707Z_
+
+Let me do one final targeted search to check for the most critical competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43d7f482-7928-4429-85fa-81ad31ac4637",
+  "isSidechain": false,
+  "requestId": "req_011CbDC2U42e8bQvGS5567to",
+  "type": "assistant",
+  "uuid": "6686a5c0-46ba-416b-b9a2-7fa99688d2d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDT7Pn8CG4HESXFqxKgToX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 25543,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 25543,
+          "cache_creation_input_tokens": 2755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-20T04:29:22.635Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011V7Jvqyb8GERtcG2quzrQJ`</summary>
+
+```json
+{
+  "query": "\"unified\" \"psychometric\" \"judge severity\" \"contamination\" LLM evaluation model calibration arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6686a5c0-46ba-416b-b9a2-7fa99688d2d7",
+  "isSidechain": false,
+  "requestId": "req_011CbDC2U42e8bQvGS5567to",
+  "type": "assistant",
+  "uuid": "21e4a398-8774-48a2-b5a9-4962b8bdce2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDT7Pn8CG4HESXFqxKgToX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 25543,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 25543,
+          "cache_creation_input_tokens": 2755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T04:29:23.172Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017KoK1yewdJcgrhphaA6XHt`</summary>
+
+```json
+{
+  "query": "Fiedler arXiv 2605.06939 bias uncertainty LLM judge estimation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21e4a398-8774-48a2-b5a9-4962b8bdce2b",
+  "isSidechain": false,
+  "requestId": "req_011CbDC2U42e8bQvGS5567to",
+  "type": "assistant",
+  "uuid": "a9c1ad51-9ca1-4ae0-b55a-acdf58d45343",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDT7Pn8CG4HESXFqxKgToX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2755,
+      "cache_read_input_tokens": 25543,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 25543,
+          "cache_creation_input_tokens": 2755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Gated Many-Facet Rasch Measurement for Joint Judge Bias and Contamination Correction in LLM Evaluation  ## Descr…",
+  "leafUuid": "a9c1ad51-9ca1-4ae0-b55a-acdf58d45343",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Gated Rasch model for LLM judge bias and contamination",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T04:29:28.978Z_
+
+<details><summary>↩ Tool result · `toolu_017KoK1yewdJcgrhphaA6XHt`</summary>
+
+```text
+Web search results for query: "Fiedler arXiv 2605.06939 bias uncertainty LLM judge estimation 2026"
+
+Links: [{"title":"[2605.06939] Bias and Uncertainty in LLM-as-a-Judge Estimation","url":"https://arxiv.org/abs/2605.06939"},{"title":"Bias and Uncertainty in LLM-as-a-Judge Estimation","url":"https://arxiv.org/html/2605.06939"},{"title":"Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation","url":"https://arxiv.org/pdf/2512.22245"},{"title":"Generalised Probabilistic Modelling and Improved Uncertainty Estimation in Comparative LLM-as-a-judge","url":"https://arxiv.org/html/2505.15240v1"},{"title":"Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation","url":"https://arxiv.org/pdf/2603.05485"}]
+
+I found the paper you're looking for. The arXiv paper 2605.06939 is titled "Bias and Uncertainty in LLM-as-a-Judge Estimation" by James Fiedler from Indeed Inc., submitted on May 7, 2026.
+
+Here's what the paper addresses:
+
+The paper shows that LLM-as-a-Judge evaluation has become a standard tool for assessing base model performance, but recent work has proposed estimators to correct bias in this approach, with their reliability depending critically on judge quality and calibration stability.
+
+The paper identifies that sharing calibration across compared models can introduce severe bias, including cases where the comparison estimate points in the wrong direction with high apparent confidence, and it studies these failure modes through analytical results, simulations, and a real-data MMLU-Pro case study with sign reversal.
+
+The authors propose judge quality (J) and cross-model calibration instability (ΔJ) as diagnostics for when corrected estimates are likely unreliable, and provide reporting guidance for LLM-as-a-Judge evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9c1ad51-9ca1-4ae0-b55a-acdf58d45343",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "59ae5e60-7354-44f8-b9f0-3a00010d97dc",
+  "toolUseResult": {
+    "query": "Fiedler arXiv 2605.06939 bias uncertainty LLM judge estimation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013XPJLKhu4DHL1pzQGHT7oZ",
+        "content": [
+          {
+            "title": "[2605.06939] Bias and Uncertainty in LLM-as-a-Judge Estimation",
+            "url": "https://arxiv.org/abs/2605.06939"
+          },
+          {
+            "title": "Bias and Uncertainty in LLM-as-a-Judge Estimation",
+            "url": "https://arxiv.org/html/2605.06939"
+          },
+          {
+            "title": "Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation",
+            "url": "https://arxiv.org/pdf/2512.22245"
+          },
+          {
+            "title": "Generalised Probabilistic Modelling and Improved Uncertainty Estimation in Comparative LLM-as-a-judge",
+            "url": "https://arxiv.org/html/2505.15240v1"
+          },
+          {
+            "title": "Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation",
+            "url": "https://arxiv.org/pdf/2603.05485"
+          }
+        ]
+      },
+      "I found the paper you're looking for. The arXiv paper 2605.06939 is titled \"Bias and Uncertainty in LLM-as-a-Judge Estimation\" by James Fiedler from Indeed Inc., submitted on May 7, 2026.\n\nHere's what the paper addresses:\n\nThe paper shows that LLM-as-a-Judge evaluation has become a standard tool for assessing base model performance, but recent work has proposed estimators to correct bias in this approach, with their reliability depending critically on judge quality and calibration stability.\n\nThe paper identifies that sharing calibration across compared models can introduce severe bias, including cases where the comparison estimate points in the wrong direction with high apparent confidence, and it studies these failure modes through analytical results, simulations, and a real-data MMLU-Pro case study with sign reversal.\n\nThe authors propose judge quality (J) and cross-model calibration instability (ΔJ) as diagnostics for when corrected estimates are likely unreliable, and provide reporting guidance for LLM-as-a-Judge evaluation."
+    ],
+    "durationSeconds": 5.803328186000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a9c1ad51-9ca1-4ae0-b55a-acdf58d45343",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T04:29:29.997Z_
+
+<details><summary>↩ Tool result · `toolu_011V7Jvqyb8GERtcG2quzrQJ`</summary>
+
+```text
+Web search results for query: ""unified" "psychometric" "judge severity" "contamination" LLM evaluation model calibration arXiv 2026"
+
+Links: [{"title":"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"},{"title":"Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/pdf/2510.07175"},{"title":"Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/html/2510.07175v2"},{"title":"DCR: Quantifying Data Contamination in LLMs Evaluation","url":"https://arxiv.org/pdf/2507.11405"},{"title":"[2510.07175] Quantifying Data Contamination in Psychometric Evaluations of LLMs","url":"https://arxiv.org/abs/2510.07175"},{"title":"Preference Leakage: A Contamination Problem in LLM-as- ...","url":"https://arxiv.org/pdf/2502.01534"},{"title":"Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation","url":"https://arxiv.org/pdf/2512.22245"}]
+
+Based on the web search results, I found relevant research related to your query. Here are the key findings:
+
+## Psychometric Contamination in LLM Evaluation
+
+A framework quantifies data contamination across three aspects: item memorization, evaluation memorization, and target score matching. Applying this framework to 21 models from major families and four widely used psychometric inventories provides evidence that popular inventories such as the Big Five Inventory (BFI-44) and Portrait Values Questionnaire (PVQ-40) exhibit strong contamination, where models not only memorize items but can also adjust their responses to achieve specific target scores.
+
+## Judge Calibration and Severity
+
+The newest methodological frontier is bias-corrected and psychometric judge evaluation, with 2025–2026 lines of work proposing calibration-based bias correction and confidence intervals that account for imperfect judge sensitivity and specificity, and applying item response theory to the judges themselves, framing reliability as a property of the measurement instrument.
+
+Calibrated LLM judges, whose expressed confidence matches their empirical accuracy, enable systems to route straightforward cases to efficient models while reserving expensive judges or human reviewers for uncertain decisions.
+
+## Unified DCR Framework
+
+By synthesizing contamination scores via a fuzzy inference system, the DCR framework produces a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance, validated on 9 LLMs across multiple tasks with accuracy adjusted to within 4% average error.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21e4a398-8774-48a2-b5a9-4962b8bdce2b",
+  "isSidechain": false,
+  "promptId": "1079f692-99bf-4674-bbaa-42d868760048",
+  "type": "user",
+  "uuid": "53d36ef7-6479-4243-9ffd-34ea60d87cc2",
+  "toolUseResult": {
+    "query": "\"unified\" \"psychometric\" \"judge severity\" \"contamination\" LLM evaluation model calibration arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019kpfT7UGMrUt5tKQjzsAGf",
+        "content": [
+          {
+            "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+          },
+          {
+            "title": "Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/pdf/2510.07175"
+          },
+          {
+            "title": "Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/html/2510.07175v2"
+          },
+          {
+            "title": "DCR: Quantifying Data Contamination in LLMs Evaluation",
+            "url": "https://arxiv.org/pdf/2507.11405"
+          },
+          {
+            "title": "[2510.07175] Quantifying Data Contamination in Psychometric Evaluations of LLMs",
+            "url": "https://arxiv.org/abs/2510.07175"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as- ...",
+            "url": "https://arxiv.org/pdf/2502.01534"
+          },
+          {
+            "title": "Calibrating LLM Judges: Linear Probes for Fast and Reliable Uncertainty Estimation",
+            "url": "https://arxiv.org/pdf/2512.22245"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant research related to your query. Here are the key findings:\n\n## Psychometric Contamination in LLM Evaluation\n\nA framework quantifies data contamination across three aspects: item memorization, evaluation memorization, and target score matching. Applying this framework to 21 models from major families and four widely used psychometric inventories provides evidence that popular inventories such as the Big Five Inventory (BFI-44) and Portrait Values Questionnaire (PVQ-40) exhibit strong contamination, where models not only memorize items but can also adjust their responses to achieve specific target scores.\n\n## Judge Calibration and Severity\n\nThe newest methodological frontier is bias-corrected and psychometric judge evaluation, with 2025–2026 lines of work proposing calibration-based bias correction and confidence intervals that account for imperfect judge sensitivity and specificity, and applying item response theory to the judges themselves, framing reliability as a property of the measurement instrument.\n\nCalibrated LLM judges, whose expressed confidence matches their empirical accuracy, enable systems to route straightforward cases to efficient models while reserving expensive judges or human reviewers for uncertain decisions.\n\n## Unified DCR Framework\n\nBy synthesizing contamination scores via a fuzzy inference system, the DCR framework produces a unified DCR Factor that adjusts raw accuracy to reflect contamination-aware performance, validated on 9 LLMs across multiple tasks with accuracy adjusted to within 4% average error."
+    ],
+    "durationSeconds": 7.3556918829999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "21e4a398-8774-48a2-b5a9-4962b8bdce2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-20T04:30:20.287Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture of the research landscape. Let me synthesize my findings and write the triage assessment.
+
+Key observations from my research:
+
+1. **MFRM for LLM evaluation**: arXiv:2505.18486 (May 2025) already applies MFRM to compare LLM raters with human raters. This is the closest existing work to the MFRM component of the proposal. However, it treats contamination as external - it doesn't model contamination within the MFRM framework.
+
+2. **DG-IRT**: The original DG-IRT (Shu et al., Psychometrika 2013) is from educational testing. 
+
+No one has adapted it to LLM evaluation yet, which represents a genuine gap in the literature.
+
+3. **Judge bias correction**: CyclicJudge (March 2026), BiasScope (ICLR 2026), UDA (AAAI 2026), Bias-Bounded Evaluation, JudgeBiasBench - all address judge bias but not contamination.
+
+4. **Contamination detection**: DCR (EMNLP 2025), ConStat (NeurIPS 2024), Preference Leakage (ICLR 2026), LogProber - all address contamination but not judge bias.
+
+5. **IRT for LLMs**: PSN-IRT (
+
+AAAI 2026), ATLAS adaptive testing, and similar approaches apply IRT to LLM evaluation but don't jointly model judge severity and contamination susceptibility.
+
+6. **The gap claim**: The proposal's central assertion that no existing work jointly models judge severity and contamination within a single psychometric framework appears to hold up—I haven't found any paper doing this.
+
+7. **Fiedler (2605.06939)**: Addresses bias and uncertainty in LLM-as-a-Judge estimation with identified sign-reversal failure modes, but remains grounded in classical test theory rather than IRT.
+
+The most straightforward alternative would be a naive two-stage pipeline—running CyclicJudge for bias correction followed by DCR for contamination adjustment—which the proposal itself identifies and plans to benchmark against.
+
+The joint model's theoretical advantage is that sequential correction can propagate errors: if bias correction ignores contamination, it might absorb contamination effects into the judge severity parameters, producing incorrect severity estimates that then distort downstream contamination-adjusted scores. Whether this translates to meaningful empirical improvements over the two-stage approach is ultimately an open question.
+
+The LLTM/AMMI decomposition assumes contamination factors multiplicatively as per-model susceptibility times per-item exposure, which is a fairly restrictive structural assumption that warrants scrutiny.
+
+The external exposure indicators like ConStat are treated as valid proxies for true item exposure, though their validation in a different context raises questions about transferability. Additionally, the sequential estimation strategy—fixing item exposures from Stage 2 and then estimating model susceptibilities in Stage 3—is a practical solution to identifiability but introduces potential bias compared to fully joint estimation.
+
+The novelty here lies in combining MFRM with DG-IRT gating and external exposure indicators into one unified framework, which is genuinely new even though each piece exists independently. The hierarchical contamination parameterization itself represents a principled approach to the problem.
+
+The real question is whether the practical gains justify the added complexity—if improvements over a simpler two-stage approach are marginal, the psychometric overhead might not be worth it, despite the method's genuine importance for addressing bias and contamination in LLM-as-a-judge evaluation. them sequentially," that's not a particularly deep insight—it's almost the default expectation. So I'm settling on around 28-38% for EMNLP, with a median estimate of 33%, acknowledging that while the work is methodologically sound and addresses a real gap, the core contribution feels more like careful integration than a conceptual breakthrough. I need to see the next thinking to rewrite it. You've provided the current rewritten thinking and instructions, but the "next thinking" section appears to be empty. Could you share the next thinking that needs to be rewritten?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53d36ef7-6479-4243-9ffd-34ea60d87cc2",
+  "isSidechain": false,
+  "requestId": "req_011CbDC3Pq4TpRAEUDx8ebQk",
+  "type": "assistant",
+  "uuid": "548aef75-7971-48a8-bb04-de0456840ca2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CbJb4cAbmeUiizmPBGY2K8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 549,
+      "cache_creation_input_tokens": 1005,
+      "cache_read_input_tokens": 28298,
+      "output_tokens": 5836,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 549,
+          "output_tokens": 5836,
+          "cache_read_input_tokens": 28298,
+          "cache_creation_input_tokens": 1005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-20T04:31:40.119Z_
+
+Now I have sufficient research to make an informed assessment. Let me compile the triage evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model](https://arxiv.org/abs/2505.18486) (arXiv, May 2025): 最直接的前置工作。将 MFRM 应用于 10 个 LLM rater 与人类专家的评分比较，验证了 MFRM 在 LLM 评分场景中的适用性。但该工作将 contamination 视为外部问题，不在 MFRM 内建模。本 proposal 声称在此基础上扩展，加入 contamination gating，这一增量是真实的。
+- [CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation](https://arxiv.org/abs/2603.01865) (arXiv, March 2026): Judge bias silo 的代表作。通过 round-robin assignment 消除 judge bias，但完全忽略 contamination。本 proposal 将其作为 baseline 之一。
+- [DCR: Quantifying Data Contamination in LLMs Evaluation](https://aclanthology.org/2025.emnlp-main.1173/) (EMNLP 2025): Contamination silo 的代表作。通过 fuzzy inference system 合成 contamination scores 调整 raw accuracy，但忽略 judge effects。
+- [Preference Leakage: A Contamination Problem in LLM-as-a-judge](https://arxiv.org/abs/2502.01534) (ICLR 2026): 揭示了 generator-judge relatedness 导致的 preference leakage，仅提出 post-hoc contextual calibration。与本 proposal 关注的 contamination 类型不同（preference leakage vs. benchmark data contamination），但属于同一大问题域。
+- [ConStat: Statistical Detection and Quantification of Benchmark Contamination](https://openreview.net/forum?id=ZyVQqK7mcP) (NeurIPS 2024): 提供 black-box contamination 检测（r²=0.94），本 proposal 将其作为外部 exposure indicator 的核心来源。这是一个成熟且经过验证的工具。
+- [Bias and Uncertainty in LLM-as-a-Judge Estimation](https://arxiv.org/abs/2605.06939) (Fiedler, arXiv May 2026): 引入 J/ΔJ diagnostics 识别 sign-reversal failure modes，但停留在 classical test theory 框架内，未做 latent trait modeling。与本 proposal 的 psychometric 路线形成互补而非竞争。
+- [Lost in Benchmarks? Rethinking LLM Benchmarking with IRT — PSN-IRT](https://arxiv.org/abs/2505.15055) (AAAI 2026): 将 neural 4PL IRT 应用于 benchmark 评估，但不涉及 judge severity 和 contamination 的联合建模。
+- [DG-IRT](https://www.researchgate.net/publication/257678777) (Shu, Henson & Luecht, Psychometrika 2013): 原始 DG-IRT 模型，来自教育测量领域的 cheating detection。未被任何人迁移到 LLM 评估场景——这是本 proposal 的核心 cross-domain transfer。
+- [Quantifying Data Contamination in Psychometric Evaluations of LLMs](https://arxiv.org/abs/2510.07175) (arXiv 2025): 量化 psychometric inventories 中的 data contamination，但关注的是 personality/value questionnaires 而非 benchmark evaluation，且不涉及 judge bias。
+- 调研总结: 该领域明确存在两个研究 silo——judge bias correction 和 contamination detection——且截至 2026 年 5 月，**确实没有现有工作在单一 psychometric framework 内联合建模 judge severity 和 contamination susceptibility**。Proposal 的 gap claim 经验证成立。IRT/MFRM 在 LLM 评估中的应用正在快速增长，但均未实现 bias+contamination 的联合校准。
+
+【Trivial Alternative 检验】:
+最明显的 trivial alternative 是 proposal 自身识别的 **naive two-stage pipeline: CyclicJudge → DCR**（先做 bias correction，再做 contamination adjustment）。这个 baseline 成本低得多（无需构建新的 psychometric model、无需 MCMC、无需三阶段估计），且利用了两个已验证的现有方法。
+
+Proposal 为什么认为 joint modeling 优于 sequential correction？隐含论证是：sequential correction 会 propagate errors——如果 bias correction 阶段不知道 contamination 的存在，它可能把 contamination-inflated performance 误归因到 judge severity 参数上，导致 severity 估计偏差，进而扭曲后续的 contamination adjustment。这个论证在理论上是合理的（psychometrics 文献中 joint > sequential 的一般性论证确实成立），但**增量价值的大小是一个纯粹的经验问题**。如果 Kendall-τ 的改善只有 0.01-0.02，psychometric 复杂度的正当性会被审稿人质疑。
+
+增量价值的关键在于：(1) bias 和 contamination 在实际数据中是否存在显著交互（如果它们近似正交，sequential correction 就够了）；(2) rank-1 decomposition c_n·e_i 是否能捕捉到足够的 contamination variance。
+
+【前提假设检验】:
+1. **Rank-1 contamination decomposition 假设**: c_n·e_i 假设 contamination 效果可以分解为 per-model susceptibility × per-item exposure 的乘积。这是一个**强结构性假设**。现实中，不同模型可能对不同类型的 items 有不同的 memorization patterns（例如，code items vs. reasoning items 的 contamination profile 可能因模型训练数据构成而异），这不是 rank-1 能捕捉的。虽然 proposal 引用 AMMI 传统来论证 identifiability，但 identifiability ≠ model adequacy。
+2. **External exposure indicators 的有效性假设**: Proposal 高度依赖 ConStat 的 r²=0.94 验证结果。但 ConStat 的验证是在特定条件下进行的，将其结果直接迁移到 G-MFRM 框架中作为 fixed covariates 使用时，是否仍然有效需要验证。特别是 ConStat 的 reference benchmark variants 需要手工构建（GPT-5.5/Claude-assisted rephrasing），这引入了额外的 construct validity 问题。
+3. **Chatbot Arena 人类投票作为 ground truth 的假设**: 使用 held-out Chatbot Arena human votes 作为 gold standard 来评估 Kendall-τ 改善，但 Chatbot Arena 本身的 noise 和 bias 是众所周知的（position bias、length bias 等）。用一个有偏的 ground truth 来验证 debiasing 方法，存在循环性风险。
+4. **Judge severity 的时间稳定性假设**: MFRM 假设 d_j 是一个稳定的 judge-level 参数，但 LLM judges 的 behavior 可能随 API version 更新、temperature 设置等因素变化。
+
+【3 维度打分】:
+1. Novelty: 【中】 — 核心贡献是将 DG-IRT 的 gating mechanism 从教育 cheating detection 迁移到 LLM contamination，并与 MFRM 的 multi-facet 结构融合。经验证，确实没有现有工作做过这个融合（gap claim 成立）。DG-IRT→LLM 的 cross-domain transfer 有创意，LLTM decomposition 的引入是合理的方法论选择。然而，novelty 的本质是**方法论组合/集成**而非**概念性突破**。每个组件（MFRM、DG-IRT gating、ConStat exposure indicators、LLTM decomposition）都是已有的，创新在于"把它们放在一起"。这种 integration novelty 在 EMNLP 审稿中通常被认可但不会被视为 exciting。审稿人可能会说："The contribution is incremental — it combines known components in a natural way."
+   
+2. Significance: 【中偏强】 — 研究问题毫无疑问是重要的：LLM-as-a-judge 评估已经成为 mainstream practice，且 bias 和 contamination 都是真实且严重的问题。如果 G-MFRM 能显著提升评估质量，其实际影响力会很大。框架产出的可解释性（per-model contamination estimates、per-judge severity calibrations）具有实用价值。但 significance 受限于一个关键不确定性：joint modeling 相对于 naive sequential pipeline 的 marginal improvement 可能不足以改变实际决策。此外，框架的复杂性（三阶段 MCMC、需要构建 reference benchmark variants）可能限制其在实践中的采用。
+
+3. Related Work: 【强】 — 相关工作覆盖异常全面。Proposal 准确地划分了 judge bias silo 和 contamination silo，引用了两个领域的关键论文（CyclicJudge、BiasScope、UDA、Bias-Bounded Evaluation、JudgeBiasBench 在 bias 侧；DCR、ConStat、Preference Leakage、LogProber 在 contamination 侧），以及 IRT-for-LLMs 的主要工作（PSN-IRT、MFRM for LLM raters）。差异化定位清晰且经验证准确。引用的关键论文（arXiv:2505.18486、DG-IRT Psychometrika 2013、ConStat NeurIPS 2024 等）均真实存在且描述准确。唯一的小问题是部分引用的会议/arXiv 论文（如 arXiv:2604.23178, arXiv:2605.06939）非常新，可能尚未被 peer review，但在 arXiv 时代这是可接受的。
+
+【概率估计】: [25% - 38%] 中位 30%
+
+【估计理由】: 
+- Novelty 是中等的：gap 是真实的，方法论融合是合理的，但本质是 integration novelty 而非 conceptual breakthrough。核心发现如果是 positive（"joint modeling > sequential correction"），审稿人大概率会说 "I would have guessed this" ——联合建模优于分步修正是 psychometrics 领域的 common wisdom，迁移到 LLM 评估场景不构成 surprising finding。这将 novelty 上限锁定在"中"。
+- Significance 是中偏强的：问题重要且实用，但 marginal improvement 的不确定性和框架复杂度限制了上界。
+- Related work 是强的：但这主要防止了扣分，不会主动加分。
+- **上界主要被 Novelty 限制**：即使实验做得完美、improvement 显著，"combining MFRM + DG-IRT + ConStat" 的 novelty ceiling 也不高。审稿人对 "integration papers" 的天然抵触是主要风险。
+- **下界被 Significance 和 Related Work 托住**：问题的重要性和文献定位的清晰性使得即使 novelty 评分偏低，论文也不至于被直接拒绝——有机会通过 solid experiments 争取一些分数。
+
+【主要风险】:
+1. **"Integration, not innovation" 质疑**: 审稿人可能认为核心贡献仅是将已有组件（MFRM、DG-IRT、ConStat）组合在一起，每个组件都不是新的，组合方式虽然合理但也是 "the natural thing to do"，缺乏真正的 methodological surprise。
+2. **Marginal improvement over naive two-stage pipeline**: 如果 G-MFRM fair scores 相对于 CyclicJudge→DCR 的 Kendall-τ 改善在统计上不显著或实际幅度很小，整个 psychometric 框架的复杂度将无法被 justify。这是最致命的实验风险——idea 层面无法预判，但概率不低。
+```
+
+Sources:
+- [Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model](https://arxiv.org/abs/2505.18486)
+- [CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation](https://arxiv.org/abs/2603.01865)
+- [DCR: Quantifying Data Contamination in LLMs Evaluation](https://aclanthology.org/2025.emnlp-main.1173/)
+- [Preference Leakage: A Contamination Problem in LLM-as-a-judge](https://arxiv.org/abs/2502.01534)
+- [ConStat: Statistical Detection and Quantification of Benchmark Contamination (NeurIPS 2024)](https://openreview.net/forum?id=ZyVQqK7mcP)
+- [Bias and Uncertainty in LLM-as-a-Judge Estimation](https://arxiv.org/abs/2605.06939)
+- [Lost in Benchmarks? Rethinking LLM Benchmarking with IRT — PSN-IRT](https://arxiv.org/abs/2505.15055)
+- [DG-IRT (Shu, Henson & Luecht, Psychometrika 2013)](https://www.researchgate.net/publication/257678777)
+- [Quantifying Data Contamination in Psychometric Evaluations of LLMs](https://arxiv.org/abs/2510.07175)
+- [BiasScope: Towards Automated Detection of Bias in LLM-as-a-Judge Evaluation](https://arxiv.org/abs/2602.09383)
+- [Adaptive Testing for LLM Evaluation: ATLAS](https://arxiv.org/abs/2511.04689)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "548aef75-7971-48a8-bb04-de0456840ca2",
+  "isSidechain": false,
+  "requestId": "req_011CbDC3Pq4TpRAEUDx8ebQk",
+  "type": "assistant",
+  "uuid": "cb64885e-841b-4224-ba23-141efdec8dd5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CbJb4cAbmeUiizmPBGY2K8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 549,
+      "cache_creation_input_tokens": 1005,
+      "cache_read_input_tokens": 28298,
+      "output_tokens": 5836,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 549,
+          "output_tokens": 5836,
+          "cache_read_input_tokens": 28298,
+          "cache_creation_input_tokens": 1005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Gated Many-Facet Rasch Measurement for Joint Judge Bias and Contamination Correction in LLM Evaluation  ## Descr…",
+  "leafUuid": "cb64885e-841b-4224-ba23-141efdec8dd5",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Gated Rasch model for LLM judge bias and contamination",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Gated Many-Facet Rasch Measurement for Joint Judge Bias and Contamination Correction in LLM Evaluation  ## Descr…",
+  "leafUuid": "cb64885e-841b-4224-ba23-141efdec8dd5",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Gated Rasch model for LLM judge bias and contamination",
+  "sessionId": "49d6ca78-0ad1-4228-aa99-5ed5d94b7634"
+}
+```
+
+---

@@ -1,0 +1,5697 @@
+# Research conversation: 【背景】: 以下 proposal 已通过外部入口筛选（triple-consensus triage），确认 GO。请记住这份 proposal 的完整内容，后续你将以「角色 B：迭代中」整合 worker 输出并更新它。 【原始 pro
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 92
+- **Recorded user turns:** 5
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-1/246566a5-b17e-40cd-b552-150344c6365f.jsonl`
+- **Structured JSON:** [`54ef7fcf7c7d0599161c.json`](../../sessions/54/54ef7fcf7c7d0599161c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T21:40:47.087Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T21:40:47.087Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "content": "【背景】: 以下 proposal 已通过外部入口筛选（triple-consensus triage），确认 GO。请记住这份 proposal 的完整内容，后续你将以「角色 B：迭代中」整合 worker 输出并更新它。\n\n【原始 proposal】:\n# Executable Perception Verification Rewards for Multimodal Math RL\n\n## Core Problem\n\nCurrent perception rewards in multimodal math RL training rely on model-based assessment (LLM-as-judge or proxy tasks), which is circular and unreliable — the same biases that cause perception failures also corrupt the reward signal. Can we instead use formally grounded, executable verification of visual perception claims as step-level verifiable rewards?\n\n## Research Opportunity\n\nFormal diagram parsers (Geoparsing with 29K annotated geometry diagrams, SymHPR with 98.2% reconstruction fidelity) already produce structured, ground-truth representations of mathematical diagrams — but these are used only as preprocessing or for perception module training in isolation. Simultaneously, executable visual verification (RRVF, Visual-ERM) has proven effective for chart/web code generation but has never been applied to mathematical reasoning RL. The missing bridge is using formal parses as executable oracles to verify perception claims within the reasoning chain during RL training, providing truly verifiable (not model-based) step-level perception rewards. This is feasible now because (1) formal parsing quality has reached sufficient maturity, (2) perception-reasoning disentanglement is a proven recipe (MoCA at ICML 2026 Spotlight), and (3) 40-60% of multimodal math failures are perception errors that model-based rewards cannot reliably catch.\n\n## Research Landscape\n\nExisting perception reward methods are uniformly model-based: URSA (NeurIPS 2025) uses process reward models with synthetic hallucination injection, Perception-R1 (ICLR 2026) uses LLM-as-judge, PRCO (2026) uses model-generated captions with role-specific rewards, MoCA (ICML 2026 Spotlight) uses blindfolded reasoning as proxy, and CogFlow (ICLR 2026) uses learned synergistic visual rewards. The closest related works are SymHPR (Dec 2025), which uses reconstruction-based rewards but only trains the perception module — not the reasoning chain — achieving +3% on MathVerse/GeoQA; SGVR (Jan 2026), which uses formal proofs for sub-goal verification but only verifies reasoning outcomes, not perception claims, achieving +9.7% on geometry; and EVPV (Mar 2026), which verifies visual premises but via model-generated checklists, not formal parsing. RRVF/Visual-ERM demonstrate render-and-compare rewards are effective for code generation tasks (+8.4 on chart-to-code) but have never been applied to mathematical reasoning. PEARL (CVPR 2026) is the closest concurrent work: it derives perception checklists with verifiable answers and uses them as RL rewards during GRPO training, achieving +9.7% on MathVerse — but its verification relies on an LLM judge, not a formally executable oracle, preserving the circularity problem. KAWHI (arXiv 2026) addresses the visual representation bottleneck in RLVR via reward reweighting but does not verify perception claims. The gap — formally executable perception verification as RL training rewards for the full reasoning chain — is not addressed by any published or concurrent work.\n\n## Proposed Approach\n\nWe build an Executable Perception Verification Oracle (EPV-Oracle) by pre-parsing all training geometry diagrams into ground-truth formal representations using Geoparsing (GDP-29K) and FormalGeo, then during GRPO training of Qwen3-VL-8B, we extract perception claims from each CoT reasoning step via pattern matching (e.g., 'angle ABC = 60°', 'AB ∥ CD') and verify them against the formal parse through symbolic execution — no LLM judge involved. The verification yields a step-level perception reward r_percept = verified_claims / total_claims, combined with the outcome reward via r = r_outcome + λ·r_percept where λ is annealed during training to shift credit from perception grounding to reasoning. We train on ~15K geometry problems drawn from GDP-29K, FormalGeo7K, and GeoQA with formal annotations, using the EasyR1/OpenRLHF framework on 16×A100 GPUs. We evaluate on MathVerse, GeoQA, and Geometry3K with controlled ablations comparing EPV-Oracle against PEARL's LLM-judge and Perception-R1's consistency-check baselines to isolate the contribution of executable versus model-based perception verification.\n\n## Detailed Description\n\nWe propose Executable Perception Verification (EPV), a method that replaces model-based perception rewards in multimodal math RL with formally grounded, executable verification signals. During GRPO training of a VLM on geometric reasoning, EPV pre-parses each diagram into a ground-truth formal representation using mature geometry parsers (Geoparsing GDP-29K, FormalGeo). At each reasoning step, a lightweight extractor identifies perception claims in the model's chain-of-thought, which are verified against the formal parse via symbolic matching — no LLM judge involved. The verification yields step-level perception rewards combined with outcome rewards during policy optimization. Unlike prior work relying on LLM-as-judge (Perception-R1, PEARL) or learned reward models (CogFlow, EVPV), EPV provides truly verifiable, non-circular perception signals. This builds on demonstrated formal parsing quality (SymHPR: 98.2% reconstruction fidelity, Geoparsing: 29K annotated diagrams) and the proven perception-reasoning disentanglement recipe (MoCA, ICML 2026 Spotlight). We target geometry-intensive benchmarks (MathVerse, GeoQA, Geometry3K) where 40–60% of errors originate from perception failures that model-based rewards systematically miss. The key contribution is demonstrating that executable verification oracles outperform model-based judges as perception reward signals for RL-trained multimodal reasoners, closing the circularity gap in current perception reward methods.\n\n## Key References\n\n- Unlocking Multimodal Mathematical Reasoning via Process Reward Model (NeurIPS 2025)\n- Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (ICLR 2026)\n- Bad Seeing or Bad Thinking? Rewarding Perception for Vision-Language Reasoning (ICML 2026)\n- CogFlow: Bridging Perception and Reasoning through Knowledge Internalization for Visual Mathematical Problem Solving (ICLR 2026)\n- Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning (CVPR 2026)\n- Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning (arXiv 2026)\n- Hierarchical Process Reward Models are Symbolic Vision Learners (arXiv 2025)\n- Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward (arXiv 2026)\n- Grounding the Score: Explicit Visual Premise Verification for Reliable VL-PRMs (arXiv 2026)\n- Learning Only with Images: Visual Reinforcement Learning with Reasoning, Rendering, and Visual Feedback (arXiv 2025)\n- Visual-ERM: Reward Modeling for Visual Equivalence (arXiv 2026)\n- Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language (arXiv 2026)\n- A Survey of Multimodal Mathematical Reasoning: From Perception, Alignment to Reasoning (arXiv 2026)\n- Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2026)\n- ViCrit: A Verifiable Reinforcement Learning Proxy Task for Visual Perception in VLMs (NeurIPS 2025)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 1,200–1,500, timeline: 12–16 weeks, estimated_gpu_cost: $3,000–$3,750 (A100-80G at ~$2.50/hr)\n- **human_in_loop**: gpu_hours: 800–1,200, timeline: 8–12 weeks, claude_api_cost: $300–$500, estimated_gpu_cost: $2,000–$3,000\n- **auto_research**: gpu_hours: 800–1,200, timeline: 5–8 weeks, claude_api_cost: $800–$1,200, estimated_gpu_cost: $2,000–$3,000, speed_bottleneck: RL training wall-clock time (16h/run on 16×A100); formal parses pre-cached to eliminate parser latency; experiment iteration loop is the binding constraint\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T21:40:47.090Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T21:40:47.090Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+## Round 1
+
+12 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T21:40:47.133Z_
+
+【背景】: 以下 proposal 已通过外部入口筛选（triple-consensus triage），确认 GO。请记住这份 proposal 的完整内容，后续你将以「角色 B：迭代中」整合 worker 输出并更新它。
+
+【原始 proposal】:
+# Executable Perception Verification Rewards for Multimodal Math RL
+
+## Core Problem
+
+Current perception rewards in multimodal math RL training rely on model-based assessment (LLM-as-judge or proxy tasks), which is circular and unreliable — the same biases that cause perception failures also corrupt the reward signal. Can we instead use formally grounded, executable verification of visual perception claims as step-level verifiable rewards?
+
+## Research Opportunity
+
+Formal diagram parsers (Geoparsing with 29K annotated geometry diagrams, SymHPR with 98.2% reconstruction fidelity) already produce structured, ground-truth representations of mathematical diagrams — but these are used only as preprocessing or for perception module training in isolation. Simultaneously, executable visual verification (RRVF, Visual-ERM) has proven effective for chart/web code generation but has never been applied to mathematical reasoning RL. The missing bridge is using formal parses as executable oracles to verify perception claims within the reasoning chain during RL training, providing truly verifiable (not model-based) step-level perception rewards. This is feasible now because (1) formal parsing quality has reached sufficient maturity, (2) perception-reasoning disentanglement is a proven recipe (MoCA at ICML 2026 Spotlight), and (3) 40-60% of multimodal math failures are perception errors that model-based rewards cannot reliably catch.
+
+## Research Landscape
+
+Existing perception reward methods are uniformly model-based: URSA (NeurIPS 2025) uses process reward models with synthetic hallucination injection, Perception-R1 (ICLR 2026) uses LLM-as-judge, PRCO (2026) uses model-generated captions with role-specific rewards, MoCA (ICML 2026 Spotlight) uses blindfolded reasoning as proxy, and CogFlow (ICLR 2026) uses learned synergistic visual rewards. The closest related works are SymHPR (Dec 2025), which uses reconstruction-based rewards but only trains the perception module — not the reasoning chain — achieving +3% on MathVerse/GeoQA; SGVR (Jan 2026), which uses formal proofs for sub-goal verification but only verifies reasoning outcomes, not perception claims, achieving +9.7% on geometry; and EVPV (Mar 2026), which verifies visual premises but via model-generated checklists, not formal parsing. RRVF/Visual-ERM demonstrate render-and-compare rewards are effective for code generation tasks (+8.4 on chart-to-code) but have never been applied to mathematical reasoning. PEARL (CVPR 2026) is the closest concurrent work: it derives perception checklists with verifiable answers and uses them as RL rewards during GRPO training, achieving +9.7% on MathVerse — but its verification relies on an LLM judge, not a formally executable oracle, preserving the circularity problem. KAWHI (arXiv 2026) addresses the visual representation bottleneck in RLVR via reward reweighting but does not verify perception claims. The gap — formally executable perception verification as RL training rewards for the full reasoning chain — is not addressed by any published or concurrent work.
+
+## Proposed Approach
+
+We build an Executable Perception Verification Oracle (EPV-Oracle) by pre-parsing all training geometry diagrams into ground-truth formal representations using Geoparsing (GDP-29K) and FormalGeo, then during GRPO training of Qwen3-VL-8B, we extract perception claims from each CoT reasoning step via pattern matching (e.g., 'angle ABC = 60°', 'AB ∥ CD') and verify them against the formal parse through symbolic execution — no LLM judge involved. The verification yields a step-level perception reward r_percept = verified_claims / total_claims, combined with the outcome reward via r = r_outcome + λ·r_percept where λ is annealed during training to shift credit from perception grounding to reasoning. We train on ~15K geometry problems drawn from GDP-29K, FormalGeo7K, and GeoQA with formal annotations, using the EasyR1/OpenRLHF framework on 16×A100 GPUs. We evaluate on MathVerse, GeoQA, and Geometry3K with controlled ablations comparing EPV-Oracle against PEARL's LLM-judge and Perception-R1's consistency-check baselines to isolate the contribution of executable versus model-based perception verification.
+
+## Detailed Description
+
+We propose Executable Perception Verification (EPV), a method that replaces model-based perception rewards in multimodal math RL with formally grounded, executable verification signals. During GRPO training of a VLM on geometric reasoning, EPV pre-parses each diagram into a ground-truth formal representation using mature geometry parsers (Geoparsing GDP-29K, FormalGeo). At each reasoning step, a lightweight extractor identifies perception claims in the model's chain-of-thought, which are verified against the formal parse via symbolic matching — no LLM judge involved. The verification yields step-level perception rewards combined with outcome rewards during policy optimization. Unlike prior work relying on LLM-as-judge (Perception-R1, PEARL) or learned reward models (CogFlow, EVPV), EPV provides truly verifiable, non-circular perception signals. This builds on demonstrated formal parsing quality (SymHPR: 98.2% reconstruction fidelity, Geoparsing: 29K annotated diagrams) and the proven perception-reasoning disentanglement recipe (MoCA, ICML 2026 Spotlight). We target geometry-intensive benchmarks (MathVerse, GeoQA, Geometry3K) where 40–60% of errors originate from perception failures that model-based rewards systematically miss. The key contribution is demonstrating that executable verification oracles outperform model-based judges as perception reward signals for RL-trained multimodal reasoners, closing the circularity gap in current perception reward methods.
+
+## Key References
+
+- Unlocking Multimodal Mathematical Reasoning via Process Reward Model (NeurIPS 2025)
+- Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (ICLR 2026)
+- Bad Seeing or Bad Thinking? Rewarding Perception for Vision-Language Reasoning (ICML 2026)
+- CogFlow: Bridging Perception and Reasoning through Knowledge Internalization for Visual Mathematical Problem Solving (ICLR 2026)
+- Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning (CVPR 2026)
+- Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning (arXiv 2026)
+- Hierarchical Process Reward Models are Symbolic Vision Learners (arXiv 2025)
+- Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward (arXiv 2026)
+- Grounding the Score: Explicit Visual Premise Verification for Reliable VL-PRMs (arXiv 2026)
+- Learning Only with Images: Visual Reinforcement Learning with Reasoning, Rendering, and Visual Feedback (arXiv 2025)
+- Visual-ERM: Reward Modeling for Visual Equivalence (arXiv 2026)
+- Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language (arXiv 2026)
+- A Survey of Multimodal Mathematical Reasoning: From Perception, Alignment to Reasoning (arXiv 2026)
+- Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2026)
+- ViCrit: A Verifiable Reinforcement Learning Proxy Task for Visual Perception in VLMs (NeurIPS 2025)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 1,200–1,500, timeline: 12–16 weeks, estimated_gpu_cost: $3,000–$3,750 (A100-80G at ~$2.50/hr)
+- **human_in_loop**: gpu_hours: 800–1,200, timeline: 8–12 weeks, claude_api_cost: $300–$500, estimated_gpu_cost: $2,000–$3,000
+- **auto_research**: gpu_hours: 800–1,200, timeline: 5–8 weeks, claude_api_cost: $800–$1,200, estimated_gpu_cost: $2,000–$3,000, speed_bottleneck: RL training wall-clock time (16h/run on 16×A100); formal parses pre-cached to eliminate parser latency; experiment iteration loop is the binding constraint
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c42a5689-03e0-45dd-b3e2-f75432ae45c5",
+  "type": "user",
+  "uuid": "de336622-8d9b-434e-8bc2-7f3fd11759ef",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T21:40:47.132Z_
+
+```json
+{
+  "parentUuid": "de336622-8d9b-434e-8bc2-7f3fd11759ef",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "f224e268-07fb-4250-bb83-a15299a3adee",
+  "timestamp": "2026-05-27T21:40:47.132Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T21:40:47.133Z_
+
+```json
+{
+  "parentUuid": "f224e268-07fb-4250-bb83-a15299a3adee",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "05d4783d-cc47-4511-a0e2-17be8aaa276a",
+  "timestamp": "2026-05-27T21:40:47.133Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-27T21:40:47.133Z_
+
+```json
+{
+  "parentUuid": "05d4783d-cc47-4511-a0e2-17be8aaa276a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "14009169-0a5b-4dea-b3f2-811789311582",
+  "timestamp": "2026-05-27T21:40:47.133Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T21:40:57.253Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to act as the "终审 agent" (Meta Judge / Final Arbiter) in a multi-agent review system. They've given me the original proposal and told me it has passed the triple-consensus triage (GO). Now they want me to remember this proposal and be ready for "角色 B：迭代中" — integrating worker outputs and updating the proposal.
+
+Let me carefully read and understand this proposal:
+
+**Title**: Executable Perception Verification Rewards for Multimodal Math RL
+
+**Core idea**: Instead of using model-based (LLM-as-judge) perception rewards in multimodal math RL, use formally grounded executable verification of visual perception claims as step-level verifiable rewards. Specifically, for geometry problems, pre-parse diagrams into formal representations, then verify perception claims in CoT against these formal parses via symbolic execution.
+
+
+The key innovation here is the EPV-Oracle mechanism that replaces circular model-based perception rewards with executable, formally grounded verification signals. I've got the full proposal locked in and I'm ready to move into the iterative phase when the worker outputs come through.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14009169-0a5b-4dea-b3f2-811789311582",
+  "isSidechain": false,
+  "requestId": "req_011CbToM2wq2coY7MfTZjzVF",
+  "type": "assistant",
+  "uuid": "7da2c460-9bb3-429e-80ee-55e5bc82555e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014aLHgRbjPkm3uNrdkSmmc2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 3943,
+      "cache_read_input_tokens": 16149,
+      "output_tokens": 1052,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1052,
+          "cache_read_input_tokens": 16149,
+          "cache_creation_input_tokens": 3943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T21:41:07.835Z_
+
+已收到并完整记录原始 proposal。
+
+**Proposal 核心摘要（我的理解确认）**：
+
+- **标题**：Executable Perception Verification Rewards for Multimodal Math RL
+- **核心 claim**：用形式化几何解析器（Geoparsing GDP-29K, FormalGeo）产出的 ground-truth 结构化表示，作为可执行 oracle，在 GRPO 训练中对 VLM CoT 里的感知声明（如 "angle ABC = 60°"）进行符号验证，产生非循环的 step-level perception reward，替代现有的 LLM-as-judge / learned reward model 方案
+- **关键差异化**：所有现有方法（PEARL、Perception-R1、CogFlow、URSA、PRCO、MoCA）的感知奖励都依赖模型判断，存在循环性；EPV 是唯一用 formally executable oracle 做感知验证的 RL reward 方案
+- **实验设计**：Qwen3-VL-8B + GRPO，~15K 几何问题，16×A100，评测 MathVerse/GeoQA/Geometry3K，对比 PEARL LLM-judge 和 Perception-R1 consistency-check baselines
+- **关键引用**：15 篇，覆盖 NeurIPS 2025、ICLR 2026、ICML 2026、CVPR 2026 等
+
+**关键文献锚点（后续重写必须保留）**：
+- URSA (NeurIPS 2025)
+- Perception-R1 (ICLR 2026)
+- PRCO (2026)
+- MoCA (ICML 2026 Spotlight)
+- CogFlow (ICLR 2026)
+- SymHPR (Dec 2025), 98.2% reconstruction fidelity
+- SGVR (Jan 2026), +9.7% on geometry
+- EVPV (Mar 2026)
+- RRVF/Visual-ERM, +8.4 on chart-to-code
+- PEARL (CVPR 2026), +9.7% on MathVerse
+- KAWHI (arXiv 2026)
+- Geoparsing GDP-29K
+- FormalGeo/FormalGeo7K
+- ViCrit (NeurIPS 2025)
+- 所有 Key References 列表中的 15 篇论文
+
+**已就绪**。请提供第一轮「发掘 agent」和「补救 agent」的输出，我将执行角色 B 的整合与更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7da2c460-9bb3-429e-80ee-55e5bc82555e",
+  "isSidechain": false,
+  "requestId": "req_011CbToM2wq2coY7MfTZjzVF",
+  "type": "assistant",
+  "uuid": "28c65e25-1eb0-4a07-aaad-c82354327ecd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014aLHgRbjPkm3uNrdkSmmc2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 3943,
+      "cache_read_input_tokens": 16149,
+      "output_tokens": 1052,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1052,
+          "cache_read_input_tokens": 16149,
+          "cache_creation_input_tokens": 3943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【背景】: 以下 proposal 已通过外部入口筛选（triple-consensus triage），确认 GO。请记住这份 proposal 的完整内容，后续你将以「角色 B：迭代中」整合 worker 输出并更新它。  【原始 proposal】: # Executable Perception Verification Rewards for Multimodal Math RL  ##…",
+  "leafUuid": "28c65e25-1eb0-4a07-aaad-c82354327ecd",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13 · 2026-05-27T21:47:07.998Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T21:47:07.998Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "content": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have sufficient research to provide a thorough assessment. Let me synthesize my findings.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- [PEARL / arXiv 2511.18437](https://arxiv.org/abs/2511.18437) (CVPR 2026): 最直接的竞争工作。用 perception checklist + LLM judge 做 RL reward，+9.7% on MathVerse。Proposal 正确指出其 circularity 问题，但 PEARL 的实际表现已经很强，说明 circularity 在实践中可能伤害有限——这对 EPV 的必要性构成压力。\n- [MoCA / arXiv 2605.14054](https://arxiv.org/abs/2605.14054) (ICML 2026 Spotlight): 用 blindfolded text reasoner 做 perception 的 sufficiency test，实现 modality-aware credit assignment。关键 insight 是\"perception reward 应该测试的是信息提取的充分性，不是像素级描述的准确性\"。Proposal 引用了但没有深入对比其哲学差异。\n- [PAPO / arXiv 2507.06448](https://arxiv.org/abs/2507.06448) (2025): **Proposal 未引用的高度相关工作**。用 KL divergence 做 implicit perception loss，无需任何外部 oracle，+4.4% overall，+8% on vision-dependent tasks，perception error 减少 30.5%。方法极其简单，构成 trivial alternative 威胁。\n- [SGVR / arXiv 2601.05073](https://arxiv.org/abs/2601.05073) (2026): 将 formal proofs 转为 verifiable numeric sub-goals 用于 RL reward，+9.7% on geometry。Proposal 正确区分了 SGVR 验证的是 reasoning outcomes 而非 perception claims，但 SGVR 的\"formal verification → RL reward\"范式与 EPV 有显著技术重叠。\n- [SymHPR / arXiv 2512.03126](https://arxiv.org/abs/2512.03126) (Dec 2025): 用 reconstruction-based reward 训练 perception module，98.2% reconstruction fidelity。只训练 perception 不训练 reasoning chain，但其核心的 symbolic auto-encoder + executable rendering engine 与 EPV 的 formal parse oracle 有架构相似性。\n- [CogFlow / arXiv 2601.01874](https://arxiv.org/abs/2601.01874) (ICLR 2026): 三阶段 perception→internalization→reasoning，核心 insight 是\"提取的 visual cues 是否 faithfully integrated 比提取本身更重要\"。这挑战了 EPV 只验证 perception claims 是否准确的假设——准确的 perception 未必能被正确整合到 reasoning 中。\n- [Geoparsing / arXiv 2604.11600](https://arxiv.org/abs/2604.11600) (Apr 2026): GDP-29K，plane + solid geometry formal parsing。Proposal 依赖此工作作为 oracle infrastructure，其成熟度直接决定 EPV 可行性。\n- [PRCO / arXiv 2603.28618](https://arxiv.org/abs/2603.28618) (2026): Dual-role (Observer + Solver) 框架，role-specific rewards。+7 points overall。其\"先 perceive 再 reason\"的 pipeline 与 EPV 的\"verify perception then reward reasoning\"有结构对应关系。\n- 调研总结: 该领域 2025-2026 年的核心趋势是**解耦 perception 和 reasoning 的 credit assignment**，方法谱系从最轻量的 implicit loss (PAPO) 到 blindfolded proxy (MoCA) 到 dual-role pipeline (PRCO/CogFlow) 到 checklist + judge (PEARL/EVPV)。EPV 试图走到谱系最右端——用 formally executable oracle 取代所有 model-based 判断。这个定位是清晰的，但需要更有力地论证\"为什么最右端是必要的\"。\n\n---\n\n【发掘点 1】\n- 维度: trivial alternative 威胁\n- 内容: PAPO (Perception-Aware Policy Optimization, arXiv 2507.06448) 是一个未被引用的高度相关工作，它通过在 policy gradient 中加入一个 KL divergence 项（Implicit Perception Loss）来改善 perception，**不需要任何外部 oracle、formal parser、或 claim extraction pipeline**，却在 vision-dependent tasks 上实现了 +8% 的提升和 30.5% 的 perception error reduction。这构成了对 EPV 的直接 trivial alternative 威胁：如果一个完全不需要 formal parsing infrastructure 的简单正则化项就能大幅减少 perception error，那 EPV 复杂的 pipeline（formal parser + claim extractor + symbolic matcher）的增量价值在哪里？Proposal 必须在 related work 中引用 PAPO，并清晰论证 EPV 相对于 PAPO 的不可替代优势——建议的论证角度：PAPO 是 implicit 的（不知道具体哪个 perception claim 出错了），而 EPV 是 explicit 的（能指出\"你看到 angle ABC = 45° 但实际是 60°\"），这种 explicit feedback 在 geometry 等高精度领域可能有质的差异。\n- 价值: 直接关系到 novelty 维度——如果 trivial alternative 不被 address，审稿人有理由质疑整个 pipeline 的必要性。\n- 调研依据: PAPO (arXiv 2507.06448) 的 implicit perception loss 方法。\n\n【发掘点 2】\n- 维度: 前提假设质疑\n- 内容: EPV 的整个架构建立在一个关键假设上：**CoT 中的 perception claims 可以通过 pattern matching 可靠地提取出来**（如 'angle ABC = 60°', 'AB ∥ CD'）。但实际 VLM 的 CoT 输出远比这复杂——模型可能说\"since the triangle appears equilateral\"（隐含 all angles = 60° 但没有显式写出）、\"the two lines seem parallel\"（模糊表述）、或用自然语言描述拓扑关系（\"point D lies inside the circle\"）。如果 pattern matching 的 recall 不高，r_percept = verified_claims / total_claims 中的 total_claims 会系统性偏低，导致 reward signal 极度稀疏或偏向只奖励使用了可提取格式的 rollout——这可能引入一种新的 bias，鼓励模型用 rigid template 表达而非自然推理。这不是一个可以用\"engineering effort\"解决的问题，它是 core claim 的逻辑链条中的结构性脆弱点。建议的强化方向：(1) 在 approach 中明确讨论 claim extraction coverage 的预期范围并给出基于 pilot study 的估计；(2) 考虑是否可以通过 prompt engineering 让 GRPO 的 rollout 使用 structured output format（如 `[PERCEIVE: angle ABC = 60°]`），使 claim extraction 变成 parsing 而非 pattern matching——这同时可以作为额外的 contribution（structured perception grounding as inductive bias）。\n- 价值: 关系到 novelty 和 significance 维度——如果 claim extraction 不可靠，核心 claim\"executable verification beats model-based judges\"就无法被公平检验。\n- 调研依据: 基于领域整体趋势判断。CoT faithfulness 文献 (arXiv 2510.09312) 显示 CoT 解释系统性偏离模型实际计算过程，这对 pattern matching extraction 的可靠性提出质疑。\n\n【发掘点 3】\n- 维度: significance 提升\n- 内容: 当前 proposal 将 EPV 定位为一个 geometry-specific 技术（\"我们用 formal geometry parsers 做 perception verification\"），但这严重低估了 idea 的潜在影响力。更强大的 framing 是将 EPV 定位为一个 **general methodological principle** 的首个实例化：\"wherever executable formal verifiers exist for a visual domain, they should replace model-based judges as RL perception rewards.\" 这个原则可以推广到：(1) 化学结构图 → SMILES/InChI 验证器；(2) 电路图 → SPICE 仿真器；(3) 乐谱 → MIDI 验证器；(4) 地图/GIS → spatial query engine。Proposal 应在 introduction 中先建立这个 general principle，然后说\"we instantiate and validate this principle in the geometry domain where formal parsers are most mature\"。这样做有两个好处：(a) 将 significance 从\"geometry-specific improvement\"提升到\"new paradigm for perception rewards in any formally-verifiable visual domain\"；(b) 自然地解释了为什么选 geometry 作为 testbed（formal parsing maturity highest），而不是让审稿人质疑\"这只对 geometry 有用吧\"。\n- 价值: 直接提升 significance 维度。从 AAAI 的审稿标准看，一个 general principle + specific instantiation 的论文比一个 domain-specific technique 论文有更高的中稿概率。\n- 调研依据: 基于领域整体趋势判断。RRVF/Visual-ERM 已证明 render-and-compare 在 code generation 领域有效，EPV 可以被定位为这个\"executable verification as reward\"范式向 mathematical perception 的推广。\n\n【发掘点 4】\n- 维度: 核心 claim 强化\n- 内容: 当前 proposal 的核心 claim 是\"executable verification > model-based judges as perception rewards\"，这个 claim 虽然 clean 但缺乏**机制层面的解释力**——为什么 executable verification 应该更好？仅仅说\"non-circular\"是一个理论论证，但审稿人会想知道 circularity 在实践中**具体怎么伤害**性能。建议增加一个更具体的机制性 claim：**model-based judges 系统性地 under-penalize 与 judge model 自身 bias 一致的 perception errors**。例如，如果 judge LLM 和 policy VLM 都倾向于将 obtuse angles 误判为 right angles（一种已知的 VLM geometric bias），那 judge 不会惩罚这个 perception error，因为 judge 自己也\"认为\"那是 right angle。Formal parser 不受此 bias 影响。如果能在论文中设计一个 pilot analysis 展示这种 \"correlated bias\" 的存在，核心 claim 就从\"theoretically non-circular\"升级为\"empirically demonstrated that circularity causes correlated bias amplification\"——这会让审稿人真正感到 surprised 而非 \"I would have guessed this\"。\n- 价值: 直接提升 novelty 维度。当前 claim 的 novelty level 是\"reasonable but expected\"——大家都知道 LLM judge 有 bias，指出这一点不 surprising。但**量化展示 correlated bias amplification** 会让 claim 变得 surprising。\n- 调研依据: PEARL (arXiv 2511.18437) 使用 LLM judge 仍获得 +9.7%，说明 circularity 的伤害可能不是全局性的。如果 EPV 只能论证\"circularity bad in theory\"，审稿人会指向 PEARL 的强实验结果反驳。需要更精细的 claim 来解释\"PEARL 什么时候好、什么时候 circularity 才 hurt\"。\n\n【发掘点 5】\n- 维度: related work 差异化\n- 内容: 与 SGVR (arXiv 2601.05073) 的差异化需要更精确。Proposal 当前说\"SGVR only verifies reasoning outcomes, not perception claims\"，但 SGVR 的 sub-goal verification 包含了 **intermediate numeric values**（如\"求出 angle X 的值\"），这些 intermediate values 的正确性本身就隐含了 perception 的正确性——如果模型看错了角度但中间值恰好对了，只能说明是另一种形式的 perception-reasoning entanglement。更准确的差异化应该是：**SGVR 验证的是 reasoning chain 产生的数值结果是否正确（outcome-level），而 EPV 验证的是 reasoning chain 的输入前提（perception claims）是否与图像一致（premise-level）**。这两者是互补的而非替代的。Proposal 可以更进一步建议：EPV + SGVR 的组合（perception premise verification + reasoning outcome verification）可能实现\"双重覆盖\"——这既强化了差异化，也开拓了 future work。\n- 价值: 提升 related work 差异化清晰度。当前的差异化表述可能被审稿人挑战（\"intermediate sub-goals 不也间接验证了 perception 吗？\"），更精确的 premise-level vs outcome-level 区分更具说服力。\n- 调研依据: SGVR (arXiv 2601.05073) 的 GeoGoal benchmark 将 abstract proofs 转为 verifiable numeric sub-goals，这些 sub-goals 在性质上是 reasoning outcome 的 checkpoint，而非 perception input 的验证。\n\nSources:\n- [PEARL: Perceptual-Evidence Anchored Reinforced Learning](https://arxiv.org/abs/2511.18437)\n- [MoCA: Bad Seeing or Bad Thinking?](https://arxiv.org/abs/2605.14054)\n- [PAPO: Perception-Aware Policy Optimization](https://arxiv.org/abs/2507.06448)\n- [SGVR: Milestones over Outcome](https://arxiv.org/abs/2601.05073)\n- [SymHPR: Hierarchical Process Reward Models](https://arxiv.org/abs/2512.03126)\n- [CogFlow: Bridging Perception and Reasoning](https://arxiv.org/abs/2601.01874)\n- [Geoparsing: GDP-29K](https://arxiv.org/abs/2604.11600)\n- [PRCO: Seeing with You](https://arxiv.org/abs/2603.28618)\n- [KAWHI: Bridging Visual Representation and RLVR](https://arxiv.org/abs/2603.27375)\n- [EVPV: Grounding the Score](https://arxiv.org/abs/2603.16253)\n- [CRV: Verifying CoT via Computational Graph](https://arxiv.org/abs/2510.09312)\n\n【补救 agent 本轮输出】:\nBased on my thorough pre-research, I'm now ready to deliver my assessment.\n\n---\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- **Perception-R1** (ICLR 2026): 用 Qwen2.5-VL-7B + EasyR1 训练，LLM-as-judge (Qwen2.5-32B) 提供感知奖励，1,442 条训练样本，评测 MMMU/MMStar/MathVerse 等 6+ benchmarks，ablation 包括奖励类型对比、training data scaling、McNemar's test 诊断感知 vs 推理。\n- **PEARL** (CVPR 2026): dual-branch perception checklist + reasoning，与 GRPO/DAPO 集成，MathVerse 上 +9.7% over baseline / +6.6% over vanilla GRPO，ablation 包括 perception gate 开关、checklist 质量分析、不同 RL 算法集成。\n- **MoCA** (ICML 2026 Spotlight): \"blindfolded reasoning\" proxy 区分 perception vs reasoning，Perception Verification + Outcome Verification 双奖励，ablation 包括 PV-only/OV-only/PV+OV、多个 benchmark 跨域泛化测试。\n- **PRCO** (arXiv 2026): Observer+Solver 双角色 RLVR，role-specific rewards，8 个 multimodal benchmarks 上平均 +7 points，ablation 包括 role 消融、reward 组合方式。\n- **SGVR** (arXiv 2026): 基于 formal verification 的 sub-goal dense reward (Skeleton Rate)，geometry +9.7%，generalization 到 general math (+8.0%)，使用 GeoGoal benchmark。\n- **CogFlow** (ICLR 2026): 三阶段 perception→internalization→reasoning，Visual-Gated Policy Optimization，MathCog 数据集 120K+ 标注，多个 visual math benchmarks。\n- **EVPV** (arXiv 2026): step-wise visual checklist + constraint extractor，reliability gating 校准 PRM step rewards，评测 VisualProcessBench + 6 个 reasoning benchmarks。\n- **Geoparsing/GDP-29K** (arXiv 2026): SFT+RLVR 训练几何图解析，20K plane + 9K solid geometry，统一形式语言。\n- **SymHPR** (arXiv 2025): 层次化 process reward 做 symbolic auto-encoder，98.2% MSE reduction（注意：这是 reconstruction MSE reduction，非 reconstruction fidelity），diagram→formal→diagram 重建。\n- **RRVF/Visual-ERM** (arXiv 2025/2026): render-and-compare 闭环 visual reward，chart-to-code +8.4，仅用于 code generation 任务。\n\n- **调研总结**: 该领域当前的实验设计标准要求：(1) 与 vanilla GRPO 和至少 3-4 个 perception reward 方法做 head-to-head 对比；(2) 在 6+ 个 benchmark 上评测（包括 geometry-specific 和 general multimodal）；(3) 包含 perception vs reasoning 的诊断性分析（如 MoCA 的 blindfold test 或 Perception-R1 的 McNemar's test）；(4) 对 reward 信号质量本身的分析（不仅仅看 downstream accuracy）。审稿人普遍期望看到 compute-matched comparison、reward dynamics 分析、以及各组件独立贡献的 ablation。\n\n---\n\n【缺陷 1】\n- 类别: baseline 不足或过时\n- 问题: Proposal 的实验设计中仅提到与 PEARL 的 LLM-judge 和 Perception-R1 的 consistency-check 做对比。这远不足以支撑 core claim（\"executable verification > model-based verification\"）。缺少以下关键 baselines：(1) **Vanilla GRPO**（无任何 perception reward）——作为最基本的 lower bound；(2) **MoCA**（ICML 2026 Spotlight，blindfolded reasoning proxy）——作为 perception-reasoning disentanglement 的代表性方法；(3) **PRCO**（Observer-Solver 双角色，role-specific reward）——当前性能最强的 perception reward 方法之一；(4) **SGVR**（formal verification-based sub-goal reward）——在 geometry 上直接使用 formal proof，与本方法技术路线最接近，+9.7% geometry 且有 generalization。特别是 SGVR 使用 formal verification 但只验证 reasoning sub-goals 不验证 perception claims，proposal 必须与之做 head-to-head 才能证明 \"verification of perception claims\" 比 \"verification of reasoning sub-goals\" 更有效。\n- 严重度: 可补救\n- 补救方案: 将 baseline 扩展为至少 5 个对比方法：(1) Vanilla GRPO (no perception reward)、(2) PEARL (LLM-judge perception)、(3) Perception-R1 (consistency check)、(4) MoCA (blindfolded proxy)、(5) SGVR (formal sub-goal reward)。如果 compute 不允许全部从头训练，对 MoCA 和 PRCO 可引用其已发表的数字做间接对比（在相同 base model 和 benchmark 上），但 SGVR 和 Vanilla GRPO 必须在同一实验框架下从头跑，因为它们与本方法的差异是核心 claim 的关键支撑。\n- 调研依据: PEARL 论文与 GRPO/DAPO 做了 head-to-head 对比；Perception-R1 与 7+ baselines 对比；MoCA 做了 PV-only/OV-only ablation。该领域的 baseline 覆盖标准至少为 4-5 个对比方法。\n\n【缺陷 2】\n- 类别: 实验设计不足\n- 问题: Proposal 的核心技术瓶颈——**perception claim extraction**——完全依赖 \"pattern matching (e.g., 'angle ABC = 60°', 'AB ∥ CD')\"，但没有任何关于 extraction 可靠性的验证设计。这是整个方法的 Achilles' heel：如果 claim extraction 的 precision/recall 不高，r_percept = verified_claims / total_claims 就是一个 garbage-in-garbage-out 的噪声信号。VLM 的 CoT 输出高度多样化——同一个 perception claim 可以表达为 \"angle B is 90 degrees\"、\"triangle ABC is right-angled at B\"、\"AB ⊥ BC\"、\"the perpendicular from B\" 等，简单 pattern matching 很难覆盖。Proposal 没有回答：(1) claim extractor 的 precision/recall 预期是多少？(2) 如何处理隐式感知声明（如 \"since it's an isosceles triangle\"）？(3) 当 recall 很低时，r_percept 是否有统计意义？(4) 是否考虑过 LLM-based extraction 作为替代或 fallback？\n- 严重度: 可补救\n- 补救方案: (1) **增加一个 claim extraction 的独立验证实验**：手工标注 200-500 条 CoT 中的所有 perception claims，计算 pattern matcher 的 precision/recall/F1，并报告；(2) **对比多种 extraction 方法**：rule-based pattern matching vs. LLM-based extraction (用小型 LLM 如 Qwen2.5-7B 提取) vs. hybrid（rule-based + LLM fallback），这本身是一个有价值的 ablation；(3) **分析 extraction 质量对 reward 信号的敏感度**：在不同 noise level 下（人为降低 extraction recall）观察训练效果变化，证明方法对 extraction 噪声的鲁棒性或确定 quality threshold；(4) 在 paper 中明确承认 extraction 是一个工程挑战，但通过实验数据说明其在实际训练中的影响程度。\n- 调研依据: EVPV 使用 \"step-wise visual checklist + constraint extractor\" 的方式解决类似问题但依赖 model-generated checklist；SGVR 使用 formal proof engine 自动生成 sub-goals 避免了 free-form extraction；CogFlow 通过三阶段 pipeline 强制模型输出结构化 perception 结果。领域内的共识是 free-form CoT 的信息提取需要专门验证。\n\n【缺陷 3】\n- 类别: 评估方案缺陷\n- 问题: Proposal 仅评估 MathVerse、GeoQA、Geometry3K 上的最终答案准确率，但 core claim 是 \"executable verification improves *perception*\"。目前缺少：(1) **perception-specific 的诊断性评估**——只看 final accuracy 无法区分 perception improvement 和 reasoning improvement，reviewer 会直接质疑 \"你怎么知道提升来自 perception 而不是 reasoning？\"；(2) **reward 信号质量本身的分析**——EPV reward 与 ground-truth perception correctness 的 correlation 是多少？相比 PEARL/Perception-R1 的 reward 信号，EPV 的信噪比如何？(3) **error analysis**——训练后模型的 perception error rate 是否确实下降？需要 before/after 的 perception error breakdown。\n- 严重度: 可补救\n- 补救方案: (1) **加入 perception-specific benchmark**：使用 MathGlance（SymHPR 论文使用的 perception 评测）或 VisualProcessBench（EVPV 使用的 step-level 验证评测），直接测量 perception accuracy；(2) **加入 blindfold diagnostic**（借鉴 MoCA）：对训练后的模型做 text-only 推理 vs. multimodal 推理对比，隔离 perception 贡献；(3) **加入 reward signal quality 分析**：在 held-out 集上计算 EPV reward 与人工标注的 perception correctness 之间的 Pearson/Spearman correlation，并与 PEARL 的 LLM-judge reward 做对比；(4) **加入训练前后的 error type breakdown**：参考 multimodal math survey 中 perception/reasoning/calculation error 的分类，报告各类错误在训练前后的变化比例。\n- 调研依据: Perception-R1 使用 McNemar's test 诊断 perception vs reasoning improvement；MoCA 使用 blindfolded reasoning proxy 做诊断；SymHPR 使用 MathGlance 做 perception evaluation。这些诊断性评估在该领域已经成为审稿人的标准期望。\n\n【缺陷 4】\n- 类别: ablation 不完整\n- 问题: Proposal 中的 ablation 设计仅提到 \"EPV-Oracle vs PEARL vs Perception-R1\" 的对比，这更像 baseline comparison 而非 component ablation。缺少以下关键内部消融实验：(1) **λ annealing 策略**：proposal 提到 \"λ is annealed during training to shift credit from perception grounding to reasoning\" 但没有设计 ablation 来验证 annealing 的必要性和最佳策略（constant λ vs. linear annealing vs. cosine annealing vs. step decay）；(2) **r_percept 的粒度**：verified_claims/total_claims（ratio）vs. binary（全对/全错）vs. weighted（按 claim 难度加权）；(3) **formal parse 来源**：GDP-29K only vs. FormalGeo7K only vs. combined，以及 parse quality 的影响；(4) **训练数据规模**：5K vs. 10K vs. 15K，验证 formal annotation 数据量的边际收益。\n- 严重度: 可补救\n- 补救方案: 至少增加以下 4 个 ablation：(a) EPV with λ=0（pure outcome reward，等价于 vanilla GRPO）vs. EPV with constant λ vs. EPV with annealed λ；(b) r_percept ratio reward vs. binary reward vs. step-level binary reward（某步所有 claims 正确才给分）；(c) 不同 formal parse 数据源的影响；(d) training data scale curve。其中 (a) 和 (b) 是最关键的，直接关系到 reward design 的合理性验证。\n- 调研依据: MoCA 做了 PV-only/OV-only/PV+OV ablation；PEARL 做了 perception gate 开关 ablation；PRCO 做了 role-specific reward 组合 ablation。该领域审稿人期望看到 reward 设计中每个组件的独立贡献。\n\n【缺陷 5】\n- 类别: 可行性问题\n- 问题: **Formal parse 覆盖率存在缺口**。Proposal 训练集设计为 \"~15K geometry problems drawn from GDP-29K, FormalGeo7K, and GeoQA with formal annotations\"，但这里有一个隐含假设——GeoQA 的问题都有对应的 formal parse。实际情况是：GDP-29K 是图解析数据集（20K plane + 9K solid），FormalGeo7K 是形式化求解数据集（7K 问题），而 GeoQA 是独立的 QA 数据集（~5K 问题），三者之间的 **diagram overlap** 并不确定。如果 GeoQA 中大量问题的 diagram 不在 GDP-29K/FormalGeo7K 的覆盖范围内，要么需要额外运行 Geoparsing 模型来自动生成 formal parse（引入额外噪声），要么可用训练数据大幅缩水。\n- 严重度: 可补救\n- 补救方案: (1) **先做数据审计**：统计 GDP-29K、FormalGeo7K 与 GeoQA/Geometry3K 的 diagram overlap，确定实际可用的带 formal annotation 的训练样本数；(2) **如果 overlap 不足**，使用 Geoparsing 模型对 GeoQA diagrams 做自动 formal parsing，并报告自动 parse 的准确率；(3) **将 auto-parsed vs. gold-parsed 作为 ablation**，分析 parse quality 对训练效果的影响；(4) 如果最终可用数据只有 5-8K 而非 15K，需要调整 claim 的范围或增加数据来源（如 UniGeo、PGPS9K 等其他 geometry 数据集）。\n- 调研依据: Geoparsing 论文的 GDP-29K 数据来源为 \"diverse real-world sources\"，但未明确列出与 GeoQA/Geometry3K 的 overlap。基于领域实验规范判断，数据可用性需在实验前验证。\n\n【缺陷 6】\n- 类别: compute 公平性问题\n- 问题: Proposal 没有说明与 baseline 方法的 **compute-normalized comparison** 方案。不同方法的 per-step overhead 差异很大：(1) PEARL 需要额外的 perception checklist rollout（约 2x rollout compute）；(2) EPV-Oracle 需要 pattern matching + symbolic verification（compute 较轻，但需要 formal parse 存储）；(3) Perception-R1 需要 LLM judge inference（额外的大模型推理成本）；(4) Vanilla GRPO 无额外开销。如果不做 compute-normalized comparison（例如 \"在相同 GPU 时间 / 相同 gradient steps / 相同 total FLOPs 下的对比\"），reviewer 会质疑性能差异是否仅仅来自更多计算。\n- 严重度: 可补救\n- 补救方案: (1) 报告每种方法的 per-step wall-clock time 和 total training GPU hours；(2) 在 gradient steps 对齐的基础上额外做一组 wall-clock time 对齐的对比（即给 vanilla GRPO 同样的 GPU 时间来跑更多 steps）；(3) 绘制 performance vs. compute 的 scaling curve，展示 EPV-Oracle 的 compute efficiency。EPV-Oracle 的一个潜在优势是 symbolic verification 远比 LLM-judge inference 便宜，应该在实验中体现。\n- 调研依据: 基于领域实验规范判断。PEARL 和 Perception-R1 的论文中也没有做严格的 compute-matched comparison，但 AAAI 审稿人越来越重视 compute fairness（尤其在 RL training 的对比中）。\n\n【缺陷 7】\n- 类别: 评估方案缺陷\n- 问题: Proposal 的 benchmark 选择偏窄——仅 MathVerse、GeoQA、Geometry3K，全部是 geometry-centric。虽然本方法确实针对 geometry，但缺少 **(1) general multimodal reasoning benchmark**（如 MMMU、MMStar、MathVista）来测试是否有 generalization 或 regression，以及 **(2) out-of-domain geometry benchmark**（如 GeoChallenge 2026、DynaSolidGeo）来测试泛化能力。当前领域的标准做法是在 6+ benchmarks 上报告结果（PRCO 用 8 个，Perception-R1 用 6+）。仅 3 个 geometry benchmarks 的评测会让审稿人质疑方法的 generalizability。\n- 严重度: 可补救\n- 补救方案: 增加至少 2-3 个 benchmark：(1) **MMMU** 或 **MMStar** 作为 general multimodal reasoning 的 sanity check（验证 geometry-focused training 不会导致 general capability regression）；(2) **MathVista** 作为更广泛的 math reasoning benchmark；(3) 如果有条件，加入一个 solid geometry 或 analytic geometry benchmark 测试域外泛化。最终报告至少覆盖 5-6 个 benchmarks。\n- 调研依据: Perception-R1 评测了 MMMU、MMStar 等 general benchmarks；PRCO 在 8 个 benchmarks 上报告；MoCA 做了跨域泛化分析。3 个 geometry-only benchmarks 不符合领域评测标准。\n\n---\n\n**总结**: 以上 7 个缺陷均为**可补救**的实验设计层面问题，没有发现方向性致命缺陷。补救优先级排序：\n\n1. **最高优先级**（不补必被 reject）：缺陷 2（claim extraction 验证）和缺陷 3（perception-specific 诊断评估）——这两个直接关系到 core claim 的可信度\n2. **高优先级**（显著影响分数）：缺陷 1（baseline 覆盖）和缺陷 7（benchmark 扩展）\n3. **中等优先级**（完整性提升）：缺陷 4（ablation 补全）和缺陷 6（compute fairness）\n4. **较低优先级**（实施阶段可解决）：缺陷 5（数据 overlap 审计）\n\n如果以上 7 个缺陷均能补救到位，实验设计层面可以达到 AAAI 主会的门槛。\n\nSources:\n- [Perception-R1 (GitHub)](https://github.com/tongxiao2002/Perception-R1)\n- [Perception-R1 (OpenReview)](https://openreview.net/forum?id=KttCXdjj4w)\n- [PEARL (GitHub)](https://github.com/MiliLab/PEARL)\n- [PEARL (arXiv)](https://arxiv.org/abs/2511.18437)\n- [MoCA: Bad Seeing or Bad Thinking?](https://arxiv.org/html/2605.14054)\n- [SGVR: Milestones over Outcome](https://arxiv.org/abs/2601.05073)\n- [Geoparsing (arXiv)](https://arxiv.org/abs/2604.11600)\n- [SymHPR (arXiv)](https://arxiv.org/abs/2512.03126)\n- [PRCO: Seeing with You](https://arxiv.org/abs/2603.28618)\n- [CogFlow (ICLR 2026)](https://arxiv.org/abs/2601.01874)\n- [EVPV (arXiv)](https://arxiv.org/abs/2603.16253)\n- [KAWHI (arXiv)](https://arxiv.org/abs/2603.27375)\n- [RRVF (GitHub)](https://github.com/L-O-I/RRVF)\n- [Visual-ERM (arXiv)](https://arxiv.org/abs/2603.13224)\n- [EasyR1 (GitHub)](https://github.com/hiyouga/easyr1)\n- [OpenRLHF (GitHub)](https://github.com/openrlhf/openrlhf)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14 · 2026-05-27T21:47:07.999Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T21:47:07.999Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+## Round 2
+
+29 recorded events
+
+### User
+
+_source line 15 · 2026-05-27T21:47:08.041Z_
+
+【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。
+
+【发掘 agent 本轮输出】:
+Now I have sufficient research to provide a thorough assessment. Let me synthesize my findings.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- [PEARL / arXiv 2511.18437](https://arxiv.org/abs/2511.18437) (CVPR 2026): 最直接的竞争工作。用 perception checklist + LLM judge 做 RL reward，+9.7% on MathVerse。Proposal 正确指出其 circularity 问题，但 PEARL 的实际表现已经很强，说明 circularity 在实践中可能伤害有限——这对 EPV 的必要性构成压力。
+- [MoCA / arXiv 2605.14054](https://arxiv.org/abs/2605.14054) (ICML 2026 Spotlight): 用 blindfolded text reasoner 做 perception 的 sufficiency test，实现 modality-aware credit assignment。关键 insight 是"perception reward 应该测试的是信息提取的充分性，不是像素级描述的准确性"。Proposal 引用了但没有深入对比其哲学差异。
+- [PAPO / arXiv 2507.06448](https://arxiv.org/abs/2507.06448) (2025): **Proposal 未引用的高度相关工作**。用 KL divergence 做 implicit perception loss，无需任何外部 oracle，+4.4% overall，+8% on vision-dependent tasks，perception error 减少 30.5%。方法极其简单，构成 trivial alternative 威胁。
+- [SGVR / arXiv 2601.05073](https://arxiv.org/abs/2601.05073) (2026): 将 formal proofs 转为 verifiable numeric sub-goals 用于 RL reward，+9.7% on geometry。Proposal 正确区分了 SGVR 验证的是 reasoning outcomes 而非 perception claims，但 SGVR 的"formal verification → RL reward"范式与 EPV 有显著技术重叠。
+- [SymHPR / arXiv 2512.03126](https://arxiv.org/abs/2512.03126) (Dec 2025): 用 reconstruction-based reward 训练 perception module，98.2% reconstruction fidelity。只训练 perception 不训练 reasoning chain，但其核心的 symbolic auto-encoder + executable rendering engine 与 EPV 的 formal parse oracle 有架构相似性。
+- [CogFlow / arXiv 2601.01874](https://arxiv.org/abs/2601.01874) (ICLR 2026): 三阶段 perception→internalization→reasoning，核心 insight 是"提取的 visual cues 是否 faithfully integrated 比提取本身更重要"。这挑战了 EPV 只验证 perception claims 是否准确的假设——准确的 perception 未必能被正确整合到 reasoning 中。
+- [Geoparsing / arXiv 2604.11600](https://arxiv.org/abs/2604.11600) (Apr 2026): GDP-29K，plane + solid geometry formal parsing。Proposal 依赖此工作作为 oracle infrastructure，其成熟度直接决定 EPV 可行性。
+- [PRCO / arXiv 2603.28618](https://arxiv.org/abs/2603.28618) (2026): Dual-role (Observer + Solver) 框架，role-specific rewards。+7 points overall。其"先 perceive 再 reason"的 pipeline 与 EPV 的"verify perception then reward reasoning"有结构对应关系。
+- 调研总结: 该领域 2025-2026 年的核心趋势是**解耦 perception 和 reasoning 的 credit assignment**，方法谱系从最轻量的 implicit loss (PAPO) 到 blindfolded proxy (MoCA) 到 dual-role pipeline (PRCO/CogFlow) 到 checklist + judge (PEARL/EVPV)。EPV 试图走到谱系最右端——用 formally executable oracle 取代所有 model-based 判断。这个定位是清晰的，但需要更有力地论证"为什么最右端是必要的"。
+
+---
+
+【发掘点 1】
+- 维度: trivial alternative 威胁
+- 内容: PAPO (Perception-Aware Policy Optimization, arXiv 2507.06448) 是一个未被引用的高度相关工作，它通过在 policy gradient 中加入一个 KL divergence 项（Implicit Perception Loss）来改善 perception，**不需要任何外部 oracle、formal parser、或 claim extraction pipeline**，却在 vision-dependent tasks 上实现了 +8% 的提升和 30.5% 的 perception error reduction。这构成了对 EPV 的直接 trivial alternative 威胁：如果一个完全不需要 formal parsing infrastructure 的简单正则化项就能大幅减少 perception error，那 EPV 复杂的 pipeline（formal parser + claim extractor + symbolic matcher）的增量价值在哪里？Proposal 必须在 related work 中引用 PAPO，并清晰论证 EPV 相对于 PAPO 的不可替代优势——建议的论证角度：PAPO 是 implicit 的（不知道具体哪个 perception claim 出错了），而 EPV 是 explicit 的（能指出"你看到 angle ABC = 45° 但实际是 60°"），这种 explicit feedback 在 geometry 等高精度领域可能有质的差异。
+- 价值: 直接关系到 novelty 维度——如果 trivial alternative 不被 address，审稿人有理由质疑整个 pipeline 的必要性。
+- 调研依据: PAPO (arXiv 2507.06448) 的 implicit perception loss 方法。
+
+【发掘点 2】
+- 维度: 前提假设质疑
+- 内容: EPV 的整个架构建立在一个关键假设上：**CoT 中的 perception claims 可以通过 pattern matching 可靠地提取出来**（如 'angle ABC = 60°', 'AB ∥ CD'）。但实际 VLM 的 CoT 输出远比这复杂——模型可能说"since the triangle appears equilateral"（隐含 all angles = 60° 但没有显式写出）、"the two lines seem parallel"（模糊表述）、或用自然语言描述拓扑关系（"point D lies inside the circle"）。如果 pattern matching 的 recall 不高，r_percept = verified_claims / total_claims 中的 total_claims 会系统性偏低，导致 reward signal 极度稀疏或偏向只奖励使用了可提取格式的 rollout——这可能引入一种新的 bias，鼓励模型用 rigid template 表达而非自然推理。这不是一个可以用"engineering effort"解决的问题，它是 core claim 的逻辑链条中的结构性脆弱点。建议的强化方向：(1) 在 approach 中明确讨论 claim extraction coverage 的预期范围并给出基于 pilot study 的估计；(2) 考虑是否可以通过 prompt engineering 让 GRPO 的 rollout 使用 structured output format（如 `[PERCEIVE: angle ABC = 60°]`），使 claim extraction 变成 parsing 而非 pattern matching——这同时可以作为额外的 contribution（structured perception grounding as inductive bias）。
+- 价值: 关系到 novelty 和 significance 维度——如果 claim extraction 不可靠，核心 claim"executable verification beats model-based judges"就无法被公平检验。
+- 调研依据: 基于领域整体趋势判断。CoT faithfulness 文献 (arXiv 2510.09312) 显示 CoT 解释系统性偏离模型实际计算过程，这对 pattern matching extraction 的可靠性提出质疑。
+
+【发掘点 3】
+- 维度: significance 提升
+- 内容: 当前 proposal 将 EPV 定位为一个 geometry-specific 技术（"我们用 formal geometry parsers 做 perception verification"），但这严重低估了 idea 的潜在影响力。更强大的 framing 是将 EPV 定位为一个 **general methodological principle** 的首个实例化："wherever executable formal verifiers exist for a visual domain, they should replace model-based judges as RL perception rewards." 这个原则可以推广到：(1) 化学结构图 → SMILES/InChI 验证器；(2) 电路图 → SPICE 仿真器；(3) 乐谱 → MIDI 验证器；(4) 地图/GIS → spatial query engine。Proposal 应在 introduction 中先建立这个 general principle，然后说"we instantiate and validate this principle in the geometry domain where formal parsers are most mature"。这样做有两个好处：(a) 将 significance 从"geometry-specific improvement"提升到"new paradigm for perception rewards in any formally-verifiable visual domain"；(b) 自然地解释了为什么选 geometry 作为 testbed（formal parsing maturity highest），而不是让审稿人质疑"这只对 geometry 有用吧"。
+- 价值: 直接提升 significance 维度。从 AAAI 的审稿标准看，一个 general principle + specific instantiation 的论文比一个 domain-specific technique 论文有更高的中稿概率。
+- 调研依据: 基于领域整体趋势判断。RRVF/Visual-ERM 已证明 render-and-compare 在 code generation 领域有效，EPV 可以被定位为这个"executable verification as reward"范式向 mathematical perception 的推广。
+
+【发掘点 4】
+- 维度: 核心 claim 强化
+- 内容: 当前 proposal 的核心 claim 是"executable verification > model-based judges as perception rewards"，这个 claim 虽然 clean 但缺乏**机制层面的解释力**——为什么 executable verification 应该更好？仅仅说"non-circular"是一个理论论证，但审稿人会想知道 circularity 在实践中**具体怎么伤害**性能。建议增加一个更具体的机制性 claim：**model-based judges 系统性地 under-penalize 与 judge model 自身 bias 一致的 perception errors**。例如，如果 judge LLM 和 policy VLM 都倾向于将 obtuse angles 误判为 right angles（一种已知的 VLM geometric bias），那 judge 不会惩罚这个 perception error，因为 judge 自己也"认为"那是 right angle。Formal parser 不受此 bias 影响。如果能在论文中设计一个 pilot analysis 展示这种 "correlated bias" 的存在，核心 claim 就从"theoretically non-circular"升级为"empirically demonstrated that circularity causes correlated bias amplification"——这会让审稿人真正感到 surprised 而非 "I would have guessed this"。
+- 价值: 直接提升 novelty 维度。当前 claim 的 novelty level 是"reasonable but expected"——大家都知道 LLM judge 有 bias，指出这一点不 surprising。但**量化展示 correlated bias amplification** 会让 claim 变得 surprising。
+- 调研依据: PEARL (arXiv 2511.18437) 使用 LLM judge 仍获得 +9.7%，说明 circularity 的伤害可能不是全局性的。如果 EPV 只能论证"circularity bad in theory"，审稿人会指向 PEARL 的强实验结果反驳。需要更精细的 claim 来解释"PEARL 什么时候好、什么时候 circularity 才 hurt"。
+
+【发掘点 5】
+- 维度: related work 差异化
+- 内容: 与 SGVR (arXiv 2601.05073) 的差异化需要更精确。Proposal 当前说"SGVR only verifies reasoning outcomes, not perception claims"，但 SGVR 的 sub-goal verification 包含了 **intermediate numeric values**（如"求出 angle X 的值"），这些 intermediate values 的正确性本身就隐含了 perception 的正确性——如果模型看错了角度但中间值恰好对了，只能说明是另一种形式的 perception-reasoning entanglement。更准确的差异化应该是：**SGVR 验证的是 reasoning chain 产生的数值结果是否正确（outcome-level），而 EPV 验证的是 reasoning chain 的输入前提（perception claims）是否与图像一致（premise-level）**。这两者是互补的而非替代的。Proposal 可以更进一步建议：EPV + SGVR 的组合（perception premise verification + reasoning outcome verification）可能实现"双重覆盖"——这既强化了差异化，也开拓了 future work。
+- 价值: 提升 related work 差异化清晰度。当前的差异化表述可能被审稿人挑战（"intermediate sub-goals 不也间接验证了 perception 吗？"），更精确的 premise-level vs outcome-level 区分更具说服力。
+- 调研依据: SGVR (arXiv 2601.05073) 的 GeoGoal benchmark 将 abstract proofs 转为 verifiable numeric sub-goals，这些 sub-goals 在性质上是 reasoning outcome 的 checkpoint，而非 perception input 的验证。
+
+Sources:
+- [PEARL: Perceptual-Evidence Anchored Reinforced Learning](https://arxiv.org/abs/2511.18437)
+- [MoCA: Bad Seeing or Bad Thinking?](https://arxiv.org/abs/2605.14054)
+- [PAPO: Perception-Aware Policy Optimization](https://arxiv.org/abs/2507.06448)
+- [SGVR: Milestones over Outcome](https://arxiv.org/abs/2601.05073)
+- [SymHPR: Hierarchical Process Reward Models](https://arxiv.org/abs/2512.03126)
+- [CogFlow: Bridging Perception and Reasoning](https://arxiv.org/abs/2601.01874)
+- [Geoparsing: GDP-29K](https://arxiv.org/abs/2604.11600)
+- [PRCO: Seeing with You](https://arxiv.org/abs/2603.28618)
+- [KAWHI: Bridging Visual Representation and RLVR](https://arxiv.org/abs/2603.27375)
+- [EVPV: Grounding the Score](https://arxiv.org/abs/2603.16253)
+- [CRV: Verifying CoT via Computational Graph](https://arxiv.org/abs/2510.09312)
+
+【补救 agent 本轮输出】:
+Based on my thorough pre-research, I'm now ready to deliver my assessment.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **Perception-R1** (ICLR 2026): 用 Qwen2.5-VL-7B + EasyR1 训练，LLM-as-judge (Qwen2.5-32B) 提供感知奖励，1,442 条训练样本，评测 MMMU/MMStar/MathVerse 等 6+ benchmarks，ablation 包括奖励类型对比、training data scaling、McNemar's test 诊断感知 vs 推理。
+- **PEARL** (CVPR 2026): dual-branch perception checklist + reasoning，与 GRPO/DAPO 集成，MathVerse 上 +9.7% over baseline / +6.6% over vanilla GRPO，ablation 包括 perception gate 开关、checklist 质量分析、不同 RL 算法集成。
+- **MoCA** (ICML 2026 Spotlight): "blindfolded reasoning" proxy 区分 perception vs reasoning，Perception Verification + Outcome Verification 双奖励，ablation 包括 PV-only/OV-only/PV+OV、多个 benchmark 跨域泛化测试。
+- **PRCO** (arXiv 2026): Observer+Solver 双角色 RLVR，role-specific rewards，8 个 multimodal benchmarks 上平均 +7 points，ablation 包括 role 消融、reward 组合方式。
+- **SGVR** (arXiv 2026): 基于 formal verification 的 sub-goal dense reward (Skeleton Rate)，geometry +9.7%，generalization 到 general math (+8.0%)，使用 GeoGoal benchmark。
+- **CogFlow** (ICLR 2026): 三阶段 perception→internalization→reasoning，Visual-Gated Policy Optimization，MathCog 数据集 120K+ 标注，多个 visual math benchmarks。
+- **EVPV** (arXiv 2026): step-wise visual checklist + constraint extractor，reliability gating 校准 PRM step rewards，评测 VisualProcessBench + 6 个 reasoning benchmarks。
+- **Geoparsing/GDP-29K** (arXiv 2026): SFT+RLVR 训练几何图解析，20K plane + 9K solid geometry，统一形式语言。
+- **SymHPR** (arXiv 2025): 层次化 process reward 做 symbolic auto-encoder，98.2% MSE reduction（注意：这是 reconstruction MSE reduction，非 reconstruction fidelity），diagram→formal→diagram 重建。
+- **RRVF/Visual-ERM** (arXiv 2025/2026): render-and-compare 闭环 visual reward，chart-to-code +8.4，仅用于 code generation 任务。
+
+- **调研总结**: 该领域当前的实验设计标准要求：(1) 与 vanilla GRPO 和至少 3-4 个 perception reward 方法做 head-to-head 对比；(2) 在 6+ 个 benchmark 上评测（包括 geometry-specific 和 general multimodal）；(3) 包含 perception vs reasoning 的诊断性分析（如 MoCA 的 blindfold test 或 Perception-R1 的 McNemar's test）；(4) 对 reward 信号质量本身的分析（不仅仅看 downstream accuracy）。审稿人普遍期望看到 compute-matched comparison、reward dynamics 分析、以及各组件独立贡献的 ablation。
+
+---
+
+【缺陷 1】
+- 类别: baseline 不足或过时
+- 问题: Proposal 的实验设计中仅提到与 PEARL 的 LLM-judge 和 Perception-R1 的 consistency-check 做对比。这远不足以支撑 core claim（"executable verification > model-based verification"）。缺少以下关键 baselines：(1) **Vanilla GRPO**（无任何 perception reward）——作为最基本的 lower bound；(2) **MoCA**（ICML 2026 Spotlight，blindfolded reasoning proxy）——作为 perception-reasoning disentanglement 的代表性方法；(3) **PRCO**（Observer-Solver 双角色，role-specific reward）——当前性能最强的 perception reward 方法之一；(4) **SGVR**（formal verification-based sub-goal reward）——在 geometry 上直接使用 formal proof，与本方法技术路线最接近，+9.7% geometry 且有 generalization。特别是 SGVR 使用 formal verification 但只验证 reasoning sub-goals 不验证 perception claims，proposal 必须与之做 head-to-head 才能证明 "verification of perception claims" 比 "verification of reasoning sub-goals" 更有效。
+- 严重度: 可补救
+- 补救方案: 将 baseline 扩展为至少 5 个对比方法：(1) Vanilla GRPO (no perception reward)、(2) PEARL (LLM-judge perception)、(3) Perception-R1 (consistency check)、(4) MoCA (blindfolded proxy)、(5) SGVR (formal sub-goal reward)。如果 compute 不允许全部从头训练，对 MoCA 和 PRCO 可引用其已发表的数字做间接对比（在相同 base model 和 benchmark 上），但 SGVR 和 Vanilla GRPO 必须在同一实验框架下从头跑，因为它们与本方法的差异是核心 claim 的关键支撑。
+- 调研依据: PEARL 论文与 GRPO/DAPO 做了 head-to-head 对比；Perception-R1 与 7+ baselines 对比；MoCA 做了 PV-only/OV-only ablation。该领域的 baseline 覆盖标准至少为 4-5 个对比方法。
+
+【缺陷 2】
+- 类别: 实验设计不足
+- 问题: Proposal 的核心技术瓶颈——**perception claim extraction**——完全依赖 "pattern matching (e.g., 'angle ABC = 60°', 'AB ∥ CD')"，但没有任何关于 extraction 可靠性的验证设计。这是整个方法的 Achilles' heel：如果 claim extraction 的 precision/recall 不高，r_percept = verified_claims / total_claims 就是一个 garbage-in-garbage-out 的噪声信号。VLM 的 CoT 输出高度多样化——同一个 perception claim 可以表达为 "angle B is 90 degrees"、"triangle ABC is right-angled at B"、"AB ⊥ BC"、"the perpendicular from B" 等，简单 pattern matching 很难覆盖。Proposal 没有回答：(1) claim extractor 的 precision/recall 预期是多少？(2) 如何处理隐式感知声明（如 "since it's an isosceles triangle"）？(3) 当 recall 很低时，r_percept 是否有统计意义？(4) 是否考虑过 LLM-based extraction 作为替代或 fallback？
+- 严重度: 可补救
+- 补救方案: (1) **增加一个 claim extraction 的独立验证实验**：手工标注 200-500 条 CoT 中的所有 perception claims，计算 pattern matcher 的 precision/recall/F1，并报告；(2) **对比多种 extraction 方法**：rule-based pattern matching vs. LLM-based extraction (用小型 LLM 如 Qwen2.5-7B 提取) vs. hybrid（rule-based + LLM fallback），这本身是一个有价值的 ablation；(3) **分析 extraction 质量对 reward 信号的敏感度**：在不同 noise level 下（人为降低 extraction recall）观察训练效果变化，证明方法对 extraction 噪声的鲁棒性或确定 quality threshold；(4) 在 paper 中明确承认 extraction 是一个工程挑战，但通过实验数据说明其在实际训练中的影响程度。
+- 调研依据: EVPV 使用 "step-wise visual checklist + constraint extractor" 的方式解决类似问题但依赖 model-generated checklist；SGVR 使用 formal proof engine 自动生成 sub-goals 避免了 free-form extraction；CogFlow 通过三阶段 pipeline 强制模型输出结构化 perception 结果。领域内的共识是 free-form CoT 的信息提取需要专门验证。
+
+【缺陷 3】
+- 类别: 评估方案缺陷
+- 问题: Proposal 仅评估 MathVerse、GeoQA、Geometry3K 上的最终答案准确率，但 core claim 是 "executable verification improves *perception*"。目前缺少：(1) **perception-specific 的诊断性评估**——只看 final accuracy 无法区分 perception improvement 和 reasoning improvement，reviewer 会直接质疑 "你怎么知道提升来自 perception 而不是 reasoning？"；(2) **reward 信号质量本身的分析**——EPV reward 与 ground-truth perception correctness 的 correlation 是多少？相比 PEARL/Perception-R1 的 reward 信号，EPV 的信噪比如何？(3) **error analysis**——训练后模型的 perception error rate 是否确实下降？需要 before/after 的 perception error breakdown。
+- 严重度: 可补救
+- 补救方案: (1) **加入 perception-specific benchmark**：使用 MathGlance（SymHPR 论文使用的 perception 评测）或 VisualProcessBench（EVPV 使用的 step-level 验证评测），直接测量 perception accuracy；(2) **加入 blindfold diagnostic**（借鉴 MoCA）：对训练后的模型做 text-only 推理 vs. multimodal 推理对比，隔离 perception 贡献；(3) **加入 reward signal quality 分析**：在 held-out 集上计算 EPV reward 与人工标注的 perception correctness 之间的 Pearson/Spearman correlation，并与 PEARL 的 LLM-judge reward 做对比；(4) **加入训练前后的 error type breakdown**：参考 multimodal math survey 中 perception/reasoning/calculation error 的分类，报告各类错误在训练前后的变化比例。
+- 调研依据: Perception-R1 使用 McNemar's test 诊断 perception vs reasoning improvement；MoCA 使用 blindfolded reasoning proxy 做诊断；SymHPR 使用 MathGlance 做 perception evaluation。这些诊断性评估在该领域已经成为审稿人的标准期望。
+
+【缺陷 4】
+- 类别: ablation 不完整
+- 问题: Proposal 中的 ablation 设计仅提到 "EPV-Oracle vs PEARL vs Perception-R1" 的对比，这更像 baseline comparison 而非 component ablation。缺少以下关键内部消融实验：(1) **λ annealing 策略**：proposal 提到 "λ is annealed during training to shift credit from perception grounding to reasoning" 但没有设计 ablation 来验证 annealing 的必要性和最佳策略（constant λ vs. linear annealing vs. cosine annealing vs. step decay）；(2) **r_percept 的粒度**：verified_claims/total_claims（ratio）vs. binary（全对/全错）vs. weighted（按 claim 难度加权）；(3) **formal parse 来源**：GDP-29K only vs. FormalGeo7K only vs. combined，以及 parse quality 的影响；(4) **训练数据规模**：5K vs. 10K vs. 15K，验证 formal annotation 数据量的边际收益。
+- 严重度: 可补救
+- 补救方案: 至少增加以下 4 个 ablation：(a) EPV with λ=0（pure outcome reward，等价于 vanilla GRPO）vs. EPV with constant λ vs. EPV with annealed λ；(b) r_percept ratio reward vs. binary reward vs. step-level binary reward（某步所有 claims 正确才给分）；(c) 不同 formal parse 数据源的影响；(d) training data scale curve。其中 (a) 和 (b) 是最关键的，直接关系到 reward design 的合理性验证。
+- 调研依据: MoCA 做了 PV-only/OV-only/PV+OV ablation；PEARL 做了 perception gate 开关 ablation；PRCO 做了 role-specific reward 组合 ablation。该领域审稿人期望看到 reward 设计中每个组件的独立贡献。
+
+【缺陷 5】
+- 类别: 可行性问题
+- 问题: **Formal parse 覆盖率存在缺口**。Proposal 训练集设计为 "~15K geometry problems drawn from GDP-29K, FormalGeo7K, and GeoQA with formal annotations"，但这里有一个隐含假设——GeoQA 的问题都有对应的 formal parse。实际情况是：GDP-29K 是图解析数据集（20K plane + 9K solid），FormalGeo7K 是形式化求解数据集（7K 问题），而 GeoQA 是独立的 QA 数据集（~5K 问题），三者之间的 **diagram overlap** 并不确定。如果 GeoQA 中大量问题的 diagram 不在 GDP-29K/FormalGeo7K 的覆盖范围内，要么需要额外运行 Geoparsing 模型来自动生成 formal parse（引入额外噪声），要么可用训练数据大幅缩水。
+- 严重度: 可补救
+- 补救方案: (1) **先做数据审计**：统计 GDP-29K、FormalGeo7K 与 GeoQA/Geometry3K 的 diagram overlap，确定实际可用的带 formal annotation 的训练样本数；(2) **如果 overlap 不足**，使用 Geoparsing 模型对 GeoQA diagrams 做自动 formal parsing，并报告自动 parse 的准确率；(3) **将 auto-parsed vs. gold-parsed 作为 ablation**，分析 parse quality 对训练效果的影响；(4) 如果最终可用数据只有 5-8K 而非 15K，需要调整 claim 的范围或增加数据来源（如 UniGeo、PGPS9K 等其他 geometry 数据集）。
+- 调研依据: Geoparsing 论文的 GDP-29K 数据来源为 "diverse real-world sources"，但未明确列出与 GeoQA/Geometry3K 的 overlap。基于领域实验规范判断，数据可用性需在实验前验证。
+
+【缺陷 6】
+- 类别: compute 公平性问题
+- 问题: Proposal 没有说明与 baseline 方法的 **compute-normalized comparison** 方案。不同方法的 per-step overhead 差异很大：(1) PEARL 需要额外的 perception checklist rollout（约 2x rollout compute）；(2) EPV-Oracle 需要 pattern matching + symbolic verification（compute 较轻，但需要 formal parse 存储）；(3) Perception-R1 需要 LLM judge inference（额外的大模型推理成本）；(4) Vanilla GRPO 无额外开销。如果不做 compute-normalized comparison（例如 "在相同 GPU 时间 / 相同 gradient steps / 相同 total FLOPs 下的对比"），reviewer 会质疑性能差异是否仅仅来自更多计算。
+- 严重度: 可补救
+- 补救方案: (1) 报告每种方法的 per-step wall-clock time 和 total training GPU hours；(2) 在 gradient steps 对齐的基础上额外做一组 wall-clock time 对齐的对比（即给 vanilla GRPO 同样的 GPU 时间来跑更多 steps）；(3) 绘制 performance vs. compute 的 scaling curve，展示 EPV-Oracle 的 compute efficiency。EPV-Oracle 的一个潜在优势是 symbolic verification 远比 LLM-judge inference 便宜，应该在实验中体现。
+- 调研依据: 基于领域实验规范判断。PEARL 和 Perception-R1 的论文中也没有做严格的 compute-matched comparison，但 AAAI 审稿人越来越重视 compute fairness（尤其在 RL training 的对比中）。
+
+【缺陷 7】
+- 类别: 评估方案缺陷
+- 问题: Proposal 的 benchmark 选择偏窄——仅 MathVerse、GeoQA、Geometry3K，全部是 geometry-centric。虽然本方法确实针对 geometry，但缺少 **(1) general multimodal reasoning benchmark**（如 MMMU、MMStar、MathVista）来测试是否有 generalization 或 regression，以及 **(2) out-of-domain geometry benchmark**（如 GeoChallenge 2026、DynaSolidGeo）来测试泛化能力。当前领域的标准做法是在 6+ benchmarks 上报告结果（PRCO 用 8 个，Perception-R1 用 6+）。仅 3 个 geometry benchmarks 的评测会让审稿人质疑方法的 generalizability。
+- 严重度: 可补救
+- 补救方案: 增加至少 2-3 个 benchmark：(1) **MMMU** 或 **MMStar** 作为 general multimodal reasoning 的 sanity check（验证 geometry-focused training 不会导致 general capability regression）；(2) **MathVista** 作为更广泛的 math reasoning benchmark；(3) 如果有条件，加入一个 solid geometry 或 analytic geometry benchmark 测试域外泛化。最终报告至少覆盖 5-6 个 benchmarks。
+- 调研依据: Perception-R1 评测了 MMMU、MMStar 等 general benchmarks；PRCO 在 8 个 benchmarks 上报告；MoCA 做了跨域泛化分析。3 个 geometry-only benchmarks 不符合领域评测标准。
+
+---
+
+**总结**: 以上 7 个缺陷均为**可补救**的实验设计层面问题，没有发现方向性致命缺陷。补救优先级排序：
+
+1. **最高优先级**（不补必被 reject）：缺陷 2（claim extraction 验证）和缺陷 3（perception-specific 诊断评估）——这两个直接关系到 core claim 的可信度
+2. **高优先级**（显著影响分数）：缺陷 1（baseline 覆盖）和缺陷 7（benchmark 扩展）
+3. **中等优先级**（完整性提升）：缺陷 4（ablation 补全）和缺陷 6（compute fairness）
+4. **较低优先级**（实施阶段可解决）：缺陷 5（数据 overlap 审计）
+
+如果以上 7 个缺陷均能补救到位，实验设计层面可以达到 AAAI 主会的门槛。
+
+Sources:
+- [Perception-R1 (GitHub)](https://github.com/tongxiao2002/Perception-R1)
+- [Perception-R1 (OpenReview)](https://openreview.net/forum?id=KttCXdjj4w)
+- [PEARL (GitHub)](https://github.com/MiliLab/PEARL)
+- [PEARL (arXiv)](https://arxiv.org/abs/2511.18437)
+- [MoCA: Bad Seeing or Bad Thinking?](https://arxiv.org/html/2605.14054)
+- [SGVR: Milestones over Outcome](https://arxiv.org/abs/2601.05073)
+- [Geoparsing (arXiv)](https://arxiv.org/abs/2604.11600)
+- [SymHPR (arXiv)](https://arxiv.org/abs/2512.03126)
+- [PRCO: Seeing with You](https://arxiv.org/abs/2603.28618)
+- [CogFlow (ICLR 2026)](https://arxiv.org/abs/2601.01874)
+- [EVPV (arXiv)](https://arxiv.org/abs/2603.16253)
+- [KAWHI (arXiv)](https://arxiv.org/abs/2603.27375)
+- [RRVF (GitHub)](https://github.com/L-O-I/RRVF)
+- [Visual-ERM (arXiv)](https://arxiv.org/abs/2603.13224)
+- [EasyR1 (GitHub)](https://github.com/hiyouga/easyr1)
+- [OpenRLHF (GitHub)](https://github.com/openrlhf/openrlhf)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "28c65e25-1eb0-4a07-aaad-c82354327ecd",
+  "isSidechain": false,
+  "promptId": "0b93f747-4347-4813-b839-06aac78ac2b2",
+  "type": "user",
+  "uuid": "8b2db3b7-191f-43bc-a2f9-43f2cb40057e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to provide a thorough assessment. Let me synthesize my findings.  ---  【状态】:…",
+  "leafUuid": "8b2db3b7-191f-43bc-a2f9-43f2cb40057e",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-27T21:47:28.368Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the outputs from both agents carefully before producing my integrated assessment.
+
+## Summary of Agent Outputs
+
+### 发掘 Agent (Idea Quality Focus)
+**Status**: 有发掘空间 (Room for improvement)
+
+5 discovery points:
+1. **Trivial alternative threat (PAPO)** - arXiv 2507.06448, uses KL divergence implicit perception loss, +8% on vision-dependent tasks, no oracle needed. Must be cited and addressed.
+2. **Claim extraction reliability** - Core assumption that CoT perception claims can be reliably extracted via pattern matching is fragile. 
+
+VLM outputs are diverse and often implicit, making this extraction process less robust than assumed.
+
+3. **Significance uplift** - Reframe from geometry-specific technique to general methodological principle: "wherever executable formal verifiers exist, they should replace model-based judges as RL perception rewards"
+4. **Mechanism-level claim strengthening** - Need to explain WHY executable verification is better beyond "non-circular" — demonstrate correlated bias amplification empirically
+5. **SGVR differentiation refinement** - premise-level (EPV) vs outcome-level (SGVR) distinction needs to be more precise
+
+### 补救 Agent (Experiment Design Focus)
+**Status**: 有缺陷待补救 (Defects to fix)
+
+I'm identifying seven concrete gaps in the experimental setup: need to include more baseline methods like vanilla GRPO, MoCA, and PRCO alongside PEARL and Perception-R1; validate that claim extraction actually works reliably through precision/recall metrics; add perception-specific diagnostics and reward signal quality checks; fill in missing ablations around annealing schedules, reward granularity, and data scale; clarify the overlap between geometry datasets; ensure compute-normalized comparisons; and expand beyond just three geometry benchmarks to include five or six total with general multimodal coverage.
+
+Now I need to verify the worker's suggestions through web searches—checking whether PAPO actually exists and matches what was claimed, confirming if MathGlance or VisualProcessBench are legitimate perception-specific benchmarks, and validating whether structured perception output in chain-of-thought reasoning is supported by current literature—then decide what to incorporate and update the proposal accordingly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b2db3b7-191f-43bc-a2f9-43f2cb40057e",
+  "isSidechain": false,
+  "requestId": "req_011CbToq7WhYMsapDdN5LLAe",
+  "type": "assistant",
+  "uuid": "25d708e3-4592-4b12-9604-b080363b82ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbNtQfSrAKGmRGF3Mh84Tk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11344,
+      "cache_read_input_tokens": 20092,
+      "output_tokens": 780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11344,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 780,
+          "cache_read_input_tokens": 20092,
+          "cache_creation_input_tokens": 11344,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11344
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-27T21:47:28.370Z_
+
+Let me cross-validate the key worker suggestions before integrating. I need to verify at least 2-3 claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25d708e3-4592-4b12-9604-b080363b82ba",
+  "isSidechain": false,
+  "requestId": "req_011CbToq7WhYMsapDdN5LLAe",
+  "type": "assistant",
+  "uuid": "2c43a7b5-b80a-4db8-9c1f-8d31879086be",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbNtQfSrAKGmRGF3Mh84Tk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11344,
+      "cache_read_input_tokens": 20092,
+      "output_tokens": 780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11344,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 780,
+          "cache_read_input_tokens": 20092,
+          "cache_creation_input_tokens": 11344,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11344
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T21:47:28.456Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016m3JmaxqBmPS2acbUBeuYf`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c43a7b5-b80a-4db8-9c1f-8d31879086be",
+  "isSidechain": false,
+  "requestId": "req_011CbToq7WhYMsapDdN5LLAe",
+  "type": "assistant",
+  "uuid": "80357d4b-eb5f-4eb5-ae0a-19f6915be03a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbNtQfSrAKGmRGF3Mh84Tk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11344,
+      "cache_read_input_tokens": 20092,
+      "output_tokens": 780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11344,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 780,
+          "cache_read_input_tokens": 20092,
+          "cache_creation_input_tokens": 11344,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11344
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T21:47:28.463Z_
+
+<details><summary>↩ Tool result · `toolu_016m3JmaxqBmPS2acbUBeuYf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80357d4b-eb5f-4eb5-ae0a-19f6915be03a",
+  "isSidechain": false,
+  "promptId": "0b93f747-4347-4813-b839-06aac78ac2b2",
+  "type": "user",
+  "uuid": "0092e7e1-2055-4ebf-b0e6-e1503228202d",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "80357d4b-eb5f-4eb5-ae0a-19f6915be03a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-27T21:47:30.957Z_
+
+Now let me run the cross-validation searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0092e7e1-2055-4ebf-b0e6-e1503228202d",
+  "isSidechain": false,
+  "requestId": "req_011CbTorcmcqZHSTmuNnKwPT",
+  "type": "assistant",
+  "uuid": "b0f358e3-b099-43a2-99ae-2c80e364efea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEXnFQjFMVHfjynAQovZsL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 31436,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 31436,
+          "cache_creation_input_tokens": 1308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-27T21:47:31.962Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RE6RqDr1UThVHtQvCoWZhe`</summary>
+
+```json
+{
+  "query": "PAPO Perception-Aware Policy Optimization arXiv 2507.06448 multimodal reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0f358e3-b099-43a2-99ae-2c80e364efea",
+  "isSidechain": false,
+  "requestId": "req_011CbTorcmcqZHSTmuNnKwPT",
+  "type": "assistant",
+  "uuid": "79ee2f9f-72b0-4f6e-9cae-e34fa8d729fe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEXnFQjFMVHfjynAQovZsL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 31436,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 31436,
+          "cache_creation_input_tokens": 1308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-27T21:47:32.526Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01756wxSddosc587mrKAyNBe`</summary>
+
+```json
+{
+  "query": "MathGlance benchmark perception evaluation multimodal math 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79ee2f9f-72b0-4f6e-9cae-e34fa8d729fe",
+  "isSidechain": false,
+  "requestId": "req_011CbTorcmcqZHSTmuNnKwPT",
+  "type": "assistant",
+  "uuid": "f8bf0dd0-3528-47d1-853f-daab6944d2e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEXnFQjFMVHfjynAQovZsL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 31436,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 31436,
+          "cache_creation_input_tokens": 1308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-27T21:47:32.877Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GEFbcyACV68AT2Rk7N2bLZ`</summary>
+
+```json
+{
+  "query": "structured perception output chain-of-thought VLM geometry reasoning format 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8bf0dd0-3528-47d1-853f-daab6944d2e2",
+  "isSidechain": false,
+  "requestId": "req_011CbTorcmcqZHSTmuNnKwPT",
+  "type": "assistant",
+  "uuid": "d9b60c37-dad5-4ddf-aab9-00bd950f76df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEXnFQjFMVHfjynAQovZsL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1308,
+      "cache_read_input_tokens": 31436,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1308,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 31436,
+          "cache_creation_input_tokens": 1308,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1308
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-27T21:47:39.126Z_
+
+<details><summary>↩ Tool result · `toolu_01756wxSddosc587mrKAyNBe`</summary>
+
+```text
+Web search results for query: "MathGlance benchmark perception evaluation multimodal math 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2506.06727"},{"title":"Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm","url":"https://arxiv.org/html/2603.08291"},{"title":"Multimodal Math Reasoning: Insights and Advances","url":"https://www.emergentmind.com/topics/multimodal-mathematical-reasoning"},{"title":"Multimodal Math-Reasoning Benchmarks","url":"https://www.emergentmind.com/topics/multimodal-math-reasoning-benchmarks"},{"title":"Benchmarking Multimodal Mathematical Reasoning with Explicit Visual Dependency","url":"https://arxiv.org/html/2504.18589v1"},{"title":"MV-MATH: Evaluating Multimodal Math Reasoning in Multi-Visual Contexts","url":"https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MV-MATH_Evaluating_Multimodal_Math_Reasoning_in_Multi-Visual_Contexts_CVPR_2025_paper.pdf"},{"title":"What MLLMs Learn about When they Learn about Multimodal Reasoning: Perception, Reasoning, or their Integration?","url":"https://arxiv.org/pdf/2510.01719"}]
+
+Based on the search results, I found information about MathGlance in the context of multimodal mathematical reasoning research:
+
+MathGlance is a multimodal large language model evaluation focusing on where models look in mathematical diagrams. The work appears in recent research from 2025, as referenced in academic papers discussing multimodal mathematical reasoning benchmarks.
+
+The search results indicate that over the past two years, a rapidly expanding body of research has established new benchmarks, training paradigms, and diagnostic frameworks for evaluating and improving the mathematical reasoning abilities of state-of-the-art multimodal models. MathGlance appears to be part of this broader research effort addressing visual perception in mathematical problem-solving.
+
+The research context suggests that fine-grained visual perception, including identification and discrimination of geometric features, chart axes, symbolic annotations, and subtle context-dependent cues, is important—with benchmarks like VisioMath requiring distinction of subtle variations in diagrams and MM-MATH showing that 61% of errors are diagram misinterpretation.
+
+This indicates that MathGlance contributes to addressing a key challenge in multimodal mathematical reasoning: ensuring that large multimodal models correctly perceive and attend to relevant visual information in mathematical diagrams.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8bf0dd0-3528-47d1-853f-daab6944d2e2",
+  "isSidechain": false,
+  "promptId": "0b93f747-4347-4813-b839-06aac78ac2b2",
+  "type": "user",
+  "uuid": "c0c25dc8-cb56-454d-aa15-2bb0635bd310",
+  "toolUseResult": {
+    "query": "MathGlance benchmark perception evaluation multimodal math 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0196jyohQeHSbqxdKnTQ9tY7",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2506.06727"
+          },
+          {
+            "title": "Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm",
+            "url": "https://arxiv.org/html/2603.08291"
+          },
+          {
+            "title": "Multimodal Math Reasoning: Insights and Advances",
+            "url": "https://www.emergentmind.com/topics/multimodal-mathematical-reasoning"
+          },
+          {
+            "title": "Multimodal Math-Reasoning Benchmarks",
+            "url": "https://www.emergentmind.com/topics/multimodal-math-reasoning-benchmarks"
+          },
+          {
+            "title": "Benchmarking Multimodal Mathematical Reasoning with Explicit Visual Dependency",
+            "url": "https://arxiv.org/html/2504.18589v1"
+          },
+          {
+            "title": "MV-MATH: Evaluating Multimodal Math Reasoning in Multi-Visual Contexts",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MV-MATH_Evaluating_Multimodal_Math_Reasoning_in_Multi-Visual_Contexts_CVPR_2025_paper.pdf"
+          },
+          {
+            "title": "What MLLMs Learn about When they Learn about Multimodal Reasoning: Perception, Reasoning, or their Integration?",
+            "url": "https://arxiv.org/pdf/2510.01719"
+          }
+        ]
+      },
+      "Based on the search results, I found information about MathGlance in the context of multimodal mathematical reasoning research:\n\nMathGlance is a multimodal large language model evaluation focusing on where models look in mathematical diagrams. The work appears in recent research from 2025, as referenced in academic papers discussing multimodal mathematical reasoning benchmarks.\n\nThe search results indicate that over the past two years, a rapidly expanding body of research has established new benchmarks, training paradigms, and diagnostic frameworks for evaluating and improving the mathematical reasoning abilities of state-of-the-art multimodal models. MathGlance appears to be part of this broader research effort addressing visual perception in mathematical problem-solving.\n\nThe research context suggests that fine-grained visual perception, including identification and discrimination of geometric features, chart axes, symbolic annotations, and subtle context-dependent cues, is important—with benchmarks like VisioMath requiring distinction of subtle variations in diagrams and MM-MATH showing that 61% of errors are diagram misinterpretation.\n\nThis indicates that MathGlance contributes to addressing a key challenge in multimodal mathematical reasoning: ensuring that large multimodal models correctly perceive and attend to relevant visual information in mathematical diagrams."
+    ],
+    "durationSeconds": 6.595903914000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f8bf0dd0-3528-47d1-853f-daab6944d2e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-27T21:47:40.448Z_
+
+<details><summary>↩ Tool result · `toolu_01GEFbcyACV68AT2Rk7N2bLZ`</summary>
+
+```text
+Web search results for query: "structured perception output chain-of-thought VLM geometry reasoning format 2026"
+
+Links: [{"title":"Chain-of-Visual-Thought: Teaching VLMs to See and Think Better with Continuous Visual Tokens","url":"https://arxiv.org/html/2511.19418v1"},{"title":"Towards Faithful Reasoning in Remote Sensing: A Perceptually-Grounded GeoSpatial Chain-of-Thought for Vision-Language Models","url":"https://arxiv.org/pdf/2509.22221"},{"title":"Chain-of-Visual-Thought: Teaching VLMs to See and Think Better with Continuous Visual Tokens","url":"https://arxiv.org/pdf/2511.19418"},{"title":"[2511.19418] Chain-of-Visual-Thought: Teaching VLMs to See and Think Better with Continuous Visual Tokens","url":"https://arxiv.org/abs/2511.19418"},{"title":"From Seeing to Thinking: Decoupling Perception and Reasoning Improves Post-Training of Vision-Language Models","url":"https://arxiv.org/html/2605.20177"},{"title":"[2602.21015] From Perception to Action: An Interactive Benchmark for Vision Reasoning","url":"https://arxiv.org/abs/2602.21015"}]
+
+Based on the search results, I found several highly relevant recent papers on this topic:
+
+## Key Findings:
+
+**Chain-of-Visual-Thought (CoVT)**
+
+The Chain-of-Visual-Thought framework enables VLMs to reason not only in words but also through continuous visual tokens that encode rich perceptual cues, distilling knowledge from lightweight vision experts capturing complementary properties such as 2D appearance, 3D geometry, spatial layout, and edge structure within a budget of roughly 20 tokens.
+
+This framework equips VLMs with the capability of outputting fine-grained visual representations within a continuous visual token space, enabling them to reason directly over rich perceptual information and maintain spatial and geometric coherence throughout the reasoning process.
+
+When integrated into strong VLMs such as Qwen2.5-VL and LLaVA, CoVT consistently improves performance by 3% to 16% across more than ten diverse perception benchmarks.
+
+**Related Work on Perceptual Grounding**
+
+A perceptually-grounded framework for remote sensing materializes a rigorous cognitive architecture where abstract claims are replaced by assertions explicitly linked to specific spatial references, following a clear protocol of task planning, iterative evidence gathering, and final synthesis.
+
+**Vision Reasoning Benchmarks**
+
+The CHAIN benchmark is an interactive 3D, physics-driven testbed designed to evaluate whether models can understand, plan, and execute structured action sequences grounded in physical constraints, shifting evaluation from passive perception to active problem solving.
+
+These papers represent recent advances (late 2025 to early 2026) in structured perception output formats for VLM geometry reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9b60c37-dad5-4ddf-aab9-00bd950f76df",
+  "isSidechain": false,
+  "promptId": "0b93f747-4347-4813-b839-06aac78ac2b2",
+  "type": "user",
+  "uuid": "5b31909f-8a45-42ae-aff3-1af59b39fe22",
+  "toolUseResult": {
+    "query": "structured perception output chain-of-thought VLM geometry reasoning format 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RjXsqGQazAbV9th9tRpSMf",
+        "content": [
+          {
+            "title": "Chain-of-Visual-Thought: Teaching VLMs to See and Think Better with Continuous Visual Tokens",
+            "url": "https://arxiv.org/html/2511.19418v1"
+          },
+          {
+            "title": "Towards Faithful Reasoning in Remote Sensing: A Perceptually-Grounded GeoSpatial Chain-of-Thought for Vision-Language Models",
+            "url": "https://arxiv.org/pdf/2509.22221"
+          },
+          {
+            "title": "Chain-of-Visual-Thought: Teaching VLMs to See and Think Better with Continuous Visual Tokens",
+            "url": "https://arxiv.org/pdf/2511.19418"
+          },
+          {
+            "title": "[2511.19418] Chain-of-Visual-Thought: Teaching VLMs to See and Think Better with Continuous Visual Tokens",
+            "url": "https://arxiv.org/abs/2511.19418"
+          },
+          {
+            "title": "From Seeing to Thinking: Decoupling Perception and Reasoning Improves Post-Training of Vision-Language Models",
+            "url": "https://arxiv.org/html/2605.20177"
+          },
+          {
+            "title": "[2602.21015] From Perception to Action: An Interactive Benchmark for Vision Reasoning",
+            "url": "https://arxiv.org/abs/2602.21015"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant recent papers on this topic:\n\n## Key Findings:\n\n**Chain-of-Visual-Thought (CoVT)**\n\nThe Chain-of-Visual-Thought framework enables VLMs to reason not only in words but also through continuous visual tokens that encode rich perceptual cues, distilling knowledge from lightweight vision experts capturing complementary properties such as 2D appearance, 3D geometry, spatial layout, and edge structure within a budget of roughly 20 tokens.\n\nThis framework equips VLMs with the capability of outputting fine-grained visual representations within a continuous visual token space, enabling them to reason directly over rich perceptual information and maintain spatial and geometric coherence throughout the reasoning process.\n\nWhen integrated into strong VLMs such as Qwen2.5-VL and LLaVA, CoVT consistently improves performance by 3% to 16% across more than ten diverse perception benchmarks.\n\n**Related Work on Perceptual Grounding**\n\nA perceptually-grounded framework for remote sensing materializes a rigorous cognitive architecture where abstract claims are replaced by assertions explicitly linked to specific spatial references, following a clear protocol of task planning, iterative evidence gathering, and final synthesis.\n\n**Vision Reasoning Benchmarks**\n\nThe CHAIN benchmark is an interactive 3D, physics-driven testbed designed to evaluate whether models can understand, plan, and execute structured action sequences grounded in physical constraints, shifting evaluation from passive perception to active problem solving.\n\nThese papers represent recent advances (late 2025 to early 2026) in structured perception output formats for VLM geometry reasoning."
+    ],
+    "durationSeconds": 7.568754251000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d9b60c37-dad5-4ddf-aab9-00bd950f76df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T21:47:40.558Z_
+
+<details><summary>↩ Tool result · `toolu_01RE6RqDr1UThVHtQvCoWZhe`</summary>
+
+```text
+Web search results for query: "PAPO Perception-Aware Policy Optimization arXiv 2507.06448 multimodal reasoning"
+
+Links: [{"title":"[2507.06448v1] Perception-Aware Policy Optimization for Multimodal Reasoning","url":"https://arxiv.org/abs/2507.06448v1"},{"title":"[2507.06448] Perception-Aware Policy Optimization for Multimodal Reasoning","url":"https://arxiv.org/abs/2507.06448"},{"title":"Perception-Aware Policy Optimization for Multimodal Reasoning | OpenReview","url":"https://openreview.net/forum?id=izbBqTL8vb"},{"title":"Perception-Aware Policy Optimization for Multimodal Reasoning","url":"https://arxiv.org/html/2507.06448v3"},{"title":"Paper page - Perception-Aware Policy Optimization for Multimodal Reasoning","url":"https://huggingface.co/papers/2507.06448"},{"title":"Perception-Aware Policy Optimization for Multimodal Reasoning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250706448W/abstract"},{"title":"PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning","url":"https://mikewangwzhl.github.io/PAPO/"},{"title":"Perception-Aware Policy Optimization for Multimodal Reasoning","url":"https://www.researchgate.net/publication/393538482_Perception-Aware_Policy_Optimization_for_Multimodal_Reasoning"},{"title":"GitHub - MikeWangWZHL/PAPO: Official repo for \"PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning\" · GitHub","url":"https://github.com/MikeWangWZHL/PAPO"}]
+
+Here are the search results for PAPO (Perception-Aware Policy Optimization) arXiv paper 2507.06448:
+
+## Overview
+
+While Reinforcement Learning with Verifiable Rewards (RLVR) has proven effective for giving LLMs multi-step reasoning abilities, its design remains tailored to textual domains and performs suboptimally on multimodal reasoning tasks, with a major source of error being the perception of visual inputs.
+
+## The PAPO Approach
+
+PAPO is a novel policy gradient algorithm that encourages models to learn to perceive while learning to reason, introducing an Implicit Perception Loss as a KL divergence term that can be plugged into mainstream RLVR algorithms such as GRPO and DAPO. PAPO doesn't require additional data curation, reward models, or stronger teacher models.
+
+## Performance Results
+
+PAPO yields overall improvements of 4.4%-17.5% on diverse multimodal benchmarks, with improvements approaching 8.0%-19.1% on tasks with high vision dependency. The method also shows a substantial reduction of 30.5% in perception errors.
+
+## Technical Details
+
+To enhance training stability, the authors introduce a Double Entropy Loss that regularizes the KL objective without compromising performance. The work integrates perception-aware supervision into core learning objectives and lays groundwork for a new RL framework encouraging visually grounded reasoning.
+
+You can access the paper directly at [arXiv 2507.06448](https://arxiv.org/abs/2507.06448) and the project page at https://mikewangwzhl.github.io/PAPO/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79ee2f9f-72b0-4f6e-9cae-e34fa8d729fe",
+  "isSidechain": false,
+  "promptId": "0b93f747-4347-4813-b839-06aac78ac2b2",
+  "type": "user",
+  "uuid": "3a0cbba6-1d7a-4f23-8cf0-b29a450ab32f",
+  "toolUseResult": {
+    "query": "PAPO Perception-Aware Policy Optimization arXiv 2507.06448 multimodal reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015Du9WDCX6Fc6ed4dUNJPto",
+        "content": [
+          {
+            "title": "[2507.06448v1] Perception-Aware Policy Optimization for Multimodal Reasoning",
+            "url": "https://arxiv.org/abs/2507.06448v1"
+          },
+          {
+            "title": "[2507.06448] Perception-Aware Policy Optimization for Multimodal Reasoning",
+            "url": "https://arxiv.org/abs/2507.06448"
+          },
+          {
+            "title": "Perception-Aware Policy Optimization for Multimodal Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=izbBqTL8vb"
+          },
+          {
+            "title": "Perception-Aware Policy Optimization for Multimodal Reasoning",
+            "url": "https://arxiv.org/html/2507.06448v3"
+          },
+          {
+            "title": "Paper page - Perception-Aware Policy Optimization for Multimodal Reasoning",
+            "url": "https://huggingface.co/papers/2507.06448"
+          },
+          {
+            "title": "Perception-Aware Policy Optimization for Multimodal Reasoning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250706448W/abstract"
+          },
+          {
+            "title": "PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning",
+            "url": "https://mikewangwzhl.github.io/PAPO/"
+          },
+          {
+            "title": "Perception-Aware Policy Optimization for Multimodal Reasoning",
+            "url": "https://www.researchgate.net/publication/393538482_Perception-Aware_Policy_Optimization_for_Multimodal_Reasoning"
+          },
+          {
+            "title": "GitHub - MikeWangWZHL/PAPO: Official repo for \"PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning\" · GitHub",
+            "url": "https://github.com/MikeWangWZHL/PAPO"
+          }
+        ]
+      },
+      "Here are the search results for PAPO (Perception-Aware Policy Optimization) arXiv paper 2507.06448:\n\n## Overview\n\nWhile Reinforcement Learning with Verifiable Rewards (RLVR) has proven effective for giving LLMs multi-step reasoning abilities, its design remains tailored to textual domains and performs suboptimally on multimodal reasoning tasks, with a major source of error being the perception of visual inputs.\n\n## The PAPO Approach\n\nPAPO is a novel policy gradient algorithm that encourages models to learn to perceive while learning to reason, introducing an Implicit Perception Loss as a KL divergence term that can be plugged into mainstream RLVR algorithms such as GRPO and DAPO. PAPO doesn't require additional data curation, reward models, or stronger teacher models.\n\n## Performance Results\n\nPAPO yields overall improvements of 4.4%-17.5% on diverse multimodal benchmarks, with improvements approaching 8.0%-19.1% on tasks with high vision dependency. The method also shows a substantial reduction of 30.5% in perception errors.\n\n## Technical Details\n\nTo enhance training stability, the authors introduce a Double Entropy Loss that regularizes the KL objective without compromising performance. The work integrates perception-aware supervision into core learning objectives and lays groundwork for a new RL framework encouraging visually grounded reasoning.\n\nYou can access the paper directly at [arXiv 2507.06448](https://arxiv.org/abs/2507.06448) and the project page at https://mikewangwzhl.github.io/PAPO/."
+    ],
+    "durationSeconds": 8.591912940999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "79ee2f9f-72b0-4f6e-9cae-e34fa8d729fe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to provide a thorough assessment. Let me synthesize my findings.  ---  【状态】:…",
+  "leafUuid": "3a0cbba6-1d7a-4f23-8cf0-b29a450ab32f",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-27T21:48:47.474Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now verify the key findings from these searches:
+
+1. **PAPO (arXiv 2507.06448)** - CONFIRMED. The paper exists, uses KL divergence as Implicit Perception Loss, yields +4.4%-17.5% overall improvements, +8.0%-19.1% on vision-dependent tasks, 30.5% perception error reduction. This is a real and significant trivial alternative threat. The 发掘 agent's claim is accurate.
+
+2. **MathGlance** - The search results mention it but don't give clear details about it as a standalone benchmark. 
+
+MathGlance appears in the context of SymHPR rather than as an independent benchmark, though the broader concept of perception-specific evaluation benchmarks is well-established. VisioMath and MM-MATH came up as alternatives, and while I can't confirm MathGlance as a major standalone tool, the agents' focus on perception-specific evaluation is sound.
+
+3. **Structured perception output in CoT** - Chain-of-Visual-Thought is related but distinct from what the agents described, and I'm still looking into the "From Seeing to Thinking" paper to see if it covers the structured output approach they mentioned.
+
+Now I'm cross-validating the key findings: PAPO is a real threat to EPV's necessity and needs to be addressed directly in the proposal, while the perception-specific benchmark angle is partially supported but needs careful framing.
+
+For the structured perception format suggestion, I should note that while it's creative, the literature actually uses continuous visual tokens rather than text-based tags, so I'll need to be careful about how I position that idea.
+
+From the 发掘 agent's points, I'm adopting the PAPO comparison as essential—I need to clearly articulate what makes explicit perception advantages distinct from implicit approaches. The concern about claim extraction reliability overlaps with other defects I've identified, so that's worth integrating as well.
+
+The general principle framing is strong and doesn't require new evidence, so I can reposition EPV as the first instantiation of something broader. The correlated bias mechanism between LLM judges and policy VLMs is well-motivated enough to adopt as a proposed analysis, and I should consider running a pilot to demonstrate this empirically.
+
+For the 补救 agent's suggestions, the baseline expansion makes sense—adding vanilla GRPO and other variants will strengthen the comparison. MoCA, SGVR is clearly necessary. PRCO can be indirect comparison.
+
+2. **Claim extraction validation** (Defect 2) - ✅ ADOPT. This is critical and overlaps with 发掘 agent Point 2.
+
+3. **Perception-specific diagnostics** (Defect 3) - ✅ ADOPT. Blindfold diagnostic (from MoCA) and reward signal quality analysis are standard expectations.
+
+4. **Ablation completeness** (Defect 4) - ✅ ADOPT. λ annealing and r_percept granularity ablations are essential.
+
+5. **Data coverage audit** (Defect 5) - ✅ ADOPT as implementation note. Lower priority but valid.
+
+6. **Compute fairness** (Defect 6) - ✅ ADOPT. Wall-clock reporting and compute-normalized comparison.
+
+7. **Benchmark expansion** (Defect 7) - ✅ ADOPT. Add MMMU/MMStar/MathVista for generalization check.
+
+The core novelty here is solid—replacing circular model-based judges with executable verification is a clean insight with real gaps in the literature. With the general principle framing and PAPO addressed, this feels defensible, though PEARL's strong empirical results despite its circularity does constrain how much I can push the narrative. The idea probably caps out around 45-50% with all these improvements, and the experiments should be adequate once I add the perception-specific diagnostics, blindfold test, and proper ablations across λ, r_percept, and data sources. ations
+- Floor if all executed well: ~35-40%
+
+**Current proposal (pre-fix) probability:**
+- Idea quality: Novelty=Medium (PAPO not addressed, framing is narrow), Significance=Medium (geometry-specific)
+- Experiment: Baselines=Weak (only 2), Diagnostics=Weak (no perception-specific), Ablations=Weak (no internal)
+- Current estimate: [20% - 30%] midpoint 25%
+
+**After this round's fixes:**
+- Idea quality: Novelty=Medium-Strong (PAPO addressed, general principle, correlated bias), Significance=Medium-Strong
+- Experiment: Much more complete but still needs execution
+- Updated estimate: [30% - 42%] midpoint 36%
+
+Decision: CONTINUE. There's meaningful improvement this round and the proposal isn't at convergence yet—both agents identified substantial issues worth addressing.
+
+Now I'm refining my probability framework. The novelty ceiling depends on how I categorize the work: if both novelty and significance are medium-strong, I'm looking at around 45% as the upper bound. With the improvements made—addressing PAPO, framing this as a general principle, analyzing correlated bias, and differentiating SGVR—I'd rate novelty as medium-strong, though the gap between formal executable verification and model-based approaches is real but narrow, especially in a domain where formal parsers already exist. Significance also lands at medium-strong with the broader framing, though geometry remains the only concrete demonstration. That puts my idea ceiling at roughly 45%, with the experiment floor still to be determined.
+
+Looking at what's been proposed for this round—adequate baselines, comprehensive diagnostics, thorough ablations—I'd estimate the experiment floor at 32-35%. So overall I'm looking at a range of 32-45% with a midpoint around 38%. But I need to be careful here: this is assessing the proposal as designed, not whether the experiments have actually been run. The probability reflects what we'd expect if this were submitted with these changes in place. The proposal is well-positioned with clear differentiation, the experiment design addresses major reviewer concerns comprehensively, but there are real risks—PEARL's strong empirical results could undermine the necessity narrative, claim extraction might not work well enough, and the 15K geometry training set might prove insufficient.
+
+Reconsidering the core tension: PEARL achieves +9.7% with an LLM judge, and EPV needs to beat PEARL meaningfully to justify its complexity. If EPV only matches or slightly edges it out, the overhead might not feel justified. Claim extraction is a genuine technical risk. That said, the core idea—using executable formal verification as a reward signal—is genuinely novel with clear theoretical advantages. The real question is whether that translates empirically.
+
+I'm settling on 30-42% with a midpoint of 36% for the updated version. The improvements are substantial and actionable, so I'll continue. Now I need to write the proposal update by pulling all the references from the original, incorporating the adopted suggestions, and keeping it clean and focused.
+
+Compiling the full reference list... I need to verify that CoT faithfulness reference before including it, so I'll skip it for now and focus on adding PAPO as the key new citation. For the proposal itself, I'm planning several substantive updates: framing EPV as the first instantiation of a general principle, positioning PAPO as a trivial alternative, sharpening the distinction between premise-level and outcome-level reasoning in SGVR, explaining the mechanism through correlated bias analysis, and making claim extraction an explicit design component. On the experimental side, I'm expanding the baseline comparisons to include Vanilla GRPO, PEARL, Perception-R1, MoCA, and SGVR, adding a dedicated validation experiment for claim extraction, introducing perception-specific diagnostics like blindfold tests and reward quality analysis, incorporating internal ablations across multiple dimensions, and expanding the benchmark coverage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a0cbba6-1d7a-4f23-8cf0-b29a450ab32f",
+  "isSidechain": false,
+  "requestId": "req_011CbTosWVNQDhZdaRX9y4DB",
+  "type": "assistant",
+  "uuid": "147e9b12-419c-44ee-a935-d203d07b8861",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016V3KqJaApmvXgKLd7fbY24",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1431,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 32744,
+      "output_tokens": 3026,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1087,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1431,
+          "output_tokens": 3026,
+          "cache_read_input_tokens": 32744,
+          "cache_creation_input_tokens": 1087,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1087
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-27T21:48:47.526Z_
+
+Now let me verify one more critical point — the VisualProcessBench that the 补救 agent recommended:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "147e9b12-419c-44ee-a935-d203d07b8861",
+  "isSidechain": false,
+  "requestId": "req_011CbTosWVNQDhZdaRX9y4DB",
+  "type": "assistant",
+  "uuid": "2bef109b-0494-4167-8a55-bba3658cd212",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016V3KqJaApmvXgKLd7fbY24",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1431,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 32744,
+      "output_tokens": 3026,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1087,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1431,
+          "output_tokens": 3026,
+          "cache_read_input_tokens": 32744,
+          "cache_creation_input_tokens": 1087,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1087
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-27T21:48:47.527Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GEhtHvw9WBWXG7i5rsAFkh`</summary>
+
+```json
+{
+  "query": "VisualProcessBench step-level visual verification benchmark VLM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2bef109b-0494-4167-8a55-bba3658cd212",
+  "isSidechain": false,
+  "requestId": "req_011CbTosWVNQDhZdaRX9y4DB",
+  "type": "assistant",
+  "uuid": "f2e81559-9eaa-4b8b-a988-533b1fb1c070",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016V3KqJaApmvXgKLd7fbY24",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1431,
+      "cache_creation_input_tokens": 1087,
+      "cache_read_input_tokens": 32744,
+      "output_tokens": 3026,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1087,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1431,
+          "output_tokens": 3026,
+          "cache_read_input_tokens": 32744,
+          "cache_creation_input_tokens": 1087,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1087
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-27T21:48:54.788Z_
+
+<details><summary>↩ Tool result · `toolu_01GEhtHvw9WBWXG7i5rsAFkh`</summary>
+
+```text
+Web search results for query: "VisualProcessBench step-level visual verification benchmark VLM 2026"
+
+Links: [{"title":"Grounding the Score: Explicit Visual Premise Verification for Reliable Vision-Language Process Reward Models","url":"https://arxiv.org/pdf/2603.16253"},{"title":"Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models","url":"https://arxiv.org/html/2603.16253"},{"title":"Beyond Accuracy: Evaluating Grounded Visual Evidence in Thinking with Images","url":"https://arxiv.org/pdf/2601.11633"},{"title":"CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding","url":"https://arxiv.org/pdf/2508.00378"},{"title":"Top 10 Vision Language Models in 2026 | Benchmark, Use Cases","url":"https://dextralabs.com/blog/top-10-vision-language-models/"},{"title":"VLM2-Bench","url":"https://vlm2-bench.github.io/"}]
+
+Based on the search results, here's what I found about VisualProcessBench:
+
+VisualProcessBench is a benchmark for step-aware critics that can improve multimodal reasoning under test-time scaling, alongside VisualPRM (a dedicated process reward model for vision-language settings).
+
+On VisualProcessBench, most step errors stem from visual misinterpretation, with these errors dominated by structural misunderstandings and value misreadings. This benchmark is used to evaluate step-level visual verification for Vision-Language Models (VLMs).
+
+Recent research has leveraged VisualProcessBench to develop improved approaches. For example, experiments on VisualProcessBench and six multimodal reasoning benchmarks show improvements in step-level verification and boosting Best-of-N reranking accuracy over strong baselines, using techniques like Explicit Visual Premise Verification (EVPV) for more reliable vision-language process reward models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2e81559-9eaa-4b8b-a988-533b1fb1c070",
+  "isSidechain": false,
+  "promptId": "0b93f747-4347-4813-b839-06aac78ac2b2",
+  "type": "user",
+  "uuid": "ac68f30d-470c-4c55-89bd-013983066126",
+  "toolUseResult": {
+    "query": "VisualProcessBench step-level visual verification benchmark VLM 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CR5oXc72PZo1AiaYmR9jz8",
+        "content": [
+          {
+            "title": "Grounding the Score: Explicit Visual Premise Verification for Reliable Vision-Language Process Reward Models",
+            "url": "https://arxiv.org/pdf/2603.16253"
+          },
+          {
+            "title": "Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models",
+            "url": "https://arxiv.org/html/2603.16253"
+          },
+          {
+            "title": "Beyond Accuracy: Evaluating Grounded Visual Evidence in Thinking with Images",
+            "url": "https://arxiv.org/pdf/2601.11633"
+          },
+          {
+            "title": "CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding",
+            "url": "https://arxiv.org/pdf/2508.00378"
+          },
+          {
+            "title": "Top 10 Vision Language Models in 2026 | Benchmark, Use Cases",
+            "url": "https://dextralabs.com/blog/top-10-vision-language-models/"
+          },
+          {
+            "title": "VLM2-Bench",
+            "url": "https://vlm2-bench.github.io/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VisualProcessBench:\n\nVisualProcessBench is a benchmark for step-aware critics that can improve multimodal reasoning under test-time scaling, alongside VisualPRM (a dedicated process reward model for vision-language settings).\n\nOn VisualProcessBench, most step errors stem from visual misinterpretation, with these errors dominated by structural misunderstandings and value misreadings. This benchmark is used to evaluate step-level visual verification for Vision-Language Models (VLMs).\n\nRecent research has leveraged VisualProcessBench to develop improved approaches. For example, experiments on VisualProcessBench and six multimodal reasoning benchmarks show improvements in step-level verification and boosting Best-of-N reranking accuracy over strong baselines, using techniques like Explicit Visual Premise Verification (EVPV) for more reliable vision-language process reward models."
+    ],
+    "durationSeconds": 7.2540766049999945,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f2e81559-9eaa-4b8b-a988-533b1fb1c070",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-27T21:48:59.656Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. VisualProcessBench is confirmed as a real benchmark from the EVPV paper (arXiv 2603.16253). It evaluates step-level visual verification. This supports the 补救 agent's recommendation to use it.
+
+Now I have enough information. Let me produce my integrated output.
+
+Let me carefully draft the updated proposal. I need to:
+
+1. Preserve ALL original references
+2. Add PAPO (arXiv 2507.06448) as new reference
+3. Keep it concise and information-dense
+4. Incorporate idea-level and experiment-level changes
+
+Let me structure the output now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac68f30d-470c-4c55-89bd-013983066126",
+  "isSidechain": false,
+  "requestId": "req_011CbToxypZez7T8kqpWsJSA",
+  "type": "assistant",
+  "uuid": "987a7396-0de2-4682-84da-400b58aabb92",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014gQihbX3BdfpNXwTvt3Fh7",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4973,
+      "cache_read_input_tokens": 33831,
+      "output_tokens": 5604,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4973,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5604,
+          "cache_read_input_tokens": 33831,
+          "cache_creation_input_tokens": 4973,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4973
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-27T21:50:55.178Z_
+
+Good — VisualProcessBench is confirmed as a real step-level visual verification benchmark from the EVPV paper. Now I have sufficient cross-validation to integrate.
+
+---
+
+【阶段】: 迭代第 1 轮
+
+【交叉验证调研】:
+1. **PAPO (arXiv 2507.06448)** — 已验证。论文真实存在，Implicit Perception Loss (KL divergence)，+4.4%–17.5% overall / +8.0%–19.1% vision-dependent / 30.5% perception error reduction。可直接插入 GRPO/DAPO，无需任何外部 oracle。发掘 agent 的 trivial alternative 威胁判断完全成立。
+2. **MathGlance** — 部分验证。在文献中有提及但未确认为广泛采用的独立 benchmark。VisualProcessBench (EVPV 论文) 更明确，已确认为 step-level visual verification benchmark。补救 agent 建议使用 VisualProcessBench 有据。
+3. **Structured perception output in CoT** — 未找到直接支撑。Chain-of-Visual-Thought (CoVT) 使用连续 visual tokens 而非文本标签。发掘 agent 建议的 `[PERCEIVE: ...]` 格式缺乏文献先例，但作为工程手段合理——降权为"可选实验设计"而非核心 contribution。
+
+【发掘 agent 有效建议采纳】:
+- **发掘点 1 (PAPO trivial alternative)**: ✅ 已验证，采纳。必须在 Related Work 中引用 PAPO 并明确论证 explicit vs implicit 的差异化优势。这是本轮最关键的 idea 层面改进。
+- **发掘点 2 (Claim extraction reliability)**: ✅ 采纳核心关切（与补救 agent 缺陷 2 重叠）。结构化输出格式建议降权为"可选设计"——未找到文献支撑作为独立 contribution，但作为提升 extraction recall 的工程手段写入 approach。
+- **发掘点 3 (General principle framing)**: ✅ 采纳。无需外部验证——这是 framing 策略调整。RRVF/Visual-ERM 在 code generation 的成功已是支撑。将 EPV 定位为 general principle 的首个实例化。
+- **发掘点 4 (Correlated bias mechanism)**: ✅ 采纳。论证逻辑自洽：如果 judge LLM 与 policy VLM 共享 geometric bias，circularity 会导致 correlated bias amplification。设计 pilot analysis 展示此现象。
+- **发掘点 5 (SGVR premise-level vs outcome-level)**: ✅ 采纳。更精确的差异化表述，且提出 EPV+SGVR 互补可能性作为 future work。
+
+【补救 agent 有效建议采纳】:
+- **缺陷 1 (Baseline 扩展)**: ✅ 已验证（领域标准 4-5 baselines），采纳。扩展至 Vanilla GRPO + PEARL + Perception-R1 + MoCA + SGVR (5 个直接对比)，PRCO 间接引用。
+- **缺陷 2 (Claim extraction 验证)**: ✅ 采纳。增加独立验证实验（200-500 条手标 + precision/recall/F1）+ extraction method ablation。
+- **缺陷 3 (Perception-specific 诊断)**: ✅ 采纳。增加 blindfold diagnostic (MoCA 范式) + reward signal quality analysis + error type breakdown。VisualProcessBench 已验证可用。
+- **缺陷 4 (Ablation 补全)**: ✅ 采纳。增加 λ annealing strategy、r_percept granularity、data source ablation。
+- **缺陷 5 (Data coverage audit)**: ✅ 采纳为实施前置步骤。优先级较低但必须做。
+- **缺陷 6 (Compute fairness)**: ✅ 采纳。报告 per-step wall-clock + total GPU hours + performance-vs-compute curve。
+- **缺陷 7 (Benchmark 扩展)**: ✅ 采纳。增加 MMMU、MathVista 作为 generalization / regression check，总计 5-6 benchmarks。
+
+【本轮 proposal 主要变更】:
+
+*Idea 层面:*
+- 新增 general principle framing：EPV 作为"executable formal verification as RL perception reward"范式的首个实例化
+- 新增 PAPO (arXiv 2507.06448) 引用及 explicit vs implicit 差异化论证
+- 精化 SGVR 差异化：premise-level (EPV) vs outcome-level (SGVR)，提出互补 future work
+- 新增 correlated bias amplification 作为 circularity 危害的机制解释 + pilot analysis 设计
+- Claim extraction 从"pattern matching"升级为双路方案（rule-based + structured output prompting），降为工程设计而非核心 contribution
+
+*实验层面:*
+- Baselines: 2 → 5 (Vanilla GRPO, PEARL, Perception-R1, MoCA, SGVR)
+- Benchmarks: 3 → 5-6 (增加 MMMU, MathVista; 保留 MathVerse, GeoQA, Geometry3K)
+- 新增 claim extraction 独立验证实验
+- 新增 perception-specific 诊断（blindfold test, reward correlation, error breakdown）
+- 新增 3 组内部 ablation（λ策略, r_percept粒度, 数据源）
+- 新增 compute-normalized comparison + efficiency curve
+- 新增 data overlap audit 作为实施前置
+
+【idea 质量评估】: Novelty=中强 (executable formal verification gap 真实存在，PAPO 已被 address，但 PEARL 的强实验结果仍对 necessity narrative 施压) Significance=中强 (general principle framing 提升，但仅 geometry 实例化限制影响力) → idea 天花板约 45%
+
+【实验完备性评估】: Technical Soundness=中强 (设计全面覆盖，claim extraction 验证填补了最大漏洞，但执行风险仍在——extraction recall 能否达标、EPV 能否实际 beat PEARL 均未知) → 地板约 32%
+
+【当前概率估计】: [30% - 42%] 中位 36%
+
+【决策】: 继续
+
+【决策理由】: 本轮改进幅度大（补了 PAPO 引用、general framing、5 个缺失 baseline、perception 诊断、claim extraction 验证），但 proposal 尚有可发掘空间：(1) correlated bias analysis 的具体设计可以更精确；(2) claim extraction 的双路方案细节需要打磨；(3) 补救 agent 可能还会发现新的实验盲点。两个 agent 均非"已收敛"状态，还有优化余地。
+
+---
+
+引用核对清单（确认全部保留）:
+- ✅ URSA (NeurIPS 2025)
+- ✅ Perception-R1 (ICLR 2026)
+- ✅ PRCO (2026) / arXiv 2603.28618
+- ✅ MoCA (ICML 2026 Spotlight) / arXiv 2605.14054
+- ✅ CogFlow (ICLR 2026) / arXiv 2601.01874
+- ✅ SymHPR (Dec 2025) / arXiv 2512.03126
+- ✅ SGVR (Jan 2026) / arXiv 2601.05073
+- ✅ EVPV (Mar 2026) / arXiv 2603.16253
+- ✅ RRVF / Visual-ERM / arXiv 2603.13224
+- ✅ PEARL (CVPR 2026) / arXiv 2511.18437
+- ✅ KAWHI (arXiv 2026) / arXiv 2603.27375
+- ✅ Geoparsing GDP-29K / arXiv 2604.11600
+- ✅ FormalGeo / FormalGeo7K
+- ✅ ViCrit (NeurIPS 2025)
+- ✅ 15 篇 Key References 全部保留
+- ✅ 新增: PAPO (arXiv 2507.06448)
+
+【下一轮 proposal（纯净版，将原样传给 worker）】:
+---
+# Executable Perception Verification Rewards for Multimodal Math RL
+
+## Core Problem
+
+Current perception rewards in multimodal math RL rely on model-based assessment (LLM-as-judge, proxy tasks, or implicit regularization), which suffers from two fundamental limitations: (1) circularity — the same biases that cause perception failures also corrupt the reward signal, and (2) opacity — model-based rewards cannot pinpoint which specific perception claim is wrong. We propose a general principle: wherever executable formal verifiers exist for a visual domain, they should replace model-based judges as RL perception rewards. We instantiate and validate this principle in geometry, where formal parsers have reached sufficient maturity, as the first demonstration of executable perception verification rewards for multimodal math RL.
+
+## Research Opportunity
+
+Formal diagram parsers (Geoparsing with GDP-29K annotated geometry diagrams, SymHPR with 98.2% reconstruction MSE reduction) already produce structured ground-truth representations of mathematical diagrams — but are used only as preprocessing or for perception module training in isolation. Executable visual verification (RRVF, Visual-ERM) has proven effective for chart/web code generation (+8.4 on chart-to-code) but has never been applied to mathematical reasoning RL. The missing bridge is using formal parses as executable oracles to verify perception claims within the reasoning chain during RL training, providing truly verifiable step-level perception rewards. This is feasible now because (1) formal parsing quality has reached sufficient maturity, (2) perception-reasoning disentanglement is a proven recipe (MoCA at ICML 2026 Spotlight), and (3) 40-60% of multimodal math failures are perception errors that model-based rewards cannot reliably catch. Unlike implicit perception improvement methods such as PAPO (arXiv 2507.06448), which uses KL divergence regularization to improve perception without diagnosing specific errors, EPV provides explicit, claim-level verification — identifying exactly which perception claim (e.g., "angle ABC = 45° but ground truth is 60°") is wrong, enabling targeted credit assignment.
+
+## Research Landscape
+
+Existing perception reward methods form a spectrum from implicit to explicit but remain uniformly model-dependent:
+
+**Implicit methods**: PAPO (arXiv 2507.06448) introduces a KL divergence Implicit Perception Loss that improves perception without external oracles (+8% on vision-dependent tasks, 30.5% perception error reduction), but provides no claim-level diagnostics — it cannot tell which perception was wrong or why.
+
+**Model-based explicit methods**: URSA (NeurIPS 2025) uses process reward models with synthetic hallucination injection. Perception-R1 (ICLR 2026) uses LLM-as-judge. PRCO (2026, arXiv 2603.28618) uses model-generated captions with role-specific rewards. MoCA (ICML 2026 Spotlight, arXiv 2605.14054) uses blindfolded reasoning as proxy for perception sufficiency. CogFlow (ICLR 2026, arXiv 2601.01874) uses learned synergistic visual rewards. PEARL (CVPR 2026, arXiv 2511.18437) derives perception checklists and verifies them via LLM judge during GRPO training (+9.7% on MathVerse). EVPV (Mar 2026, arXiv 2603.16253) verifies visual premises via model-generated checklists. All retain circularity: model-based judges share systematic biases with the policy VLM (e.g., both may misclassify obtuse angles as right angles), creating correlated bias amplification where the judge fails to penalize precisely the perception errors the policy most needs to correct.
+
+**Formal verification for reasoning (not perception)**: SGVR (Jan 2026, arXiv 2601.05073) converts formal proofs into verifiable numeric sub-goals for RL reward (+9.7% on geometry), but verifies reasoning outcomes (whether intermediate computed values are correct), not perception premises (whether visual inputs were correctly read from the diagram). SymHPR (Dec 2025, arXiv 2512.03126) uses reconstruction-based rewards but only trains the perception module — not the reasoning chain. KAWHI (arXiv 2026, arXiv 2603.27375) addresses visual representation bottlenecks via reward reweighting but does not verify perception claims.
+
+**The gap**: Formally executable perception verification as RL training rewards for the full reasoning chain — verifying that perception premises match ground-truth diagram structure, not just that reasoning outcomes are numerically correct — is not addressed by any published or concurrent work. EPV and SGVR are complementary: EPV verifies perception inputs (premise-level) while SGVR verifies reasoning outputs (outcome-level); their combination could achieve dual coverage.
+
+## Proposed Approach
+
+We build an Executable Perception Verification Oracle (EPV-Oracle) with three components:
+
+**1. Ground-truth formal parse cache.** Pre-parse all training geometry diagrams into ground-truth formal representations using Geoparsing (GDP-29K, arXiv 2604.11600) and FormalGeo, storing structured representations of points, lines, angles, parallel/perpendicular relations, and measurements. A data overlap audit across GDP-29K, FormalGeo7K, and GeoQA determines actual coverage; diagrams lacking gold annotations are auto-parsed via the Geoparsing model with quality filtering.
+
+**2. Perception claim extraction.** During GRPO training of Qwen3-VL-8B, we extract perception claims from each CoT reasoning step using a dual-path approach: (a) rule-based pattern matching for explicit numeric/relational claims (e.g., "angle ABC = 60°", "AB ∥ CD", "AB = 5cm"), and (b) structured output prompting that encourages the model to surface perception claims in parseable format during rollouts. We independently validate extraction quality on 300-500 hand-annotated CoT samples, reporting precision/recall/F1, and ablate rule-based vs. hybrid extraction.
+
+**3. Symbolic verification and reward.** Extracted claims are verified against the formal parse through symbolic matching — no LLM judge involved. The verification yields a step-level perception reward r_percept = verified_claims / total_claims, combined with the outcome reward via r = r_outcome + λ·r_percept, where λ is annealed during training to shift credit from perception grounding to reasoning.
+
+**Correlated bias analysis.** We include a diagnostic study measuring correlated bias amplification: on a held-out set, we compute the overlap between policy VLM perception errors and LLM judge (PEARL-style) false negatives, comparing this to EPV-Oracle's false negative pattern. If judge and policy share systematic biases on specific geometric configurations, this directly validates the circularity concern.
+
+We train on ~15K geometry problems (actual count determined by data audit) drawn from GDP-29K, FormalGeo7K, and GeoQA with formal annotations, using the EasyR1/OpenRLHF framework on 16×A100 GPUs.
+
+## Evaluation Design
+
+**Benchmarks (5-6 total):**
+- Geometry-specific: MathVerse, GeoQA, Geometry3K
+- General multimodal (generalization/regression check): MMMU, MathVista
+
+**Baselines (5 direct comparisons):**
+1. Vanilla GRPO (no perception reward) — lower bound
+2. PEARL (LLM-judge perception reward, CVPR 2026) — strongest model-based explicit method
+3. Perception-R1 (consistency-check reward, ICLR 2026) — LLM-as-judge paradigm
+4. MoCA (blindfolded reasoning proxy, ICML 2026 Spotlight) — perception sufficiency paradigm
+5. SGVR (formal sub-goal reward, arXiv 2601.05073) — formal verification for reasoning outcomes; head-to-head isolates premise-level vs outcome-level verification
+
+PRCO (arXiv 2603.28618) results cited from published numbers on matching benchmarks for indirect comparison.
+
+**Perception-specific diagnostics:**
+- Blindfold test (MoCA paradigm): text-only vs. multimodal inference to isolate perception contribution
+- Reward signal quality: Pearson/Spearman correlation between EPV reward and human-annotated perception correctness on held-out set, compared against PEARL's LLM-judge reward
+- Error type breakdown: perception/reasoning/calculation error rates before and after training
+- VisualProcessBench (EVPV benchmark) for step-level perception accuracy
+
+**Internal ablations:**
+- λ strategy: constant λ vs. linear annealing vs. cosine annealing vs. λ=0 (vanilla GRPO equivalent)
+- r_percept granularity: ratio (verified/total) vs. binary (all-or-nothing per step) vs. difficulty-weighted
+- Formal parse source: GDP-29K only vs. FormalGeo7K only vs. combined vs. auto-parsed
+- Training data scale: 5K vs. 10K vs. 15K
+- Claim extraction method: rule-based vs. hybrid (rule + structured prompting)
+
+**Compute fairness:** Report per-step wall-clock time and total GPU hours for all methods. Include performance-vs-compute scaling curve. EPV-Oracle's symbolic verification is orders of magnitude cheaper than LLM-judge inference — this efficiency advantage should be quantified.
+
+## Key References
+
+- Unlocking Multimodal Mathematical Reasoning via Process Reward Model (NeurIPS 2025)
+- Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (ICLR 2026)
+- Bad Seeing or Bad Thinking? Rewarding Perception for Vision-Language Reasoning (ICML 2026)
+- CogFlow: Bridging Perception and Reasoning through Knowledge Internalization for Visual Mathematical Problem Solving (ICLR 2026)
+- Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning (CVPR 2026)
+- Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning (arXiv 2026)
+- Hierarchical Process Reward Models are Symbolic Vision Learners (arXiv 2025)
+- Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward (arXiv 2026)
+- Grounding the Score: Explicit Visual Premise Verification for Reliable VL-PRMs (arXiv 2026)
+- Learning Only with Images: Visual Reinforcement Learning with Reasoning, Rendering, and Visual Feedback (arXiv 2025)
+- Visual-ERM: Reward Modeling for Visual Equivalence (arXiv 2026)
+- Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language (arXiv 2026)
+- A Survey of Multimodal Mathematical Reasoning: From Perception, Alignment to Reasoning (arXiv 2026)
+- Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2026)
+- ViCrit: A Verifiable Reinforcement Learning Proxy Task for Visual Perception in VLMs (NeurIPS 2025)
+- PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning (arXiv 2507.06448)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 1,500–2,000 (increased for 5 baselines + expanded ablations), timeline: 14–18 weeks, estimated_gpu_cost: $3,750–$5,000
+- **human_in_loop**: gpu_hours: 1,200–1,500, timeline: 10–14 weeks, claude_api_cost: $400–$600, estimated_gpu_cost: $3,000–$3,750, annotation cost: 300-500 CoT samples for claim extraction validation
+- **auto_research**: gpu_hours: 1,200–1,500, timeline: 7–10 weeks, claude_api_cost: $1,000–$1,500, estimated_gpu_cost: $3,000–$3,750, speed_bottleneck: RL training wall-clock time (16h/run on 16×A100); formal parses pre-cached; claim extraction validation requires human annotation
+---
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "987a7396-0de2-4682-84da-400b58aabb92",
+  "isSidechain": false,
+  "requestId": "req_011CbToxypZez7T8kqpWsJSA",
+  "type": "assistant",
+  "uuid": "2f5b93a0-6aa3-4de2-8e04-39cc7cc0f671",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014gQihbX3BdfpNXwTvt3Fh7",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4973,
+      "cache_read_input_tokens": 33831,
+      "output_tokens": 5604,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4973,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5604,
+          "cache_read_input_tokens": 33831,
+          "cache_creation_input_tokens": 4973,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4973
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to provide a thorough assessment. Let me synthesize my findings.  ---  【状态】:…",
+  "leafUuid": "2f5b93a0-6aa3-4de2-8e04-39cc7cc0f671",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to provide a thorough assessment. Let me synthesize my findings.  ---  【状态】:…",
+  "leafUuid": "2f5b93a0-6aa3-4de2-8e04-39cc7cc0f671",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42 · 2026-05-27T21:56:46.797Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T21:56:46.797Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "content": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have sufficient research to provide a thorough assessment. Let me compile my findings.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- **GeoDPO / GeoPerceive (arXiv 2602.22703, Feb 2026)**: **高度威胁性的未引用工作。** 提出 NL-to-DSL translator 将几何图形的自然语言描述转为 DSL 表示，用 DSL-level scores 作为 RL reward 信号训练 VLM 的几何感知。在 in-domain +26.5%，downstream reasoning +39.0%。核心思路——用几何结构化表示作为可执行的感知 reward——与 EPV 高度重合。\n- **PAPO (arXiv 2507.06448)**: 纯隐式方法（KL divergence implicit perception loss），无需外部 oracle，实现 30.5% perception error reduction。证明隐式方法也能有效改善感知，对 EPV 的\"显式验证必要性\"构成反压力。\n- **PEARL (arXiv 2511.18437, CVPR 2026)**: 用 LLM judge 验证 perception checklist，+9.7% on MathVerse。是 model-based explicit 方法的代表。\n- **MoCA (arXiv 2605.14054, ICML 2026 Spotlight)**: 提出 Structured Verbal Verification 替代 LLM judging，用 blindfolded reasoning proxy 做 Perception Verification。\"structured algorithmic execution\"与 EPV 的 symbolic verification 有概念重叠。\n- **SGVR (arXiv 2601.05073)**: 用 formal verification 生成 numeric sub-goals 作为 dense reward，+9.7% geometry。验证的是推理输出而非感知输入。\n- **EVPV (arXiv 2603.16253)**: 生成 step-wise visual checklist 并用 constraint extractor 验证。与 EPV 在\"提取感知 claim 并验证\"的流程上高度相似，但 EVPV 的 constraint extractor 仍然是 model-based。\n- **PRCO (arXiv 2603.28618)**: Observer/Solver 双角色，role-specific rewards 解耦感知与推理。\n- **ViCrit (NeurIPS 2025)**: 注入 synthetic hallucination 并训练 VLM 定位——verifiable RL proxy for perception，但不针对数学推理。\n- **Geoparsing (arXiv 2604.11600)**: GDP-29K 数据集，formal language 表示的几何图形解析，是 EPV-Oracle 的上游工具。\n- 调研总结：当前领域研究者的核心思路在于**解耦感知与推理的 credit assignment**，方法从隐式（PAPO）到 model-based explicit（PEARL/EVPV/MoCA/PRCO）形成一个连续谱。**GeoDPO 已经迈出了\"用结构化表示做感知 reward\"的关键一步**，但其 reward 仍依赖 learned translator 的 soft scores 而非 ground-truth symbolic matching。EPV 的真正增量需要在此基础上重新锚定。\n\n---\n\n【发掘点 1】\n- 维度: related work 差异化 / trivial alternative 威胁\n- 内容: **GeoDPO (arXiv 2602.22703) 是一个被完全遗漏的高度相关工作，构成当前 novelty claim 的最大威胁。** GeoDPO 的核心思路——用几何 DSL 结构化表示作为 RL reward 信号来改善 VLM 的几何感知——与 EPV 在抽象层面高度重合。如果不处理这个关系，任何审稿人搜索到这篇论文都会质疑 EPV 的增量贡献。Proposal 必须在 Related Work 中显式引用 GeoDPO，并明确 EPV 与之的三个关键差异：(1) GeoDPO 的 reward 来自 learned NL-to-DSL translator 的 soft confidence scores，本质上仍是一个 learned 模型打分——虽然比 LLM judge 更结构化，但 translator 本身可能学到 systematic biases，且 soft scores 无法解释*哪个具体 claim 错了*；EPV 用 ground-truth formal parse 做 symbolic matching，是真正的 model-free verification，具有可解释性（能指出 \"angle ABC = 45° 但 GT = 60°\"）。(2) GeoDPO 将感知和推理分阶段训练（先 DPO 感知，再推理），而 EPV 将感知 reward 集成到 GRPO 中做 joint training——这在理论上允许感知-推理的 co-adaptation。(3) GeoDPO 的 DSL-level 评估是 holistic（整体评分），EPV 是 claim-level granular（逐条验证）。这三个差异真实存在且重要，但当前 proposal 没有呈现它们。\n- 价值: 补上这个关键 gap 直接决定了 novelty claim 是否能在审稿中存活。如果审稿人发现 GeoDPO 未被引用，会直接判定 related work 不充分且 novelty 存疑。反过来，如果显式对比并论证出上述差异，EPV 的定位会更锐利——从\"第一个用 formal parse 做感知 reward\"转变为\"第一个在 joint training 中实现 model-free、claim-level、symbolically verifiable 的感知 reward\"。\n- 调研依据: 直接发现 GeoDPO (arXiv 2602.22703, Feb 2026)\n\n【发掘点 2】\n- 维度: novelty 锐化\n- 内容: **当前 novelty claim 的锚点需要从\"executable perception verification\"（太宽泛，GeoDPO 和 EVPV 都可以声称部分覆盖）收窄到\"model-free, claim-level, symbolically grounded perception verification as step-level RL reward\"。** 当前 proposal 的标题和核心 framing 强调\"executable\"，但\"executable\"在这个领域已经不够独特——SGVR 的 sub-goal verification 是 executable，GeoDPO 的 DSL scoring 某种程度上也是 executable，ViCrit 的 hallucination detection 也是 rule-based verifiable。EPV 真正独特的组合是三个属性的交集：(a) **model-free**（零 learned component 参与 reward 计算，纯 symbolic matching）；(b) **claim-level**（CoT 中每一条感知 assertion 单独验证，提供 fine-grained credit assignment）；(c) **step-level RL integration**（在 GRPO training 中作为 step reward，而不是 test-time reranking 或独立 perception module training）。建议将这个三元组作为核心 novelty statement 明确写入 contribution，并在标题或副标题中体现\"model-free\"和\"claim-level\"。\n- 价值: 锐化 novelty 定位，防止审稿人用\"incremental over GeoDPO/EVPV\"打掉 contribution。将 novelty 从一个模糊的 umbrella term 收窄到一个可防御的精确定位。\n- 调研依据: 综合 GeoDPO (executable DSL reward)、EVPV (claim extraction + verification)、SGVR (formal sub-goal verification)、ViCrit (rule-based verifiable perception RL) 的对比分析\n\n【发掘点 3】\n- 维度: 前提假设质疑\n- 内容: **\"circularity\"论证目前停留在直觉层面，但 PAPO 的成功对这一前提构成严肃的反例。** Proposal 的核心 motivation 之一是\"model-based judges 与 policy VLM 共享 systematic biases，导致 correlated bias amplification\"——这个论证在逻辑上合理，但 PAPO 用纯隐式方法（KL divergence regularization，完全没有外部 oracle）就实现了 30.5% perception error reduction 和 8%-19% 的 vision-dependent task 提升。如果 circularity 是一个严重到需要 formal verification 来解决的问题，为什么一个连外部 oracle 都不用的隐式方法也能大幅改善感知？审稿人可能会问：circularity 是否是一个真实存在的瓶颈，还是一个被过度渲染的 strawman？**建议的应对策略**：(1) 将 correlated bias analysis（proposal 中已提到）从\"可选 diagnostic\"提升为核心贡献之一——定量测量 judge 和 policy 在哪些 geometric configurations 上共享 systematic bias，这本身就是一个有价值的 empirical finding。(2) 明确 claim 的范围：不是说 model-based 方法\"不行\"，而是说它们在特定 failure modes（如系统性角度误判、平行关系遗漏）上存在 blind spots，而 EPV 能覆盖这些 blind spots。这比\"model-based 都有 circularity 问题\"更 defensible。\n- 价值: 强化核心 motivation 的可信度（Significance 维度）。一个被审稿人质疑 motivation 的论文很难拿到高分，而 PAPO 的存在使得\"circularity is fatal\"这个 claim 容易被反驳。将论证从二元对立（executable vs model-based）调整为互补定位（EPV covers blind spots that model-based methods miss），既更诚实也更 defensible。\n- 调研依据: PAPO (arXiv 2507.06448) 的结果（30.5% perception error reduction，无外部 oracle）\n\n【发掘点 4】\n- 维度: significance 提升\n- 内容: **Proposal 目前将 EPV 定位为\"geometry 上的 instantiation\"，但没有充分论证为什么 geometry 是这个原则的最佳 first demonstration——以及这个原则的 generalization roadmap。** \"wherever executable formal verifiers exist, they should replace model-based judges\"是一个 general principle，但 proposal 除了一句话 claim 之外没有展开讨论：还有哪些视觉数学领域具备类似的 formal verification 基础设施？（例如：函数图像可以通过符号计算引擎验证、电路图可以通过 SPICE 仿真器验证、化学结构式可以通过 SMILES/InChI 验证。）如果能在 Introduction 或 Discussion 中勾勒这个 generalization landscape——说明 geometry 是最成熟的 first step，但原则本身适用于一类 visually-grounded formal domains——这会显著提升论文的 significance：审稿人会觉得这不只是\"一个 geometry trick\"，而是一个值得关注的 research agenda。注意，我不是建议在实验中做这些扩展（那是补救 agent 的事），而是建议在 narrative 层面 frame 得更有影响力。\n- 价值: 提升 Significance——从\"geometry-specific method\"到\"a general principle with geometry as first case study\"。这直接影响审稿人对论文 impact 的判断。\n- 调研依据: 基于领域整体趋势判断。RRVF/Visual-ERM 已经在 chart/web code 领域验证了 executable feedback 的有效性，Geoparsing/FormalGeo 在 geometry 领域提供了基础设施——这暗示了一个跨领域的 pattern。\n\n【发掘点 5】\n- 维度: 核心 claim 强化\n- 内容: **Claim-level perception verification 的独特价值需要一个更有力的\"so what\"——光说\"能指出哪条 claim 错了\"不够，需要论证这种 fine-grained signal 为什么会导致 qualitatively different training dynamics。** 当前 proposal 说 EPV 能指出\"angle ABC = 45° 但 GT = 60°\"，这比 binary 或 holistic reward 更 informative。但审稿人可能会问：在 RL training 中，这种 claim-level 信号到底通过什么机制转化为更好的 policy？Proposal 中的 reward 设计是 `r_percept = verified_claims / total_claims`——这实际上是一个 ratio，已经把 claim-level 信息压缩回了一个 scalar。如果最终 reward 还是一个 scalar，claim-level verification 相比 GeoDPO 的 holistic DSL scoring 的优势在哪里？**建议的强化路径**：论证 claim-level verification 的关键优势不在于最终 scalar reward 的数值更准确，而在于 (1) **targeted failure diagnosis for curriculum/data curation**——能自动识别模型系统性失败的 perception type（如\"这个模型总是误判平行关系\"），从而指导 training data 的 targeted augmentation；(2) **human-interpretable error attribution**——对 model debugging 和 trust calibration 有直接价值；(3) **potential for claim-specific reward**（future work）——如果将来把 reward 细化到 token/claim 级别，claim-level verification 是唯一能提供信号的方式。\n- 价值: 强化核心 claim 的逻辑链条（Novelty 维度）。目前 claim-level verification 的价值论证有一个\"最后一公里\"问题——所有 claim-level 信息最终被压缩成一个 scalar ratio，审稿人可能会质疑 claim-level granularity 的实际效用。补上这个论证让 claim-level 的价值 case 更完整。\n- 调研依据: 对比 GeoDPO 的 holistic DSL scoring 和 EPV 的 claim-level ratio reward 设计\n\nSources:\n- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning](https://arxiv.org/abs/2602.22703)\n- [PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning](https://arxiv.org/abs/2507.06448)\n- [PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning](https://arxiv.org/abs/2511.18437)\n- [MoCA: Bad Seeing or Bad Thinking? Rewarding Perception for Vision-Language Reasoning](https://arxiv.org/abs/2605.14054)\n- [SGVR: Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward](https://arxiv.org/abs/2601.05073)\n- [EVPV: Grounding the Score: Explicit Visual Premise Verification for Reliable VL-PRMs](https://arxiv.org/abs/2603.16253)\n- [PRCO: Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning](https://arxiv.org/abs/2603.28618)\n- [ViCrit: A Verifiable Reinforcement Learning Proxy Task for Visual Perception in VLMs](https://arxiv.org/abs/2506.10128)\n- [Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language](https://arxiv.org/abs/2604.11600)\n- [KAWHI: Bridging Visual Representation and Reinforcement Learning from Verifiable Rewards](https://arxiv.org/abs/2603.27375)\n\n【补救 agent 本轮输出】:\nNow I have comprehensive research background. Let me synthesize my findings and provide the evaluation.\n\n---\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- **PEARL (arXiv 2511.18437, CVPR 2026):** 使用 perception checklist + LLM judge 作为 perception reward，结合 GRPO/DAPO 训练。评测覆盖 MathVerse (+9.7%)、MathVista 等多基准。Ablation 包括 reward gating 策略、checklist 生成方式。审稿人关注 LLM judge 的可靠性和 reward hacking 风险。\n- **SGVR (arXiv 2601.05073, 2026):** 将形式化证明转为可验证数值子目标，用 Skeleton Rate 作密集奖励。评测含 GeoGoal 自建基准 + GeoPQA。Ablation 含奖励粒度（密集 vs 稀疏）、数据规模。3B/7B 双模型规模验证。\n- **MoCA (arXiv 2605.14054, ICML 2026 Spotlight):** 用 blindfolded text reasoner 作为 perception sufficiency 代理。评测跨越 perception-intensive 到 rich-modality 多类基准。创新性的 perception 隔离测试范式被广泛引用。\n- **PAPO (arXiv 2507.06448):** 隐式 KL 散度 perception loss，无需外部 oracle。在多模态基准上 +4.4%-17.5%，视觉依赖任务 +8.0%-19.1%。关键特点：零额外数据/模型开销。\n- **PRCO (arXiv 2603.28618):** 双角色 RLVR (Observer + Solver)，role-specific reward。8 个多模态推理基准评测，3B/7B 双规模，perception error 减少 39.2%。\n- **CogFlow (arXiv 2601.01874, ICLR 2026):** 三阶段框架 (perception → internalization → reasoning)，自建 MathCog 数据集 (120K 标注)。Visual-Gated Policy Optimization 算法。\n- **EVPV (arXiv 2603.16253):** 显式视觉前提验证 + reliability gating for PRM。VisualProcessBench 评测 + 6 个多模态推理基准。包含因果消融（controlled corruption → monotonic degradation）。\n- **ViCrit (NeurIPS 2025):** 合成视觉幻觉注入 + 定位的 RL 代理任务，提供 rule-based 确定性奖励。迁移到抽象图像推理和视觉数学任务。\n- **FormalGeo7K:** 6,981 问题来自 Geometry3K + GeoQA+，扩充至 186K。88 predicates + 196 几何定理。\n- **GDP-29K:** 20K 平面 + 9K 立体几何样本，覆盖打印/手写，配对 ground-truth 形式化描述。\n\n- **调研总结:** 该领域 2026 年的实验设计标准为：(1) 至少 4-5 个直接 baseline 对比，包括 vanilla GRPO + 2-3 个最新 perception reward 方法；(2) 跨规模验证 (3B/7B 或 7B/32B)；(3) 多基准评测 (geometry-specific + general multimodal)；(4) perception-specific 诊断指标（如 blindfold test、error type breakdown）；(5) 充分 ablation 隔离各组件。审稿人普遍要求论证 reward signal quality 和 reward hacking 风险。\n\n---\n\n【缺陷 1】\n- 类别: 实验设计不足\n- 问题: Proposal 仅计划在 Qwen3-VL-8B 单一模型规模上实验。调研显示，该领域近期高影响力工作（SGVR 使用 3B/7B、PRCO 使用 3B/7B、CogFlow 使用多规模、PEARL 也验证了不同基础模型）普遍要求**跨模型规模验证**以证明方法的 scalability 和通用性。仅在 8B 上做实验会被审稿人质疑 EPV 方法是否在小模型（perception 更差）和大模型（perception 较好）上都有效——这直接影响 core claim 的可信度。\n- 严重度: 可补救\n- 补救方案: 增加至少一个额外模型规模的实验。建议 (a) Qwen3-VL-4B（较小规模，perception 能力更弱，EPV 的 perception reward 可能帮助更大）和 (b) Qwen3-VL-8B（当前方案），共两个规模。如果 GPU 预算允许，可再加 Qwen3-VL-32B 或换一个非 Qwen 系列模型（如 InternVL3 系列）验证跨架构通用性。跨规模实验可复用已有的 EPV-Oracle 和训练管线，增量 GPU 开销约 500-800 GPU hours。\n- 调研依据: SGVR (3B/7B 双规模)、PRCO (3B/7B 双规模) 的实验设计，以及领域审稿人对 scalability 的普遍要求。\n\n【缺陷 2】\n- 类别: 可行性问题\n- 问题: Proposal 的核心依赖是 perception claim extraction（从 CoT 中提取几何感知声明）的质量。Proposal 提到\"dual-path approach: (a) rule-based pattern matching + (b) structured output prompting\"，并计划在 300-500 个手标 CoT 样本上验证 P/R/F1。然而，几何 CoT 中的感知声明远比列出的示例（\"angle ABC = 60°\", \"AB ∥ CD\"）复杂——模型可能以隐式方式引用感知信息（如\"since the triangle is isosceles\"暗含两边相等），或使用非标准表述（\"the right angle at B\"）。**如果 claim extraction 的 recall 不高，大量正确/错误的 perception 会被遗漏，r_percept 信号将严重有噪声。** 300-500 样本的验证规模能否覆盖足够多的 CoT 表述模式存疑。\n- 严重度: 可补救\n- 补救方案: (1) 增加 claim extraction 的 failure mode 分析：在验证集上不仅报 P/R/F1，还要按 claim 类型（显式数值、关系声明、隐式声明）分别报告，识别 recall 瓶颈；(2) 增加一个 ablation：对比 \"high-recall extraction\"（宽松匹配，可能低 precision）vs \"high-precision extraction\"（严格匹配，低 recall）对最终训练效果的影响，以理解 extraction 噪声的容忍度；(3) 考虑将验证集扩大到 500-800 样本，并包含 adversarial cases（隐式感知声明）；(4) 在 structured output prompting 路径中，可以设计 few-shot 示例引导模型显式输出感知声明，降低隐式引用的比例——但需要 ablation 证明这不会损害推理质量。\n- 调研依据: EVPV (arXiv 2603.16253) 的 visual checklist 生成和 controlled corruption 因果消融提供了类似的 extraction quality 验证范式；Factscore 风格的 claim decomposition 文献表明，隐式 claim 是 extraction pipeline 的典型瓶颈。\n\n【缺陷 3】\n- 类别: baseline 不足或过时\n- 问题: Proposal 列出 5 个 baseline，覆盖面总体合理，但遗漏了两个重要对照：(1) **PAPO**（arXiv 2507.06448）——作为 proposal 中反复讨论的 implicit perception method 代表，仅在 framing 中提及但未作为实验 baseline。PAPO 的零额外开销特性使其成为 EPV 的一个重要对比点：EPV 需要构建形式化 oracle 而 PAPO 不需要，审稿人必然会问\"比起零开销的 PAPO，EPV 的额外工程量是否值得？\"(2) **CogFlow**（ICLR 2026）——作为同期发表的三阶段 perception-internalization-reasoning 框架，在该领域影响力大，且同样试图解决 perception-reasoning 解耦问题，缺席直接对比会被认为是刻意回避。\n- 严重度: 可补救\n- 补救方案: 将 PAPO 和 CogFlow 加入 baseline 列表。PAPO 可作为\"零额外开销 implicit perception reward\"的 lower bound 对照——如果 EPV 仅比 PAPO 略好，则审稿人会质疑构建 formal oracle 的 cost-effectiveness。CogFlow 可作为\"同期 perception-reasoning 解耦方法但非 RL-native\"的对照。两者均有开源代码/即将开源，复现成本可控。如 GPU 预算紧张，CogFlow 可引用论文数字做间接对比（与 PRCO 类似处理），但 PAPO 因其与 EPV 形成最直接的 implicit vs explicit 对比，**必须做直接实验对比**。\n- 调研依据: PAPO (arXiv 2507.06448) 在多模态基准上 +4.4%-17.5% 且零额外开销；CogFlow (ICLR 2026) 作为同期高影响力工作使用 120K 标注数据 + Visual-Gated Policy Optimization。\n\n【缺陷 4】\n- 类别: 评估方案缺陷\n- 问题: Proposal 的 core claim 之一是 EPV 解决了 model-based judge 的 **circularity（循环偏差）** 问题。Proposal 提到了\"correlated bias analysis\"诊断实验来验证这一点。但当前设计仅测量\"policy VLM perception errors 与 LLM judge false negatives 的 overlap\"——这只是一个 observational correlation，不构成因果证据。审稿人可能会质疑：(a) 这个 overlap 可能仅仅是因为某些几何配置本身更难，而非 circularity；(b) 没有控制变量来排除替代解释。\n- 严重度: 可补救\n- 补救方案: 增强 circularity 验证的因果性：(1) 设计 **controlled corruption 实验**（参考 EVPV 的做法）：人为向 formal parse 中注入已知错误，验证 EPV-Oracle 的 reward 信号是否相应变化（单调下降），作为 oracle 准确性的因果证据；(2) 在 correlated bias analysis 中加入 **条件分析**：按几何配置难度分层（简单/中等/困难），看在每个难度层级内 circularity overlap 是否仍然显著——如果在同一难度层级内 judge 和 policy 的错误仍高度重叠（而 EPV 不重叠），则更强地支持 circularity 而非难度的解释；(3) 加入一个 **synthetic circularity 实验**：故意训练一个有特定 systematic bias 的 LLM judge（如总是将钝角判为直角），观察使用该 judge 作为 reward 是否导致 policy 放大该 bias，而 EPV 不会。方案 (1) 和 (2) 实施成本低，强烈建议纳入；方案 (3) 成本较高，可选。\n- 调研依据: EVPV (arXiv 2603.16253) 的 controlled corruption → monotonic degradation 因果消融设计；领域审稿人对因果证据（而非 correlation）的普遍期望。\n\n【缺陷 5】\n- 类别: ablation 不完整\n- 问题: 当前 ablation 设计覆盖了 λ 策略、r_percept 粒度、形式化解析来源、训练数据规模、claim extraction 方法五个维度，总体较全面。但缺少两个关键 ablation：(1) **EPV + SGVR 联合实验**——proposal 自己强调 EPV 和 SGVR 是互补的（premise-level vs outcome-level verification），但没有设计联合实验来验证这一 claim。如果不做这个 ablation，\"complementary\" 的说法只是 speculation。(2) **Reward signal noise tolerance**——EPV-Oracle 依赖 formal parse 的准确性和 claim extraction 的完整性，当这两者有噪声时（如 auto-parsed diagrams 的 parse 错误、claim extraction 的 recall gap），reward 信号质量如何退化？需要一个系统性的噪声注入 ablation。\n- 严重度: 可补救\n- 补救方案: (1) 增加 **EPV + SGVR 联合训练** ablation：r = r_outcome + λ₁·r_percept(EPV) + λ₂·r_subgoal(SGVR)，验证双重验证是否带来叠加增益。这是一个高价值 ablation，因为正向结果直接支持 paper 的 complementarity claim，且为后续工作开辟方向。实施需要集成 SGVR 的 subgoal reward（其代码已开源/将开源），增量成本约 2-3 次额外训练 run。(2) 增加 **noise injection ablation**：在 formal parse cache 中随机注入 5%/10%/20% 的错误标注，观察训练效果的退化曲线。这同时测试了方法的 robustness 和帮助理解 auto-parsed diagrams（质量可能低于 gold annotation）的可用性。\n- 调研依据: Proposal 自身的 complementarity claim 需要实验支撑；EVPV 的 controlled corruption 范式可直接借鉴为 noise injection ablation 的设计模板。\n\n【缺陷 6】\n- 类别: 可行性问题\n- 问题: Proposal 声称训练数据为 ~15K geometry problems \"drawn from GDP-29K, FormalGeo7K, and GeoQA with formal annotations\"，但存在数据覆盖度的实际可行性风险：(1) GDP-29K 是 2024 年 4 月的论文，其 formal annotations 的**公开可用性和许可证**需要确认——如果数据集尚未完全公开，或 formal annotation 格式与 FormalGeo 不兼容，需要额外的格式转换工作；(2) FormalGeo7K 的 6,981 问题来自 Geometry3K + GeoQA+，与 GeoQA 有**数据重叠**——实际的去重后非重叠数据量可能显著少于三个数据集的简单加和；(3) 训练集和评测集（GeoQA、Geometry3K）之间可能存在 **data leakage**——FormalGeo7K 包含 Geometry3K 的子集，若 Geometry3K test set 的问题出现在训练 formal parse cache 中，评测结果不可信。\n- 严重度: 可补救\n- 补救方案: (1) 在 data audit 环节（proposal 已提到）中，必须明确报告：各数据集的实际获取状态、formal annotation 格式兼容性、去重后的实际可用数据量；(2) **严格的 train-test split 协议**：明确列出每个评测基准的 test set 与训练 formal parse cache 的重叠情况，对任何有重叠的样本从训练集中移除，并在论文中报告这一处理；(3) 建议增加一个 **\"zero-overlap\" 评测子集**——仅在训练集中完全没有出现过的 geometry problems 上报告性能，作为方法泛化能力的硬指标；(4) 关于 GDP-29K 的可用性，建议尽早联系原作者确认数据获取和使用许可，并准备一个 fallback 方案（仅用 FormalGeo7K + auto-parsed GeoQA diagrams）。\n- 调研依据: FormalGeo7K 文档明确说明其来源为 Geometry3K + GeoQA+，存在与评测基准的天然重叠；基于领域实验规范判断——data leakage 是 AAAI 审稿人高度关注的问题。\n\n【缺陷 7】\n- 类别: compute 公平性问题\n- 问题: Proposal 提到 \"EPV-Oracle's symbolic verification is orders of magnitude cheaper than LLM-judge inference — this efficiency advantage should be quantified\"，这是正确的方向。但 compute fairness 需要更细致：(1) EPV 需要**预先构建 formal parse cache**（对全部训练图做 Geoparsing），这个一次性成本应计入总 compute budget；(2) EPV 的 claim extraction 中 structured output prompting 路径实际上在 rollout 时增加了 token 生成量（要求模型输出结构化感知声明），这增加了 per-rollout 的推理成本；(3) 与 baseline 对比时，应在 **相同总 GPU hours** 下比较，而不仅是 per-step 时间——如果 EPV 的 per-step 开销更低，应给所有方法相同的总 compute budget，让 baseline 多训练一些 step。\n- 严重度: 可补救\n- 补救方案: (1) 在 compute fairness 报告中增加**全生命周期 compute 分解**：formal parse cache 构建成本 + 每 step 的 claim extraction 开销 + 每 step 的 symbolic verification 开销 + RL 训练本身的开销，与各 baseline 的对应分解做表格对比；(2) 增加一个 **iso-compute 对比实验**：在固定总 GPU hours 预算下，比较各方法的最终性能——EPV per-step 便宜就多训 step，LLM-judge 方法 per-step 贵就少训 step，看在相同总 compute 下谁更好；(3) 关于 structured output prompting 增加的 token 开销，量化其比例（估计 10-20% 额外 token），并在 ablation 中验证去掉 structured prompting（仅用 rule-based extraction）对性能的影响。\n- 调研依据: 基于领域实验规范判断——compute-normalized comparison 是 AAAI/NeurIPS/ICML 审稿人的普遍要求，SGVR 和 PEARL 论文中均包含 per-step timing 对比。\n\n【缺陷 8】\n- 类别: 评估方案缺陷\n- 问题: Proposal 的评测基准覆盖 geometry-specific (MathVerse, GeoQA, Geometry3K) + general multimodal (MMMU, MathVista)，共 5-6 个。但存在两个遗漏：(1) **缺少 out-of-domain geometry 泛化测试**——所有 geometry-specific 基准都是 plane geometry，而 GDP-29K 包含 solid geometry，EPV 是否能泛化到 3D 几何问题？(2) **缺少 VisualProcessBench 之外的 step-level perception 评测**——proposal 提到用 VisualProcessBench 做 step-level perception accuracy 测试，但 VisualProcessBench 是一个通用多模态基准（不特定于 geometry），还应补充一个 **geometry-specific 的 perception accuracy 评测**（如在 GeoQA 上标注哪些 step 有 perception error，计算 perception error rate 的下降幅度，类似 PRCO 在 WeMath 上的 39.2% perception error reduction 数据）。\n- 严重度: 可补救\n- 补救方案: (1) 如果 EPV 的训练集不包含 solid geometry（实际上 GDP-29K 有 9K 立体几何样本），可以设计一个 **plane → solid geometry 泛化实验**——用仅 plane geometry 训练的 EPV 模型在 solid geometry 问题上测试，观察泛化能力。如果训练集包含 solid geometry，则应在评测中明确包含 solid geometry 子集的单独结果。(2) 在 GeoQA 或 Geometry3K 上手动标注一个 perception error 子集（100-200 样本），报告训练前后 **geometry-specific perception error rate** 的变化，与 PRCO 的 39.2% reduction、PAPO 的 30.5% reduction 形成直接数字对比。这是审稿人高度期待的诊断指标。\n- 调研依据: PRCO 报告了 WeMath 上 39.2% perception error reduction；PAPO 报告了 30.5% perception error reduction；领域审稿人普遍期待 domain-specific perception error rate 分析。\n\n---\n\n**总结**: 上述 8 个缺陷均为**可补救**级别，无方向性致命问题。实验方案的整体框架是合理的——baseline 选择方向正确、ablation 覆盖了关键维度、诊断实验有新意（correlated bias analysis）。但在以下方面需要加强：跨模型规模验证（缺陷 1）、claim extraction 可靠性的深入验证（缺陷 2）、补充 PAPO/CogFlow baseline（缺陷 3）、circularity claim 的因果证据（缺陷 4）、EPV+SGVR 联合实验和噪声容忍度 ablation（缺陷 5）、数据 leakage 防控（缺陷 6）、compute 公平性完善（缺陷 7）、评测覆盖度补全（缺陷 8）。所有缺陷的补救方案在现有资源预算（16×A100, 14-18 周）内可行，但会将 GPU hours 预算推高至约 2,500-3,000 小时（主要增量来自跨模型规模实验和额外 baseline），建议在 resource estimate 中相应调整。\n\nSources:\n- [PEARL: Perceptual-Evidence Anchored Reinforced Learning](https://arxiv.org/abs/2511.18437)\n- [SGVR: Milestones over Outcome](https://arxiv.org/abs/2601.05073)\n- [MoCA: Bad Seeing or Bad Thinking](https://arxiv.org/html/2605.14054)\n- [PAPO: Perception-Aware Policy Optimization](https://arxiv.org/abs/2507.06448)\n- [PRCO: Seeing with You](https://arxiv.org/abs/2603.28618)\n- [CogFlow: Bridging Perception and Reasoning](https://arxiv.org/abs/2601.01874)\n- [EVPV: Grounding the Score](https://arxiv.org/abs/2603.16253)\n- [ViCrit: Verifiable RL Proxy for Visual Perception](https://arxiv.org/abs/2506.10128)\n- [Geoparsing: GDP-29K](https://arxiv.org/abs/2604.11600)\n- [FormalGeo: Extensible Formalized Framework](https://arxiv.org/pdf/2310.18021)\n- [KAWHI: Bridging Visual Representation and RLVR](https://arxiv.org/abs/2603.27375)\n- [VisualProcessBench Dataset](https://huggingface.co/datasets/OpenGVLab/VisualProcessBench)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43 · 2026-05-27T21:56:46.797Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T21:56:46.797Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+## Round 3
+
+21 recorded events
+
+### User
+
+_source line 44 · 2026-05-27T21:56:46.823Z_
+
+【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。
+
+【发掘 agent 本轮输出】:
+Now I have sufficient research to provide a thorough assessment. Let me compile my findings.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **GeoDPO / GeoPerceive (arXiv 2602.22703, Feb 2026)**: **高度威胁性的未引用工作。** 提出 NL-to-DSL translator 将几何图形的自然语言描述转为 DSL 表示，用 DSL-level scores 作为 RL reward 信号训练 VLM 的几何感知。在 in-domain +26.5%，downstream reasoning +39.0%。核心思路——用几何结构化表示作为可执行的感知 reward——与 EPV 高度重合。
+- **PAPO (arXiv 2507.06448)**: 纯隐式方法（KL divergence implicit perception loss），无需外部 oracle，实现 30.5% perception error reduction。证明隐式方法也能有效改善感知，对 EPV 的"显式验证必要性"构成反压力。
+- **PEARL (arXiv 2511.18437, CVPR 2026)**: 用 LLM judge 验证 perception checklist，+9.7% on MathVerse。是 model-based explicit 方法的代表。
+- **MoCA (arXiv 2605.14054, ICML 2026 Spotlight)**: 提出 Structured Verbal Verification 替代 LLM judging，用 blindfolded reasoning proxy 做 Perception Verification。"structured algorithmic execution"与 EPV 的 symbolic verification 有概念重叠。
+- **SGVR (arXiv 2601.05073)**: 用 formal verification 生成 numeric sub-goals 作为 dense reward，+9.7% geometry。验证的是推理输出而非感知输入。
+- **EVPV (arXiv 2603.16253)**: 生成 step-wise visual checklist 并用 constraint extractor 验证。与 EPV 在"提取感知 claim 并验证"的流程上高度相似，但 EVPV 的 constraint extractor 仍然是 model-based。
+- **PRCO (arXiv 2603.28618)**: Observer/Solver 双角色，role-specific rewards 解耦感知与推理。
+- **ViCrit (NeurIPS 2025)**: 注入 synthetic hallucination 并训练 VLM 定位——verifiable RL proxy for perception，但不针对数学推理。
+- **Geoparsing (arXiv 2604.11600)**: GDP-29K 数据集，formal language 表示的几何图形解析，是 EPV-Oracle 的上游工具。
+- 调研总结：当前领域研究者的核心思路在于**解耦感知与推理的 credit assignment**，方法从隐式（PAPO）到 model-based explicit（PEARL/EVPV/MoCA/PRCO）形成一个连续谱。**GeoDPO 已经迈出了"用结构化表示做感知 reward"的关键一步**，但其 reward 仍依赖 learned translator 的 soft scores 而非 ground-truth symbolic matching。EPV 的真正增量需要在此基础上重新锚定。
+
+---
+
+【发掘点 1】
+- 维度: related work 差异化 / trivial alternative 威胁
+- 内容: **GeoDPO (arXiv 2602.22703) 是一个被完全遗漏的高度相关工作，构成当前 novelty claim 的最大威胁。** GeoDPO 的核心思路——用几何 DSL 结构化表示作为 RL reward 信号来改善 VLM 的几何感知——与 EPV 在抽象层面高度重合。如果不处理这个关系，任何审稿人搜索到这篇论文都会质疑 EPV 的增量贡献。Proposal 必须在 Related Work 中显式引用 GeoDPO，并明确 EPV 与之的三个关键差异：(1) GeoDPO 的 reward 来自 learned NL-to-DSL translator 的 soft confidence scores，本质上仍是一个 learned 模型打分——虽然比 LLM judge 更结构化，但 translator 本身可能学到 systematic biases，且 soft scores 无法解释*哪个具体 claim 错了*；EPV 用 ground-truth formal parse 做 symbolic matching，是真正的 model-free verification，具有可解释性（能指出 "angle ABC = 45° 但 GT = 60°"）。(2) GeoDPO 将感知和推理分阶段训练（先 DPO 感知，再推理），而 EPV 将感知 reward 集成到 GRPO 中做 joint training——这在理论上允许感知-推理的 co-adaptation。(3) GeoDPO 的 DSL-level 评估是 holistic（整体评分），EPV 是 claim-level granular（逐条验证）。这三个差异真实存在且重要，但当前 proposal 没有呈现它们。
+- 价值: 补上这个关键 gap 直接决定了 novelty claim 是否能在审稿中存活。如果审稿人发现 GeoDPO 未被引用，会直接判定 related work 不充分且 novelty 存疑。反过来，如果显式对比并论证出上述差异，EPV 的定位会更锐利——从"第一个用 formal parse 做感知 reward"转变为"第一个在 joint training 中实现 model-free、claim-level、symbolically verifiable 的感知 reward"。
+- 调研依据: 直接发现 GeoDPO (arXiv 2602.22703, Feb 2026)
+
+【发掘点 2】
+- 维度: novelty 锐化
+- 内容: **当前 novelty claim 的锚点需要从"executable perception verification"（太宽泛，GeoDPO 和 EVPV 都可以声称部分覆盖）收窄到"model-free, claim-level, symbolically grounded perception verification as step-level RL reward"。** 当前 proposal 的标题和核心 framing 强调"executable"，但"executable"在这个领域已经不够独特——SGVR 的 sub-goal verification 是 executable，GeoDPO 的 DSL scoring 某种程度上也是 executable，ViCrit 的 hallucination detection 也是 rule-based verifiable。EPV 真正独特的组合是三个属性的交集：(a) **model-free**（零 learned component 参与 reward 计算，纯 symbolic matching）；(b) **claim-level**（CoT 中每一条感知 assertion 单独验证，提供 fine-grained credit assignment）；(c) **step-level RL integration**（在 GRPO training 中作为 step reward，而不是 test-time reranking 或独立 perception module training）。建议将这个三元组作为核心 novelty statement 明确写入 contribution，并在标题或副标题中体现"model-free"和"claim-level"。
+- 价值: 锐化 novelty 定位，防止审稿人用"incremental over GeoDPO/EVPV"打掉 contribution。将 novelty 从一个模糊的 umbrella term 收窄到一个可防御的精确定位。
+- 调研依据: 综合 GeoDPO (executable DSL reward)、EVPV (claim extraction + verification)、SGVR (formal sub-goal verification)、ViCrit (rule-based verifiable perception RL) 的对比分析
+
+【发掘点 3】
+- 维度: 前提假设质疑
+- 内容: **"circularity"论证目前停留在直觉层面，但 PAPO 的成功对这一前提构成严肃的反例。** Proposal 的核心 motivation 之一是"model-based judges 与 policy VLM 共享 systematic biases，导致 correlated bias amplification"——这个论证在逻辑上合理，但 PAPO 用纯隐式方法（KL divergence regularization，完全没有外部 oracle）就实现了 30.5% perception error reduction 和 8%-19% 的 vision-dependent task 提升。如果 circularity 是一个严重到需要 formal verification 来解决的问题，为什么一个连外部 oracle 都不用的隐式方法也能大幅改善感知？审稿人可能会问：circularity 是否是一个真实存在的瓶颈，还是一个被过度渲染的 strawman？**建议的应对策略**：(1) 将 correlated bias analysis（proposal 中已提到）从"可选 diagnostic"提升为核心贡献之一——定量测量 judge 和 policy 在哪些 geometric configurations 上共享 systematic bias，这本身就是一个有价值的 empirical finding。(2) 明确 claim 的范围：不是说 model-based 方法"不行"，而是说它们在特定 failure modes（如系统性角度误判、平行关系遗漏）上存在 blind spots，而 EPV 能覆盖这些 blind spots。这比"model-based 都有 circularity 问题"更 defensible。
+- 价值: 强化核心 motivation 的可信度（Significance 维度）。一个被审稿人质疑 motivation 的论文很难拿到高分，而 PAPO 的存在使得"circularity is fatal"这个 claim 容易被反驳。将论证从二元对立（executable vs model-based）调整为互补定位（EPV covers blind spots that model-based methods miss），既更诚实也更 defensible。
+- 调研依据: PAPO (arXiv 2507.06448) 的结果（30.5% perception error reduction，无外部 oracle）
+
+【发掘点 4】
+- 维度: significance 提升
+- 内容: **Proposal 目前将 EPV 定位为"geometry 上的 instantiation"，但没有充分论证为什么 geometry 是这个原则的最佳 first demonstration——以及这个原则的 generalization roadmap。** "wherever executable formal verifiers exist, they should replace model-based judges"是一个 general principle，但 proposal 除了一句话 claim 之外没有展开讨论：还有哪些视觉数学领域具备类似的 formal verification 基础设施？（例如：函数图像可以通过符号计算引擎验证、电路图可以通过 SPICE 仿真器验证、化学结构式可以通过 SMILES/InChI 验证。）如果能在 Introduction 或 Discussion 中勾勒这个 generalization landscape——说明 geometry 是最成熟的 first step，但原则本身适用于一类 visually-grounded formal domains——这会显著提升论文的 significance：审稿人会觉得这不只是"一个 geometry trick"，而是一个值得关注的 research agenda。注意，我不是建议在实验中做这些扩展（那是补救 agent 的事），而是建议在 narrative 层面 frame 得更有影响力。
+- 价值: 提升 Significance——从"geometry-specific method"到"a general principle with geometry as first case study"。这直接影响审稿人对论文 impact 的判断。
+- 调研依据: 基于领域整体趋势判断。RRVF/Visual-ERM 已经在 chart/web code 领域验证了 executable feedback 的有效性，Geoparsing/FormalGeo 在 geometry 领域提供了基础设施——这暗示了一个跨领域的 pattern。
+
+【发掘点 5】
+- 维度: 核心 claim 强化
+- 内容: **Claim-level perception verification 的独特价值需要一个更有力的"so what"——光说"能指出哪条 claim 错了"不够，需要论证这种 fine-grained signal 为什么会导致 qualitatively different training dynamics。** 当前 proposal 说 EPV 能指出"angle ABC = 45° 但 GT = 60°"，这比 binary 或 holistic reward 更 informative。但审稿人可能会问：在 RL training 中，这种 claim-level 信号到底通过什么机制转化为更好的 policy？Proposal 中的 reward 设计是 `r_percept = verified_claims / total_claims`——这实际上是一个 ratio，已经把 claim-level 信息压缩回了一个 scalar。如果最终 reward 还是一个 scalar，claim-level verification 相比 GeoDPO 的 holistic DSL scoring 的优势在哪里？**建议的强化路径**：论证 claim-level verification 的关键优势不在于最终 scalar reward 的数值更准确，而在于 (1) **targeted failure diagnosis for curriculum/data curation**——能自动识别模型系统性失败的 perception type（如"这个模型总是误判平行关系"），从而指导 training data 的 targeted augmentation；(2) **human-interpretable error attribution**——对 model debugging 和 trust calibration 有直接价值；(3) **potential for claim-specific reward**（future work）——如果将来把 reward 细化到 token/claim 级别，claim-level verification 是唯一能提供信号的方式。
+- 价值: 强化核心 claim 的逻辑链条（Novelty 维度）。目前 claim-level verification 的价值论证有一个"最后一公里"问题——所有 claim-level 信息最终被压缩成一个 scalar ratio，审稿人可能会质疑 claim-level granularity 的实际效用。补上这个论证让 claim-level 的价值 case 更完整。
+- 调研依据: 对比 GeoDPO 的 holistic DSL scoring 和 EPV 的 claim-level ratio reward 设计
+
+Sources:
+- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning](https://arxiv.org/abs/2602.22703)
+- [PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning](https://arxiv.org/abs/2507.06448)
+- [PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning](https://arxiv.org/abs/2511.18437)
+- [MoCA: Bad Seeing or Bad Thinking? Rewarding Perception for Vision-Language Reasoning](https://arxiv.org/abs/2605.14054)
+- [SGVR: Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward](https://arxiv.org/abs/2601.05073)
+- [EVPV: Grounding the Score: Explicit Visual Premise Verification for Reliable VL-PRMs](https://arxiv.org/abs/2603.16253)
+- [PRCO: Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning](https://arxiv.org/abs/2603.28618)
+- [ViCrit: A Verifiable Reinforcement Learning Proxy Task for Visual Perception in VLMs](https://arxiv.org/abs/2506.10128)
+- [Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language](https://arxiv.org/abs/2604.11600)
+- [KAWHI: Bridging Visual Representation and Reinforcement Learning from Verifiable Rewards](https://arxiv.org/abs/2603.27375)
+
+【补救 agent 本轮输出】:
+Now I have comprehensive research background. Let me synthesize my findings and provide the evaluation.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **PEARL (arXiv 2511.18437, CVPR 2026):** 使用 perception checklist + LLM judge 作为 perception reward，结合 GRPO/DAPO 训练。评测覆盖 MathVerse (+9.7%)、MathVista 等多基准。Ablation 包括 reward gating 策略、checklist 生成方式。审稿人关注 LLM judge 的可靠性和 reward hacking 风险。
+- **SGVR (arXiv 2601.05073, 2026):** 将形式化证明转为可验证数值子目标，用 Skeleton Rate 作密集奖励。评测含 GeoGoal 自建基准 + GeoPQA。Ablation 含奖励粒度（密集 vs 稀疏）、数据规模。3B/7B 双模型规模验证。
+- **MoCA (arXiv 2605.14054, ICML 2026 Spotlight):** 用 blindfolded text reasoner 作为 perception sufficiency 代理。评测跨越 perception-intensive 到 rich-modality 多类基准。创新性的 perception 隔离测试范式被广泛引用。
+- **PAPO (arXiv 2507.06448):** 隐式 KL 散度 perception loss，无需外部 oracle。在多模态基准上 +4.4%-17.5%，视觉依赖任务 +8.0%-19.1%。关键特点：零额外数据/模型开销。
+- **PRCO (arXiv 2603.28618):** 双角色 RLVR (Observer + Solver)，role-specific reward。8 个多模态推理基准评测，3B/7B 双规模，perception error 减少 39.2%。
+- **CogFlow (arXiv 2601.01874, ICLR 2026):** 三阶段框架 (perception → internalization → reasoning)，自建 MathCog 数据集 (120K 标注)。Visual-Gated Policy Optimization 算法。
+- **EVPV (arXiv 2603.16253):** 显式视觉前提验证 + reliability gating for PRM。VisualProcessBench 评测 + 6 个多模态推理基准。包含因果消融（controlled corruption → monotonic degradation）。
+- **ViCrit (NeurIPS 2025):** 合成视觉幻觉注入 + 定位的 RL 代理任务，提供 rule-based 确定性奖励。迁移到抽象图像推理和视觉数学任务。
+- **FormalGeo7K:** 6,981 问题来自 Geometry3K + GeoQA+，扩充至 186K。88 predicates + 196 几何定理。
+- **GDP-29K:** 20K 平面 + 9K 立体几何样本，覆盖打印/手写，配对 ground-truth 形式化描述。
+
+- **调研总结:** 该领域 2026 年的实验设计标准为：(1) 至少 4-5 个直接 baseline 对比，包括 vanilla GRPO + 2-3 个最新 perception reward 方法；(2) 跨规模验证 (3B/7B 或 7B/32B)；(3) 多基准评测 (geometry-specific + general multimodal)；(4) perception-specific 诊断指标（如 blindfold test、error type breakdown）；(5) 充分 ablation 隔离各组件。审稿人普遍要求论证 reward signal quality 和 reward hacking 风险。
+
+---
+
+【缺陷 1】
+- 类别: 实验设计不足
+- 问题: Proposal 仅计划在 Qwen3-VL-8B 单一模型规模上实验。调研显示，该领域近期高影响力工作（SGVR 使用 3B/7B、PRCO 使用 3B/7B、CogFlow 使用多规模、PEARL 也验证了不同基础模型）普遍要求**跨模型规模验证**以证明方法的 scalability 和通用性。仅在 8B 上做实验会被审稿人质疑 EPV 方法是否在小模型（perception 更差）和大模型（perception 较好）上都有效——这直接影响 core claim 的可信度。
+- 严重度: 可补救
+- 补救方案: 增加至少一个额外模型规模的实验。建议 (a) Qwen3-VL-4B（较小规模，perception 能力更弱，EPV 的 perception reward 可能帮助更大）和 (b) Qwen3-VL-8B（当前方案），共两个规模。如果 GPU 预算允许，可再加 Qwen3-VL-32B 或换一个非 Qwen 系列模型（如 InternVL3 系列）验证跨架构通用性。跨规模实验可复用已有的 EPV-Oracle 和训练管线，增量 GPU 开销约 500-800 GPU hours。
+- 调研依据: SGVR (3B/7B 双规模)、PRCO (3B/7B 双规模) 的实验设计，以及领域审稿人对 scalability 的普遍要求。
+
+【缺陷 2】
+- 类别: 可行性问题
+- 问题: Proposal 的核心依赖是 perception claim extraction（从 CoT 中提取几何感知声明）的质量。Proposal 提到"dual-path approach: (a) rule-based pattern matching + (b) structured output prompting"，并计划在 300-500 个手标 CoT 样本上验证 P/R/F1。然而，几何 CoT 中的感知声明远比列出的示例（"angle ABC = 60°", "AB ∥ CD"）复杂——模型可能以隐式方式引用感知信息（如"since the triangle is isosceles"暗含两边相等），或使用非标准表述（"the right angle at B"）。**如果 claim extraction 的 recall 不高，大量正确/错误的 perception 会被遗漏，r_percept 信号将严重有噪声。** 300-500 样本的验证规模能否覆盖足够多的 CoT 表述模式存疑。
+- 严重度: 可补救
+- 补救方案: (1) 增加 claim extraction 的 failure mode 分析：在验证集上不仅报 P/R/F1，还要按 claim 类型（显式数值、关系声明、隐式声明）分别报告，识别 recall 瓶颈；(2) 增加一个 ablation：对比 "high-recall extraction"（宽松匹配，可能低 precision）vs "high-precision extraction"（严格匹配，低 recall）对最终训练效果的影响，以理解 extraction 噪声的容忍度；(3) 考虑将验证集扩大到 500-800 样本，并包含 adversarial cases（隐式感知声明）；(4) 在 structured output prompting 路径中，可以设计 few-shot 示例引导模型显式输出感知声明，降低隐式引用的比例——但需要 ablation 证明这不会损害推理质量。
+- 调研依据: EVPV (arXiv 2603.16253) 的 visual checklist 生成和 controlled corruption 因果消融提供了类似的 extraction quality 验证范式；Factscore 风格的 claim decomposition 文献表明，隐式 claim 是 extraction pipeline 的典型瓶颈。
+
+【缺陷 3】
+- 类别: baseline 不足或过时
+- 问题: Proposal 列出 5 个 baseline，覆盖面总体合理，但遗漏了两个重要对照：(1) **PAPO**（arXiv 2507.06448）——作为 proposal 中反复讨论的 implicit perception method 代表，仅在 framing 中提及但未作为实验 baseline。PAPO 的零额外开销特性使其成为 EPV 的一个重要对比点：EPV 需要构建形式化 oracle 而 PAPO 不需要，审稿人必然会问"比起零开销的 PAPO，EPV 的额外工程量是否值得？"(2) **CogFlow**（ICLR 2026）——作为同期发表的三阶段 perception-internalization-reasoning 框架，在该领域影响力大，且同样试图解决 perception-reasoning 解耦问题，缺席直接对比会被认为是刻意回避。
+- 严重度: 可补救
+- 补救方案: 将 PAPO 和 CogFlow 加入 baseline 列表。PAPO 可作为"零额外开销 implicit perception reward"的 lower bound 对照——如果 EPV 仅比 PAPO 略好，则审稿人会质疑构建 formal oracle 的 cost-effectiveness。CogFlow 可作为"同期 perception-reasoning 解耦方法但非 RL-native"的对照。两者均有开源代码/即将开源，复现成本可控。如 GPU 预算紧张，CogFlow 可引用论文数字做间接对比（与 PRCO 类似处理），但 PAPO 因其与 EPV 形成最直接的 implicit vs explicit 对比，**必须做直接实验对比**。
+- 调研依据: PAPO (arXiv 2507.06448) 在多模态基准上 +4.4%-17.5% 且零额外开销；CogFlow (ICLR 2026) 作为同期高影响力工作使用 120K 标注数据 + Visual-Gated Policy Optimization。
+
+【缺陷 4】
+- 类别: 评估方案缺陷
+- 问题: Proposal 的 core claim 之一是 EPV 解决了 model-based judge 的 **circularity（循环偏差）** 问题。Proposal 提到了"correlated bias analysis"诊断实验来验证这一点。但当前设计仅测量"policy VLM perception errors 与 LLM judge false negatives 的 overlap"——这只是一个 observational correlation，不构成因果证据。审稿人可能会质疑：(a) 这个 overlap 可能仅仅是因为某些几何配置本身更难，而非 circularity；(b) 没有控制变量来排除替代解释。
+- 严重度: 可补救
+- 补救方案: 增强 circularity 验证的因果性：(1) 设计 **controlled corruption 实验**（参考 EVPV 的做法）：人为向 formal parse 中注入已知错误，验证 EPV-Oracle 的 reward 信号是否相应变化（单调下降），作为 oracle 准确性的因果证据；(2) 在 correlated bias analysis 中加入 **条件分析**：按几何配置难度分层（简单/中等/困难），看在每个难度层级内 circularity overlap 是否仍然显著——如果在同一难度层级内 judge 和 policy 的错误仍高度重叠（而 EPV 不重叠），则更强地支持 circularity 而非难度的解释；(3) 加入一个 **synthetic circularity 实验**：故意训练一个有特定 systematic bias 的 LLM judge（如总是将钝角判为直角），观察使用该 judge 作为 reward 是否导致 policy 放大该 bias，而 EPV 不会。方案 (1) 和 (2) 实施成本低，强烈建议纳入；方案 (3) 成本较高，可选。
+- 调研依据: EVPV (arXiv 2603.16253) 的 controlled corruption → monotonic degradation 因果消融设计；领域审稿人对因果证据（而非 correlation）的普遍期望。
+
+【缺陷 5】
+- 类别: ablation 不完整
+- 问题: 当前 ablation 设计覆盖了 λ 策略、r_percept 粒度、形式化解析来源、训练数据规模、claim extraction 方法五个维度，总体较全面。但缺少两个关键 ablation：(1) **EPV + SGVR 联合实验**——proposal 自己强调 EPV 和 SGVR 是互补的（premise-level vs outcome-level verification），但没有设计联合实验来验证这一 claim。如果不做这个 ablation，"complementary" 的说法只是 speculation。(2) **Reward signal noise tolerance**——EPV-Oracle 依赖 formal parse 的准确性和 claim extraction 的完整性，当这两者有噪声时（如 auto-parsed diagrams 的 parse 错误、claim extraction 的 recall gap），reward 信号质量如何退化？需要一个系统性的噪声注入 ablation。
+- 严重度: 可补救
+- 补救方案: (1) 增加 **EPV + SGVR 联合训练** ablation：r = r_outcome + λ₁·r_percept(EPV) + λ₂·r_subgoal(SGVR)，验证双重验证是否带来叠加增益。这是一个高价值 ablation，因为正向结果直接支持 paper 的 complementarity claim，且为后续工作开辟方向。实施需要集成 SGVR 的 subgoal reward（其代码已开源/将开源），增量成本约 2-3 次额外训练 run。(2) 增加 **noise injection ablation**：在 formal parse cache 中随机注入 5%/10%/20% 的错误标注，观察训练效果的退化曲线。这同时测试了方法的 robustness 和帮助理解 auto-parsed diagrams（质量可能低于 gold annotation）的可用性。
+- 调研依据: Proposal 自身的 complementarity claim 需要实验支撑；EVPV 的 controlled corruption 范式可直接借鉴为 noise injection ablation 的设计模板。
+
+【缺陷 6】
+- 类别: 可行性问题
+- 问题: Proposal 声称训练数据为 ~15K geometry problems "drawn from GDP-29K, FormalGeo7K, and GeoQA with formal annotations"，但存在数据覆盖度的实际可行性风险：(1) GDP-29K 是 2024 年 4 月的论文，其 formal annotations 的**公开可用性和许可证**需要确认——如果数据集尚未完全公开，或 formal annotation 格式与 FormalGeo 不兼容，需要额外的格式转换工作；(2) FormalGeo7K 的 6,981 问题来自 Geometry3K + GeoQA+，与 GeoQA 有**数据重叠**——实际的去重后非重叠数据量可能显著少于三个数据集的简单加和；(3) 训练集和评测集（GeoQA、Geometry3K）之间可能存在 **data leakage**——FormalGeo7K 包含 Geometry3K 的子集，若 Geometry3K test set 的问题出现在训练 formal parse cache 中，评测结果不可信。
+- 严重度: 可补救
+- 补救方案: (1) 在 data audit 环节（proposal 已提到）中，必须明确报告：各数据集的实际获取状态、formal annotation 格式兼容性、去重后的实际可用数据量；(2) **严格的 train-test split 协议**：明确列出每个评测基准的 test set 与训练 formal parse cache 的重叠情况，对任何有重叠的样本从训练集中移除，并在论文中报告这一处理；(3) 建议增加一个 **"zero-overlap" 评测子集**——仅在训练集中完全没有出现过的 geometry problems 上报告性能，作为方法泛化能力的硬指标；(4) 关于 GDP-29K 的可用性，建议尽早联系原作者确认数据获取和使用许可，并准备一个 fallback 方案（仅用 FormalGeo7K + auto-parsed GeoQA diagrams）。
+- 调研依据: FormalGeo7K 文档明确说明其来源为 Geometry3K + GeoQA+，存在与评测基准的天然重叠；基于领域实验规范判断——data leakage 是 AAAI 审稿人高度关注的问题。
+
+【缺陷 7】
+- 类别: compute 公平性问题
+- 问题: Proposal 提到 "EPV-Oracle's symbolic verification is orders of magnitude cheaper than LLM-judge inference — this efficiency advantage should be quantified"，这是正确的方向。但 compute fairness 需要更细致：(1) EPV 需要**预先构建 formal parse cache**（对全部训练图做 Geoparsing），这个一次性成本应计入总 compute budget；(2) EPV 的 claim extraction 中 structured output prompting 路径实际上在 rollout 时增加了 token 生成量（要求模型输出结构化感知声明），这增加了 per-rollout 的推理成本；(3) 与 baseline 对比时，应在 **相同总 GPU hours** 下比较，而不仅是 per-step 时间——如果 EPV 的 per-step 开销更低，应给所有方法相同的总 compute budget，让 baseline 多训练一些 step。
+- 严重度: 可补救
+- 补救方案: (1) 在 compute fairness 报告中增加**全生命周期 compute 分解**：formal parse cache 构建成本 + 每 step 的 claim extraction 开销 + 每 step 的 symbolic verification 开销 + RL 训练本身的开销，与各 baseline 的对应分解做表格对比；(2) 增加一个 **iso-compute 对比实验**：在固定总 GPU hours 预算下，比较各方法的最终性能——EPV per-step 便宜就多训 step，LLM-judge 方法 per-step 贵就少训 step，看在相同总 compute 下谁更好；(3) 关于 structured output prompting 增加的 token 开销，量化其比例（估计 10-20% 额外 token），并在 ablation 中验证去掉 structured prompting（仅用 rule-based extraction）对性能的影响。
+- 调研依据: 基于领域实验规范判断——compute-normalized comparison 是 AAAI/NeurIPS/ICML 审稿人的普遍要求，SGVR 和 PEARL 论文中均包含 per-step timing 对比。
+
+【缺陷 8】
+- 类别: 评估方案缺陷
+- 问题: Proposal 的评测基准覆盖 geometry-specific (MathVerse, GeoQA, Geometry3K) + general multimodal (MMMU, MathVista)，共 5-6 个。但存在两个遗漏：(1) **缺少 out-of-domain geometry 泛化测试**——所有 geometry-specific 基准都是 plane geometry，而 GDP-29K 包含 solid geometry，EPV 是否能泛化到 3D 几何问题？(2) **缺少 VisualProcessBench 之外的 step-level perception 评测**——proposal 提到用 VisualProcessBench 做 step-level perception accuracy 测试，但 VisualProcessBench 是一个通用多模态基准（不特定于 geometry），还应补充一个 **geometry-specific 的 perception accuracy 评测**（如在 GeoQA 上标注哪些 step 有 perception error，计算 perception error rate 的下降幅度，类似 PRCO 在 WeMath 上的 39.2% perception error reduction 数据）。
+- 严重度: 可补救
+- 补救方案: (1) 如果 EPV 的训练集不包含 solid geometry（实际上 GDP-29K 有 9K 立体几何样本），可以设计一个 **plane → solid geometry 泛化实验**——用仅 plane geometry 训练的 EPV 模型在 solid geometry 问题上测试，观察泛化能力。如果训练集包含 solid geometry，则应在评测中明确包含 solid geometry 子集的单独结果。(2) 在 GeoQA 或 Geometry3K 上手动标注一个 perception error 子集（100-200 样本），报告训练前后 **geometry-specific perception error rate** 的变化，与 PRCO 的 39.2% reduction、PAPO 的 30.5% reduction 形成直接数字对比。这是审稿人高度期待的诊断指标。
+- 调研依据: PRCO 报告了 WeMath 上 39.2% perception error reduction；PAPO 报告了 30.5% perception error reduction；领域审稿人普遍期待 domain-specific perception error rate 分析。
+
+---
+
+**总结**: 上述 8 个缺陷均为**可补救**级别，无方向性致命问题。实验方案的整体框架是合理的——baseline 选择方向正确、ablation 覆盖了关键维度、诊断实验有新意（correlated bias analysis）。但在以下方面需要加强：跨模型规模验证（缺陷 1）、claim extraction 可靠性的深入验证（缺陷 2）、补充 PAPO/CogFlow baseline（缺陷 3）、circularity claim 的因果证据（缺陷 4）、EPV+SGVR 联合实验和噪声容忍度 ablation（缺陷 5）、数据 leakage 防控（缺陷 6）、compute 公平性完善（缺陷 7）、评测覆盖度补全（缺陷 8）。所有缺陷的补救方案在现有资源预算（16×A100, 14-18 周）内可行，但会将 GPU hours 预算推高至约 2,500-3,000 小时（主要增量来自跨模型规模实验和额外 baseline），建议在 resource estimate 中相应调整。
+
+Sources:
+- [PEARL: Perceptual-Evidence Anchored Reinforced Learning](https://arxiv.org/abs/2511.18437)
+- [SGVR: Milestones over Outcome](https://arxiv.org/abs/2601.05073)
+- [MoCA: Bad Seeing or Bad Thinking](https://arxiv.org/html/2605.14054)
+- [PAPO: Perception-Aware Policy Optimization](https://arxiv.org/abs/2507.06448)
+- [PRCO: Seeing with You](https://arxiv.org/abs/2603.28618)
+- [CogFlow: Bridging Perception and Reasoning](https://arxiv.org/abs/2601.01874)
+- [EVPV: Grounding the Score](https://arxiv.org/abs/2603.16253)
+- [ViCrit: Verifiable RL Proxy for Visual Perception](https://arxiv.org/abs/2506.10128)
+- [Geoparsing: GDP-29K](https://arxiv.org/abs/2604.11600)
+- [FormalGeo: Extensible Formalized Framework](https://arxiv.org/pdf/2310.18021)
+- [KAWHI: Bridging Visual Representation and RLVR](https://arxiv.org/abs/2603.27375)
+- [VisualProcessBench Dataset](https://huggingface.co/datasets/OpenGVLab/VisualProcessBench)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f5b93a0-6aa3-4de2-8e04-39cc7cc0f671",
+  "isSidechain": false,
+  "promptId": "91177996-05a5-47c3-8e6c-1166b093a569",
+  "type": "user",
+  "uuid": "92dd7f2f-b036-4eb4-ba11-bc2c493be9cc",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45 · 2026-05-27T21:56:46.821Z_
+
+```json
+{
+  "parentUuid": "92dd7f2f-b036-4eb4-ba11-bc2c493be9cc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f9ad26c1-74d3-45cd-a487-53ca47306883",
+  "timestamp": "2026-05-27T21:56:46.821Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to provide a thorough assessment. Let me compile my findings.  ---  【状态】: 有发…",
+  "leafUuid": "f9ad26c1-74d3-45cd-a487-53ca47306883",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-27T21:57:05.717Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is round 2 of the iterative process. Let me carefully analyze both agents' outputs and cross-validate their key suggestions.
+
+## Key new findings from Round 2:
+
+### 发掘 Agent:
+1. **GeoDPO (arXiv 2602.22703)** - A CRITICAL new discovery. Uses NL-to-DSL translator for geometry perception RL reward. +26.5% in-domain, +39.0% downstream reasoning. This is the biggest threat to EPV's novelty claim. Must verify.
+2. **Novelty sharpening** - From "executable" to "model-free, claim-level, symbolically grounded" triple
+
+
+3. I need to reframe the circularity argument—PAPO's success shows that model-based approaches aren't inherently broken, so I should position EPV as filling specific gaps rather than claiming the entire paradigm is flawed.
+4. The generalization principle needs concrete examples to strengthen the argument.
+5. For claim-level value, I'm focusing on how targeted failure diagnosis and interpretability could drive future reward design.
+
+### 补救 Agent:
+1. **Cross-model scale** - Need at least 2 model sizes (e.g., 4B + 8B)
+2. **Claim extraction failure modes** - Still examining what happens when the extraction process breaks down.
+3. **Missing baselines: PAPO + CogFlow** - PAPO must be a direct experimental comparison.
+4. **Circularity causal evidence** - Controlled corruption + conditional analysis + synthetic circularity.
+5. **EPV+SGVR joint + noise injection ablation** - Missing complementarity proof.
+6. **Data leakage risk** - FormalGeo7K contains Geometry3K/GeoQA+ subsets; need strict train-test split.
+7. **Compute lifecycle decomposition** - Include parse cache construction cost, iso-compute comparison.
+8. **Benchmark gaps** - Need solid geometry test + geometry-specific perception error rate.
+
+Now I'm verifying the most critical claim about GeoDPO.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9ad26c1-74d3-45cd-a487-53ca47306883",
+  "isSidechain": false,
+  "requestId": "req_011CbTpZn66YhCDX4V4AsWqk",
+  "type": "assistant",
+  "uuid": "d0ed8d1c-5fdf-47a9-8c44-647a3362b24c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SPNiadHdk7SGP6LxQMiGT5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17082,
+      "cache_read_input_tokens": 38804,
+      "output_tokens": 727,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 727,
+          "cache_read_input_tokens": 38804,
+          "cache_creation_input_tokens": 17082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-27T21:57:05.719Z_
+
+Let me cross-validate the most critical new finding — GeoDPO — and a few other key claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0ed8d1c-5fdf-47a9-8c44-647a3362b24c",
+  "isSidechain": false,
+  "requestId": "req_011CbTpZn66YhCDX4V4AsWqk",
+  "type": "assistant",
+  "uuid": "e406b20f-8dff-45d7-8ddf-d4689483cd86",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SPNiadHdk7SGP6LxQMiGT5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17082,
+      "cache_read_input_tokens": 38804,
+      "output_tokens": 727,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 727,
+          "cache_read_input_tokens": 38804,
+          "cache_creation_input_tokens": 17082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-27T21:57:05.866Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QfPbSKHPp9ykNnbHfhEE1m`</summary>
+
+```json
+{
+  "query": "GeoDPO arXiv 2602.22703 geometry perception VLM DSL reward reinforcement learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e406b20f-8dff-45d7-8ddf-d4689483cd86",
+  "isSidechain": false,
+  "requestId": "req_011CbTpZn66YhCDX4V4AsWqk",
+  "type": "assistant",
+  "uuid": "3b301a6b-4923-4eac-aa54-1a6eafbb9cd6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SPNiadHdk7SGP6LxQMiGT5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17082,
+      "cache_read_input_tokens": 38804,
+      "output_tokens": 727,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 727,
+          "cache_read_input_tokens": 38804,
+          "cache_creation_input_tokens": 17082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-27T21:57:05.873Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014tqY4ozMCPkgmy8ZQoJb1j`</summary>
+
+```json
+{
+  "query": "FormalGeo7K dataset Geometry3K GeoQA overlap data leakage train test split"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b301a6b-4923-4eac-aa54-1a6eafbb9cd6",
+  "isSidechain": false,
+  "requestId": "req_011CbTpZn66YhCDX4V4AsWqk",
+  "type": "assistant",
+  "uuid": "cc7c9c4d-0382-4a0c-9234-ff386a9db990",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SPNiadHdk7SGP6LxQMiGT5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17082,
+      "cache_read_input_tokens": 38804,
+      "output_tokens": 727,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 727,
+          "cache_read_input_tokens": 38804,
+          "cache_creation_input_tokens": 17082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-27T21:57:05.876Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Yar9rytnQjUggod5gpKVjn`</summary>
+
+```json
+{
+  "query": "multimodal reasoning RL cross-model scale validation 3B 7B 2026 AAAI requirement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc7c9c4d-0382-4a0c-9234-ff386a9db990",
+  "isSidechain": false,
+  "requestId": "req_011CbTpZn66YhCDX4V4AsWqk",
+  "type": "assistant",
+  "uuid": "6f02c4c7-bf9a-4f1f-bdb7-eeb7340fc7b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SPNiadHdk7SGP6LxQMiGT5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17082,
+      "cache_read_input_tokens": 38804,
+      "output_tokens": 727,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17082,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 727,
+          "cache_read_input_tokens": 38804,
+          "cache_creation_input_tokens": 17082,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17082
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-27T21:57:11.876Z_
+
+<details><summary>↩ Tool result · `toolu_014tqY4ozMCPkgmy8ZQoJb1j`</summary>
+
+```text
+Web search results for query: "FormalGeo7K dataset Geometry3K GeoQA overlap data leakage train test split"
+
+Links: [{"title":"FGeo-TP: A Language Model-Enhanced Solver for Geometry Problems","url":"https://arxiv.org/html/2402.09047v1"},{"title":"Understanding Data Leakage in Machine Learning - NBD Lite #12","url":"https://www.nb-data.com/p/understanding-data-leakage-in-machine"},{"title":"Preventing Training Data Leakage in AI Systems | Blog | Tonic.ai","url":"https://www.tonic.ai/blog/prevent-training-data-leakage-ai"},{"title":"3 must-avoid pitfalls splitting datasets into train & test data | KNIME","url":"https://www.knime.com/blog/3-must-avoid-pitfalls-splitting-datasets-train-test-data"},{"title":"Localization Is All You Evaluate: Data Leakage in Online Mapping   Datasets and How to Fix It","url":"https://arxiv.org/pdf/2312.06420"},{"title":"Localization Is All You Evaluate: Data Leakage in Online Mapping Datasets and How to Fix It","url":"https://arxiv.org/html/2312.06420v2"},{"title":"FGeo-TP: A Language Model-Enhanced Solver for Geometry Problems","url":"https://arxiv.org/pdf/2402.09047"}]
+
+Based on the search results, I found relevant information about the FormalGeo7K dataset and its relationship to other geometry datasets:
+
+The FormalGeo7k dataset is aggregated from diverse sources, including Geometry3K, GeoQA, GeoQA+ and online repositories. The dataset was meticulously curated, classified, deduplicated, and standardized in terms of problem statements.
+
+Creating the FormalGeo7k dataset was a substantial undertaking, which involved approximately 16 trained master's students over a period of around 13 weeks. The deduplication process mentioned suggests that overlap between source datasets (Geometry3K and GeoQA) was addressed during dataset creation.
+
+Regarding the resulting FormalGeo7K dataset itself, it consists of 6,981 SAT-level geometry problems, further expanded to 186,832 through data augmentation, with each problem including a comprehensive natural language description, geometric shapes, formal language annotations, and theorem sequence annotations.
+
+However, the search results do not provide specific details about data leakage issues between train and test splits in the FormalGeo7K dataset itself, or explicit quantification of any remaining overlap between the source datasets after deduplication. For more specific information about potential train-test split issues in FormalGeo7K, you may need to consult the original dataset paper or documentation directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc7c9c4d-0382-4a0c-9234-ff386a9db990",
+  "isSidechain": false,
+  "promptId": "91177996-05a5-47c3-8e6c-1166b093a569",
+  "type": "user",
+  "uuid": "20693562-484b-4f71-a19c-20039510ed33",
+  "toolUseResult": {
+    "query": "FormalGeo7K dataset Geometry3K GeoQA overlap data leakage train test split",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013evrstGBByX1KADjgAk3i2",
+        "content": [
+          {
+            "title": "FGeo-TP: A Language Model-Enhanced Solver for Geometry Problems",
+            "url": "https://arxiv.org/html/2402.09047v1"
+          },
+          {
+            "title": "Understanding Data Leakage in Machine Learning - NBD Lite #12",
+            "url": "https://www.nb-data.com/p/understanding-data-leakage-in-machine"
+          },
+          {
+            "title": "Preventing Training Data Leakage in AI Systems | Blog | Tonic.ai",
+            "url": "https://www.tonic.ai/blog/prevent-training-data-leakage-ai"
+          },
+          {
+            "title": "3 must-avoid pitfalls splitting datasets into train & test data | KNIME",
+            "url": "https://www.knime.com/blog/3-must-avoid-pitfalls-splitting-datasets-train-test-data"
+          },
+          {
+            "title": "Localization Is All You Evaluate: Data Leakage in Online Mapping   Datasets and How to Fix It",
+            "url": "https://arxiv.org/pdf/2312.06420"
+          },
+          {
+            "title": "Localization Is All You Evaluate: Data Leakage in Online Mapping Datasets and How to Fix It",
+            "url": "https://arxiv.org/html/2312.06420v2"
+          },
+          {
+            "title": "FGeo-TP: A Language Model-Enhanced Solver for Geometry Problems",
+            "url": "https://arxiv.org/pdf/2402.09047"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the FormalGeo7K dataset and its relationship to other geometry datasets:\n\nThe FormalGeo7k dataset is aggregated from diverse sources, including Geometry3K, GeoQA, GeoQA+ and online repositories. The dataset was meticulously curated, classified, deduplicated, and standardized in terms of problem statements.\n\nCreating the FormalGeo7k dataset was a substantial undertaking, which involved approximately 16 trained master's students over a period of around 13 weeks. The deduplication process mentioned suggests that overlap between source datasets (Geometry3K and GeoQA) was addressed during dataset creation.\n\nRegarding the resulting FormalGeo7K dataset itself, it consists of 6,981 SAT-level geometry problems, further expanded to 186,832 through data augmentation, with each problem including a comprehensive natural language description, geometric shapes, formal language annotations, and theorem sequence annotations.\n\nHowever, the search results do not provide specific details about data leakage issues between train and test splits in the FormalGeo7K dataset itself, or explicit quantification of any remaining overlap between the source datasets after deduplication. For more specific information about potential train-test split issues in FormalGeo7K, you may need to consult the original dataset paper or documentation directly."
+    ],
+    "durationSeconds": 5.998262034,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cc7c9c4d-0382-4a0c-9234-ff386a9db990",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-27T21:57:12.260Z_
+
+<details><summary>↩ Tool result · `toolu_01Yar9rytnQjUggod5gpKVjn`</summary>
+
+```text
+Web search results for query: "multimodal reasoning RL cross-model scale validation 3B 7B 2026 AAAI requirement"
+
+Links: [{"title":"AAAI-26 New Faculty Highlights Program - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/new-faculty-highlights-program/"},{"title":"Credit Where It is Due: Cross-Modality Connectivity Drives Precise Reinforcement Learning for MLLM Reasoning","url":"https://arxiv.org/pdf/2602.11455"},{"title":"MARS: Multimodal Adaptive Reasoning Model for Avoiding Overthinking | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40753"},{"title":"SAIL-RL: Guiding MLLMs in When and How to Think via Dual-Reward RL Tuning","url":"https://arxiv.org/pdf/2511.02280"},{"title":"Reinforced MLLM: A Survey on RL-Based Reasoning in Multimodal Large Language Models","url":"https://arxiv.org/html/2504.21277v1"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://arxiv.org/pdf/2507.22607"},{"title":"Reinforced MLLM: A Survey on RL-Based Reasoning in Multimodal Large Language Models","url":"https://arxiv.org/pdf/2504.21277"}]
+
+Based on the search results, I found relevant information about multimodal reasoning with RL and cross-model scale validation related to AAAI 2026:
+
+## Key Findings:
+
+**Cross-Modal Scale Validation (3B-32B):**
+Research using RLVR with AT-RL demonstrates reinforcement learning improvements that scale from 3B to 32B models, addressing the scaling and cross-model validation aspects of your query.
+
+**Multimodal RL Reasoning at AAAI 2026:**
+A new paradigm called "Thinking with Images" was introduced to scale reasoning depth and creativity by encouraging models to externalize intermediate structure and perform interleaved cross-modal advanced reasoning, presented at AAAI-26.
+
+**Related RL-Based Multimodal Research:**
+Current research addresses limitations such as sparse rewards, inefficient cross-modal reasoning, and real-world deployment constraints in RL-based multimodal systems. Additionally, SAIL-RL improves reasoning and multimodal understanding benchmarks at both 4B and 8B scales, demonstrating the focus on multi-scale validation for multimodal RL systems.
+
+The search results indicate active research in 2026 on integrating RL with multimodal reasoning and validating approaches across different model scales, which aligns with your query parameters.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f02c4c7-bf9a-4f1f-bdb7-eeb7340fc7b3",
+  "isSidechain": false,
+  "promptId": "91177996-05a5-47c3-8e6c-1166b093a569",
+  "type": "user",
+  "uuid": "6c07ffa1-e69e-4dab-a617-63dd4dc29af2",
+  "toolUseResult": {
+    "query": "multimodal reasoning RL cross-model scale validation 3B 7B 2026 AAAI requirement",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W4BLXYnFQeUDe55PSwdpD7",
+        "content": [
+          {
+            "title": "AAAI-26 New Faculty Highlights Program - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/new-faculty-highlights-program/"
+          },
+          {
+            "title": "Credit Where It is Due: Cross-Modality Connectivity Drives Precise Reinforcement Learning for MLLM Reasoning",
+            "url": "https://arxiv.org/pdf/2602.11455"
+          },
+          {
+            "title": "MARS: Multimodal Adaptive Reasoning Model for Avoiding Overthinking | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40753"
+          },
+          {
+            "title": "SAIL-RL: Guiding MLLMs in When and How to Think via Dual-Reward RL Tuning",
+            "url": "https://arxiv.org/pdf/2511.02280"
+          },
+          {
+            "title": "Reinforced MLLM: A Survey on RL-Based Reasoning in Multimodal Large Language Models",
+            "url": "https://arxiv.org/html/2504.21277v1"
+          },
+          {
+            "title": "VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning",
+            "url": "https://arxiv.org/pdf/2507.22607"
+          },
+          {
+            "title": "Reinforced MLLM: A Survey on RL-Based Reasoning in Multimodal Large Language Models",
+            "url": "https://arxiv.org/pdf/2504.21277"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about multimodal reasoning with RL and cross-model scale validation related to AAAI 2026:\n\n## Key Findings:\n\n**Cross-Modal Scale Validation (3B-32B):**\nResearch using RLVR with AT-RL demonstrates reinforcement learning improvements that scale from 3B to 32B models, addressing the scaling and cross-model validation aspects of your query.\n\n**Multimodal RL Reasoning at AAAI 2026:**\nA new paradigm called \"Thinking with Images\" was introduced to scale reasoning depth and creativity by encouraging models to externalize intermediate structure and perform interleaved cross-modal advanced reasoning, presented at AAAI-26.\n\n**Related RL-Based Multimodal Research:**\nCurrent research addresses limitations such as sparse rewards, inefficient cross-modal reasoning, and real-world deployment constraints in RL-based multimodal systems. Additionally, SAIL-RL improves reasoning and multimodal understanding benchmarks at both 4B and 8B scales, demonstrating the focus on multi-scale validation for multimodal RL systems.\n\nThe search results indicate active research in 2026 on integrating RL with multimodal reasoning and validating approaches across different model scales, which aligns with your query parameters."
+    ],
+    "durationSeconds": 6.381066539,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6f02c4c7-bf9a-4f1f-bdb7-eeb7340fc7b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-27T21:57:13.413Z_
+
+<details><summary>↩ Tool result · `toolu_01QfPbSKHPp9ykNnbHfhEE1m`</summary>
+
+```text
+Web search results for query: "GeoDPO arXiv 2602.22703 geometry perception VLM DSL reward reinforcement learning"
+
+Links: [{"title":"[2602.22703] Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning","url":"https://arxiv.org/abs/2602.22703"},{"title":"Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning","url":"https://arxiv.org/pdf/2602.22703"},{"title":"Make Geometry Matter for Spatial Reasoning","url":"https://arxiv.org/html/2603.26639v1"},{"title":"GeoDANO: Geometric VLM with Domain Agnostic Vision Encoder","url":"https://arxiv.org/html/2502.11360v1"},{"title":"G2VLM: Geometry Grounded Vision Language Model with Unified 3D Reconstruction and Spatial Reasoning","url":"https://arxiv.org/html/2511.21688v1"}]
+
+Based on the search results, here's what I found about the paper:
+
+GeoDPO is a translator-guided reinforcement learning (RL) framework designed to enhance geometric perception capabilities of VLMs. 
+
+The paper addresses a key challenge: Vision-language models (VLMs) often struggle with geometric reasoning due to their limited perception of fundamental diagram elements.
+
+To tackle this, the authors introduced two main components:
+
+1. **GeoPerceive Benchmark**: A benchmark comprising diagram instances paired with domain-specific language (DSL) representations, along with an efficient automatic data generation pipeline. This design enables the isolated evaluation of geometric perception independently from reasoning.
+
+2. **GeoDPO Framework**: GeoDPO employs an NL-to-DSL translator, which is trained on synthetic pairs generated by the data engine of GeoPerceive, to bridge natural language and DSL. This translator facilitates the computation of fine-grained, DSL-level scores, which serve as reward signals in reinforcement learning.
+
+**Results**: GeoDPO achieves substantial gains: +26.5% on in-domain data, +8.0% on out-of-domain data, and +39.0% on downstream reasoning tasks.
+
+The paper was submitted to arXiv on February 26, 2026, and the code is available at: https://github.com/Longin-Yu/GeoPerceive
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b301a6b-4923-4eac-aa54-1a6eafbb9cd6",
+  "isSidechain": false,
+  "promptId": "91177996-05a5-47c3-8e6c-1166b093a569",
+  "type": "user",
+  "uuid": "69249903-29f4-449c-9075-f117a35e762c",
+  "toolUseResult": {
+    "query": "GeoDPO arXiv 2602.22703 geometry perception VLM DSL reward reinforcement learning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SMnGWu4K1dPmWE7aKetDq7",
+        "content": [
+          {
+            "title": "[2602.22703] Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2602.22703"
+          },
+          {
+            "title": "Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2602.22703"
+          },
+          {
+            "title": "Make Geometry Matter for Spatial Reasoning",
+            "url": "https://arxiv.org/html/2603.26639v1"
+          },
+          {
+            "title": "GeoDANO: Geometric VLM with Domain Agnostic Vision Encoder",
+            "url": "https://arxiv.org/html/2502.11360v1"
+          },
+          {
+            "title": "G2VLM: Geometry Grounded Vision Language Model with Unified 3D Reconstruction and Spatial Reasoning",
+            "url": "https://arxiv.org/html/2511.21688v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\nGeoDPO is a translator-guided reinforcement learning (RL) framework designed to enhance geometric perception capabilities of VLMs. \n\nThe paper addresses a key challenge: Vision-language models (VLMs) often struggle with geometric reasoning due to their limited perception of fundamental diagram elements.\n\nTo tackle this, the authors introduced two main components:\n\n1. **GeoPerceive Benchmark**: A benchmark comprising diagram instances paired with domain-specific language (DSL) representations, along with an efficient automatic data generation pipeline. This design enables the isolated evaluation of geometric perception independently from reasoning.\n\n2. **GeoDPO Framework**: GeoDPO employs an NL-to-DSL translator, which is trained on synthetic pairs generated by the data engine of GeoPerceive, to bridge natural language and DSL. This translator facilitates the computation of fine-grained, DSL-level scores, which serve as reward signals in reinforcement learning.\n\n**Results**: GeoDPO achieves substantial gains: +26.5% on in-domain data, +8.0% on out-of-domain data, and +39.0% on downstream reasoning tasks.\n\nThe paper was submitted to arXiv on February 26, 2026, and the code is available at: https://github.com/Longin-Yu/GeoPerceive"
+    ],
+    "durationSeconds": 7.541538624000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3b301a6b-4923-4eac-aa54-1a6eafbb9cd6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-27T21:58:31.517Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings from the searches:
+
+1. **GeoDPO (arXiv 2602.22703)** - CONFIRMED. This is a real and significant paper:
+   - Uses NL-to-DSL translator for geometry perception RL reward
+   - +26.5% in-domain, +8.0% out-of-domain, +39.0% downstream reasoning
+   - The core idea (using DSL-level structured representations as RL reward for geometry perception) is highly overlapping with EPV
+   - Key differences: GeoDPO uses a **learned translator** to compute DSL-level scores (soft, model-dependent), while EPV uses **ground-truth formal parses** with symbolic matching (hard, model-free)
+   - GeoDPO separates perception training from reasoning with a DPO-then-RL pipeline, whereas EPV trains them jointly—this is a significant novelty concern I need to address
+
+2. **FormalGeo7K data leakage** - CONFIRMED concern. FormalGeo7K is aggregated from Geometry3K + GeoQA + GeoQA+ + online sources. While deduplication was done during curation, the fundamental overlap between FormalGeo7K's training data and the evaluation benchmarks (GeoQA, Geometry3K) is a real risk that needs strict handling.
+
+3. **Cross-model scale** - Confirmed as standard
+
+Model scale validation varies across works—SAIL-RL tests at 4B/8B while others use 3B/7B—so cross-scale validation is expected but not strictly required if the paper has other strong contributions.
+
+Now I need to decide what to adopt and how to update the proposal. The GeoDPO comparison is critical: they use learned soft scores from a translator versus my ground-truth formal parses with symbolic matching, they stage training sequentially versus my joint GRPO approach, and they score holistically at the DSL level while I verify at the claim level. Without clearly differentiating from GeoDPO, the novelty claim becomes vulnerable.
+
+The sharpening to "model-free, claim-level, symbolically grounded" is a solid refinement—with GeoDPO in mind, "executable" alone isn't sufficient anymore, so this triple framing captures the defensible unique position. I'll adopt that. The circularity reframing also makes sense: rather than claiming circularity is fatal, I should frame it as EPV covering blind spots that model-based methods miss, which is more honest given PAPO's results. And for generalization, I can strengthen the narrative by adding concrete domain examples like chemistry with SMILES or circuits with SPICE, building on the general principle already sketched in the first version.
+
+On claim-level value, the scalar compression concern is legitimate—I can argue for targeted failure diagnosis and interpretability gains, though I should acknowledge this is theoretical rather than empirically verified. For the agent feedback, adding a smaller model like Qwen3-VL-4B is reasonable but medium priority since the core contribution is methodological. The claim extraction failure modes suggestion about high-recall versus high-precision ablations is worth exploring.
+
+For baselines, PAPO is critical given the implicit versus explicit framing, so I'll add it as a direct sixth baseline while treating CogFlow as indirect. On circularity evidence, the controlled corruption and conditional analysis experiments are valuable, but the synthetic circularity test is too expensive—I'll adopt the first two approaches. Both the EPV+SGVR joint ablation and noise injection ablation validate complementarity and robustness, so I'm including both. Data leakage is confirmed as an issue.
+
+Now looking at the remaining defects: FormalGeo7K's composition from Geometry3K and GeoQA+ creates real data leakage risk, so I need to enforce strict train-test separation. The compute lifecycle decomposition refines round 1's fairness analysis with iso-compute comparison as the key addition. For benchmark gaps, adding a solid geometry subset and geometry-specific perception error metrics are both practical.
+
+The major shift here is GeoDPO—it forces me to recalibrate the novelty claim significantly. But the differentiation is actually quite clear: model-free versus learned translator, claim-level versus holistic, joint versus staged training. Once I properly address GeoDPO, the paper becomes more defensible because the contribution is more precisely defined.
+
+The experiment load is substantial now. Starting from 16×A100 over 12-16 weeks, round 1 pushed to 14-18 weeks with 1,500-2,000 GPU hours. Round 2 additions—cross-model scaling, PAPO baseline, EPV+SGVR joint, and noise injection across multiple levels—add another 1,000-1,500 GPU hours, bringing the total to roughly 2,500-3,500 GPU hours. Still feasible for a well-funded lab, though the timeline might need adjustment to 8-12 weeks.
+
+After addressing GeoDPO, novelty sits at medium-strong—the model-free, claim-level, symbolically grounded triple is defensible but the space is crowded with GeoDPO, PEARL, MoCA, PAPO, and SGVR all nearby. Significance is also medium-strong with the general principle framing and concrete roadmap, though still geometry-only. The experiment design is now very comprehensive with seven baselines, extensive ablations, perception diagnostics, and compute fairness checks. My updated probability estimate is around 31-43%, midpoint 37%—a marginal improvement over round 1 because while the proposal strengthened, GeoDPO constrains the novelty space more than expected.
+
+One more round should help finalize everything. The main work remaining is ensuring the GeoDPO differentiation is airtight and checking for any remaining blind spots. I should also consider whether GeoDPO itself should become a seventh direct baseline given how closely it aligns with EPV's approach—the head-to-head comparison would be the strongest validation, and their translator is available on GitHub, making it feasible to implement.
+
+Reconsidering the baseline strategy: Vanilla GRPO, PEARL, PAPO, SGVR, and GeoDPO are must-haves as direct comparisons, with MoCA as direct if compute allows. Perception-R1, CogFlow, and PRCO can work as indirect comparisons. This gives me 5-6 direct baselines, which is manageable within resource constraints. I should also note that GeoDPO's GeoPerceive benchmark would be valuable for evaluating geometric perception independently from reasoning—exactly what EPV needs.
+
+Now I'm tracking all the references carefully to preserve them in the proposal. I've got the original 15 references documented, plus PAPO from round 1, and GeoDPO to add in round 2. Let me draft the full proposal with proper information density.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69249903-29f4-449c-9075-f117a35e762c",
+  "isSidechain": false,
+  "requestId": "req_011CbTpbjfYuNvwVhfRrFvZU",
+  "type": "assistant",
+  "uuid": "da2030c1-a405-423e-b5ec-03d12c91ec57",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W4baXuHNnftLiseRuruAVU",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1447,
+      "cache_creation_input_tokens": 1345,
+      "cache_read_input_tokens": 55886,
+      "output_tokens": 10019,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1345,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1447,
+          "output_tokens": 10019,
+          "cache_read_input_tokens": 55886,
+          "cache_creation_input_tokens": 1345,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1345
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-27T22:00:50.776Z_
+
+Now I have sufficient cross-validation. Let me integrate.
+
+**GeoDPO verification summary**: Confirmed real (arXiv 2602.22703, Feb 2026). NL-to-DSL translator computes DSL-level scores as RL reward for geometry perception. +26.5% in-domain, +8.0% OOD, +39.0% downstream reasoning. Code available at GitHub. This is the most significant new threat to EPV's novelty — the abstract idea "structural geometry representation as RL reward" is highly overlapping. However, key differences are real: GeoDPO uses a **learned translator** (soft scores, model-dependent) whereas EPV uses **ground-truth formal parse** (symbolic matching, model-free). GeoDPO does **staged training** (DPO perception → reasoning), EPV does **joint GRPO**. GeoDPO is **holistic** scoring, EPV is **claim-level granular**.
+
+**FormalGeo7K overlap**: Confirmed. FormalGeo7K is aggregated from Geometry3K + GeoQA + GeoQA+ + online sources. Data leakage risk with evaluation benchmarks is real. Strict train-test protocol is mandatory.
+
+**Cross-model scale**: Confirmed as standard practice (SAIL-RL 4B/8B, SGVR 3B/7B, PRCO 3B/7B). Not absolutely mandatory but strongly expected.
+
+【阶段】: 迭代第 2 轮
+
+【交叉验证调研】:
+1. **GeoDPO (arXiv 2602.22703)** — 已验证。论文真实存在，NL-to-DSL translator + DSL-level scores as RL reward，+26.5% in-domain / +39.0% downstream。是 EPV novelty claim 的最大威胁。发掘 agent 的发现完全成立，差异化路径（model-free vs learned, claim-level vs holistic, joint vs staged）真实存在。
+2. **FormalGeo7K 数据泄漏风险** — 已验证。FormalGeo7K 确认来源包含 Geometry3K + GeoQA+，数据重叠真实存在。补救 agent 的 data leakage 担忧完全合理。
+3. **跨模型规模验证** — 已验证为领域标准实践（SAIL-RL 4B/8B, SGVR 3B/7B），但非绝对 reject 条件。建议加 4B 但标注为强烈推荐而非必须。
+
+【发掘 agent 有效建议采纳】:
+- **发掘点 1 (GeoDPO 引用 + 差异化)**: ✅ 已验证，采纳。这是本轮最关键的 idea 层面改进。三个差异化维度（model-free vs learned translator / claim-level vs holistic / joint vs staged）均真实，必须写入 Related Work。GeoDPO 同时应加入 baseline。
+- **发掘点 2 (Novelty 锐化到 "model-free, claim-level, symbolically grounded")**: ✅ 采纳。在 GeoDPO 存在的前提下，"executable" 不再足够独特。三元组定位是唯一可防御的 novelty statement。
+- **发掘点 3 (Circularity reframing)**: ✅ 采纳。从"circularity is fatal"调整为"EPV covers blind spots that model-based methods miss"。更诚实、更 defensible，避免被 PAPO 的成功反驳。
+- **发掘点 4 (Generalization roadmap)**: ✅ 采纳。Round 1 已有 general principle framing，本轮补充具体扩展方向的讨论。纯叙述层面改进，无需新实验。
+- **发掘点 5 (Claim-level value "so what")**: ✅ 部分采纳。scalar compression 问题真实——r_percept = verified/total 确实把 claim-level 信息压回了 scalar。采纳 targeted failure diagnosis 和 interpretability 论证。但 "future claim-specific reward" 论证太 speculative，不采纳为核心 argument。
+
+【补救 agent 有效建议采纳】:
+- **缺陷 1 (跨模型规模)**: ✅ 已验证为标准实践，采纳。增加 Qwen3-VL-4B 作为第二规模。标注为强烈推荐。
+- **缺陷 2 (Claim extraction failure modes)**: ✅ 采纳 per-type P/R/F1 + high-recall vs high-precision ablation。这是对 round 1 设计的有价值细化。
+- **缺陷 3 (PAPO baseline)**: ✅ 采纳。PAPO 必须是直接实验对比（implicit vs explicit 的核心对照）。CogFlow 间接引用。
+- **缺陷 4 (Circularity 因果证据)**: ✅ 采纳 controlled corruption + conditional analysis。Synthetic circularity experiment 成本过高，标注为可选。
+- **缺陷 5 (EPV+SGVR joint + noise injection)**: ✅ 采纳。EPV+SGVR 联合实验直接验证 complementarity claim；noise injection 测试 robustness。两者都是高价值 ablation。
+- **缺陷 6 (Data leakage)**: ✅ 已验证，采纳。必须有严格的 train-test split 协议 + zero-overlap 子集。
+- **缺陷 7 (Compute lifecycle)**: ✅ 采纳。增加全生命周期 compute 分解 + iso-compute 对比。
+- **缺陷 8 (Benchmark gaps)**: ✅ 部分采纳。geometry-specific perception error rate 是高价值指标，采纳。Solid geometry 泛化测试有价值但优先级较低（EPV 的 formal parse 覆盖 solid geometry 的可行性尚不确定），标注为可选。
+
+【本轮 proposal 主要变更】:
+
+*Idea 层面:*
+- **[重大]** 新增 GeoDPO (arXiv 2602.22703) 引用，明确三维差异化（model-free vs learned translator / claim-level vs holistic / joint vs staged training）
+- **[重大]** Novelty statement 从 "executable perception verification" 锐化为 "model-free, claim-level, symbolically grounded perception verification as step-level RL reward"
+- Circularity 论证从 "fatal" 调整为 "blind spots"：不是说 model-based 不行，而是在特定 failure modes 上存在 systematic blind spots，EPV 能覆盖
+- Claim-level verification 的价值论证增加 targeted failure diagnosis 和 interpretability 维度
+- EPV+SGVR complementarity 从 future work 升级为实验验证的 claim
+
+*实验层面:*
+- Baselines: 5 → 6 direct (新增 GeoDPO) + indirect (Perception-R1, CogFlow, PRCO)
+- 新增 Qwen3-VL-4B 作为第二模型规模
+- Claim extraction 验证增加 per-type analysis + high-recall vs high-precision ablation
+- 新增 controlled corruption 因果验证 + conditional circularity analysis
+- 新增 EPV+SGVR 联合训练 ablation
+- 新增 noise injection robustness ablation (5%/10%/20% parse error)
+- 新增严格 data leakage 防控协议 + zero-overlap 评测子集
+- 新增 iso-compute 对比 + full lifecycle compute 分解
+- 新增 geometry-specific perception error rate 诊断
+
+【idea 质量评估】: Novelty=中强 (三元组定位 "model-free, claim-level, symbolically grounded" 在 GeoDPO/PEARL/PAPO/SGVR 密集竞争下仍可防御，但差异化空间较窄) Significance=中强 (general principle + concrete roadmap，但仅 geometry 实例化) → idea 天花板约 43%
+
+【实验完备性评估】: Technical Soundness=强 (6 direct baselines 含最近邻 GeoDPO，双规模验证，perception diagnostics 全面，claim extraction 独立验证，因果验证 circularity，complementarity 实验，noise robustness，data leakage 协议，compute fairness) → 地板约 33%
+
+【当前概率估计】: [33% - 43%] 中位 38%
+
+【决策】: 继续
+
+【决策理由】: GeoDPO 的发现是本轮最重要的变化——它同时压缩了 novelty 空间并使差异化更锐利。Proposal 已接近成熟，但仍值得再做一轮检查：(1) GeoDPO 差异化是否有更多需要防御的角度；(2) 实验设计的复杂度已显著上升（6 baselines, 2 scales, 7+ ablations），需要确认可行性边界；(3) 两个 agent 本轮仍非"已收敛"，再跑一轮看是否收敛。若 round 3 两个 agent 均无重大新发现，即收敛。
+
+---
+
+引用核对清单:
+- ✅ URSA (NeurIPS 2025)
+- ✅ Perception-R1 (ICLR 2026)
+- ✅ PRCO (2026) / arXiv 2603.28618
+- ✅ MoCA (ICML 2026 Spotlight) / arXiv 2605.14054
+- ✅ CogFlow (ICLR 2026) / arXiv 2601.01874
+- ✅ SymHPR (Dec 2025) / arXiv 2512.03126
+- ✅ SGVR (Jan 2026) / arXiv 2601.05073
+- ✅ EVPV (Mar 2026) / arXiv 2603.16253
+- ✅ RRVF / Visual-ERM / arXiv 2603.13224
+- ✅ PEARL (CVPR 2026) / arXiv 2511.18437
+- ✅ KAWHI (arXiv 2026) / arXiv 2603.27375
+- ✅ Geoparsing GDP-29K / arXiv 2604.11600
+- ✅ FormalGeo / FormalGeo7K
+- ✅ ViCrit (NeurIPS 2025)
+- ✅ PAPO (arXiv 2507.06448) [round 1 新增]
+- ✅ GeoDPO (arXiv 2602.22703) [round 2 新增]
+- ✅ 全部 Key References 保留
+
+【下一轮 proposal（纯净版，将原样传给 worker）】:
+---
+# Model-Free Claim-Level Perception Verification Rewards for Multimodal Math RL
+
+## Core Problem
+
+Current perception rewards in multimodal math RL rely on model-dependent assessment — from implicit regularization (PAPO's KL divergence, arXiv 2507.06448) to learned translators (GeoDPO's NL-to-DSL scores, arXiv 2602.22703) to LLM-as-judge (PEARL, CVPR 2026). These methods suffer from two limitations of varying severity: (1) model-dependent rewards inherit systematic biases shared with the policy VLM, creating blind spots where the reward fails to penalize precisely the perception errors the policy most needs to correct; (2) holistic or implicit rewards cannot pinpoint which specific perception claim is wrong, limiting diagnostic utility and targeted credit assignment.
+
+We propose a general principle: wherever executable formal verifiers exist for a visual domain, model-free symbolic verification should replace model-dependent judges as RL perception rewards, providing claim-level granularity. We instantiate this principle in geometry — where formal parsers have reached sufficient maturity — as the first demonstration of model-free, claim-level, symbolically grounded perception verification rewards for multimodal math RL.
+
+## Research Opportunity
+
+Formal diagram parsers (Geoparsing with GDP-29K annotated geometry diagrams, arXiv 2604.11600; SymHPR with 98.2% reconstruction MSE reduction, arXiv 2512.03126) produce structured ground-truth representations of mathematical diagrams but are used only as preprocessing or for perception module training in isolation. Executable visual verification (RRVF, Visual-ERM, arXiv 2603.13224) has proven effective for code generation (+8.4 on chart-to-code) but has never been applied to mathematical reasoning RL. The missing bridge is using formal parses as model-free oracles to verify individual perception claims within the reasoning chain during RL training, providing truly verifiable, claim-level step rewards.
+
+This is feasible now because (1) formal parsing quality has reached sufficient maturity, (2) perception-reasoning disentanglement is a proven recipe (MoCA at ICML 2026 Spotlight, arXiv 2605.14054), and (3) 40-60% of multimodal math failures are perception errors. The principle generalizes beyond geometry: chemical structure diagrams can be verified via SMILES/InChI validators, circuit diagrams via SPICE simulators, function graphs via symbolic computation engines. Geometry is the optimal first testbed due to formal parser maturity.
+
+## Research Landscape
+
+Existing perception reward methods span a spectrum from implicit to explicit but remain model-dependent:
+
+**Implicit methods**: PAPO (arXiv 2507.06448) introduces KL divergence Implicit Perception Loss, improving perception without external oracles (+8% on vision-dependent tasks, 30.5% perception error reduction). Effective but provides zero claim-level diagnostics — cannot identify which perception was wrong. KAWHI (arXiv 2603.27375) addresses visual representation bottlenecks via reward reweighting but does not verify perception claims.
+
+**Model-based explicit methods**: URSA (NeurIPS 2025) uses process reward models with synthetic hallucination injection. Perception-R1 (ICLR 2026) uses LLM-as-judge. PRCO (2026, arXiv 2603.28618) uses model-generated captions with role-specific rewards. MoCA (ICML 2026 Spotlight, arXiv 2605.14054) uses blindfolded reasoning as proxy for perception sufficiency. CogFlow (ICLR 2026, arXiv 2601.01874) uses learned synergistic visual rewards with three-stage perception→internalization→reasoning. PEARL (CVPR 2026, arXiv 2511.18437) derives perception checklists verified via LLM judge during GRPO (+9.7% on MathVerse). EVPV (Mar 2026, arXiv 2603.16253) verifies visual premises via model-generated checklists with reliability gating.
+
+**Structural-representation-based methods**: GeoDPO (arXiv 2602.22703) trains an NL-to-DSL translator to compute DSL-level scores as RL reward for geometry perception (+26.5% in-domain, +39.0% downstream reasoning). This is the closest prior work. Three key differences from our approach: (1) GeoDPO's reward comes from a learned translator's soft confidence scores — still model-dependent, inheriting translator biases; EPV uses ground-truth formal parses with symbolic matching, fully model-free. (2) GeoDPO does staged training (DPO perception → reasoning); EPV integrates perception rewards into joint GRPO training, enabling perception-reasoning co-adaptation. (3) GeoDPO provides holistic diagram-level scoring; EPV verifies individual claims, enabling fine-grained credit assignment and targeted failure diagnosis (e.g., "model systematically misidentifies parallel relations").
+
+**Formal verification for reasoning (not perception)**: SGVR (Jan 2026, arXiv 2601.05073) converts formal proofs into verifiable numeric sub-goals for RL reward (+9.7% on geometry), but verifies reasoning outcomes (whether intermediate computed values are correct), not perception premises (whether visual inputs were correctly read). SymHPR (Dec 2025, arXiv 2512.03126) uses reconstruction-based rewards but only trains the perception module.
+
+**The gap**: Model-free, claim-level, symbolically grounded perception verification as step-level RL reward for the full reasoning chain is not addressed by any published or concurrent work. EPV verifies perception inputs (premise-level) while SGVR verifies reasoning outputs (outcome-level); their combination achieves dual coverage — we validate this complementarity experimentally.
+
+## Proposed Approach
+
+We build an Executable Perception Verification Oracle (EPV-Oracle) with three components:
+
+**1. Ground-truth formal parse cache.** Pre-parse all training geometry diagrams into ground-truth formal representations using Geoparsing (GDP-29K, arXiv 2604.11600) and FormalGeo, storing structured representations of points, lines, angles, parallel/perpendicular relations, and measurements. Data audit determines actual coverage across GDP-29K, FormalGeo7K, and GeoQA; diagrams lacking gold annotations are auto-parsed via the Geoparsing model with quality filtering. Strict train-test split protocol: any evaluation benchmark sample (GeoQA test, Geometry3K test) appearing in the formal parse training cache is removed; a zero-overlap evaluation subset is reported separately.
+
+**2. Perception claim extraction.** During GRPO training, we extract perception claims from each CoT step using a dual-path approach: (a) rule-based pattern matching for explicit numeric/relational claims (e.g., "angle ABC = 60°", "AB ∥ CD"), and (b) structured output prompting that encourages parseable perception claims during rollouts. We independently validate extraction quality on 500-800 hand-annotated CoT samples, reporting precision/recall/F1 broken down by claim type (explicit numeric, explicit relational, implicit/inferential), and ablate rule-based vs. hybrid extraction and high-recall vs. high-precision configurations to characterize noise tolerance.
+
+**3. Symbolic verification and reward.** Extracted claims are verified against the formal parse through symbolic matching — no LLM judge, no learned model. The verification yields step-level perception reward r_percept = verified_claims / total_claims, combined with outcome reward via r = r_outcome + λ·r_percept, where λ is annealed during training. Beyond the scalar reward, claim-level verification enables targeted failure diagnosis: automatic identification of systematic perception failure patterns (e.g., "model consistently misidentifies obtuse angles as right angles"), which can guide training data curation and model debugging.
+
+**Correlated bias analysis (blind spot validation).** We validate the blind-spot hypothesis with two diagnostic experiments: (1) Controlled corruption: inject known errors into formal parses, verify EPV reward degrades monotonically (oracle accuracy validation). (2) Conditional circularity analysis: stratify geometry problems by configuration difficulty, measure within-stratum overlap between policy VLM perception errors and PEARL-style LLM-judge false negatives vs. EPV-Oracle false negatives. If within-stratum overlap is high for LLM-judge but low for EPV-Oracle, this provides evidence that the blind spots are due to shared model biases rather than intrinsic difficulty.
+
+We train on geometry problems (actual count determined by data audit, estimated 10-15K after deduplication and leakage removal) from GDP-29K, FormalGeo7K, and GeoQA, using EasyR1/OpenRLHF on 16×A100 GPUs, at two model scales: Qwen3-VL-4B and Qwen3-VL-8B.
+
+## Evaluation Design
+
+**Benchmarks (5-6):**
+- Geometry-specific: MathVerse, GeoQA, Geometry3K (with zero-overlap subset reported separately)
+- General multimodal (generalization/regression): MMMU, MathVista
+- Step-level perception: VisualProcessBench (EVPV benchmark)
+
+**Baselines (6 direct + indirect):**
+1. Vanilla GRPO (no perception reward) — lower bound
+2. PEARL (LLM-judge perception, CVPR 2026, arXiv 2511.18437) — model-based explicit
+3. GeoDPO (learned translator DSL reward, arXiv 2602.22703) — structural-representation-based, closest competitor
+4. PAPO (implicit KL perception loss, arXiv 2507.06448) — zero-overhead implicit method, cost-effectiveness challenge
+5. SGVR (formal sub-goal reward, arXiv 2601.05073) — formal verification for reasoning outcomes
+6. MoCA (blindfolded proxy, ICML 2026 Spotlight, arXiv 2605.14054) — perception sufficiency paradigm
+- Indirect (cited numbers): Perception-R1 (ICLR 2026), CogFlow (ICLR 2026), PRCO (arXiv 2603.28618)
+
+**Perception-specific diagnostics:**
+- Blindfold test (MoCA paradigm): text-only vs. multimodal inference to isolate perception contribution
+- Reward signal quality: Pearson/Spearman correlation between EPV reward and human-annotated perception correctness on held-out set, compared against PEARL LLM-judge and GeoDPO translator scores
+- Error type breakdown: perception/reasoning/calculation error rates before and after training
+- Geometry-specific perception error rate: manual annotation of perception errors on 200+ GeoQA/Geometry3K test samples, reporting reduction percentage (comparable to PRCO's 39.2%, PAPO's 30.5%)
+
+**Internal ablations:**
+- λ strategy: constant λ vs. linear annealing vs. cosine annealing vs. λ=0 (vanilla GRPO)
+- r_percept granularity: ratio (verified/total) vs. binary per-step vs. difficulty-weighted
+- Claim extraction: rule-based vs. hybrid; high-recall vs. high-precision
+- Formal parse source: GDP-29K only vs. FormalGeo7K only vs. combined vs. auto-parsed
+- Training data scale: 5K vs. 10K vs. 15K
+- EPV + SGVR joint training: r = r_outcome + λ₁·r_percept(EPV) + λ₂·r_subgoal(SGVR), validating complementarity
+- Noise injection robustness: 5%/10%/20% error injection into formal parse cache
+
+**Compute fairness:** Full lifecycle compute decomposition (parse cache construction + per-step extraction + per-step verification + RL training) for all methods. Iso-compute comparison: fixed total GPU-hours budget, each method trains for as many steps as its per-step cost allows. Performance-vs-compute scaling curve.
+
+## Key References
+
+- Unlocking Multimodal Mathematical Reasoning via Process Reward Model (NeurIPS 2025)
+- Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (ICLR 2026)
+- Bad Seeing or Bad Thinking? Rewarding Perception for Vision-Language Reasoning (ICML 2026)
+- CogFlow: Bridging Perception and Reasoning through Knowledge Internalization for Visual Mathematical Problem Solving (ICLR 2026)
+- Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning (CVPR 2026)
+- Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning (arXiv 2026)
+- Hierarchical Process Reward Models are Symbolic Vision Learners (arXiv 2025)
+- Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward (arXiv 2026)
+- Grounding the Score: Explicit Visual Premise Verification for Reliable VL-PRMs (arXiv 2026)
+- Learning Only with Images: Visual Reinforcement Learning with Reasoning, Rendering, and Visual Feedback (arXiv 2025)
+- Visual-ERM: Reward Modeling for Visual Equivalence (arXiv 2026)
+- Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language (arXiv 2026)
+- A Survey of Multimodal Mathematical Reasoning: From Perception, Alignment to Reasoning (arXiv 2026)
+- Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2026)
+- ViCrit: A Verifiable Reinforcement Learning Proxy Task for Visual Perception in VLMs (NeurIPS 2025)
+- PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning (arXiv 2507.06448)
+- GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning (arXiv 2602.22703)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 2,500–3,500 (6 baselines × 2 scales + ablations), timeline: 16–20 weeks, estimated_gpu_cost: $6,250–$8,750, annotation: 500-800 CoT samples + 200 perception error samples
+- **human_in_loop**: gpu_hours: 2,000–2,800, timeline: 12–16 weeks, claude_api_cost: $500–$800, estimated_gpu_cost: $5,000–$7,000
+- **auto_research**: gpu_hours: 2,000–2,800, timeline: 8–12 weeks, claude_api_cost: $1,200–$1,800, estimated_gpu_cost: $5,000–$7,000, speed_bottleneck: RL training wall-clock (16h/run on 16×A100); formal parses pre-cached; experiment iteration loop is binding constraint
+---
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da2030c1-a405-423e-b5ec-03d12c91ec57",
+  "isSidechain": false,
+  "requestId": "req_011CbTpbjfYuNvwVhfRrFvZU",
+  "type": "assistant",
+  "uuid": "aa481ad7-a9d0-4ce9-93e8-b05c13d38361",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W4baXuHNnftLiseRuruAVU",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1447,
+      "cache_creation_input_tokens": 1345,
+      "cache_read_input_tokens": 55886,
+      "output_tokens": 10019,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1345,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1447,
+          "output_tokens": 10019,
+          "cache_read_input_tokens": 55886,
+          "cache_creation_input_tokens": 1345,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1345
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to provide a thorough assessment. Let me compile my findings.  ---  【状态】: 有发…",
+  "leafUuid": "aa481ad7-a9d0-4ce9-93e8-b05c13d38361",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to provide a thorough assessment. Let me compile my findings.  ---  【状态】: 有发…",
+  "leafUuid": "aa481ad7-a9d0-4ce9-93e8-b05c13d38361",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63 · 2026-05-27T22:06:55.379Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T22:06:55.379Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "content": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have a comprehensive picture of the landscape. Let me deliver my assessment.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- **Perceval (arXiv 2604.24583, Apr 2026)**: 提出 perception-centric PRM，核心操作与本 proposal 高度重叠——从 CoT 中提取 image-related claims，逐条与图像视觉证据比对，定位 hallucinated spans，在 GRPO 中施加 token-level penalties。这是本 proposal **必须讨论但目前完全缺失**的最具威胁性的 concurrent work。关键差异：Perceval 用的是 learned PRM（model-dependent），本 proposal 用 model-free symbolic verification。\n- **PGPO (arXiv 2604.01840, Apr 2026)**: \"Not All Tokens See Equally\"——通过 KL divergence 量化 token visual dependency，对视觉依赖 token 做 fine-grained credit assignment。与本 proposal 的 claim-level 奖励有概念层面的交叉，但切入路径完全不同（统计量 vs. 符号验证）。\n- **GeoDPO (arXiv 2602.22703)**: 最近的直接竞争者，learned NL-to-DSL translator 的 soft scores 作 RL reward。Proposal 对其三点差异化分析基本准确。\n- **PAPO (arXiv 2507.06448, ICLR 2026)**: 零额外开销的 implicit perception loss，30.5% perception error reduction。作为 cost-effectiveness 的 baseline 挑战非常合理。\n- **MoCA (arXiv 2605.14054, ICML 2026 Spotlight)**: Blindfolded reasoning 作为 perception sufficiency proxy。与本 proposal 互补而非竞争——MoCA 判断\"perception 够不够\"，EPV 判断\"perception 对不对\"。\n- **SGVR (arXiv 2601.05073)**: Formal sub-goal reward 用于 reasoning outcome verification。与 EPV 的 perception input verification 形成互补。\n- **Geoparsing/GDP-29K (arXiv 2604.11600)**: Formal parsing infrastructure 已成熟，使本 proposal 的技术路线可行。\n- **ViCrit (NeurIPS 2025, arXiv 2506.10128)**: Synthetic hallucination injection + rule-based reward。验证了\"构造可验证 perception 任务\"的路线可行性，但方向不同（通用视觉 vs. 数学领域特异）。\n- 调研总结：当前领域研究者主要沿两条路线突破——(1) 把 perception reward 的**粒度**从 sequence-level 推向 step/token/claim-level（Perceval, PGPO, PEARL, EVPV）；(2) 降低 perception reward 的**模型依赖性**（PAPO 用 KL 不需外部模型，MoCA 用 blindfold proxy）。本 proposal 的独特位置是同时在两个维度上取极值：最细粒度（claim-level）+ 最低模型依赖（model-free symbolic），但这个 positioning 目前在 proposal 中**没有被显式概念化**。\n\n---\n\n【发掘点 1】\n- 维度: related work 差异化 / 前提假设质疑\n- 内容: **Perceval (arXiv 2604.24583) 是当前 proposal 最大的 related work 盲区，必须补充讨论。** Perceval 的操作流程——\"从 CoT 中提取 perception claims → 逐条与视觉证据比对 → 定位错误 claims → 细粒度奖励\"——与 EPV 的流程在 **形式上高度同构**。如果审稿人熟悉 Perceval，会立刻质问：\"你和 Perceval 到底差在哪？\" 差异确实存在且是根本性的：Perceval 的 claim verification 依赖 learned PRM（仍然是 model-dependent），EPV 用 ground-truth formal parse + symbolic matching（model-free）。但这个差异化必须在 proposal 中被显式、深入地讨论，否则 novelty claim 会受到严重威胁。建议的讨论角度：(a) Perceval 的 PRM 需要大量 perception-intensive 标注数据训练，且其 error detection 能力受限于训练分布——遇到 OOD 几何配置可能失效；(b) EPV 的 verification 是确定性的、可审计的（给定 formal parse，验证结果是 deterministic），Perceval 的 verification 是概率性的。这构成了 verification reward 的 reliability 维度差异。\n- 价值: 直接决定 novelty claim 是否站得住。如果审稿人认为 EPV 只是\"把 Perceval 的 PRM 换成了 symbolic matching\"，novelty 评分会大打折扣。显式讨论 Perceval 并阐明 model-free verification 在 reliability、可审计性、OOD robustness 上的结构性优势，才能让 novelty 真正锐利。\n- 调研依据: Perceval (arXiv 2604.24583)——该论文与本 proposal 在 pipeline 形式上高度同构但在 verification 机制上根本不同。\n\n【发掘点 2】\n- 维度: novelty 锐化 / 核心 claim 强化\n- 内容: **\"blind spot hypothesis\"是本 proposal 最独特的理论贡献，目前严重under-articulated，应升格为论文的核心 thesis。** 当前 proposal 将 model-free 的优势表述为两个并列的 limitation：(1) 模型依赖 reward 有 correlated bias；(2) holistic reward 缺乏 claim-level 诊断。但这两个问题的重要性差距悬殊——第 (2) 点已被 Perceval、PEARL、EVPV 等多个工作以不同方式解决（即使用 model-dependent 手段），是一个\"已有解法的问题\"；而第 (1) 点——**reward model 和 policy VLM 共享系统性 bias，导致 reward 恰好在 policy 最需要纠正的地方失效**——这是一个深刻且未被充分探讨的洞察。建议将 blind spot hypothesis 从\"动机之一\"升格为**核心 thesis**，整个 EPV framework 都围绕这个 thesis 展开：model-free verification 之所以必要，不仅因为它更精确，而是因为它**结构性地打破了 reward-policy bias correlation**。Correlated bias analysis（当前作为 diagnostic experiment）应在叙事上前置，作为核心 claim 的验证手段而非附属分析。\n- 价值: 这个 reframing 同时提升 novelty 和 significance。Novelty 层面：从\"claim-level + model-free 的技术组合\"（engineering contribution 感强）变为\"揭示并解决 reward-policy correlated bias 的根本问题\"（conceptual contribution）。Significance 层面：blind spot problem 不局限于 geometry，是所有 model-dependent reward 方案的结构性隐患，这让 EPV 的 insight 具有超出 geometry 的理论影响力。\n- 调研依据: 基于领域整体趋势判断——调研发现 Perceval、PEARL、EVPV 等均在 claim-level 方向发力，说明 granularity 本身已不够独特；而对 reward-policy bias correlation 的系统性分析在已有文献中尚无覆盖。\n\n【发掘点 3】\n- 维度: significance 提升 / novelty 锐化\n- 内容: **显式概念化 EPV 在\"粒度-独立性\"二维空间中的 Pareto 位置。** 调研表明，当前 perception reward 方法可以被放在一个二维空间中定位——X 轴是 reward granularity（sequence → step → claim → token），Y 轴是 reward independence（fully model-dependent → partially model-dependent → model-free）。已有方法分布在这个空间的不同位置：PAPO 在 (sequence-level, model-free) 端，Perceval 在 (token-level, model-dependent) 端，PEARL 在 (step-level, model-dependent) 端。EPV 占据 (claim-level, model-free)——这是一个目前**无人占据的 Pareto 点**。将此二维框架作为 positioning tool 写入 introduction 或 related work，既能帮助读者快速理解 EPV 的差异化位置，又能使 novelty claim 更加 crisp 和不可辩驳。审稿人一目了然地看到这个空位就被占据了。\n- 价值: 提升 Novelty 和 Related Work 差异化。让审稿人无法将 EPV 简单归类为某个已有方法的 variant——因为它在两个独立维度上同时取极值。\n- 调研依据: 综合 Perceval (arXiv 2604.24583)、PAPO (arXiv 2507.06448)、PEARL (arXiv 2511.18437)、PGPO (arXiv 2604.01840) 的定位分析。\n\n【发掘点 4】\n- 维度: 前提假设质疑\n- 内容: **Perception claim extraction 的 precision-recall tradeoff 是 EPV 方案能否实际工作的最关键前提假设，需要更深入的预分析。** EPV 的整个价值链是\"提取 claim → 符号验证 → 奖励信号\"，如果第一步（claim extraction）的 recall 很低（大量 perception claims 未被提取）或 precision 很低（大量 non-perception claims 被误提取），下游 reward 信号的质量就会根本性地退化。Proposal 目前提到了 dual-path extraction（rule-based + structured output prompting）和 500-800 样本的验证，这是正确的方向，但存在一个更深层的问题：**structured output prompting 本身引入了模型依赖性**。如果鼓励模型以 parseable 格式输出 perception claims，这实际上改变了模型的 CoT generation 分布——model 可能为了满足格式要求而人为地显式化某些 perception（本来是隐式的），或者抑制了自然的推理方式。这可能与 model-free 的 claim 发生微妙的矛盾：你在 reward 端去掉了 model dependency，却在 claim extraction 端又引入了。建议在 proposal 中显式承认这个 tension，并讨论 mitigation 策略（例如 rule-based-only 的 ablation 作为 model-free 纯净对照）。\n- 价值: Novelty 维度——预防审稿人的\"你号称 model-free 但 claim extraction 其实不是 model-free\"的攻击。更重要的是，对这个 tension 的显式讨论反而能加强论文的 intellectual depth——承认 end-to-end model-free 在当前 CoT 格式下不完全可能，讨论 tradeoff，这比假装不存在要有说服力得多。\n- 调研依据: 基于 PEARL (arXiv 2511.18437) 和 EVPV (arXiv 2603.16253) 的 checklist 生成机制分析——两者都依赖 model-generated structured output，面临类似的 distribution shift concern。\n\n【发掘点 5】\n- 维度: significance 提升\n- 内容: **EPV + SGVR 互补性是一个被低估的 contribution，应在 framing 层面被更有力地阐述。** 当前 proposal 将 EPV+SGVR joint training 放在 ablation 中，仅作为\"验证互补性\"的技术实验。但从 significance 角度看，这实际上回答了一个更大的问题：**formal verification 能否为 multimodal math RL 提供完整的 step-level verification coverage？** EPV 验证 perception inputs（模型是否正确读取了图表），SGVR 验证 reasoning outputs（模型的中间计算是否正确），两者合在一起覆盖了从视觉输入到推理输出的完整链条。这不仅仅是 ablation——这是在论证 **formal verification 作为 multimodal math RL 的统一 reward paradigm** 的可行性。如果将此 reframe 为一个独立贡献而非附属实验，论文的 impact narrative 将从\"geometry perception 的一个改进\"上升到\"formal verification 作为 multimodal reasoning RL reward 的通用框架的概念验证\"。\n- 价值: 显著提升 Significance——从一个 domain-specific 技术改进变成对 multimodal RL reward 设计范式的更广泛贡献。审稿人在评估 impact 时，会看到超出 geometry 的 implication。\n- 调研依据: SGVR (arXiv 2601.05073) 提供 reasoning outcome verification；Geoparsing (arXiv 2604.11600) 提供 perception input 的 formal ground truth。两者的结合在已有文献中未被讨论。\n\nSources:\n- [Perceval: Improving Vision-language Models with Perception-centric Process Reward Models](https://arxiv.org/abs/2604.24583)\n- [PGPO: Not All Tokens See Equally](https://arxiv.org/abs/2604.01840)\n- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning](https://arxiv.org/abs/2602.22703)\n- [PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning](https://arxiv.org/abs/2507.06448)\n- [PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning](https://arxiv.org/abs/2511.18437)\n- [MoCA: Bad Seeing or Bad Thinking? Rewarding Perception for Vision-Language Reasoning](https://arxiv.org/abs/2605.14054)\n- [SGVR: Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward](https://arxiv.org/abs/2601.05073)\n- [Geoparsing: Diagram Parsing for Plane and Solid Geometry](https://arxiv.org/abs/2604.11600)\n- [EVPV: Grounding the Score: Explicit Visual Premise Verification](https://arxiv.org/abs/2603.16253)\n- [ViCrit: A Verifiable Reinforcement Learning Proxy Task for Visual Perception in VLMs](https://arxiv.org/abs/2506.10128)\n\n【补救 agent 本轮输出】:\nNow I have sufficient research context. Let me compile my analysis.\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- [GeoDPO, arXiv 2602.22703] (2026): 实验设计以 GeoPerceive 为主评测，baseline 含 SFT、vanilla RL；报告 in-domain (+26.5%)、out-of-domain (+8.0%)、downstream reasoning (+39.0%)。ablation 验证 translator 质量影响。但 baseline 范围较窄，未与 PEARL/SGVR 等同期方法对比。\n- [PEARL, arXiv 2511.18437] (CVPR 2026): baseline 含 GRPO、DAPO、vanilla SFT；评测在 MathVerse (+9.7%), MathVista 等 6+ benchmark；ablation 包括 checklist 生成策略、reward 融合方式；使用 LLM judge 打分。\n- [SGVR, arXiv 2601.05073] (2026): 提出 GeoGoal benchmark，引入 Skeleton Rate/Completion/Consistency Ratio 三项 geometry-specific 指标；评测覆盖 geometry (+9.7%)、general math (+8.0%)、general reasoning (+2.8%)；ablation 验证 sub-goal 密度和 reward 粒度的影响。\n- [MoCA, arXiv 2605.14054] (ICML 2026 Spotlight): blindfolded reasoner 作为 perception sufficiency 代理；在多模态 benchmark 全面评测；核心 ablation 为 text-only vs. multimodal 对比来隔离 perception 贡献。\n- [PAPO, arXiv 2507.06448] (2025): implicit KL perception loss，无外部 oracle；报告 overall +4.4-17.5%, vision-dependent +8.0-19.1%, 30.5% perception error reduction；ablation 验证 Double Entropy Loss 必要性；特点是 zero additional overhead。\n- [CogFlow, arXiv 2601.01874] (ICLR 2026): 三阶段 perception→internalization→reasoning；MathCog 120K 标注数据；Synergistic Visual Rewards + Visual-Gated Policy Optimization；ablation 拆解每个阶段的独立贡献。\n- [EVPV, arXiv 2603.16253] (2026): visual premise verification + reliability gating；在 VisualProcessBench + 6 个多模态 benchmark 评测；ablation 含 controlled corruption 验证 constraint fidelity 的因果性。\n- [Geoparsing/GDP-29K, arXiv 2604.11600] (2026): 29K geometry 样本（20K plane + 9K solid），SFT+RL 训练达到 SOTA parsing performance；数据和代码已开源。\n- [FormalGeo7K] (2023/2024): 6,981 问题可扩展至 133,818；高难度（difficulty≥15）样本极少，覆盖有偏。\n- [KAWHI, arXiv 2603.27375] (2026): plug-and-play reward reweighting，将 visual-geometric 信息显式引入 GRPO/GSPO reward；在数学和图表 benchmark 上改善推理+减少 hallucination。\n\n- **调研总结**: 该领域 2025-2026 年的实验设计标准要求：(1) 6+ 个 baseline 涵盖 implicit/model-based/structural/formal 各类方法；(2) geometry-specific + general multimodal 双线 benchmark；(3) 细粒度 ablation 拆解每个组件；(4) perception error rate 的人工标注量化；(5) compute fairness 分析日益受到审稿人重视。该 proposal 的实验设计框架已达到甚至超过多数同期工作的标准，但在若干执行细节上存在需要补强的环节。\n\n---\n\n【缺陷 1】\n- 类别: 实验设计不足（核心技术组件规格不完整）\n- 问题: Proposal 中\"Perception claim extraction\"组件是整个系统的**关键瓶颈**，但技术规格不足。具体而言：(a) rule-based pattern matching 对 explicit claims（如 \"angle ABC = 60°\", \"AB ∥ CD\"）可行，但 VLM 的 CoT 常以隐式方式表达感知（如 \"Since the triangle is right-angled...\" 而不显式说明哪个角为 90°），proposal 虽提到 \"implicit/inferential\" 类别但未给出如何提取的方案；(b) structured output prompting 本身会改变 policy 的生成分布，可能引入训练-推理不一致（training 时有 prompt 引导，test 时无）；(c) **symbolic matching 的具体实现未定义**——CoT 中 \"AB ∥ CD\" 如何与 formal parse 中可能使用不同命名/坐标系统的表示进行对齐？几何 formal language 中点的标记可能与 VLM 输出不一致（如 formal parse 用 P1/P2，VLM 用 A/B），这需要一个 entity resolution 层，而该层本身的准确性直接决定了 reward 信号质量。\n- 严重度: 可补救\n- 补救方案: (1) 在 paper 中明确定义 symbolic matching pipeline 的完整规格：entity resolution 策略（如何对齐 VLM CoT 中的几何实体与 formal parse 的实体名称）、matching tolerance（数值匹配的容差阈值）、关系匹配的逻辑等价规则（如 \"AB ∥ CD\" 等价于 \"CD ∥ AB\"）。(2) 对 \"implicit/inferential\" claims，建议明确将其排除出 reward 计算或限制在高置信度 extraction 下才纳入，并在 ablation 中对比 \"explicit-only\" vs. \"explicit + relational\" vs. \"all claims\" 配置，量化隐式 claim 引入的噪声。(3) 增加一个 extraction pipeline 自身的 end-to-end 评估：在 held-out set 上报告 claim extraction + symbolic matching 整体的 precision/recall/F1（即不仅评估 extraction，还评估 matching），这才是 reward 信号的真实质量指标。(4) 对 structured output prompting 引起的分布偏移问题，在 ablation 中增加 \"with prompt\" vs. \"without prompt at test time\" 对比。\n- 调研依据: EVPV (arXiv 2603.16253) 的 visual premise verification 同样面临 claim extraction 问题，其采用 constraint extractor 独立于 policy 来导出 structured constraints，并通过 controlled corruption 验证因果性；PEARL 使用 LLM 生成 perception checklist 来规避 free-form extraction 难题。本 proposal 的 rule-based approach 相比之下更轻量但更脆弱。\n\n【缺陷 2】\n- 类别: 实验设计不足（reward sparsity 处理未定义）\n- 问题: r_percept = verified_claims / total_claims 在 CoT 步骤不包含任何 perception claim 时为 0/0（未定义）。大量 reasoning 步骤（如纯代数推导步）不涉及 perception，这些步骤的 r_percept 如何处理？如果设为 0，会错误惩罚正确的推理步骤；如果设为 1，会给予无信息奖励；如果跳过，则 step-level reward 的覆盖密度不均。Proposal 未讨论此情况。\n- 严重度: 可补救\n- 补救方案: 明确定义三种策略并在 ablation 中对比：(a) **skip 策略**：无 perception claim 的步骤不计算 r_percept，仅使用 r_outcome；(b) **neutral 策略**：设 r_percept = 1（不惩罚也不奖励）；(c) **step-type-aware 策略**：将步骤分类为 perception-step vs. reasoning-step，仅对 perception-step 计算 r_percept。报告不同策略下的 reward density（有 r_percept 信号的步骤占比）以及对最终性能的影响。\n- 调研依据: SGVR (arXiv 2601.05073) 通过 Skeleton Rate 指标处理类似的 reward 覆盖问题——并非每个推理步骤都对应一个可验证的 sub-goal，其做法是仅对可验证步骤计算 dense reward。基于领域实验规范判断。\n\n【缺陷 3】\n- 类别: baseline 不足或过时\n- 问题: (1) **PRCO (arXiv 2603.28618)** 被归为 \"indirect baseline\"（仅引用数字），但 PRCO 使用 model-generated captions + role-specific perception rewards，与本方法在 perception reward 设计上有直接可比性（都提供 perception-specific reward signal），应为直接 baseline。(2) **KAWHI (arXiv 2603.27375)** 在 Research Landscape 中提及但未纳入 baseline。KAWHI 将 visual-geometric 信息显式引入 reward reweighting，且为 plug-and-play 设计可直接应用于 GRPO，与本方法的 geometry-specific reward 增强高度相关。仅 6 个直接 baseline 在该领域 2026 年的激烈竞争中可能不够——同期 8+ 直接对比已成为常见做法。\n- 严重度: 可补救\n- 补救方案: (1) 将 PRCO 升级为直接 baseline（第 7 号），使用其开源代码在相同 base model 上复现。(2) 将 KAWHI 加入直接 baseline（第 8 号），其 plug-and-play 特性使复现成本低。(3) 若计算资源紧张，至少在主实验表中为 PRCO 和 KAWHI 各加一行（即使是 partial reproduction），在 supplementary 中给出完整结果。这将使直接 baseline 达到 8 个，覆盖 implicit / model-based explicit / structural / formal reasoning / perception sufficiency / caption-based / reward reweighting / proposed 的完整光谱。\n- 调研依据: KAWHI (arXiv 2603.27375) 明确声称首次将 visual-geometric 信息引入 RLVR reward modeling，与本 proposal 的 geometry-specific reward 有直接对标关系。PRCO (arXiv 2603.28618) 报告 39.2% perception error reduction，与本方法需要直接比较。\n\n【缺陷 4】\n- 类别: 实验设计不足（baseline 复现风险）\n- 问题: 6 个直接 baseline 中，部分方法可能缺乏开源实现或在 Qwen3-VL 上的适配方案。Proposal 未讨论复现策略：(a) GeoDPO 的 NL-to-DSL translator 需要在新 base model 上重新训练还是可复用？(b) PEARL 的 perception checklist generation 和 LLM judge 在 Qwen3-VL 上是否兼容？(c) MoCA 的 blindfolded reasoner 需要专门的 text-only model 还是可用同一 VLM 的 text-only 模式？(d) SGVR 的 GeoGoal benchmark + formal verification engine 是否已开源？如果某个 baseline 需要从头复现（尤其是 GeoDPO 的 translator training），其本身就是一个显著的工程+计算开销。\n- 严重度: 可补救\n- 补救方案: (1) 立即进行 code availability audit：逐一确认每个 baseline 的开源状态（PEARL 已在 GitHub 开源，SGVR 已开源，PAPO 已开源，GeoDPO 状态需确认，MoCA 需确认）。(2) 对无开源代码的 baseline，评估复现难度并在 timeline 中预留缓冲（每个无代码 baseline 预留 2-3 周额外时间）。(3) 在论文中明确标注哪些 baseline 是 \"our re-implementation\" vs. \"using official code\"，并对 re-implementation 的 baseline 在其原论文报告的 benchmark 上做 sanity check（在原论文条件下复现结果应接近原文数字），以证明复现的公平性。(4) 对实在无法复现的 baseline，至少引用其论文中在共同 benchmark（如 MathVerse, GeoQA）上的数字作为 reference point。\n- 调研依据: 基于领域实验规范判断。GeoDPO (OpenReview 有提交记录), PEARL (GitHub 已开源), SGVR (GitHub 已开源), PAPO (GitHub 已开源)。\n\n【缺陷 5】\n- 类别: 评估方案缺陷（统计严谨性）\n- 问题: Proposal 未提及任何统计显著性分析：(a) 未提到跨多次 run 的方差/标准差报告；(b) 未提到 confidence interval 或 significance test（如 paired bootstrap test）；(c) 手工标注（500-800 CoT + 200 perception error）未提到 inter-annotator agreement（如 Cohen's kappa）。在 AAAI 审稿中，缺乏统计严谨性是常见的 weakness 指出。\n- 严重度: 可补救\n- 补救方案: (1) 所有关键实验至少跑 3 次（不同 random seeds），报告 mean ± std。(2) 对主要结果使用 paired bootstrap test 或 Wilcoxon signed-rank test 报告 p-value。(3) 所有手工标注任务由 ≥2 名标注者独立完成，报告 Cohen's kappa 或 Fleiss' kappa。(4) 注意：3 runs × (6 baselines + proposed + ablations) × 2 scales 会显著增加计算需求，建议在 resource estimate 中将 GPU hours 上调 ~50% 或仅对 top-3 competing baselines + proposed 做 3-run 统计。\n- 调研依据: 基于领域实验规范判断。SGVR 和 PAPO 均报告多次 run 的 mean±std；AAAI 2025/2026 审稿普遍要求统计显著性。\n\n【缺陷 6】\n- 类别: 可行性问题（formal parse coverage 的不确定性）\n- 问题: 整个方法依赖 formal parse cache 的质量和覆盖率，但 proposal 承认 \"Data audit determines actual coverage\"——这意味着在 audit 之前，方法的可行性存在不确定性。具体风险：(a) GDP-29K 包含 20K plane + 9K solid geometry，但 solid geometry 的 formal parse 可能与训练中常见的 plane geometry 问题不匹配；(b) GeoQA 和 Geometry3K 的问题未必能被 GDP-29K/FormalGeo7K 的 formal language 覆盖（不同数据集的 formal schema 可能不兼容）；(c) \"auto-parsed via Geoparsing model with quality filtering\" 引入的 auto-parse 本身有误差，如果大量训练数据依赖 auto-parse，那么 formal parse cache 就不再是完全 \"model-free\" 的 ground truth——它包含了 parsing model 的误差。\n- 严重度: 可补救\n- 补救方案: (1) 将 data audit 作为**第一阶段 milestone**（建议在前 2 周内完成），明确报告：GDP-29K 中有多少 plane geometry 问题与 GeoQA/Geometry3K/FormalGeo7K 的 problem domain 重叠、formal parse 覆盖率（能成功 parse 且通过质量检查的比例）。如果覆盖率 <60%，需重新评估方法可行性。(2) 对 auto-parsed 数据，在 ablation 中对比 \"gold annotation only\" vs. \"gold + auto-parsed\"，量化 auto-parse noise 对 reward 信号和最终性能的影响。(3) 在论文中透明报告 parse 来源比例（gold vs. auto），并在 noise injection ablation (已计划的 5%/10%/20%) 中将 auto-parse estimated error rate 作为 reference point。(4) 明确讨论 \"auto-parsed formal parse\" 在何种意义上仍然算 \"model-free\"——因为 parse 是由一个独立的、与 policy VLM 不共享参数/训练数据的专用 parser 生成的，其 bias 与 policy VLM 的 bias 正交，这仍然是比 LLM-as-judge 更好的 reward 来源，但应坦诚讨论而非回避。\n- 调研依据: Geoparsing (arXiv 2604.11600) 达到 SOTA parsing performance 但未报告在 GeoQA/Geometry3K 具体问题类型上的覆盖率；FormalGeo7K 在 difficulty≥15 的问题上覆盖稀疏。\n\n【缺陷 7】\n- 类别: 评估方案缺陷（generalization regression 检测不足）\n- 问题: General multimodal benchmarks 仅列了 MMMU 和 MathVista，用于检测 geometry-specific training 是否导致 general capability regression。但 MMMU 和 MathVista 本身包含几何题目，不适合纯粹检测 regression。缺少一个完全 non-geometry 的 benchmark 来验证 \"specialized training doesn't hurt general capability\"。\n- 严重度: 可补救\n- 补救方案: 增加 1-2 个非几何/非数学的多模态 reasoning benchmark，如 **AI2D**（科学图表理解）、**ChartQA**（图表理解）或 **ScienceQA**（科学推理），以验证 geometry-specific perception reward 不会导致非目标领域的性能下降。这在审稿中常被要求（\"does your method hurt performance on other tasks?\"），增加成本极低（仅需推理评测，无需额外训练）。\n- 调研依据: CogFlow (arXiv 2601.01874) 和 SGVR (arXiv 2601.05073) 均在 general reasoning tasks 上报告 transfer/regression 结果（SGVR 报告 +2.8% on general reasoning），说明审稿人期望看到跨领域影响。\n\n【缺陷 8】\n- 类别: 可行性问题（计算资源估算偏低）\n- 问题: Resource estimate 列出 2,500-3,500 GPU hours (manual path)，但考虑以下因素可能偏低：(a) 若加入统计显著性（3 runs），主实验计算量 ×3；(b) 若升级 PRCO/KAWHI 为直接 baseline，增加 2 个 baseline × 2 scales；(c) ablation 矩阵已有 7 组（λ strategy × 4 + granularity × 3 + extraction × 2 + parse source × 4 + scale × 3 + joint training × 1 + noise × 3 = ~20 configurations），每组 × 2 scales = ~40 runs；(d) formal parse cache construction + extraction pipeline development 的工程时间未计入。粗略估算：(6+2 baselines + 1 proposed) × 2 scales × 3 runs = 54 runs + ~40 ablation runs = ~94 runs，每 run ~30-50 GPU hours on 16×A100 ≈ 2,800-4,700 GPU hours 仅训练部分。\n- 严重度: 可补救\n- 补救方案: (1) 重新估算并上调 GPU hours 至 4,000-5,500（manual path），对应 cost $10,000-$13,750。(2) 优化策略：ablation 仅在 4B scale 上做完整矩阵，在 8B 上仅跑 top-3 most impactful ablations；3-run 统计仅对 proposed + top-3 competing baselines 执行，其余 baseline single run + official numbers 作为 reference。(3) timeline 也应相应延长至 20-24 weeks (manual path)，或在 auto_research path 中预留更多 iteration buffer。\n- 调研依据: 基于领域实验规范判断。按 EasyR1 在 Qwen2.5-VL-7B 上 GRPO training 的公开数据，单次 geometry RL training 在 16×A100 上约需 12-20 小时。\n\n---\n\n**总结**: 该 proposal 的实验设计框架在该领域已属上乘水平——baseline 覆盖光谱完整、ablation 设计系统化、compute fairness 考虑周到、perception-specific diagnostics 丰富。以上 8 个缺陷中无致命问题，均为可补救的执行细节和完备性提升点。其中**缺陷 1（claim extraction pipeline 规格不完整）**和**缺陷 6（formal parse coverage 不确定性）**是最关键的——前者决定了 reward 信号质量的上限，后者决定了方法的基本可行性。建议优先处理这两个问题（尤其是 data audit 应立即启动），其余缺陷可在实验执行中逐步补上。\n\nSources:\n- [GeoDPO - arXiv 2602.22703](https://arxiv.org/abs/2602.22703)\n- [PEARL - arXiv 2511.18437](https://arxiv.org/abs/2511.18437)\n- [SGVR - arXiv 2601.05073](https://arxiv.org/abs/2601.05073)\n- [MoCA - arXiv 2605.14054](https://arxiv.org/abs/2605.14054)\n- [PAPO - arXiv 2507.06448](https://arxiv.org/abs/2507.06448)\n- [CogFlow - arXiv 2601.01874](https://arxiv.org/abs/2601.01874)\n- [EVPV - arXiv 2603.16253](https://arxiv.org/abs/2603.16253)\n- [Geoparsing/GDP-29K - arXiv 2604.11600](https://arxiv.org/abs/2604.11600)\n- [KAWHI - arXiv 2603.27375](https://arxiv.org/abs/2603.27375)\n- [PRCO - arXiv 2603.28618](https://arxiv.org/abs/2603.28618)\n- [FormalGeo](https://arxiv.org/abs/2310.18021)\n- [EasyR1 GitHub](https://github.com/hiyouga/easyr1)\n- [OpenRLHF GitHub](https://github.com/openrlhf/openrlhf)\n- [PEARL GitHub](https://github.com/MiliLab/PEARL)\n- [SGVR GitHub](https://github.com/FrontierX-Lab/SGVR)\n- [PAPO GitHub](https://github.com/MikeWangWZHL/PAPO)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64 · 2026-05-27T22:06:55.379Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T22:06:55.379Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+## Round 4
+
+23 recorded events
+
+### User
+
+_source line 65 · 2026-05-27T22:06:55.405Z_
+
+【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。
+
+【发掘 agent 本轮输出】:
+Now I have a comprehensive picture of the landscape. Let me deliver my assessment.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **Perceval (arXiv 2604.24583, Apr 2026)**: 提出 perception-centric PRM，核心操作与本 proposal 高度重叠——从 CoT 中提取 image-related claims，逐条与图像视觉证据比对，定位 hallucinated spans，在 GRPO 中施加 token-level penalties。这是本 proposal **必须讨论但目前完全缺失**的最具威胁性的 concurrent work。关键差异：Perceval 用的是 learned PRM（model-dependent），本 proposal 用 model-free symbolic verification。
+- **PGPO (arXiv 2604.01840, Apr 2026)**: "Not All Tokens See Equally"——通过 KL divergence 量化 token visual dependency，对视觉依赖 token 做 fine-grained credit assignment。与本 proposal 的 claim-level 奖励有概念层面的交叉，但切入路径完全不同（统计量 vs. 符号验证）。
+- **GeoDPO (arXiv 2602.22703)**: 最近的直接竞争者，learned NL-to-DSL translator 的 soft scores 作 RL reward。Proposal 对其三点差异化分析基本准确。
+- **PAPO (arXiv 2507.06448, ICLR 2026)**: 零额外开销的 implicit perception loss，30.5% perception error reduction。作为 cost-effectiveness 的 baseline 挑战非常合理。
+- **MoCA (arXiv 2605.14054, ICML 2026 Spotlight)**: Blindfolded reasoning 作为 perception sufficiency proxy。与本 proposal 互补而非竞争——MoCA 判断"perception 够不够"，EPV 判断"perception 对不对"。
+- **SGVR (arXiv 2601.05073)**: Formal sub-goal reward 用于 reasoning outcome verification。与 EPV 的 perception input verification 形成互补。
+- **Geoparsing/GDP-29K (arXiv 2604.11600)**: Formal parsing infrastructure 已成熟，使本 proposal 的技术路线可行。
+- **ViCrit (NeurIPS 2025, arXiv 2506.10128)**: Synthetic hallucination injection + rule-based reward。验证了"构造可验证 perception 任务"的路线可行性，但方向不同（通用视觉 vs. 数学领域特异）。
+- 调研总结：当前领域研究者主要沿两条路线突破——(1) 把 perception reward 的**粒度**从 sequence-level 推向 step/token/claim-level（Perceval, PGPO, PEARL, EVPV）；(2) 降低 perception reward 的**模型依赖性**（PAPO 用 KL 不需外部模型，MoCA 用 blindfold proxy）。本 proposal 的独特位置是同时在两个维度上取极值：最细粒度（claim-level）+ 最低模型依赖（model-free symbolic），但这个 positioning 目前在 proposal 中**没有被显式概念化**。
+
+---
+
+【发掘点 1】
+- 维度: related work 差异化 / 前提假设质疑
+- 内容: **Perceval (arXiv 2604.24583) 是当前 proposal 最大的 related work 盲区，必须补充讨论。** Perceval 的操作流程——"从 CoT 中提取 perception claims → 逐条与视觉证据比对 → 定位错误 claims → 细粒度奖励"——与 EPV 的流程在 **形式上高度同构**。如果审稿人熟悉 Perceval，会立刻质问："你和 Perceval 到底差在哪？" 差异确实存在且是根本性的：Perceval 的 claim verification 依赖 learned PRM（仍然是 model-dependent），EPV 用 ground-truth formal parse + symbolic matching（model-free）。但这个差异化必须在 proposal 中被显式、深入地讨论，否则 novelty claim 会受到严重威胁。建议的讨论角度：(a) Perceval 的 PRM 需要大量 perception-intensive 标注数据训练，且其 error detection 能力受限于训练分布——遇到 OOD 几何配置可能失效；(b) EPV 的 verification 是确定性的、可审计的（给定 formal parse，验证结果是 deterministic），Perceval 的 verification 是概率性的。这构成了 verification reward 的 reliability 维度差异。
+- 价值: 直接决定 novelty claim 是否站得住。如果审稿人认为 EPV 只是"把 Perceval 的 PRM 换成了 symbolic matching"，novelty 评分会大打折扣。显式讨论 Perceval 并阐明 model-free verification 在 reliability、可审计性、OOD robustness 上的结构性优势，才能让 novelty 真正锐利。
+- 调研依据: Perceval (arXiv 2604.24583)——该论文与本 proposal 在 pipeline 形式上高度同构但在 verification 机制上根本不同。
+
+【发掘点 2】
+- 维度: novelty 锐化 / 核心 claim 强化
+- 内容: **"blind spot hypothesis"是本 proposal 最独特的理论贡献，目前严重under-articulated，应升格为论文的核心 thesis。** 当前 proposal 将 model-free 的优势表述为两个并列的 limitation：(1) 模型依赖 reward 有 correlated bias；(2) holistic reward 缺乏 claim-level 诊断。但这两个问题的重要性差距悬殊——第 (2) 点已被 Perceval、PEARL、EVPV 等多个工作以不同方式解决（即使用 model-dependent 手段），是一个"已有解法的问题"；而第 (1) 点——**reward model 和 policy VLM 共享系统性 bias，导致 reward 恰好在 policy 最需要纠正的地方失效**——这是一个深刻且未被充分探讨的洞察。建议将 blind spot hypothesis 从"动机之一"升格为**核心 thesis**，整个 EPV framework 都围绕这个 thesis 展开：model-free verification 之所以必要，不仅因为它更精确，而是因为它**结构性地打破了 reward-policy bias correlation**。Correlated bias analysis（当前作为 diagnostic experiment）应在叙事上前置，作为核心 claim 的验证手段而非附属分析。
+- 价值: 这个 reframing 同时提升 novelty 和 significance。Novelty 层面：从"claim-level + model-free 的技术组合"（engineering contribution 感强）变为"揭示并解决 reward-policy correlated bias 的根本问题"（conceptual contribution）。Significance 层面：blind spot problem 不局限于 geometry，是所有 model-dependent reward 方案的结构性隐患，这让 EPV 的 insight 具有超出 geometry 的理论影响力。
+- 调研依据: 基于领域整体趋势判断——调研发现 Perceval、PEARL、EVPV 等均在 claim-level 方向发力，说明 granularity 本身已不够独特；而对 reward-policy bias correlation 的系统性分析在已有文献中尚无覆盖。
+
+【发掘点 3】
+- 维度: significance 提升 / novelty 锐化
+- 内容: **显式概念化 EPV 在"粒度-独立性"二维空间中的 Pareto 位置。** 调研表明，当前 perception reward 方法可以被放在一个二维空间中定位——X 轴是 reward granularity（sequence → step → claim → token），Y 轴是 reward independence（fully model-dependent → partially model-dependent → model-free）。已有方法分布在这个空间的不同位置：PAPO 在 (sequence-level, model-free) 端，Perceval 在 (token-level, model-dependent) 端，PEARL 在 (step-level, model-dependent) 端。EPV 占据 (claim-level, model-free)——这是一个目前**无人占据的 Pareto 点**。将此二维框架作为 positioning tool 写入 introduction 或 related work，既能帮助读者快速理解 EPV 的差异化位置，又能使 novelty claim 更加 crisp 和不可辩驳。审稿人一目了然地看到这个空位就被占据了。
+- 价值: 提升 Novelty 和 Related Work 差异化。让审稿人无法将 EPV 简单归类为某个已有方法的 variant——因为它在两个独立维度上同时取极值。
+- 调研依据: 综合 Perceval (arXiv 2604.24583)、PAPO (arXiv 2507.06448)、PEARL (arXiv 2511.18437)、PGPO (arXiv 2604.01840) 的定位分析。
+
+【发掘点 4】
+- 维度: 前提假设质疑
+- 内容: **Perception claim extraction 的 precision-recall tradeoff 是 EPV 方案能否实际工作的最关键前提假设，需要更深入的预分析。** EPV 的整个价值链是"提取 claim → 符号验证 → 奖励信号"，如果第一步（claim extraction）的 recall 很低（大量 perception claims 未被提取）或 precision 很低（大量 non-perception claims 被误提取），下游 reward 信号的质量就会根本性地退化。Proposal 目前提到了 dual-path extraction（rule-based + structured output prompting）和 500-800 样本的验证，这是正确的方向，但存在一个更深层的问题：**structured output prompting 本身引入了模型依赖性**。如果鼓励模型以 parseable 格式输出 perception claims，这实际上改变了模型的 CoT generation 分布——model 可能为了满足格式要求而人为地显式化某些 perception（本来是隐式的），或者抑制了自然的推理方式。这可能与 model-free 的 claim 发生微妙的矛盾：你在 reward 端去掉了 model dependency，却在 claim extraction 端又引入了。建议在 proposal 中显式承认这个 tension，并讨论 mitigation 策略（例如 rule-based-only 的 ablation 作为 model-free 纯净对照）。
+- 价值: Novelty 维度——预防审稿人的"你号称 model-free 但 claim extraction 其实不是 model-free"的攻击。更重要的是，对这个 tension 的显式讨论反而能加强论文的 intellectual depth——承认 end-to-end model-free 在当前 CoT 格式下不完全可能，讨论 tradeoff，这比假装不存在要有说服力得多。
+- 调研依据: 基于 PEARL (arXiv 2511.18437) 和 EVPV (arXiv 2603.16253) 的 checklist 生成机制分析——两者都依赖 model-generated structured output，面临类似的 distribution shift concern。
+
+【发掘点 5】
+- 维度: significance 提升
+- 内容: **EPV + SGVR 互补性是一个被低估的 contribution，应在 framing 层面被更有力地阐述。** 当前 proposal 将 EPV+SGVR joint training 放在 ablation 中，仅作为"验证互补性"的技术实验。但从 significance 角度看，这实际上回答了一个更大的问题：**formal verification 能否为 multimodal math RL 提供完整的 step-level verification coverage？** EPV 验证 perception inputs（模型是否正确读取了图表），SGVR 验证 reasoning outputs（模型的中间计算是否正确），两者合在一起覆盖了从视觉输入到推理输出的完整链条。这不仅仅是 ablation——这是在论证 **formal verification 作为 multimodal math RL 的统一 reward paradigm** 的可行性。如果将此 reframe 为一个独立贡献而非附属实验，论文的 impact narrative 将从"geometry perception 的一个改进"上升到"formal verification 作为 multimodal reasoning RL reward 的通用框架的概念验证"。
+- 价值: 显著提升 Significance——从一个 domain-specific 技术改进变成对 multimodal RL reward 设计范式的更广泛贡献。审稿人在评估 impact 时，会看到超出 geometry 的 implication。
+- 调研依据: SGVR (arXiv 2601.05073) 提供 reasoning outcome verification；Geoparsing (arXiv 2604.11600) 提供 perception input 的 formal ground truth。两者的结合在已有文献中未被讨论。
+
+Sources:
+- [Perceval: Improving Vision-language Models with Perception-centric Process Reward Models](https://arxiv.org/abs/2604.24583)
+- [PGPO: Not All Tokens See Equally](https://arxiv.org/abs/2604.01840)
+- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning](https://arxiv.org/abs/2602.22703)
+- [PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning](https://arxiv.org/abs/2507.06448)
+- [PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning](https://arxiv.org/abs/2511.18437)
+- [MoCA: Bad Seeing or Bad Thinking? Rewarding Perception for Vision-Language Reasoning](https://arxiv.org/abs/2605.14054)
+- [SGVR: Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward](https://arxiv.org/abs/2601.05073)
+- [Geoparsing: Diagram Parsing for Plane and Solid Geometry](https://arxiv.org/abs/2604.11600)
+- [EVPV: Grounding the Score: Explicit Visual Premise Verification](https://arxiv.org/abs/2603.16253)
+- [ViCrit: A Verifiable Reinforcement Learning Proxy Task for Visual Perception in VLMs](https://arxiv.org/abs/2506.10128)
+
+【补救 agent 本轮输出】:
+Now I have sufficient research context. Let me compile my analysis.
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- [GeoDPO, arXiv 2602.22703] (2026): 实验设计以 GeoPerceive 为主评测，baseline 含 SFT、vanilla RL；报告 in-domain (+26.5%)、out-of-domain (+8.0%)、downstream reasoning (+39.0%)。ablation 验证 translator 质量影响。但 baseline 范围较窄，未与 PEARL/SGVR 等同期方法对比。
+- [PEARL, arXiv 2511.18437] (CVPR 2026): baseline 含 GRPO、DAPO、vanilla SFT；评测在 MathVerse (+9.7%), MathVista 等 6+ benchmark；ablation 包括 checklist 生成策略、reward 融合方式；使用 LLM judge 打分。
+- [SGVR, arXiv 2601.05073] (2026): 提出 GeoGoal benchmark，引入 Skeleton Rate/Completion/Consistency Ratio 三项 geometry-specific 指标；评测覆盖 geometry (+9.7%)、general math (+8.0%)、general reasoning (+2.8%)；ablation 验证 sub-goal 密度和 reward 粒度的影响。
+- [MoCA, arXiv 2605.14054] (ICML 2026 Spotlight): blindfolded reasoner 作为 perception sufficiency 代理；在多模态 benchmark 全面评测；核心 ablation 为 text-only vs. multimodal 对比来隔离 perception 贡献。
+- [PAPO, arXiv 2507.06448] (2025): implicit KL perception loss，无外部 oracle；报告 overall +4.4-17.5%, vision-dependent +8.0-19.1%, 30.5% perception error reduction；ablation 验证 Double Entropy Loss 必要性；特点是 zero additional overhead。
+- [CogFlow, arXiv 2601.01874] (ICLR 2026): 三阶段 perception→internalization→reasoning；MathCog 120K 标注数据；Synergistic Visual Rewards + Visual-Gated Policy Optimization；ablation 拆解每个阶段的独立贡献。
+- [EVPV, arXiv 2603.16253] (2026): visual premise verification + reliability gating；在 VisualProcessBench + 6 个多模态 benchmark 评测；ablation 含 controlled corruption 验证 constraint fidelity 的因果性。
+- [Geoparsing/GDP-29K, arXiv 2604.11600] (2026): 29K geometry 样本（20K plane + 9K solid），SFT+RL 训练达到 SOTA parsing performance；数据和代码已开源。
+- [FormalGeo7K] (2023/2024): 6,981 问题可扩展至 133,818；高难度（difficulty≥15）样本极少，覆盖有偏。
+- [KAWHI, arXiv 2603.27375] (2026): plug-and-play reward reweighting，将 visual-geometric 信息显式引入 GRPO/GSPO reward；在数学和图表 benchmark 上改善推理+减少 hallucination。
+
+- **调研总结**: 该领域 2025-2026 年的实验设计标准要求：(1) 6+ 个 baseline 涵盖 implicit/model-based/structural/formal 各类方法；(2) geometry-specific + general multimodal 双线 benchmark；(3) 细粒度 ablation 拆解每个组件；(4) perception error rate 的人工标注量化；(5) compute fairness 分析日益受到审稿人重视。该 proposal 的实验设计框架已达到甚至超过多数同期工作的标准，但在若干执行细节上存在需要补强的环节。
+
+---
+
+【缺陷 1】
+- 类别: 实验设计不足（核心技术组件规格不完整）
+- 问题: Proposal 中"Perception claim extraction"组件是整个系统的**关键瓶颈**，但技术规格不足。具体而言：(a) rule-based pattern matching 对 explicit claims（如 "angle ABC = 60°", "AB ∥ CD"）可行，但 VLM 的 CoT 常以隐式方式表达感知（如 "Since the triangle is right-angled..." 而不显式说明哪个角为 90°），proposal 虽提到 "implicit/inferential" 类别但未给出如何提取的方案；(b) structured output prompting 本身会改变 policy 的生成分布，可能引入训练-推理不一致（training 时有 prompt 引导，test 时无）；(c) **symbolic matching 的具体实现未定义**——CoT 中 "AB ∥ CD" 如何与 formal parse 中可能使用不同命名/坐标系统的表示进行对齐？几何 formal language 中点的标记可能与 VLM 输出不一致（如 formal parse 用 P1/P2，VLM 用 A/B），这需要一个 entity resolution 层，而该层本身的准确性直接决定了 reward 信号质量。
+- 严重度: 可补救
+- 补救方案: (1) 在 paper 中明确定义 symbolic matching pipeline 的完整规格：entity resolution 策略（如何对齐 VLM CoT 中的几何实体与 formal parse 的实体名称）、matching tolerance（数值匹配的容差阈值）、关系匹配的逻辑等价规则（如 "AB ∥ CD" 等价于 "CD ∥ AB"）。(2) 对 "implicit/inferential" claims，建议明确将其排除出 reward 计算或限制在高置信度 extraction 下才纳入，并在 ablation 中对比 "explicit-only" vs. "explicit + relational" vs. "all claims" 配置，量化隐式 claim 引入的噪声。(3) 增加一个 extraction pipeline 自身的 end-to-end 评估：在 held-out set 上报告 claim extraction + symbolic matching 整体的 precision/recall/F1（即不仅评估 extraction，还评估 matching），这才是 reward 信号的真实质量指标。(4) 对 structured output prompting 引起的分布偏移问题，在 ablation 中增加 "with prompt" vs. "without prompt at test time" 对比。
+- 调研依据: EVPV (arXiv 2603.16253) 的 visual premise verification 同样面临 claim extraction 问题，其采用 constraint extractor 独立于 policy 来导出 structured constraints，并通过 controlled corruption 验证因果性；PEARL 使用 LLM 生成 perception checklist 来规避 free-form extraction 难题。本 proposal 的 rule-based approach 相比之下更轻量但更脆弱。
+
+【缺陷 2】
+- 类别: 实验设计不足（reward sparsity 处理未定义）
+- 问题: r_percept = verified_claims / total_claims 在 CoT 步骤不包含任何 perception claim 时为 0/0（未定义）。大量 reasoning 步骤（如纯代数推导步）不涉及 perception，这些步骤的 r_percept 如何处理？如果设为 0，会错误惩罚正确的推理步骤；如果设为 1，会给予无信息奖励；如果跳过，则 step-level reward 的覆盖密度不均。Proposal 未讨论此情况。
+- 严重度: 可补救
+- 补救方案: 明确定义三种策略并在 ablation 中对比：(a) **skip 策略**：无 perception claim 的步骤不计算 r_percept，仅使用 r_outcome；(b) **neutral 策略**：设 r_percept = 1（不惩罚也不奖励）；(c) **step-type-aware 策略**：将步骤分类为 perception-step vs. reasoning-step，仅对 perception-step 计算 r_percept。报告不同策略下的 reward density（有 r_percept 信号的步骤占比）以及对最终性能的影响。
+- 调研依据: SGVR (arXiv 2601.05073) 通过 Skeleton Rate 指标处理类似的 reward 覆盖问题——并非每个推理步骤都对应一个可验证的 sub-goal，其做法是仅对可验证步骤计算 dense reward。基于领域实验规范判断。
+
+【缺陷 3】
+- 类别: baseline 不足或过时
+- 问题: (1) **PRCO (arXiv 2603.28618)** 被归为 "indirect baseline"（仅引用数字），但 PRCO 使用 model-generated captions + role-specific perception rewards，与本方法在 perception reward 设计上有直接可比性（都提供 perception-specific reward signal），应为直接 baseline。(2) **KAWHI (arXiv 2603.27375)** 在 Research Landscape 中提及但未纳入 baseline。KAWHI 将 visual-geometric 信息显式引入 reward reweighting，且为 plug-and-play 设计可直接应用于 GRPO，与本方法的 geometry-specific reward 增强高度相关。仅 6 个直接 baseline 在该领域 2026 年的激烈竞争中可能不够——同期 8+ 直接对比已成为常见做法。
+- 严重度: 可补救
+- 补救方案: (1) 将 PRCO 升级为直接 baseline（第 7 号），使用其开源代码在相同 base model 上复现。(2) 将 KAWHI 加入直接 baseline（第 8 号），其 plug-and-play 特性使复现成本低。(3) 若计算资源紧张，至少在主实验表中为 PRCO 和 KAWHI 各加一行（即使是 partial reproduction），在 supplementary 中给出完整结果。这将使直接 baseline 达到 8 个，覆盖 implicit / model-based explicit / structural / formal reasoning / perception sufficiency / caption-based / reward reweighting / proposed 的完整光谱。
+- 调研依据: KAWHI (arXiv 2603.27375) 明确声称首次将 visual-geometric 信息引入 RLVR reward modeling，与本 proposal 的 geometry-specific reward 有直接对标关系。PRCO (arXiv 2603.28618) 报告 39.2% perception error reduction，与本方法需要直接比较。
+
+【缺陷 4】
+- 类别: 实验设计不足（baseline 复现风险）
+- 问题: 6 个直接 baseline 中，部分方法可能缺乏开源实现或在 Qwen3-VL 上的适配方案。Proposal 未讨论复现策略：(a) GeoDPO 的 NL-to-DSL translator 需要在新 base model 上重新训练还是可复用？(b) PEARL 的 perception checklist generation 和 LLM judge 在 Qwen3-VL 上是否兼容？(c) MoCA 的 blindfolded reasoner 需要专门的 text-only model 还是可用同一 VLM 的 text-only 模式？(d) SGVR 的 GeoGoal benchmark + formal verification engine 是否已开源？如果某个 baseline 需要从头复现（尤其是 GeoDPO 的 translator training），其本身就是一个显著的工程+计算开销。
+- 严重度: 可补救
+- 补救方案: (1) 立即进行 code availability audit：逐一确认每个 baseline 的开源状态（PEARL 已在 GitHub 开源，SGVR 已开源，PAPO 已开源，GeoDPO 状态需确认，MoCA 需确认）。(2) 对无开源代码的 baseline，评估复现难度并在 timeline 中预留缓冲（每个无代码 baseline 预留 2-3 周额外时间）。(3) 在论文中明确标注哪些 baseline 是 "our re-implementation" vs. "using official code"，并对 re-implementation 的 baseline 在其原论文报告的 benchmark 上做 sanity check（在原论文条件下复现结果应接近原文数字），以证明复现的公平性。(4) 对实在无法复现的 baseline，至少引用其论文中在共同 benchmark（如 MathVerse, GeoQA）上的数字作为 reference point。
+- 调研依据: 基于领域实验规范判断。GeoDPO (OpenReview 有提交记录), PEARL (GitHub 已开源), SGVR (GitHub 已开源), PAPO (GitHub 已开源)。
+
+【缺陷 5】
+- 类别: 评估方案缺陷（统计严谨性）
+- 问题: Proposal 未提及任何统计显著性分析：(a) 未提到跨多次 run 的方差/标准差报告；(b) 未提到 confidence interval 或 significance test（如 paired bootstrap test）；(c) 手工标注（500-800 CoT + 200 perception error）未提到 inter-annotator agreement（如 Cohen's kappa）。在 AAAI 审稿中，缺乏统计严谨性是常见的 weakness 指出。
+- 严重度: 可补救
+- 补救方案: (1) 所有关键实验至少跑 3 次（不同 random seeds），报告 mean ± std。(2) 对主要结果使用 paired bootstrap test 或 Wilcoxon signed-rank test 报告 p-value。(3) 所有手工标注任务由 ≥2 名标注者独立完成，报告 Cohen's kappa 或 Fleiss' kappa。(4) 注意：3 runs × (6 baselines + proposed + ablations) × 2 scales 会显著增加计算需求，建议在 resource estimate 中将 GPU hours 上调 ~50% 或仅对 top-3 competing baselines + proposed 做 3-run 统计。
+- 调研依据: 基于领域实验规范判断。SGVR 和 PAPO 均报告多次 run 的 mean±std；AAAI 2025/2026 审稿普遍要求统计显著性。
+
+【缺陷 6】
+- 类别: 可行性问题（formal parse coverage 的不确定性）
+- 问题: 整个方法依赖 formal parse cache 的质量和覆盖率，但 proposal 承认 "Data audit determines actual coverage"——这意味着在 audit 之前，方法的可行性存在不确定性。具体风险：(a) GDP-29K 包含 20K plane + 9K solid geometry，但 solid geometry 的 formal parse 可能与训练中常见的 plane geometry 问题不匹配；(b) GeoQA 和 Geometry3K 的问题未必能被 GDP-29K/FormalGeo7K 的 formal language 覆盖（不同数据集的 formal schema 可能不兼容）；(c) "auto-parsed via Geoparsing model with quality filtering" 引入的 auto-parse 本身有误差，如果大量训练数据依赖 auto-parse，那么 formal parse cache 就不再是完全 "model-free" 的 ground truth——它包含了 parsing model 的误差。
+- 严重度: 可补救
+- 补救方案: (1) 将 data audit 作为**第一阶段 milestone**（建议在前 2 周内完成），明确报告：GDP-29K 中有多少 plane geometry 问题与 GeoQA/Geometry3K/FormalGeo7K 的 problem domain 重叠、formal parse 覆盖率（能成功 parse 且通过质量检查的比例）。如果覆盖率 <60%，需重新评估方法可行性。(2) 对 auto-parsed 数据，在 ablation 中对比 "gold annotation only" vs. "gold + auto-parsed"，量化 auto-parse noise 对 reward 信号和最终性能的影响。(3) 在论文中透明报告 parse 来源比例（gold vs. auto），并在 noise injection ablation (已计划的 5%/10%/20%) 中将 auto-parse estimated error rate 作为 reference point。(4) 明确讨论 "auto-parsed formal parse" 在何种意义上仍然算 "model-free"——因为 parse 是由一个独立的、与 policy VLM 不共享参数/训练数据的专用 parser 生成的，其 bias 与 policy VLM 的 bias 正交，这仍然是比 LLM-as-judge 更好的 reward 来源，但应坦诚讨论而非回避。
+- 调研依据: Geoparsing (arXiv 2604.11600) 达到 SOTA parsing performance 但未报告在 GeoQA/Geometry3K 具体问题类型上的覆盖率；FormalGeo7K 在 difficulty≥15 的问题上覆盖稀疏。
+
+【缺陷 7】
+- 类别: 评估方案缺陷（generalization regression 检测不足）
+- 问题: General multimodal benchmarks 仅列了 MMMU 和 MathVista，用于检测 geometry-specific training 是否导致 general capability regression。但 MMMU 和 MathVista 本身包含几何题目，不适合纯粹检测 regression。缺少一个完全 non-geometry 的 benchmark 来验证 "specialized training doesn't hurt general capability"。
+- 严重度: 可补救
+- 补救方案: 增加 1-2 个非几何/非数学的多模态 reasoning benchmark，如 **AI2D**（科学图表理解）、**ChartQA**（图表理解）或 **ScienceQA**（科学推理），以验证 geometry-specific perception reward 不会导致非目标领域的性能下降。这在审稿中常被要求（"does your method hurt performance on other tasks?"），增加成本极低（仅需推理评测，无需额外训练）。
+- 调研依据: CogFlow (arXiv 2601.01874) 和 SGVR (arXiv 2601.05073) 均在 general reasoning tasks 上报告 transfer/regression 结果（SGVR 报告 +2.8% on general reasoning），说明审稿人期望看到跨领域影响。
+
+【缺陷 8】
+- 类别: 可行性问题（计算资源估算偏低）
+- 问题: Resource estimate 列出 2,500-3,500 GPU hours (manual path)，但考虑以下因素可能偏低：(a) 若加入统计显著性（3 runs），主实验计算量 ×3；(b) 若升级 PRCO/KAWHI 为直接 baseline，增加 2 个 baseline × 2 scales；(c) ablation 矩阵已有 7 组（λ strategy × 4 + granularity × 3 + extraction × 2 + parse source × 4 + scale × 3 + joint training × 1 + noise × 3 = ~20 configurations），每组 × 2 scales = ~40 runs；(d) formal parse cache construction + extraction pipeline development 的工程时间未计入。粗略估算：(6+2 baselines + 1 proposed) × 2 scales × 3 runs = 54 runs + ~40 ablation runs = ~94 runs，每 run ~30-50 GPU hours on 16×A100 ≈ 2,800-4,700 GPU hours 仅训练部分。
+- 严重度: 可补救
+- 补救方案: (1) 重新估算并上调 GPU hours 至 4,000-5,500（manual path），对应 cost $10,000-$13,750。(2) 优化策略：ablation 仅在 4B scale 上做完整矩阵，在 8B 上仅跑 top-3 most impactful ablations；3-run 统计仅对 proposed + top-3 competing baselines 执行，其余 baseline single run + official numbers 作为 reference。(3) timeline 也应相应延长至 20-24 weeks (manual path)，或在 auto_research path 中预留更多 iteration buffer。
+- 调研依据: 基于领域实验规范判断。按 EasyR1 在 Qwen2.5-VL-7B 上 GRPO training 的公开数据，单次 geometry RL training 在 16×A100 上约需 12-20 小时。
+
+---
+
+**总结**: 该 proposal 的实验设计框架在该领域已属上乘水平——baseline 覆盖光谱完整、ablation 设计系统化、compute fairness 考虑周到、perception-specific diagnostics 丰富。以上 8 个缺陷中无致命问题，均为可补救的执行细节和完备性提升点。其中**缺陷 1（claim extraction pipeline 规格不完整）**和**缺陷 6（formal parse coverage 不确定性）**是最关键的——前者决定了 reward 信号质量的上限，后者决定了方法的基本可行性。建议优先处理这两个问题（尤其是 data audit 应立即启动），其余缺陷可在实验执行中逐步补上。
+
+Sources:
+- [GeoDPO - arXiv 2602.22703](https://arxiv.org/abs/2602.22703)
+- [PEARL - arXiv 2511.18437](https://arxiv.org/abs/2511.18437)
+- [SGVR - arXiv 2601.05073](https://arxiv.org/abs/2601.05073)
+- [MoCA - arXiv 2605.14054](https://arxiv.org/abs/2605.14054)
+- [PAPO - arXiv 2507.06448](https://arxiv.org/abs/2507.06448)
+- [CogFlow - arXiv 2601.01874](https://arxiv.org/abs/2601.01874)
+- [EVPV - arXiv 2603.16253](https://arxiv.org/abs/2603.16253)
+- [Geoparsing/GDP-29K - arXiv 2604.11600](https://arxiv.org/abs/2604.11600)
+- [KAWHI - arXiv 2603.27375](https://arxiv.org/abs/2603.27375)
+- [PRCO - arXiv 2603.28618](https://arxiv.org/abs/2603.28618)
+- [FormalGeo](https://arxiv.org/abs/2310.18021)
+- [EasyR1 GitHub](https://github.com/hiyouga/easyr1)
+- [OpenRLHF GitHub](https://github.com/openrlhf/openrlhf)
+- [PEARL GitHub](https://github.com/MiliLab/PEARL)
+- [SGVR GitHub](https://github.com/FrontierX-Lab/SGVR)
+- [PAPO GitHub](https://github.com/MikeWangWZHL/PAPO)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa481ad7-a9d0-4ce9-93e8-b05c13d38361",
+  "isSidechain": false,
+  "promptId": "37e46ea7-a711-4ee4-8f03-79db951e1360",
+  "type": "user",
+  "uuid": "6dde3139-0732-49d4-bea1-08ea8dd5b74a",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have a comprehensive picture of the landscape. Let me deliver my assessment.  ---  【状态】: 有发掘空间  【前置调研…",
+  "leafUuid": "6dde3139-0732-49d4-bea1-08ea8dd5b74a",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-27T22:07:30.764Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is round 3. Let me analyze both agents' outputs carefully.
+
+## Summary of Round 3 Findings:
+
+### 发掘 Agent:
+1. **Perceval (arXiv 2604.24583)** - NEW critical concurrent work. Perception-centric PRM that extracts claims from CoT, compares with visual evidence, locates hallucinated spans, applies token-level penalties in GRPO. Pipeline is structurally isomorphic to EPV but uses learned PRM (model-dependent) vs EPV's model-free symbolic verification.
+2. **Novelty reframing** - "blind spot hypothesis" should be elevated to core thesis, not just one motivation among many
+
+
+3. **2D positioning** - Granularity × Independence space; EPV occupies unique (claim-level, model-free) Pareto point
+4. **Structured output prompting tension** - It introduces model dependency at extraction stage, contradicting "model-free" claim
+5. **EPV+SGVR significance uplift** - Should be framed as "formal verification as unified reward paradigm" not just ablation
+
+### 补救 Agent:
+1. **Claim extraction pipeline specs incomplete** - Entity resolution, symbolic matching tolerance, implicit claims handling all unspecified
+2. **Reward sparsity (0/0 problem)** - Steps without perception claims need defined
+
+The second agent is now zeroing in on experimental rigor—I need more direct baselines like PRCO and KAWHI to reach eight total, and there's real risk in baseline reproducibility if code isn't available. The statistical foundation is shaky too: no multiple runs reported, no significance testing, and the "model-free ground truth" claim falls apart when the formal parsing itself depends on the model. There's also a benchmark mismatch where geometry problems in MMMU and MathVista contaminate what should be pure non-geometry evaluation, and the compute budget is likely understated by a factor of two or more.
+
+Looking at how the feedback is evolving, the agents started with major structural problems—missing PAPO, insufficient baselines, no perception component—but by round three they're mostly circling around refinements. The Perceval concurrent work is worth noting but doesn't reshape the core proposal since EPV's model-free approach handles it the same way as other dependent methods. Most of what's left are execution details rather than fundamental design flaws.
+
+Given the pattern—round two had GeoDPO as a genuine gap, round three has Perceval plus incremental improvements—I'm seeing diminishing returns. The probability gains are flattening (36% → 38% → likely ~39%), and both agents keep finding smaller issues rather than new blind spots. I should probably wrap up after incorporating round three changes, since the proposal will be substantially mature at that point.
+
+Let me verify the key citations before finalizing, starting with Perceval and PGPO.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6dde3139-0732-49d4-bea1-08ea8dd5b74a",
+  "isSidechain": false,
+  "requestId": "req_011CbTqLdxhbe7uDoT5o7tyZ",
+  "type": "assistant",
+  "uuid": "c35125ba-f421-4d2a-b8a9-054a2c480705",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016K4uN2DEVH8Jnq579vBoT5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22429,
+      "cache_read_input_tokens": 57231,
+      "output_tokens": 1347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1347,
+          "cache_read_input_tokens": 57231,
+          "cache_creation_input_tokens": 22429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-27T22:07:30.823Z_
+
+Let me cross-validate the critical new findings before integrating.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c35125ba-f421-4d2a-b8a9-054a2c480705",
+  "isSidechain": false,
+  "requestId": "req_011CbTqLdxhbe7uDoT5o7tyZ",
+  "type": "assistant",
+  "uuid": "e7c5c295-b212-4160-b4db-288642578b5f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016K4uN2DEVH8Jnq579vBoT5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22429,
+      "cache_read_input_tokens": 57231,
+      "output_tokens": 1347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1347,
+          "cache_read_input_tokens": 57231,
+          "cache_creation_input_tokens": 22429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-27T22:07:31.828Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Nu25HRM81RwG8NvGQQR3y9`</summary>
+
+```json
+{
+  "query": "Perceval arXiv 2604.24583 perception-centric process reward model VLM claim verification GRPO 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7c5c295-b212-4160-b4db-288642578b5f",
+  "isSidechain": false,
+  "requestId": "req_011CbTqLdxhbe7uDoT5o7tyZ",
+  "type": "assistant",
+  "uuid": "819483a1-e378-4a6c-a5fb-028ae3e3d9f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016K4uN2DEVH8Jnq579vBoT5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22429,
+      "cache_read_input_tokens": 57231,
+      "output_tokens": 1347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1347,
+          "cache_read_input_tokens": 57231,
+          "cache_creation_input_tokens": 22429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-27T22:07:32.577Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R5YLWGF2P9ebiFygsv9ax3`</summary>
+
+```json
+{
+  "query": "PGPO \"Not All Tokens See Equally\" arXiv 2604.01840 visual dependency token-level 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "819483a1-e378-4a6c-a5fb-028ae3e3d9f8",
+  "isSidechain": false,
+  "requestId": "req_011CbTqLdxhbe7uDoT5o7tyZ",
+  "type": "assistant",
+  "uuid": "195c78af-ca8e-4396-8214-843eaffa6996",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016K4uN2DEVH8Jnq579vBoT5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22429,
+      "cache_read_input_tokens": 57231,
+      "output_tokens": 1347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22429,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1347,
+          "cache_read_input_tokens": 57231,
+          "cache_creation_input_tokens": 22429,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22429
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-27T22:07:39.255Z_
+
+<details><summary>↩ Tool result · `toolu_01R5YLWGF2P9ebiFygsv9ax3`</summary>
+
+```text
+Web search results for query: "PGPO "Not All Tokens See Equally" arXiv 2604.01840 visual dependency token-level 2026"
+
+Links: [{"title":"Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models","url":"https://arxiv.org/html/2604.01840v1"},{"title":"Not all tokens are needed(NAT): token efficient reinforcement learning","url":"https://arxiv.org/pdf/2603.06619"},{"title":"Predictive Auditing of Hidden Tokens in LLM APIs via Reasoning Length Estimation","url":"https://arxiv.org/pdf/2508.00912"},{"title":"Tokenization Multiplicity Leads to Arbitrary Price Variation in LLM-as-a-service","url":"https://arxiv.org/pdf/2506.06446"},{"title":"Is Sanskrit the most token-efficient language? A quantitative study using GPT, Gemini, and SentencePiece","url":"https://arxiv.org/pdf/2601.06142"}]
+
+I found the paper you were looking for! Here's information about it:
+
+**"Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models"** (arXiv:2604.01840) addresses a foundational flaw in Reinforcement Learning from Verifiable Rewards (RLVR) frameworks for Large Vision-Language Models, where distributing identical advantages across all generated tokens dilutes the learning signals essential for optimizing visually-grounded steps of multimodal reasoning.
+
+The paper formulates Token Visual Dependency, quantifying the causal information gain of visual inputs via the Kullback-Leibler (KL) divergence between visual-conditioned and text-only predictive distributions.
+
+Through a threshold-gated, mass-conserving mechanism, PGPO (Perception-Grounded Policy Optimization) actively amplifies learning signals for visually-dependent tokens while suppressing gradient noise from linguistic priors.
+
+The paper includes extensive experiments based on the Qwen2.5-VL series across seven challenging multimodal reasoning benchmarks, and was published on April 2, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "195c78af-ca8e-4396-8214-843eaffa6996",
+  "isSidechain": false,
+  "promptId": "37e46ea7-a711-4ee4-8f03-79db951e1360",
+  "type": "user",
+  "uuid": "dca7e8ea-ab2a-43a3-bddb-343225ba7c2b",
+  "toolUseResult": {
+    "query": "PGPO \"Not All Tokens See Equally\" arXiv 2604.01840 visual dependency token-level 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011EL7umE3Y4Yxjpxk3nBfTJ",
+        "content": [
+          {
+            "title": "Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2604.01840v1"
+          },
+          {
+            "title": "Not all tokens are needed(NAT): token efficient reinforcement learning",
+            "url": "https://arxiv.org/pdf/2603.06619"
+          },
+          {
+            "title": "Predictive Auditing of Hidden Tokens in LLM APIs via Reasoning Length Estimation",
+            "url": "https://arxiv.org/pdf/2508.00912"
+          },
+          {
+            "title": "Tokenization Multiplicity Leads to Arbitrary Price Variation in LLM-as-a-service",
+            "url": "https://arxiv.org/pdf/2506.06446"
+          },
+          {
+            "title": "Is Sanskrit the most token-efficient language? A quantitative study using GPT, Gemini, and SentencePiece",
+            "url": "https://arxiv.org/pdf/2601.06142"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here's information about it:\n\n**\"Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models\"** (arXiv:2604.01840) addresses a foundational flaw in Reinforcement Learning from Verifiable Rewards (RLVR) frameworks for Large Vision-Language Models, where distributing identical advantages across all generated tokens dilutes the learning signals essential for optimizing visually-grounded steps of multimodal reasoning.\n\nThe paper formulates Token Visual Dependency, quantifying the causal information gain of visual inputs via the Kullback-Leibler (KL) divergence between visual-conditioned and text-only predictive distributions.\n\nThrough a threshold-gated, mass-conserving mechanism, PGPO (Perception-Grounded Policy Optimization) actively amplifies learning signals for visually-dependent tokens while suppressing gradient noise from linguistic priors.\n\nThe paper includes extensive experiments based on the Qwen2.5-VL series across seven challenging multimodal reasoning benchmarks, and was published on April 2, 2026."
+    ],
+    "durationSeconds": 6.673115797999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "195c78af-ca8e-4396-8214-843eaffa6996",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-27T22:07:39.329Z_
+
+<details><summary>↩ Tool result · `toolu_01Nu25HRM81RwG8NvGQQR3y9`</summary>
+
+```text
+Web search results for query: "Perceval arXiv 2604.24583 perception-centric process reward model VLM claim verification GRPO 2026"
+
+Links: [{"title":"[2604.24583] Improving Vision-language Models with Perception-centric Process Reward Models","url":"https://arxiv.org/abs/2604.24583"},{"title":"Improving Vision-language Models with Perception-centric Process Reward Models","url":"https://arxiv.org/html/2604.24583"},{"title":"Training Vision-Language Process Reward Models for Test-Time Scaling in Multimodal Reasoning: Key Insights and Lessons Learned","url":"https://arxiv.org/pdf/2509.23250"},{"title":"Grounding the Score: Explicit Visual Premise Verification for Reliable Vision-Language Process Reward Models","url":"https://arxiv.org/pdf/2603.16253"},{"title":"Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward","url":"https://arxiv.org/pdf/2506.07218"},{"title":"Process Reward Model with Q-Value Rankings","url":"https://arxiv.org/pdf/2410.11287"}]
+
+Based on the search results, here's what I found about the paper:
+
+## Perceval: Perception-centric Process Reward Model (arXiv 2604.24583)
+
+Perceval is a process reward model (PRM) that enables token-level error grounding, which can extract image-related claims from the response and compare them one by one with the visual evidence in the image, ultimately returning claims that contain perceptual errors.
+
+**Key Characteristics:**
+
+- Recent advancements in reinforcement learning with verifiable rewards (RLVR) have significantly improved the complex reasoning ability of vision-language models (VLMs), however, outcome-level supervision is too coarse to diagnose and correct errors within the reasoning chain.
+
+- Perceval is trained with perception-intensive supervised training data.
+
+**Integration with GRPO:**
+
+Compared to traditional GRPO, which applies sequence-level advantages, Perceval applies token-level advantages by targeting penalties on hallucinated spans identified by Perceval, thus enabling fine-grained supervision signals.
+
+The paper was submitted on April 27, 2026, and represents an advancement in using perception-centric approaches to improve vision-language model reasoning through more granular, token-level reward signals rather than coarse-grained outcome-level supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "819483a1-e378-4a6c-a5fb-028ae3e3d9f8",
+  "isSidechain": false,
+  "promptId": "37e46ea7-a711-4ee4-8f03-79db951e1360",
+  "type": "user",
+  "uuid": "0c122ada-2cbb-4947-ba15-7d5c446eb73d",
+  "toolUseResult": {
+    "query": "Perceval arXiv 2604.24583 perception-centric process reward model VLM claim verification GRPO 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CKkhUw8kqKeN18n35gaZY5",
+        "content": [
+          {
+            "title": "[2604.24583] Improving Vision-language Models with Perception-centric Process Reward Models",
+            "url": "https://arxiv.org/abs/2604.24583"
+          },
+          {
+            "title": "Improving Vision-language Models with Perception-centric Process Reward Models",
+            "url": "https://arxiv.org/html/2604.24583"
+          },
+          {
+            "title": "Training Vision-Language Process Reward Models for Test-Time Scaling in Multimodal Reasoning: Key Insights and Lessons Learned",
+            "url": "https://arxiv.org/pdf/2509.23250"
+          },
+          {
+            "title": "Grounding the Score: Explicit Visual Premise Verification for Reliable Vision-Language Process Reward Models",
+            "url": "https://arxiv.org/pdf/2603.16253"
+          },
+          {
+            "title": "Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward",
+            "url": "https://arxiv.org/pdf/2506.07218"
+          },
+          {
+            "title": "Process Reward Model with Q-Value Rankings",
+            "url": "https://arxiv.org/pdf/2410.11287"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\n## Perceval: Perception-centric Process Reward Model (arXiv 2604.24583)\n\nPerceval is a process reward model (PRM) that enables token-level error grounding, which can extract image-related claims from the response and compare them one by one with the visual evidence in the image, ultimately returning claims that contain perceptual errors.\n\n**Key Characteristics:**\n\n- Recent advancements in reinforcement learning with verifiable rewards (RLVR) have significantly improved the complex reasoning ability of vision-language models (VLMs), however, outcome-level supervision is too coarse to diagnose and correct errors within the reasoning chain.\n\n- Perceval is trained with perception-intensive supervised training data.\n\n**Integration with GRPO:**\n\nCompared to traditional GRPO, which applies sequence-level advantages, Perceval applies token-level advantages by targeting penalties on hallucinated spans identified by Perceval, thus enabling fine-grained supervision signals.\n\nThe paper was submitted on April 27, 2026, and represents an advancement in using perception-centric approaches to improve vision-language model reasoning through more granular, token-level reward signals rather than coarse-grained outcome-level supervision."
+    ],
+    "durationSeconds": 7.494752415000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "819483a1-e378-4a6c-a5fb-028ae3e3d9f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-27T22:09:05.967Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both papers verified:
+
+1. **Perceval (arXiv 2604.24583)** - CONFIRMED. Perception-centric PRM, extracts image-related claims, compares with visual evidence, returns claims with perceptual errors, applies token-level penalties in GRPO. This is highly relevant and structurally isomorphic to EPV's pipeline. Key difference: Perceval uses a trained PRM (model-dependent) while EPV uses model-free symbolic verification.
+
+
+2. **PGPO (arXiv 2604.01840)** - CONFIRMED. Uses KL divergence to identify visually-dependent tokens with a threshold-gated mechanism. Conceptually related to EPV's fine-grained perception credit assignment but takes a statistical approach rather than symbolic.
+
+Now I'm assessing how much these findings improve the novelty positioning. Round 1 identified major structural gaps, Round 2 sharpened the novelty with GeoDPO, and Round 3 found Perceval which is important but follows a similar pipeline structure.
+
+The real insight is that each round uncovers one new concurrent work, and they all cluster in the model-dependent quadrant of my 2D framework—which actually strengthens EPV's positioning by providing more evidence that the symbolic, claim-level approach is genuinely distinct. I'm seeing diminishing returns now: the core architecture is stable, most remaining suggestions are implementation details, and adding these works reinforces rather than challenges the differentiation strategy.
+
+I'm going to converge after this round. The agents will always find something to critique, but the absence of structural issues is the key signal. I need to integrate Perceval as a significant concurrent work—it uses a learned PRM so it's model-dependent, which fits cleanly into my positioning framework.
+
+The blind spot hypothesis is the real upgrade here. Reframing from a technical contribution (model-free, claim-level evaluation) to a conceptual one (revealing reward-policy correlated bias) gives the work genuine significance. The 2D positioning across granularity and independence makes the novelty immediately clear. I should also address the structured output prompting tension as an honest discussion point rather than glossing over it.
+
+For the technical side, I need to include claim extraction pipeline specifications like entity resolution and matching tolerance. The reward sparsity problem—handling steps without perception claims—requires defining the three strategies (skip, neutral, step-type-aware) and their ablations. On baselines, PRCO and KAWHI deserve consideration as direct comparisons, though I should be selective about what I actually adopt here.
+
+Actually, thinking through the compute constraints more carefully: the proposal already has 6 direct baselines, which is solid coverage across implicit, model-based, structural, and formal approaches. Adding PRCO and KAWHI would push to 8 and significantly increase GPU hours when I'm already at 2,500-3,500. I'll keep them as indirect references instead, though I should definitely cite PRCO's 39.2% perception error reduction as a benchmark. For statistical rigor, I'll do 3 runs on the main experiments and inter-annotator agreement for manual annotations, but apply this selectively to just the proposed method and top competitors to keep compute manageable. The baseline reproduction audit is essential, and I need to be honest about the model-free claim—auto-parsing introduces model dependency at extraction, so the ablation should clearly label rule-based-only as the "pure model-free" version.
+
+Adding a non-geometry benchmark like AI2D or ChartQA is worth it since it's inference-only and addresses reviewer concerns about generalization. I should also bump up the compute estimates to be more realistic. Looking at the novelty angle, the blind spot hypothesis combined with the 2D positioning framework and symbolic verification against model-dependent baselines like Perceval, PEARL, GeoDPO, and PAPO gives me a strong, differentiated contribution.
+
+The main execution risks are still claim extraction quality and whether EPV can actually outperform GeoDPO and PEARL empirically. The experiment design is solid though—six direct baselines, multiple scales, thorough ablations, perception diagnostics, and proper statistical rigor. My probability estimate has converged at 39%, up just 1% from the previous round, which suggests I've hit diminishing returns. Three rounds of iteration with progressively smaller gains (36% → 38% → 39%) and no remaining structural issues means it's time to stop refining and commit to this direction.
+
+The concurrent work landscape is now well-mapped—PAPO, GeoDPO, Perceval, PGPO—and my differentiation strategy is clear. Both agents have contributed their most impactful suggestions, and the proposal now has solid novelty grounding, comprehensive experiments, and honest limitation discussion. I should finalize this version and move to generating the optimization recommendations.
+
+Looking at the instructions again, I need to output the convergence decision with probability, then provide the final optimization suggestions comparing against the original proposal. The system seems to expect this in one turn rather than waiting for a separate signal.
+
+Let me structure the response as the 角色 B integration showing convergence, followed by the 角色 C final delivery with the optimized plan.
+
+Actually, I need to be more careful here — I'm comparing the original proposal against what's evolved through iteration to identify the specific modifications that matter. The core shift is moving from "executable verification beats model-based" as a general claim to a more precise framing: the blind spot hypothesis explains *why* model-dependent rewards systematically fail where correction is most needed, and model-free symbolic verification structurally breaks that correlation. I've also added the 2D positioning framework showing granularity versus independence, which clarifies why claim-level model-free verification occupies a previously vacant Pareto point. The general principle got sharpened too — wherever formal verifiers exist, they should replace model-dependent judges in RL rewards. And SGVR's complementary role became more central to the story.
+
+On the related work side, I've woven in several new papers that either provide implicit alternatives or offer structural comparisons: PAPO as a trivial implicit method, GeoDPO for representation-level approaches, Perceval for perception-centric PRMs, and PGPO for token-level visual dependencies. The SGVR differentiation is now clearer — it operates at outcome-level while EPV works at premise-level. And I've reframed the circularity concern from something fatal into a more nuanced observation about blind spots in specific failure modes.
+
+For the technical approach, claim extraction evolved from simple pattern matching into a dual-path system combining rule-based and structured methods.
+
+Expanding the experimental scope significantly: moving from 2 to 6 direct baselines across different methods, and scaling up model sizes from just 8B to include 4B variants as well. 8B)
+20. Benchmarks: 3 → 6-7 (added MMMU, MathVista, VisualProcessBench, non-geometry regression benchmark)
+21. Ablations: ~0 → 8+ (λ strategy, r_percept granularity, claim extraction method, formal parse source, training scale, EPV+SGVR joint, noise injection, reward sparsity handling)
+22. Claim extraction validation: none → independent verification with per-type P/R/F1 + end-to-end extraction+matching evaluation
+23. Perception diagnostics: none → blindfold test, reward signal correlation, error type breakdown, geometry-specific perception error rate
+24. Compute fairness: none → full lifecycle decomposition + iso-compute comparison
+25. Data protocol: none → strict train-test split, zero-overlap subset, data leakage audit
+26. Statistical rigor: none → running mean±std across main experiments with significance testing and inter-annotator agreement checks
+
+I'm also accounting for the resource scaling — GPU hours jumping from 1,200-1,500 to 4,000-5,500 and the timeline extending from 12-16 weeks to 20-24 weeks to accommodate all this additional validation work.
+
+Now I need to think through the key risks that could derail this. The claim extraction quality is critical since weak recall on realistic chain-of-thought reasoning would starve the reward signal. There's also the empirical question of whether EPV actually outperforms GeoDPO and PEARL in practice, or if the model-free advantage stays mostly theoretical. The compute budget is ambitious, and the formal parse coverage might reveal gaps when I audit the data.
+
+Looking at the incomplete overlap issue and running through the probability calculation, I'm landing at 39% confidence that this optimization plan is viable — that's above the 36% threshold, so it clears the bar for moving forward rather than rejecting it outright.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c122ada-2cbb-4947-ba15-7d5c446eb73d",
+  "isSidechain": false,
+  "requestId": "req_011CbTqPsgnERRSX25KWZVGV",
+  "type": "assistant",
+  "uuid": "09f41c9a-d42c-4b54-b551-e3f20242102e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LD8K8kMkN6u18yDW5UERkS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 567,
+      "cache_creation_input_tokens": 1985,
+      "cache_read_input_tokens": 79660,
+      "output_tokens": 3612,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 567,
+          "output_tokens": 3612,
+          "cache_read_input_tokens": 79660,
+          "cache_creation_input_tokens": 1985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-27T22:09:05.969Z_
+
+Good — both verified. Let me also do one final check on the baseline ecosystem to confirm convergence readiness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09f41c9a-d42c-4b54-b551-e3f20242102e",
+  "isSidechain": false,
+  "requestId": "req_011CbTqPsgnERRSX25KWZVGV",
+  "type": "assistant",
+  "uuid": "76c7330e-38f7-46d8-9b59-be37a7f07acf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LD8K8kMkN6u18yDW5UERkS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 567,
+      "cache_creation_input_tokens": 1985,
+      "cache_read_input_tokens": 79660,
+      "output_tokens": 3612,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 567,
+          "output_tokens": 3612,
+          "cache_read_input_tokens": 79660,
+          "cache_creation_input_tokens": 1985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-27T22:09:05.972Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GwmBU8yVadw5nUFDsycwhn`</summary>
+
+```json
+{
+  "query": "KAWHI arXiv 2603.27375 visual representation RLVR reward reweighting geometry 2026 open source code"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76c7330e-38f7-46d8-9b59-be37a7f07acf",
+  "isSidechain": false,
+  "requestId": "req_011CbTqPsgnERRSX25KWZVGV",
+  "type": "assistant",
+  "uuid": "67bea56f-7207-4620-8aed-7c06bbaecbea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LD8K8kMkN6u18yDW5UERkS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 567,
+      "cache_creation_input_tokens": 1985,
+      "cache_read_input_tokens": 79660,
+      "output_tokens": 3612,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 567,
+          "output_tokens": 3612,
+          "cache_read_input_tokens": 79660,
+          "cache_creation_input_tokens": 1985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have a comprehensive picture of the landscape. Let me deliver my assessment.  ---  【状态】: 有发掘空间  【前置调研…",
+  "leafUuid": "67bea56f-7207-4620-8aed-7c06bbaecbea",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-27T22:09:12.184Z_
+
+<details><summary>↩ Tool result · `toolu_01GwmBU8yVadw5nUFDsycwhn`</summary>
+
+```text
+Web search results for query: "KAWHI arXiv 2603.27375 visual representation RLVR reward reweighting geometry 2026 open source code"
+
+Links: [{"title":"Bridging Visual Representation and Reinforcement Learning from Verifiable Rewards in Large Vision-Language Models","url":"https://arxiv.org/html/2603.27375"},{"title":"[2603.27375] Bridging Visual Representation and Reinforcement Learning from Verifiable Rewards in Large Vision-Language Models","url":"https://arxiv.org/abs/2603.27375"},{"title":"Bridging Visual Representation and Reinforcement Learning from","url":"https://arxiv.org/pdf/2603.27375"},{"title":"Bridging Perception and Reasoning: Token Reweighting for RLVR in Multimodal LLMs","url":"https://arxiv.org/pdf/2603.25077"},{"title":"Bridging Perception and Reasoning: Token Reweighting for RLVR in Multimodal LLMs","url":"https://arxiv.org/html/2603.25077"},{"title":"Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR","url":"https://arxiv.org/pdf/2603.26126"},{"title":"Good Reasoning Makes Good Demonstrations: Implicit Reasoning Quality Supervision via In-Context Reinforcement Learning","url":"https://arxiv.org/html/2603.09803"}]
+
+Based on the search results, I found detailed information about the KAWHI paper (arXiv:2603.27375):
+
+## Paper Summary
+
+KAWHI (Key-Region Aligned Weighted Harmonic Incentive) is a plug-and-play reward reweighting mechanism that explicitly incorporates structured visual information into uniform reward policy optimization methods (e.g., GRPO and GSPO).
+
+## Problem Addressed
+
+While Reinforcement Learning from Verifiable Rewards (RLVR) has substantially enhanced the reasoning capabilities of large language models in abstract reasoning tasks, its application to Large Vision-Language Models (LVLMs) remains constrained by a structural representational bottleneck.
+
+## Technical Approach
+
+KAWHI adaptively localizes semantically salient regions through hierarchical geometric aggregation and local structural modeling, thereby establishing spatial priors oriented toward visual representation to effectively mitigate information sparsity and foreground-background distributional imbalance.
+
+The paper was published on arXiv on March 28, 2026. However, the search results do not contain specific information about open source code availability for this paper.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67bea56f-7207-4620-8aed-7c06bbaecbea",
+  "isSidechain": false,
+  "promptId": "37e46ea7-a711-4ee4-8f03-79db951e1360",
+  "type": "user",
+  "uuid": "c68f5d1a-aa4f-4206-8160-e15c2415af62",
+  "toolUseResult": {
+    "query": "KAWHI arXiv 2603.27375 visual representation RLVR reward reweighting geometry 2026 open source code",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SVkTQZSPW6NjJsvC19nEiF",
+        "content": [
+          {
+            "title": "Bridging Visual Representation and Reinforcement Learning from Verifiable Rewards in Large Vision-Language Models",
+            "url": "https://arxiv.org/html/2603.27375"
+          },
+          {
+            "title": "[2603.27375] Bridging Visual Representation and Reinforcement Learning from Verifiable Rewards in Large Vision-Language Models",
+            "url": "https://arxiv.org/abs/2603.27375"
+          },
+          {
+            "title": "Bridging Visual Representation and Reinforcement Learning from",
+            "url": "https://arxiv.org/pdf/2603.27375"
+          },
+          {
+            "title": "Bridging Perception and Reasoning: Token Reweighting for RLVR in Multimodal LLMs",
+            "url": "https://arxiv.org/pdf/2603.25077"
+          },
+          {
+            "title": "Bridging Perception and Reasoning: Token Reweighting for RLVR in Multimodal LLMs",
+            "url": "https://arxiv.org/html/2603.25077"
+          },
+          {
+            "title": "Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR",
+            "url": "https://arxiv.org/pdf/2603.26126"
+          },
+          {
+            "title": "Good Reasoning Makes Good Demonstrations: Implicit Reasoning Quality Supervision via In-Context Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.09803"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the KAWHI paper (arXiv:2603.27375):\n\n## Paper Summary\n\nKAWHI (Key-Region Aligned Weighted Harmonic Incentive) is a plug-and-play reward reweighting mechanism that explicitly incorporates structured visual information into uniform reward policy optimization methods (e.g., GRPO and GSPO).\n\n## Problem Addressed\n\nWhile Reinforcement Learning from Verifiable Rewards (RLVR) has substantially enhanced the reasoning capabilities of large language models in abstract reasoning tasks, its application to Large Vision-Language Models (LVLMs) remains constrained by a structural representational bottleneck.\n\n## Technical Approach\n\nKAWHI adaptively localizes semantically salient regions through hierarchical geometric aggregation and local structural modeling, thereby establishing spatial priors oriented toward visual representation to effectively mitigate information sparsity and foreground-background distributional imbalance.\n\nThe paper was published on arXiv on March 28, 2026. However, the search results do not contain specific information about open source code availability for this paper."
+    ],
+    "durationSeconds": 6.2073270019999764,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "67bea56f-7207-4620-8aed-7c06bbaecbea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80 · 2026-05-27T22:09:12.190Z_
+
+```json
+{
+  "parentUuid": "c68f5d1a-aa4f-4206-8160-e15c2415af62",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "24117e22-ff16-4e73-8621-cedeab7ac5af",
+  "timestamp": "2026-05-27T22:09:12.190Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-27T22:09:21.734Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, KAWHI confirmed. It's a plug-and-play reward reweighting mechanism, not directly competing with EPV but in the same space. No confirmed open source code, so making it a direct baseline is risky.
+
+Now let me finalize my integration. I have all the information I need.
+
+Key decisions:
+- KAWHI: Keep as indirect baseline (no confirmed open source, different mechanism)
+- PRCO: Keep as indirect baseline (compute constraints)
+- Perceval: Add to related work, keep as indirect (too recent, Apr 2026)
+- PGPO: Add to landscape, indirect
+
+Final baseline list:
+
+
+- Direct (6): Vanilla GRPO, PEARL, GeoDPO, PAPO, SGVR, MoCA
+- Indirect: Perception-R1, CogFlow, PRCO, KAWHI, Perceval, PGPO
+
+This gives me a solid set of six direct baselines, which is above average for the field. Now I'm ready to write the complete output with the Round 3 integration summary and final optimization plan.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24117e22-ff16-4e73-8621-cedeab7ac5af",
+  "isSidechain": false,
+  "requestId": "req_011CbTqWigFPXG7uL4fG7h9L",
+  "type": "assistant",
+  "uuid": "17c7016a-3a23-4534-9ee1-e3c0f2c22aac",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015TuBWAaUyWcyuV81n2PaJA",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4919,
+      "cache_read_input_tokens": 81645,
+      "output_tokens": 6020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4919,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6020,
+          "cache_read_input_tokens": 81645,
+          "cache_creation_input_tokens": 4919,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4919
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-27T22:11:24.454Z_
+
+All cross-validation complete. I now have a comprehensive picture to make my final integration and convergence decision.
+
+---
+
+【阶段】: 迭代第 3 轮
+
+【交叉验证调研】:
+1. **Perceval (arXiv 2604.24583)** — 已验证。Perception-centric PRM，从 CoT 提取 image-related claims 逐条比对视觉证据，定位 hallucinated spans，在 GRPO 中施加 token-level penalties。Pipeline 与 EPV 形式同构，但验证机制根本不同：Perceval 用 learned PRM (model-dependent, probabilistic)，EPV 用 ground-truth formal parse + symbolic matching (model-free, deterministic)。发掘 agent 的判断完全成立。
+2. **PGPO (arXiv 2604.01840)** — 已验证。Token Visual Dependency via KL divergence，threshold-gated mechanism 放大 visually-dependent tokens 的学习信号。与 EPV 机制完全不同（统计量 vs 符号验证），但共处"细粒度感知 credit assignment"赛道。
+3. **KAWHI (arXiv 2603.27375)** — 已验证。Plug-and-play reward reweighting，无确认的开源代码。作为直接 baseline 的复现风险高，保持为间接对比。
+
+【发掘 agent 有效建议采纳】:
+- **发掘点 1 (Perceval 引用)**: ✅ 已验证，采纳。必须在 Related Work 中引用。差异化路径与处理其他 model-dependent 方法一致（model-free vs learned PRM），但 Perceval 的 pipeline 同构性使其成为最需要显式对比的 concurrent work。
+- **发掘点 2 (Blind spot hypothesis 升格为 core thesis)**: ✅ 采纳。这是三轮迭代中最有力的 framing 建议。将核心论点从"技术组合（model-free + claim-level）"升级为"揭示并解决 reward-policy correlated bias"的概念性贡献。Correlated bias analysis 从 diagnostic 前置为 core validation。
+- **发掘点 3 (2D positioning: granularity × independence)**: ✅ 采纳。提供直观可视化的 novelty positioning。EPV 在 (claim-level, model-free) 象限，是目前无人占据的 Pareto 点。
+- **发掘点 4 (Structured output prompting 引入 model-dependency tension)**: ✅ 采纳为诚实讨论。在 proposal 中明确承认此 tension，并将 rule-based-only 作为"纯 model-free"对照 ablation。
+- **发掘点 5 (EPV+SGVR significance uplift)**: ✅ 部分采纳。从 ablation 升级为 secondary contribution framing，但不过度宣称——仍是初步验证。
+
+【补救 agent 有效建议采纳】:
+- **缺陷 1 (Claim extraction pipeline 完整规格)**: ✅ 采纳。增加 entity resolution、matching tolerance、equivalence rules 的规格定义。增加 end-to-end (extraction + matching) 联合评估。
+- **缺陷 2 (Reward sparsity 0/0 处理)**: ✅ 采纳。定义 skip/neutral/step-type-aware 三种策略 + ablation。实际且重要的 edge case。
+- **缺陷 3 (PRCO + KAWHI 升级为直接 baseline)**: ⚠️ 不采纳。当前 6 个直接 baseline 已覆盖 implicit/model-based-explicit/structural/formal/sufficiency 完整光谱，超过领域平均水平。KAWHI 无确认开源代码，复现风险高。PRCO 的 39.2% perception error reduction 作为参照数字引用。增加直接 baseline 会使 compute 不可控。
+- **缺陷 4 (Baseline 复现风险)**: ✅ 采纳。增加 code availability audit 步骤和复现公平性验证。
+- **缺陷 5 (统计严谨性)**: ✅ 采纳。3-run mean±std 对 proposed + top-3 competing baselines，inter-annotator agreement for manual annotations。选择性应用以控制 compute。
+- **缺陷 6 (Formal parse coverage + auto-parse honesty)**: ✅ 采纳。诚实讨论 auto-parsed data 的 "model-free" 地位——parser 与 policy VLM bias 正交，优于 LLM-as-judge 但非完美 ground truth。
+- **缺陷 7 (Non-geometry regression benchmark)**: ✅ 采纳。增加 AI2D 或 ChartQA（仅推理评测，零训练成本）。
+- **缺陷 8 (Compute 低估)**: ✅ 采纳。上调 resource estimate，但通过选择性 3-run 和 ablation 分层执行控制总量。
+
+【本轮 proposal 主要变更】:
+
+*Idea 层面:*
+- **[重大]** Core thesis 重构：从"model-free + claim-level 的技术组合"→ "blind spot hypothesis: model-dependent rewards share systematic biases with policy VLM, EPV structurally breaks this reward-policy bias correlation"
+- **[重大]** 新增 2D positioning framework (granularity × independence)，EPV 占据 (claim-level, model-free) Pareto 空位
+- 新增 Perceval (arXiv 2604.24583) 和 PGPO (arXiv 2604.01840) 引用
+- Structured output prompting 的 model-dependency tension 诚实讨论
+- EPV+SGVR 从 ablation 升级为 secondary contribution ("formal verification as unified reward paradigm" 初步验证)
+
+*实验层面:*
+- Symbolic matching pipeline 完整规格（entity resolution, tolerance, equivalence rules）
+- Reward sparsity handling: 3 策略 + ablation
+- End-to-end extraction+matching 联合评估
+- Code availability audit + 复现公平性验证
+- 统计严谨性: 3-run mean±std (selective) + significance tests + inter-annotator agreement
+- 非几何 regression benchmark: 增加 AI2D/ChartQA
+- Resource estimate 上调
+
+【idea 质量评估】: Novelty=中强偏强 (blind spot hypothesis 作为 conceptual contribution + 2D Pareto positioning 在 Perceval/GeoDPO/PEARL/PAPO/PGPO 密集竞争下仍清晰可防御) Significance=中强 (general principle + EPV+SGVR complementarity as secondary contribution, 但仅 geometry 实例化) → idea 天花板约 45%
+
+【实验完备性评估】: Technical Soundness=强 (6 direct baselines 覆盖完整光谱, 双规模, 丰富 perception diagnostics, claim extraction 独立 + end-to-end 验证, circularity 因果验证, 统计严谨性, compute fairness, data leakage 协议) → 地板约 34%
+
+【当前概率估计】: [34% - 44%] 中位 39%
+
+【决策】: 收敛
+
+【决策理由】:
+1. **三轮概率趋势**: 36% → 38% → 39%，连续 2 轮提升幅度 ≤2%，进入边际递减
+2. **发现模式稳定**: 每轮发现 1 个新 concurrent work (Round 1: PAPO, Round 2: GeoDPO, Round 3: Perceval/PGPO)，但差异化策略已固化（model-free symbolic vs model-dependent），继续发现同类工作不改变 positioning
+3. **无结构性问题残留**: 所有 round 3 建议均为执行细节和 framing 优化，非结构性缺陷
+4. **实验设计已超越领域平均**: 6 direct baselines + 双规模 + 8+ ablations + 全面 diagnostics + 统计严谨性 + compute fairness，已达到或超过同期顶会标准
+5. **继续迭代风险**: proposal 已膨胀至相当体量，further refinement 可能导致信息密度下降
+
+---
+
+## 角色 C：最终输出（收敛，中位 39% ≥ 36%）
+
+【优化方案】
+
+### A. Idea/Framing 层面（命中 Novelty + Significance）
+
+1. **[标题]** — 改为 "Model-Free Claim-Level Perception Verification Rewards for Multimodal Math RL" — 命中 Novelty：精确锚定三元组定位（model-free, claim-level, symbolically grounded），区隔 GeoDPO/Perceval/PEARL
+
+2. **[Core Problem / Introduction 第1段]** — 重构核心 thesis 为 "blind spot hypothesis"：model-dependent perception rewards（无论 implicit 还是 explicit）与 policy VLM 共享 systematic geometric biases，导致 reward 恰好在 policy 最需要纠正的 perception failure modes 上失效。Model-free symbolic verification 结构性打破此 reward-policy bias correlation — 命中 Novelty (conceptual contribution > engineering contribution) + Significance (超出 geometry 的理论洞察)
+
+3. **[Introduction / Related Work]** — 引入 2D positioning framework (X轴: reward granularity sequence→step→claim→token; Y轴: reward independence model-dependent→model-free)。标注所有方法位置：PAPO (sequence, model-free)、PEARL (step, model-dependent)、Perceval (token, model-dependent)、GeoDPO (diagram, partially dependent)、PGPO (token, model-dependent)、EPV (claim, model-free) — 命中 Novelty + Related Work：审稿人一目了然看到 EPV 占据无人 Pareto 点
+
+4. **[Introduction]** — 添加 general principle 声明 + generalization roadmap（化学→SMILES、电路→SPICE、函数图→symbolic engine），说明 geometry 因 formal parser maturity 最高而成为最佳 first testbed — 命中 Significance：从 domain-specific technique 升级为 research agenda
+
+5. **[Research Landscape]** — 新增 6 篇必须引用的工作：
+   - PAPO (arXiv 2507.06448): implicit KL perception loss，零开销 trivial alternative。论证 EPV 的 explicit claim-level feedback 在高精度领域（geometry）有不可替代的诊断价值
+   - GeoDPO (arXiv 2602.22703): learned NL-to-DSL translator reward。三点差异化：model-free vs learned / claim-level vs holistic / joint GRPO vs staged DPO
+   - Perceval (arXiv 2604.24583): perception-centric PRM + token-level penalties。差异化：model-free deterministic verification vs learned probabilistic PRM
+   - PGPO (arXiv 2604.01840): token visual dependency via KL divergence。不同机制（statistical vs symbolic）但共处细粒度 credit assignment 赛道
+   - 原有 SGVR 差异化精化为 premise-level (EPV) vs outcome-level (SGVR)，提出 complementarity
+   - Circularity 论证从 "fatal flaw" 调整为 "systematic blind spots in specific failure modes"，更 defensible
+
+6. **[Contributions]** — EPV+SGVR complementarity 从 future work 升级为 secondary contribution："formal verification as unified reward paradigm covering perception inputs (EPV) + reasoning outputs (SGVR)"的概念验证 — 命中 Significance
+
+### B. Technical Approach 层面（命中 Technical Soundness）
+
+7. **[Claim Extraction]** — 从"pattern matching"重构为完整规格的双路 pipeline：(a) rule-based extraction 覆盖 explicit numeric/relational claims；(b) structured output prompting 覆盖更多 claim 类型。诚实讨论 structured prompting 引入的 model-dependency tension，将 rule-based-only 作为"纯 model-free"对照 ablation — 命中 Technical Soundness + 展现 intellectual honesty
+
+8. **[Symbolic Matching]** — 新增完整技术规格：entity resolution 策略（CoT 几何实体 ↔ formal parse 实体的对齐）、数值 matching tolerance、关系等价规则（AB∥CD = CD∥AB）— 命中 Technical Soundness：消除审稿人对核心技术可行性的疑虑
+
+9. **[Reward Design]** — 新增 reward sparsity 处理：定义纯推理步骤（无 perception claim）的 r_percept 处理策略（skip/neutral/step-type-aware），纳入 ablation — 命中 Technical Soundness
+
+10. **[Correlated Bias Analysis]** — 从 "diagnostic experiment" 升格为 "core validation"。新增 controlled corruption 因果验证（inject known errors → verify monotonic reward degradation）+ conditional circularity analysis（stratify by difficulty → within-stratum bias overlap）— 命中 Novelty (blind spot hypothesis 的核心验证)
+
+11. **[Data Protocol]** — 新增严格 train-test split 协议 + zero-overlap evaluation subset + 诚实讨论 auto-parsed data 的 "model-free" 地位 — 命中 Technical Soundness + Reproducibility
+
+### C. Experiment Design 层面（命中 Technical Soundness + Significance）
+
+12. **[Baselines]** — 从 2 个扩展到 6 个直接对比：Vanilla GRPO, PEARL (CVPR 2026), GeoDPO (arXiv 2602.22703), PAPO (arXiv 2507.06448), SGVR (arXiv 2601.05073), MoCA (ICML 2026 Spotlight)。间接对比：Perception-R1, CogFlow, PRCO, KAWHI, Perceval — 命中 Technical Soundness
+
+13. **[Model Scales]** — 从 Qwen3-VL-8B 单规模扩展到 4B + 8B 双规模 — 命中 Technical Soundness (scalability 验证)
+
+14. **[Benchmarks]** — 从 3 个扩展到 7 个：MathVerse, GeoQA, Geometry3K (geometry-specific) + MMMU, MathVista (general math) + AI2D/ChartQA (non-geometry regression check) + VisualProcessBench (step-level perception) — 命中 Technical Soundness + Significance
+
+15. **[Ablations]** — 从 ~0 个扩展到 8+ 组系统化内部消融：λ 策略、r_percept 粒度、extraction 方法（rule-based vs hybrid, high-recall vs high-precision）、formal parse 来源、训练数据规模、EPV+SGVR 联合、noise injection (5%/10%/20%)、reward sparsity 策略 — 命中 Technical Soundness
+
+16. **[Perception Diagnostics]** — 全新增加：blindfold test (MoCA 范式)、reward signal quality correlation (EPV vs PEARL vs GeoDPO)、error type breakdown (perception/reasoning/calculation)、geometry-specific perception error rate (对标 PRCO 39.2% / PAPO 30.5%) — 命中 Technical Soundness + Novelty (blind spot 验证)
+
+17. **[Compute Fairness]** — 全新增加：full lifecycle compute 分解 + iso-compute comparison + performance-vs-compute scaling curve — 命中 Technical Soundness
+
+18. **[Statistical Rigor]** — 全新增加：3-run mean±std (proposed + top-3 competing baselines)、significance tests、inter-annotator agreement (Cohen's kappa) for manual annotations — 命中 Technical Soundness
+
+### D. 新增 Key References（不得遗漏的补充引用）
+
+19. PAPO: Perception-Aware Policy Optimization for Multimodal Reasoning (arXiv 2507.06448)
+20. GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning (arXiv 2602.22703)
+21. Perceval: Improving Vision-language Models with Perception-centric Process Reward Models (arXiv 2604.24583)
+22. PGPO: Not All Tokens See Equally: Perception-Grounded Policy Optimization (arXiv 2604.01840)
+
+---
+
+【主要风险】:
+1. **Claim extraction recall**: 如果 rule-based extraction 在真实 CoT 上的 recall <50%（大量隐式 perception 无法捕获），r_percept 信号稀疏到失去训练价值。这是实验能否 work 的第一道关。Mitigation: structured output prompting + extraction quality 的 early-stage pilot study。
+2. **EPV vs GeoDPO/PEARL 的 empirical margin**: GeoDPO (+39% downstream) 和 PEARL (+9.7% MathVerse) 都已有很强的 numbers。如果 EPV 仅 matches 或 marginally beats 它们，审稿人会质疑 formal oracle pipeline 的 cost-effectiveness。EPV 需要在 perception-specific 指标（error rate reduction, reward correlation）上展现 clear advantage，即使 downstream accuracy 差距不大。
+
+---
+
+【实施评估】:
+- **计算资源**: 16×A100-80G。主实验（6 baselines + proposed）× 2 scales × 部分 3-run = ~50-70 training runs；ablations ~30-40 runs（4B 为主）。总计 4,000-5,500 GPU hours，约 $10,000-$13,750 (A100 at ~$2.50/hr)。如使用 H100 集群可缩短约 30% wall-clock。
+- **数据需求**: GDP-29K (已开源, arXiv 2604.11600)、FormalGeo7K (已开源)、GeoQA (已开源)、Geometry3K (已开源)。所有数据集公开可得。需做 data overlap audit 确定实际可用量（预估去重后 8-12K with gold annotation + auto-parsed 补充至 ~15K）。评测: MathVerse/MMMU/MathVista/AI2D/VisualProcessBench 均公开可用。
+- **人工介入**: (1) 500-800 条 CoT 的 perception claim 手工标注（claim extraction 验证），≥2 标注者，约 60-80 人时；(2) 200+ 条 GeoQA/Geometry3K test 样本的 perception error 标注（诊断评估），约 30-40 人时；(3) inter-annotator agreement 计算。总人工约 100-130 人时。
+- **训练需求**: 需要模型训练。基座模型 Qwen3-VL-4B 和 8B（预训练权重公开），GRPO fine-tuning。单次 geometry RL training 在 16×A100 上约 12-20 小时。不需要从头预训练。GeoDPO baseline 需复现其 NL-to-DSL translator 训练（需确认其开源代码可用性）。
+- **新 Benchmark**: 不需要构建全新 benchmark。需构建 (1) formal parse cache（工程工作，非学术贡献）；(2) claim extraction 验证集（500-800 标注样本）；(3) zero-overlap evaluation subset（从已有 benchmark 分割）。
+- **预估周期**:
+  - Phase 0 (weeks 1-3): Data audit + formal parse cache construction + claim extraction pipeline development + code availability audit for baselines
+  - Phase 1 (weeks 4-8): Claim extraction validation (pilot study) + baseline reproduction sanity checks + initial EPV training on 4B
+  - Phase 2 (weeks 9-16): Main experiments (all baselines × 2 scales) + ablations (primarily on 4B)
+  - Phase 3 (weeks 17-20): Correlated bias analysis + perception diagnostics + statistical runs + compute fairness analysis
+  - Phase 4 (weeks 21-24): Paper writing + figure preparation
+  - **Total: 20-24 weeks (manual) / 12-16 weeks (human-in-loop) / 10-14 weeks (auto-research)**
+  - **Critical path bottleneck**: Phase 1 的 claim extraction pilot study 是 go/no-go 决策点——如果 extraction recall <40%，需重新评估方案可行性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17c7016a-3a23-4534-9ee1-e3c0f2c22aac",
+  "isSidechain": false,
+  "requestId": "req_011CbTqWigFPXG7uL4fG7h9L",
+  "type": "assistant",
+  "uuid": "a9847c76-57c1-46fe-93f3-7b82fabfec9b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015TuBWAaUyWcyuV81n2PaJA",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4919,
+      "cache_read_input_tokens": 81645,
+      "output_tokens": 6020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4919,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6020,
+          "cache_read_input_tokens": 81645,
+          "cache_creation_input_tokens": 4919,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4919
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have a comprehensive picture of the landscape. Let me deliver my assessment.  ---  【状态】: 有发掘空间  【前置调研…",
+  "leafUuid": "a9847c76-57c1-46fe-93f3-7b82fabfec9b",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86 · 2026-05-27T22:11:25.768Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T22:11:25.768Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "content": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87 · 2026-05-27T22:11:25.769Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T22:11:25.769Z",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+## Round 5
+
+5 recorded events
+
+### User
+
+_source line 88 · 2026-05-27T22:11:25.794Z_
+
+【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9847c76-57c1-46fe-93f3-7b82fabfec9b",
+  "isSidechain": false,
+  "promptId": "ab829962-7c14-4cf3-9bda-867f67b50142",
+  "type": "user",
+  "uuid": "192bd666-0d31-45b6-92a2-bd18347eb779",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-27T22:11:38.504Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user is asking me to produce the final 角色 C output. I already produced a draft of this in my previous response, but the user wants me to output it cleanly as the final deliverable. Let me review what I had and refine it.
+
+Looking back at my previous output, I already included a fairly complete 角色 C section. But the user is now explicitly asking for the final output, so let me produce a clean, polished version.
+
+Let me make sure I'm comprehensive and well-organized, comparing against the ORIGINAL proposal (not the iterated versions).
+
+Key changes to track from original to final:
+
+Original proposal had:
+
+
+- Title: "Executable Perception Verification Rewards for Multimodal Math RL"
+- Core framing: "executable verification > model-based judges" 
+- Related work: missing PAPO, GeoDPO, Perceval, PGPO
+- Baselines: only PEARL + Perception-R1 (2 baselines)
+- Model scale: Qwen3-VL-8B only
+- Benchmarks: MathVerse, GeoQA, Geometry3K (3 benchmarks)
+- Ablations: essentially none (just "controlled ablations comparing EPV-Oracle against PEARL's LLM-judge and Perception-R1's consistency-check baseline")
+
+So I need to identify what gaps exist between the original proposal and what would constitute a complete final version, then ensure my 角色 C output addresses those gaps comprehensively.
+
+The key missing pieces are: no perception-specific diagnostics to validate that the model is actually learning visual reasoning, no compute fairness analysis to ensure comparisons are equitable across methods, no statistical rigor around significance testing or confidence intervals, no data leakage protocol to prevent train-test contamination, claim extraction relies on simple pattern matching rather than robust parsing, no handling of sparse reward signals which could hurt learning, and the resource requirements are substantial at 1,200-1,500 GPU hours over 12-16 weeks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "192bd666-0d31-45b6-92a2-bd18347eb779",
+  "isSidechain": false,
+  "requestId": "req_011CbTqga3s1PXQDMrQkbWxN",
+  "type": "assistant",
+  "uuid": "80225044-c8d2-4a14-98a2-4003a41cbd85",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BMPN9sigMb8Wjjk86HzxHF",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6097,
+      "cache_read_input_tokens": 86564,
+      "output_tokens": 6751,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6097,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 6751,
+          "cache_read_input_tokens": 86564,
+          "cache_creation_input_tokens": 6097,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6097
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-27T22:13:45.766Z_
+
+【优化方案】
+
+## A. Idea / Framing 层面
+
+1. **[标题]** — 从 "Executable Perception Verification Rewards for Multimodal Math RL" 改为 "Model-Free Claim-Level Perception Verification Rewards for Multimodal Math RL"。原标题中"Executable"在当前竞争格局下不够独特（GeoDPO 的 DSL scoring、SGVR 的 sub-goal verification 均可称 executable），新标题精确锚定三元组差异化定位。 — 命中 Novelty
+
+2. **[Core Problem / Introduction 第1段]** — 重构核心 thesis。原 proposal 的 motivation 是"model-based assessment is circular and unreliable"，这一表述过于绝对，会被 PAPO（零 oracle 也能降 30.5% perception error）和 PEARL（+9.7% MathVerse）的强实验结果直接反驳。改为 **blind spot hypothesis**：model-dependent rewards 与 policy VLM 共享 systematic geometric biases（如共同倾向将钝角误判为直角），导致 reward 恰好在 policy 最需要纠正的 perception failure modes 上失效；model-free symbolic verification 结构性打破此 reward-policy bias correlation。这从"他们都不行"（易被反驳）变为"他们在特定 failure modes 上有 blind spots"（更精确、更 defensible）。 — 命中 Novelty（从 engineering contribution 升级为 conceptual contribution）+ Significance（blind spot 问题超出 geometry，对所有 model-dependent reward 有理论启示）
+
+3. **[Introduction]** — 新增 **general principle 声明**："wherever executable formal verifiers exist for a visual domain, model-free symbolic verification should replace model-dependent judges as RL perception rewards"。列举 generalization roadmap：化学结构图→SMILES/InChI 验证器、电路图→SPICE 仿真器、函数图→符号计算引擎。说明 geometry 因 formal parser maturity 最高（Geoparsing GDP-29K, SymHPR 98.2% MSE reduction）而成为最佳 first testbed。原 proposal 将 EPV 定位为 geometry-specific technique，此改动将其升格为 research agenda 的首个实例化。 — 命中 Significance（从 domain-specific trick 到 general paradigm）
+
+4. **[Introduction 或 Related Work 开头]** — 新增 **2D positioning framework**（建议配图）。X 轴: reward granularity (sequence → step → claim → token)；Y 轴: reward independence (fully model-dependent → model-free)。标注所有方法：PAPO (sequence, model-free)、PEARL (step, model-dependent)、MoCA (step, partially dependent)、GeoDPO (diagram-holistic, partially dependent)、Perceval (token, model-dependent)、PGPO (token, model-dependent)、EVPV (step, model-dependent)、**EPV (claim, model-free)**。EPV 占据无人覆盖的 Pareto 象限——这让审稿人一目了然看到 novelty 所在，无法将 EPV 简单归类为任何已有方法的 variant。 — 命中 Novelty + Related Work
+
+5. **[Research Landscape]** — 新增 4 篇必须引用的高度相关工作（原 proposal 完全缺失），按如下结构重组：
+
+   - **新增 PAPO (arXiv 2507.06448)**：implicit KL divergence perception loss，+8% vision-dependent tasks，30.5% perception error reduction，零额外开销。这是最强的 trivial alternative 威胁。差异化论证：PAPO 是 implicit 的——不知道哪个 perception claim 出错、无法提供 targeted diagnostic feedback；EPV 是 explicit claim-level 的——能指出"angle ABC = 45° 但 GT = 60°"，在高精度领域（geometry）这种 explicit feedback 有质的差异。
+
+   - **新增 GeoDPO (arXiv 2602.22703)**：NL-to-DSL translator 的 soft scores 作 RL reward，+26.5% in-domain，+39.0% downstream reasoning。这是最近的直接竞争者。三点差异化：(a) GeoDPO 的 reward 来自 learned translator 的 soft confidence scores，仍 model-dependent（translator 可能学到 systematic biases）；EPV 用 ground-truth formal parse + symbolic matching，完全 model-free。(b) GeoDPO 做 staged training (DPO perception → reasoning)；EPV 在 joint GRPO 中集成 perception reward，允许 perception-reasoning co-adaptation。(c) GeoDPO 是 holistic diagram-level scoring；EPV 是 claim-level granular verification，支持 targeted failure diagnosis。
+
+   - **新增 Perceval (arXiv 2604.24583)**：perception-centric PRM，从 CoT 提取 image-related claims 逐条比对视觉证据，定位 hallucinated spans，施加 token-level penalties。Pipeline 与 EPV **形式同构**（extract → verify → reward），是必须显式对比的 concurrent work。核心差异：Perceval 的 verification 依赖 learned PRM（model-dependent, probabilistic, 受限于训练分布）；EPV 的 verification 是 deterministic symbolic matching（model-free, 可审计, OOD robust）。
+
+   - **新增 PGPO (arXiv 2604.01840)**：Token Visual Dependency via KL divergence，threshold-gated mechanism。与 EPV 机制完全不同（统计量 vs 符号验证），共处"细粒度感知 credit assignment"赛道，需在 landscape 中定位。
+
+   - **SGVR 差异化精化**：原 proposal 说"SGVR only verifies reasoning outcomes, not perception claims"，改为更精确的 **premise-level vs outcome-level** 区分——EPV 验证感知输入（diagram 信息是否被正确读取），SGVR 验证推理输出（中间计算值是否正确）。两者互补而非替代。
+
+   - **Circularity 论证调整**：原 proposal 称 model-based 方法"circular and unreliable"，改为更 nuanced 的"存在 systematic blind spots in specific failure modes"。不否认 PEARL/PAPO 的有效性，而是论证 EPV 覆盖它们的 blind spots。
+
+6. **[Contributions]** — 新增 secondary contribution：EPV + SGVR complementarity 实验验证，作为"formal verification as unified reward paradigm"（perception inputs + reasoning outputs 双重覆盖）的概念验证。原 proposal 仅在一句话中提到 EPV 和 SGVR 的互补性，未设计实验验证。 — 命中 Significance
+
+## B. Technical Approach 层面
+
+7. **[Perception Claim Extraction]** — 原 proposal 仅写"via pattern matching (e.g., 'angle ABC = 60°', 'AB ∥ CD')"。改为完整规格的双路 pipeline：(a) rule-based pattern matching 覆盖 explicit numeric/relational claims；(b) structured output prompting 鼓励模型在 rollout 中以可解析格式输出 perception claims。**新增诚实讨论**：structured output prompting 引入 model-dependency tension（在 extraction 端重新引入了模型干预），将 rule-based-only 设为"纯 model-free"对照 ablation。原 proposal 对 extraction 的工程复杂性完全回避，此改动正面回应审稿人最可能的攻击点。 — 命中 Technical Soundness + intellectual honesty
+
+8. **[Symbolic Matching Pipeline — 全新章节]** — 原 proposal 仅说"verified against the formal parse through symbolic execution"，未给出任何技术规格。新增：(a) entity resolution 策略——CoT 中的几何实体名称（A, B, C）如何与 formal parse 中的实体标识对齐；(b) 数值 matching tolerance（如 ±1° 容差）；(c) 关系等价规则（AB∥CD = CD∥AB、∠ABC = ∠CBA 等）；(d) 对无法匹配到 formal parse 的 claim 的处理策略。 — 命中 Technical Soundness
+
+9. **[Reward Design]** — 原 proposal 未处理 reward sparsity edge case：纯推理步骤（如代数运算）不含 perception claim 时 r_percept = 0/0 未定义。新增三种处理策略的定义及 ablation：(a) skip（仅用 r_outcome）；(b) neutral（设 r_percept = 1）；(c) step-type-aware（仅对 perception-step 计算 r_percept）。 — 命中 Technical Soundness
+
+10. **[Correlated Bias Analysis — 升格]** — 原 proposal 无此内容。第 1 轮迭代作为 diagnostic experiment 加入，现升格为 **core validation of blind spot hypothesis**，包含两个因果验证：(a) Controlled corruption：向 formal parse cache 注入已知错误，验证 EPV reward 单调退化（oracle 准确性因果验证）；(b) Conditional circularity analysis：按几何配置难度分层，测量层内 policy VLM perception errors 与 LLM-judge false negatives 的 overlap，对比 EPV-Oracle false negatives。若同难度层内 LLM-judge 与 policy 错误高度重叠而 EPV 不重叠，则因果性地支持 blind spot hypothesis（排除"难度"这一替代解释）。 — 命中 Novelty（核心 thesis 的验证）
+
+11. **[Data Protocol — 全新章节]** — 原 proposal 未讨论数据泄漏风险。FormalGeo7K 的来源包含 Geometry3K + GeoQA+，与评测 benchmark 存在天然重叠。新增：(a) 严格 train-test split 协议——评测 benchmark test set 中出现的任何样本从训练 formal parse cache 中移除；(b) zero-overlap evaluation subset 单独报告；(c) 数据来源审计（GDP-29K / FormalGeo7K / GeoQA 的实际去重后可用量）；(d) 诚实讨论 auto-parsed data 的 "model-free" 地位——auto-parser 与 policy VLM 无共享参数/训练数据，其 bias 与 policy bias 正交，优于 LLM-as-judge 但非完美 ground truth。 — 命中 Technical Soundness + Reproducibility
+
+## C. Experiment Design 层面
+
+12. **[Baselines]** — 原 proposal 仅列 2 个对比方法（PEARL + Perception-R1）。扩展到 **6 个直接对比**：(1) Vanilla GRPO（无 perception reward，lower bound）；(2) PEARL（LLM-judge perception, CVPR 2026）；(3) GeoDPO（learned translator DSL reward, arXiv 2602.22703）——closest competitor；(4) PAPO（implicit KL perception loss, arXiv 2507.06448）——零开销 cost-effectiveness 挑战；(5) SGVR（formal sub-goal reward, arXiv 2601.05073）——premise vs outcome 验证对比；(6) MoCA（blindfolded proxy, ICML 2026 Spotlight）。间接对比（引用数字）：Perception-R1, CogFlow, PRCO, KAWHI, Perceval。包含 code availability audit 和复现公平性验证（在原论文条件下 sanity check 复现 baseline 的数字）。 — 命中 Technical Soundness
+
+13. **[Model Scales]** — 原 proposal 仅 Qwen3-VL-8B 单规模。扩展到 **Qwen3-VL-4B + 8B 双规模**（领域标准做法，SGVR 3B/7B，PRCO 3B/7B，SAIL-RL 4B/8B）。验证 EPV 在 perception 能力较弱的小模型上是否帮助更大。 — 命中 Technical Soundness (scalability)
+
+14. **[Benchmarks]** — 原 proposal 仅 3 个 geometry benchmarks (MathVerse, GeoQA, Geometry3K)。扩展到 **7 个**：geometry-specific (MathVerse, GeoQA, Geometry3K + zero-overlap subset) + general math (MMMU, MathVista) + non-geometry regression check (AI2D 或 ChartQA) + step-level perception (VisualProcessBench)。新增 benchmark 中后 3 类仅需推理评测不需训练，成本极低但覆盖审稿人对 generalization 和 regression 的标准期望。 — 命中 Technical Soundness + Significance
+
+15. **[Ablations]** — 原 proposal 仅提到"controlled ablations comparing EPV-Oracle against PEARL and Perception-R1"（本质是 baseline comparison 而非 component ablation）。扩展到 **8+ 组系统化内部消融**：
+    - λ 策略：constant / linear annealing / cosine annealing / λ=0 (≡ vanilla GRPO)
+    - r_percept 粒度：ratio (verified/total) / binary per-step / difficulty-weighted
+    - Claim extraction 方法：rule-based only (纯 model-free 对照) / hybrid (rule + structured prompting) / high-recall config vs high-precision config
+    - Formal parse 来源：GDP-29K only / FormalGeo7K only / combined / auto-parsed
+    - 训练数据规模：5K / 10K / 15K
+    - **EPV + SGVR 联合训练**：r = r_outcome + λ₁·r_percept(EPV) + λ₂·r_subgoal(SGVR)，验证 complementarity
+    - **Noise injection robustness**：向 formal parse cache 注入 5%/10%/20% 错误标注，观察训练效果退化曲线
+    - Reward sparsity 策略：skip / neutral / step-type-aware
+    
+    Ablation 执行策略：完整矩阵在 4B scale 上运行，8B 仅跑 top-3 most impactful ablations，控制总 compute。 — 命中 Technical Soundness
+
+16. **[Perception-Specific Diagnostics — 全新章节]** — 原 proposal 完全没有 perception-specific 评估。新增 4 项诊断：
+    - **Blindfold test** (MoCA 范式)：text-only vs multimodal inference 对比，隔离 perception contribution
+    - **Reward signal quality**：Pearson/Spearman correlation between EPV reward 与人工标注 perception correctness（held-out set），对比 PEARL LLM-judge 和 GeoDPO translator scores
+    - **Error type breakdown**：perception / reasoning / calculation error rates 训练前后变化
+    - **Geometry-specific perception error rate**：200+ 样本人工标注，报告 reduction percentage（对标 PRCO 39.2%、PAPO 30.5%）
+    — 命中 Technical Soundness（"你怎么证明提升来自 perception 而非 reasoning？"——这是审稿人最 likely 的质疑）
+
+17. **[Claim Extraction 独立验证 — 全新章节]** — 原 proposal 完全没有验证 extraction 可靠性。新增：(a) 500-800 条 CoT 手工标注所有 perception claims；(b) 报告 precision / recall / F1，**按 claim 类型分层**（explicit numeric / explicit relational / implicit-inferential）；(c) end-to-end 评估（extraction + symbolic matching 联合 P/R/F1，反映 reward 信号的真实质量）；(d) ≥2 名标注者 + inter-annotator agreement (Cohen's kappa)。 — 命中 Technical Soundness（这是整个方法的 Achilles' heel，必须正面验证）
+
+18. **[Compute Fairness — 全新章节]** — 原 proposal 无此内容。新增：(a) 全生命周期 compute 分解表（parse cache 构建 + per-step extraction + per-step verification + RL training），逐方法对比；(b) iso-compute comparison（固定总 GPU hours 预算，每方法按 per-step 成本跑对应数量 steps）；(c) performance-vs-compute scaling curve。EPV-Oracle 的 symbolic verification 比 LLM-judge inference 便宜数量级——这是一个实际优势，应被量化。 — 命中 Technical Soundness
+
+19. **[Statistical Rigor]** — 原 proposal 无此内容。新增：(a) proposed method + top-3 competing baselines (PEARL, GeoDPO, PAPO) 跑 3 次 (different random seeds)，报告 mean ± std；(b) paired bootstrap test 或 Wilcoxon signed-rank test 报告 p-value；(c) 所有手工标注任务 ≥2 人独立完成 + Cohen's kappa。 — 命中 Technical Soundness
+
+## D. Resource Estimate 调整
+
+20. **[Resource Estimate]** — 原 proposal 估计 1,200-1,500 GPU hours / 12-16 weeks。实验规模扩展后需上调：
+    - **manual path**: 4,000-5,500 GPU hours / 20-24 weeks / $10,000-$13,750 GPU cost / 100-130 人时标注
+    - **human_in_loop path**: 3,000-4,000 GPU hours / 14-18 weeks / $7,500-$10,000 GPU cost / $500-$800 API cost
+    - **auto_research path**: 3,000-4,000 GPU hours / 10-14 weeks / $7,500-$10,000 GPU cost / $1,200-$1,800 API cost
+    - **Critical path bottleneck**: Phase 1 的 claim extraction pilot study 是 go/no-go 决策点——如果 extraction recall <40%，需重新评估方案可行性，建议在前 3 周内完成
+
+---
+
+【主要风险】
+
+1. **Claim extraction recall（最可能的审稿攻击点）**：VLM 的 CoT 表达方式远比 pattern matching 能覆盖的范围丰富——"since the triangle appears equilateral"（隐含 all angles = 60° 但未显式写出）、"the perpendicular from B"（隐含 ∠=90° 但用自然语言描述）。如果 rule-based extraction recall <50%，r_percept 信号稀疏到失去训练价值。即使 structured output prompting 能提升 recall，它本身引入了 model-dependency tension，削弱"model-free"的 purity claim。审稿人几乎必然会质疑这一点。**Mitigation**: 实验前 3 周做 pilot study 评估 recall floor；rule-based-only 作为纯 model-free 对照 ablation；诚实承认 tension 并用数据说明 practical impact。
+
+2. **EPV vs GeoDPO/PEARL 的 empirical margin**：GeoDPO 报告 +39% downstream reasoning，PEARL 报告 +9.7% MathVerse。如果 EPV 在 downstream accuracy 上仅 matches 或 marginally beats 它们，审稿人会质疑 formal oracle pipeline 的 cost-effectiveness（尤其与零开销的 PAPO 对比）。EPV 需要在 **perception-specific 指标**（error rate reduction、reward signal correlation、blind spot coverage）上展现 clear advantage，将叙事从"EPV 的 accuracy 更高"转向"EPV 的 reward signal 在 model-based methods 失效的地方仍然有效"。
+
+---
+
+【实施评估】
+- **计算资源**: 16×A100-80G GPU cluster。主实验 (6 baselines + proposed) × 2 scales × 部分 3-run ≈ 50-70 training runs；ablations ≈ 30-40 runs（主要在 4B）。总计 4,000-5,500 GPU hours，$10,000-$13,750。如用 H100 cluster 可缩减 ~30% wall-clock。
+- **数据需求**: GDP-29K (开源)、FormalGeo7K (开源)、GeoQA (开源)、Geometry3K (开源)，均公开可得。需做 data overlap audit 确定去重后实际可用量（预估 gold annotation 8-12K + auto-parsed 补至 ~15K）。评测 benchmarks (MathVerse/GeoQA/Geometry3K/MMMU/MathVista/AI2D/VisualProcessBench) 均公开。
+- **人工介入**: (1) 500-800 条 CoT perception claim 手工标注，≥2 标注者，~60-80 person-hours；(2) 200+ 条 test 样本 perception error 标注，~30-40 person-hours；(3) inter-annotator agreement 计算和争议裁决。总计 ~100-130 person-hours。
+- **训练需求**: 需要 RL fine-tuning（非预训练）。基座 Qwen3-VL-4B/8B 预训练权重公开。单次 GRPO training 在 16×A100 上 ~12-20 小时。GeoDPO baseline 复现需训练其 NL-to-DSL translator（代码已在 GitHub 开源）。不需要从头预训练任何模型。
+- **新 Benchmark**: 不需要构建全新 benchmark。需构建 (1) formal parse cache（工程工作，~1-2 weeks）；(2) claim extraction 验证集（500-800 标注样本）；(3) zero-overlap evaluation subset（从已有 benchmark 机械分割）。
+- **预估周期**:
+  - Phase 0 (weeks 1-3): Data audit + formal parse cache + claim extraction pipeline + **extraction pilot study (go/no-go gate)**
+  - Phase 1 (weeks 4-8): Baseline code audit + reproduction sanity checks + initial EPV training (4B)
+  - Phase 2 (weeks 9-16): Main experiments (all baselines × 2 scales) + ablation matrix (4B primary)
+  - Phase 3 (weeks 17-20): Correlated bias analysis + perception diagnostics + statistical runs + compute fairness
+  - Phase 4 (weeks 21-24): Paper writing + figures + supplementary
+  - **Total: 20-24 weeks (manual) / 14-18 weeks (human-in-loop) / 10-14 weeks (auto-research)**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80225044-c8d2-4a14-98a2-4003a41cbd85",
+  "isSidechain": false,
+  "requestId": "req_011CbTqga3s1PXQDMrQkbWxN",
+  "type": "assistant",
+  "uuid": "d152a12e-5a52-410c-baf0-3b7781858197",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BMPN9sigMb8Wjjk86HzxHF",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6097,
+      "cache_read_input_tokens": 86564,
+      "output_tokens": 6751,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6097,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 6751,
+          "cache_read_input_tokens": 86564,
+          "cache_creation_input_tokens": 6097,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6097
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。",
+  "leafUuid": "d152a12e-5a52-410c-baf0-3b7781858197",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Executable perception verification rewards for math RL",
+  "sessionId": "246566a5-b17e-40cd-b552-150344c6365f"
+}
+```
+
+---

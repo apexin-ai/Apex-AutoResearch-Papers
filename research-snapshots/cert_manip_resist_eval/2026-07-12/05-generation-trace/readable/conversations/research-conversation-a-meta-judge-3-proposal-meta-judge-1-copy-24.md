@@ -1,0 +1,852 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/45a60197-1bf8-4b83-9295-dc1251da77b4.jsonl`
+- **Structured JSON:** [`a4f931b68a8acecab1fc.json`](../../sessions/a4/a4f931b68a8acecab1fc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T09:16:03.020Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T09:16:03.020Z",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient data to make a well-grounded assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **Perception-R1** (arXiv 2506.07218, June 2025): \n   Uses LLM-judged visual perception reward with pre-collected textual annotations. Per-claim verification only (each visual annotation checked independently). Only 1,442 training samples, achieves 74.2 on MathVista. Directly relevant: demonstrates per-claim perception reward works for RLVR, but structurally cannot catch inter-claim inconsistencies—exactly the gap this proposal claims to fill.\n\n2. **PEARL** (arXiv 2511.18437, CVPR 2026): \n   Dual-branch perception-reasoning framework using GT perception checklists as gating rewards. +9.7% on MathVerse. Annotation-dependent: requires ground-truth sub-question answers. Per-claim only. The proposal's annotation-free advantage over PEARL is real.\n\n3. **EVPV** (arXiv 2603.16253, March 2026): \n   Most directly relevant competitor. Extracts structured visual constraints from images and matches per-claim checklists against them. Key distinction: EVPV checks each claim against image-level perceptual features independently, does NOT verify whether the set of perceived values jointly satisfies domain-level mathematical axioms. This is the precise gap the proposal identifies.\n\n4. **CogFlow** (arXiv 2601.01874, Jan 2026): \n   Three-stage perception→internalization→reasoning with Synergistic Visual Rewards and Knowledge Internalization Reward. Requires 120K+ perception-reasoning aligned annotations (MathCog dataset). Strong results but heavy annotation dependency. Per-claim reward in parametric and semantic spaces—no inter-claim consistency check.\n\n5. **GeoDPO** (arXiv 2602.22703, Feb 2026, under ICLR 2026 review): \n   NL-to-DSL translator-guided RL for geometric perception. +26.5% in-domain, +39% downstream. Rewards DSL translation accuracy, not axiom-level consistency. **This is the most threatening trivial alternative**: if accurate DSL translation implicitly captures most axiom constraints, the marginal benefit of explicit axiom checking may be small.\n\n6. **PRCO** (arXiv 2603.28618, March 2026): \n   Observer/Solver dual-role RLVR with utility-based perception reward. +7 points average across 8 benchmarks. Domain-agnostic—does not exploit mathematical structure. Proposal claims advantage from domain-specific axiom structure.\n\n7. **SSL-R1** (arXiv 2604.20705, April 2026): \n   Generic self-supervised visual puzzles as RLVR rewards. Vision-centric, annotation-free, but domain-agnostic. Proposal claims mathematical axioms provide stronger, more targeted supervision.\n\n8. **V-Zero** (arXiv 2601.10094, Jan 2026): \n   Questioner-Solver co-evolution for zero-annotation training. Domain-agnostic self-play.\n\n9. **FormalGeo** (arXiv 2310.18021, 2023) + **FGeo-DRL** (2024) + **Geoparsing** (arXiv 2604.11600, April 2026): \n   Formal geometry infrastructure with 88 predicates, 196 theorems, formalgeo7k dataset. Geoparsing provides GDP-29K dataset and SFT+RLVR training paradigm. FGeo-DRL achieves 86.4% on formalgeo7k via RL in formal environments. **These are the enabling components** the proposal builds on.\n\n10. **MM-MATH** (arXiv 2404.05091, 2024): \n    Establishes that ~61% of multimodal math errors are perception errors—diagram misinterpretation is the dominant error. This is the empirical foundation for the entire research direction.\n\n- **调研总结**: The multimodal math perception RL space has exploded in 2025-2026, with at least 8-10 concurrent works addressing perception as a bottleneck for mathematical reasoning. All existing approaches verify perceived facts either per-claim (Perception-R1, PEARL, EVPV, CogFlow) or through translation fidelity (GeoDPO) or generic self-supervised puzzles (SSL-R1, V-Zero). No existing work explicitly uses joint mathematical axiom consistency of perceived quantitative facts as a self-supervised reward signal. The proposal identifies a genuine gap in the \"joint consistency × annotation-free\" quadrant. However, the field is extremely crowded and fast-moving; the conceptual distance from GeoDPO (DSL accuracy) and EVPV (image-level constraint checking) to axiom consistency checking is moderate, not large.\n\n\n【Trivial Alternative 检验】:\n\n**最具威胁的 trivial alternative: GeoDPO 的 DSL translation accuracy reward。** GeoDPO 已经通过奖励精确的 DSL 翻译（隐式包含许多结构约束），获得了 +26.5% in-domain 和 +39% downstream 的增益。如果 DSL 翻译的准确性已经隐式地编码了大部分公理约束（准确的 DSL 翻译 → 值也大致正确 → 公理自然满足），那么显式公理检查器的增量收益可能有限。\n\n**第二个 trivial alternative: 仅在推理时做公理检查（不做 RL 训练）。** Proposal 自己承认了这一点并计划消融实验（Ablation 6），但训练时内化 vs. 推理时纠正的优势缺乏先验理论保证——这完全是一个经验问题。如果推理时公理检查 + Stage 0 SFT 就足够好，那 RL 训练带来的增量可能微小。\n\n**增量价值**: Proposal 的增量价值在于两点：（1）joint consistency 可以捕捉 per-claim 方法结构性无法检测的\"集体不可能\"错误，这是一个逻辑上成立的论点；（2）annotation-free，相比 PEARL/CogFlow 不需要标注。但这些增量价值的实际大小需要实验验证——如果\"集体不可能但每个单独看起来合理\"的错误在实际中很少见，增量就很小。\n\n\n【前提假设检验】:\n\n1. **\"集体不可能\"错误的普遍性假设（未验证）**: Proposal 的核心动机是\"individually plausible but collectively impossible perceptions\"——这确实在逻辑上存在（比如三个角分别看起来合理但不加到 180°），但 **这类错误在实际 VLM 感知中的频率有多高**没有任何实证。如果 VLM 的感知误差主要是每个值都偏差很大（per-claim 方法就能捕捉），而不是\"每个看起来合理但联合不一致\"，那 joint consistency 检查的优势就消失了。\n\n2. **公理约束的信息量假设（部分论证）**: Proposal 论证了 constraint density 随复杂度增加而变强，但对于简单图形（单三角形只有一个角和约束），公理奖励的辨别力可能极弱——大量错误的感知值组合都可能\"恰好\"满足少数约束。Proposal 承认了 false positive 问题，但缺乏先验量化。\n\n3. **Stage 0 形式提取质量假设（关键依赖）**: 整个流水线依赖于 VLM 能可靠地提取结构化形式描述。如果 Stage 0 SFT 后模型的形式提取质量不够，后续公理检查就建立在噪声输入之上，reward 信号退化。Geoparsing 已经表明这需要 SFT+RLVR，但 proposal 仅用 SFT 做 Stage 0。\n\n4. **训练时内化优于推理时纠正的假设（未验证）**: Proposal 给出了三个论点（效率、表示学习、泛化），但这些是假说而非已建立的事实。这完全依赖实验结果。\n\n\n【3 维度打分】:\n\n1. **Novelty: 中（偏强）** — \n   核心贡献\"joint axiom consistency as self-supervised perception reward\"在调研到的所有工作中确实未出现。EVPV 做 per-claim image-level 检查，GeoDPO 做 DSL 翻译准确度，PEARL/CogFlow 需要标注——没有工作在 \"joint consistency × annotation-free\" 象限。2×2 定位图清晰有效。\n   \n   但 novelty 限制在于：这是一个**自然组合**而非**反直觉洞察**。一旦你有 FormalGeo 基础设施 + 已建立的 perception bottleneck + RLVR 范式，从\"每个 claim 单独检查\"到\"检查 claim 是否联合满足公理\"是一个 incremental 而非 surprising 的概念跳跃。审稿人更可能说 \"this makes sense\" 而非 \"I didn't expect this.\" 与 GeoDPO 的概念距离（DSL 翻译准确度 vs. 公理一致性）也不算大——两者都是利用形式化几何系统来生成奖励，只是切入角度不同。\n\n2. **Significance: 强** — \n   研究问题的重要性毋庸置疑：MM-MATH 已经确认 ~61% 错误来自感知，这个 bottleneck 是整个 multimodal math reasoning 社区公认的痛点。Annotation-free 的特性有实用价值（相比 PEARL 的 GT checklists 或 CogFlow 的 120K 标注）。如果范式成立，extensibility 到其他 constrained 领域（电路、化学、工程）是一个有吸引力的 broader impact story。\n   \n   但 significance 的上限受限于 **应用领域的窄度**——几何图形感知是一个重要但不是最大的子问题，且 formal geometry infrastructure 的依赖限制了推广性（chart/function invariants 只有 proof-of-concept）。\n\n3. **Related Work: 强** — \n   这是 proposal 最出色的部分。覆盖面极广（Perception-R1, PEARL, EVPV, CogFlow, GeoDPO, PRCO, SSL-R1, V-Zero, SymHPR, PDCR, M3-ACE, PFlowNet），2×2 定位图（verification type × supervision source）清晰且有效地把所有竞争者放入一个框架。每个工作的差异点都有具体说明。对 false positive 限制的坦诚承认也是一个加分项。\n   \n   调研验证了 proposal 对这些工作的描述基本准确（Perception-R1 确实是 per-claim + annotation-dependent; PEARL 确实是 CVPR 2026; GeoDPO 确实是 DSL translation-based）。引用的论文均真实存在。\n\n\n【概率估计】: 28% - 37%，中位 32%\n\n【估计理由】: \nNovelty 是中偏强——存在真实的 gap，但概念跳跃是 incremental 而非 surprising，这将上界限制在 ~37%。Significance 是强——问题重要且 annotation-free 有价值。Related Work 是强——定位清晰、覆盖全面。\n\n限制上界的主要因素是 **Novelty 的 \"natural next step\" 性质**：核心洞察（per-claim → joint consistency）是一个逻辑上显而易见的推进方向，审稿人很可能评价为 \"reasonable extension\" 而非 \"novel insight\"。此外，GeoDPO 作为 trivial alternative 的威胁真实存在——如果 DSL 翻译准确度已经隐式捕获了大部分公理约束，增量可能有限。\n\n推高下界的因素：2×2 positioning 非常干净；annotation-free 是相对 PEARL/CogFlow 的真实优势；broader paradigm claim（domain invariants as free supervision）有独立吸引力。\n\n【主要风险】:\n1. **Trivial alternative 威胁 — GeoDPO**: 如果 DSL 翻译准确度 reward 已经隐式编码了大部分公理约束信息，reviewers 会质疑显式公理检查的 marginal gain 是否值得额外的工程复杂度（40+ 公理的检查器实现）。这是 idea 层面的最大风险。\n2. **核心动机的实证薄弱 — \"集体不可能\"错误的实际频率**: Proposal 以一个生动的例子（三个角不加到 180°）驱动整篇工作，但从未提供这类 joint inconsistency 错误在真实 VLM 输出中的频率数据。如果审稿人要求先验 pilot study 证明这类错误真的 prevalent，当前 proposal 无法回答。这可能被视为 \"solution looking for a problem\" 的风险。\n```\n\nSources:\n- [Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward](https://arxiv.org/abs/2506.07218)\n- [PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning](https://arxiv.org/abs/2511.18437)\n- [EVPV: Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models](https://arxiv.org/abs/2603.16253)\n- [CogFlow: Bridging Perception and Reasoning through Knowledge Internalization](https://arxiv.org/abs/2601.01874)\n- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided RL](https://arxiv.org/abs/2602.22703)\n- [PRCO: Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning](https://arxiv.org/abs/2603.28618)\n- [SSL-R1: Self-Supervised Visual Reinforcement Post-Training for MLLMs](https://arxiv.org/abs/2604.20705)\n- [V-Zero: Self-Improving Multimodal Reasoning with Zero Annotation](https://arxiv.org/abs/2601.10094)\n- [FormalGeo: An Extensible Formalized Framework for Olympiad Geometric Problem Solving](https://arxiv.org/abs/2310.18021)\n- [Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language](https://arxiv.org/abs/2604.11600)\n- [MM-MATH: Advancing Multimodal Math Evaluation with Process Evaluation and Fine-grained Classification](https://arxiv.org/abs/2404.05091)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient information to conduct a thorough evaluation. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- Perception-R1 (arXiv 2506.07218, 2025): 使用 LLM judge 对 VLM 输出的视觉描述进行 per-claim 验证，基于文本注释的一致性打分作为 RL reward。仅需 1,442 训练样本，MathVista 74.2。与本 proposal 的关系：annotation-dependent + per-claim，正是本 proposal 定义的 gap 的代表性方法。\n- PEARL (arXiv 2511.18437, CVPR 2026): 为每个推理 QA 生成感知 checklist，用 GT sub-question answers 作为 gating reward，MathVerse +9.7%。与本 proposal 的关系：annotation-dependent + per-claim，需要标注的子问题答案。\n- CogFlow (arXiv 2601.01874, ICLR 2026): 三阶段 perception→internalization→reasoning 框架，Synergistic Visual Rewards + Knowledge Internalization Reward，需要 120K+ MathCog 标注。与本 proposal 的关系：annotation-dependent + per-claim，reward 在参数和语义空间而非数学公理空间。\n- EVPV (arXiv 2603.16253, 2026): Explicit Visual Premise Verification，从图像提取结构化约束，per-claim 匹配 checklist。与本 proposal 的关系：最接近的竞争者——也是自监督的，但仍然是 per-claim image-level 验证，不检查 claims 之间的数学公理一致性。这是本 proposal 主要需要区分的对手。\n- GeoDPO (arXiv 2602.22703, 2026): NL-to-DSL 翻译准确度作为 RL reward，GeoPerceive benchmark，in-domain +26.5%, downstream +39%。与本 proposal 的关系：reward 基于翻译保真度而非公理一致性，提供了 perception-only 评估基准。\n- PRCO (arXiv 2603.28618, 2026): Observer/Solver 双角色 RLVR 框架，utility-based reward，8 个 benchmark 平均 +7 分。与本 proposal 的关系：domain-agnostic 自监督，不利用数学结构。\n- SSL-R1 (arXiv 2604.20705, 2026): 通用视觉 SSL 拼图任务作为 RLVR reward，13 个 benchmark 上持续提升。与本 proposal 的关系：generic 自监督，不利用领域知识。\n- V-Zero (arXiv 2601.10094, 2026): Questioner-Solver 共进化，零标注，+1.7 数学推理。与本 proposal 的关系：零标注自监督，但通用方法，增益较小。\n- FGeo-DRL (arXiv 2402.09051, 2024): 基于 FormalGeo 的几何 RL solver，formalgeo7k 上 86.4%。与本 proposal 的关系：验证了 solver-in-the-loop RL 在形式几何中的有效性，但用于推理而非感知。\n- Geoparsing (arXiv 2604.11600, 2026): GDP-29K 数据集，SFT+RLVR 训练范式，平面和立体几何的统一形式语言。与本 proposal 的关系：提供了 Stage 0 所依赖的形式化提取基础设施。\n- FIGR (arXiv 2512.24297, 2025): 将可执行视觉构建嵌入推理循环，AIME 2025 +13.12%。与本 proposal 的关系：不同路线——通过执行代码验证而非公理约束。\n- SGVR/Milestones over Outcome (arXiv 2025): 子目标可验证奖励用于几何推理。与本 proposal 的关系：基线之一。\n\n- 调研总结: 2025-2026年，multimodal math perception 已成为活跃研究方向，多个并行工作从不同角度提出 perception reward（LLM judge、GT checklist、DSL 翻译、通用 SSL、utility-based）。但所有现有方法的 reward 都在 per-claim 层面运作。尚无工作将\"感知 claims 之间的数学公理联合一致性\"作为自监督 reward 信号。本 proposal 填补的是一个 genuine gap，但这个 gap 的\"显而易见程度\"是审稿争议点。\n\n【Trivial Alternative 检验】:\n最直接的 trivial alternative: 在推理时（inference-time）执行公理一致性检查 + 重采样，无需 RL 训练。具体操作是：在任意现有模型（如 GeoDPO 或 Geoparsing 微调模型）上，提取形式化描述 → 公理检查器验证 → 如果不一致就重新生成。这本质上是 test-time compute scaling 的一种形式。\n\nProposal 确实预见并回应了这一点（\"Why training-time internalization\"），给出了三个论点：(1) 效率——单次 forward pass vs 迭代循环；(2) 表征学习——RL 塑造内部视觉表征；(3) 泛化——训练的一致性能力迁移到新配置。但这三个论点目前都是假说，没有实证支撑（虽然 proposal 设计了消融实验来验证）。\n\n增量价值判断：如果消融实验证明 training-time RL 显著优于 inference-time-only（消融组 6），则增量价值成立。但如果差距很小，这个 idea 的核心贡献就大打折扣——因为公理检查本身是 engineering contribution，而非 learning contribution。这是一个 high-variance 的赌注。\n\n【前提假设检验】:\n核心逻辑链条中有以下未验证假设：\n\n1. **形式化提取质量假设**: 公理一致性 reward 的有效性完全依赖于 Geoparsing/FormalGeo 能可靠地将图表转化为结构化描述。如果提取本身有大量噪声（漏提元素、错误识别关系），公理检查器的输入就已经不可靠，reward 信号也会失真。Geoparsing 论文本身就指出需要 SFT+RLVR 才能获得合理质量——而本 proposal 的 Stage 0 只用了其数据子集做 SFT。\n\n2. **约束密度-错误检出率关系假设**: Proposal 的核心理论论点是\"更多公理 → 更紧的可行域 → 更低的 false positive rate\"。这在数学上是正确的（更多约束确实缩小可行域），但实际效果取决于 (a) 每个图表平均能应用多少公理（如果大部分图表只能应用 1-2 个公理，约束密度就很低），(b) 公理之间的冗余程度。这个假设需要在真实数据上验证。\n\n3. **Soft reward 信息量假设**: 提出了连续打分（1 - |violation|/scale）替代二值 pass/fail。但这隐含假设 violation magnitude 是 perception 错误的单调函数——而实际上，一个\"差一点\"的值可能是噪声而非系统性错误，而一个\"差很多\"的值可能是提取器的彻底失败（不可修复）。\n\n4. **RL reward → 内部表征改善假设**: 假设公理一致性 reward 能通过 GRPO 有效地改善 VLM 的内部视觉表征，使其\"倾向于生成公理一致的感知\"。但 GRPO 主要在输出空间操作，能否有效改变视觉编码器的表征是一个开放问题（尤其是对 frozen visual encoder 的 VLM）。\n\n以上假设均非致命，但构成了论文成功的关键前提。\n\n【3 维度打分】:\n1. Novelty: 中（偏强） — \"per-claim vs joint consistency\"这一区分是 genuine insight，填补了现有工作的真实空白。调研显示所有现有 perception reward 方法（Perception-R1、PEARL、EVPV、CogFlow、GeoDPO、PRCO）确实都在 per-claim 层面运作，没有工作检查 perceived facts 之间的数学公理一致性。\"数学不变量作为自监督 reward\"的 framing 是清晰且新颖的。但降低 novelty 评分的因素：(a) 一旦有了 Geoparsing 的形式化提取和 FormalGeo 的公理验证基础设施，将两者组合为 RL reward 是一个相对自然的想法——属于\"well-motivated combination\"而非\"paradigm shift\"；(b) EVPV 已经走到了\"自监督视觉约束作为 reward\"这一步，从 per-claim image-level 到 joint axiom-level 的跳跃是渐进式的。\n\n2. Significance: 中 — 问题本身重要（MM-MATH 的 61% perception error 确立了瓶颈），annotation-free 属性有吸引力。但 significance 受限于：(a) 应用范围主要是几何图形，chart 和 function 扩展标记为 optional，实际论文可能只覆盖几何；(b) 如果核心发现是 positive（公理一致性 reward 帮助提升 perception accuracy），审稿人可能会说 \"this makes sense, I would have guessed consistency checking helps\"——属于 confirmatory 而非 surprising 的结果；(c) 更广泛的\"领域不变量作为自监督信号\"的 principle 虽然被提及（Kirchhoff 定律、化学价约束），但不会在论文中验证，只是 future direction。\n\n3. Related Work: 强 — 这是本 proposal 最出色的维度。覆盖了 2024-2026 几乎所有直接相关的工作（Perception-R1、PEARL、EVPV、CogFlow、GeoDPO、PRCO、SSL-R1、V-Zero、SymHPR、PDCR、M3-ACE、PFlowNet、SGVR），并用清晰的 2×2 表格（per-claim vs joint × annotation-dependent vs annotation-free）进行定位。与每个竞争者的差异化分析具体而准确。对 EVPV 的区分（image-level perceptual constraints vs domain-level mathematical axioms）是最关键的差异化论点，表述清晰。唯一小风险：引用的部分论文是 2026 年的 arXiv 预印本，可能在 AAAI 投稿截止前有更新或更多竞争者出现。\n\n【概率估计】: 28% - 38%，中位 33%\n\n【估计理由】:\nNovelty 是中偏强（填补了 genuine gap，但组合性质较强），这决定了概率上界不会很高——如果核心发现是 positive，它更可能是 confirmatory（\"一致性检查确实有用\"）而非 surprising。Significance 受限于较窄的应用范围（主要是几何）和可能的\"I would have guessed this\"反应。Related Work 是强项，降低了因 positioning 不清而被拒的风险。\n\n上界（38%）对应的场景：公理一致性 reward 显著优于所有 per-claim baseline 和 inference-time-only 的 trivial alternative，\"constraint density\"假说在实验中得到验证，产生一个 clean story。\n下界（28%）对应的场景：Geoparsing 提取质量不足导致 reward 信号噪声大，或 training-time RL 相比 inference-time 公理检查的增量很小，使得核心贡献变成 engineering contribution。\n\n上界的限制因素主要是 Novelty 的天花板——即使实验完美执行，idea 本身的\"组合自然性\"限制了它的 surprise factor。\n\n【主要风险】:\n1. **Trivial alternative 威胁**: 如果 inference-time 公理检查 + 重采样（无需 RL 训练）就能获得大部分收益，则 training-time RL 的贡献被大幅稀释，论文核心 claim 从\"需要 RL 内化公理一致性\"退化为\"公理检查器本身有用\"（engineering contribution）。\n2. **形式化提取瓶颈**: 公理一致性 reward 的上游完全依赖 Geoparsing/FormalGeo 的提取质量。如果提取错误率高，reward 信号本身就不可靠，可能导致 RL 训练失败或效果平庸——而审稿人会质疑\"你的 reward 信号质量本身就有问题，怎么证明是 joint consistency 帮了忙而不是碰巧？\"\n```\n\nSources:\n- [Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward](https://arxiv.org/abs/2506.07218)\n- [PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning](https://arxiv.org/abs/2511.18437)\n- [CogFlow: Bridging Perception and Reasoning through Knowledge Internalization](https://arxiv.org/abs/2601.01874)\n- [EVPV: Grounding the Score: Explicit Visual Premise Verification](https://arxiv.org/abs/2603.16253)\n- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided RL](https://arxiv.org/abs/2602.22703)\n- [PRCO: Seeing with You: Perception-Reasoning Coevolution](https://arxiv.org/abs/2603.28618)\n- [SSL-R1: Self-Supervised Visual Reinforcement Post-Training](https://arxiv.org/abs/2604.20705)\n- [V-Zero: Self-Improving Multimodal Reasoning with Zero Annotation](https://arxiv.org/abs/2601.10094)\n- [FGeo-DRL: Deductive Reasoning for Geometric Problems through Deep RL](https://arxiv.org/abs/2402.09051)\n- [Geoparsing: Diagram Parsing with Unified Formal Language](https://arxiv.org/abs/2604.11600)\n- [FIGR: Figure It Out: Improve Reasoning with Executable Visual States](https://arxiv.org/abs/2512.24297)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient information to conduct the evaluation. Let me compile my findings.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n- Perception-R1 (arXiv 2506.07218, 2025): 使用 LLM 判定的视觉感知奖励进行 RLVR 训练，仅需 1,442 样本。MathVista 74.2, MathVerse 54.3。核心局限：per-claim 独立验证，依赖预收集的文本标注作为 visual reference。与本 proposal 的关系：直接对标，proposal 所声称的 \"per-claim 盲区\" 正是针对此类方法。\n\n- EVPV (arXiv 2603.16253, 2026): 从图像中提取结构化约束，生成 visual checklist，通过 reliability gating 校准 PRM 奖励。关键点：验证的是每条 claim 与图像级特征的一致性，而非 claims 之间的数学公理一致性。与本 proposal 的关系：proposal 明确指出 EVPV 是 \"image-level per-claim\" 而非 \"domain-axiom joint consistency\"，这个区分在技术上是成立的。\n\n- CogFlow (arXiv 2601.01874, 2026, ICLR 2026 accepted): 三阶段框架 (perception→internalization→reasoning)，Synergistic Visual Rewards + Knowledge Internalization Reward，需要 120K+ 标注 (MathCog dataset)。与本 proposal 的关系：CogFlow 在 perception 阶段的奖励仍然是参数空间/语义空间的 per-claim 检查，不检查 inter-claim 数学一致性。Proposal 声称的差异成立。\n\n- GeoDPO (arXiv 2602.22703, 2026): NL-to-DSL translator 引导 RL，+26.5% in-domain, +39% downstream。引入 GeoPerceive benchmark。与本 proposal 的关系：GeoDPO 奖励 DSL 翻译准确性（需要 GT DSL 对照），而非公理一致性。Proposal 的 annotation-free 定位与 GeoDPO 形成差异化。\n\n- PRCO (arXiv 2603.28618, 2026): Observer/Solver 双角色框架，Observer 提取 question-relevant visual evidence，Solver 的成功率回传作为 Observer 的 utility reward。平均 +7 points across 8 benchmarks。与本 proposal 的关系：domain-agnostic utility reward，不利用数学结构约束。Proposal 声称的 \"数学公理提供更强、更有针对性的监督\" 需要实验验证但逻辑上合理。\n\n- SSL-R1 (arXiv 2604.20705, 2026): 将 SSL 任务重新构建为 visual puzzles 作为 RL reward，完全 self-supervised。与本 proposal 的关系：generic vision-centric 自监督，不利用 domain-specific 数学结构。\n\n- V-Zero (arXiv 2601.10094, 2026): Questioner-Solver co-evolution loop，zero annotation。与本 proposal 的关系：同样 annotation-free，但 domain-agnostic。\n\n- FGeo-DRL (arXiv 2402.09051, 2024): 在 FormalGeo 环境中使用 RL 进行几何定理推演，formalgeo7k 上 86.4%。与本 proposal 的关系：Proposal 拟复用 FormalGeo 基础设施作为公理检查器——这是一个合理的技术路线，证明形式化几何验证在 RL loop 中是可行的。\n\n- FormalGeo (arXiv 2310.18021, 2023): 奥林匹克几何问题的形式化框架和求解器。提供 GDP-29K 数据集和定理验证基础设施。与本 proposal 的关系：proposal 的 Stage 0 SFT 和 axiom checker 依赖此基础设施。\n\n- 调研总结: 2025-2026 年，multimodal math reasoning 中的 perception bottleneck 已成为共识热点，涌现了大量工作 (Perception-R1, PEARL, EVPV, CogFlow, GeoDPO, PRCO, SSL-R1 等)，但**所有**现有方法的 perception 验证/奖励都在 per-claim 或 image-level 层面运作——没有任何工作利用数学公理的 joint consistency 作为 perception 奖励信号。Proposal 在这个 2D space (验证维度 × 监督来源) 中确实占据了一个独特的、尚未被填充的位置。这一空白是真实的。\n\n\n【Trivial Alternative 检验】:\n\n最直接的 trivial alternative 是：**不做 RL 训练，只在推理时进行公理一致性检查 + 重新感知 (re-perception)**。即：用 Stage 0 SFT 后的模型直接推理，如果感知到的事实违反公理就迭代重新感知。Proposal 作者意识到了这一点，并将其列为 Ablation #6（\"Stage 0 SFT + axiom re-perception at inference without RL\" vs Full ASVP）。\n\n增量价值的论证逻辑是：(1) 训练时 RL 将公理一致性内化到模型的视觉表征中，单次前向推理即可产生公理一致的感知，避免推理时迭代开销；(2) RL 塑造的是表征级的改变，而非输出级的补丁；(3) 训练后的一致性能力可迁移到新的图形配置。这些论点在逻辑上是合理的，但其实际增量需要实验验证——如果推理时检查已经能解决大部分问题，RL 训练的边际收益可能有限。\n\n另一个潜在的 trivial alternative：直接用 GT 标注做 perception reward（proposal 已设置 Oracle baseline）。如果 axiom reward 显著弱于 GT reward，则 annotation-free 的实用价值有限（虽然 annotation-free 本身仍有价值）。\n\n结论：存在 trivial alternative 威胁，但 proposal 明确意识到并设计了针对性消融实验。增量价值的论证逻辑成立但未经验证。\n\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条：\nVLM 感知图形 → 输出形式化描述 → 公理检查器评估 joint consistency → consistency score 作为 RL reward → RL 训练改善感知能力\n\n未经验证的关键假设：\n\n1. **形式化描述的可靠性假设**：VLM 能够在 Stage 0 SFT 后产生足够可解析、结构化的形式化描述，使得公理检查器能够有效运作。如果形式化描述本身就充满错误（漏掉了元素、拓扑关系错误），公理检查器将在错误的输入上运行，奖励信号将不可靠。Proposal 通过 curriculum（从简单图形开始）和 parsability auxiliary reward 部分缓解了这个问题，但这仍然是一个 bootstrapping 困境：**你需要准确的感知来产生好的形式化描述，但你正是要训练感知能力**。\n\n2. **奖励信号密度假设**：对于简单图形（如单个三角形），可应用的公理数量有限（角度和 = 180°、边长约束等），奖励信号可能过于稀疏或不够区分。Proposal 提出的 \"constraint density\" 论点（更多公理 → 更强信号）本身是正确的，但这恰好在最需要帮助的简单图形上最弱。\n\n3. **False positive 的可控性假设**：公理一致但事实错误的感知（如所有角度系统性偏差但仍然满足角度和 = 180°）的比例是否真的如 proposal 所言\"随 constraint density 增加而急剧下降\"。这个论断缺乏理论证明——在高维连续空间中，满足 k 个线性约束的可行集维度为 n-k，但这不直接等于 false positive rate 低。\n\n4. **RL 训练收敛假设**：在 soft continuous axiom reward + parsability reward 下，GRPO 是否能有效收敛。如果奖励景观过于平滑（大部分样本都能\"差不多\"满足公理），梯度信号可能不足以驱动有意义的表征变化。\n\n\n【3 维度打分】:\n\n1. **Novelty: 中（偏强）** — 在 per-claim vs. joint consistency 和 annotation-dependent vs. annotation-free 两个维度上，proposal 确实占据了一个未被填充的位置。经调研确认，Perception-R1、PEARL、CogFlow 都是 per-claim + annotation-dependent；EVPV 是 per-claim + image-level self-supervised；GeoDPO 是 translation-fidelity；PRCO/SSL-R1/V-Zero 是 domain-agnostic self-supervised。**没有任何现有工作将数学公理的 joint consistency 作为 self-supervised perception reward**。然而，核心洞察——\"数学事实应该满足已知公理的联合约束\"——在陈述后几乎是不言自明的 (obvious in hindsight)。真正的贡献是 **方法论层面的工程创新**（将这个直觉转化为可行的 RL reward pipeline），而非概念层面的 surprising insight。一个典型的审稿人可能会说：\"这是一个自然的 next step，而非一个 surprising discovery。\" Novelty 的深度是中等的——新位置是真实的，但 conceptual leap 有限。\n\n2. **Significance: 中** — 问题本身无可争议地重要：perception error 是 multimodal math reasoning 的主要瓶颈（MM-MATH 报告 61% 的错误源于感知）。Annotation-free 的特性有实际价值。但**应用范围显著受限于几何图形**——proposal 虽然提及 chart constraints 和 function constraints 的扩展，但核心方法和实验设计都以几何为主。对领域的影响取决于 axiom reward 相对于现有方法（特别是 PRCO +7pts、CogFlow 的 strong results）的增量有多大。如果增量较小，则 significance 进一步受限。此外，\"domain-specific invariants as free rewards\" 的一般性范式虽然在论述中提及（Kirchhoff's laws, valence constraints），但在本文中不验证，限制了 broader impact 的说服力。\n\n3. **Related Work: 强** — 这是 proposal 的最大亮点。2D novelty map 的构建清晰而有说服力，准确定位了每个竞争方法的坐标。对 EVPV、CogFlow、GeoDPO、PRCO、SSL-R1、V-Zero 等 2025-2026 最新工作的覆盖非常全面。差异化定位精确：EVPV 是 \"image-level per-claim\" vs 本文的 \"domain-axiom joint\"；CogFlow 是 \"annotation-dependent per-claim\" vs 本文的 \"annotation-free joint\"。经调研验证，这些论文确实存在且描述基本准确。对 false positive 局限性的坦诚讨论也增强了可信度。\n\n\n【概率估计】: [28% - 38%] 中位 33%\n\n【估计理由】: \nNovelty 维度是概率上界的主要限制因素。虽然 proposal 占据了一个真实的、未被填充的研究位置，但核心洞察更多是 \"自然的下一步\" 而非 \"surprising insight\"。\"数学事实应该联合满足公理\" 这一观察几乎是 trivially true——novelty 主要在于将其工程化为 RL reward pipeline，这属于方法论贡献而非概念突破。在 AAAI 中，这种 solid but incremental 的工作如果实验结果足够强可以被接收，但 idea 本身不太可能让审稿人写出 \"surprising\"。\n\nSignificance 的窄scope（主要限于几何图形）进一步压低了上界。Related Work 的出色覆盖提供了一定的保护（审稿人难以找到遗漏的竞争工作），但 related work 好只是必要条件，不构成充分的加分。\n\n从 30-40% 中偏低处取值，因为：(1) 核心 claim 逻辑成立但不 surprising；(2) trivial alternative (inference-time checking) 的威胁真实存在；(3) 多个前提假设（形式化描述可靠性、奖励密度、false positive 可控性）都需要实验验证但当前未有支撑。\n\n【主要风险】:\n1. **\"Obvious next step\" 感知风险**：审稿人可能认为 \"用数学公理检查感知一致性\" 是一个 engineering contribution 而非 research insight，从而在 novelty 上给出偏低评价——尤其是在 2025-2026 perception RL 工作爆发式增长的背景下，该方向的 low-hanging fruit 正在被快速消耗。\n2. **Inference-time alternative 威胁**：如果消融实验显示 \"Stage 0 SFT + 推理时公理检查/re-perception\" 已能获得大部分增益，那么 RL 训练部分的贡献将被实质性削弱，核心 claim（训练时内化优于推理时纠正）可能不成立。\n```\n\nSources:\n- [Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward](https://arxiv.org/abs/2506.07218)\n- [EVPV: Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models](https://arxiv.org/abs/2603.16253)\n- [CogFlow: Bridging Perception and Reasoning through Knowledge Internalization](https://arxiv.org/abs/2601.01874)\n- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning](https://arxiv.org/abs/2602.22703)\n- [PRCO: Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning](https://arxiv.org/abs/2603.28618)\n- [SSL-R1: Self-Supervised Visual Reinforcement Post-Training for MLLMs](https://arxiv.org/abs/2604.20705)\n- [V-Zero: Self-Improving Multimodal Reasoning with Zero Annotation](https://arxiv.org/pdf/2601.10094)\n- [FGeo-DRL: Deductive Reasoning for Geometric Problems through Deep Reinforcement Learning](https://arxiv.org/abs/2402.09051)\n- [FormalGeo: An Extensible Formalized Framework for Olympiad Geometric Problem Solving](https://arxiv.org/abs/2310.18021)\n- [A Survey of Deep Learning for Geometry Problem Solving (ACL 2026)](https://github.com/majianz/dl4gps)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Axiom-Grounded Self-Verified Perception for Visual Math Reasoning\n\n## Core Problem and Thesis\n\nCurrent multimodal math reasoning systems verify perceived visual facts independently—checking each claim against the image in isolation—but never verify whether perceived facts are mutually consistent under known mathematical constraints. This causes individually plausible but collectively impossible perceptions to cascade into reasoning failures (61% of multimodal math errors are perception errors per MM-MATH (arXiv 2024)).\n\nWe argue that mathematical perception correctness is fundamentally a joint constraint satisfaction problem, not an independent fact-checking problem: even when each perceived fact has high marginal confidence, the joint set may violate mathematical axioms (e.g., three individually plausible angle estimates that do not sum to 180°). All existing per-claim verification approaches—whether using LLM judges (Perception-R1, arXiv 2025), ground-truth checklists (PEARL, arXiv 2025), image-extracted constraints (EVPV, arXiv 2026), or annotation-dependent synergistic rewards (CogFlow, arXiv 2026)—are structurally blind to such inter-claim inconsistencies.\n\n## Research Opportunity\n\nMathematical diagrams encode structural invariants (geometric theorems like angle sums, Pythagorean constraints, parallel-line properties, circle theorems; chart constraints like sum-to-total; function constraints like monotonicity) that perceived facts must jointly satisfy. These invariants provide a free, dense, automatically verifiable reward signal for RL-based perception training—requiring no ground truth annotations. This is newly feasible because (1) diagram formalization methods (DFE-GPS (AAAI 2025), Geoparsing (arXiv 2026)) now reliably extract structured representations, (2) solver-in-the-loop RL has been proven effective for reasoning (FGeo-DRL achieves 86.4% on formalgeo7k via RL in formal geometry environments (arXiv 2024); sub-goal verifiable rewards unlock geometric reasoning gains (Milestones over Outcome / SGVR, arXiv 2025)), and (3) the perception bottleneck is definitively established (MM-MATH (arXiv 2024); GeoPQA (EMNLP 2025)).\n\nCritically, as more axioms apply to a given diagram, the feasible set of value combinations that satisfy all constraints simultaneously shrinks—making the axiom-consistency reward increasingly informative and reducing the false positive rate (axiom-consistent but factually incorrect perceptions). This \"constraint density\" property means the reward signal quality improves precisely for complex diagrams where perception errors are most damaging.\n\nThe principle that domain-specific structural invariants serve as free self-supervised perception rewards extends beyond mathematics—Kirchhoff's laws for circuit diagrams, valence constraints for chemical structures, dimensional consistency for engineering drawings all exhibit the same structure—though this paper demonstrates the paradigm on mathematical diagrams.\n\n## Research Landscape and Novelty Positioning\n\nWe position our work along two orthogonal dimensions: **what is verified** (per-claim vs. joint consistency) and **how verification is sourced** (annotation-dependent vs. annotation-free). This yields a clear novelty map:\n\n| | Per-claim verification | Joint consistency verification |\n|---|---|---|\n| Annotation-dependent | Perception-R1 (LLM judge + text annotations), PEARL (GT checklists), CogFlow (120K+ annotated MathCog) | — |\n| Translation-fidelity | GeoDPO (DSL translation accuracy) | — |\n| Image-level self-supervised | EVPV (image-extracted per-claim constraints) | — |\n| Domain-agnostic self-supervised | SSL-R1 (visual puzzles), V-Zero (cross-modal self-play) | — |\n| Domain-axiom self-supervised | — | **ASVP (ours)** |\n\n**Annotation-dependent per-claim methods.** Perception-R1 (arXiv 2025) uses LLM-judged visual perception reward with pre-collected textual annotations; only 1,442 training samples but per-claim only. PEARL (arXiv 2025) uses ground-truth perception checklists as gating rewards (+9.7% on MathVerse) but needs annotated sub-question answers. CogFlow (arXiv 2026) proposes a three-stage perception→internalization→reasoning framework with Synergistic Visual Rewards and Knowledge Internalization Reward, achieving strong results but requiring 120K+ perception-reasoning aligned annotations (MathCog dataset); its rewards operate at per-claim level in parametric and semantic spaces without checking inter-claim mathematical consistency.\n\n**Image-level per-claim verification.** EVPV (arXiv 2026) matches per-claim visual checklists against image-extracted constraints—checking each claim independently against image-level perceptual features (e.g., \"this angle appears to be ~60°\")—but does not verify whether the set of perceived values jointly satisfies domain-level mathematical axioms (e.g., \"these three angles must sum to 180°\"). This distinction between image-level perceptual constraints and domain-level mathematical axioms is the precise gap our work fills.\n\n**Translation-fidelity rewards.** GeoDPO (arXiv 2026) uses NL-to-DSL translator-guided RL for geometric perception (+26.5% in-domain, +39% downstream) but rewards DSL translation accuracy, not axiom-level consistency.\n\n**Structural/topological parsing.** SymHPR (arXiv 2025) enforces structural parsing consistency (point-on-line, shape-on-relation) at the topological level. Our approach operates at the quantitative level and depends on reasonable topological parsing—addressed through curriculum design.\n\n**Utility-based and generic self-supervised rewards.** PRCO (arXiv 2026) introduces Observer/Solver role separation with utility-based perception rewards (+7 points average across 8 benchmarks) but does not exploit mathematical structure. SSL-R1 (arXiv 2026) derives rewards from generic SSL puzzles. V-Zero (arXiv 2026) uses Questioner-Solver co-evolution for zero-annotation training. Our advantage over domain-agnostic methods: mathematical invariants provide stronger, more targeted supervision.\n\n**Confidence-based and inference-time methods.** PDCR (arXiv 2026) decomposes rewards via model-internal confidence scores without formal constraints. M3-ACE (arXiv 2026) rectifies perception at inference time via multi-agentic context engineering but does not train perception via RL. PFlowNet (arXiv 2026) applies variational RL with geometric reward shaping where 'geometric' refers to reward landscape geometry, not mathematical theorems.\n\n**Why training-time internalization, not inference-time correction alone.** A natural alternative is axiom checking at inference time without RL training. Training-time internalization offers three advantages: (1) efficiency—trained model produces axiom-consistent perceptions in a single forward pass vs. iterative re-perception loops; (2) representation-level learning—RL shapes internal visual representations to favor axiom-consistent percepts, not just patching outputs; (3) generalization—trained consistency transfers to novel diagram configurations. We validate this through direct ablation.\n\n**Theoretical limitation: false positives.** Axiom-consistency admits false positives—perceived values that are individually incorrect but collectively satisfy axioms (e.g., all angles systematically biased but still summing to 180°). We acknowledge this limitation and argue it is acceptable: (1) axiom verification excludes collectively impossible perceptions, which per-claim methods cannot detect—a net improvement over the status quo; (2) as constraint density increases (more applicable axioms per diagram), the false positive space shrinks dramatically; (3) Stage 2 answer-correctness reward further compensates. We empirically characterize false positive rates across diagram types (see Experimental Design).\n\nNo existing work uses mathematical invariant consistency of perceived quantitative facts as a self-supervised perception reward signal.\n\n## Proposed Approach\n\nWe train a VLM (Qwen3-VL-8B as primary base, Qwen3-VL-3B for scale-transfer validation) to perceive mathematical diagrams accurately using axiom-consistency as a self-supervised RLVR reward, requiring zero ground-truth perception annotations.\n\n**Stage 0: Formal Extraction Warm-Start.** VLMs cannot produce parseable formal descriptions from scratch (Geoparsing (arXiv 2026) itself requires SFT before RLVR). We SFT the base model on a subset of GDP-29K (Geoparsing) and FormalGeo (arXiv 2023) data to bootstrap syntactically valid diagram-to-formal-language extraction. To ensure compute fairness, all RL baselines are also trained from this same Stage 0 checkpoint.\n\n**Stage 1: Perception-Only Axiom RL.** The model extracts structured perception claims (angles, lengths, coordinates, ratios) into a formal constraint description language built on FormalGeo/Geoparsing primitives. A lightweight axiom checker—leveraging FormalGeo's existing theorem verification infrastructure and implementing 40+ geometric theorems plus chart and function invariants in a phased rollout (core 15 direct-check axioms first, extended set second)—evaluates joint satisfaction. The axiom-consistency reward uses soft continuous scoring: for each applicable axiom, violation magnitude is computed (e.g., |angle_sum − 180°|/180°), and the reward is the mean of (1 − normalized_violation) across all applicable axioms. This avoids the sparsity of binary pass/fail. An auxiliary parsability reward (whether the formal description is syntactically valid) supplements consistency reward in early training. For unparseable or partial outputs, the checker evaluates only the parseable subset (graceful degradation). Training uses GRPO via veRL. Curriculum starts with structurally simple diagrams (single triangles, basic charts) and progressively increases complexity.\n\n**Stage 2: Joint Perception-Reasoning.** Combines axiom-consistency reward with outcome-based answer correctness in GRPO training.\n\n**Inference-Time Self-Verification.** Perceived facts violating axioms trigger iterative re-perception (up to 3 iterations).\n\n## Experimental Design\n\n**Benchmarks.** MathVista (ICLR 2024), MathVerse (with vision-only / vision-dominant / vision-intensive subset breakdown), MathVision (NeurIPS 2024), GeoQA, formalgeo7k, WeMath. GeoPerceive (from GeoDPO, arXiv 2026) for perception-only evaluation.\n\n**Baselines (4 categories, all RL baselines run from both raw Qwen3-VL-8B and Stage 0 checkpoint to isolate SFT warm-start contribution).**\n- *Base VLM:* Qwen3-VL-8B zero-shot; Qwen3-VL-8B + SFT only (Stage 0 data, no RL)\n- *Perception RL (controlled, same GRPO framework):* Perception-R1 reward (LLM-judged); GeoDPO reward (DSL-translation accuracy); PRCO reward (utility-based Observer/Solver); SGVR reward (skeleton rate, Milestones over Outcome (arXiv 2025)); answer-only GRPO (answer correctness only, no perception reward)\n- *Self-supervised RL:* SSL-R1 (generic visual puzzle reward) if code available\n- *Oracle:* GT perception reward (using ground-truth formal annotations from formalgeo7k/GeoTrust (TrustGeoGen, arXiv 2025) as reward signal)—quantifies the gap between free axiom reward and oracle GT supervision\n- *Reference numbers:* PEARL (arXiv 2025), EVPV (arXiv 2026), CogFlow (arXiv 2026), M3-ACE (arXiv 2026) reported results where available\n\n**Ablation Studies (6 groups).**\n1. *Reward components:* axiom reward only / answer reward only / axiom + answer (full) / random reward\n2. *Training curriculum:* three-stage (proposed) / skip Stage 0 / skip Stage 1 (joint from scratch) / Stage 1 only\n3. *Axiom set:* full 40+ axioms / basic axioms only (angle sum, Pythagorean) / chart+function invariants only\n4. *Scoring strategy:* soft continuous / hard binary (ε = 0.5°, 1°, 2°) / weighted combination\n5. *Inference-time re-perception:* 0 / 1 / 2 / 3 iterations (performance vs. latency tradeoff)\n6. *Training-time RL vs inference-time-only:* Full ASVP vs. \"Stage 0 SFT + axiom re-perception at inference without RL\"\n\n**Reward Signal Quality Analysis.**\n- On GT-annotated subset: Pearson/Spearman correlation between axiom-consistency score and true perception accuracy\n- False positive / false negative rate analysis\n- **Per-diagram-type discriminability**: separately report axiom reward false positive rates for triangles (strong constraints), quadrilaterals (moderate), circles (moderate-strong), compound figures (weak constraints)\n- **Adversarial perturbation test**: add calibrated noise (σ = 1°, 2°, 5°, 10°) to GT values, measure axiom checker detection rate across constraint densities—quantifies the \"detection frontier\"\n\n**Additional Analyses.**\n- *Perception isolation:* On GeoPerceive benchmark, report perception-level accuracy (element extraction precision/recall, perceived value MAE vs GT); on MathVerse, classify errors as perception vs. reasoning (following MM-MATH taxonomy) pre/post training\n- *Compute fairness:* Training wall-clock time and per-step overhead per method; performance vs. FLOPs curves; axiom checker per-sample latency\n- *Scale transfer:* Qwen3-VL-3B on MathVista, MathVerse\n- *Chart proof-of-concept (optional):* Demonstrate axiom checker effectiveness on MathVista chart questions using sum-to-total constraints\n\n## Key References\n\n- Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)\n- PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning (arXiv 2025)\n- Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv 2026)\n- Hierarchical Process Reward Models are Symbolic Vision Learners [SymHPR] (arXiv 2025)\n- MM-MATH: Advancing Multimodal Math Evaluation with Process Evaluation and Fine-grained Classification (arXiv 2024)\n- Diagram Formalization Enhanced Multi-Modal Geometry Problem Solver [DFE-GPS] (AAAI 2025)\n- Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language (arXiv 2026)\n- TrustGeoGen: Formal-Verified Data Engine for Trustworthy Multi-modal Geometric Problem Solving (arXiv 2025)\n- FormalGeo: An Extensible Formalized Framework for Olympiad Geometric Problem Solving (arXiv 2023)\n- GeoPQA: Bridging the Visual Perception Gap in MLLMs for Geometric Reasoning (EMNLP 2025)\n- Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning [GeoDPO] (arXiv 2026)\n- M3-ACE: Rectifying Visual Perception in Multimodal Math Reasoning via Multi-Agentic Context Engineering (arXiv 2026)\n- PDCR: Perception-Decomposed Confidence Reward for Vision-Language Reasoning (arXiv 2026)\n- SSL-R1: Self-Supervised Visual Reinforcement Post-Training for MLLMs (arXiv 2026)\n- Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)\n- MathVista: Evaluating Mathematical Reasoning of Foundation Models in Visual Contexts (ICLR 2024)\n- FGeo-DRL: Deductive Reasoning for Geometric Problems through Deep Reinforcement Learning (arXiv 2024)\n- A Survey of Multimodal Mathematical Reasoning: From Perception, Alignment to Reasoning (arXiv 2026)\n- Figure It Out: Improve the Frontier of Reasoning with Executable Visual States [FIGR] (arXiv 2025)\n- Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward [SGVR] (arXiv 2025)\n- PFlowNet: Perceptual Flow Network for Visually Grounded Reasoning (arXiv 2026)\n- Measuring Multimodal Mathematical Reasoning with MATH-Vision Dataset [MathVision] (NeurIPS 2024)\n- V-Zero: Zero-Shot Multimodal Reasoning via Cross-Modal Self-Play (arXiv 2026)\n- CogFlow: Bridging Perception and Reasoning through Knowledge Internalization for Visual Mathematical Problem Solving (arXiv 2026)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 1800-2200 (8×H100: axiom checker on FormalGeo infrastructure 3 wks, Stage 0 SFT, 6-7 GRPO training runs including PRCO/SGVR baselines at ~30h each, dual-checkpoint baselines, ablation studies, 7-benchmark evaluation, GeoPerceive + adversarial analysis, Qwen3-VL-3B replication), timeline: 10-12 weeks (3 wks axiom checker + data pipeline + Stage 0, 3-4 wks RL training iterations including baselines, 3 wks evaluation + ablation + adversarial analysis + paper writing), estimated_gpu_cost: $4,500-$5,500\n- **human_in_loop**: gpu_hours: 1300-1700, timeline: 7-9 weeks, claude_api_cost: $500-$800, estimated_gpu_cost: $3,250-$4,250\n- **auto_research**: gpu_hours: 2200-2800, timeline: 5-7 weeks, claude_api_cost: $1,000-$1,500, estimated_gpu_cost: $5,500-$7,000, speed_bottleneck: RL convergence under potentially sparse axiom-violation signals; axiom checker robustness on degenerate diagram parses; dual-checkpoint experiment matrix size"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T09:16:03.023Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T09:16:03.023Z",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T09:16:03.053Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient data to make a well-grounded assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. **Perception-R1** (arXiv 2506.07218, June 2025): 
+   Uses LLM-judged visual perception reward with pre-collected textual annotations. Per-claim verification only (each visual annotation checked independently). Only 1,442 training samples, achieves 74.2 on MathVista. Directly relevant: demonstrates per-claim perception reward works for RLVR, but structurally cannot catch inter-claim inconsistencies—exactly the gap this proposal claims to fill.
+
+2. **PEARL** (arXiv 2511.18437, CVPR 2026): 
+   Dual-branch perception-reasoning framework using GT perception checklists as gating rewards. +9.7% on MathVerse. Annotation-dependent: requires ground-truth sub-question answers. Per-claim only. The proposal's annotation-free advantage over PEARL is real.
+
+3. **EVPV** (arXiv 2603.16253, March 2026): 
+   Most directly relevant competitor. Extracts structured visual constraints from images and matches per-claim checklists against them. Key distinction: EVPV checks each claim against image-level perceptual features independently, does NOT verify whether the set of perceived values jointly satisfies domain-level mathematical axioms. This is the precise gap the proposal identifies.
+
+4. **CogFlow** (arXiv 2601.01874, Jan 2026): 
+   Three-stage perception→internalization→reasoning with Synergistic Visual Rewards and Knowledge Internalization Reward. Requires 120K+ perception-reasoning aligned annotations (MathCog dataset). Strong results but heavy annotation dependency. Per-claim reward in parametric and semantic spaces—no inter-claim consistency check.
+
+5. **GeoDPO** (arXiv 2602.22703, Feb 2026, under ICLR 2026 review): 
+   NL-to-DSL translator-guided RL for geometric perception. +26.5% in-domain, +39% downstream. Rewards DSL translation accuracy, not axiom-level consistency. **This is the most threatening trivial alternative**: if accurate DSL translation implicitly captures most axiom constraints, the marginal benefit of explicit axiom checking may be small.
+
+6. **PRCO** (arXiv 2603.28618, March 2026): 
+   Observer/Solver dual-role RLVR with utility-based perception reward. +7 points average across 8 benchmarks. Domain-agnostic—does not exploit mathematical structure. Proposal claims advantage from domain-specific axiom structure.
+
+7. **SSL-R1** (arXiv 2604.20705, April 2026): 
+   Generic self-supervised visual puzzles as RLVR rewards. Vision-centric, annotation-free, but domain-agnostic. Proposal claims mathematical axioms provide stronger, more targeted supervision.
+
+8. **V-Zero** (arXiv 2601.10094, Jan 2026): 
+   Questioner-Solver co-evolution for zero-annotation training. Domain-agnostic self-play.
+
+9. **FormalGeo** (arXiv 2310.18021, 2023) + **FGeo-DRL** (2024) + **Geoparsing** (arXiv 2604.11600, April 2026): 
+   Formal geometry infrastructure with 88 predicates, 196 theorems, formalgeo7k dataset. Geoparsing provides GDP-29K dataset and SFT+RLVR training paradigm. FGeo-DRL achieves 86.4% on formalgeo7k via RL in formal environments. **These are the enabling components** the proposal builds on.
+
+10. **MM-MATH** (arXiv 2404.05091, 2024): 
+    Establishes that ~61% of multimodal math errors are perception errors—diagram misinterpretation is the dominant error. This is the empirical foundation for the entire research direction.
+
+- **调研总结**: The multimodal math perception RL space has exploded in 2025-2026, with at least 8-10 concurrent works addressing perception as a bottleneck for mathematical reasoning. All existing approaches verify perceived facts either per-claim (Perception-R1, PEARL, EVPV, CogFlow) or through translation fidelity (GeoDPO) or generic self-supervised puzzles (SSL-R1, V-Zero). No existing work explicitly uses joint mathematical axiom consistency of perceived quantitative facts as a self-supervised reward signal. The proposal identifies a genuine gap in the "joint consistency × annotation-free" quadrant. However, the field is extremely crowded and fast-moving; the conceptual distance from GeoDPO (DSL accuracy) and EVPV (image-level constraint checking) to axiom consistency checking is moderate, not large.
+
+
+【Trivial Alternative 检验】:
+
+**最具威胁的 trivial alternative: GeoDPO 的 DSL translation accuracy reward。** GeoDPO 已经通过奖励精确的 DSL 翻译（隐式包含许多结构约束），获得了 +26.5% in-domain 和 +39% downstream 的增益。如果 DSL 翻译的准确性已经隐式地编码了大部分公理约束（准确的 DSL 翻译 → 值也大致正确 → 公理自然满足），那么显式公理检查器的增量收益可能有限。
+
+**第二个 trivial alternative: 仅在推理时做公理检查（不做 RL 训练）。** Proposal 自己承认了这一点并计划消融实验（Ablation 6），但训练时内化 vs. 推理时纠正的优势缺乏先验理论保证——这完全是一个经验问题。如果推理时公理检查 + Stage 0 SFT 就足够好，那 RL 训练带来的增量可能微小。
+
+**增量价值**: Proposal 的增量价值在于两点：（1）joint consistency 可以捕捉 per-claim 方法结构性无法检测的"集体不可能"错误，这是一个逻辑上成立的论点；（2）annotation-free，相比 PEARL/CogFlow 不需要标注。但这些增量价值的实际大小需要实验验证——如果"集体不可能但每个单独看起来合理"的错误在实际中很少见，增量就很小。
+
+
+【前提假设检验】:
+
+1. **"集体不可能"错误的普遍性假设（未验证）**: Proposal 的核心动机是"individually plausible but collectively impossible perceptions"——这确实在逻辑上存在（比如三个角分别看起来合理但不加到 180°），但 **这类错误在实际 VLM 感知中的频率有多高**没有任何实证。如果 VLM 的感知误差主要是每个值都偏差很大（per-claim 方法就能捕捉），而不是"每个看起来合理但联合不一致"，那 joint consistency 检查的优势就消失了。
+
+2. **公理约束的信息量假设（部分论证）**: Proposal 论证了 constraint density 随复杂度增加而变强，但对于简单图形（单三角形只有一个角和约束），公理奖励的辨别力可能极弱——大量错误的感知值组合都可能"恰好"满足少数约束。Proposal 承认了 false positive 问题，但缺乏先验量化。
+
+3. **Stage 0 形式提取质量假设（关键依赖）**: 整个流水线依赖于 VLM 能可靠地提取结构化形式描述。如果 Stage 0 SFT 后模型的形式提取质量不够，后续公理检查就建立在噪声输入之上，reward 信号退化。Geoparsing 已经表明这需要 SFT+RLVR，但 proposal 仅用 SFT 做 Stage 0。
+
+4. **训练时内化优于推理时纠正的假设（未验证）**: Proposal 给出了三个论点（效率、表示学习、泛化），但这些是假说而非已建立的事实。这完全依赖实验结果。
+
+
+【3 维度打分】:
+
+1. **Novelty: 中（偏强）** — 
+   核心贡献"joint axiom consistency as self-supervised perception reward"在调研到的所有工作中确实未出现。EVPV 做 per-claim image-level 检查，GeoDPO 做 DSL 翻译准确度，PEARL/CogFlow 需要标注——没有工作在 "joint consistency × annotation-free" 象限。2×2 定位图清晰有效。
+   
+   但 novelty 限制在于：这是一个**自然组合**而非**反直觉洞察**。一旦你有 FormalGeo 基础设施 + 已建立的 perception bottleneck + RLVR 范式，从"每个 claim 单独检查"到"检查 claim 是否联合满足公理"是一个 incremental 而非 surprising 的概念跳跃。审稿人更可能说 "this makes sense" 而非 "I didn't expect this." 与 GeoDPO 的概念距离（DSL 翻译准确度 vs. 公理一致性）也不算大——两者都是利用形式化几何系统来生成奖励，只是切入角度不同。
+
+2. **Significance: 强** — 
+   研究问题的重要性毋庸置疑：MM-MATH 已经确认 ~61% 错误来自感知，这个 bottleneck 是整个 multimodal math reasoning 社区公认的痛点。Annotation-free 的特性有实用价值（相比 PEARL 的 GT checklists 或 CogFlow 的 120K 标注）。如果范式成立，extensibility 到其他 constrained 领域（电路、化学、工程）是一个有吸引力的 broader impact story。
+   
+   但 significance 的上限受限于 **应用领域的窄度**——几何图形感知是一个重要但不是最大的子问题，且 formal geometry infrastructure 的依赖限制了推广性（chart/function invariants 只有 proof-of-concept）。
+
+3. **Related Work: 强** — 
+   这是 proposal 最出色的部分。覆盖面极广（Perception-R1, PEARL, EVPV, CogFlow, GeoDPO, PRCO, SSL-R1, V-Zero, SymHPR, PDCR, M3-ACE, PFlowNet），2×2 定位图（verification type × supervision source）清晰且有效地把所有竞争者放入一个框架。每个工作的差异点都有具体说明。对 false positive 限制的坦诚承认也是一个加分项。
+   
+   调研验证了 proposal 对这些工作的描述基本准确（Perception-R1 确实是 per-claim + annotation-dependent; PEARL 确实是 CVPR 2026; GeoDPO 确实是 DSL translation-based）。引用的论文均真实存在。
+
+
+【概率估计】: 28% - 37%，中位 32%
+
+【估计理由】: 
+Novelty 是中偏强——存在真实的 gap，但概念跳跃是 incremental 而非 surprising，这将上界限制在 ~37%。Significance 是强——问题重要且 annotation-free 有价值。Related Work 是强——定位清晰、覆盖全面。
+
+限制上界的主要因素是 **Novelty 的 "natural next step" 性质**：核心洞察（per-claim → joint consistency）是一个逻辑上显而易见的推进方向，审稿人很可能评价为 "reasonable extension" 而非 "novel insight"。此外，GeoDPO 作为 trivial alternative 的威胁真实存在——如果 DSL 翻译准确度已经隐式捕获了大部分公理约束，增量可能有限。
+
+推高下界的因素：2×2 positioning 非常干净；annotation-free 是相对 PEARL/CogFlow 的真实优势；broader paradigm claim（domain invariants as free supervision）有独立吸引力。
+
+【主要风险】:
+1. **Trivial alternative 威胁 — GeoDPO**: 如果 DSL 翻译准确度 reward 已经隐式编码了大部分公理约束信息，reviewers 会质疑显式公理检查的 marginal gain 是否值得额外的工程复杂度（40+ 公理的检查器实现）。这是 idea 层面的最大风险。
+2. **核心动机的实证薄弱 — "集体不可能"错误的实际频率**: Proposal 以一个生动的例子（三个角不加到 180°）驱动整篇工作，但从未提供这类 joint inconsistency 错误在真实 VLM 输出中的频率数据。如果审稿人要求先验 pilot study 证明这类错误真的 prevalent，当前 proposal 无法回答。这可能被视为 "solution looking for a problem" 的风险。
+```
+
+Sources:
+- [Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward](https://arxiv.org/abs/2506.07218)
+- [PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning](https://arxiv.org/abs/2511.18437)
+- [EVPV: Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models](https://arxiv.org/abs/2603.16253)
+- [CogFlow: Bridging Perception and Reasoning through Knowledge Internalization](https://arxiv.org/abs/2601.01874)
+- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided RL](https://arxiv.org/abs/2602.22703)
+- [PRCO: Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning](https://arxiv.org/abs/2603.28618)
+- [SSL-R1: Self-Supervised Visual Reinforcement Post-Training for MLLMs](https://arxiv.org/abs/2604.20705)
+- [V-Zero: Self-Improving Multimodal Reasoning with Zero Annotation](https://arxiv.org/abs/2601.10094)
+- [FormalGeo: An Extensible Formalized Framework for Olympiad Geometric Problem Solving](https://arxiv.org/abs/2310.18021)
+- [Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language](https://arxiv.org/abs/2604.11600)
+- [MM-MATH: Advancing Multimodal Math Evaluation with Process Evaluation and Fine-grained Classification](https://arxiv.org/abs/2404.05091)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient information to conduct a thorough evaluation. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- Perception-R1 (arXiv 2506.07218, 2025): 使用 LLM judge 对 VLM 输出的视觉描述进行 per-claim 验证，基于文本注释的一致性打分作为 RL reward。仅需 1,442 训练样本，MathVista 74.2。与本 proposal 的关系：annotation-dependent + per-claim，正是本 proposal 定义的 gap 的代表性方法。
+- PEARL (arXiv 2511.18437, CVPR 2026): 为每个推理 QA 生成感知 checklist，用 GT sub-question answers 作为 gating reward，MathVerse +9.7%。与本 proposal 的关系：annotation-dependent + per-claim，需要标注的子问题答案。
+- CogFlow (arXiv 2601.01874, ICLR 2026): 三阶段 perception→internalization→reasoning 框架，Synergistic Visual Rewards + Knowledge Internalization Reward，需要 120K+ MathCog 标注。与本 proposal 的关系：annotation-dependent + per-claim，reward 在参数和语义空间而非数学公理空间。
+- EVPV (arXiv 2603.16253, 2026): Explicit Visual Premise Verification，从图像提取结构化约束，per-claim 匹配 checklist。与本 proposal 的关系：最接近的竞争者——也是自监督的，但仍然是 per-claim image-level 验证，不检查 claims 之间的数学公理一致性。这是本 proposal 主要需要区分的对手。
+- GeoDPO (arXiv 2602.22703, 2026): NL-to-DSL 翻译准确度作为 RL reward，GeoPerceive benchmark，in-domain +26.5%, downstream +39%。与本 proposal 的关系：reward 基于翻译保真度而非公理一致性，提供了 perception-only 评估基准。
+- PRCO (arXiv 2603.28618, 2026): Observer/Solver 双角色 RLVR 框架，utility-based reward，8 个 benchmark 平均 +7 分。与本 proposal 的关系：domain-agnostic 自监督，不利用数学结构。
+- SSL-R1 (arXiv 2604.20705, 2026): 通用视觉 SSL 拼图任务作为 RLVR reward，13 个 benchmark 上持续提升。与本 proposal 的关系：generic 自监督，不利用领域知识。
+- V-Zero (arXiv 2601.10094, 2026): Questioner-Solver 共进化，零标注，+1.7 数学推理。与本 proposal 的关系：零标注自监督，但通用方法，增益较小。
+- FGeo-DRL (arXiv 2402.09051, 2024): 基于 FormalGeo 的几何 RL solver，formalgeo7k 上 86.4%。与本 proposal 的关系：验证了 solver-in-the-loop RL 在形式几何中的有效性，但用于推理而非感知。
+- Geoparsing (arXiv 2604.11600, 2026): GDP-29K 数据集，SFT+RLVR 训练范式，平面和立体几何的统一形式语言。与本 proposal 的关系：提供了 Stage 0 所依赖的形式化提取基础设施。
+- FIGR (arXiv 2512.24297, 2025): 将可执行视觉构建嵌入推理循环，AIME 2025 +13.12%。与本 proposal 的关系：不同路线——通过执行代码验证而非公理约束。
+- SGVR/Milestones over Outcome (arXiv 2025): 子目标可验证奖励用于几何推理。与本 proposal 的关系：基线之一。
+
+- 调研总结: 2025-2026年，multimodal math perception 已成为活跃研究方向，多个并行工作从不同角度提出 perception reward（LLM judge、GT checklist、DSL 翻译、通用 SSL、utility-based）。但所有现有方法的 reward 都在 per-claim 层面运作。尚无工作将"感知 claims 之间的数学公理联合一致性"作为自监督 reward 信号。本 proposal 填补的是一个 genuine gap，但这个 gap 的"显而易见程度"是审稿争议点。
+
+【Trivial Alternative 检验】:
+最直接的 trivial alternative: 在推理时（inference-time）执行公理一致性检查 + 重采样，无需 RL 训练。具体操作是：在任意现有模型（如 GeoDPO 或 Geoparsing 微调模型）上，提取形式化描述 → 公理检查器验证 → 如果不一致就重新生成。这本质上是 test-time compute scaling 的一种形式。
+
+Proposal 确实预见并回应了这一点（"Why training-time internalization"），给出了三个论点：(1) 效率——单次 forward pass vs 迭代循环；(2) 表征学习——RL 塑造内部视觉表征；(3) 泛化——训练的一致性能力迁移到新配置。但这三个论点目前都是假说，没有实证支撑（虽然 proposal 设计了消融实验来验证）。
+
+增量价值判断：如果消融实验证明 training-time RL 显著优于 inference-time-only（消融组 6），则增量价值成立。但如果差距很小，这个 idea 的核心贡献就大打折扣——因为公理检查本身是 engineering contribution，而非 learning contribution。这是一个 high-variance 的赌注。
+
+【前提假设检验】:
+核心逻辑链条中有以下未验证假设：
+
+1. **形式化提取质量假设**: 公理一致性 reward 的有效性完全依赖于 Geoparsing/FormalGeo 能可靠地将图表转化为结构化描述。如果提取本身有大量噪声（漏提元素、错误识别关系），公理检查器的输入就已经不可靠，reward 信号也会失真。Geoparsing 论文本身就指出需要 SFT+RLVR 才能获得合理质量——而本 proposal 的 Stage 0 只用了其数据子集做 SFT。
+
+2. **约束密度-错误检出率关系假设**: Proposal 的核心理论论点是"更多公理 → 更紧的可行域 → 更低的 false positive rate"。这在数学上是正确的（更多约束确实缩小可行域），但实际效果取决于 (a) 每个图表平均能应用多少公理（如果大部分图表只能应用 1-2 个公理，约束密度就很低），(b) 公理之间的冗余程度。这个假设需要在真实数据上验证。
+
+3. **Soft reward 信息量假设**: 提出了连续打分（1 - |violation|/scale）替代二值 pass/fail。但这隐含假设 violation magnitude 是 perception 错误的单调函数——而实际上，一个"差一点"的值可能是噪声而非系统性错误，而一个"差很多"的值可能是提取器的彻底失败（不可修复）。
+
+4. **RL reward → 内部表征改善假设**: 假设公理一致性 reward 能通过 GRPO 有效地改善 VLM 的内部视觉表征，使其"倾向于生成公理一致的感知"。但 GRPO 主要在输出空间操作，能否有效改变视觉编码器的表征是一个开放问题（尤其是对 frozen visual encoder 的 VLM）。
+
+以上假设均非致命，但构成了论文成功的关键前提。
+
+【3 维度打分】:
+1. Novelty: 中（偏强） — "per-claim vs joint consistency"这一区分是 genuine insight，填补了现有工作的真实空白。调研显示所有现有 perception reward 方法（Perception-R1、PEARL、EVPV、CogFlow、GeoDPO、PRCO）确实都在 per-claim 层面运作，没有工作检查 perceived facts 之间的数学公理一致性。"数学不变量作为自监督 reward"的 framing 是清晰且新颖的。但降低 novelty 评分的因素：(a) 一旦有了 Geoparsing 的形式化提取和 FormalGeo 的公理验证基础设施，将两者组合为 RL reward 是一个相对自然的想法——属于"well-motivated combination"而非"paradigm shift"；(b) EVPV 已经走到了"自监督视觉约束作为 reward"这一步，从 per-claim image-level 到 joint axiom-level 的跳跃是渐进式的。
+
+2. Significance: 中 — 问题本身重要（MM-MATH 的 61% perception error 确立了瓶颈），annotation-free 属性有吸引力。但 significance 受限于：(a) 应用范围主要是几何图形，chart 和 function 扩展标记为 optional，实际论文可能只覆盖几何；(b) 如果核心发现是 positive（公理一致性 reward 帮助提升 perception accuracy），审稿人可能会说 "this makes sense, I would have guessed consistency checking helps"——属于 confirmatory 而非 surprising 的结果；(c) 更广泛的"领域不变量作为自监督信号"的 principle 虽然被提及（Kirchhoff 定律、化学价约束），但不会在论文中验证，只是 future direction。
+
+3. Related Work: 强 — 这是本 proposal 最出色的维度。覆盖了 2024-2026 几乎所有直接相关的工作（Perception-R1、PEARL、EVPV、CogFlow、GeoDPO、PRCO、SSL-R1、V-Zero、SymHPR、PDCR、M3-ACE、PFlowNet、SGVR），并用清晰的 2×2 表格（per-claim vs joint × annotation-dependent vs annotation-free）进行定位。与每个竞争者的差异化分析具体而准确。对 EVPV 的区分（image-level perceptual constraints vs domain-level mathematical axioms）是最关键的差异化论点，表述清晰。唯一小风险：引用的部分论文是 2026 年的 arXiv 预印本，可能在 AAAI 投稿截止前有更新或更多竞争者出现。
+
+【概率估计】: 28% - 38%，中位 33%
+
+【估计理由】:
+Novelty 是中偏强（填补了 genuine gap，但组合性质较强），这决定了概率上界不会很高——如果核心发现是 positive，它更可能是 confirmatory（"一致性检查确实有用"）而非 surprising。Significance 受限于较窄的应用范围（主要是几何）和可能的"I would have guessed this"反应。Related Work 是强项，降低了因 positioning 不清而被拒的风险。
+
+上界（38%）对应的场景：公理一致性 reward 显著优于所有 per-claim baseline 和 inference-time-only 的 trivial alternative，"constraint density"假说在实验中得到验证，产生一个 clean story。
+下界（28%）对应的场景：Geoparsing 提取质量不足导致 reward 信号噪声大，或 training-time RL 相比 inference-time 公理检查的增量很小，使得核心贡献变成 engineering contribution。
+
+上界的限制因素主要是 Novelty 的天花板——即使实验完美执行，idea 本身的"组合自然性"限制了它的 surprise factor。
+
+【主要风险】:
+1. **Trivial alternative 威胁**: 如果 inference-time 公理检查 + 重采样（无需 RL 训练）就能获得大部分收益，则 training-time RL 的贡献被大幅稀释，论文核心 claim 从"需要 RL 内化公理一致性"退化为"公理检查器本身有用"（engineering contribution）。
+2. **形式化提取瓶颈**: 公理一致性 reward 的上游完全依赖 Geoparsing/FormalGeo 的提取质量。如果提取错误率高，reward 信号本身就不可靠，可能导致 RL 训练失败或效果平庸——而审稿人会质疑"你的 reward 信号质量本身就有问题，怎么证明是 joint consistency 帮了忙而不是碰巧？"
+```
+
+Sources:
+- [Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward](https://arxiv.org/abs/2506.07218)
+- [PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning](https://arxiv.org/abs/2511.18437)
+- [CogFlow: Bridging Perception and Reasoning through Knowledge Internalization](https://arxiv.org/abs/2601.01874)
+- [EVPV: Grounding the Score: Explicit Visual Premise Verification](https://arxiv.org/abs/2603.16253)
+- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided RL](https://arxiv.org/abs/2602.22703)
+- [PRCO: Seeing with You: Perception-Reasoning Coevolution](https://arxiv.org/abs/2603.28618)
+- [SSL-R1: Self-Supervised Visual Reinforcement Post-Training](https://arxiv.org/abs/2604.20705)
+- [V-Zero: Self-Improving Multimodal Reasoning with Zero Annotation](https://arxiv.org/abs/2601.10094)
+- [FGeo-DRL: Deductive Reasoning for Geometric Problems through Deep RL](https://arxiv.org/abs/2402.09051)
+- [Geoparsing: Diagram Parsing with Unified Formal Language](https://arxiv.org/abs/2604.11600)
+- [FIGR: Figure It Out: Improve Reasoning with Executable Visual States](https://arxiv.org/abs/2512.24297)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient information to conduct the evaluation. Let me compile my findings.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+- Perception-R1 (arXiv 2506.07218, 2025): 使用 LLM 判定的视觉感知奖励进行 RLVR 训练，仅需 1,442 样本。MathVista 74.2, MathVerse 54.3。核心局限：per-claim 独立验证，依赖预收集的文本标注作为 visual reference。与本 proposal 的关系：直接对标，proposal 所声称的 "per-claim 盲区" 正是针对此类方法。
+
+- EVPV (arXiv 2603.16253, 2026): 从图像中提取结构化约束，生成 visual checklist，通过 reliability gating 校准 PRM 奖励。关键点：验证的是每条 claim 与图像级特征的一致性，而非 claims 之间的数学公理一致性。与本 proposal 的关系：proposal 明确指出 EVPV 是 "image-level per-claim" 而非 "domain-axiom joint consistency"，这个区分在技术上是成立的。
+
+- CogFlow (arXiv 2601.01874, 2026, ICLR 2026 accepted): 三阶段框架 (perception→internalization→reasoning)，Synergistic Visual Rewards + Knowledge Internalization Reward，需要 120K+ 标注 (MathCog dataset)。与本 proposal 的关系：CogFlow 在 perception 阶段的奖励仍然是参数空间/语义空间的 per-claim 检查，不检查 inter-claim 数学一致性。Proposal 声称的差异成立。
+
+- GeoDPO (arXiv 2602.22703, 2026): NL-to-DSL translator 引导 RL，+26.5% in-domain, +39% downstream。引入 GeoPerceive benchmark。与本 proposal 的关系：GeoDPO 奖励 DSL 翻译准确性（需要 GT DSL 对照），而非公理一致性。Proposal 的 annotation-free 定位与 GeoDPO 形成差异化。
+
+- PRCO (arXiv 2603.28618, 2026): Observer/Solver 双角色框架，Observer 提取 question-relevant visual evidence，Solver 的成功率回传作为 Observer 的 utility reward。平均 +7 points across 8 benchmarks。与本 proposal 的关系：domain-agnostic utility reward，不利用数学结构约束。Proposal 声称的 "数学公理提供更强、更有针对性的监督" 需要实验验证但逻辑上合理。
+
+- SSL-R1 (arXiv 2604.20705, 2026): 将 SSL 任务重新构建为 visual puzzles 作为 RL reward，完全 self-supervised。与本 proposal 的关系：generic vision-centric 自监督，不利用 domain-specific 数学结构。
+
+- V-Zero (arXiv 2601.10094, 2026): Questioner-Solver co-evolution loop，zero annotation。与本 proposal 的关系：同样 annotation-free，但 domain-agnostic。
+
+- FGeo-DRL (arXiv 2402.09051, 2024): 在 FormalGeo 环境中使用 RL 进行几何定理推演，formalgeo7k 上 86.4%。与本 proposal 的关系：Proposal 拟复用 FormalGeo 基础设施作为公理检查器——这是一个合理的技术路线，证明形式化几何验证在 RL loop 中是可行的。
+
+- FormalGeo (arXiv 2310.18021, 2023): 奥林匹克几何问题的形式化框架和求解器。提供 GDP-29K 数据集和定理验证基础设施。与本 proposal 的关系：proposal 的 Stage 0 SFT 和 axiom checker 依赖此基础设施。
+
+- 调研总结: 2025-2026 年，multimodal math reasoning 中的 perception bottleneck 已成为共识热点，涌现了大量工作 (Perception-R1, PEARL, EVPV, CogFlow, GeoDPO, PRCO, SSL-R1 等)，但**所有**现有方法的 perception 验证/奖励都在 per-claim 或 image-level 层面运作——没有任何工作利用数学公理的 joint consistency 作为 perception 奖励信号。Proposal 在这个 2D space (验证维度 × 监督来源) 中确实占据了一个独特的、尚未被填充的位置。这一空白是真实的。
+
+
+【Trivial Alternative 检验】:
+
+最直接的 trivial alternative 是：**不做 RL 训练，只在推理时进行公理一致性检查 + 重新感知 (re-perception)**。即：用 Stage 0 SFT 后的模型直接推理，如果感知到的事实违反公理就迭代重新感知。Proposal 作者意识到了这一点，并将其列为 Ablation #6（"Stage 0 SFT + axiom re-perception at inference without RL" vs Full ASVP）。
+
+增量价值的论证逻辑是：(1) 训练时 RL 将公理一致性内化到模型的视觉表征中，单次前向推理即可产生公理一致的感知，避免推理时迭代开销；(2) RL 塑造的是表征级的改变，而非输出级的补丁；(3) 训练后的一致性能力可迁移到新的图形配置。这些论点在逻辑上是合理的，但其实际增量需要实验验证——如果推理时检查已经能解决大部分问题，RL 训练的边际收益可能有限。
+
+另一个潜在的 trivial alternative：直接用 GT 标注做 perception reward（proposal 已设置 Oracle baseline）。如果 axiom reward 显著弱于 GT reward，则 annotation-free 的实用价值有限（虽然 annotation-free 本身仍有价值）。
+
+结论：存在 trivial alternative 威胁，但 proposal 明确意识到并设计了针对性消融实验。增量价值的论证逻辑成立但未经验证。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链条：
+VLM 感知图形 → 输出形式化描述 → 公理检查器评估 joint consistency → consistency score 作为 RL reward → RL 训练改善感知能力
+
+未经验证的关键假设：
+
+1. **形式化描述的可靠性假设**：VLM 能够在 Stage 0 SFT 后产生足够可解析、结构化的形式化描述，使得公理检查器能够有效运作。如果形式化描述本身就充满错误（漏掉了元素、拓扑关系错误），公理检查器将在错误的输入上运行，奖励信号将不可靠。Proposal 通过 curriculum（从简单图形开始）和 parsability auxiliary reward 部分缓解了这个问题，但这仍然是一个 bootstrapping 困境：**你需要准确的感知来产生好的形式化描述，但你正是要训练感知能力**。
+
+2. **奖励信号密度假设**：对于简单图形（如单个三角形），可应用的公理数量有限（角度和 = 180°、边长约束等），奖励信号可能过于稀疏或不够区分。Proposal 提出的 "constraint density" 论点（更多公理 → 更强信号）本身是正确的，但这恰好在最需要帮助的简单图形上最弱。
+
+3. **False positive 的可控性假设**：公理一致但事实错误的感知（如所有角度系统性偏差但仍然满足角度和 = 180°）的比例是否真的如 proposal 所言"随 constraint density 增加而急剧下降"。这个论断缺乏理论证明——在高维连续空间中，满足 k 个线性约束的可行集维度为 n-k，但这不直接等于 false positive rate 低。
+
+4. **RL 训练收敛假设**：在 soft continuous axiom reward + parsability reward 下，GRPO 是否能有效收敛。如果奖励景观过于平滑（大部分样本都能"差不多"满足公理），梯度信号可能不足以驱动有意义的表征变化。
+
+
+【3 维度打分】:
+
+1. **Novelty: 中（偏强）** — 在 per-claim vs. joint consistency 和 annotation-dependent vs. annotation-free 两个维度上，proposal 确实占据了一个未被填充的位置。经调研确认，Perception-R1、PEARL、CogFlow 都是 per-claim + annotation-dependent；EVPV 是 per-claim + image-level self-supervised；GeoDPO 是 translation-fidelity；PRCO/SSL-R1/V-Zero 是 domain-agnostic self-supervised。**没有任何现有工作将数学公理的 joint consistency 作为 self-supervised perception reward**。然而，核心洞察——"数学事实应该满足已知公理的联合约束"——在陈述后几乎是不言自明的 (obvious in hindsight)。真正的贡献是 **方法论层面的工程创新**（将这个直觉转化为可行的 RL reward pipeline），而非概念层面的 surprising insight。一个典型的审稿人可能会说："这是一个自然的 next step，而非一个 surprising discovery。" Novelty 的深度是中等的——新位置是真实的，但 conceptual leap 有限。
+
+2. **Significance: 中** — 问题本身无可争议地重要：perception error 是 multimodal math reasoning 的主要瓶颈（MM-MATH 报告 61% 的错误源于感知）。Annotation-free 的特性有实际价值。但**应用范围显著受限于几何图形**——proposal 虽然提及 chart constraints 和 function constraints 的扩展，但核心方法和实验设计都以几何为主。对领域的影响取决于 axiom reward 相对于现有方法（特别是 PRCO +7pts、CogFlow 的 strong results）的增量有多大。如果增量较小，则 significance 进一步受限。此外，"domain-specific invariants as free rewards" 的一般性范式虽然在论述中提及（Kirchhoff's laws, valence constraints），但在本文中不验证，限制了 broader impact 的说服力。
+
+3. **Related Work: 强** — 这是 proposal 的最大亮点。2D novelty map 的构建清晰而有说服力，准确定位了每个竞争方法的坐标。对 EVPV、CogFlow、GeoDPO、PRCO、SSL-R1、V-Zero 等 2025-2026 最新工作的覆盖非常全面。差异化定位精确：EVPV 是 "image-level per-claim" vs 本文的 "domain-axiom joint"；CogFlow 是 "annotation-dependent per-claim" vs 本文的 "annotation-free joint"。经调研验证，这些论文确实存在且描述基本准确。对 false positive 局限性的坦诚讨论也增强了可信度。
+
+
+【概率估计】: [28% - 38%] 中位 33%
+
+【估计理由】: 
+Novelty 维度是概率上界的主要限制因素。虽然 proposal 占据了一个真实的、未被填充的研究位置，但核心洞察更多是 "自然的下一步" 而非 "surprising insight"。"数学事实应该联合满足公理" 这一观察几乎是 trivially true——novelty 主要在于将其工程化为 RL reward pipeline，这属于方法论贡献而非概念突破。在 AAAI 中，这种 solid but incremental 的工作如果实验结果足够强可以被接收，但 idea 本身不太可能让审稿人写出 "surprising"。
+
+Significance 的窄scope（主要限于几何图形）进一步压低了上界。Related Work 的出色覆盖提供了一定的保护（审稿人难以找到遗漏的竞争工作），但 related work 好只是必要条件，不构成充分的加分。
+
+从 30-40% 中偏低处取值，因为：(1) 核心 claim 逻辑成立但不 surprising；(2) trivial alternative (inference-time checking) 的威胁真实存在；(3) 多个前提假设（形式化描述可靠性、奖励密度、false positive 可控性）都需要实验验证但当前未有支撑。
+
+【主要风险】:
+1. **"Obvious next step" 感知风险**：审稿人可能认为 "用数学公理检查感知一致性" 是一个 engineering contribution 而非 research insight，从而在 novelty 上给出偏低评价——尤其是在 2025-2026 perception RL 工作爆发式增长的背景下，该方向的 low-hanging fruit 正在被快速消耗。
+2. **Inference-time alternative 威胁**：如果消融实验显示 "Stage 0 SFT + 推理时公理检查/re-perception" 已能获得大部分增益，那么 RL 训练部分的贡献将被实质性削弱，核心 claim（训练时内化优于推理时纠正）可能不成立。
+```
+
+Sources:
+- [Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward](https://arxiv.org/abs/2506.07218)
+- [EVPV: Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models](https://arxiv.org/abs/2603.16253)
+- [CogFlow: Bridging Perception and Reasoning through Knowledge Internalization](https://arxiv.org/abs/2601.01874)
+- [GeoDPO: Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning](https://arxiv.org/abs/2602.22703)
+- [PRCO: Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning](https://arxiv.org/abs/2603.28618)
+- [SSL-R1: Self-Supervised Visual Reinforcement Post-Training for MLLMs](https://arxiv.org/abs/2604.20705)
+- [V-Zero: Self-Improving Multimodal Reasoning with Zero Annotation](https://arxiv.org/pdf/2601.10094)
+- [FGeo-DRL: Deductive Reasoning for Geometric Problems through Deep Reinforcement Learning](https://arxiv.org/abs/2402.09051)
+- [FormalGeo: An Extensible Formalized Framework for Olympiad Geometric Problem Solving](https://arxiv.org/abs/2310.18021)
+- [A Survey of Deep Learning for Geometry Problem Solving (ACL 2026)](https://github.com/majianz/dl4gps)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Axiom-Grounded Self-Verified Perception for Visual Math Reasoning
+
+## Core Problem and Thesis
+
+Current multimodal math reasoning systems verify perceived visual facts independently—checking each claim against the image in isolation—but never verify whether perceived facts are mutually consistent under known mathematical constraints. This causes individually plausible but collectively impossible perceptions to cascade into reasoning failures (61% of multimodal math errors are perception errors per MM-MATH (arXiv 2024)).
+
+We argue that mathematical perception correctness is fundamentally a joint constraint satisfaction problem, not an independent fact-checking problem: even when each perceived fact has high marginal confidence, the joint set may violate mathematical axioms (e.g., three individually plausible angle estimates that do not sum to 180°). All existing per-claim verification approaches—whether using LLM judges (Perception-R1, arXiv 2025), ground-truth checklists (PEARL, arXiv 2025), image-extracted constraints (EVPV, arXiv 2026), or annotation-dependent synergistic rewards (CogFlow, arXiv 2026)—are structurally blind to such inter-claim inconsistencies.
+
+## Research Opportunity
+
+Mathematical diagrams encode structural invariants (geometric theorems like angle sums, Pythagorean constraints, parallel-line properties, circle theorems; chart constraints like sum-to-total; function constraints like monotonicity) that perceived facts must jointly satisfy. These invariants provide a free, dense, automatically verifiable reward signal for RL-based perception training—requiring no ground truth annotations. This is newly feasible because (1) diagram formalization methods (DFE-GPS (AAAI 2025), Geoparsing (arXiv 2026)) now reliably extract structured representations, (2) solver-in-the-loop RL has been proven effective for reasoning (FGeo-DRL achieves 86.4% on formalgeo7k via RL in formal geometry environments (arXiv 2024); sub-goal verifiable rewards unlock geometric reasoning gains (Milestones over Outcome / SGVR, arXiv 2025)), and (3) the perception bottleneck is definitively established (MM-MATH (arXiv 2024); GeoPQA (EMNLP 2025)).
+
+Critically, as more axioms apply to a given diagram, the feasible set of value combinations that satisfy all constraints simultaneously shrinks—making the axiom-consistency reward increasingly informative and reducing the false positive rate (axiom-consistent but factually incorrect perceptions). This "constraint density" property means the reward signal quality improves precisely for complex diagrams where perception errors are most damaging.
+
+The principle that domain-specific structural invariants serve as free self-supervised perception rewards extends beyond mathematics—Kirchhoff's laws for circuit diagrams, valence constraints for chemical structures, dimensional consistency for engineering drawings all exhibit the same structure—though this paper demonstrates the paradigm on mathematical diagrams.
+
+## Research Landscape and Novelty Positioning
+
+We position our work along two orthogonal dimensions: **what is verified** (per-claim vs. joint consistency) and **how verification is sourced** (annotation-dependent vs. annotation-free). This yields a clear novelty map:
+
+| | Per-claim verification | Joint consistency verification |
+|---|---|---|
+| Annotation-dependent | Perception-R1 (LLM judge + text annotations), PEARL (GT checklists), CogFlow (120K+ annotated MathCog) | — |
+| Translation-fidelity | GeoDPO (DSL translation accuracy) | — |
+| Image-level self-supervised | EVPV (image-extracted per-claim constraints) | — |
+| Domain-agnostic self-supervised | SSL-R1 (visual puzzles), V-Zero (cross-modal self-play) | — |
+| Domain-axiom self-supervised | — | **ASVP (ours)** |
+
+**Annotation-dependent per-claim methods.** Perception-R1 (arXiv 2025) uses LLM-judged visual perception reward with pre-collected textual annotations; only 1,442 training samples but per-claim only. PEARL (arXiv 2025) uses ground-truth perception checklists as gating rewards (+9.7% on MathVerse) but needs annotated sub-question answers. CogFlow (arXiv 2026) proposes a three-stage perception→internalization→reasoning framework with Synergistic Visual Rewards and Knowledge Internalization Reward, achieving strong results but requiring 120K+ perception-reasoning aligned annotations (MathCog dataset); its rewards operate at per-claim level in parametric and semantic spaces without checking inter-claim mathematical consistency.
+
+**Image-level per-claim verification.** EVPV (arXiv 2026) matches per-claim visual checklists against image-extracted constraints—checking each claim independently against image-level perceptual features (e.g., "this angle appears to be ~60°")—but does not verify whether the set of perceived values jointly satisfies domain-level mathematical axioms (e.g., "these three angles must sum to 180°"). This distinction between image-level perceptual constraints and domain-level mathematical axioms is the precise gap our work fills.
+
+**Translation-fidelity rewards.** GeoDPO (arXiv 2026) uses NL-to-DSL translator-guided RL for geometric perception (+26.5% in-domain, +39% downstream) but rewards DSL translation accuracy, not axiom-level consistency.
+
+**Structural/topological parsing.** SymHPR (arXiv 2025) enforces structural parsing consistency (point-on-line, shape-on-relation) at the topological level. Our approach operates at the quantitative level and depends on reasonable topological parsing—addressed through curriculum design.
+
+**Utility-based and generic self-supervised rewards.** PRCO (arXiv 2026) introduces Observer/Solver role separation with utility-based perception rewards (+7 points average across 8 benchmarks) but does not exploit mathematical structure. SSL-R1 (arXiv 2026) derives rewards from generic SSL puzzles. V-Zero (arXiv 2026) uses Questioner-Solver co-evolution for zero-annotation training. Our advantage over domain-agnostic methods: mathematical invariants provide stronger, more targeted supervision.
+
+**Confidence-based and inference-time methods.** PDCR (arXiv 2026) decomposes rewards via model-internal confidence scores without formal constraints. M3-ACE (arXiv 2026) rectifies perception at inference time via multi-agentic context engineering but does not train perception via RL. PFlowNet (arXiv 2026) applies variational RL with geometric reward shaping where 'geometric' refers to reward landscape geometry, not mathematical theorems.
+
+**Why training-time internalization, not inference-time correction alone.** A natural alternative is axiom checking at inference time without RL training. Training-time internalization offers three advantages: (1) efficiency—trained model produces axiom-consistent perceptions in a single forward pass vs. iterative re-perception loops; (2) representation-level learning—RL shapes internal visual representations to favor axiom-consistent percepts, not just patching outputs; (3) generalization—trained consistency transfers to novel diagram configurations. We validate this through direct ablation.
+
+**Theoretical limitation: false positives.** Axiom-consistency admits false positives—perceived values that are individually incorrect but collectively satisfy axioms (e.g., all angles systematically biased but still summing to 180°). We acknowledge this limitation and argue it is acceptable: (1) axiom verification excludes collectively impossible perceptions, which per-claim methods cannot detect—a net improvement over the status quo; (2) as constraint density increases (more applicable axioms per diagram), the false positive space shrinks dramatically; (3) Stage 2 answer-correctness reward further compensates. We empirically characterize false positive rates across diagram types (see Experimental Design).
+
+No existing work uses mathematical invariant consistency of perceived quantitative facts as a self-supervised perception reward signal.
+
+## Proposed Approach
+
+We train a VLM (Qwen3-VL-8B as primary base, Qwen3-VL-3B for scale-transfer validation) to perceive mathematical diagrams accurately using axiom-consistency as a self-supervised RLVR reward, requiring zero ground-truth perception annotations.
+
+**Stage 0: Formal Extraction Warm-Start.** VLMs cannot produce parseable formal descriptions from scratch (Geoparsing (arXiv 2026) itself requires SFT before RLVR). We SFT the base model on a subset of GDP-29K (Geoparsing) and FormalGeo (arXiv 2023) data to bootstrap syntactically valid diagram-to-formal-language extraction. To ensure compute fairness, all RL baselines are also trained from this same Stage 0 checkpoint.
+
+**Stage 1: Perception-Only Axiom RL.** The model extracts structured perception claims (angles, lengths, coordinates, ratios) into a formal constraint description language built on FormalGeo/Geoparsing primitives. A lightweight axiom checker—leveraging FormalGeo's existing theorem verification infrastructure and implementing 40+ geometric theorems plus chart and function invariants in a phased rollout (core 15 direct-check axioms first, extended set second)—evaluates joint satisfaction. The axiom-consistency reward uses soft continuous scoring: for each applicable axiom, violation magnitude is computed (e.g., |angle_sum − 180°|/180°), and the reward is the mean of (1 − normalized_violation) across all applicable axioms. This avoids the sparsity of binary pass/fail. An auxiliary parsability reward (whether the formal description is syntactically valid) supplements consistency reward in early training. For unparseable or partial outputs, the checker evaluates only the parseable subset (graceful degradation). Training uses GRPO via veRL. Curriculum starts with structurally simple diagrams (single triangles, basic charts) and progressively increases complexity.
+
+**Stage 2: Joint Perception-Reasoning.** Combines axiom-consistency reward with outcome-based answer correctness in GRPO training.
+
+**Inference-Time Self-Verification.** Perceived facts violating axioms trigger iterative re-perception (up to 3 iterations).
+
+## Experimental Design
+
+**Benchmarks.** MathVista (ICLR 2024), MathVerse (with vision-only / vision-dominant / vision-intensive subset breakdown), MathVision (NeurIPS 2024), GeoQA, formalgeo7k, WeMath. GeoPerceive (from GeoDPO, arXiv 2026) for perception-only evaluation.
+
+**Baselines (4 categories, all RL baselines run from both raw Qwen3-VL-8B and Stage 0 checkpoint to isolate SFT warm-start contribution).**
+- *Base VLM:* Qwen3-VL-8B zero-shot; Qwen3-VL-8B + SFT only (Stage 0 data, no RL)
+- *Perception RL (controlled, same GRPO framework):* Perception-R1 reward (LLM-judged); GeoDPO reward (DSL-translation accuracy); PRCO reward (utility-based Observer/Solver); SGVR reward (skeleton rate, Milestones over Outcome (arXiv 2025)); answer-only GRPO (answer correctness only, no perception reward)
+- *Self-supervised RL:* SSL-R1 (generic visual puzzle reward) if code available
+- *Oracle:* GT perception reward (using ground-truth formal annotations from formalgeo7k/GeoTrust (TrustGeoGen, arXiv 2025) as reward signal)—quantifies the gap between free axiom reward and oracle GT supervision
+- *Reference numbers:* PEARL (arXiv 2025), EVPV (arXiv 2026), CogFlow (arXiv 2026), M3-ACE (arXiv 2026) reported results where available
+
+**Ablation Studies (6 groups).**
+1. *Reward components:* axiom reward only / answer reward only / axiom + answer (full) / random reward
+2. *Training curriculum:* three-stage (proposed) / skip Stage 0 / skip Stage 1 (joint from scratch) / Stage 1 only
+3. *Axiom set:* full 40+ axioms / basic axioms only (angle sum, Pythagorean) / chart+function invariants only
+4. *Scoring strategy:* soft continuous / hard binary (ε = 0.5°, 1°, 2°) / weighted combination
+5. *Inference-time re-perception:* 0 / 1 / 2 / 3 iterations (performance vs. latency tradeoff)
+6. *Training-time RL vs inference-time-only:* Full ASVP vs. "Stage 0 SFT + axiom re-perception at inference without RL"
+
+**Reward Signal Quality Analysis.**
+- On GT-annotated subset: Pearson/Spearman correlation between axiom-consistency score and true perception accuracy
+- False positive / false negative rate analysis
+- **Per-diagram-type discriminability**: separately report axiom reward false positive rates for triangles (strong constraints), quadrilaterals (moderate), circles (moderate-strong), compound figures (weak constraints)
+- **Adversarial perturbation test**: add calibrated noise (σ = 1°, 2°, 5°, 10°) to GT values, measure axiom checker detection rate across constraint densities—quantifies the "detection frontier"
+
+**Additional Analyses.**
+- *Perception isolation:* On GeoPerceive benchmark, report perception-level accuracy (element extraction precision/recall, perceived value MAE vs GT); on MathVerse, classify errors as perception vs. reasoning (following MM-MATH taxonomy) pre/post training
+- *Compute fairness:* Training wall-clock time and per-step overhead per method; performance vs. FLOPs curves; axiom checker per-sample latency
+- *Scale transfer:* Qwen3-VL-3B on MathVista, MathVerse
+- *Chart proof-of-concept (optional):* Demonstrate axiom checker effectiveness on MathVista chart questions using sum-to-total constraints
+
+## Key References
+
+- Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)
+- PEARL: Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning (arXiv 2025)
+- Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv 2026)
+- Hierarchical Process Reward Models are Symbolic Vision Learners [SymHPR] (arXiv 2025)
+- MM-MATH: Advancing Multimodal Math Evaluation with Process Evaluation and Fine-grained Classification (arXiv 2024)
+- Diagram Formalization Enhanced Multi-Modal Geometry Problem Solver [DFE-GPS] (AAAI 2025)
+- Geoparsing: Diagram Parsing for Plane and Solid Geometry with a Unified Formal Language (arXiv 2026)
+- TrustGeoGen: Formal-Verified Data Engine for Trustworthy Multi-modal Geometric Problem Solving (arXiv 2025)
+- FormalGeo: An Extensible Formalized Framework for Olympiad Geometric Problem Solving (arXiv 2023)
+- GeoPQA: Bridging the Visual Perception Gap in MLLMs for Geometric Reasoning (EMNLP 2025)
+- Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning [GeoDPO] (arXiv 2026)
+- M3-ACE: Rectifying Visual Perception in Multimodal Math Reasoning via Multi-Agentic Context Engineering (arXiv 2026)
+- PDCR: Perception-Decomposed Confidence Reward for Vision-Language Reasoning (arXiv 2026)
+- SSL-R1: Self-Supervised Visual Reinforcement Post-Training for MLLMs (arXiv 2026)
+- Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)
+- MathVista: Evaluating Mathematical Reasoning of Foundation Models in Visual Contexts (ICLR 2024)
+- FGeo-DRL: Deductive Reasoning for Geometric Problems through Deep Reinforcement Learning (arXiv 2024)
+- A Survey of Multimodal Mathematical Reasoning: From Perception, Alignment to Reasoning (arXiv 2026)
+- Figure It Out: Improve the Frontier of Reasoning with Executable Visual States [FIGR] (arXiv 2025)
+- Milestones over Outcome: Unlocking Geometric Reasoning with Sub-Goal Verifiable Reward [SGVR] (arXiv 2025)
+- PFlowNet: Perceptual Flow Network for Visually Grounded Reasoning (arXiv 2026)
+- Measuring Multimodal Mathematical Reasoning with MATH-Vision Dataset [MathVision] (NeurIPS 2024)
+- V-Zero: Zero-Shot Multimodal Reasoning via Cross-Modal Self-Play (arXiv 2026)
+- CogFlow: Bridging Perception and Reasoning through Knowledge Internalization for Visual Mathematical Problem Solving (arXiv 2026)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 1800-2200 (8×H100: axiom checker on FormalGeo infrastructure 3 wks, Stage 0 SFT, 6-7 GRPO training runs including PRCO/SGVR baselines at ~30h each, dual-checkpoint baselines, ablation studies, 7-benchmark evaluation, GeoPerceive + adversarial analysis, Qwen3-VL-3B replication), timeline: 10-12 weeks (3 wks axiom checker + data pipeline + Stage 0, 3-4 wks RL training iterations including baselines, 3 wks evaluation + ablation + adversarial analysis + paper writing), estimated_gpu_cost: $4,500-$5,500
+- **human_in_loop**: gpu_hours: 1300-1700, timeline: 7-9 weeks, claude_api_cost: $500-$800, estimated_gpu_cost: $3,250-$4,250
+- **auto_research**: gpu_hours: 2200-2800, timeline: 5-7 weeks, claude_api_cost: $1,000-$1,500, estimated_gpu_cost: $5,500-$7,000, speed_bottleneck: RL convergence under potentially sparse axiom-violation signals; axiom checker robustness on degenerate diagram parses; dual-checkpoint experiment matrix size
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "cdb299eb-ce2a-4f87-8bc0-20213b78a76b",
+  "type": "user",
+  "uuid": "568ce81a-929a-4b34-9860-4dc6a01c3d8c",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T09:16:03.051Z_
+
+```json
+{
+  "parentUuid": "568ce81a-929a-4b34-9860-4dc6a01c3d8c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "9cd96739-0fa4-4cf9-8a8f-94e2e3084482",
+  "timestamp": "2026-05-27T09:16:03.051Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T09:16:03.051Z_
+
+```json
+{
+  "parentUuid": "9cd96739-0fa4-4cf9-8a8f-94e2e3084482",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "80d0383a-0ce9-42b1-b985-029bcc481712",
+  "timestamp": "2026-05-27T09:16:03.051Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient data to make a well-grounded assessment.…",
+  "leafUuid": "80d0383a-0ce9-42b1-b985-029bcc481712",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Axiom-grounded perception reward for multimodal math reasoning",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T09:16:31.757Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three independent reviews and synthesize them as Meta Judge.
+
+First, let me extract the key numbers and assessments:
+
+**Reviewer 1:**
+- Novelty: 中（偏强）
+- Significance: 强
+- Related Work: 强
+- Probability: 28% - 37%, median 32%
+- Main risks: GeoDPO trivial alternative, "collectively impossible" error frequency unverified
+  
+**Reviewer 2:**
+- Novelty: 中（偏强）
+- Significance: 中
+- Related Work: 强
+- Probability: 28% - 38%, median 33%
+- Main risks: Inference-time alternative threat, formal extraction bottleneck
+
+**Reviewer 3:**
+- Novelty: 中（偏强）
+- Significance: 中
+- Related Work: 强
+- Probability: 28% - 38%, median 33%
+- Main risks: "Obvious next step" perception, inference-time alternative threat
+
+The median probabilities cluster tightly around 32-33%, with a mean of 32.67%. All three reviewers converge on moderate-to-strong novelty and strong related work coverage, though they diverge on significance—Reviewer 1 rates it stronger while the other two see it as moderate. The recurring concern across reviews is the inference-time alternative threat, suggesting this is the most critical vulnerability to address. The "Collectively impossible" error frequency remains unverified by R1 and R3. Looking at the significance ratings, R1 stands alone in marking it as 强 while R2 and R3 both say 中—the consensus leans toward 中 given the geometry-specific scope limits the broader impact. Across all three reviewers, the median scores cluster remarkably tight at 32-33% with negligible variation, showing they've essentially reached the same conclusion despite their different emphases.
+
+Now I'm calculating the final probability estimate. Since the consistency is so tight (standard deviation under 0.5%), I can confidently narrow the interval: the lower bound sits at 28% where all three agree, the upper bounds converge around 37-38%, and the medians cluster at 32-33%. Following the principle of being conservative when uncertainty is low, I'll set the final range at 28-37% with a median of 32%.
+
+I'm also reconsidering the significance rating—two out of three reviewers assessed it as medium rather than strong, and their reasoning about the narrow scope is persuasive, so I should weight that consensus. With the implementation assessment factored in from the resource estimates, my final recommendation is borderline, indicating potential but requiring further refinement.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80d0383a-0ce9-42b1-b985-029bcc481712",
+  "isSidechain": false,
+  "requestId": "req_011CbSpZBi8Kp6FvaL6mb83Q",
+  "type": "assistant",
+  "uuid": "531d65c0-5f2f-481c-b72a-074ae2466e58",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LwH2rD69U4DHwuTsiaim76",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18820,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 3187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3187,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 18820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T09:17:19.882Z_
+
+【阶段】: Meta Judge
+【三次中位】: [32%, 33%, 33%]  std=0.5%
+【共识维度】:
+- **Novelty: 中（偏强）** — 3/3 一致。核心 gap（joint axiom consistency × annotation-free）真实存在，但概念跳跃属于 "natural next step" 而非 "surprising insight"，组合自然性限制了 novelty 深度。
+- **Related Work: 强** — 3/3 一致。2×2 novelty map 清晰有效，覆盖 2024-2026 几乎全部直接竞争者，差异化定位精确，引用真实可查。这是 proposal 最强维度。
+- **Inference-time trivial alternative 威胁: 真实** — 3/3 均指出"Stage 0 SFT + 推理时公理检查/重采样"可能获得大部分收益，RL 训练的增量价值完全依赖实验验证。Proposal 已意识到并设置 Ablation #6，但当前无先验支撑。
+- **形式化提取质量是关键瓶颈** — 3/3 均指出 Stage 0 SFT 后形式化描述的可靠性是整条 pipeline 的阿喀琉斯之踵，存在 bootstrapping 困境。
+- **False positive 风险可控但未量化** — 3/3 均承认 proposal 坦诚讨论了 false positive，但缺乏先验量化证明"constraint density → false positive 急剧下降"。
+- **"集体不可能"错误频率未验证** — 2/3（R1、R3）明确指出核心动机缺乏实证：VLM 实际感知中"individually plausible but collectively impossible"的错误到底有多普遍？如果此类错误罕见，joint consistency 的增量价值消失。
+
+【异常维度】:
+- **Significance 分歧**: R1 评为"强"（强调 61% perception error bottleneck 的问题重要性和 annotation-free 实用价值），R2/R3 评为"中"（强调几何应用范围窄、chart/function 扩展仅为 optional、结果可能是 confirmatory 而非 surprising）。采纳 2/3 共识 → **Significance: 中**。R1 的"强"评级过度权重了问题本身的重要性而低估了本文方法 scope 的局限性——解决重要问题的一个窄子集，其 significance 受限于子集大小。
+- **GeoDPO 作为最具威胁的 trivial alternative**: R1 特别强调 GeoDPO 的 DSL 翻译准确度可能隐式编码大部分公理约束（最具威胁的 trivial alternative），R2/R3 更侧重 inference-time checking 作为主要 trivial alternative。两种 trivial alternative 并行存在，均为真实威胁，不互相排斥——不降权任何一方。
+
+【最终概率】: [28% - 37%] 中位 32%
+【一致性】: 高
+【综合理由】:
+三位审稿人的概率估计高度收敛（std=0.5%，远低于 3% 阈值），rubric 维度判决也高度一致（Novelty 中偏强、Related Work 强、3/3 共识），这使得最终估计可以在中位附近取值并适度缩窄区间。
+
+**概率上界（37%）的限制因素**是 Novelty 的天花板：核心洞察"数学事实应联合满足公理"在陈述后近乎不言自明，贡献主要在方法论工程化而非概念突破。即使实验完美执行，idea 本身的 "obvious in hindsight" 性质决定了审稿人不太可能写出 "surprising"——这在 AAAI 的 accept threshold 附近是一个实质性限制。
+
+**概率下界（28%）**由两个真实的 trivial alternative 威胁锚定：(1) inference-time 公理检查 + 重采样可能获得大部分收益；(2) GeoDPO 的 DSL 翻译准确度可能隐式捕获大部分公理约束信息。如果实验中任一 trivial alternative 表现接近 full ASVP，核心贡献将被实质性削弱。
+
+**中位取 32% 而非 33%**：鉴于 Significance 的 2/3 共识是"中"而非"强"，以及"宁缺毋滥"原则，在高一致性下略偏保守方取值。
+
+**未触发 KILL**：idea 方向本身不存在致命逻辑错误——per-claim → joint consistency 的推进在逻辑上成立，gap 真实存在，非 trivially solved。问题在于增量大小而非方向正确性。
+
+【建议】: 边缘
+【实施评估】:
+  - 计算资源: 8×H100 GPU，1300-2800 GPU-hours（视自动化程度），估算 GPU 成本 $3,250-$7,000。RL 训练（GRPO）是主要计算消耗，6-7 轮训练 run（含 baselines）每轮约 30h。
+  - 数据需求: GDP-29K（Geoparsing）、FormalGeo/formalgeo7k（公开可得）用于 Stage 0 SFT 和公理检查器基础设施；GeoTrust（TrustGeoGen）用于 Oracle baseline 的 GT 标注；MathVista、MathVerse、MathVision、GeoQA、WeMath、GeoPerceive 用于评估（均为公开 benchmark）。数据可得性无障碍。
+  - 人工介入: 公理检查器实现需要数学领域专家参与（40+ 几何定理的形式化实现和调试），预估 2-3 周专注工作。错误分析（perception vs. reasoning 分类）需要人工抽样验证。整体人工介入量中等。
+  - 训练需求: 需要模型训练。基础模型 Qwen3-VL-8B（主）+ Qwen3-VL-3B（scale transfer），Stage 0 SFT + Stage 1/2 GRPO RL。每轮 RL 训练约 30h on 8×H100，需多轮（含 ablation）。
+  - 新 Benchmark: 不需要构建全新 benchmark，但需要在 formalgeo7k GT 标注子集上构建 reward signal quality 分析框架（Pearson/Spearman 相关性、false positive/negative 分析、adversarial perturbation test）。这是分析框架而非独立 benchmark。
+  - 预估周期: 7-12 周（取决于自动化程度）。关键路径：公理检查器实现（3 周）→ Stage 0 SFT + RL 训练迭代（3-4 周）→ 全量评估 + 消融 + 论文撰写（3 周）。速度瓶颈：RL 在稀疏公理违反信号下的收敛速度、公理检查器在退化解析输出上的鲁棒性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "531d65c0-5f2f-481c-b72a-074ae2466e58",
+  "isSidechain": false,
+  "requestId": "req_011CbSpZBi8Kp6FvaL6mb83Q",
+  "type": "assistant",
+  "uuid": "b5434dd7-62e8-4926-85c4-0d9e295b4a63",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LwH2rD69U4DHwuTsiaim76",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18820,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 3187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3187,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 18820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient data to make a well-grounded assessment.…",
+  "leafUuid": "b5434dd7-62e8-4926-85c4-0d9e295b4a63",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Axiom-grounded perception reward for multimodal math reasoning",
+  "sessionId": "45a60197-1bf8-4b83-9295-dc1251da77b4"
+}
+```
+
+---

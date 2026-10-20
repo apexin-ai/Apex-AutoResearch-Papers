@@ -1,0 +1,938 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/8fd5a6a7-ee41-4468-a340-2a64cf2930ad.jsonl`
+- **Structured JSON:** [`85f9bda09bc516e95903.json`](../../sessions/85/85f9bda09bc516e95903.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T03:23:05.907Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T03:23:05.907Z",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research context. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. PRMBench (ACL 2025, arxiv 2501.03124):\n   细粒度 PRM 评估基准，包含 6,216 问题 / 83,456 step-level 标签。\n   评估维度包括 Simplicity、Soundness、Sensitivity，\n   其中 \"Multi-Solution Consistency\" 子维度已测试 PRM 在不同有效解法路径上的一致性，\n   \"Confidence Invariance\" 测试过度自信的错误陈述。\n   → 与本 proposal 的 \"structural isomorphism invariance\" 有实质重叠，但粒度和形式化程度不同。\n\n2. reWordBench (EMNLP 2025, arxiv 2503.11751):\n   测试 general reward models 对 meaning-preserving transformations 的鲁棒性（加引号、改标点、插入无意义短语等）。\n   发现 SOTA reward models 在微小输入变换下性能可降至随机以下。\n   提出用 paraphrase 训练提升鲁棒性。\n   → 与本 proposal 方向高度相关，但作用于 response-level 而非 step-level，且针对 general RM 而非 PRM。\n\n3. PutnamGAP (arxiv 2508.08833):\n   对 85 年 Putnam 竞赛题做 5 种等价变换（表面重命名、参数变换等），在 18 个模型上测试。\n   发现 O3 在原题 51.5%、变量重命名 -4.7pp、参数变换 -12.9pp。\n   → 测试对象是 LLM solver 而非 PRM verifier，但变换类型与本 proposal 的 T1-T4 高度类似。\n\n4. APRM (ICLR 2026, arxiv 2511.22888):\n   对抗训练 PRM，Generator 生成推理错误欺骗 PRM，PRM 同时学习检测。\n   在数学推理基准上 +3.4pp，OOD +5.3pp。\n   → 提升 PRM error detection 鲁棒性，与本 proposal 的 Iso-Aug mitigation 互补但角度不同。\n\n5. GenPRM (arxiv 2504.00891) & ThinkPRM (arxiv 2504.16828):\n   生成式 PRM，使用 CoT 推理 + 代码验证进行 step-level 判断。\n   ThinkPRM 用远少于 PRM800K 的标注即超越判别式 PRM +8%。\n   → 本 proposal 计划评估的核心模型，确实存在且描述基本准确。\n\n6. CoLD (arxiv 2507.15698, July 2025):\n   Counterfactually-Guided Length Debiasing for PRMs。\n   专门针对 PRM 的长度偏差，通过反事实推理和因果图分析进行去偏。\n   → 本 proposal 声称要 \"adapt CoLD's causal debiasing framework\" 到 isomorphic invariance，\n   但 CoLD 专门针对 length bias，迁移到 structural invariance 的合理性未论证。\n\n7. GR-Ben (arxiv 2605.01203, May 2026):\n   将 PRM 评估扩展到 9 个非数学推理子域（科学、逻辑）。\n   → 扩展 PRM 评估维度，与本 proposal 扩展 \"invariance 维度\" 的思路平行。\n\n8. ProcessBench (ACL 2025, arxiv 2412.06559):\n   3,400 人工标注的数学推理解题步骤，本 proposal 声称基于此构建。\n   → 数据来源真实。\n\n9. \"PRM-BiasBench\"：\n   本 proposal 多次引用此基准（称其测试 \"surface perturbations: rephrasing, verbosity\"，\n   并引用 \"43% of RL reward gains come from fluency-based stylistic shortcuts\"），\n   但经多轮搜索未找到名为 \"PRM-BiasBench\" 的独立工作。\n   可能是对 reWordBench 或 \"Reward Under Attack\" (arxiv 2603.06621) 的误引或重命名。\n   ⚠️ 引用真实性存疑。\n\n- 调研总结：PRM 评估领域在 2025-2026 年快速发展，已有多个基准从不同维度评估 PRM 的鲁棒性：\n  PRMBench 做了细粒度 step-level 评估（含 Multi-Solution Consistency），reWordBench 做了 meaning-preserving\n  robustness，PutnamGAP 做了 equivalent transformations（但对象是 solver 非 verifier），APRM 做了对抗训练。\n  本 proposal 声称的 \"step-level structural invariance of PRM verifiers\" 这一交叉点确实尚未被完全覆盖，\n  但它是多个已有工作的自然延伸，属于 \"填表格中一个空格\" 式的增量贡献。\n\n\n【致命问题：投稿场次错配】:\nCoRL (Conference on Robot Learning) 是机器人学习会议，核心议题为机器人感知、控制、manipulation、\nnavigation、sim-to-real 等。本 proposal 纯粹关于数学推理的 Process Reward Model 评估与去偏，\n与 CoRL 的主题范围完全不匹配。投稿 CoRL 大概率在 desk reject 阶段被拒。\n该 proposal 自身也写明目标会议是 AAAI 2027 和 ICLR 2027（backup），更适合的会议还包括 NeurIPS、\nICML、ACL、EMNLP 等 NLP/ML 主会。\n以下评估先忽略场次错配，纯评 idea 质量，最终概率估计会反映场次因素。\n\n\n【Trivial Alternative 检验】:\n\n存在明显的 trivial alternative 威胁：\n\n1. **直接扩展 PRMBench**：PRMBench 已有 \"Multi-Solution Consistency\" 维度，\n   只需在该维度下增加 variable renaming / commutative reordering / notation change 等具体变换类型，\n   即可获得类似的诊断能力，无需构建全新 benchmark。\n\n2. **PutnamGAP 的变换直接施加于 PRM**：PutnamGAP 已定义了 5 种等价数学变换并验证了 LLM solver 的脆弱性。\n   将相同变换施加于 PRM 的 step-level 评分，是一个工程量很小的扩展实验。\n\n3. **Mitigation (Iso-Aug) 是标准 data augmentation + consistency loss**：\n   reWordBench 已经提出 \"用 paraphrase 训练提升鲁棒性\" 并验证有效。\n   Iso-Aug 本质上是将 \"paraphrase training\" 替换为 \"isomorphic variant training\"，\n   技术贡献极为有限。\n\n增量价值主要在于：(a) 形式化定义了 4 种变换类型 + 三级验证管道，(b) 跨 PRM 范式 (discriminative vs generative) 的对比。\n但这些更多是实验设计层面的细致，而非方法论创新。\n\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条中有以下未经验证的假设：\n\n1. **\"PRM 对 isomorphic transformations 会表现出显著脆弱性\"**：\n   这个假设基于 reWordBench 对 general RM 和 PutnamGAP 对 LLM solver 的类比推断。\n   但如果 PRM（尤其是 generative PRM）已经足够鲁棒，那么整个 benchmark 的诊断价值大打折扣。\n   proposal 自身也承认了这种可能性（\"even if GenPRM/ThinkPRM pass invariance tests\"），\n   但未充分论证在该结果下论文的 contribution 如何成立。\n\n2. **\"CoLD 的 causal debiasing framework 可以适配到 structural invariance\"**：\n   CoLD 专门处理 length bias，其因果图模型中 confounding variable 是 \"step length\"。\n   将其迁移到 \"mathematical notation choice\" 作为 confounder，\n   因果图结构和干预方式都需要重新设计，proposal 完全没有讨论这个迁移的可行性。\n\n3. **\"Notation gaming 是一个实际威胁\"**：\n   Proposal 声称 policy 可以通过 exploit PRM 的 notation preference 来 inflate scores。\n   但 notation gaming 需要 policy 能精确感知 PRM 的 notation preference 并据此优化，\n   这在现有 RLHF/RL 训练框架中是否真的会发生，缺乏实证支持。\n   与 reward hacking 文献中已知的 length hacking、style hacking 相比，\n   notation-level 的 gaming 更加 fine-grained，是否能被训练过程发现和利用尚不清楚。\n\n4. **\"43% of RL reward gains come from fluency-based stylistic shortcuts\" 出自 PRM-BiasBench\"**：\n   经搜索未找到名为 PRM-BiasBench 的工作，此引用的真实性存疑。\n   如果关键 motivation 数据来自不存在的论文，proposal 的立论基础受损。\n\n\n【3 维度打分】:\n\n1. Novelty: 弱 (Weak)\n   — PRMBench (ACL 2025) 已有 Multi-Solution Consistency 维度评估 PRM 在不同解法路径上的一致性。\n   reWordBench (EMNLP 2025) 已做 meaning-preserving robustness for reward models。\n   PutnamGAP (2025) 已定义了与 T1-T4 高度类似的等价数学变换并验证了 LLM 脆弱性。\n   本 proposal 的贡献是将这三者的交叉点具体化到 \"step-level + PRM verifier + structural transformation\"，\n   但这是一个可预见的 gap-filling，而非真正的概念创新。\n   Mitigation (Iso-Aug) 是标准 data augmentation + consistency regularization，\n   reWordBench 已经验证过类似策略对 reward model 有效。\n   \n2. Significance: 中 (Medium)\n   — PRM 鲁棒性对 test-time compute scaling 和 reward hacking prevention 确实重要。\n   但核心发现的预期方向高度可预测：discriminative PRM 会脆弱，generative PRM 会更鲁棒，\n   augmentation 会改善鲁棒性。审稿人看到 positive results 很可能会说 \"I would have guessed this\"。\n   跨 paradigm 对比（discriminative vs generative）有一定信息量，但不足以提升到 \"surprising\" 级别。\n   另外，这是一个纯诊断性工作（benchmark paper），天花板本身就受限。\n\n3. Related Work: 中 (Medium)\n   — Proposal 展示了对 PRM 评估领域的广泛了解，引用了 reWordBench、PutnamGAP、GenPRM、ThinkPRM、\n   APRM、ProcessBench、GR-Ben、CoLD 等多个真实且相关的工作。差异化定位（step-level + structural + PRM verifier）\n   描述清晰。但存在两个问题：\n   (a) \"PRM-BiasBench\" 可能是不存在的或被误命名的工作，在 proposal 中被多次引用作为对照，\n       如果该引用不实，credibility 受损；\n   (b) PRMBench 的 Multi-Solution Consistency 维度与本工作的重叠未被充分讨论和区分。\n\n\n【概率估计】: \n  - 若投 CoRL 2026: [3% - 8%] 中位 5%\n  - 若投自然目标会议 (AAAI/ICLR/NeurIPS): [15% - 25%] 中位 20%\n\n【估计理由】:\n  CoRL 估计：与会议主题（机器人学习）完全不匹配，大概率 desk reject。即使进入审稿流程，\n  审稿人池也不具备 PRM 评估领域的专业知识，无法公正评价。3-8% 反映极小概率的行政失误或\n  主题理解偏差。\n\n  自然目标会议估计：Idea 的内核是 \"填一个可预见的 gap\"——在 reWordBench (response-level RM)\n  和 PutnamGAP (solver-level) 之间找到 \"step-level PRM verifier\" 这个交叉点。\n  Novelty 维度是主要限制因素：审稿人很可能认为这是对已有工作的增量组合。\n  Mitigation 方法 (Iso-Aug) 缺乏技术深度。如果实验执行非常出色（显示出反直觉的 finding，\n  如 generative PRM 也意外脆弱），上界可能到 25%。但基于当前 proposal 的 framing，\n  核心发现的方向太可预测，中位估 20%。\n\n【主要风险】:\n  1. **Venue 致命错配**（投 CoRL）：这是一个 NLP/ML 方向的 benchmark 论文，投到机器人学习会议，\n     几乎确定被 desk reject。即使 idea 本身有价值，场次选择直接决定了 0 中稿概率。\n  2. **Novelty 不足以独立成文**：核心贡献是 PRMBench × reWordBench × PutnamGAP 的交叉实验设计，\n     审稿人可能认为 \"这只是把已有的变换类型应用到 PRM 的 step-level 评分上\"，\n     缺乏足够的概念跳跃来支撑一篇主会论文。\n```\n\n---\n\nSources:\n- [PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models](https://arxiv.org/abs/2501.03124)\n- [reWordBench: Benchmarking and Improving the Robustness of Reward Models with Transformed Inputs](https://arxiv.org/abs/2503.11751)\n- [PutnamGAP: An Investigation of Robustness of LLMs in Mathematical Reasoning](https://arxiv.org/abs/2508.08833)\n- [APRM: Adversarial Training for Process Reward Models](https://arxiv.org/abs/2511.22888)\n- [GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning](https://arxiv.org/abs/2504.00891)\n- [ThinkPRM: Process Reward Models That Think](https://huggingface.co/papers/2504.16828)\n- [CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models](https://arxiv.org/abs/2507.15698)\n- [ProcessBench: Identifying Process Errors in Mathematical Reasoning](https://arxiv.org/abs/2412.06559)\n- [GR-Ben: A General Reasoning Benchmark for Evaluating Process Reward Models](https://arxiv.org/abs/2605.01203)\n- [Reward Under Attack: Analyzing the Robustness and Hackability of Reward Models](https://arxiv.org/pdf/2603.06621)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have enough information to make a well-grounded assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **\"Reward Under Attack\" / PRM-BiasBench** (arXiv 2603.06621, Feb 2026):\n   最直接竞争者。对 PRM 施加三层递进的对抗压力，发现 43% 的 RL reward gains 来自 fluency-based stylistic shortcuts。释出了 PRM-BiasBench 用于 surface-level robustness 评测。Proposal 将自身定位为\"表面扰动 vs 结构等价\"的正交维度——但 PRM-BiasBench 的 static perturbation analysis 已经覆盖了部分 surface invariance，且该工作发现 PRM 对 surface style changes 有高不变性 (reward change <0.1)，即 PRM 在表面层面已经相当鲁棒，这反过来削弱了\"PRM 对结构等价也脆弱\"的先验预期。\n\n2. **reWordBench** (arXiv 2503.11751, EMNLP 2025):\n   测试 meaning-preserving transformations 对 general reward models 的影响。发现 SOTA RMs 在 minor transformations 下性能显著下降。但作用于 response-level 且面向通用 RM，不是 step-level PRM。Proposal 正确识别了这一差异。\n\n3. **PutnamGAP** (arXiv 2508.08833, 2025):\n   对 1,051 道 Putnam 竞赛题生成 6,306 个数学等价变体，测试 LLM solver（非 verifier）的鲁棒性。O3 在 parametric variants 上下降 12.9pp。方法论上（等价变换 + 评测）与 IsoPRM-Bench 高度相似，但目标对象不同（solver vs verifier）。\n\n4. **GR-Ben** (arXiv 2605.01203, May 2026):\n   将 PRM 评测扩展到 9 个非数学推理子领域，发现 PRM 在数学之外的 error detection 能力显著更弱。极新的工作，显示 PRM 评测是活跃热点。\n\n5. **APRM** (arXiv 2511.22888, Nov 2025):\n   通过 adversarial training（Generator 生成错误、PRM 学习检测）提升 PRM 鲁棒性。OOD 任务上 +5.3pp。Proposal 将 Iso-Aug 定位为与 APRM 互补。\n\n6. **GenPRM** (arXiv 2504.00891, Apr 2025) & **ThinkPRM** (Apr-May 2025):\n   两类 generative PRM，分别用 code verification 和 long CoT reasoning 做 step-level verification。1.5B GenPRM 超过 GPT-4o，7B GenPRM 超过 Qwen2.5-Math-PRM-72B。\n\n7. **ProcessBench** (arXiv 2412.06559, Dec 2024):\n   3,400 人工标注数学解题步骤，是本 proposal 的数据基础。\n\n8. **PRMBench** (arXiv 2501.03124, ACL 2025):\n   6,216 problems, 83,456 step-level labels，评测 PRM 的 simplicity/soundness/sensitivity。已覆盖 fine-grained PRM evaluation，但角度不同（error detection 能力 vs 结构不变性）。\n\n9. **CoLD** (arXiv 2507.15698, Jul 2025):\n   Counterfactually-guided length debiasing for PRMs。Proposal 的 Iso-Aug 声称\"adapt CoLD's causal debiasing framework\"——但 CoLD 解决的是 length bias，不是 structural invariance。适配的合理性需要论证。\n\n- **调研总结**: PRM 评测/鲁棒性是 2025-2026 年的热点领域，已有大量密集工作。PRM-BiasBench（surface robustness）、PRMBench（fine-grained error detection）、GR-Ben（non-math domains）从不同角度评测 PRM。PutnamGAP 对 solver 做结构等价测试。本 proposal 定位在\"step-level structural invariance of PRM verifiers\"这个交叉缝隙中——缝隙真实存在，但非常窄，且该领域发展极快，被近期工作侧面覆盖的风险很高。\n\n\n【Trivial Alternative 检验】:\n\n存在明显的 trivial alternative 威胁：\n\n1. **直接用 PutnamGAP 的变换方法论 + ProcessBench 数据**: 将 PutnamGAP 的 mathematically-equivalent transformations 应用到 ProcessBench 的 step-level 数据上，然后跑现有 PRM，本质上就实现了 IsoPRM-Bench 的核心功能。Proposal 增加了 SymPy/Z3 formal verification，但这是工程层面的质量保障，不是方法论创新。\n\n2. **PRM-BiasBench 的扩展**: PRM-BiasBench 已经测试了 surface perturbations 对 PRM 的影响，如果在其 perturbation taxonomy 中加入\"structural mathematical equivalence\"类别（如 variable renaming、commutative reordering），就能直接覆盖本 proposal 的核心场景。\n\n3. **Iso-Aug 的 trivial baseline**: data augmentation + consistency regularization 是最标准的鲁棒性提升方法。在 Iso-Aug 之前，一个 reviewer 会问：为什么不直接用 isomorphic 数据做 fine-tuning（不需要 causal debiasing framework），效果会差多少？\n\n增量价值主要在于：(a) 系统化的 transformation taxonomy + formal verification pipeline，(b) cross-analysis with PRM-BiasBench 的 2D robustness landscape，(c) 跨 paradigm 比较。但这些更接近\"thorough engineering\"而非\"novel insight\"。\n\n\n【前提假设检验】:\n\n核心逻辑链中有几个未经验证的环节：\n\n1. **\"PRM 对 structural isomorphism 脆弱\"是假设而非已知事实**。PRM-BiasBench 发现 PRM 对 surface style changes 有高不变性（reward change <0.1）。如果 PRM 对 structural transformations 也是鲁棒的（尤其是 generative PRMs），整个 benchmark 的 raison d'être 就大幅削弱。Proposal 预设了 brittleness 存在并设计了 mitigation，但如果 null result 出现，论文的价值严重缩水。\n\n2. **\"Step-level 脆弱性导致 tree search failure\"是未经验证的因果推断**。Proposal claim (3) 假设 brittleness 随 step depth 增加导致 tree search 失败，但这个因果链缺乏理论或实证支撑——tree search 失败的原因可能是 error propagation、branching factor 爆炸等其他因素。\n\n3. **\"Notation gaming attack surface 是实际威胁\"的假设**。Proposal claim (5) 假设 policy 可以通过利用 PRM notation preferences 来 inflate scores。但如果 PRM 对 notation 变化本身就鲁棒（如 PRM-BiasBench 的发现所暗示），这个 attack surface 就不存在。\n\n4. **CoLD framework 适配到 structural invariance 的合理性**。CoLD 针对 length bias 设计，其 causal graph 和 intervention 策略是否能直接迁移到 structural invariance 问题上，逻辑上并不自明。\n\n\n【3 维度打分】:\n\n1. **Novelty: 弱-中** — 核心贡献是在已有工作的缝隙中找到了一个未被显式测试的组合：step-level × structural invariance × PRM verifier。但方法论上没有新东西——transformation types（variable renaming, commutative reordering, representation change, notation change）都是 PutnamGAP 和 reWordBench 中已有的；formal verification pipeline（SymPy, Z3）是标准工具；Iso-Aug 是 augmentation + consistency regularization 的标准做法。PRM-BiasBench (2603.06621) 已经在 PRM 上测试了 perturbation robustness，只需扩展其 perturbation taxonomy 就能覆盖大部分场景。PutnamGAP 的方法论直接迁移到 step-level 就是本 proposal 的核心。Novelty 主要来自\"nobody has explicitly done this exact combination\"，这是 gap-filling 而非 insight-driven。\n\n2. **Significance: 中** — PRM robustness 是一个重要且活跃的研究方向（PRM-BiasBench, APRM, CoLD 等都在 2025-2026 密集发表）。Test-time compute scaling 依赖可靠的 verifier 是真实需求。但：(a) 具体到 structural isomorphism 这个角度，影响面较窄——实际部署中，同一个推理步骤以不同数学记号出现的场景有限；(b) 预期发现的 surprise value 低——\"discriminative PRM 比 generative PRM 更脆弱\"几乎是 trivially expected（generative PRM 本身就做 explicit reasoning）；(c) 如果核心发现是 positive（PRM 确实脆弱），reviewer 大概率会说\"I would have guessed this given PutnamGAP's findings on solvers\"。\n\n3. **Related Work: 强** — Proposal 展示了对领域的优秀理解和定位。清晰区分了 PRM-BiasBench（surface）、reWordBench（response-level general RM）、PutnamGAP（solver not verifier）、GR-Ben（non-math domains）、APRM（adversarial training）、GenPRM/ThinkPRM（generative paradigm）。定位准确，差异化清晰。这是这份 proposal 最强的维度。\n\n【概率估计】: [15% - 28%] 中位 20%\n\n【估计理由】:\n- Novelty 是主要限制因素：核心贡献是 gap-filling benchmark，方法论层面没有新东西。在 PRM 评测已极度拥挤的 2025-2026 landscape 中（PRM-BiasBench, PRMBench, GR-Ben, ToolPRMBench 等），一个新 benchmark 需要展示\"不可被现有 benchmark 简单扩展覆盖\"的独特价值，而本 proposal 的核心场景可以被 PRM-BiasBench 扩展 taxonomy 或 PutnamGAP 方法下移到 step-level 来覆盖。\n- Significance 受限于 surprise value：核心预期发现（PRM 对结构等价脆弱）是可预测的，不太可能让 reviewer 感到 \"surprising\"。\n- **关键额外风险——venue mismatch**: Proposal 自述目标是 AAAI 2027 和 ICLR 2027，但用户询问的是 CoRL 2026（Conference on Robot Learning）。本 proposal 是纯粹的 NLP/mathematical reasoning PRM 评测工作，与 robot learning 完全无关。如果真的投 CoRL，大概率 desk reject。上述 15-28% 的估计是基于投到合适的 NLP/ML venue（如 AAAI/ICLR/ACL）的假设。如果投 CoRL 2026，概率应为 **3-5%**（基本只有误分配 reviewer 的极小概率）。\n\n【主要风险】:\n1. **Null result 风险**: 如果 PRM（尤其是 generative PRM）对 structural isomorphism 已经足够鲁棒，整个 benchmark 的核心 motivation 被瓦解，论文沦为\"we tested and nothing interesting happened\"。PRM-BiasBench 的发现（PRM 对 surface changes 高度不变）暗示这一风险非零。\n2. **增量价值不足**: 在 PRM benchmark 极度拥挤的领域中，reviewer 可能认为\"将 PutnamGAP 的方法下沉到 step-level + 跑几个 PRM\"不构成充分的学术贡献——这是一个 well-executed engineering effort，但 insight 有限。\n```\n\nSources:\n- [Reward Under Attack / PRM-BiasBench (arXiv 2603.06621)](https://arxiv.org/abs/2603.06621)\n- [reWordBench (arXiv 2503.11751)](https://arxiv.org/abs/2503.11751)\n- [PutnamGAP (arXiv 2508.08833)](https://arxiv.org/abs/2508.08833)\n- [GR-Ben (arXiv 2605.01203)](https://arxiv.org/abs/2605.01203)\n- [APRM (arXiv 2511.22888)](https://arxiv.org/abs/2511.22888)\n- [GenPRM (arXiv 2504.00891)](https://arxiv.org/abs/2504.00891)\n- [ProcessBench (arXiv 2412.06559)](https://arxiv.org/abs/2412.06559)\n- [PRMBench (arXiv 2501.03124)](https://arxiv.org/abs/2501.03124)\n- [CoLD (arXiv 2507.15698)](https://arxiv.org/abs/2507.15698)\n- [ThinkPRM (MarkTechPost)](https://www.marktechpost.com/2025/04/29/thinkprm-a-generative-process-reward-models-for-scalable-reasoning-verification/)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have comprehensive field context. Let me compile the full assessment.\n\n---\n\n```\n【阶段】: Triage\n```\n\n## ⚠️ 重要前置问题：严重的 Venue 错配\n\n本 proposal 是一篇关于 **数学推理 Process Reward Model 鲁棒性** 的 benchmark + mitigation 论文。**CoRL (Conference on Robot Learning) 2026** 的核心领域是机器人学习（manipulation, locomotion, perception for robotics, robot policy learning 等）。这篇论文与机器人学习 **完全无关**，投 CoRL 极大概率会在 desk review 阶段直接被拒。\n\nProposal 自身也注明了目标会议是 **AAAI 2027** 和 **ICLR 2027**——这才是合理的 venue。\n\n**因此，对 CoRL 2026 的中稿概率估计：≈ 0-3%（venue mismatch 导致 desk reject）。**\n\n以下我将按 rubric 评估 **idea 本身的内在质量**（假设投稿至 AAAI/ICLR/NeurIPS 等合理 venue），以供后续流程判断此 idea 是否值得继续推进。\n\n---\n\n```\n【领域调研】:\n```\n\n- **\"Reward Under Attack: Analyzing the Robustness and Hackability of PRMs\"** (arXiv:2603.06621, Mar 2026): **最直接的竞争者**。提出 PRM-BiasBench，扩展 ProcessBench 覆盖 8 种 transformation 类型，在 step-level 评估 PRM 鲁棒性。核心发现：PRM 对 surface-level 风格变化高度不变，但对逻辑破坏检测不一致；43% 的 RL reward 增益来自风格捷径。已含 step-level perturbation + PRM hackability 分析。\n\n- **reWordBench** (arXiv:2503.11751, Mar 2025): 测试 meaning-preserving transformations 对通用 reward model 的影响，response-level。发现 SOTA reward models 在轻微输入变换下性能严重下降。\n\n- **ProcessBench** (arXiv:2412.06559, Dec 2024, ACL 2025): 3,400 个 step-level 标注的数学推理解题过程，要求模型定位最早错误步骤。本 proposal 的数据基础。\n\n- **PRMBench** (arXiv:2501.03124, Jan 2025, ACL 2025): 6,216 问题 + 83,456 step-level labels，从 simplicity/soundness/sensitivity 三维评估 PRM。\n\n- **Socratic-PRMBench** (arXiv:2505.23474, May 2025): 从 reasoning pattern 角度评估 PRM，含 Transformation/Decomposition/Deduction 等模式。\n\n- **GenPRM** (arXiv:2504.00891, Apr 2025, AAAI 2026): 将 process supervision 重新定义为 generative task，1.5B GenPRM 超越 GPT-4o，7B 超越 Qwen2.5-Math-PRM-72B。\n\n- **ThinkPRM** (arXiv:2504.16828, Apr 2025): 长 CoT 生成式 PRM，支持 verifier compute scaling，在 ProcessBench/MATH-500/AIME'24 上超越 discriminative baselines。\n\n- **PutnamGAP** (arXiv:2508.08833, Aug 2025): 6,306 个数学等价变体测试 LLM solver 鲁棒性。O3 在 surface-renaming 变体上降 4.7pp，parametric 变体降 12.9pp。**但目标是 LLM solver，不是 PRM verifier。**\n\n- **APRM** (arXiv:2511.22888, Nov 2025): 对抗训练 PRM 的 two-player game 框架，平均提升 solver accuracy +3.4pp，OOD +5.3pp。\n\n- **GR-Ben** (arXiv:2605.01203, May 2026): PRM 评估扩展至 9 个非数学推理子领域。\n\n- **CoLD** (arXiv:2507.15698, Jul 2025): Counterfactually-Guided Length Debiasing for PRMs，已提出 causal debiasing 在 PRM 上的应用框架。\n\n- **调研总结**: PRM robustness evaluation 是 2025-2026 年的热门领域，已有大量 benchmark（ProcessBench → PRMBench → Socratic-PRMBench → PRM-BiasBench → GR-Ben）和 mitigation 方法（APRM、CoLD）。该 proposal 试图在 \"step-level structural isomorphism invariance of PRM verifiers\" 这一细分空间中占位，但最直接竞争者 \"Reward Under Attack\" (PRM-BiasBench, 2026.03) 已在 step-level 覆盖了 8 种 transformation 类型，且包含了 reward hacking 分析。\n\n---\n\n```\n【Trivial Alternative 检验】:\n```\n\n**存在显著的 trivial alternative 威胁。** 具体来说：\n\n1. **PRM-BiasBench 的直接扩展**：\"Reward Under Attack\" 已经建立了 ProcessBench 基础上的 8 种 transformation perturbation 框架。要测试\"structural isomorphism\"，最 trivial 的做法是：在 PRM-BiasBench 的框架下新增几种 isomorphic transformation 类别（variable renaming, commutative reordering 等），而不需要建立全新的 benchmark。这个 trivial extension 成本远低于构建全新的 IsoPRM-Bench。\n\n2. **Iso-Aug mitigation 方面**：data augmentation + consistency regularization 是 NLP debiasing 中的标准套路。CoLD 已经在 PRM 上做了 causal debiasing，APRM 已经做了对抗训练。Iso-Aug 的技术贡献增量有限——本质上就是\"用 isomorphic 变体做 augmentation + 加一个 consistency loss\"，这是任何熟悉该领域的研究者在识别了 isomorphic brittleness 问题后都能想到的第一个方法。\n\n**增量价值的唯一合理论点**：proposal 强调的是\"formally verifiable transformation\"（用 SymPy + Z3 验证变换正确性），以及 isomorphism 和 surface perturbation 的\"二维鲁棒性景观\"交叉分析。但这更接近 engineering rigor 而非 conceptual novelty。\n\n---\n\n```\n【前提假设检验】:\n```\n\n核心 claim 的逻辑链中有以下未经验证的假设：\n\n1. **\"Structural isomorphism brittleness 是 PRM 的一个独立且重要的失败模式\"**——这是最关键的前提假设。PRM-BiasBench 已经发现 PRM 对 surface-level 风格变化高度不变（high invariance to surface-level style changes），那么 structural isomorphism（本质上也是 meaning-preserving transformation）是否真的会导致不同的失败模式？如果 PRM 对 surface change 已经 robust，那 structural isomorphism 可能也 robust；如果 PRM 对 surface change 不 robust，那 structural isomorphism 的 brittleness 就不是新发现。这个假设需要实证，但如果结果落入上述任何一端，novelty 都会被削弱。\n\n2. **\"IIS（Isomorphic Invariance Score）与 PRM-BiasBench 的 surface robustness 存在有信息量的二维关系\"**——proposal 预设了 structural invariance 和 surface robustness 是可以解耦的两个维度。但如果实验显示它们高度相关（都来自同一个底层脆弱性），那\"二维景观\"就没有分析价值。\n\n3. **\"Generative PRMs 可能在 isomorphic invariance 上天然优于 discriminative PRMs\"**——这是合理的猜测（因为 generative PRMs 通过 CoT 推理可能更关注逻辑结构），但也可能是 trivially true（因为 GenPRM 和 ThinkPRM 已经被证明在多个维度上优于 discriminative PRMs）。如果 positive，审稿人会说 \"I would have guessed this\"。\n\n4. **\"Notation gaming attack 是一个实际威胁\"**——proposal 声称 policy 可以利用 PRM 的 notation 偏好来 inflate scores。但 \"Reward Under Attack\" 已经证明了更广泛的 reward hacking 现象（43% 来自 stylistic shortcuts）。Notation gaming 是否是一个独立的、具有额外洞察的 attack surface，还是只是 stylistic shortcuts 的一个子类？\n\n---\n\n```\n【3 维度打分】:\n```\n\n### 1. Novelty: 弱-中 — \n\n**理由**：\n\n- Proposal 声称的核心 novelty——\"first benchmark for step-level structural isomorphism invariance of PRM verifiers\"——在概念层面是成立的：PutnamGAP 测试 LLM solver（非 PRM verifier），reWordBench 在 response-level（非 step-level），PRM-BiasBench 侧重 surface perturbation（非 structural isomorphism）。三个维度的交叉确实形成了一个尚未被直接占据的细分位置。\n- **但**，这个\"空白\"是否有足够的 intellectual substance？\"Reward Under Attack\" (arXiv:2603.06621) 已在 ProcessBench 基础上做了 8 种 transformation 的 step-level PRM robustness 评估——添加 isomorphic transformation 类型是该框架的自然延伸，而非需要全新 benchmark 的独立贡献。\n- Iso-Aug mitigation（data augmentation + consistency regularization）在技术上是标准做法，CoLD 已经在 PRM debiasing 中应用了 causal framework，APRM 已经做了对抗训练。Iso-Aug 的增量有限。\n- \"五个 key findings\" 中的大部分（paradigm gap, depth-dependent brittleness, notation gaming）在现有文献中有前兆或可预测：PutnamGAP 和 \"Reward Under Attack\" 已建立了相关 findings 的框架。\n\n### 2. Significance: 中 —\n\n**理由**：\n\n- PRM robustness 是 2025-2026 年的重要话题。随着 PRM 被广泛用于 test-time compute scaling（best-of-N, tree search），其 verifier 的可靠性直接影响系统性能。这是一个真实且重要的研究方向。\n- 但该 proposal 的 specific contribution（structural isomorphism invariance 这一个维度）的影响范围较窄。\"Reward Under Attack\" 已经提供了更全面的 PRM robustness 诊断框架。IsoPRM-Bench 在 practical impact 上是 \"Reward Under Attack\" 的一个补充维度，而非独立的高影响力贡献。\n- 如果核心发现是 positive（\"PRMs 对 structural isomorphism 不鲁棒\"），审稿人很可能会说 **\"I would have guessed this\"**，因为 PutnamGAP 已经在 solver 层面证实了类似现象，PRM-BiasBench 已经在 step-level 证实了 surface perturbation 的影响。\n- Notation gaming attack 是一个有趣的方向，但可能被视为 \"Reward Under Attack\" 中 reward hacking 分析的一个具体实例。\n\n### 3. Related Work: 中-强 —\n\n**理由**：\n\n- Proposal 对相关工作的覆盖相当全面：PRM-BiasBench、reWordBench、PutnamGAP、GR-Ben、APRM、ProcessBench、GenPRM、ThinkPRM、CoLD 均被提及，差异化定位也较为清晰。\n- **但**：proposal 引用的 \"PRM-BiasBench\" 来自 \"Reward Under Attack\" (2026.03)，这篇论文的全面性对本 proposal 的 novelty 构成了最大威胁，而 proposal 似乎低估了它的重叠程度——仅将其描述为 \"tests surface perturbations\"，但实际上 PRM-BiasBench 覆盖了 8 种 transformation 类型，其中可能已包含部分 structural transformations。\n- 遗漏了 **Socratic-PRMBench** (arXiv:2505.23474) 和 **PRMBench** (arXiv:2501.03124) 这两个在 PRM evaluation 领域有显著影响的 benchmark。\n- 未充分讨论 \"Reward Under Attack\" 中 step-level 的 \"fluency-logic dissociation\" 发现——这一发现直接关联 structural isomorphism（逻辑等价但表面不同的步骤）的处理方式。\n\n---\n\n```\n【概率估计】（针对合理 venue：AAAI 2027 / ICLR 2027）: [18% - 28%] 中位 22%\n\n【概率估计】（针对 CoRL 2026）: [0% - 3%] 中位 1%\n```\n\n```\n【估计理由】:\n```\n\n**对合理 venue (AAAI/ICLR)**：\n- Novelty 维度是主要限制因素。核心贡献在概念上可以成立（step-level structural isomorphism of PRM verifiers 是一个尚未被直接占据的 niche），但实质增量较薄——PRM-BiasBench 的自然扩展即可覆盖大部分 claimed contribution。Iso-Aug mitigation 技术上是标准做法。\n- Significance 适中但不突出：方向正确（PRM robustness），但 specific contribution 较窄，且核心发现高度可预测。\n- Related work 覆盖尚可，但对最大竞争者 \"Reward Under Attack\" 的差异化论述不够有力。\n- 综合来看，这是一篇 \"方向对、位置有、但 delta 不够大\" 的 benchmark 论文。在 AAAI 有一定机会（AAAI 对 benchmark 类工作相对友好），在 ICLR 的概率更低。\n\n**对 CoRL 2026**：完全的 venue mismatch，desk reject 概率极高。\n\n```\n【主要风险】:\n```\n\n1. **与 \"Reward Under Attack\" / PRM-BiasBench 的重叠过大**：这是最致命的 idea 层面风险。审稿人很可能会质疑：\"为什么不在 PRM-BiasBench 的框架下增加 isomorphic transformation 类别，而要建一个全新的 benchmark？\" 如果无法令人信服地回答这个问题，论文会因 insufficient novelty 被拒。\n\n2. **核心发现的可预测性（\"I would have guessed this\"）**：无论结果是 positive（\"PRMs 对 isomorphism 不鲁棒\"——可预测，因为 PutnamGAP 和 PRM-BiasBench 已暗示）还是 negative（\"generative PRMs 天然鲁棒\"——也可预测，因为 GenPRM/ThinkPRM 已被证明在多维度上优于 discriminative PRMs），审稿人都可能认为发现缺乏 surprise value。\n\n---\n\nSources:\n- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)\n- [reWordBench: Benchmarking and Improving the Robustness of Reward Models](https://arxiv.org/abs/2503.11751)\n- [ProcessBench: Identifying Process Errors in Mathematical Reasoning](https://arxiv.org/abs/2412.06559)\n- [PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models](https://arxiv.org/abs/2501.03124)\n- [Socratic-PRMBench: Benchmarking PRMs with Systematic Reasoning Patterns](https://arxiv.org/html/2505.23474v1)\n- [GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning](https://arxiv.org/abs/2504.00891)\n- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)\n- [PutnamGAP: Mathematically-Equivalent Transformation Benchmark](https://arxiv.org/abs/2508.08833)\n- [APRM: Adversarial Training for Process Reward Models](https://arxiv.org/abs/2511.22888)\n- [GR-Ben: A General Reasoning Benchmark for Evaluating PRMs](https://arxiv.org/abs/2605.01203)\n- [CoLD: Counterfactually-Guided Length Debiasing for PRMs](https://arxiv.org/pdf/2507.15698)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# IsoPRM-Bench: Benchmarking and Mitigating Structural Isomorphism Brittleness in Process Reward Models\n\n## Description\nWe propose IsoPRM-Bench, the first benchmark testing whether Process Reward Models maintain consistent scores across structurally isomorphic reasoning steps, paired with Iso-Aug, a mitigation method based on isomorphic augmentation with consistency regularization. While PRM-BiasBench tests surface perturbations (rephrasing, verbosity), reWordBench tests meaning-preserving transformations on general RMs at response level, PutnamGAP tests equivalent transformations on LLM solvers, GR-Ben extends PRM evaluation to 9 non-mathematical reasoning subdomains, and APRM improves error detection via adversarial training, no existing work tests step-level structural invariance of PRM verifiers — whether a PRM scores logically equivalent steps identically when their mathematical realization differs. Starting from ProcessBench's 3,400 human-annotated solutions (GSM8K: 400, MATH: 1,000, OlympiadBench: 1,000, Omni-MATH: 1,000), we generate isomorphic variants across four formally verifiable transformation types (variable renaming, commutative reordering, representation change, notation change) with a three-tier verification pipeline (SymPy, Z3, human audit). We explicitly quantify per-transformation coverage: T1/T2 apply broadly (~60-75% of steps), while T3/T4 require specific mathematical content (~35-55%), with coverage validated via a 100-solution pilot annotation and supplemented by AMC/AIME solutions if needed. We evaluate PRMs spanning three paradigms — discriminative (Qwen2.5-Math-PRM-72B/7B, Math-Shepherd), generative-CoT (ThinkPRM), and generative-code (GenPRM) — using an Isomorphic Invariance Score (IIS). Crucially, we cross-analyze IIS with PRM-BiasBench's surface robustness to map the two-dimensional robustness landscape. For mitigation, we adapt CoLD's causal debiasing framework to fine-tune Qwen2.5-Math-PRM-7B with isomorphic augmentation and consistency regularization, positioning Iso-Aug as complementary to APRM's adversarial training (which improves error detection robustness via novel negative generation, while Iso-Aug improves invariance across valid reformulations). Our analysis targets five key findings: (1) anti-correlated model-specific blind spots across transformation types, (2) whether generative PRMs show inherent isomorphic robustness — and if so, quantifying the paradigm gap to inform deployment decisions between latency-sensitive discriminative PRMs and invariance-superior generative PRMs, (3) whether brittleness increases with step depth (explaining tree search failure), (4) the practical impact on best-of-N selection with diverse reasoning strategies, and (5) a notation gaming attack surface analysis demonstrating how a policy can exploit PRM notation preferences to inflate scores without improving reasoning — analogous to but structurally deeper than PRM-BiasBench's finding that 43% of RL reward gains come from fluency-based stylistic shortcuts. We explicitly address the generative PRM trajectory: even if GenPRM/ThinkPRM pass invariance tests, the benchmark quantifies the paradigm robustness gap for deployment decisions, provides Iso-Aug training signal to improve latency-efficient discriminative PRMs, and establishes isomorphic invariance as a standard evaluation dimension. We adopt a two-phase submission strategy: benchmark-focused for AAAI 2027 (Jul 28; human-in-loop mode, 8-10 weeks), with full Iso-Aug + APRM composition for ICLR 2027 backup (~Oct 2026). This work bridges the gap between outcome-level robustness testing (IPT, PutnamGAP) and step-level verification, with direct implications for PRM-guided test-time compute scaling and reward hacking prevention.\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T03:23:05.910Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T03:23:05.910Z",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T03:23:05.922Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research context. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. PRMBench (ACL 2025, arxiv 2501.03124):
+   细粒度 PRM 评估基准，包含 6,216 问题 / 83,456 step-level 标签。
+   评估维度包括 Simplicity、Soundness、Sensitivity，
+   其中 "Multi-Solution Consistency" 子维度已测试 PRM 在不同有效解法路径上的一致性，
+   "Confidence Invariance" 测试过度自信的错误陈述。
+   → 与本 proposal 的 "structural isomorphism invariance" 有实质重叠，但粒度和形式化程度不同。
+
+2. reWordBench (EMNLP 2025, arxiv 2503.11751):
+   测试 general reward models 对 meaning-preserving transformations 的鲁棒性（加引号、改标点、插入无意义短语等）。
+   发现 SOTA reward models 在微小输入变换下性能可降至随机以下。
+   提出用 paraphrase 训练提升鲁棒性。
+   → 与本 proposal 方向高度相关，但作用于 response-level 而非 step-level，且针对 general RM 而非 PRM。
+
+3. PutnamGAP (arxiv 2508.08833):
+   对 85 年 Putnam 竞赛题做 5 种等价变换（表面重命名、参数变换等），在 18 个模型上测试。
+   发现 O3 在原题 51.5%、变量重命名 -4.7pp、参数变换 -12.9pp。
+   → 测试对象是 LLM solver 而非 PRM verifier，但变换类型与本 proposal 的 T1-T4 高度类似。
+
+4. APRM (ICLR 2026, arxiv 2511.22888):
+   对抗训练 PRM，Generator 生成推理错误欺骗 PRM，PRM 同时学习检测。
+   在数学推理基准上 +3.4pp，OOD +5.3pp。
+   → 提升 PRM error detection 鲁棒性，与本 proposal 的 Iso-Aug mitigation 互补但角度不同。
+
+5. GenPRM (arxiv 2504.00891) & ThinkPRM (arxiv 2504.16828):
+   生成式 PRM，使用 CoT 推理 + 代码验证进行 step-level 判断。
+   ThinkPRM 用远少于 PRM800K 的标注即超越判别式 PRM +8%。
+   → 本 proposal 计划评估的核心模型，确实存在且描述基本准确。
+
+6. CoLD (arxiv 2507.15698, July 2025):
+   Counterfactually-Guided Length Debiasing for PRMs。
+   专门针对 PRM 的长度偏差，通过反事实推理和因果图分析进行去偏。
+   → 本 proposal 声称要 "adapt CoLD's causal debiasing framework" 到 isomorphic invariance，
+   但 CoLD 专门针对 length bias，迁移到 structural invariance 的合理性未论证。
+
+7. GR-Ben (arxiv 2605.01203, May 2026):
+   将 PRM 评估扩展到 9 个非数学推理子域（科学、逻辑）。
+   → 扩展 PRM 评估维度，与本 proposal 扩展 "invariance 维度" 的思路平行。
+
+8. ProcessBench (ACL 2025, arxiv 2412.06559):
+   3,400 人工标注的数学推理解题步骤，本 proposal 声称基于此构建。
+   → 数据来源真实。
+
+9. "PRM-BiasBench"：
+   本 proposal 多次引用此基准（称其测试 "surface perturbations: rephrasing, verbosity"，
+   并引用 "43% of RL reward gains come from fluency-based stylistic shortcuts"），
+   但经多轮搜索未找到名为 "PRM-BiasBench" 的独立工作。
+   可能是对 reWordBench 或 "Reward Under Attack" (arxiv 2603.06621) 的误引或重命名。
+   ⚠️ 引用真实性存疑。
+
+- 调研总结：PRM 评估领域在 2025-2026 年快速发展，已有多个基准从不同维度评估 PRM 的鲁棒性：
+  PRMBench 做了细粒度 step-level 评估（含 Multi-Solution Consistency），reWordBench 做了 meaning-preserving
+  robustness，PutnamGAP 做了 equivalent transformations（但对象是 solver 非 verifier），APRM 做了对抗训练。
+  本 proposal 声称的 "step-level structural invariance of PRM verifiers" 这一交叉点确实尚未被完全覆盖，
+  但它是多个已有工作的自然延伸，属于 "填表格中一个空格" 式的增量贡献。
+
+
+【致命问题：投稿场次错配】:
+CoRL (Conference on Robot Learning) 是机器人学习会议，核心议题为机器人感知、控制、manipulation、
+navigation、sim-to-real 等。本 proposal 纯粹关于数学推理的 Process Reward Model 评估与去偏，
+与 CoRL 的主题范围完全不匹配。投稿 CoRL 大概率在 desk reject 阶段被拒。
+该 proposal 自身也写明目标会议是 AAAI 2027 和 ICLR 2027（backup），更适合的会议还包括 NeurIPS、
+ICML、ACL、EMNLP 等 NLP/ML 主会。
+以下评估先忽略场次错配，纯评 idea 质量，最终概率估计会反映场次因素。
+
+
+【Trivial Alternative 检验】:
+
+存在明显的 trivial alternative 威胁：
+
+1. **直接扩展 PRMBench**：PRMBench 已有 "Multi-Solution Consistency" 维度，
+   只需在该维度下增加 variable renaming / commutative reordering / notation change 等具体变换类型，
+   即可获得类似的诊断能力，无需构建全新 benchmark。
+
+2. **PutnamGAP 的变换直接施加于 PRM**：PutnamGAP 已定义了 5 种等价数学变换并验证了 LLM solver 的脆弱性。
+   将相同变换施加于 PRM 的 step-level 评分，是一个工程量很小的扩展实验。
+
+3. **Mitigation (Iso-Aug) 是标准 data augmentation + consistency loss**：
+   reWordBench 已经提出 "用 paraphrase 训练提升鲁棒性" 并验证有效。
+   Iso-Aug 本质上是将 "paraphrase training" 替换为 "isomorphic variant training"，
+   技术贡献极为有限。
+
+增量价值主要在于：(a) 形式化定义了 4 种变换类型 + 三级验证管道，(b) 跨 PRM 范式 (discriminative vs generative) 的对比。
+但这些更多是实验设计层面的细致，而非方法论创新。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链条中有以下未经验证的假设：
+
+1. **"PRM 对 isomorphic transformations 会表现出显著脆弱性"**：
+   这个假设基于 reWordBench 对 general RM 和 PutnamGAP 对 LLM solver 的类比推断。
+   但如果 PRM（尤其是 generative PRM）已经足够鲁棒，那么整个 benchmark 的诊断价值大打折扣。
+   proposal 自身也承认了这种可能性（"even if GenPRM/ThinkPRM pass invariance tests"），
+   但未充分论证在该结果下论文的 contribution 如何成立。
+
+2. **"CoLD 的 causal debiasing framework 可以适配到 structural invariance"**：
+   CoLD 专门处理 length bias，其因果图模型中 confounding variable 是 "step length"。
+   将其迁移到 "mathematical notation choice" 作为 confounder，
+   因果图结构和干预方式都需要重新设计，proposal 完全没有讨论这个迁移的可行性。
+
+3. **"Notation gaming 是一个实际威胁"**：
+   Proposal 声称 policy 可以通过 exploit PRM 的 notation preference 来 inflate scores。
+   但 notation gaming 需要 policy 能精确感知 PRM 的 notation preference 并据此优化，
+   这在现有 RLHF/RL 训练框架中是否真的会发生，缺乏实证支持。
+   与 reward hacking 文献中已知的 length hacking、style hacking 相比，
+   notation-level 的 gaming 更加 fine-grained，是否能被训练过程发现和利用尚不清楚。
+
+4. **"43% of RL reward gains come from fluency-based stylistic shortcuts" 出自 PRM-BiasBench"**：
+   经搜索未找到名为 PRM-BiasBench 的工作，此引用的真实性存疑。
+   如果关键 motivation 数据来自不存在的论文，proposal 的立论基础受损。
+
+
+【3 维度打分】:
+
+1. Novelty: 弱 (Weak)
+   — PRMBench (ACL 2025) 已有 Multi-Solution Consistency 维度评估 PRM 在不同解法路径上的一致性。
+   reWordBench (EMNLP 2025) 已做 meaning-preserving robustness for reward models。
+   PutnamGAP (2025) 已定义了与 T1-T4 高度类似的等价数学变换并验证了 LLM 脆弱性。
+   本 proposal 的贡献是将这三者的交叉点具体化到 "step-level + PRM verifier + structural transformation"，
+   但这是一个可预见的 gap-filling，而非真正的概念创新。
+   Mitigation (Iso-Aug) 是标准 data augmentation + consistency regularization，
+   reWordBench 已经验证过类似策略对 reward model 有效。
+   
+2. Significance: 中 (Medium)
+   — PRM 鲁棒性对 test-time compute scaling 和 reward hacking prevention 确实重要。
+   但核心发现的预期方向高度可预测：discriminative PRM 会脆弱，generative PRM 会更鲁棒，
+   augmentation 会改善鲁棒性。审稿人看到 positive results 很可能会说 "I would have guessed this"。
+   跨 paradigm 对比（discriminative vs generative）有一定信息量，但不足以提升到 "surprising" 级别。
+   另外，这是一个纯诊断性工作（benchmark paper），天花板本身就受限。
+
+3. Related Work: 中 (Medium)
+   — Proposal 展示了对 PRM 评估领域的广泛了解，引用了 reWordBench、PutnamGAP、GenPRM、ThinkPRM、
+   APRM、ProcessBench、GR-Ben、CoLD 等多个真实且相关的工作。差异化定位（step-level + structural + PRM verifier）
+   描述清晰。但存在两个问题：
+   (a) "PRM-BiasBench" 可能是不存在的或被误命名的工作，在 proposal 中被多次引用作为对照，
+       如果该引用不实，credibility 受损；
+   (b) PRMBench 的 Multi-Solution Consistency 维度与本工作的重叠未被充分讨论和区分。
+
+
+【概率估计】: 
+  - 若投 CoRL 2026: [3% - 8%] 中位 5%
+  - 若投自然目标会议 (AAAI/ICLR/NeurIPS): [15% - 25%] 中位 20%
+
+【估计理由】:
+  CoRL 估计：与会议主题（机器人学习）完全不匹配，大概率 desk reject。即使进入审稿流程，
+  审稿人池也不具备 PRM 评估领域的专业知识，无法公正评价。3-8% 反映极小概率的行政失误或
+  主题理解偏差。
+
+  自然目标会议估计：Idea 的内核是 "填一个可预见的 gap"——在 reWordBench (response-level RM)
+  和 PutnamGAP (solver-level) 之间找到 "step-level PRM verifier" 这个交叉点。
+  Novelty 维度是主要限制因素：审稿人很可能认为这是对已有工作的增量组合。
+  Mitigation 方法 (Iso-Aug) 缺乏技术深度。如果实验执行非常出色（显示出反直觉的 finding，
+  如 generative PRM 也意外脆弱），上界可能到 25%。但基于当前 proposal 的 framing，
+  核心发现的方向太可预测，中位估 20%。
+
+【主要风险】:
+  1. **Venue 致命错配**（投 CoRL）：这是一个 NLP/ML 方向的 benchmark 论文，投到机器人学习会议，
+     几乎确定被 desk reject。即使 idea 本身有价值，场次选择直接决定了 0 中稿概率。
+  2. **Novelty 不足以独立成文**：核心贡献是 PRMBench × reWordBench × PutnamGAP 的交叉实验设计，
+     审稿人可能认为 "这只是把已有的变换类型应用到 PRM 的 step-level 评分上"，
+     缺乏足够的概念跳跃来支撑一篇主会论文。
+```
+
+---
+
+Sources:
+- [PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models](https://arxiv.org/abs/2501.03124)
+- [reWordBench: Benchmarking and Improving the Robustness of Reward Models with Transformed Inputs](https://arxiv.org/abs/2503.11751)
+- [PutnamGAP: An Investigation of Robustness of LLMs in Mathematical Reasoning](https://arxiv.org/abs/2508.08833)
+- [APRM: Adversarial Training for Process Reward Models](https://arxiv.org/abs/2511.22888)
+- [GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning](https://arxiv.org/abs/2504.00891)
+- [ThinkPRM: Process Reward Models That Think](https://huggingface.co/papers/2504.16828)
+- [CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models](https://arxiv.org/abs/2507.15698)
+- [ProcessBench: Identifying Process Errors in Mathematical Reasoning](https://arxiv.org/abs/2412.06559)
+- [GR-Ben: A General Reasoning Benchmark for Evaluating Process Reward Models](https://arxiv.org/abs/2605.01203)
+- [Reward Under Attack: Analyzing the Robustness and Hackability of Reward Models](https://arxiv.org/pdf/2603.06621)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have enough information to make a well-grounded assessment. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. **"Reward Under Attack" / PRM-BiasBench** (arXiv 2603.06621, Feb 2026):
+   最直接竞争者。对 PRM 施加三层递进的对抗压力，发现 43% 的 RL reward gains 来自 fluency-based stylistic shortcuts。释出了 PRM-BiasBench 用于 surface-level robustness 评测。Proposal 将自身定位为"表面扰动 vs 结构等价"的正交维度——但 PRM-BiasBench 的 static perturbation analysis 已经覆盖了部分 surface invariance，且该工作发现 PRM 对 surface style changes 有高不变性 (reward change <0.1)，即 PRM 在表面层面已经相当鲁棒，这反过来削弱了"PRM 对结构等价也脆弱"的先验预期。
+
+2. **reWordBench** (arXiv 2503.11751, EMNLP 2025):
+   测试 meaning-preserving transformations 对 general reward models 的影响。发现 SOTA RMs 在 minor transformations 下性能显著下降。但作用于 response-level 且面向通用 RM，不是 step-level PRM。Proposal 正确识别了这一差异。
+
+3. **PutnamGAP** (arXiv 2508.08833, 2025):
+   对 1,051 道 Putnam 竞赛题生成 6,306 个数学等价变体，测试 LLM solver（非 verifier）的鲁棒性。O3 在 parametric variants 上下降 12.9pp。方法论上（等价变换 + 评测）与 IsoPRM-Bench 高度相似，但目标对象不同（solver vs verifier）。
+
+4. **GR-Ben** (arXiv 2605.01203, May 2026):
+   将 PRM 评测扩展到 9 个非数学推理子领域，发现 PRM 在数学之外的 error detection 能力显著更弱。极新的工作，显示 PRM 评测是活跃热点。
+
+5. **APRM** (arXiv 2511.22888, Nov 2025):
+   通过 adversarial training（Generator 生成错误、PRM 学习检测）提升 PRM 鲁棒性。OOD 任务上 +5.3pp。Proposal 将 Iso-Aug 定位为与 APRM 互补。
+
+6. **GenPRM** (arXiv 2504.00891, Apr 2025) & **ThinkPRM** (Apr-May 2025):
+   两类 generative PRM，分别用 code verification 和 long CoT reasoning 做 step-level verification。1.5B GenPRM 超过 GPT-4o，7B GenPRM 超过 Qwen2.5-Math-PRM-72B。
+
+7. **ProcessBench** (arXiv 2412.06559, Dec 2024):
+   3,400 人工标注数学解题步骤，是本 proposal 的数据基础。
+
+8. **PRMBench** (arXiv 2501.03124, ACL 2025):
+   6,216 problems, 83,456 step-level labels，评测 PRM 的 simplicity/soundness/sensitivity。已覆盖 fine-grained PRM evaluation，但角度不同（error detection 能力 vs 结构不变性）。
+
+9. **CoLD** (arXiv 2507.15698, Jul 2025):
+   Counterfactually-guided length debiasing for PRMs。Proposal 的 Iso-Aug 声称"adapt CoLD's causal debiasing framework"——但 CoLD 解决的是 length bias，不是 structural invariance。适配的合理性需要论证。
+
+- **调研总结**: PRM 评测/鲁棒性是 2025-2026 年的热点领域，已有大量密集工作。PRM-BiasBench（surface robustness）、PRMBench（fine-grained error detection）、GR-Ben（non-math domains）从不同角度评测 PRM。PutnamGAP 对 solver 做结构等价测试。本 proposal 定位在"step-level structural invariance of PRM verifiers"这个交叉缝隙中——缝隙真实存在，但非常窄，且该领域发展极快，被近期工作侧面覆盖的风险很高。
+
+
+【Trivial Alternative 检验】:
+
+存在明显的 trivial alternative 威胁：
+
+1. **直接用 PutnamGAP 的变换方法论 + ProcessBench 数据**: 将 PutnamGAP 的 mathematically-equivalent transformations 应用到 ProcessBench 的 step-level 数据上，然后跑现有 PRM，本质上就实现了 IsoPRM-Bench 的核心功能。Proposal 增加了 SymPy/Z3 formal verification，但这是工程层面的质量保障，不是方法论创新。
+
+2. **PRM-BiasBench 的扩展**: PRM-BiasBench 已经测试了 surface perturbations 对 PRM 的影响，如果在其 perturbation taxonomy 中加入"structural mathematical equivalence"类别（如 variable renaming、commutative reordering），就能直接覆盖本 proposal 的核心场景。
+
+3. **Iso-Aug 的 trivial baseline**: data augmentation + consistency regularization 是最标准的鲁棒性提升方法。在 Iso-Aug 之前，一个 reviewer 会问：为什么不直接用 isomorphic 数据做 fine-tuning（不需要 causal debiasing framework），效果会差多少？
+
+增量价值主要在于：(a) 系统化的 transformation taxonomy + formal verification pipeline，(b) cross-analysis with PRM-BiasBench 的 2D robustness landscape，(c) 跨 paradigm 比较。但这些更接近"thorough engineering"而非"novel insight"。
+
+
+【前提假设检验】:
+
+核心逻辑链中有几个未经验证的环节：
+
+1. **"PRM 对 structural isomorphism 脆弱"是假设而非已知事实**。PRM-BiasBench 发现 PRM 对 surface style changes 有高不变性（reward change <0.1）。如果 PRM 对 structural transformations 也是鲁棒的（尤其是 generative PRMs），整个 benchmark 的 raison d'être 就大幅削弱。Proposal 预设了 brittleness 存在并设计了 mitigation，但如果 null result 出现，论文的价值严重缩水。
+
+2. **"Step-level 脆弱性导致 tree search failure"是未经验证的因果推断**。Proposal claim (3) 假设 brittleness 随 step depth 增加导致 tree search 失败，但这个因果链缺乏理论或实证支撑——tree search 失败的原因可能是 error propagation、branching factor 爆炸等其他因素。
+
+3. **"Notation gaming attack surface 是实际威胁"的假设**。Proposal claim (5) 假设 policy 可以通过利用 PRM notation preferences 来 inflate scores。但如果 PRM 对 notation 变化本身就鲁棒（如 PRM-BiasBench 的发现所暗示），这个 attack surface 就不存在。
+
+4. **CoLD framework 适配到 structural invariance 的合理性**。CoLD 针对 length bias 设计，其 causal graph 和 intervention 策略是否能直接迁移到 structural invariance 问题上，逻辑上并不自明。
+
+
+【3 维度打分】:
+
+1. **Novelty: 弱-中** — 核心贡献是在已有工作的缝隙中找到了一个未被显式测试的组合：step-level × structural invariance × PRM verifier。但方法论上没有新东西——transformation types（variable renaming, commutative reordering, representation change, notation change）都是 PutnamGAP 和 reWordBench 中已有的；formal verification pipeline（SymPy, Z3）是标准工具；Iso-Aug 是 augmentation + consistency regularization 的标准做法。PRM-BiasBench (2603.06621) 已经在 PRM 上测试了 perturbation robustness，只需扩展其 perturbation taxonomy 就能覆盖大部分场景。PutnamGAP 的方法论直接迁移到 step-level 就是本 proposal 的核心。Novelty 主要来自"nobody has explicitly done this exact combination"，这是 gap-filling 而非 insight-driven。
+
+2. **Significance: 中** — PRM robustness 是一个重要且活跃的研究方向（PRM-BiasBench, APRM, CoLD 等都在 2025-2026 密集发表）。Test-time compute scaling 依赖可靠的 verifier 是真实需求。但：(a) 具体到 structural isomorphism 这个角度，影响面较窄——实际部署中，同一个推理步骤以不同数学记号出现的场景有限；(b) 预期发现的 surprise value 低——"discriminative PRM 比 generative PRM 更脆弱"几乎是 trivially expected（generative PRM 本身就做 explicit reasoning）；(c) 如果核心发现是 positive（PRM 确实脆弱），reviewer 大概率会说"I would have guessed this given PutnamGAP's findings on solvers"。
+
+3. **Related Work: 强** — Proposal 展示了对领域的优秀理解和定位。清晰区分了 PRM-BiasBench（surface）、reWordBench（response-level general RM）、PutnamGAP（solver not verifier）、GR-Ben（non-math domains）、APRM（adversarial training）、GenPRM/ThinkPRM（generative paradigm）。定位准确，差异化清晰。这是这份 proposal 最强的维度。
+
+【概率估计】: [15% - 28%] 中位 20%
+
+【估计理由】:
+- Novelty 是主要限制因素：核心贡献是 gap-filling benchmark，方法论层面没有新东西。在 PRM 评测已极度拥挤的 2025-2026 landscape 中（PRM-BiasBench, PRMBench, GR-Ben, ToolPRMBench 等），一个新 benchmark 需要展示"不可被现有 benchmark 简单扩展覆盖"的独特价值，而本 proposal 的核心场景可以被 PRM-BiasBench 扩展 taxonomy 或 PutnamGAP 方法下移到 step-level 来覆盖。
+- Significance 受限于 surprise value：核心预期发现（PRM 对结构等价脆弱）是可预测的，不太可能让 reviewer 感到 "surprising"。
+- **关键额外风险——venue mismatch**: Proposal 自述目标是 AAAI 2027 和 ICLR 2027，但用户询问的是 CoRL 2026（Conference on Robot Learning）。本 proposal 是纯粹的 NLP/mathematical reasoning PRM 评测工作，与 robot learning 完全无关。如果真的投 CoRL，大概率 desk reject。上述 15-28% 的估计是基于投到合适的 NLP/ML venue（如 AAAI/ICLR/ACL）的假设。如果投 CoRL 2026，概率应为 **3-5%**（基本只有误分配 reviewer 的极小概率）。
+
+【主要风险】:
+1. **Null result 风险**: 如果 PRM（尤其是 generative PRM）对 structural isomorphism 已经足够鲁棒，整个 benchmark 的核心 motivation 被瓦解，论文沦为"we tested and nothing interesting happened"。PRM-BiasBench 的发现（PRM 对 surface changes 高度不变）暗示这一风险非零。
+2. **增量价值不足**: 在 PRM benchmark 极度拥挤的领域中，reviewer 可能认为"将 PutnamGAP 的方法下沉到 step-level + 跑几个 PRM"不构成充分的学术贡献——这是一个 well-executed engineering effort，但 insight 有限。
+```
+
+Sources:
+- [Reward Under Attack / PRM-BiasBench (arXiv 2603.06621)](https://arxiv.org/abs/2603.06621)
+- [reWordBench (arXiv 2503.11751)](https://arxiv.org/abs/2503.11751)
+- [PutnamGAP (arXiv 2508.08833)](https://arxiv.org/abs/2508.08833)
+- [GR-Ben (arXiv 2605.01203)](https://arxiv.org/abs/2605.01203)
+- [APRM (arXiv 2511.22888)](https://arxiv.org/abs/2511.22888)
+- [GenPRM (arXiv 2504.00891)](https://arxiv.org/abs/2504.00891)
+- [ProcessBench (arXiv 2412.06559)](https://arxiv.org/abs/2412.06559)
+- [PRMBench (arXiv 2501.03124)](https://arxiv.org/abs/2501.03124)
+- [CoLD (arXiv 2507.15698)](https://arxiv.org/abs/2507.15698)
+- [ThinkPRM (MarkTechPost)](https://www.marktechpost.com/2025/04/29/thinkprm-a-generative-process-reward-models-for-scalable-reasoning-verification/)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have comprehensive field context. Let me compile the full assessment.
+
+---
+
+```
+【阶段】: Triage
+```
+
+## ⚠️ 重要前置问题：严重的 Venue 错配
+
+本 proposal 是一篇关于 **数学推理 Process Reward Model 鲁棒性** 的 benchmark + mitigation 论文。**CoRL (Conference on Robot Learning) 2026** 的核心领域是机器人学习（manipulation, locomotion, perception for robotics, robot policy learning 等）。这篇论文与机器人学习 **完全无关**，投 CoRL 极大概率会在 desk review 阶段直接被拒。
+
+Proposal 自身也注明了目标会议是 **AAAI 2027** 和 **ICLR 2027**——这才是合理的 venue。
+
+**因此，对 CoRL 2026 的中稿概率估计：≈ 0-3%（venue mismatch 导致 desk reject）。**
+
+以下我将按 rubric 评估 **idea 本身的内在质量**（假设投稿至 AAAI/ICLR/NeurIPS 等合理 venue），以供后续流程判断此 idea 是否值得继续推进。
+
+---
+
+```
+【领域调研】:
+```
+
+- **"Reward Under Attack: Analyzing the Robustness and Hackability of PRMs"** (arXiv:2603.06621, Mar 2026): **最直接的竞争者**。提出 PRM-BiasBench，扩展 ProcessBench 覆盖 8 种 transformation 类型，在 step-level 评估 PRM 鲁棒性。核心发现：PRM 对 surface-level 风格变化高度不变，但对逻辑破坏检测不一致；43% 的 RL reward 增益来自风格捷径。已含 step-level perturbation + PRM hackability 分析。
+
+- **reWordBench** (arXiv:2503.11751, Mar 2025): 测试 meaning-preserving transformations 对通用 reward model 的影响，response-level。发现 SOTA reward models 在轻微输入变换下性能严重下降。
+
+- **ProcessBench** (arXiv:2412.06559, Dec 2024, ACL 2025): 3,400 个 step-level 标注的数学推理解题过程，要求模型定位最早错误步骤。本 proposal 的数据基础。
+
+- **PRMBench** (arXiv:2501.03124, Jan 2025, ACL 2025): 6,216 问题 + 83,456 step-level labels，从 simplicity/soundness/sensitivity 三维评估 PRM。
+
+- **Socratic-PRMBench** (arXiv:2505.23474, May 2025): 从 reasoning pattern 角度评估 PRM，含 Transformation/Decomposition/Deduction 等模式。
+
+- **GenPRM** (arXiv:2504.00891, Apr 2025, AAAI 2026): 将 process supervision 重新定义为 generative task，1.5B GenPRM 超越 GPT-4o，7B 超越 Qwen2.5-Math-PRM-72B。
+
+- **ThinkPRM** (arXiv:2504.16828, Apr 2025): 长 CoT 生成式 PRM，支持 verifier compute scaling，在 ProcessBench/MATH-500/AIME'24 上超越 discriminative baselines。
+
+- **PutnamGAP** (arXiv:2508.08833, Aug 2025): 6,306 个数学等价变体测试 LLM solver 鲁棒性。O3 在 surface-renaming 变体上降 4.7pp，parametric 变体降 12.9pp。**但目标是 LLM solver，不是 PRM verifier。**
+
+- **APRM** (arXiv:2511.22888, Nov 2025): 对抗训练 PRM 的 two-player game 框架，平均提升 solver accuracy +3.4pp，OOD +5.3pp。
+
+- **GR-Ben** (arXiv:2605.01203, May 2026): PRM 评估扩展至 9 个非数学推理子领域。
+
+- **CoLD** (arXiv:2507.15698, Jul 2025): Counterfactually-Guided Length Debiasing for PRMs，已提出 causal debiasing 在 PRM 上的应用框架。
+
+- **调研总结**: PRM robustness evaluation 是 2025-2026 年的热门领域，已有大量 benchmark（ProcessBench → PRMBench → Socratic-PRMBench → PRM-BiasBench → GR-Ben）和 mitigation 方法（APRM、CoLD）。该 proposal 试图在 "step-level structural isomorphism invariance of PRM verifiers" 这一细分空间中占位，但最直接竞争者 "Reward Under Attack" (PRM-BiasBench, 2026.03) 已在 step-level 覆盖了 8 种 transformation 类型，且包含了 reward hacking 分析。
+
+---
+
+```
+【Trivial Alternative 检验】:
+```
+
+**存在显著的 trivial alternative 威胁。** 具体来说：
+
+1. **PRM-BiasBench 的直接扩展**："Reward Under Attack" 已经建立了 ProcessBench 基础上的 8 种 transformation perturbation 框架。要测试"structural isomorphism"，最 trivial 的做法是：在 PRM-BiasBench 的框架下新增几种 isomorphic transformation 类别（variable renaming, commutative reordering 等），而不需要建立全新的 benchmark。这个 trivial extension 成本远低于构建全新的 IsoPRM-Bench。
+
+2. **Iso-Aug mitigation 方面**：data augmentation + consistency regularization 是 NLP debiasing 中的标准套路。CoLD 已经在 PRM 上做了 causal debiasing，APRM 已经做了对抗训练。Iso-Aug 的技术贡献增量有限——本质上就是"用 isomorphic 变体做 augmentation + 加一个 consistency loss"，这是任何熟悉该领域的研究者在识别了 isomorphic brittleness 问题后都能想到的第一个方法。
+
+**增量价值的唯一合理论点**：proposal 强调的是"formally verifiable transformation"（用 SymPy + Z3 验证变换正确性），以及 isomorphism 和 surface perturbation 的"二维鲁棒性景观"交叉分析。但这更接近 engineering rigor 而非 conceptual novelty。
+
+---
+
+```
+【前提假设检验】:
+```
+
+核心 claim 的逻辑链中有以下未经验证的假设：
+
+1. **"Structural isomorphism brittleness 是 PRM 的一个独立且重要的失败模式"**——这是最关键的前提假设。PRM-BiasBench 已经发现 PRM 对 surface-level 风格变化高度不变（high invariance to surface-level style changes），那么 structural isomorphism（本质上也是 meaning-preserving transformation）是否真的会导致不同的失败模式？如果 PRM 对 surface change 已经 robust，那 structural isomorphism 可能也 robust；如果 PRM 对 surface change 不 robust，那 structural isomorphism 的 brittleness 就不是新发现。这个假设需要实证，但如果结果落入上述任何一端，novelty 都会被削弱。
+
+2. **"IIS（Isomorphic Invariance Score）与 PRM-BiasBench 的 surface robustness 存在有信息量的二维关系"**——proposal 预设了 structural invariance 和 surface robustness 是可以解耦的两个维度。但如果实验显示它们高度相关（都来自同一个底层脆弱性），那"二维景观"就没有分析价值。
+
+3. **"Generative PRMs 可能在 isomorphic invariance 上天然优于 discriminative PRMs"**——这是合理的猜测（因为 generative PRMs 通过 CoT 推理可能更关注逻辑结构），但也可能是 trivially true（因为 GenPRM 和 ThinkPRM 已经被证明在多个维度上优于 discriminative PRMs）。如果 positive，审稿人会说 "I would have guessed this"。
+
+4. **"Notation gaming attack 是一个实际威胁"**——proposal 声称 policy 可以利用 PRM 的 notation 偏好来 inflate scores。但 "Reward Under Attack" 已经证明了更广泛的 reward hacking 现象（43% 来自 stylistic shortcuts）。Notation gaming 是否是一个独立的、具有额外洞察的 attack surface，还是只是 stylistic shortcuts 的一个子类？
+
+---
+
+```
+【3 维度打分】:
+```
+
+### 1. Novelty: 弱-中 — 
+
+**理由**：
+
+- Proposal 声称的核心 novelty——"first benchmark for step-level structural isomorphism invariance of PRM verifiers"——在概念层面是成立的：PutnamGAP 测试 LLM solver（非 PRM verifier），reWordBench 在 response-level（非 step-level），PRM-BiasBench 侧重 surface perturbation（非 structural isomorphism）。三个维度的交叉确实形成了一个尚未被直接占据的细分位置。
+- **但**，这个"空白"是否有足够的 intellectual substance？"Reward Under Attack" (arXiv:2603.06621) 已在 ProcessBench 基础上做了 8 种 transformation 的 step-level PRM robustness 评估——添加 isomorphic transformation 类型是该框架的自然延伸，而非需要全新 benchmark 的独立贡献。
+- Iso-Aug mitigation（data augmentation + consistency regularization）在技术上是标准做法，CoLD 已经在 PRM debiasing 中应用了 causal framework，APRM 已经做了对抗训练。Iso-Aug 的增量有限。
+- "五个 key findings" 中的大部分（paradigm gap, depth-dependent brittleness, notation gaming）在现有文献中有前兆或可预测：PutnamGAP 和 "Reward Under Attack" 已建立了相关 findings 的框架。
+
+### 2. Significance: 中 —
+
+**理由**：
+
+- PRM robustness 是 2025-2026 年的重要话题。随着 PRM 被广泛用于 test-time compute scaling（best-of-N, tree search），其 verifier 的可靠性直接影响系统性能。这是一个真实且重要的研究方向。
+- 但该 proposal 的 specific contribution（structural isomorphism invariance 这一个维度）的影响范围较窄。"Reward Under Attack" 已经提供了更全面的 PRM robustness 诊断框架。IsoPRM-Bench 在 practical impact 上是 "Reward Under Attack" 的一个补充维度，而非独立的高影响力贡献。
+- 如果核心发现是 positive（"PRMs 对 structural isomorphism 不鲁棒"），审稿人很可能会说 **"I would have guessed this"**，因为 PutnamGAP 已经在 solver 层面证实了类似现象，PRM-BiasBench 已经在 step-level 证实了 surface perturbation 的影响。
+- Notation gaming attack 是一个有趣的方向，但可能被视为 "Reward Under Attack" 中 reward hacking 分析的一个具体实例。
+
+### 3. Related Work: 中-强 —
+
+**理由**：
+
+- Proposal 对相关工作的覆盖相当全面：PRM-BiasBench、reWordBench、PutnamGAP、GR-Ben、APRM、ProcessBench、GenPRM、ThinkPRM、CoLD 均被提及，差异化定位也较为清晰。
+- **但**：proposal 引用的 "PRM-BiasBench" 来自 "Reward Under Attack" (2026.03)，这篇论文的全面性对本 proposal 的 novelty 构成了最大威胁，而 proposal 似乎低估了它的重叠程度——仅将其描述为 "tests surface perturbations"，但实际上 PRM-BiasBench 覆盖了 8 种 transformation 类型，其中可能已包含部分 structural transformations。
+- 遗漏了 **Socratic-PRMBench** (arXiv:2505.23474) 和 **PRMBench** (arXiv:2501.03124) 这两个在 PRM evaluation 领域有显著影响的 benchmark。
+- 未充分讨论 "Reward Under Attack" 中 step-level 的 "fluency-logic dissociation" 发现——这一发现直接关联 structural isomorphism（逻辑等价但表面不同的步骤）的处理方式。
+
+---
+
+```
+【概率估计】（针对合理 venue：AAAI 2027 / ICLR 2027）: [18% - 28%] 中位 22%
+
+【概率估计】（针对 CoRL 2026）: [0% - 3%] 中位 1%
+```
+
+```
+【估计理由】:
+```
+
+**对合理 venue (AAAI/ICLR)**：
+- Novelty 维度是主要限制因素。核心贡献在概念上可以成立（step-level structural isomorphism of PRM verifiers 是一个尚未被直接占据的 niche），但实质增量较薄——PRM-BiasBench 的自然扩展即可覆盖大部分 claimed contribution。Iso-Aug mitigation 技术上是标准做法。
+- Significance 适中但不突出：方向正确（PRM robustness），但 specific contribution 较窄，且核心发现高度可预测。
+- Related work 覆盖尚可，但对最大竞争者 "Reward Under Attack" 的差异化论述不够有力。
+- 综合来看，这是一篇 "方向对、位置有、但 delta 不够大" 的 benchmark 论文。在 AAAI 有一定机会（AAAI 对 benchmark 类工作相对友好），在 ICLR 的概率更低。
+
+**对 CoRL 2026**：完全的 venue mismatch，desk reject 概率极高。
+
+```
+【主要风险】:
+```
+
+1. **与 "Reward Under Attack" / PRM-BiasBench 的重叠过大**：这是最致命的 idea 层面风险。审稿人很可能会质疑："为什么不在 PRM-BiasBench 的框架下增加 isomorphic transformation 类别，而要建一个全新的 benchmark？" 如果无法令人信服地回答这个问题，论文会因 insufficient novelty 被拒。
+
+2. **核心发现的可预测性（"I would have guessed this"）**：无论结果是 positive（"PRMs 对 isomorphism 不鲁棒"——可预测，因为 PutnamGAP 和 PRM-BiasBench 已暗示）还是 negative（"generative PRMs 天然鲁棒"——也可预测，因为 GenPRM/ThinkPRM 已被证明在多维度上优于 discriminative PRMs），审稿人都可能认为发现缺乏 surprise value。
+
+---
+
+Sources:
+- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)
+- [reWordBench: Benchmarking and Improving the Robustness of Reward Models](https://arxiv.org/abs/2503.11751)
+- [ProcessBench: Identifying Process Errors in Mathematical Reasoning](https://arxiv.org/abs/2412.06559)
+- [PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models](https://arxiv.org/abs/2501.03124)
+- [Socratic-PRMBench: Benchmarking PRMs with Systematic Reasoning Patterns](https://arxiv.org/html/2505.23474v1)
+- [GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning](https://arxiv.org/abs/2504.00891)
+- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)
+- [PutnamGAP: Mathematically-Equivalent Transformation Benchmark](https://arxiv.org/abs/2508.08833)
+- [APRM: Adversarial Training for Process Reward Models](https://arxiv.org/abs/2511.22888)
+- [GR-Ben: A General Reasoning Benchmark for Evaluating PRMs](https://arxiv.org/abs/2605.01203)
+- [CoLD: Counterfactually-Guided Length Debiasing for PRMs](https://arxiv.org/pdf/2507.15698)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# IsoPRM-Bench: Benchmarking and Mitigating Structural Isomorphism Brittleness in Process Reward Models
+
+## Description
+We propose IsoPRM-Bench, the first benchmark testing whether Process Reward Models maintain consistent scores across structurally isomorphic reasoning steps, paired with Iso-Aug, a mitigation method based on isomorphic augmentation with consistency regularization. While PRM-BiasBench tests surface perturbations (rephrasing, verbosity), reWordBench tests meaning-preserving transformations on general RMs at response level, PutnamGAP tests equivalent transformations on LLM solvers, GR-Ben extends PRM evaluation to 9 non-mathematical reasoning subdomains, and APRM improves error detection via adversarial training, no existing work tests step-level structural invariance of PRM verifiers — whether a PRM scores logically equivalent steps identically when their mathematical realization differs. Starting from ProcessBench's 3,400 human-annotated solutions (GSM8K: 400, MATH: 1,000, OlympiadBench: 1,000, Omni-MATH: 1,000), we generate isomorphic variants across four formally verifiable transformation types (variable renaming, commutative reordering, representation change, notation change) with a three-tier verification pipeline (SymPy, Z3, human audit). We explicitly quantify per-transformation coverage: T1/T2 apply broadly (~60-75% of steps), while T3/T4 require specific mathematical content (~35-55%), with coverage validated via a 100-solution pilot annotation and supplemented by AMC/AIME solutions if needed. We evaluate PRMs spanning three paradigms — discriminative (Qwen2.5-Math-PRM-72B/7B, Math-Shepherd), generative-CoT (ThinkPRM), and generative-code (GenPRM) — using an Isomorphic Invariance Score (IIS). Crucially, we cross-analyze IIS with PRM-BiasBench's surface robustness to map the two-dimensional robustness landscape. For mitigation, we adapt CoLD's causal debiasing framework to fine-tune Qwen2.5-Math-PRM-7B with isomorphic augmentation and consistency regularization, positioning Iso-Aug as complementary to APRM's adversarial training (which improves error detection robustness via novel negative generation, while Iso-Aug improves invariance across valid reformulations). Our analysis targets five key findings: (1) anti-correlated model-specific blind spots across transformation types, (2) whether generative PRMs show inherent isomorphic robustness — and if so, quantifying the paradigm gap to inform deployment decisions between latency-sensitive discriminative PRMs and invariance-superior generative PRMs, (3) whether brittleness increases with step depth (explaining tree search failure), (4) the practical impact on best-of-N selection with diverse reasoning strategies, and (5) a notation gaming attack surface analysis demonstrating how a policy can exploit PRM notation preferences to inflate scores without improving reasoning — analogous to but structurally deeper than PRM-BiasBench's finding that 43% of RL reward gains come from fluency-based stylistic shortcuts. We explicitly address the generative PRM trajectory: even if GenPRM/ThinkPRM pass invariance tests, the benchmark quantifies the paradigm robustness gap for deployment decisions, provides Iso-Aug training signal to improve latency-efficient discriminative PRMs, and establishes isomorphic invariance as a standard evaluation dimension. We adopt a two-phase submission strategy: benchmark-focused for AAAI 2027 (Jul 28; human-in-loop mode, 8-10 weeks), with full Iso-Aug + APRM composition for ICLR 2027 backup (~Oct 2026). This work bridges the gap between outcome-level robustness testing (IPT, PutnamGAP) and step-level verification, with direct implications for PRM-guided test-time compute scaling and reward hacking prevention.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a1ae1ae6-e5bb-4d8c-9490-941015fe1e1b",
+  "type": "user",
+  "uuid": "d51f033a-08f0-4348-97ba-fd55ce5a2fa9",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T03:23:05.920Z_
+
+```json
+{
+  "parentUuid": "d51f033a-08f0-4348-97ba-fd55ce5a2fa9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "68c0b4a1-cfdc-4cf1-945b-c62931dc2bf3",
+  "timestamp": "2026-05-20T03:23:05.920Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T03:23:05.920Z_
+
+```json
+{
+  "parentUuid": "68c0b4a1-cfdc-4cf1-945b-c62931dc2bf3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9604c55a-0831-40c7-b5c9-a739e7b6bafa",
+  "timestamp": "2026-05-20T03:23:05.920Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research context. Let me compile my asse…",
+  "leafUuid": "9604c55a-0831-40c7-b5c9-a739e7b6bafa",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PRM robustness to structural isomorphism variations",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T03:23:38.253Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three reviewers' assessments systematically to produce the Meta Judge output.
+
+## Extracting Key Data
+
+### Reviewer 1:
+- Novelty: 弱 (Weak)
+- Significance: 中 (Medium)
+- Related Work: 中 (Medium)
+- Probability (CoRL): [3% - 8%] 中位 5%
+- Probability (natural venue): [15% - 25%] 中位 20%
+- Key risks: Venue mismatch, Novelty insufficient, PRM-BiasBench citation questionable
+
+
+### Reviewer 2:
+- Novelty: 弱-中 (Weak-Medium)
+- Significance: 中 (Medium)
+- Related Work: 强 (Strong)
+- Probability (natural venue): [15% - 28%] 中位 20%
+- Probability (CoRL): 3-5%
+- Key risks: Null result risk, Incremental value insufficient
+
+### Reviewer 3:
+- Novelty: 弱-中 (Weak-Medium)
+- Significance: 中 (Medium)
+- Related Work: 中-强 (Medium-Strong)
+- Probability (natural venue): [18% - 28%] 中位 22%
+- Probability (CoRL): [3% - 5%]
+- Key risks: Overlap with "Reward Under Attack"/PRM-BiasBench, predictable findings
+
+Looking at the reviewer assessments, the natural venue probabilities cluster tightly around 20-22% with high consistency, while CoRL acceptance odds are substantially lower at 1-4%. All three reviewers identify venue mismatch as a critical issue for CoRL 2026, which is the primary concern here.
+
+The consensus across reviewers is clear: this proposal faces a fatal venue mismatch since CoRL focuses on robot learning while this work addresses NLP and mathematical reasoning through process reward model evaluation. Beyond that, reviewers uniformly flag weak novelty as the core limitation—the work reads more as gap-filling than introducing new insights. There's also a strong consensus that existing methods like PRM-BiasBench or PutnamGAP could trivially subsume this contribution at the step level, and significance is rated as moderate across the board.
+
+All three reviewers note the findings feel predictable, that data augmentation with consistency regularization is standard practice with limited technical depth, and that the CoLD adaptation to structural invariance lacks proper justification. Coverage of related work ranges from adequate to strong, though with some gaps. One notable discrepancy: R1 questions whether PRM-BiasBench exists as a standalone publication, while R2 and R3 correctly identify it as part of "Reward Under Attack" (arXiv:2603.06621).
+
+Looking at the venue probability estimates, there's striking agreement—all three cluster around 20-22% for a natural venue with less than 1.2% standard deviation, while CoRL probabilities are uniformly near zero (1-5%), suggesting consensus that this work doesn't fit that venue's scope.
+
+The core issues are consistent across reviewers: venue mismatch is disqualifying for CoRL, novelty is the limiting factor even at the right conference, and this reads as a benchmark paper filling a specific gap rather than advancing fundamental methods.
+
+For CoRL 2026, I'm settling on 3% as the median estimate, while a natural venue like AAAI or ICLR sits around 20%—making the recommendation clear: reject for CoRL, but marginal viability elsewhere.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9604c55a-0831-40c7-b5c9-a739e7b6bafa",
+  "isSidechain": false,
+  "requestId": "req_011CbD6yiGPRKeQmskBLrKRL",
+  "type": "assistant",
+  "uuid": "5890a0c9-249a-4196-a5ca-06c2b6c34650",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JHkd6N476M5p1p6zPK47Q4",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15715,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 4285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15715,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4285,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 15715,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15715
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T03:24:35.076Z_
+
+【阶段】: Meta Judge
+
+【三次中位】: [20%, 20%, 22%] std=0.9%（自然 venue AAAI/ICLR）；CoRL 中位 [5%, 4%, 1%] std=1.7%
+
+【共识维度】:
+
+| 维度 | 判决 | 支持人数 | 说明 |
+|------|------|---------|------|
+| **Venue 错配（致命）** | 致命 | 3/3 | 三位一致判定：CoRL 是机器人学习会议，本 proposal 是 NLP/数学推理 PRM 评测，完全不在 scope 内，大概率 desk reject |
+| **Novelty** | 弱～弱中 | 3/3 | 一致认定核心贡献是 gap-filling：PutnamGAP 方法 × ProcessBench 数据 × step-level PRM verifier 的排列组合，而非 insight-driven 创新 |
+| **Trivial Alternative 威胁** | 强 | 3/3 | 一致指出：(1) PRM-BiasBench 扩展 taxonomy 即可覆盖；(2) PutnamGAP 变换直接下沉到 step-level 即可实现；(3) Iso-Aug 是标准 data augmentation + consistency loss |
+| **Significance** | 中 | 3/3 | 方向正确（PRM 鲁棒性对 test-time compute scaling 重要），但 specific contribution 窄，核心发现高度可预测（"I would have guessed this"） |
+| **CoLD 适配未论证** | 中 | 3/3 | CoLD 针对 length bias，迁移到 structural invariance 的因果图需重新设计，proposal 未讨论可行性 |
+| **核心发现可预测性** | 中 | 3/3 | discriminative PRM 脆弱 + generative PRM 更鲁棒 = trivially expected；正反结果都不 surprising |
+| **Related Work 覆盖** | 中-强 | 3/3 | 对领域了解广泛、定位清晰，但对最大竞争者 "Reward Under Attack" 的差异化论述不够有力 |
+
+【异常维度】:
+
+| 维度 | 提出者 | 说明 | 处理 |
+|------|--------|------|------|
+| PRM-BiasBench 引用真实性 | R1 单独质疑 | R1 搜索未找到独立的 "PRM-BiasBench" 工作；但 R2、R3 均将其定位为 "Reward Under Attack" (arXiv:2603.06621) 的子产物 | **降权**。R2/R3 的溯源更准确，该引用并非虚构，而是 proposal 的引用方式不够精确。问题从"引用不实"降级为"引用溯源不清晰" |
+| Socratic-PRMBench 遗漏 | R3 单独提出 | arXiv:2505.23474，从 reasoning pattern 角度评估 PRM | **低权重采纳**。属于 related work 完整性的补充，不影响核心判决 |
+| Null result 风险突出强调 | R2 最强调 | PRM-BiasBench 发现 PRM 对 surface change 高度不变，暗示 structural isomorphism 也可能 robust | **中权重**。R1/R3 也有提及但力度较弱。这确实是一个双输风险：null result 削弱 benchmark raison d'être |
+
+【最终概率】:
+
+**针对 CoRL 2026（用户询问的目标会议）**: [0% - 5%] 中位 3%
+
+**针对自然目标 venue（AAAI 2027 / ICLR 2027）**: [15% - 25%] 中位 20%
+
+【一致性】: 高（自然 venue std=0.9%；CoRL std=1.7%；三位审稿人在所有核心维度上判决高度一致）
+
+【综合理由】:
+
+**1. CoRL 概率（中位 3%）的逻辑：**
+三位审稿人一致将 venue 错配标为致命问题。CoRL 核心领域为机器人感知、控制、manipulation、navigation、sim-to-real，本 proposal 是纯粹的数学推理 PRM 评测论文，零机器人学习相关内容。Proposal 自身也写明目标是 AAAI 2027 / ICLR 2027。三人给出的 CoRL 概率分别为 5%、~4%、1%，我取中位 3%，反映的是极小概率的行政错误或审稿人分配异常。**这本质上是 desk reject 场景。**
+
+**2. 自然 venue 概率（中位 20%）的逻辑：**
+三人给出 20%、20%、22%，极高一致性，直接取中位 20%。概率受限的核心原因是 **Novelty 天花板低**：
+- 这是一篇 gap-filling benchmark 论文，核心方法论（变换类型、验证工具、augmentation 策略）均来自已有工作
+- 最大竞争者 "Reward Under Attack" (arXiv:2603.06621) 已在 step-level 做了 8 种 transformation 的 PRM robustness 评测，扩展其 taxonomy 即可覆盖本 proposal 的大部分核心场景
+- 预期发现缺乏 surprise value：正反结果都可被现有文献框架预测
+- Iso-Aug 是标准技术，无方法论创新
+
+上界 25% 对应"实验执行极优秀 + 出现反直觉 finding（如 generative PRM 也意外脆弱）"的乐观场景。下界 15% 对应"实验结果符合预期 + 审稿人判定增量不足"的基础场景。
+
+**3. 异常处理：**
+- R1 对 PRM-BiasBench 引用的质疑被 R2/R3 的更准确溯源部分消解，但引用方式不精确确实是写作层面的问题，不影响核心概率判定
+- R2 强调的 null result 风险是合理的额外下行风险，但已被三人的概率区间隐含覆盖
+
+**4. 综合判定：** 对于 CoRL 2026，这是一个 **KILL** 级别的 venue 错配。对于自然 venue，这是一篇"方向正确、定位有、但 delta 不足"的边缘论文，中位 20% 反映了其 benchmark paper 天花板与 gap-filling 性质的叠加约束。
+
+【建议】: **KILL**（针对 CoRL 2026）/ **边缘**（针对自然 venue AAAI/ICLR）
+
+具体建议：
+- **立即放弃 CoRL 2026 投稿计划**，这是确定性的 venue 错配
+- 如果团队仍希望推进该 idea，应聚焦 AAAI 2027（对 benchmark 论文相对友好）或 ACL/EMNLP track
+- 即便投自然 venue，20% 的中位概率意味着需要显著强化 novelty 才有竞争力
+
+【实施评估】:
+
+- **计算资源**: 中等。需要运行 5+ 个 PRM 模型（含 72B 规模的 Qwen2.5-Math-PRM-72B），生成 isomorphic 变体需要 SymPy/Z3 验证管道。Iso-Aug fine-tuning 针对 7B 模型，单卡 A100/H100 可完成。总体需 4-8 张 A100 GPU，推理评估约 1-2 周，Iso-Aug 训练约 3-5 天
+- **数据需求**: 基于 ProcessBench 3,400 条公开数据构建，无私有数据依赖。可能需要补充 AMC/AIME 数据（公开可得）。三层验证管道中的 human audit 是数据质量瓶颈
+- **人工介入**: 中等偏高。三层验证管道的第三层需要人工审核（proposal 设计为 human-in-loop mode）。100 条 pilot annotation + 全量数据的抽样人工验证，估计需要 2-3 位有数学背景的标注员，工作量约 2-4 周
+- **训练需求**: Iso-Aug fine-tuning 需要训练 Qwen2.5-Math-PRM-7B，规模适中。不需要从头预训练，属于 lightweight fine-tuning
+- **新 Benchmark**: 是。需构建 IsoPRM-Bench（核心交付物），含 4 种变换类型的 isomorphic 变体 + 三层验证标注。这是论文的主要工作量
+- **预估周期**: Proposal 自估 8-10 周（AAAI 2027 截稿 Jul 28）。考虑到 human audit 环节和多模型评估，实际需 10-14 周较为现实。如果含 Iso-Aug + APRM composition（ICLR backup），需额外 6-8 周
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5890a0c9-249a-4196-a5ca-06c2b6c34650",
+  "isSidechain": false,
+  "requestId": "req_011CbD6yiGPRKeQmskBLrKRL",
+  "type": "assistant",
+  "uuid": "1f9ab5a0-7889-447e-9095-e73d4ecffd10",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JHkd6N476M5p1p6zPK47Q4",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15715,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 4285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15715,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 4285,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 15715,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15715
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research context. Let me compile my asse…",
+  "leafUuid": "1f9ab5a0-7889-447e-9095-e73d4ecffd10",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PRM robustness to structural isomorphism variations",
+  "sessionId": "8fd5a6a7-ee41-4468-a340-2a64cf2930ad"
+}
+```
+
+---
