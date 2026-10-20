@@ -614,6 +614,22 @@
       }
     },
     {
+      "project": "min_necessary_circuit_css",
+      "title": "Transformer Model EAP-IG",
+      "catalog": "../paper-assets/min_necessary_circuit_css/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 313,
+        "messages": 24655,
+        "user_turns": 685,
+        "tool_calls": 9484,
+        "unparsed_lines": 130,
+        "worker": 131,
+        "result": 124,
+        "conversation": 54,
+        "history": 4
+      }
+    },
+    {
       "project": "nlp_variance_gtheory",
       "title": "Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models",
       "catalog": "../paper-assets/nlp_variance_gtheory/05-generation-trace/catalog.json",
@@ -856,17 +872,18 @@
     },
     {
       "project": "solver-trace-ablation",
-      "title": "solver trace ablation",
+      "title": "Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning",
       "catalog": "../paper-assets/solver-trace-ablation/05-generation-trace/catalog.json",
       "statistics": {
-        "files": 31,
-        "messages": 1575,
-        "user_turns": 75,
-        "tool_calls": 635,
-        "unparsed_lines": 12,
-        "worker": 12,
-        "result": 12,
-        "conversation": 7
+        "files": 3262,
+        "messages": 227092,
+        "user_turns": 7613,
+        "tool_calls": 93198,
+        "unparsed_lines": 1123,
+        "worker": 1157,
+        "result": 977,
+        "conversation": 805,
+        "history": 323
       }
     },
     {

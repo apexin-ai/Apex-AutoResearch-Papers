@@ -1059,6 +1059,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39396020640"
+    },
+    "solver-trace-ablation/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 535276701,
+        "etag": "\"797d11ec413299df9dfe6a433986b5e4-64\"",
+        "modified": "2026-05-31T17:34:23+00:00"
+      },
+      "archive_sha256": "92568f10d844a89b87c0d3497469e17f18de067ebd694a67943e119eae91c455",
+      "projects": [
+        "min_necessary_circuit_css",
+        "solver-trace-ablation"
+      ],
+      "counts": [
+        {
+          "project": "min_necessary_circuit_css",
+          "title": "Transformer Model EAP-IG",
+          "paper_pdf": "paper.pdf",
+          "code_count": 130,
+          "data_count": 186,
+          "trace_count": 313
+        },
+        {
+          "project": "solver-trace-ablation",
+          "title": "Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning",
+          "paper_pdf": "paper.pdf",
+          "code_count": 579,
+          "data_count": 1578,
+          "trace_count": 3262
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39396020640"
     }
   }
 }

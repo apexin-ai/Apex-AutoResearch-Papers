@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **40 projects with manuscript PDFs** and **28 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **42 projects with manuscript PDFs** and **27 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -30,6 +30,7 @@ This catalogue covers **40 projects with manuscript PDFs** and **28 additional p
 | [irt_equated_bench_regen](paper-assets/irt_equated_bench_regen/README.md) | [PDF](paper-assets/irt_equated_bench_regen/01-manuscript/paper.pdf) | 92 | 348 | 380 | 53,711 |
 | [irt_personfit_contam](paper-assets/irt_personfit_contam/README.md) | [PDF](paper-assets/irt_personfit_contam/01-manuscript/paper.pdf) | 289 | 908 | 726 | 70,309 |
 | [meta_brain_lora_routing](paper-assets/meta_brain_lora_routing/README.md) | [PDF](paper-assets/meta_brain_lora_routing/01-manuscript/paper.pdf) | 137 | 203 | 556 | 55,779 |
+| [min_necessary_circuit_css](paper-assets/min_necessary_circuit_css/README.md) | [PDF](paper-assets/min_necessary_circuit_css/01-manuscript/paper.pdf) | 130 | 186 | 313 | 24,655 |
 | [nlp_variance_gtheory](paper-assets/nlp_variance_gtheory/README.md) | [PDF](paper-assets/nlp_variance_gtheory/01-manuscript/paper.pdf) | 396 | 519 | 815 | 81,448 |
 | [occsafe_vla](paper-assets/occsafe_vla/README.md) | [PDF](paper-assets/occsafe_vla/01-manuscript/paper.pdf) | 510 | 1,517 | 2,573 | 167,803 |
 | [persuasion_turn_jailbreak_detect](paper-assets/persuasion_turn_jailbreak_detect/README.md) | [PDF](paper-assets/persuasion_turn_jailbreak_detect/01-manuscript/paper.pdf) | 242 | 788 | 984 | 125,176 |
@@ -41,6 +42,7 @@ This catalogue covers **40 projects with manuscript PDFs** and **28 additional p
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 378 | 676 | 1,242 | 131,771 |
 | [schema_semantic_constrained_ie](paper-assets/schema_semantic_constrained_ie/README.md) | [PDF](paper-assets/schema_semantic_constrained_ie/01-manuscript/paper.pdf) | 451 | 1,384 | 2,527 | 204,987 |
 | [simgate-modular-routing](paper-assets/simgate-modular-routing/README.md) | [PDF](paper-assets/simgate-modular-routing/01-manuscript/paper.pdf) | 336 | 806 | 2,025 | 177,700 |
+| [solver-trace-ablation](paper-assets/solver-trace-ablation/README.md) | [PDF](paper-assets/solver-trace-ablation/01-manuscript/paper.pdf) | 579 | 1,578 | 3,262 | 227,092 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
 | [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
@@ -66,7 +68,6 @@ This catalogue covers **40 projects with manuscript PDFs** and **28 additional p
 | [prod_0510](paper-assets/prod_0510/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prov_grounded_uie](paper-assets/prov_grounded_uie/README.md) | No PDF in snapshot | 52 | 171 | 221 | 18,264 |
 | [schema-conform-ie-training](paper-assets/schema-conform-ie-training/README.md) | No PDF in snapshot | 35 | 140 | 110 | 9,882 |
-| [solver-trace-ablation](paper-assets/solver-trace-ablation/README.md) | No PDF in snapshot | 26 | 27 | 31 | 1,575 |
 | [svs_formal_verification](paper-assets/svs_formal_verification/README.md) | No PDF in snapshot | 68 | 28 | 205 | 21,001 |
 | [tbab_multi_turn](paper-assets/tbab_multi_turn/README.md) | No PDF in snapshot | 45 | 60 | 116 | 10,572 |
 | [temp-adv-distill-vla](paper-assets/temp-adv-distill-vla/README.md) | No PDF in snapshot | 20 | 25 | 52 | 9,052 |

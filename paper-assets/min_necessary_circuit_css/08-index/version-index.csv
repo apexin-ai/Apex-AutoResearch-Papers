@@ -1,0 +1,13 @@
+archive_path,source_bytes,output_path
+figures/paper/fig2_size_controlled.pdf,25205,01-manuscript/source/figures/paper/fig2_size_controlled.pdf
+figures/paper/fig4_isinf_shift.pdf,27248,01-manuscript/source/figures/paper/fig4_isinf_shift.pdf
+figures/paper/fig3_jaccard_heatmap.pdf,36630,01-manuscript/source/figures/paper/fig3_jaccard_heatmap.pdf
+figures/paper/fig1_overview.pdf,36306,01-manuscript/source/figures/paper/fig1_overview.pdf
+artifacts/dream_reports/dream_20260513T092135/median/paper.pdf,193391,01-manuscript/source/artifacts/dream_reports/dream_20260513T092135/median/paper.pdf
+artifacts/dream_reports/dream_20260513T092135/worst/paper.pdf,177759,01-manuscript/source/artifacts/dream_reports/dream_20260513T092135/worst/paper.pdf
+artifacts/dream_reports/dream_20260513T092135/best/paper.pdf,200088,01-manuscript/source/artifacts/dream_reports/dream_20260513T092135/best/paper.pdf
+artifacts/dream_reports/dream_20260513T054654/median/paper.pdf,245523,01-manuscript/source/artifacts/dream_reports/dream_20260513T054654/median/paper.pdf
+artifacts/dream_reports/dream_20260513T054654/worst/paper.pdf,209526,01-manuscript/source/artifacts/dream_reports/dream_20260513T054654/worst/paper.pdf
+artifacts/dream_reports/dream_20260513T054654/best/paper.pdf,202844,01-manuscript/source/artifacts/dream_reports/dream_20260513T054654/best/paper.pdf
+artifacts/dream_reports/dream_20260513T081242/worst/paper.pdf,224603,01-manuscript/source/artifacts/dream_reports/dream_20260513T081242/worst/paper.pdf
+artifacts/dream_reports/dream_20260513T081242/best/paper.pdf,239110,01-manuscript/source/artifacts/dream_reports/dream_20260513T081242/best/paper.pdf
